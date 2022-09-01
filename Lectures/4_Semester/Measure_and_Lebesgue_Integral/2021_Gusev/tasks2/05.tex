@@ -1,0 +1,16 @@
+\begin{task}{5}
+	Пусть $\nu$ --- внешняя мера. Верно ли, что $\nu^* = \nu$
+\end{task}
+
+\begin{solution}
+	По определению внешней меры порожденной мерой $\nu$:
+	$$
+	\nu^* = inf\left\{\sum_{k=1}^{n}\nu(A_k) \mid A \subset \bigcup_{k=1}^{\infty}A_k\right\}
+	$$
+	Так как $\nu$ --- внешняя мера, то $\nu$ --- определена на $2^X$ и является счетно-субаддитивной. Тогда $\forall A \in 2^X$ и для любого счетного покрытия $\bigcup_{k=1}^{\infty}A_k \supset A$: 
+	$$
+	\nu(A) \leq \nu\left(\bigcup_{k=1}^{\infty}A_k\right) \leq \sum_{k=1}^{\infty}\nu(A_k)
+	$$
+	Таким образом инфинумом является $\nu(A)$, значит, $\nu(A) = \nu^*(A)$ для любого $A$. 
+	
+\end{solution}

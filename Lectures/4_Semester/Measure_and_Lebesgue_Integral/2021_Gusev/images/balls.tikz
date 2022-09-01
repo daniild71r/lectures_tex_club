@@ -1,0 +1,59 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=1pt,y=1pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Ellipse [id:dp25813164220467333] 
+\draw   (30.64,63.02) .. controls (30.64,41.67) and (47.94,24.37) .. (69.29,24.37) .. controls (90.63,24.37) and (107.94,41.67) .. (107.94,63.02) .. controls (107.94,84.37) and (90.63,101.67) .. (69.29,101.67) .. controls (47.94,101.67) and (30.64,84.37) .. (30.64,63.02) -- cycle ;
+%Shape: Ellipse [id:dp994070922699366] 
+\draw   (132.29,89.11) .. controls (132.29,61.89) and (154.35,39.83) .. (181.57,39.83) .. controls (208.78,39.83) and (230.85,61.89) .. (230.85,89.11) .. controls (230.85,116.32) and (208.78,138.39) .. (181.57,138.39) .. controls (154.35,138.39) and (132.29,116.32) .. (132.29,89.11) -- cycle ;
+%Shape: Ellipse [id:dp8564778898119749] 
+\draw   (36.44,179.55) .. controls (36.44,146.78) and (63,120.22) .. (95.76,120.22) .. controls (128.53,120.22) and (155.09,146.78) .. (155.09,179.55) .. controls (155.09,212.32) and (128.53,238.88) .. (95.76,238.88) .. controls (63,238.88) and (36.44,212.32) .. (36.44,179.55) -- cycle ;
+%Shape: Ellipse [id:dp39397600432198776] 
+\draw  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,draw opacity=1 ] (80.3,35.38) .. controls (80.3,20.12) and (92.68,7.75) .. (107.94,7.75) .. controls (123.2,7.75) and (135.57,20.12) .. (135.57,35.38) .. controls (135.57,50.65) and (123.2,63.02) .. (107.94,63.02) .. controls (92.68,63.02) and (80.3,50.65) .. (80.3,35.38) -- cycle ;
+%Shape: Ellipse [id:dp55919092603007] 
+\draw  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,draw opacity=1 ] (164.95,131.04) .. controls (164.95,108.2) and (183.46,89.69) .. (206.3,89.69) .. controls (229.14,89.69) and (247.66,108.2) .. (247.66,131.04) .. controls (247.66,153.88) and (229.14,172.4) .. (206.3,172.4) .. controls (183.46,172.4) and (164.95,153.88) .. (164.95,131.04) -- cycle ;
+%Shape: Ellipse [id:dp04860568574016577] 
+\draw  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,draw opacity=1 ] (81.46,235.01) .. controls (81.46,220.07) and (93.58,207.96) .. (108.52,207.96) .. controls (123.46,207.96) and (135.57,220.07) .. (135.57,235.01) .. controls (135.57,249.96) and (123.46,262.07) .. (108.52,262.07) .. controls (93.58,262.07) and (81.46,249.96) .. (81.46,235.01) -- cycle ;
+%Shape: Ellipse [id:dp36880420423571314] 
+\draw  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,draw opacity=1 ] (193.16,45.05) .. controls (193.16,34.27) and (201.9,25.53) .. (212.68,25.53) .. controls (223.46,25.53) and (232.2,34.27) .. (232.2,45.05) .. controls (232.2,55.83) and (223.46,64.57) .. (212.68,64.57) .. controls (201.9,64.57) and (193.16,55.83) .. (193.16,45.05) -- cycle ;
+%Shape: Circle [id:dp4720879733888619] 
+\draw  [color={rgb, 255:red, 5; green, 200; blue, 30 }  ,draw opacity=1 ] (182.92,202.74) .. controls (182.92,191.11) and (192.35,181.68) .. (203.98,181.68) .. controls (215.62,181.68) and (225.05,191.11) .. (225.05,202.74) .. controls (225.05,214.37) and (215.62,223.8) .. (203.98,223.8) .. controls (192.35,223.8) and (182.92,214.37) .. (182.92,202.74) -- cycle ;
+%Shape: Ellipse [id:dp6697268596924413] 
+\draw  [color={rgb, 255:red, 5; green, 200; blue, 30 }  ,draw opacity=1 ] (233.55,219.55) .. controls (233.55,199.06) and (250.16,182.45) .. (270.66,182.45) .. controls (291.15,182.45) and (307.76,199.06) .. (307.76,219.55) .. controls (307.76,240.05) and (291.15,256.66) .. (270.66,256.66) .. controls (250.16,256.66) and (233.55,240.05) .. (233.55,219.55) -- cycle ;
+%Shape: Ellipse [id:dp5587771618704152] 
+\draw  [color={rgb, 255:red, 5; green, 200; blue, 30 }  ,draw opacity=1 ] (253.26,75.58) .. controls (253.26,56.05) and (269.1,40.22) .. (288.63,40.22) .. controls (308.16,40.22) and (323.99,56.05) .. (323.99,75.58) .. controls (323.99,95.11) and (308.16,110.95) .. (288.63,110.95) .. controls (269.1,110.95) and (253.26,95.11) .. (253.26,75.58) -- cycle ;
+%Shape: Ellipse [id:dp6282906387242082] 
+\draw  [color={rgb, 255:red, 5; green, 200; blue, 30 }  ,draw opacity=1 ] (278.77,149.4) .. controls (278.77,133.93) and (291.32,121.38) .. (306.79,121.38) .. controls (322.27,121.38) and (334.82,133.93) .. (334.82,149.4) .. controls (334.82,164.88) and (322.27,177.42) .. (306.79,177.42) .. controls (291.32,177.42) and (278.77,164.88) .. (278.77,149.4) -- cycle ;
+%Flowchart: Connector [id:dp35662527833016466] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (95.76,179.55) .. controls (95.76,180.72) and (96.72,181.68) .. (97.89,181.68) .. controls (99.06,181.68) and (100.02,180.72) .. (100.02,179.55) .. controls (100.02,178.38) and (99.06,177.42) .. (97.89,177.42) .. controls (96.72,177.42) and (95.76,178.38) .. (95.76,179.55) -- cycle ;
+%Shape: Ellipse [id:dp6938349115010671] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (7.59,179.55) .. controls (7.59,128.51) and (48.97,87.13) .. (100.02,87.13) .. controls (151.06,87.13) and (192.44,128.51) .. (192.44,179.55) .. controls (192.44,230.59) and (151.06,271.97) .. (100.02,271.97) .. controls (48.97,271.97) and (7.59,230.59) .. (7.59,179.55) -- cycle ;
+%Flowchart: Connector [id:dp6565155031810235] 
+\draw  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 40; blue, 66 }  ,fill opacity=1 ] (92.26,225.55) .. controls (92.26,226.72) and (93.22,227.68) .. (94.39,227.68) .. controls (95.56,227.68) and (96.52,226.72) .. (96.52,225.55) .. controls (96.52,224.38) and (95.56,223.42) .. (94.39,223.42) .. controls (93.22,223.42) and (92.26,224.38) .. (92.26,225.55) -- cycle ;
+%Flowchart: Connector [id:dp7973879357254914] 
+\draw  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 40; blue, 66 }  ,fill opacity=1 ] (103.26,251.55) .. controls (103.26,252.72) and (104.22,253.68) .. (105.39,253.68) .. controls (106.56,253.68) and (107.52,252.72) .. (107.52,251.55) .. controls (107.52,250.38) and (106.56,249.42) .. (105.39,249.42) .. controls (104.22,249.42) and (103.26,250.38) .. (103.26,251.55) -- cycle ;
+
+% Text Node
+\draw (43.06,45.52) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle B_{1}$};
+% Text Node
+\draw (149.73,61.75) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle B_{2}$};
+% Text Node
+\draw (44.1,169.97) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle B_{n}$};
+% Text Node
+\draw (320.81,186.98) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 5; green, 200; blue, 30 }  ,opacity=1 ] [align=left] {$\displaystyle {{\mathcal{F}_{n}}_{+}}_{1}$};
+% Text Node
+\draw (142.72,229.88) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 0; blue, 31 }  ,opacity=1 ] [align=left] {$\displaystyle B$};
+% Text Node
+\draw (103.35,167.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (20.14,259.73) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle \widehat{B_{n}}$};
+% Text Node
+\draw (97.5,217) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,opacity=1 ] [align=left] {$\displaystyle z$};
+% Text Node
+\draw (108.5,248) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 40; blue, 66 }  ,opacity=1 ] [align=left] {$\displaystyle y$};
+
+
+\end{tikzpicture}

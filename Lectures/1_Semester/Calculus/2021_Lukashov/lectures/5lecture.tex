@@ -1,0 +1,436 @@
+\subsubsection*{Свойство полноты}
+
+\begin{definition}
+    Любое действительное число разбивает по отношению порядка множество $\R$ на две части. То есть, если $A \neq \emptyset,\ B \neq \emptyset$ и при этом $A \cap B = \emptyset$, $A \cup B = \R$, а также $\forall a \in A, b \in B\ a \le b$, то
+    \[
+    	\exists c \in \R \such \forall a \in A, b \in B\ a \le c \le b
+    \]
+\end{definition}
+
+\begin{proof}
+    Построим $\{[p_n; q_n]_\Q\}_{n = 1}^\infty$ - систему стягивающихся отрезков
+    $$
+        p_n - \text{ наибольшее } \frac{1}{10^{n - 1}}\Z \cap A,\ q_n - \text{ наименьшее } \frac{1}{10^{n - 1}}\Z \cap B
+    $$
+    
+    Предположим, что $\exists b \in B\ |\ c > b \Ra c + (-b) > 0$
+    \begin{align*}
+        \frac{1}{10^{n - 1}} < c - b \\
+        c - p_n \le q_n - p_n < c - b \Ra p_n > b
+    \end{align*}
+    А так как $p_n \in A,\ b \in B$, то мы получили противоречие.
+\end{proof}
+
+\subsection{Комплексные числа}
+
+\begin{definition}
+    \textit{Множеством комплексных чисел} называют множество $\Cm = \R^2$.
+\end{definition}
+
+\subsubsection*{Сложение}
+
+\begin{definition}
+    \textit{Суммой} двух комплексных чисел $(a, b)$ и $(c, d)$ называют число
+    $$
+        (a, b) + (c, d) := (a + c, b + d)
+    $$
+\end{definition}
+
+\subsubsection*{Умножение}
+
+\begin{definition}
+    \textit{Произведением} двух комплексных чисел $(a, b)$ и $(c, d)$ называют число
+    $$
+        (a, b) \cdot (c, d) := (ac - bd, ad + bc)
+    $$
+\end{definition}
+
+\subsubsection*{Мнимая единица}
+
+\begin{definition}
+    \textit{Мнимой единицей} $i$ называют комплексное число $(0, 1)$, которое из определения выше имеет свойство:
+    $$
+        i^2 := -1
+    $$
+\end{definition}
+
+\begin{proposition}
+    Множество $\R$ вложено в множество $\Cm$.
+\end{proposition}
+
+\begin{proof}
+    Действительно, если $a \in R$, то $a = (a, 0)$. Несложно проверить, что все операции будут точно такими же, как и с обычными действительными числами.
+\end{proof}
+
+\subsubsection*{Алгебраическая форма комплексного числа}
+
+\begin{definition}
+    Заметим, что $(a, b) = a \cdot (1, 0) + b \cdot (0, 1)$. То есть:
+    $$
+        (a, b) = a + bi
+    $$
+    Запись числа $z$ в виде $a + bi$ называется \textit{алгебраической формой комплексного числа}
+\end{definition}
+
+\begin{center}
+	\scalebox{1}{
+		\begin{tikzpicture}
+			\clip (-1.4, -1.3) rectangle (3.4, 3.3);
+			\draw [->] (-1, 0) -- (3, 0) node [above, black] {$\re z$};
+			\draw [->] (0, -1) -- (0, 3) node [right, black] {$\im z$};
+			
+			\draw [line width = 1pt, black!15!blue] (1.4,3pt) -- (1.4,-3pt) node [below, black] {$1$};
+			\draw [line width = 1pt, black!15!blue] (3pt,1.4) -- (-3pt,1.4) node [left, black] {$i$};
+			
+			\draw [->, black!15!blue] (0, 0) -- (2, 1.5) node [black, above right, scale = 1.2] {$z$};
+			\node[draw, circle, inner sep=1.4pt, fill, black!15!blue] at (2.06, 1.54) {};
+			
+			\coordinate (a1) at (2, 1.5);
+			\coordinate (b) at (0, 0);
+			\coordinate (c) at (1, 0);
+			
+			\pic [draw, ->] {angle = c--b--a1};
+			\node [] at (0.75, 0.25) {$\phi$};
+		\end{tikzpicture}
+	}
+\end{center}
+
+\begin{definition}
+    \textit{Модулем} комплексного числа нызывают число:
+    $$
+        |z| := \sqrt{a^2 + b^2}
+    $$
+\end{definition}
+
+\begin{definition}
+    \textit{Реальной частью} комплексного числа называют число $a$ в его алгебраической форме:
+    $$
+        \re(a + bi) := a
+    $$
+\end{definition}
+
+\begin{definition}
+    \textit{Мнимой частью} комплексного числа называют число $a$ в его алгебраической форме:
+    $$
+        \im(a + bi) := b
+    $$
+\end{definition}
+
+\subsubsection*{Неравенство треугольника}
+
+\begin{center}
+	\scalebox{1}{
+		\begin{tikzpicture}
+			\clip (-1.4, -1.3) rectangle (3.4, 3.3);
+			\draw [->] (-1, 0) -- (3, 0) node [above, black] {$\re z$};
+			\draw [->] (0, -1) -- (0, 3) node [right, black] {$\im z$};
+			
+			\draw [line width = 1pt, black!15!blue] (1,3pt) -- (1,-3pt) node [below, black] {$1$};
+			\draw [line width = 1pt, black!15!blue] (3pt,1) -- (-3pt,1) node [left, black] {$i$};
+			
+			\draw [->, black!15!blue] (0, 0) -- (1.8, 0.8) node [black, below, scale = 1] {};
+			\node[draw, circle, inner sep=1pt, fill, black!15!blue] at (1.85, 0.82) {};
+			\node [] at (1.25, 0.3) {$z_1$};
+			
+			\draw [->, black!15!blue] (1.85, 0.82) -- (2.3, 2.6) node [black, below, scale = 1] {};
+			\node[draw, circle, inner sep=1pt, fill, black!15!blue] at (2.34, 2.63) {};
+			\node [] at (2.4, 2) {$z_2$};
+			
+			\draw [->, black!15!blue] (0.0, 0.0) -- (2.3, 2.6) node [black, below, scale = 1] {};
+			\node [] at (0.95, 2.05) {$z_1 + z_2$};
+		\end{tikzpicture}
+	}
+\end{center}
+
+Геометрически очевидны следующие неравенства:
+\begin{align*}
+    &|z_1 + z_2| \le |z_1| + |z_2| \\
+    &|z_1 - z_2| \ge ||z_1| - |z_2||
+\end{align*}
+
+\subsubsection*{Деление комплексных чисел}
+
+\begin{definition}
+    Комплексное число $z_3$ называется \textit{частным} от деления числа $z_1$ на число $z_2$, если верно равенство:
+    $$
+        z_2 \cdot z_3 = z_1 \lra z_3 := \frac{z_1}{z_2} := z_1 / z_2
+    $$
+\end{definition}
+
+\begin{corollary}
+    Выведем действительную и мнимую часть частного, если $z_1 = a + bi$, а $z_2 = c + di$. При этом обозначим $z_3 = x + yi$:
+    \begin{align*}
+        &(c + di) \cdot (x + yi) = a + bi
+        \\
+        &cx - dy + (cy + dx)i = a + bi
+        \\
+        &\Ra \System{a = cx - dy \\ b = cy + dx}
+        \Ra \System{x = \frac{\dse ac + bd}{\dse c^2 + d^2} \\ y = \frac{\dse bc - ad}{\dse c^2 + d^2}}
+    \end{align*}
+\end{corollary}
+
+\subsubsection*{Комплексно сопряженное число}
+
+\begin{definition}
+    Число $\bar{z}$ называется \textit{комплексно сопряжённым} к числу $z$, если
+    $$
+        z = a + bi \Ra \bar{z} = a - bi
+    $$
+\end{definition}
+
+\begin{proposition}
+    Произведение комплексного числа $z$ на своё сопряженное является квадратом модуля
+\end{proposition}
+
+\begin{proof}
+    Пусть $z = a + bi$. Тогда:
+    $$
+        z \cdot \bar{z} = (a + bi) \cdot (a - bi) = a^2 + b^2 = |z|^2
+    $$
+\end{proof}
+
+\subsubsection*{Аргумент комплексного числа}
+
+\begin{definition}
+    \textit{Аргументом} комплексного числа $z = a + bi$ называется угол $\phi$, отсчитываемый от положительного направления оси $\re$, с точностью до $2\pi k$, $k \in \Z$
+    $$
+        \arg z = \phi + 2\pi k, k \in \Z
+    $$
+    Угол считается положительным, если отсчитывается против часовой стрелки, и отрицательным, если наоборот.
+\end{definition}
+
+\begin{note}
+    Аргумент определен только для комплексного числа, не равного нулю.
+\end{note}
+
+\subsubsection*{Комплексное число в полярной записи}
+
+\begin{definition}
+    Несложно заметить, что
+    \begin{align*}
+        a = |z| \cdot \cos \phi \\
+        b = |z| \cdot \sin \phi
+    \end{align*}
+    $$
+        \Ra z = |z|(\cos \phi + i \sin \phi)
+    $$
+\end{definition}
+
+\subsubsection*{Умножение чисел в полярных координатах}
+
+Пусть есть 2 комплексных числа $z_1$ и $z_2$:
+
+\begin{align*}
+    z_1 = |z_1|(\cos\phi + i \sin\phi)
+    \\
+    z_2 = |z_2|(\cos\psi + i \sin\psi)
+\end{align*}
+
+Найдём их произведение в виде комплексного числа, записанного в полярных координатах:
+\begin{multline}
+    z_1 \cdot z_2 = |z_1||z_2|(\cos\phi + i \sin\phi)(\cos\psi + i \sin\psi) = \\
+    |z_1||z_2|(\cos\phi \cdot \cos\psi - \sin\phi \cdot \sin\psi + i(\sin\phi \cdot \cos\psi + \sin\psi \cdot \cos\phi)) = \\
+    |z_1||z_2|(\cos(\phi + \psi) + i \sin(\phi + \psi))
+\end{multline}
+
+Таким образом,
+$$
+    \System{
+    &\arg(z \cdot w) = \arg(z) + \arg(w)
+    \\
+    &|z_1 \cdot z_2| = |z_1| \cdot |z_2|
+    }
+$$
+
+\subsubsection*{Показательная форма комплексного числа}
+
+\begin{definition}
+    Комплексное число можно записать как степень по натуральному основанию
+    $$
+        \cos \phi + i \sin \phi = e^{i \phi}
+    $$
+    Также это выражение называется \textit{формулой Эйлера}. С её помощью, комплексное число можно записать в \textit{показательной форме}.
+    $$
+        z = |z| \cdot e^{i \phi}
+    $$
+\end{definition}
+
+\begin{note}
+    Сейчас формулу Эйлера нужно принять <<на веру>>. В будущем её можно и нужно доказать.
+\end{note}
+
+\subsubsection*{Комплексное расширение тригонометрических функций}
+
+Имея на руках формулу Эйлера, можно вывести интересные выражения для тригонометрических функций:
+\begin{align*}
+    e^{i\phi} &= \cos\phi + i \sin\phi
+    \\
+    e^{-i\phi} &= \cos\phi - i \sin\phi
+    \\
+    \Ra \cos\phi &= \frac{\dse e^{i\phi} + e^{-i\phi}}{2}
+    \\
+    \sin\phi &= \frac{\dse e^{i\phi} - e^{-i\phi}}{2}
+    \\
+    \tg\phi &= \frac{\sin\phi}{\cos\phi}
+    \\
+    \ctg\phi &= \frac{\cos\phi}{\sin\phi}
+\end{align*}
+
+\subsubsection*{Формула Муавра}
+
+\begin{definition}
+    \textit{Формулой Муавра} называется выражение:
+    $$
+        (\cos \phi + i \sin \phi)^n = \cos n\phi + i \sin n\phi,\ n \in \Z
+    $$
+\end{definition}
+
+С помощью формулы Муавра можно находить натуральную степень комплексного числа:
+$$
+    z^n = |z|^n (\cos n\phi + i \sin n\phi) = (|z|(\cos \phi + i \sin \phi))^n
+$$
+
+\subsubsection*{Натуральный корень из комплексного числа}
+
+Решим уравнение $z^n = w$
+
+\begin{enumerate}
+    \item $w = 0 \Ra z = 0$
+    \item \begin{align*}
+    &w \neq 0 \Ra w = |w|(\cos \psi + i \sin \psi)
+    \\
+    &z = |z|(\cos \phi + i \sin \phi)
+    \\
+    &z^n = |z|^n(\cos n\phi + i \sin n\phi)
+    \\
+    &\Ra |z| = \sqrt[n]{|w|},\ n\phi = \psi + 2\pi k,\ k \in \Z
+    \\
+    &\phi = \frac{\psi + 2\pi k}{n},\ k = \{0, 1, \dots n - 1\}
+    \end{align*}
+\end{enumerate}
+
+\section{Пределы}
+
+\subsection{Дополнительные свойства действительных чисел}
+
+\subsubsection*{Плотность множества рациональных чисел в множестве действительных}
+
+\begin{proposition}
+    Между любыми двумя неравными действительными числами найдётся рациональное.
+    \[
+    	(\forall a, b \in \R\ |\ a < b)(\exists r \in \Q)\ |\ a < r < b
+    \]
+\end{proposition}
+
+\begin{proof}
+    По определению действительных чисел
+    $$
+    a := \{[p_n; q_n]_\Q\}_{n = 1}^\infty,\ b := \{[r_n; s_n]_\Q\}_{n = 1}^\infty
+    $$
+    $q_n - p_n = s_n - r_n = \frac{1}{10^{n - 1}} \text{ (такое } $n$ \text{ найдётся) } < \frac{b - a}{2} \Ra q_n < r_n$
+    
+    $r := \frac{q_n + r_n}{2}$, так как $a \in [p_n; q_n]$ и $b \in [r_n; s_n]$
+\end{proof}
+
+\subsubsection*{Равномощность}
+
+\begin{definition}
+    Множества $A$ и $B$ называются \textit{равномощными}, если существует биекция из $A$ в $B$. Обозначается как $A \simeq B$
+\end{definition}
+
+\subsubsection*{Счётность}
+
+\begin{definition}
+    Множство $A$ называется \textit{счётным}, если оно равномощно $\N$
+\end{definition}
+
+\subsubsection*{Теорема Кантора}
+
+\begin{proposition}
+    $\Q$ счётно, $R$ - несчётно
+\end{proposition}
+
+\begin{proof}
+    По определению рационального числа, $(\forall r \in \Q)\ r = \frac{m}{n}, m \in \Z, n \in \N$. То есть число полностью задаётся парой $(m, n)$. Отсюда
+    \[
+    	\Z \times \N \simeq \N \times \N \simeq \N
+    \]
+    Так как $\Q$ не более мощно, чем $Z \times \N$ и является бесконечным, то $\Q \simeq \N$.
+    
+    При помощи функций несложно показать, что $\R \simeq [0; 1)$. Предположим, что $[0; 1)$ - счётно, то есть $[0, 1) = \{x_1, x_2, \dots\}$
+    Запишем каждое число в виде десятичной дроби:
+    \begin{align*}
+		&{x_1 = 0, \alpha_{11} \alpha_{12} \alpha_{13}}
+        \\
+        &{x_2 = 0, \alpha_{21} \alpha_{22} \alpha_{23}}
+        \\
+        &{x_3 = 0, \alpha_{31} \alpha_{32} \alpha_{33}}
+        \\
+        &\vdots
+    \end{align*}
+    Рассмотрим число $\gamma = 0,\alpha_{11}\alpha_{22}\alpha_{33}\dots$. Сдвинем циклически на 1 назад каждую цифру числа (т.е. $\alpha'_{ii} = \alpha_{ii} - 1$ если $> 0$, иначе $\alpha'_{ii} = 9$) и посмотрим на число $\gamma'$
+    \[
+    	\gamma' = 0,\alpha'_{11}\alpha'_{22}\alpha'_{33}\dots
+    \]
+    Утверждение - данное число никогда не встречалось в таблице. Действительно, для любого $x_m,\ m \in \N$ они будут различны в $\alpha_{mm}$ знаке. То есть предположение неверно и
+    \[
+    	\R \gtrsim \N
+    \]
+\end{proof}
+
+\begin{definition}
+    Если $A$ - ограниченное сверху множество действительных чисел, то число $b \in \R\ |\ (\forall a \in A)\ a \le b$ называется \textit{верхней гранью} множества $A$.
+    
+    Наименьшая из верхних граней называется \textit{точной верхней гранью}, обозначаемая как $\sup A$ (supremum)
+\end{definition}
+
+\begin{definition}
+    Если $A$ - ограниченное снизу множество действительных чисел, то число $b \in \R\ |\ (\forall a \in A)\ a \ge b$ называется \textit{нижней гранью} множества $A$.
+    
+    Наибольшая из нижних граней называется \textit{точной нижней гранью}, обозначаемая как $\inf A$ (infinum)
+\end{definition}
+
+\begin{proposition}
+    Любое непустое ограниченное сверху (снизу) множество действительных чисел имеет точную верхнюю (нижнюю) грань.
+\end{proposition}
+
+\begin{proof}
+    Пусть $E \subset \R$ - ограниченное сверху множество. Обозначим через $B$ множество всех верхних граней множества $E$. Тогда $A := \R \backslash B$. \\
+    Множество $E$ - непустое $\lra \exists x \in E$. Это значит, что
+    \[
+    	\forall a \in \R \such a < x \Ra a \in A
+    \]
+    То есть и $A$ - непустое множество. При этом
+    \[
+    	(\forall b \in B) (\forall l \in \R \such l \ge b) \Ra l \in B
+    \]
+    В итоге имеем, что
+    \[
+    	A, B \subset \R;\ A \cap B = \emptyset;\ \forall a \in A, b \in B\ \ a < b
+    \]
+    Значит, по свойству полноты множества $\R$:
+    \[
+    	\exists c \in \R \such \forall a \in A, b \in B\ a \le c \le b
+    \]
+    Утверждение в том, что
+    \[
+        c \in B \Ra c = \sup E
+    \]
+    и при этом такое $c$ единственно.
+    
+    Разберёмся с первой частью: предположим обратное. Тогда
+    \[
+        c \notin B \Ra \exists x \in E\ |\ x > c
+    \]
+    Рассмотрим число $\frac{c + x}{2}$:
+    \[
+        c < \frac{c + x}{2} < x
+    \]
+    Так как $\frac{c + x}{2} < x$, то $\frac{c + x}{2} \in A \Ra$ $c$ не является верхней гранью. Противоречие.
+    
+    Единственность доказывается также, от обратного:
+    \[
+    	\exists c' \neq c \such \forall a \in A, b \in B\ a \le c' \le b
+    \]
+    В силу линейной упорядоченности множества $\R$, не умаляя общности, скажем, что $c < c'$. Но в таком случае $c' = \sup E$ и при этом не является наименьшей, ибо есть $c$. Снова пришли к противоречию.
+\end{proof}

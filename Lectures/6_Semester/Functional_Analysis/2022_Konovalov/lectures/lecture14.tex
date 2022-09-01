@@ -1,0 +1,39 @@
+\section{Сопряженное пространство. Теорема Рисса-Фреше. Теорема Хана-Банаха}
+\begin{theorem}
+(Банах, б/д) Пусть $\displaystyle E_{1} ,\ E_{2}$ -- банаховы пространства, и отображение $\displaystyle A\in \mathcal{L}( E_{1} ,\ E_{2})$ является биекцией. Тогда $\displaystyle A^{-1} \in \mathcal{L}( E_{2} ,\ E_{1})$.
+\end{theorem}
+\begin{definition}
+Пространство $\displaystyle E^{*} :=\mathcal{L}( E,\ \mathbb{H})$, где $\displaystyle E$ -- линейное нормированное пространство над $\displaystyle \mathbb{H}$ ($\displaystyle \mathbb{R}$ или $\displaystyle \mathbb{C}$), называется \textit{сопряженным пространством}.
+\end{definition}
+\begin{exercise}
+Пусть $\displaystyle H$ -- гильбертово пространство над $\displaystyle \mathbb{C}$, $\displaystyle A\in \mathcal{L}( H)$, и $\displaystyle \forall x\in H\hookrightarrow ( Ax,x) =0$. Следует ли из этого, что $\displaystyle A=0$? Верно ли это, если $\displaystyle H$ -- гильбертово над $\displaystyle \mathbb{R}$? 
+\end{exercise}
+\begin{definition}
+Пусть $\displaystyle E$ -- линейное нормированное пространство. Тогда $\displaystyle \{x_{n}\}$ сходится слабо к $\displaystyle x$ в $\displaystyle E$, если $\displaystyle \forall f\in E^{*} \hookrightarrow f( x_{n})\xrightarrow[n\rightarrow \infty ]{} f( x)$.
+\end{definition}
+\begin{theorem}
+(Рисса-Фреше) Пусть $\displaystyle H$ -- гильбертово пространство. Тогда для любого линейного непрерывного функционала $\displaystyle f\in H^{*}$ существует и единственный $\displaystyle y_{0} \in H:\ f( x) =( x,\ y_{0}) \ \forall x\in H$. При этом $\displaystyle \Vert f\Vert =\Vert y_{0}\Vert $.
+\end{theorem}
+\begin{proof}
+Приведем два варианта доказательства. Во втором, в отличии от первого, требуется сепарабельность пространства $\displaystyle H$.
+
+1. Докажем сначала существование такого $\displaystyle y_{0}$.
+
+Если $\displaystyle f=0$, то $\displaystyle y_{0} =0$, и $\displaystyle f( x) =( x,\ y_{0}) \ \forall x\in H$.
+
+Если $\displaystyle f\neq 0$, то $\displaystyle M:=Kerf\neq H$. По теореме Рисса о проекции $\displaystyle H=M\oplus M^{\perp }$. Значит, $\displaystyle \forall x\in H\hookrightarrow x=z+\alpha x_{0}$, где $\displaystyle z\in Kerf,\ x_{0} \in [ Kerf]^{\perp }$. Значит, $\displaystyle x-\alpha x_{0} \in Kerf$. Тогда $\displaystyle f( x-\alpha x_{0}) =f( x) -\alpha f( x_{0}) =0\Rightarrow \alpha =\dfrac{f( x)}{f( x_{0})}$. Следовательно,
+\begin{equation*}
+\forall x\in H\hookrightarrow x=z+\dfrac{f( x)}{f( x_{0})} x_{0} \Rightarrow ( x,\ x_{0}) =\dfrac{f( x)}{f( x_{0})}\Vert x_{0}\Vert ^{2} \Rightarrow \left( x,\ \dfrac{f( x_{0})}{\Vert x_{0}\Vert ^{2}} x_{0}\right) =f( x) .
+\end{equation*}
+Обозначив $\displaystyle y_{0} :=\dfrac{f( x_{0})}{\Vert x_{0}\Vert ^{2}} x_{0}$, получим требуемое.
+
+Докажем единственность $\displaystyle y_{0}$. Пусть $\displaystyle \exists y_1 ,\ y_2 \in H:\ \forall x\hookrightarrow \ ( x,\ y_1) =\left( x,\ y_2\right) =f( x)$. Тогда $\displaystyle \left( x,\ y_1-y_2\right) =0$. Взяв $\displaystyle x=y_1-y_2$, получим $\displaystyle \left( y_1-y_2 ,\ y_1-y_2\right) =0\Rightarrow y_1-y_2 =0$.
+
+2. В предположении сепарабельности пространства $\displaystyle H$ существует ортонормированный базис $\displaystyle \{e_{n}\}$, что $\displaystyle \forall x\in H\hookrightarrow x=\sum _{n=1}^{\infty }( x,\ e_{n}) e_{n}$. Пусть $\displaystyle f\in H^{*}$. Тогда так как $\displaystyle f$ -- непрерывный оператор, то $\displaystyle f( S_{n})\xrightarrow[n\rightarrow \infty ]{} f( x)$, где $\displaystyle S_{n} =\sum _{k=1}^{n}( x,\ e_{k}) e_{k}$. С другой стороны, $\displaystyle f( S_{n}) =f\left(\sum _{k=1}^{n}( x,\ e_{k}) e_{k}\right) =\sum _{k=1}^{n}( x,\ e_{k}) f( e_{k}) =\sum _{k=1}^{n}\left( x,\ \overline{f( e_{k})} e_{k}\right) =\left( x,\ \sum _{k=1}^{n}\overline{f( e_{k})} e_{k}\right)$. Докажем, что $\displaystyle y_{0} :=\sum _{k=1}^{\infty }\overline{f( e_{k})} e_{k} \in H$. Вспомним, что, если $\displaystyle \{e_{n}\}$ -- ортонормированная система векторов, то ряд $\displaystyle \sum _{n=1}^{\infty } \alpha _{n} e_{n}$ сходится тогда и только тогда, когда сходится ряд $\displaystyle \sum _{n=1}^{\infty }| \alpha _{n}| ^{2}$. Покажем, что ряд $\displaystyle \sum _{n=1}^{\infty }\left| \overline{f( e_{n})}\right| ^{2}$ сходится. С одной стороны, $\displaystyle \sum _{n=1}^{N}\left| \overline{f( e_{n})}\right| ^{2} =\left\Vert \sum _{n=1}^{N}\overline{f( e_{n})} e_{n}\right\Vert ^{2}$. С другой стороны, 
+\begin{gather*}
+\sum _{n=1}^{N}\left| \overline{f( e_{n})}\right| ^{2} =\sum _{n=1}^{N}\overline{f( e_{n})} f( e_{n}) =f\left(\sum _{n=1}^{N}\overline{f( e_{n})} e_{n}\right) \leqslant \Vert f\Vert \left\Vert \sum _{n=1}^{N}\overline{f( e_{n})} e_{n}\right\Vert \Rightarrow \\
+\Rightarrow \left\Vert \sum _{n=1}^{N}\overline{f( e_{n})} e_{n}\right\Vert ^{2} \leqslant \Vert f\Vert \left\Vert \sum _{n=1}^{N}\overline{f( e_{n})} e_{n}\right\Vert \Rightarrow \left\Vert \sum _{n=1}^{N}\overline{f( e_{n})} e_{n}\right\Vert \leqslant \Vert f\Vert \Rightarrow \\
+\Rightarrow \Vert f\Vert ^{2} \geqslant \sum _{n=1}^{N}\left| \overline{f( e_{n})}\right| ^{2} \Rightarrow \text{ряд} \ \sum _{n=1}^{N}\left| \overline{f( e_{n})}\right| ^{2} \ \text{сходится} .
+\end{gather*}
+ Из этого получаем, что ряд $\displaystyle y_{0} :=\sum _{k=1}^{\infty }\overline{f( e_{k})} e_{k}$ сходится к элементу из $\displaystyle H$. Единственность доказывается аналогично.
+\end{proof}

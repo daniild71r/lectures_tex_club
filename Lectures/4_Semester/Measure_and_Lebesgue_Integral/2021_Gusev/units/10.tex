@@ -1,0 +1,289 @@
+\newpage
+\lecture{10}{Теорема Витали о тонком покрытии.}
+
+\subsection{Лемма и теорема Витали.}
+
+\begin{lemma}[Витали]
+    Пусть $\F$~--- семейство невырожденных шаров, причем $\bigcup\F$ ограничено.
+    Тогда существует не более чем счётное дизъюнктное семейство $\CG\subset\F$ такое,
+    что \[
+        \bigcup\F\subset \bigcup_{B\in\CG}\widehat{B},\quad\text{где }
+        \widehat{B}_{r}(x):=B_{5r}(x).
+    \]
+    То есть $\widehat{B}$~--- шар $B$, радиус которого увеличили в 5 раз.
+
+    \begin{proof}
+
+        Пусть шары $B_1,\, \ldots,\, B_{n-1}$ уже построены. Возьмем
+        \[
+            \F_n:=\{B\in\F:\ B\cap B_i=\varnothing\ \forall i\in\overline{1,\,n-1}\}\quad
+            \text{(при $n=1$: $\F_1=\F$)}
+        \]
+        Пусть также
+        \[
+            s_n:=\sup\{r(B):\ B\in\F_n\},\quad\text{где $r(B)$~---радиус шара $B$.}
+        \]
+        Берем $B_n\in\F_n$ так, что $r(B_n)>\dfrac{s_n}{2}$ (если $s_n=0$, то $\F_n=\varnothing$ и
+        процесс завершается).
+
+        \begin{figure}[!ht]
+            \centering
+            \input{images/balls.tikz}
+            \caption{К лемме Витали.}
+            \label{fig:balls}
+        \end{figure}
+
+        На рисунке \ref{fig:balls} черным указаны шары, которые выбраны, красным~--- шары, которые пересекаются с
+        выбранными
+        (их мы не берем в $\F_{n+1}$) и зеленым~--- шары, которые составляют $\F_{n+1}$.
+        Рассмотрим некоторый шар $B\in\F_n$, который пересекается с $B_n$.
+        Раздуем шар $B_n$ в пять раз, то есть рассмотрим $\widehat{B}_n$ (на рисунке синий цвет).
+        Утверждается, что раздутый шар покроет шар $B$. В самом деле пусть $x$~--- центр $B_n$,
+        $z\in B\cap B_n$ и $y\in B$. Тогда по неравенству треугольника имеем \[
+            |x-y|\leqslant|x-z|+|z-y|\leqslant r(B_n)+2r(B).
+        \]
+        Оценим $r(B)$:
+        \[
+            B\in\F_n\Rightarrow r(B)\leqslant\sup_{B\in\F_n} r(B)=s_n<2r(B_n).
+        \]
+        То есть,
+        \[
+            |x-y|\leqslant r(B_n)+2r(B)<5r(B_n)\Rightarrow B\subset \widehat{B}_n.
+        \]
+
+        Итак, если процесс завершился за конечное число шагов, то новые раздутые шары покрывают все исходные.
+
+        Пусть теперь процесс не завершается за конечное число шагов.
+        По построению $\bigsqcup\limits_{n=1}^{\infty}B_n\subset \bigcup\F\subset B_{R}(0)$, где
+        $R>0$~--- достаточно большая константа, она существует, так как $\bigcup\F$ ограничено по условию.
+
+        Тогда имеем,
+        \[
+            \lambda\left(\bigsqcup_{n=1}^{\infty}B_n\right)\leqslant\lambda(B_{R}(0))<\infty.
+        \]
+        Но
+        \[
+            \lambda\left(\bigsqcup_{n=1}^{\infty}B_n\right)=
+            \sum_{n=1}^{\infty}\lambda(B_n).
+        \]
+        Значит ряд сходится, следовательно $\lambda(B_n)\xrightarrow[n\to\infty]{}0$, но тогда
+        и $r(B_n)\xrightarrow[n\to\infty]{}0$.
+
+        Тогда $\forall B\in\F\ r(B)>0\Rightarrow s_n<r(B)$ при достаточно большом $n$. Поэтому при таких $n$
+        $B\notin\F_n$.
+
+        Выберем наименьшее $n$ так, что $B\notin\F_{n+1}$.
+        Тогда $B\in\F_n\Rightarrow B\in\F_n\setminus\F_{n+1}$, то есть $B$ <<удаляется>> на
+        $n$"=ом шаге, поэтому $B\cap B_n=\varnothing$. По доказанному выше получаем, что
+        $B\subset \widehat{B}_n$. Итак,
+        \[
+            \forall B\in\F\quad\exists n:\ B\subset \widehat{B}_n\Rightarrow\bigcup\F\subset
+            \bigcup_{B\in\CG}\widehat{B}.
+        \]
+
+    \end{proof}
+\end{lemma}
+
+Далее докажем более сильное утверждение, но сначала дадим определение.
+\begin{definition}
+    Семейство $\F$ невырожденных замкнутых шаров будем называть \mdef{тонким покрытием}
+    множества $A\subset\R^d$, если \[
+        \forall x\in A\quad \forall\varepsilon>0\quad \exists B\in\F:\: x\in B
+        ,\quad r(B)<\varepsilon.
+    \]
+\end{definition}
+
+\begin{theorem}[Витали, о тонком покрытии]
+    Пусть $\F$~--- тонкое покрытие $A\subset\R^d$. Тогда существует дизъюнктное
+    не более чем счетное семейство $\CG\subset\F$ такое, что \[
+        \lambda\left(A\setminus\bigsqcup_{B\in\CG}B\right)=0.
+    \]
+
+    \begin{proof}
+
+        Докажем для случая ограниченного $A$ (случай неограниченного $A$ сводится к этому~--- разрезаем $A$ на
+        счетное число ограниченных множеств и аккуратно покрываем их).
+
+        Выкинем из $\F$ шары, радиусы которых больше 1, а также шары, не пересекающие $A$.
+        Оставшееся семейство по-прежнему будет
+        тонким покрытием $A$ и при этом $\bigcup\F$ ограничено.
+
+        Построим семейство $\CG=\{B_n\}_{n=1}^{\infty}\subset\F$ так же, как в доказательстве
+        леммы Витали.
+
+        \begin{center}
+            \input{images/lect10_2.tikz}
+        \end{center}
+
+        Рассмотрим $x$, которое не принадлежит объединению первых $n$ шаров: \[
+            x\notin \underbrace{\bigcup\limits_{k=1}^n B_k}_{\text{замкнуто}}\Rightarrow
+            \rho\left(x,\, \bigcup_{k=1}^n B_k\right)>0\Rightarrow\exists B\in\F:\ x\in B,\,
+            B\cap\bigcup_{k=1}^nB_k=\varnothing.
+        \]
+
+        Как было показано в доказательстве леммы Витали:
+        \[
+            \exists! m\in\N:\quad B\in\F_{m}\setminus\F_{m+1}.
+        \]
+        С другой стороны,
+        \[
+            B\in\bigcap_{k=1}^n\F_k\Rightarrow m>n.
+        \]
+        Так как $B\cap B_m\Rightarrow B\subset \widehat{B}_m$, то получаем
+        \[
+            x\in\bigcup_{k=n+1}^{\infty}\widehat{B}_k.
+        \]
+
+        То есть доказано следующее утверждение:
+        \begin{equation}
+            \label{eq:lect10:vit}
+            \boxed{A\setminus\bigsqcup_{k=1}^{\infty} B_k\subset
+                \bigcap_{n=1}^{\infty}\bigcup_{k=n+1}^{\infty}\widehat{B}_k}
+        \end{equation}
+        В самом деле,
+        \[
+            x\in A\setminus\bigsqcup_{k=1}^{\infty}B_k\Rightarrow\forall n\quad
+            x\in A\setminus\bigsqcup_{k=1}^{n}B_k.
+        \]
+        А также
+        \[
+            A\setminus\bigsqcup_{k=1}^{n}B_k\subset \bigcup_{k=n+1}^{\infty}\widehat{B}_k.
+        \]
+
+        Перейдем к мере Лебега в уравнении \eqref{eq:lect10:vit}:
+        \[
+            \forall n\in\N \quad \lambda^*\left(A\setminus\bigsqcup_{k=1}^{\infty}B_k\right)
+            \leqslant\lambda^*\left(\bigcup_{k=n+1}^{\infty}\widehat{B}_k\right)
+            \leqslant\sum_{k=n+1}^{\infty}\lambda^*\left(\widehat{B}_k\right)
+            =\sum_{k=n+1}^{\infty}5^d\lambda(B_k).
+        \]
+        Поскольку шары дизъюнктны и лежат в ограниченном множестве можно записать:
+        \[
+            \sum_{k=1}^{\infty}\lambda(B_k)<\infty\Rightarrow\lim_{n\to\infty}
+            \sum_{k=n+1}^{\infty}\lambda(B_k)=0.
+        \]
+        Итак,
+        \[
+            \forall \varepsilon>0\quad \lambda^*\left(A\setminus\bigsqcup_{k=1}^{\infty}B_k\right)<
+            \varepsilon\Rightarrow\lambda^*\left(A\setminus\bigsqcup_{k=1}^{\infty}B_k\right)=0.
+        \]
+
+    \end{proof}
+\end{theorem}
+
+\subsection{Точки Лебега.}
+
+\begin{definition}
+    Пусть $A\subset\R^d$ измеримо по Лебегу. Обозначим
+    \[
+        L_A:=\left\{x\in\R^d:\quad \exists\lim_{r\to n}\dfrac{\lambda\left(A\cap B_r(x)
+            \right)}{\lambda(B_r(x))}=1\right\}.
+    \]
+    Точка $x\in\R^d$ называется \mdef{точкой Лебега} множества $A$ тогда и только тогда, когда
+    $x\in L_A$.
+
+    \begin{remark}
+        Точки, не принадлежащие $A$, могут лежать в $L_A$. Более того, можно заметить, что
+        \[
+            L_{A^C}=\left\{x\in\R^d:\quad \exists\lim_{r\to n}\dfrac{\lambda\left(A\cap B_r(x)
+                \right)}{\lambda(B_r(x))}=0\right\}.
+        \]
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    Если $A\subset\R^d$ измеримо по Лебегу, то \textit{почти все}
+    $x\in A$ являются точками Лебега множества $A$, то есть
+    \[
+        \exists N\subset A:\quad \lambda^*(N)=0:\quad \forall x\in A\setminus N\text{~---
+            точка Лебега множества $A$.}
+    \]
+
+    \begin{next0}
+        \[
+            \lambda(A\triangle L_A)=0.
+        \]
+    \end{next0}
+
+    \begin{proof}
+
+        Докажем вначале для случая, когда $A$ ограничено. Заметим, что
+        \[
+            x\in L_A\Leftrightarrow \lim_{\overline{r\to0}}\dfrac{\lambda(A\cap B_r(x))}
+            {\lambda(B_r(x))}=1.
+        \]
+        Введем множество <<плохих>> точек:
+        \[
+            N_{\alpha}:=\left\{x\in A:\quad \lim_{\overline{r\to0}}\dfrac{\lambda(A\cap B_r(x))}
+            {\lambda(B_r(x))}\leqslant\alpha\right\},\text{ где } \alpha\in(0,\, 1).
+        \]
+
+        Докажем, что $\forall\alpha\in(0,\,1)$ мера $N_{\alpha}$ равна нулю.
+        В силу внешней регулярности меры Лебега
+        \[
+            \forall \varepsilon>0\quad\exists\text{открытое }U\supset N_{\alpha}:\quad
+            \lambda(U)<\lambda^*(N_{\alpha})+\varepsilon.
+        \]
+
+        Из определения множества $N_{\alpha}$ следует, что: \[
+            \exists\{r_n\to 0\}:\quad \dfrac{\lambda(A\cap B_{r_n}(x))}{\lambda(B_{r_n}(x))}\leqslant\alpha.
+        \]
+
+        Рассмотрим тогда
+        \[
+            \F=\left\{\overline{B}_{r_n(x)}(x)\ \mid\ x\in N_{\alpha},\, n\in\N\text{ такие, что }
+            \overline{B}_{r_n(x)}(x)\subset U\right\}.
+        \]
+        Понятно, что $\F$~--- тонкое покрытие множества $A$.
+
+        По теореме Витали существует дизъюнктное не более чем счетное семейство
+        $\CG\subset \F$:
+        \[
+            \lambda\left(N_{\alpha}\setminus\bigsqcup_{B\in\CG}B\right)=0.
+        \]
+        Тогда \begin{align*}
+            \lambda^*(N_{\alpha}) & \leqslant\lambda^*\left(N_{\alpha}\cap
+            \bigsqcup_{B\in\CG}B\right)+\underbrace{\lambda^*\left(
+                N_{\alpha}\setminus\bigsqcup_{B\in\CG}B\right)}_{0}\leqslant
+            \sum_{B\in\CG}\lambda^*(N_{\alpha}\cap B)\leqslant                                              \\
+                                  & \leqslant[N_{\alpha}\subset A]\leqslant\sum_{B\in\CG}\lambda^*(A\cap B)
+            \leqslant\sum_{B\in\CG}\alpha\lambda(B)=\alpha\lambda\left(\bigsqcup
+            _{B\in\CG}B\right)\leqslant\alpha\lambda(U).
+        \end{align*}
+        Итак, 
+        \[
+            \lambda^*(N_{\alpha})\leqslant\alpha\lambda(U)<\alpha\left(\lambda^*(N_{\alpha})+
+            \varepsilon\right)\Rightarrow (1-\alpha)\lambda^*(N_{\alpha})<\alpha\varepsilon.
+        \]
+        Откуда в силу произвольности $\varepsilon$ следует, что $\lambda^*(N_{\alpha})=0$.
+
+        Осталось заметить, что если $x$~--- не точка Лебега, то 
+        \[
+            \lim_{\overline{r\to 0}}\dfrac{\lambda(A\cap B_r(x))}{\lambda(B_r(x))}<1
+            \Rightarrow\exists\alpha\in(0,\, 1)\cap\Q:\quad
+            \lim_{\overline{r\to 0}}\dfrac{\lambda(A\cap B_r(x))}{\lambda(B_r(x))}<\alpha
+            \Leftrightarrow x\in N_{\alpha}.
+        \]
+        Тогда \[
+            A\setminus L_A\subset \bigcup_{\alpha\in(0,\,1)\cap \Q}N_{\alpha}\text{~---
+            счетное объединение множеств меры нуль}.
+        \]
+        Откуда, окончательно, $\lambda(A\setminus L_A)=0$.
+
+        Пусть теперь $A$~--- неограниченно. Представим $A$ в виде 
+        \[
+            A = \bigcup_{n=1}^{\infty}A\cap B_{n}(0).    
+        \] 
+        Известно, что $\forall n\in \N$ почти все $x\in A\cap B_{n}(0)$ являются
+        точками Лебега множества $A\cap B_n(0)$, а значит и множества $A$.
+        Обозначим $N_n\subset A\cap B_n(0)$~--- те $x\in A\cap B_{n}(0)$, 
+        которые не являются точками Лебега. Тогда $N_n$ покрывает множество 
+        тех точек $x\in B_n$, которые не являются точками Лебега множества $A$.
+
+        Тогда множество тех точек, которые не являются точками Лебега множества $A$ имеет меру нуль:
+        \[
+            A\setminus L_A\subset \underbrace{\bigcup_{n=1}^{\infty}N_n}_{\lambda=0}.
+        \]
+
+    \end{proof}
+\end{theorem}

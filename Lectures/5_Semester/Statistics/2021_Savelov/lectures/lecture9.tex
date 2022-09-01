@@ -1,0 +1,189 @@
+\begin{definition}
+    Пусть $\displaystyle \{X_{n}\}_{n\geqslant 1}$ -- выборка неограниченного размера из неизвестного распределения $\displaystyle P\in \{P_{\theta } ,\ \theta \in \Theta \}$. Последовательности статистик $\displaystyle T_{n}^{( 1)}( X_{1} ,\ \dotsc ,\ X_{n}) ,\ T_{n}^{( 2)}( X_{1} ,\ \dotsc ,\ X_{n})$ называются асимптотическим доверительным интервалом уровня доверия $\displaystyle \gamma $ для параметра $\displaystyle \theta $, если
+    \begin{equation*}
+        \forall \theta \in \Theta \hookrightarrow \varliminf _{n\rightarrow \infty } P_{\theta }\left( T_{n}^{( 1)}( X_{1} ,\ \dotsc ,\ X_{n}) < \theta < T_{n}^{( 2)}( X_{1} ,\ \dotsc ,\ X_{n})\right) \geqslant \gamma .
+    \end{equation*}
+\end{definition}
+Если $\displaystyle \forall \theta \in \Theta \hookrightarrow \exists \lim _{n\rightarrow \infty } P_{\theta }\left( T_{n}^{( 1)}( X_{1} ,\ \dotsc ,\ X_{n}) < \theta < T_{n}^{( 2)}( X_{1} ,\ \dotsc ,\ X_{n})\right) =\gamma $, то асимптотический интервал называется точным.
+\section{Построение асимптотических доверительных интервалов}
+
+Пусть $\displaystyle \hat{\theta }_{n}( X_{1} ,\ \dotsc ,\ X_{n})$ -- асимптотически нормальная оценка $\displaystyle \theta $ с асимптотической дисперсией $\displaystyle \sigma ^{2}( \theta )  >0$, то есть
+\begin{gather*}
+    \forall \theta \in \Theta \hookrightarrow \sqrt{n}(\hat{\theta }_{n} -\theta )\xrightarrow{d_{\theta }}\mathcal{N}\left( 0,\ \sigma ^{2}( \theta )\right) \Leftrightarrow \\
+    \dfrac{\sqrt{n}(\hat{\theta }_{n} -\theta )}{\sigma ( \theta )}\xrightarrow{d_{\theta }}\mathcal{N}( 0,\ 1) .
+\end{gather*}
+Пусть функция $\displaystyle \sigma ( \theta )$ непрерывна по $\displaystyle \theta $. Из того, что оценка $\displaystyle \hat{\theta }_{n}$ асимптотически нормальна следует, что она состоятельная, т.е. $\displaystyle \hat{\theta }\xrightarrow{P_{\theta }} \theta $. Тогда, по теореме о наследовании сходимостей и лемме Слуцкого
+
+
+\begin{equation*}
+    \dfrac{\sqrt{n}(\hat{\theta }_{n} -\theta )}{\sigma (\hat{\theta }_{n})} =\dfrac{\sqrt{n}(\hat{\theta }_{n} -\theta )}{\sigma ( \theta )} \cdotp \dfrac{\sigma ( \theta )}{\sigma (\hat{\theta }_{n})}\xrightarrow{d_{\theta }}\mathcal{N}( 0,\ 1) .
+\end{equation*}
+
+
+Следовательно,
+
+
+\begin{equation*}
+    P_{\theta }\left(\sqrt{n}\left| \dfrac{\hat{\theta }_{n} -\theta }{\sigma (\hat{\theta }_{n})}\right| < u_{\frac{1+\gamma }{2}}\right)\xrightarrow[n\rightarrow \infty ]{} \gamma ,
+\end{equation*}
+
+
+где $\displaystyle u_{\frac{1+\gamma }{2}}$ -- квантиль уровня $\displaystyle \frac{1+\gamma }{2}$ стандартного нормального распределения. Следовательно, асимптотический доверительный интервал имеет вид
+
+
+\begin{equation*}
+    \left(\hat{\theta }_{n} -u_{\frac{1+\gamma }{2}}\dfrac{\sigma (\hat{\theta }_{n})}{\sqrt{n}} ,\ \hat{\theta }_{n} +u_{\frac{1+\gamma }{2}}\dfrac{\sigma (\hat{\theta }_{n})}{\sqrt{n}}\right) .
+\end{equation*}
+
+\section{Метод максимального правдоподобия}
+\begin{definition}
+    Пусть $\displaystyle X$ -- наблюдение с неизвестным распределением $\displaystyle P\in \{P_{\theta } ,\ \theta \in \Theta \}$, где $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \}$ -- доминируемое семейство относительно меры $\displaystyle \mu $. Функцией правдоподобия называют $\displaystyle f_{\theta }( X) =p_{\theta }( X)$.
+\end{definition}
+\begin{example}
+    Пусть $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n})$ -- выборка из распределения с плотностью $\displaystyle p( x)$. Тогда $\displaystyle f_{\theta }( X) =p_{\theta }( X) =\prod _{i=1}^{n} p_{\theta }( X_{i})$.
+\end{example}
+\begin{definition}
+    Пусть $\displaystyle X$ -- наблюдение с функцией правдоподобия $\displaystyle f_{\theta }( X)$. Оценкой параметра $\displaystyle \theta $ по методу максимального правдоподобия (ОМП) называется такая оценка $\displaystyle \hat{\theta }$, что $\displaystyle \hat{\theta }( X) =\arg\max_{\theta \in \Theta } f_{\theta }( X)$.
+\end{definition}
+\begin{example}
+    Пусть $\displaystyle X$ -- выборка из распределения $\displaystyle \mathcal{U}[ 0,\ \theta ]$. Тогда
+    
+    
+    \begin{equation*}
+        f_{\theta }( X) =\dfrac{1}{\theta ^{n}} I( X_{( 1)} \geqslant 0,\ X_{( n)} \leqslant \theta ) ,
+    \end{equation*}
+    и ОМП -- $\displaystyle \hat{\theta }( X) =X_{( n)}$.
+\end{example}
+\begin{definition}
+    Логарифмом функции правдоподобия называется функция $\displaystyle L_{\theta }( X) =\ln f_{\theta }( X)$.
+\end{definition}
+\subsection{Условия регулярности}
+
+Перечислим следующие условия регулярности по книге "Теория точечного оценивания"\, Лемана.
+\begin{itemize}
+    \item (R0) $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \}$ -- параметрическое семейство, доминируемое относительно меры $\displaystyle \mu $, при $\displaystyle \theta _{1} \neq \theta _{2} \hookrightarrow P_{\theta _{1}} \neq P_{\theta _{2}}$, и $\displaystyle \forall \theta \in \Theta $ определена плотность $\displaystyle p_{\theta }( X)$ меры $\displaystyle P_{\theta }$.
+    \item (R1) $\displaystyle A=\{x\in \mathcal{X} :\ p_{\theta }( x)  >0\}$ не зависит от $\displaystyle \theta $.
+    \item (R2) Наблюдение $\displaystyle X$ есть выборка $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n})$ из неизвестного распределения $\displaystyle P\in \{P_{\theta } ,\ \theta \in \Theta \}$.
+    \item (R3) $\displaystyle \Theta $ -- открытый интервал в $\displaystyle \mathbb{R}$ (возможно, бесконечный).
+    \item (R4) Функция $\displaystyle p_{\theta }(x)$ непрерывно дифференцируема по $\displaystyle \theta $ при всех $\displaystyle x\in A$.
+    \item (R5) $\displaystyle p_{\theta }( x)$ трижды непрерывно дифференцируема по $\theta$ для всех $x \in A$.
+    \item (R6) интеграл $\displaystyle \int _{A} p_{\theta }( x) \mu ( dx)$ трижды дифференцируем по $\displaystyle \theta $ под знаком интеграла.
+    \item (R7) $\forall \theta\in\Theta \hookrightarrow \displaystyle E_{\theta }\left(\dfrac{\partial }{\partial \theta }\ln p_{\theta }( X)\right)^{2} < \infty$.
+    \item (R8) $\displaystyle \forall \theta _{0} \in \Theta \ \exists c >0\ \exists H(x):\, \forall \theta \in (\theta_0 - c,\, \theta_0 + c)\, \forall x \in A \hookrightarrow \left| \dfrac{\partial ^{3}}{\partial \theta ^{3}}\ln p_{\theta }(x)\right| \leqslant H(x)$, и $\displaystyle E_{\theta _{0}} H(x) < \infty $.
+\end{itemize}
+\begin{lemma}
+    Если $\displaystyle \xi _{1} ,\ \dotsc ,\ \xi _{n}$ -- независимые одинаково распределенные случайные величины, $\displaystyle E\xi _{1} \in \mathbb{R} \cup \{+\infty \} \cup \{-\infty \}$. Тогда $\displaystyle \dfrac{S_{n}}{n}\xrightarrow{a.s.} E\xi _{1}$.
+\end{lemma}
+\begin{proof}
+    Если $\displaystyle E\xi _{1} \in \mathbb{R}$, то работает ЗБЧ. Пусть $\displaystyle E\xi _{1} =+\infty $. Представим $\displaystyle E\xi _{1}$ в виде $\displaystyle E\xi _{1} =E^{+} \xi _{1} -E^{-} \xi _{1} \Rightarrow E^{-} \xi _{1} < \infty $. Зафиксируем $\displaystyle M >0$. Определим $\displaystyle \xi _{i}^{M} :=\min\{\xi _{i} ,\ M\} \Rightarrow E\xi _{1}^{M} < \infty $. Тогда
+    
+    
+    \begin{equation*}
+        \varliminf _{n\rightarrow \infty }\dfrac{S_{n}}{n} \geqslant \varliminf _{n\rightarrow \infty }\dfrac{S_{n}^{M}}{n} =\lim _{n\rightarrow \infty }\dfrac{S_{n}^{M}}{n} =E\xi _{1}^{M}
+    \end{equation*}
+    на множестве единичной меры по УЗБЧ. Значит, $\displaystyle \forall M\hookrightarrow E\xi _{1}^{M} \leqslant \varliminf _{n\rightarrow \infty }\dfrac{S_{n}}{n} ,\ M_{1} \leqslant M_{2} \Rightarrow \xi _{1}^{M_{1}} \leqslant \xi _{1}^{M_{2}}$, и по теореме Леви о монотонной сходимости $\displaystyle \lim _{M\rightarrow \infty } E\xi _{1}^{M} =E\lim _{M\rightarrow \infty } \xi _{1}^{M} =E\xi _{1} =+\infty \Rightarrow \varliminf _{n\rightarrow \infty }\dfrac{S_{n}}{n} =+\infty $. Аналогично доказывается случай $\displaystyle E\xi _{1} =-\infty $.
+\end{proof}
+\begin{theorem}
+    (экстремальное свойство правдоподобия) Пусть выполняются условия регулярности (R0)-(R2). Тогда $\displaystyle \forall \theta _{0} ,\ \theta \in \Theta ,\ \theta _{0} \neq \theta $ выполняется
+    
+    
+    \begin{equation*}
+        P_{\theta _{0}}( f_{\theta _{0}}( X_{1} ,\ \dotsc ,\ X_{n})  >f_{\theta }( X_{1} ,\ \dotsc X_{n}))\xrightarrow[n\rightarrow \infty ]{} 1.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Пусть $\displaystyle X_{1} ,\ \dotsc ,\ X_{n} \in A$. Тогда
+    \begin{gather*}
+        f_{\theta _{0}}( X_{1} ,\ \dotsc ,\ X_{n})  >f_{\theta }( X_{1} ,\ \dotsc ,\ X_{n}) \Leftrightarrow \dfrac{1}{n}\ln\left(\dfrac{f_{\theta }( X_{1} ,\ \dotsc ,\ X_{n})}{f_{\theta _{0}}( X_{1} ,\ \dotsc ,\ X_{n})}\right) < 0\Leftrightarrow \\
+        \dfrac{1}{n}\sum _{i=1}^{n}\ln\dfrac{p_{\theta }( X_{i})}{p_{\theta _{0}}( X_{i})} < 0.
+    \end{gather*}
+    По предыдущей лемме \ $\displaystyle \dfrac{1}{n}\sum _{i=1}^{n}\ln\dfrac{p_{\theta }( X_{i})}{p_{\theta _{0}}( X_{i})}\xrightarrow{P_{\theta_0 } -a.s.} E_{\theta _{0}}\ln\dfrac{p_{\theta }( X_{1})}{p_{\theta _{0}}( X_{1})}$. Осталось доказать, что $\displaystyle E_{\theta _{0}}\ln\dfrac{p_{\theta }( X_{1})}{p_{\theta _{0}}( X_{1})} < 0$.
+    
+    
+    \begin{equation*}
+        E_{\theta _{0}}\ln\dfrac{p_{\theta }( X_{1})}{p_{\theta _{0}}( X_{1})} =\int _{A}\ln\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} p_{\theta _{0}}( x) \mu ( dx) =\int _{A}\ln\left( 1+\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\right) p_{\theta _{0}}( x) \mu ( dx) .
+    \end{equation*}
+    Так как $\displaystyle \forall x >-1\hookrightarrow \ln( 1+x) \leqslant x$, то
+    
+    
+    \begin{gather*}
+        \int _{A}\ln\left( 1+\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\right) p_{\theta _{0}}( x) \mu ( dx) \leqslant \int _{A}\left(\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\right) p_{\theta _{0}}( x) \mu ( dx) =\\
+        \int _{A} p_{\theta }( x) \mu ( dx) -\int _{A} p_{\theta _{0}}( x) \mu ( dx) =0.
+    \end{gather*}
+    
+    
+    Равенство нулю достигается только в том случае, когда 
+    
+    
+    \begin{gather*}
+        \int _{A}\ln\left( 1+\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\right) p_{\theta _{0}}( x) \mu ( dx) =\int _{A}\left(\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\right) p_{\theta _{0}}( x) \mu ( dx) \Rightarrow \\
+        \ln\left( 1+\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\right)\xlongequal{P_{\theta } -a.s.}\dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)} -1\Rightarrow \\
+        \dfrac{p_{\theta }( x)}{p_{\theta _{0}}( x)}\xlongequal{P_{\theta } -a.s.} 1\Rightarrow p_{\theta }( x)\xlongequal{P_{\theta } -a.s.} p_{\theta _{0}}( x) .
+    \end{gather*}
+    Но это противоречие с условием (R0), что $\displaystyle P_{\theta } \neq P_{\theta _{0}}$ при $\displaystyle \theta \neq \theta _{0}$. Следовательно, $\displaystyle E_{\theta _{0}}\ln\dfrac{p_{\theta }( X_{1})}{p_{\theta _{0}}( X_{1})} < 0$.
+\end{proof}
+\begin{corollary}
+    Если $\displaystyle \Theta $ -- конечно, то ОМП существует, единственна с вероятностью близкой к единице и состоятельна.
+\end{corollary}
+\begin{proof}
+    Например, пусть
+        \begin{gather*}
+        \theta _{1} ,\ \dotsc ,\ \theta _{n} \in \Theta ,\ A:=\{x:\ \arg\max_{\theta \in \Theta } f_{\theta }( x) =\theta _{2} \neq \theta _{i} \ \forall i\neq 2\} =\\
+        \{x:\ f_{\theta _{1}}( x) < f_{\theta _{2}}( x)\} \cap \{x:\ f_{\theta _{3}}( x) < f_{\theta _{2}}( x)\} \cap \ \dotsc \ \cap \{x:\ f_{\theta _{n}}( x) < f_{\theta _{2}}( x)\} .
+    \end{gather*}
+    Эти множества по теореме имеют меру стремящуюся к единице относительно $\displaystyle P_{\theta _{2}}$. Из конечности $\displaystyle \Theta $ следует, что и мера множества $\displaystyle A$ близка к единице, то есть с вероятностью близкой к единице ОМП единственна. 
+    
+    Почему существует измеримая ОМП? Введем множества
+    \begin{gather*}
+        c_{i< j} :=\{x:\ f_{\theta _{i}}( x) < f_{\theta _{j}}( x)\} ,\\
+        c_{i\leqslant j} :=\{x:\ f_{\theta _{i}}( x) \leqslant f_{\theta _{j}}( x)\} .
+    \end{gather*}
+    Если при каком-то $\displaystyle x$ максимум достигается при нескольких $\displaystyle \theta _{j}$, то выберем ту, у которой номер меньше. Тогда, условие равенства ОМП $\displaystyle \theta _{j}$ можно записать в виде
+    \begin{gather*}
+        \{x:\ \hat{\theta } =\theta _{1}\} =\bigcap _{j=1}^{n} c_{j\leqslant 1} ,\ \{x:\ \hat{\theta } =\theta _{2}\} =c_{1< 2} \cap \left(\bigcap _{j=2}^{n} c_{j\leqslant 2}\right) ,\ \dotsc ,\\
+        \{x:\ \hat{\theta } =\theta _{n}\} =\bigcap _{i=1}^{n-1} c_{i< n} .
+    \end{gather*}
+    Так как плотность распределения интегрируема, то она измерима. Разность измеримых функций -- измеримая функция. Тогда
+    \begin{gather*}
+        c_{i< j} =\{x:\ f_{\theta _{i}}( x) -f_{\theta _{j}}( x) < 0\} ,\\
+        c_{i\leqslant j} =\{x:\ f_{\theta _{i}}( x) -f_{\theta _{j}}( x) \leqslant 0\}
+    \end{gather*}
+измеримые множества.
+\end{proof}
+\begin{definition}
+    Уравнением правдоподобия называется
+    \begin{equation}
+        \dfrac{\partial \ln f_{\theta }}{\partial \theta } =0\Leftrightarrow \dfrac{\partial f_{\theta }}{\partial \theta } =0.
+    \end{equation}
+\end{definition}
+\begin{theorem}
+    (Аналог состоятельности ОМП) Пусть выполняются условия регулярности (R0)-(R4). Пусть элементы выборки имеют распределение $\displaystyle P_{\theta _{0}}$. Тогда существует отображение $\displaystyle \hat{\theta }_{n}( X_{1} ,\ \dotsc ,\ X_{n} ,\ \theta _{0})$ со значениями в $\displaystyle \Theta $, такое что $\displaystyle P_{\theta }^{*}(\{\hat{\theta }_{n}$ -- не решение уравнения (1)$\displaystyle \})\rightarrow 0$, где $\displaystyle P_{\theta }^{*}$ -- верхняя мера, и
+    \begin{equation*}
+        \forall \varepsilon  >0\hookrightarrow P_{\theta }^{*}(\{| \hat{\theta }_{n} -\theta _{0}|  >\varepsilon \})\xrightarrow[n\rightarrow \infty ]{} 0.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Определим $\displaystyle \hat{\theta }_{n}$. Фиксируем $\displaystyle X_{1} ,\ \dotsc ,\ X_{n}$ из носителя. Если у уравнения правдоподобия есть хотя бы один корень, то возьмем ближайший к $\displaystyle \theta _{0}$. Если у (1) нет корней, то $\displaystyle \hat{\theta }_{n} =\theta _{0}$. Зафиксируем $\displaystyle \varepsilon  >0$, что $\displaystyle [ \theta _{0} -\varepsilon ,\ \theta _{0} +\varepsilon ] \subset \Theta $. Рассмотрим
+    \begin{gather*}
+        S_{n}( \theta _{0} ,\ \varepsilon ) :=\{x:\ f_{\theta _{0} -\varepsilon }( X_{1} ,\ \dotsc ,\ X_{n}) < f_{\theta _{0}}( X_{1} ,\ \dotsc ,\ X_{n}) ,\\
+        f_{\theta _{0}}( X_{1} ,\ \dotsc ,\ X_{n})  >f_{\theta _{0} +\varepsilon }( X_{1} ,\ \dotsc ,\ X_{n})\} .
+    \end{gather*}
+    В силу предыдущей теоремы $\displaystyle P_{\theta _{0}}( S_{n})\xrightarrow[n\rightarrow \infty ]{} 1$. $\displaystyle \forall x\in S_{n} \ \exists \tilde{\theta }_{n}$, в которой $\displaystyle f_{\tilde{\theta}_n}$ имеет локальный максимум, т.е. $\displaystyle f'_{\tilde{\theta }_{n}}\left(x\right) =0$ при некотором $\displaystyle \tilde{\theta }_n \in U_{\varepsilon }( \theta _{0})$. А так как $\displaystyle \hat{\theta }_{n}$ -- ближайший к $\displaystyle \theta _{0}$ корень уравнения несмещенности, когда он существует, то $\displaystyle \hat{\theta }_{n}$ является корнем на $\displaystyle S_{n}$, и $\displaystyle | \hat{\theta } -\theta _{0}| < \varepsilon $. Таким образом, $\displaystyle \left\{\hat{\theta }_{n}\text{ -- не корень (1)}\right\} \subset \mathcal{X}^{n} \backslash S_{n}$, и в силу монотонности внешней меры выполняется
+    
+    
+    \begin{equation*}
+        P_{\theta _{0}}^{*}\left(\left\{\hat{\theta }_{n}\text{ -- не корень}\right\}\right) \leqslant P_{\theta _{0}}\left(\mathcal{X}^{n} \backslash S_{n}\right)\xrightarrow[n\rightarrow \infty ]{} 0.
+    \end{equation*}
+\end{proof}
+\begin{note} ~
+    \begin{enumerate}
+        \item $\displaystyle \hat{\theta }$ зависит от истинного значения параметра, а значит, не является оценкой.
+
+        \item Когда корней несколько непонятно, какой из корней ближе.
+        
+        \item Корень уравнения правдоподобия может не быть ОМП.
+        
+        \item Корень уравнения правдоподобия существует не всегда.
+    \end{enumerate}
+
+\end{note}

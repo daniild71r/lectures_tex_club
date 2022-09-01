@@ -1,0 +1,41 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da3965910987726231] 
+\draw    (20,230.72) -- (510,230.72) ;
+%Straight Lines [id:da4009915020269945] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=0.65 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=3.75]    (160,230.72) -- (346.67,230.72) ;
+%Straight Lines [id:da44297607097165415] 
+\draw [line width=0.75]    (113.33,230.72) -- (393.33,230.72) ;
+\draw [shift={(393.33,230.72)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (5.59,-5.59) .. controls (2.5,-5.59) and (0,-3.09) .. (0,0) .. controls (0,3.09) and (2.5,5.59) .. (5.59,5.59) ;
+\draw [shift={(113.33,230.72)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (5.59,-5.59) .. controls (2.5,-5.59) and (0,-3.09) .. (0,0) .. controls (0,3.09) and (2.5,5.59) .. (5.59,5.59) ;
+%Straight Lines [id:da09002804097538131] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=0.65 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ][line width=1.5]    (66.67,230.72) -- (440,230.72) ;
+\draw [shift={(440,230.72)}, rotate = 180] [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=0.65 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(66.67,230.72)}, rotate = 180] [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=0.65 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da8673358856748661] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (20,230.72) -- (66.67,230.72) -- (160,64.64) -- (346.67,64.64) -- (440,230.72) -- (510,230.72) ;
+%Straight Lines [id:da7029234521695775] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (160,64.64) -- (20,64.64) ;
+%Straight Lines [id:da15474017698585407] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (160,64.64) -- (160,230.72) ;
+%Straight Lines [id:da9821160247046214] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (346.67,64.64) -- (346.67,230.72) ;
+
+% Text Node
+\draw (127,239) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle E$};
+% Text Node
+\draw (241,210) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{K}$};
+% Text Node
+\draw (414,239) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.56,0.07,1}{U}$};
+% Text Node
+\draw (29,49) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (281,72) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{\varphi }$};
+
+
+\end{tikzpicture}

@@ -1,0 +1,297 @@
+\newpage
+\lecture{11}{Измеримые пространства.}
+
+\subsection{Борелевские функции.}
+
+\textit{Напоминание:} функция $f:\:\R\to\R$ непрерывна $\Leftrightarrow$ $f^{-1}(U)$ открыто
+для любого открытого множества $U\subset\R$, где $f^{-1}(U) = \{x\in\R:\: f(x)\in U\}$~---
+полный прообраз $U$.
+
+\begin{definition}
+    Функция $f:\: \R\to\R$ называется \mdef{борелевской} (измеримой по Борелю),
+    если $\forall$ открытого $U\subset\R$ выполняется $f^{-1}(U)\in\CB(\R)$.
+\end{definition}
+
+\begin{exercise}
+    Существуют борелевские \textbf{не} непрерывные функции, например,
+    \[
+        f(x)=\sign x = \begin{cases}
+            1,  & x>0, \\
+            0,  & x=0, \\
+            -1, & x<0. \\
+        \end{cases}
+    \]
+\end{exercise}
+
+\begin{definition}
+    Введем \mdef{индикаторную функцию} (\mdef{индикатор} множества $A$):
+    \[
+        1_A(x)=\begin{cases}
+            1, & x\in A,    \\
+            0, & x\notin A.
+        \end{cases}
+    \]
+
+    \begin{remark}
+        Данный объект часто называют \mdef{характеристической функцией}, но
+        так как в теории вероятности под этим подразумевается немного другая вещь, будем придерживаться
+        данного определения.
+    \end{remark}
+\end{definition}
+
+\begin{claim}
+    $\forall B\in\CB(\R)\ 1_B$~--- борелевская функция.
+\end{claim}
+
+\begin{remark}
+    Аналогичные определения можно дать для функций вида $f:\: X\to Y$, где
+    $X$ и $Y$~--- метрические пространства.
+\end{remark}
+
+\subsection{Измеримые пространства.}
+
+\begin{definition}
+    Пусть $X$~--- множество, $\CE\subset\CP(X)$~--- $\sigma$"=алгебра.
+    Тогда пара $(X,\, \CE)$ называется измеримым пространством.
+\end{definition}
+
+\begin{exercise}
+    В качестве $X$ можем взять $\R$, а $\CE=\CB(\R)$ или $\CE=\mathfrak{m}(\R)=\{A\subset\R:\
+        A\text{ измеримо по Лебегу}\}$.
+\end{exercise}
+
+\begin{remark}
+    На первый взгляд обе сигма-алгебры подозрительно похожи, но
+    можно выделить два утверждения:
+    \begin{enumerate}
+        \item $\CB(\R)\subset\mathfrak{m}(\R)$,
+        \item $\forall A\in\mathfrak{m}(\R)\ \exists N\subset \R:\
+                  m^*(N)=0:\ \exists B\in\CB(\R)$ и $A=B\sqcup N$, где $m^*$~--- внешняя мера Лебега.
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    Пусть $(X,\, \CE)$ и $(Y,\, \F)$~--- измеримые пространства. Функцию $f:\: X\to Y$
+    будем называть \mdef{измеримой} относительно пары $(\CE,\, \F)$, если
+    $\forall A\in\F$ выполнено $f^{-1}(A)\in\CE$.
+
+    Если $Y=\R$ и $\F=\CB(\R)$ (или $Y=\overline{\R}$ и $\F=\CB(\overline{\R})$) и
+    $f$ измерима относительно $(\CE,\, \F)$, то будем говорить, что $f$ \mdef{измерима}
+    относительно $\CE$.
+\end{definition}
+
+\begin{claim}
+    Пусть $\CG\subset\CP(Y)$, $f:\: X\to Y$. Тогда $f$ измерима относительно $(\CE,\, \sigma(\CG))$
+    тогда и только тогда, когда $\forall A\in\CG$ выполнено $f^{-1}(A)\in\CE$.
+
+    \begin{proof}
+
+        \circled{$\Rightarrow$} Следует сразу из того, что $\CG\subset \sigma(\CG)$.
+
+        \circled{$\Leftarrow$} Пусть $\CM:=\{A\in\F:\: f^{-1}(A)\in\CE\}$, где $\F=\sigma(\CG)$. По условию
+        $\CG\subset\CM$. Если доказать, что $\CM$~--- $\sigma$"=алгебра, тогда из $\CG\subset\CM$
+        следует $\sigma(\CG)\subset\CM$.
+
+        Итак, докажем, что $\CM$~--- $\sigma$"=алгебра.
+        \begin{enumerate}
+            \item $\varnothing \in\CM$, так как $f^{-1}(\varnothing)=\varnothing\in\CE$.
+            \item $\forall A\in\CM\ A^C\in\CM$, так как
+                  \[
+                      f^{-1}(A^C)=\{x\in X:\: \underbrace{f(x)\in A^C}_{f(x)\notin A}\}=
+                      X\setminus\left\{x\in X:\: f(x)\in A\right\}=f^{-1}(A)^C.
+                  \]
+                  То есть:
+                  \[
+                      A\in\CM\Rightarrow f^{-1}(A)\in\CE\Rightarrow \left(f^{-1}(A)\right)^C\in\CE\Rightarrow
+                      f^{-1}\left(A^C\right)\in\CE.
+                  \]
+            \item Пусть $A_n\in\CM\ \forall n\in\N$. Тогда
+                  \[
+                      f^{-1}\left(\bigcup_{n=1}^{\infty}A_n\right)=\left\{x\in X:\: \exists n\in \N\ f(x)\in A_n\right\}
+                      =\bigcup_{n\in\N}\left\{x\in X:\: f(x)\in A_n\right\}=\bigcup_{n=1}^{\infty}f^{-1}(A_n).
+                  \]
+                  Далее
+                  \[
+                      A_n\in\CM\Rightarrow f^{-1}\in\CE\Rightarrow\bigcup_{n=1}^{\infty}f^{-1}(A_n)\in\CE.
+                  \]
+        \end{enumerate}
+
+    \end{proof}
+\end{claim}
+
+\begin{next0}
+    Функция $f:\:\R\to\R$ является борелевской тогда и только тогда, когда $f$ измерима относительно
+    $\CB(\R)$.
+\end{next0}
+
+\begin{definition}
+    Функцию $f:\:\R\to\R$ будем называть \mdef{измеримой по Лебегу}, если она измерима
+    относительно $\mathfrak{m}(\R)$.
+\end{definition}
+
+Приведем пример не измеримой по Лебегу функции.
+
+\begin{exercise}
+    Пусть $V\subset \R$~--- множество Витали (или любое другое множество не измеримое по Лебегу).
+    Тогда $1_V$ является не измеримой по Лебегу функцией,
+    так как $\{1\}$~--- борелевское, но $1_V^{-1}(\{1\})=V\notin\mathfrak{m}(\R)$.
+\end{exercise}
+
+\begin{remark}
+    $\overline{\R}=\R\cup\{\pm\infty\}$~--- метрическое пространство, если расстояние определить следующим образом:
+    рассмотрим функцию $f(t) = \arctan(t)$, доопределим ее в $\pm\infty$: $\arctan(\pm\infty)=\pm\dfrac{\pi}{2}$.
+    \begin{figure}[!ht]
+        \centering
+        \input{images/atan.tikz}
+        \caption{Способ задать расстояние в $\overline{\R}$.}
+        \label{fig:lect11:atan}
+    \end{figure}
+    Тогда расстояние между любыми двумя точками $x,\, y\in\overline{\R}$ определим как
+    \[
+        \rho(x,\, y) = |\arctan(x) - \arctan(y)|\quad \text{(см. рис. \ref{fig:lect11:atan})}
+    \]
+
+    Пусть тогда
+    \[
+        \tau_{\overline{\R}}:=\left\{U\subset\overline{\R}:\: \forall x\in U\ \exists r>0:\: \forall
+        y\in\R:\: \rho(x,\, y)<r\Rightarrow y\in U\right\}.
+    \]
+
+    Тогда под борелевской сигма-алгеброй на расширенной вещественной прямой понимается сигма-алгебра, порожденная семейством
+    всех открытых множеств:
+    \[
+        \CB(\overline{\R}):=\sigma(\tau_{\overline{\R}}).
+    \]
+\end{remark}
+
+\begin{claim}
+    Пусть $(X,\, \CE)$~--- измеримое пространство и функция $f:\: X\to\oR$. Тогда
+    \[
+        f \text{ измерима относительно $\CE$} \Leftrightarrow \forall c\in\R\ \left\{x\in X:\: f(x)<c\right\}\in\CE.
+    \]
+
+    \begin{proof}
+
+        В силу предыдущего утверждения достаточно доказать, что $\CG=\{\underbrace{\{y\in\oR:\: y<c\}}_{U_c}:\: c\in\R\}$
+        порождает $\CB(\oR)$, то есть $\sigma(\CG)=\CB(\oR)$.
+
+        Вложение $\sigma(\CG)\subset\CB(\oR)$~--- очевидно.
+
+        Докажем $\sigma(\CG)\supset\CB(\oR)$. Напомним, что шаром называется множество
+        \[B_r=\{y\in\oR:\:\rho(x,\,y)<r\}.\]
+
+        Рассмотрим следующее утверждение.
+        \begin{lemma}
+            $\forall U\in\tau_{\oR},\, U\neq\varnothing\ \forall x\in U\ \exists p,\, q\in
+                \underbrace{\Q\cup\{\pm\infty\}}_{\overline{\Q}},\, p<q:\: x\in[p,\,q]\subset U$.
+
+            \begin{proof}
+
+                Если $x\in\R$, то это ясно из свойств $\R$ и непрерывности арктангенса. В самом деле,
+                можно <<немного>> подвинуть левую и правую границы до рационального числа (см. рис. \ref{fig:lect11:atan_ball}).
+
+                \begin{figure}[!ht]
+                    \centering
+                    \input{images/atan_ball.tikz}
+                    \caption{Пример $B_r(x)$.}
+                    \label{fig:lect11:atan_ball}
+                \end{figure}
+
+                Если $x=+\infty$, то $\exists a\in\R:\: [a,\,+\infty]\subset U\Rightarrow\forall q\in(a,\,+\infty),\, q\in\Q:\:
+                    [q,\, +\infty]\subset U$.
+
+            \end{proof}
+        \end{lemma}
+
+        Теперь докажем, что $\forall p,\, q\in \overline{\Q}$ выполнено $[p,\, q]\in\sigma(\CG)$.
+        Заметим, что $[p,\, q]=[p,\, +\infty]\cap[-\infty,\, q]$. Далее
+        \[
+            \forall p\in\overline{\Q}\quad [p,\, +\infty]=\oR\setminus\underbrace{[-\infty,\, p)}_{U_p\in\CG}
+            \in\sigma(\CG).
+        \]
+
+        Теперь докажем, что $\forall q\in\overline{\Q}\ [-\infty,\, q]\in\sigma(\CG)$:
+        \begin{enumerate}
+            \item[а)] Если $q=+\infty$~--- очевидно.
+            \item[б)] Пусть $q\in\R$, тогда
+                  \[
+                      [-\infty,\, q]=\bigcap_{n\in\N}\underbrace{\left[-\infty,\, q+\dfrac{1}{n}\right)}_{U_{q+1/n}\in\CG}\in\sigma(\CG).
+                  \]
+            \item[в)] Если $q=-\infty$, то
+                  \[
+                      [-\infty,\, \infty]=\{-\infty\}=\bigcap_{n\in\N}\underbrace{[-\infty,\, -n)}_{U_{-n}\in\CG}\in\sigma(\CG).
+                  \]
+        \end{enumerate}
+
+        Итак, $[p,\, q]\in\sigma(\CG)\ \forall p,\,q\in\overline{\Q}$.
+        В силу леммы, для любого открытого $U\in\tau_{\oR}$ существует множество рациональных отрезков, которые в объединении дают $U$:
+        \[
+            \exists\left\{(p_n,\, q_n)\in\overline{\Q}^2\right\}_{n\in\N}:\quad U=\bigcup_{n=1}^{\infty}\underbrace{[p_n,\, q_n]}_{\in\sigma(\CG)}.
+        \]
+        В самом деле, из леммы: \[
+            \forall x\in U\ \exists p_x,\, q_x\in\overline{\Q}:\: p_x<q_x\ x\in[p_x,\, q_x]\subset U\Rightarrow
+            \bigcup_{x\in U}[p_x,\, q_x]=U,
+        \]
+        причем объединение не более чем счетно, потому как $\overline{\Q}^2$ счетно.
+
+        Итак, получаем
+        \[
+            U\in\sigma(\CG)\Rightarrow\tau_{\oR}\subset\sigma(\CG)\Rightarrow
+            \CB(\oR)=\sigma(\tau_{\oR})\subset\sigma(\CG).
+        \]
+
+    \end{proof}
+\end{claim}
+
+\begin{claim}
+    Пусть $(X,\, \CE)$~--- измеримое пространство, $f,\, g: X\to\oR$ измеримы относительно $\CE$. Тогда
+    \begin{enumerate}
+        \item Для любой борелевской функции $\varphi:\:\oR\to\oR$ функция $\varphi\circ f$ измерима относительно $\CE$.
+        \item Если $f$ и $g$ не принимают одновременно бесконечных значений разных знаков, то
+              $\forall \alpha,\, \beta\in [0,\, +\infty)$ функция $\alpha f+\beta g$ измерима относительно $\CE$.
+        \item $\min(f,\, g)$ и $\max(f,\, g)$ измеримы относительно $\CE$.
+        \item $f\cdot g$ измерима относительно $\CE$.
+        \item Если $g\neq 0$ и $g\neq\pm\infty$, то $\dfrac{f}{g}$ измерима относительно $\CE$.
+    \end{enumerate}
+
+    \begin{proof}
+
+        Пусть $A\in\CB(\oR)$.
+
+        \begin{enumerate}
+            \item Распишем полный прообраз:
+                  \begin{align*}
+                      (\varphi\circ f)^{-1}(A) & =\{x:\: \varphi(f(x))\in A\}=                                                                               \\
+                                               & =\{x:\: f(x)\in\varphi^{-1}(A)\}=                                                                           \\
+                                               & =\{x:\: x\in f^{-1}(\varphi^{-1}(A))\}=f^{-1}\underbrace{\left(\varphi^{-1}(A)\right)}_{\in\CB(\oR)}\in\CE. \\
+                  \end{align*}
+            \item Достаточно очевидно, что умножение на константу сохраняет измеримость функции (рассмотрим случай $\alpha>0$):
+                  \[
+                      \{x:\: \alpha f(x)<c\}=\{x:\: f(x)< c/\alpha\}=f^{-1}(\underbrace{(-\infty,\, c/\alpha)}_{\in\CB(\oR)}).
+                  \]
+
+                  Докажем, что $f+g$ измерима.
+                  Рассмотрим $N = \{x\in X:\: f(x)+g(x)>c\}$, где $c\in\R$~--- фиксированно.
+                  Докажем, что $N\in\CE$.
+                  Заметим, что
+                  \[
+                      f(x)+g(x)>c\Leftrightarrow f(x)>c-g(x)\Leftrightarrow\exists r\in\Q:\: f(x)>r,\, r > c-g(x).
+                  \]
+                  Следовательно, \[
+                      N = \bigcup_{r\in\Q}\left(\underbrace{\{x:\: f(x)>r\}}_{\in\CE}\cap\underbrace{\{x:\:g(x)>c-r\}}_{\in\CE}\right)\in\CE.
+                  \]
+            \item Докажем только для минимума. Понятно, что
+                  \[
+                      \min(f(x),\, g(x))>c\Leftrightarrow (f(x)>c)\wedge(g(x)>c).
+                  \]
+                  Поэтому \[
+                      \{x:\:\min(f(x),\, g(x))>c\}=\{x:\:f(x)>c\}\cap \{x:\: g(x)>c\}\in\CE.
+                  \]
+            \item Для начала скажем, что $f^2$~--- измерима, так как функция $\varphi(y)=y^2$~--- борелевская (см. пункт 1). А далее замечаем, что
+                  \[
+                      f\cdot g = \dfrac{1}{2}\left((f+g)^2-f^2-g^2\right).
+                  \]
+        \end{enumerate}
+
+    \end{proof}
+\end{claim}

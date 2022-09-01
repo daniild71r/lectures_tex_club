@@ -1,0 +1,158 @@
+\newpage
+\lecture{2}{Сигма-алгебры.}
+
+\subsection{Теорема о структуре кольца, порожденного полукольцом.}
+
+\begin{remark}
+    Если $\F\subset \mathcal{G} $, то $\mathcal{R} (\F)\subset \mathcal{R} (\mathcal{G} )$.
+
+    Данное замечание можно использовать для упрощения доказательства леммы \ref{lect1lemma1}.
+\end{remark}
+
+\begin{lemma}
+    Пусть $\CS\subset \CP(X)$~--- полукольцо и $A,\, A_1,\, \ldots,\, A_n\in \CS$.
+    Тогда имеем $A\setminus \bigcup\limits_{i=1}^n A_i\in\FDU(\CS)$. Другими словами
+    $\exists B_1,\,\ldots, \, B_m\in\CS:\: B_i\cap B_j=\varnothing \text{ при } i\neq j$ и
+    $A\setminus \bigcup\limits_{i=1}^n A_i=\bigsqcup\limits_{j=1}^m B_j$.
+
+    \begin{proof}
+        Докажем по индукции по $n$.
+
+        При $n=1$ утверждение следует из определения полукольца.
+
+        Допустим утверждение выполнение для $n$, а именно, что
+        $\exists B_1,\,\ldots, \, B_k\in\CS:\: B_i\cap B_j=\varnothing \text{ при } i\neq j$
+        и $A\setminus \bigcup\limits_{i=1}^{n}A_i=\bigsqcup\limits_{j=1}^k B_j$. Докажем для $n+1$.
+        \[
+            A\setminus \bigcup_{i=1}^{n+1}A_i=\left(A\setminus \bigcup_{i=1}^{n}A_i\right)\setminus A_{n+1}=
+            \bigsqcup_{i=1}^k \left(B_i\setminus A_{n+1}\right).
+        \]
+        Далее по определению полукольца имеем: $B_i\setminus A_{n+1}=\bigcup\limits_{l=1}^{N_i}C_{il}$,
+        где $C_{il}\in\CS$ и $B_i\cap B_j=\varnothing,\, i\neq j\Rightarrow C_{il}\cap C_{js}=\varnothing$ если
+        $(i,\, l)\neq (j,\, s)$. Значит можно продолжить
+        \[
+            \bigsqcup_{i=1}^k \left(B_i\setminus A_{n+1}\right)=\bigsqcup_{i=1}^k \bigsqcup_{l=1}^{N_{i}} C_{il}.
+        \]
+
+        Проще говоря, множество $B_i\setminus A_{n+1}$ можно дизъюнктно разбить на некоторые множества $C_{il}$. И
+        такие множества не будут пересекаться, а значит их дизъюнктное объединение и даст требуемое.
+
+    \end{proof}
+    \label{lect2lemma1}
+\end{lemma}
+
+\begin{lemma}
+    Пусть $\CS\subset \CP(X)$~--- полукольцо.
+    Если $A_1,\, \ldots,\, A_n\in\CS$, то $\bigcup\limits_{i=1}^nA_i\in\FDU(\CS)$.
+
+    \begin{proof}
+        Введем обозначения:
+        \begin{align*}
+             & B_1 = A_1\in\CS                                                                             \\
+             & B_2 = A_2\setminus A_1\in\FDU(\CS)\text{ (по определению полукольца)}                       \\
+             & \ldots                                                                                      \\
+             & B_{k+1}=A_{k+1}\setminus\bigcup_{i=1}^k A_i\in\FDU(\CS)\text{ (по лемме \ref{lect2lemma1})}
+        \end{align*}
+
+        По построению $B_i\cap B_j=\varnothing,\, i\neq j$, поэтому
+        $\bigsqcup\limits_{i=1}^n B_i\in\FDU(\CS)$.
+
+    \end{proof}
+    \label{lect2lemma2}
+\end{lemma}
+
+\begin{remark}
+    Если $\F\subset\CP(X)$, то $\forall B_1,\,\ldots,\, B_n\in\FDU(\F)$ таких, что
+    $B_i\cap B_j=\varnothing,\, i\neq j$ выполнено $\bigsqcup\limits_{i=1}^n B_i\in\FDU(\F)$.
+\end{remark}
+
+\begin{next0}
+    Теорема \ref{lect1th1}.
+
+    \begin{proof}
+        По лемме \ref{lect1lemma1}
+        $A\in\CR(\CS)\Leftrightarrow \exists A_1,\,\ldots,\,A_n\in\CS:\:
+            A=\bigcup\limits_{i=1}^n A_i$. И по лемме \ref{lect2lemma2} $\exists$ попарно не пересекающиеся
+        $B_1,\,\ldots,\, B_m\in\CS:\: \bigcup\limits_{i=1}^n A_i=\bigsqcup\limits_{j=1}^m B_j$.
+
+    \end{proof}
+\end{next0}
+
+\subsection{Сигма-алгебра.}
+
+Напомним основное понятие:
+\begin{definition}
+    $\sigma$"=кольцо $\F\subset\CP(X)$ называется \mdef{$\sigma$"=алгеброй}, если $X\in\F$.
+\end{definition}
+
+\begin{claim}[Критерий $\sigma$"=алгебры]
+    Семейство $\F\subset \CP(X)$ является $\sigma$"=алгеброй тогда и только тогда, когда выполнены следующие свойства:
+    \begin{enumerate}[label=\arabic*\degree.]
+        \item $\varnothing\in\F$;
+        \item $\forall A\in\F \quad A^C=X\setminus A\in\F$;
+        \item $\forall A,\, B\in\F\quad A\cap B\in\F$;
+        \item $\forall$ дизъюнктного $\{A_k\}_{k=1}^{\infty}\subset \F$ (то есть $A_k\in\F, \, \forall k$ и
+              $A_i\cap A_j=\varnothing,\, \forall i,j,\, i\neq j$) выполнено $\bigsqcup\limits_{k=1}^{\infty}A_k\in\F$.
+    \end{enumerate}
+
+    \begin{proof}
+        \circled{$\Rightarrow$} Очевидно из определения $\sigma$"=алгебры.
+
+        \circled{$\Leftarrow$} Докажем, что из пунктов $1\degree, \, 2\degree,\, 3\degree$ следует, что $\F$~--- алгебра.
+        \begin{itemize}
+            \item $\varnothing\in\F$ и $X = \varnothing^C\Rightarrow X\in\F$;
+            \item $A\setminus B = A\cap B^C\in\F$ (пункты $1\degree$ и $2\degree$).
+        \end{itemize}
+        \begin{remark}
+            Доказывать замкнутость по объединению не нужно в силу замечания об эквивалентности условий из лекции 1 (\ref{lect1remark1}).
+        \end{remark}
+
+        Осталось доказать, что при условии $4\degree$, то $\F$~--- $\sigma$"=алгебра. Пусть
+        $\{A_n\}_{n\in\N}\subset \F$. Докажем, что $\bigcup\limits_{n=1}^{\infty}\in\F$.
+        Рассмотрим:
+        \begin{align*}
+             & B_1 = A_1\in\CS                             \\
+             & B_2 = A_2\setminus A_1                      \\
+             & \ldots                                      \\
+             & B_{k+1}=A_{k+1}\setminus\bigcup_{i=1}^k A_i
+        \end{align*}
+        Так как было уже доказано, что $\F$~--- алгебра, то все $B_i\in\F$. По построению $B_i\cap B_j=\varnothing$ при
+        $i\neq j\Rightarrow$ по пункту $4\degree$ имеем $\bigsqcup\limits_{n=1}^{\infty}B_n\in\F$, с другой стороны
+        $\bigsqcup\limits_{n=1}^{\infty}B_n = \bigcup\limits_{n=1}^{\infty}A_n$.
+
+    \end{proof}
+\end{claim}
+
+\begin{definition}
+    Пусть $\F\subset \CP(X)$. Сигма-алгеброй, \mdef{порожденной семейством $\F$}, называется семейство
+    \[
+        \sigma(\F)=\bigcap\left\{\CG\ |\ \CG\subset\CP(X) \text{~--- } \sigma\text{-алгебра такая, что } \F\subset
+        \CG\right\}
+    \]
+\end{definition}
+
+\begin{remark}
+    Доказательство того, что построенное множество является $\sigma$"=алгеброй по существу аналогично доказательству
+    теоремы \ref{lect1thdef}.
+    Причем $\sigma(\F)$~--- минимальная по вложению $\sigma$"=алгебра $\CG$ такая, что
+    $\F\subset\CG$.
+\end{remark}
+
+\begin{definition}
+    Пусть $\tau=\{U\subset \R^d:\: U\text{~--- открыто}\}$ (то есть $\tau$~--- евклидова топология).
+
+    Множество называется \mdef{открытым} если вместе с любой своей точкой содержит некоторый шарик радиуса $r$, где под
+    расстоянием понимается евклидова метрика: $\rho_2(x,\, y) = \sqrt{\sum\limits_{i=1}^d |x_i-y_i|^2}$.
+\end{definition}
+
+\begin{definition}
+    $\sigma(\tau)$ называется \mdef{борелевской $\sigma$"=алгеброй}. Обозначение $\mathfrak{B} (\R^d)$.
+\end{definition}
+
+\begin{remark}
+    Аналогичное определение можно ввести для любого метрического пространства.
+\end{remark}
+
+\begin{claim}
+    Если $K_d$~--- семейство всех клеток в $\R^d$, то $\mathfrak{B} (\R^d)=\sigma(K_d)$.
+\end{claim}

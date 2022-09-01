@@ -1,0 +1,196 @@
+\section{Наивная теория множеств}
+ 
+\subsection{Множество}
+ 
+\begin{definition}
+    \textit{Множеством} называется совокупность каких-либо объектов.
+\end{definition}
+ 
+\begin{note}
+    Если говорить чуть точнее, то множество считается неопределяемым понятием, так как его определение даётся через синонимичные слова, что является замкнутым кругом.
+\end{note}
+ 
+\begin{note}
+    В рамках стандартной модели (так мы будем называть наивную теорию множеств, ибо будем работать по большому счёту только с ней) объектом может быть что угодно, в~том числе и множество.
+\end{note}
+ 
+\subsubsection*{Свойства множества}
+ 
+\begin{enumerate}
+     \item Каждый объект входит в множество ровно один раз, то есть множество хранит \textit{уникальные} объекты. Если мы рассматриваем множества без этого свойства, то они называются \textit{мультимножествами}.
+     \item Множество не обладает порядком. Если порядок объектов в множестве важен, то такое множество называется \textit{кортежом}, или же \textit{упорядоченным множеством}.
+     \item Запись $x \in Y$ означает, что объект $x$ принадлежит множеству $Y$.
+\end{enumerate}
+
+\begin{note}
+	Еще вводится обозначение $x \notin Y$, что по определению означает $\neg (x \in Y)$.
+\end{note}
+ 
+\begin{definition}
+    \textit{Элементом} множества называется объект, который принадлежит этому множеству.
+\end{definition}
+ 
+\begin{definition}
+    Выражение $X \subset Y$ означает, что множество $X$ является \textit{подмножеством} $Y$. Формально записывается так:
+    $$
+        X \subset Y \Ra (\forall x \in X \Ra x \in Y).
+    $$
+\end{definition}
+ 
+\subsection{Равенство множеств}
+ 
+\begin{definition}
+    $X = Y$, если $(X \subset Y) \wedge (Y \subset X)$, или же $\forall z \in X \Ra z \in Y$ и $\forall z \in Y \Ra z \in X$
+\end{definition}
+ 
+\subsubsection*{Свойства равенства множеств}
+ 
+\begin{enumerate}
+     \item $X \subset X$ (Рефлексивность)
+     \item $(X \subset Y) \wedge (Y \subset X) \Ra (X = Y)$ (Антисимметричность)
+     \item $(X \subset Y) \wedge (Y \subset Z) \Ra (X \subset Z)$ (Транзитивность)
+\end{enumerate}
+ 
+\begin{note}
+    При этом стоит отметить, что принадлежность не обладает транзитивностью. Контрпримером служит выражение:
+    $$
+        1 \in \{1\} \in \{2, 3, \{1\}\},
+    $$
+    но при этом $1 \notin \{2, 3, \{1\}\}$.
+\end{note}
+ 
+\subsection{Способы описания множеств}
+ 
+\begin{enumerate}
+     \item Прямое перечисление элементов: $X = \{1, 2, 3\}$.
+     \item Генератор множества (set builder notation) $X = \{x\ |\ x = 2k, k \in \N\}$.
+\end{enumerate}
+ 
+\subsection{Парадокс Рассела}
+ 
+Если множество может быть элементом множества, то существует ли множество всех множеств? С этим вопросом мы приходим быстро к противоречию.
+ 
+\begin{proposition}
+    Рассмотрим $M = \{x\ |\ x \notin x\}$. Верно ли утверждение $M \in M$?
+\end{proposition}
+ 
+\begin{proof}
+    Имеем 2 случая:
+    
+    \begin{enumerate}
+        \item $M \in M$. Но из определения $\forall x \in M \Ra x \notin x$, мы получаем противоречие.
+        \item $M \notin M$. Но из определения $x \notin x \Ra x \in M$. Снова противоречие.
+    \end{enumerate}
+    
+    Таким образом, множества всех множеств не существует.
+\end{proof}
+ 
+\begin{note}
+    Выше мы говорили о равенстве множеств. Как известно, мы определяем равенство как отношение эквивалентности на некотором множестве, но так как мы показали, что множества всех множеств не существует, то мы не можем назвать равенство между множествами отношением эквивалентности.
+\end{note}
+ 
+\subsection{Пустое множество}
+ 
+\begin{definition}
+    \textit{Пустым множеством} называется такое множество, в котором нету элементов. Обозначается обычно так: $\emptyset$.
+\end{definition}
+ 
+\subsubsection*{Свойства пустого множества}
+ 
+\begin{enumerate}
+     \item Пустое множество единственно.
+     \item Пустое множество вложено в любое другое множество: $\forall X \Ra \emptyset \subset X$.
+\end{enumerate}
+ 
+\subsection{Различие между принадлежностью и подмножеством}
+ 
+Рассмотрим $X$ - некоторое конечное множество, содержащее $n$ элементов.
+ 
+Сколько подмножеств у такого множества? Ответ: $2^n$.
+ 
+\begin{itemize}
+     \item $n = 0 \Ra \emptyset$~---~1 подмножество, 0 элементов.
+     \item $n = 1 \Ra \emptyset, \{a\}$~---~2 подмножества, 1 элемент.
+     \item $n = 2 \Ra \emptyset, \{a\}, \{b\}, \{a, b\}$~---~4 подмножества, 2 элемента.
+\end{itemize}
+ 
+\subsection{Универсальное множество}
+ 
+\begin{definition}
+    \textit{Универсальным множеством} называется такое множество, для которого в конкретно данной задаче считается верным для любого множества $A$ два свойства:
+    \begin{itemize}
+        \item $A \cap U = A$
+        \item $A \cup U = U$
+    \end{itemize}
+\end{definition}
+ 
+\subsection{Операции над множествами}
+ 
+%
+%
+%
+% В каждом item надо сделать рисунок с Эйлеровой диаграммой
+%
+%
+%
+\begin{enumerate}
+     \item Объединение $A \cup B = \{x\ |\ (x \in A) \vee (x \in B)\}$
+     \item Пересечение $A \cap B = \{x\ |\ (x \in A) \wedge (x \in B)\}$
+     \item Разность $A \backslash B = \{x\ |\ (x \in A) \wedge (x \notin B)\}$
+     \item Симметрическая разность $A \simm B = \{x\ |\ (x \in A \cup B) \wedge (x \notin A \cap B)\}$
+     \item Отрицание (Дополнение) $\overline{A} = \{x\ |\ x \notin A\}$
+\end{enumerate}
+
+\subsubsection*{Дистрибутивность}
+
+\begin{proposition}
+	Для любых множеств $A, B$ и $C$ верно, что
+	$$
+		A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+	$$
+\end{proposition}
+
+\begin{proof}
+	Пусть $x \in A \cap (B \cup C)$, тогда:
+	$$
+	(x \in A) \wedge (x \in (B \cup C))
+	$$
+	Имеем 2 случая:
+	\begin{enumerate}
+		\item $(x \in A) \wedge (x \in B) \Ra x \in (A \cap B)$
+		\item $(x \in A) \wedge (x \in C) \Ra x \in (A \cap C)$
+	\end{enumerate}
+	Это даёт нам факт, что $x \in (A \cap B) \cup (A \cap C) \Ra A \cap (B \cup C) \subset (A \cap B) \cup (A \cap C)$
+	Теперь покажем обратное, рассмотрим $x \in (A \cap B) \cup (A \cap C)$.
+	
+	Снова 2 случая:
+	\begin{enumerate}
+		\item $x \in (A \cap B) \Ra (x \in A) \wedge (x \in B) \Ra (x \in A) \wedge (x \in (B \cup C)) \Ra x \in A \cap (B \cup C)$
+		\item $x \in (A \cap C) \Ra (x \in A) \wedge (x \in C) \Ra (x \in A) \wedge (x \in (B \cup C)) \Ra x \in A \cap (B \cup C)$
+	\end{enumerate}
+
+	Отсюда по определению равенства $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+\end{proof}
+
+\subsubsection*{Законы де Моргана}
+
+Законы де Моргана на множествах имеют ровно такие же аналоги, как и в логике:
+\begin{align*}
+	\overline{A \cap B} = \overline{A} \cup \overline{B}
+	\\
+	\overline{A \cup B} = \overline{A} \cap \overline{B}
+\end{align*}
+
+\subsection{Упорядоченные пары и кортежи}
+
+\begin{definition}
+	\textit{Неупорядоченной парой} называется мультимножество из 2х элементов. Обозначается как и просто множество: $\{a, b\}$
+\end{definition}
+
+\begin{definition}
+	\textit{Упорядоченной парой} называется неупорядоченная пара, у которой зафиксирован первый элемент. Обозначается через круглые скобки: $(a, b)$. Упорядоченная пара может быть выражена через мультимножество по определению Куратовского:
+	\begin{itemize}
+		\item Упрощенное определение Куратовского $\{a, \{a, b\}\}$
+		\item Полное определение Куратовского $\{\{a\}, \{a, b\}\}$
+	\end{itemize}
+\end{definition}

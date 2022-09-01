@@ -1,0 +1,31 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Ellipse [id:dp21713989696743696] 
+\draw   (40,120.8) .. controls (40,92.19) and (73.98,69) .. (115.9,69) .. controls (157.82,69) and (191.8,92.19) .. (191.8,120.8) .. controls (191.8,149.41) and (157.82,172.6) .. (115.9,172.6) .. controls (73.98,172.6) and (40,149.41) .. (40,120.8) -- cycle ;
+%Shape: Polygon Curved [id:ds9621936473500847] 
+\draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ] (68,91.2) .. controls (82.6,75.8) and (130.2,73.8) .. (158,91.2) .. controls (185.8,108.6) and (144.4,129.6) .. (151,151) .. controls (157.6,172.4) and (96.2,161.8) .. (68,151.2) .. controls (39.8,140.6) and (53.4,106.6) .. (68,91.2) -- cycle ;
+%Shape: Polygon Curved [id:ds46698398853897394] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] (39.2,80.4) .. controls (59.2,70.4) and (70.08,53.43) .. (89.4,51.4) .. controls (108.72,49.37) and (197.4,75.4) .. (211,95.8) .. controls (224.6,116.2) and (212.2,184.6) .. (139.4,183) .. controls (66.6,181.4) and (59.2,170.4) .. (39.2,140.4) .. controls (19.2,110.4) and (19.2,90.4) .. (39.2,80.4) -- cycle ;
+%Shape: Polygon Curved [id:ds1249511800221168] 
+\draw  [color={rgb, 255:red, 255; green, 0; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 0; blue, 31 }  ,fill opacity=0.5 ] (199.8,114.2) .. controls (212.2,107) and (212,121.2) .. (208.6,130.2) .. controls (205.2,139.2) and (187.4,121.4) .. (199.8,114.2) -- cycle ;
+%Shape: Polygon Curved [id:ds831095716110374] 
+\draw  [color={rgb, 255:red, 255; green, 0; blue, 31 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 0; blue, 31 }  ,fill opacity=0.5 ] (172.6,112.2) .. controls (185,105) and (184.8,119.2) .. (181.4,128.2) .. controls (178,137.2) and (160.2,119.4) .. (172.6,112.2) -- cycle ;
+
+% Text Node
+\draw (161.2,132.2) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle A$};
+% Text Node
+\draw (61.6,97.2) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.49,0.83,0.13}{K}$};
+% Text Node
+\draw (78,53.8) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.56,0.07,1}{E}$};
+% Text Node
+\draw (166.8,93) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{1,0,0.13}{B}$};
+% Text Node
+\draw (194.4,93) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{1,0,0.13}{B}$};
+
+
+\end{tikzpicture}

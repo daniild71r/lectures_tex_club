@@ -1,0 +1,126 @@
+\subsection{Приближение функций полиномами.}
+\begin{Def}
+	Линейным положительным оператором называется отображение ${L:C[a,b]\to C[a,b]}\ (L:C_{2\pi}\to C_{2\pi})$, где $C[a,b]$ --- пространство непрерывных на $[a,b]$ функций, а $C_{2\pi}$ --- пространство непрерывных на $\R,\ 2\pi$-периодических функций, такое что:
+	\begin{enumerate}
+		\item $\left(\forall f_1, f_2 \in C[a,b](C_{2\pi})\right)(\forall\alpha, \beta\in\R)\  L(\alpha f_1+\beta f_2) = \alpha L(f_1)+\beta L(f_2)$,
+		\item $\left(\forall f \in C[a,b](C_{2\pi}):\forall x\in[a,b](\in\R), f(x)\geqslant 0\right) L(f,x)\geqslant0\ \forall x\in[a,b](\in\R)$, здесь $L(f,x)$ означает, что $L(f)$ является функцией от $x$.
+	\end{enumerate}
+\end{Def}
+
+\begin{linkthm}{https://youtu.be/TJ8TZ0RVdYo?t=222}[Коровкин]\ \\
+	Если последовательность линейных положительных операторов $L_n:C[a,b]\to C[a,b]$ такова, что $L_n(e_i)\underset{n\to\infty}{\rightrightarrows} e_i$ на $[a,b], e_i(x)=x^i, i=0,1,2$, то $(\forall f\in C[a,b]) L_n(f)\rightrightarrows f$ на $[a,b]$.
+\end{linkthm}
+\begin{proof}
+Так как $f\in C[a,b]\overset{\text{т. Вейерштрасса}}{\Rightarrow} f$ ограничена, то есть $\exists M: {-M\leqslant f(x)\leqslant M}\ \forall x\in [a,b]$ $\boldsymbol{(1)}$. Так как $f\in C[a,b]\overset{\text{т. Кантора}}{\Rightarrow} f$ равномерно непрерывна на $[a,b]$, то есть $(\forall\varepsilon>0)(\exists\delta>0)(\forall t,x\in[a,b]: |t-x|<\delta)\ -\varepsilon<f(t)-f(x)<\varepsilon\ \boldsymbol{(2)}$.
+Заметим, что из линейности и положительности операторов таких, что $f_1(x)\leqslant f_2(x)\ \forall x\in[a,b]\Rightarrow {L_n(f_1,x)\leqslant L_n(f_2,x)\ \forall x\in [a,b]}$. 
+
+Из $(1), (2) \Rightarrow (\forall\varepsilon>0)(\exists\delta>0)(\forall t, x\in[a,b]) -\varepsilon-\frac{2M}{\delta^2}\psi_x(t)<f(t)-f(x)<\varepsilon+\frac{2M}{\delta^2}\psi_x(t) \boldsymbol{(3)}$, где $\psi_x(t)=(t-x)^2$. Действительно, если $|t-x|<\delta$, тогда это следует из $(2)$. Если же $|t-x|\geqslant\delta$, то $\frac{\psi_x(t)}{\delta^2}=\frac{(t-x)^2}{\delta^2}\geqslant 1$, и неравенство следует из $(1)$.
+
+В неравенстве $(3): x$ --- произвольное из $[a,b]$, но фиксированное, и все функции рассматриваются как функции от $t$. Применим оператор $L_n$ к неравенству $(3)$. Для $-\varepsilon: -\varepsilon = -1\cdot\varepsilon = -x^0\cdot\varepsilon = -e_0\cdot\varepsilon$. Поэтому $L_n(-\varepsilon) = -\varepsilon L_n(e_0,x)$. Итого \\$-\varepsilon L_n(e_0,x)-\frac{2M}{\delta^2}L_n(\psi_x(t),x)<L_n(f,x)-f(x)L_n(e_0,x)<\varepsilon L_n(e_0,x)+\frac{2M}{\delta^2}L_n(\psi_x(t),x)$.
+
+Отдельно рассмотрим $L_n(\psi_x,x)=L_n((t-x)^2,x)=L_n(t^2-2tx+x^2,x)={L_n(e_2,x)-2xL_n(e_1,x)+x^2L_n(e_0,x)}$ --- здесь $x$ --- константа, $t$ --- переменная по которой действует оператор. Теперь вспомним, что $L_n(e_i)\rightrightarrows e_i$, значит $L_n(\psi_x,x)\rightrightarrows e_2(x)-2xe_1(x)+x^2e_0(x) = x^2-2x\cdot x+x^2=0$.
+
+Получаем $(\exists N_1)(\forall n > N_1)(\forall x\in [a,b]) |L_n(\psi_x,x)|\leqslant\frac{\varepsilon\delta^2}{4M}$ и из того, что $L_n(e_0)\rightrightarrows  e_0\Rightarrow (\exists N_2)(\forall n > N_2)(\forall x\in [a,b]) |L_n(e_0,x)|<\frac{3}{2}$. Тогда из $(3): |L_n(f,x)-f(x)L_n(e_0,x)|\leqslant\varepsilon L_n(e_0,x)+\frac{2M}{\delta^2}L_n(\psi_x,x)$ получаем $\forall n > \max(N_1, N_2)\  |L_n(f,x)-f(x)L_n(e_0, x)|\leqslant 2\varepsilon$. И снова же из $L_n(e_0)\rightrightarrows e_0\Rightarrow(\exists N_3)(\forall n>N_3)(\forall x\in [a,b]) |L_n(e_0, x)-1|<\frac{\varepsilon}{M}$, тогда $|f(x)L_n(e_0, x)-f(x)|\leqslant
+|f(x)|\cdot|L_n(e_0,x)-1|\leqslant\frac{\varepsilon}{M}$. Объединяя неравенства получаем $(\forall n > \max(N_1, N_2, N_3))(\forall x\in [a,b])\ |L_n(f,x)-f(x)|\leqslant 3\varepsilon$.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/TJ8TZ0RVdYo?t=1496}[Вейерштрасса о приближении алгебраическими многочленами]
+Любая\label{11.4.2} непрерывная на отрезке $[a,b]$ функция $f(x)$ может быть с любой степенью точности равномерно приближена алгебраическими многочленами, то есть $(\forall f\in C[a,b])(\forall\varepsilon>0)(\exists P_n)(\forall x\in[a,b])|f(x)-P_n(x)|<\varepsilon$.
+\end{linkthm}
+\begin{proof}
+Доказательств теоремы Вейерштрасса много. Пока работаем на отрезке $[0,1]$. Рассмотрим многочлены Бернштейна: $B_n(f,x)=\sum\limits_{k=0}^n f\left(\frac{k}{n}\right)C_n^k x^k (1-x)^{n-k}$. Эти многочлены можно рассматривать как $B_n:C[0,1]\to C[0,1]$ --- это линейный положительный оператор. По теореме Коровкина достаточно проверить, что эта последовательность сходится на трех функциях: $1, x, x^2$. Проверяем $B_n(e_0,x)=\sum\limits_{k=0}^n C_n^k x^k (1-x)^{n-k}=(x+(1-x))^n=1=e_0(x)$. Для последующих подсчетов рассмотрим $(tx+(1-x))^n=\sum\limits_{k=0}^n C_n^k t^k x^k (1-x)^{n-k}$. Продифференцируем по $t: n(tx+(1-x))^{n-1}x=\sum\limits_{k=1}^n k C_n^k t^{k-1}x^k(1-x)^{n-k}$. Подставим $t=1:nx=\sum\limits_{k=0}^n kC_n^k x^k (1-x)^{n-k}\Rightarrow B_n(e_1,x)=\sum\limits_{k=0}^n \frac{k}{n}C_n^kx^k(1-x)^{n-k}=x=e_1(x)$. Для третьей функции еще раз продифференцируем: $n(n-1)(tx+(1-x))^{n-2}x^2=\sum\limits_{k=2}^n k(k-1)C_n^kt^{k-2}x^k(1-x)^{n-k}$. Подставим $t=1:n(n-1)x^2=\sum\limits_{k=0}^n(k^2-k)C_n^kx^k(1-x)^{n-k}=\sum\limits_{k=0}^nk^2C_n^kx^k(1-x)^{n-k}-nx\Rightarrow B_n(e_2,x)=\sum\limits_{k=0}^n\frac{k^2}{n^2}C_n^kx^k(1-x)^{n-k}=\frac{n-1}{n}x^2+\frac{x}{n}\underset{n\to\infty}{\rightrightarrows}x^2=e_2(x)$. Значит по теореме Коровкина $(\forall f\in C[0,1]) B_n(f,\cdot)\underset{n\to\infty}{\rightrightarrows}f$ на $[0,1]$.
+
+Перейдем к отрезку $[a,b]: t\in[a,b], x=\frac{t-a}{b-a}\in[0,1]$. Тогда если $f\in C[a,b]$, то $F(x)=f(x(b-a)+a)\in C[0,1]$. По доказанному $B_n(F,\cdot)\rightrightarrows F$ на $[0,1]$, то есть $(\forall\varepsilon >0)(\exists N)(\forall n>N)(\forall x\in[0,1])\left|B_n(F,x)-F(x)\right|<\varepsilon\Rightarrow \left|B_n(F,\frac{t-a}{b-a})-f(t)\right|<\varepsilon$.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/TJ8TZ0RVdYo?t=2590}[$'$Коровкин]\ \\
+Если последовательность линейных положительных операторов $L_n: C_{2\pi}\to C_{2\pi}$ такова, что $L_n(e_i,\cdot)\underset{n\to\infty}{\rightrightarrows}e_i$ на $\R$, где $e_0(x)=1, e_1(x)=\cos x, e_2(x)=\sin x$, то $(\forall f\in C_{2\pi})\  L_n(f,\cdot)\underset{n\to\infty}{\rightrightarrows} f$ на $\R$.
+\end{linkthm}
+
+\begin{proof}
+Повторим доказательство первой теоремы Коровкина и получим $ {-\varepsilon-\frac{2M}{\sin^2\frac{\delta}{2}}\varphi_x(t)<f(t)-f(x)<\varepsilon+\frac{2M}{\sin^2\frac{\delta}{2}}\varphi_x(t)}\boldsymbol{(3')}$, где $\varphi_x(t)=\sin^2\frac{t-x}{2}$. Проведем доказательство сначала для $t\in(x,x+2\pi]$. Если $t\in(x,x+\delta)$, то $-\varepsilon<f(t)-f(x)<\varepsilon$ в силу равномерной непрерывности и $(3')$ выполнено. Если $t\in(x+2\pi-\delta, x+2\pi]$, то $f(t)=f(t-2\pi)$ и $t-2\pi\in(x-\delta,]$ и снова получаем требуемое неравенство. Если $t\in[x+\delta, +2\pi-\delta]$, то $\frac{t-x}{2}\in\left[\frac{\delta}{2}, \pi-\frac{\delta}{2}\right]\Rightarrow\sin^2\frac{t-x}{2}\geqslant\sin^2\frac{\delta}{2}$, учитывая, что $|f(t)-f(x)|\leqslant 2M$, получаем, что $\frac{\varphi_x(t)}{\sin^2\frac{\delta}{2}}\geqslant 1$ и снова получаем требуемое неравенство. Таким образом мы доказали $(3')$ для всех $t\in(x,x+2\pi]$ и пользуемся $2\pi$-периодичностью, то есть получаем, что верно для всех $t$. Далее доказательство не отличается от предыдущей теоремы Коровкина.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/TJ8TZ0RVdYo?t=3191}[Фейер]\ \\
+	Для любой непрерывной $2\pi$-периодической функции последовательность средних арифметических частичных сумм ее тригонометрического ряда Фурье равномерно на $\R$ сходится к ней.
+\end{linkthm}
+\begin{proof}
+	Посмотрим на средние арифметичесие:
+	\begin{multline*}
+		\sigma_n(f,x)=\frac{S_0(f,x)+S_1(f,x)+\ldots+S_n(f,x)}{n+1}=\text{[распишем частичные суммы]}=\\=\frac{1}{(n+1)\pi}\int\limits_{-\pi}^\pi f(x+t)\sum\limits_{k=0}^n D_k(t)dt=\frac{1}{(n+1)\pi}\int\limits_{-\pi}^\pi \frac{f(x+t)}{2\sin\frac{t}{2}}\sum\limits_{k=0}^n\sin\left(k+\frac{1}{2}\right)tdt=\\=\text{[умножим и разделим на синус]}=\frac{1}{(n+1)\pi}\int\limits_{-\pi}^\pi \frac{f(x+t)}{2\sin^2\frac{t}{2}}\sum\limits_{k=0}^n\sin\left(k+\frac{1}{2}\right)t\cdot \sin\frac{t}{2}dt=\\=\frac{1}{(n+1)\pi}\int\limits_{-\pi}^\pi \frac{f(x+t)}{4\sin^2\frac{t}{2}}\sum\limits_{k=0}^n\left(\cos(kt)-\cos(k+1)t\right)dt=\\=\frac{1}{(n+1)\pi}\int\limits_{-\pi}^\pi \frac{f(x+t)}{4\sin^2\frac{t}{2}}(1-\cos(n+1)t)dt=\frac{1}{(n+1)2\pi}\int\limits_{-\pi}^\pi f(x+t) \frac{\sin^2\frac{(n+1)t}{2}}{\sin^2\frac{t}{2}}dt .
+	\end{multline*}
+Таким образом $\sigma_n:C_{2\pi}\to C_{2\pi}$ образуют последовательность линейных положительных операторов. Проверим сходимость на трех функциях $1,\cos x,\sin x$.
+\begin{align*}
+	\sigma_n(e_0)&=e_0\ \forall n\in \N\cup\{0\},\\ \sigma_n(e_1)&=e_1\frac{n}{n+1}\ \forall n\in \N,\\ \sigma_n(e_2)&=e_2\frac{n}{n+1}\ \forall n\in \N.
+\end{align*}
+Тогда по теореме Коровкина получаем, что $(\forall f\in C_{2\pi})\ \sigma_n(f,\cdot)\rightrightarrows f$.
+\end{proof}
+
+\begin{corollary}[Теорема Вейерштрасса о приближении непрерывной $2\pi$-периодической функции тригонометрическими полиномами]\ \\
+	$(\forall f\in C_{2\pi})(\forall\varepsilon >0)(\exists\  T_n(x)=\frac{\alpha_0}{2}+\sum\limits_{k=1}^n(\alpha_k\cos kx+\beta_k\sin kx)) \left|f(x)-T_n(x)\right|<\varepsilon\  \forall x\in \R$.
+\end{corollary}
+
+\subsection{Пространство $L_p$.}
+\begin{Def}
+	$L_p(X), 1\leqslant p<\infty$ --- пространство, состоящее из классов эквивалентности измеримых функций $f$ таких, что $|f(x)|^p$ суммируема на измеримом множестве $X\subset\R^n$ (то есть функции $f_1$ и $f_2$, равные почти всюду на $X$, представляют один элемент пространства $L_p(X)$).
+\end{Def}
+Для $1<p<\infty$ обозначим через $q$ такое число, что $\frac{1}{p}+\frac{1}{q}=1$.
+
+\begin{linklm}{https://youtu.be/TJ8TZ0RVdYo?t=4292}
+	$(\forall a,b>0)\left(\forall p\in (1,+\infty)\right) ab\leqslant\frac{a^p}{p}+\frac{b^q}{q}$.
+\end{linklm}
+\begin{proof}
+	Посмотрим на рисунок. Получим, что 
+	\savebox{\mybox}{% measure image
+		\begin{tikzpicture}
+			\begin{tikzpicture}[
+				scale=4,
+				axis/.style={very thick, ->, >=stealth'},
+				important line/.style={thick},
+				funk/.style={color=red, very thick},
+				dashed line/.style={dashed, thin},
+				pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+					>=2pt},
+				every node/.style={color=black}
+				]
+				
+				\draw[axis] (-0.2,0)  -- (1.1,0) node(xline)[right] {$x$};
+				\draw[axis] (0,-0.2) -- (0,0.9) node(yline)[above] {$y$};
+				% Lines
+				\draw[thick] plot [smooth,tension=1] coordinates{(0,0) (0.5,0.2) (0.8,0.8)};
+				\draw	(.6,-0.05) node[anchor=north] {$a$};
+				\draw[thick] plot [smooth,tension=1] coordinates{(.6, -0.03) (.6, 0.3154)};
+				
+				\draw	(-0.1,0.5) node[anchor=north] {$b$};
+				\draw[thick] plot [smooth,tension=1] coordinates{(-0.03, 0.5) (.7, 0.5)};
+				
+				\draw	(1.0,0.7) node[anchor=north] {$y=x^{p-1}$};
+				
+				\draw	(.3,0.35) node[anchor=north] {$S_2$};
+				\draw	(.49,0.15) node[anchor=north] {$S_1$};
+				
+			\end{tikzpicture}
+	\end{tikzpicture}}
+	\par\noindent\raisebox{\dimexpr \ht\strutbox-\ht\mybox}{\usebox\mybox}\hfill
+	\begin{minipage}{3in}
+		$$a\cdot b\leqslant S_1+S_2=\int\limits_0^a x^{p-1}dx+\int\limits_0^b y^{q-1}dy.$$
+		\nopar
+	\end{minipage}
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/TJ8TZ0RVdYo?t=4543}[Неравенство Гельдера]\ \\
+	Если $f\in L_p(X), g\in L_q(X), \frac{1}{p}+\frac{1}{q}=1, 1<p<\infty$, то $$\int\limits_X |f(x)g(x)|d\mu(x)\leqslant \left(\int\limits_X |f(x)|^pd\mu(x)\right)^{\frac{1}{p}}
+	\left(\int\limits_X |g(x)|^qd\mu(x)\right)^{\frac{1}{q}}. $$
+\end{linkthm}
+
+\begin{proof}
+	Если правая часть равна нулю, то все доказано, так как если один из интегралов нуль, то например $g(x)$ равно нулю почти всюду, то есть как элемент пространства $g(x)$ в точности нуль, значит и интеграл в левой части нуль. Иначе обозначим $A^p:=\int\limits_X |f(x)|^p d\mu(x), B^q:=\int\limits_X |g(x)|^qd\mu(x)$ --- ненулевые константы. Пусть $a=\frac{|f(x)|}{A}, b=\frac{|g(x)|}{B}$, тогда по первой лемме $\frac{|f(x)g(x)|}{AB}\leqslant\frac{|f(x)|^p}{pA^p}+\frac{|g(x)|^q}{qB^q}$. Проинтегрируем обе части неравенства по $x$ и получим требуемое.
+\end{proof}
+
+
+
+
+
+
+
+

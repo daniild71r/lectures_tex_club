@@ -1,0 +1,479 @@
+\section{Определитель}
+
+\subsection{Перестановки}
+
+\begin{definition}
+	\textit{Группой перестановок} $S_n$ называется следующее множество:
+	\[S_n := \{\sigma: \{1,\dots, n\} \rightarrow \{1,\dots, n\}: \sigma \text{ "--- биекция}\}\]
+	
+	Данное множество является группой с операцией композиции $\circ$. Элементы группы $S_n$ называются \textit{перестановками}.
+\end{definition}
+
+\begin{note}
+	Перестановку $\sigma \in S_n$ можно записывать в следующем виде:
+	\[\sigma = \begin{pmatrix}
+	1&2&\dots&n\\
+	\sigma(1)&\sigma(2)&\dots&\sigma(n)
+	\end{pmatrix}\]
+\end{note}
+
+\begin{definition}
+	Пусть $a_1, \dots , a_k \in \{1, \dots, n\}$ "--- различные числа. \textit{Циклом} $(a_1, \dots , a_k)$ называется такая перестановка $\sigma \in S_n$, что выполнены следующие условия:
+	\begin{itemize}
+		\item $\sigma(a_1) = a_2$, $\sigma(a_2) = a_3$, \dots, $\sigma(a_k) = a_1$
+		\item $\sigma|_{\{1, \dots, n\} \backslash \{a_1, \dots , a_k\}} = \id$
+	\end{itemize}
+
+	\textit{Транспозицией} называется цикл длины $2$.
+\end{definition}
+
+\begin{definition}
+	Циклы $(a_1, \dots , a_k), (b_1, \dots , b_l) \in S_n$ называются \textit{независимыми}, если выполнено равенство $\{a_1, \dots , a_k\} \cap \{b_1, \dots , b_l\} = \emptyset$.
+\end{definition}
+
+\begin{note}
+	Композиция перестановок в группе $S_n$ некоммутативна, однако независимые циклы коммутируют друг с другом.
+\end{note}
+
+\begin{proposition}
+	Любая перестановка $\sigma \in S_n$ может быть представлена в виде произведения попарно независимых циклов.
+\end{proposition}
+
+\begin{proof}
+	Рассмотрим граф перестановки $\sigma$ с множеством вершин $\{1, \dots, n\}$ и множеством ребер $\{(i, j): \sigma(i) = j\}$. Исходящая и входящая степень каждой вершины в графе равна $1$. Покажем, что тогда граф разбивается на циклы. Начнем обходить вершины в следующем порядке: $a_1 := 1$, $a_2 := \sigma(a_1)$, $a_3 := \sigma(a_2)$, и так далее. Процесс рано или поздно должен зациклиться. Пусть $a_k$ "--- первая вершина такая, что $\sigma(a_k)$ уже попадала в обход. Тогда единственная вершина, которая может совпадать с $\sigma(a_k)$ "--- это $a_1$, потому что в остальные вершины уже входит некоторое ребро. Таким образом, получен независимый цикл $(a_1, \dots, a_k)$. Повторяя процедуру для оставшейся части графа перестановки, получим требуемое.
+\end{proof}
+
+\begin{proposition}
+	Любая перестановка $\sigma \in S_n$  может быть представлена в виде произведения транспозиций, и даже в виде произведения транспозиций вида $(i, i+1)$.
+\end{proposition}
+
+\begin{proof}
+	Докажем первую часть утверждения индукцией по $n$. База, $n = 1$, тривиальна, докажем переход. Зафиксируем перестановку $\sigma \in S_n$. Если $\sigma(n) = n$, то $\sigma|_{\{1, \dots, n-1\}}$ "--- перестановка $n-1$ элемента, и для нее утверждение верно по предположению индукции. Иначе "--- $\sigma(n) = i \in \{1,\dots, n - 1\}$, тогда рассмотрим перестановку $\tau := (i, n)\sigma$. Поскольку $\tau(n) = n$,  для $\tau$ утверждение верно, следовательно, и $\sigma = (i, n)^{-1}\tau = (i, n)\tau$.
+		
+	Для доказательства второй части достаточно показать, что любая транспозиция представима в виде произведения транспозиций вида $(i, i + 1)$. Это действительно так в силу следующего равенства для произвольных $i, k \in \{1, \dotsc, n\}$: \[(i, k) = (i, i+1)(i + 1, i+2)\dots(k - 1, k)\dots(i + 1, i + 2)(i, i + 1)\qedhere\]
+\end{proof}
+
+\begin{note}
+	Вторую часть утверждения можно также доказать, используя понятие сортировки пузырьком или независимых циклов.
+\end{note}
+
+\begin{definition}
+	\textit{Беспорядком}, или \textit{инверсией}, в перестановке $\sigma \in S_n$ называется пара индексов $(i, j)$, $i, j \in \nset{n}$ такая, что $i < j$, но $\sigma(i) > \sigma(j)$. Числа беспорядков в $\sigma$ обозначается через $N(\sigma)$. \textit{Знаком} перестановки $\sigma \in S_n$ называется величина $(-1)^{N(\sigma)}$. Обозначения "--- $\sgn{\sigma}, (-1)^{\sigma}$.
+\end{definition}
+
+\begin{definition}
+	Перестановка $\sigma \in S_n$ называется:
+	\begin{itemize}
+		\item \textit{Четной}, если $\sgn{\sigma} = 1$
+		\item \textit{Нечетной}, если $\sgn{\sigma} = -1$
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}
+	Пусть $\sigma \in S_n$. Тогда для любых $i, j \in \{1, \dots, n\}$ таких, что $i < j$, выполнено равенство $\sgn{\sigma} = -\sgn(\sigma(i, j))$.
+\end{proposition}
+
+\begin{proof}
+	Рассмотрим сначала случай, когда $j = i + 1$. Положим $\tau := \sigma(i, i + 1)$, тогда $\tau(i + 1) = \sigma(i)$, $\tau(i) = \sigma(i + 1)$ и для любого $k \in \nset{n} \bs \{i, i+1\}$ выполнено $\tau(k) = \sigma(k)$. Тогда:
+	\begin{itemize}
+		\item $(i, i+1)$ "--- беспорядок в $\sigma$ $\Leftrightarrow$ $(i, i+1)$ "--- не беспорядок в $\tau$
+		\item $(i, k)$ при $k \not\in \{i, i+1\}$ "--- беспорядок в $\sigma$ $\Leftrightarrow$ $(i + 1, k)$ "--- беспорядок в $\tau$
+		\item $(i+1, k)$ при $k \not\in \{i, i+1\}$ "--- беспорядок в $\sigma$ $\Leftrightarrow$ $(i, k)$ "--- беспорядок в $\tau$
+		\item $(k, l)$ при $k, l \not\in \{i, i+1\}$ "--- беспорядок в $\sigma$ $\Leftrightarrow$ $(k, l)$ "--- беспорядок в $\tau$
+	\end{itemize}
+
+	Таким образом, $N(\tau) = N(\sigma) \pm 1$, и утверждение доказано. Если же $j \ne i + 1$, то разложим $(i, j)$ в произведение нечетного числа транспозиций вида $(k, k + 1)$, тогда, применяя утверждение нечетное число раз, снова получим требуемое.
+\end{proof}
+
+\begin{corollary}
+	Если перестановка $\sigma \in S_n$ представима в виде произведения $k$ транспозиций, то $\sgn\sigma = (-1)^k$.
+\end{corollary}
+
+\begin{corollary}
+	При $n \ge 2$ число четных и нечетных перестановок в $S_n$ одинаково.
+\end{corollary}
+
+\begin{proof}
+	Отображение $\sigma \mapsto (1, 2)\sigma$ биективно отображает четные перестановки в нечетные.
+\end{proof}
+
+\begin{proposition}
+	Для любых $\sigma, \tau \in S_n$ выполнено следующее равенство:
+	\[\sgn(\sigma\tau) = \sgn\sigma \sgn\tau\]
+\end{proposition}
+
+\begin{proof}
+	Разложим $\sigma$ и $\tau$ в произведения $k$ и $l$ транспозиций соответственно. Тогда выполнены равенства $\sgn\sigma = (-1)^k$, $\sgn\tau = (-1)^l$ и $\sgn(\sigma\tau) = (-1)^{k + l}$.
+\end{proof}
+
+\begin{corollary}
+	Множество $A_n$ всех четных перестановок образует подгруппу в $S_n$.
+\end{corollary}
+
+\begin{proof}
+	Проверим свойства подгруппы для $A_n$:
+	\begin{itemize}
+		\item $A_n \ne \emptyset$, поскольку $\id \in A_n$
+		\item Если $\sigma, \tau \in A_n$, то $\sigma\tau \in A_n$
+		\item Если $\sigma \in A_n$, то $\sigma^{-1} \in A_n$, поскольку $\sgn\sigma \sgn\sigma^{-1} = \sgn \id = 1$\qedhere
+	\end{itemize}
+\end{proof}
+
+\subsection{Полилинейность и кососимметричность}
+
+\begin{definition}
+	Пусть $V$ "--- линейное пространство над $F$. Отображение $g: V^n \rightarrow F$ называется \textit{полилинейным}, если оно линейно по каждому из $n$ аргументов.
+\end{definition}
+
+\begin{definition}
+	Пусть $V$ "--- линейное пространство над $F$. Отображение $g: V^n \rightarrow F$ называется \textit{кососимметричным}, если для любых позиций аргументов $i, j \in \nset{n}$, $i < j$, выполнены следующие условия:
+	\begin{enumerate}
+		\item $\forall \overline{v_i}, \overline{v_j} \in V: g(\dots, \underset{(i)}{\overline{v_i}}, \dots, \underset{(j)}{\overline{v_j}}, \dots) = -g(\dots, \underset{(i)}{\overline{v_j}}, \dots, \underset{(j)}{\overline{v_i}}, \dots)$
+		\item $\forall \overline{v} \in V: g(\dots, \underset{(i)}{\overline{v}}, \dots, \underset{(j)}{\overline{v}}, \dots) = 0$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Если свойство $(1)$ выполнено, то свойство $(2)$ выполняется автоматически при $\cha{F} \ne 2$. При этом свойство $(1)$ следует из свойства $(2)$, если отображение $g$ полилинейно. Зафиксируем произвольные $\overline{v_i}, \overline{v_j} \in V$, тогда, опуская многоточия в записях вида $g(\dots, \underset{(i)}{\overline{v_i}}, \dots, \underset{(j)}{\overline{v_j}}, \dots)$, имеем:
+	\[0 = g(\overline{v_i} + \overline{v_j}, \overline{v_i} + \overline{v_j}) = g(\overline{v_i}, \overline{v_i}) + g(\overline{v_i}, \overline{v_j}) + g(\overline{v_j}, \overline{v_i}) + g(\overline{v_j}, \overline{v_j}) = g(\overline{v_i}, \overline{v_j}) + g(\overline{v_j}, \overline{v_i})\]
+	
+	Значит, $g(\overline{v_i}, \overline{v_j}) = -g(\overline{v_j}, \overline{v_i})$.
+\end{note}
+
+\begin{proposition}
+	Пусть отображение $g : V^n \rightarrow F$ кососимметрично. Тогда для любой перестановки $\sigma \hm{\in} S_n$ и любых векторов $\overline{v_1}, \dotsc, \overline{v_n} \in V$ выполнено следующее равенство:
+	\[g(\overline{v_{\sigma(1)}}, \dots, \overline{v_{\sigma(n)}}) = (-1)^\sigma g(\overline{v_1}, \dots, \overline{v_n})\]
+\end{proposition}
+
+\begin{proof}
+	Разложим $\sigma$ в произведение $k$ транспозиций, тогда при применении транспозиций последовательно и значение функции, и перестановка будут каждый раз менять знак.
+\end{proof}
+
+\begin{theorem}
+	Пусть $V$ "--- линейное пространство над $F$, $e = (\overline{e_1}, \dots, \overline{e_n})$ "--- базис в $V$, $C \in F$. Тогда существует единственное полилинейное кососимметричное отображение $g: V^n \to F$ такое, что $g(\overline{e_1}, \dots, \overline{e_n}) = C$. Более того, если $(\overline{v_1}, \dots, \overline{v_n}) \hm{=} (\overline{e_1}, \dots, \overline{e_n})A$ для некоторой матрицы $A = (a_{ij}) \in M_n(F)$, то выполнено следующее равенство:
+	\[g(\overline{v_1}, \dots, \overline{v_n}) = C\sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}\]
+\end{theorem}
+
+\begin{proof}
+	Покажем сначала, что отображение задается не более, чем однозначно. Действительно, если $g$ удовлетворяет условиям теоремы, \pagebreak то для любого набора $(\overline{v_1}, \dots, \overline{v_n})$ такого, что $(\overline{v_1}, \dots, \overline{v_n}) = (\overline{e_1}, \dots, \overline{e_n})A$, $A = (a_{ij}) \in M_n(F)$, выполнены следующие равенства:
+	\begin{multline*}
+		g(\overline{v_1}, \dots, \overline{v_n}) = g\left(\sum_{i = 1}^{n}a_{i1}\overline{e_i}, \sum_{i = 1}^{n}a_{i2}\overline{e_i}, \dots, \sum_{i = 1}^{n}a_{in}\overline{e_i}\right) = \\
+		= \sum_{i_1, \dots, i_n \in \{1, \dots, n\}}a_{i_11}a_{i_22}\dots a_{i_nn}g(\overline{e_{i_1}}, \overline{e_{i_2}}, \dots, \overline{e_{i_n}})
+	\end{multline*}
+	
+	В силу кососимметричности, слагаемые, в которых у $g$ совпадают хотя бы два аргумента, обращаются в $0$, значит, остаются только слагаемые, где все $i_1, \dots, i_n$ различны. Каждому такому набору индексов соответствует перестановка $\sigma \in S_n$ такая, что $\sigma(i_j) = j$ для всех $j \in \nset{n}$, и это соответствие биективно. Тогда:
+	\begin{multline*}
+		g(\overline{v_1}, \dots, \overline{v_n}) = \sum_{\sigma \in S_n}a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}g(\overline{e_{\sigma^{-1}(1)}}, \overline{e_{\sigma^{-1}(2)}}, \dots, \overline{e_{\sigma^{-1}(1)}}) = \\
+		= \sum_{\sigma \in S_n}(-1)^{\sigma^{-1}}a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}g(\overline{e_1}, \dots, \overline{e_n})
+	\end{multline*}
+	
+	Итак, если искомое отображение $g$ существует, то обязано следующий вид:
+	\[g(\overline{v_1}, \dots, \overline{v_n}) = C\sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}\]
+		
+	Проверим, что полученное отображение удовлетворяет всем условиям:
+	\begin{itemize}
+		\item Проверим линейность $g$ только по первому аргументу, поскольку линейность по оста\-льным аргументам проверяется аналогично. Для этого заметим, что для любого набора $(\overline{v_1}, \dots, \overline{v_n})$ такого, что $(\overline{v_1}, \dots, \overline{v_n}) = (\overline{e_1}, \dots, \overline{e_n})A$, $A = (a_{ij}) \in M_n(F)$, выполнено следующее равенство: \[g(\overline{v_1}, \dots, \overline{v_n}) = \sum_{i = 1}^na_{i1}U_i\]
+		
+		Значения $U_1, \dotsc, U_n$ не зависит от первого столбца матрицы $A$, тогда, в силу линейности сопоставления координат, отображение $g$ линейно по первому столбцу $A$.
+		
+		\item Уже было доказано, что в случае, если $g$ полилинейно, достаточно проверять свойство $(2)$ из определения кососимметричности. Пусть в матрице $A$ совпадают столбцы $a_{*i}$ и $a_{*j}$, $i, j \in \{1, \dotsc, n\}$, $i \ne j$. Разобьем все перестановки в $S_n$ на пары $(\sigma, (i,j)\sigma)$ и заметим, что значения слагаемых, соответствующих таким перестановкам, равны по модулю и противоположны по знаку, поэтому их сумма равна нулю.
+		
+		\item Проверим, что $g(\overline{e_1}, \dotsc, \overline{e_n}) = C$. Поскольку $e = eE$, то, поэтому единственная перестановка, которой будет соответствовать ненулевое слагаемое в определении отображения $g$ "--- это $\id$, тогда:
+		\[g(\overline{e_1}, \dots, \overline{e_n}) = C\sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)} = C(-1)^{id}a_{11}a_{22}\dots a_{nn} = C\]
+	\end{itemize}
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{definition}
+	Пусть $A = (a_{ij}) \in M_n(F)$. \textit{Определителем}, или \textit{детерминантом}, матрицы $A$ называется следующая величина:
+	\[\det{A} := \sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}\]
+\end{definition}
+
+\begin{note}
+	Определитель полилинеен и кососимметричен как функция столбцов матрицы. Отметим также, что отображение $g$ из теоремы выше можно переписать в виде $g(\overline{v_1}, \dots, \overline{v_n}) = C\det{A}$, где $(\overline{v_1}, \dots, \overline{v_n}) = (\overline{e_1}, \dots, \overline{e_n})A$, $A \in M_n(F)$, причем $C = g(E)$.
+\end{note}
+
+\subsection{Свойства определителя}
+	
+\begin{theorem}
+	Для любой матрицы $A \in M_n(F)$ выполнено равенство $\det{A^T} = \det{A}$.
+\end{theorem}
+
+\begin{proof}
+	Имеют место следующие равенства:
+	\begin{gather*}
+		\det{A} = \sum_{\sigma \in S_n}(-1)^\sigma a_{1\sigma(1)}a_{2\sigma(2)}\dots a_{n\sigma(n)}\\
+		\det{A^T} = \sum_{\sigma \in S_n}(-1)^\sigma a_{\sigma(1)1}a_{\sigma(2)2}\dots a_{\sigma(n)n}
+	\end{gather*}
+	
+	Заменим в выражении для $\det{A^T}$ переменную суммирования $\sigma$ на $\tau := \sigma^{-1}$, тогда:
+	\[\det{A^T} = \sum_{\tau \in S_n}(-1)^{\tau^{-1}} a_{1\tau(1)}a_{2\tau(2)}\dots a_{n\tau(n)} = \sum_{\tau \in S_n}(-1)^{\tau} a_{1\tau(1)}a_{2\tau(2)}\dots a_{n\tau(n)} = \det A\qedhere\]
+\end{proof}
+
+\begin{corollary}
+	Определитель полилинеен и кососимметричен как функция строк матрицы.
+\end{corollary}
+
+\begin{proposition}
+	Пусть $A \in M_n(F)$ "--- верхнетреугольная матрица, имеющая следующий вид:
+	\[A = \begin{pmatrix}
+	a_{11} & \dots & *\\ 
+	\vdots & \ddots & \vdots\\
+	0 & \dots & a_{nn}\\
+	\end{pmatrix}\]
+	
+	Тогда $\det{A} = a_{11}a_{22}\dots a_{nn}$.
+\end{proposition}
+
+\begin{proof}
+	Если в перестановке $\sigma \in S_n$ существует такой индекс $i \in \{1, \dots, n\}$, что $\sigma(i) < i$, то соответствующее слагаемое в формуле определителя равно нулю, поскольку $a_{i \sigma(i)} = 0$. Единственная перестановка, в которой нет такого индекса, "--- это $\id$, поэтому $\det{A} = a_{11}a_{22}\dots a_{nn}$.
+\end{proof}
+
+\begin{note}
+	Поскольку определитель не меняется при транспонировании, для нижнетреугольных матриц верно аналогичное утверждение.
+\end{note}
+
+\begin{proposition}
+	Пусть $A \in M_n(F)$, $L \in M_n(F)$ "--- элементарная матрица. Тогда выполнено равенство $\det{AL} = \det{A}\det{L}$.
+\end{proposition}
+
+\begin{proof}
+	Рассмотрим все три случая:
+	\begin{itemize}
+		\item Если $L = D_{ij}(\alpha) = E + \alpha E_{ji}$ "--- матрица прибавления к $i$-му столбцу $j$-го, умноженного на $\alpha$, то $\det{L} = 1$, и, в силу полилинейности определителя:
+		\begin{multline*}
+			\det{AL} = \det{(a_{*1}, \dots,a_{*i} + \alpha a_{*j},\dots, a_{*j}, \dotsc a_{*n})} =\\
+			=\det{(a_{*1},\dots,a_{*i},\dots, a_{*j}, \dotsc a_{*n})} + \alpha\det{(a_{*1},\dots,a_{*j},, a_{*j}, \dotsc a_{*n})} = \det{A}\det{L}
+		\end{multline*}
+		
+		\item $L = T_{i}(\lambda) = E + (\lambda - 1) E_{ii}$ "--- матрица умножения $i$-го столбца на $\lambda$, тогда $\det{L} = \lambda$, и, в силу полилинейности определителя:
+		\[\det{AL} = \det{(a_{*1}, \dots,\lambda a_{*i},\dots a_{*n})} =\lambda\det{(a_{*1},\dots,a_{*i},\dots a_{*n})} = \det{A}\det{L}\]
+		
+		\item $P_{ij} = E - (E_{ii} + E_{jj}) + (E_{ij} + E_{ji})$ "--- матрица перестановки $i$-го и $j$-го столбца местами, тогда $\det{L} = -1$, и, в силу кососимметричности определителя:
+		\[\det{AL} = -\det{A} = \det{A}\det{L}\]
+	\end{itemize}
+
+	Во всех трех случаях требуемое равенство выполнено.
+\end{proof}
+
+\begin{note}
+	Поскольку определитель не меняется при транспонировании, аналогичное утверждение справедливо для элементарных преобразований строк.
+\end{note}
+
+\begin{corollary}
+	Получен алгоритм вычисления определителя: следует привести матрицу к ступенчатому виду, то есть, в частности, верхнетреугольному виду, найти определитель полученной матрицы и матриц элементарных преобразований, тогда результатом будет произведение найденных определителей.
+\end{corollary}
+
+\begin{theorem}
+	Пусть $A \in M_n(F)$. Тогда $A$ невырожденна $\Leftrightarrow$ $\det{A} \hm{\ne} 0$.
+\end{theorem}
+
+\begin{proof}
+	Приведем матрицу к ступенчатому виду $A'$. Поскольку определители элементарных матриц отличны от нуля, то $\det{A} \ne 0 \lra \det{A'} \ne 0$. Если $A$ невырожденна, то в $A'$ ровно $n$ ступенек, и $\det{A'} \ne 0$. Если же $A$ вырожденна, то в $A'$ менее $n$ ступенек, значит, в $A'$ есть нулевой элемент на главной диагонали, и $\det{A'} = 0$.
+\end{proof}
+
+\begin{theorem}
+	Для любых матриц $A, B \in M_n(F)$ выполнено следующее равенство:
+	\[\det{AB} = \det{A}\det{B}\]
+\end{theorem}
+
+\begin{proof}[Первый способ доказательства]
+	Если хотя бы одна из матриц $A, B$ вырожденна, то ее определитель равен нулю, и, кроме того, $\rk{AB} \hm{<} n$, тогда $\det{AB} = 0 = \det{A}\det{B}$. Если же $A$ и $B$ невырожденны, то они представимы в виде произведений элементарных матриц. Пусть $A = U_1\dots U_k$, $B = S_1\dots S_l$, тогда:
+	\[\det{AB} = \prod_{i = 1}^{k}\det{U_i}\prod_{i = 1}^{l}\det{S_i} = \det{A}\det{B}\qedhere\]
+\end{proof}
+
+\begin{proof}[Второй способ доказательства]
+	Зафиксируем матрицу $A \in M_n(F)$ и рассмотрим функцию $f : M_n(F) \rightarrow F$ такую, что $f(X) := \det{AX}$ для любой матрицы $X \in M_n(F)$. Тогда $f$ является полилинейной и кососимметричной функцией от столбцов матрицы $X$, и, по теореме о полилинейной и кососимметричной функции, $f(X) = f(E)\det{X} = \det{A}\det{X}$.
+\end{proof}
+
+\begin{theorem}[об определителе с углом нулей]
+	Пусть матрица $A \in M_n(F)$ имеет следующий вид:
+	\[A = \left(\begin{array}{@{}c|c@{}}
+		B & C\\
+		\hline
+		0 & D
+	\end{array}\right),~B \in M_k(F),~D \in M_{n - k}(F)\]
+	
+	Тогда $\det{A} = \det{B}\det{D}$.
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим функцию $f : M_k(F) \rightarrow F$ такую, что для любой матрицы $X \in M_k(F)$ выполнено следующее равенство:
+	\[f(X) := \left|\begin{array}{@{}c|c@{}}
+	X & C\\
+	\hline
+	0 & D
+	\end{array}\right|\]
+	
+	Заметим, что функция $f$ является полилинейной и кососимметричной функцией от столбцов матрицы $X$, тогда:
+	\[f(X) = f(E)\det{X} = \left|\begin{array}{@{}c|c@{}}
+	E & C\\
+	\hline
+	0 & D
+	\end{array}\right|\det{X}\]
+	
+	Аналогично, рассмотрим функцию $g : M_{n - k}(F) \rightarrow F$ такую, что для любой матрицы $Y \in M_{n-k}(F)$ выполнено следующее равенство:
+	\[g(Y) := \left|\begin{array}{@{}c|c@{}}
+	E & C\\
+	\hline
+	0 & Y
+	\end{array}\right|\]
+	
+	Заметим, что функция $g$ является полилинейной и кососимметричной функцией от строк матрицы $Y$, тогда:
+	\[g(X) = g(E)\det{Y} = \left|\begin{array}{@{}c|c@{}}
+	E & C\\
+	\hline
+	0 & E
+	\end{array}\right|\det{Y} = \det{Y}\]
+	
+	Итак, $\det{A} = f(B) = \det{B}g(D) = \deg{B}\det{D}$.
+\end{proof}
+
+\begin{definition}
+	Пусть $A \in M_n(F)$. \textit{Минором} порядка $k$ матрицы $A$ называется определитель некоторой ее подматрицы размера $k \times k$.
+\end{definition}
+
+\begin{note}
+	Теорему о базисном миноре можно переформулировать так: ранг матрицы $A \in M_{n \times k}(F)$ равен наибольшему из порядков его ненулевых миноров.
+\end{note}
+
+\begin{definition}
+	Пусть $A = (a_{ij}) \in M_n(F)$, $i, j \in \{1, \dotsc, n\}$.
+	\begin{itemize}
+		\item Минором, \textit{дополнительным} к элементу $a_{ij}$, называется величина $M_{ij} := \det{A'}$, где матрица $A'$ получена из $A$ удалением $i$-й строки и $j$-го столбца
+		\item \textit{Алгебраическим дополнением} к элементу $a_{ij}$ называется величина $A_{ij} := (-1)^{i + j}M_{ij}$
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}
+	Пусть матрица $A \in M_n(F)$ имеет следующий вид:
+	\[A = \left(\begin{array}{@{}c|c|c@{}}
+	* & * & *\\
+	\hline
+	0 & a_{ij} & 0\\
+	\hline
+		* & * & *
+	\end{array}\right)\]
+		
+	Тогда $\det{A} = a_{ij}A_{ij}$.
+\end{proposition}
+
+\begin{proof}
+	Последовательными перестановками строк и столбцов добьемся того, чтобы $A$ приняла следующий вид:
+	\[A' = \left(\begin{array}{@{}c|c@{}}
+	a_{ij} & 0\\
+	\hline
+	* & M'_{ij}
+	\end{array}\right),~M'_{ij}\text{ "--- подматрица, дополнительная к } a_{ij}\]
+	
+	Такого результата можно добиться с помощью $i - 1$ транспозиции строк и $j - 1$ транспозиции столбцов. Значит, $\det{A} = (-1)^{i + j - 2}\det{A'} = (-1)^{i + j}\det{A'}$. Тогда, по теореме об определителе с углом нулей, $\det{A} = (-1)^{i + j}a_{ij}M_{ij} = a_{ij}A_{ij}$.
+\end{proof}
+
+\begin{theorem}[о разложении по строке или столбцу]
+	Пусть $A = (a_{ij}) \hm{\in} M_n(F)$. Тогда выполнены следующие равенства:
+	\[\det{A} = \sum_{i = 1}^na_{ij}A_{ij} = \sum_{j = 1}^na_{ij}A_{ij}\]
+\end{theorem}
+
+\begin{proof}
+	Докажем без ограничения общности вторую формулу, поскольку первая может быть получена из второй транспонированием. Представим $i$-ю строку матрицы $A$ в следующем виде:
+	\[a_{i*} = (a_{i1}, a_{i2}, \dots, a_{in}) = (a_{i1}, 0, \dots, 0) + (0, a_{i2}, \dots, 0) + \dots + (0, 0, \dots, a_{in})\]
+	
+	Тогда, в силу линейности определителя как функции от строк $A$ и предыдущего утверждения, получим:
+	\[det{A} = a_{i1}A_{i1} + a_{i2}A_{i2} + \dots + a_{in}A_{in}\qedhere\]
+\end{proof}
+
+\begin{theorem}[правило Крамера]
+	Пусть $A \in M_n(F)$, причем $\Delta := \det{A} \ne 0$, $b \in F^n$. Для каждого $i \in \nset{n}$ положим $\Delta_i := \det (a_{*1},\dots,a_{*i-1},b,a_{*i+1},\dots,a_{*n})$. Тогда система $Ax = b$ имеет единственное решение $x$, и это решение имеет следующий вид:
+	\[x = \left(\frac{\Delta_1}{\Delta}, \dotsc, \frac{\Delta_n}{\Delta}\right)^T\]
+\end{theorem}
+
+\begin{proof}
+	Матрица $A$ невырожденна и потому обратима, тогда $x := A^{-1}b$ "--- единственное решение системы. Заметим, что для этого решения и каждого $i \in \nset{n}$ выполнены следующие равенства:
+	\begin{multline*}
+		\Delta_i = \det\left(a_{*1},\dots,a_{*i-1},\sum_{j = 1}^{n}x_j(a_{*j}),a_{*i+1},\dots,a_{*n}\right) =
+		\\
+		= \sum_{j = 1}^{n}x_j\det\left(a_{*1},\dots,a_{*i-1},a_{*j},a_{*i+1},\dots,a_{*n}\right)
+		=
+		\\
+		=
+		x_i\det\left(a_{*1},\dots,a_{*i-1},a_{*i},a_{*i+1},\dots,a_{*n}\right) = x_i\Delta
+	\end{multline*}
+	
+	Таким образом, для любого $i \in \nset{n}$ выполнено $x_i = \frac{\Delta_i}{\Delta}$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $A \in M_n(F)$, $\Delta := \det{A} = 0$, но существует $i \in \{1, \dots, n\}$ такое, что $\Delta_i \hm{\ne} 0$. Тогда система несовместна.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $\Delta = 0$, то $A$ вырожденна, то есть $\rk{A} < n$. При этом существует $i \in \{1, \dots, n\}$ такой, что $\Delta_i \ne 0$, поэтому в $(A|b)$ существует система из $n$ линейно независимых столбцов, тогда $\rk(A|b) > \rk{A}$. Значит, по теореме Кронекера-Капелли, система несовместна.
+\end{proof}
+
+\begin{corollary}[формула Крамера]
+	Пусть $A = (a_{ij}) \in M_n(F)$ "--- обратимая матрица, и пусть $B = (b_{ij}) \in M_n(F)$ "--- обратная к ней матрица. Тогда для любых $i, j \in \nset{n}$ выполнено следующее равенство:
+	\[b_{ij} = \frac{A_{ji}}{\det{A}}\]
+\end{corollary}
+
+\begin{proof}
+	Каждый столбец $b_{*j}$ матрицы $B$ является единственным решением системы линейных уравнений $Ab_{*j} = e_{*j}$, где $e_{*j}$ "--- $j$-й столбец единичной матрицы. Тогда:
+	\[b_{ij} = \frac{\det(a_{*1}, \dots, a_{*i-1},e_{*j},a_{*i+1}, \dots, a_{*n})}{\det{A}}\]
+	
+	По уже доказанному утверждению, определитель в выражении выше равен $A_{ji}$.
+\end{proof}
+
+\begin{theorem}
+	Пусть $F$ "--- поле, причем для любого элемента $\alpha \in F$ выполнено $\alpha^2 \ne -1$. Рассмотрим следующее множество матриц:
+	\[K := \left\{\begin{pmatrix}
+	a & b\\
+	-b & a
+	\end{pmatrix} \in M_2(F)\right\}\]
+	
+	Тогда $K$ является полем, в которм существует $i \in K$ такое, что $i^2 = -1$. Кроме того, $K$ содержит подполе, изоморфное $F$.
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Непосредственная проверка позволяет убедиться, что $(K, +)$ является подгруппой в $(M_2(F), +)$, причем $K$ замкнуто относительно умножения и содержит нейтральный относительно умножения элемент --- матрицу $E \in M_2(F)$. Значит, $K$ является подкольцом в $M_2(F)$.
+		
+		\item Покажем теперь, что $K$ "--- поле. Для этого следует проверить, что $K^* = K \backslash \{0\}$. Действительно, если $a, b \in F$, и эти элементы не равны нулю одновременно, то без ограничения общности $b \ne 0$, тогда:
+		\[\begin{vmatrix}
+		a & b\\
+		-b & a
+		\end{vmatrix} = a^{2} + b^{2} = b^2(1 + (ab^{-1})^2) \ne 0\]
+		
+		Итак, согласно формуле Крамера, матрица выше обратима, причем выполнено следующее равенство:
+		\[\begin{pmatrix}
+		a & b\\
+		-b & a
+		\end{pmatrix}^{-1} = \frac{1}{a^2 + b^2}\begin{pmatrix}
+		a & -b\\
+		b & a
+		\end{pmatrix} \in K\]
+		
+		\item Поле $K$ содержит подполе $F' := \{aE: a \in F\}$, изоморфное полю $F$. Легко проверить, что операции с его элементами этого подполя соответствуют операциям с элементами поля $F$.
+		
+		\item В поле $K$ есть элемент $i$ следующего вида:
+		\[i := \begin{pmatrix}
+		0 & 1\\
+		-1 & 0
+		\end{pmatrix} \in K\]
+		
+		Тогда $i^2 = (-1)E$, и матрица $(-1)E$ соответствует числу $-1$ в подполе $F'$.
+	\end{enumerate}
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{corollary}
+	Если $F = \mathbb{R}$, то полученное поле изоморфно $\mathbb{C}$, причем изоморфизм имеет следующий вид:
+	\[\begin{pmatrix}
+	a & b\\
+	-b & a
+	\end{pmatrix} \mapsto a +bi\]
+\end{corollary}
+
+\begin{note}
+	В теореме выше можно считать поле $F$ подполем в $K$, тогда $K$ "--- алгебра над $F$, причем $\dim{K} = 2$.
+\end{note}

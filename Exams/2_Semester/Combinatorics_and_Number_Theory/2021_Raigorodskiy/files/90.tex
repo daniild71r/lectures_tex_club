@@ -1,0 +1,21 @@
+\setcounter{section}{89}
+\section{Постулат Бертрана для n >> 0.}
+
+\textbf{Постулат Бертрана}\\
+Для любого натурального n > 2 найдётся простое число на интервале (n, 2n).\\
+$\blacktriangle \ \\$1. Поскольку n >> 0, можно считать, что n >= 4000 (Для меньших проверяется следующей последовательностью: 2, 3, 5, 7, 13, 23, 43, 83, 163, 317, 631, 1259, 2503, 4001 - все простые и для любого n на (n, 2n) найдется простое число (берем максимальное число из ряда, меньшее n, тогда 2p < 2n. При этом n < 2p, т.к. мы формируем ряд так, чтобы следующее за p число было меньше 2p))
+
+2.  Докажем следующее утверждение: $\prod\limits_{p \leq x}p \leq 4^{x-1}$\\ Будем доказывать по индукции. Заметим, что x можно рассматривать как простое число, потому что если мы берем произвольный x, то очевидно между ближайшим снизу простым числом и х никаких новых множителей не добавится.
+\begin{itemize}
+    \item[1] База: x = 2; 2 < 4 -> верно
+    \item[2] В силу того, что x - простое, оно нечетно. Тогда пусть x = 2m + 1, тогда $\prod\limits_{p \leq 2m+1}p = \prod\limits_{p \leq m}p \prod\limits_{m < p\leq 2m+1}p <= 4^m * C_{2m+1}^m \leq  4^m *2^{2m} = 4^{2m}$
+\end{itemize}
+
+3. Положим, $\nu_p(x) = max\{k: x \vdots p^k\}$, тогда $\nu_p(n!) = \sum\limits_{k = 1}^{\infty}[\frac{n}{p^k}], \ \nu_p(C_{2n}^n) = \sum\limits_{k = 1}^{\infty}[\frac{2n}{p^k}] - 2[\frac{n}{p^k}]$
+$[\frac{2n}{p^k}] - 2[\frac{n}{p^k}] < \frac{2n}{p^k} - 2(\frac{n}{p^k} - 1) = 2 \Longrightarrow  [\frac{2n}{p^k}] - 2[\frac{n}{p^k}] \leq 1 $. Если $p^k > 2n$, то слагаемые равны 0. $\Longrightarrow \nu_p(C_{2n}^k) \leq max\{r: p^r \leq 2n\} \leq 2n$ Если $p > \sqrt{2n} \ \nu_p(C_{2n}^k) \leq 1$. Иначе возведем в квадрат, получим, $p^2 = 2n < 2n$\\
+
+4. Еще одно утверждение: Если $\frac{2n}{3} < p < n,$ то $\nu_p(C_{2n}^n) = 0 \\ 3p > 2n \Longrightarrow (3p)! > (2n)!$. 
+В силу того, что $2p < 2n < 3p$, в (2n)! на р делятся только множители p и 2р $\Longrightarrow \nu_p((2n)!) = 2, \nu_p(n!) = 1 \Longrightarrow \nu_p(C_{2n}^n) = 0 $.
+
+5. $\frac{4^n}{2n} \leq C_{2n}^n \leq \prod\limits_{p \leq \sqrt{2n}} 2n\prod\limits_{\sqrt{2n} < p \leq \frac{2n}{3}}p \prod\limits_{\frac{2n}{3} < p \leq 2n}p$. Рассмотрим последние два произведения. Они верны в силу п4, п3(Если $\sqrt{2n} < p$, то $ \nu_p(C_{2n}^k) \leq 1$)$ \Longrightarrow$ оценка верна \\ \\
+$4^n \leq (2n)^{1 + \sqrt{2n}} \prod\limits_{\sqrt{2n} < p \leq \frac{2n}{3}}p \prod\limits_{\frac{2n}{3} < p \leq 2n}p = (2n)^{1 + \sqrt{2n}} \ \Pi_1 \  \Pi_2 $ \\ \\ Если мы докажем, что $\Pi_2 \neq 1$, то между n и 2n есть простое число. Будем доказывать от противного. Пусть $\Pi_2 = 1$, тогда \\ $4^n \leq (2n)^{1 + \sqrt{2n}} \ \Pi_1 \leq$/п.1/$ (2n)^{1 + \sqrt{2n}} 4^{\frac{2n}{3}} \Longrightarrow 4^{\frac{n}{3}} \leq  (2n)^{1 + \sqrt{2n}} \\ \\ 2n = ((2n)^{\frac{1}{6}})^6 \leq ([(2n)^{\frac{1}{6}}] + 1)^6$ \\ Заметим, что a + 1 $\leq 2^a \Longrightarrow 2n \leq 2^{[(2n)^{\frac{1}{6}}]6} \leq 2^{(2n)^{\frac{1}{6}}6} \\ \\ 4^n = 2^{2n} \leq 2n^{3(1 + \sqrt{2n})} \leq (2^{(2n)^{\frac{1}{6}}6})^{3(1 + \sqrt{2n})} = 2^{(2n)^{\frac{1}{6}}18(1 + \sqrt{2n})} $ \\ \\ Теперь воспользуемся тем, что $18 \leq 2\sqrt{2n} \Longrightarrow 2^{(2n)^{\frac{1}{6}}18(1 + \sqrt{2n})} = 2^{(2n)^{\frac{1}{6}}(18 + 18\sqrt{2n})} \leq 2^{(2n)^{\frac{1}{6}}(20\sqrt{2n})} = 2^{(2n)^{\frac{2}{3}}20} \Longrightarrow 2n < (2n)^{\frac{2}{3}}20 \Longrightarrow (2n)^{\frac{1}{3}} < 20 \Longrightarrow 2n < 8000 \Longrightarrow n < 4000$. Противоречие $\blacksquare$

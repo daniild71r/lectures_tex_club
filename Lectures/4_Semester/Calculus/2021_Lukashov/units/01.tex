@@ -1,0 +1,260 @@
+\setcounter{section}{10}
+\section{Глава 11. Ряды Фурье.}
+\subsection{Коэффициенты Фурье.}
+Рассматриваем функции, суммируемые с квадратом на промежутке $I\subset \R$ --- это измеримые на $I$ функции, такие что $f^2\in L(I)$, где $L(I)$ --- множество суммируемых на $I$ функций.
+
+\begin{prop}
+	Множество суммируемых с квадратом на $I$ функций образуют линейное пространство, причем произведение любых двух таких функций суммируемо на $L(I)$.
+\end{prop}
+
+\begin{proof}
+	Пусть $f_1, f_2$ суммируемы с квадратом, тогда $|f_1(x)\cdot f_2(x)|\leqslant\dfrac{1}{2} \left({f_1}^2(x)+{f_2}^2(x)\right)$. Произведение измеримых функций является измеримой функцией, это произведение по модулю не превосходит суммируемой функции, тогда по признаку суммируемости, это произведение является измеримой функцией. Для доказательства линейности пространства, докажем, что $f_1(x)+f_2(x)$ тоже суммируема с квадратом. Сумма измеримых функций --- измерима. $(f_1(x)+f_2(x))^2={f_1}^2(x)+2\cdot f_1(x)\cdot f_2(x) + {f_2}^2(x)$ --- каждое слагаемое суммируемое, значит и все выражение суммируемо.
+\end{proof}
+
+Попытаемся ввести скалярное произведение двух функций, как $$<f_1, f_2>=\int\limits_{I}f_1(x)\cdot f_2(x)d\mu(x).$$ При проверке свойств скалярного произведения, получим, что свойство $<f,f>=0\Leftrightarrow f=0$ не выполняется, так как $<f,f>=0\Leftrightarrow \int\limits_{I}f^2(x)\cdot d\mu(x)\Leftrightarrow f=0$ почти всюду. Поэтому необходимо ввести отношение эквивалентности и отождествить функции которые совпадают почти всюду.
+
+\begin{Def}
+	$L_2(I)$ --- множество суммируемых с квадратом функций, с отождествлением эквивалентных (то есть совпадающих почти всюду на $I$) функций. Причем, оно является евклидовым пространством.
+\end{Def}
+
+Теперь, к примеру, функции Дирихле или Римана не отличимы от тождественного нуля.
+\begin{prop}[Неравенство Коши-Буняковского-Шварца]\ \\
+	$|<f_1,f_2>|^2\leqslant <f_1,f_1>\cdot<f_2,f_2>$
+	
+	$\left(\int\limits_{I}f_1(x)\cdot f_2(x)d\mu(x)\right)^2\leqslant\int\limits_{I}{f_1}^2(x)d\mu(x)\cdot \int\limits_{I}{f_2}^2(x)d\mu(x)$.
+\end{prop}
+
+\begin{Def}
+	Ортогональная система функций из $L_2(I)$ --- это последовательность $\{e_n(x)\}_{n=1}^\infty$ ненулевых элементов $L_2(I)$, такая что $<e_n,e_m>=0, n\ne m$. Если при этом $<e_n,e_n>=1, n=1,\ldots$, то $\{e_n(x)\}_{n=1}^\infty$ называется ортонормированной системой.
+\end{Def}
+
+\begin{linkex}{https://youtu.be/yxBOm0XzFnQ?t=1134}[ортогональных систем]\ 
+	\begin{enumerate}
+		\item $I=[-1,1]$ Многочлены Лежандра $P_n(x)=\dfrac{1}{n!\cdot2^n}\dfrac{d^n}{dx^n}\left((x^2-1)^n\right), P_0(x)=1$.
+		\begin{proof}(Первый вариант доказательства)
+			Необходимо проверить, что при $n>k\geqslant 0 \Rightarrow <P_n, P_k>=0$. 
+			\begin{multline*}
+				\int\limits_{-1}^1\dfrac{d^n}{dx^n}\left((x^2-1)^n\right)\dfrac{d^k}{dx^k}\left((x^2-1)^k\right)dx=[\text{интегрируем по частям}]=\\=\underbrace{\dfrac{d^{n-1}}{dx^{n-1}}((x^2-1)^n)\dfrac{d^k}{dx^k}((x^2-1)^k)|_{-1}^1}_{=0, \text{см. дальше}}-\int\limits_{-1}^1\dfrac{d^{n-1}}{dx^{n-1}}((x^2-1)^n)\dfrac{d^{k+1}}{dx^{k+1}}((x^2-1)^k)dx.
+			\end{multline*}
+			Заметим, что $(x^2-1)^n$ --- представляет собой многочлен степени $2n$. Раскладывая многочлен по формуле Тейлора с центром в единице, получим конструкцию $(x-1)^n\cdot(\ldots)$. А значит все производные от $(x^2-1)^n$ в единичке, вплоть до $n-1$ порядка, равны нуля. Аналогично в $-1$. Продолжая интегрирование по частям получим: $$(-1)^n\int\limits_{-1}^1(x^2-1)^n\dfrac{d^{n+k}}{dx^{n+k}}((x^2-1)^k)dx.$$
+			Так как $n>k$, то $n+k>2k$ и производная $n+k$ степени от $(x^2-1)^k$ равна тождественному нулю.
+		\end{proof}
+		\begin{proof}(Второй вариант доказательства)
+			Необходимо проверить, что при $n>k\geqslant 0 \Rightarrow <P_n, P_k>=0 \\
+			\mathcal{J}=\int\limits_{-1}^1\dfrac{d^n}{dx^n}\left((x^2-1)^n\right)\dfrac{d^k}{dx^k}\left((x^2-1)^k\right)dx=0$.
+			
+			Введем вспомогательное утверждение: $\dfrac{d^j}{dx^j}((x^2-1)^n)=(x-1)^{n-j}g_j(x)$, где $g_j(x)$ --- многочлены степени $n$, для $j=0,1,\ldots, n$. Доказательство по индукции. 
+			
+			При $j=0$ никаких производных не берем, $g_0(x)=(x+1)^n$. 
+			
+			$\dfrac{d^{j+1}}{dx^{j+1}}((x^2-1)^n)=\left((x-1)^{n-j}g_j(x)\right)'=(n-j)(x-1)^{n-j-1}g_j(x)+(x-1)^{n-j}g_j'(x)=(x-1)^{n-(j+1)}((n-j)g_j(x)+(x-1)g_j'(x))$. В качестве $g_{j+1}(x)=(n-j)g_j(x)+(x-1)g_j'(x)$.
+			
+			Следующее утверждение будет также справедливо: $\dfrac{d^j}{dx^j}((x^2-1)^n)=(x+1)^{n-j}g_j(x)$, где $g_j(x)$ --- многочлены степени $n$, для $j=0,1,\ldots, n$.
+			
+			Возвращаясь к доказательству получаем, что
+			
+			$\dfrac{d^{j}}{dx^j}((x^2-1)^n)|_{x=\pm1}=0, j=0,\ldots,n-1$. Интегрируя по частям $\mathcal{J}$, загоняя первый сомножитель под дифференциал, получаем: 
+			\begin{multline*}
+				\mathcal{J}=-\int\limits_{-1}^1\dfrac{d^{n-1}}{dx^{n-1}}((x^2-1)^n)\dfrac{d^{k+1}}{dx^{k+1}}((x^2-1)^k)dx=\overset{n \text{ раз интегрируя по частям}}{\ldots}=\\=(-1)^n\int\limits_{-1}^1(x^2-1)^n\dfrac{d^{k+1}}{dx^{k+n}}((x^2-1)^k)dx=0,
+			\end{multline*}
+			так как берем производную порядка больше чем степень многочлена:$k+n>2\cdot  k$.
+		\end{proof}
+		\item Стандартная тригонометрическая система. $I=[a,a+2\pi]$. Система функций: $\dfrac{1}{2}, cos(x),sin(x),cos(2x),sin(2x),\ldots$.
+		\begin{proof}
+			Необходимо проверить пять типов равенств:
+			
+			$\int\limits_{I}\cos(nx)\cos(mx)dx=0, m\ne n.$
+			
+			$\int\limits_{I}\sin(nx)\sin(mx)dx=0, m\ne n.$
+			
+			$\int\limits_{I}\cos(nx)\sin(mx)dx=0.$
+			
+			$\int\limits_{I}\frac{1}{2}\cos(nx)dx=0.$
+			
+			$\int\limits_{I}\frac{1}{2}\sin(nx)dx=0.$
+			
+			Проверим
+			\begin{multline*}
+				\int\limits_{-\pi}^{\pi}\cos(nx)\cos(mx)dx=\frac{1}{2}\int\limits_{-\pi}^{\pi}(\cos((m+n)x)+\cos((m-n)x))dx=\\= \frac{1}{2(m+n)}\sin((m+n)x)|_{-\pi}^{\pi}+\frac{1}{2(m-n)}\sin((m-n)x)|_{-\pi}^{\pi}=0, m\ne n
+			\end{multline*} 
+		\end{proof}
+	\end{enumerate}
+\end{linkex}
+
+\begin{Def}
+	Если $\{e_n(x)\}_{n=1}^\infty$ --- ортогональная система в $L_2(I)$, то $\forall f\in L_2(I)$ коэффициентами Фурье называются числа $\alpha_n=\dfrac{<f,e_n>}{<e_n,e_n>}$. Функциональный ряд $\sum\limits_{n=1}^\infty\alpha_n e_n(x)$ называется рядом Фурье функции $f$ по системе $\{e_n(x)\}_{n=1}^\infty$.
+\end{Def}
+
+Рассмотрим ряды Фурье в стандартной тригонометрической системе: 
+$$\begin{aligned}
+	a_n&=\dfrac{\int\limits_I f(x)\cos nx d\mu(x)}{\int\limits_I \cos^2nxdx}=\dfrac{1}{\pi}\int\limits_{[-\pi,\pi]}f(x)\cos nx d\mu(x), n=1,2,\ldots\\
+	a_0&=\dfrac{\int\limits_I \dfrac{1}{2}f(x) d\mu(x)}{\int\limits_I {\left(\dfrac{1}{2}\right)}^2dx}=\dfrac{1}{\pi}\int\limits_{[-\pi,\pi]}f(x) d\mu(x)\\
+	b_n&=\dfrac{\int\limits_{I}f(x)\sin nx d\mu(x)}{\int\limits_{I}\sin^2nxdx}=\dfrac{1}{\pi}\int\limits_{[-\pi,\pi]}f(x)\sin nxd\mu(x), n=1,2,\ldots
+\end{aligned}
+\eqno(1)
+$$
+\label{form_1_2}
+Тригонометрический ряд Фурье:
+$$f(x)\sim \dfrac{a_0}{2}+\sum\limits_{n=1}^\infty(a_n\cos nx+b_n\sin nx)
+\eqno(2)
+$$
+
+Предположение о том что $f\in L_2$ в тригонометрической системы излишнее, достаточно предполагать, что
+$f\in L_1[-\pi,\pi]$, где $L_1[-\pi,\pi]$ --- линейное нормированное пространство, состоящее из классов эквивалентностых суммируемых на $[-\pi,\pi]$ функций, с нормой 
+$\parallel f \parallel_{L_1[-\pi,\pi]}=\int\limits_{[-\pi,\pi]}|f(x)|d\mu(x),$ так как если функция $f(x)$ --- суммируемая, то по признаку суммируемости $|f(x)\cos nx|\leqslant |f(x)|\Rightarrow f(x)\cos nx$ --- тоже суммируемая функция.
+
+В случае не $2\pi$-периодичности, а $2l$-периодичности --- производим замену: растяжения или сжатия.
+$$
+\begin{aligned}
+	a_n&=\dfrac{1}{l}\int\limits_{[-l,l]}f(x)\cos \dfrac{n\pi x}{l}d\mu(x), n=0,1,\ldots\\
+	b_n&=\dfrac{1}{l}\int\limits_{[-l,l]}f(x)\sin \dfrac{n\pi x}{l}d\mu(x), n=1,2,\ldots\\
+	f(x)&\sim \dfrac{a_0}{2}+\sum\limits_{n=1}^\infty\left(a_n\cos \dfrac{n\pi x}{l}+b_n\sin \dfrac{n\pi x}{l}\right).
+\end{aligned}$$
+
+\begin{Def}
+	Носителем функции $f(x)$ называется замыкание множества тех $x$, для которых $f(x)\ne 0$ и обозначается $\textrm{supp} f$. Функции с ограниченным носителем называются финитными.
+\end{Def}
+
+\begin{linklm}{https://youtu.be/yxBOm0XzFnQ?t=2648}
+	Множество\label{lemma_12.1.1} непрерывных финитных функций всюду плотно в $L_1(\R)$ $($то есть его замыкание совпадает с $L_1(\R))$.
+\end{linklm}
+\begin{proof}
+	Заменим $\R$ на отрезок $[a,b]$. То есть докажем, что множество непрерывных на $[a,b]$ функций всюду плотно в $L_1[a,b]$. Имеем суммируемую функцию $f(x)\in L_1[a,b]$. Всюду плотность означает, что ${(\forall\varepsilon >0)} {(\exists g\in C[a,b])} \parallel f-g\parallel_{L_1[a,b]}<\varepsilon$.
+	
+  Любая суммируемая функция представима в виде разности двух неотрицательных суммируемых функций. Значит, задача сводится к доказательству утверждения для неотрицательных суммируемых функций.
+ 
+ Напомню, что срезка $f_{[N]} (x) := \begin{cases}
+ 	f(x),\ f(x)\leqslant N\\
+ 	N,\ f(x) > N
+ \end{cases}$ --- ограниченная функция и для неотрицательной суммируемой функции верно, что $\int\limits_{[a,b]}f(x)d\mu(x)=\lim\limits_{N\to\infty}\int\limits_{[a,b]}f_{[N]}d\mu(x)$.  Отсюда следует, что интеграл от функции очень мало отличается от интеграла от срезки, при достаточно большом $N$. Значит задача свелась к доказательству утверждения для ограниченной неотрицательной суммируемой функции.
+ 
+ По теореме о представлении неотрицательной измеримой функции пределом последовательности ступенчатых функций, $\exists \{h_n\}\  h_n \uparrow f$ ($h_n$ неубывая стремятся к $f$). В этой теореме не предполагается, что $f(x)$ ограниченная, а в нашем случае $f(x)$ ограниченная и следовательно, $h_n(x)$ принимают конечное число значений. По теореме Леви: 
+		$	\int\limits_{[a,b]} h_n(x)d\mu(x)\rightarrow \int\limits_{[a,b]}f(x)d\mu(x)\Rightarrow
+			\int\limits_{[a,b]}|f(x)-h_n(x)|d\mu(x)=\int\limits_{[a,b]}(f(x)-h_n(x))d\mu(x)\underset{n\to\infty}{\to}0.$
+Значит наша задача свелась к доказательству утверждения для ступенчатых функций с конечным множеством значений.
+
+Любая ступенчатая $h_n(x)=\sum\limits_{k=1}^N C_k\chi_{E_k}(x)$, где $C_k$ --- некоторый коэффициент, $\chi_{E_k}$ --- характеристическая функция измеримого множества $E_k$. Значит нам достаточно приблизить любую характеристическую функцию измеримого множества непрерывными.
+		
+По критерию измеримости по Лебегу $(\forall\varepsilon>0)\ (\exists M_\varepsilon\subset[a,b])\  \mu(E\Delta M_\varepsilon)<\varepsilon$. Тогда ${\parallel \chi_E - \chi_{M_\varepsilon}\parallel_{L_1([a,b])}=\int\limits_{[a,b]}|\chi_{E}(x)-\chi_{M_\varepsilon}(x)|d\mu(x)=\int\limits_{[a,b]}\chi_{E\Delta M_\varepsilon}(x)d\mu(x)=\mu(E\Delta M_\varepsilon)<\varepsilon}$. Задача свелась к случаю характеристической функции элементарного множества.
+		
+Характеристическая функция элементарного множества --- это сумма характеристических функций одномерных брусьев, то есть промежутков. Поскольку включение концов не имеет значения, можно считать $M_\varepsilon$ интервалом, то есть мы должны научиться приближать характеристическую функцию интервала, а это достаточно легко сделать: 
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[
+			scale=4,
+					axis/.style={very thick, ->, >=stealth'},
+					important line/.style={thick},
+					funk/.style={color=red, very thick},
+					dashed line/.style={dashed, thin},
+					pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+						>=2pt},
+					every node/.style={color=black}
+					]
+					
+					\draw[axis] (-0.1,0)  -- (1.1,0) node(xline)[right] {x};
+					\draw[axis] (0,-0.1) -- (0,0.9) node(yline)[above] {y};
+					% Lines
+					\draw[funk] (.15,.0) coordinate (A) -- (.30,.55)
+					coordinate (B) node[right, text width=5em] {};
+					\draw[funk] (.70,.55) coordinate (C) -- (.85,.0)
+					coordinate (D) node[right, text width=5em] {};
+					\draw[important line] (.15,.55) coordinate (C) -- (.85,.55)
+					coordinate (D) node[right, text width=5em] {};
+					\draw[important line] (-.03,.55) coordinate (C) -- (.03,.55)
+					coordinate (D) node[right, text width=5em] {};
+					\draw[funk] (-0.1,.0) coordinate (C) -- (.15,.0)
+					coordinate (D) node[right, text width=5em] {};
+					\draw[funk] (.30,.55) coordinate (C) -- (.70,.55)
+					coordinate (D) node[right, text width=5em] {};
+					\draw[funk] (.85,.0) coordinate (C) -- (1.0,.0)
+					coordinate (D) node[right, text width=5em] {};
+					\draw	(.15,-0.05) node[anchor=north] {c};
+					\draw	(-0.1,.58) node[anchor=north] {1};
+					\draw	(.30,0) node[anchor=north] {c+$\frac{1}{m}$};
+					\draw	(.70,0) node[anchor=north] {d-$\frac{1}{m}$};
+					\draw	(.85,-0.05) node[anchor=north] {d};
+					\draw	(.85,0.07) node[anchor=north] {)};
+					\draw	(.15,0.07) node[anchor=north] {(};
+					\draw[dotted] (.30,.0) -- (.30,.55);
+					\draw[dotted] (.70,.0) -- (.70,.55);
+					\node[draw, scale=0.7] at (2.0,0.60) {
+						$\begin{aligned}
+							\varphi (x) &:= \begin{cases}
+								1,\ x\in [c+\frac{1}{m},d-\frac{1}{m}]\\
+								0,\ x \not\in [c+\frac{1}{m},d-\frac{1}{m}]\\
+								\text{линейна на }[c,c+\frac{1}{m}]\text{ и }[d-\frac{1}{m},d]\\
+							\end{cases}\\
+							\chi_{(c,d)} (x) &:= \begin{cases}
+								1,\ x\in (c,d)\\
+								0,\ x \not\in (c,d)
+							\end{cases}
+						\end{aligned}$
+					
+				};
+				\end{tikzpicture}
+			\end{center}
+		\end{figure}
+	рассмотрим промежуток $(c,d)\subset[a,b],\ \varphi(x)$ --- непрерывная функция.\\
+	Тогда $\int\limits_{[a,b]} |\chi_{(c,d)}(x)-\varphi(x)|d\mu(x)=\dfrac{2}{m}<\varepsilon$ --- при достаточно большом $m$, этот инеграл может быть сколь угодно маленьким. Возвращаясь по цепочке, получаем, что с помощью непрерывных функций в метрике $L_1$, мы можем приблизить любую финитную функцию.
+	
+	Теперь рассмотрим общий случай: $f(x)\in L_1(\R)$. По определению интеграла Лебега по множеству бесконечной меры
+	$\int\limits_{\R}|f(x)|d\mu(x)=\lim\limits_{N\to\infty}\int\limits_{[-N,N]}|f(x)|d\mu(x)$. Выберем такое $N$, что $\int\limits_{\R\backslash[-N,N]}|f(x)|d\mu(x)<\dfrac{\varepsilon}{3}$.
+	
+	 На отрезке $[-N,N]$ по доказанному $(\exists g(x)\in C[-N,N]) \parallel f-g\parallel_{L_1[-N,N]}<\dfrac{\varepsilon}{3}$. Доопределим $g(x)$ как показано на рисунке.
+	 
+	 \begin{figure}[h]
+	 	\begin{center}
+	 		\begin{tikzpicture}[
+	 			scale=4,
+	 			axis/.style={very thick, ->, >=stealth'},
+	 			important line/.style={thick},
+	 			funk/.style={color=red, very thick},
+	 			dashed line/.style={dashed, thin},
+	 			pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+	 				>=2pt},
+	 			every node/.style={color=black}
+	 			]
+	 			
+	 			\draw[axis] (-1.2,0)  -- (1.1,0) node(xline)[right] {$x$};
+	 			\draw[axis] (0,-0.3) -- (0,0.9) node(yline)[above] {$y$};
+	 			% Lines
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(-.7,-.4) (-.6,-.3) (-.4, -.3) (-.2,.4) (.1,.5) (.3, .4) (.5,.35)};
+	 			\draw	(-.7,-0.05) node[anchor=north] {$-N$};
+	 			\draw	(.5,0.17) node[anchor=north] {$N$};
+	 			\draw	(-1,0.17) node[anchor=north] {$(-N-\gamma)$};
+	 			\draw	(.8,-0.05) node[anchor=north] {($N+\gamma)$};
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(-.7, -0.03) (-.7, 0.03)};
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(.5, -0.03) (.5, 0.03)};
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(-1.0, -0.03) (-1.0, 0.03)};
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(.8, -0.03) (.8, 0.03)};
+	 			\draw	(.2,0.7) node[anchor=north] {$g(x)$};
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(-.7,-.4) (-1., 0)};
+	 			\draw[thick] plot [smooth,tension=1] coordinates{(.5,.35) (.8, 0)};
+	 			\node[draw, scale=0.9] at (2.0,0.60) {
+	 				$\begin{aligned}
+	 					g (x) &:= \begin{cases}
+	 						g(x),\ x\in [-N,N]\\
+	 						0,\ x\not\in [-N,N]\\
+	 						\text{линейна на }[-N-\gamma,-N]\text{ и }[N,N+\gamma]\\
+	 					\end{cases}
+	 				\end{aligned}$
+	 			};
+	 		\end{tikzpicture}
+	 	\end{center}
+	 \end{figure}
+	 За счет выбора $\gamma$, получим $\int\limits_{\R\backslash[-N,N]}|g(x)|d\mu(x) =\text{площади двух треугольников} <\dfrac{\varepsilon}{3}$. Тогда
+	 $\int\limits_{\R}|f(x)-g(x)|d\mu(x)\leqslant \int\limits_{[-N,N]}|f(x)-g(x)|d\mu(x)+\int\limits_{\R\backslash[-N,N]}(|f(x)|+|g(x)|)d\mu(x)<\varepsilon$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+

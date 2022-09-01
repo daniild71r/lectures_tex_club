@@ -1,0 +1,106 @@
+\begin{definition}
+    Медианой распределения $\displaystyle P$ называется его $\displaystyle 0.5$-квантиль.
+    \end{definition}
+    \begin{definition}
+    Выборочной медианой называется
+    
+    
+    \begin{equation*}
+    \hat{\mu } =\begin{cases}
+    X_{( k+1)} , & n=2k+1\\
+    \dfrac{X_{( k)} +X_{( k+1)}}{2} , & n=2k
+    \end{cases} .
+    \end{equation*}
+    \end{definition}
+    \begin{theorem}
+    (о выборочной медиане) В условиях теоремы о выборочном квантиле
+    
+    
+    \begin{equation*}
+    \sqrt{n}(\hat{\mu } -z_{0.5})\xrightarrow{d_{\theta }} N\left( 0,\ \frac{1}{4f^{2}( z_{0.5})}\right) .
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    Прямое следствие теоремы о выборочном квантиле.
+    \end{proof}
+    \begin{note}
+    В условиях соответствующих теорем $\displaystyle z_{n,p}\xrightarrow{P} z_{p}$ и $\displaystyle \hat{\mu }\xrightarrow{P} z_{0.5}$.
+    \end{note}
+    \section{Сравнение оценок}
+    \begin{definition}
+    Борелевская неотрицательная функция двух переменных $\displaystyle g(x,\ y)$ называется \textit{функцией потерь}. Если $\displaystyle \theta ^{*}$ -- оценка $\displaystyle \theta $, то $\displaystyle g\left( \theta ^{*} ,\theta \right)$ называется \textit{величиной потерь}.
+    \end{definition}
+    \begin{example}
+    \begin{enumerate}\
+        \item $\displaystyle \rho (x,\ y) =| x-y| $,
+        \item $\displaystyle \rho (x,\ y) =( x-y)^{2}$ -- квадратичная функция потерь,
+        \item если $\displaystyle A$ -- неотрицательно определенная матрица, $\displaystyle \theta $ -- многомерный параметр, $\displaystyle \theta \in \Theta \subset \mathbb{R}^{k}$, то $\displaystyle g(x,\ y) =\langle A( x-y)\ ,x-y\rangle $.
+    \end{enumerate}
+    
+    \end{example}
+    \begin{definition}
+    Если задана функция потерь $\displaystyle g$, то \textit{функцией риска} оценки $\displaystyle \theta ^{*}$ называется величина $\displaystyle R\left( \theta ^{*},\ \theta \right) =E_{\theta } g\left( \theta ^{*}( X),\ \theta \right)$.
+    \end{definition}
+    \subsection{Равномерный подход}
+    \begin{definition}
+    Пусть $\displaystyle \theta ^{*},\ \hat{\theta }$ -- оценки параметра $\displaystyle \theta $. Говорят, что оценка $\displaystyle \theta ^{*}$ \textit{лучше} оценки $\displaystyle \hat{\theta }$ (в равномерном подходе), если $\displaystyle \forall \theta \in \Theta \hookrightarrow R\left( \theta ^{*},\, \theta \right) \leqslant R(\hat{\theta },\, \theta )$, и $\displaystyle \exists \theta \in \Theta :R\left( \theta ^{*},\, \theta \right) < R(\hat{\theta },\, \theta )$.
+    \end{definition}
+    \begin{note}
+    Будем придерживаться более слабого определения, т.е. оценка $\displaystyle \theta ^{*}$ называется лучше оценки $\displaystyle \hat{\theta }$, если $\displaystyle \forall \theta \in \Theta \hookrightarrow R\left( \theta ^{*},\, \theta \right) \leqslant R(\hat{\theta },\, \theta )$.
+    \end{note}
+    \begin{definition}
+    Оценка $\displaystyle \theta ^{*}$ называется наилучшей оценкой параметра $\displaystyle \theta $ в классе оценок $\displaystyle K$, если она лучше любой другой оценки из $\displaystyle K$.
+    \end{definition}
+    \begin{note}
+    Наилучшая оценка существует не всегда.
+    \end{note}
+    \begin{example}
+    Пусть $\displaystyle g(x,\, y) =( x-y)^{2},\ K$ -- класс всевозможных оценок параметра $\displaystyle \theta $. Тогда $\displaystyle \hat{\theta }_{0}( X) =\theta _{0} \in \Theta $ удовлетворяет условию $\displaystyle R(\hat{\theta }_{0},\, \theta _{0}) =0$, следовательно, наилучшая оценка $\displaystyle \theta ^{*}$ должна удовлетворять соотношению $\displaystyle R\left( \theta ^{*},\, \theta _{0}\right) \leqslant R(\hat{\theta }_{0},\, \theta _{0})$, т.е. $\displaystyle R\left( \theta ^{*},\, \theta \right) =0\ \forall \theta \in \Theta $. В общем случае это приводит к противоречию.
+    \end{example}
+    \begin{example}
+    Пусть $\displaystyle U\left[ \theta,\, \theta +\frac{1}{2}\right],\ \theta \in \mathbb{N}$. Тогда оценка $\displaystyle [ X_{1}]$ является наилучшей.
+    \end{example}
+    \subsection{Минимаксный подход}
+    \begin{definition}
+    Оценка $\displaystyle \theta ^{*}$ параметра $\displaystyle \theta $ называется наилучшей в минимаксном подходе, если $\displaystyle \sup _{\theta \in \Theta } R\left( \theta ^{*} ,\, \theta \right) =\inf_{\hat{\theta }}\sup _{\theta \in \Theta } R(\hat{\theta } ,\, \theta )$, т.е. $\displaystyle \theta ^{*}$ доставляет наименьший максимум функции риска.
+    \end{definition}
+    \subsection{Байесовский подход}
+    
+    Предположим, что на множестве $\displaystyle \Theta $ задано априорное распределение вероятностей $\displaystyle Q$, и $\displaystyle \theta $ выбирается в соответствии с распределением $\displaystyle Q$ из $\displaystyle \Theta $. Если $\displaystyle \hat{\theta }( X)$ -- оценка $\displaystyle \theta $ и $\displaystyle R(\hat{\theta },\, \theta )$ -- ее функция риска, то положим $\displaystyle R(\hat{\theta }( X)) =E_{Q}(R(\hat{\theta }( X),\, \theta )) =\int _{\Theta } R(\hat{\theta }( X),\, t) Q( dt)$.
+    \begin{definition}
+    Оценка $\displaystyle \theta ^{*}( X)$ называется наилучшей в байесовском подходе, если $\displaystyle R\left( \theta ^{*}( X)\right) =\min_{\hat{\theta }} R(\hat{\theta }( X))$.
+    \end{definition}
+    \subsection{Асимптотический подход}
+    
+    Пусть $\displaystyle \hat{\theta }_{1},\, \hat{\theta }_{2}$ -- асимптотически нормальные оценки с асимптотическими дисперсиями $\displaystyle \sigma _{1}^{2}( \theta ) ,\, \sigma _{2}^{2}( \theta )$ соответственно.
+    \begin{definition}
+    Оценка $\displaystyle \hat{\theta }_{1}$ лучше оценки $\displaystyle \hat{\theta }_{2}$ в асимптотическом подходе, если $\displaystyle \forall \theta \in \Theta \hookrightarrow \sigma _{1}^{2}( \theta ) \leqslant \sigma _{2}^{2}( \theta )$ и существует $\displaystyle \theta \in \Theta $, для которого неравенство строгое.
+    \end{definition}
+    \begin{example}
+    Пусть $\displaystyle X_{1} ,\dotsc ,\, X_{n}$ -- выборка из распределения $\displaystyle N( \theta,\, 1)$. Тогда по ЦПТ
+    \begin{equation}
+        \sqrt{n}(\overline{X} -\theta )\xrightarrow{d_{\theta }} N( 0,1),
+    \end{equation}
+    а по теореме о выборочной медиане
+    \begin{equation}
+        \sqrt{n}(\hat{\mu } -\theta )\xrightarrow{d_{\theta }} N\left( 0,\frac{\pi }{2}\right).
+    \end{equation}
+    Следовательно, оценка $\displaystyle \overline{X}$ лучше оценки $\displaystyle \hat{\mu }$ в асимптотическом подходе.
+    \end{example}
+    \begin{definition}
+    Оценка $\displaystyle \hat{\theta }$ называется наилучшей оценкой в классе оценок $\displaystyle K$ (в асимптотическом подходе), если она лучше любой другой оценки из $\displaystyle K$.
+    \end{definition}
+    \subsection{Понятие плотности дискретного распределения}
+    \begin{definition}
+    Считающей мерой на $\displaystyle \mathbb{Z}$ называется функция $\displaystyle \mu :\mathcal{B}(\mathbb{R})\rightarrow \mathbb{Z}_{+} \cup \{+\infty \}$, определяемая по правилу $\displaystyle \mu ( B) =\sum _{k\in \mathbb{Z}} I_{k\in B}$.
+    \end{definition}
+    \begin{definition}
+    Интегралом от функции $\displaystyle f$ по считающей мере $\displaystyle \mu $ называется $\displaystyle \int _{\mathbb{R}} f( x) \mu ( dx) =\sum _{k\in \mathbb{Z}} f( k)$, если ряд сходится абсолютно.
+    \end{definition}
+    Аналогично определяется интеграл по любому борелевскому множеству $\displaystyle B$: $\displaystyle \int _{B} f( x) \mu ( dx) =\sum _{k\in \mathbb{Z} \cap B} f( k)$.
+    \begin{note}
+    Это интеграл Лебега, поэтому все свойства интеграла Лебега переносятся на интеграл по считающей мере.
+    \end{note}
+    \begin{note}
+    Подобный интеграл можно определить в $\displaystyle \mathbb{R}^{n}$, используя считающую меру в $\displaystyle \mathbb{Z}^{n}$.
+    \end{note}

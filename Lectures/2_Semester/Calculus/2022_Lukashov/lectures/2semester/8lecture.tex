@@ -1,0 +1,187 @@
+\begin{corollary} \textit{(Формула интегрирования по частям)}
+	Если $f$ и $g$ интегрируемы по Риману на $[a;b]$ вместе со своими производными, то верна формула интегрирования по частям:
+	\[
+		\int_a^bf(x)g'(x)dx = f(b)g(b) - f(a)g(a) - \int_a^bf'(x)g(x)dx
+	\]
+\end{corollary}
+
+\begin{proof}
+	$\\ f(x),\ g(x),\ f'(x),\ g'(x)\ \in R[a;b] \Ra (fg)'= f'g + fg' \in R[a;b]$.
+	Очевидно, что $fg$ - первообразная этой функции. Тогда по формуле Ньютона-Лейбница:
+	\[
+		\int_a^bf'(x)g(x)dx + \int_a^bf(x)g'(x)dx = f(x)g(x)\Bigg |^b_a = f(b)g(b) - f(a)g(a)
+	\]
+\end{proof}
+
+\begin{theorem} \textit{(Формула замены переменной)}
+	Пусть $f(x)$ непрерывна на $[a;b],\ g(x)$ интегрируема по Риману на $[\alpha; \beta]$ вместе с $g'(x),\ \forall x \in [\alpha; \beta]\ a \leq g(x) \leq b$, причем $g(\alpha) = a\text{ и } g(\beta) = b$. Тогда 
+	\[
+		\int_a^bf(x)dx = \int_\alpha^\beta f(g(t))g'(t)dt
+	\]
+\end{theorem}
+
+\begin{proof}
+	Левый интеграл существует так как $f(x)$ непрерывна. Правый тоже существует, так как это произведение интегрируемых функций.
+	Пусть $F(x) = \int_a^xf(t)dt$, тогда $\forall x \in [a;b]\ F'(x) = f(x)$.
+	Рассмотрим производную $F(g(t))'$ (у $g$ она есть из условия):
+	\[
+		F(g(t))' = F'(g(t))\cdot g'(t) = f(g(t))\cdot g'(t) \in R[\alpha;\beta]
+	\]
+	Окончательно по теореме Ньютона-Лейбница:
+	\[
+		\int_\alpha^\beta f(g(t))g'(t)dt = F(g(t)) \Biggr |_\alpha^\beta = F(g(\beta)) - F(g(\alpha))= F(b) - F(a) = \int_a^bf(x)dx
+	\]
+\end{proof}
+
+\begin{theorem} \textit{(Первая теорема о среднем)}
+	Пусть $f(x)$ и $g(x)$ интегрируемы по Риману на $[a;b]$, причем $\forall x \in [a;b]\ g(x) \geq 0$, $m \leq f(x) \leq M$. Тогда 
+	\[
+		\exists \mu \in [m;M] \such \int_a^bf(x)g(x)dx = \mu \int_a^bg(x)dx
+	\]
+	Если также известно, что $f$ - непрерывна на $[a;b]$, то 
+	\[
+		\exists \xi \in [a;b]\such \int_a^bf(x)g(x)dx = f(\xi)\int_a^bg(x)dx
+	\]
+\end{theorem}
+
+\begin{proof}
+	Заметим, что
+	\[
+		\forall x\in [a;b]\ mg(x) \leq f(x)g(x) \leq Mg(x)
+	\]
+	По свойству монотонности:
+	\[
+		\int_a^b mg(x)dx \leq \int_a^b f(x)g(x)dx \leq \int_a^b Mg(x)dx
+	\]
+	Если $\int_a^bg(x)dx = 0$, то справедливость теоремы очевидна.
+	Иначе можно разделить равенство на этот интеграл:
+	\[
+		m \leq \mu = \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx} \leq M
+	\]
+	Считая, что $m$ и $M$ - точные грани непрерывной функции $f$, то по теореме о промежуточных значениях непрерывной функции $\exists \xi \in [a;b]\ f(\xi) = \mu$.
+\end{proof}
+
+\begin{theorem} \textit{(Вторая теорема о среднем)}
+	Пусть $f$ интегрируема по Риману на $[a;b]$, $g(x)$ невозрастающая и неотрицательная функция на $[a;b]$. Тогда:
+	\[
+		\exists \xi \in [a;b] \such \int_a^bf(x)g(x)dx = g(a)\int_a^\xi f(x)dx
+	\]
+\end{theorem}
+
+
+\begin{proof}
+	Возьмем такое разбиение $P : a = x_0 < x_1 < \ldots < x_n = b$. Также пусть $M_k = \sup\limits_{x \in [x_{k - 1};x_k]} f(x),\ m_k = \inf\limits_{x \in [x_{k - 1};x_k]} f(x)$. Тогда есть следующее неравенство для интегральной суммы:
+	\[
+	 	\suml_{k = 1}^nm_kg(x_{k - 1})\Delta x_k \le	\suml_{k = 1}^nf(x_{k - 1})g(x_{k - 1})\Delta x_k \le \suml_{k = 1}^nM_kg(x_{k - 1})\Delta x_k
+	\]
+	Более того, верно следующее:
+	\[
+		\suml_{k = 1}^n (M_k - m_k)g(x_{k - 1})\Delta x_k \le g(a) \suml_{k = 1}^n (M_k - m_k) \Delta x_k
+	\]
+	Оценим величину справа:
+	\begin{multline*}
+		g(a)\suml_{k = 1}^n (M_k - m_k)\Delta x_k = g(a)\suml_{k = 1}^n (M_k - f(t'_k))\Delta x_k + g(a)\suml_{k = 1}^n f(t'_k)\Delta x_k -
+		\\
+		g(a)\suml_{k = 1}^n f(t''_k)\Delta x_k + g(a)\suml_{k = 1}^n (f(t''_k) - m_k)\Delta x_k
+	\end{multline*}
+	Где $t'_k,\ t''_k \in [x_{k - 1}; x_k]$.
+	Обозначим слагаемые как $s_1, s_2, s_3, s_4$ соответственно. Случай $g(a) = 0$ очевиден, потому дальше будем говорить только об обратном. Из определения точных верхней и нижней граней:
+	\begin{align*}
+		&{\forall \eps > 0\ \exists t'_k \in [x_{k - 1}; x_k] \such M_k - f(t'_k) < \frac{\eps}{4g(a)(b - a)}}
+		\\
+		&{\forall \eps > 0\ \exists t''_k \in [x_{k - 1}; x_k] \such f(t''_k) - m_k < \frac{\eps}{4g(a)(b - a)}}
+	\end{align*}
+	Применим это к нашим суммам и получим, что:
+	\[
+		s_1,\ s_4 \such 0 \leq s_1 < \frac{\eps}{4},\ 0 \leq s_4 < \frac{\eps}{4}
+	\]
+	Для оставшихся двух сумм можем сказать из интегрируемости $f$ следующее:
+	\[
+		\forall \eps > 0\ \exists \delta_1 > 0 \such \forall P, \Delta P < \delta_1 \quad \left|s_j - g(a)\cdot \int_a^bf(x)dx\right| < \frac{\eps}{4},\ j = 2, 3
+	\]
+	Получаем в итоге утверждение
+	\[
+		\forall \eps > 0\ \exists \delta_1 > 0 \such \forall P, \Delta P < \delta_1 \quad \suml_{k = 1}^n(M_k - m_k)g(x_{k - 1})\Delta x_k < \eps
+	\]
+	Теперь распишем левый интеграл из теоремы по критерию:
+	\[
+		\forall \eps > 0\ \exists \delta_2 \such \forall P, \Delta P < \delta_2 \quad \left|\suml_{k = 1}^nf(x_{k - 1})g(x_{k - 1}) \Delta x_k - \int_a^bf(x)g(x)dx\right| < \eps
+	\]
+	Зафиксируем $\forall \mu_k \in [m_k; M_k]$. Где будет находиться сумма $\suml_{k = 1}^n \mu_k g(x_{k - 1})\Delta x_k$? Она зажата между верхней и нижней суммами, как и $\suml_{k = 1}^n f(x_{k - 1})g(x_{k - 1})\Delta x_k$. При этом мы ещё знаем теперь, что последняя сумма находится недалеко от интеграла. Значит, верно следующее:
+	\[
+		\forall \eps > 0\ \exists \delta = \min \{\delta_1, \delta_2\} \such \forall P, \Delta P < \delta \quad \left|\suml_{k = 1}^n\mu_kg(x_{k - 1}) \Delta x_k - \int_a^bf(x)g(x)dx\right| < 2\eps
+	\]
+	Или же
+	\[
+		\forall \mu_k \in [m_k; M_k] \quad \liml_{\Delta P \to 0} \suml_{k = 1}^n\mu_kg(x_{k - 1})\Delta x_k = \int_a^bf(x)g(x)dx
+	\]
+	Теперь найдём особые $\mu_k$. По первой теореме о среднем:
+	\[
+		\exists \mu_k \in [m_k; M_k] \such \int_{x_{k - 1}}^{x_k} f(x)dx = \mu_k \int_{x_{k - 1}}^{x_k} dx = \mu_k\Delta x_k
+	\]
+	Именно такие $\mu_k$ мы и будем брать. Обозначим за $S_i := \int_a^{x_i}f(x)dx,\ i \in \range{n}$. Причем $S_0 := 0$. Теперь можно переписать сумму выше, как:
+	\[
+		\suml_{k = 1}^n\mu_kg(x_{k - 1})\Delta x_k = \suml_{k = 1}^ng(x_{k - 1})(S_k - S_{k - 1})
+	\]
+	Воспользуемся \textit{преобразованием Абеля}:
+	\begin{multline*}
+		\suml_{k = 1}^ng(x_{k - 1})(S_k - S_{k - 1}) = g(x_0)S_1 +g(x_1)(S_2 - S_1) + \ldots + g(x_{n - 1})(S_n - S_{n - 1}) =
+		\\
+		 S_1(g(x_0) - g(x_1)) + S_2(g(x_1) - g(x_2)) + \ldots + S_{n - 1}(g(x_{n - 2}) - g(x_{n - 1})) + S_ng(x_{n - 1})
+	\end{multline*}
+	Полученное выражение объясняет, почему мы брали значение по $g(x_{k - 1})$: теперь каждая скобка выше неотрицательна. Значит, мы можем придумать какое-то неравенство на $S_i$, и оно не сломается от умножения на скобку с обеих сторон:
+	\[
+		S_i = F(x_i),\ F(x) = \int_a^xf(x)dx
+	\]
+	Она непрерывна, а значит ограничена. $\forall x \in [a;b]\ \exists m \leq F(x) \leq M$, где $m, M$ --- точные нижняя и верхняя грани соответственно. Это равнозначно $\forall i = \range{n}\ \ m \leq S_i \leq M$.
+	\[
+		\left(mg(a) \leq \suml_{k = 1}^n \mu_k g(x_{k - 1})\Delta x_k \leq Mg(a)\right) \Ra \left(m \leq \frac{1}{g(a)} \int_a^b f(x)g(x)dx \leq M\right)
+	\]
+	В силу непрерывности $F$ уже получаем
+	\[
+		\exists \xi \in [a;b] \such F(\xi) = \int_a^\xi f(x)dx =  \frac{1}{g(a)}\int_a^bf(x)g(x)dx
+	\]
+\end{proof}
+
+
+\begin{corollary} \textit{(Формула Бонн\'{е})}
+	Пусть $f(x)$  интегрируема по Риману на $[a;b]$, $g(x)$ - монотонна на $[a;b]$, тогда:
+	\[
+		\exists \xi \in [a;b] \such \int_a^b f(x)g(x)dx = g(a)\int_a^\xi f(x)dx + g(b)\int_\xi^b f(x)dx
+	\]
+\end{corollary}
+
+\begin{proof}
+	Пусть $g$  невозрастающая, то $g_1(x) = g(x) - g(b) \geq 0$. По 2 теореме о среднем:
+	\[
+		\exists \xi \in [a;b]\ \int_a^bf(x)g_1(x)dx = g_1(a)\int_a^\xi f(x)dx
+	\]
+	Подставляя $g_1$, получим:
+	\[
+		\int_a^bf(x)g(x)dx - g(b) \int_a^bf(x)dx = g(a)\int_a^\xi f(x)dx - g(b)\int_a^\xi f(x)dx
+	\]
+	В случае неубывающей $g(x)$ возьмем $g_1(x) = g(b) - g(x)$.
+\end{proof}
+
+\begin{theorem} \textit{(Формула Тейлора с остаточным членом в интегральной форме)}
+	Пусть $f(x)$ непрерывна в $U_\eps(a)$ вместе со своими производными до порядка $n + 1$ включительно.
+	Тогда:
+	\[
+		\forall x \in U_\eps(a) \quad f(x) = f(a) + \suml_{k = 1}^n\frac{f^k(a)}{k!}(x - a)^k + \frac{1}{n!}\int_a^xf^{(n + 1)}(t)(x - t)^ndt
+	\]
+\end{theorem}
+
+\begin{proof} Проведём индукцию по $n$:
+	\begin{itemize}
+		\item База $n = 1$:
+		\[
+			\int_a^x f'(t)(x - t)dt = f'(t)(x - t) \Bigg |_{t = a}^{t = x} + \int_a^x f'(t)dt = - f'(a)(x - a) + f(x) - f(a)
+		\]
+		
+		\item Переход $n = m \Ra m + 1$:
+		\[
+			\frac{1}{m!}\int_a^x f^{(m + 1)}(t)(x - t)^m dt = \frac{1}{m!}\left(-f^{(m + 1)}(t)\frac{(x - t)^{m + 1}}{(m + 1)!} \Bigg|_a^x + \int_a^x \frac{1}{m + 1} f^{(m + 2)}(t)(x - t)^{m + 1} dt\right)
+		\]
+		Равенство достигается путём интегрирования по частям с занесением $(x - t)^m$ под знак дифференциала
+	\end{itemize}
+\end{proof}

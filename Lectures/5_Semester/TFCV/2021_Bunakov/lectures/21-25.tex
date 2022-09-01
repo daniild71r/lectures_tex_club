@@ -1,0 +1,685 @@
+\section{Теоремы Вейерштрасса}
+
+\begin{theorem}[первая теорема Вейерштрасса]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ регулярны на области $G \subset \Cm$
+		\item $f_n \convlr f$ на $G$
+	\end{enumerate}
+
+\pagebreak
+	
+	Тогда $f$ регулярна на $G$.
+\end{theorem}
+
+\begin{proof}
+	Уже было доказано, что $f$ непрерывна на $G$. Достаточно проверить, что $f$ регулярна в произвольном круге $K \subset G$. Пусть $\gamma$ "--- кусочно-гладкая замкнутая кривая такая, что $M(\gamma) \subset K$. Тогда, по интегральной теореме Коши, $\forall n \in \N \cup \{0\}: \int_\gamma f_ndz = 0$, и $f_n \convu_{M(\gamma)} f$, поскольку $M(\gamma)$ "--- компакт. Следовательно:
+	\[\int_\gamma fdz = \lim_{n \to \infty}\int_\gamma f_ndz = 0\]
+	
+	Значит, по теореме Мореры, $f$ регулярна на $K$.
+\end{proof}
+
+\begin{theorem}[вторая теорема Вейерштрасса]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ регулярны на области $G \subset \Cm$
+		\item $f_n \convlr f$ на $G$
+	\end{enumerate}
+	
+	Тогда $\forall m \in \N: f_n^{(m)} \convlr f^{(m)}$ на $G$.
+\end{theorem}
+ 
+\begin{proof}
+	Зафиксируем точку $z_0 \in G$ и выберем $R > 0$ такое, что $\overline{B_R(z_0)} \subset G$. Поскольку $\overline{B_R(z_0)}$ "--- компакт, то $f_n \convu_{\overline{B_R(z_0)}} f$ на $G$. Достаточно для некоторого фиксированного числа $0 < R_1 < R$ доказать следующее:
+	\[\forall m \in \N: f_n^{(m)} \convu_{\overline{B_{R_1}(z_0)}} f^{(m)}\]
+	
+	Воспользуемся интегральной формулой Коши для производной порядка $m$:
+	\begin{gather*}
+		f_n^{(m)}(z) = \frac{m!}{2\pi i}\int_{|w - z_0| = R}\frac{f_n(w)}{(w - z)^{m+1}}dw,~|z - z_0| < R\\
+		f^{(m)}(z) = \frac{m!}{2\pi i}\int_{|w - z_0| = R}\frac{f(w)}{(w - z)^{m+1}}dw,~|z - z_0| < R
+	\end{gather*}
+	
+	При $|z - z_0| = R_1$ выражение $|w - z|$ отделено от нуля числом $R - R_1$, тогда, по свойству оценки интегралов:
+	\[|f_n^{(m)}(z) - f^{(m)}(z)| \le \frac{m!R}{(R - R_1)^m}\max\{|f_n(w) - f(w)| : |w - z_0| = R\} \xrightarrow{n \to \infty} 0\]
+	
+	В силу произвольности выбора точки $z_0$, получено требуемое.
+\end{proof}
+
+\begin{note}
+	Для функциональных рядов верны аналогичные теоремы. Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ регулярны на области $G \subset \Cm$
+		\item Ряд $\sum_{n=0}^\infty f_n$ сходится локально равномерно к сумме $S$ на $G$
+	\end{enumerate}
+	
+	Тогда $S$ регулярна на $G$, и при любом $m \in \N$ ряд $\sum_{n=0}^\infty f_n^{(m)}$ сходится локально равномерно к $S^{(m)}$ на $G$.
+\end{note}
+
+\section{Ряд Лорана}
+
+\begin{definition}
+	Пусть $z_0 \in \Cm$ и $\forall n \in \Z: c_n \in \Cm$. \textit{Рядом Лорана} называется выражение вида $\sum_{n = -\infty}^{+\infty}c_n(z - z_0)^n$. Ряд Лорана \textit{сходится} в точке $z \in \Cm$, если $z \ne z_0$ и сходятся оба следующих ряда:
+	\begin{itemize}
+		\item $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n$ "--- \textit{главная часть} ряда Лорана
+		\item $\sum_{n = 0}^{+\infty}c_n(z - z_0)^n$ "--- \textit{правильная часть} ряда Лорана
+	\end{itemize}
+	
+	\textit{Суммой} ряда Лорана называется величина $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n$.
+\end{definition}
+
+\begin{note}
+	Ряду $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n$ поставим в соответствие ряд $\sum_{m = 1}^{+\infty}c_{-m}w^m$, получаемый из данного заменой $w = \frac1{z - z_0}$. Пусть этот ряд имеет радиус сходимости $\rho > 0$, тогда он сходится регулярно на любом круге $\{w \in \Cm: |w| \le \rho_1\}$ при $\rho_1 < \rho$, поэтому ряд $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n$ сходится локально равномерно на $\{z \in \Cm: |z - z_0| > \frac1\rho\}$. Тогда, по теоремам Вейерштрасса:
+	\begin{enumerate}
+		\item Сумма ряда $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n$ регулярна на множестве $\{z \in \Cm: |z - z_0| > \frac1\rho\}$
+		\item Ряд $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n$ можно почленно дифференцировать любое число раз на множестве $\{z \in \Cm: |z - z_0| > \frac1\rho\}$
+	\end{enumerate}
+\end{note}
+
+\begin{definition}
+	Пусть ряды $\sum_{n = 0}^{+\infty}c_n(z - z_0)^n$ и $\sum_{m = 1}^{+\infty}c_{-m}w^m$ имеют радиусы сходимости $R > 0$ и $\rho > 0$. \textit{Кольцом сходимости} ряда Лорана $\sum_{n = -\infty}^{+\infty}c_n(z - z_0)^n$ называется следующее множество:
+	\[K := \left\{z \in \Cm: \frac1\rho < |z - z_0| < R\right\}\]
+\end{definition}
+
+\begin{proposition}
+	Пусть кольцо сходимости $K$ ряда Лорана $\sum_{n = -\infty}^{+\infty}c_n(z - z_0)^n$ непусто. Тогда:
+	\begin{enumerate}
+		\item Ряд Лорана сходится локально равномерно и абсолютно на $K$
+		\item Сумма ряда Лорана регулярна на $K$
+		\item Ряд Лорана можно почленно дифференцировать любое число раз на $K$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Ряд $\sum_{n = -\infty}^{-1}c_n(z - z_0)^n$ сходится локально равномерно и абсолютно при $|z - z_0| > \frac{1}\rho$, а ряд $\sum_{n = 0}^{+\infty}c_n(z - z_0)^n$ "--- при $|z - z_0| < R$, из чего следует требуемое.
+\end{proof}
+
+\begin{theorem}
+	Пусть $z_0 \in \Cm$, $0 \le R_1 < R_2 \le +\infty$, и функция $f$ регулярна на кольце $K := \{z \in \Cm: R_1 < |z - z_0| < R_2\}$. Тогда существует единственное представление функции $f$ в виде ряда Лорана:
+	\[f(z) = \sum_{n = -\infty}^{+\infty}c_n(z - z_0)^n,~z \in K\]
+	
+	Кроме того, если $K_\rho := \{z \in \Cm: |z - z_0| = \rho\}$ при произвольном $\rho \in (R_1, R_2)$, то для каждого $n \in \Z$ коэффициент $c_n$ в разложении удовлетворяет равенству: \pagebreak
+	\[c_n = \frac1{2\pi i}\int_{K_{\rho}} \frac{f(w)}{(w - z_0)^{n+1}}dw\]
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем $z \in K$ и числа $\rho_1, \rho_2 \in \R$ такие, что выполнены неравенства $R_1 < \rho_1 < |z - z_0| < \rho_2 < R_2$. Тогда функция $f$ регулярна на замыкании $\overline{K_1}$ кольца $K_1 := \{w \in \Cm: \rho_1 < |w - z_0| < \rho_2\}$. Тогда, по интегральной формуле Коши:
+	\[f(z) = \frac1{2\pi i} \int_{\partial K_1}\frac{f(w)}{w - z}dw = \frac1{2\pi i} \int_{K_{\rho_2}}\frac{f(w)}{w - z}dw - \frac1{2\pi i} \int_{K_{\rho_1}}\frac{f(w)}{w - z}dw\]
+	
+	Обе окружности в равенстве выше ориентированы против часовой стрелки:
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-2.8, -2.12) rectangle (2.8, 2.12);
+			
+			\fill [opacity=0.05] (0,0) circle [radius=2];
+			\draw[
+				black,
+				decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+				decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+				postaction={decorate}
+			] (0,0) circle[radius=2];
+			\node[] at (-1, 1.) {$K_1$};
+			
+			\fill [white] (0,0) circle[radius=0.9];
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+			decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+			postaction={decorate}
+			] (0,0) circle[radius=0.9];
+			\node[] at (1.93, 1.42) {$K_{\rho_2}$};
+			\node[] at (0.97, -0.9) {$K_{\rho_1}$};
+			
+			\node[draw, circle, inner sep=1pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.85}{$z_0$}}] at (0, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.85}{$z_1$}}] at (-1, -1.15) {};
+			
+			\draw[->] (0, 0) -- (-1.92, -0.5) node[shift={(10pt, 10pt)}] {$\rho_2$};
+			\draw[->] (0, 0) -- (-0.4, -0.81) node[shift={(12pt, 5pt)}] {$\rho_1$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Представим первый интеграл в правой части степенным рядом как интеграл Коши:
+	\[\frac1{2\pi i} \int_{K_{\rho_2}}\frac{f(w)}{w - z}dw = \sum_{n = 0}^{+\infty} \left(\frac{1}{2\pi i}\int_{K_{\rho_2}}\frac{f(w)}{(w - z_0)^{n+1}}dw\right)(z - z_0)^n\]
+	
+	Обозначим коэффициенты степенного ряда выше через $c_n$ для всех $n \in \N \cup \{0\}$. Чтобы преобразовать второй интеграл, заметим следующее:
+	\[-\frac1{w - z} = \frac1{(z-z_0) - (w - z_0)} = \frac1{z-z_0}\cdot \frac1{1 - \frac{w-z_0}{z - z_0}} = \sum_{m=0}^{+\infty}\frac{(w-z_0)^m}{(z-z_0)^{m + 1}}\]
+		
+	Ряд выше сходится равномерно на $K_{\rho_1}$, тогда, в силу ограниченности функции $f$ на $K_{\rho_1}$, его можно домножить на $f(w)$ и проинтегрировать почленно на $K_{\rho_1}$:
+	\[- \frac1{2\pi i} \int_{K_{\rho_1}}\frac{f(w)}{w - z}dw = \frac1{2\pi i}\sum_{m=0}^\infty\frac1{(z-z_0)^{m + 1}}\left(\int_{K_{\rho_1}}f(w)(w-z_0)^mdw\right)\]
+	
+	Заменяя индекс суммирования на $n := -m - 1$, получим:
+	\[-\frac1{2\pi i} \int_{K_{\rho_1}}\frac{f(w)}{w - z}dw = \sum_{n = -\infty}^{-1}c_n(z - z_0)^n\]
+	
+	В равенстве выше для любого $n \in \Z \bs (\N \cup \{0\})$ коэффициент $c_n$ вычисляется по следующей формуле:
+	\[c_n = \frac1{2 \pi i}\int_{K_{\rho_1}}\frac{f(w)}{(w - z_0)^{n+1}}dw\]
+	
+	Таким образом, значение функции в каждой точке $z \in K$ действительно представляется в виде ряда Лорана, однако коэффициенты ряда задаются как интегралы по окружностям, радиусы которых зависят от $z$. Избавимся от этой зависимости. Зафиксируем $\rho', \rho'' \in \R$ такие, что $R_1 < \rho' < \rho'' < R_2$. Зафиксируем $n \in \Z$ и рассмотрим следующую функцию:
+	\[g_n(w) := \frac1{2\pi i} \frac{f(w)}{(w - z_0)^{n+1}}\]
+	
+	Функция $g_n$ регулярна на замыкании кольца $\{w \in \Cm: \rho' < |w - z_0| < \rho''\}$, поэтому применима интегральная теорема Коши:
+	\[\int_{K_{\rho'}}g_ndw - \int_{K_{\rho''}}g_ndw = 0 \ra \int_{K_{\rho'}}g_ndw = \int_{K_{\rho''}}g_ndw\]
+	
+	В силу произвольности выбора чисел $\rho'$, $\rho''$ и $n$, представление функции рядом Лорана получено. Проверим единственность представления. Пусть в каждой точке $z \in K$ выполнены следующие равенства:
+	\[f(z) = \sum_{n = -\infty}^{+\infty}c_n(z - z_0)^n = \sum_{n = -\infty}^{+\infty}d_n(z - z_0)^n\]
+	
+	Зафиксируем $m \in \Z$ и домножим обе части равенства на $(z - z_0)^m$. Поскольку оба ряда сходятся локально равномерно на $K$, то, интегрируя по окружности $K_{\rho}$ при $\rho \in (R_1, R_2)$, получим:
+	\[{(2\pi i)}{c_{-m - 1}} = \sum_{n = -\infty}^{+\infty}\left(\int_{K_{\rho}}c_{n + m}(z - z_0)^n\right) = \sum_{n = -\infty}^{+\infty}\left(\int_{K_{\rho}}d_{n + m}(z - z_0)^n\right) = {(2\pi i)}{d_{-m - 1}}\]
+	
+	Таким образом, для всех $m \in \Z$ выполнено $c_m = d_m$, то есть получено требуемое.
+\end{proof}
+
+\begin{proposition}[неравенство Коши для коэффициентов ряда Лорана]
+	Пусть $z_0 \in \Cm$, $0 \le R_1 < R_2 \le +\infty$, и на кольце $K = \{z \in \Cm: R_1 < |z - z_0| < R_2\}$ функция $f$ представима рядом Лорана. Тогда для любого $\rho \in (R_1, R_2)$ и любого $n \in \Z$ выполнено неравенство:
+	\[|c_n| \le \frac{\max_{w \in K_{\rho}}\left|{f(w)}\right|}{\rho^n}\]
+\end{proposition}
+
+\begin{proof}
+	Пользуясь свойством оценки интегралов, получим:
+	\[|c_n| = \frac1{2\pi}\left|\int_{K_{\rho}} \frac{f(w)}{(w - z_0)^{n+1}}dw\right| \le \rho\max_{w \in K_\rho}\left|\frac{f(w)}{(w - z_0)^{n+1}}\right| = \frac1{\rho^n}\max_{w \in K_{\rho}}\left|{f(w)}\right| \qedhere\]
+\end{proof}
+
+\section{Изолированные особые точки регулярных функций}
+
+\begin{definition}
+	Точка $z_0 \in \CM$ называется \textit{изолированной особой точкой} функции $f$, если существует $\epsilon > 0$ такое, что $f$ регулярна на $\mathring B_\epsilon(z_0)$, но не регулярна или не определена в точке $z_0$.
+\end{definition}
+
+\begin{example}
+	Функция $f(z) = \frac{\sin{z}}{z}$ регулярна на $\Cm \bs \{0\}$, поэтому точки $0$ и $\infty$ являются ее изолированными особыми точками.
+\end{example}
+
+\begin{definition}
+	Изолированная особая точка $z_0 \in \CM$ функции $f$ называется:
+	\begin{itemize}
+		\item \textit{Устранимой}, если $\exists \lim_{z \to z_0} f(z) \in \Cm$
+		\item \textit{Полюсом}, если $\exists \lim_{z \to z_0} f(z) = \infty$
+		\item \textit{Существенно особой}, если предел $\lim_{z \to z_0} f(z)$ не существует
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. Тогда $z_0$ является устранимой особой точкой $\lra$ главная часть ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ тождественно равна нулю.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\la$]Поскольку главная часть ряда Лорана равна нулю, то на $\mathring B_\epsilon(z_0)$ функция $f$ представима степенным рядом. По теореме Абеля, этот ряд сходится на $B_\epsilon(z_0)$, причем его сумма является регулярной функцией. Но она совпадает с $f$ на $\mathring B_\epsilon(z_0)$, поэтому $\exists \lim_{z \to z_0}f(z) = c_0$.
+		
+		\item[$\ra$]Из условия следует, что существуют числа $M > 0$ и $0 < \delta \le \epsilon$ такие, что $|f| \le M$ на $\mathring B_\delta(z_0)$. Воспользуемся неравенством Коши для коэффициентов ряда Лорана при произвольном $\rho \in (0, \delta)$ и $n \in \Z \bs (\N \cup \{0\})$:
+		\[|c_n| \le \frac{M}{\rho^n} = M\rho^{|n|} \xrightarrow{\rho \to 0} 0\]
+		
+		Значит, главная часть ряда Лорана тождественно равна нулю.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	В доказательстве выше было получено такое утверждение: если функция $f$ регулярна и ограниченна на $\mathring B_\epsilon(z_0)$, то ее ряд Лорана на $\mathring B_\epsilon(z_0)$ не имеет главной части.
+\end{note}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. Тогда $z_0$ является полюсом $\lra$ главная часть ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ содержит конечное ненулевое число ненулевых слагаемых.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\ra$]Пусть $z_0$ "--- полюс, тогда сущестувет $0 < \delta \le \epsilon$ такое, что $f \ne 0$ на $\mathring B_\delta(z_0)$. Определим на $\mathring B_\delta(z_0)$ функцию $g$ как $g(z) := \frac1{f(z)}$, тогда $\lim_{z \to z_0}g(z) = 0$. Значит, $z_0$ "--- устранимая особая точка функции $g$, поэтому ряд Лорана функции $g$ имеет следующий вид:
+		\[g(z) = \sum_{m = 0}^{+\infty}c_m(z - z_0)^m\]
+		
+		Поскольку $g \ne 0$ на $\mathring B_\delta(z_0)$, то существует $m \in \N \cup \{0\}$ такое, что $c_m \ne 0$. \pagebreak Степенной ряд функции ${g}$, деленной на ${(z - z_0)^m}$, сходится на $B_\delta(z_0)$ по теореме Абеля, и его сумма $h$ регулярна на $B_\delta(z_0)$, причем $h(z_0) = c_m \ne 0$. Значит, $h \ne 0$ на $B_\delta(z_0)$. Тогда на $\mathring B_\delta(z_0)$ выполнены равенства:
+		\[f(z) = \frac{1}{g(z)} = \frac1{(z - z_0)^m}\frac1{h(z)}\]
+		
+		Но функция $\frac1{h(z)}$ регулярна на $B_\delta(z_0)$, поэтому она представима степенным рядом на $B_\delta(z_0)$, то есть ее ряд Лорана не имеет главной части:
+		\[\frac{1}{h(z)} = \sum_{n=0}^{+\infty}a_n(z - z_0)^n\]
+		
+		Наконец, $\frac1{h(z_0)} \ne 0$, поэтому $a_0 \ne 0$. Получено требуемое.
+		
+		\item[$\la$] Пусть ряд Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ при некотором $m \in \N$ и $c_{-m} \in \Cm \bs \{0\}$ имеет следующий вид:
+		\[f(z) = \frac{c_{-m}}{(z-z_0)^m} + \dotsb + \frac{c_{-1}}{z-z_0} + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n\]
+		
+		Тогда функция $g(z) := f(z)(z-z_0)^m$ представима степенным рядом на $\mathring B_\epsilon(z_0)$. Но тогда, по теореме Абеля, этот ряд cходится на $B_\epsilon(z_0)$, и его сумма регулярна на $B_\epsilon(z_0)$. Значит, $\exists\lim_{z \to z_0} g(z) = c_{-m} \ne 0$. Тогда:
+		\[f(z) = \frac{g(z)}{(z - z_0)^m} \xrightarrow{z \to z_0} \infty\]
+		
+		Таким образом, точка $z_0$ является полюсом.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. Тогда $z_0$ является существенно особой точкой $\lra$ главная часть ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ содержит бесконечное число ненулевых слагаемых.
+\end{corollary}
+
+\begin{definition}
+	Изолированная особая точка $z_0 \in \Cm$ функции $f$ называется \textit{полюсом порядка $m \in \N$}, если ряд Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ при некотором $c_{-m} \in \Cm \bs \{0\}$ имеет следующий вид:
+	\[f(z) = \frac{c_{-m}}{(z-z_0)^m} + \dotsb + \frac{c_{-1}}{z-z_0} + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n\]
+\end{definition}
+
+\begin{definition}
+	Пусть функция $f$ регулярна в точке $z_0 \in \Cm$. Точка $z_0$ называется \textit{нулем порядка $m \in \N \cup \{0\}$} функции $f$, если ряд Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ при некотором $c_{m} \in \Cm \bs \{0\}$ имеет следующий вид:
+	\[f(z) = \sum_{n = m}^{+\infty}c_n(z - z_0)^n\]
+\end{definition}
+
+\begin{proposition}[\textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $g, h$ регулярны в точке $z_0 \in \Cm$
+		\item Точка $z_0$ является нулем функций $g, h$ порядков $m \in \N \cup \{0\}$ и $n \in \N$ соответственно
+	\end{enumerate}
+	
+	Тогда точка $z_0$ является устранимой особой точкой функции $f := \frac{g}{h}$, если $m \ge n$, и полюсом порядка $n - m$ в противном случае.
+\end{proposition}
+
+\begin{proposition}[\textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Точка $z_0 \in \Cm$ является существенно особой точкой функции $g$
+		\item Точка $z_0$ является изолированной особой точкой функции $h$, но не существенно особой, либо $h$ регулярна в точке $z_0$ 
+	\end{enumerate}
+	
+	Тогда точка $z_0$ является существенно особой точкой функции $f := gh$.
+\end{proposition}
+
+\begin{theorem}[Сохоцкого]
+	Пусть $z_0 \in \Cm$ "--- существенно особая точка функции $f$. Тогда для любого $A \in \CM$ существует последовательность $\{z_n\} \subset \mathring B_\epsilon(z_0)$ такая, что выполнено $\lim_{n \to \infty}z_n = z_0$ и $\lim_{n \to \infty}f(z_n) = A$.
+\end{theorem}
+
+\begin{proof}
+	Предположим противное, то есть для некоторого $A \in \CM$ искомой последовательности не существует. Рассмотрим два случая:
+	\begin{enumerate}
+		\item Если $A = \infty$, то существуют числа $C > 0$ и $\delta > 0$ такие, что на $\mathring B_\delta(z_0)$ выполнено $|f| \le C$, то есть $f$ ограниченна на $\mathring B_\delta(z_0)$. Но тогда точка $z_0$ является устранимой особой точкой функции $f$ --- противоречие.
+		
+		\item Если $A \in \Cm$, то существуют числа $\epsilon > 0$ и $\delta > 0$ такие, что на $\mathring B_\delta(z_0)$ выполнено $|f - A| \ge \epsilon$. Тогда на $\mathring B_\delta(z_0)$ определена следующая функция:
+		\[g(z) := \frac{1}{f(z) - A}\]
+		
+		Более того, $|g| \le \frac1\epsilon$ на $\mathring B_\delta(z_0)$. Значит, точка $z_0$ является устранимой особой точкой функции $g$, то есть $\exists \lim_{z \to z_0} g(z) = B \in \Cm$. Если $B \ne 0$, то $\exists \lim_{z \to z_0} f(z) = A + \frac1B$, тогда $z_0$ является устранимой особой точкой функции $f$ --- противоречие. Если же $B = 0$, то $\exists \lim_{z \to z_0} f(z) = \infty$, тогда $z_0$ является полюсом функции $f$ --- снова противоречие.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Функция $w = \frac1z$ взаимно однозначно отображает $\mathring B_R(\infty)$ на $\mathring B_{\frac1R}(0)$. Следовательно:
+	\begin{enumerate}
+		\item Точка $\infty$ является изолированной особой точкой функции $f(z)$ $\lra$ точка $0$ является изолированной особой точкой функции $f(\frac1z)$
+		\item $\exists \lim_{z \to \infty}f(z) = A \in \CM \lra \exists \lim_{z \to 0}f(\frac1z) = A \in \CM$
+	\end{enumerate}
+	
+	Таким образом, точка $\infty$ является изолированной особой точкой функции $f(z)$ того же типа, что и точка $0$ "--- для функции $f(\frac1z)$.
+\end{note}
+
+\begin{definition}
+	Пусть $\infty$ "--- изолированная особая точка функции $f$. Тогда на $\mathring B_\epsilon(\infty)$ функция $f$ единственным образом представляется рядом Лорана:
+	\[f(z) = \sum_{n = -\infty}^{+\infty}c_nz^n\]
+	\begin{itemize}
+		\item \textit{Правильной частью} ряда Лорана на $\mathring B_\epsilon(\infty)$ называется $\sum_{n = -\infty}^{0}c_nz^n$
+		\item \textit{Главной частью} ряда Лорана на $\mathring B_\epsilon(\infty)$ называется $\sum_{n = 1}^{+\infty}c_nz^n$
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	При преобразовании $w = \frac1z$ главная часть ряда Лорана функции $f(z)$ на $\mathring B_\epsilon(\infty)$ переходит в главную часть ряда Лорана функции $f(\frac1z)$ на $\mathring B_\frac1\epsilon(0)$. Поэтому для точки $\infty$ остаются справделивыми утверждения, связывающие тип особой точки с видом ряда Лорана.
+\end{note}
+
+\begin{definition}
+	Изолированная особая точка $\infty$ функции $f$ называется \textit{полюсом порядка $m \in \N$}, если ряд Лорана функции $f$ на $\mathring B_\epsilon(\infty)$ при некотором $c_{m} \in \Cm \bs \{0\}$ имеет следующий вид:
+	\[f(z) = \sum_{n = -\infty}^{m}c_nz^n\]
+\end{definition}
+
+\begin{note}
+	Можно проверить, что утверждения об изолированной особой точке произведения и частного функций, а также теорема Сохоцкого остаются справедливыми в случае $z = \infty$.
+\end{note}
+
+\section{Вычеты}
+
+\begin{definition}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. \textit{Вычетом} функции $f$ в точке $z_0$ называется коэффициент $c_{-1}$ ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$. Обозначение "--- $\res_{z_0}f$.
+\end{definition}
+
+\begin{example}
+	Пусть $f(z) := \sin{\frac 1z}$, $z \ne 0$. Тогда ряд Лорана функции $f$ на $\mathring B_\epsilon(0)$ имеет следующий вид:
+	\[f(z) = \sum_{k = 0}^{+\infty}\frac{(-1)^k}{(2k+1)!}\frac1{z^{2k+1}}\]
+	
+	Значит, $\res_0{f} = 1$.
+\end{example}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$ "--- устранимая особая точка или точка регулярности функции $f$. Тогда $\res_{z_0}f = 0$.
+\end{proposition}
+
+\begin{proof}
+	В обоих случаях функция $f$ представима степенным рядом на $\mathring B_\epsilon(z_0)$. Степенной ряд не имеет главной части, поэтому $\res_{z_0}f = 0$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$, и функция $f$ регулярна на $\mathring B_\epsilon(z_0)$. Тогда для любого числа $0 < \rho < \epsilon$ выполнено следующее равенство:
+	\[\int_{|z - z_0| = \rho}fdz = 2\pi i\res_{z_0}f\]
+\end{proposition}
+
+\begin{proof}
+	Функция $f$ представима рядом Лорана на $\mathring B_\epsilon(z_0)$, и этот ряд сходится равномерно на окружности $K_\rho:= \{z \in \Cm: |z - z_0| = \rho\}$. Интегрируя почленно, получим:
+	\[\int_{K_\rho}fdz = \sum\limits_{n = -\infty}^{+\infty}c_n\int_{K_\rho}(z-z_0)^ndz = (2\pi i)c_{-1} = (2\pi i)\res_{z_0}f\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{note}
+	Если окружность $K_\rho$ ориентирована не против часовой стрелки, а по часовой, имеет место равенство с противоположным знаком:
+	\[\int_{K_\rho}fdz = -2\pi i\res_{z_0}f\]
+\end{note}
+
+\begin{note}
+	Пусть $z_0 \in \Cm$, и функция $f$ регулярна на $\mathring B_\epsilon(z_0)$. Тогда выполнено равенство $\res_{z_0}f(z) = \res_0f(z + z_0)$.
+\end{note}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$ "--- полюс порядка не выше $m \in \N$ функции $f$. Тогда верна следующая формула:
+	\[\res_{z_0}f = \frac{1}{(m-1)!}\lim_{z \to z_0}\big(f(z)(z - z_0)^m\big)^{(m-1)}\]
+\end{proposition}
+
+\begin{proof}
+	Функция $f$ представима рядом Лорана на $\mathring B_\epsilon(z_0)$:
+	\[f(z) = \frac{c_{-m}}{(z-z_0)^m} + \dotsb + \frac{c_{-1}}{z-z_0} + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n\]
+	
+	Значит, функция $g(z) := f(z)(z-z_0)^m$ представима степенным рядом на $\mathring B_\epsilon(z_0)$. Тогда, по теореме Абеля, этот ряд cходится на $B_\epsilon(z_0)$, и его сумма регулярна на $B_\epsilon(z_0)$. Следовательно, выполнены следующие равенства:
+	\[c_{-1} = \frac{g^{(m-1)}(z_0)}{(m-1)!} = \frac1{{(m-1)!}}\lim_{z \to z_0}g^{(m-1)}(z) = \frac{1}{(m-1)!}\lim_{z \to z_0}\big(f(z)(z - z_0)^m\big)^{(m-1)}\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{proposition}[\textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $g, h$ регулярны в точке $z_0 \in \Cm$
+		\item $h(z_0) = 0$, но $h'(z_0) \ne 0$
+	\end{enumerate}
+
+	Тогда вычет функции $f := \frac{g}{h}$ в точке $z_0$ можно вычислить по следующей формуле:
+	\[\res_{z_0}f = \frac{g(z_0)}{h'(z_0)}\]
+\end{proposition}
+
+\begin{definition}
+	Пусть $\infty$ "--- изолированная особая точка функции $f$. \textit{Вычетом} функции $f$ в точке $\infty$ называется величина $-c_{-1}$, где $c_{-1}$ "--- коэффициент ряда Лорана функции $f$ на $\mathring B_\epsilon(\infty)$. Обозначение "--- $\res_{\infty}f$.
+\end{definition}
+
+\begin{proposition}
+	Пусть функция $f$ регулярна на $\mathring B_\epsilon(\infty)$, и $R > \epsilon$. Тогда:
+	\[\int_{|z| = R}fdz = -2\pi i\res_\infty f\]
+\end{proposition}
+
+\begin{proof}
+	Аналогично случаю конечной особой точки.
+\end{proof}
+
+\begin{example}
+	Пусть $f(z) := \frac 1z$. Тогда $\infty$ является устранимой особой точкой функции $f$, однако $\res_\infty{f} = -1 \ne 0$.
+\end{example}
+
+\begin{proposition}[\textit{без доказательства}]
+	Пусть $\infty$ "--- изолированная особая точка функции $f$, и для некоторых $A \in \Cm \bs \{0\}$, $m \in \N$ выполнено $f \sim \frac{A}{z^m}$, $z \to \infty$. Тогда:
+	\begin{itemize}
+		\item $\res_\infty f = -A$ при $m = 1$
+		\item $\res_\infty f = 0$ при $m \ge 2$
+	\end{itemize}
+\end{proposition}
+
+\begin{proposition}[\textit{без доказательства}]
+	Пусть $\infty$ "--- изолированная особая точка функции $f$. Тогда выполнено равенство:
+	\[\res_\infty f = \res_0\left(-\frac1{z^2}f\left(\frac1z\right)\right)\]
+\end{proposition}
+
+\begin{theorem}[теорема Коши о вычетах]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G$ "--- область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item Функция $f$ регулярна на $\overline{G}\,\bs \{z_1, \dotsc, z_n\}$, где $z_1, \dotsc, z_n \in G$.
+	\end{enumerate}
+	
+	Тогда верна следующая формула:
+	\[\int_{\partial G}fdz = 2\pi i\sum_{k = 1}^n\res_{z_k}f\]
+\end{theorem}
+
+\begin{proof}
+	Пусть сначала $G$ "--- ограниченная область с простой границей. Выберем $\rho_1, \dotsc, \rho_n > 0$ такие, что $\overline{B_{\rho_1}(z_1)}, \dotsc, \overline{B_{\rho_n}(z_n)} \subset G$, причем эти круги не пересекаются. Функция $f$ регулярна на области $D = G \bs \big(\bigcup_{k = 1}^n\overline{B_{\rho_k}(z_k)}\big)$ с простой границей, тогда, по интегральной теореме Коши:
+	\[\int_{\partial D} fdz = 0\]
+	
+	Для каждого $k \in \{1, \dotsc, n\}$ обозначим через $C_k$ окружность $\{z \in \Cm: |z - z_k| = \rho_k\}$, ориентированную \textit{по часовой стрелке}. Тогда:
+	\[0 = \int_{\partial D} fdz = \int_{\partial G} fdz + \sum_{k = 1}^n\left(\int_{C_k}fdz\right)\]
+	
+	Пользуясь утверждением об интеграле по окружности, получим:
+	\[\int_{\partial G} fdz = -\sum_{k = 1}^n\left(\int_{C_k}fdz\right) = 2 \pi i\sum_{k = 1}^n\res_{z_k}f\]
+	
+	Пусть теперь $G$ "--- неограниченная область с простой границей, тогда $\infty \in G$. Будем считать, что $z_n = \infty$. Поскольку $\partial G$ "--- компакт, то существует $R > 0$ такое, что $\partial G \subset B_R(0)$ и $z_1, \dotsc, z_{n-1} \in B_R(0)$. К области $D := B_R(0) \cap G$ применима доказанная часть теоремы. Пользуясь также утверждением об интеграле по окружности, получим:
+	\[\int_{\partial D} fdz = \int_{\partial G}fdz + \int_{|z| = R}fdz \ra \int_{\partial G}fdz = 2\pi i\left(\sum_{k = 1}^{n-1}\res_{z_k}f + \res_{\infty}f\right) = 2\pi i\sum_{k = 1}^{n}\res_{z_k}f\]
+	
+	Проведенное рассуждение проиллюстрировано ниже:
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-3.1, -3.1) rectangle (3.1, 3.1);
+			\fill [opacity=0.24, path fading=fade out] (0,0) circle [radius=3.1];
+			\fill [white] (0,0) circle [radius=2];
+			\fill [opacity=0.08] (0,0) circle [radius=2];
+			
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+			decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+			postaction={decorate}
+			] (0,0) circle[radius=2];
+			
+			\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={left:$\infty$}] at (2.2, 2.1) {};
+			
+			\fill [white] (-0.85,0) circle [radius=0.7];
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.1 with {\arrow{<}}},
+			decoration={markings, mark=at position 0.6 with {\arrow{<}}},
+			postaction={decorate}
+			] (-0.85,0) circle[radius=0.7];
+			
+			\fill [white] (0.85,0) circle [radius=0.7];
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.1 with {\arrow{<}}},
+			decoration={markings, mark=at position 0.6 with {\arrow{<}}},
+			postaction={decorate}
+			] (0.85,0) circle[radius=0.7];
+			
+			\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.9}{$z_1$}}] at (1.1, 1) {};
+			\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.9}{$z_{n-1}$}}] at (-1.2, -1) {};
+			\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black] at (-0.5, 1.4) {};
+			\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black] at (0.45, -0.95) {};
+			
+			\node[] at (-1.45, 0.8) {$\gamma_1$};
+			\node[] at (0.2, 0.8) {$\gamma_2$};
+			\node[] at (0, -2.4) {$|z| = R$};
+			\node[] at (0.7, -1.5) {$D$};
+			
+			\node[] at (-2.4, 1) {$G$};
+		\end{tikzpicture}
+	\end{center}
+
+	Теорема доказана.
+\end{proof}
+
+\begin{corollary}
+	Если функция $f$ регулярна на $\CM\,\bs \{z_1, \dotsc, z_n\}$, то:
+	\[\sum_{k = 1}^n\res_{z_k}f = 0\]
+\end{corollary}
+
+\begin{proof}
+	Как и в теореме выше, будем считать, что $z_n = \infty$. Выберем $R > 0$ такое, что $z_1, \dotsc, z_{n-1} \in B_R(0)$, и применим теорему к областям $B_R(0)$ и ${B_R(\infty)}$:
+	\[2\pi i\sum_{k = 1}^{n-1}\res_{z_k}f = \int_{|z| = R}fdz = -2\pi i\res_{\infty}f = -2\pi i\res_{z_n}f \ra \sum_{k = 1}^n\res_{z_k}f = 0\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{example}
+	Вычислим следующий интеграл:
+	\[I := \int_{|z| = \frac12} \tg\frac1z dz\]
+	
+	В области $\{z \in \Cm: |z| < \frac12\}$ функция $f(z) := \tg\frac1z$ имеет бесконечное число особых точек, а в области $\{z \in \Cm: |z| > \frac12\} \cup \{\infty\}$ особыми являются только точки $\pm \frac2\pi$. Значит, применить теорему можно только к внешней области.
+	\begin{itemize}
+		\item Поскольку $\tg\frac1z \sim \frac1z$, $z \to \infty$, то $\res_\infty{f} = -1$
+		
+		\item Точки $\pm\frac2\pi$ являются полюсами первого порядка, и применима следующая формула:
+		\[\res_{\pm\frac2\pi}{f} = \left.\frac{\sin\frac1z}{\left(\cos\frac1z\right)'}\right|_{z = \pm\frac2\pi} = \left.z^2\right|_{z = \pm\frac2\pi} = \frac4{\pi^2}\]
+	\end{itemize}
+	
+	Таким образом:
+	\[I = -2\pi i\left(\res_{\frac2\pi}f + \res_{-\frac2\pi}f + \res_{\infty}f\right) = 2\pi i\left(1 - \frac8{\pi^2}\right)\]
+\end{example}
+
+\begin{note}
+	В отличие от примера выше, интеграл $\int_{|z| = 1}\sin{z}\sin\frac1zdz$ нельзя вычислить применением теоремы о вычетах ни к одной из областей, поскольку и внутренняя, и внешняя области содержат бесконечное число особых точек.
+\end{note}
+
+\section{Вычисление несобственных интегралов}
+
+Положим $\Cm^+ := \{z \in \Cm: \im z \ge 0\}$ и $\Cm^{++} := \{z \in \Cm: \im z > 0\}$.
+
+\begin{proposition}[лемма <<$+$>>]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $f$ регулярна на $\Cm^+ \bs \{z_1, \dotsc, z_n\}$, где $z_1, \dotsc, z_n \in \Cm^{++}$
+		\item Существует несобственный интеграл $\int_{-\infty}^{+\infty}fdx$
+		\item Если $C_R^+ := \{z \in \Cm: |z| = R\} \cap \Cm^+$ для любого $R > 0$, то:
+		\[\lim_{R\to +\infty} \int_{C_R^+}fdz = 0\]
+	\end{enumerate}
+	
+	Тогда верна следующая формула:
+	\[\int_{-\infty}^{+\infty}fdx = 2\pi i\sum_{k = 1}^n\res_{z_k}{f}\]
+\end{proposition}
+
+\begin{proof}
+	Выберем $R$ такое $z_1, \dotsc, z_n \in D_R = B_R(0) \cap \Cm^{++}$, то есть:	
+	\begin{center}
+		\scalebox{1}{
+			\begin{tikzpicture}
+				\clip (-3.4, -0.6) rectangle (3.4, 3);
+				\draw [->] (-3, 0) -- (3, 0) node [above, black] {$\re z$};
+				\draw [->] (0, -0.5) -- (0, 2.7) node [right, black] {$\im z$};
+				
+				% A clipped circle is drawn
+				\begin{scope}
+					\clip (-2.25, 0) rectangle (2.25, 2.2);
+					\fill [opacity=0.07] (0, 0) circle[radius=2.2];
+					\draw[
+					black, line width = 0.2mm,
+					decoration={markings, mark=at position 0.13 with {\arrow{>}}},
+					decoration={markings, mark=at position 0.38 with {\arrow{>}}},
+					postaction={decorate}
+					] (0,0) circle[radius=2.2];
+					
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.9}{$z_1$}}] at (1.2, 1) {};
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.9}{$z_n$}}] at (-1.5, 0.5) {};
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black] at (-0.5, 1.4) {};
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black] at (0.45, 0.5) {};
+					\draw (-2.2,0) -- (2.2,0);
+				\end{scope}
+				
+				\draw[line width = 0.2mm, ->] (-2.2,0) -- (-1,0);
+				\draw[line width = 0.2mm, ->] (-1,0) -- (1, 0);
+				\draw[line width = 0.2mm] (1, 0) -- (2.2,0);
+				
+				\node[] at (-1.75, 2.1) {$C_{R}^+$};
+				\node[] at (0.7, 1.6) {$D_R$};
+				
+				\draw [black] (2.19,3pt) -- (2.19,-3pt) node [below, black] {$R$};
+				\draw [black] (-2.19,3pt) -- (-2.19,-3pt) node [below, black] {$-R$};
+			\end{tikzpicture}
+		}
+	\end{center}
+	
+	Применим к $D_R$ теорему о вычетах:
+	\[\int_{-R}^Rfdx + \int_{C_R^+}fdz = 2\pi i\sum_{k=1}^n\res_{z_k}f\]
+	
+	Переходя к пределу $R \to +\infty$, получим требуемое.
+\end{proof}
+
+\begin{note}
+	Положим также $\Cm^- := \{z \in \Cm: \im z \le 0\}$ и $\Cm^{--} := \{z \in \Cm: \im z < 0\}$, тогда аналогичным образом можно сформулировать \textit{лемму <<$-$>>}. Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $f$ регулярна на $\Cm^- \bs \{z_1, \dotsc, z_n\}$, где $z_1, \dotsc, z_n \in \Cm^{--}$
+		\item Существует несобственный интеграл $\int_{-\infty}^{+\infty}fdx$
+		\item Если $C_R^- := \{z \in \Cm: |z| = R\} \cap \Cm^-$ для любого $R > 0$, то:
+		\[\lim_{R\to +\infty} \int_{C_R^-}fdz = 0\]
+	\end{enumerate}
+	
+	Тогда верна следующая формула:
+	\[\int_{-\infty}^{+\infty}fdx = -2\pi i\sum_{k = 1}^n\res_{z_k}{f}\]
+\end{note}
+
+\begin{theorem}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $f = \frac pq$, где $p, q \in \Cm[z]$ "--- многочлены степеней $m, n \in \N \cup \{0\}$ соответственно, не имеющие общих корней
+		\item $n \ge m + 2$
+		\item $q$ не имеет вещественных корней и обращается в ноль в точках $z_1, \dotsc, z_N \in \Cm^{++}$ и $w_1, \dotsc, w_M \in \Cm^{--}$
+	\end{enumerate}
+	
+	Тогда верны следующие равенства:
+	\[\int_{-\infty}^{+\infty}fdx = 2\pi i\sum_{k=1}^N \res_{z_k}f = -2\pi i\sum_{k=1}^M \res_{w_k}f\]
+\end{theorem}
+
+\begin{proof}
+	Поскольку $n \ge m + 2$, то существует предел $\lim_{z \to \infty}z^2f(z) = A \in \Cm$. Выберем $R_0$ такое, что при $|z| > R_0$ выполнено неравенство $|z^2f(z)| \le |A| + 1$. Тогда, по свойству оценки интегралов, для любого $R > R_0$ имеем:
+	\[\left|\int_{C_R^+}fdz\right| \le (2\pi R)\frac{|A| + 1}{R^2} = 2\pi\frac{|A| + 1}{R} \xrightarrow{R \to \infty} 0\]
+	
+	Значит, выполнены все условия леммы <<$+$>>, из которой следует первое равенство. Второе доказывается аналогично.
+\end{proof}
+
+\begin{proposition}[лемма Жордана]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $g$ непрерывна на множестве $G := \{z \in \Cm : |z| \ge R_0\} \cap \Cm^+$ для некоторого $R_0 > 0$
+		\item Если $M(R) := \max_{z \in C_R^+}|g(z)|$ для любого $R>0$, то $\lim_{R \to +\infty}M(R) = 0$
+		\item $\alpha > 0$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\lim_{R \to +\infty} \int_{C_R^+}ge^{i\alpha z}dz = 0\]
+\end{proposition}
+
+\begin{proof}
+	Произведем замену $z = Re^{it}$, тогда:
+	\begin{multline*}
+		\left|\int_{C_R^+}ge^{i\alpha z}dz\right| = \left|\int_0^\pi g(Re^{it})e^{i\alpha Re^{it}}z'(t)dt\right| \le M(R)R \int_0^\pi \left|e^{i\alpha R(\cos{t} + i\sin{t})}\right|dt = \\
+		= M(R)R \int_0^\pi e^{-\alpha R\sin{t}}dt = 2M(R)R \int_0^{\frac\pi 2} e^{-\alpha R\sin{t}}dt  \le 2M(R)R \int_0^{\frac\pi 2} e^{-\alpha \frac{2R}\pi t}dt \le \\
+		\le 2M(R)R \int_0^{+\infty} e^{-\alpha \frac{2R}\pi t}dt = 2M(R)R \cdot \frac\pi{2\alpha R} = \frac{M(R)\pi}{\alpha} \xrightarrow{R \to +\infty} 0
+	\end{multline*}
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{theorem}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $f = \frac pq$, где $p, q \in \Cm[z]$ "--- многочлены степеней $m, n \in \N \cup \{0\}$ соответственно, не имеющие общих корней
+		\item $n \ge m + 1$
+		\item $q$ не имеет вещественных корней и обращается в ноль в точках $z_1, \dotsc, z_n \in \Cm^{++}$ и $w_1, \dotsc, w_m \in \Cm^{--}$
+		\item $\alpha > 0$, $\beta \in \R$
+	\end{enumerate}
+	
+	Тогда верны следующие равенства:
+	\[\int_{-\infty}^{+\infty}fe^{i(\alpha x + \beta)}dx = 2\pi i\sum_{k=1}^n \res_{z_k}\left(fe^{i(\alpha x + \beta)}\right) = -2\pi i\sum_{k=1}^m \res_{w_k}\left(fe^{i(\alpha x + \beta)}\right)\]
+\end{theorem}
+
+\begin{proof}
+	Применим лемму <<$+$>> к функции $fe^{i(\alpha x + \beta)}$. Стремление к нулю интеграла по полуокружности $C_R^+$ достигается за счет леммы Жордана.
+\end{proof}
+
+\begin{note}
+	Если в условиях теоремы выше выполнено $p, q \in \R[z]$, то для интеграла $I := \int_{-\infty}^{+\infty}fe^{i(\alpha x + \beta)}dx$ выполнены соотношения:
+	\[I = \re I + i \im I = \int_{-\infty}^{+\infty}f\cos{(\alpha x + \beta)}dx + i\int_{-\infty}^{+\infty}f\sin{(\alpha x + \beta)}dx\]
+\end{note}
+
+\begin{note}
+	Пусть $R(u, v)$ "--- рациональная функция. Рассмотрим следующую функцию:
+	\[R_1(z) := R\left(\frac12\left(z + \frac1z\right), \frac1{2i}\left(z - \frac1z\right)\right)\]
+	
+	$R_1$ является рациональной функцией от $z$. Пусть $R_1$ не имеет особых точек на окружности $\{z \in \Cm : |z| = 1\}$. Рассмотрим следующий интеграл:
+	\[I := \int_{|z| = 1}\frac{1}{iz}R_1dz\]
+	
+	С одной стороны, его можно вычислить, используя теорему о вычетах. С другой стороны, если произвести замену $z = e^{it}$, то:
+	\[I = \int_{0}^{2\pi} R(\cos{t}, \sin{t})dt\]
+	
+	Получен способ вычислять еще один класс вещественных интегралов.
+\end{note}

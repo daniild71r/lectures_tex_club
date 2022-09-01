@@ -1,0 +1,86 @@
+\subsection{Построение комбинаторов логических значений, булевых функций, операций с параметрами, проверки на ноль для нумералов Чёрча}
+    
+\begin{definition}
+    \textit{Комбинатором} называется замкнутый $\lambda$-терм (без свободных переменных).
+\end{definition}
+
+\textbf{Представление логических значений и булевых функций}\\
+
+Пусть
+$$
+    False = \lambda xy.y (= \overline{0})
+$$
+$$
+    True = \lambda xy.x
+$$
+Получается, что
+$$
+    True \: M \: N = M
+$$
+$$
+    False \: M \: N = N
+$$
+Тогда логические функции выражаются следующим образом:
+$$
+    And = \lambda pq.pqp
+$$
+$$
+    Or = \lambda pq.ppq
+$$
+$$
+    Not = \lambda p.p \: False \: True
+$$
+
+\begin{proof}*\\
+    1) $And = \lambda pq.pqp$\\
+    Если $p = 0$, то $p \wedge q = 0 = p$\\
+    Если $p = 1$, то $p \wedge q = q$\\
+    2) $Or = \lambda pq.ppq$\\
+    Если $p = 0$, то $p \lor q = q$\\
+    Если $p = 1$, то $p \lor q = 1 = p$\\
+    3) $Not = \lambda p.p \: False \: True$\\
+    Если $p = False$, то $False \: False \: True = True$
+    Если $p = True$, то $True \: False \: True = False$
+\end{proof}
+
+
+\textbf{Представление арифметических опреаций на нумералах Чёрча}\\
+
+1) $Inc$ -- прибавление единицы ($Inc \overline{n} = \overline{n + 1}$)\\
+
+$Inc = \lambda nfx.f(nfx)$\\
+
+\begin{proof}
+    $
+        Inc \overline{n} = (\lambda nfx.f(nfx)) \overline{n} = \lambda fx. f(\overline{n}fx) = \lambda fx.f(\lambda gy.\underbrace{g(g(g(...)))}_{n \text{раз}} fx) = \lambda fx. \underbrace{f(f(f(...(f(fx))...)))}_{n + 1 \text{раз}} = \overline{n + 1}
+    $
+\end{proof}
+
+2) $Add$ -- сложение\\
+
+$Add = \lambda mnfx.mf(nfx)$\\
+
+\begin{proof}*\\
+    $
+    Add \: \overline{m} \: \overline{n} = (\lambda mnfx.mf(nfx)) \: \overline{m} \: \overline{n} = \lambda fx. \overline{m}f(\overline{n}fx) = \lambda fx. (\lambda gy. \underbrace{g(g(g(...)))}_{m \text{раз}}) f (\underbrace{f(f(...))}_{n \text{раз}}) = \lambda fx. \underbrace{f(f(f(...)))}_{m + n \text{раз}} = \overline{m + n}
+    $
+\end{proof}
+
+3) $Mult$ -- умножение\\
+
+$Mult = \lambda mnfx.m(nf)x$\\
+
+Доказательство аналогично.\\
+
+\textbf{Проверка на ноль для нумералов Чёрча}
+$$
+    IsZero = \lambda n.n (\lambda x.False) True
+$$
+Проверим для нуля:
+$$
+    IsZero \overline{0} = \overline{0} (\lambda x.False)True = True
+$$
+Любое число, кроме нуля представимо в виде: $\overline{n + 1}$. Проверим $IsZero$ для таких чисел:
+$$
+    IsZero(\overline{n + 1}) = \overline{n + 1} (\lambda x. False) True = (\lambda fx.f(...)) (\lambda x. False) True = ((\lambda x. False)(...)) = False 
+$$

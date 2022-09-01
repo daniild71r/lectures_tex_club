@@ -1,0 +1,54 @@
+\begin{task}{4}
+	Рассмотрим функцию $\nu: \CP(\R) \rightarrow [0, +\infty]$ вида 
+	$$
+	\nu(A) = \#\{k \in \Z: [k, k+1)\cap A \neq \varnothing\},~ A \subset \R
+	$$ 
+где $\#B = n$ если множество $B$ состоит из $n \in \N_0$ элементов и $\#B = +\infty$ если множество $B$ бесконечно. Докажите, что $\nu$ является внешней мерой. Опишите все $\nu$-аддитивные множества.
+\end{task}
+
+\begin{solution}
+	\begin{itemize}
+		\item Докажем, что $\nu$ --- счетно-аддитивна:
+		\begin{align*}
+			\nu\left(\bigcup_{k=1}^{\infty} A_k\right) &= \#\left\{k \in \Z \mid 
+			[k,k+1) \cap \bigcup_{k=1}^{\infty}A_k \neq \varnothing\right\} \leq \\ 
+			&\leq \#\left\{\bigcup_{k=1}^{\infty}\left\{k\in \Z \mid 
+			[k,k+1)\cap A_k \neq \varnothing \right\}\right\} = \sum_{k=1}^{\infty}\nu(A_k)
+		\end{align*}
+	
+		\item 
+		Докажем, что $\nu$-аддитивные множества это 
+		$$
+		A_\nu = \left\{\bigcup_{k=1}^{\infty}I_k\mid I_k \text{--- промежуток с целыми концами}\right\}
+		$$
+		Пусть $A \in A_\nu$, докажем, что 
+		$$
+		\nu(T) = \nu(T \cap A ) + \nu(T \cap A^c)
+		$$
+		\begin{equation}\label{task_4_f1}
+		\nu(T\cap A) = \#\left\{k \in \Z \mid [k,k+1)\cap A\cap T \neq \varnothing \right\} = \#\left\{k \in \Z \mid ([k,k+1) \cap T)\cap A \right\}
+		\end{equation}
+		С другой стороны:
+		\begin{equation}\label{task_4_f2}
+		\nu(T\cap A^c) = \#\left\{k \in \Z \mid [k,k+1)\cap A^c\cap T \neq \varnothing \right\} = \#\left\{k \in \Z \mid ([k,k+1) \cap T)\cap A^c \right\}
+		\end{equation}
+		В силу того, $A$ и $A^c$ состоит из промежутков с целыми концами, то из \ref{task_4_f1}, \ref{task_4_f2}:
+		$$
+		\nu(T \cap A) + \nu(T \cap A^c) = \#\left\{k\in \Z \mid [k,k+1) \cap T \neq \varnothing \right\} = \nu(T)
+		$$
+		Пусть в $A_\nu$ есть множество $A$, точка границы замыкания которого --- не целая. 
+		Тогда рассмотрим часть этого множества $A' \subset A$ без всех остальных укладывающихся в это множество
+		единичных промежутков, $A' \in A_\nu$, так как $A_\nu$ --- сигма-алгебра. Не умаляя общности считаем, что 
+		$$
+		A' = [k,x), ~ x\notin \Z,~ x < k+1
+		$$
+		(случай отрезка рассматривается аналогично), тогда для $T = [k,k+1]$:
+		$$
+		1 = \nu(T) = \nu(T\cap A) + \nu(T \cap A^c) = 1 + 1 =2
+		$$
+		Таким образом $A_\nu$ действительно все $\nu$-аддитивные множества.
+		\end{itemize}
+	
+	
+\end{solution}
+

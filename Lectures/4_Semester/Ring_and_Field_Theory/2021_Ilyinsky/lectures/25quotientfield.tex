@@ -1,0 +1,59 @@
+\subsection{Поле частных}
+
+Мы собираемся доказать, что если $K$ "--- факториальное кольцо, то кольцо $K[x]$ тоже факториально. Для этого нам потребуется некоторая вспомогательная конструкция. \textbf{До конца раздела} зафиксируем область целостности $K$.
+
+\begin{definition}
+	Рассмотрим множество вида $M \hm{:=} \{(a, b) : a \in K, b \in K \backslash \{0\}\}$. Зададим на нем отношение $(a, b) \sim (c, d) \lra ad = bc$.
+\end{definition}
+
+\begin{proposition}
+	Отношение $\sim$ является отношением эквивалентности на $M$.
+\end{proposition}
+
+\begin{proof}
+	Симметричность и рефлексивность очевидны, поэтому остается проверить транзитивность. Пусть $(a, b) \sim (c, d)$ и $(c, d) \sim (e, f)$. Тогда $adf = bcf = bde$, и, поскольку $d \ne 0$, $af = be$, то есть $(a, b) \sim (e, f)$.
+\end{proof}
+
+Будем теперь обозначать элементы $M$ через $\frac{a}{b}$, $a \in K, b \in K \backslash \{0\}$.
+
+\begin{definition}
+	Зададим на $M /{\sim}$ операции сложения и умножения следующим образом:
+	\begin{itemize}
+		\item $\forall [\frac{a}{b}], [\frac{c}{d}] \in M: [\frac{a}{b}] + [\frac{c}{d}] := [\frac{ad + bc}{bd}]$
+		\item $\forall [\frac{a}{b}], [\frac{c}{d}] \in M: [\frac{a}{b}] \cdot [\frac{c}{d}] := [\frac{ac}{bd}]$
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}
+	Операции сложения и умножения на $M /{\sim}$ определены корректно, и $(M/{\sim}, +, \cdot)$ "--- поле.
+\end{proposition}
+
+\begin{proof}
+	Ограничимся проверкой корректности, поскольку остальные свойства тривиальны. Для этого заметим, что достаточно проверить независимость результата сложения и умножения от замены $\frac ab$ на $\frac{ka}{kb}$ при произвольном $k \in K \backslash \{0\}$:
+	\begin{itemize}
+		\item $\forall [\frac{a}{b}], [\frac{c}{d}] \in M: [\frac{ka}{kb}] + [\frac{c}{d}] = [\frac{kad + kbc}{kbd}] = [\frac{ad + bc}{bd}] = [\frac{a}{b}] + [\frac{c}{d}]$
+		\item $\forall [\frac{a}{b}], [\frac{c}{d}] \in M: [\frac{ka}{kb}] \cdot [\frac{c}{d}] = [\frac{kac}{kbd}] = [\frac{ac}{bd}] = [\frac{a}{b}] \cdot [\frac{c}{d}]$\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Поле $M /{\sim}$ называется \textit{полем частных} области целостности $K$. Обозначение "--- $\quot(K)$.
+\end{definition}
+
+\begin{note}
+	Кольцо $K$ вкладывается в $M$, поскольку имеет место канонический мономорфизм вида $a \mapsto \frac{a}{1}$.
+\end{note}
+
+\begin{note}
+	Вместо области целостности $K$ можно рассматривать ее подмножество $S$, замкнутое относительно умножения. Тогда получится кольцо, обозначаемое через $S^{-1}K$, в котором все элементы из $S$ обратимы.
+\end{note}
+
+\begin{example}
+	Рассмотрим несколько примеров полей частных:
+	\begin{itemize}
+		\item $\quot(\Z) = \Q$
+		\item $\quot(\Z[i]) = \Q[i]$
+		\item $\quot(K[x]) = K(x)$ "--- \textit{поле рациональных функций}, где $K$ "--- область целостности
+		\item $\quot(F) = F$, где $F$ "--- поле
+	\end{itemize}
+\end{example}

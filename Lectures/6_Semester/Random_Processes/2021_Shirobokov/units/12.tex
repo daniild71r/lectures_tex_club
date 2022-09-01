@@ -1,0 +1,325 @@
+\newpage
+\lecture{12}{Непрерывные цепи Маркова (продолжение)}
+\begin{Def}
+    \textbf{Прямое уравнение Колмогорова}
+    \begin{align*}
+      & \dot{P}(t) = P(t)Q
+    \end{align*}
+\end{Def}
+\begin{Def}
+    \textbf{Обратное уравнение Колмогорова}
+    \begin{align*}
+      & \dot{P}(t) = QP(t)
+    \end{align*}
+\end{Def}
+\subsection{Эргодические непрерывные цепи Маркова}
+\begin{Def}
+    Распределение $\pi^0$ называется \textbf{стационарным}, если
+    \begin{align*}
+      & \forall t \geq 0 \ P^T(t)\pi^0 = \pi^0
+    \end{align*}
+\end{Def}
+\begin{Def}
+    Для стационарного
+    \begin{align*}
+      & \dot{\pi}(t) = Q^T\pi(t) \Rightarrow 0 = Q^T\pi^0(t)
+    \end{align*}
+    \textbf{стационарные уравнения Колмогорова.}
+\end{Def}
+\begin{Def}
+    Если
+    \begin{align*}
+      & \exists t > 0: \ p_{ij}(t) > 0
+    \end{align*}
+    то говорят, что \textbf{за $i$ следует $j$}.
+\end{Def}
+\begin{Def}
+    Если $i \rightarrow j$ и $j \rightarrow i$, то говорят, что \textbf{$i$ и
+      $j$~--- сообщающиеся}.
+\end{Def}
+Отношение делит цепь на \textbf{классы сообщающихся состояний}.
+\begin{Def}
+    Если
+    \begin{align*}
+      \forall j \in S \ (i \rightarrow j) \rightarrow (j \rightarrow i)
+    \end{align*}
+    то говорят, что \textbf{$i$~--- существенное состояние}, иначе
+    \textbf{несущественное}.
+\end{Def}
+\begin{Def}
+    Если $\dst \lim_{t \to \infty} p_{ii}(t) = 0$, то состояние $i$ называется
+    \textbf{нулевым}, иначе \textbf{ненулевым}.
+\end{Def}
+\begin{Def}
+    Если все состояния сообщаются, то цепь называется \textbf{неразложимой
+      (неприводимой)}.
+\end{Def}
+\begin{Des}
+    Обозначим вероятность возврата в $i$ за конечное время
+    \begin{align*}
+      & F_i = \int_0^{\infty}f_i (t)dt
+    \end{align*}
+\end{Des}
+\begin{Def}
+    Если $F_i = 1$, то состояние $i$ наывается \textbf{возвратным}, иначе
+    \textbf{невозвратным}.
+\end{Def}
+\begin{theorem} (о солидарности)
+    \\
+    Для неразложимых марковских цепей выполняется:
+    \begin{enumerate}
+        \item Если есть хотя бы одно нулевое состояние, то нулевыми будут все;
+        \item Если есть хотя бы одно возвратное состояние, то возвратными будут
+        все.
+    \end{enumerate}
+\end{theorem}
+\begin{Def}
+    ДМЦ, у которой
+    \begin{align*}
+      & p_{ij} = \begin{cases}
+          \dst \frac{q_{ij}}{q_i}, \ i \neq j \\
+          0, \ i = j
+          \end{cases}
+    \end{align*}
+    называется \textbf{цепью скачков}.
+\end{Def}
+\begin{Def}
+    Марковская цепь называется \textbf{эргодической}, если $\forall i,j \in S \
+    \exists \dst \lim_{t\to \infty}p_{ij}(t) = p_j > 0$, не зависящий от $i$.
+\end{Def}
+\begin{theorem} Эргодическая для конечных цепей
+    \\
+    Для эргодичности конечной непрерывной цепи Маркова необходимо и достаточно
+    наличие неразложимости.
+\end{theorem}
+\begin{Proof}
+    Докажем <<идейно>>.
+    \begin{itemize}
+        \item Непрерывность.
+        \\
+        Аналогично дискретной.
+        \item Достаточность.
+        \\
+        Заметим, что в силу неразложимости $\forall t \geq 0 \ p_{ij}(t)>0$.
+        \\
+        В силу экспоненциального распределения и сообщаемости вероятность
+        попасть в любое состояние из любого за сколь угодно малое время не ноль;
+        далее доказываем точь-в-точь как для дискретной цепи.
+    \end{itemize}
+\end{Proof}
+\begin{theorem} (о предельном распределении)
+    \\
+    В конечных эргодических цепях
+    \begin{enumerate}
+        \item $\exists C > 0, \ \rho \in (0;1): \ \forall t \geq 0 \ \left| p_{ij}(t) \right| \leq
+        C\rho^t$;
+        \item числа $p_{j}$ задают распределение состояний;
+        \item это распределение стационарно;
+        \item это стационарное распределение~--- единственное стационарное
+        распределение для данной цепи Маркова;
+        \item $\forall j \ \pi_{j}(t) \To{n \to \infty} p_j$
+    \end{enumerate}
+\end{theorem}
+\begin{Proof}
+    Доказательство проводим точь-в-точь как для непрерывного случая.
+\end{Proof}
+\begin{theorem} (без доказательства)
+    \\
+    В конечной непрерывной эргодической цепи Маркова
+    \begin{align*}
+      & \frac{1}{T}\int_{0}^T\chi_{X(t)=i}dt \os{\text{п.~н.}}{\To{t\to \infty}}p_j
+    \end{align*}
+\end{theorem}
+\subsection{Процессы гибели и рождения}
+\begin{Def}
+    Однородная непрерывная марковская цепь называется \textbf{процессом гибели и
+      рождения}, если ее стохастический граф имеет вид
+    (число состояний может быть конечным или бесконечным).
+\end{Def}
+\begin{Def}
+    $\lambda_j$~--- \textbf{интенсивности рождения}.
+\end{Def}
+\begin{Def}
+    $\mu_j$~--- \textbf{интенсивности гибели}.
+\end{Def}
+\begin{theorem} (без доказательства)
+    \\
+    Пусть $X(t)$~--- конечный процесс гибели и рождения, $\lambda_j, \mu_j > 0$.
+    Тогда стационарное распределение существует, единственно и определяется
+    соотношениями
+    \begin{align*}
+      & \pi_0^0 = \left( \sum_{i=0}^N \prod_{j=0}^i \frac{\lambda_j}{\mu_j} \right)^{-1} \\
+      & \pi_j^0 = \frac{\lambda_j}{\mu_j}\pi_{j-1}^0
+    \end{align*}
+\end{theorem}
+\begin{Def}
+    Если все $\lambda_j = 0$, то это \textbf{процесс (чистой) гибели}.
+\end{Def}
+\begin{Def}
+    Если все $\mu_j = 0$, то это \textbf{процесс (чистого) рождения}.
+\end{Def}
+\subsection{Взрывные марковские цепи}
+\begin{Des}
+    Пусть $T_n, \ n \geq 1$~--- моменты времени, когда осуществляются переходы
+    между состояниями, $T_{\infty} = \dst \lim_{n \to \infty} T_n$.
+\end{Des}
+\begin{Des}
+    Если
+    \begin{align*}
+      & \forall i \in S \ \PP\left( T_\infty = \infty \mid X(0) = i \right) = 1
+    \end{align*}
+    то это \textbf{невзрывная}, иначе \textbf{взрывная} марковская цепь.
+\end{Des}
+Бесконечное число переходов за конечное время.
+\begin{theorem}
+    Пусть $\{\xi_n\} \in Exp(\lambda_n)$ независимы. Тогда
+    \begin{align*}
+      & \sum_{j=1}^N\frac{1}{\lambda_j} = \infty \Rightarrow \PP\left( \sum_{j=1}^N \xi_j =\infty \right) =1
+    \end{align*}
+    \begin{align*}
+      & \sum_{j=1}^N\frac{1}{\lambda_j} < \infty \Rightarrow \PP\left( \sum_{j=1}^N \xi_j <\infty \right) =1
+    \end{align*}
+\end{theorem}
+\begin{Proof}
+    Пусть
+    \begin{align*}
+      & \sum_{j=1}^N\frac{1}{\lambda_j} = \EE \sum_{j=1}^N \xi_j < \infty \Rightarrow \PP\left( \sum_{j=1}^N \xi_j <\infty \right) =1
+    \end{align*}
+    Пусть
+    \begin{align*}
+      & \sum_{j=1}^\infty\frac{1}{\lambda_j} = \infty
+    \end{align*}
+    Тогда
+    \begin{align*}
+      & \EE \exp\left( -\sum_{j=1}^\infty\xi_j\right) = \prod_{j=1}^\infty \EE \exp \left( -\xi_j \right) = \prod_{j=1}^\infty \left( 1 + \frac{1}{\lambda_n} \right)^{-1} = 0
+    \end{align*}
+    \begin{align*}
+      & \PP\left( \sum_{j=1}^N \xi_j =\infty \right) = 1
+    \end{align*}
+\end{Proof}
+\begin{corollary}
+    Процесс рождения с интенсивностями $\lambda_j$ является взрывным тогда и
+    только тогда, когда
+    \begin{align*}
+      & \sum_{j=1}^N\frac{1}{\lambda_j} < \infty
+    \end{align*}
+\end{corollary}
+\begin{Note}
+    Пуассоновский процесс есть непрерывный невзрывной процесс рождения.
+\end{Note}
+\subsection{Потоки событий}
+\begin{Def}
+    \textbf{Поток событий}~--- последовательность одинаковых событий,
+    происходящих одно за другим через промежутки времени случайной длины.
+\end{Def}
+\begin{Des}
+    Пусть $n(t_1,t_2)$~--- число событий из потока, произошедщших на промежутке
+    $[t_1, t_2)$.
+\end{Des}
+\begin{Def}
+    Предположим, что для всех $t$ существует и конечен предел
+    \begin{align*}
+      & \lambda(t) = \lim_{n \to 0}\frac{P(n(t,t+h) > 0)}{h}
+    \end{align*}
+    Он называется \textbf{интенсивностью потока событий.}
+\end{Def}
+\begin{Def}
+    Потко называется \textbf{однородным (стационарным)}, если законы
+    распределения $n(t_1,t_2)$ и $n(t_1+s, t_2+s)$ совпадают для всех $s \geq
+    0$.
+\end{Def}
+\begin{Des}
+    Для однородных потоков
+    \begin{align*}
+      & \PP\left( n(s,s+t) = m \right) = \PP\left( n(0,t) = m \right)
+    \end{align*}
+    и обозначим
+    \begin{align*}
+      & \eta(t) = n(0, t)
+    \end{align*}
+    а
+    \begin{align*}
+      & \lambda(t) = \lim_{n \to 0}\frac{P(n(t,t+h) > 0)}{h} = \lim_{n \to 0}\frac{P(n(0,h) > 0)}{h} = \lambda(0) = \lambda
+    \end{align*}  
+\end{Des}
+\begin{Def}
+    Поток называется \textbf{ординарным}, если
+    \begin{align*}
+      & \forall t \geq 0, \ h > 0 \ \PP\left( n(t,t+h) = 1 \right) = \lambda(t)h+o(h), \ h \to 0
+    \end{align*}
+    \begin{align*}
+      & \forall t \geq 0, \ h > 0 \ \PP\left( n(t,t+h) > 1 \right) = o(h), \ h \to 0
+    \end{align*}
+\end{Def}
+\begin{corollary}
+    \begin{align*}
+      & \forall t \geq 0, \ h > 0 \ \PP\left( n(t,t+h) = 0 \right) = 1-\lambda(t) h + o(h), \ h \to 0
+    \end{align*}
+\end{corollary}
+\begin{Prop}
+    Для ожнородного потока
+    \begin{align*}
+      & \forall t \geq 0, \ h > 0 \ \PP\left( n(t,t+h) = 1 \right) = \lambda h+o(h), \ h \to 0
+    \end{align*}
+    \begin{align*}
+      & \forall t \geq 0, \ h > 0 \ \PP\left( n(t,t+h) = 0 \right) = 1 - \lambda h+o(h), \ h \to 0
+    \end{align*}
+\end{Prop}
+\begin{Def}
+    Рассмотрим $0 \leq t_1 \leq \dots \leq t_{m+1}$, $\xi_k = n(t_k,t_{k+1})$.
+    Если эти величины независимы в совокупности, то поток называется
+    \textbf{потоком без последействия.}
+\end{Def}
+\begin{Prop}
+    Рассмотрим ординарный поток без последействия $X(t) = n(0,t)$. У него
+    независимы приращения, а значит, он марковский. Его множество состояний есть
+    $\NN_0$, а значит, это марковская цепь. Пусть между событиями обязательно
+    происходит конечное время. Если процесс однороден, то и цепь однородна с
+    интенсивностями перехода между состояниями $\lambda$.
+    \\
+    Это будет являться пуассоновским процессом.
+\end{Prop}
+\begin{Def}
+    Ординарный поток без последействия называют \textbf{пуассоновским потоком
+      событий}.
+\end{Def}
+\begin{Def}
+    Однородный пуассоновский поток называют \textbf{простейшим потоком событий}.
+\end{Def}
+\subsection{Эквивалентные определения пуассоновского процесса}
+\begin{enumerate}
+    \item Первый подход.
+    \begin{Def}
+        Случайная функция $\left\{ K(t) \mid t \geq 0 \right\}$ называется
+        \textbf{пуассоновским процессом интенсивности $\lambda$}, если
+        \begin{enumerate}
+            \item $K(0) = 0$ почти наверное;
+            \item $K(t)$~--- процесс с независимыми приращениями;
+            \item $\forall t > s \geq 0$ $K(t) - K(s) \in Po(\lambda(t-s))$
+        \end{enumerate}
+    \end{Def}
+    \item Второй подход.
+    \begin{Def} Пусть $\{\xi_n\}$~--- последовательность независимых случайных
+        величин с распределением $Exp(\lambda)$. Обозначим
+        \begin{align*}
+          & S_0 = 0, \ S_n = \sum_{i=1}^n \xi_i
+        \end{align*}
+        Введём процесс
+        \begin{align*}
+          & X(t) = \sup \{n \mid S_n \leq t\}
+        \end{align*}
+        Это будет пуассоновский с параметром $\lambda$ процесс.
+    \end{Def}
+    \item Третий подход.
+    \begin{Def}
+        Пусть $K(t), \ t \geq 0$~--- непрерывная марковская цепь с $S = \NN_0$,
+        непрерывным временем, непрерывная справа, процесс чистого рождения
+        интенсивности $\lambda$. Тогда это пуассоновский процесс интенсивности
+        $\lambda$.
+    \end{Def}
+    \item Четвертый подход.
+    \begin{Def}
+        Пусть дан простейший пуассоновский поток событий. Тогда $K(t) = n(0,t)$
+        будет пуассоновским процессом.
+    \end{Def}
+\end{enumerate}

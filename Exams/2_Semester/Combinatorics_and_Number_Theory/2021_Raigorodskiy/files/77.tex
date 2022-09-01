@@ -1,0 +1,9 @@
+\setcounter{section}{76}
+\section{Является ли ln n р.р. (mod 1) последовательностью?}
+\textbf{Утверждение}: $ln(n)$ не является р.р. (mod 1) последовательностью. \par
+$\blacktriangle$
+Числа, подходящие под условие, имеют вид $e^k, e^{k+1}, \dots e^{k+\gamma}$. Количество таких чисел - $e^{k+\gamma} - e^k = e^k(e^{\gamma} - 1)$ для конкретного k. Просуммируем от 1 до $[ln(N)]$, так как именно столько у нас значений может принимать k (переменная, принимающая значения из множества целых частей от $x_n$): 
+\[ F(N, \gamma) = \sum_{k=1}^{[ln(N)]} e^k(e^{\gamma} - 1) = (e^{\gamma} - 1) \cdot \frac{e^{[ln(N)] + 1}}{e - 1} + O([ln(N)])
+\]
+\[ \lim_{n \to \infty} \frac{F(N, \gamma)}{N} = \frac{e^{\gamma} - 1}{e - 1} \lim_{n \to \infty} \frac{e^{[ln(N)] + 1}  + O([ln(N)])}{N} = \frac{e^{\gamma} - 1}{e - 1} \neq \gamma\]
+$\blacksquare$

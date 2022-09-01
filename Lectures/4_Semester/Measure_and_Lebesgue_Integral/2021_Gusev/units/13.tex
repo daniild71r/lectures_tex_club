@@ -1,0 +1,317 @@
+\newpage
+\lecture{13}{Интеграл Лебега для знакопеременных функций.}
+
+\begin{definition}
+    Тройка $(X,\, \CE,\, \mu)$, где $X$~--- некоторое множество,
+    $\CE$~--- $\sigma$"=алгебра подмножества множества $X$,
+    $\mu:\:\CE\to[0,\,+\infty]$~--- $\sigma$"=аддитивная мера,
+    $(X,\, \CE)$~--- измеримое пространство, называется
+    \mdef{пространство с мерой}.
+\end{definition}
+
+\begin{definition}
+    Пусть функция $f:\: X\to\R$ измерима относительно $\CE$.
+    Пусть \begin{align*}
+        f^{+}(x)=\max(0,\, f(x))\geqslant 0, \\
+        f^{-}(x)=\max(0,\, -f(x))\geqslant 0,
+    \end{align*}
+    тогда $\forall x\ f(x)=f^+(x)-f^{-}(x)$.
+
+    Следовательно существуют конечные или бесконечные интегралы Лебега:
+    \[
+        \int f^{+}d\mu,\quad \int f^{-1}d\mu.
+    \]
+
+    Если интегралы конечные, то $f$ называется \mdef{интегрируемой по Лебегу} и \[
+        \int fd\mu:=\int f^{+}d\mu-\int f^{-}d\mu.
+    \]
+
+    Пишут, что \begin{align*}
+        f & \in L^{1}(X,\, \CE,\, \mu), \\
+        f & \in L^{1}(X,\, \mu),        \\
+        f & \in L^{1}(X),               \\
+        f & \in L^{1}(\mu).
+    \end{align*}
+
+    \begin{remark}
+        Часто под $L^1(X,\, \CE,\, \mu)$ понимается множество классов эквивалентности:
+        $L^1(X,\, \CE,\, \mu)\setminus\sim$, где $f\sim g\Leftrightarrow f=g$ $\mu$"=почти всюду.
+    \end{remark}
+\end{definition}
+
+\begin{remark}
+    Функция $f$ интегрируема по Лебегу, тогда и только тогда, когда \[
+        \int |f|d\mu<\infty.
+    \]
+
+    Следует непосредственно из определения, так как $|f|=f^{+}+f^{-}$.
+\end{remark}
+
+\begin{claim}
+    Если $f,\, g\in L^{1}(\mu)$, то $\forall \alpha,\, \beta\in\R$ выполняется
+    $\alpha f+\beta g\in L^1(\mu)$ и \[
+        \int (\alpha f+\beta g)d\mu=\alpha\int fd\mu + \beta\int gd\mu.
+    \]
+
+    \begin{proof}
+
+        Ограничимся случаем $\alpha=\beta=1$. Пусть $h=f+g$. Тогда \[
+            h^+-h^-=f^+-f^-+g^+-g^-\Rightarrow
+            h^++f^-+g^-=f^++g^++h^-.
+        \]
+        Ранее была доказана аддитивность интеграла Лебега, а значит, проинтегрировав полученное равенство,
+        имеем \begin{align*}
+            \int h^+d\mu+\int f^-d\mu+\int g^-d\mu & =
+            \int \left(h^++f^-+g^-\right)d\mu=                                           \\
+                                                   & =\int \left(f^++g^++h^-\right)d\mu=
+            \int f^+d\mu+\int g^+d\mu+\int h^-d\mu.
+        \end{align*}
+        Перегруппировав слагаемые получаем то, что требовалось: \[
+            \int h^+d\mu-\int h^-d\mu=
+            \int f^+d\mu-\int f^-d\mu+\int g^+d\mu-\int g^-d\mu.
+        \]
+
+    \end{proof}
+\end{claim}
+
+Рассмотрим некоторые факты, которые впоследствии приведут к лемме Фату.
+Пусть функции $f_n:\: X\to[0,\, +\infty]$ сходятся поточечно к $f$. Тогда \[
+    \inf_{n}f_n(x)\leqslant f_n(x)\leqslant\sup_n f_n(x).
+\]
+Тогда, проинтегрировав левое неравенство, \begin{equation}
+    \label{eq:lect13:ints}
+    \int \inf_n f_n(x)d\mu\leqslant\int f_n(x)d\mu\Rightarrow
+    \int \inf_n f_n(x)d\mu\leqslant\inf_n\int f_n(x)d\mu.
+\end{equation}
+
+\begin{lemma}[Фату]
+    Пусть функции $f_n:\: X\to[0,\, +\infty]$ измеримы относительно $\CE$. Тогда
+    \begin{equation}
+        \label{eq:lect13:fatu}
+        \int \lim_{\overline{n\to\infty}}f_n(x)d\mu(x)\leqslant\lim_{\overline{n\to\infty}}
+        \int f_n(x)d\mu(x).
+    \end{equation}
+
+    \begin{remark}
+        Ранее было доказано, что $f(x)=\lim\limits_{\overline{n\to\infty}}f_n(x)$ измерима
+        относительно $\CE$.
+    \end{remark}
+
+    \begin{proof}
+
+        Из курса математического анализа имеем \[
+            \lim_{\overline{n\to\infty}} f_n(x)=\lim_{n\to\infty}\inf_{k\geqslant n}f_k(x).
+        \]
+        В силу \eqref{eq:lect13:ints} \begin{equation}
+            \label{eq:lect13:2}
+            \forall n\in\N\quad \int \inf_{k\geqslant n}f_kd\mu\leqslant\inf_{k\geqslant n}\int f_kd\mu.
+        \end{equation}
+
+        Рассмотрим $g_n(x):=\inf\limits_{k\geqslant n} f_k(x)$, тогда
+        $g_{n+1}(x)\geqslant g_n(x)\ \forall n\in\N$. А также \[
+            g_n(x)\xrightarrow[n\to\infty]{}\lim_{\overline{n\to\infty}}f_n(x)=g(x).
+        \]
+        Поэтому по теореме Леви: \[
+            \int g_nd\mu\xrightarrow[n\to\infty]{}\int gd\mu.
+        \]
+        Итак, перейдя к пределу в неравенстве \eqref{eq:lect13:2} получим неравенство \eqref{eq:lect13:fatu}.
+
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[Лебега об ограниченной сходимости]
+    Пусть $\forall n\in\N:\: f_n\in L^1(X,\, \CE,\, \mu)$, а также
+    $\forall x\in X:\: f_n(x)\xrightarrow[n\to\infty]{} f(x)$ (отсюда следует, что $f$ измерима относительно $\CE$).
+
+    Пусть $g\in L^1(X,\, \CE,\, \mu)$ и $\forall x \in X$
+    выполнено $f_n(x)\leqslant g(x)\ \forall n\in\N$.
+    Тогда $f\in L^1(X,\, \CE,\, \mu)$ и \[
+        \int |f_n-f|d\mu\xrightarrow[n\to\infty]{}0.
+    \]
+
+    \begin{remark}
+        Данная сходимость называется \mdef{сходимость в среднем}.
+    \end{remark}
+
+    \begin{next0}
+        В частности, \[
+            \int f_nd\mu\xrightarrow[n\to\infty]{}\int fd\mu,
+        \]
+        то есть можно переставлять знаки предела и интеграла:\[
+            \lim_{n\to\infty}\int f_nd\mu=\int\lim_{n\to\infty}f_nd\mu.
+        \]
+    \end{next0}
+
+    \begin{proof}
+
+        Вначале заметим, что \[
+            |f_n(x)|\leqslant g(x)\quad\forall n\Rightarrow|f(x)|\leqslant g(x)\Rightarrow
+            \int |f|d\mu\leqslant\int gd\mu<\infty\Rightarrow f\in L^1.
+        \]
+
+        Далее, \[
+            |f_n(x)-f(x)|\leqslant 2\cdot g(x)\Rightarrow 2g(x)-|f_n(x)-f(x)|\geqslant 0.
+        \]
+        Тогда по лемме Фату, \[
+            \int \lim_{\overline{n\toi}}\left(2g(x)-|f_n(x)-f(x)|\right)d\mu(x)
+            \leqslant \lim_{\overline{n\toi}}\int \left(2g-|f_n-f|\right)d\mu.
+        \]
+        Откуда, \[
+            \int 2gd\mu\leqslant\lim_{\overline{n\toi}}\int \left(2g-|f_n-f|\right)d\mu=
+            \int 2gd\mu-\overline{\lim_{n\toi}}\int |f_n-f|d\mu.
+        \]
+        Окончательно, \[
+            \overline{\lim_{n\toi}}\int |f_n-f|d\mu\leqslant 0\Rightarrow
+            \int |f_n-f|d\mu\xrightarrow[n\toi]{}0.
+        \]
+
+    \end{proof}
+\end{theorem}
+
+\subsection{Связь с интегралом Римана.}
+
+\begin{theorem}
+    Пусть $f:\: [a,\, b]\to\R$ интегрируема по Риману (в собственном смысле) на $[a,\, b]$, $a<b$,
+    $a,\, b\in\R$. Тогда \[
+        f\in L^1\left([a,\, b],\, \mathfrak{m}_1,\, \lambda\right) \text{ и }
+        \overbrace{\int_{[a,\, b]}fd\lambda}^{\text{Лебега}}=\underbrace{\int_{a}^{b}fdx}_{\text{Римана}},
+    \]
+    где $\mathfrak{m}_1$~--- $\sigma$"=алгебра $\R$, состоящая из подмножеств,
+    измеримых по Лебегу, $\lambda$~--- мера Лебега.
+
+    \begin{proof}
+
+        Рассмотрим следующее разбиение: делим отрезок $[a,\, b]$ пополам и
+        в каждой половине берем инфинум и супремум. Повторяем тоже самое
+        для меньших отрезков (см. рис. красным цветом отмечены инфинумы, зеленым~--- супремумы).
+        \begin{center}
+            \input{images/sep.tikz}
+        \end{center}
+        Более формально, пусть $\{x_k\}_{k=0}^{2^n}$~--- разбиение отрезка $[a,\, b]$
+        на отрезки длины $2^{-n}$.
+        Пусть $I_k=[x_{k-1},\, x_k)$, тогда \[
+            f(x)=\sum_{k=1}^{2^n}1_{I_k}(x)\cdot f(x)\quad \forall x\in[a,\, b].
+        \]
+        А также пусть \[
+            \underline{f}_n(x):=\sum_{k=1}^{2^n}1_{I_k}(x)\cdot \inf_{x\in I_k} f(x),\quad
+            \overline{f}_n(x):=\sum_{k=1}^{2^n}1_{I_k}(x)\cdot \sup_{x\in I_k} f(x).
+        \]
+        Тогда \[
+            \underline{f}_n(x)\leqslant f(x)\leqslant \overline{f}_n(x)\quad\forall x\in[a,\, b].
+        \]
+        По построению, \[
+            \forall x\in[a,\, b]\quad \underline{f}_n(x)\leqslant \underline{f}_{n+1}(x)
+            \text{ и }
+            \overline{f}_n(x)\geqslant \overline{f}_{n+1}(x).
+        \]
+        Поэтому \[
+            \forall x\in[a,\, b]:\ \exists\text{ конечные }
+            \underline{f}(x)=\lim_{n\toi}\underline{f}_n(x),\,
+            \overline{f}(x)=\lim_{n\toi}\overline{f}_n(x).
+        \]
+
+        По критерию Дарбу $\forall \varepsilon>0\ \exists\delta>0$:
+        если $2^{-n}<\delta$, то \[
+            \int_{a}^b\left(\overline{f}_n(x)-\underline{f}_n(x)\right)dx<\varepsilon.
+        \]
+        Далее $f$ интегрируема по Риману, следовательно ограничена, то есть
+        \[
+            \exists C>0:\: |\underline{f}_n|\leqslant C,\,
+            |\overline{f}_n|\leqslant C\ \forall n\Rightarrow
+            |\underline{f}|\leqslant C,\, |\overline{f}|\leqslant C.
+        \]
+        Откуда \[
+            \left|\overline{f}_n-\underline{f}_n\right|\leqslant 2C.
+        \]
+        Далее по теореме Лебега об ограниченной сходимости\[
+            \int_{[a,\, b]}\left(\overline{f}-\underline{f}\right)d\lambda
+            =\lim_{b\toi}\underbrace{\int\left(\overline{f}_n-\underline{f}_n\right)d\lambda}_{\leqslant\varepsilon\text{ при больших } n}
+        \]
+
+        Далее нужна следующая лемма
+        \begin{lemma}
+            Если $f\geqslant 0$ и $\int fd\mu=0$, то $f=0$ почти всюду.
+
+            \begin{proof}
+
+                Используя неравенство Чебышева (см. ниже), получаем \[
+                    \mu\left\{x:\: f>\dfrac{1}{n}\right\}\leqslant
+                    n\int fd\mu=0\Rightarrow
+                    \mu\left\{x:\: f>0\right\}=0,
+                \]
+                так как \[
+                    \mu\left\{x:\: f>0\right\}=\bigcup_{n=1}^{\infty}\left\{x:\: f(x)>\dfrac{1}{n}\right\}.
+                \]
+
+            \end{proof}
+        \end{lemma}
+
+        \begin{theorem}[Неравенство Чебышева]
+            Если $f\geqslant 0$, то \[
+                \mu\{x:\: f(x)>c\}\leqslant\dfrac{1}{c}\int fd\mu.
+            \]
+
+            \begin{proof}
+
+                Пусть $E=\{x:\: f(x)>c\}$, тогда $c\cdot 1_E\leqslant f$ везде.
+                Поэтому \[
+                    \int fd\mu\geqslant c\int 1_{E}d\mu=c\mu(E).
+                \]
+
+            \end{proof}
+        \end{theorem}
+
+        Поэтому \[
+            \int_{[a,\, b]}\left(\overline{f}-\underline{f}\right)d\lambda=0\Rightarrow
+            \overline{f}-\underline{f}=0\text{ почти всюду.}
+        \]
+
+        С другой стороны\[
+            \underline{f}(x)\leqslant f(x)\leqslant\overline{f}(x)\quad \forall x,
+        \]
+        Поэтому, $\forall x$ если $\underline{f}(x)=\overline{f}(x)$,
+        то $\underline{f}(x)=\overline{f}(x)=f(x)$.
+
+        Итак, для почти всех $x\in[a,\, b]$ $f(x)=\lim\limits_{n\toi}\overline{f}_n(x)$.
+        Следовательно $f$ измерима по Лебегу.
+        И по теореме Лебега об ограниченной сходимости \[
+            \int fd\lambda=\lim_{n\toi}\int\underline{f}_nd\lambda\xrightarrow[n\toi]{}
+            \int_{a}^b fdx.
+        \]
+        Так как,
+        \[
+            \int_{a}^b\underline{f}_nd\lambda=\underbrace{2^{-n}\sum_{k=1}^{2^n}f_n(\xi_k)}_
+            {\text{нижняя сумма Дарбу}},\quad
+            \xi_k\in I_k.
+        \]
+
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[критерий Лебега интегрируемости по Риману]
+    Ограниченная функция $f:\: [a,\, b]\to\R$ интегрируема по Риману тогда и только тогда,
+    когда $f$ непрерывна почти всюду.
+
+    \begin{proof}
+
+        \circled{$\Leftarrow$} Пусть $x\in [a,\, b]$ не является узлом разбиения
+        ни для какого $n\in \N$. Тогда $f$ непрерывна $x$ тогда и только тогда, когда
+        $\underline{f}(x)=\overline{f}(x)$. В самом деле, если
+        $\underline{f}(x)=\overline{f}(x)$, то при достаточно больших $n$
+        $\overline{f}_n(x)\leqslant\underline{f}_n(x)+\varepsilon$
+        на отрезке разбиения. А значит на отрезке разбиения выполняется $|f(x)-f(y)|<2\varepsilon$.
+        В обратную сторону аналогично.
+
+        Итак, если $f$ непрерывна почти всюду, то для почти всех $x$ $\underline{f}(x)=\overline{f}(x)$.
+        Следовательно, \[
+            \int \underline{f}d\lambda=\int\overline{f}d\lambda\Rightarrow
+            \lim_{n\toi}\int_{[a,\, b]}\left(\overline{f}_n-\underline{f}_n\right)d\lambda=
+            \int_{[a,\, b]}\left(\overline{f}-\underline{f}\right)d\lambda=0.
+        \]
+        Поэтому по критерию Дарбу $f$ интегрируема по Риману.
+
+        \circled{$\Rightarrow$} Упражнение.
+
+    \end{proof}
+\end{theorem}
+

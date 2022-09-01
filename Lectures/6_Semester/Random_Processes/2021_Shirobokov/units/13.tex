@@ -1,0 +1,166 @@
+\newpage
+\lecture{13}{Непрерывные марковские процессы}
+\section{Непрерывные марковские процессы}
+\begin{Def}
+    Случайный процесс $\{X(t), \ t \in T\}$ называется \textbf{марковским},
+    если
+    \begin{align*}
+      & \forall n \geq 2, \ \forall t_1 < t_2 < \dots < t_n \in T, \ \forall X_1, \dots, X_n, \ \forall \cB \ \PP\left( X(t_{n+1}) \in\cB \mid X(t_n) = X_n, \right. \\
+      & \left. X(T_{n-1}) = X_{n-1}, \dots, X(t_1) = X_1 \right) = \PP\left( X(t_{n+1}) \in\cB \mid X(t_n) = X_n \right)
+    \end{align*}
+    (для которых вероятности существуют).
+\end{Def}
+\begin{Def}
+    \textbf{Переходная функция (вероятность)} марковского процесса
+    \begin{align*}
+      & F(t_0, x_0, t, \cB) = \PP\left( X(t) \in \cB \mid X(t_0) = x_0 \right), \ t \geq t_0
+    \end{align*}
+\end{Def}
+\begin{theorem} Уравнение Колмогорова-Чепмена
+    \begin{align*}
+      & P(t_0, x_0, t, \cB) = \int_\RR P(t_1,y,t,\cB)P(t_0,x_0, t_1, dy)
+    \end{align*}
+\end{theorem}
+\begin{Proof}
+    \begin{align*}
+      & P(t_0, x_0, t, \cB) = \int_\RR \PP\left( X(t) \in \cB \mid X(t_1) = y, X(t_0) = x_0 \right)d\PP\left( X(t_1) = y \mid X(t_0) = x_0 \right) = \\
+      & = \int_\RR P(t_1,y,t,\cB)P(t_0,x_0, t_1, dy)
+    \end{align*}
+\end{Proof}
+\begin{example}
+    $W(t)$, найти $P(t_0, x_0, t, \cB)$.
+    \\
+    Пусть для начала $t > t_0$, тогда
+    \begin{align*}
+      & P(t_0, x_0, t, \cB) = \PP\left( W(t) \in \cB \mid W(t_0) = x_0 \right) = \EE \left( \chi_{W(t) \in \cB} \mid W(t_0) = x_0 \right) = \\
+      & = \EE \left( \chi_{W(t) - W(t_0) + W(t_0) \in \cB} \mid X(t_0) = x_0 \right) = \PP\left( W(t) - W(t_0) \in \cB-x_0 \right) = \frac{1}{\sqrt{2\pi(t-t_0)}} \cdot \\
+      & \cdot \int_{\cB-x_0}\exp\left( -\frac{y^2}{2(t-t_0)} \right) dy = \frac{1}{\sqrt{2\pi(t-t_0)}} \int_{\cB}\exp\left( -\frac{(y-x_0)^2}{2(t-t_0)} \right) dy = P(t_0, x_0, t, \cB)
+    \end{align*}
+    В случае равенства
+    \begin{align*}
+      & P(t_0, x_0, t, \cB) = \chi_{x_0 \in \cB}
+    \end{align*}
+\end{example}
+\begin{theorem} Критерий марковости (без доказательства)
+    \\
+    Пусть $X(t)$~--- центрированный гауссовский процесс с дисперсией $\DD X(t) >
+    0$. Тогда его марковость равносильна условию:
+    \begin{align*}
+      & \forall t_1 \leq t_2 \leq t_3 \ R_X(t_1, t_3) = \frac{R_X(t_1,t_2)R_X(t_2,t_3)}{R_X(t_2,t_2)}
+    \end{align*}
+\end{theorem}
+\begin{Def}
+    Марковский процесс называется \textbf{однородным}, если $P(t_0,x_0,t, \cB)$
+    зависит лишь  от разности $t-t_0$ для всех параметров, где она определена.
+\end{Def}
+\begin{example}
+    Винеровский процесс есть однородный марковский.
+\end{example}
+\begin{Des}
+    \begin{align*}
+      & P(x_0, t, \cB) = P(\tau, x_0, \tau+t, \cB)
+    \end{align*}
+\end{Des}
+\begin{example}
+    Для винеровского процесса
+    \begin{align*}
+      & P(x_0, t, \cB) = \frac{1}{\sqrt{2\pi t}} \int_{\cB}\exp\left( -\frac{(y-x_0)^2}{2t} \right) dy = P(t_0, x_0, t, \cB)
+    \end{align*}
+\end{example}
+\begin{theorem} Уравнение Колмогорова-Чепмена для однородных процессов
+    \begin{align*}
+      & P(x_0, t, \cB) = \int_\RR P(y,t,\cB)P(x_0, s, dy)
+    \end{align*}
+\end{theorem}
+\begin{Prop}
+    \begin{align*}
+      & \PP\left( \bigwedge_{i=1}^n \left( X(t_i) \in \cB_i \right) \right) = \int_{\RR}\pi(dx_0) \prod_{i=1}^n\int_{\cB_i} P(t_{i-1},x_{i-1},t_i,dx_i) \\
+      & \pi(\cB) = \PP\left( X(0) \in \cB \right)
+    \end{align*}
+    Если существуют $f(t_0, x_0, t, y)$  и $f_X(x_0,0)$ такие, что
+    \begin{align*}
+      & P(t_0, x_0, t, \cB) = \int_\cB f(t_0,x_0,t,y)dy \\
+      & \pi(\cB) = \int_\cB f_X(x_0,0)dx_0
+    \end{align*}
+    то и любое распределение $k$-го порядка имеет плотность
+    \begin{align*}
+      & f_X\left( x_1, \dots, x_n; t_1, \dots, t_n\right) = \int_{\RR} \prod_{i=1}^n f(t_{i-1}, x_{i-1}, t_i, x_i) f_X(x_0, 0) dx_0
+    \end{align*}  
+\end{Prop}
+\begin{example}
+    У винеровского процесса
+    \begin{align*}
+      & f(t_0,x_0, t, y) = \frac{1}{\sqrt{2\pi t}} \exp\left( -\frac{(y-x_0)^2}{2t} \right) 
+    \end{align*}
+    \begin{align*}
+      & \pi(0) = \chi_{0 \in \cB}
+    \end{align*}
+    Удобно считать, что $f_W(x_0, 0) = \delta(x_0)$.
+\end{example}
+\subsection{Диффузионный марковвские процессы}
+Это подкласс непрерывных марковских процессов с непрерывным множеством
+состояний.
+\begin{Def}
+    \textbf{Диффузионным процессом} называется марковский процесс с непрерывными
+    временем и множеством состояний, удовлетворяющий условиям:
+    \begin{enumerate}
+        \item Снаружи:
+        \begin{align*}
+          & \lim_{t \to t_0+0} \frac{1}{t-t_0}\int_{\left| x-x_0 \right|\geq \delta} P(t_0,x_0,t,dx) = 0
+        \end{align*}
+        \item Внутри:
+        \begin{align*}
+          & \lim_{t \to t_0+0} \frac{1}{t-t_0}\int_{\left| x-x_0 \right| < \delta} (x-x_0) P(t_0,x_0,t,dx) = a(t_0,x_0)
+        \end{align*}
+        \item Внутри с квадратом:
+        \begin{align*}
+          & \lim_{t \to t_0+0} \frac{1}{t-t_0}\int_{\left| x-x_0 \right| < \delta} (x-x_0)^2 P(t_0,x_0,t,dx) = b(t_0,x_0)
+        \end{align*}
+    \end{enumerate}
+    Это п.~н. непрерывность, скорость смещения, отклонение от усредненного движения.
+\end{Def}
+\begin{Def}
+    $a(t_0,x_0)$~--- \textbf{дрейф (коэффициент дрейфа (сноса))}.
+\end{Def}
+\begin{Def}
+    $b(t_0,x_0)$~--- \textbf{коэффициент диффузии}.
+\end{Def}
+\begin{Des}
+    \begin{align*}
+      & F(x,t \mid x_0,t_0) = \PP\left( X(t)< x \mid X(t_0) = x_0 \right) = P(t_t,x_0,t,(-\infty,x))
+    \end{align*}
+    Если существует плотность $f(x,t \mid x_0,t_0)\geq 0$
+    \begin{align*}
+      & F(x,t \mid x_0,t_0) = \int_{-\infty}^xf(y,t \mid x_0,t_0)dy
+    \end{align*}  
+\end{Des}
+\begin{theorem} Колмогорова (без доказательства)
+    \\
+    При определенных условиях на плотность, коэффициенты дрейфа и диффузии
+    выполнено
+    \begin{align*}
+      & \frac{\partial f(x,t \mid x_0,t_0)}{\partial t} = -\frac{\partial}{\partial x}\left( a(t,x)f(x,t\mid x_0,t_0) \right) + \frac{1}{2}\frac{\partial^2}{\partial x^2}\left( b(t,x)f(x,t\mid x_0,t_0) \right)
+    \end{align*}
+    (прямое уравнение Колмогорова)
+    \begin{align*}
+      & \frac{\partial f(x,t \mid x_0,t_0)}{\partial t_0} = -a(t_0,x_0) \frac{\partial f(x,t\mid x_0,t_0)}{\partial x_0} - \frac{b(t_0,x_0)}{2} \frac{\partial^2 f(x,t\mid x_0,t_0)}{\partial x_0^2}
+    \end{align*}
+    (обратное уравнение Колмогорова)  
+\end{theorem}
+В прямых уравнениях $x_0, t_0$ есть параметры, $x,t$~--- переменные; а в
+обратных~--- наоборот.
+\begin{Prop}
+    Винеровский процесс диффузионный, причем $a \equiv 0$, $b \equiv 1$, и
+    уравнения Колмогорова запишутся как
+    \begin{align*}
+      & \frac{\partial f(x,t \mid x_0,t_0)}{\partial t} = \frac{1}{2}\frac{\partial^2f(x,t\mid x_0,t_0)}{\partial x^2}
+    \end{align*}
+    (прямое уравнение Колмогорова)
+    \begin{align*}
+      & \frac{\partial f(x,t \mid x_0,t_0)}{\partial t_0} = - \frac{1}{2} \frac{\partial^2 f(x,t\mid x_0,t_0)}{\partial x_0^2}
+    \end{align*}
+    (обратное уравнение Колмогорова)    
+\end{Prop}
+\begin{Note}
+    Это утверждение можно принять за определение винеровского процесса.
+\end{Note}

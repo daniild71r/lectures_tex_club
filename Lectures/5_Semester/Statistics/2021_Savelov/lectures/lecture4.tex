@@ -1,0 +1,145 @@
+\section{Методы нахождения оценок}
+\subsection{Метод подстановки}
+\begin{definition}
+Пусть в параметрическом семействе $\displaystyle \{P_{\theta } :\theta \in \Theta \}$ для некоторого функционала $\displaystyle G$ выполнено $\displaystyle \forall \theta \in \Theta \hookrightarrow \ \theta =G( P_{\theta })$. Тогда оценкой по методу подстановки называется $\displaystyle \theta ^{*}( X_{1},\dotsc\ ,X_{n}) =G\left( P_{n}^{*}\right)$, где $\displaystyle P_{n}^{*}$ -- эмпирическое распределение по выборке.
+\end{definition}
+\begin{example}
+$\displaystyle Bern( \theta ),\ N( \theta ,1)$. Пусть $\displaystyle G=\int _{\mathbb{R}} xdP,\ \theta ^{*} =\int _{\mathbb{R}} xdF_{n}^{*} =\frac{\sum _{i=1}^{n} X_{i}}{n} =\overline{X}$.
+\end{example}
+\subsection{Метод моментов}
+
+Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- выборка из распределения $\displaystyle P\in \{P_{\theta } :\theta \in \Theta \},\ \Theta \subset \mathbb{R}^{k}$. Рассмотрим борелевские функции $\displaystyle g_{1}( X) ,\ \dotsc ,\ g_{k}( X)$ со значениями в $\displaystyle \mathbb{R}$. Положим $\displaystyle m_{i}( \theta ) =E_{\theta } g_{i}( X_{1})$, где $\displaystyle m_{i}( \theta )$ конечны $\displaystyle \forall i:1\leqslant i\leqslant k,\ \forall \theta \in \Theta $. Также, обозначим
+
+
+\begin{equation*}
+m( \theta ) =\begin{pmatrix}
+m_{1}( \theta )\\
+\dotsc \\
+m_{k}( \theta )
+\end{pmatrix} ,\ \overline{g} =\begin{pmatrix}
+\frac{1}{n}\sum _{i=1}^{n} g_{1}( X_{i})\\
+\dotsc \\
+\frac{1}{n}\sum _{i=1}^{n} g_{k}( X_{i})
+\end{pmatrix} .
+\end{equation*}
+
+\begin{definition}
+Если существует и притом единственное решение системы
+
+
+\begin{equation*}
+\begin{cases}
+m_{1}( \theta ) =\overline{g_{1}( X)}\\
+\dotsc \\
+m_{k}( \theta ) =\overline{g_{k}( X)}
+\end{cases} ,
+\end{equation*}
+
+
+то его решение $\displaystyle \theta ^{*} =m^{-1}(\overline{g})$ называется оценкой по методу моментов.
+\end{definition}
+\begin{definition}
+Функции $\displaystyle g_{i}( x) =X^{i}$ называются пробными.
+\end{definition}
+\begin{note}
+В случае, когда $\displaystyle \overline{g} \notin m( \Theta )$, можно для нахождения $\displaystyle m^{-1}( g)$ взять ближайшую к $\displaystyle \overline{g}$ точку из $\displaystyle m( \Theta )$.
+\end{note}
+\begin{theorem}
+(сильная состоятельности оценки по методу моментов) Пусть $\displaystyle m:\Theta \rightarrow m( \Theta )$ -- биекция, и функцию $\displaystyle m^{-1}$ можно доопределить до функции, заданной на всем $\displaystyle \mathbb{R}^{k}$, и непрерывной в каждой точке множества $\displaystyle m( \Theta )$. Также, $\displaystyle E_{\theta } g_{i}( X_{1}) < \infty \ \forall i:1\leqslant i\leqslant k,\ \forall \theta \in \Theta $. Тогда оценка по методу моментов является сильно состоятельной оценкой параметра $\displaystyle \theta $.
+\end{theorem}
+\begin{proof}
+    По УЗБЧ $\displaystyle \overline{g}\xrightarrow{P_{\theta } -a.s.} m( \theta )$. Тогда, по теореме о наследовании сходимостей $\displaystyle \theta _{n}^{*} =m^{-1}(\overline{g})\xrightarrow{P_{\theta } -a.s.} m^{-1}( m( \theta )) =\theta $.
+\end{proof}
+\begin{theorem}
+(асимптотическая нормальность оценки по методу моментов) Если в условиях предыдущей теоремы функция $\displaystyle m^{-1}$, доопределенная на $\displaystyle \mathbb{R}^{k}$, дифференцируема на $\displaystyle m( \Theta )$, и $\displaystyle E_{\theta } g_{i}^{2}( X_{1}) < \infty \ \forall i:1\leqslant i\leqslant k$, то оценка, полученная по методу моментов, асимптотически нормальна.
+\end{theorem}
+\begin{proof}
+    $\displaystyle \sqrt{n}(\overline{g} -m( \theta ))\xrightarrow{d_{\theta }} N( 0,\ \Sigma ( \theta ))$, где $\displaystyle \Sigma ( \theta )$ -- матрица ковариаций вектора $\displaystyle ( g_{1}( X_{1}) ,\dotsc ,\ g_{k}( X_{1}))^{T}$. Далее применяем утверждение о наследовании асимптотической нормальности.
+\end{proof}
+\begin{note}
+Метод моментов -- частный случай метода подстановки:
+
+
+\begin{equation*}
+\theta =m^{-1}\begin{pmatrix}
+\int _{\mathcal{X}^{n}} g_{1}( x) dP_{\theta }( x)\\
+\dotsc \\
+\int _{\mathcal{X}^{n}} g_{k}( x) dP_{\theta }( x)
+\end{pmatrix} \Rightarrow \theta _{n}^{*} =m^{-1}\begin{pmatrix}
+\int _{\mathcal{X}^{n}} g_{1}( x) dP^{*}( x)\\
+\dotsc \\
+\int _{\mathcal{X}^{n}} g_{k}( x) dP^{*}( x)
+\end{pmatrix} =G\left( P_{n}^{*}\right) .
+\end{equation*}
+\end{note}
+\subsection{Метод максимального правдоподобия}
+
+(Будет позже)
+\subsection{Метод выборочных квантилей}
+
+Пусть $\displaystyle P$ -- распределение вероятностей на $\displaystyle \mathbb{R}$, $\displaystyle F( x)$ -- его функция распределения.
+\begin{definition}
+$\displaystyle p$-квантилью распределения $\displaystyle P$ называется $\displaystyle z_{p} =\inf\{x:F( x) \geqslant p\},\\ p \in (0,1)$.
+\end{definition}
+\begin{note}
+Если $\displaystyle F$ непрерывна, то существует точное решение $\displaystyle F( z_{p}) =p$. Если к тому же $\displaystyle F$ строго монотонна, то решение единственно.
+\end{note}
+\begin{definition}
+Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- выборка. Статистика $\displaystyle z_{n,p} =\begin{cases}
+X_{([ np] +1)}, & np\notin \mathbb{Z}\\
+X_{( np)}, & np\in \mathbb{Z}
+\end{cases}$ называется выборочным $\displaystyle p$-квантилем.
+\end{definition}
+\begin{note}
+$\displaystyle z_{n,p}$ -- это, по сути, $\displaystyle p$-квантиль эмпирического распределения $\displaystyle P_{n}^{*}$.
+\end{note}
+\begin{theorem}
+(о выборочном квантиле) Пусть $\displaystyle X_{1} ,\dotsc ,\ X_{n}$ -- выборка из распределения $\displaystyle P$ с плотностью $\displaystyle f( x)$. Пусть $\displaystyle z_{p}$ -- $\displaystyle p$-квантиль распределения $\displaystyle P$, причем $\displaystyle f( x)$ непрерывно дифференцируема в окрестности $\displaystyle z_{p}$ и $\displaystyle f( z_{p})  >0$. Тогда
+
+
+\begin{gather*}
+\sqrt{n}( z_{n,p} -z_{p})\xrightarrow{d_{\theta }} N\left( 0,\ \frac{p( 1-p)}{f^{2}( z_{p})}\right) .
+\end{gather*}
+\end{theorem}
+\begin{proof}
+\begin{gather*}
+   F_{X_{( k)}}( x) =P( X_{( k)} \leqslant x) =\sum _{m=k}^{n} C_{n}^{m} F^{m}( x)( 1-F( x))^{n-m} \Rightarrow p_{X_{( k)}}( x) =\\ nC_{n-1}^{k-1} F^{k-1}( x)( 1-F( x))^{n-k} f( x). 
+\end{gather*}
+Обозначим $\displaystyle \eta _{n} =\sqrt{n}( z_{n,p} -z_{p}) \cdotp \sqrt{\frac{f^{2}( z_{p})}{p( 1-p)}} =( z_{n,p} -z_{p}) \cdotp \sqrt{\frac{nf^{2}( z_{p})}{p( 1-p)}},\ k=\lceil np\rceil $. Нужно показать, что $\displaystyle \eta _{n}\xrightarrow{d_{\theta }} N( 0,1)$.
+\begin{gather*}
+    F_{\eta _{n}}( x) = P( \eta _{n} \leqslant x) = P\left(( z_{n,p} -z_{p}) \cdotp \sqrt{\frac{nf^{2}( z_{p})}{p( 1-p)}} \leqslant x\right) =\\ P\left(( X_{( k)} -z_{p}) \cdotp \sqrt{\frac{nf^{2}( z_{p})}{p( 1-p)}} \leqslant x\right)\overset{f( z_{p}) \  >\ 0}{=}\notag P\left( X_{( k)} \leqslant x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p}\right) =\\ F_{X_{( k)}}\left( x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p}\right) .
+\end{gather*}
+ Тогда
+ \begin{gather*}
+     f_{\eta _{n}}( x) =\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}}\cdot f_{X_{( k)}}\left( x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p}\right).
+ \end{gather*} Положим 
+\begin{gather*}
+    t_{n}( x) :=x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p},\ q:=1-p.
+\end{gather*} 
+Перепишем формулу плотности для $\displaystyle \eta _{n}$ в виде
+
+\begin{gather*}
+f_{\eta _{n}} = \sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} f_{X_{( k)}}( t_{n}) = \sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} \cdotp nC_{n-1}^{k-1} F^{k-1}( t_{n})( 1-F( t_{n}))^{n-k} f( t_{n}) =\\ \left[\sqrt{npq} \cdotp C_{n-1}^{k-1} p^{k-1} q^{n-k}\right] \cdotp \left[\frac{f( t_{n})}{f( z_{p})}\right] \cdotp \left[\left(\frac{F( t_{n})}{p}\right)^{k-1}\left(\frac{1-F( t_{n})}{q}\right)^{n-k}\right] .
+\end{gather*}
+Тогда
+
+
+\begin{gather*}
+\sqrt{npq} \cdotp C_{n-1}^{k-1} p^{k-1} q^{n-k} \ =\sqrt{npq}\frac{( n-1) !}{( k-1) !( n-k) !} p^{k-1} q^{n-k} =\\ \sqrt{npq}\frac{\sqrt{2\pi \cdotp ( n-1)}\left(\frac{n-1}{e}\right)^{n-1}( 1+o( 1))}{\sqrt{2\pi \cdotp ( k-1)}\left(\frac{k-1}{e}\right)^{k-1}( 1+o( 1))\sqrt{2\pi \cdotp ( n-k)}\left(\frac{n-k}{e}\right)^{n-k}( 1+o( 1))} p^{k-1} q^{n-k}\sim\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n-1}{( k-1)( n-k)}}\frac{( n-1)^{n-1}}{( k-1)^{k-1}( n-k)^{n-k}} p^{k-1} q^{n-k}\sim\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n-1}{( np-1)( n-np)}}\frac{( n-1)^{n-1}}{( np-1)^{np-1}( n-np)^{n-np}} p^{np-1} q^{n-np} =\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n-1}{( np-1)( n-np)}}\frac{( n-1)^{n-1}}{( np-1)^{np-1}( n-np)^{n-np}} p^{np-1} q^{n-np} =\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n\left( 1-\frac{1}{n}\right)}{n^{2}\left( p-\frac{1}{n}\right)( 1-p)}}\frac{n^{n-1}\left( 1-\frac{1}{n}\right)^{n-1}}{( np)^{np-1}\left( 1-\frac{1}{np}\right)^{np-1} n^{n-np} q^{n-np}} p^{np-1} q^{n-np} =\\ \sqrt{\frac{pq}{2\pi }}\sqrt{\frac{\left( 1-\frac{1}{n}\right)}{\left( p-\frac{1}{n}\right) q}}\frac{\left( 1-\frac{1}{n}\right)^{n-1}}{\left( 1-\frac{1}{np}\right)^{np-1}} \ \sim \ \sqrt{\frac{pq}{2\pi }}\sqrt{\frac{1}{pq}}\frac{\exp\left\{-\frac{1}{n}( n-1)\right\}}{\exp\left\{-\frac{1}{np}( np-1)\right\}}\xrightarrow[n\rightarrow \infty ]{}\frac{1}{\sqrt{2\pi }} .
+\end{gather*}
+
+
+$\displaystyle t_{n}\xrightarrow[n\rightarrow \infty ]{} z_{p}$, и так как $\displaystyle f( x)$ непрерывна в точке $\displaystyle z_{p}$, то $\displaystyle \frac{f( t_{n})}{f( z_{p})}\xrightarrow[n\rightarrow \infty ]{} 1$. Разложим $\displaystyle F$ в ряд Тейлора в окрестности точки $\displaystyle z_{p}$:
+
+
+\begin{gather*}
+    F( t_{n}) =F( z_{p}) +\frac{\partial F}{\partial t_{n}}( z_{p})( t_{n} -z_{p}) +\frac{1}{2}\frac{\partial ^{2} F}{\partial t_{n}^{2}}( z_{p})( t_{n} -z_{p})^{2} +o\left(( t_{n} -z_{p})^{2}\right) =\\ p+\frac{x}{f( z_{p})}\sqrt{\frac{pq}{n}} f( z_{p}) +\frac{1}{2} \cdotp \frac{x^{2} pq}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) \Rightarrow \\
+    \ln\frac{F( t_{n})}{p} =x\sqrt{\frac{q}{np}} +\frac{1}{2} \cdotp \frac{x^{2} q}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} q}{2pn} ,\\
+    \ln\frac{1-F( t_{n})}{q} =\ln\frac{q-x\sqrt{\frac{pq}{n}} -\frac{1}{2} \cdotp \frac{x^{2} pq}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right)}{q} =-x\sqrt{\frac{p}{nq}} -\frac{1}{2} \cdotp \frac{x^{2} p}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} p}{2qn} \Rightarrow \\
+    \ln\left[\left(\frac{F( t_{n})}{p}\right)^{k-1}\left(\frac{1-F( t_{n})}{q}\right)^{n-k}\right] =( k-1) \cdotp \left[ x\sqrt{\frac{q}{np}} +\frac{1}{2} \cdotp \frac{x^{2} q}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} q}{2pn}\right] +\\ ( n-k) \cdotp \left[ -x\sqrt{\frac{p}{nq}} -\frac{1}{2} \cdotp \frac{x^{2} p}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} p}{2qn}\right]\sim\\ np\left[ x\sqrt{\frac{q}{np}} +\frac{1}{2} \cdotp \frac{x^{2} q}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} q}{2pn}\right] +nq\left[ -x\sqrt{\frac{p}{nq}} -\frac{1}{2} \cdotp \frac{x^{2} p}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} p}{2qn}\right] =\\ o( 1) -\frac{x^{2} q}{2} -\frac{x^{2} p}{2} =o( 1) -\frac{x^{2}}{2}\xrightarrow[n\rightarrow \infty ]{} -\frac{x^{2}}{2} .
+\end{gather*}
+Таким образом, $\displaystyle f_{\eta _{n}}( x)\xrightarrow[n\rightarrow \infty ]{}\dfrac{1}{\sqrt{2\pi }} \exp\left\{-\frac{x^{2}}{2}\right\}$ равномерно на каждом отрезке $\displaystyle [ -N,N]$, т.к. каждую из предыдущих сходимостей можно мажорировать сходящейся последовательностью, не зависящей от $\displaystyle x$. Пусть $\displaystyle \varepsilon  >0,\ N_{\varepsilon } :P(| \xi |  >N_{\varepsilon }) \leqslant \varepsilon $, где $\displaystyle \xi\, \sim\, N( 0,\, 1)$, $\displaystyle g:\mathbb{R}\rightarrow \mathbb{R}$ -- непрерывная ограниченная функция. Тогда $\vert g(x)\vert \leq C\ \forall x \in \mathbb{R}$, и
+\begin{gather*}
+    | Eg( \eta _{n}) -Eg( \xi )| \leqslant \left| \int _{-N_{\varepsilon }}^{N_{\varepsilon }} g( x)( p_{\eta _{n}}( x) -p_{\xi }( x))dx\right| + (P(| \eta _{n}|  >N_{\varepsilon }) + P( |\xi | >N_{\varepsilon })) \cdotp C \xrightarrow{n\rightarrow\infty}\\ 2C\cdotp P(| \xi |  >N_{\varepsilon }) \leqslant 2C\cdotp \varepsilon \Rightarrow Eg( \eta _{n})\xrightarrow{n\rightarrow\infty} Eg( \xi ) .
+\end{gather*}
+\end{proof}

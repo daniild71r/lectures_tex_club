@@ -1,0 +1,125 @@
+\begin{definition}
+    Пусть $\displaystyle S$ -- критерий для проверки гипотезы $\displaystyle H_{0} :\ P\in \mathcal{P}_{0}$. Функция $\displaystyle B( Q,\ S) =Q( X\in S) ,\ Q\in \mathcal{P}$ называется \textit{функцией мощности критерия}\textit{.}
+\end{definition}
+\begin{definition}
+    Если для критерия $\displaystyle S$ выполнено неравенство $\displaystyle B( Q,\ S) \leqslant \varepsilon ,\ \forall Q\in \mathcal{P}_{0}$, то говорят, что $\displaystyle S$ имеет \textit{уровень значимости}\textit{ }$\displaystyle \varepsilon $.
+\end{definition}
+\begin{definition}
+    Минимальный уровень значимости $\displaystyle \alpha ( S) =\sup _{Q\in \mathcal{P}_{0}} B( Q,\ S)$ называется \textit{размером критерия}\textit{.}
+\end{definition}
+\begin{definition}
+    Пусть $\displaystyle S$ -- критерий для проверки $\displaystyle H_{0} :\ P\in \mathcal{P}_{0}$ против альтернативы $\displaystyle H_{1} :\ P\in \mathcal{P}_{1}$. Критерий $\displaystyle S$ называется \textit{несмещенным}, если $\displaystyle \sup _{Q\in \mathcal{P}_{0}} B( Q,\ S) \leqslant \inf_{Q\in \mathcal{P}_{1}} B( Q,\ S)$.
+\end{definition}
+\begin{definition}
+    Если $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n})$ -- выборка растущего размера, то последовательность критериев $\displaystyle S_{n}$ называется \textit{состоятельной}, если $\displaystyle B( Q,\ S)\xrightarrow[n\rightarrow \infty ]{} 1,\ \forall Q\in \mathcal{P}_{1}$.
+\end{definition}
+\begin{definition}
+    Критерий $S$ уровня значимости $\displaystyle \varepsilon $ называется \textit{более мощным}, чем критерий $\displaystyle R$ того же уровня значимости $\displaystyle \varepsilon $, если $\displaystyle B( Q,\ S) \geqslant B( Q,\ R) \ \forall Q\in \mathcal{P}_{1}$, т.е. вероятность ошибки второго рода у $\displaystyle S$ равномерно меньше.
+\end{definition}
+\begin{definition}
+    Критерий $\displaystyle S$ называют равномерно наиболее мощным (р.н.м.к.) уровня значимости $\displaystyle \varepsilon $, если $\displaystyle \alpha ( S) \leqslant \varepsilon $, и $\displaystyle S$ мощнее любого другого критерия $\displaystyle R$, который удовлетворяет условию $\displaystyle \alpha ( R) \leqslant \varepsilon $.
+\end{definition}
+\begin{definition}
+    Гипотеза $\displaystyle H:\ P=P_{0}$, где $\displaystyle P_{0}$ -- известное распредление, называется \textit{простой}.
+\end{definition}
+Пусть заданы простые гипотезы $\displaystyle H_{0} :\ P=P_{0}$ и альтернатива $\displaystyle H_{1} :\ P=P_{1}$, причем $\displaystyle P_{i}$ имеют плотность $\displaystyle p_{i}( x)$ по одной и той же мере $\displaystyle \mu $. Рассмотрим критерий
+\begin{equation*}
+    S_{\lambda } =\{x:\ p_{1}( x) -\lambda p_{0}( x) \geqslant 0\} .
+\end{equation*}
+\begin{lemma}
+    (Неймана-Пирсона) Пусть критерий $\displaystyle R$ удовлетворяет соотношению $\displaystyle P_{0}( X\in R) \leqslant P_{0}( X\in S_{\lambda })$. Тогда $\displaystyle P_{1}( X\in R) \leqslant P_{1}( X\in S_{\lambda })$, т.е. $\displaystyle S_{\lambda }$ мощнее $\displaystyle R$, и $\displaystyle P_{0}( X\in S_{\lambda }) \leqslant P_{1}( X\in S_{\lambda })$, т.е. $\displaystyle S_\lambda$ -- несмещенный.
+\end{lemma}
+\begin{proof}
+    Рассмотрим следующее соотношение
+    \begin{gather*}
+        I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) \leqslant I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) \cdotp I(\{x:\ p_{1}( x) -\lambda p_{2}( x) \geqslant 0\}) =\\
+        I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) I_{S_{\lambda }}( x) \leqslant ( p_{1}( x) -\lambda p_{0}( x)) I_{S_{\lambda }}( x) .
+    \end{gather*}
+    Рассмотрим первое неравенство. Если $\displaystyle p_{1}( x) -\lambda p_{0}( x) \geqslant 0$, то обе части равны. Если $\displaystyle p_{1}( x) -\lambda p_{0}( x) < 0$, то левая часть меньше нуля, а правая равна нулю.
+    
+    Рассмотрим второе неравенство. Если $\displaystyle x\in R$, то обе части равны. Иначе, левая часть равна нулю, а правая часть неотрицательна в силу выбора критерия $\displaystyle S_{\lambda }$.
+    
+    Тогда
+    \begin{gather*}
+        P_{1}( X\in R) -\lambda P_{0}( X\in R) =E_{1} I_{R}( X) -\lambda E_{0} I_{R}( X) =\\
+        \int _{\mathcal{X}} I_{R}( x) p_{1}( x) d\mu -\lambda \int _{\mathcal{X}} I_{R}( x) p_{0}( x) d\mu =\int _{\mathcal{X}} I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) d\mu \leqslant \\
+        \int _{\mathcal{X}} I_{S_{\lambda }}( p_{1}( x) -\lambda p_{0}( x)) d\mu =P_{1}( X\in S_{\lambda }) -\lambda P_{0}( X\in S_{\lambda }) \Rightarrow \\
+        P_{1}( X\in S_{\lambda }) -P_{1}( X\in R) \geqslant \lambda ( P_{0}( X\in S_{\lambda }) -P_{0}( X\in R)) \geqslant 0.
+    \end{gather*}
+    Докажем несмещенность. Если $\displaystyle \lambda \geqslant 1$, то $\displaystyle p_{0}( x) \leqslant p_{1}( x) \ \forall x\in S_{\lambda }$. Тогда
+    \begin{equation*}
+        P_{0}( X\in S_{\lambda }) =\int _{\mathcal{X}} I_{S_{\lambda }}( x) p_{0}( x) d\mu \leqslant \int _{\mathcal{X}} I_{S_{\lambda }}( x) p_{1}( x)d\mu =P_{1}( X\in S_{\lambda }) .
+    \end{equation*}
+    Если $\displaystyle \lambda < 1$, то $\displaystyle p_{1}( x) \leqslant p_{0}( x) \ \forall x\in \overline{S}_{\lambda }$. Тогда
+    \begin{gather*}
+        1-P_{1}( X\in S_{\lambda }) =P_{1}( X\in \overline{S}_{\lambda }) =\int _{\mathcal{X}} I_{\overline{S}_{\lambda }}( x) p_{1}( x) d\mu \leqslant \int _{\mathcal{X}} I_{\overline{S}_{\lambda }}( x) p_{0}( x) d\mu =\\
+        P_{0}( X\in \overline{S}_{\lambda }) =1-P_{0}( X\in S_{\lambda }) \Rightarrow P_{0}( X\in S_{\lambda }) \leqslant P_{1}( X\in S_{\lambda }) .
+    \end{gather*}
+\end{proof}
+\begin{corollary}
+    Если $\displaystyle \lambda  >0$ удовлетворяет условию $\displaystyle P_{0}( X\in S_{\lambda }) =\varepsilon $, то $\displaystyle S_{\lambda }$ -- равномерно наиболее мощный критерий размера $\displaystyle \varepsilon $. Таким образом, для нахождения равномерно наиболее мощного критерия необходимо решить уравнение
+    \begin{equation*}
+        \int _{A} p_{0}( x) d\mu =\varepsilon ,
+    \end{equation*}
+    где $\displaystyle A:=\{x:\ p_{1}( x) -\lambda p_{0}( x) \geqslant 0\}$.
+\end{corollary}
+\begin{note}
+    В абсолютно непрерывном случае, как правило, решение есть.
+\end{note}
+\subsection{Монотонное отношение правдоподобия}
+
+Пусть семейство распределений параметризовано параметром $\displaystyle \Theta \subset \mathbb{R} :\ \mathcal{P} =\{P_{\theta } ,\ \theta \in \Theta \}$. Пусть $\displaystyle \mathcal{P}$ доминируемое семейство, т.е. существует функция правдоподобия $\displaystyle f_{\theta }( x)$.
+\begin{definition}
+    Семейство $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \}$ называется \textit{семейством с монотонным отношением правдоподобия} по статистике $\displaystyle T( X)$, если $\displaystyle \forall \theta _{0} < \theta _{1}$ функция $\displaystyle \dfrac{f_{\theta _{1}}( x)}{f_{\theta _{0}}( x)}$ является монотонной функцией от $\displaystyle T( X)$, причем тип монотонности один и тот же для всех $\displaystyle \theta _{1}  >\theta _{0}$.
+\end{definition}
+\begin{theorem}
+    (о монотонном отношении правдоподобия, б/д) Пусть даны гипотезы $\displaystyle H_{0} :\theta \leqslant \theta _{0} \ ( \theta =\theta _{0}) ,\ H_{1} :\theta  >\theta _{0}$, и семейство $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \}$ с монотонным отношением правдоподобия, причем $\displaystyle \dfrac{f_{\theta _{1}}( x)}{f_{\theta _{2}}( x)}$ не убывает по $\displaystyle T( X)$ при $\displaystyle \theta _{1}  >\theta _{2}$. Тогда критерий $\displaystyle S_{\varepsilon } =\{T( X) \geqslant c_{\varepsilon }\}$ с условием $\displaystyle P_{\theta _{0}}( X\in S_{\varepsilon }) =\varepsilon $ является равномерно наиболее мощным критерием уровня значимости $\displaystyle \varepsilon $ для проверки $\displaystyle H_{0}$ против $\displaystyle H_{1}$.
+\end{theorem}
+\subsection{Двойственность доверительного оценивания и проверки гипотез}
+\begin{proposition}
+    Пусть $\displaystyle S( X)$ -- доверительная область уровня доверия $\displaystyle 1-\varepsilon $ для параметра $\displaystyle \theta \in \Theta $. Хотим проверить простую гипотезу $\displaystyle H_{0} :\ \theta =\theta _{0}$. Рассмотрим $\displaystyle \tilde{S}( \theta ) =\{X\in \mathcal{X} :\ \theta \notin S( X)\}$. Тогда $\displaystyle \tilde{S}( \theta _{0})$ -- критерий уровня значимости $\displaystyle \varepsilon $ для проверки $\displaystyle H_{0}$.
+\end{proposition}
+\begin{proof}
+    \begin{equation*}
+        P_{\theta _{0}}\left( X\in \tilde{S}( \theta _{0})\right) =P_{\theta _{0}}( \theta _{0} \notin S( X)) =1-P_{\theta _{0}}( \theta _{0} \in S( X)) \leqslant \varepsilon .
+    \end{equation*}
+\end{proof}
+\begin{proposition}
+    Пусть $\displaystyle S_{\theta _{0}}$ -- критерий уровня значимости $\displaystyle \varepsilon $ для проверки $\displaystyle H_{0} :\, \theta =\theta _{0}$, который известен $\forall \theta_0 \in \Theta$. Рассмотрим $\displaystyle S( X) =\{\theta \in \Theta :\ X\notin S_{\theta }\}$. Тогда $\displaystyle S( X)$ -- доверительное множество уровня доверия $\displaystyle 1-\varepsilon $.
+\end{proposition}
+\begin{proof}
+    \begin{equation*}
+        \forall \theta \in \Theta \hookrightarrow P_{\theta }( \theta \in S( X)) =P_{\theta }( X\notin S_{\theta }) =1-P_{\theta }( X\in S_{\theta }) \geqslant 1-\varepsilon .
+    \end{equation*}
+\end{proof}
+\subsection{Проверка гипотез в гауссовской линейной модели}
+
+Цель этого параграфа -- построить критерий для проверки линейной гипотезы $\displaystyle H_{0} :\ T\theta =t$, где $\displaystyle T\in M_{m\times k} ,\ t\in \mathbb{R}^{m} ,\ rk( T) =m\leqslant k$.
+\begin{proposition}
+    Пусть $\displaystyle H_{0}$ верна. Тогда выполнено
+    \begin{equation*}
+        \dfrac{( T\hat{\theta } -t)^{T}\left( T\left( Z^{T} Z\right)^{-1} T^{T}\right)^{-1}( T\hat{\theta } -t)}{\Vert X-Z\hat{\theta }\Vert ^{2}} \cdotp \dfrac{n-k}{m} \ \sim \ F_{m,n-k} .
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle \hat{\theta } \ \sim \ \mathcal{N}\left( \theta ,\ \sigma ^{2}\left( Z^{T} Z\right)^{-1}\right)$, где $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} X$ -- ОНК для $\displaystyle \theta $, $\displaystyle \hat{t} =T\hat{\theta }$ -- оптимальная оценка для $\displaystyle T\theta $, то 
+    \begin{equation*}
+        \hat{t} =T\hat{\theta } \ \sim \ \mathcal{N}\left( T\theta ,\ T\sigma ^{2}\left( Z^{T} Z\right)^{-1} T^{T}\right) =\ \mathcal{N}\left( T\theta ,\ \sigma ^{2} B\right) ,
+    \end{equation*}
+    где $\displaystyle B=T\left( Z^{T} Z\right)^{-1} T^{T}$. Матрица $\displaystyle B$ положительно определена и симметрична. Следовательно, $\displaystyle \exists \sqrt{B} :\ B=\sqrt{B} \cdotp \sqrt{B} ,\ \left(\sqrt{B}\right)^{T} =\sqrt{B}$. Тогда
+    \begin{gather*}
+        \dfrac{1}{\sigma }\left(\sqrt{B}\right)^{-1}(\hat{t} -T\theta ) \ \sim \ \mathcal{N}( 0,\ I_{m}) \Rightarrow \left\Vert \dfrac{1}{\sigma }\left(\sqrt{B}\right)^{-1}(\hat{t} -T\theta )\right\Vert ^{2} =\\
+        \dfrac{1}{\sigma ^{2}}(\hat{t} -T\theta )^{T} B^{-1}(\hat{t} -T\theta ) \ \sim \ \chi _{m}^{2} .
+    \end{gather*}
+    Рассмотрим статистику $\displaystyle \hat{Q}_{T} :=\dfrac{1}{\sigma ^{2}}(\hat{t} -t)^{T} B^{-1}(\hat{t} -t)$. Тогда в условиях гипотезы $\displaystyle H_{0}$ выполнено $\displaystyle \dfrac{1}{\sigma ^{2}}\hat{Q}_{T} \ \sim \ \chi _{m}^{2}$. Так как $\displaystyle \hat{Q}_{T}$ выражается через $\displaystyle \hat{\theta }$, то она не зависит от $\displaystyle X-Z\hat{\theta }$. В силу того, что $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2}$, верно
+    \begin{equation*}
+        \dfrac{\hat{Q}_{T}}{\Vert X-Z\hat{\theta }\Vert ^{2}} \cdotp \dfrac{n-k}{m} \ \sim \ F_{m,n-k} .
+    \end{equation*}
+\end{proof}
+
+\begin{definition}
+    Пусть $\displaystyle u_{1-\alpha }$ -- $\displaystyle ( 1-\alpha )$-квантиль распределения $\displaystyle F_{m,n-k}$. Тогда $\displaystyle F$\textit{-критерием} называется
+    \begin{equation*}
+        \left\{\dfrac{( T\hat{\theta } -t)^{T}\left( T\left( Z^{T} Z\right)^{-1} T^{T}\right)^{-1}( T\hat{\theta } -t)}{\Vert X-Z\hat{\theta }\Vert ^{2}} \cdotp \dfrac{n-k}{m}  >u_{1-\alpha }\right\} .
+    \end{equation*}
+\end{definition}

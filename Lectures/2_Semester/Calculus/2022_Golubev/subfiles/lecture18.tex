@@ -1,0 +1,212 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+ \section{Функциональные ряды}
+ 
+ \begin{definition}
+  Пусть $ \forall k \in \N$ $ u_k : X \to \R$. Будем называть \emph{частичной суммой} 
+  \begin{gather} 
+    S_n (x) = \sum_{k=1}^{n} u_k (x) .
+  \end{gather}   
+\end{definition}
+
+ \begin{definition}
+   Пусть $ \forall k \in \N$ $ u_k : X \to \R$. Будем называть $ \sum_{k=1}^{\infty} u_k(x)  $  \emph{функциональным рядом}.
+  \begin{itemize}
+    \item Если $ S_n(x)$ сходится поточечно, то будем говорить \emph{ряд сходится поточечно}. 
+    \item Если $ S_{n}(x)$ сходится равномерно, то будем говорить \emph{ряд сходится равномерно}
+    \item Если $ S_{n}(x)$ расходится, то будем говорить \emph{ряд расходится}.
+  \end{itemize}
+ \end{definition}
+
+ 
+ \begin{definition}
+   Будем называть \emph{остатком ряда} $ r_n (x) = \sum_{k=n+1}^{\infty} u_k(x) $. 
+ \end{definition}
+ 
+ \begin{proposition}[Критерий равномерной сходимости]
+   $ r_n(x) \convergesuniformly{k \to \infty}{X} 0 $ \nas $ \sum_{k=1}^{\infty} u_k(x) $ сходится равномерно на $ X$.  
+ \end{proposition}
+
+\begin{proof}
+  Пусть $ \sum_{k=1}^{\infty} u_k(x)  \to S(x)$, тогда $ r_n (x) = S(x) - S_n (x)$. Переходя в обоих частях к $ \sup$, а потом к пределу при $ n \to \infty$, получаем что по критерию они эквиваленты.
+\end{proof}
+
+
+
+\begin{proposition}[Критерий Коши]
+  $ \sum_{k=1}^{\infty} u_k(x)  $ равномерно сходится на $ X$  \nas 
+  \begin{gather} 
+    \forall \eps > 0 \exists N : \forall n \geq N \forall p \in \N \forall x \in X \hence \left| \sum_{k=n+1}^{p+n} u_k(x)   \right| < \eps.
+  \end{gather}
+\end{proposition}
+
+
+\begin{proof}
+  Распишем модуль: 
+  \begin{gather} 
+    \left| \sum_{k=n+1}^{p+n} u_k(x)   \right| = \left| S_{n+p} (x) - S_{n} (x) \right|.
+  \end{gather}
+  Тогда подставляя в условие, получаем условие Коши для функциональных последовательностей.
+\end{proof}
+
+
+\begin{proposition}[Необходимое условие равномерной сходимоти]
+  $ \sum_{k=1}^{\infty} u_k(x)  $  равномерно сходится на $ X$ \hence $ u_k(x) \convergesuniformly{k \to \infty}{X} 0 $.
+\end{proposition}
+
+
+\begin{proof}
+  Из условия получаем, что любой $ r_{n}(x) \convergesuniformly{k \to \infty}{X} 0$. Значит и $ u_k(x)  \convergesuniformly{k \to \infty}{X} 0$.
+\end{proof}
+
+
+\begin{corollary}
+  Если $ \exists \{ x_{k} \}_{k = 1}^{\infty} \subset X: u_k(x_k ) \cancel{\to} 0$, то ряд не является равномерно сходящимся. 
+\end{corollary}
+
+
+\begin{proposition}[Признак сравнения]
+  Пусть $ \left| u_k(x)  \right| \leq v_k(x), \forall k \in \N \forall x \in X$, и ряд $ \sum_{k=1}^{\infty} v_k(x)  $ сходится равномерно, тогда $ \sum_{k=1}^{\infty} u_k(x)  $  сходится равномерно.
+\end{proposition}
+
+
+\begin{proof}
+  Из критерия Коши 
+  \begin{gather} 
+    \forall \eps > 0 \exists N: \forall n \geq N \forall p \in \N \forall x \in X \hence \left| \sum_{k=1}^{\infty} v_k(x)   \right| < \eps .
+  \end{gather}
+  Расписывая по неравенству треугольника модуль: 
+  \begin{gather} 
+    \left| \sum_{k=1}^{\infty} u_k(x)  \right| \leq \sum_{k=1}^{\infty} \left| u_k(x)  \right| \leq \sum_{k=1}^{\infty} v_k(x) <\eps   .
+  \end{gather}
+  По критерию Коши искомый ряд сходится.
+\end{proof}
+
+
+\begin{corollary}
+  Если $ \sum_{k=1}^{\infty} \left| u_k(x)  \right|  $ равномерно сходится, тогда $ \sum_{k=1}^{\infty} u_k(x)  $ равномерно сходится.
+\end{corollary}
+
+
+\begin{corollary}[Признак Вейерштрасса]
+  Если $ \forall k \in \N \forall x \in X \hence \left| u_k(x)  \right| \leq a_k $, тогда из сходимости $ \sum_{k=1}^{\infty} a_k $ следует равномерная сходимость $ \sum_{k=1}^{\infty} u_k(x)  $ . 
+\end{corollary}
+
+
+\begin{note}
+  Равномерная сходимость всегда на каком-то множестве. Если множество не указано, подразумевается $ X$.
+\end{note}
+
+\begin{proposition}[Признак Дирихле] 
+  Если
+  \begin{enumerate}
+    \item $ A_n (x) = \sum_{k=1}^{\infty} a_k(x) $ равномерно ограничена на $ X$ (см. \ref{def:funcseq:limited});
+    \item $ b_k(x) \convergesuniformly{k \to \infty}{X} 0$;
+    \item $ \forall k \in N \forall x \in X \hence b_{k+1}(x) \leq b_{k}(x)$ (знак можно поменять),
+  \end{enumerate}
+  тогда $ \sum_{k=1}^{\infty} a_k (x) b_k (x) $ сходится равномерно на $ X$. 
+\end{proposition}
+
+
+\begin{note}
+  Доказательство строится аналогично доказательству утверждения \ref{prop:ser:dirichlet}.
+\end{note}
+
+\begin{proof}
+  Доопределим $ A_0 = 0$. Рассмотрим 
+  \begin{multline} 
+    \sum_{k=1}^{n} a_k(x) b_k (x) = \sum_{k=1}^{n} (A_k (x) - A_{k-1}(x)) b_k (x) =  \sum_{k=1}^{n} A_k (x) b_k (x) - \sum_{k=1}^{n} A_{k-1}(x) b_k (x) = \\ = \sum_{m=1}^{n} A_m (x) b_m(x) - \sum_{m=1}^{n-1} A_m(x) b_{m+1}(x) = A_n(x) b_n(x) + \sum_{m=1}^{n-1} A_m(x) \left(b_m(x) - b_{m+1}(x)\right)   .
+  \end{multline}
+  Исследуем $ \sum_{m=1}^{\infty} (b_m(x) - b_{m+1}(x)) $. Рассмотрим 
+  \begin{gather} 
+    \sum_{m=1}^{n-1} (b_m(x) - b_{m+1}(x)) = b_1 (x) - b_{n} (x) \eqcom{\text{по п. 3}}  \convergesuniformly{k \to \infty}{X} b_1 (x). 
+  \end{gather} 
+  Значит  $ \sum_{m=1}^{\infty} (b_m(x) - b_{m+1}(x)) $ сходится равномерно к $ b_1(x)$ на множестве $ X$. Тогда и  $ \sum_{m=1}^{\infty} C(b_m(x) - b_{m+1}(x)) \convergesuniformly{k \to \infty}{X} b_1 (x)$. Тогда 
+  \begin{gather} 
+    \left| A_m(x) (b_m(x) - b_{m+1}(x)) \right|  \leq C (b_{m}(x) - b_{m+1}(x)).
+  \end{gather} 
+  Тогда по признаку сравнения $ \sum_{m=1}^{\infty} A_m(x)(b_m(x) - b_{m+1}(x)) $ сходится равномерно на множестве $ X$. Тогда и последовательность частичных сумм сходится равномерно на множестве $X$. Причём из пп. 1 и 2 и утверждения \ref{prop:funcseq:limdotconvtozero} $A_n (x)b_n(x) \convergesuniformly{k \to \infty}{X}  0 $. Тогда $ \sum_{k=1}^{n} a_k (x) b_k (x) $ сходится равномерно.
+\end{proof}
+
+
+\begin{proposition}[Признак Абеля]
+  Если 
+  \begin{enumerate}
+    \item $ \sum_{k=1}^{\infty} a_k (x) $ сходится равномерно на $ X$;
+    \item $ \{ b_{k}(x) \}_{k = 1}^{\infty} $ равномерно ограничена на  $ X$;
+    \item $ \forall k \in \N \forall x \in X \hence b_{k+1}(x) \leq b_k (x)$,  
+  \end{enumerate}тогда $ \sum_{k=1}^{\infty} a_k (x) b_k (x) $ сходится равномерно.
+\end{proposition}
+
+
+\begin{note}
+  Знак в последнем неравенстве можно поменять.
+\end{note}
+
+\begin{proof}
+  Если мы фиксируем $ x_0 \in X$, то всё сводится к признаку Абеля для рядов, и  $ \sum_{k=1}^{\infty} a_k (x) b_k (x) $ сходится поточечно. \\
+  Пусть $ r_n(x) = \sum_{k=n+1}^{\infty} a_k (x) \convergesuniformly{k \to \infty}{X} 0 $, тогда $ a_k (x) = r_{k-1} (x) - r_{k}(x)$. Рассмотрим 
+  \begin{multline} 
+    \sum_{k=n+1}^{n+p} a_k (x) b_k (x) = \sum_{k=n+1}^{n+p} b_k (x) (r_{k-1}(x) - r_k (x)) =\\= \sum_{k=n+1}^{n+p} b_k(x) r_{k-1}(x) - \sum_{k=n+1}^{n+p} b_k (x) r_k (x) = \sum_{m=n}^{n+p-1} b_{m+1} (x) r_m(x) - \sum_{m=n+1}^{n+p} b_m(x) r_m(x) = \\ b_{n+1} (x) r_n (x) - b_{n+p}(x)r_{n+p}(x) + \sum_{m=n+1}^{n+p-1} r_m(x)(b_{m+1}(x) - b_m(x))     .
+  \end{multline} 
+
+  % Из \ref{prop:funcseq:limdotconvtozero} первые два члена $ \convergesuniformly{n \to \infty}{X}0$. \\
+  Рассмотрим $ r_m(x) \convergesuniformly{m \to \infty}{X}$, тогда $ \exists A_m : \left| r_m(x) \right| \leq A_m  \xrightarrow[m \to  \infty ]{} 0 $ и 
+  \begin{gather} 
+    \forall m \geq n \forall x \in X \hence \left| r_m(x) \right| \leq A_n.
+  \end{gather}  
+  Оценим
+  \begin{gather} 
+    \sum_{m=n+1}^{n+p-1} r_m(x)(b_{m+1}(x) - b_m(x)) \leq A_n \sum_{m=n+1}^{n+p-1} (b_{m+1}(x) - b_m(x)) =  A_n (b_{n+p}(x) - b_{n+1}(x)).
+  \end{gather}
+  Тогда искомую сумму можно ограничить сверху $ 4A_n C  \xrightarrow[n \to  \infty ]{} 0 $ ( $ C$ из п. 2). Значит по критерию Коши искомый ряд равномерно сходится.
+  % равномерно сходится к нулю. По признаку сравнения вся сумма равномерно сходится к нулю. Тогда искомый ряд сходится равномерно.
+\end{proof}
+
+\subsection{Свойства предельной функции}
+
+
+\begin{proposition}
+  Пусть $ u_k : X \to \R \forall k \in \N$, $ u_k$ непрерывна на $ X$ и $ \sum_{k=1}^{\infty} u_k(x) $ сходится равномерно к $ S(x)$. Тогда $ S(x)$ непрерывно.     
+\end{proposition}
+
+
+\begin{proof}
+  Рассмотрим $ S_n(x) = \sum_{k=1}^{n} u_k(x)  $. Тогда она непрерывна на $ X$ как сумма непрерывных. Из условия $S_n(x) \convergesuniformly{n \to \infty}{X} S(x)$, тогда из утверждения \ref{prop:funcseq:cont} $ S(x)$ непрерывна .
+\end{proof}
+
+
+\begin{proposition}
+  Пусть $ u_k : [a,b] \to \R \forall k \in \N$, $ u_k $ непрерывно на $ [a, b]$ и $ \sum_{k=1}^{\infty} u_k(x)  $ сходится равномерно. Тогда 
+  \begin{gather} 
+    \int_{a}^{b} \left( \sum_{k=1}^{\infty} u_k(x)  \right) dx = \sum_{k=1}^{\infty} \left(\int_{a}^{b} u_k(x) dx\right) .
+  \end{gather}  
+\end{proposition}
+
+
+\begin{proof}
+  Рассмотрим $ S_n(x) = \sum_{k=1}^{n} u_k(x)  $. Она непрерывна на $ [a,b]$ как сумма непрерывных. Тогда из $ S_n(x) \convergesuniformly{n \to \infty}{[a,b]} S(x)$ и утверждения \ref{prop:funcseq:changeint} следует 
+  \begin{gather} 
+    \int_{a}^{b} S(x) dx = \lim_{n \to \infty} \int_{a}^{b} S_n(x) dx = \lim_{n \to \infty} \int_{a}^{b} \sum_{k=1}^{n} u_k(x) dx = \lim_{n \to \infty} \sum_{k=1}^{n} \int_{a}^{b} u_k(x) dx  .
+  \end{gather}    
+\end{proof}
+
+
+\begin{proposition}
+  Пусть $ u_k:[a,b] \to \R \forall k \in \N$, $ u_k $ непрерывно дифференцируема на $ [a,b]$, $ \exists x_0 \in [a,b]: \sum_{k=1}^{\infty} u_k(x)   $ сходится и $ \sum_{k=1}^{\infty} u'_k(x)  $ сходится равномерно. Тогда $ \sum_{k=1}^{\infty} u_k(x) $ сходится равномерно и 
+  \begin{gather} 
+    \left( \sum_{k=1}^{\infty} u_k(x)  \right)' = \sum_{k=1}^{\infty} u_k ' (x).
+  \end{gather} 
+\end{proposition}
+
+
+\begin{proof}
+  Рассмотрим $ S_n(x) = \sum_{k=1}^{n} u_k(x)  $. Она непрерывно дифференцируема на $ [a,b]$ как сумма непрерывно дифференцируемых, $ S_n(x_0)$ сходится и $ S_n' (x)$ равномерно сходится. Тогда 
+  
+  \begin{gather} 
+    \left( \sum_{k=1}^{\infty} u_k(x)  \right)' = \left( \lim_{n \to \infty} S_n (x) \right)' =  \eqcom{\text{из утв. \ref{prop:funcseq:changeder}}} = \lim_{n \to \infty} S'_n (x) = \sum_{k=1}^{\infty} u'_k(x) .
+  \end{gather}   
+\end{proof}
+
+\end{document}

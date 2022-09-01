@@ -1,0 +1,91 @@
+\begin{proof}
+	Для краткости, обозначим множество тривиальных точек буквой $T$:
+	\[
+		T = \{0, \pm \vec{e}_1, \ldots, \pm \vec{e}_n\}
+	\]
+	
+	Для $\eps > 0$ будем искать $\vec{a}$ такой, что $q = p$, где p - простое число. Для начала, найдём способ подсчёта числа нетривиальных точек $\Lambda_{\vec{a}}$ в октаэдре $O^n$:
+	
+	Определим характеристическую функцию для $\forall \vec{x} \in \Q^n$:
+	\[
+		\delta(\vec{x}) := \System{
+			&{1, \text{ если } \vec{x} \in \Z^n}
+			\\
+			&{0, \text{ иначе}}
+		}
+	\]
+	Теперь распишем величину $|(\Lambda_{\vec{a}} \cap O^n) \bs T|$:
+	\[
+		\big|(\Lambda_{\vec{a}} \cap O^n) \bs T\big| = \suml_{l = 1}^{p - 1} \left(\suml_{\vec{x} \in (O^n \cap (1/p)\Z^n) \bs T} \delta(\vec{a} l - \vec{x})\right)
+	\]
+	Здесь возникает несколько вопросов, на которые необходимо дать ответ:
+	\begin{enumerate}
+		\item Почему это посчитает ровно те $\vec{x}$, что лежат внутри решётки и октаэдра?
+		\[
+			\delta(\vec{a}l - \vec{x}) = 1 \lra \vec{a}l - \vec{x} = \vec{b} \in \Z^n \lra \vec{x} = \vec{a}l - \vec{b} \in \Lambda_{\vec{a}}
+		\]
+		
+		\item Почему достаточно посмотреть $l \in \{1, \ldots, p - 1\}$? Вспомним, что решётка - это наложение сдвинутых $\Z^n$. При сдвиге на $p$ они совпадают, а $l = 0$ нам не нужен, так как при таком $l$ единственные точки, которые мы встретим, будут из $T$.
+	\end{enumerate}
+	
+	Описанная выше конструкция даёт мощность для конкретного $\vec{a}$. А теперь мы её расширим, сделав перебор по всем возможным $\vec{a}$:
+	\[
+		\suml_{a_1 = 1}^p \cdots \suml_{a_n = 1}^p \suml_{l = 1}^{p - 1} \left(\suml_{\vec{x} \in (O^n \cap (1/p)\Z^n) \bs T} \delta(\vec{a} l - \vec{x})\right)
+	\]
+	В этой сумме будет $p^n$ слагаемых-мощностей $\big|(\Lambda_{\vec{a}} \cap O^n) \bs T\big|$. Если мы каким-то образом докажем неравенство
+	\[
+		\frac{1}{p^n} \cdot \suml_{a_1 = 1}^p \cdots \suml_{a_n = 1}^p \suml_{l = 1}^{p - 1} \left(\suml_{\vec{x} \in (O^n \cap (1/p)\Z^n) \bs T} \delta(\vec{a} l - \vec{x})\right) < 1
+	\]
+	то отсюда будет следовать (так как величина слева - ничто иное чем среднее арифметическое мощностей по всем $\vec{a}$), что
+	\[
+		\exists \vec{a} \such \suml_{l = 1}^{p - 1} \left(\suml_{\vec{x} \in (O^n \cap (1/p)\Z^n) \bs T} \delta(\vec{a} l - \vec{x})\right) < 1 (\Ra\ = 0)
+	\]
+	Такой $\vec{a}$ будет соответствовать лишь одному условию, но у нас есть ещё и второе:
+	\[
+		\frac{2^n}{n!} \cdot p \ge 1 - \eps
+	\]
+	
+	Итак, зафиксируем $\eps > 0$. Из того факта, что, начиная с некоторого $n_0$, всегда есть простое число $p \in [n; n + O(n^{0.525})]$, мы можем заявить следующее:
+	\begin{multline*}
+		\forall \eps > 0\ \exists n_0 \in \N \such \forall n \ge n_0\ \exists p \colon\ \ \frac{(1 - \eps)n!}{2^n} \le p \le \frac{(1 - \eps)n!}{2^n} + C \cdot \left(\frac{(1 - \eps) n!}{2^n}\right)^{0.525} \le
+		\\
+		\frac{(1 - \eps)n!}{2^n} + \frac{\eps}{2} \cdot \frac{n!}{2^n}
+	\end{multline*}
+	То есть
+	\[
+		1 - \eps \le \frac{2^n}{n!} \cdot p \le 1 - \frac{\eps}{2}
+	\]
+	Оценка сверху нам нужна, чтобы доказать неравенство выше. Так как знаки суммирования можно переставлять, то
+	\begin{multline*}
+		\frac{1}{p^n} \cdot \suml_{a_1 = 1}^p \cdots \suml_{a_n = 1}^p \suml_{l = 1}^{p - 1} \left(\suml_{\vec{x} \in (O^n \cap (1/p)\Z^n) \bs T} \delta(\vec{a} l - \vec{x})\right) =
+		\\
+		\frac{1}{p^n} \cdot \suml_{l = 1}^{p - 1}\ \ \suml_{\vec{x} \in (O^n \cap (1 / p)\Z^n) \bs T} \left(\suml_{a_1 = 1}^p \cdots \suml_{a_n = 1}^p \delta(\vec{a}l - \vec{x})\right)
+	\end{multline*}
+	Теперь мысленно зафиксируем $l \in \{1, \ldots, p - 1\}$ и $\vec{x} \in (O^n \cap (1 / p)\Z^n) \bs T$. Распишем $\vec{a}l - \vec{x}$:
+	\[
+		\vec{a}l - \vec{x} \leftrightarrow_e \left(\frac{a_1 l - x_1}{p}, \ldots, \frac{a_n l - x_n}{p}\right)
+	\]
+	Заметим, что $(l, p) = 1$. Отсюда по расширенному алгоритму Евклида следует, что
+	\[
+		\exists! a \in \Z_p\ \exists b \in \Z \such al + bp = x_i
+	\]
+	Так как $a_i$ пробегает всю приведённую систему вычетов, то
+	\[
+		\exists! a_i \such \exists b_i \in \Z\ \ a_i l + b_i p = x_i;\ \ a_i l - x_i = -b_i p
+	\]
+	Значит, будет \underline{ровно один} набор $\{a_i\}$, на которых дельта станет единицей (вектор $\vec{a}$, которые ему соответствует - искомый). В итоге имеем
+	\[
+		\frac{1}{p^n} \cdot \suml_{l = 1}^{p - 1}\ \ \suml_{\vec{x} \in (O^n \cap (1 / p)\Z^n) \bs T} \left(\suml_{a_1 = 1}^p \cdots \suml_{a_n = 1}^p \delta(\vec{a}l - \vec{x})\right) = \frac{1}{p^n} \suml_{l = 1}^{p - 1}\ \ \suml_{\vec{x} \in (O^n \cap (1 / p)\Z^n) \bs T} 1
+	\]
+	Оценим сумму внутри (то есть число векторов $\vec{x}$). Для этого нам потребуются старые рассуждения про меру, применённые в доказательстве теоремы Минковского:
+	\[
+		\suml_{\vec{x} \in (O^n \cap (1 / p)\Z^n) \bs T} 1 \le |O^n \cap (1 / p)\Z^n| = N_p \le \frac{\frac{2^n}{n!} \cdot (1 + \frac{2}{p})^n}{1/p^n}
+	\]
+	Числитель последней дроби - это мера октаэдра, который увеличили в $(1 + 2/p)$ раз, а знаменатель - это мера, соответствующая одной точке. Соберём всё полученное вместе:
+	\begin{multline*}
+		\frac{1}{p^n} \suml_{l = 1}^{p - 1}\ \ \suml_{\vec{x} \in (O^n \cap (1 / p)\Z^n) \bs T} 1 \le \frac{p - 1}{p^n} \cdot \frac{2^n}{n!} \cdot p^n \cdot \left(1 + \frac{2}{p}\right)^n \le
+		\\
+		p \cdot \frac{2^n}{n!} \cdot \left(1 + \frac{2}{p}\right)^n \le \frac{n!}{2^n} \left(1 - \frac{\eps}{2}\right) \cdot \frac{2^n}{n!} \cdot \left(1 + \frac{2^{n + 1}}{n! (1 - \eps)}\right)^n < \left(1 - \frac{\eps}{2}\right) \cdot \left(1 + \frac{\eps}{2}\right) < 1
+	\end{multline*}
+	Предпоследняя оценка верна для достаточно большого $n$, это важно отметить. 
+\end{proof}

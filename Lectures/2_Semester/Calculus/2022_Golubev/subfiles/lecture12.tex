@@ -1,0 +1,163 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\subsection{Криволинейный интеграл первого рода}
+\begin{definition}
+    Пусть $\Gamma = \{ \vec{r}(t): t \in \segab \} \subset \Rn $, $\vec{r}(t)$~--- непрерывна на \segab, имеет кусочно-непрерывную производную. Пусть $f: \Gamma \to \R$, $f$~--- непрерывна на $\Gamma$, тогда \emph{криволинейными интегралом первого рода} будем называть 
+    \begin{gather} 
+      \int_{\Gamma}^{} f(\vec{r}) ds = \int_{a}^{b} f(\vec{r}(t)) dt .
+    \end{gather}
+\end{definition}
+
+\begin{note}
+    Необходимо доказать корректность определения, ведь параметризацию мы выбирали произвольно.
+\end{note}
+
+\begin{proposition}
+    Криволинейный интеграл первого рода не зависит от параметризации.
+\end{proposition}
+
+\begin{proof}
+    Пусть $\Gamma = \{ \vec{r}(t): t \in \segab \} = \{ \vec{\rho}(\tau): \tau \in [\alpha;\beta] \}$. При этом обе параметризации допустимы, то есть $\exists t(\tau):[\alpha; \beta] \to [a;b]$, $t(\tau)$~--- монотонна, непрерывна (и, как следствие, дифференцируема). Рассмотрим 
+    \begin{gather} 
+      \int_{a}^{b} f(\vec{r}(t)) \left| \vec{r'}(r) \right| dt = \eqcom{t = t(\tau),\ d t = t'(\tau) d \tau \\ a = t(\alpha),\ b = t(\beta)} =\int_{\alpha}^{\beta} f(\vec{\rho}(\tau))  \left| \vec{\rho'} (\tau) \right| d \tau.
+    \end{gather} 
+\end{proof}
+
+\begin{note}
+    Естественное применение~--- посчитать массу каната по заданному распределению плотности.
+\end{note}
+
+\begin{proposition}
+    Криволинейный интеграл первого рода не зависит от ориентации кривой. 
+\end{proposition}
+
+\begin{proof}
+    Пусть $ \Gamma = \{ \vec{r}(t): t \in [a,b]\}$, $ \Gamma^- = \{ \vec{\rho}(\tau): \tau \in [-b,-a]\}$ и $\vec{r}(t) = \vec{\rho}(-t)$. Тогда 
+    \begin{gather} 
+      \int_{\Gamma^{-}}^{} f(\vec{\rho})ds = \int_{-b}^{-a} f(\vec{\rho}(\tau)) \left| \vec{\rho'}(\tau) \right| d \tau   = \eqcom{\tau = -t} = \int_{b}^{a} f(\vec{r}(t)) \left| \vec{r'}(t) \right| (-1) dt = \\ = \int_{a}^{b} f(\vec{r}(t)) \left| \vec{r'}(t) \right| dt = \int_{\Gamma}^{} f(\vec{r})ds.
+    \end{gather}
+\end{proof}
+
+\begin{note}
+    Если мы работаем, например, с прямоугольником, необходимо разбить его на кусочки и воспользоваться аддитивностью интеграла.
+\end{note}
+
+\subsection{Криволинейный интеграл второго рода}
+
+\begin{definition}
+    Пусть $ \Gamma = \{ \vec{r}(t): t \in [a,b]\} \subset \Rn$, $\vec{r}$~--- непрерывна с кусочно-непрерывной производной, $\vec{F}: \Gamma \to \Rn$~--- непрерывна на $\Gamma$. Будем называть \emph{криволинейным интегралом второго рода} 
+    \begin{gather} 
+       \int_{\Gamma}^{} (\vec{F}(\vec{r}), d \vec{r}) = \int_{a}^{b} (\vec{F}(\vec{r}(t)), \vec{r'}(t)) dt
+    \end{gather}
+\end{definition}
+
+\begin{note}
+    Естественное применение~--- посчитать работу силы вдоль кривой.
+\end{note}
+
+\begin{proposition}
+    Криволинейный интеграл второго рода не зависит от параметризации.
+\end{proposition}
+
+\begin{proof}
+    Пусть $ \Gamma = \{ \vec{r}(t): t \in [a,b]\} = \{ \vec{\rho}(\tau): \tau \in [\alpha,\beta]\} $. Рассмотрим 
+    \begin{gather} 
+      \int_{a}^{b} \left(\vec{F}(\vec{r}(t)), \vec{r'}(t)\right) dt = \eqcom{t = t(\tau) \\ dt = t'(\tau) d \tau} = \int_{\alpha}^{\beta} \left(\vec{F}(\vec{\rho}(\tau)), \vec{\rho'}(\tau)\right) d \tau.
+    \end{gather}
+\end{proof}
+
+\begin{proposition}
+    Криволинейный интеграл второго рода меняет знак при изменении ориентации кривой.
+\end{proposition}
+
+\begin{proof}
+    Пусть $ \Gamma = \{ \vec{r}(t): t \in [a,b]\}$, $ \Gamma^{-} = \{ \vec{\rho}(\tau): \tau \in [-b,-a]\}$ и $\vec{r}(t) = \vec{\rho}(-t)$, тогда 
+    \begin{gather} 
+       \int_{\Gamma^{-}}^{} \left(\vec{F}(\vec{\rho}), d \vec{\rho}\right)    = \int_{-b}^{-a} \left(\vec{F}(\vec{\rho}(\tau)), \vec{\rho'}(\tau)\right) d \tau = \eqcom{t = - \tau} = \\ = \int_{b}^{a} \left(\vec{F}(\vec{r}(t)), -\vec{r'}(t)\right) (-1) dt = - \int_{a}^{b} \left(\vec{F}(\vec{r}(t)), \vec{r'}(t)\right) dt = -\int_{\Gamma}^{} \left(\vec{F}(\vec{r}), d \vec{r}\right).
+    \end{gather}
+\end{proof}
+
+\subsection{Несобственный интеграл}
+
+Рассмотрим функцию $y= \frac{1}{x}$ на полуинтервале $(0,1]$. Она не интегрируема, потому что мы не определяли интегрируемость для промежутков такого вида. При этом на любом отрезке $[\eps, 1] \subset (0, 1]$ она непрерывна, следовательно интегрируема.
+
+\begin{definition}
+    Пусть $f: [a, +\infty] \to R$ и $\forall b \in (a, +\infty)$ $f$~--- интегрируема на $[a,b]$. Будем говорить, что задан \emph{несобственный интеграл} 
+    \begin{gather} 
+      \int_{a}^{+\infty} f(x) dx = \lim_{b \to +\infty} \int_{a}^{b} f(x)dx .
+    \end{gather}
+    При этом, если $\exists \lim_{b \to + \infty} \int_{0}^{+\infty} f(x) dx \in \R$, будем говорить что $\int_{a}^{+\infty} f(x) dx$ \emph{сходится}, иначе~--- \emph{расходится}.
+\end{definition}
+
+\begin{example}
+    Исследуем $\int_{1}^{+\infty} \frac{dx}{x^{\alpha}}$ на сходимость. Рассмотрим несколько случае
+    \begin{enumerate}
+        \item $\alpha=1$, тогда $\int_{1}^{b} \frac{dx}{x} = \ln b - \ln 1  \xrightarrow[b \to  + \infty ]{} + \infty $, следовательно интеграл расходится;
+        \item $\alpha \neq 1$, тогда $\int_{1}^{b} x^{-\alpha} dx = \frac{x^{-\alpha+1}}{1-\alpha} \tat{1}{b} = \frac{1}{(1-\alpha)b^{\alpha-1}} - \frac{1}{1-\alpha}$. Есть несколько случаев:
+        \begin{enumerate}
+            \item $\alpha > 1$, интеграл сходится и $\int_{1}^{+\infty} \frac{dx}{x^{\alpha}} = \frac{1}{\alpha-1}$.
+            \item $\alpha < 1$, интеграл расходится.  
+        \end{enumerate}  
+    \end{enumerate}  
+\end{example}
+
+\begin{proposition}
+    Пусть $f:[a,b] \to \R$~--- интегрируема на $[a,b]$. Тогда 
+    \begin{gather} 
+        \int_{a}^{b} f(x) dx = \lim_{b' \to b-0} \int_{a}^{b'} f(x) dx  = \lim_{a' \to a+0} \int_{a'}^{b} f(x) dx.
+    \end{gather}  
+\end{proposition}
+
+
+\begin{proof}
+    Докажем первое равенство, второе~--- аналогично. В силу аддитивности 
+    \begin{gather} 
+      \int_{a}^{b} f(x)dx = \int_{a}^{b'} f(x) dx + \int_{b'}^{b} f(x)dx.
+    \end{gather}
+    Рассмотрим 
+    \begin{gather} 
+      \left| \int_{a}^{b} f(x) dx - \int_{a}^{b'} f(x) dx \right| = \left| \int_{b'}^{b} f(x)dx \right| \leq \left| \int_{b'}^{b} \left| f(x) \right| dx \right| \leq C (b-b')  \xrightarrow[b' \to  b-0 ]{} 0 .
+    \end{gather}
+\end{proof}
+
+\begin{note}
+    Говорить о несобственных интегралах не имеет смысла, если интеграл определён на некотором отрезке, содержащем заданный промежуток.
+\end{note}
+
+\begin{proposition}
+    Пусть $f$~--- определена и ограничена на $[a,b)$, и $f$ интегрируема на $\forall [a, b'] \subset [a, b)$. Тогда $f$~--- интегрируема (существует несобственный интеграл) на $[a, b]$.
+\end{proposition}
+
+\begin{proof}
+    % Пусть \tpab. Рассмотрим 
+    % \begin{multline} 
+    %   \Delta_{[a,b]} f(x) = \Delta_{[a,b']} f(x) - (b' - x_{n-1}) (M' - m') - (b - b') (M'' - m'') + (x_n - x_{n-1})(M_{n-1} - m_{n-1}) = \\ =\Delta_{[a,b']} f(X) + (b' - x_{n-1})(-M' + m' + M_{n-1} - m_{n-1}) + (b-b')(-M'' + m'' + M_{n-1} - m_{n-1}) \leq \\ \leq \Delta_{[a,b']} f(x) + l(T) \cdot 2 C + (b-b')\cdot 2C  \xrightarrow[(b-b') \to 0, l(T) \to  0 ]{} 0 .
+    % \end{multline}
+    Пусть $T'$~--- разбиение \segab. Зафиксируем $\eps>0$. $\exists C>0: \forall x \in [a, b) \hence \left| f(x) \right| \leq C$. Выберем $b': b-b' < \frac{\eps}{8}$. Рассмотрим
+    \begin{gather} 
+      \left| \Delta_{[a,b]} (f, T') - \Delta_{[a,b']}(f, T) \right| \leq l(T) \cdot 4C + (b-b') \cdot 4C < l(T) \cdot 4C + \frac{\eps}{2} .
+    \end{gather}
+    По определению 
+    \begin{gather} 
+      \forall \eps > 0 \exists \delta_0 : \forall l(T) \leq \delta_0 \hence \Delta_{[a,b']} (f, T) < \frac{\eps}{4} .
+    \end{gather}
+    Возьмём $\delta = \min\{\delta_0, \frac{\eps}{16C}\}$. Теперь всё собираем: 
+    \begin{gather} 
+      \forall \eps > 0 \exists \delta : \forall l(T') < l(T) < \delta \hence \Delta_{[a,b']}(f, T') < \frac{\eps}{4} + \frac{\eps}{2} + \frac{\eps}{4} = \eps.
+    \end{gather} 
+\end{proof}
+
+\begin{definition}
+    Будем говорить, что $a$~--- особая точка несобственного интеграла $\int_{b}^{c} f(x) dx$, если $b \leq a \leq c$ и $f$~--- неограниченна в любой окрестности точки $a$.   
+\end{definition}
+
+\begin{definition}
+    Пусть \fabr, $ \{ x_k  \} _{k=1}^m $~--- особые точки (их конечное количество). Выберем разбиение $ \{ \xi \}  $ отрезка $[a, b]$ такое, что $\forall k \in \rto{m} \hence x_k \in (\xi_k, \xi_{k+1})$. Тогда будем говорить, что $\int_{a}^{b} f(x) dx$~--- \emph{сходится}, если сходятся $\forall \int_{x_k }^{\xi_{k+1}} f(x)dx, \int_{\xi_k }^{x_{k}} f(x)dx$   
+\end{definition}
+
+\begin{note}
+    Мы разбиваем на полуинтервалы. Для них мы всё уже определяли. 
+\end{note}
+
+\end{document}

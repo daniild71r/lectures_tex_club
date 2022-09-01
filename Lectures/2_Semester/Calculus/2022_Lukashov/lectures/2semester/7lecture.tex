@@ -1,0 +1,261 @@
+\begin{corollary}
+	Если $g_1, g_2 \in \R[a; b]$, то $g_1 \cdot g_2 \in R[a; b]$
+\end{corollary}
+
+\begin{proof}
+	Положим $f(x) := x^2$. Тогда $f$ - интегрируема по Риману на всем $\R$. Остаётся заметить следующее равенство:
+	\[
+		g_1 \cdot g_2 = \frac{1}{4}((g_1 + g_2)^2 - (g_1 - g_2)^2)
+	\]
+\end{proof}
+
+\begin{corollary}
+	Если $g \in R[a; b]$, то $|g| \in R[a; b]$, причём
+	\[
+		\left|\int_a^b g(x)dx\right| \le \int_a^b |g(x)|dx
+	\]
+\end{corollary}
+
+\begin{proof}
+	Положим $f(x) := |x|$, $c := \sgn \int_a^b g(x)dx$. Тогда
+	\[
+		\left|\int_a^b g(x)dx\right| = c\int_a^b g(x)dx = \int_a^b cg(x)dx \le \int_a^b |g(x)|dx
+	\]
+\end{proof}
+
+\begin{note}
+	Все результаты этого параграфа справедливы и для интеграла Римана-Стилтьеса.
+\end{note}
+
+\begin{note}
+	Можно также доказать, что из $f \in R(\alpha_1, [a; b])$ и $f \in R(\alpha_2, [a; b])$ следует, что $f \in R(\alpha_1 + \alpha_2, [a; b])$, причём
+	\[
+		\int_a^b f(x) d((\alpha_1 + \alpha_2)x) = \int_a^b f(x) d(\alpha_1(x)) + \int_a^b f(x)d(\alpha_2(x))
+	\]
+	Поставив <<$-$>> вместо <<$+$>>, получим определение интеграла Римана-Стилтьеса для $\alpha = \alpha_1 - \alpha_2$, то есть функции ограниченной вариации.
+\end{note}
+
+\subsection{Другие определения интегралов}
+
+\begin{definition}
+	\textit{Интегральной суммой} $S(P, f, \{t_i\})$ называется сумма вида
+	\[
+		\suml_{i = 1}^n f(t_i) \Delta x_i
+	\]
+	где $P: a = x_0 < x_1 < \ldots < x_n = b$, $t_i \in [x_{i - 1}; x_i]$
+\end{definition}
+
+\begin{definition}
+	Число $A$ называется \textit{пределом интегральных сумм} $S(P, f, \{t_i\})$ при $\Delta(P) \to 0$, если
+	\[
+		\forall \eps > 0\ \exists \delta > 0 \such \forall P, \Delta(P) < \delta\ \ \forall \{t_i\},\ t_i \in [x_{i - 1}; x_i]\ \ |S(P, f, \{t_i\}) - A| < \eps
+	\]
+\end{definition}
+
+\begin{lemma}
+	Если $\exists \liml_{\Delta(P) \to 0} S(P, f, \{t_i\})$, то $f$ ограничена на $[a; b]$.
+\end{lemma}
+
+\begin{proof}
+	От противного. Не умаляя общности, пусть $f$ неограничена сверху на $[a; b]$. Покажем, что предела интегральных сумм не найдётся. Рассмотрим любое разбиение $P$, для которого $\Delta(P) < \frac{1}{n}$. В силу неограниченности
+	\[
+		\exists k \such M_k = +\infty \Ra \exists t_k \in [x_{k - 1}; x_k]\ \ f(t_k) > \frac{n + |S'(P, f, \{t_i\})|}{\Delta x_k}
+	\]
+	Где  $S'(P, f, \{t_i\})$ это интегральная сумма всех отрезков, кроме k-ого. Иными словами:
+	\[
+		S(P, f, \{t_i\}) = S'(P, f, \{t_i\}) + f(t_k) \Delta x_k
+	\]
+	Оценим снизу модуль интегральной суммы $S$:
+	\[
+		|S(P, f, \{t_i\})| \ge |f(t_k) \Delta x_k| - |S'(P, f, \{t_i\})| = f(t_k)\Delta x_k - |S'(P, f, \{t_i\})| > n
+	\]
+	Таким образом модуль суммы больше любого натурального,  а потому предела не существует.
+\end{proof}
+
+\begin{theorem} (Интеграл как предел интегральных сумм)
+	$f \in R[a; b]$ тогда и только тогда, когда существует $\liml_{\Delta(P) \to 0} S(P, f, \{t_i\})$, при этом
+	\[
+		\int_a^b f(x)dx = \liml_{\Delta(P) \to 0} S(P, f, \{t_i\})
+	\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item $\La$ (Достаточность). По условию  $\exists \liml_{ \Delta(P) \to 0} S(P, f, \{t_i\})$ или же:
+		\[
+			\forall \eps > 0\ \exists \delta > 0 \such \forall P, \Delta(P) < \delta\ \ \forall \{t_i\},\ t_i \in [x_{i - 1}; x_i]\ \ |S(P, f, \{t_i\}) - A| < \frac{\eps}{2}
+		\]
+		Зафиксируем $P$ и рассмотрим модуль разности двух интегральных сумм при разных $\{t_i\}$ на отрезке:
+		\[
+			\forall t'_i, t''_i \in [x_{i - 1}; x_i]\ \left|S(P, f, \{t'_i\}) - S(P, f, \{t''_i\})\right| = \left|\suml_{i = 1}^n (f(t'_i) - f(t''_i))\Delta x_i\right| < \eps
+		\]
+		Следовательно, можем подставить максимумы и минимумы для каждого слагаемого:
+		\[
+			\suml_{i = 1}^n (M_i - m_i) \Delta x_i = U(P, f) - L(P, f) \le \eps
+		\]
+		То есть по критерию интегрируемости по Риману $f$ - интегрируема.
+		\item $\Ra$ (Необходимость) Для начала положим $\forall x \in [a; b]\ \ f(x) \ge 0$ и докажем следующее утверждение:
+		\[
+			\forall \eps > 0\ \exists \delta_1 > 0 \such \forall P, \Delta(P) < \delta_1\ \ U(P, f) < \int_a^b f(x)dx + \frac{\eps}{2}
+		\]
+		Интеграл совпадает с нижним и верхним интегралами. Значит, по определению инфинума:
+		\[
+			\forall \eps > 0\ \exists P^* \quad U(P^*, f) < \int_a^bf(x)dx + \frac{\eps}{4} 
+		\]
+		При этом $P^* \colon a = x^*_0 < \ldots < x^*_{n - 1}$. Определим $M := \sup_{x \in [a;b]}f(x)$ и $\delta_1 := \frac{\eps}{8\cdot M\cdot n}$. Теперь, мы можем изучить устройство $\forall P, \delta P < \delta_1$. Будем говорить, что индекс $i$, соответсвующий отрезку $[x_{i - 1}; x_i]$ лежит в $A$, если $\exists x^*_k \in [x_{i - 1}; x_i]$. Иначе он в $B$. Тогда
+		\begin{multline*}
+			\forall P, \Delta P < \delta_1 \quad U(P, f) = \suml_{i\in A} M_i\Delta x_i + \suml_{i \in B} M_i\Delta x_i \leq
+			\\
+			2(n - 1) \cdot M\delta_1 + \suml_{k = 1}^n M_k^*\Delta x_k^* < \frac{\eps}{4} + \int_a^bf(x)dx + \frac{\eps}{4}
+		\end{multline*}
+	Предпоследний переход неявно содержал утверждение, что мы можем все отрезки с индексами из $i \in B$ покрыть отрезками из $P^*$, не потеряв при этом ничего. 
+	
+	В случае без ограничений на $f$ верно, что $\exists m \such f_1(x) = m + f(x) \geq 0$. Для этой функции справедливо соотношение
+	\[
+		U(P, f_1) < \int_a^bf_1(x)dx + \frac{\eps}{2}
+	\]
+	При этом есть 2 равенства:
+	\[
+		\System{
+			&{U(P, f_1) = U(P, f) + m(b - a)}
+			\\
+			&{\int_a^b f_1(x)dx = \int_a^b f(x)dx + m(b - a)}
+		}
+	\]
+	Отсюда получается требуемое утверждение. Теперь покажем, что
+		\[
+			\forall \eps > 0\ \exists \delta_2 > 0 \such \forall P, \Delta(P) < \delta_2\ \ L(P, f) >  \int_a^b f(x)dx - \frac{\eps}{2}
+		\]
+		Для этого положим $f_2 := -f$. Для которой верно по уже доказанному:
+		\[
+			\exists \delta_2 > 0\ \forall P, \Delta P < \delta_2\ U(P, f_2) < \int_a^bf_2(x)dx + \frac{\eps}{2} \Ra \int_a^bf(x)dx - \frac{\eps}{2} < L(P, f)
+		\]
+		Собeрем все в кучку:
+		\[
+			\forall P \such \Delta P < \delta = \min(\delta_1, \delta_2) \quad U(P, f) - L(P, f) < \eps
+		\]
+		Так как любая интегральная сумма зажата между $L(P, f)$ и $U(P, f)$, то
+		\[
+			L(P, f) \leq  S(P, f, \{t_i\}) \leq U(P, f) \Ra \int_a^bf(x)dx = S(P, f, \{t_i\})
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Доказанная теорема справедлива для интеграла Римана-Стилтьеса при дополнительном предположении, что $f$ или $\alpha$ - непрерывные.
+\end{note}
+
+\begin{note}
+	Если интеграл Римана-Стилтьеса определить как предел интегральных сумм, то свойство аддитивности не выполняется.
+\end{note}
+
+\begin{definition}
+	Пусть $f \in R[a; b']$ для любого $b' \in (a; b)$. Тогда $F(b') = \int_a^{b'} f(x)dx$ называется \textit{интегралом с переменным верхним пределом}.
+	
+	Будем считать, что $F(a) = 0$, а для $\alpha > \beta\ \ \int_\alpha^\beta f(x)dx = -\int_\beta^\alpha f(x)dx$. 
+\end{definition}
+
+\begin{theorem}
+	Если $\forall b' \in (a; b)\ \ f \in R[a; b']$ и $f$ ограничена на $[a; b]$, то $f \in R[a; b]$.
+\end{theorem}
+
+\begin{proof}
+	Пусть $M := \sup\limits_{x \in [a; b]} |f(x)|$. Зафиксируем $\forall \eps > 0$. В качестве $b'$ положим $b' := b - \frac{\eps}{2M}$. Коль скоро функция интегрируема по Риману, то
+	\[
+		\forall \eps > 0\ \exists P' \colon a = x_0 < \ldots < x_{n - 1} = b' \such U(P', f) - L(P', f) < \frac{\eps}{2}
+	\]
+	Положим $P := P' \cup \{b\}$. Тогда
+	\[
+		U(P, f) - L(P, f) = U(P', f) - L(P', f) + \left(\sup\limits_{x \in [b'; b]} f(x) - \inf\limits_{x \in [b'; b]} f(x)\right) \frac{\eps}{4M} < \eps
+	\]
+	Стало быть, $f \in R[a; b]$.
+\end{proof}
+
+\begin{corollary}
+	Если $f$ непрерывна на $[a; b]$, кроме конечного числа точек, являющихся точками разрыва первого рода, то $f \in R[a; b]$.
+\end{corollary}
+
+\begin{theorem} (Основные свойства интеграла с переменным верхним пределом)
+	\begin{itemize}
+		\item Если $f \in R[a; b]$, то интеграл с переменным верхним пределом $F(x)$ непрерывен на $[a; b]$.
+		
+		\item Если, кроме того, $f$ непрерывна в точке $x_0 \in [a; b]$, то $F(x)$ дифференцируема в $x_0$, причём $F'(x_0) = f(x_0)$ (для $x_0 \in \{a, b\}$ нужно рассматривать соответствующую правую или левую производную).
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item По свойству аддитивности:
+		\[
+			\forall x_1, x_2 \in [a; b],\ x_1 < x_2\ \ F(x_2) - F(x_1) = \int_{x_1}^{x_2} f(x)dx
+		\]
+		Оценим модуль этой разности (при условии, что $|f(x)| \le M$ и $0 < x_2 - x_1 < \frac{\eps}{M} = \delta$):
+		\[
+			|F(x_2) - F(x_1)| \le \int_{x_1}^{x_2} |f(x)|dx \le M(x_2 - x_1) < \eps
+		\]
+		Получается функция $F(x)$ равномерно непрерывна, а значит и просто непрерывна.
+		
+		\item Теперь, посмотрим на разность следующего вида:
+		\[
+			\left|\frac{F(x) - F(x_0)}{x - x_0} - f(x_0)\right| = \left|\frac{1}{x - x_0} \int_{x_0}^x f(t)dt - f(x_0)\right| = \frac{1}{|x - x_0|} \cdot \left|\int_{x_0}^x (f(t) - f(x_0))dt\right|
+		\]
+		По определению непрерывности в точке $x_0$:
+		\[
+			\forall \eps > 0\ \exists \delta > 0\ \forall t, |t - x_0| < \delta,\ t \in [a;b] \quad |f(t) - f(x_0)| < \eps
+		\]
+		Откуда в свою очередь:
+		\[
+			\forall x, 0 < |x - x_0| < \delta, x \in [a; b] \quad \frac{1}{|x - x_0|} \cdot \left|\int_{x_0}^x (f(t) - f(x_0))dt\right| < \frac{1}{|x - x_0|} \cdot \left|\int_{x_0}^x \eps dx\right|  = \eps
+		\]
+		Мы получили, что 
+		\begin{multline*}
+			\forall \eps > 0\ \exists \delta > 0 \such \forall x, 0 < |x - x_0| < \delta, x \in [a; b] \quad \left|\frac{F(x) - F(x_0)}{x - x_0} - f(x_0)\right| < \eps \lra
+			\\
+			\exists \liml_{x \to x_0} \frac{F(x) - F(x_0)}{x - x_0} = F'(x_0) = f(x_0)
+		\end{multline*}
+	\end{itemize}
+\end{proof}
+
+\begin{theorem} (Основная теорема интегрального исчисления)
+	Если $f \in R[a; b]$ имеет первообразную $F$ на $[a; b]$, то
+	\[
+		\int_a^b f(x)dx = F(b) - F(a) = F(x)\Big|_a^b
+	\]
+	Это выражение также называется \textit{формулой Ньютона-Лейбница}.
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем разбиение $P \colon a = x_0 < x_1 < \ldots < x_n = b$. Распишем разность $F$:
+	\[
+		F(b) - F(a) = \suml_{k = 1}^n (F(x_k) - F(x_{k - 1}))
+	\]
+	По теореме Лагранжа $\exists t_k \in [x_{k - 1};x_k]\ F(x_k) - F(x_{k - 1}) = F'(t_k)\Delta x_k$. Тогда сумму можно переписать как
+	\[
+		\suml_{k = 1}^nF'(t_k)\Delta x_k = \suml_{k = 1}^nf(t_k)\Delta x_k = S(P, f, \{t_k\}) \xrightarrow[\Delta P \to 0]{} \int_a^b f(x)dx
+	\]
+	При этом $F(b) - F(a)$ от $P$ не зависит. Следовательно, теорема доказана.
+\end{proof}
+
+\begin{note}
+	Формула Ньютона-Лейбница иногда принимается за определение интеграла.
+\end{note}
+
+\begin{note}
+	Если функция имеет первообразную, то она не обязана быть интегрируемой. Пример:
+	\[
+		F(x) = \System{
+			&{x^2 \sin \frac{1}{x^2},\ x \neq 0}
+			\\
+			&{0,\ x = 0}
+		}
+	\]
+	Отсюда $f(x) = F'(x)$:
+	\[
+		f(x) = \System{
+			&{2x \sin \frac{1}{x^2} - \frac{2}{x}\cos \frac{1}{x^2},\ x \neq 0}
+			\\
+			&{0,\ x = 0}
+		}
+	\]
+	Несложно увидеть, что $f(x)$ не может быть интегрируема по Риману на любом отрезке, содержащем 0, коль скоро тогда она не будет ограниченной.
+\end{note}

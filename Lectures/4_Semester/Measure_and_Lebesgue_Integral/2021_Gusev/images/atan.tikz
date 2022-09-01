@@ -1,0 +1,52 @@
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da01253990328815191] 
+\draw    (120.04,259.96) -- (119.64,82.36) ;
+\draw [shift={(119.64,80.36)}, rotate = 449.87] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da011511383436563216] 
+\draw    (9.64,169.96) -- (318.04,169.96) ;
+\draw [shift={(320.04,169.96)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da3525055949245628] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (9.24,239.96) -- (319.64,240.36) ;
+%Straight Lines [id:da9013132184394284] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (10.04,99.96) -- (320.44,100.36) ;
+%Curve Lines [id:da28618381116787295] 
+\draw    (12.84,233.96) .. controls (48.04,229.56) and (69.64,231.96) .. (119.84,170.16) .. controls (170.04,108.36) and (221.64,109.16) .. (310.84,104.36) ;
+%Flowchart: Connector [id:dp9476639517392225] 
+\draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (177.64,170.12) .. controls (177.64,168.99) and (178.56,168.07) .. (179.7,168.07) .. controls (180.84,168.07) and (181.76,168.99) .. (181.76,170.12) .. controls (181.76,171.26) and (180.84,172.18) .. (179.7,172.18) .. controls (178.56,172.18) and (177.64,171.26) .. (177.64,170.12) -- cycle ;
+%Flowchart: Connector [id:dp5108999664707425] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (228.09,170.34) .. controls (228.09,169.21) and (229.01,168.29) .. (230.14,168.29) .. controls (231.28,168.29) and (232.2,169.21) .. (232.2,170.34) .. controls (232.2,171.48) and (231.28,172.4) .. (230.14,172.4) .. controls (229.01,172.4) and (228.09,171.48) .. (228.09,170.34) -- cycle ;
+%Straight Lines [id:da760850287045677] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (179.53,123.22) -- (179.7,170.12) ;
+%Straight Lines [id:da492720321335101] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (229.98,110.11) -- (230.14,170.34) ;
+%Flowchart: Connector [id:dp10875556229828831] 
+\draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (177.48,123.22) .. controls (177.48,122.09) and (178.4,121.17) .. (179.53,121.17) .. controls (180.67,121.17) and (181.59,122.09) .. (181.59,123.22) .. controls (181.59,124.36) and (180.67,125.28) .. (179.53,125.28) .. controls (178.4,125.28) and (177.48,124.36) .. (177.48,123.22) -- cycle ;
+%Flowchart: Connector [id:dp7021743431110545] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (227.92,110.11) .. controls (227.92,108.98) and (228.84,108.06) .. (229.98,108.06) .. controls (231.11,108.06) and (232.03,108.98) .. (232.03,110.11) .. controls (232.03,111.25) and (231.11,112.17) .. (229.98,112.17) .. controls (228.84,112.17) and (227.92,111.25) .. (227.92,110.11) -- cycle ;
+%Straight Lines [id:da939770188361363] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (119.76,123.44) -- (179.53,123.22) ;
+%Straight Lines [id:da4619329715302538] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (119.76,110.33) -- (229.98,110.11) ;
+%Flowchart: Connector [id:dp042464638370279806] 
+\draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (117.7,123.44) .. controls (117.7,122.31) and (118.62,121.39) .. (119.76,121.39) .. controls (120.89,121.39) and (121.81,122.31) .. (121.81,123.44) .. controls (121.81,124.58) and (120.89,125.5) .. (119.76,125.5) .. controls (118.62,125.5) and (117.7,124.58) .. (117.7,123.44) -- cycle ;
+%Flowchart: Connector [id:dp02167511075412154] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (117.7,110.33) .. controls (117.7,109.2) and (118.62,108.28) .. (119.76,108.28) .. controls (120.89,108.28) and (121.81,109.2) .. (121.81,110.33) .. controls (121.81,111.47) and (120.89,112.39) .. (119.76,112.39) .. controls (118.62,112.39) and (117.7,111.47) .. (117.7,110.33) -- cycle ;
+%Straight Lines [id:da8116856549463478] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (119.76,110.33) -- (119.76,123.44) ;
+
+% Text Node
+\draw (122.84,79.76) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \pi /2$};
+% Text Node
+\draw (122.34,219.76) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -\pi /2$};
+% Text Node
+\draw (62,106) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \rho ( x,\ y)$};
+% Text Node
+\draw (174.5,175) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,opacity=1 ] [align=left] {$\displaystyle x$};
+% Text Node
+\draw (225,175) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,opacity=1 ] [align=left] {$\displaystyle \textcolor[rgb]{0.56,0.07,1}{y}$};
+
+\end{tikzpicture}

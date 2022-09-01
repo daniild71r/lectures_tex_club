@@ -1,0 +1,126 @@
+\subsection{Коммутант группы}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $x, y \in G$. \textit{Коммутатором} элементов $x$ и $y$ называется элемент $[x, y] := xyx^{-1}y^{-1}$.
+\end{definition}
+
+\begin{proposition} Пусть $G$ "--- группа, $x, y \in G$. Тогда:
+	\begin{enumerate}
+		\item $xy = [x, y]yx$
+		\item $xy = yx \lra [x, y] = e$
+		\item $[x, y]^{-1} = [y, x]$
+		\item $\forall g \in G: [x, y]^g = [x^g, y^g]$ 
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item $[x, y]yx = xyx^{-1}y^{-1}yx = xy$
+		\item $xy = yx \lra xyx^{-1}y^{-1} = e \lra [x, y] = e$
+		\item $[x, y]^{-1} = (xyx^{-1}y^{-1})^{-1} = yxy^{-1}x^{-1} = [y, x]$
+		\item Данное равенство можно проверить непосредственно, но оно следует из того, что сопряжение с помощью $g \in G$ "--- это автоморфизм $G$
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Пусть $\phi : G \to A$ "--- гомоморфизм групп $G$ и $A$, причем $A$ "--- абелева. Тогда $\phi([x, y]) = [\phi(x), \phi(y)] = e$, поскольку $\phi(x)$ и $\phi(y)$ коммутируют.
+\end{note}
+
+\begin{definition}
+	Пусть $G$ "--- группа. \textit{Коммутантом} группы $G$ называется $G' := \gl[x, y]: x, y \in G\gr \le G$. Рекурсивно определяется \textit{$n$-ный коммутант} $G^{(n)} := (G^{(n - 1)})' \hm\le G^{(n - 1)}$.
+\end{definition}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $K, H \le G$. \textit{Взаимным коммутантом} $K$ и $H$ называется $[K, H] := \gl[k, h]: k \in K,  h \in H\gr$.
+\end{definition}
+
+\begin{note}
+	Определения имеют именно такой вид, потому что возможна ситуация, когда $\{[x, y]: x, y \in G\}$ не является подгруппой в $G$. Отметим также, что $G^{(n)} = [G^{(n - 1)}, G^{(n - 1)}]$.
+\end{note}
+
+\begin{proposition}
+	Пусть $\phi: G \to H$ "--- гомоморфизм групп $G$ и $H$. Тогда $\phi(G') \le H'$. Более того, если $\phi$ "--- эпиморфизм, то $\phi(G') \hm= H'$.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $G' = \gl[x, y]: x, y \in G\gr$, то $\phi(G') \hm= \gl\phi([x, y]): x, y \in G\gr \hm= \gl[\phi(x), \phi(y)]: x, y \in G\gr \le \gl[p, q]: p, q \hm\in H\gr$. Если же $\phi$ "--- эпиморфизм, то последнее включение тоже становится равенством.
+\end{proof}
+
+\begin{corollary}
+	Пусть $G$ "--- группа, $K \normal G$. Тогда $K' \normal G$.
+\end{corollary}
+
+\begin{proof}
+	Рассмотрим $g \in G$. Сопряжение с помощью $g$ "--- это автоморфизм $I_g: G \to G$, $\forall x \in G: I_g(x) = x^g$. Следовательно, $I_g(K) = K$, то есть $I_g|_K : K \to K$ "--- автоморфизм, и, по утверждению выше, $I_g(K') = K'$, тогда, в силу произвольности $g$, $K' \normal G$.
+\end{proof}
+
+\begin{corollary}
+	$G' \normal G$, и, по индукции, $\forall n \in \N: G^{(n)} \normal G$.
+\end{corollary}
+
+\begin{theorem} Пусть $G$ "--- группа. Тогда:
+	\begin{enumerate}
+		\item Если $G' \le K \le G$, то $K \normal G$ и $G / K$ "--- абелева.
+		\item Если $K \normal G$ и $G / K$ "--- абелева, то $G' \le K$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Рассмотрим канонический эпиморфизм $\pi: G \hm\to G / G'$. Тогда $\{G'\} = \pi(G') = (G / G')'$. Поскольку $G'$ "--- нейтральный элемент в $G / G'$, все коммутаторы в $G / G'$ единичны, поэтому $G / G'$ "--- абелева. По второй теореме об изоморфизме, подгруппе $G' \hm\le K \le G$ соответствует $\overline{K} = K / G' \le \overline{G} = G / G'$, и, более того, $\overline{K} \normal \overline{G} \lra K \normal G$. Поскольку $\overline{G}$ "--- абелева, $\overline{K} \normal \overline{G}$, значит, и $K \normal G$. Наконец, $G / K \hm\cong \overline{G} / \overline{K}$ "--- абелева группа.
+		
+		\item Рассмотрим канонический эпиморфизм $\pi: G \to G / K$. Тогда $\pi(G') = (G / K)' = \{K\}$. Значит, $G' \le \ke\pi = K$.
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Согласно теореме выше, $G'$ "--- наименьшая по включению нормальная подгруппа в $G$ такая, что $G / G'$ "--- абелева.
+\end{note}
+
+\begin{exercise}
+	Пусть $G$ "--- группа, $H \normal G$, $K = [G, H]$. Докажите, что $K$ "--- это наименьшая нормальная подгруппа в $G$ такая, что $H / K \le Z (G / K)$.
+\end{exercise}
+
+\begin{solution}
+	Заметим сначала, что $K \le H$, поскольку $\forall g \in G: \forall h \hm\in H: [g, h] = (ghg^{-1})h^{-1} \hm\in H$, и $K \normal G$, поскольку сопряжение с помощью произвольного $x \in G$ "--- это автоморфизм, и, следовательно, оно переводит коммутаторы в коммутаторы, а коммутаторы порождают $K$.
+	
+	Пусть теперь $L \le H$ "--- такая подгруппа, что $L \normal G$ (тогда, конечно, $L \normal H$) и $H / L \hm\le Z(G / L)$. Последнее равносильно тому, что $\forall hL \in H / L: \forall gL \in G / L: hLgL = gLhL \hm\lra Lhg = Lgh \hm\lra L = L[g, h] \lra [g, h] \in L$. Из этого сразу следует, что $K \le L$ и что $H / K \le Z(G / K)$.
+\end{solution}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $M \subset G$. \textit{Нормальной подгруппой, порожденной $M$,} называется $\gl M\gr_{norm} = \bigcap_{H \normal G: M \subset H} H$
+\end{definition}
+
+\begin{note}
+	Конечно, $\gl M\gr_{norm} \normal G$ как пересечение некоторого числа нормальных подгрупп.
+\end{note}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $M \subset G$. Тогда $\gl M\gr_{norm}\hm = \gl M^G\gr$.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\ge$] Если $H \normal G$, $M \subset H$, то, в силу нормальности группы $H$, $M^G \subset H$, тогда $M^G \hm\subset \gl M\gr_{norm}$, и, так как $\gl M\gr_{norm}$ "--- группа, $\gl M^G\gr \le \gl M\gr_{norm}$
+		
+		\item[$\le$] Заметим, что $\forall g \in G: (M^G)^g = M^G$, следовательно, $\forall g \in G: \gl M^G\gr \hm= \bigcap_{H \le G: M^G \subset H}H \hm= \bigcap_{H\le G: M^G \subset H^{g^{-1}}}H \hm= \bigcap_{K \le G: M^G \subset K}K^g \hm= (\bigcap_{K \le G: M^G \subset K}K)^g = \gl M^G\gr^g$, то есть $\gl M^G\gr \normal G$, и поэтому $\gl M\gr_{norm} \le \gl M^G\gr$
+	\end{itemize}
+	Поскольку доказаны оба включения, $\gl M\gr_{norm} = \gl M^G\gr$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $M \subset G$, $G = \gl M\gr$. Тогда $G' = \gl [m_1, m_2]: m_1, m_2 \hm\in M\gr_{norm}$.
+\end{proposition}
+
+\begin{proof}
+	Обозначим $\gl[m_1, m_2]: m_1, m_2 \in M\gr_{norm}$ через $H$ и докажем, что $H = G'$.
+	\begin{itemize}
+		\item[$\le$] Поскольку все коммутаторы лежат в $G'$ и $G' \normal G$, то $H \le G'$
+		
+		\item[$\ge$] Рассмотрим канонический эпиморфизм $\pi: G \to G/ H$, тогда $\forall m_1, m_2 \in M: [\overline{m_1}, \overline{m_2}] \hm= \overline{[m_1, m_2]} = e$, тогда, поскольку $G / H \hm= \gl \overline{m}: m \in M\gr$, то $G / H$ "--- абелева, и потому $G' \le H$
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Центр и коммутант группы $G$ показывают, насколько $G$ <<близка>> к абелевой группе: для абелевой группы $A$ верно, что $Z(A) = A$, $A' = \{e\}$.
+\end{note}

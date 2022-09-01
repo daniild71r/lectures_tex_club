@@ -1,0 +1,217 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\section{Степенные ряды}
+
+Теперь мы работаем в поле комплексных чисел. 
+
+\begin{reminder}
+    $\ulim_{k \to \infty} a_k = \sup \{ a \in \bar{\R} \such a~\text{--- частный предел $ \{ a_k  \}  $}\} $.
+\end{reminder}
+
+
+\begin{proposition}
+  Пусть $ \{ a_k  \} \subset \R $, $ A > \ulim_{k \to \infty} a_k$, тогда 
+  \begin{gather} 
+    \exists k_0 \in \N: \forall k \geq k_0 \hence a_k < A.
+  \end{gather}
+\end{proposition}
+
+
+\begin{proof}
+  Предположим противное: 
+  \begin{gather} 
+    \forall k_0 \in \N \exists k \geq k_0 : a_k \geq A .
+  \end{gather}
+  Можем выбирать в качестве $ k_0 $ натуральные числа, тогда мы получим подпоследовательность $ \{ a_{k_i} \}_{i = 1}^{\infty} $, причём $ \forall i \hence a_{k_i} \geq A$. Тогда у неё существует хотя бы один частичный предел. Пускай он равен $ b$. Тогда $ b \geq A > \ulim_{k \to \infty} a_k $. Пришли к противоречию.    
+\end{proof}
+
+
+\begin{proposition}[Обобщённый признак Коши]
+  Пусть $ q = \ulim_{k \to \infty \sqrt[k]{a_k }}$, тогда 
+  \begin{enumerate}
+      \item если $ q < 1 $, то $  \sum_{k=1}^{\infty} a_k  $~--- сходится;
+      \item если $ q > 1$, то $ \sum_{k=1}^{\infty} a_k  $~--- расходится;
+      \item если $ q = 1$, то $ \sum_{k=1}^{\infty} a_k  $ может как сходиться, так и расходиться.   
+  \end{enumerate} 
+\end{proposition}
+
+
+\begin{proof} 
+    \begin{enumerate}
+        \item Если $ q< 1$, тогда $ \exists q' = \frac{q+1}{2} :$ 
+        \begin{gather} 
+          \exists k_0 : \forall k \geq k_0 \hence \sqrt[k]{a_k } < q' .
+        \end{gather}  
+        Получили условие обычного (не предельного) признака Коши.
+        \item Если $ q > 1$, тогда $ \exists \{ a_{k_jj} \}_{j = 1}^{\infty} : \lim_{j \to \infty} \sqrt[k_j ]{a_{k_j }} > 1$. Тогда $ \lim_{k \to \infty} a_k   \neq 0$, не выполняется необходимое условие, значит ряд расходится.
+        \item Примеры всё те же: $ \frac{1}{k}$ и $ \frac{1}{k^2}$.     
+    \end{enumerate}
+
+\end{proof}
+
+
+\begin{definition}
+  Рассмотрим $ \{ c_{k} \}_{k = 1}^{\infty} \in \Cm $. Будем говорить, что \begin{gather}
+    \lim_{k \to \infty} c_k = c_0 \nas \lim_{k \to \infty} \left| c_k - c_0  \right| = 0.
+  \end{gather}
+\end{definition}
+
+
+\begin{note}
+  Это как предел в $ \Rn$. 
+\end{note}
+
+
+\begin{corollary}
+  $ \lim_{k \to \infty} c_k = c_0 \nas \System{\lim_{k \to \infty} a_k = a_0 \\ \lim_{k \to \infty} b_k = b_0 }$ 
+\end{corollary}
+
+
+\begin{note}
+  Для краткости записи, если не оговорено иное, подразумевается, что $ c \in \Cm$, $ a$~--- действительная часть, $b$~--- мнимая. 
+\end{note}
+
+
+\begin{definition}
+  Будем говорить, что ряд $ \sum_{k=1}^{\infty} c_k  $ \emph{сходится} тогда и только тогда, когда сходится последовательность частных сумм $ S_n = \sum_{k=1}^{n} c_k  $. 
+\end{definition}
+
+
+\begin{note}
+  Ряд сходится тогда и только тогда, когда ряд, составленный из действительных слагаемых, и ряд, составленный из мнимых слагаемых, сходятся.
+\end{note}
+
+\begin{definition}
+    Будем говорить, что ряд $ \sum_{k=1}^{\infty} c_k $ \emph{сходится абсолютно}, если $ \sum_{k=1}^{\infty} \left| c_k  \right|  $ сходится.  
+\end{definition}
+
+\begin{proposition}
+  Если ряд сходится абсолютно, тогда он сходится.
+\end{proposition}
+
+
+\begin{proof}
+  По определению $ \sum_{k=1}^{\infty} \left| c_k  \right|  $ сходится. Из определения модуля $ \left| a_k \right| \leq \left| c_k  \right| $. Тогда по признаку сравнения $ \sum_{k=1}^{\infty} \left| a_k  \right| $ сходится, следовательно $ \sum_{k=1}^{\infty} a_k  $ сходится. Аналогично и $ \sum_{k=1}^{\infty} b_k  $ сходится. Значит и $ \sum_{k=1}^{\infty} c_k  $ сходится.
+\end{proof}
+
+
+\begin{definition}
+  Пусть $ u_k : Z \subset \Cm \to \Cm$. Будем говорить, что функциональный ряд \emph{равномерно сходится} к $ u(z)$ ( $ u_k (z) \convergesuniformly{k \to \infty}{Z} u(z)$ ), если $ \left| u_k (z) - u(z) \right| \convergesuniformly{k \to \infty}{Z} 0$.  
+\end{definition}
+
+
+\begin{definition}
+  Будем говорить, что $ \sum_{k=1}^{\infty} u_k(z)  $ \emph{ сходится равномерно}, если последовательность частичных сумм $ S_n(z) = \sum_{k=1}^{n} u_k(z)  $  сходится равномерно.
+\end{definition}
+
+
+\begin{proposition}[Признак Вейершстрасса]
+  Если $ \left| u_k(z)  \right| \leq a_k  $, $ \forall z \in Z, \forall k \in \N$ и $ \sum_{k=1}^{\infty} a_k  $ сходится, тогда $ \sum_{k=1}^{\infty} u_k(z) $ сходится равномерно. 
+\end{proposition}
+
+
+\begin{proof}
+  Аналогично предыдущему: сводим к действительнозначным функциям.
+\end{proof}
+
+
+\begin{definition}
+  Пусть $ \{ c_{k} \}_{k = 0}^{\infty} $, $ w_0 \in \Cm$. Будем называть \emph{степенным рядом} $ \sum_{k=0}^{\infty} c_k (w - w_0 )^k $.  
+\end{definition}
+
+
+\begin{note}
+  Делая нетрудную замену, мы можем перейти к виду $ \sum_{k=0}^{\infty} c_k z^{k} $.
+\end{note}
+
+
+\begin{definition}
+  Будем говорить, что $ R$~--- \emph{радиус сходимости} ряда $ \sum_{k=0}^{\infty} c_k z^k $, если 
+  \begin{gather} 
+    \frac{1}{R} = \ulim_{k \to \infty} \sqrt[k]{c_k } .
+  \end{gather}
+  Эта формула называется \emph{формула Коши-Адамара}.
+\end{definition}
+
+\begin{note}
+    Договоримся в контексте этого определения, что $ \frac{1}{0} = + \infty$ и $ \frac{1}{+ \infty} = 0$.  
+\end{note}
+
+
+\begin{definition}
+  Пусть $ R$~--- радиус сходимости. Будем называть \emph{кругом сходимости} множество $ \{ z \in \Cm \such \left| z \right| < R \} $.  
+\end{definition}
+
+\begin{proposition}
+  Рассмотрим $ \sum_{k=0}^{\infty} c_k z^k $.  Тогда 
+  \begin{enumerate}
+      \item Ряд сходится абсолютно в круге сходимости.
+      \item Ряд расходится вне круга сходимости.
+      \item Если $ \left| z \right| = R$, ряд может как сходиться, так и расходиться. 
+  \end{enumerate}
+\end{proposition}
+
+
+\begin{proof}
+    Зафиксируем $ z_0 \in \Cm$. Рассмотрим 
+    \begin{gather} 
+        \ulim_{k \to \infty} \sqrt[k]{|c_k z_0^k|} = \ulim_{k \to \infty} \left| z_0  \right| \sqrt[k]{|c_k |} = \frac{|z_0|}{R}
+    \end{gather} 
+    \begin{enumerate}
+        \item Если $ \left| z_0  \right| < R$, то $ \ulim_{k \to \infty} \sqrt[k]{|c_k z_0 ^k|} < 1$. По обобщённому признаку Коши ряд сходится абсолютно.
+        \item Если  $ \left| z_0  \right| < R$, то $ \ulim_{k \to \infty} \sqrt[k]{|c_k z_0 ^k|} > 1$. По обобщённому признаку Коши ряд расходится.
+        \item Исследуем $ \sum_{k=0}^{\infty} \frac{(-1)^{k}}{k+1} x^{k} $. Посчитаем $ \ulim_{k \to \infty} \sqrt[k]{| \frac{(-1)^{k}}{k+1}|} = 1$, тогда $ R = 1$. Возьмём $ x = 1$. Ряд $ \sum_{k=0}^{\infty} \frac{(-1)^{k}}{k+1} $ сходится по признаку Лейбница. Теперь возьмём $ x = -1$. Ряд $  \sum_{k=0}^{\infty} \frac{(-1)^{2k}}{k+1} = \sum_{k=0}^{\infty} \frac{1}{k+1}  $~--- расходится.    
+    \end{enumerate}
+\end{proof}
+
+
+\begin{proposition}[Первый признак Абеля]
+    Пусть $ \sum_{k=0}^{\infty} c_k z^k $ в $ z_0$  сходится. Тогда $ \forall \left| z_1 \right| < \left| z_0 \right| \hence \sum_{k=0}^{\infty} c_k z_1 ^k $ сходится абсолютно.  
+\end{proposition}
+
+\begin{proof}
+    Из сходимости $ \left| z_0  \right| \leq R$. Тогда $ \left| z_1 \right|  < \left| z_0  \right| \leq R$.  
+\end{proof}
+
+
+\begin{proposition}
+  Пусть $ \sum_{k=0}^{\infty} c_k z^{mk+n} $, $ \exists \lim_{k \to \infty} \left| \frac{c_{k+1}}{c_k } \right| $. Тогда 
+  \begin{gather} 
+    \frac{1}{R} = \sqrt[m]{\lim_{k \to \infty} \left| \frac{c_{k+1}}{c_k } \right| } .
+  \end{gather} 
+\end{proposition}
+
+
+\begin{proof}
+  Зафиксируем $ z_0 $. Если 
+  \begin{gather} 
+    \lim_{k \to \infty} \left| \frac{c_{k+1} z_0 ^{m(k+1) + n}}{c_k z_0 ^{mk +n}} \right| = \left| z_0 ^{ m} \right| \lim_{k \to \infty} \left| \frac{c_{k+1}}{c_k } \right|  < 1,
+  \end{gather} 
+  то ряд сходится. Возьмём корень: 
+  \begin{gather} 
+    \left| z_0  \right| \sqrt[m]{\lim_{k \to \infty} \left| \frac{c_{k+1}}{c_k } \right| } < 1 .
+  \end{gather}
+  Тогда 
+  \begin{gather} 
+    \forall z: \left| z \right| < \frac{1}{\sqrt[m]{\lim_{k \to \infty} \left| \frac{c_{k+1}}{c_k } \right| }} 
+  \end{gather}
+  ряд сходится. Если же искомый предел $ >1$, то ряд расходится. Получаем, что по определению 
+  \begin{gather} 
+    \frac{1}{R} = \sqrt[m]{\lim_{k \to \infty} \left| \frac{c_{k+1}}{c_k } \right| }.
+  \end{gather}  
+\end{proof}
+
+
+\begin{proposition}
+  Пусть $ r \in (0, R).$ Тогда $ \sum_{k=0}^{\infty} c_k z^k $ сходится равномерно на $ Z = \{ z \in \Cm \such \left| z \right| \leq r \} $  
+\end{proposition}
+
+
+\begin{proof}
+  По первому признаку абеля ряд поточечно сходится на $ Z$. Заметим, что 
+%   $ S_n (z) = \sum_{k=0}^{n} c_k z^k  \xrightarrow[k \to  \infty ]{} S(z) $.  
+$ \sqrt[k]{|c_k z^z|} \leq \left( \frac{r}{R}\right) < 1$, тогда и $ {|c_k z^z|} \leq \left( \frac{r}{R}\right)^{k} < 1$. Ряд $ \sum_{k=0}^{\infty} \left(\frac{r}{R}\right)^{k} $ сходится, по признаку Вейершстрасса ря
+\end{proof}
+
+\end{document}

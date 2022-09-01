@@ -1,0 +1,91 @@
+\subsection{Бинарные отношения}
+
+\begin{definition}
+	Подмножество $R \subset A \times A$ называется \textit{бинарным отношением},
+	$(x, y) \in R$ принято обозначать как $xRy$.
+\end{definition}
+
+\subsubsection*{Свойства бинарных отношений}
+
+\begin{itemize}
+	\item Рефлексивность: $\forall a \in A\ aRa$.
+	\item Антирефлексивность: $\forall a \in A\ \neg aRa$.
+	\item Симметричность: $\forall a, b \in A\ aRb \Ra bRa$.
+	\item Антисимметричность: $\forall a, b \in A\ (aRb \wedge bRa) \Ra (a = b)$.
+	\item Транзитивность: $\forall a, b, c \in A\ (aRb \wedge bRc) \Ra aRc$.
+	\item Антитранзитивность: $\forall a, b, c \in A\ (aRb \wedge bRc) \Ra \neg aRc$.
+	\item Евклидовость: $\forall a, b, c \in A (aRc \wedge bRc) \Ra aRb$.
+	\item Полнота: $\forall a, b \in A (aRb \vee bRa)$.
+\end{itemize}
+
+\subsection{Отношение эквивалентности}
+
+\begin{definition}
+	\textit{Отношением эквивалентности} называется бинарное отношение, которое обладает рефлексивностью, симметричностью и транзитивностью.
+\end{definition}
+
+\begin{theorem}
+	Если на множестве $A$ задано отношение эквивалентности, то $A$ разбивается на классы эквивалентности~---~множества $A_{\alpha}$ такие, что
+	\begin{itemize}
+		\item $\forall x, y \in A_{\alpha} \Ra x \sim y$,
+		\item $\forall x \in A_{\alpha}, y \in A_{\beta}, \alpha \neq \beta \Ra x \not\sim y$.
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	Пусть $K_x = \{y\ |\ y \sim x\}$.
+	
+	\begin{enumerate}
+		\item $x \in K_x$ (из рефлексивности)
+		\item $K_x \cap K_y \neq \emptyset \Ra K_x = K_y$. Пусть $z \in K_x \cap K_y$. Тогда $z \sim x \Ra x \sim z$ и $z \sim y \Ra x \sim y$. Пусть $t \in K_x$, тогда $t \sim x \Ra t \sim y \Ra t \in K_y$. Отсюда $K_x \subset K_y$. Аналогично $K_y \subset K_x \Ra K_x = K_y$.
+		\item $y \in K_x, z \in K_x \Ra y \sim z$.
+		\item $z \in K_x, t \in K_y, K_x \neq K_y \Ra z \not\sim t$. Если же $z \sim t$, то по симметричности и транзитивности $x \sim y$.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Фактормножество}
+
+\begin{definition}
+	\textit{Фактормножеством} $A/_\sim$ называется множество классов эквивалентности по отношению $\sim$. То есть
+	\begin{align*}
+		&f \colon  A \ra A/_\sim, \quad f(x) = K_x,
+		\\
+		&x \sim y \lra f(x) = f(y).
+	\end{align*}
+\end{definition}
+
+\subsection{Отношения (частичного) порядка}
+
+\begin{definition}
+	\textit{Отношением (частичного) порядка} называется бинарное отношение, которое обладает (анти)рефлексивностью, антисимметричностью и транзитивностью.
+\end{definition}
+
+\begin{definition}
+	Отношением (частичного) \textit{линейного} порядка называется отношение (частичного) порядка, к которому добавили свойство полноты.
+\end{definition}
+
+\begin{definition}
+	\textit{Упорядоченным множеством} называется пара из множества и отношения порядка на нём.
+\end{definition}
+
+\begin{example}
+	$(A, \le_A)$
+\end{example}
+
+%%%%%%%%%%% Сюда бы диаграммы Хассе
+
+\subsection{Изоморфизм}
+
+\begin{definition}
+	$(A, \le_A)$ изоморфно $(B, \le_B)$, если существует биекция $f \colon A \ra B$ такая, что $x \le_A y \lra f(x) \le_B f(y)$. Обозначается как $A \simeq B$.
+\end{definition}
+
+\subsection{Операции над упорядоченными множествами}
+
+\begin{itemize}
+	\item Сумма: \\
+	$(A, \le_A) + (B, \le_B) = (C, \le_C)$. $C = A \sqcup B$, $x \le_C y \lra \Unity{&{x, y \in A, x \le_A y,} \\ &{x, y \in B, x \le_B y,} \\ &{x \in A, y \in B.}}$ %% пояснить $\sqcup$
+	
+	\item Произведение (используется обратный лексикографический порядок): \\
+	$(A, \le_A) \cdot (B, \le_B) = (C, \le_C)$, где $C = A \times B$ и $(a_1, b_1) \le_C (a_2, b_2)$, если $\Unity{&{b_1 <_B b_2,} \\ &{b_1 = b_2, a_1 \le_A a_2}.}$
+\end{itemize}

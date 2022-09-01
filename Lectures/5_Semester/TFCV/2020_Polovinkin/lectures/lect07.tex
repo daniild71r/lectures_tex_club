@@ -1,0 +1,210 @@
+\begin{flushright}
+    \textit{Лекция 7 (от 28.09)}
+\end{flushright}
+\begin{equation}\label{(9.5)}
+    \sum_{n=1}^{\infty}f_n(z), \ f_n: G \mapsto \CC
+\end{equation}
+\Def
+Функциональный ряд \eqref{(9.5)} \textbf{сходится локально равномерно на $G$},
+если $\forall z \in G \ \exists B_r(z) \subseteq G$, на котором \eqref{(9.5)}
+сходится равномерно.
+\theorem (Вейерштрасса)
+Пусть $f_n: G \mapsto \CC$ регулярны на $G$, а ряд $\dst
+\sum_{n=1}^{\infty}f_n(z)$ сходится локально равномерно на $G$.
+\\
+Тогда
+\begin{enumerate}
+    \item $S(z)$~--- сумма ряда \eqref{(9.5)}~--- регулярна на $G$.
+    \item ряд \eqref{(9.5)} можно почленно дифференцировать:
+    \begin{equation}\label{(9.6)}
+        \forall k \in \NN, \ \forall z \in G \ S^{(k)}(z) = \sum_{n=1}^{N}f^{(k)}_n(z)
+    \end{equation}
+    причем ряд \eqref{(9.6)} сходится локально равномерно на $G$.
+\end{enumerate}
+\pr
+Фиксируем произвольную $z_0 \in G$ и $r>0, \ r_1>0: \ \overline{B_{r+r_1}(z_0)}
+\subseteq G$. По определению $3$
+\begin{equation}\label{(9.7)}
+    \forall \varepsilon > 0 \ \exists N(\varepsilon): \ \forall N \geq N(\varepsilon) \sup_{\zeta \in \overline{B_{r+r_1}(z_0)}}\left| S(\zeta) - S_N(\zeta) \right| \leq \varepsilon
+\end{equation}
+где
+\begin{equation}\label{(9.8)}
+    S_N(\zeta) = \sum_{n=1}^{\infty}f_n(\zeta)
+\end{equation}
+\begin{enumerate}
+    \item Пусть $\gamma_1 = \{\zeta \mid \left| \zeta - z_0 \right| =
+    r+r_1\}$~--- положительно ориентированная.
+    $S_N(z)$ регулярна, тогда по интегральной формуле Коши
+    \begin{equation}\label{(9.9)}
+        \forall z \in B_r(z_0) \ S_N(z) = \frac{1}{2 \pi i}\int_{\gamma_1}\frac{S_N(\zeta)}{(\zeta - z)}d \zeta
+    \end{equation}
+    По теореме $3$ $\S 6$ $S(z)$ непрерывна на $\overline{B_{r+r_1}}(z_0)$.
+    Рассмотрим
+    \begin{align*}
+      & \left| S_N(z) - \frac{1}{2 \pi i}\int_{\gamma_1}\frac{S(\zeta)}{\zeta - z} d\zeta \right| = \frac{1}{2 \pi}\left| \int_{\gamma_1} \frac{S_N(\zeta) - S(\zeta)}{\zeta - z} d \zeta \right| \leq \frac{1}{2 \pi} \varepsilon \int_{\gamma_1}\frac{\left| d \zeta \right|}{\left| \zeta - z \right|} \leq \frac{\varepsilon}{2 \pi r_1}2 \pi \cdot \\
+      & \cdot (r+r_1) = \frac{r+r_1}{r_1}\varepsilon
+    \end{align*}
+    \begin{align*}
+      \forall z \in B_r(z_0) \ S(z) = \frac{1}{2\pi i}\int_{\gamma_1}\frac{S(\zeta)}{\zeta - z}d\zeta
+    \end{align*}
+    Отсюда следует бесконечная дифференцируемость $S$ в $B_r(z_0)$, а значит,
+    регулярность в $z_0$, а в силу произвольности выбора $z_0$~--- во всей $G$.
+    \item $S$, $S_N$~--- регулярные функции; по интегральным формулам Коши и
+    теореме $3$ $\S 8$
+    \begin{align*}
+      \forall z \in B_r(z_0) \ S^{(k)}(z) = \frac{k!}{2 \pi i} \int_{\gamma_1} \frac{S(\zeta)}{(\zeta - z)^{k+1}}d\zeta
+    \end{align*}
+    \begin{align*}
+      \forall z \in B_r(z_0) \ S_N^{(k)}(z) = \frac{k!}{2 \pi i}\int_{\gamma_1}\frac{S_N(\zeta)}{(\zeta - z)^{k+1}} d \zeta 
+    \end{align*}
+    Из \eqref{(9.7)} $\forall \varepsilon > 0 \ \exists N(\varepsilon): \
+    \forall N\geq N(\varepsilon)$ выполняется \eqref{(9.7)}.
+    \begin{align*}
+      \left| S^{(k)}(z) - S_N^{(k)}(z) \right| \leq \frac{k!}{2\pi}\int_{\gamma_1}\frac{\left| S(\zeta) - S_N(\zeta) \right|}{\left| \zeta - z \right|^{k+1}} \left| d\zeta \right|\leq \frac{\varepsilon 2 \pi (r+r_1)k!}{2 \pi r^{k+1}}
+    \end{align*}
+    что для любого фиксированного $k$ сколь угодно мало.
+    \begin{align*}
+      \forall z \in B_r(z_0) \ \lim_{N \to \infty}S^{(k)}_N (z) = S^{(k)}(z)
+    \end{align*}
+\end{enumerate}
+\corollary
+Всякий степенной ряд
+\begin{align*}
+  \sum_{n=0}^{\infty}c_n(z-a)^n
+\end{align*}
+имеет суммой регулярную функцию и дифференцируем почленно.
+\corollary
+Любая регулярная функция представима в виде ряда Тейлора, а любая представимая
+рядом Тейлора регулярна.
+\section{$\S 10.$ Некоторые свойства регулярных функций}
+\theorem (единственности)
+Пусть $f: G \mapsto \CC$ регулярна на $G$; пусть $\exists z_n \to a, \ z_n \in
+G, \ a \in G, \ z_n \neq a: \ \forall n \ f(z_n) = 0$.
+\\
+Тогда $f(z) \equiv 0$ на $G$.
+\pr
+~
+\begin{enumerate}
+    \item Т.~к. $a \in G$, то $\exists \rho_0 = \dst \inf_{\zeta \in \partial
+      G}\left| a-\zeta \right| > 0: \ B_{\rho_0}(a) \subseteq G $. По теореме
+    $2$ $\S 9$ существует разложение $f(z) = \dst \sum_{n=0}^{\infty}c_n(z-a)^n$
+    в ряд Тейлора для любого $z \in B_{\rho_0}(a)$.
+    \begin{align*}
+      f(a) = \lim_{n \to \infty} f(z_n) = 0 = c_0
+    \end{align*}
+    Пусть существует наименьшее натуральное $m$ такое, что $c_m \neq 0$. тогда
+    \begin{align*}
+      f(z) = \sum_{n=m}^{\infty}c_n(z-a)^n = (z-a)^mh(z)
+    \end{align*}
+    \begin{align*}
+      h(z) = \sum_{j=0}^{\infty}c_{m+j}(z-a)^j; \ h(a) = c_m \neq 0
+    \end{align*}
+    $h$ регулярна, значит, $\exists \varepsilon \in (0; \rho_0): \ h(z) \neq 0
+    \ \forall z \in B_{\varepsilon}(a)$.
+    \\
+    Но тогда в $\overset{\circ}{B}_{\varepsilon}(a)$ $((z-a)^m \neq 0) \wedge
+    (h(z) \neq 0)$ $\Rightarrow$ $\forall z \in
+    \overset{\circ}{B}_{\varepsilon}(a) \ f(z) \neq 0$.
+    \\
+    Противоречие.
+    \\
+    Значит, $\forall z \in B_{\rho_0}(a) \ f(z) = 0$.
+    \item Рассмотрим произвольное $b \in G \setminus B_{\rho_0}(a)$.
+    \\
+    Существует спрямляемая $\gamma_{ab} \subseteq G$. Пусть $\rho = \inf\{\left|
+        \zeta - z \right| \mid \zeta \in \gamma_{ab}, \ z \in \Gamma\} > 0$;
+    $\rho_0 \geq \rho$.
+    \\
+    Можем построить разбиение $\zeta_0 = a, \zeta_1, \dots, \zeta_{K-1}, \zeta_K
+    = b$, такое, что $l(\zeta_k, \zeta_{k+1}) \leq \dst \frac{\rho}{2}$. Пусть
+    $B_k = B_{\rho}(\zeta_k), \ k \in \{0, \dots, K\}$.
+    \\
+    По построению $\zeta_{k+1}\in B_{\rho}(\zeta_k) \cap B_{\rho}(\zeta_{k+1}) =
+    B_k \cap B_{k+1}$.
+    \\
+    По индукции:
+    \begin{enumerate}
+        \item База: $\zeta_0 = a$, $B_0 \subseteq B_{\rho_0}(a): \ \forall z \in
+        B_0 \ f(z) = 0$.
+        \item Шаг: если $\forall z \in B_k \ f(z) = 0$, то $[\zeta_k;
+        \zeta_{k+1}]\subseteq B_{k+1}\cap B_{k}$, значит, $\forall z \in B_{k+1}
+        \ f(z) = 0$ (по п. $1$), а значит, $f(z) = 0$ на $B_k$ и $f(b) = 0 $.
+    \end{enumerate}
+\end{enumerate}
+\corollary
+Пусть $f, g: G \mapsto \CC$ регулярны на $G$ и $\exists E \subseteq G$,
+содержащее нестационарные последовательности, сходящиеся к точке из $G$. Пусть
+$\forall z \in E \ f(z) = g(z)$.
+\\
+Тогда $\forall z \in G \ f(z) = g(z)$.
+\pr
+Очевидно из теоремы $1$, полагая $h(z) = f(z) - g(z)$.
+\example
+$f(z) = e^z = e^{x}e^{iy}$~--- регулярна во всей $\CC$.
+\\
+$g(z) = \dst \sum_{n=0}^{\infty} \dst \frac{z^n}{n!}$ по теореме Вейерштрасса
+регулярна в $G$ как равномерно сходящийся ряд.
+\\
+Известно, что $\forall z \in \RR \ f(z) = g(z)$, а значит, по теореме
+единственности и $\forall z \in \CC \ f(z) = g(z)$.
+\example
+Докажем, что $\sin^2 z + \cos^2 z = 1$.
+\\
+Пусть $f(z) = \sin^2 z + \cos^2 z - 1$. Она регулярна в $\CC$.
+\\
+Известно, что $\forall z \in \RR \ f(z) = 0$, а значит, по теореме
+единственности и $\forall z \in \CC \ f(z) = 0$.
+\theorem (Морера)
+Пусть $f: G \mapsto \CC$ непрервывна в $G$. Пусть для любого замкнутого
+треугольника из $G$
+\begin{align*}
+  \int_{\triangle}f(z) dz = 0
+\end{align*}
+Тогда $f$ регулярна на $G$.
+\pr
+Фиксируем $z_0 \in G$. Пусть $\exists B_r(z_0)\subseteq G$.
+\\
+Внутри $B_r(z_0)$ рассмотрим
+\begin{align*}
+  g(z) = \int_{\gamma_{z_0 z}}f(\zeta) d \zeta
+\end{align*}
+причем $\gamma_{z_0z}\subseteq B_{r}(z_0)$.
+\\
+Аналогично теореме $4$ $\S 6$ $\forall z \in B_r(z_0) \ \exists g'(z) = f(z)$,
+т.~е. $g(z)$ регулярна в $B_r(z_0)$.
+\\
+Из теоремы $3$ $\S8$ $g(z)$ бесконечно дифференциуема. Значит, и $f(z)$
+бесконечно дифференцируема, а значит, и регулярна в $B_r(z_0)$.
+\\
+В силу произвольности $z_0$ $f(z)$ регулярна во всей $G$.
+\theorem (о стирании разреза)
+Пусть $G$~--- односвязная область, которая интервалом $(A;B)$ разрезана на $2$
+односвязные подобласти, т.~е. $G = G_1 \cup G_2 \cup (A;B)$, $G_1 \cap G_2 =
+\varnothing$.
+\\
+Пусть $f_1: G_1 \cup (A;B) \mapsto \CC$ регулярна на $G_1$ и непрерывна на $G_1
+\cup (A;B)$; $f_2: G_2 \cup (A;B) \mapsto \CC$ регулярна на $G_2$ и непрерывна
+на $G_2 \cup (A;B)$; $\forall z \in (A;B) \ f_1(z) = f_2(z)$.
+\\
+Тогда
+\begin{align*}
+  f(z) = \left\{ \begin{matrix}
+          f_1(z), \ z \in G_1 \cup (A;B) \\
+          f_2(z), \ z \in G_2
+      \end{matrix} \right.
+\end{align*}
+регулярна на $G$.
+\pr
+Рассмотрим произвольный $\triangle CDE$. Если $\triangle CDE \subseteq G_1 \cup
+(A;B)$, то по теореме $2$ $\S7$ следует
+\begin{align*}
+  \int_{\partial \triangle CDE}f dz = 0
+\end{align*}
+Аналогично для $\triangle CDE \subseteq G_2 \cup (A;B)$.
+\\
+Если же $(\triangle CDE \cap G_1 \neq \varnothing)\wedge (\triangle CDE \cap G_2
+\neq \varnothing)$,  то пусть $\triangle CDE \cap (A;B)  = (P;Q)$.
+\begin{align*}
+  \int_{\partial \triangle CDE}f dz =   \int_{\partial \triangle PEQ}f_1 dz +   \int_{\partial PQDC}f_2 dz = 0
+\end{align*}
+Значит, по теореме Морера $f(z)$ регулярна.

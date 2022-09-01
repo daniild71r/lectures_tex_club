@@ -1,0 +1,132 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{Определённый интеграл}
+\begin{definition}
+    Пусть $f: [a,b] \to \R$, $T = \{x_k\}_{k=1}^m$~--- разбиение отрезка $[a,b]$ ($a = x_1 < x_2 < \dots < x_m = b$). \emph{Нижней суммой Дарбу} будем называть 
+    \begin{gather*}
+        s(f, T) = \sum_{k=1}^{m-1} \Inf_{x\in[x_k,x_{k+1}]} f(x) \cdot (x_{k+1} - x_k),
+    \end{gather*}
+    \emph{Верхней суммой Дарбу} будем называть 
+    \begin{gather*}
+        S(f, T) = \sum_{k=1}^{m-1} \Sup_{x\in[x_k,x_{k+1}]} f(x) \cdot (x_{k+1} - x_k),
+    \end{gather*}
+\end{definition}
+\begin{note}
+    Для удобства записи определяют $m_k = \Inf\limits_{x\in[x_k,x_{k+1}]} f(x)$ и $M_k = \Sup\limits_{x\in[x_k,x_{k+1}]} f(x)$.
+\end{note}
+
+\begin{definition}
+    Для разбиения $T$ $l(T)$ будет называться \emph{мелкость разбиения}, если $l(T) = \max_{k\in\range{n-1}}(x_{k+1} - x_{k})$.
+\end{definition}
+
+\begin{definition}
+    $J \in \R$~--- \emph{определённый интеграл Римана} если 
+    \begin{gather*}
+        \forall \eps > 0\ \exists \delta:\ \forall T:\ l(T) < \delta \System{|s(f,T) - J| < \eps \\ |S(f,T) - J| < \eps}
+    \end{gather*}
+\end{definition}
+
+\begin{note}
+    Определим $\forall \lambda > 0, \mu \in \R$:
+    \begin{itemize}
+        \item $\pm \infty \cdot \lambda = \pm \infty$,
+        \item $\pm\infty \cdot (-1) = \mp\infty$,
+        \item $\pm\infty + \mu = \pm\infty$,
+    \end{itemize}
+\end{note}
+
+\begin{proposition}
+    Пусть $f:[a,b] \to \R$.
+    \begin{itemize}
+        \item $f$ ограничена снизу \hence $\forall T s(f,T) \in \R$,
+        \item $f$ неограниченна снизу \hence $\forall T s(f,T) = - \infty$,
+        \item $f$ ограничена сверху \hence $\forall T S(f,T) \in \R$,
+        \item $f$ неограниченна снизу \hence $\forall T S(f,T) = + \infty$.
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Докажем первые два, остальные по аналогии. 
+    \begin{enumerate}
+        \item $\forall T\ \forall [x_k,x_{k+1}]\ m_k \in \R \hence m_k \cdot (x_{k+1} - x_k) \in \R \hence s(f,T) \in \R$.
+        \item $\forall T\ \exists [x_k,x_{k+1}]\ m_k = -\infty \hence m_k \cdot (x_{k+1} - x_k) = -\infty \eqcom{\inf \neq +\infty} \hence s(f,T) = -\infty$.
+    \end{enumerate}
+    
+\end{proof}
+
+\begin{definition}
+    $f:[a,b] \to \R$~--- \emph{интегрируема на $[a,b]$}, если $\exists$ определённый интеграл Римана.
+\end{definition}
+
+\begin{proposition}
+    Пусть $f:[a,b] \to \R$~--- интегрируема на $[a,b]$, тогда $f$~--- ограничена на $[a,b]$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $f$~--- неограниченна (без ограничения общности сверху), тогда $\forall S(f,T) = +\infty$, значит по определению $\nexists J \in R$. Пришли к противоречию.
+\end{proof}
+
+\begin{note}
+    Это необходимое условие интегрируемости. Оно не является достаточным.
+\end{note}
+
+\begin{example}
+    Рассмотрим функцию Дирихле $f(x)$ на отрезке $[0,1]$. Тогда $\forall T$ 
+    \begin{gather*}
+        s(f, T) = 0, \\
+        S(f, T) = 1.
+    \end{gather*}
+    При этом $\nexists J : |s(f, T) - J| < \eps, |S(f, T) - J| < \eps$.
+    Этот пример~--- аналог неизмеримого множества.
+\end{example}
+
+\begin{definition}
+    Будем говорить, что разбиение $T_1$ отрезка $[a,b]$ является \emph{измельчением} разбиения $T_2$ отрезка $[a,b]$, если $T_2 \subset T_1$. 
+\end{definition}
+
+\begin{reminder}
+    Разбиение~--- множество точек.
+\end{reminder}
+    
+\begin{proposition}
+    Пусть $T_1$ измельчение $T_2$ отрезка $[a,b]$, и $f:[a,b] \to \R$. Тогда \begin{gather*}
+        s(f,T_2) \leq s(f, T_1) \leq S(f, T_1) \leq S(f, T_2).
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Среднее неравенство верно, так как $\forall k m_k \leq M_k$. \\ Теперь рассмотрим первое неравенство:
+    Пусть $T_1 = T_2 \cup {\hat x}$, $\hat x \in [x_n, x_{n+1}]$. Тогда 
+    \begin{gather*}
+        s(f,T_2) = \sum_{k=1}^{m-1} m_k(x_{k+1} - x_k) = \\ = \sum_{k=1}^{n} m_k(x_{k+1} - x_k) + \inf_{x\in[x_n,x_{n+1}]} f(x) (x_{n+1}-x_n)+\sum_{k=n+1}^{m-1} m_k(x_{k+1} - x_k)
+    \end{gather*}
+    Рассмотрим:
+    \begin{gather*}
+        \inf_{x\in[x_n,x_{n+1}]} f(x) (x_{n+1}-x_n) =  \inf_{x\in[x_n,x_{n+1}]} f(x) (x_{n+1}-\hat x) +  \inf_{x\in[x_1,x_{n+1}]} f(x) (\hat x-x_n) \leq \\ \leq \inf_{x\in[x_n,\hat x]} f(x) (x_{n+1}-\hat x) +  \inf_{x\in[\hat x,x_{n+1}]} f(x) (\hat x-x_n).
+    \end{gather*}
+    Возвращаясь к предыдущему равенству получаем:
+    \begin{multline*}
+        s(f, T_2) = ... \leq \sum_{k=1}^{n} m_k(x_{k+1} - x_k) + \inf_{x\in[x_n,\hat x]} f(x) (x_{n+1}-\hat x) +\\  +\inf_{x\in[\hat x,x_{n+1}]} f(x) (\hat x-x_n)+\sum_{k=n+1}^{m-1} m_k(x_{k+1} - x_k) = s(f, T_1).
+    \end{multline*}
+
+    Мы рассмотрели случай, когда измельчение отличается на одну точку. Если точек несколько, просто последовательно применяем неравенства, ведь точек конечное количество. Последнее неравенство аналогично.
+\end{proof}
+
+\begin{proposition}
+    Пусть $T_1, T_2$~--- произвольные разбиения отрезка $[a,b]$, $f:[a,b] \to \R$. Тогда $s(f, T_1) \leq S(f, T_2)$.
+\end{proposition}
+
+\begin{proof}
+    Рассмотрим $T = T_1 \cup T_2$. Тогда $T$~--- измельчение $T_1$ и $T_2$. Тогда в силу предыдущего утверждения
+    \begin{gather*}
+        s(f, T_1) \leq s(f, T) \leq S(f, T) \leq S(f, T_2).    
+    \end{gather*}
+\end{proof}
+
+\begin{note}
+    Разница между \emph{определённым интегралом} и \emph{неопределённым интегралом} такова, что непонятно почему мы называем их одинаково \emph{интегралами}. Ведь \emph{неопределённый интеграл}, по сути, что-то порождающееся производными в конце концов, а \emph{определённый интеграл} порождается мерой Жордана. Одна из наших целей научиться считать (получать числа) определённый интеграл для каких-то функций, ещё одна цель~--- связать определённый и неопределённый интегралы.
+\end{note}
+
+
+
+\end{document}

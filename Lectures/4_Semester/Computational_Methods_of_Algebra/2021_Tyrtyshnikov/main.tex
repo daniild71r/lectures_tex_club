@@ -1,0 +1,37 @@
+\documentclass[12pt,twoside,a4paper]{etc/note}
+\input{etc/preamble}
+
+%%% Почти всю шаблонную информацию можно менять тут
+\newcommand{\CourseDate}{\the\year{}}
+\newcommand{\CourseName}{Выч. методы алгебры}
+\renewcommand{\FullCourseNameFirstPart}{\so{ВЫЧИСЛИТЕЛЬНЫЕ}}
+\renewcommand{\FullCourseNameSecondPart}{\so{МЕТОДЫ~АЛГЕБРЫ}}
+\renewcommand{\SemesterNumber}{IV СЕМЕСТР}
+\renewcommand{\SchoolName}{Физтех-школа: \textit{ФПМИ}}
+\renewcommand{\TrackName}{Направления: \textit{ПМФ}}
+\renewcommand{\LecturerInitials}{Лектор: \textit{Тыртышников Евгений Евгеньевич}\\eugene.tyrtyshnikov@gmail.com}
+% You can add up to 4 authors (AuthorA, AuthorB, AuthorC, ...)
+\renewcommand{\AuthorA}
+    {\href{https://vk.com/s0mth1ng}{\textit{Максим Иванов}}}
+%\renewcommand{\AuthorB}
+%    {\href{https://vk.com/}{\textit{Фамилия2 Имя2}}}
+% You can leave \OverleafLink or \OverleafLink empty to make them disappear from the title page, or not empty to make them appear automatically
+\renewcommand{\OverleafLink}{}
+% \renewcommand{\GithubLink}{https://github.com/MIPT-Group/Lectures_Tex_Club}
+\renewcommand{\ImageName}{logo_LTC}
+
+\begin{document}
+\maketitle
+\newpage
+
+\tableofcontents
+\input{units/01}
+\input{units/02}
+\input{units/03}
+\input{units/04}
+\input{units/05}
+\input{units/06}
+\input{units/07}
+
+\input{etc/additional}
+\end{document}

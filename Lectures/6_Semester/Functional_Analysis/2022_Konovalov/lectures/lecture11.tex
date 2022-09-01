@@ -1,0 +1,130 @@
+\section{Линейные ограниченные (непрерывные) операторы}
+
+Пусть $\displaystyle E_{1} ,\ E_{2}$ -- линейные нормированные пространства над полем $\displaystyle \mathbb{K}$ ($\displaystyle \mathbb{R}$ или $\displaystyle \mathbb{C}$).
+\begin{definition}
+Отображение $\displaystyle A:E_{1}\rightarrow E_{2}$ называется \textit{оператором}\textit{.}
+\end{definition}
+\begin{definition}
+Отображение $\displaystyle A:E_{1}\rightarrow \mathbb{K}$ называется \textit{функционалом}\textit{.}
+\end{definition}
+\begin{definition}
+Оператор $\displaystyle A$ называется \textit{ограниченным}, если для любого ограниченного множества $\displaystyle M\subset E_{1}$ множество $\displaystyle A( M) =\{y\in E_{2} :\ \exists x\in M\hookrightarrow A( x) =y\}$ является ограниченным.
+\end{definition}
+\begin{note}
+Функция $\displaystyle I:E\rightarrow E$, такая что $\displaystyle I( x) =x\ \forall x\in E$ является ограниченной по определению выше, но не является ограниченной с точки зрения определения из математического анализа.
+\end{note}
+\begin{definition}
+$\displaystyle ImA=\{y\in E_{2} :\ \exists x\in E_{1} \hookrightarrow A( x) =y\}$ -- \textit{образ} оператора $\displaystyle A$, $\displaystyle KerA=\{x\in E_{1} :\ A( x) =\theta \}$, где $\displaystyle \theta $ -- нулевой элемент пространства $\displaystyle E_{2}$, называется \textit{ядром} отображения $\displaystyle A$.
+\end{definition}
+\begin{definition}
+Оператор $\displaystyle A:\ E_{1}\rightarrow E_{2}$ называется \textit{линейным}, если
+\begin{enumerate}
+    \item $\displaystyle A( x+y) =Ax+Ay\ \forall x,y\in E_{1}$
+    \item $\displaystyle A( \lambda x) =\lambda Ax\ \forall x\in E_{1} ,\ \forall \lambda \in \mathbb{K}$
+\end{enumerate}
+\end{definition}
+\begin{proposition}
+Пусть $\displaystyle A$ -- линейный оператор. Тогда следующие утверждения эквивалентны
+\begin{enumerate}
+    \item $\displaystyle A$ -- ограниченный
+    \item $\displaystyle \exists K:\ \Vert Ax\Vert \leqslant K\Vert x\Vert \ \forall x\in E_{1}$
+    \item $\displaystyle A( B_{1}( \theta ))$, где $\displaystyle B_{1}( \theta )$ -- шар единичного радиуса с центром в нуле, является ограниченным множеством
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Пусть выполняется неравенство в пункте 2. Пусть $\displaystyle x\in B_{1}( \theta )$. Если $\displaystyle x=\theta $, то неравенство выполнено автоматически для любого неотрицательного $\displaystyle K$. Так как $\displaystyle \Vert x\Vert \leqslant 1$, то $\displaystyle \Vert Ax\Vert \leqslant K\Vert x\Vert \leqslant K$. Обратно, пусть выполнено условие пункта 3. Рассмотрим $\displaystyle x\in E_{1} \backslash \{\theta \} .$Тогда $\displaystyle \Vert Ax\Vert =\left\Vert A\dfrac{x}{\Vert x\Vert }\Vert x\Vert \right\Vert \leqslant K\Vert x\Vert $ в силу ограниченности образа единичного шара. Если $\displaystyle x=\theta $, то неравенство выполнено автоматически для любого неотрицательного $\displaystyle K$.
+
+Пусть выполнено условие пункта 3. Тогда, если $\displaystyle M\subset E_{1}$ -- ограниченное множество, то $\displaystyle \exists n\in \mathbb{N} :\ M\subset B_{n}( \theta )$. Тогда $\displaystyle \forall x\in B_{n}( \theta ) \hookrightarrow \dfrac{x}{n} \in B_{1}( \theta )$, то есть $\displaystyle \Vert Ax\Vert =\left\Vert A\dfrac{x}{n} \cdotp n\right\Vert \leqslant Cn$. Следовательно, $\displaystyle A( M)$ -- ограниченное множество. Обратно, так как единичный шар -- ограниченное множество, то и его образ ограниченное множество.
+\end{proof}
+\begin{definition}
+Назовем число $\displaystyle \Vert A\Vert $ \textit{нормой} оператора $\displaystyle A$, если $\displaystyle \Vert A\Vert =\inf_{K:\ \Vert Ax\Vert \leqslant K\Vert X\Vert } K$.
+\end{definition}
+\begin{proposition}
+$\displaystyle \Vert A\Vert $ удовлетворяет неравенству $\displaystyle \Vert Ax\Vert \leqslant \Vert A\Vert \cdotp \Vert x\Vert $.
+\end{proposition}
+\begin{proof}
+Следует из определения точной нижней грани.
+\end{proof}
+\begin{proposition}
+Пусть $\displaystyle A$ -- линейный ограниченный оператор. Тогда
+\begin{equation*}
+\Vert A\Vert =\sup _{\Vert x\Vert \leqslant 1}\Vert Ax\Vert =\sup _{\Vert x\Vert =1}\Vert Ax\Vert =\sup _{x\neq 0}\dfrac{\Vert Ax\Vert }{\Vert x\Vert } .
+\end{equation*}
+\end{proposition}
+\begin{proof}
+$\displaystyle \Vert A\Vert \geqslant \Vert A\Vert \cdotp \Vert x\Vert \geqslant \Vert Ax\Vert ,\ \Vert x\Vert \leqslant 1$. Следовательно, $\displaystyle \Vert A\Vert \geqslant \sup _{\Vert x\Vert \leqslant 1}\Vert Ax\Vert \geqslant \sup _{\Vert x\Vert =1}\Vert Ax\Vert $. Так как $\displaystyle \forall x\neq 0\hookrightarrow \dfrac{\Vert Ax\Vert }{\Vert x\Vert } =\left\Vert A\dfrac{x}{\Vert x\Vert }\right\Vert $, где $\displaystyle \left\Vert \dfrac{x}{\Vert x\Vert }\right\Vert =1$, то $\displaystyle \sup _{\Vert x\Vert =1}\Vert Ax\Vert \geqslant \sup _{x\neq 0}\dfrac{\Vert Ax\Vert }{\Vert x\Vert }$. Покажем, что $\displaystyle \sup _{x\neq 0}\dfrac{\Vert Ax\Vert }{\Vert x\Vert } \geqslant \Vert A\Vert $. Из определения точной нижней грани
+\begin{equation*}
+\forall \varepsilon  >0\ \exists x_{\varepsilon } \in E_{1} :\ (\Vert A\Vert -\varepsilon )\Vert x_{\varepsilon }\Vert < \Vert Ax_{\varepsilon }\Vert \leqslant \Vert A\Vert \cdotp \Vert x_{\varepsilon }\Vert \Leftrightarrow (\Vert A\Vert -\varepsilon ) < \dfrac{\Vert Ax_{\varepsilon }\Vert }{\Vert x_{\varepsilon }\Vert } \leqslant \Vert A\Vert .
+\end{equation*}
+Следовательно, $\displaystyle \sup _{x\neq 0}\dfrac{\Vert Ax\Vert }{\Vert x\Vert } =\Vert A\Vert $.
+\end{proof}
+\begin{note}
+1) Если $\displaystyle \dim E_{1} < \infty $, то все линейные операторы ограничены
+
+2) Если $\displaystyle \dim E_{1} =\infty $, то существуют такие $\displaystyle E_{1} ,\ E_{2}$, что $\displaystyle A:\ E_{1}\rightarrow E_{2}$, и $\displaystyle A$ не является ограниченным.
+\end{note}
+\begin{example}
+Пусть $\displaystyle E_{1} =C^{1}[ 0,1]$ с нормой из $\displaystyle C[ 0,1]$, $\displaystyle E_{2} =C[ 0,1]$. Рассмотрим оператор $\displaystyle D:E_{1}\rightarrow E_{2}$, $\displaystyle D( f) =\dfrac{df}{dx}$. Тогда $\displaystyle f_{n} =\dfrac{\sin nx}{n} \rightrightarrows 0$ при $\displaystyle n\rightarrow \infty $ по признаку Вейерштрасса, но $\displaystyle D( f_{n}) =\cos nx$ не имеет даже поточечного предела при $\displaystyle n\rightarrow \infty $ (И ЧТО ИЗ ЭТОГО? ДОДЕЛАТЬ!).
+\end{example}
+\begin{note}
+Для нахождения нормы оператора $\displaystyle \Vert A\Vert $ рекомендуется изначально сделать оценку сверху, а потом показать, что эта оценка достигается.
+\end{note}
+\begin{example}
+Пусть $\displaystyle E_{1} =E_{2} =C[ 0,1]$. Рассмотрим \textit{оператор Вольтерра}\textit{:}
+\begin{equation*}
+( Af)( x) =\int _{0}^{x} f( t) dt.
+\end{equation*}
+Тогда $\displaystyle ImA=\{g\in C[ 0,1] ,\ g( 0) =0\}$, $\displaystyle KerA=\{0\}$.
+\end{example}
+\begin{theorem}
+Пусть $\displaystyle E_{1} ,E_{2}$ -- линейные нормированные пространства, $\displaystyle A:E_{1}\rightarrow E_{2}$ -- линейный оператор. Тогда $\displaystyle A$ -- ограничен тогда и только тогда, когда $\displaystyle A$ -- непрерывен.
+\end{theorem}
+\begin{proof}
+Пусть $\displaystyle A$ ограничен, $\displaystyle \{x_{n}\} \subset E_{1} :\ x_{n}\xrightarrow[n\rightarrow \infty ]{} x\in E_{1}$. Тогда $\displaystyle \Vert x_{n} -x\Vert \xrightarrow[n\rightarrow \infty ]{} 0$ и $\displaystyle \Vert Ax_{1} -Ax\Vert =\Vert A( x_{1} -x)\Vert \leqslant \Vert A\Vert \cdotp \Vert x_{1} -x\Vert \xrightarrow[n\rightarrow \infty ]{} 0$.
+
+Обратно, пусть $\displaystyle A$ непрерывен. Предположим, что $\displaystyle A$ неограничен. Тогда $\displaystyle \forall n\in \mathbb{N} \ \exists x_{n} \in E_{1} :\ \Vert Ax_{n}\Vert  >n\Vert x_{n}\Vert $. Рассмотрим $\displaystyle y_{n} :=\dfrac{x_{n}}{\Vert x_{n}\Vert n}\xrightarrow[n\rightarrow \infty ]{} 0$. Тогда $\displaystyle \Vert Ay_{n}\Vert =\left\Vert A\dfrac{x_{n}}{\Vert x_{n}\Vert n}\right\Vert  >\dfrac{n\Vert x_{n}\Vert }{n\Vert x_{n}\Vert } =1$. Но так как образ нулевого элемента линейного оператора равняется нулю, то приходим к противоречию.
+\end{proof}
+\begin{definition}
+Обозначим $\displaystyle \mathcal{L}( E_{1} ,\ E_{2})$ пространство линейных ограниченных операторов.
+\end{definition}
+\begin{definition}
+Пусть $\displaystyle E$ -- линейное нормированное пространство. Тогда пространство $\displaystyle E^{*} =\mathcal{L}( E,\ \mathbb{K})$  называется \textit{сопряженным} пространством.
+\end{definition}
+\begin{theorem}
+Пусть $\displaystyle E_{1} ,\ E_{2}$ -- линейные нормированные пространства. Тогда
+\begin{enumerate}
+    \item $\displaystyle \mathcal{L}( E_{1} ,\ E_{2})$ -- линейное нормированное пространство с нормой $\displaystyle \Vert A\Vert =\sup _{\Vert x\Vert =1}\Vert Ax\Vert $,
+    \item Если $\displaystyle E_{2}$ -- банахово, то $\displaystyle \mathcal{L}( E_{1} ,\ E_{2})$ -- банахово.
+\end{enumerate}
+\end{theorem}
+\begin{proof} ~
+\begin{enumerate}
+    \item Операции сложения двух линейных операторов и умножение на константу не выводят из пространства линейных операторов. Докажем, что $\displaystyle \Vert A\Vert =\sup _{\Vert x\Vert =1}\Vert Ax\Vert $ является нормой. $\displaystyle \Vert A\Vert =0\Leftrightarrow \forall x\in E_{1} ,\Vert x\Vert =1\hookrightarrow \Vert Ax\Vert =0\Leftrightarrow Ax=0\ \forall x\in E_{1}$. В силу линейности $\displaystyle \forall \lambda \in \mathbb{K}$ выполнено
+    \begin{equation*}
+    \Vert \lambda A\Vert =\sup _{\Vert x\Vert =1}\Vert \lambda Ax\Vert =\sup _{\Vert x\Vert =1}| \lambda | \cdotp \Vert Ax\Vert =\sup _{\Vert x\Vert =1}| \lambda | \cdotp \Vert Ax\Vert =| \lambda | \sup _{\Vert x\Vert =1}\Vert Ax\Vert =| \lambda | \cdotp \Vert A\Vert .
+    \end{equation*}
+    Пусть $\displaystyle A_{1} ,\ A_{2} \in \mathcal{L}( E_{1} ,\ E_{2})$. Тогда
+    
+    
+    \begin{gather*}
+    \Vert A_{1} +A_{2}\Vert =\sup _{\Vert x\Vert =1}\Vert ( A_{1} +A_{2}) x\Vert =\sup _{\Vert x\Vert =1}\Vert A_{1} x+A_{2} x\Vert \leqslant \sup _{\Vert x\Vert =1}(\Vert A_{1} x\Vert +\Vert A_{2} x\Vert ) \leqslant \\
+    \sup _{\Vert x\Vert =1}\Vert A_{1} x\Vert +\sup _{\Vert x\Vert =1}\Vert A_{2} x\Vert =\Vert A_{1}\Vert +\Vert A_{2}\Vert .
+    \end{gather*}
+    \item Пусть $\displaystyle \{A_{n}\} \subset \mathcal{L}( E_{1} ,\ E_{2})$. Тогда $\displaystyle \forall \varepsilon  >0\ \exists N:\ \forall n,m\geqslant N\hookrightarrow \Vert A_{n} -A_{m}\Vert < \varepsilon $. Пусть $\displaystyle x\in E_{1} ,\ \Vert x\Vert =1$. Тогда $\displaystyle \varepsilon  >\Vert A_{n} -A_{m}\Vert \geqslant \Vert ( A_{n} -A_{m}) x\Vert =\Vert A_{n} x-A_{m} x\Vert $. Следовательно, $\displaystyle \forall x\in E_{1} ,\ \Vert x\Vert =1$ последовательность $\displaystyle \{A_{n} x\}$ является фундаментальной в $\displaystyle E_{2}$. Так как $\displaystyle E_{2}$ банахово, то $\displaystyle \exists y\in E_{2}$, такой что $\displaystyle A_{n} x\rightarrow y=:Ax\ \forall x\in E_{1} ,\ \Vert x\Vert =1$. Докажем, что оператор $\displaystyle A$, определяемый таким способом, является линейным. Покажем, что $\displaystyle A$ -- ограниченный оператор. Так как последовательность $\displaystyle \{A_{n}\}$ фундаментальна, то она ограничена. Следовательно, $\displaystyle \exists K:\ \Vert A_{n}\Vert \leqslant K\ \forall n\in \mathbb{N}$. Так как норма в линейном нормированном пространстве является непрерывной функцией, и $\displaystyle \forall x\in E_{1} \hookrightarrow A_{n} x\xrightarrow[n\rightarrow \infty ]{} Ax$, то $\displaystyle \Vert A_{n} x\Vert \xrightarrow[n\rightarrow \infty ]{}\Vert Ax\Vert $. Из того, что $\displaystyle \Vert A_{n} x\Vert \leqslant \Vert A\Vert \cdotp \Vert x\Vert \leqslant K\Vert x\Vert \Rightarrow \Vert Ax\Vert \leqslant K\Vert x\Vert $. Поэтому, $\displaystyle A$ -- ограниченный.
+
+    Покажем, что $\displaystyle \Vert A_{n} -A\Vert \xrightarrow[n\rightarrow \infty ]{} 0$. Так как последовательность $\displaystyle \{A_{n}\}$ фундаментальна, то $\displaystyle \forall x\in E_{1} ,\ \Vert x\Vert =1,\ \forall \varepsilon  >0\ \exists N\in \mathbb{N} :\ \forall n,m\geqslant N\hookrightarrow \Vert A_{n} x-A_{m} x\Vert < \varepsilon $. Устремляя $\displaystyle m$ к бесконечности, получаем $\displaystyle \Vert A_{n} x-A x\Vert \leqslant \varepsilon $. Следовательно, $\displaystyle \sup _{\Vert x\Vert =1}\Vert A_{n} x-A x\Vert =\Vert A_{n} -A\Vert < \varepsilon $.
+\end{enumerate}
+\end{proof}
+\begin{exercise}
+Пусть $\displaystyle A_{n} \in \mathcal{L}( E_{1} ,\ E_{2}) \ \forall n\in \mathbb{N}$, и $\displaystyle \forall x\in E_{1} \hookrightarrow A_{n} x\rightarrow Ax$. Следует ли из этого ограниченность оператора $\displaystyle A$?
+\end{exercise}
+\begin{example}
+Пусть $\displaystyle H=l_{2}$, $\displaystyle \left( e^{n}\right)$ -- ОНБ, где $\displaystyle e^{n}$ -- последовательности, в которых на $\displaystyle n$-м месте стоит единица, а на других позициях -- нули. Сопоставим элементу $\displaystyle x\in H$ его ряд Фурье по системе $\displaystyle \left( e^{n}\right)$:
+
+
+\begin{equation*}
+x=\sum _{n=1}^{\infty }\left( x,\ e^{n}\right) e^{n} .
+\end{equation*}
+Обозначим $\displaystyle S_{n}( x) =\sum _{k=1}^{n}\left( x,\ e^{k}\right) e^{k}$. Тогда $\displaystyle \forall x\hookrightarrow S_{n}( x)\rightarrow x$, то есть $\displaystyle S_{n}$ сходится поточечно к тождественному оператору. С другой стороны, для любого $\displaystyle n\in \mathbb{N}$ выполняется $\displaystyle \left\Vert S_{n}\left( e^{n+1}\right) -I\left( e^{n+1}\right)\right\Vert =1$, то есть $\displaystyle \Vert S_{n} -I\Vert \nrightarrow 0$ при $\displaystyle n\rightarrow \infty $.
+
+\end{example}

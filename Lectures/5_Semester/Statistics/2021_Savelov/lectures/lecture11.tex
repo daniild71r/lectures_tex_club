@@ -1,0 +1,184 @@
+\begin{proposition}
+    $\displaystyle E\hat{\theta } =\theta ,\ D\hat{\theta } =\sigma ^{2}\left( Z^{T} Z\right)^{-1}$.
+\end{proposition}
+\begin{proof}
+    \begin{gather*}
+        E\hat{\theta } =E\left( Z^{T} Z\right)^{-1} Z^{T} X=\left( Z^{T} Z\right)^{-1} Z^{T} EX=\left( Z^{T} Z\right)^{-1} Z^{T} E( Z\theta +\varepsilon ) =\\
+        \left( Z^{T} Z\right)^{-1} Z^{T} Z\theta =\theta ,
+    \end{gather*}
+    \begin{gather*}
+        D\hat{\theta } =D\left( Z^{T} Z\right)^{-1} Z^{T} X=\left( Z^{T} Z\right)^{-1} Z^{T} \cdotp DX\cdotp Z\left( Z^{T} Z\right)^{-1} =\\
+        \left( Z^{T} Z\right)^{-1} Z^{T} \cdotp \sigma ^{2} I_{n} \cdotp Z\left( Z^{T} Z\right)^{-1} =\sigma ^{2}\left( Z^{T} Z\right)^{-1} .
+    \end{gather*}
+\end{proof}
+\begin{note}
+    Таким образом, оценка МНК является несмещенной.
+\end{note}
+\begin{theorem}
+    (б/д) Пусть $\displaystyle t=T\theta $ -- линейная вектор-функция от $\displaystyle \theta $, $\displaystyle T\in M_{n\times k}$. Тогда оценка $\displaystyle \hat{t} =T\hat{\theta }$ является оптимальной оценкой параметра $\displaystyle t$ в классе линейных несмещенных оценок, т.е. оценок вида $\displaystyle B\cdotp X$.
+\end{theorem}
+\begin{lemma}
+    $\displaystyle E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =\sigma ^{2}( n-k)$.
+\end{lemma}
+\begin{proof}
+    Так как $\displaystyle E( X-Z\hat{\theta }) =0$, то $\displaystyle E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =trD( X-Z\hat{\theta })$. Рассмотрим
+    \begin{equation*}
+        D( X-Z\hat{\theta }) =D\left[\left( I_{n} -Z\left( Z^{T} Z\right)^{-1} Z^{T}\right) X\right] .
+    \end{equation*}
+    Обозначим $\displaystyle A:=Z\left( Z^{T} Z\right)^{-1} Z^{T}$. Тогда
+    \begin{gather*}
+        D( X-Z\hat{\theta }) =D[( I_{n} -A) X] =( I_{n} -A) \cdotp DX\cdotp ( I_{n} -A)^{T} =\\
+        ( I_{n} -A) \cdotp DX\cdotp ( I_{n} -A) =\sigma ^{2}( I_{n} -A)^{2} =\sigma ^{2} I_{n} -2\sigma ^{2} A+\sigma ^{2} A^{2} .
+    \end{gather*}
+    Заметим, что $\displaystyle A^{2} =Z\left( Z^{T} Z\right)^{-1} Z^{T} Z\left( Z^{T} Z\right)^{-1} Z^{T} =A$, т.е.
+    \begin{equation*}
+        D( X-Z\hat{\theta }) =\sigma ^{2}( I_{n} -A) .
+    \end{equation*}
+    Тогда
+    \begin{gather*}
+        E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =\sigma ^{2} tr( I_{n} -A) =\sigma ^{2}\left( trI_{n} -tr\left( Z\left( Z^{T} Z\right)^{-1} Z^{T}\right)\right) =\\
+        \sigma ^{2}\left( n-tr\left(\left( Z^{T} Z\right)^{-1} Z^{T} Z\right)\right) =\sigma ^{2}( n-k) .
+    \end{gather*}
+\end{proof}
+\begin{corollary} ~
+    \begin{enumerate}
+        \item $\displaystyle X-Z\hat{\theta } =proj_{L^{\perp }} X$
+        \item $\displaystyle \dfrac{\Vert X-Z\hat{\theta }\Vert _{2}^{2}}{n-k} =\dfrac{\Vert proj_{L^{\perp }} X\Vert _{2}^{2}}{n-k}$ -- несмещенная оценка $\displaystyle \sigma ^{2}$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof} ~
+    \begin{enumerate}
+        \item $\displaystyle X=proj_{L} X+proj_{L^{\perp }} X\Rightarrow proj_{L^{\perp }} X=X-Z\hat{\theta }$.
+        \item $\displaystyle E\dfrac{\Vert X-Z\hat{\theta }\Vert _{2}^{2}}{n-k} =\dfrac{1}{n-k} E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =\dfrac{1}{n-k} \sigma ^{2}( n-k) =\sigma ^{2}$.
+    \end{enumerate}
+\end{proof}
+\subsection{Гауссовская линейная модель}
+\begin{definition}
+    Если в линейной регрессионной модели $\displaystyle \varepsilon \ \sim \ \mathcal{N}\left( 0,\ \sigma ^{2} I_{n}\right)$, то модель называется \textit{гауссовской линейной моделью}.
+\end{definition}
+\begin{theorem}
+    (об ортогональном разложении, б/д) Пусть $\displaystyle ( X_{1} ,\ \dotsc ,\ X_{n}) \ \sim \ \mathcal{N}\left( l,\ \sigma ^{2} I_{n}\right)$ и $\displaystyle L_{1} ,\ \dotsc ,\ L_{r}$ -- попарно ортогональные подпространства $\displaystyle \mathbb{R}^{n}$, причем $\displaystyle L_{1} \oplus \ \dotsc \ \oplus L_{r} =\mathbb{R}^{n}$. Обозначим $\displaystyle Y_{i} =proj_{L_{i}} X$ -- проекция $\displaystyle X$ на $\displaystyle L_{i}$. Тогда $\displaystyle Y_{1} ,\ \dotsc ,\ Y_{r}$ -- независимые в совокупности нормальные случайные векторы, причем $\displaystyle EY_{i} =proj_{L_{i}} l$, и
+    \begin{equation*}
+        \dfrac{1}{\sigma ^{2}}\Vert Y_{i} -EY_{i}\Vert ^{2} \ \sim \ \chi _{dimL_{i}}^{2} .
+    \end{equation*}
+\end{theorem}
+\begin{proposition}
+    $\displaystyle S( X) =\left( proj_{L} X,\ \Vert proj_{L^{\perp }} X\Vert ^{2}\right)$ -- достаточная статистика для $\displaystyle \left( l,\ \sigma ^{2}\right)$.
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle X$ -- гауссовский вектор с некоррелированными компонентами, то его компоненты независимы. Тогда
+    \begin{equation*}
+        p( X) =\left(\dfrac{1}{\sqrt{2\pi } \sigma }\right)^{n}\exp\left( -\dfrac{\sum _{i=1}^{n}( X_{i} -l_{i})^{2}}{2\sigma ^{2}}\right) .
+    \end{equation*}
+    Рассмотрим $\displaystyle \sum _{i=1}^{n}( X_{i} -l_{i})^{2} =\Vert X-l\Vert _{2}^{2}$. По теореме Пифагора
+    \begin{gather*}
+        \Vert X-l\Vert _{2}^{2} =\Vert proj_{L}( X-l)\Vert _{2}^{2} +\Vert proj_{L^{\perp }}( X-l)\Vert _{2}^{2} =\\
+        \Vert proj_{L} X-proj_{L} l\Vert _{2}^{2} +\Vert proj_{L^{\perp }} X-proj_{L^{\perp }} l\Vert _{2}^{2} .
+    \end{gather*}
+    Так как $\displaystyle l\in L$, то $\displaystyle \Vert X-l\Vert _{2}^{2} =\Vert proj_{L} X-l\Vert _{2}^{2} +\Vert proj_{L^{\perp }} X\Vert _{2}^{2}$, и
+    \begin{equation*}
+        p( X) =\left(\dfrac{1}{\sqrt{2\pi } \sigma }\right)^{n}\exp\left( -\dfrac{\Vert proj_{L} X-l\Vert _{2}^{2} +\Vert proj_{L^{\perp }} X\Vert _{2}^{2}}{2\sigma ^{2}}\right) .
+    \end{equation*}
+    Следовательно, $\displaystyle S( X)$ достаточная статистика по критерию факторизации.
+\end{proof}
+\begin{theorem}
+    (б/д) $\displaystyle S( X)$ -- полная статистика.
+\end{theorem}
+\begin{corollary}
+    $\displaystyle \hat{\theta }$ -- оптимальная оценка для $\displaystyle \theta $, $\displaystyle Z\hat{\theta }$ -- оптимальная оценка для $\displaystyle l$ и $\displaystyle \dfrac{1}{n-k}\Vert X-Z\hat{\theta }\Vert ^{2}$ -- оптимальная оценка для $\displaystyle \sigma ^{2}$.
+\end{corollary}
+\begin{proof}
+    Все эти оценки несмещенные и являются функциями от полной достаточной статистики. Так,
+    \begin{equation*}
+        Z\hat{\theta } =proj_{L} X\Rightarrow \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} proj_{L} X.
+    \end{equation*}
+    Наконец,
+    \begin{equation*}
+        \dfrac{1}{n-k}\Vert X-Z\hat{\theta }\Vert ^{2} =\dfrac{1}{n-k}\Vert proj_{L^{\perp }} X\Vert ^{2} .
+    \end{equation*}
+\end{proof}
+\begin{proposition}
+    В гауссовской линейной модели $\displaystyle \hat{\theta }$ не зависит от $\displaystyle X-Z\hat{\theta }$, и
+    \begin{gather*}
+        \dfrac{1}{\sigma ^{2}}\Vert Z\hat{\theta } -Z\theta \Vert ^{2} \ \sim \ \chi _{k}^{2} ,\\
+        \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2} .
+    \end{gather*}
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle L\oplus L^{\perp } =\mathbb{R}^{n}$, то по теореме об ортогональном разложении векторы $\displaystyle Z\hat{\theta }$ и $\displaystyle X-Z\hat{\theta }$ являются гауссовскими и независимыми. Причем,
+    \begin{gather*}
+        \dfrac{1}{\sigma ^{2}}\Vert Z\hat{\theta } -E( Z\hat{\theta })\Vert ^{2} \ \sim \ \chi _{k}^{2} ,\\
+        \dfrac{1}{\sigma ^{2}}\Vert ( X-Z\hat{\theta }) -E( X-Z\hat{\theta })\Vert \ \sim \ \chi _{n-k}^{2} .
+    \end{gather*}
+    Из того, что $\displaystyle E( Z\hat{\theta }) =Z\theta $, а $\displaystyle E( X-Z\hat{\theta }) =0$, получили требуемое.
+    
+    Докажем независимость. Так как $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} Z\hat{\theta }$, то $\displaystyle \hat{\theta }$ является функцией от $\displaystyle Z\hat{\theta }$. Следовательно, $\displaystyle \hat{\theta }$ и $\displaystyle X-Z\hat{\theta }$ независимы.
+\end{proof}
+\begin{definition} ~
+    Пусть $\displaystyle \xi \ \sim \ \mathcal{N}( 0,\ 1) ,\ \eta \ \sim \ \chi _{k}^{2}$ независимые случайные величины. Тогда случайная величина $\displaystyle \zeta =\dfrac{\xi }{\sqrt{\eta /k}}$ имеет \textit{распредение Стьюдента с}\textit{ }$\displaystyle k$\textit{ степенями} свободы (обозначение $\displaystyle \zeta \ \sim \ T_{k}$).
+\end{definition}
+\begin{proposition} ~
+    \begin{enumerate}
+        \item $\displaystyle \zeta \ \sim \ T_{k} \Rightarrow ( -\zeta ) \ \sim \ T_{k}$.
+        
+        \item $\displaystyle T_{1}$ совпадает с распределением Коши с плотностью $\displaystyle p( x) =\dfrac{1}{\pi \left( 1+x^{2}\right)}$.
+        
+        \item $\displaystyle \zeta _{k} \ \sim \ T_{k}$. Тогда $\displaystyle \zeta _{k}\xrightarrow[k\rightarrow \infty ]{d}\mathcal{N}( 0,\ 1)$.
+    \end{enumerate}
+\end{proposition}
+\begin{definition}
+    Пусть $\displaystyle \xi \ \sim \ \chi _{k}^{2} ,\ \eta \ \sim \ \chi _{m}^{2}$ -- независимые случайные величины. Тогда случайная величина $\displaystyle \zeta =\dfrac{\xi /k}{\eta /m}$ \textit{имеет}\textit{ распределние Фишера }\textit{с параметрами}\textit{ }$\displaystyle k,m$ (обозначение $\displaystyle \zeta \ \sim \ F_{k,m}$).
+\end{definition}
+\begin{proposition} ~
+    \begin{enumerate}
+        \item $\displaystyle \xi \ \sim \ T_{m} \Rightarrow \xi ^{2} \ \sim \ F_{1,m}$.
+        
+        \item $\displaystyle \xi \ \sim \ F_{k,m} \Rightarrow \dfrac{1}{\xi } \ \sim \ F_{m,k}$.
+        
+        \item $\displaystyle \xi _{m} \ \sim \ F_{k,m} \Rightarrow k\xi _{m}\xrightarrow[m\rightarrow \infty ]{d} \chi _{k}^{2}$.
+        
+        \item $\displaystyle \xi _{k,m} \ \sim \ F_{k,m} \Rightarrow \xi _{k,m}\xrightarrow[k,m\rightarrow \infty ]{d} \xi \equiv 1$.
+    \end{enumerate}
+\end{proposition}
+\subsection{Доверительные интервалы для параметров гауссовской линейной модели}
+\subsubsection{Доверительный интервал для $\sigma^{2}$.}
+
+Из того, что $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2}$, и $\displaystyle u_{1-\gamma }$ -- $\displaystyle ( 1-\gamma )$-квантиль распределения $\displaystyle \chi _{n-k}^{2}$, то выполнено
+\begin{equation*}
+    \gamma =P\left(\dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2}  >u_{1-\gamma }\right) =P\left( \sigma ^{2} \in \left( 0,\ \dfrac{\Vert X-Z\hat{\theta }\Vert ^{2}}{u_{1-\gamma }}\right)\right) .
+\end{equation*}
+\subsubsection{Доверительный интервал для $\theta_{j}$.}
+
+Так как выполнено, что $\displaystyle \hat{\theta } \ \sim \ \mathcal{N}\left( \theta ,\ \sigma ^{2}\left( Z^{T} Z\right)^{-1}\right)$, то, обозначив $\displaystyle A:=\left( Z^{T} Z\right)^{-1} =( a_{ij})$, то $\displaystyle \hat{\theta }_{j} \ \sim \ \mathcal{N}\left( \theta _{j} ,\ \sigma ^{2} a_{jj}\right) \Rightarrow \dfrac{\hat{\theta }_{j} -\theta _{j}}{\sqrt{\sigma ^{2} a_{jj}}} \ \sim \ \mathcal{N}( 0,\ 1)$, и $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2}$. Тогда $\displaystyle \dfrac{\hat{\theta }_{j} -\theta _{j}}{\sqrt{\sigma ^{2} a_{jj}}}$ независимо от $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2}$ как функция от $\displaystyle \hat{\theta }$. Следовательно,
+\begin{equation*}
+    \sqrt{\dfrac{n-k}{a_{jj}}} \cdotp \dfrac{\hat{\theta }_{j} -\theta _{j}}{\sqrt{\Vert X-Z\hat{\theta }\Vert ^{2}}} \ \sim \ T_{n-k} .
+\end{equation*}
+Отсюда ищется доверительный интервал для $\displaystyle \theta _{j}$.
+
+
+\subsubsection{Доверительная область для $\theta$.}
+
+Так как $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert Z\hat{\theta } -Z\theta \Vert ^{2} \, \sim \, \chi _{k}^{2} ,\ \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \, \sim \, \chi _{n-k}^{2}$, причем эти случайные величины независимы, и
+\begin{equation*}
+    \dfrac{n-k}{k} \cdotp \dfrac{\Vert Z\hat{\theta } -Z\theta \Vert ^{2}}{\Vert X-Z\hat{\theta }\Vert ^{2}} \ \sim \ F_{k,n-k} .
+\end{equation*}
+Следовательно, доверительная область имеет вид $\displaystyle \left\{\dfrac{n-k}{k} \cdotp \dfrac{\Vert Z\hat{\theta } -Z\theta \Vert ^{2}}{\Vert X-Z\hat{\theta }\Vert ^{2}} < u_{\gamma }\right\}$ -- эллипсоид в $\displaystyle \mathbb{R}^{k}$.
+\section{Проверка статистических гипотез}
+
+Пусть наблюдение $\displaystyle X$ имеет неизвестное распределение $\displaystyle P\in \mathcal{P}$, где $\displaystyle \mathcal{P}$ -- некоторое семейство распределений.
+\begin{definition}
+    \textit{Статистическая гипотеза} -- это предположение вида $\displaystyle P\in \mathcal{P}_{0}$, где $\displaystyle \mathcal{P}_{0} \subset \mathcal{P}$ -- подмножество распределений (обозначение $\displaystyle H_{0} :\ P\in \mathcal{P}_{0}$, $\displaystyle H_{0}$ называется \textit{основной гипотезой}).
+\end{definition}
+Задача заключается по наблюдению $\displaystyle X$ либо принять $\displaystyle H_{0}$, либо отвергнуть $\displaystyle H_{0}$. В последнем случае переходим к рассмотрению альтернативы (если она есть). \textit{Альтернативная гипотеза} имеет вид $\displaystyle H_{1} :\ P\in \mathcal{P}_{1} ,\ \mathcal{P}_{1} \subset \mathcal{P} \backslash \mathcal{P}_{0}$.
+\begin{definition}
+    Пусть $\displaystyle X$ принимает значения в выборочном пространстве $\displaystyle \mathcal{X}$, а $\displaystyle S\subset \mathcal{X}$ -- некоторое подмножество. Если правило принятия $\displaystyle H_{0}$ выглядит следующим образом: $\displaystyle H_{0}$ отвергается тогда и только тогда, когда $\displaystyle X\in S$, то $\displaystyle S$ называется \textit{критерием} для проверки $\displaystyle H_{0}$ против альтернативы $\displaystyle H_{1}$, если она есть.
+\end{definition}
+\begin{definition}
+    \textit{Ошибкой первого рода} называется ситуация, когда отвергается гипотеза $\displaystyle H_{0}$, когда она верна.
+\end{definition}
+\begin{definition}
+    \textit{Ошибкой второго рода} называется ситуация, когда принимается гипотеза $\displaystyle H_{0}$, когда она неверна.
+\end{definition}
+\begin{note}
+    На практике считается, что ошибка первого рода менее желательна, чем ошибка второго рода. Поэтому, $\displaystyle S$ выбирается так, чтобы вероятность ошибки первого рода была меньше заранее выбранной величины, а вероятность ошибки второго рода была как можно меньше.
+\end{note}

@@ -1,0 +1,333 @@
+\section{Лекция 3. Недетерминированные конечные автоматы.}
+
+Вспомним формальное определение (\ref{eq:FA}) конечного автомата.
+
+\textbf{\text{Конечный автомат }} $\mathcal{A}$ --- устройство, описываемое набором $\langle Q$, $\Sigma$, $q_0$, $\delta$, $F \rangle$:
+\begin{enumerate}
+  \item {\bfseries\itshape{Q}} - конечное множество состояний автомата;
+  \item $\boldsymbol{\Sigma}$ - алфавит, слова над которым обрабатывает автомат;
+  \item $\boldsymbol{q_0}$ - начальное состояние автомата;
+  \item $\boldsymbol{\delta}$ : $Q \times (\Sigma\cup\{\varepsilon\} ) \rightarrow 2^{Q}$ - функция переходов
+  \item $\boldsymbol{F} \subset \boldsymbol{Q}$ - множество принимающих состояний.
+\end{enumerate}
+
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \centering
+  \begin{tikzpicture}[node distance=2cm,on grid,auto]
+    \node[state,initial] (q_0)   {$q_0$};
+    \node[state,accepting] (q_1) [right=of q_0] {$q_1$};
+    \path[->]
+    (q_0) edge [bend left] node {$b$} (q_1)
+    (q_0) edge [loop above] node {$a,b$} ()
+    (q_1) edge [bend left] node {$\varepsilon$} (q_0);
+  \end{tikzpicture}
+  \caption{Пример НДА.}
+  \label{fig:NFAexample}
+\end{wrapfigure}
+
+Рассмотрим рисунок (\ref{fig:NFAexample}). К примеру сразу из определения и графа имеем: $\delta(q_0,\:b)=\{q_0,q_1\}$.
+
+\begin{question}
+  Неформально опишите язык, распознаваемый данным автоматом.
+\end{question}
+
+\begin{nonum}
+  Язык $R$, состоящий из слов, оканчивающихся на $b$.
+
+  В самом деле, в принимающее состояние можно перейти по единственному переходу на котором написан символ $b$, то есть $L(\mathcal{A})\subseteq R$.
+  Далее любое слово, оканчивающееся на $b$ принимается автоматом, потому что, обрабатывая все символы слова автомат может оставаться в состояний
+  $q_0$, а когда встретится последний символ(он же буква $b$) перейти в состояние $q_1$. Итак, $R\subseteq L(\mathcal{A})$.
+\end{nonum}
+
+\subsection{Алгоритм проверки принадлежности слова языку, распознаваемому НКА.} \label{alg:word}
+
+В случае ДКА все тривиально. Просто эмулируем работу автомата на входном слове. Каждое следующее состояние определяется однозначно.
+Обработав слово за линейное время выясняем принимается ли оно автоматом.
+
+В случае НКА может быть несколько путей вычесления, к примеру для слова $bb$ в автомате на рисунке (\ref{fig:NFAexample})
+есть более одного пути: $$q_0\xrightarrow{b} q_0\xrightarrow{b} q_1,$$
+$$q_0\xrightarrow{b} q_1\xrightarrow{\varepsilon} q_0\xrightarrow{b} q_0.$$
+
+Заметим, что не обязательно все возможные пути заканчиваются в принимающем(или не принимающем) состоянии, в приведенном примере один путь
+заканчивается, другой --- нет.
+
+\paragraph*{Алгоритм.} Пусть есть слово $w = w_1w_2\ldots w_n$, $w_i\in\Sigma^*$. На $i$"=ом шаге будем помнить и пересчитывать множество состояний
+$Q_i=\{q\:|\:q_0\xrightarrow{w[1,i]}q\}$.
+
+Итак, если после обработки слова, в $Q_n$ есть принимающее состояние, то слово принимается.
+Для более формального описания алгоритма, введем функцию
+$$\varepsilon\text{-closure}(S)=S\cup \{q\:|\:\exists p\in S\: :\: p\xrightarrow{\varepsilon}q\}$$
+
+Наконец, опишем алгоритм формально:
+
+\begin{enumerate}
+  \item Построить множество $Q_0$ = $\varepsilon$"=closure($q_0$).
+  \item Для $k$ от 1 до $|w|$ построить множества:
+        \begin{itemize}
+          \item $Q_k'=\{p\:|\:\exists q\in Q_k\: :\: p\in\delta(q,\:w_k)\}$;
+          \item $Q_{k+1}=\varepsilon\text{-closure}(Q_k')=\displaystyle{\bigcup _{q'\in Q_k'}}\varepsilon\text{-closure}(q')$;
+        \end{itemize}
+  \item Если $Q_{|w|}\cap F_{\mathcal{A}}\neq \varnothing$, то ответ <<Да>>, иначе <<Нет>>.
+\end{enumerate}
+
+
+\begin{question}
+  Как эффективно вычислить $\varepsilon\text{-closure}(S)$?
+\end{question}
+
+\begin{nonum}
+  Рассмотрим подграф графа автомата, в котором оставлены только ребра, на которых написано $\varepsilon$.
+  И дальше для каждого состояния из $S$ обходом в глубину(или в ширину) будем искать все достижимые состояния.
+\end{nonum}
+
+
+\subsection{Построение НКА по РВ.}
+
+Напомним, что по определению любой регулярный язык
+можно построить согласно следующей схеме:
+
+\begin{enumerate}
+  \item $\varnothing \in REG$
+  \item $\forall\sigma \in \sum \implies \{\sigma\} \in  REG$
+  \item $\forall X, Y \in REG: X \circ Y, X|Y, X^* \in REG$
+\end{enumerate}
+
+Мы будем строить НКА по РВ для каждого пункта. Более того,
+нам потребуется соблюсти технические условия:
+
+\begin{enumerate}[(i)]
+  \item НКА имеет ровно одно принимающее состояние;
+  \item В начальное состояние НКА не ведёт ни один переход;
+  \item Из принимающего состояния НКА нет ни одного перехода.
+\end{enumerate}
+
+\begin{question}
+  Построить такой автомат для
+  \begin{itemize}
+    \item Пустого языка;
+    \item Языка, состоящего из одного символа.
+  \end{itemize}
+\end{question}
+
+
+\begin{nonum}
+  Приведем только ответы, корректность очевидна.
+
+  \begin{figure}[!h]
+    \centering
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \begin{tikzpicture}[node distance=2cm,on grid,auto]
+        \node[state,initial] (q_0)   {$q_0$};
+        \node[state,accepting] (q_1) [right=of q_0] {$q_1$};
+      \end{tikzpicture}
+      \caption{Пустой язык.}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \begin{tikzpicture}[node distance=2cm,on grid,auto]
+        \node[state,initial] (q_0)   {$q_0$};
+        \node[state,accepting] (q_1) [right=of q_0] {$q_1$};
+        \path[->]
+        (q_0) edge node {$a$} (q_1);
+      \end{tikzpicture}
+      \caption{Язык $\{a\}$.}
+    \end{minipage}
+  \end{figure}
+\end{nonum}
+
+
+Осталось построить автоматы для пункта (3) определения регулярного языка. Будем изображать НКА схематично, помечая в них только начальное и принимающее состояния:
+\begin{figure}[!h]
+  \centering
+  \begin{tikzpicture}[node distance=2cm,on grid,auto]
+    \draw (0.5,0) ellipse (3cm and 1.5cm);
+    \node[state,initial] (q_0)   {$q_0$};
+    \node[] at (1,0) {$\mathcal{A}$};
+    \node[state,accepting] (q_1) [right=of q_0] {$q_1$};
+  \end{tikzpicture}
+  \caption{Автомат, удовлетворяющий условиям (i–iii).}
+\end{figure}
+
+Далее, мы будем предполагать, что начальное состояние на схеме
+находится слева, а принимающее справа.
+Допустим уже построены автоматы $\mathcal{A}$ и $\mathcal{B}$ (удовлетворяющие условиям (i–iii)) для регулярных языков
+$X$ и $Y$ соответственно. Построим
+явно автомат, распознающий $X \cdot Y$.
+
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}[node distance=4.5cm,on grid,auto,initial text=]
+    \draw (1,0) ellipse (2cm and 1cm);
+    \draw (3.5,0) ellipse (2cm and 1cm);
+    \draw (2.25, 0) circle (0.5cm);
+    \node[state,initial] (q_0)   {$q_0^{\mathcal{A}}$};
+    \node[state,accepting] (q_1) [right=of q_0] {$q_F^{\mathcal{B}}$};
+    \node[] at (1,0) {$\mathcal{A}$};
+    \node[] at (3.5,0) {$\mathcal{B}$};
+  \end{tikzpicture}
+  \caption{Автомат для конкатенации.}
+  \label{fig:concatFA}
+\end{figure}
+
+Как видно из рисунка \ref{fig:concatFA}, результирующий автомат получен из автоматов $\mathcal{A}$ и $\mathcal{B}$
+следующим образом. Начальное состояние автомата $\mathcal{B}$
+\textit{склеено} с начальным состоянием автомата $\mathcal{A}$:
+мы удалили из автомата $\mathcal{B}$ начальное состояние $q_0^{\mathcal{B}}$, а все переходы, которые вели из него,
+добавили к принимающему состоянию $q_F^{\mathcal{A}}$
+автомата $\mathcal{A}$, которое сделали непринимающим.
+Дабы определить склейку состояний для произвольных автоматов, скажем, что если бы в состояние $q_0^{\mathcal{B}}$ вели какие-то
+переходы, то их бы также направили в состояние, полученное в результате склейки.
+
+
+Далее строим автомат для языка $X | Y$ используя конструкцию:
+
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}[node distance=3cm,on grid,auto,initial text=]
+    \node[state,initial] (q_0)   {$q_0$};
+    \node[state] (q_0a) [above right=of q_0] {$q_0^{\mathcal{A}}$};
+    \node[state] (q_fa) [right=of q_0a] {$q_F^{\mathcal{A}}$};
+    \node[state] (q_f) [below right=of q_fa] {$q_F$};
+    \node[state] (q_0b) [below right=of q_0] {$q_0^{\mathcal{B}}$};
+    \node[state] (q_fb) [right=of q_0b] {$q_F^{\mathcal{B}}$};
+    \node[] at (3.6, 2.1) {$\mathcal{A}$};
+    \node[] at (3.6, -2.1) {$\mathcal{B}$};
+    \draw (3.6, 2.1) ellipse (2.5cm and 1cm);
+    \draw (3.6, -2.1) ellipse (2.5cm and 1cm);
+    \path[->]
+    (q_0) edge node {$\varepsilon$} (q_0a)
+    (q_0) edge node {$\varepsilon$} (q_0b)
+    (q_fa) edge node {$\varepsilon$} (q_f)
+    (q_fb) edge node {$\varepsilon$} (q_f);
+  \end{tikzpicture}
+  \caption{Автомат для конкатенации.}
+  \label{fig:sumFA}
+\end{figure}
+
+
+И наконец перейдём к построению автомата для языка $X^*$:
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}[node distance=2.5cm,on grid,auto,initial text=]
+    \node[state,initial] (q_0)   {$q_0$};
+    \node[state] (q_0a) [right=of q_0] {$q_0^{\mathcal{A}}$};
+    \node[state] (q_fa) [right=of q_0a] {$q_F^{\mathcal{A}}$};
+    \node[state] (q_f) [right=of q_fa] {$q_F$};
+    \draw (3.75,0) ellipse (2cm and 1cm);
+    \node[] at (3.75,-0.5) {$\mathcal{A}$};
+    \path[->]
+    (q_0) edge node {$\varepsilon$} (q_0a)
+    (q_0) edge [bend left] node {$\varepsilon$} (q_f)
+    (q_fa) edge [bend right] node {$\varepsilon$} (q_0a)
+    (q_fa) edge node {$\varepsilon$} (q_f);
+  \end{tikzpicture}
+  \caption{Автомат $C$ для итерации.}
+  \label{fig:iterFA}
+\end{figure}
+
+
+\begin{proof}
+
+  По индукции докажем, что для $\forall n>0$ $w\in X^n\Rightarrow w\in L(C)$, то есть докажем включение $X^*\subseteq L(C)$.
+
+  \underline{База}: пустое слово принимается автоматом.
+
+  \underline{Переход}: Рассмотрим слово $w=u_1\cdot u_2\cdot\ldots\cdot u_n$, $u_i\in L(\mathcal{A})$. Слово
+  $v=u_1\cdot u_2\cdot\ldots\cdot u_{n-1}\in L(C)$ по предположению индукции. Есть несколько вариантов.
+  \begin{itemize}
+    \item $v$ --- пустое. Но тогда можно попасть в состояние $q_0^{\mathcal{A}}$, а из него, так как $u_n$ принимается $\mathcal{A}$,
+          в состояние $q_F^{\mathcal{A}}$, откуда уже в $q_F$.
+    \item $v$ --- непустое. Это означает, что путь по нему из начального состояния в принимающее обязательно прошел через
+          $q_F^{\mathcal{A}}$. Тогда вернемся на шаг назад в состояние $q_F^{\mathcal{A}}$, а из него еще на шаг в состояние
+          $q_0^{\mathcal{A}}$ по ребру $\varepsilon$. И оттуда уже обрабатываем слово $u_n$.
+  \end{itemize}
+
+  Теперь докажем $L(C)\subseteq X^*$.
+
+  Пусть слово $w\in L(c)$. Если $w$ --- пустое, то оно очевидно принадлежит $X^*$. Если же слово не пустое, посмотрим на путь из $q_0$.
+  Если этот путь не проходил через ребро $q_F^{\mathcal{A}}\xrightarrow{\varepsilon} q_0^{\mathcal{A}}$, тогда все очевидно.
+
+  Если же этот переход был, найдем первый этот переход, который случился после того, как был обработан какой-то непустой префикс слова $w$.
+  Заметим, что этот префикс есть собственный префикс $w$ и по предположению индукции этот префикс принадлежит $X^*$. Заметим, что и суффикс принадлежит
+  $X^*$, но тогда и $w$ принадлежит $X^*$.
+
+\end{proof}
+
+
+\subsection{Построение ДКА по НКА.}
+
+Модифицируем алгоритм проверки принадлежности слова языку, распознаваемому НКА. Заметим, что число множеств $Q_k$,
+появлявшихся в алгоритме, конечно, поскольку $Q_k \subseteq 2^{Q_{\mathcal{A}}}$. Поэтому всевозможные множества
+можно хранить в конечной памяти, они и будут состояниями ДКА, который мы назовём $2^{\mathcal{A}}$.
+Начальным состоянием будет состояние $Q_0$,
+принимающими будут множества $Q_k$, содержащие принимающие состояния $\mathcal{A}$, а переходы между состояниями определены, как и в алгоритме:
+
+\begin{enumerate}
+  \item $Q_0 = \varepsilon\text{-closure}(q_0)$
+  \item $\delta (Q', a)=\varepsilon\text{-closure}(\widetilde{Q}')$, где
+        $\widetilde{Q}'=\{q\:|\: \exists p\in Q':\:p\in\delta(p, a)\}=\displaystyle{\bigcup_{p\in Q'}}\delta(p, a).$
+\end{enumerate}
+
+
+\subsection{Построение РВ по НКА.}
+
+\begin{Def}
+  \textit{Обобщенный НКА} --- НКА, у которого вместо букв на переходах написаны регулярные выражения.
+
+  Слово $w\in L(\mathcal{A})$, если существует разбиение $w=u_1\cdot u_2\cdot\ldots\cdot u_n$, $u_i\in \Sigma^*$ и существует
+  последовательность состояний $q_1, q_2, \ldots, q_n\in F$, такие что $u_1\in R_{q_0, q_1}$, $u_2\in R_{q_1, q_2}$, \ldots, $u_n\in R_{q_{n-1}, q_n}$, где
+  $R_{q_i,q_j}$ --- РВ написанное на ребре $q_i\rightarrow q_j$.
+\end{Def}
+
+Основная идея такая. Вначале нужно превратить НКА в НКА с одним принимающем состоянием, в который не ведет ни одно ребро и с начальным состоянием
+в которое также ничего не ведет (рисунок (\ref{fig:prepare})).
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=3cm,on grid,auto,initial text=]
+    \node[state,initial] (q0)   {$q_0$};
+    \node[state, initial] (q1) at (1,3) {};
+    \node[state,accepting] (p) at (5, 0) {$p$};
+    \node[state,accepting] (r1) at (4.5, 2.5) {};
+    \node[state,accepting] (r2) at (3, 2) {};
+    \node[state,accepting] (r3) at (5, 4) {};
+    \draw (3,3) ellipse (4cm and 2cm);
+    \path[->]
+    (q0) edge node {$\varepsilon$} (q1)
+    (r1) edge node {$\varepsilon$} (p)
+    (r2) edge node {$\varepsilon$} (p)
+    (r3) edge [bend left, out=30, in=120] node {$\varepsilon$} (p);
+  \end{tikzpicture}
+  \caption{Начальная подготовка графа.}
+  \label{fig:prepare}
+\end{figure}
+
+
+Далее делаем старые принимающие состояние непринимающими и переходим к следующему шагу.
+
+Берем НКА и последовательно удаляем состояния, пересчитывая ребра.
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+  \centering
+  \begin{tikzpicture}[node distance=2.5cm,on grid,auto,initial text=]
+    \node[state,initial] (q)   {$q$};
+    \node[state] (p) [right=of q] {$p$};
+    \node[state] (r) [right=of p] {$r$};
+    \path[->]
+    (q) edge node {$R_{q,p}$} (p)
+    (p) edge node {$R_{p,r}$} (r)
+    (p) edge [loop above] node {$R_{p,p}$} ()
+    (q) edge [bend right, in=240] node {$R_{q,r}$} (r);
+  \end{tikzpicture}
+  \caption{Удаление состояния.}
+  \label{fig:deleteNode}
+\end{wrapfigure}
+
+
+Допустим нужно удалить состояние $p$. Нужно рассмотреть все пары $(q, r)$ удовлетворяющие
+рисунку (\ref{fig:deleteNode}).
+Тогда после удаления $p$ нужно убрать все ребра на рисунке и добавить ребро $q\xrightarrow{R'_{q, r}}r$, где $$R'_{q,r}=R_{q,r}\cup R_{q,p}R^*_{p,p}R_{p,r}$$.

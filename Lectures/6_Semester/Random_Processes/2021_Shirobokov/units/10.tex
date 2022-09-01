@@ -1,0 +1,267 @@
+\newpage
+\lecture{10}{Эргодические цепи Маркова}
+\subsection{Эргодические цепи Маркова}
+\begin{Def}
+    Распределение $\pi(0)$ называется \textbf{стационарным}, если $P^T\pi(0) =
+    \pi(0)$ (и отсюда следует, что $\forall n \left( P^T \right)^n \pi(0) =
+    \pi(0)$).
+\end{Def}
+\begin{Def}
+    Марковская цепь называется \textbf{эргодической}, если $\forall i,j \in S \
+    \exists \dst \lim_{n\to \infty}p_{ij}(n) = p_j > 0$, не зависящий от $i$.
+\end{Def}
+\begin{theorem} Эргодическая для конечных цепей
+    \\
+    Для эргодичности конечной цепи Маркова необходимо и достаточно наличие
+    неразложимости и непериодичности.
+\end{theorem}
+\begin{Proof}
+    \begin{lemma} (без доказательства)
+        \\
+        Для всякого конечного набора взаимно простых чисел $\{a_i\}_{i=1}^r$
+        найдется $k_0$: $\forall k \geq k_0$ найдется совокупность $r$
+        неотрицательных целых чисел $\{x_i\}_{i=1}^r$, для которых
+        \begin{align*}
+          & k = \sum_{i=1}^r a_i x_i
+        \end{align*}
+        ($r \geq 2$).
+    \end{lemma}
+    \begin{itemize}
+        \item Необходимость.
+        \\
+        Пусть конечная марковская цепь эргодична, то есть
+        \begin{align*}
+          &\forall i,j \in S \ \exists \dst \lim_{n\to \infty}p_{ij}(n) = p_j > 0
+        \end{align*}
+        не зависящий от $i$, то есть
+        \begin{align*}
+          &\forall i,j \in S, \ \forall \varepsilon > 0 \ \exists n_0(i,j): \ \forall n > n_0(i,j) \ p_{ij}(n) > p_j - \varepsilon
+        \end{align*}
+        Значит, для $\varepsilon < \dst \min_{j} p_j$ и $n > n_0 = \dst
+        \max_{i,j}n_0(i,j)$ получаем, чтобы
+        \begin{align*}
+          & p_{ij}(n) > 0, p_{ji}> 0, \ p_{ii}> 0
+        \end{align*}
+        то есть все состояния сообщаются, непериодичны и образуют один класс
+        сообщающихся состояний.
+        \item Достаточность.
+        \\
+        Докажем, что начиная с некоторого $n$ $p_{ij}(n) > 0$. Т.~к. все
+        состояния сообщаются и непериодичны, то для всякого состояния
+        \begin{align*}
+          & \GCD \{n > 0: p_{ii}(n) > 0\} = 1
+        \end{align*}
+        и существует $r$ взаимно простых чисел $\{n_k\}_{k=1}^r$ таких, что
+        $p_{ii}(n_k)> 0$.
+        \\
+        Тогда соглавно лемме существует $n_0(i)$:
+        \begin{align*}
+          & \forall n > n_0 \ \exists \{x_k\}_{k=1}^r \subseteq \NN_0: \ n = \sum_{k=1}^r x_k n_k
+        \end{align*}
+        а значит,
+        \begin{align*}
+          & \forall n > n_0(i) \ p_{ii}(n) \ \prod_{k=1}^rp_{ii}(x_kn_k) = \prod_{k=1}^r\left( p_{ii}(n_k) \right)^{x_k} > 0
+        \end{align*}
+        В силу сообщаемости
+        \begin{align*}
+          & \forall i, j \in S \ \exists l(i,j): \ p_{ij}(l) > 0
+        \end{align*}
+        Тогда для $n \geq n_0 + l$
+        \begin{align*}
+          & p_{ij}(n) = p_{ii}(n-l)p_{ij}(l) > 0
+        \end{align*}
+        Полагая
+        \begin{align*}
+          & N_0 = \max_{i,j}\left( n_0(i)+l(i,j) \right) \Rightarrow \forall n \geq N_0 \ p_{ij}(n) > 0
+        \end{align*}
+        Пусть
+        \begin{align*}
+          & m_{j}(n) = \min_{i}p_{ij}(n), \ M_j(n) = \max_{i}p_{ij}(n)
+        \end{align*}
+        \begin{align*}
+          & p_{ij}(n+1) = \sum_{l\in S} p_{il}p_{lj}(n) \Rightarrow m_{j}(n+1) = \min_{i} p_{ij}(n+1) = \min_{i}\sum_{l\in S} p_{il}p_{lj}(n) \geq \\
+          & \geq \min_{i}\sum_{l\in S} p_{il}\min_l p_{lj}(n) = m_j(n)
+        \end{align*}
+        Аналогично
+        \begin{align*}
+          & M_{j}(n+1) \leq M_j(n)
+        \end{align*}
+        Хотим показать, что
+        \begin{align*}
+          & \forall j \ M_{j}(n) - m_j(n) \to 0
+        \end{align*}
+        Пусть
+        \begin{align*}
+          & \delta = \min_{i,j}p_{ij}(N_0): \ \forall n \geq N_0 p_{ij}(n) > 0
+        \end{align*}
+        \begin{align*}
+          & p_{ij}(N_0+n) = \sum_{l \in S}p_{il}(N_0)p_{lj}(n) = \sum_{l \in S}\left( p_{il}(N_0) - \delta p_{jl}(n)\right) p_{lj}(n) + \delta \sum_{l \in S} p_{jl}(n) p_{lj}(n) = \\
+          & = \sum_{l \in S}\left( p_{il}(N_0) - \delta p_{jl}(n)\right) p_{lj}(n) + \delta p_{jj}(2n)
+        \end{align*}
+        \begin{align*}
+          & p_{ij}(N_0+n) \geq m_j(n) \sum_{l \in S}\left( p_{il}(N_0) - \delta p_{jl}(n)\right) + \delta p_{jj}(2n) = m_j(n) (1-\delta) + \delta p_{jj}(2n)
+        \end{align*}
+        \begin{align*}
+          & m_{j}(N_0+n) \geq m_j(n) (1-\delta) + \delta p_{jj}(2n)
+        \end{align*}
+        Аналогично
+        \begin{align*}
+          & M_{j}(N_0+n) \leq M_j(n) (1-\delta) + \delta p_{jj}(2n)
+        \end{align*}
+        \begin{align*}
+          & \forall j \ M_{j}(N_0+n) - m_j(N_0+n) \leq (M_j(n)-m_j(n)) (1-\delta) 
+        \end{align*}
+        \begin{align*}
+          & \forall j \ M_{j}(kN_0+n) - m_j(kN_0+n) \leq (M_j(n)-m_j(n)) (1-\delta)^k \To{k\to \infty} 0
+        \end{align*}
+        То есть
+        \begin{align*}
+          & \exists \{n_k\}: \forall j \ M_{j}(n_k) - m_j(n_k) \To{k\to \infty} 0 \Rightarrow M_j(n) - m_j(n) \to 0
+        \end{align*}
+        а отсюда следует сходимость $p_{ij}(n)$.
+    \end{itemize}
+\end{Proof}
+\begin{theorem} (о предельном распределении)
+    \\
+    В конечных эргодических цепях
+    \begin{enumerate}
+        \item $\exists C > 0, \ \rho \in (0;1): \ \forall n \geq 1 \ \left| p_{ij}(n) \right| \leq
+        C\rho^n$;
+        \item числа $p_{j}$ задают распределение состояний;
+        \item это распределение стационарно;
+        \item это стационарное распределение~--- единственное стационарное
+        распределение для данной цепи Маркова;
+        \item $\forall j \ \pi_{j}(n) \To{n \to \infty} p_j$
+    \end{enumerate}
+\end{theorem}
+\begin{Proof}
+    \begin{enumerate}
+        \item Первое утверждение.
+        \begin{align*}
+          & \left| p_{ij}(n) - p_j \right| \leq M_j(n) - m_j(n) \leq \left( 1-\delta \right)^{\left[ \frac{n}{N_0} \right] - 1}
+        \end{align*}
+        Тогда
+        \begin{align*}
+          & \exists C> 0, \ \rho \in (0;1): \ \left| p_{ij}(n) - p_j \right| \leq C \rho^n
+        \end{align*}
+        \item Второе утверждение.
+        \begin{align*}
+          & \sum_{j \in S}p_{ij}(n) = 1 \To{n \to \infty}\sum_{j \in S}p_{j} = 1
+        \end{align*}
+        \item Третье утверждение.
+        \begin{align*}
+          & p_{ij}(n+1) = \sum_{l \in S}p_{il}(n)p_{lj} \To{n \to \infty} p_j = \sum_{l \in S}p_{j}p_{lj}
+        \end{align*}
+        \begin{align*}
+          & P^Tp=p
+        \end{align*}
+        \item Четвертое утверждение.
+        \\
+        Пусть $q$ стационарно, тогда
+        \begin{align*}
+          & P^T(n)q = q
+        \end{align*}
+        \begin{align*}
+          & q_j = \sum_{l \in S}p_{lj}(n)q_{l} \To{n \to \infty} \sum_{l \in S}p_{j}q_{l} = p_j
+        \end{align*}
+        \item Пятое утверждение.
+        \begin{align*}
+          & \pi_j(n) = \sum_{l \in S}p_{lj}(n)\pi_{l}(0) \To{n \to \infty} \sum_{l \in S}p_{j}\pi_{l}(0) = p_j
+        \end{align*}
+    \end{enumerate}
+\end{Proof}
+\begin{Note}
+    Предельное распределение не зависит от начального.
+\end{Note}
+\begin{theorem} Эргодическая для произвольных цепей (без доказательства)
+    \\
+    Для эргодичности цепи Маркова необходимы и достаточны неразложимость,
+    непериодичность и ненулевость. Кроме того, свойства $2$~---$5$ из теоремы о
+    предельном распределении сохраняются в счетных цепях.
+\end{theorem}
+\begin{theorem} Закон больших чисел
+    \\
+    В конечных эргодических цепях Маркова справедливо
+    \begin{align*}
+      & \frac{1}{n+1} \sum_{k=0}^\infty \chi(X_k=j) \os{\PP}{\To{n \to \infty}} p_j
+    \end{align*}
+    \begin{align*}
+      & p_j = \lim_{n \to \infty} p_{ij}(n)
+    \end{align*}
+\end{theorem}
+\begin{Proof}
+    Пусть
+    \begin{align*}
+      & \nu_i(n) = \frac{1}{n+1}\sum_{k=0}^n \chi_{X_k=j}
+    \end{align*}
+    \begin{align*}
+      & \PP \left( \left| \nu_j(n) - p_j \right| > \varepsilon \mid X_0=i \right) \To{n \to \infty} 0
+    \end{align*}
+    Из неравенства Чебышева:
+    \begin{align*}
+      & \PP \left( \left| \nu_j(n) - p_j \right| \right)\leq \frac{\EE\left( \left| \nu_i(n) - p_j \right| \mid X_0=i \right)}{\varepsilon^2}
+    \end{align*}
+    \begin{align*}
+      & \EE\left( \left| \nu_i(n) - p_j \right| \mid X_0=i \right) = \frac{1}{(n+1)^2}\EE \left( \left[ \sum_{k=0}^\infty \chi_{X_k=j}-p_j \right]^2 \mid X_0 = i \right) = \frac{1}{(n+1)^2}\sum_{k=0}^n\sum_{m=0}^nm_{ij}^{(k,l)}
+    \end{align*}
+    \begin{align*}
+      & m_{ij}^{(k,l)} = \EE \left( \left( \chi_{X_k=j}-p_j \right)\left( \chi_{X_l=j}-p_j \right) \mid X_0=i \right) = \EE \left( \chi_{X_k=j} \chi_{X_l=j} \mid X_0=i \right) - p_j \EE \left( \chi_{X_k=j} \mid X_0=i \right) - \\
+      & - p_j \EE \left( \chi_{X_l=j} \mid X_0=i \right) + p^2_j = \PP \left( \left( X_k=j \right) \left( X_l=j \right) \mid X_0=i \right) - p_j \PP \left( X_k=j \mid X_0=i \right) - p_j \cdot \\
+      & \cdot\PP \left( X_l=j \mid X_0=i \right) + p^2_j = p_{ij}\left( \min(k,l) \right)p_{jj}\left( \left| k-l \right| \right) - p_j p_{ij}(k) -p_jp_{ij}(l) + p^2_j
+    \end{align*}
+    В силу конечности и эргодичности
+    \begin{align*}
+      & \exists C> 0, \ \rho \in (0;1): \ \left| p_{ij}(n) - p_j \right| \leq C \rho^n
+    \end{align*}
+    а значит,
+    \begin{align*}
+      & p_{ij}(n) = p_j +\varepsilon_{ij}(n), \ \left| \varepsilon_{ij}(n) \right|\leq C\rho^n
+    \end{align*}
+    \begin{align*}
+      & m_{ij}^{(k,l)} = p_{ij}\left( \min(k,l) \right)p_{jj}\left( \left| k-l \right| \right) - p_j p_{ij}(k) -p_jp_{ij}(l) + p^2_j = \left( p_j +\varepsilon_{ij}\left( \min(k,l) \right)\right)\cdot \\
+      & \cdot \left( p_j +\varepsilon_{ij}\left( \left| k-l \right| \right) \right) - p_j \left( p_j +\varepsilon_{ij}(k) \right) -p_j\left( p_j +\varepsilon_{ij}(l) \right) + p^2_j = p_j\varepsilon_{ij}\left( \min(k,l) \right) + p_j\varepsilon_{ij}\left( \left| k-l \right| \right) + \\
+      & + \varepsilon_{ij}\left( \min(k,l) \right)\varepsilon_{ij}\left( \left| k-l \right| \right) - p_j \varepsilon_{ij}(k) -p_j \varepsilon_{ij}(l)
+    \end{align*}
+    \begin{align*}
+      & \left| m_{ij}^{(k,l)}\right| = \left| p_j\left( \varepsilon_{ij}\left( \min(k,l) \right) + \varepsilon_{ij}\left( \left| k-l \right| \right)\right) + \varepsilon_{ij}\left( \min(k,l) \right)\varepsilon_{ij}\left( \left| k-l \right| \right) - p_j \varepsilon_{ij}(k) -p_j \varepsilon_{ij}(l)\right| \leq \\
+      & \leq p_j \left| \left( \varepsilon_{ij}\left( \min(k,l) \right)\right| + p_j\left| \varepsilon_{ij}\left( \left| k-l \right| \right)\right)\right| + \left| \varepsilon_{ij}\left( \min(k,l) \right)\right|\cdot\left| \varepsilon_{ij}\left( \left| k-l \right| \right)\right| + p_j \left| \varepsilon_{ij}(k)\right| + p_j \left| \varepsilon_{ij}(l)\right| \leq \\
+      & \leq p_jC\rho^{\min(k,l)} + p_j C\rho^{\left| k-l \right|} + C^2\rho^{\min(k,l)\left| k-l \right|} + p_j C\rho^k + p_j C \rho^l \leq C_1\left(  \rho^{\min(k,l)} + \rho^{\left| k-l \right|} + \rho^k + \rho^l \right)
+    \end{align*}
+    \begin{align*}
+      & \frac{1}{(n+1)^2}\sum_{k=0}^n \sum_{l=0}^n \left| m_{ij}^{(k,l)}\right| \leq \frac{1}{(n+1)^2} \sum_{k=0}^n\sum_{l=0}^n C_1\left(  \rho^{\min(k,l)} + \rho^{\left| k-l \right|} + \rho^k + \rho^l \right)
+    \end{align*}
+    Раскроем теперь по сумме убывающей геометрической прогрессии каждое из
+    слагаемых.
+    \begin{align*}
+      & \sum_{k=0}^n\sum_{l=0}^n \rho^k \leq \sum_{l=0}^n \frac{1}{1-\rho} = \frac{n+1}{1-\rho}
+    \end{align*}
+    \begin{align*}
+      & \sum_{k=0}^n\sum_{l=0}^n \rho^l \leq \sum_{k=0}^n \frac{1}{1-\rho} = \frac{n+1}{1-\rho}
+    \end{align*}
+    \begin{align*}
+      & \sum_{k=0}^n\sum_{l=0}^n \rho^{\min(k,l)} = \sum_{k=0}^n\left( \sum_{l=0}^k \rho^{l} + \sum_{l=k+1}^n \rho^k \right) \leq \frac{n+1}{1-\rho} + \sum_{k=0}^n \sum_{l=k+1}^n \rho^k = \frac{n+1}{1-\rho} + \sum_{k=0}^n \rho^k(n-k) = \\
+      & = \frac{n+1}{1-\rho} + n\sum_{k=0}^n \rho^k-\sum_{k=0}^n \rho^kk \leq \frac{n+1}{1-\rho} + \frac{n}{1-\rho} -\sum_{k=0}^n k\rho^k \leq \frac{2n+1}{1-\rho}
+    \end{align*}
+    \begin{align*}
+      & \sum_{k=0}^n\sum_{l=0}^n \rho^{\left| k-l \right|} = \sum_{k=0}^n\left( \sum_{l=0}^k \rho^{k-l} + \sum_{l=k+1}^n \rho^{l-k} \right) \leq \sum_{k=0}^n\left( \frac{1}{1-\rho} + \sum_{l=1}^{n-k} \rho^{l} \right) \leq \sum_{k=0}^n\left( \frac{1}{1-\rho} +  \right. \\
+      & \left. + \left( \frac{1}{1-\rho} - 1 \right) \right) \leq \sum_{k=0}^n\frac{2}{1-\rho} = \frac{n+1}{1-\rho}
+    \end{align*}
+    Итак,
+    \begin{align*}
+      & \frac{1}{(n+1)^2}\sum_{k=0}^n \sum_{l=0}^n \left| m_{ij}^{(k,l)}\right| \leq \frac{1}{(n+1)^2} C_1\frac{6(n+1)}{1-\rho} = \frac{6C_1}{(1-\rho)(n+1)} \To{n \to \infty} 0
+    \end{align*}
+    \begin{align*}
+      & \EE\left( \left| \nu_i(n)-p_i \right|^2 \mid X_0 = i \right) \To{n \to \infty} 0
+    \end{align*}
+    \begin{align*}
+      & \PP\left( \left| \nu_i(n)-p_i \right|> \varepsilon \mid X_0 = i \right) \To{n \to \infty} 0
+    \end{align*}
+    \begin{align*}
+      & \PP\left( \left| \nu_i(n)-p_i \right|> \varepsilon \right) \To{n \to \infty} 0
+    \end{align*}
+\end{Proof}
+\begin{Note}
+    Если вместо индикатора взять <<хорошую функцию>> (сумму индикаторов или
+    предел такой суммы), то получим сходимость такую же, но к матожиданию по
+    соответствующей мере.
+\end{Note}

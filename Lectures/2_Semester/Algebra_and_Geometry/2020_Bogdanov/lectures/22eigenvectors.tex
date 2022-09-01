@@ -1,0 +1,231 @@
+\subsection{Собственные векторы}
+
+\textbf{До конца раздела} зафиксируем линейное пространство $V$ над полем $F$ и положим $n := \dim{V}$.
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$. Вектор $\overline{v} \in V \bs \{\overline 0\}$ называется \textit{собственным вектором} оператора $\phi$ с \textit{собственным значением} $\lambda \in F$, если $\phi(\overline{v}) = \lambda\overline{v}$. Скаляр $\mu \in F$ называется \textit{собственным значением} оператора $\phi$, если существует собственный вектор $\overline{u} \in V \bs \{0\}$ оператора $\phi$ с собственным значением $\mu$.
+\end{definition}
+
+\begin{note}
+	Пусть $\lambda \in F$ "--- собственное значение оператора $\phi$. Тогда $\overline{v} \in V \bs \{\overline 0\}$ "--- собственный вектор оператора $\phi$ со значением $\lambda \hm{\Leftrightarrow} \phi(\overline{v}) = \lambda\overline{v} \hm{\Leftrightarrow} \overline{v} \hm{\in} \ke{(\phi - \lambda)}$.
+\end{note}
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$, $\lambda \in F$ "--- собственное значение оператора $\phi$. Подпространство $V_\lambda := \ke{(\phi - \lambda)} \le V$ называется \textit{собственным подпространством} оператора $\phi$, соответствующим собственному значению $\lambda$.
+\end{definition}
+
+\begin{note}
+	Вектор $v \in V \bs \{\overline{0}\}$ является собственным вектором оператора $\phi \in \mathcal{L}(V)$ подпространство $\Leftrightarrow$ $\langle \overline{v} \rangle$ является инвариантным относительно $\phi$. Значит, любое подпространство в $V_\lambda$ инвариантно относительно $\phi$.
+\end{note}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$, $\lambda_1, \dots, \lambda_k \in F$ "--- различные собственные значения оператора $\phi$. Тогда сумма $V_{\lambda_1} + \dots + V_{\lambda_k}$ "--- прямая.
+\end{theorem}
+
+\begin{proof}
+	Проведем индукцию по $k$. База, $k = 1$, тривиальна, докажем переход. Пусть для некоторого $k > 1$ утверждение неверно, тогда, по критерию прямой суммы, существует индекс $i \in \{1, \dots, k\}$ такой, что выполнено следующее:
+	\[ V_{\lambda_i} \cap (V_{\lambda_1} + \dots \hm{+} V_{\lambda_{i - 1}} + V_{\lambda_{i + 1}} + \dots + V_{\lambda_k}) \ne \{\overline{0}\}\]
+	
+	Пусть без ограничения общности $i = k$, тогда существуют векторы $\overline{v_1} \in V_{\lambda_1}, \cdots, \overline{v_k} \in V_{\lambda_k}$ такие, что выполнено следующее:
+	\[\overline{v_1} + \dots + \overline{v_{k - 1}} = \overline{v_k} \ne \overline{0}\]
+	
+	Применим к равенству выше оператор $\phi$, и вычтем из полученного равенства исходное, умноженное на $\lambda_k$, тогда:
+	\[(\lambda_1 - \lambda_k)\overline{v_1} + \dots + (\lambda_{k - 1} - \lambda_k)\overline{v_{k - 1}} = (\lambda_k - \lambda_k)\overline{v_k} = \overline{0}\]
+	
+	Все коэффициенты в левой части по условию отличны от нуля, а также хотя бы один из векторов в левой части "--- ненулевой, поскольку сумма этих векторов равна $\overline{v_k} \ne \overline{0}$. Получено нетривиальное разложение нуля, что невозможно по предположению индукции. Значит, сумма $V_{\lambda_1} + \dots + V_{\lambda_k}$ "--- прямая.
+\end{proof}
+
+\begin{corollary}
+	Количество собственных значений оператора $\phi \in \mc L (V)$ не превосходит величины $\dim{V}$.
+\end{corollary}
+
+\begin{proof}
+	Если собственных значений у $\phi$ больше, чем $\dim{V}$, то соответствующие им собственные подпространства образуют прямую сумму размерности большей, чем $\dim{V}$, что невозможно.
+\end{proof}
+
+\begin{note}
+	Пусть $V_{\lambda_1}, \dots, V_{\lambda_k} \le V$ "--- собственные подпространства оператора $\phi$. Поскольку $V_{\lambda_1} \oplus \dots \oplus V_{\lambda_k}$ "--- прямая сумма, то объединение базисов в этих подпространствах можно дополнить до базиса $e$ в $V$. В полученном базисе матрица преобразования $\phi$ принимает следующий вид:
+	\[
+	\phi \leftrightarrow_e
+	\left(\begin{array}{@{}ccc|cccc@{}}
+		\lambda_1 & \dots & 0 & * & \dots & *\\
+		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+		0 & \dots & \lambda_k & \vdots &\ddots & \vdots\\
+		\cline{1-3}
+		0 &\dots & 0 & \vdots &\ddots & \vdots\\
+		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+		0 & \dots & 0 & * &\dots & * 
+	\end{array}\right)
+	\]
+	
+	Для каждого индекса $i \in \{1, \dotsc, k\}$ значение $\lambda_i$ встречается в диагональном блоке матрицы выше ровно $\dim{V_{\lambda_i}}$ раз.
+\end{note}
+
+\begin{definition}
+	Пусть $A \in M_n(F)$. \textit{Характеристическим многочленом} матрицы $A$ называется многочлен $\Chi_A(\lambda) := |A - \lambda E|$.
+\end{definition}
+
+\begin{note}
+	Степень характеристического многочлена $\Chi_A$ равна $n$, поскольку единственное слагаемое с $\lambda^n$ в формуле определителя получается при $\sigma = \id$, когда значение $(-\lambda)$ перемножается $n$ раз. В частности, коэффициент при $\lambda^n$ равен $(-1)^n$.
+\end{note}
+
+\begin{proposition}
+	Пусть $\phi \in \mathcal{L}(V)$, $\phi \leftrightarrow_e A \in M_n(F)$. Тогда скаляр $\lambda_0 \in F$ является собственным значением оператора  $\phi$ $\Leftrightarrow$ $\Chi_A(\lambda_0) = 0 \Leftrightarrow (\lambda - \lambda_0)\mid \Chi_A(\lambda)$.
+\end{proposition}
+
+\begin{proof}
+	Скаляр $\lambda_0$ является собственным значением тогда и только тогда, когда $\ke{(\phi - \lambda_0)} \ne \{\overline{0}\}$. Выполнены следующие равносильности:
+	\[\ke{(\phi - \lambda_0)} \ne \{\overline{0}\} \lra \rk{(A - \lambda_0 E)} < n \hm{\Leftrightarrow} |A - \lambda_0 E| = 0 \hm{\Leftrightarrow} \Chi_A(\lambda_0) = 0\qedhere\]
+\end{proof}
+
+\begin{definition}
+	Матрицы $A, B \in M_n(F)$ называются \textit{подобными}, если существует матрица $S \in \GL_n(F)$ такая, что $B = S^{-1}AS$.
+\end{definition}
+
+\begin{note}
+	Подобные матрицы "--- это матрицы одного и того же оператора в разных базисах.
+\end{note}
+
+\begin{proposition}
+	Пусть $A, B \in M_n(F)$ "--- подобные матрицы. Тогда $\Chi_A(\lambda) = \Chi_B(\lambda)$.
+\end{proposition}
+
+\begin{proof}
+	Зафиксируем значение $\lambda \in F$, тогда выполнены следующие равенства:
+	\[\Chi_A(\lambda) = |A - \lambda E| = \left|S^{-1}(B - \lambda E)S\right| = \left|S^{-1}\right||B - \lambda E||S| = |B - \lambda E| = \Chi_B(\lambda)\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$. \textit{Характеристическим многочленом} оператора $\phi$ называется характеристический многочлен его матрицы в произвольном базисе. Обозначение "--- $\Chi_\phi(\lambda)$.
+\end{definition}
+
+\begin{definition}
+	Пусть $A = (a_{ij}) \in M_n(F)$. \textit{Следом} матрицы $A$ называется величина $\tr := \sum_{i = 1}^na_{ii}$.
+\end{definition}
+
+\begin{proposition}
+	Пусть $A \in M_n(F)$. Тогда в характеристическом многочлене $\Chi_A(\lambda)$ коэффициент при $\lambda^{n - 1}$ равен $(-1)^{n - 1}\tr{A}$, а свободный член равен $\det{A}$.
+\end{proposition}
+
+\begin{proof}
+	Во всех нетождественных перестановках степень получаемых в $\Chi_A(\lambda)$ мономов не превосходит $n - 2$, поэтому слагаемое с $\lambda^{n - 1}$ может возникнуть только при $\sigma = \id$, когда число $(-\lambda)$ перемножается $n - 1$ раз и умножается на один из диагональных элементов, поэтому коэффициент при $\lambda^{n - 1}$ равен $(-1)^{n - 1}\tr{A}$. Свободный член в $\Chi_A(\lambda)$ равен $\Chi_A(0) = |A|$.
+\end{proof}
+
+\begin{corollary}
+	Если матрицы $A, B \in M_n(F)$ подобны, то $\tr{A} = \tr{B}$ и $\det{A} = \det{B}$.
+\end{corollary}
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$. \textit{Следом оператора} $\phi$ называется след матрицы $\phi$ в произвольном базисе, \textit{определителем оператора} --- определитель матрицы $\phi$ в произвольном базисе. Обозначения "--- $\tr{\phi}$ и $\det{\phi}$ соответственно.
+\end{definition}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$, и $\Chi_\phi(\lambda)$ имеет $n$ различных корней $\lambda_1, \dots, \lambda_n$. Тогда в $V$ существует базис $e$, в котором матрица оператора $\phi$ имеет следующий вид:
+	\[\phi \leftrightarrow_e \begin{pmatrix}
+		\lambda_1 & 0 & \dots & 0\\
+		0 & \lambda_2 & \dots & 0\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \dots & \lambda_n
+	\end{pmatrix}\]
+\end{theorem}
+
+\begin{proof}
+	Поскольку корни многочлена $\Chi_\phi(\lambda)$ "--- это собственные значения $V$, то $V_{\lambda_1} \oplus \dots \oplus V_{\lambda_n} = V$, и объединение базисов в $V_{\lambda_1}, \dots, V_{\lambda_n}$ образует искомый базис $e$ в $V$.
+\end{proof}
+
+\begin{corollary}
+	Пусть $\phi \in \mathcal{L}(V)$, и $\Chi_\phi(\lambda)$ имеет $n$ различных корней $\lambda_1, \dots, \lambda_n$. Тогда выполнены равенства $\tr{\phi} = \sum_{i = 1}^n\lambda_i$ и $\det{\phi} \hm{=} \prod_{i = 1}^n\lambda_i$.
+\end{corollary}
+
+\begin{definition}
+	Оператор $\phi \in \mathcal{L}(V)$ называется \textit{диагонализуемым}, если существует базис в $V$, в котором матрица $\phi$ имеет диагональный вид. Матрица $A \in M_n(F)$ называется \textit{диагонализуемой}, если она подобна некоторой диагональной.
+\end{definition}
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$, $\lambda_0 \in F$ "--- собственное значение оператора $\phi$. \textit{Алгебраической кратностью} собственного значения $\lambda_0$ называется кратность корня $\lambda_0$ в $\Chi_\phi(\lambda)$, \textit{геометрической кратностью} "--- величина $\dim{V_{\lambda_0}} = \dim{\ke{(\phi - \lambda_0)}}$.
+\end{definition}
+
+\begin{theorem}
+	Пусть $\phi \in \mc L (V)$, $\lambda_0 \in F$ "--- собственное значение оператора $\phi$. Тогда алгебраическая кратность значения $\lambda_0$ не меньше его геометрической кратности.
+\end{theorem}
+
+\begin{proof}
+	Пусть геометрическая кратность значения $\lambda_0$ равна $k \in \N$. Выберем базис $(\overline{e_1}, \dots, \overline{e_k})$ в $V_{\lambda_0}$ и дополним этот базис до базиса $e \hm{=} (\overline{e_1}, \dots, \overline{e_n})$ в $V$. Тогда матрица оператора $\phi$ в этом базисе имеет следующий вид для некоторой матрицы $D \in M_{n - k}(F)$:
+	\[
+	\phi \leftrightarrow_e A :=
+	\left(\begin{array}{@{}c|c@{}}
+		\lambda_0 E_k & *\\
+		\hline
+		0 & D\end{array}\right)
+	\]
+	
+	По теореме об определителе с углом нулей, выполнены следующие равенства:
+	\[\Chi_\phi(\lambda) = |A - \lambda E_k| = |(\lambda_0 - \lambda)E_k||D - \lambda E_{n - k}| \hm= (\lambda_0 - \lambda)^k|D - \lambda E_{n - k}|\]
+	
+	Значит, $\lambda_0$ "--- корень кратности не меньше $k$ в $\Chi_\phi(\lambda)$.
+\end{proof}
+
+\begin{note}
+	Неравенство в теореме выше может быть строгим. Рассмотрим, например, следующую матрицу:
+	\[A := \begin{pmatrix}0 & 1\\0 & 0\end{pmatrix} \in M_2(\mathbb{R})\]
+	
+	Тогда $\Chi_\phi(\lambda) = \lambda^2$, поэтому $0$ является корнем кратности $2$ в $\Chi_\phi(\lambda)$, при этом выполнены равенства $\dim{V_0} = \dim{\ke{\phi}} = 2 - \rk{A} = 1$.
+\end{note}
+
+\begin{note}
+	Пусть $\phi \in \mc L (V)$, $\alpha \in F$. Тогда для оператора $\phi - \alpha$ выполнено следующее:
+	\[\Chi_{\phi - \alpha}(\lambda) = |A - (\lambda + \alpha)E| \hm= \Chi_{\phi}(\lambda + \alpha)\]
+	
+	Значит, $\lambda_0 \in F$ "--- собственное значение оператора $\phi - \alpha$ $\Leftrightarrow$ $\lambda_0 + \alpha$ "--- собственное значение оператора $\phi$. Кроме того, собственные векторы операторов $\phi - \alpha$ и $\phi$ совпадают.
+\end{note}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$, $U \le V$ "--- инвариантное относительно $\phi$ подпространство. Тогда для оператора $\psi := \phi|_U \in \mathcal{L}(U)$ выполнено $\Chi_\psi \mid \Chi_\phi$.
+\end{theorem}
+
+\begin{proof}
+	Дополним базис $e' \hm{=} (\overline{e_1}, \dots, \overline{e_k})$ в $U$ до базиса $e = (\overline{e_1}, \dots, \overline{e_n})$ в $V$. Тогда в базисе $e$ матрица оператора $\phi$ имеет следующий вид для некоторых $B \in M_k(F)$, $C \in M_{k \times (n - k)}(F)$, $D \in M_{n - k}(F)$:
+	\[\phi \leftrightarrow_e A := \left(\begin{array}{@{}c|c@{}}
+		B & C\\
+		\hline
+		0 & D
+	\end{array}\right)\]
+	
+	По теореме об определителе с углом нулей, $\Chi_A(\lambda) \hm{=} |B - \lambda E_k||D \hm{-} \lambda E_{n - k}|$, тогда, поскольку $\psi \hm{=} \phi|_U \leftrightarrow_{e'} B$, выполнено соотношение $\Chi_\psi\mid \Chi_\phi$.
+\end{proof}
+
+\begin{note}
+	Предыдущую теорему можно вывести из только что доказанной. Действительно, если $V_{\lambda_0} \le V$ "--- собственное подпространство значения $\lambda_0 \in F$, то геометрическая кратность значения $\lambda_0$ равна $\dim{V_{\lambda_0}} = k$, причем $\Chi_{\phi|_U} (\lambda) = (\lambda_0 - \lambda)^k \mid \Chi_\phi(\lambda)$.
+\end{note}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$. Тогда равносильны следующие условия:
+	\begin{enumerate}
+		\item Оператор $\phi$ диагонализуем
+		
+		\item Алгебраическая кратность каждого собственного значения оператора $\phi$ равна геометрической, и $\Chi_\phi$ раскладывается на линейные сомножители, то есть имеет следующий вид при некоторых $\lambda_1, \dotsc, \lambda_k \in F$ и $\alpha_1, \dotsc, \alpha_k \in \N$ таких, что $\sum_{i = 1}^k\alpha_i = n$:
+		\[\Chi_\phi(\lambda) = \prod_{i = 1}^k(\lambda_i - \lambda)^{\alpha_i}\]
+		
+		\item $V = V_{\lambda_1} \oplus \dots \oplus V_{\lambda_k}$, где $V_{\lambda_1}, \dots, V_{\lambda_k}$ "--- собственные подпространства оператора $\phi$
+		
+		\item В $V$ есть базис, состоящий из собственных векторов оператора $\phi$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item\imp{1}{2}Пусть в некотором базисе $e$ в $V$ матрица оператора $\phi$ имеет диагональный вид, $\lambda_1, \dotsc, \lambda_k \in F$ "--- различные элементы на диагонали, $\alpha_1, \dotsc, \alpha_k \in \N$ "--- количества их вхождений в матрицу, тогда $\Chi_\phi(\lambda) = \prod_{i = 1}^k(\lambda_i - \lambda)^{\alpha_i}$. Для любого $i \in \{1, \dotsc, k\}$ алгебраическая кратность значения $\lambda_i$ равна $\alpha_i$, при этом $\alpha_i$ базисных векторов из $e$ являются собственными векторами со значением $\lambda_i$, откуда $\dim{V_{\lambda_i}} \ge \alpha_i$, и обратное неравенство тоже верно.
+		
+		\item\imp{2}{3}Пусть $V_{\lambda_1}, \dotsc, V_{\lambda_k} \le V$ "--- собственные подпространства оператора $\phi$. Их сумма "--- прямая, и по условию $\sum_{i = 1}^k\dim{V_{\lambda_i}} = \sum_{i = 1}^k\alpha_i = n$, поэтому $V_{\lambda_1} \oplus \dots \oplus V_{\lambda_k} = V$.
+		
+		\item\imp{3}{4}Выберем базисы $e_1, \dotsc, e_k$ в пространствах $V_{\lambda_1}, \dotsc, V_{\lambda_k}$. Тогда, так как сумма $V_{\lambda_1} \oplus \dots \oplus V_{\lambda_k}$ "--- прямая, то объединение этих базисов дает базис в $V$, который и является искомым.
+		
+		\item\imp{4}{1}Если $e$ "--- базис из собственных векторов, то именно в этом базисе матрица оператора $\phi$ имеет требуемый диагональный вид.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Рассмотрим пространство $V_2$ над $\mathbb{R}$ и $\phi \in \mc L(V)$ "--- поворот на угол $\alpha \in (0, \pi)$. Тогда ни один ненулевой вектор из $V_2$ не переходит в коллинеарный себе под действием $\phi$, поэтому $\phi$ нет собственных значений.
+\end{note}

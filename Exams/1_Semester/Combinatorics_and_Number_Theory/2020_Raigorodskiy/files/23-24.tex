@@ -1,0 +1,34 @@
+\setcounter{section}{22}
+
+\section{Предпорядки: определение и примеры. Разбиение элементов множества с предпорядком на классы эквивалентности}
+\par \textbf{Предпорядком} называется любое рефлексивное транзитивное отношение. Стандартное обозначение: $\precsim$. Если на множестве задан предпорядок, то оно называется предупорядоченным.
+\subsection*{Примеры предпорядков: (задача 7.1)} 
+\begin{enumerate}
+    \item любой частичный порядок
+    \item любое отношение эквивалентности 
+    \item сравнение по мощности на множествах 
+    \item отношение достижимости в ориентированном графе
+    \item обратное отношение к предпорядку также является предпорядком
+    \item $x \precsim y$, если $f(x) \leq f(y)$, где $f:M \rightarrow Q$, а Q - ЧУМ
+\end{enumerate}
+\subsection*{Разбиение элементов множества с предпорядком на классы эквивалентности: }
+\par Пусть на множестве $M$ задан предпорядок $\precsim$. \textbf{Отношение безразличия} ($\sim$) - это такое отношение, что $a \sim b, \mbox{ если } a \precsim b \mbox{ и } b \precsim a$.
+\par Отношение безразличия является отношением эквивалентности (задача 7.2), так как выполнены
+\begin{enumerate}
+    \item Рефлексивность: $a \sim a \mbox{, так как } a \precsim a$
+    \item Симметричность: $a \sim b \Rightarrow a \precsim b \mbox{ и } b \precsim a \Rightarrow b \sim a$
+    \item \par Транзитивность: $a \sim b, \; b \sim c \Rightarrow a \precsim b, \; b \precsim c, \; c \precsim b, \; b \precsim a \Rightarrow a \precsim c, \; c \precsim a$ (в силу транзитивности предпорядка) $\Rightarrow a \sim c$
+\end{enumerate}
+
+\section{Полный предпорядок. Равносильность полноты предпорядка и линейности индуцированного предпорядка.}
+\par Предпорядок называется \textbf{полным}, если для любых двух элементов $x$ и $y$ выполнено $x \precsim y$ или $y \precsim x$.
+\subsection*{Индуцированный порядок:}
+\par На множестве классов эквивалентности можно корректно ввести частичный порядок по правилу $K_a \leq K_b$, если $\exists a \in K_a, \; b \in K_b$, такие что $a \precsim b$. Докажем, что это действительно отношение порядка (см. задачу 7.3)
+\begin{enumerate}
+    \item Рефлексивность: $K \leq K$, так как $a \precsim a$
+    \item Антисимметричность: $K \leq L, \; L \leq K \Rightarrow \exists l_1, l_2 \in L, k_1, k_2 \in K: \; k_1 \precsim l_1, \; l_2 \precsim k_2 \Rightarrow k_1 \precsim l_1 \precsim l_2, \; l_2 \precsim k_2 \precsim k_1$ (так как они $k_1$ и $k_2$, $l_1$ и $l_2$ лежат в одном классе эквивалентности) $\Rightarrow k_2 \precsim l_2 \Rightarrow k_2 \sim l_2 \Rightarrow K=L$
+    \item Транзитивность: $K \leq L, \; L \leq M \Rightarrow \exists k_1 \in K, \; l_1, \; l_2 \in L, \; m_1 \in M: \; k_1 \precsim l_1, \; l_2 \precsim m_1 \Rightarrow k_1 \precsim l_1 \precsim l_2 \precsim m_1$ (так как $l_1$ и $l_2$ лежат в одном классе эквивалентности) $\Rightarrow k_1 \precsim m_1$ (по транзитивности предпорядка) $\Rightarrow K \leq M$
+\end{enumerate}
+\par \textbf{Утверждение (задача 7.4):} предпорядок полон $\Leftrightarrow$ индуцированный порядок на классах эквивалентности линеен
+\par $\blacktriangle$ $\Rightarrow$ Рассмотрим два произвольных класса эквивалентности $X$ и $Y$. Выберем из них по одному элементу $x \in X$ и $y \in Y$. В силу полноты предпорядка либо $x \precsim y$, либо $y \precsim x \Rightarrow$ либо $X \leq Y$, либо $Y \leq X \Rightarrow$ индуцированный порядок линеен 
+\par $\Leftarrow$ Рассмотрим два произвольных элемента $k_1$ и $l_1$, которые принадлежат соответственно классам $K$ и $L$. Так как индуцированный порядок линеен, то $K$ и $L$ сравнимы (для определенности можем считать, что $K \leq L$). Тогда существуют такие элементы $k \in K$ и $l \in L$, что $k \precsim l \Rightarrow k_1 \precsim k \precsim l \precsim l_1$ (так как $k$ и $k_1$, $l$ и $l_1$ лежат в одном классе эквивалентности) $\Rightarrow k_1 \precsim l_1$ (по транзитивности) $\Rightarrow$ предпорядок полон $\blacksquare$

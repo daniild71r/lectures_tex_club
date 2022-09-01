@@ -1,0 +1,40 @@
+\begin{example} ~
+    \begin{enumerate}
+        \item Пусть $\displaystyle E\neq \{0\}$ -- нормированное пространство. Докажем, что $\displaystyle E^{*} \neq \{0\}$. Так как $\displaystyle E\neq \{0\}$, то $\displaystyle \exists x\in E:\ x\neq 0$. Тогда по второму пункту следствия $\displaystyle \exists f:\ f( x) =\Vert x\Vert \neq 0$. Следовательно, $\displaystyle E^{*} \neq \{0\}$.
+        \item Пусть $\displaystyle E$ -- линейное нормированное пространство. Докажем, что $\displaystyle \forall x_{0} \in S( \theta ,\ 1) \ \exists f\in E^{*}$, что шар $\displaystyle \overline{B}( \theta ,\ 1)$ лежит по одну сторону от гиперплоскости $\displaystyle f( x) =f( x_{0})$. Так как $\displaystyle x_{0} \in S( \theta ,\ 1)$, то $\displaystyle \Vert x_{0}\Vert =1\Rightarrow x_{0} \neq 0$. Тогда по второму пункту следствия $\displaystyle \exists f\in E^{*}$, что $\displaystyle | f( x)| \leqslant \Vert f\Vert \cdotp \Vert x\Vert =1=f( x_{0})$.
+        \item Введем определение, которое появится в следующем параграфе, но понадобится сейчас для примера.
+        \begin{definition}
+            Последовательность $\displaystyle \{x_{n}\} \subset E$ называется \textit{слабо сходящейся} к элементу $\displaystyle x\in E$ (обозначение $\displaystyle x_{n}\xrightarrow[\text{сл}]{E} x$), если $\displaystyle \forall f\in E^{*} \hookrightarrow f( x_{n})\xrightarrow[n\rightarrow \infty ]{} f( x)$.
+        \end{definition}
+        Докажем корректность данного определения, т.е., если $\displaystyle x_{n}\xrightarrow[\text{сл}]{E} x',\ x_{n}\xrightarrow[\text{сл}]{E} x''$, то $\displaystyle x'=x''$. Действительно, из определения $\displaystyle f( x_{n})\xrightarrow[n\rightarrow \infty ]{} f( x') ,\ f( x_{n})\xrightarrow[n\rightarrow \infty ]{} f( x'')$. Так как последовательность $\displaystyle \{f( x_{n})\}$ числовая, то $\displaystyle f( x') =f( x'') \ \forall f\in E^{*}$. Тогда из пункта 3 следствия получаем, что $\displaystyle x'=x''$.
+        \item Определим функционал $\displaystyle F_{x} :E^{*}\rightarrow \mathbb{K}$ следующим образом: $\displaystyle \forall x\in E\hookrightarrow F_{x}( f) =f( x) ,\ f\in E^{*}$. Также определим $\displaystyle \pi :E\rightarrow E^{**}$ как $\displaystyle \pi ( x) =F_{x} ,\ x\in E$.
+        \begin{definition}
+            Если $\displaystyle \pi E=E^{**}$, то пространство $\displaystyle E$ называется \textit{рефлексивным}.
+        \end{definition}
+        Докажем, что $\displaystyle \pi $ -- изометрия, то есть $\displaystyle \forall x\in E\hookrightarrow \Vert x\Vert =\Vert F_{x}\Vert $. Из пункта 4 следствия имеем$\displaystyle \Vert x\Vert =\sup _{\Vert f\Vert =1}| f( x)| =\sup _{\Vert f\Vert =1}| F_{x}( f)| =\Vert F_{x}\Vert $.
+        \item Пусть $\displaystyle H$ -- гильбертово пространство, $\displaystyle x_{n}\xrightarrow[\text{сл}]{H} x,\ \Vert x_{n}\Vert \leqslant 1\ \forall n\in \mathbb{N}$. Докажем, что $\displaystyle \Vert x\Vert \leqslant 1$. По неравенству Коши-Буняковского $\displaystyle | ( x_{n} ,\ x)| \leqslant \Vert x_{n}\Vert \cdotp \Vert x\Vert \leqslant \Vert x\Vert $. Так как $\displaystyle f:H\rightarrow \mathbb{K}$, что $\displaystyle f( y) =( y,\ x)$ -- линейный ограниченный оператор, то он непрерывен, и, переходя к пределу, получаем $\displaystyle \Vert x\Vert ^{2} \leqslant \Vert x\Vert \Rightarrow \Vert x\Vert \leqslant 1$.
+    
+        Теперь пусть $\displaystyle E$ -- линейное нормированное пространство, $\displaystyle \{x_{n}\} \subset E,\ x_{n}\xrightarrow[\text{сл}]{E} x,\ \Vert x_{n}\Vert \leqslant 1\ \forall n\in \mathbb{N}$. Докажем, что $\displaystyle \Vert x\Vert \leqslant 1$. Из пункта 2 следствия $\displaystyle \exists f\in E^{*} :\ f( x) =\Vert x\Vert ,\ \Vert f\Vert =1$. Тогда $\displaystyle | f( x_{n})| \leqslant \Vert f\Vert \cdotp \Vert x_{n}\Vert \leqslant 1$. Следовательно, т.к. $\displaystyle f( x_{n})\xrightarrow[n\rightarrow \infty ]{} f( x)$, то $\displaystyle | f( x_{n})| \xrightarrow[n\rightarrow \infty ]{}| f( x)| $. Значит, $\displaystyle | f( x)| \leqslant 1$.
+    \end{enumerate}
+\end{example}
+\section{Слабая сходимость}
+\begin{definition}
+Пусть $\displaystyle E$ -- линейное нормированное пространство. Тогда $\displaystyle x_{n}\xrightarrow[\text{сл}]{E} x$, если $\displaystyle \forall f\in E^{*} \hookrightarrow f( x_{n})\xrightarrow[n\rightarrow \infty ]{} f( x)$. Обратное, вообще говоря, неверно.
+\end{definition}
+\begin{proposition}
+Если $\displaystyle \Vert x_{n} -x\Vert \xrightarrow[n\rightarrow \infty ]{} 0$, то $\displaystyle x_{n}\xrightarrow[\text{сл}]{E} x$.
+\end{proposition}
+\begin{proof}
+Пусть $\displaystyle f\in E^{*}$. Тогда $\displaystyle | f( x_{n}) -f( x)| =| f( x_{n} -x)| \leqslant \Vert f\Vert \cdotp \Vert x_{n} -x\Vert \xrightarrow[n\rightarrow \infty ]{} 0$.
+
+Докажем, что из $\displaystyle x_{n}\xrightarrow[\text{сл}]{} x$ в общем случае не следует сходимость по норме. Пусть $\displaystyle E=l_{2}$. Рассмотрим последовательность $\displaystyle \left\{e^{n}\right\}$, где $\displaystyle e^{n}$ -- $\displaystyle n$-ый вектор стандартного базиса в $\displaystyle l_{2}$. Тогда $\displaystyle \forall y\in l_{2} \hookrightarrow \left( e^{n} ,y\right) =y_{n}\xrightarrow[n\rightarrow \infty ]{} 0$, то есть $\displaystyle \left( e^{n} ,y\right)\xrightarrow[n\rightarrow \infty ]{}( 0,y)$. Но $\displaystyle \left\Vert e^{n}\right\Vert =1\ \forall n\in \mathbb{N}$.
+\end{proof}
+\begin{note}
+Если $\displaystyle \dim E< \infty $, то сходимость по норме эквивалентна слабой сходимости.
+\end{note}
+\begin{theorem}
+(т-ма 9.2) Пусть $\displaystyle E_{1} ,\ E_{2}$ -- линейные нормированные пространства, $\displaystyle A\in \mathcal{L}( E_{1} ,E_{2})$, $\displaystyle x_{n}\xrightarrow[\text{сл}]{E_{1}} x$. Тогда $\displaystyle Ax_{n}\xrightarrow[\text{сл}]{E_{2}} Ax$.
+\end{theorem}
+\begin{proof}
+Пусть $\displaystyle g\in E_{2}^{*}$ -- произвольный функционал, $\displaystyle f=g\circ A$ -- линейный непрерывный функционал, т.е. $\displaystyle f\in E_{1}^{*}$. Тогда $\displaystyle f( x_{n}) =g( Ax_{n})\xrightarrow[n\rightarrow \infty ]{} g( Ax) =f( x) \ \forall g\in E_{2}^{*}$.
+\end{proof}

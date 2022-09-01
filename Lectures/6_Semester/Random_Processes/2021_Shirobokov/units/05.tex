@@ -1,0 +1,288 @@
+\newpage
+\lecture{5}{Эргодичность и стационарность}
+\begin{Def}
+    Пусть процесс $\left\{ X(t), \ t \in T \right\}$ второго порядка, $[a,b]
+    \subseteq T$; функция $g(t)$ непрерывна на этом отрезке; задано разбиение $a
+    = t_0 < t_1 < \dots < t_{n-1} < t_n = b$, $\tau_i \in [t_{i-1}, t_i)$, а
+    $\Delta = \dst \min_{i \in \{1, \dots, n\}}\left| t_i-t_{i-1} \right|$
+    называется его мелкостью. Тогда если существует такая случайная величина
+    $\eta$, что
+    \begin{align*}
+      & \sum_{i=1}^n g(\tau_i)(X(t_i)-X(t_{i-1})) \tosk{^{\Delta \to 0}_{n \to \infty}} \eta, \ \EE \eta^2 < \infty
+    \end{align*}
+    то эта величина называется \textbf{интегралом Римана-Стилтьеса в
+      среднеквадратичном смысле от $g(t)$ по процессу $X(t)$ в пределах от $a$
+      до $b$} (интегралом Римана-Стилтьеса в СК от $g(t)$ по $X(t)$ от $a$ до
+    $b$) и записывается как
+    \begin{align*}
+      & \eta = \int_a^bg(t)dX(t)
+    \end{align*}
+\end{Def}
+\begin{theorem}
+    Критерий существования интеграла Римана-Cтилтьеса в среднеквадратичном
+    смысле. (без доказательства)
+    \\
+    \begin{align*}
+      & \exists \eta = \int_a^bg(t)dX(t) \Leftrightarrow \exists \int_a^b\int_a^b g(t)g(s)d^2K_x(t,s) = \lim_{^{\Delta t \to 0, n_t \to \infty}_{\Delta s \to 0, n_s \to \infty}} \sum_{i,j=0}^{n_t,n_s}g(\tau_i)g(\sigma_j)\left( K_X(t_{i+1},s_{j+1}) - \right. \\
+      & \left. - K_X(t_{i},s_{j+1}) - K_X(t_{i+1},s_{j}) + K_X(t_{i},s_{j})\right) < \infty
+    \end{align*}  
+\end{theorem}
+\begin{Note}
+    ~
+    \\
+    Определение интеграла Римана-Стилтьеса в СК от $g$ по $X$ обобщается на
+    несобственный случай следующим образом:
+    \begin{align*}
+      & \int_a^\infty g(t)dX(t) = \LIM{b \to \infty} \int_a^bg(t)dX(t)
+    \end{align*}
+    \begin{align*}
+      & \int_{-\infty}^b g(t)dX(t) = \LIM{a \to -\infty} \int_a^bg(t)dX(t)
+    \end{align*}
+    \begin{align*}
+      & \int_{-\infty}^\infty g(t)dX(t) = \LIM{^{a\to -\infty}_{b \to \infty}} \int_a^bg(t)dX(t)
+    \end{align*}
+\end{Note}
+\begin{problem}
+    ~
+    \\
+    Пусть $X'(t)$~--- СК-производная $X(t)$. Найти ее матожидание и
+    корреляционную функцию.
+\end{problem}
+\begin{solution}
+    ~
+    \\
+    Матожидание:
+    \begin{align*}
+      & \EE X'(t) = \EE \LIM{\varepsilon \to 0}\left( \frac{X(t+\varepsilon) - X(t)}{\varepsilon} \right) = \lim_{\varepsilon \to 0}\EE \left( \frac{X(t+\varepsilon) - X(t)}{\varepsilon} \right) = \frac{d}{dt}\EE X(t)
+    \end{align*}
+    Корреляционная функция:
+    \begin{align*}
+      & R_{X'}(t,s) = \EE \left( \left( X'(t) - \EE X'(t) \right)\left( X'(s) - \EE X'(s) \right) \right) = \EE \ \LIM{^{\varepsilon \to 0}_{\delta \to 0}}\left( \left( \frac{X(t+\varepsilon) - X(t)}{\varepsilon} - \right. \right. \\
+      & \left. \left. - \frac{m_X(t+\varepsilon) - m_X(t)}{\varepsilon} \right)\left( \frac{X(s+\delta) - X(s)}{\delta} - \frac{m_X(s+\delta) - m_X(s)}{\delta} \right) \right) = \lim_{^{\varepsilon \to 0}_{\delta \to 0}} \frac{1}{\varepsilon \delta} \cdot \\
+      & \cdot \left( R_X(t+\varepsilon, s+\delta) - R_X(t+\varepsilon, s) - R_X(t, s+\delta) + R_X(t, s)\right) = \frac{\partial^2 R_X}{\partial t \partial s}
+    \end{align*}
+\end{solution}
+Аналогично можно вывести и формулы для интеграла.
+\begin{Prop}
+    ~
+    \\
+    Если $Y(t) = X'(t)$, то
+    \begin{align*}
+      & \EE Y(t) = \frac{d}{dt} \EE X(t), \ R_Y(t,s) = \frac{\partial^2 R_Y(t)}{\partial t \partial s}
+    \end{align*}
+    Если
+    \begin{align*}
+      & Y(t) = \int_a^t X(\tau) d\tau
+    \end{align*}
+    то
+    \begin{align*}
+      & \EE Y(t) = \int_a^t \EE X(\tau) d\tau, \ R_Y(t,s) = \int_a^s\int_a^t R_X(\tau, \sigma) d\tau d\sigma
+    \end{align*}  
+\end{Prop}
+\section{Эргодические процессы}
+\begin{Def}
+    Пусть процесс $\left\{ X(t), \ t \geq 0 \right\}$ второго порядка имеет
+    постоянное математическое ожидание $m$ и интегрируем в среднеквадратичном на
+    любом отрезке $[0;T]$. Рассмотрим процесс
+\begin{align*}
+  & \left \langle X \right \rangle_T = \frac{1}{T} \int_0^T X(t) dt, \ T \geq 0
+\end{align*}
+Если $\left \langle  X \right \rangle_T \tosk{T \to \infty} m$, то процесс
+$X(t)$ называется \textbf{эргодическим в среднеквадратичном смысле по
+  математическому ожиданию} (эргодическим в СК по $\EE$).
+\end{Def}
+\begin{example}
+    ~
+    \\
+    Процесс $\dst \frac{W(t)}{t}$ является эргодическим в СК по $\EE$.
+\end{example}
+\begin{Def}
+    Процесс $\left\{ X(t), \ t \geq 0 \right\}$ называется \textbf{эргодическим в
+      среднеквадратичном смысле по дисперсии} (эргодическим в СК по $D$), если
+    процесс $Y(t) = \cent{X}^2(t) = \left( X(t) - \EE X(t) \right)^2$ эргодичен в
+    СК по $\EE$.
+\end{Def}
+\begin{Note}
+    \begin{align*}
+      & \frac{1}{T} \int_0^T Y(t) dt \tosk{} \EE \cent{X}^2(t) = DX(t)
+    \end{align*}
+\end{Note}
+\begin{Def}
+    Процесс $\left\{ X(t), \ t \geq 0 \right\}$ называется \textbf{эргодическим в
+      среднеквадратичном смысле по корреляционной функции} (эргодическим в СК по
+    $R$), если $\forall \tau$ процесс $Z_\tau(t) = \cent{X}(t)\cent{X}(t+\tau)$
+    эргодичен в СК по $\EE$.
+\end{Def}
+\begin{Note}
+    \begin{align*}
+      & \frac{1}{T} \int_0^T Z_\tau(t) dt \tosk{} \EE \left( \cent{X}(t)\cent{X}(t+\tau) \right) = R_X(t,\tau)
+    \end{align*}
+\end{Note}
+\begin{theorem}
+    Критерий эргодичности по математическому ожиданию.
+    \\
+    Процесс $\left\{ X(t), \ t \geq 0 \right\}$ второго порядка с постоянным
+    математическим ожиданием $m$ и интегрируемый в СК на любом $[0;T]$ эргодичен
+    в СК по $\EE$ тогда и только тогда, когда
+    \begin{align*}
+      & \lim_{T \to \infty} \frac{1}{T^2}\int_0^T \int_0^T R_x(t,s) dt ds = 0
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+      & \EE \left( \frac{1}{T} \int_{0}^T X(t) dt - m\right)^2 = \EE \left( \frac{1}{T}\left( X(t)dt - \int_0^T m dt \right) \right)^2 = R_{\frac{1}{T}\int_0^T X(t) dt} (T,T) = \\
+      & = \frac{1}{T^2}\int_0^T \int_0^T R_X(t,s) dt ds
+    \end{align*}
+    В силу равенства при эргодичности в СК по $\EE$ к нулю стремится первое, а
+    значит, и последнее выражение; в случае стремления последнего выражения к
+    нулю к нему стремится и первое, а значит, процесс эргодичен в СК по $\EE$.
+\end{proof}
+\begin{theorem}
+    Достаточное условие эргодичности по математическому ожиданию.
+    \\
+    Процесс $\left\{ X(t), \ t \geq 0 \right\}$ второго порядка с постоянным
+    математическим ожиданием $m$ и интегрируемый в СК на любом $[0;T]$ эргодичен
+    в СК по $\EE$, если
+    \begin{align*}
+      & \lim_{\left| t - s \right| \to \infty} R_X(t,s) = 0
+    \end{align*}
+    \begin{align*}
+      & \lim_{T \to \infty} \frac{1}{T} \max_{t \in [0;T]}R_X(t,t) = 0
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    ~
+    \\
+    Выполнение данных условий влечет:
+    \begin{align*}
+      & \forall \varepsilon > 0 \ \exists T_0: \ \forall T = \left| t_2-t_1 \right|\geq T_0 \hookrightarrow \left| R_X(t_1,t_2) \right| < \varepsilon
+    \end{align*}
+    Положим
+    \begin{align*}
+      & G_1 = \left\{ (t_1,t_2) \in [0;T]^2: \ \left| t_2-t_1 \right| > T_0 \right\}
+    \end{align*}
+    \begin{align*}
+      & G_2 = \left\{ (t_1,t_2) \in [0;T]^2: \ \left| t_2-t_1 \right| \leq T_0 \right\}
+    \end{align*}
+    и $S_1$, $S_2$ соответственно~--- их площади. Тогда
+    \begin{align*}
+      & \left| \frac{1}{T^2} \int_0^T\int_0^TR_X(t_1,t_2)dt_1dt_2 \right| = \frac{1}{T^2} \left( \us{G_1}{\int\int}R_X(t_1,t_2)dt_1dt_2 + \us{G_2}{\int\int}R_X(t_1,t_2)dt_1dt_2 \right) \leq \\
+      & \leq \frac{1}{T^2} \left( \left| \us{G_1}{\int\int}R_X(t_1,t_2)dt_1dt_2 \right| + \left| \us{G_2}{\int\int}R_X(t_1,t_2)dt_1dt_2 \right| \right) \leq \frac{1}{T^2} \left( \us{G_1}{\int\int}\left| R_X(t_1,t_2) \right| dt_1dt_2 + \right. \\
+      & \left. + \us{G_2}{\int\int}\left| R_X(t_1,t_2) \right| dt_1dt_2 \right) \leq \frac{1}{T^2} \left( \varepsilon S_1 + \max_{G_2}\left| R_X(t_1,t_2) \right| S_2 \right) \leq \varepsilon + \frac{\dst \max_{G_2}\left| R_X(t_1,t_2) \right| S_2}{T^2} \leq \\
+      & \leq \varepsilon + \frac{2T_0 \dst \max_{G_2}\left| R_X(t_1,t_2) \right|}{T} \leq \varepsilon + \frac{2T_0 \sqrt{\dst \max_{G_2} R_X(t_1,t_1)R_X(t_2,t_2)}}{T} \leq \varepsilon + \frac{2T_0 \dst \max_{t \in [0;T]} R_X(t,t)}{T} \To{T \to \infty} 0
+    \end{align*}
+    А такой предел указан в критерии эргодичности в СК по $\EE$.
+\end{proof}
+\begin{Note}
+    ~
+    \\
+    Если у процесса дисперсия растет медленнее, чем линейно, то для эргодичности
+    достаточно проверить только первое условие из достаточного.
+    \\
+    То же верно, если
+    \begin{align*}
+      & \exists c: \ \forall t \ \EE X^2(t) < c
+    \end{align*}
+\end{Note}
+\section{Стационарные процессы.}
+Стационарные процессы имеют не зависящие от времени распределения сечений,
+многомерные распределения, зависящие лишь от разности моментов времени, и
+описывают установившиеся во времени явления.
+\begin{Def}
+    Процесс $\left\{ X(t), \ t \in T \right\}$ называется \textbf{стационарным в
+      узком смысле}, если все его конечномерные распределения не зависят от сдвига
+    по времени на одну и ту же величину, т.~е.
+    \begin{align*}
+      & \forall t_1, \dots, t_n \in T, \ \forall \tau: \ t_1+\tau, \dots, t_n + \tau \in T \hookrightarrow \\
+      & F_X(x_1, \dots, x_n; t_1, \dots, t_n) = F_X(x_1, \dots, x_n; t_1 + \tau, \dots, t_n+\tau)
+    \end{align*}
+    или, что то же самое, векторы
+    \begin{align*}
+      & \left[ \begin{matrix}
+              X(t_1) \\
+              X(t_2) \\
+              \dots \\
+              X(t_n)
+          \end{matrix} \right], \  \left[ \begin{matrix}
+              X(t_1+\tau) \\
+              X(t_2+\tau) \\
+              \dots \\
+              X(t_n+\tau)
+          \end{matrix} \right]
+    \end{align*}
+    одинаково распределены.
+\end{Def}
+\begin{example}
+    ~
+    \\
+    Одномерное распределение:
+    \begin{align*}
+      F_X(x,t) = F_X(x, t + \tau) \Rightarrow \EE X(t) = m_X = const , \ D X(t) = \sigma^2 = const, \ \dots
+    \end{align*}
+    Все моменты постоянны во времени.
+    Двумерное распределение:
+    \begin{align*}
+      F(x_1,x_2; t_1, t_2) = F_X(x_1, x_2; t_1 + \tau, t_2 + \tau) \Rightarrow R_X(t_1,t_2) = R_X(t_1+\tau, t_2+\tau) = R_X(0, t_2-t_1)
+    \end{align*}
+    Корреляционная функция зависит только от разности моментов времени.
+\end{example}
+\begin{Def}
+    Процесс $\left\{ X(t), \ t \in T \right\}$ называется \textbf{стационарным в
+      широком смысле}, если его математическое ожидание постоянно во времени, а
+    корреляционная функция зависит от своих аргументов только через их разность, т.~е.
+    \begin{align*}
+      & \EE X(t) = m = const, \ R_X(t,s) = R(t-s)
+    \end{align*}
+\end{Def}
+\begin{Prop}
+    ~
+    \\
+    Если процесс второго порядка стационарен в узком смысле, то он стационарен и
+    в широком смысле, но не наоборот.
+\end{Prop}
+\begin{Proof}
+    ~
+    \\
+    Как было показано в примере выше, условия определения широкого смысла выполняются.
+\end{Proof}
+\begin{example}
+    ~
+    \\
+    Контрпример к обратному утверждению: процесс
+    \begin{align*}
+      & Z(t) = X\cos t + Y \sin t, t \geq 0, \ X,Y \ \IID, \ \PP\{X = 1\} = \PP\{X = -1\} = \frac{1}{2}
+    \end{align*}
+    стационарен в широком, но не узком смысле.
+\end{example}
+\begin{theorem}
+    ~
+    \\
+    Нормальный процесс стационарен в широком смысле тогда и только тогда, когда
+    он стационарен в узком смысле.
+\end{theorem}
+\begin{Proof}
+    ~
+    \\
+    Нормальный процесс является процессом второго порядка, а значит,
+    необходимость очевидна.
+    \\
+    Пусть теперь $X(t)$ стационарен в широком смысле. Возьмем произвольное
+    сечение (нормальный случайный вектор)
+    \begin{align*}
+      & X = \left[ \begin{matrix}
+              X(t_1) \\
+              \dots \\
+              X(t_n)
+          \end{matrix} \right] \Rightarrow \varphi_X(s) = \exp \left( is^tm - \frac{1}{2}s^TRs \right), \ s = \left( s_1, \dots, s_n \right)
+    \end{align*}
+    При сдвиге всех $t_i$ на одну и ту же величину $\tau$ ни $m$, ни $R$ не
+    изменились, тогда и $\varphi_X(s)$ не изменится, а она задает многомерные
+    распределения. Они не меняются, значит, стационарность в узком смысле
+    выполняется.
+\end{Proof}
+\begin{Note}
+    ~
+    \\
+    Для стационарного процесса достаточно лишь первого из условий эргодичности.
+    Второе выполняется автоматически.
+\end{Note}

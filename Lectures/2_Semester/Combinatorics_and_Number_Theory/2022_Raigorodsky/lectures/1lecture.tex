@@ -1,0 +1,190 @@
+\begin{anote}
+	В этом конспекте введены следующие обозначения для облегчения жизни:
+	\begin{align*}
+		&{\N_1 = \N = \{1, 2, 3, \ldots\}}
+		\\
+		&{\N_0 = \{0, 1, 2, 3, \ldots\}}
+	\end{align*}
+\end{anote}
+
+\section{Основы комбинаторики и теории чисел}
+\subsection{Распределение простых чисел}
+
+\begin{definition}
+	\textit{Пи-функцией от натурального числа } $x$ будем называть количество простых чисел, меньших либо равных $x$:
+	\[
+		\pi(x) = \suml_{p \le x} 1
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Тета-функцией от натурального числа} $x$ будем называть сумму натуральных логарифмов простых чисел, меньших либо равных $x$:
+	\[
+		\Theta(x) = \suml_{p \le x} \ln p
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Пси-функцией от натурального числа} $x$ будем называть сумму натуральных логарифмов от простых чисел $p$ по парам $(p, \alpha)$ так, что верно соотношение $p^\alpha \le x$:
+	\[
+		\psi(x) = \suml_{(p, \alpha) \colon p^\alpha \le x} \ln p
+	\]
+\end{definition}
+
+\begin{theorem} (Чебышёва, 1848-1850гг.)
+	Для всех достаточно больших $x$ при фиксированном $\eps$ верно, что
+	\[
+		\pi(x) \in \left[(1 - \eps) \cdot \ln 2 \frac{x}{\ln x}; (1 + \eps) \cdot 4\ln 2 \frac{x}{\ln x}\right]
+	\]
+\end{theorem}
+
+\begin{proof}
+	Обозначим следующие пределы через $\lambda$ и $\mu$:
+	\begin{align*}
+		&{\lambda_1 := \varlimsup\limits_{x \to \infty} \frac{\Theta(x)}{x};} & &{\mu_1 := \varliminf\limits_{x \to \infty} \frac{\Theta(x)}{x}} \\
+		&{\lambda_2 := \varlimsup\limits_{x \to \infty} \frac{\psi(x)}{x};} & &{\mu_2 := \varliminf\limits_{x \to \infty} \frac{\psi(x)}{x}} \\
+		&{\lambda_3 := \varlimsup\limits_{x \to \infty} \frac{\pi(x)}{x / \ln x};} & &{\mu_3 := \varliminf\limits_{x \to \infty} \frac{\pi(x)}{x / \ln x}}
+	\end{align*}
+	
+	\begin{lemma}
+		Утверждается, что
+		\[
+			\lambda_1 = \lambda_2 = \lambda_3;\ \ \mu_1 = \mu_2 = \mu_3
+		\]
+	\end{lemma}
+
+	\begin{proof}
+		Докажем данное утверждение лишь для $\lambda$, так как для $\mu$ всё происходит абсолютно аналогично. Совершенно очевидно, что
+		\[
+			\Theta(x) \le \psi(x) \Ra \frac{\Theta(x)}{x} \le \frac{\psi(x)}{x} \Ra \lambda_1 \le \lambda_2
+		\]
+		Теперь, распишем $\psi(x)$. Сколько существует пар для фиксированного $p$? Ровно $\floor{\log_p x} = \floor{\frac{\ln x}{\ln p}}$. Отсюда получаем
+		\[
+			\psi(x) = \suml_{(p, \alpha) \colon p^\alpha \le x} \ln p = \suml_{p \le x} \floor{\frac{\ln x}{\ln p}} \ln p \le \ln x \cdot \suml_{p \le x} 1 = \pi(x) \ln x
+		\]
+		Таким образом, находим соотношение между вторым и третьим пределами:
+		\[
+		 	\frac{\psi(x)}{x} \le \frac{\pi(x) \ln x}{x} = \frac{\pi(x)}{x / \ln x} \Ra \lambda_1 \le \lambda_2 \le \lambda_3;
+		\]
+		Осталось доказать, что $\lambda_1 \ge \lambda_3$. Зафиксируем $\alpha \in (0; 1)$. Тогда
+		\[
+			\suml_{p \le x} \ln p \ge \suml_{x^\alpha < p \le x} \ln p > \suml_{x^\alpha < p \le x} \ln (x^\alpha)
+		\]
+		Последнюю сумму можно записать в следующем виде:
+		\[
+			\suml_{x^\alpha < p \le x} \ln (x^\alpha) = \alpha \ln x \suml_{x^\alpha < p \le x} 1 = \alpha \ln x \cdot (\pi(x) - \pi(x^\alpha))
+		\]
+		При этом понятно, что $\pi(x) \le x$. Отсюда получаем новое неравенство:
+		\[
+			\frac{\Theta(x)}{x} > \frac{\alpha \ln x}{x} (\pi(x) - \pi(x^\alpha)) \ge \frac{\alpha \ln x}{x}(\pi(x) - x^\alpha) = \alpha \cdot \left(\frac{\pi(x)}{x / \ln x} - \frac{x^\alpha \ln x}{x}\right)
+		\]
+		Перейдём к пределу в неравенстве:
+		\[
+			\lambda_1 \ge \alpha (\lambda_3 - 0) \Longrightarrow \forall \alpha \in (0; 1)\ \lambda_1 \ge \alpha \lambda_3 \Longrightarrow \lambda_1 \ge \lambda_3
+		\]
+	\end{proof}
+
+	\begin{itemize}
+		\item Начнём доказательство с верхней оценки. Рассмотрим $C_{2n}^n$:
+		\[
+			C_{2n}^0 + \ldots + C_{2n}^n + \ldots + C_{2n}^{2n} = 2^{2n} \Ra C_{2n}^n < 2^{2n}
+		\]
+		Более того, заметим следующее неравенство. Оно следует из того, что простые числа в диапазоне от $n < p \le 2n$ никак не могли сократиться из-за знаменателя, ибо он сам не содержит чисел в разложении больше $n$:
+		\[
+			C_{2n}^n \ge \prodl_{n < p \le 2n} p
+		\]
+		Прологарифмируем полученное выражение и увидим ещё одну деталь:
+		\[
+			\Theta(2n) - \Theta(n) = \suml_{n < p \le 2n} \ln p \le \ln C_{2n}^n < 2n \ln 2
+		\]
+		Мы можем записать такие неравенства для всех $n = 2^k,\ k = 0, \ldots, m$. Сложив их, в итоге получим следующее:
+		\[
+			\Theta(2^{m + 1}) - \Theta(1) < \suml_{k = 1}^{m + 1} (2^k \ln 2) = \ln 2 \cdot \suml_{k = 1}^{m + 1} 2^k
+		\]
+		При этом $\Theta(1) = 0$, а сумма степеней равна $2^{m + 2} - 1 - 2^{0} < 2^{m + 2}$. То есть
+		\[
+			\Theta(2^{m + 1}) < 2^{m + 2} \ln 2
+		\]
+		Выберем произвольный натуральный $x$. Найдём $m$ такое, что $2^m < x \le 2^{m + 1}$. Тогда
+		\[
+			\Theta(x) \le \Theta(2^{m + 1}) < 2^{m + 2} \ln 2 < 4\ln 2 \cdot x \Ra \frac{\Theta(x)}{x} < 4 \ln 2 \Ra \lambda_3 = \lambda_1 \le 4 \ln 2
+		\]
+		По свойству верхнего предела получаем необходимое:
+		\[
+			\exists \eps > 0, X(\eps) \in \N \such \forall x \ge X\ \ \frac{\pi(x)}{x / \ln x} \le 4 \ln 2 \cdot (1 + \eps)
+		\]
+		
+		
+		\item Теперь докажем нижнюю оценку. Для этого вспомним, что $C_{2n}^n$ - наибольшее число в строке треугольника Паскаля. То есть
+		\[
+			C_{2n}^0 + \ldots + C_{2n}^n + \ldots + C_{2n}^{2n} = 2^{2n}
+		\]
+		Отсюда среднее число суммы - это $\frac{2^{2n}}{2n + 1}$, и при этом верно соотношение
+		\[
+			C_{2n}^n > \frac{2^{2n}}{2n + 1} \text{ (будем рассматривать } n \ge 1 \text{)}
+		\]
+		Логарифмируя данное неравенство, получим оценку снизу на биномиальный коэффициент:
+		\[
+			\ln C_{2n}^n > 2n \ln 2 - \ln (2n + 1)
+		\]
+		При этом есть и другое соотношение, связанное с записью факториала:
+		\[
+			(n)! = \prodl_{p \le n} p^{\floor{\frac{n}{p}} + \floor{\frac{n}{p^2}} + \ldots}
+		\]
+		Откуда оно взялось? Степень простого числа при разложении факториала - это вклад чисел от 1 до $n$, где данное простое число встретится 1 раз, 2 раза и так далее. Стало быть
+		\[
+			C_{2n}^n = \frac{\prodl_{p \le 2n} p^{\floor{\frac{2n}{p}} + \floor{\frac{n}{p^2}} + \ldots}}{\prodl_{p \le n} p^{2\left(\floor{\frac{n}{p}} + \floor{\frac{n}{p^2}} + \ldots\right)}} = \prodl_{p \le 2n} p^{\left(\floor{\frac{2n}{p}} - 2\floor{\frac{n}{p}}\right) + \ldots} \le \prodl_{p \le 2n} p^{\floor{\frac{\ln (2n)}{\ln p}}}
+		\]
+		\begin{proposition}
+			Последний переход имеет место, так как $\floor{2x} - 2\floor{x} \le 1$
+		\end{proposition}
+	
+		\begin{proof}
+			Представим $x$ как сумму целой и дробной частей:
+			\[
+				x = a + b,\ 0 \le b < 1
+			\]
+			Тогда $2x = 2a + 2b$. Целая часть никак не влияет на округление, поэтому
+			\[
+				\floor{2x} - 2\floor{x} = 2a + \floor{2b} - 2a = \floor{2b} \le 1
+			\]
+		\end{proof}
+	
+		Логарифмируя полученное неравенство, получаем уже оценку сверху на биномиальный коэффициент:
+		\[
+			\ln C_{2n}^n \le \suml_{p \le 2n} \ln p \cdot \floor{\frac{\ln (2n)}{\ln p}} = \suml_{p \le 2n} \ln p \cdot \floor{\log_p (2n)} = \psi(2n)
+		\]
+		Снова выберем произвольный натуральный $x$. Найдём для него такое $n$, что он окажется зажат между двумя соседними чётными числами: $2n \le x < 2n + 2$. Отсюда
+		\[
+			\psi(x) \ge \psi(2n) \ge 2n\ln 2 - \ln (2n + 1) \ge 2n\ln 2 - \ln(x) \ge (x - 2)\ln 2 - \ln (x)
+		\]
+		В итоге имеем, что
+		\[
+			\frac{\psi(x)}{x} > \ln 2 - \frac{2\ln 2}{x} - \frac{\ln(x)}{x}
+		\]
+		Переходя к нижнему пределу, получаем необходимую оценку:
+		\[
+			\mu_3 = \mu_2 \ge \ln 2 \Longrightarrow \exists \eps > 0,\ X(\eps) \in \N \such \forall x \ge X\ \ \frac{\pi(x)}{x / \ln x} \ge (1 - \eps)\ln 2
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{theorem} (без доказательства, Адамара и Валле-Пуссена, 1896г.)
+	На бесконечности для $\pi(x)$ справедливо следующее утверждение:
+	\[
+	\pi(x) \sim \frac{x}{\ln x},\ x \to \infty
+	\]
+\end{theorem}
+
+\begin{theorem} (без доказательства, Постулат Бертрана)
+	Для любого натурального числа $x \ge 1$ всегда найдётся простое число $p$ такое, что $p \in [x; 2x]$.
+\end{theorem}
+
+\begin{note}
+	Обобщение Постулата Бертрана является на сегодняшний день (февраль 2022) открытой проблемой: для каких функций $f: \N \to \R$ таких, что $f(x) < x$, для любого $x \in \N$ будет всегда содержаться простое число $p$ в диапазоне $[x; x + f(x)]$?
+	
+	Известно, что лучшая оценка сейчас - это $f(x) = C \cdot x^{0.525}$, где $C$ - подобранная константа. Доказано, что если гипотеза Римана о нулях дзета-функции верна, то в таком случае показатель степени можно свести к 0.5, но есть также гипотеза следующего вида:
+	\[
+		\exists C \such \forall x \in \N\ \exists p \in [x; x + C\ln^2 x]
+	\]
+\end{note}

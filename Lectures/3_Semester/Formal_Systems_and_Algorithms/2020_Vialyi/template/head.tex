@@ -1,0 +1,195 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{cmap}					
+\usepackage{mathtext} 		% русские буквы в формулах		
+\usepackage[T2A]{fontenc}			
+\usepackage[utf8]{inputenc}			
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{icomma} % 'умная' запятая
+
+\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+\usepackage{euscript}
+\usepackage{mathrsfs}
+\usepackage{etoolbox}
+
+
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{				% Гиперссылки
+	unicode=true,           % русские буквы в раздела PDF\\
+	pdfstartview=FitH,
+	pdftitle={Заголовок},   % Заголовок
+	pdfauthor={Автор},      % Автор
+	pdfsubject={Тема},      % Тема
+	pdfcreator={Создатель}, % Создатель
+	pdfproducer={Производитель}, % Производитель
+	pdfkeywords={keyword1} {key2} {key3}, % Ключевые слова
+	colorlinks=true,       	% false: ссылки в рамках; true: цветные ссылки
+	linkcolor=blue,          % внутренние ссылки
+	citecolor=green,        % на библиографию
+	filecolor=magenta,      % на файлы
+	urlcolor=NavyBlue,           % на URL
+}
+
+%%% Страница 
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry}  
+\geometry{left=20mm,right=20mm,top=25mm,bottom=30mm} % задание полей текста
+
+\usepackage{titleps}      % колонтитулы
+\newpagestyle{main}{
+	\setheadrule{.4pt}                      
+	\sethead{теория формальных систем и алгоритмов}{}{\hyperlink{intro}{\;Назад к содержанию}}
+	\setfootrule{.4pt}                       
+	\setfoot{2020 г. осень \; ФПМИ МФТИ}{}{\thepage} 
+}      
+\pagestyle{main}  
+
+%%%  Текст
+\setlength\parindent{0pt}         % Устанавливает длину красной строки 0pt
+\sloppy                                        % строго соблюдать границы текста
+\linespread{1.3}                           % коэффициент межстрочного интервала
+\setlength{\parskip}{0.5em}                % вертик. интервал между абзацами
+%\setcounter{secnumdepth}{0}                % отключение нумерации разделов
+%\setcounter{section}{-1}         % Чтобы сделать нумерацию лекций с нуля
+\usepackage{multicol}				          % Для текста в нескольких колонках
+%\usepackage{soul}
+\usepackage{soulutf8} % Модификаторы начертания
+
+%% Перенос знаков в формулах 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\usepackage{graphicx}  
+\graphicspath{{images/}{images2/}}  % папки с файлами
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} 
+\usepackage{caption} % Создание пустых заголовков
+
+%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} 
+\usepackage{longtable}
+\usepackage{multirow}
+
+%% Новые функции
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+\DeclareMathOperator{\M}{\mathop{mod}}
+\DeclareMathOperator{\cont}{\mathop{cont}}
+
+\newcommand{\tit}[1]{%
+\textit{#1}%
+}
+
+\newcommand{\tbf}[1]{%
+\textbf{#1}%
+}
+
+\newcommand{\wt}[1]{%
+\widetilde{ #1 }%
+}
+
+\newcommand{\pair}[2]{%
+(#1, #2)%
+}
+
+\newcommand{\abs}[1]{%
+\left| #1 \right|%
+}
+
+\newcommand{\av}[1]{%
+\left \langle #1 \right \rangle%
+}
+
+\newcommand{\wholepart}[1]{%
+\left \lfloor #1 \right \rfloor%
+}
+
+\newcommand{\br}[1]{%
+\left( #1 \right)%
+}
+
+\newcommand{\sqrbr}[1]{%
+\left[ #1 \right]%
+}
+
+\newcommand{\figbr}[1]{%
+\left\{ #1 \right\}%
+}
+
+\newcommand{\eqmod}[3]{%
+#1 \equiv #2 ~ \M ~ #3%
+}
+
+
+
+%% Сокращения команд
+\def\RR{\mathbb{R}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\FF{\mathbb{F}}
+\def\CC{\mathbb{C}}
+\def\Zp{\mathbb{N}_0}
+
+
+\let\Rar\Rightarrow
+\let\rar\rightarrow
+\let\LRar\Leftrightarrow
+\let\hkar\hookrightarrow
+\let\drar\dashrightarrow
+
+\let\INF\infty
+
+\let\degree\circ
+
+\let\lor\vee
+\let\land\wedge
+
+\let\leq\leqslant  
+\let\geq\geqslant
+
+\let\eps\varepsilon
+\let\al\alpha
+\let\phi\varphi
+\let\Om\Omega
+\let\om\omega
+\let\lam\lambda
+\let\Lam\Lambda
+\let\Th\Theta
+\let\t\theta
+\let\De\Delta
+\let\ga\gamma
+\let\Ga\Gamma  
+\let\XOR\oplus
+
+% Сокращенния в тексте
+\newcommand{\Dekstra}{\ensuremath{алгоритм~Дейкстры~}}
+\newcommand{\BFS}{\ensuremath{BFS~}}
+\newcommand{\DFS}{\ensuremath{DFS~}}
+\newcommand{\Ford}{\ensuremath{алгоритм~Форда-Беллмана~}}
+\newcommand{\Floid}{\ensuremath{алгоритм~Флойда-Уоршелла~}}
+\newcommand{\Krascal}{\ensuremath{алгоритм~Краскала~}}
+\newcommand{\MST}{\ensuremath{миностов~}}
+\newcommand{\beginproof}{\noindent \tbf{Доказательство:} }
+\newcommand{\beginprooff}{\noindent \tbf{Доказательство л 1.1:} }
+\newcommand{\conclude}{\noindent \tbf{Вывод:} }
+
+%% быстрое оформление
+\theoremstyle{plain} % стиль по умолчанию
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Утверждение}
+\newtheorem{lemma}{Лемма}[section]
+
+ 
+\theoremstyle{definition} % "Определение"
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{problem}{Задача}[section]
+\newtheorem{definition}{Определение}[section]
+ 
+\theoremstyle{remark} % "Примечание"
+\newtheorem*{remark}{Замечание}
+\newtheorem*{example}{Пример}

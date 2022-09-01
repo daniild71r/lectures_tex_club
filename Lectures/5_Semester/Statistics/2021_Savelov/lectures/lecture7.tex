@@ -1,0 +1,120 @@
+\begin{proposition}
+Пусть выполнено условие регулярности. Тогда существует эффективная оценка для некоторой функции $\displaystyle \tau ( \theta )$ $\displaystyle \Leftrightarrow $ наблюдения принадлежат экспоненциальному семейству.
+\end{proposition}
+\begin{proof}
+Пусть семейство экспоненциальное, то есть
+\begin{equation*}
+f_{\theta }( X) =\prod _{i=1}^{n} p_{\theta }( X_{i}) ,\ p_{\theta }( X_{i}) =h( X_{i}) e^{a( \theta ) T( X_{i}) +V( \theta )} .
+\end{equation*}
+Тогда 
+\begin{equation*}
+\exists u_{\theta }( X) =\frac{\partial }{\partial \theta }\ln f_{\theta }( X) =\frac{\partial }{\partial \theta }\left( a( \theta )\sum _{i=1}^{n} T( X_{i}) +nV( \theta )\right) .
+\end{equation*}
+Заметим, что, если $\displaystyle T( X_{i}) \equiv const$, то
+\begin{equation*}
+p_{\theta }( x) =h( x) b( \theta ) \Rightarrow \int _{\mathcal{X}} h( x) b( \theta ) dx=1\Rightarrow b( \theta ) \equiv const.
+\end{equation*}
+В этом случае распределение не зависит от $\displaystyle \theta $, и такой случай не рассматриваем.
+
+Заметим, что если функция $\displaystyle f( x) h( y) +g( x)$ дифференцируема по $\displaystyle x$ при любом $\displaystyle y$, и $\displaystyle h( y) \ne const$, то функции $\displaystyle f( x)$ и $\displaystyle g( x)$ дифференцируемы по $\displaystyle x$, т.к. $\displaystyle \exists y_{1},\, y_{2} :h( y_{1}) \ne h( y_{2})$, и функция $\displaystyle [ f( x) h( y_{1}) +g( x)] -[ f( x) h( y_{2}) +g( x)] =f( x)( h( y_{1}) -h( y_{2}))$ дифференцируема по $\displaystyle x$ как разность двух дифференцируемых функций. Следовательно, и функции $\displaystyle f( x)$, а вместе с ней и $\displaystyle g( x)$ дифференцируемы.
+Из этих соображений получаем, что $\displaystyle a( \theta )$ и $\displaystyle V( \theta )$ дифференцируемы, и
+\begin{equation*}
+u_{\theta }( X) =a'( \theta )\sum _{i=1}^{n} T( X_{i}) +nV'( \theta ) .
+\end{equation*}
+Из предположения, что $\displaystyle \forall \theta \hookrightarrow a'( \theta ) \neq 0$, получаем
+\begin{equation*}
+\frac{u_{\theta }( X)}{na'( \theta )} =\frac{\sum _{i=1}^{n} T( X_{i})}{n} -\left(\frac{-V'( \theta )}{a'( \theta )}\right) .
+\end{equation*}
+Обозначив $\displaystyle \tau ( \theta ) =\frac{-V'( \theta )}{a'( \theta )} ,\ \tau ^{*}( X) =\frac{\sum _{i=1}^{n} T( X_{i})}{n} ,\ c( \theta ) =\frac{1}{na'( \theta )}$, по критерию эффективности получаем требуемое.
+Обратно, пусть существует эффективная оценка $\displaystyle T( X)$ для $\displaystyle \tau ( \theta )$. Пусть $\displaystyle \tau '( \theta ) \neq 0$. Тогда
+\begin{gather*}
+    \forall \theta \in \Theta \hookrightarrow T(X) - \tau(\theta) = c(\theta)u_\theta(X)\ P_\theta-a.s. \Leftrightarrow\\
+    \frac{T(X) - \tau(\theta)}{c(\theta)} = \frac{\partial}{\partial\theta}\ln f_\theta(X).
+\end{gather*}
+Предполагая корректность, интегрируем по $\theta$.
+\begin{gather*}
+    \ln f_\theta(X) = \int\frac{T(X)-\tau(\theta)}{c(\theta)}d\theta + g(X),
+\end{gather*}
+где для каждого $\theta \in \Theta$ своя функция $g(X)$. Тогда
+\begin{gather*}
+    f_\theta(X) = \prod_{i=1}^n p_\theta(X_i) = H(X)\exp\{B(\theta)T(X) + D(\theta)\}\cdot\mathbb{I}_A(X).
+\end{gather*}
+Фиксируя $x_2^0,\, \ldots,\, x_n^0 \in A$, получаем
+\begin{gather*}
+    p_\theta(x_1) = \dfrac{H(x_1,\, x_2^0, \ldots,\, x_n^0)\exp\{B(\theta)T(x_1,\, x_2^0, \ldots,\, x_n^0) + D(\theta)\}}{\prod_{i=2}^n p_\theta(x_i^0)}\cdot\mathbb{I}_A(X).
+\end{gather*}
+Из предположения, что функция распределения зависит от $\theta$, получаем, что $a_1(\theta)$ независимо с $a_0 \equiv 1$. Следовательно, семейство экспоненциальное.
+\end{proof}
+
+\section{Достаточные статистики}
+\begin{definition}
+    Пусть $X$ -- выборка из неизвестного распределения $P \in \{P_\theta,\, \theta \in \Theta\}$. Статистика $T(X)$ называется \textit{достаточной} для параметра $\theta$, если для любого борелевского множества $B$ и любого $t$ выполняется, что $P_\theta(X \in B\, \vert\, T(X) = t)$ не зависит от $\theta$.
+\end{definition}
+\begin{note}
+    Так как условная вероятность не однозначно определенный объект, то в определении подразумевается, что существует такой вариант условного распределения, что оно не зависит от $\theta$.
+\end{note}
+\begin{note}
+    Если статистики $S$ и $T$ находятся во взаимно однозначном соответствии, и $T$ достаточная, тогда и $S$ достаточная.
+\end{note}
+\begin{theorem} 
+    (Неймана-Фишера, критерий факторизации). Пусть $\{P_\theta,\, \theta \in \Theta\}$ -- доминируемое семейство. Тогда статистика $T$ является достаточной для параметра $\theta$ тогда и только тогда, когда функция правдоподобия $f_\theta(X)$ представляется в виде $f_\theta(X) = \psi(T(X),\, \theta)h(X)$, где функции $\psi,\, h$ неотрицательны, $\psi(t,\, \theta)$ измерима по $t$, и $h(x)$ измерима по $x$.
+\end{theorem}
+\begin{proof}
+    (Для дискретного случая, т.е. $f_\theta(X) = P_\theta(X = x)$). Пусть $f_\theta(x) = \psi(T(X),\, \theta)h(X)$. Тогда 
+    \begin{gather*}
+        P_\theta(X = x\, \vert\, T(X) = t) = \frac{P_\theta(X = x,\, T(X) = t)}{P_\theta(T(X) = t)}.
+    \end{gather*}
+    Если $T(X) \ne t$, то эта вероятность нулевая. Иначе,
+    \begin{gather*}
+        P_\theta(X = x\, \vert\, T(X) = t) = \frac{P_\theta (X = x)}{\sum_{y:\, T(y) = t}P(X = y)} =\\ \frac{\psi(T(X),\, \theta)h(X)}{\sum_{y:\, T(y) = t}\psi(T(y),\, \theta)h(y)} = \frac{h(X)}{\sum_{y:\, T(y) = t}h(y)}.
+    \end{gather*}
+    Следовательно, $T$ -- достаточная.
+    
+    Обратно, пусть $T$ -- достаточная статистика. Тогда
+    \begin{gather*}
+        f_\theta(X)=P_\theta(X = x) = P_\theta(X = x,\, T(X) = T(x)) =\\ P_\theta(T(X) = T(x))P_\theta(X = x\, \vert\, T(X) = T(x)).
+    \end{gather*}
+    Обозначив $\psi(T(X),\, \theta) = P_\theta(T(X) = T(x)),\ h(X) = P_\theta(X = x\, \vert\, T(X) = T(x))$, получаем требуемое.
+\end{proof}
+
+\section{Улучшение оценок с помощью достаточных статистик}
+\begin{theorem}
+    (Колмогоров-Блэкуэлл-Рао, об улучшении несмещенных оценок). Пусть $d(X)$ -- несмещенная оценка $\tau(\theta)$, $E_\theta d^2(X) < \infty\ \forall \theta \in \Theta$, и $T(X)$ -- достаточная статистика для $\theta$. Пусть $\phi(T) = E_\theta(d(X)\, \vert\, T)$. Тогда $\phi(T)$ зависит от выборки только через $T(X)$ (и не зависит от $\theta$), т.е. $\phi(T)$ -- статистика. Более того, $E_\theta \phi(T) = \tau(\theta),\ D_\theta \phi(T) \leq D_\theta(d(X))$, и равенство достигается тогда и только тогда, когда $\phi(X) = d(X)\ (\forall \theta\ P_\theta-a.s.)$, и в этом случае $d$ является $T$-измеримой, т.е. борелевской функцией от $T$.
+\end{theorem}
+\begin{proof}
+    Рассмотрим  $E_\theta(d(X)\, \vert\, T)$. При фиксированном значении $T$ распределение $X$ не зависит от $\theta$. Тогда распределение $d(X)$ также не зависит от $\theta$, следовательно, $E_\theta(d(X)\, \vert\, T)$ является функцией только от $T$ (и как функция не зависит от $\theta$). Поэтому $\phi(T)$ -- статистика.
+    
+    Несмещенность очевидна в силу свойств условного математического ожидания.
+    
+    По неравенству Йенсена, если $h(x)$ -- выпуклая функция, и $E(h(\xi))<\infty$, то $h(E(\xi\, \vert\, \mathcal{G})) \leq E(h(\xi)\, \vert\, \mathcal{G})$. Тогда, $\phi^2(T) = E^2(d(X)\, \vert\, T(X)) \leq E(d^2(X)\, \vert\, T(X)) < \infty$. Тогда $E_\theta\phi^2(T) \leq E_\theta(E(d^2(X)\, \vert\, T(X))) = E_\theta d^2(X) < \infty$. Далее,
+    \begin{gather*}
+        D_\theta d(X) = E_\theta(d(X) - \tau(\theta))^2 = E_\theta(d(X) - \phi(T) + \phi(T) - \tau(\theta))^2 =\\
+        E_\theta(d(X) - \phi(T))^2 + E_\theta(\phi(T) - \tau(\theta))^2 + 2E_\theta(d(X) - \phi(T))(\phi(T) - \tau(\theta)) =\\ E_\theta(d(X) - \phi(T))^2 + D_\theta\phi,
+    \end{gather*}
+    т.к. $E_\theta(d - \phi)(\phi - \tau) = E_\theta(E_\theta((d-\phi)(\phi - \tau)\, \vert\, T)) = E_\theta((\phi - \tau)E_\theta(d - \phi\, \vert\, T)) = 0$.
+    При этом, неравенство переходит в равенство тогда и только тогда, когда $E_\theta(d(X)-\phi(T))^2 = 0$, т.е. $d=\phi\ \forall \theta\ P_\theta-a.s.$
+\end{proof}
+Введем расширенное определение оценки.
+\begin{definition}
+    \textit{Оценка} -- измеримая функция выборки.
+\end{definition}
+\begin{definition}
+    Наилучшая оценка $\tau(\theta)$ в классе несмещенных оценок в равномерном подходе с квадратичной функцией потерь называется \textit{оптимальной} оценкой.
+\end{definition}
+\begin{corollary}
+    Если $T(X)$ -- достаточная статистика для $\theta$, и $d\in L_2$, то
+    \begin{enumerate}
+        \item Если $d(X)$ -- несмещенная для $\tau(\theta)$, то $E_\theta(d(X)\, \vert\, T(X))$ не хуже $d(X)$, а даже лучше, если $d(X)$ не является $T$- измеримой.
+        \item Если $d$ -- единственная несмещенная $T$-измеримая оценка $\tau(\theta)$, то $d(X)$ -- оптимальная оценка $\tau(\theta)\ (\forall \theta\ P_\theta-a.s.)$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof} ~
+    \begin{enumerate}
+        \item следует из теоремы Колмогорова-Блэкуэлла-Рао.
+        \item для $\widetilde{d} \in L_2$ выполнено $D_\theta\widetilde{\phi} \leq D_\theta\widetilde{d}$, т.е. $E_\theta\left(E_\theta\left(\widetilde{d}\, \vert\, T\right) - E_\theta\widetilde{d}\right)^2 \leq E_\theta\left(\widetilde{d} - E_\theta\widetilde{d}\right)^2$. На самом деле, это выполнено для любой несмещенной оценки $\widetilde{d}$ по свойству условного математического ожидания, если допустить значения $+\infty$ (б/д).
+        
+        Для любой несмещенной $\widetilde{d}$ получаем $\widetilde{\phi}$ -- несмещенная оценка, которая не хуже $\widetilde{d}$. Но т.к. $\widetilde{\phi}$ -- несмещенная $T$-измеримая оценка $\tau(\theta)$, то $\widetilde{\phi} = d$ в силу единственности. Поэтому, $d$ не хуже $\widetilde{d}$.
+        
+        Если $\forall \theta D_\theta\widetilde{d} = D_\theta d$, то из условия $d \in L_2$ следует $D_\theta\widetilde{d} = D_\theta d = D_\theta\widetilde{\phi} < \infty$. Получили, что $\tilde{d} \in L_{2},\ D_{\theta }\tilde{d}=D_{\theta }\left( E_{\theta}\left(\tilde{d}\, \vert\, T\right)\right)$. Значит, по теореме Колмогорова-Блэкуэлла-Рао $\displaystyle \tilde{d} =E\left(\tilde{d} \ |\ T\right) =\tilde{\phi } =d$. Следовательно, $\displaystyle d$ -- оптимальна.
+    \end{enumerate}
+\end{proof}

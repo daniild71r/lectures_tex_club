@@ -1,0 +1,17 @@
+\begin{proof}
+	Имеем множество $E$ необязательно конечной меры, $E=\bigsqcup\limits_{k=1}^\infty E_k$, $E_k$ --- измеримые по Лебегу множества, дополнительно предположим, что $f(x)\geqslant 0$. Хотим установить равенство $\int\limits_{E}f(x)d\mu(x)=\sum\limits_{k=1}^\infty \int\limits_{E_k}f(x)d\mu(x)$.
+	
+	Возьмем исчерпывание множествами конечной меры $E^{(1)}\subset E^{(2)}\subset \ldots,$ такими, что $\lim\limits_{s\to\infty}E^{(s)}=\bigcup\limits_{s=1}^\infty E^{(s)}=E$. Тогда по определению
+	$$\int\limits_{E}f(x)d\mu(x)=\lim\limits_{s\to\infty}\int\limits_{E^{(s)}}f(x)d\mu(x).$$ Обозначим $a_k^{(s)}:=\int\limits_{E_k\cap E^{(s)}}f(x)d\mu(x)$. Заметим, что $E_k\cap E^{(s)}$ имеет конечную меру и $E_k\cap E^{(1)} \subset E_k\cap E^{(2)}\subset\ldots$, $\bigcup\limits_{s=1}^\infty \left( E_k\cap E^{(s)}\right) = E_k$, тогда $a_k:=\int\limits_{E_k}f(x)d\mu(x)=\lim\limits_{s\to\infty}\int\limits_{E_k\cap E^{(s)}}f(x)d\mu(x)=\lim\limits_{s\to\infty}a_k^{(s)}$.
+	Все $a_k^{(s)}$ --- неотрицательные числа, значит по Лемме 10.3.1 имеет место равенство: $\lim\limits_{s\to\infty}\sum\limits_{k=1}^\infty a_k^{(s)}=\sum\limits_{k=1}^\infty a_k$. Получаем $\lim\limits_{s\to\infty}\sum\limits_{k=1}^\infty\int\limits_{E_k\cap E^{(s)}}f(x)d\mu(x)=\sum\limits_{k=1}^\infty\int\limits_{E_k}f(x)d\mu(x)$. В левой части равенства интегрирование при каждом фиксированном $s$ происходит на подмножествах $E^{(s)}$, которое имеет конечную меру, и для множеств конечной меры $\sigma$-аддитивность уже доказана, значит $\sum\limits_{k=1}^\infty\int\limits_{E_k\cap E^{(s)}}f(x)d\mu(x)=\int\limits_{E^{(s)}}f(x)d\mu(x) \Rightarrow \lim\limits_{s\to\infty}\int\limits_{E^{(s)}}f(x)d\mu(x)=\sum\limits_{k=1}^\infty\int\limits_{E_k}f(x)d\mu(x)$, что и требовалось. Обратное утверждение следует из того, что из суммируемости $f(x)$ на каждом $E_k$ и сходимости ряда $\sum\limits_{k=1}^\infty\int\limits_{E_k}f(x)d\mu(x)$ следует суммируемость функции $f$ на $E$.
+	
+	Рассмотрим случай функции любого знака. Представим $f = f^+ - f^-$, для каждой из этих функций справедливо выше доказанное свойство: $\int\limits_{E}f^\pm(x)d\mu(x)=\sum\limits_{k=1}^\infty \int\limits_{E_k}f^\pm(x)d\mu(x)$, и взяв разность рядов, получаем $\sigma$-аддитивность для функций любого знака. Обратное утверждение следует из того, что из сходимости ряда $\sum\limits_{k=1}^\infty\int\limits_{E_k}|f(x)|d\mu(x)$, следует сходимость рядов $\sum\limits_{k=1}^\infty \int\limits_{E_k}f^\pm(x)d\mu(x)$, а значит $f^+$ и  $f^-$ суммируемы на $E$, то есть $f$ суммируема на $E$.
+\end{proof}
+
+\begin{prop}[Абсолютная непрерывность интеграла Лебега]
+	Если $f$ суммируема на измеримом множестве $E\subset \R^n$, то $(\forall \varepsilon > ~0)(\exists \delta > ~0)\linebreak(\forall \text{измеримого множества } e\subset E,\  \mu(e)<\delta)\ |\int\limits_{e}f(x)d\mu(x)|<\varepsilon$.
+\end{prop}
+
+\begin{proof}
+	
+\end{proof}

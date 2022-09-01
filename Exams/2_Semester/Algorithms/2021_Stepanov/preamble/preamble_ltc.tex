@@ -1,0 +1,229 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{indentfirst}
+\frenchspacing
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая
+
+%%% Шрифты
+\usepackage{euscript} % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%%% Свои команды
+\usepackage{centernot}
+\usepackage{stmaryrd}
+
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\varnothing}
+
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+\DeclareMathOperator{\nd}{\text{НОД}}
+\DeclareMathOperator{\lf}{\text{НОК}}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\ke}{Ker}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\cha}{char}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\poly}{poly}
+
+\newcommand{\divby}{
+	\mathrel{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}
+}
+\newcommand{\notdivby}{\centernot\divby}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\id}{\mathrm{id}}
+\renewcommand\labelitemi{$\triangleright$}
+\newcommand{\Chi}{\scalebox{1.05}{\raisebox{\depth}{$\chi$}}}
+
+\let\bs\backslash
+\let\mc\mathcal
+\let\vect\overline
+\let\normal\trianglelefteqslant
+\let\lra\Leftrightarrow
+\let\ra\Rightarrow
+\let\la\Leftarrow
+\let\gl\langle
+\let\gr\rangle
+\let\sd\leftthreetimes
+
+%%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+
+%%% Теоремы
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{proposition}{Утверждение}[section]
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{exercise}{Упражнение}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem*{note}{Замечание}
+\newtheorem*{reminder}{Напоминание}
+\newtheorem*{example}{Пример}
+\newtheorem*{tasks}{Вопросы и задачи}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Решение}
+
+%%% Оформление страницы
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\usepackage{setspace} % Интерлиньяж
+\usepackage{enumitem}
+\setlist{leftmargin=25pt}
+
+\geometry{top=25mm}
+\geometry{bottom=30mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+\singlespacing % \onehalfspacing, \doublespacing
+
+\setlength\parindent{15pt}        % Устанавливает длину красной строки 0pt
+\sloppy                           % строго соблюдать границы текста
+\linespread{1.3}                  % коэффициент межстрочного интервала
+%\setlength{\parskip}{0.5em}      % вертик. интервал между абзацами
+%\setcounter{secnumdepth}{0}      % отключение нумерации разделов
+%\setcounter{section}{-1}         % Чтобы сделать нумерацию лекций с нуля
+\usepackage{multicol}			  % Для текста в нескольких колонках
+\usepackage{soulutf8}             % Модификаторы начертания
+
+%%% Колонтитулы
+\usepackage{titleps}
+\newpagestyle{main}{
+	\setheadrule{0.4pt}
+	\sethead{\CourseName}{}{\hyperlink{intro}{\;Назад к содержанию}}
+	\setfootrule{0.4pt}                       
+	\setfoot{ФПМИ МФТИ, \CourseDate}{}{\thepage} 
+}
+\pagestyle{main}  
+
+%%% Нумерация уравнений
+\makeatletter
+\def\eqref{\@ifstar\@eqref\@@eqref}
+\def\@eqref#1{\textup{\tagform@{\ref*{#1}}}}
+\def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
+\makeatother % \eqref* без гиперссылки
+\numberwithin{equation}{section}
+\mathtoolsset{showonlyrefs=false} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%%% Содержаниие
+\usepackage{tocloft}
+\tocloftpagestyle{main}
+\setlength{\cftsecnumwidth}{2.3em}
+\renewcommand{\cftsubsecdotsep}{1}
+\renewcommand{\cftsecfont}{}
+\renewcommand{\cftsecpresnum}{\hfill}
+\renewcommand{\cftsecaftersnum}{\quad}
+\renewcommand{\cftsecleader}{\cftsubsecleader}
+
+%% Более маленькие заголовки
+\usepackage{sectsty}
+\sectionfont{\large\bfseries}
+\subsectionfont{\normalsize\bfseries}
+
+%%% Гиперссылки
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{				% Гиперссылки
+	unicode=true,           % русские буквы в раздела PDF
+	pdftitle={Заголовок},   % Заголовок
+	pdfauthor={Автор},      % Автор
+	pdfsubject={Тема},      % Тема
+	pdfcreator={Создатель}, % Создатель
+	pdfproducer={Производитель}, % Производитель
+	pdfkeywords={keyword1} {key2} {key3}, % Ключевые слова
+	colorlinks=true,       	% false: ссылки в рамках; true: цветные ссылки
+	linkcolor=black!10!blue,         % внутренние ссылки
+	citecolor=green,        % на библиографию
+	filecolor=magenta,      % на файлы
+	urlcolor=NavyBlue,      % на URL
+}
+
+\usepackage{tikz}
+\usepackage{tikz-cd} % Коммутативные диаграммы
+\usepackage{tkz-euclide} % Геометрия
+\usepackage{stackengine} % Многострочные тексты
+
+\newcommand{\imp}[2]{(#1\,\,$\ra$\,\,#2)\,\,}
+\newcommand{\implr}[2]{(#1\,\,$\lra$\,\,#2)\,\,}
+
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+  \, \vcenter{%
+    \offinterlineskip
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}%
+  }% 
+  \,
+}
+
+%%% Вставка кода
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolor}{cmyk}{0,0,0,0.05}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolor},
+commentstyle=\color{codegreen},
+keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2,
+texcl=true
+}
+\lstset{extendedchars=\true, style=mystyle}

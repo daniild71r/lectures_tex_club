@@ -1,0 +1,262 @@
+\newpage
+\lecture{7}{Мера с заданной функцией распределения.}
+
+\subsection{Построение меры.}
+
+Предположим на вещественной прямой задана монотонная непрерывная функция: $y = F(X)$ (рис. \ref{fig:lect7:1}).
+
+\begin{figure}[!ht]
+    \centering
+    \input{images/lect7_1.tikz}
+    \caption{Функция распределения.}
+    \label{fig:lect7:1}
+\end{figure}
+
+Наша \textbf{цель}: построить
+$\sigma$"=аддитивную меру $\mu$ так, что
+\begin{equation}
+    \mu([a,\, b])=F(b) - F(a).
+    \label{eq:lect7:1}
+\end{equation}
+
+Построим даже более общую конструкцию, ослабив условие \eqref{eq:lect7:1}. Пусть $F:\: \R\rightarrow\R$ нестрого возрастает. Построим $\mu$ так, что
+\[
+    \mu\left((a,\,b)\right)=F(b-0)-F(a+0),
+\]
+где $F(b-0)=\lim\limits_{x\rightarrow b-0} F(x),\ F(a+0)=\lim\limits_{x\rightarrow a+0} F(x)$.
+
+Пусть \[S = \{I\subset\R \ \mid\ I\text{~--- конечный промежуток, такой что } \sup I,\, \inf I\notin D\},\]
+где $D$~--- множество всех точек разрыва функции $F$.
+Вспомним из матанализа, что для любой монотонной функции множество ее точек разрыва не более чем счётно, более того все разрывы имеют 1 род.
+Теперь определим функцию на семействе $S$: $\lambda(I)=F(\sup I)-F(\inf I)$. Исследуем свойства функции $\lambda$.
+Заметим, что $S$~--- полукольцо, то есть $\lambda$~--- функция, заданная на полукольце. Более того можно заметить, что $\lambda$~---
+$\sigma$"=аддитивная (доказательство строится по аналогии с клеточной мерой).
+
+Рассмотрим $\lambda^*:\ \CP(\R)\rightarrow[0,\, +\infty]$ вида
+\[
+    \lambda^*(A)=\inf\left\{\sum_{n=1}^{\infty}\lambda(I_n)\ \middle|\ I_n\in S,\, A\subset \bigcup_{n=1}^{\infty}I_n\right\}.
+\]
+Можно заметить, что данное продолжение аналогично внешней мере Лебега.
+
+\begin{remark}
+    Если $F(x)=x\ \forall x\in\R$, то $\lambda^*$~--- в точности внешняя мера Лебега.
+\end{remark}
+
+Можно показать, что $\lambda^*$~--- внешняя мера. То есть можно проверить, что
+\begin{enumerate}[label=\arabic*\degree]
+    \item $\lambda^*(\varnothing)=0$;
+    \item $A\subset B\Rightarrow \lambda^*(A)\leqslant\lambda^*(B)$;
+    \item $\lambda^*\left(\bigcup\limits_{n=1}^{\infty}A_n\right)\leqslant \sum\limits_{n=1}^{\infty}\lambda^*(A_n)$.
+\end{enumerate}
+
+Далее рассмотрим семейство аддитивных относительно $\lambda^*$ множеств:
+\[
+    \CA_{\lambda^*}=\{A\subset\R\ \mid\ \forall T\subset \R:\ \lambda^*(T)=\lambda^*(T\cap A)+\lambda^*(T\setminus A)\}.
+\]
+По теореме Каратеодори имеем $\CA_{\lambda^*}$~--- $\sigma$"=алгебра. И $\lambda^*:\ \CA_{\lambda^*}\rightarrow[0,\,+\infty]$~--- $\sigma$"=аддитивна.
+\begin{claim}
+    $S\subset \CA_{\lambda^*}$.
+
+    \begin{proof}
+        Пусть $A\in S$. Докажем, что $\lambda^*(T)\geqslant\lambda^*(T\cap A)+\lambda^*(T\setminus A)$ (неравенство в обратную сторону выполнено, так как
+        $\lambda^*$~--- $\sigma$"=субаддитивна).
+
+        Пусть $T\subset\bigcup\limits_{n=1}^{\infty}A_n$, где $A_n\in S$. Тогда
+        \[
+            T\cap A\subset \bigcup\limits_{n=1}^{\infty}A_n\cap A,\quad T\setminus A\subset \bigcup\limits_{n=1}^{\infty}A_n\setminus A.
+        \]
+        Далее, так как имеем одномерный случай, то понятно, что $A_n\setminus A=B_n\sqcup C_n$, где $B_n,\, C_n\in S$ (если из интервала выкинуть интервал, получим не более двух
+        интервалов). Тогда
+        \[
+            T\setminus A\subset \bigcup\limits_{n=1}^{\infty}A_n\setminus A=\bigcup_{n=1}^{\infty} B_n\sqcup C_n.
+        \]
+        Тогда имеем неравенства:
+        \begin{align*}
+             & \lambda^*(T\cap A)\leqslant\sum_{n=1}^{\infty}\lambda(A_n\cap A)                           \\
+             & \lambda^*(T\setminus A)\leqslant\sum_{n=1}^{\infty}\left(\lambda(B_n)+\lambda(C_n)\right).
+        \end{align*}
+        Сложим неравенства и получим:
+        \[
+            \lambda^*(T\cap A)+\lambda^*(T\setminus A)\leqslant \sum_{n=1}^{\infty}\biggl[\underbrace{\lambda(A_n\cap A)+\lambda(B_n)+\lambda(C_n)}_{
+            \substack{=\lambda(A_n)\text{ в силу конечной адд-ти $\lambda$,} \\ \text{т. к. } A_n=(A_n\cap A)\sqcup B_n\sqcup C_n}}\biggr].
+        \]
+        То есть имеем,
+        \[
+            \lambda^*(T\cap A)+\lambda^*(T\setminus A)\leqslant \sum_{n=1}^{\infty}\lambda (A_n)\text{, если } T\subset \bigcup_{n=1}^{\infty}A_n \text{ и }
+            A_n\in S.
+        \]
+        Поскольку, $\lambda^*(T)=\inf \sum\limits_{n=1}^{\infty}\lambda (A_n)$, то окончательно получаем
+        \[
+            \lambda^*(T\cap A)+\lambda^*(T\setminus A)\leqslant\lambda^*(T).
+        \]
+
+    \end{proof}
+\end{claim}
+
+Итак,
+\[
+    \begin{cases}
+        S\subset \CA_{\lambda^*} \\
+        \CA_{\lambda^*}\text{~--- $\sigma$"=алгебра.}
+    \end{cases}\biggm|\Rightarrow \sigma(S)\subset\CA_{\lambda^*}.
+\]
+
+\begin{claim}
+    $\sigma(S)=\CB(\R)$.
+\end{claim}
+
+\begin{claim}
+    $\forall A\in S$ имеем $\lambda^*(A)=\lambda(A)$, то есть $\lambda^*$~--- продолжение $\lambda$.
+
+    \begin{proof}
+
+        В самом деле, $\lambda^*(A)\leqslant\lambda(A)$~--- по определению.
+        Теперь если $A\subset \bigcup\limits_{n=1}^{\infty}\Rightarrow A=\bigcup\limits_{n=1}^{\infty}A_n\cap A$. Так как $\lambda$~--- $\sigma$"=субаддитивна, то
+        \[
+            \lambda(A)\leqslant\sum_{n=1}^{\infty}\lambda(A_n\cap A)\leqslant\sum_{n=1}^{\infty}\lambda(A_n)\Rightarrow\lambda^*(A)\geqslant\lambda(A).
+        \]
+
+    \end{proof}
+\end{claim}
+
+Итак, $\mu(A) = \lambda^*(A)$, $A\in\CA_{\lambda^*}$~--- искомая функция.
+
+\begin{claim}
+    Если $\CE$~--- кольцо и $\mu:\ \CE\rightarrow[0,\,+\infty]$~--- конечно-аддитивна, то
+    \[
+        \mu\text{~---$\sigma$"=аддитивна}\Longleftrightarrow \mu\left(\bigcup_{n=1}^{\infty}A_n\right)=\lim_{N\to\infty}\mu\left(\bigcup_{n=1}^{N}A_n\right)
+        \quad \forall \{A_n\}_{n=1}^{\infty}\subset\CE\text{, т. ч. } \bigcup_{n=1}^{\infty}A_n\in\CE.
+    \]
+
+    \begin{proof}
+
+        \circled{$\Leftarrow$} Докажем $\sigma$"=аддитивность:
+        \[
+            \mu\left(\bigsqcup_{n=1}^{\infty}A_n\right)=\lim_{N\to\infty}\mu\left(\bigsqcup_{n=1}^N A_n\right)=[\text{в силу кон.-адд-ти}]=
+            \lim_{N\to\infty}\sum_{n=1}^N\mu\left(A_n\right)=\sum_{n=1}^N\mu(A_n).
+        \]
+
+        \circled{$\Rightarrow$} Пусть $\mu$~--- $\sigma$"=аддитивна. Рассмотрим $B_n=A_n\setminus\bigcap\limits_{k=1}^{n-1}A_k$, причем $B_1=A_1$.
+        Очевидно, что $B_i\cap B_j=\varnothing,\, i\neq j$, $\bigsqcup\limits_{k=1}^{\infty}B_k=\bigcup\limits_{k=1}^{\infty}A_k$.
+        Тогда
+        \begin{align*}
+            \mu\left(\bigcup_{n=1}^{\infty}A_n\right)=\mu\left(\bigsqcup_{n=1}^{\infty}B_n\right)=\sum_{n=1}^{\infty}\mu(B_n) & =\lim_{N\to\infty}\sum_{n=1}^N\mu(B_n)=
+            \lim_{N\to\infty}\mu\left(\bigsqcup_{n=1}^N B_n\right)                                                                                                                                       \\
+                                                                                                                              & =\lim_{N\to\infty}\mu\left(\bigcup_{n=1}^N A_n\right),\quad\text{т. к. }
+            \bigsqcup\limits_{n=1}^{N}B_n=\bigcup\limits_{n=1}^{N}A_n
+        \end{align*}
+
+    \end{proof}
+\end{claim}
+
+Проверим, что $\mu((a,\,b))=F(b-0)-F(a+0)$. Рассмотрим $\{a_n\}$~--- невозрастает и $\{b_n\}$~--- неубывает такие, что $a_n\to a$ (справа), $b_n\to b$ (слева) и $a_n,\, b_n\notin D$.
+Тогда
+\[
+    \mu((a,\, b))=\lim_{n\to\infty}\underbrace{\mu((a_n,\, b_n))}_{=\lambda((a_n,\,b_n))}=\lim_{n\to\infty}(F(b_n)-F(a_n)),
+\]
+так как в силу монотонности $a_n,\, b_n$ имеем $\bigcup\limits_{n=1}^{N}(a_n,\, b_n)=(a_N,\, b_N)$.
+
+\subsection{Функция Кантора.}
+
+Опишем построение функции Кантора. Разделим отрезок $[0,\, 1]$ на три равных, и посередине положим значение функции равной $1/2$.
+На левом отрезке проделаем то же самое, но середину положим уже за $1/4$, а на правом $3/4$. И так далее. Для лучшего пониманию смотри рисунок \ref{fig:kantor}.
+Дополнительно считаем, что на $[1,\,+\infty)$ функция равна 1 и на $(-\infty,\, 0]$ функция равна 0.
+
+\begin{figure}[!ht]
+    \centering
+    \input{images/kantor.tikz}
+    \caption{Функция Кантора.}
+    \label{fig:kantor}
+\end{figure}
+
+Докажем что данная функция~--- непрерывна. Покажем, что она является равномерным пределом непрерывных функций $f_n$~--- $n$"=ая итерация построения функции Кантора и 
+достроенные линейным образов места где функция еще не определена (смотри рисунок \ref{fig:k123}). Можно заметить, что для любой точки $x$:
+\[
+    |f_n(x)-f_{n-1}(x)|\leqslant 2^{-n}\Rightarrow f_n\rightrightarrows f\text{~--- функция Кантора.}    
+\]
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \input{images/k1.tikz}
+        \caption{$f_1$}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \input{images/k2.tikz}
+        \caption{$f_2$}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \input{images/k3.tikz}
+        \caption{$f_3$}
+    \end{subfigure}
+    \caption{Первые три функции последовательности $\{f_n\}$.}
+    \label{fig:k123}
+\end{figure}
+
+Взяв $f$ в качестве $F$ в прошлом разделе получим меру $\mu$ такую, что $\mu(C)=1$, а $\mu(\R\setminus C)=0$, где $C$~--- множество Кантора. 
+Множество Кантора определяется как $C=\bigcap\limits_{n=1}^{\infty}C_n$, где 
+\begin{align*}
+    C_1 &= [0,\, 1]\setminus (1/3,\, 2/3)\\
+    C_2 &= C_1\setminus ((1/9,\, 2/9)\cup (7/9,\, 8/9)\\
+    \ldots
+\end{align*}
+то есть, такие множества, из которых итеративно выкидывают <<плоские>> участки функции Кантора.
+
+\subsection{Множество неизмеримое по Лебегу.}
+
+Вспомним понятия, связанные с мерой Лебега. Пусть $m$~--- клеточная мера: $m:\ K_d\to[0,\,+\infty]$. Далее рассматривалось ее продолжение: внешняя мера $m^*$.
+И мера Лебега: $\lambda:\ \CA_{m^*}\to[0,\, +\infty]$ такая, что $\lambda(A)=m^*(A)$ (то есть сужение внешней меры на семейство всех аддитивных относительно внешней меры Лебега множеств).
+$\CA_{m^*}$~--- семейство всех измеримых по Лебегу множеств. Договоримся, что $\CA_{m^*}=\mathfrak{m}_d$.
+Можно написать цепочку вложений: 
+\[
+    K_d\subset\sigma(K_d)=\CB(\R^d)\subset \mathfrak{m}_d\subset \CP(\R^d). 
+\]
+
+Покажем, что $\mathfrak{m}_d\subsetneq \CP(\R^d)$. Построим классы эквивалентности: $x,\, y$ лежат в одном классе, если $x-y\in\Q$.
+Легко проверить, что это действительно отношение эквивалентности: 
+\begin{enumerate}
+    \item $x\sim x$;
+    \item Если $x\sim y$ и $y\sim z$, то $x\sim z$, так как $x-z=(x-y)+(y-z)\in\Q$.
+\end{enumerate}
+Пусть теперь $E_x=\{y\in[0,\, 1]\ \mid\ x\sim y\}$.
+\begin{claim}[Аксиома выбора]
+    Для любого множества $X$ существует функция $v:\ \CP(X)\to X$ такая, что $\forall A\subset X,\, A\neq\varnothing$ имеем $v(A)\in A$.
+\end{claim}
+
+Использую аксиому построим \mdef{множество Витали}:
+\[
+    V:=\{v(E_x):\ x\in[0,\, 1]\}.    
+\]
+
+\begin{remark}
+    Если $t,\, s\in \Q$ и $t\neq s$, тогда $(V+s)\cap (V+t)=\varnothing$.
+
+    \begin{proof}
+
+        В самом деле, предположим противное, то есть $\exists x,\, y:\ v(E_x)+x=v(E_y)+t$. Тогда 
+        \[
+            v(E_y)-v(E_x)=s-t\in\Q\Rightarrow E_x=E_y\Rightarrow v(E_x)=v(E_y)\Rightarrow s=t\text{~--- противоречие.}
+        \]
+    \end{proof}
+\end{remark}
+
+\begin{claim}
+    $V$~--- неизмеримо по Лебегу.
+    
+    \begin{proof}
+        
+        Предположим противное: $V$~--- измеримо по Лебегу. Если $\lambda(V)=0$, то $\lambda([0,\, 1])=0$, так как 
+        \[
+            [0,\, 1]\subset \bigcap\limits_{t\in\Q}(V+t)\Rightarrow\lambda([0,\, 1])\leqslant\sum_{t\in\Q}\underbrace{\lambda(V+t)}_{=\lambda(V)=0}.
+        \]
+        Поэтому $\lambda(V)>0$. Но тогда 
+        \[
+            \lambda([0,\, 2])\geqslant\lambda\left(\bigsqcup_{t\in[0,\, 1]\cap \Q} (V+t)\right)=
+            \sum_{t\in[0,\, 1]\cap \Q}\underbrace{\lambda(V+t)}_{\lambda(V)}=+\infty\text{~--- противоречие.}
+        \]
+
+    \end{proof}
+\end{claim}
