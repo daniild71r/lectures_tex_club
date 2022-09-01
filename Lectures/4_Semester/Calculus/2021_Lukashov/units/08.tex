@@ -1,0 +1,108 @@
+\newpage
+\section{Глава 12. Интегралы, зависящие от параметра.}
+\subsection{Собственные интегралы, зависящие от параметра.}
+\begin{linkthm}{https://youtu.be/tCE6Kl7Sy2s?t=96}
+	Пусть $\forall \alpha\in A\subset \R^n$ функция $f_{1,\alpha}(x)=f(x,\alpha)$ суммируема на $E\subset\R^m$, функция $f_{2,x}(\alpha)=f(x,\alpha)$ при почти всех $x\in E$ непрерывна в $\alpha_0\in E$, и при почти всех $x\in E, \forall\alpha\in A\  |f(x,\alpha)|\leqslant\varphi(x)$, где $\varphi(x)$ суммируемая на $E$. Тогда $F(\alpha)=\int\limits_{E}f(x,\alpha)d\mu(x)$ непрерывна в $\alpha_0$.
+\end{linkthm}
+\begin{proof}
+	Рассмотрим произвольную последовательность Гейне $\forall\{\alpha_n\}_{n=1}^\infty\subset A,\\ \lim\limits_{n\to\infty}\alpha_n=\alpha_0$. Тогда по условию $\lim\limits_{n\to\infty}f(x,\alpha_n)=f(x,\alpha_0)$ при почти всех $x\in E$. Также $|f(x,\alpha_n)|\leqslant \varphi(x) (\forall n\in\N)$ для почти всех $x\in E$. Тогда $\int\limits_E f_{1,\alpha_n}(x)d\mu(x)\underset{n\to\infty}{\overset{\text{по т. Лебега}}{\longrightarrow}}\int\limits_{E}f(x,\alpha_0)d\mu(x)$. Но это и означает, что $F(\alpha_n)=\int\limits_{E}f(x,\alpha_n)d\mu(x)=\int\limits_E f_{1,\alpha_n}(x)d\mu(x)\underset{n\to\infty}{\longrightarrow} F(\alpha_0)$ и ввиду произвольного выбора последовательности Гейне получаем непрерывность.
+\end{proof}
+
+\begin{corollary}
+	Если $f$ непрерывна на $[a,b]\times [c,d]$, то $\int\limits_a^bf(x,y)dx=F(y)$ непрерывна на $[c,d]$.
+\end{corollary}
+
+\begin{linkthm}{https://youtu.be/tCE6Kl7Sy2s?t=686}
+	Пусть $f_{1,\alpha}(x)=f(x,\alpha)$ при всех $\alpha\in U(\alpha_0)\subset\R$ суммируема на $E\subset \R^m$ вместе с $\frac{\partial f(x,\alpha)}{\partial \alpha}$, и при почти всех $x\in E, \forall\alpha\in U(\alpha_0): \left|\frac{\partial f(x,\alpha_0)}{\partial\alpha}\right|\leqslant\varphi(x)$, где $\varphi(x)$ суммируема на $E$. Тогда $F'(\alpha_0)=\int\limits_E\frac{\partial f(x,\alpha_0)}{\partial\alpha}d\mu(x)$, где $F(\alpha)=\int\limits_E f(x,\alpha)d\mu(x)$.
+\end{linkthm}
+
+\begin{proof}
+	Возьмем произвольную последовательность $\forall\{\alpha_n\}_{n=1}^\infty\subset\overset{\circ}{U}(\alpha_0),\\ \lim\limits_{n\to\infty}\alpha_n=\alpha_0$. Тогда частная производная $\left|\frac{f(x,\alpha_n)-f(x,\alpha_0)}{\alpha_n-\alpha_0}\right|\overset{\text{т. Лагранжа о сред.}}{=}\left|\frac{\partial f(x,\xi_n(x))}{\partial\alpha}\right|\leqslant\varphi(x)$. По теореме Лебега $\lim\limits_{n\to\infty}\int\limits_E\frac{f(x,\alpha_n)-f(x,\alpha_0)}{\alpha_n-\alpha_0}d\mu(x)=\int\limits_E\frac{\partial f(x,\alpha_0)}{\partial\alpha}d\mu(x)$. Пользуемся линейностью интеграла Лебега и замечаем, что $\frac{F(\alpha_n)-F(\alpha_0)}{\alpha_n-\alpha_0}=\int\limits_E\frac{f(x,\alpha_n)-f(x,\alpha_0)}{\alpha_n-\alpha_0}d\mu(x)$. То есть мы установили что существует предел $\lim\limits_{n\to\infty}\frac{F(\alpha_n)-F(\alpha_0)}{\alpha_n-\alpha_0}=\int\limits_E\frac{\partial f(x,\alpha_0)}{\partial\alpha}d\mu(x)$. Это в точности и означает, что существует $F'(\alpha_0)=\int\limits_E\frac{\partial f(x,\alpha_0)}{\partial\alpha}d\mu(x)$.
+\end{proof}
+\begin{corollary}
+Если $f(x,y)$ и $\frac{\partial f}{\partial y}$ непрерывны на $[a,b]\times[c,d]$, то справедливо правило Лейбница  $\forall y\in [c,d]:\frac{d}{dy}\left(\int\limits_a^bf(x,y)dx\right)=\int\limits_a^b\frac{\partial f(x,y)}{\partial y}dx$.
+\begin{proof}
+Из того что $\frac{\partial f}{\partial y}$ непрерывна на компакте $\Rightarrow \left|\frac{\partial f}{\partial y }(x,y)\right|\leqslant C$, значит в качестве функции $\varphi(x):=C$, и все условия теоремы 12.1.2 выполены и мы можем дифференцировать.
+\end{proof}
+\begin{corollary}[из следствия]
+Если $f$ и $\frac{\partial f}{\partial y}$ непрерывны на $[a,b]\times[c,d]$, и $a\leqslant \varphi(y)\leqslant\psi(y)\leqslant b\  \forall y\in [c,d]$, где $\varphi, \psi$ дифференцируемы на $[c,d]$, то $$\frac{d}{dy}\left(\int\limits_{\varphi(y)}^{\psi(y)}f(x,y)dx\right)=\int\limits_{\varphi(y)}^{\psi(y)}\frac{df}{dy}(x,y)dx+f(\psi(y),y)\cdot\psi'(y)-f(\varphi(y),y)\cdot\varphi'(y).$$
+\end{corollary}
+\begin{proof}
+Рассмотрим функцию $F(x,y,u,v)=\int\limits_u^v f(x,y)dx$: она  непрерывна, как функция параметра $y\ \forall u,v$; дифференцируема по $y$, кроме того она дифференцируема по $u$ и по $v$ как следствие интеграла с переменным верхним пределом, подставляем вместо $u,v$ дифференцируемые функции $\varphi, \psi$ и применяем правило дифференцирования сложной функции многих переменных.
+\end{proof}
+\end{corollary}
+
+\subsection{Несобственные интегралы Римана, зависящие от параметра.}
+
+Пусть $f(x,y)\in \mathcal{R}[a,\widetilde{b}]\ \forall\widetilde{b}<b\ \forall y\in A\subset \R$. Тогда несобственным интегралом Римана называется
+\begin{equation}
+	\int\limits_a^b f(x,y)dx=\lim\limits_{\widetilde{b}\to b(-0)}\int\limits_a^{\widetilde{b}} f(x,y)dx.
+\end{equation}
+\begin{Def}
+	Несобственный интеграл $(1)$ сходится равномерно на $A$, если $(\forall\varepsilon>0)(\exists B\in(a,b))(\forall B'\in(B,b))(\forall y\in A)\left|\int\limits_{B'}^b f(x,y)dx\right|<\varepsilon$.
+\end{Def}
+
+\begin{linkthm}{https://youtu.be/tCE6Kl7Sy2s?t=2769}[Критерий Коши равномерной сходимости несобственных интегралов, зависящих от параметра]\ \\
+	Несобственный интеграл $(1)$ сходится равномерно на $A\Leftrightarrow \left(\forall\varepsilon>0\right)(\exists B\in(a,b))(\forall B', B'':\\ B<B'<B''<b)(\forall y\in A)\left|\int\limits_{B'}^{B''}f(x,y)dx\right|<\varepsilon$.
+\end{linkthm} 
+\begin{proof}
+	Пусть интеграл $\int\limits_a^bf(x,y)dx$ равномерно сходится по параметру $y\in A$. По определению $(\forall\varepsilon>0)(\exists B\in(a,b))(\forall B'\in(B,b))(\forall y\in A)\left|\int\limits_{B'}^b f(x,y)dx\right|<\frac{\varepsilon}{2}$. При произвольных $B', B'':B<B'<B''<b$ получим неравенство $\left|\int\limits_{B'}^{B''}f(x,y)dx\right|=\left|\int\limits_{B'}^bf(x,y)dx-\int\limits_{B''}^bf(x,y)dx\right|\leqslant \left|\int\limits_{B'}^bf(x,y)dx\right|+\left|\int\limits_{B''}^bf(x,y)dx\right|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$.
+	
+	Пусть $\left(\forall\varepsilon>0\right)(\exists B\in(a,b))(\forall B', B'': B<B'<B''<b)(\forall y\in A)\left|\int\limits_{B'}^{B''}f(x,y)dx\right|<\varepsilon$. Зафиксируем $y\in A$, тогда по критерию Коши сходимости несобственных интегралов получаем, что $\int\limits_a^bf(x,y)dx$ сходится. В неравенстве $\left|\int\limits_{B'}^{B''}f(x,y)dx\right|<\varepsilon$ устремим $B''$ к $b$, получим, что $(\forall B'\in(B,b))(\forall y\in A)\left|\int\limits_{B'}^{b}f(x,y)dx\right|\leqslant\varepsilon$ это и означает равномерную сходимость интеграла.
+\end{proof}
+
+\begin{corollary}[Признак сравнения]
+	Если $|f(x,y)|\leqslant g(x,y), f, g$ удовлетворяют условиям определения несобственного интеграла Римана и $\int
+	\limits_a^b g(x,y)dx$ равномерно сходится на $A$, то $\int\limits_a^b f(x,y)dx$ равномерно сходится на $A$.
+\end{corollary}
+\begin{corollary}[Признак Вейершрасса]
+	Если $|f(x,y)|\leqslant g(x), f, g$ удовлетворяют условиям определения несобственного интеграла Римана и $\int
+	\limits_a^b g(x)dx$ сходится на $A$, то $\int\limits_a^b f(x,y)dx$ равномерно сходится на $A$.
+\end{corollary}
+
+\begin{linkthm}{https://youtu.be/tCE6Kl7Sy2s?t=3664}[Признак Дирихле равномерной сходимости несобственных интегралов Римана, зависящих от параметра]\ \\
+	Пусть
+	\begin{enumerate}
+		\item $f\in\mathcal{R}[a, \widetilde{b}](\forall\widetilde{b}\in(a,b))(\forall y\in A)$ и $(\forall y\in A)\left|\int\limits_a^x f(t,y)dt\right|\leqslant C$ (равномерная ограниченность первообразной),
+		\item $g(x,y)$ монотонно сходится к 0 при $x\to b(-0)$ равномерно по $y\in A$.
+	\end{enumerate}
+Тогда $\int\limits_a^b f(x,y)\cdot g(x,y)dx$ равномерно сходится на $A$.
+\end{linkthm}
+
+\begin{proof}
+	Рассмотрим интеграл и воспользуемся формулой Бонне: $$\int\limits_{B'}^{B''}f(x,y)\cdot g(x,y)dx = g(B',y)\int\limits_{B'}^{\xi(y)}f(x,y)dx+g(B'',y)\int\limits_{\xi(y)}^{B''}f(x,y)dx.$$
+	Так как $g(x,y)\underset{x\to b(-0)}{\rightrightarrows} 0$, то есть $(\forall\varepsilon>0)(\exists B\in(a,b))(\forall x\in (B,b))(\forall y\in A)\ |g(x,y)|<\frac{\varepsilon}{4C}$. Оценим $\left|\int\limits_{B'}^{\xi(y)}f(x,y)dx\right|=\left|\int\limits_{a}^{\xi(y)}f(x,y)dx-\int\limits_{a}^{B'}f(x,y)dx\right|\leqslant 2C\Rightarrow \int\limits_{B'}^{B''}f(x,y)\cdot g(x,y)dx\leqslant \varepsilon$.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/tCE6Kl7Sy2s?t=4226}[Признак Абеля равномерной сходимости несобственных интегралов Римана, зависящих от параметра]\ \\
+Пусть
+\begin{enumerate}
+	\item $f\in\mathcal{R}[a, \widetilde{b}](\forall\widetilde{b}\in(a,b))(\forall y\in A)$ и $\int\limits_a^b f(x,y)dx$ равномерно сходится на $A$,
+	\item $g(x,y)$ монотонна по $x\ \forall y\in A$ и $(\forall x\in (a,b))(\forall y\in A)|g(x,y)|\leqslant C$.
+\end{enumerate}
+Тогда $\int\limits_a^b f(x,y)\cdot g(x,y)dx$ равномерно сходится на $A$.
+\end{linkthm}
+
+\begin{proof}
+	Рассмотрим интеграл и воспользуемся формулой Бонне:
+	\begin{multline*}
+		\left|\int\limits_{B'}^{B''}f(x,y)\cdot g(x,y)dx\right| \leqslant\left|g(B',y)\right|\cdot\left|\int\limits_{B'}^{\xi(y)}f(x,y)dx\right|+\left|g(B'',y)\right|\cdot\left|\int\limits_{\xi(y)}^{B''}f(x,y)dx\right|<\\<C\cdot\frac{\varepsilon}{2C}+C\cdot\frac{\varepsilon}{2C}=\varepsilon.
+	\end{multline*} 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

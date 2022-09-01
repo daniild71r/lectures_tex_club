@@ -1,0 +1,463 @@
+\section{Матрицы и векторы}
+
+\subsection{Матрицы}
+
+\begin{definition}
+	\textit{Матрицей размера $n \times k$} называется таблица из $n$ строк и $k$ столбцов, заполненная числами (или другими элементами):
+	\[A = 
+	\begin{pmatrix}
+	a_{11} & a_{12} & \dots & a_{1k} \\
+	a_{21} & a_{22} & \dots & a_{2k} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	a_{n1} & a_{n2} & \dots & a_{nk}
+	\end{pmatrix}
+	= (a_{ij})\]
+	
+	Обозначение множества числовых матриц данного размера "--- $M_{n \times k}$, множества квадратных числовых матриц размера $n \times n$ "--- $M_{n}$
+\end{definition}
+
+\begin{definition}
+	\textit{Строкой длины k} называется матрица размера $1 \times k$, \textit{столбцом высоты n} --- матрица размера $n \times 1$. Если $A = (a_{ij}) \in M_{n \times k}$, то строка матрицы $A$ с номером $d$ обозначается через $a_{d*}$, столбец с номером $d$ --- через $a_{*d}$.
+\end{definition}
+
+\begin{definition}
+	\textit{Подматрицей} матрицы $A \in M_{n \times k}$ называется матрица, полученная из $A$ удалением некоторых ее строк или столбцов.
+\end{definition}
+
+\begin{definition}
+	Ниже перечислены основные операции над матрицами:
+	
+	\begin{enumerate}
+		\item Пусть $A = (a_{ij}), B = (b_{ij}) \in M_{n \times k}$. \textit{Суммой матриц $A$ и $B$} называется матрица $A+B \in M_{n \times k}$ следующего вида:
+		\[A + B := (a_{ij} + b_{ij})\]
+		
+		\item Пусть $A = (a_{ij}) \in M_{n \times k}$, $A$, $\lambda \in \mathbb{R}$.  Матрицей, полученной из $A$ \textit{умножением на скаляр $\lambda$}, называется матрица $\lambda A \in M_{n \times k}$ следующего вида:
+		\[\lambda A := (\lambda a_{ij})\]
+		
+		\item Пусть $A = (a_{ij}) \in M_{n \times k}$. Матрицей, полученной из $A$ \textit{транспонированием}, называется матрица $A^T \in M_{k \times n}$ следующего вида:
+		\[A^T := 
+		\begin{pmatrix}
+		a_{11} & a_{21} & \dots & a_{n1} \\
+		a_{12} & a_{22} & \dots & a_{n2} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{1k} & a_{2k} & \dots & a_{nk}
+		\end{pmatrix}
+		= (a_{ji})\]
+		
+		\item Пусть $a_{1*} \in M_{1 \times n}$ "--- строка длины $n$, $b_{*1} \in M_{n \times 1}$ "--- столбец высоты $n$. \textit{Произведением строки $A$ и столбца $B$} называется следующая величина:
+		\[a_{1*}b_{*1} := \sum_{i = 1}^{n} a_{1i}b_{i1}\]
+		
+		Величину $AB$ можно считать как числом, так и матрицей размера $1 \times 1$.
+		
+		\item Пусть $A = (a_{ij}) \in M_{n \times k}$, $B = (b_{ij}) \in M_{k \times m}$. \textit{Произведением матриц $A$ и $B$} называется матрица $AB \in M_{n \times m}$ следующего вида:
+		\[AB := (a_{i*}b_{*j}) = \left(\sum_{t = 1}^{k} a_{it}b_{tj}\right)\]
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	Сложение матриц обладают следующими свойствами:
+	
+	\begin{itemize}
+		\item $\forall A, B \in M_{n \times k}: A + B = B + A$ (коммутативность)
+		\item $\forall A, B, C \in M_{n \times k}: (A + B) + C = A + (B + C)$ (ассоциативность)
+		\item $\exists 0 \in M_{n \times k}: \forall A \in M_{n \times k}: A+0 = A$ (существование нейтрального элемента)
+		\item $\forall A \in M_{n \times k}: \exists (-A) \in M_{n \times k}: A+(-A) = 0$ (существование противоположного элеме-\\*нта)
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Доказательство производится непосредственной проверкой. Отметим только, что $0 \in M_{n \times k}$ "--- это матрица из нулей, а $(-A) \in M_{n \times k}$ --- матрица, каждый элемент которой является противоположным соответствующему элементу $A$.
+\end{proof}
+
+\begin{proposition}
+	Умножение матрицы на число обладает следующими свойствами:
+	
+	\begin{itemize}
+		\item $\forall \lambda \in \R: \forall A, B \in M_{n \times k}: \lambda(A + B) = \lambda A + \lambda B$ (дистрибутивность умножения матрицы на число относительно сложения)
+		\item $\forall \lambda, \mu \in \R: \forall A \in M_{n \times k}: (\lambda + \mu)A = \lambda A + \mu A$ (дистрибутивность умножения матриц относительно сложения)
+		\item $\forall \lambda, \mu \in \R: \forall A \in M_{n \times k}: (\lambda \mu)A = \lambda (\mu A)$
+		\item $\forall A \in M_{n \times k}: 1A = A$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Доказательство производится непосредственной проверкой.
+\end{proof}
+
+\begin{proposition}
+	Транспонирование обладает следующими свойствами:
+	\begin{itemize}
+		\item $\forall A, B \in M_{n \times k}: (A + B)^T = A^T + B^T$ (дистрибутивность транспонирования относительно сложения матриц)
+		\item $\forall \lambda \in \R: \forall A \in M_{n \times k}: (\lambda A)^T = \lambda A^T$
+		\item $\forall A \in M_{n \times k}: (A^T)^T = A$
+		\item $\forall A, B \in M_{n \times k}: (AB)^T = B^T A^T$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Доказательство производится непосредственной проверкой.
+\end{proof}
+
+\begin{proposition}
+	Умножение матриц обладает следующими свойствами:
+	
+	\begin{itemize}
+		\item $\forall A \in M_{n \times k}: \forall B \in M_{k \times m}: \forall C \in M_{m \times l}: (AB)C = A(BC)$ (ассоциативность)
+		\item $\exists E_n \in  M_{n}: \exists E_k \in M_{k}: \forall A \in M_{n \times k} : E_nA = AE_k = A$ (существование нейтрального элемента)
+		\item $\forall A, B \in M_{n \times k}: \forall C \in M_{k \times m}: \forall D \in M_{m \times n}: (A+B)C = AC + BC$ и $D(A+B) \hm= DA + DB$ (дистрибутивность относительно сложения матриц)
+		\item $\forall \lambda \in \R: \forall A \in M_{n \times k}: \forall B \in M_{k \times m}: \lambda (AB) = (\lambda A)B = A(\lambda B)$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Доказательство производится непосредственной проверкой. Отметим только, что матрица $E_m \in M_m$ имеет следующий вид:
+	\[E_m := \begin{pmatrix}
+	1 & 0 & \dots & 0\\
+	0 & 1 & \dots & 0\\
+	\vdots & \vdots & \ddots & \vdots\\
+	0 & 0 & \dots & 1
+	\end{pmatrix}\]
+	
+	Определенная таким образом единичная матрица произвольного размера удовлетворяет условию.
+\end{proof}
+
+\begin{definition}
+	\textit{Линейной комбинацией} элементов $v_1, \dots, v_n$ (для которых определено сложение и умножение на числа) с коэффициентами $\alpha_1, \dots, \alpha_n \in \R$ называется следующая величина:
+	\[\sum_{i = 1}^{n}\alpha_iv_i = \alpha_1v_1 + \dots + \alpha_nv_n\]
+\end{definition}
+
+\begin{proposition}
+	Пусть $A \in M_{n \times k}$, $B \in M_{k \times m}$, $C := AB \in M_{n \times m}$. Тогда:
+	\begin{itemize}
+		\item Столбцы матрицы $C$ являются линейными комбинациями столбцов матрицы $A$
+		\item Строки матрицы $C$ являются линейными комбинациями строк матрицы $B$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Докажем первую часть утверждения, поскольку вторая доказывается аналогично. Представим $A$ в виде $(a_{*1} \dots a_{*k})$, тогда столбцы $C$ имеют следующий вид:
+	\[c_{*i} = \sum_{t = 1}^{k}a_{*t}b_{ti}\]
+	
+	Каждый столбец $c_{*i}$ матрицы $C$ является линейной комбинацией столбцов $a_{*1}, \dots, a_{*k}$ с коэффициентами $b_{1i}, \dots, b_{ki}$, что и требовалось.
+\end{proof}
+
+\subsection{Векторы и линейная зависимость}
+
+\begin{definition}
+	\textit{Направленным отрезком} называется отрезок (на прямой, на плоскости или в пространстве), концы которого упорядоченны. Обозначение "--- $\overline{AB}$. Направленные отрезки $\overline{AB}$ и $\overline{CD}$ называются \textit{равными}, если они сонаправленны и их длины равны.
+\end{definition}
+
+\begin{note}
+	Равенство является отношением эквивалентности на множестве всех направленных отрезков на прямой, на плоскости или в пространстве.
+\end{note}
+
+\begin{definition}
+	\textit{Вектором} называется класс эквивалентности направленных отрезков. Формально, если $\overline{AB}$ "--- представитель класса $\overline{v}$, то $\overline{AB} \in \overline{v}$, но в дальнейшем это будет обозначаться как $\overline{AB} = \overline{v}$.
+\end{definition}
+
+\begin{definition}
+	Ниже перечислены обозначения множеств векторов и точек:
+	\begin{itemize}
+		\item $V_0$ "--- \textit{нулевое пространство}, состоящее только из нулевого вектора $\overline 0$
+		\item $V_1$, $P_1$ "--- множества всех векторов и всех точек \textit{на прямой}
+		\item $V_2$, $P_3$ "--- множества всех векторов и всех точек \textit{на плоскости}
+		\item $V_3$, $P_3$ "--- множества всех векторов и всех точек \textit{в пространстве}
+	\end{itemize}
+	
+	Всегда можно считать, что $V_0 \subset V_1 \subset V_2 \subset V_3$ и $P_1 \subset P_2 \subset P_3$.
+\end{definition}
+
+\begin{note}
+	Вектор отличается от направленного отрезка тем, что его можно отложить от заданной точки: для любой точки $A \in P_n$ и вектора $\overline v \in V_n$ существует единственная точка $B \in P_n$ такая, что $\overline{AB} = \overline{v}$.
+\end{note}
+
+\begin{definition}
+	Основные операции с векторами:
+	\begin{enumerate}
+		\item Пусть $\overline u, \overline v \in V_n$. Отложим вектор $\overline{u}$ от некоторой точки $A \in P_n$, получим $\overline{AB} = \overline{u}$. Теперь отложим $\overline{v}$ от точки $B \in P_n$, получим $\overline{BC}$. \textit{Суммой векторов $\overline{u}$ и $\overline{v}$} называется такой класс $\overline{u} + \overline{v}$ с представителем $\overline{AC}$.
+		
+		\item Пусть $\overline u \in V_n$. Отложим вектор $\overline{u}$ от некоторой точки $A \in P_n$, получим $\overline{AB} = \overline{v}$. Вектором, полученным из $\overline u$ \textit{умножением на скаляр $\lambda$}, называется следующий класс эквивалентности $\lambda \overline{u}$:
+		\begin{itemize}
+			\item Если $\lambda = 0$, то $\lambda \overline{u} = \overline{0}$
+			\item Если $\lambda > 0$, то $\lambda \overline{u}$ "--- это класс с представителем $\overline{AC}$ таким, что $AC = \lambda AB$ и $\overline{AC} \uparrow\uparrow \overline{AB}$
+			\item Если $\lambda < 0$, то $\lambda \overline{u}$ "--- это класс с представителем $\overline{AC}$ таким, что $AC = |\lambda| AB$ и $\overline{AC} \uparrow\downarrow \overline{AB}$
+		\end{itemize}
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	Операции с векторами обладают следующими свойствами:
+	\begin{itemize}
+		\item $\forall \overline{u}, \overline{v} \in V_n: \overline{u} + \overline{v} = \overline{v} + \overline{u}$
+		\item $\forall \overline{u}, \overline{v}, \overline{w} \in V_n: (\overline{u} + \overline{v}) + \overline{w} = \overline{u} + (\overline{v} + \overline{w})$
+		\item $\exists \overline{0} \in V_n: \forall \overline{u} \in V_n: \overline{u} + \overline{0} = \overline{u}$
+		\item $\forall \overline{u} \in V_n: \exists (-\overline{u}) \in V_n:  \overline{u} + (-\overline{u}) = \overline{0}$
+		\item $\forall \lambda, \mu \in \R: \forall \overline{u} \in V_n: (\lambda + \mu)\overline{u} = \lambda \overline{u} + \mu \overline{u}$
+		\item $\forall \lambda \in \R:  \forall \overline{u}, \overline{v} \in V_n: \lambda(\overline{u} + \overline{v}) = \lambda \overline{u} + \lambda \overline{v}$
+		\item $\forall \lambda, \mu \in \R:  \forall \overline{u} \in V_n: (\lambda \mu)\overline{u} = \lambda(\mu \overline{u})$
+		\item $\forall \overline{u} \in V_n: 1\overline{u} = \overline{u}$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Доказательство производится непосредственной проверкой. Приведем указания к доказательству некоторых из свойств:
+	\begin{itemize}
+		\item Первое свойство сводится к использованию свойств параллелограмма.
+		\item Для доказательства второго свойства достаточно показать, что оба случая представляют собой последовательное откладывание следующего вектора от конца предыдущего.
+		\item Свойства, связанные с умножением на число, требуют рассмотрения всех случаев выбора знаков у чисел и во всех случаях очевидно выполняются.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Используя свойства операций с векторами как аксиомы, можно показать, что $0\overline{u} = \overline{0}$ для любого $\overline{u} \in V_n$, не требуя этого равенства по определению:
+	\[0\overline{u} + 0\overline{u} = (0 + 0)\overline{u} = 0\overline{u}
+	\ra 0\overline{u} + 0\overline{u} + (-0\overline{u}) = 0\overline{u} + (-0\overline{u})
+	\ra 0\overline{u} = \overline{0}\]
+\end{note}
+
+\begin{definition}
+	Система $(\overline{v_1}, \dots, \overline{v_n})$ векторов из $V_n$ называется \textit{линейно независимой}, если для любых $\alpha_1, \dotsc, \alpha_n \in \R$ выполнено следующее условие:
+	\[\sum_{i = 1}^{n}\alpha_i\overline{v_i} = \overline{0} \Leftrightarrow \alpha_1 = \dots = \alpha_n = 0\]
+\end{definition}
+
+\begin{note}
+	Условие выше эквивалентно тому, что любая ее \textit{нетривальная} (имеющая ненулевой коэффициент) линейная комбинация отлична от нулевого вектора.
+\end{note}
+
+\begin{definition}
+	Система $(\overline{v_1}, \dots, \overline{v_n})$ векторов из $V_n$ называется \textit{линейно зависимой}, если существует ее нетривиальная линейная комбинация, равная $\overline{0}$.
+\end{definition}
+
+\begin{proposition}~
+	\begin{enumerate}
+		\item Если система линейно независима, то любая ее подсистема тоже линейно независима.
+		\item Если система линейно зависима, то любая ее надсистема тоже линейно зависима.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Пусть без ограничения общности у линейно независимой системы $(\overline{v_1}, \dots, \overline{v_n})$ есть линейно зависимая подсистема $(\overline{v_1}, \dots, \overline{v_k})$. Тогда существует нетривиальная линейная комбинация $\alpha_1\overline{v_1} + \dots + \alpha_k\overline{v_k}$. Но если эту линейную комбинацию дополнить линейной комбинацией $0\overline{v_{k+1}} + \dots + 0\overline{v_n}$, то получится нетривиальная линейная комбинация векторов $(\overline{v_1}, \dots, \overline{v_n})$, равная $\overline{0}$ "--- противоречие.
+		
+		\item Если система $(\overline{v_1}, \dots, \overline{v_n})$ линейно зависима, то ее нетривиальную линейную комбинацию, равную $\overline{0}$, можно аналогично дополнить до нетривиальной линейной комбинации любой ее надсистемы.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Пусть $\overline{u} \in V_n$, $(\overline{v_1}, \dots, \overline{v_n})$ "--- система векторов из $V_n$. Вектор $\overline{u}$ \textit{выражается через} $(\overline{v_1}, \dots, \overline{v_n})$, если $\overline{u}$ является линейной комбинацией этой системы.
+\end{definition}
+
+\begin{proposition}
+	Система $(\overline{v_1}, \dots, \overline{v_n})$ линейно зависима $\Leftrightarrow$ один из ее векторов выражается через остальные.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\la$] Пусть без ограничения общности $\overline{v_n}$ выражается через остальные векторы системы, тогда существуют коэффициенты $\alpha_1, \dotsc, \alpha_{n-1} \in \R$ такие, что:
+		\pagebreak
+		\[\overline{v_n} = \sum_{i = 1}^{n - 1}\alpha_i\overline{v_i}\]
+		
+		Преобразуем это равенство:
+		\[\sum_{i = 1}^{n - 1}\alpha_i\overline{v_i} + (-1)\overline{v_n} = \overline{0}\]
+		
+		Значит, система $(\overline{v_1}, \dotsc, \overline{v_n})$ линейно зависима.
+		
+		\item[$\ra$] Пусть без ограничения общности в нетривиальной линейной комбинации, равной $\overline{0}$, коэффициент $\alpha_n$ отличен от нуля. Тогда:
+		\[\sum_{i = 1}^{n - 1}\alpha_i\overline{v_i} + \alpha_n\overline{v_n} = \overline{0} \ra
+		\overline{v_n} = \sum_{i = 1}^{n - 1}\left(-\frac{\alpha_i}{\alpha_n}\right)\overline{v_i}\]
+			
+		Таким образом, вектор $\overline{v_n}$ выражается через остальные векторы системы. \qedhere
+	\end{itemize}
+ 
+\end{proof}
+
+\begin{proposition}
+	Пусть система $(\overline{v_1}, \dots, \overline{v_n})$ векторов из $V_n$ линейно независима, а система $(\overline{v_1}, \dots, \overline{v_{n + 1}})$ --- линейно зависима. Тогда вектор $\overline{v_{n + 1}}$ выражается через $(\overline{v_1}, \dots, \overline{v_n})$.
+\end{proposition}
+
+\begin{proof}
+	Так как система $(\overline{v_1}, \dots, \overline{v_{n + 1}})$ линейно зависима, то существует нетривиальная линейная комбинация, равная $\overline{0}$, то есть существуют коэффициенты $\alpha_1, \dotsc, \alpha_{n+1} \in \R$ такие, что:
+	\[\sum_{i = 1}^{n+1}\alpha_i\overline{v_i} = \overline{0}\]
+	
+	Если $\alpha_{n + 1} = 0$, то у $(\overline{v_1}, \dots, \overline{v_n})$ также существует равная $\overline{0}$ нетривиальная линейная комбинация, что противоречит условию линейной независимости. Значит, $\alpha_{n + 1} \ne 0$, тогда:
+	\[\overline{v_{n + 1}} = \sum_{i = 1}^{n}\left(-\frac{\alpha_i}{\alpha_{n + 1}}\right)\overline{v_i}\qedhere\]
+\end{proof}
+
+\begin{definition}
+	Система векторов из $V_n$ называется:
+	\begin{itemize}
+		\item \textit{Коллинеарной}, если все ее векторы параллельны одной прямой
+		\item \textit{Компланарной}, если все ее векторы параллельны одной плоскости
+	\end{itemize}
+	
+	Векторы, образующие коллинеарную или компланарную систему, тоже называются \textit{коллинеарными} или \textit{компланарными} соответственно.
+\end{definition}
+
+\begin{proposition}
+	Пусть $\overline{a}, \overline{b}, \overline{c}, \overline{d} \in V_n$. Выполнены следующие свойства:
+	\begin{enumerate}
+		\item Если $\overline{a} \ne \overline{0}$ и вектор $\overline{b}$ коллинеарен вектору $\overline{a}$, то $\overline{b}$ выражается через $\overline{a}$
+		\item Если $\overline{a}, \overline{b}$ "--- неколлинеарные векторы и вектор $\overline{c}$ компланарен системе $(\overline{a}, \overline{b})$, то $\overline{c}$ выражается через $\overline{a}, \overline{b}$.
+		\item Если $\overline{a}, \overline{b}, \overline{c}$ "--- некомпланарные векторы, то $\overline{d}$ выражается через $\overline{a}, \overline{b}, \overline{c}$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Отложим векторы $\overline{a}, \overline{b}, \overline{c}, \overline{d}$ от точки $O \in P_n$ и получим направленные отрезки $\overline{OA}, \overline{OB}, \overline{OC}, \overline{OD}$. Произведем следующие построения:
+	\begin{enumerate}
+		\item Если $\overline{a} \uparrow\uparrow \overline{b}$, то домножим $\overline{OA}$ на $\frac{|\overline{b}|}{|\overline{a}|}$, иначе --- на $\big(\!-\!\frac{|\overline{b}|}{|\overline{a}|}\big)$, и получим $\overline{OB}$.
+		\item Проведем через $C$ прямую $l$, параллельную $\overline{b}$. Пусть эта прямая пересекает $OA$ в точке $X$. Тогда $\overline{OC} = \overline{OX} + \overline{XC}$, и по пункту $(1)$ имеем, что $\overline{OX}$ выражается через $\overline{a}$, а $\overline{XC}$ --- через $\overline{b}$.
+		\item Проведем через $D$ плоскость $\alpha$, параллельную $(\overline{a}, \overline{b})$. Пусть эта плоскость пересекает $OC$ в точке $X$. Тогда $\overline{OD} = \overline{OX} + \overline{XD}$, и по пунктам $(1)$ и $(2)$ имеем, что $\overline{OX}$ выражается через $\overline{c}$, а $\overline{XD}$ --- через $\overline{a}, \overline{b}$.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Пусть $\overline{a}, \overline{b}, \overline{c}, \overline{d} \in V_n$. Выполнены следующие свойства:
+	\begin{enumerate}
+		\item Система $(\overline{a})$ линейно независима $\Leftrightarrow$ $\overline{a} \ne \overline{0}$
+		\item Система $(\overline{a}, \overline{b})$ линейно независима $\Leftrightarrow$ она неколлинеарна
+		\item Система $(\overline{a}, \overline{b}, \overline{c})$ линейно независима $\Leftrightarrow$ она некомпланарна
+		\item Система $(\overline{a}, \overline{b}, \overline{c}, \overline{d})$ всегда линейно зависима
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item\begin{itemize}
+				\item[$\ra$] Пусть $\overline{a} = \overline{0}$, тогда $1\overline{a} = \overline{0}$, и система $(\overline{a})$ линейно зависима.
+				\item[$\la$]Если $\overline{a} \ne \overline{0}$, то при умножении этого вектора на любое число $\alpha \ne 0$ снова получится ненулевой вектор, то есть система $(\overline{a})$ линейно независима.
+			\end{itemize}
+		\item\begin{itemize}
+			\item[$\ra$] Пусть система $(\overline{a}, \overline{b})$ коллинеарна. Если $\overline{a} = \overline{0}$, то вся система линейно зависима по пункту $(1)$, иначе --- $\overline{b}$ выражается через $\overline{a}$, тогда система тоже линейно зависима.
+			\item[$\la$] Пусть система $(\overline{a}, \overline{b})$ линейно зависима, тогда без ограничения общности $\overline{b}$ выражается через $\overline{a}$, то есть эти векторы коллинеарны.
+		\end{itemize}
+	
+		\item\begin{itemize}
+			\item[$\ra$] Пусть система $(\overline{a}, \overline{b}, \overline{c})$ компланарна. Если система $(\overline{a}, \overline{b})$ коллинеарна, то вся система линейно зависима по пункту $(2)$, иначе --- $\overline{c}$ выражается через  $\overline{a}, \overline{b}$, тогда система тоже линейно зависима.
+			\item[$\la$]Пусть система $(\overline{a}, \overline{b}, \overline{c})$ линейно зависима, тогда без ограничения общности $\overline{c}$ выражается через $\overline{a}, \overline{b}$, то есть эти векторы компланарны.\qedhere
+		\end{itemize}
+	
+		\item Если система $(\overline{a}, \overline{b}, \overline{c})$ компланарна, то вся система линейно зависима по пункту $(3)$, иначе --- $\overline{d}$ выражается через $\overline{a}, \overline{b}, \overline{c}$, тогда система тоже линейно зависима.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Базисы и координаты}
+
+\begin{definition}
+	\textit{Базисом} в $V_n$ называется линейно независимая система векторов, через которую выражаются все векторы $V_n$.
+\end{definition}
+
+\begin{proposition}
+	Пусть $e = (\overline{e_1}, \dots, \overline{e_n})$ "--- базис в $V_n$. Тогда для любого вектора $\overline v \in V_n$ существует единственный столбец коэффициентов $\alpha$ такой, что $\overline{v} = e\alpha$.
+\end{proposition}
+
+\begin{proof}
+	По определению базиса, такой столбец $\alpha$ существует. Если также существует столбец $\alpha' \ne \alpha$, удовлетворяющий условию, то:
+	\[\overline{v} = e\alpha = e\alpha' \ra
+	e(\alpha - \alpha') = \overline{0}\]
+	
+	Так как $e$ "--- линейно независимая система, то линейная комбинация $e(\alpha - \alpha')$ должна быть тривиальной, откуда $\alpha = \alpha'$.
+\end{proof}
+
+\begin{definition}
+	Пусть $e$ "--- базис в $V_n$, $\overline{v} = \alpha e \in V_n$. Столбец коэффициентов $\alpha$ называется \textit{координатным столбцом} вектора $\overline{v}$ в базисе $e$. Обозначение "--- $\overline{v} \leftrightarrow_e \alpha$.
+\end{definition}
+
+\begin{proposition}[линейность сопоставления координат]
+	Для любых $\overline u, \overline v \in V_n$ таких, что $\overline u \leftrightarrow_e \alpha$, $\overline v \leftrightarrow_e \beta$, выполнено следующее:
+	\begin{enumerate}
+		\item $\overline u + \overline v \leftrightarrow_e \alpha + \beta$
+		\item $\forall \lambda \in \R: \lambda \overline u \leftrightarrow_e \lambda\alpha$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item $\overline{u} + \overline{v} = e\alpha + e\beta = e(\alpha + \beta)$.
+		\item $\lambda\overline{u} = \lambda e\alpha = e(\lambda \alpha)$.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}~
+	\begin{enumerate}
+		\item Базис в $V_0$ не существует.
+		\item Базис в $V_1$ "--- это система из одного ненулевого вектора.
+		\item Базис в $V_2$ "--- это система из двух неколлинеарных векторов.
+		\item Базис в $V_3$ "--- это система из трех некомпланарных векторов.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Единственный вектор в $V_0$ "--- это $\overline{0}$, и он образует линейно зависимую систему.
+		\item В $V_1$ любая система из $\ge 2$ векторов коллинеарна и потому линейно зависима. При этом вектор $\overline{a} \ne \overline{0}$ образует линейно независимую систему, и через него выражаются все векторы $V_1$. Если же $\overline{a} = \overline{0}$, то он образует линейно зависимую систему.
+		\item В $V_2$ любая система из $\ge 3$ векторов компланарна и потому линейно зависима, а система из одного вектора коллинеарна и потому выражает не все векторы из $V_2$. При этом неколлинеарная система $(\overline{a}, \overline{b})$ линейно независима, и через нее выражаются все векторы из $V_2$. Если же система $(\overline{a}, \overline{b})$ коллинеарна, то она линейно зависима.
+		\item В $V_3$ любая система из $\ge 4$ векторов линейно зависима, а система из $\le 2$ векторов компланарна и потому выражает не все векторы из $V_3$. При этом некомпланарная система $(\overline{a}, \overline{b}, \overline{c})$ линейно независима, и через нее выражаются все векторы из $V_3$. Если же система $(\overline{a}, \overline{b}, \overline{c})$ компланарна, то она линейно зависима.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Из теоремы выше, в частности, следует, что базис в $V_n$ состоит ровно из $n$ векторов при $n \in \{1, 2, 3\}$.
+\end{note}
+
+\begin{definition}
+	Пусть $e$, $e'$ "--- базисы в $V_n$. Тогда каждый вектор из $e'$ раскладывается по базису $e$, то есть имеет место представление $e' = eS$ для некоторой матрицы $S \in M_{i}$. Матрица $S$ называется \textit{матрицей перехода} от базиса $e$ к базису $e'$.
+\end{definition}
+
+\begin{theorem}
+	Пусть $e$, $e'$ "--- базисы в $V_n$, $e'= eS$, и пусть $\overline{v} \in V_n$, $\overline{v} \leftrightarrow_e \alpha$, $\overline{v} \leftrightarrow_{e'} \alpha'$. Тогда:
+	\[\alpha = S\alpha'\]
+\end{theorem}
+
+\begin{proof}
+	Заметим, что выполнены равенства $\overline{v} = e\alpha = e'\alpha' = eS\alpha'$. Значит, вектор $\overline{v}$ имеет в базисе $e$ координатные столбцы $\alpha$ и $S\alpha'$, но разложение вектора по базису единственно, поэтому $\alpha = S\alpha'$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $e$, $e'$ и $e''$ "--- базисы в $V_n$, а матрицы перехода $S_1$, $S_2$ и $S_3$ таковы, что $e' = eS_1$, $e'' = e'S_2$, $e'' = eS_3$. Тогда:
+	\[S_3 = S_1S_2\]
+\end{proposition}
+
+\begin{proof}
+	Выполнены равенства $e'' = e'S_2 = eS_1S_2$, и при этом $e'' = eS_3$, но каждый из координатных столбцов векторов $\overline{e''_1}, \dots ,\overline{e''_i}$ в базисе $e$ единственен, поэтому $S_1S_2 = S_3$.
+\end{proof}
+
+\begin{definition}
+	Базис в $V_n$ называется:
+	\begin{itemize}
+		\item \textit{Ортогональным}, если его векторы попарно ортогональны
+		\item \textit{Ортонормированным}, если он ортогонален и все его векторы имеют длину $1$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	\textit{Декартовой системой координат} в $P_n$ называется набор $(O, e)$, где $O \in P_n$ "--- \textit{начало системы координат}, $e$ "--- базис в $V_n$. Точка $A \in P_n$ имеет координатный столбец $\alpha$ в данной системе координат, если $\overline{OA} \leftrightarrow_e \alpha$. Обозначение "--- $A \leftrightarrow_{(O, e)} \alpha$. Декартова система координат называется \textit{прямоугольной}, если базис $e$ "--- ортонормированный.
+\end{definition}
+
+\begin{proposition}
+	Пусть $A \leftrightarrow_{(O, e)} \alpha$, $B \leftrightarrow_{(O, e)} \beta$.  Тогда:
+	\[\overline{AB} \leftrightarrow_e \beta - \alpha\]
+\end{proposition}
+
+\begin{proof}
+	Выполнены равенства $\overline{AB} = \overline{OB} - \overline{OA} = e\beta - e\alpha = e(\beta - \alpha)$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $A \leftrightarrow_{(O, e)} \alpha$, $B \leftrightarrow_{(O, e)} \beta$, и $C \in AB$ "--- такая точка на отрезке $AB$, что $AC : BC = \lambda : (1 - \lambda)$ для некоторого $\lambda \in (0, 1)$. Тогда:
+	\[C \leftrightarrow_{(O, e)} (1 - \lambda) \alpha + \lambda \beta\]
+\end{proposition}
+
+\begin{proof}
+	По условию, $\overline{AC} = \lambda \overline{AB}$, тогда:
+	\[\overline{OC} = \overline{OA} + \overline{AC} = \overline{OA} + \lambda \overline{AB} = e\alpha + \lambda e(\beta - \alpha) = e((1 - \lambda) \alpha + \lambda \beta)\qedhere\]
+\end{proof}
+
+\begin{theorem}
+	Пусть $(O, e)$, $(O', e')$ "--- декартовы системы координат в $P_n$ такие, что $e' = eS$ и $O' \leftrightarrow_{(O, e)} \gamma$. Тогда, если $A \leftrightarrow_{(O, e)} \alpha$ и $A \leftrightarrow_{(O', e')} \alpha'$, то:
+	\[\alpha = S\alpha' + \gamma\]
+\end{theorem}
+
+\begin{proof}
+	Выполнены равенства $\overline{OA} = e\alpha = \overline{OO'} + \overline{O'A} = e\gamma + e'\alpha' = e\gamma + eS\alpha'$. Тогда, в силу единственности координатного столбца вектора $\overline{OA}$ в базисе $e$, получим, что $\alpha =  S\alpha' + \gamma$.
+\end{proof}

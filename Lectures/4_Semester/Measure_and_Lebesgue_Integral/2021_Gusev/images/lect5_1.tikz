@@ -1,0 +1,57 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Square [id:dp07127984790832631] 
+\draw   (30.75,41) -- (181.5,41) -- (181.5,191.75) -- (30.75,191.75) -- cycle ;
+%Straight Lines [id:da8185328645031438] 
+\draw    (90,41.75) -- (90,190.75) ;
+%Straight Lines [id:da5005331595348426] 
+\draw    (91,131.25) -- (181.5,131.25) ;
+%Straight Lines [id:da7245784328669527] 
+\draw    (30.5,81.75) -- (90.5,81.75) ;
+%Straight Lines [id:da9169969604993913] 
+\draw    (60.5,41.25) -- (60.5,81.75) ;
+%Straight Lines [id:da5761199902031513] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (8.5,130.25) -- (199.5,131.25) ;
+%Straight Lines [id:da4703387774640204] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (109,41.75) -- (90,61.25) ;
+%Straight Lines [id:da7388674576519421] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (131,41.75) -- (90.5,81.75) ;
+%Straight Lines [id:da1659109526189817] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (180.5,90.75) -- (140,130.75) ;
+%Straight Lines [id:da7737786154131401] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (180.5,111.75) -- (161.5,131.25) ;
+%Straight Lines [id:da5553176785123468] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (91,100.25) -- (151,41.25) ;
+%Straight Lines [id:da7795339412455602] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (119.5,130.75) -- (181,70.25) ;
+%Straight Lines [id:da6891021630899461] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (91,119.5) -- (170,41.25) ;
+%Straight Lines [id:da8489085783182453] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (100.5,130.5) -- (181,50.25) ;
+%Straight Lines [id:da3408411074227109] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (180.5,143.8) -- (161,131.81) ;
+%Straight Lines [id:da12234463273915774] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (180.5,158.06) -- (140.5,132.5) ;
+%Straight Lines [id:da5136854404415854] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (131.5,191.02) -- (91.5,165.45) ;
+%Straight Lines [id:da5962533971565414] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (110.5,191.39) -- (91,179.41) ;
+%Straight Lines [id:da16681387348340793] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (122,133.14) -- (181,171.03) ;
+%Straight Lines [id:da7831631276885218] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (91.5,152.16) -- (152,190.99) ;
+%Straight Lines [id:da8091246103495819] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (102.75,133.48) -- (181,183.35) ;
+%Straight Lines [id:da3545235831364233] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (91.75,139.83) -- (172,190.64) ;
+
+
+
+
+
+\end{tikzpicture}

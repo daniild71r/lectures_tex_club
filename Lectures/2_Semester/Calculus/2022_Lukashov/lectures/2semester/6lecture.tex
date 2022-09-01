@@ -1,0 +1,300 @@
+\begin{corollary}
+	Для любой ограниченной функции на $[a; b]$ будет верно, что $\underline{I} \leq \overline{I}$
+\end{corollary}
+
+\begin{theorem} (Критерий интегрируемости по Риману)
+	$f$ интегрируема по Риману на $[a; b]$ ($f \in R[a; b]$) тогда и только тогда, когда верно утверждение:
+	\[
+		\forall \eps > 0\ \exists \text{ разбиение } P \such U(P, f) - L(P, f) < \eps
+	\]
+\end{theorem}
+
+\begin{proof}
+	\begin{itemize}
+		\item Необходимость. Коль скоро функция $f$ интегрируема, то
+		\[
+			\sup\limits_P L(P, f) = \inf\limits_P U(P, f)
+		\]
+		Из этого вытекает следующее утверждение:
+		\[
+			\forall \eps > 0\ \exists P_1, P_2 \such \int_a^b f(x)dx - \frac{\eps}{2} < L(P_1, f) \le \int_a^b f(x)dx \le U(P_2, f) < \int_a^b f(x)dx + \frac{\eps}{2}
+		\]
+		Возьмем $P^* = P_1 \cup P_2$. Тогда верно неравенство
+		\[
+			L(P_1, f) \le L(P^*, f) \le U(P^*, f) \le U(P_2, f) \Ra U(P^*, f) - L(P^*, f) < \eps
+		\]
+		
+		\item Достаточность. $\forall \eps > 0\ \exists P$. Запишем известные нам неравенства.
+		\begin{align*}
+			&U(P, f) - L(P, f) < \eps
+			\\
+			&L(P, f) \leq \underline{I}(f) \leq \overline{I}(f) \leq U(P, f)
+		\end{align*}
+		Получаем:
+		\[
+			0 \leq \overline{I}(f) - \underline{I}(f)  < \eps \Ra \underline{I}(f) = \overline{I}(f)
+ 		\]
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Каждая непрерывная на $[a; b]$ функция интегрируема по Риману на $[a; b]$.
+\end{theorem}
+
+\begin{proof}
+	Коль скоро $f \in C[a; b]$, то по теореме Кантора она равномерно непрерывна:
+	\[
+		\forall \eps > 0\ \exists \delta > 0 \such \forall x, t \in [a; b],\ |x - t| < \delta\ \ |f(x) - f(t)| < \frac{\eps}{b - a}
+	\]
+	Выберем любое разбиение $P$, для которого $\Delta(P) < \delta$. Значит
+	\[
+		M_k - m_k < \frac{\eps}{b - a} \Ra U(P, f) - L(P, f) = \suml_{k = 1}^n (M_k - m_k) \Delta x_k < \frac{\eps}{b - a} \suml_{k = 1}^n \Delta x_k = \eps
+	\]
+\end{proof}
+
+\begin{definition}
+	Если $\alpha$ - неубывающая на $[a; b]$ функция, то положим
+	\begin{align*}
+		&{\Delta \alpha_k = \alpha(x_k) - \alpha(x_{k - 1})}
+		\\
+		&{L(P, f, \alpha) = \suml_{k = 1}^n m_k \Delta \alpha_k}
+		\\
+		&{U(P, f, \alpha) = \suml_{k = 1}^n M_k \Delta \alpha_k}
+		\\
+		&{\underline{I}(f, \alpha) = \sup\limits_P L(P, f, \alpha)}
+		\\
+		&{\overline{I}(f, \alpha) = \inf\limits_P U(P, f, \alpha)}
+	\end{align*}
+	Соответственно, если $\underline{I} = \overline{I}$, то общее значение называется \textit{интегралом по Римана-Стилтьеса} и обозначается следующим образом:
+	\[
+		\underline{I}(f, \alpha) = \overline{I}(f, \alpha) = \int_a^b f(x) d(\alpha(x))
+	\]
+\end{definition}
+
+\begin{note}
+	Все доказанные ранее в этом параграфе на данный момент результаты переносятся на случай интеграла Римана-Стилтьеса
+\end{note}
+
+\begin{theorem}
+	Каждая монотонная на отрезке $[a; b]$ функция интегрируема по Риману на $[a; b]$.
+\end{theorem}
+
+\begin{proof}
+	Пусть $f$ возрастает. Тогда, посмотрим на разность сумм Дарбу:
+	\[
+		U(P, f) - L(P, f) = \suml_{k = 1}^n (M_k - m_k) \Delta x_k
+	\]
+	В силу неубывания, имеем следующие равенства:
+	\begin{align*}
+		&{m_k = \inf\limits_{x \in [x_{k - 1}; x_k]} f(x) = f(x_{k - 1})}
+		\\
+		&{M_k = \sup\limits_{x \in [x_{k - 1}; x_k]} f(x) = f(x_k)}
+	\end{align*}
+	Отсюда получаем, что разность оценивается как
+	\begin{multline*}
+		U(P, f) - L(P, f) = \suml_{k = 1}^n (f(x_k) - f(x_{k - 1})) \Delta x_k \le
+		\\
+		\Delta(P) \suml_{k = 1}^n (f(x_k) - f(x_{k - 1})) = \Delta(P)(f(b) - f(a)) < \eps
+	\end{multline*}
+\end{proof}
+
+\begin{example}
+	Функция Дирихле не интегрируема по Риману.
+	\[
+		f(x) = \System{
+			&1,\ x\in \mathbb{Q}
+			\\
+			&0,\ x\in \mathbb{R} \setminus \mathbb{Q}
+		}
+	\]
+	Действиетльно, для любого отрезка $M_k = 1,\ m_k = 0 \Ra U(P, f) - L(P, f) = \suml_{k - 1}^n(1 - 0)\Delta x_k = b - a \neq 0$
+\end{example}
+
+\begin{example}
+	Функция Римана интегрируема по Риману.
+		\[
+	f(x) = \System{
+		&\frac{1}{p},\ q = \frac{p}{q} \in\mathbb{Q}
+		\\
+		&0,\ x\in \mathbb{R} \setminus \mathbb{Q}
+	}
+	\]
+	Рассмотрим отрезок $[0;1]$. Для любого $\eps > 0$ существует лишь конечное число точек, чья величина превосходит $\eps$:
+	\[
+		\forall \eps > 0\ \exists! t_1, \ldots, t_N \such f(t_k) \ge \eps
+	\]
+	Чтобы подогнать функцию Римана под критерий интегрируемости, поступим хитрым образом: мы распределим по 1й из вышеупомянутых точек в свой собственный отрезок так, чтобы они давали вклад суммарно не больше $\eps$. Оставшиеся незатронутые отрезки точно дадут вклад не больше $\eps$, ибо $(1 - 0) \cdot \eps \le \eps$.
+	
+	Итак, для каждой $t_k$ возьмём отрезок $\left[t_k - \frac{\eps}{2N}; t_k + \frac{\eps}{2N}\right]$. Если отрезки двух точек налегают друг на друга, то мы не учитываем их ни в одном из отрезков (Они вполне себе нормально пойдут в другую часть разбиения $[0; 1]$). Граничные точки непересекающихся отрезков образуют разбиение $P \subset [0; 1]$. Каждый индекс $l$, отвечающий отрезку $[x_{l - 1}; x_l]$, либо лежит в группе $A$ - отрезков, содержащих какое-то $t_k$, либо в группе $B$ - отрезков, соединяющих собой отрезки из $A$. Значит, верхнюю сумму Дарбу можно коротко записать в таком виде:
+	\[
+		U(P, f) = \suml_{l \in A} (\ldots) + \suml_{l \in B} (\ldots)
+	\]
+	Ну и оценка всего этого очевидна:
+	\[
+		\suml_{l \in A} (\ldots) + \suml_{l \in B} (\ldots) \le N \cdot 1 \cdot \frac{\eps}{2N} + (1 - 0) \cdot \eps
+	\]
+	
+	Итого $U(P, f) - L(P, f) < 2\eps$ (Этого результата достаточно для интегрируемости, ибо мы можем где нужно просто немного отнормировать требования).
+\end{example}
+
+\subsection{Основные свойства интеграла Римана}
+
+\begin{theorem}~
+	\begin{enumerate}
+		\item Линейность. Если $f_1, f_2 \in R[a; b]$, то $(f_1 + f_2) \in R[a; b]$, причём
+		\begin{align*}
+			&{\int_a^b (f_1 + f_2)(x)dx = \int_a^b f_1(x)dx + \int_a^b f_2(x)dx}
+			\\
+			&{\forall c \in \R\ \ \int_a^b cf_1(x)dx = c\int_a^b f_1(x)dx}
+		\end{align*}
+		
+		\item Монотонность. Если $f_1, f_2 \in R[a; b]$ и $\forall x \in [a; b]\ f_1(x) \le f_2(x)$, то
+		\[
+			\int_a^b f_1(x)dx \le \int_a^b f_2(x)dx
+		\]
+		
+		\item Аддитивность.
+		\[
+			f \in R[a; b] \lra \Big(f \in R[a; c] \wedge f \in R[c; b] \text{, где } c \in (a; b)\Big)
+		\]
+		причём
+		\[
+			\int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b f(x)dx
+		\]
+		
+		\item Оценка сверху. Если $f \in R[a; b]$ и $\forall x \in [a; b]\ \ |f(x)| \le M$, то
+		\[
+			\left|\int_a^b f(x)dx\right| \le M(b - a)
+		\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Линейность.
+		\begin{itemize}
+			\item Сумма. Сразу распишем имеющиеся интегралы по критерию:
+			\[
+				\forall \eps > 0\ \exists P_1,\ P_2\ U(P_i, f_i) - L(P_i, f_i) < \frac{\eps}{2},\ i \in \{1, 2\}
+			\]
+			Пусть $P = P_1 \cup P_2$ тогда $U(P, f_i) - L(P, f_i) < \frac{\eps}{2},\ i \in \{1, 2\}$ (так как $P$ будет измельчением каждого).
+			Справедливо, что супремум суммы не больше суммы супремумов, аналогичное утверждение верно для инфимумов. Тогда:
+			\begin{multline*}
+				U(P, f_1 + f_2) - L(P, f_1 + f_2) = \suml_{k = 1}^nM_k(f_1 + f_2)\Delta x_k - \suml_{k = 1}^nm_k(f_1 + f_2)\Delta x_k \leq
+				\\
+				\suml_{k = 1}^n(M_k(f_1) + M_k(f_2))\Delta x_k - \suml_{k = 1}^n(m_k(f_1) + m_k(f_2))\Delta x_k < \frac{\eps}{2} + \frac{\eps}{2} = \eps
+			\end{multline*}
+			Доказали интегрируемость по Риману. Запишем известные нам неравенства:
+			\[
+			\System{
+				&{L(P, f_1) + L(P, f_2) \leq L(P, f_1 + f_2) \leq \int_{a}^{b}(f_1 + f_2)dx \leq U(P, f_1 + f_2) \leq U(P, f_1) + U(P, f_2)}
+				\\
+				&{L(P, f_1) + L(P, f_2) \leq \int_a^b f_1(x)dx + \int_a^b f_2(x)dx \leq U(P, f_1) + U(P, f_2)}
+			}
+			\]
+			Отсюда получаем:
+			\[
+				\forall \eps > 0 \quad \left|\int_a^b(f_1(x) + f_2(x))dx - \left(\int_a^bf_1(x)dx + \int_a^bf_2(x)dx\right)\right| < \eps
+			\]
+			Значит, имеет место равенство.
+			
+			\item Умножение на число. Просто заметим равенства:
+			\begin{itemize}
+				\item $c \geq 0$
+				\begin{align*}
+				& U(P, cf_1) = cU(P, f_1)
+				\\
+				& L(P, cf_1) = cL(P, f_1)
+				\end{align*}
+				\item $c < 0$
+				\begin{align*}
+				& U(P, cf_1) = cL(P, f_1)
+				\\
+				& L(P, cf_1) = cU(P, f_1)
+				\end{align*}
+			\end{itemize}
+		\end{itemize}
+		
+		\item Очевидно, что $f_2 - f_1 \geq 0$, откуда $M_k(f_2 - f_1) \geq 0,\ m_k(f_2 - f_1) \geq 0 \Ra \int_a^bf_2(x)-f_1(x)dx \geq 0$.
+		Воспользовавшись линейностью интеграла получаем:
+		\[
+			\int_a^bf_1(x)dx \leq \int_a^bf_2(x)dx
+		\]
+		
+		\item Разберём доказательство по отдельности в каждую сторону:
+		\begin{itemize}
+			\item $\Ra$ Так как $f \in R[a;b]$, то $\forall \eps > 0\ \exists P\ U(P, f) - L(P, f) < \eps$.
+			Пусть $P = P_1 \cup P_2$, где 
+			\begin{align*}
+				&{P_1\such a = x_0 < x_1 < \ldots < x_k = c}
+				\\
+				&{P_2\such c = x_k < \ldots < x_n = b}
+			\end{align*}
+			Таким образом можно написать:
+			\[
+				U(P, f) - L(P, f) = \big(U(P_1, f) - L(P_1, f)\big) + \big(U(P_2, f) - L(P_2, f)\big) < \eps
+			\]
+			То есть интегралы на каждом из отрезков $[a; c]$ и $[c; b]$ тоже будут существовать по критерию.
+			
+			\item $\La$ Последняя строчка из доказательства выше верна и в нашем случае (если потребовать, например, для каждой скобки $\eps/2$ и найти соответствующие $P_1$ и $P_2$). Доказательство равенства повторяет линейность:
+			\[
+				L(P_1, f) + L_(P_2, f) \leq \int_a^c f(x)dx + \int_c^b f(x)dx \leq U(P_1, f) + U_(P_2, f)
+			\]
+			Такое же неравенство верно и для $\int_a^b f(x)dx$. Значит, можно получить аналогичную оценку для модуля разности интегралов и получится равенство.
+		\end{itemize}
+		\item Пусть $c := sign\left(\int_a^bf(x)dx\right)$.
+		\[
+			\left|\int_a^b f(x)dx\right| = c \int_a^b f(x)dx = \int_a^b cf(x)dx \leq \int_a^b Mdx = M(b - a)
+		\]
+		Последнее неравенство верно в силу свойства монотонности интеграла Римана.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Композиция двух интегрируемых по Риману функций сама не обязана быть интегрируемой по Риману. Положим
+	\[
+		f(x) = \System{
+			&{1,\ x \in (0; 1]}
+			\\
+			&{0,\ x = 0}
+		}
+	\]
+	а $g(x)$ - просто функция Римана. Что такое $(f \circ g)(x) = f(g(x))$? Это функция Дирихле, которая не интегрируема по Риману.
+\end{example}
+
+\begin{theorem} (Интегрируемость сложной функции)
+	Если $g$ интегрируема по Риману на $[a; b]$, причём $\forall x \in [a; b]\ m \le g(x) \le M$, $f$ непрерывная на $[m; M]$, то $f \circ g$ интегрируема по Риману на $[a; b]$.
+\end{theorem}
+
+\begin{proof}
+	Сначала воспользуемся непрерывностью $f \in C[m; M]$. В силу теоремы Кантора о равномерной непрерывности на отрезке:
+	\[
+		\forall \eps > 0\ \exists \delta > 0,\ \delta < \eps\ \such \left(\forall y_1, y_2 \in [m; M],\ |y_1 - y_2| < \delta\right)\ \ |f(y_1) - f(y_2)| < \eps
+	\]
+	Теперь, коль скоро $g \in R[a; b]$, то по критерию интегрируемости
+	\[
+		\exists P \such U(P, g) - L(P, g) < \delta^2
+	\]
+	Положим $h(x) := f(g(x))$ и рассмотрим разность сумм Дарбу:
+	\[
+		U(P, h) - L(P, h) = \suml_{i \in A} (M_i(h) - m_i(h))\Delta x_i + \suml_{i \in B} (M_i(h) - m_i(h)) \Delta x_i
+	\]
+	где $i \in A \lra M_i(g) - m_i(g) < \delta$, а $i \in B$ во всех остальных случаях. Теперь, посмотрим на оценку, которую мы можем сделать для отрезка с индексом из $A$:
+	\[
+		\forall i \in A, \forall x, t \in [x_{i - 1}; x_i] \quad |h(x) - h(t)| = \underbrace{|f(g(x)) - f(g(t))|}_{|g(x) - g(t)| < \delta} < \eps
+	\]
+	В свою очередь для $i \in B$ у нас верно, что $M_i(g) - m_i(g) \ge \delta$. Отсюда следующая цепочка неравенств:
+	\[
+		\delta \suml_{i \in B} \Delta x_i \leq \suml_{i \in B} (M_i(g) - m_i(g)) \Delta x_i \leq \suml_{k = 1}^n (M_i(g) - m_i(g)) \Delta x_k = U(P, g) - L(P, g) < \delta^2
+	\]
+	Значит, $\suml_{i \in B} \Delta x_i < \delta < \eps$. Так как $f$ непрерывна, то она ограничена на отрезке:
+	\[
+		\exists K \ge 0 \such \forall k \in \range{n} \quad |m_k(h)| \leq K,\ |M_k(h)| \leq K
+	\]
+	Объединяя результаты для $A$ и $B$ имеем:
+	\begin{multline*}
+		U(P, h) - L(P, h) = \suml_{i \in A} (M_i(h) - m_i(h)) \Delta x_i + \suml_{i \in B} (M_i(h) - m_i(h)) \Delta x_i <
+		\\
+		\eps \suml_{i = 1}^n \Delta x_i + 2K\eps = \eps (b - a + 2K)
+	\end{multline*}
+\end{proof}

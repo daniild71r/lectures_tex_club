@@ -1,0 +1,85 @@
+\begin{note}[Решение задачи теплопроводности]
+	TODO
+\end{note}
+
+\begin{note}[Теорема Котельникова]
+	TODO
+\end{note}
+
+\subsection{Пространство Шварца $S$.}
+
+\begin{Def}
+	Функция $f\in S$, если $f$ --- бесконечно дифференцируема на $\R$, и ${(\forall k, l\in\N\cup\{0\})}(\exists C(k,l))(\forall x\in\R)(1+|x|^k)|f^{(l)}(x)|\leqslant C(k,l)$.
+\end{Def}
+
+\begin{linkthm}{https://youtu.be/X9_Gq_0OxPY?t=2126} Преобразование Фурье является биекцией на $S$.
+\end{linkthm}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/X9_Gq_0OxPY?t=2863}[Равенство Парсеваля в $S$]\ \\
+	$(\forall f_1,f_2\in S)$
+	\begin{enumerate}
+		\item $\int\limits_{-\infty}^{\infty}\hat{f_1}(x)f_2(x)dx=\int\limits_{-\infty}^\infty f_1(x)\hat{f_2}(x)dx$.
+		\item $\int\limits_{-\infty}^{\infty} f_1(x)\overline{f_2}(x)dx=\int\limits_{-\infty}^\infty \hat{f_1}(x)\overline{\hat{f_2}}(x)dx$, в частности $\|f\|_{L_2(\R)}=\|\hat{f}\|_{L_2(\R)}$.
+	\end{enumerate}
+\end{linkthm}
+\begin{proof}
+	TODO
+\end{proof}
+
+\subsection{Обобщенные функции}
+\begin{Def}
+	Носителем функции $f(supp f)$ называется замыкание множества, где она не равна нулю: $supp f=cl\{x:f(x)\ne0\}$.
+\end{Def}
+
+\begin{Def}
+	Функция $f:\R\to\R$ называется финитной, если ее носитель компактен.
+\end{Def}
+
+\begin{Def}
+	Пространство $D$ основных функций --- это множество финитных бесконечно дифференцируемых функций с топологией, определяемой позже.
+\end{Def}
+
+Введем топологию. Рассмотрим множество финитных бесконечно дифференцируемых функций $f$ таких, что $supp f\subset K$.
+
+\begin{Def}
+	Полунормой на линейном пространстве $E$ называется функция $p:E\to\R_+$ такая, что
+	\begin{enumerate}
+		\item $p(cx)=|c|p(x)(\forall x\in E)(\forall c\in \R)$,
+		\item $p(x+y)\leqslant p(x)+p(y)(\forall x,y\in E)$.
+	\end{enumerate}
+\end{Def}
+
+\begin{prop}
+	Если на $E$ задана совокупность нетривиальных полунорм $\{p_\alpha\}_{\alpha\in A}$, то $E$ является линейным топологическим пространством, открытые множества в котором --- всевозможные объединения множеств $U_{\alpha_1,\ldots,\alpha_n,\varepsilon}(a)=\{x\in E: p_{\alpha_i}(x-a)<\varepsilon, i=1,\ldots,n\}$.
+\end{prop}
+
+В $D_{[-N,N]}$ рассмотрим счетнух совокупность полунорм $p_m(f)=\sup\limits_{x\in\R, k=0,\ldots,m} |f^{(k)}(x)|$. В $D$ рассмотрим совокупность полунорм $\{p_\alpha\}, \alpha=\{N_m\}\subset\N\cup\{0\}, p_\alpha(f)=\sum\limits_{m=1}^\infty\sup\limits_{x\in[-m,m]\backslash[-m+1,m-1],k=0,1,\ldots, N_m}|f^{(k)}(x)|$.
+
+$D$ является топологическим пространством, причем сходимость в нем дается определением:
+\begin{Def}
+	Последовательность $\{\varphi_n\}_{n=1}^\infty\subset D$ сходится к $\varphi_0\in D$, если 
+	\begin{enumerate}
+		\item $(\exists [a,b])(\forall n\in \N) supp\ \varphi_n\subset[a,b]$,
+		\item $(\forall m\in \N\cup \{0\}) \lim\limits_{n\to\infty}\sup\limits_{x\in\R}|\varphi_n^{(m)}(x)-\varphi_0^{(m)}(x)|=0$.
+	\end{enumerate}
+\end{Def}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+\begin{linkthm}{https://youtu.be/MXQbqUweyEw?t=4}[Минимальное свойство сумм Фурье]\ \\
+	Если $\{e_k\}$ --- ортогональная система ненулевых эдементов евклидова пространства $E$, то $(\forall f\in E)(\forall c_1,\ldots, c_N \in \R)\|f-\sum\limits_{k=1}^N c_k e_k\|\geqslant \|f-\sum\limits_{k=1}^N f_ke_k\|$, где $\{f_k\}$ --- коэффициенты Фурье для $f$, причем равенство равносильно $c_k=f_k, k=1,\ldots, N$.
+\end{linkthm}
+\begin{proof} Рассмотрим квадрат нормы
+\begin{multline*}
+\|f-\sum\limits_{k=1}^N c_ke_k\|^2=<f-\sum\limits_{k=1}^Nc_ke_k, f-\sum\limits_{k=1}^Nc_ke_k>=\\=<f,f>-2\sum\limits_{k=1}^Nc_k<f,e_k>+\sum\limits_{k=1}^N\sum\limits_{l=1}^N c_kc_l<e_k,e_l>=\\=\left[f_k=\frac{<f,e_k>}{\|e_k\|^2}; <e_k,e_l>=0, k\ne l\right]=\\=<f,f>-2\sum\limits_{k=1}^Nf_kc_k\|e_k\|^2+\sum\limits_{k=1}^Nc_k^2\|e_k\|^2=\\=\left[\text{прибавим и вычтим } \sum\limits_{k=1}^Nf_k^2\|e_k\|^2\right]=\\=\|f\|^2-\sum\limits_{k=1}^Nf_k^2\|e_k\|^2+\sum\limits_{k=1}^N(f_k^2-2f_kc_k+c_k^2)\|e_k\|^2\geqslant \\ \geqslant \|f\|^2-\sum\limits_{k=1}^Nf_k^2\|e_k\|^2=\|f-\sum\limits_{k=1}^Nf_ke_k\|^2.
+\end{multline*}
+\end{proof}
+
+\begin{corollary}[Тождество Бесселя]
+	Если $\{e_k\}$ --- ортогональная система ненулевых элементов евклидова  пространства $E$, то $(\forall f\in E) \|f-\sum\limits_{k=1}^N f_ke_k\|^2=\|f\|^2-\sum\limits_{k=1}^N f_k^2\|e_k\|^2$, где $f_k$ --- коэффициенты Фурье $f$.
+\end{corollary}
+
+\begin{corollary}[Неравенство Бесселя]
+	Если $\{e_k\}_{k=1}^\infty$ --- ортогональная система ненулевых элементов евклидова  пространства $E$, то $(\forall f\in E) \sum\limits_{k=1}^\infty f_k^2\|e_k\|^2\leqslant \|f\|^2$, где $f_k$ --- коэффициенты Фурье $f$.
+\end{corollary}
+
+\begin{linkthm}{https://youtu.be/MXQbqUweyEw?t=845}[О полноте ортогональной системы функций]\ \\
+	Если $\{e_k\}_{k=1}^\infty$ --- ортогональная система ненулевых элементов евклидова пространства $E$, то $(\forall f\in E)$ следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item $(\forall\varepsilon>0)(\exists T=\sum\limits_{k=1}^Nc_ke_k)\ \|f-T\|<\varepsilon$.
+		\item $f=\sum\limits_{k=1}^\infty f_ke_k$.
+		\item $\|f\|^2=\sum\limits_{k=1}^\infty f_k^2\|e_k\|^2$ (равенство Парсеваля).
+	\end{enumerate}
+\end{linkthm}
+\begin{proof}
+	$\emph{1)}\Leftrightarrow\emph{2)}$ это следует из теоремы 1 $(\forall\varepsilon > 0)(\exists N) \|f-\sum\limits_{k=1}^N f_ke_k\|<\varepsilon$
+\end{proof}
+
+\begin{corollary}
+	Если $\{e_k\}_{k=1}^\infty$ --- ортогональная система ненулевых элементов евклидова пространства $E$, то следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item $\{e_k\}_{k=1}^\infty$ --- полная система в $E$.
+		\item $(\forall f\in E) f=\sum\limits_{k=1}^\infty f_ke_k$.
+		\item $(\forall f\in E) \|f\|^2=\sum\limits_{k=1}^\infty f_k^2\|e_k\|^2$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{linkthm}{https://youtu.be/MXQbqUweyEw?t=1454}[Рисса-Фишера]\ \\
+	Если $\{e_k\}_{k=1}^\infty$ --- ортогональная система ненулевых элементов гильбертова пространства $H$ и $\{\alpha_k\}_{k=1}^\infty$ --- последовательность действительных чисел такая, что $\sum\limits_{k=1}^\infty \alpha_k^2\|e_k\|^2$ сходится, то ряд $\sum\limits_{k=1}^\infty \alpha_ke_k$ сходится к некоторому $f\in H$.
+\end{linkthm}
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{corollary}
+	Если $\{e_k\}_{k=1}^\infty$ --- ортогональная система ненулевых элементов гильбертова пространства $H$, то $(\forall f\in H)$ ряд Фурье сходится к $f_0\in H: \sum\limits_{k=1}^\infty f_ke_k=f_0$ и $<f-f_0,e_j>=0 (\forall j\in \N)$.
+\end{corollary}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{Def}
+	Система $\{e_k\}_{k=1}^\infty$ называется замкнутой в евклидовом пространстве $E$ (по Банаху, в банаховом пространстве тотальной, в $C$ и $L_p$ --- полной), если из ${<f,e_k>=0}\\{(\forall k\in \N)}\Rightarrow f=0$.
+\end{Def}
+
+\begin{linkthm}{https://youtu.be/MXQbqUweyEw?t=2358}[Полнота и замкнутость ортогональной системы, их связь]\ \\
+	$\{e_k\}_{k=1}^\infty$ --- замкнутая система в гильбертовом пространстве $\Leftrightarrow$ она полная.
+\end{linkthm}
+\begin{proof}
+	TODO
+\end{proof}
+
+Рассмотрим пространство $L_{2\pi}^2$, которое состоит из $2\pi$-периодических функций, принадлежащих $L^2[-\pi,\pi]$. Оно гильбертово. Рассмотрим ортогональную систему $\{e_k\}_{k=1}^\infty=\{\frac{1}{2},\cos x,\sin x,\cos2x, \sin 2x,\ldots\}$.
+TODO
+
+\begin{linkthm}{https://youtu.be/MXQbqUweyEw?t=3890}[Хаусдорфа-Юнга]\ \\
+	Пусть $1<p\leqslant 2$.
+	\begin{enumerate}
+		\item Если последовательность $a_0, \{a_n,b_n\}_{n=1}^\infty\in l_p$(определение $l_p$ смотри выше), то она является последовательностью коэффициентов тригонометрического ряда Фурье функции $f\in L_q^{2\pi}$, где $\frac{1}{p}+\frac{1}{q}=1$.
+		\item Если $f\in L_p^{2\pi}$, то последовательность коэффициентов ее тригонометрического ряда Фурье принадлежит $l_q$, где $\frac{1}{p}+\frac{1}{q}=1$.
+	\end{enumerate}
+\end{linkthm}
+\begin{note}
+	Результаты этого параграфа справедливы и в унитарных пространствах.
+\end{note}
+
+
+
+
+
+
+
+

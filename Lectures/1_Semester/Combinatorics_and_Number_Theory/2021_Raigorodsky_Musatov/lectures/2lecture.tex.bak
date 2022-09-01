@@ -1,0 +1,184 @@
+\begin{definition}
+	Неформально \textit{кортеж}~---~это упорядоченное мультимножество $(x_1, \ldots, x_n)$.
+	
+	Если формально, то определение рекурсивно:
+	\begin{enumerate}
+		\item Кортеж длины 0~---~это $\emptyset$.
+		\item Кортеж длины $n + 1$~---~это упорядоченная пара $(h, T)$, где $T$~---~кортеж длины $n$, а $h$~---~элемент, который мы ставим на первое место в кортеже.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	$(x_1, x_2, \dots, x_n) = (h, T)$, где $h = x_1$, $T = (x_2, \dots, x_n)$.
+\end{example}
+
+\subsection{Декартово произведение}
+
+\begin{definition}
+	\textit{Декартовым произведением} множеств $A$ и $B$ называется множество
+	$$
+	A \times B = \{(a, b)\ |\ a \in A, b \in B\}.
+	$$
+\end{definition}
+
+\begin{note}
+	Такое множество называется декартовым из-за близости с декартовой системой координат. Первый элемент даст координату по оси $x$, а второй по оси $y$.
+\end{note}
+
+\subsection{Декартова степень}
+
+\begin{definition}
+	\textit{Декартовой степенью} $n$ множества $A$ называется множество
+	$$
+	A^n = \{(a_1, \dots, a_n)\ |\ a_i \in A\}
+	$$
+\end{definition}
+
+\subsubsection*{Ассоциативность декартового произведения}
+
+\textcolor{red}{Здесь должна быть ассоциативность декартового произведения, 
+то есть что для любых множеств $A$, $B$, $C$ множества $A \times (B \times C)$
+и $(A \times B) \times C$ имеют каноническую биекцию и практически никогда 
+не различаются.}
+
+\subsection{Отображения и соответствия}
+
+\begin{definition}
+	\textit{Соответствием} между $A$ и $B$ называется произвольное подмножество $A \times B$.
+	$$
+		F \subset A \times B.
+	$$
+	Принадлежность пары $(a, b)$ данному соответствию $F$ принято обозначать как
+	$$
+		\big((a, b) \in F\big) := \big(b \in F(a)\big).
+	$$
+	Само соответствие порой обозначают так
+	$$
+		F \colon A \rra B.
+	$$
+\end{definition}
+
+\begin{definition}
+	\textit{Отображением} или же \textit{функцией} между множествами $A$ и $B$ называется однозначное соответствие на этих же множествах, то есть
+	$$
+		\forall a \in A \Ra \exists! b \in B \colon b = F(a).
+	$$
+	Или же пишут, что
+	$$
+		F \colon A \ra B.
+	$$
+\end{definition}
+
+\begin{definition}
+	\textit{Аргументом} функции называется $a \in A$.
+\end{definition}
+
+\begin{definition}
+	\textit{Значением функции} называется $b \in B$.
+\end{definition}
+
+\begin{definition}
+	Функция называется \textit{частично определенной}, если допускается отсутствие значения у какого-либо аргумента, то есть
+	$$
+		\forall a \in A \Ra |F(a)| \le 1.
+	$$
+\end{definition}
+
+\subsubsection*{Свойства соответствий и отображений}
+
+Соответствие называется
+\begin{itemize}
+	\item \textit{инъективным}, если $\forall a_1, a_2 \in A \colon a_1 \neq a_2 \Ra F(a_1) \cap F(a_2) = \emptyset$;
+	\item \textit{сюръективным}, если $\forall b \in B\ \ \exists a \in A\colon b \in F(a)$;
+	\item \textit{юиективным}, если оно является одновременно и инъективным, и сюръективным.
+\end{itemize}
+
+%\subsubsection*{Свойства отображений}
+
+Для отображений все определяется примерно так же. Отображение называется
+\begin{itemize}
+	\item \textit{инъекцией}, если $\forall a_1, a_2 \in A \colon a_1 \neq a_2 \Ra F(a_1) \neq F(a_2)$;
+	\item \textit{сюръекцией}, если $\forall b \in B\ \ \exists a \in A \colon b = F(a)$;
+	\item \textit{биекцией}, если оно является одновременно и инъекцией, и сюръекцией.
+\end{itemize}
+
+\begin{definition}
+	$F^{-1}$ называется \textit{обратным соответствием} к $F$, если
+	$$
+		(a, b) \in F \lra (b, a) \in F^{-1}.
+	$$
+\end{definition}
+
+\begin{definition}
+		$F^{-1}$ называется \textit{обратным отображением} к $F$, если
+	$$
+		b = F(a) \lra a = F^{-1}(b).
+	$$
+\end{definition}
+
+\subsection{Образ и прообраз}
+
+\textcolor{red}{Возможно, здесь подразумевается по умолчанию, что задано 
+соответствие $F \colon A \rra B$. Если это так, то мы об этом вас предупредили.}
+
+\begin{definition}
+	Если $S \subset A$, то $F(S) := \bigcup\limits_{a \in S} F(a)$ называется \textit{образом} множества $S$.
+\end{definition}
+
+\begin{definition}
+	Пусть $T \subset B$. Тогда $F^{-1}(T) := \bigcup\limits_{b \in T} F^{-1}(b)$ называется \textit{прообразом} множества $T$.
+\end{definition}
+
+\begin{definition}
+	\textit{Областью определения} $F$ называется прообраз множества $B$. Обозначается как $Dom\ F$ (от слова $domain$).
+\end{definition}
+
+\begin{definition}
+	\textit{Областью значений} $F$ называется образ множества $A$. Обозначается как $Ran\ F$ (от слова $range$).
+\end{definition}
+
+\begin{definition}
+	Пусть $S \subset A$. Тогда $F|_S : S \ra B$ называется \textit{сужением} $F : A \ra B$
+	на подмножество $S$, то есть $x \in S \Ra F|_S(x) = F(x)$.
+	
+	При этом $F$ по отношению к $F|_S$ называется \textit{продолжением}.
+\end{definition}
+
+\begin{proposition}
+	Если $F$~---~частично определенная функция, то $F|_{Dom\ F}$~---~отображение.
+\end{proposition}
+
+\subsection{Композиция}
+
+\begin{definition}
+	Пусть $F \colon A \rra B$, $G \colon B \rra C$. Тогда, соответствие $G \circ F$ называется \textit{композицией} соответствий $F$ и $G$.
+	\begin{align*}
+		&G \circ F \colon A \rra C
+		\\
+		&(x, z) \in G \circ F \lra \exists y\ |\ \big((x, y) \in F\big) \wedge \big((y, z) \in G\big)
+	\end{align*}
+\end{definition}
+
+\begin{definition}
+	Пусть $F \colon A \ra B$, $G \colon B \ra C$. Тогда, отображение $G \circ F$ называется \textit{композицией} отображений $F$ и $G$.
+	\begin{align*}
+	&G \circ F : A \ra C
+	\\
+	&(x, z) \in G \circ F \lra \exists y\ |\ \big(y = F(x)) \wedge \big(z =  G(y)\big)
+	\end{align*}
+	Принято обозначать $G \circ F := G(F(x))$
+\end{definition}
+
+\subsubsection*{Свойства композиции}
+
+Рассматриваются такие соответствия/отображения, что композиция существует.
+\begin{enumerate}
+	\item $H \circ (G \circ F) = (H \circ G) \circ F$ (ассоциативность)
+	\item Коммутативность \textbf{необязательно} выполнена.
+	\begin{example}
+		Пусть $F : A \rra B$, $G : B \rra A$. Тогда $G \circ F : A \rra A$, но при этом $F \circ G : B \rra B$.
+	\end{example}
+	\item $\exists id_A : A \ra A,\ id_B : B \ra B\ |\ F \circ id_A = id_B \circ F = F$ (существование отображения множества в себя, т.е. $a = id_A(a)\ \forall a \in A$)
+	\item $F^{-1} \circ F = id_A$, если $F : A \ra B$
+	\item $F \circ F^{-1} = id_B$, если $F : A \ra B$
+\end{enumerate}

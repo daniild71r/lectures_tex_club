@@ -1,0 +1,33 @@
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp4540860363039436] 
+\draw   (50.87,88.67) -- (120.2,88.67) -- (120.2,261.4) -- (50.87,261.4) -- cycle ;
+%Straight Lines [id:da3693463850785983] 
+\draw    (38.87,95.07) -- (38.87,255.73) ;
+\draw [shift={(38.87,258.73)}, rotate = 270] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(38.87,92.07)}, rotate = 90] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da0034688381143717084] 
+\draw    (53.87,80.07) -- (116.53,80.07) ;
+\draw [shift={(119.53,80.07)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(50.87,80.07)}, rotate = 0] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da9300394535026744] 
+\draw    (50.87,160.73) -- (120.2,160.07) ;
+%Straight Lines [id:da18772043066774846] 
+\draw    (129.56,93.07) -- (130.17,157.07) ;
+\draw [shift={(130.2,160.07)}, rotate = 269.45] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(129.53,90.07)}, rotate = 89.45] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+% Text Node
+\draw (21.33,162) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle n$};
+% Text Node
+\draw (82.67,58) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle k$};
+% Text Node
+\draw (134.67,116) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle k$};
+% Text Node
+\draw (77.33,110.33) node [anchor=north west][inner sep=0.75pt]  [font=\Huge] [align=left] {$\displaystyle I$};
+
+
+\end{tikzpicture}

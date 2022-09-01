@@ -1,0 +1,110 @@
+\setcounter{section}{7}
+\section{Глава 8.}
+\setcounter{subsection}{6}
+\subsection{Принципы Литтлвуда}
+Виды сходимостей:
+\begin{enumerate}
+    \item $f_n \rightarrow f \text{ п. в. (почти всюду) на } X \Leftrightarrow$ $$(\exists E\subset X,\  \mu (X\backslash E)=0)(\forall x \in E)(\forall \varepsilon > 0)(\exists N \in \N)(\forall n>N) \mid f_n(x)-f(x)\mid<\varepsilon$$
+    \item $f_n \rightrightarrows f$ на $X$ (равномерно сходится) $\Leftrightarrow$ 
+    $$(\forall \varepsilon > 0)(\exists N \in \N)(\forall n>N)(\forall x \in X) \mid f_n(x)-f(x)\mid<\varepsilon$$
+    \item $f_n \Rightarrow f$ на $X$ (сходимость по мере)$\Leftrightarrow$
+    $$(\forall \varepsilon > 0) \lim_{n\to\infty} \mu \{ x\in X: \mid f_n(x)-f(x)\mid \ \geqslant \varepsilon \} =0$$
+    (Не пишем, но помним: $X$ - измеримо по Лебегу, $f_n$ и $f$ - измеримы на множестве $X$. Из сходимости почти всюду следует сходимость по мере, обратное неверно.)
+\end{enumerate}
+\begin{theorem}[Ф. Рисса]
+    Если $f_n \Rightarrow f$ (сходится по мере) на $X$, то $\exists \{f_{n_k} \} ^\infty_{k=1}$ (подпоследовательность) $f_{n_k} \rightarrow f$ п. в. на $X$.
+\end{theorem}
+\begin{proof}
+По определению сходимости по мере: $$(\forall i \in \N) \lim_{n\to\infty} \mu \{ x\in X: \mid f_n(x)-f(x)\mid \ \geqslant \frac{1}{i} \} =0$$ - меры этих множеств образуют бесконечно малую числовую последовательность. Тогда мы можем выбрать возрастающую подпоследовательность $$\{n_i\}^\infty_{i=1}:\  \mu \{ x\in X: \mid f_{n_i}(x)-f(x)\mid \ \geqslant \frac{1}{i} \} < 2^{-i}.$$
+Последовательность $\{f_{n_i}\}^\infty_{i=1}$ и будет искомой, она будет сходится к $f$ почти всюду. Как это увидеть? Введем обозначения $$R_i:= \bigcup ^\infty_{k=i} \{x\in X:\ \mid f_{n_k}(x)-f(x)\mid \ \geqslant \frac{1}{k}\}.$$ Что можно сказать о мере этих множеств?
+\begin{equation}\label{1}
+    \mu (R_i) \leqslant \sum_{k=i}^{\infty} \mu \{x\in X:\ \mid f_{n_k}(x)-f(x)\mid \ \geqslant \frac{1}{k}\} \leqslant \sum_{k=i}^{\infty} 2^{-k}=2^{-i+1}
+\end{equation}
+Также имеется такая цепочка включений $R_1\supset R_2 \supset \ldots \Rightarrow Q:=\bigcap\limits_{i=1}^\infty R_i$. Это пересечение, есть ни что иное, как $Q=\lim\limits_{i\to\infty}R_i$. Тогда $\mu(Q)=\lim\limits_{i\to\infty} \mu(R_i)=0$ (см \ref{1}).
+\newpage Теперь мы хотим доказать что последовательность $\{f_{n_i}\}$ сходится к $f$ почти всюду. Положим в определении сходимости почти всюду $X\backslash E = Q$.
+Тогда $$\forall x_0 \in X\backslash Q \Rightarrow x_0 \in \bigcup^\infty_{i=1}(X\backslash R_i) \Rightarrow \exists i_0, x_0 \in X\backslash R_{i_0} = \bigcap^\infty_{k=i_0} X\backslash \left\{x\in X:\ \mid f_{n_k}(x)-f(x)\mid \ \geqslant \frac{1}{k}\right\}$$
+$x_0$ попадает в пересечение, это означает, что $(\forall k \geqslant i_0) \mid f_{n_k}(x_0)-f(x_0)\mid < \frac{1}{k}$, наконец: ${\lim\limits_{k\to\infty}f_{n_k}(x_0)=f(x_0)}$
+\end{proof}
+
+\begin{theorem}[Д. Ф. Егоров]
+    Если $E$ измеримо по Лебегу, $f_n$ измеримы на $E$, конечны почти всюду на $E$ и $\lim\limits_{n\to\infty} f_n(x)=f(x)$ - равен почти всюду на $E$ и конечен почти всюду на $E$, то ${(\forall \varepsilon >0)(\exists E_{\varepsilon}\subset E,\ \mu (E\backslash E_{\varepsilon})<\varepsilon)\ f_n \rightrightarrows f}$ на $E_{\varepsilon}$
+\end{theorem}
+\begin{proof}
+Обозначим через $E_m(\varepsilon):=\left\{x\in E:\ \mid f_m(x)-f(x)\mid\ \geqslant \varepsilon \right\}$
+
+${\overline{\lim\limits_{m\to\infty}}E_m(\varepsilon) \subset E_0=\left\{x\in E:(f_n(x)\nrightarrow f(x)) \vee (f(x) \notin \R) \vee (\exists n\in \N:f_n(x)\notin \R) \right\},\ \mu(E_0)=0}$, где $E_0\text{ - множество, где все плохо. (Это включение доказывается в теореме 20 параграфа 5).}$
+
+$\overline{\lim\limits_{m\to\infty}}E_m(\varepsilon) =\lim\limits_{n\to\infty}\sup\limits_{m\geqslant n} E_m(\varepsilon)=\bigcap\limits_{n=1}^{\infty}\bigcup\limits_{m=n}^{\infty}E_m(\varepsilon)$
+
+$\lim\limits_{n\to\infty}\mu(\bigcup\limits_{m=n}^{\infty}E_m(\varepsilon))=0$
+
+$(\forall i \in \N) {\lim\limits_{n\to\infty}} \mu(\bigcup\limits_{m=n}^{\infty}E_m(\frac{1}{i}))=0$
+
+$\exists n_i\ \mu(\bigcup\limits_{m=n_i}^{\infty}E_m(\frac{1}{i}))<2^{-i}$
+
+$\text{Если }x \in E \backslash {\bigcup\limits_{m=n_i}^\infty}E_m(\frac{1}{i}) \Rightarrow x \in \overset{\infty}{\underset{m=n_i}{\bigcap}}E\backslash E_m(\frac{1}{i})$
+
+$(\forall \varepsilon >0)(\exists i_0) \sum\limits_{i=i_0}^{\infty}2^{-i}=2^{-i_0+1}<\varepsilon$
+
+$E\backslash E_{\varepsilon}:=\bigcup\limits_{i=i_0}^{\infty}\bigcup\limits_{m=n_i}^{\infty}E_m(\frac{1}{i})$
+
+$\mu(E\backslash E_{\varepsilon})\leqslant \sum\limits_{i=i_0}^{\infty}\mu(\bigcup\limits_{m=n_i}^{\infty}E_m(\frac{1}{i}))\leqslant \sum\limits_{i=i_0}^{\infty}2^{-i}<\varepsilon$
+
+$(\forall x \in E_{\varepsilon}) \Rightarrow x \in \bigcap\limits_{i=i_0}^{\infty}\bigcap\limits_{m=n_i}^{\infty}E\backslash E_m (\frac{1}{i})$
+
+$(\forall i \geqslant i_0)(\forall m \geqslant n_i) \mid f_m(x)-f(x) \mid < \frac{1}{i}$
+
+$(\forall \delta > 0)(\exists N)(\forall m \geqslant N)(\forall x \in E \backslash E_{\varepsilon}) \mid f_m(x)-f(x) \mid < \delta$ - это и означает равномерную сходимость на множестве $E_{\varepsilon}$
+\end{proof}
+\newpage
+\begin{theorem}[Структура открытых множеств в $\mathbb{R}^n$]
+    Если $G \subset \R^n$ - открытое, то оно является дизъюнктным объединением конечного или счетного числа интервалов $G=\bigsqcup\limits_{i=1}^{\infty}(a_i, b_i)$
+\end{theorem}
+\begin{proof}
+Введем между точками множества $G$ отношение эквивалентности: $x, y\in G$ называются эквивалентными $x\sim y$, если интервал с концами $x, y\ ((x, y)\text{ или }(y,x)) \subset G$. $G$ разбивается на дизъюнктное объединение классов эквивалентности. Докажем, что класс - интервал. Пусть $K$ - класс, обозначим ${a:=\inf\limits_{x \in K}x,\ b:=\sup\limits_{x\in K}x}$. Пусть $c \in (a,b) \Rightarrow {\exists \alpha \in K \cap (a, c),\ \beta \in K \cap (c, b) \Rightarrow  (\alpha, \beta)\subset K  \Rightarrow c \in K} \Rightarrow (a,b) \subset K$.
+
+Теперь, чтобы доказать, что $K$ именно интервал, необходимо доказать, что концы не попадают. Пусть $a \in K \subset G$, где $G$ - открытое, тогда $(\exists d >0)(a-d, a+d)\subset G \Rightarrow {a-\frac{d}{2} \sim a} \Rightarrow a-\frac{d}{2} \in K$. Это является противоречием с тем, что $a$ точная нижняя грань. Итого $(a, b)=K$
+\end{proof}
+
+Принципы Литтлвуда:
+\begin{enumerate}
+    \item Каждое измеримое множество --- это приблизительно объединение конечного числа интервалов.
+    \item Сходимость почти всюду --- это приблизительно равномерная сходимость.
+    \item Измеримые функции приблизительно непрерывны.
+\end{enumerate}
+\begin{theorem}[Н. Н. Лузин]
+	Если $f$ измеримая и почти всюду конечная на $[a, b]$, то ${(\forall \varepsilon >0)(\exists E_{\varepsilon},\  \mu([a, b] \backslash E_{\varepsilon})<\varepsilon) (\exists \varphi \in C[a,b](\text{непрерывная}))\text{, такая что }(\forall x \in E_{\varepsilon}) \ f(x)=\varphi(x)}$
+\end{theorem}
+\begin{proof}
+Пусть $|f(x)|\leqslant C$. Теорема 19 \textsection 5  утверждает, что можно подобрать последовательность ступенчатых функций, которая равномерно сходится к $f(x)$, т. е. существует $h_n(x) \rightrightarrows f(x)$. Так как $f(x)$ ограничена, то все $h_n(x)$ имеют лишь конечное множество значений, то есть $h_n$ постоянна на множествах $I_{n, 1}, \ldots, I_{n, k_n}$, где $k_n$ - количество различных значений. Эти множества измеримы по Лебегу. И также $\bigsqcup\limits_{k=1}^{k_n} I_{n, k}=[a,b]$. Из первого принципа Литтлвуда $$\forall k=1, \ldots, k_n\ \exists \text{ замкнутое множество } F_{n,k} \subset I_{n,k} \text{ т. ч. } \mu(I_{n,k}\backslash F_{n,k})<\dfrac{\varepsilon \cdot 2^{-n-1}}{k_n}.$$ Также из того, что $h_n(x) \rightrightarrows f(x)$ на всем $[a,b]$, следует, что сходится на любом подмножестве: $h_m(x) \rightrightarrows f(x)$ на $\bigcup\limits_{k=1}^{k_n} F_{n,k}=: K_n$. Положим $\bigcap\limits_{n=1}^{\infty} K_n =: E_{\varepsilon}$. Рассмотрим $\mu ([a,b] \backslash E_{\varepsilon}) = \mu(\bigcup\limits_{n=1}^{\infty}([a,b] \backslash K_n)) \leqslant \sum\limits_{n=1}^{\infty}\mu([a,b]\backslash K_n) = \sum\limits_{n=1}^{\infty} \sum\limits_{k=1}^{K_n}\mu(I_{n,k}\backslash F_{n,k}) \leqslant \sum\limits_{n=1}^{\infty}\varepsilon\cdot 2^{-n-1}=\dfrac{\varepsilon}{2}<\varepsilon$.
+
+$h_n \rightrightarrows f$ на $E_{\varepsilon}$, заметим $h_n \text{ на } K_n$ непрерывна. Почему это так? $K_n$ - это конечное объединение замкнутых множеств, и на каждом из этих множеств функция постоянная. Непрерывность означает $\forall x_0 \in K_n, \{x_m\}\subset K_n,$ ${ \lim\limits_{m\to\infty}x_m = x_0}, \lim\limits_{m\to\infty}h_n(x_m)=h_n(x_0).$ Пусть $x_0 \in K_n \Rightarrow \exists !\ k : x_0 \in F_{n, k} \Rightarrow \exists\ M\  \forall m > M\ \ x_m \in F_{n,k}$, и еще $h_n$ постоянная на $F_{n,k} \Rightarrow h_n(x_m)=h_n(x_0)$, что доказывает непрерывность $h_n$ на $K_n$. Значит $h_n$ непрерывно на $E_{\varepsilon}$. Мы имеем последовательность непрерывных на замкнутом множестве функций, такую что на этом множестве она равномерно сходится, тогда по следствию из теоремы о предельном переходе в равномерно сходящихся последовательностях $h_n \rightrightarrows$ к непрерывной на $E_{\varepsilon}$ функции. Для завершения доказательства осталось установить, что функцию непрерывную на замкнутом подмножестве $[a,b]$ можем продолжить до непрерывной на все отрезке $[a,b]$. Введем $\alpha := \inf\limits_{x\in E_\varepsilon}x,\ \beta := \sup\limits_{x\in E_\varepsilon}x$. В силу замкнутости $\alpha, \beta \in E_\varepsilon$.
+\begin{equation*}
+\varphi (x) := \begin{cases}
+f(x),\ x\in E_\varepsilon\\
+f(\alpha),\ x \in [a,\alpha)\\
+f(\beta),\ x \in (\beta, b]\\
+\text{линейна на каждом }(\lambda_i, \mu_i) (\text{с непрерывностью в }\lambda_i, \mu_i),
+\end{cases}
+\end{equation*}
+где $[\alpha, \beta]\backslash E_\varepsilon = (\alpha, \beta)\backslash E_\varepsilon = (\alpha, \beta)\cap(\R \backslash E_\varepsilon)=\bigsqcup\limits_{i=1}^\infty(\lambda_i, \mu_i)$. Осталось доказать, что $\varphi (x)$ непрерывная на $[a,b].$
+
+Возьмем произвольное $x_0 \in [a,b], \{x_m\}\subset [a,b], \lim\limits_{m\to\infty}x_m=x_0 \overset{?}{\Rightarrow} \lim\limits_{m\to\infty}\varphi (x_m)=\varphi (x_0)$. В каких случаях это не тривиально? 
+\begin{equation*}
+\begin{cases}
+ x_0 \in E_\varepsilon\text{ - не является правым концом } (\lambda_i, \mu_i) \\
+ x_1 < x_2 < \ldots \notin E_\varepsilon
+\end{cases}
+\end{equation*}
+Тогда $x1,\ldots, x_{n_1} \in (\lambda_1, \mu_1),\newline x_{n_1+1}, \ldots, x_{n_2} \in (\lambda_2, \mu_2)$ и т. д. Но значения $\varphi$ в этих точках находится между $(\varphi(\lambda_i),\varphi( \mu_i)).$ Так как $\{x_m\}$ стремится к $x_0$, то соответствующие $\lambda$ и $\mu$ тоже стремятся к $x_0$, и по теореме о трех силовиках $\varphi(x)$ стремится к $\varphi(x_0)$
+
+Теперь докажем теорему без предположения об ограниченности $f(x)$. Рассмотрим множества $A_k:=\{x\in [a,b]: |f(x)|>k \}$. Из такого определения следует, что $A_1 \supset A_2 \supset \ldots$ Тогда $\lim\limits_{k\to\infty} A_k=\bigcap\limits_{k=1}^{\infty}A_k={\{x\in [a,b]: | f(x) | =+\infty\},}\ \mu(\bigcap\limits_{k=1}^{\infty}A_k=0) \Rightarrow \lim\limits_{k\to\infty}\mu (A_k)=0$. Раз предел некоторой числовой последовательности равен 0, то $(\forall \varepsilon >0)(\exists k_0)\ \mu (A_k)<\dfrac{\varepsilon}{2}$. Положим 
+\begin{equation*}\label{key}
+    g(x):=\begin{cases}
+    f(x), x\in [a,b]\backslash A_{k_0}\\
+    k_0, x \in A_{k_0}
+    \end{cases}
+\end{equation*}
+Тогда $\mu (x\in [a,b]:f(x)=g(x))=(b-a)-\mu(A_{k_0})$. Функция $g(x)$ измеримая и ограниченная, значит по-доказанному мы можем выбрать $E_\varepsilon$ и функцию $\varphi(x)$ такие, что ${\mu ([a,b]\backslash E\varepsilon)<\dfrac{\varepsilon}{2} }$ $(\forall x \in E_\varepsilon)\ \varphi(x)=g(x) \Rightarrow \varphi(x) = f(x)\  \forall x \in E_\varepsilon \cap ([a,b]\backslash A_{k_0})$. Значит $\mu([a,b]\backslash(E_\varepsilon\cap([a,b]\backslash A_{k_0})))=$ $\mu(([a,b]\backslash E\varepsilon)\cup A_{k_0})\leqslant \mu([a,b]\backslash E_\varepsilon)+\mu(a_{k_0})<\varepsilon.$
+
+\end{proof}

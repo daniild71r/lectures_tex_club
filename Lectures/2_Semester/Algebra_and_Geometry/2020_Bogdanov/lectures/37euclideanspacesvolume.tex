@@ -1,0 +1,57 @@
+\subsection{Объем в евклидовых пространствах}
+
+\textbf{В данном разделе} будем считать, что $V$ "--- евклидово пространство.
+
+\begin{definition}
+	\textit{$k$-мерным объемом} системы $(\overline{v_1}, \dots, \overline{v_k})$ векторов из $V$ называется величина $V_k(\overline{v_1}, \dots, \overline{v_k})$, определяемая индуктивно:
+	\begin{itemize}
+		\item Если $k = 1$, то $V_1(\overline{v_1}) := ||\overline{v_1}||$
+		\item Если $k \ge 2$, то $V_k(\overline{v_1}, \dots, \overline{v_k}) := V_{k - 1}(\overline{v_1}, \dots, \overline{v_{k - 1}})\rho(\overline{v_k}, \langle\overline{v_1}, \dots, \overline{v_{k - 1}}\rangle)$
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}
+	Пусть $\overline{v_1}, \dots, \overline{v_k} \in V$, $\Gamma := \Gamma(\overline{v_1}, \dots, \overline{v_k})$. Тогда $V_k(\overline{v_1}, \dots, \overline{v_k}) = \sqrt{\det{\Gamma}}$.
+\end{theorem}
+
+\begin{proof}
+	Если система $(\overline{v_1}, \dots, \overline{v_k})$ линейно зависима, то $\det{\Gamma} = 0$, но при этом $\exists i \in \{1, \dots, k\}: \overline{v_i} \hm{\in} \langle\overline{v_1}, \dots, \overline{v_{i - 1}}\rangle$, тогда $V_i(\overline{v_1}, \dots, \overline{v_i}) = 0$, и потому все последующие объемы также равны нулю. Если же система $(\overline{v_1}, \dots, \overline{v_k})$ линейно независима, то она образует базис в $U := \langle\overline{v_1}, \dots, \overline{v_k}\rangle$. Применим метод Грама-Шмидта к данному базису и получим ортогональный базис $(\overline{e_1}, \dots, \overline{e_k})$ такой, что $(\overline{e_1}, \dots, \overline{e_k}) = (\overline{v_1}, \dots, \overline{v_k})S$, где матрица перехода $S$ "--- верхнетреугольная с единицами на главной диагонали. Тогда $\det{\Gamma(\overline{e_1}, \dotsc, \overline{e_k})} \hm{=} \det{\Gamma}(\det{S})^2 = \det{\Gamma}$, откуда:
+	\begin{multline*}
+		V_k(\overline{e_1}, \dots, \overline{e_k}) = V_1(\overline{e_1})\rho(\overline{e_2}, \langle\overline{e_1}\rangle)\dots \rho(\overline{e_k}, \langle\overline{e_1}, \dots, \overline{e_{k - 1}}\rangle) =
+		\\
+		= ||\overline{e_1}||\dots||\overline{e_k}|| = \sqrt{\det{\Gamma(\overline{e_1}, \dotsc, \overline{e_k})}} = \sqrt{\det{\Gamma}}
+	\end{multline*}
+	
+	Остается проверить по индукции, что $\forall i \in \{1, \dots, k\}: V_i(\overline{e_1}, \dots, \overline{e_i}) = V_i(\overline{v_1}, \dots, \overline{v_i})$. База, $i = 1$, тривиальна. Пусть теперь $i \ge 2$, тогда:
+	\begin{multline*}
+		V_i(\overline{e_1}, \dots, \overline{e_i}) = V_{i - 1}(\overline{e_1}, \dots, \overline{e_{i - 1}})\rho(\overline{e_i}, \langle\overline{e_1}, \dots, \overline{e_{i - 1}}\rangle) =\\
+		= V_{i - 1}(\overline{v_1}, \dots, \overline{v_{i - 1}})\rho\left(\overline{v_i}, \langle\overline{e_1}, \dots, \overline{e_{i - 1}}\rangle\right) = V_i(\overline{v_1}, \dots, \overline{v_i})
+	\end{multline*}
+	
+	Таким образом, переход доказан, и $V_k(\overline{v_1}, \dots, \overline{v_k}) = \sqrt{\det{\Gamma}}$.
+\end{proof}
+
+\begin{corollary}
+	$k$-мерный объем системы векторов не зависит от перестановки векторов.
+\end{corollary}
+
+\begin{corollary}
+	Пусть $\overline{v_1}, \dotsc, \overline{v_k} \in V, (\overline{u_1}, \dots, \overline{u_k}) = (\overline{v_1}, \dots, \overline{v_k})S$. Тогда выполнено равенство $V_k(\overline{u_1}, \dots, \overline{u_k}) \hm{=} V_k(\overline{v_1}, \dots, \overline{v_k})|\det{S}|$.
+\end{corollary}
+
+\begin{proof}
+	Извлекая из равенства $\det{\Gamma(\overline{u_1}, \dots, \overline{u_k})} \hm{=} \det{\Gamma(\overline{v_1}, \dots, \overline{v_k})}(\det{S})^2$, получаем требуемое по теореме выше.
+\end{proof}
+
+\begin{corollary}
+	Пусть система $(\overline{e_1}, \dots, \overline{e_n})$ векторов из $V$ образует ортонормированный базис в $\gl\overline{e_1}, \dots, \overline{e_n}\gr$, $(\overline{v_1}, \dots, \overline{v_n}) \hm= (\overline{e_1}, \dots, \overline{e_k})S$. Тогда $V_n(\overline{v_1}, \dots, \overline{v_n}) = |\det{S}|$.
+\end{corollary}
+
+\begin{corollary}
+	Пусть система $(\overline{u_1}, \dots, \overline{u_k})$ векторов из $V$ линейно независима, $\overline{v} \in V$. Тогда:
+	\[\rho(\overline{v}, \langle\overline{u_1}, \dots, \overline{u_k}\rangle) = \frac{V_{k + 1}(\overline{u_1}, \dots, \overline{u_k}, \overline{v})}{V_{k}(\overline{u_1}, \dots, \overline{u_k})} = \sqrt{\frac{\det{\Gamma(\overline{u_1}, \dots, \overline{u_k}, \overline{v})}}{\det{\Gamma(\overline{u_1}, \dots, \overline{u_k})}}}\]
+\end{corollary}
+
+\begin{definition}
+	Евклидово пространство $V$ называется \textit{ориентированным}, если в нем выделен некоторый ортонормированный базис $(\overline{e_1}, \dots, \overline{e_n})$. Тогда базис $(\overline{f_1}, \dots, \overline{f_n}) \hm= (\overline{e_1}, \dots, \overline{e_n})S$ называется \textit{положительно ориентированным}, если $\det{S} > 0$, и \textit{отрицательно ориентированным}, если $\det{S} < 0$. \textit{Ориентированным объемом} системы $(\overline{f_1}, \dots, \overline{f_n}) \hm= (\overline{e_1}, \dots, \overline{e_n})S$ называется величина $V_n(\overline{v_1}, \dots, \overline{v_n})\cdot\sgn\det{S}$.
+\end{definition}

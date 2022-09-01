@@ -1,0 +1,37 @@
+\setcounter{section}{87}
+\section{Распределение простых чисел в натуральном ряде. Функции $\pi(x), \theta(x), \psi(x)$. Теорема Чебышёва (верхняя оценка)}
+
+$\pi(x) =  \sum\limits_{p <=x} 1$\\ \\
+$\theta(x) = \sum\limits_{p <=x} ln(p)$\\ \\
+$\psi(x) = \sum\limits_{(p,\alpha): p^{\alpha} <=x} ln(p)$\\ \\ \\
+
+\textbf{Теорема Чебышева}\\
+$\exists x_0: \ \forall x\geq x_0$ выполнено: \\
+$\ln2 * \frac{x}{ln x} \leq \pi(x) \leq 4ln2 \frac{x}{ln x} \\ \\ \blacktriangle$ Введем $\lambda_1 = \overline{\underset{x->\infty}{lim}} \frac{\theta(x)}{x}, \ \lambda_2 = \overline{\underset{x->\infty}{lim}} \frac{\psi(x)}{x}, \ \lambda_3 = \overline{\underset{x->\infty}{lim}} \frac{\pi(x)}{\frac{x}{ln x}}$. Аналогично определим $\mu_1, \mu_2, \mu_3$ \\ $\mu_1 = \underset{x->\infty}{\underline{lim}} \frac{\theta(x)}{x}, \ \mu_2 = \underset{x->\infty}{\underline{lim}} \frac{\psi(x)}{x}, \ \mu_3 = \underset{x->\infty}{\underline{lim}} \frac{\pi(x)}{\frac{x}{ln x}}$ \\
+\\
+\\
+\textit{Лемма}\\
+$\lambda_1 = \lambda_2 = \lambda_3, \ \mu_1 = \mu_2 = \mu_3 \ \\ \blacktriangle \ \lambda_1 \leq \lambda_2$ - очевидно. Зафиксируем p. $\alpha: p^{\alpha} \leq x, [log_p(x)] = [\frac{ln(x)}{ln(p)}]; \ \ \psi(x) = \sum\limits_{(p,\alpha): p^{\alpha} <=x} ln(p) = \sum\limits_{p \leq x} [\frac{ln(x)}{ln(p)}] ln(p)\leq \sum\limits_{p \leq x} ln(x) = ln(x)\sum\limits_{p \leq x} 1 = \pi(x)*ln(x) \Longrightarrow \frac{\psi(x)}{x} \leq \frac{\pi(x) ln(x)}{x} =  \frac{\pi(x)}{\frac{x}{ln x}} \Longrightarrow \lambda_2 \leq \lambda_3$ \\ Осталось показать, что $\lambda_1 \geq \lambda_3$. \ $\theta(x) = \sum\limits_{p <=x} ln(p) \geq \sum\limits_{x^{\gamma} < p <= x} ln(p), \ \gamma \in (0,1)$, $ > \sum\limits_{x^{\gamma} < p <= x} ln(x^{\gamma}) = \gamma ln(x) \sum\limits_{x^{\gamma} < p <= x} 1 = \gamma ln(x)(\pi(x) - \pi(x^{\gamma})) \geq \gamma ln(x) (\pi(x) - x^{\gamma}) \Longrightarrow \frac{\theta(x)}{x} \geq \gamma(\frac{\pi(x)}{\frac{x}{ln x}}  - \frac{x^{\gamma}}{x}*ln(x)) \Longrightarrow \lambda_1 \geq \gamma \lambda_3 \Longrightarrow \lambda_1 \geq \lambda_3 \ $Для $\mu_i$ доказывается аналогично, но в конце переходим к нижнему пределу, а не к верхнему$ \blacksquare$
+
+Теперь начинаем доказывать Теорему Чебышева. Рассмотрим $C_{2n}^n < 2^{2n};  \ C_{2n}^n = \frac{(2n)!}{n!n!} \geq \prod\limits_{n < p \leq 2n } p \Longrightarrow \prod\limits_{n < p \leq 2n } p < 2^{2n}$. Прологарифмируем это по натуральному основанию. Получим:\\
+$\prod\limits_{n < p \leq 2n } ln(p) < 2n ln 2 \Longrightarrow \theta(2n) - \theta(n) < 2n ln 2$. Просуммируем правую и левую части выражения по степеням двойки. То есть пробежимся по всем n = $1,2,4, ..., 2^k$. Получим \\ $\theta(2^{k+1}) < 2^{k+2} ln 2$\\
+Теперь рассмотрим произвольный x. \\Очевидно, что для каждого такого х $\exists !k : 2^k \leq x < 2^{k+1} \Longrightarrow \theta(x) \leq \theta(2^{k+1}) < 2^{k+2}ln 2 \leq 4x ln 2 \Longrightarrow \frac{\theta(x)}{x} \leq 4 ln 2 \Longrightarrow \lambda_1 \leq 4 ln 2 \Longrightarrow \lambda_3 \leq 4 ln 2 \Longrightarrow \pi(x) \leq (4ln 2 + \epsilon)\frac{x}{ln x}$
+\\
+\\
+Верхняя оценка доказана!
+
+\section{Распределение простых чисел в натуральном ряде. Функции $\pi(x), \theta(x), \psi(x)$. Теорема Чебышёва (нижняя оценка)}
+
+Теперь докажем нижнюю оценку..
+\\
+$C_{2n}^n > \frac{2^{2n}}{2n +1}; (C_{2n}^0 + C_{2n}^1 + ...+ C_{2n}^n +... + C_{2n}^2n = 2^{2n}, C_{2n}^n - $ самое большое слагаемое)
+\\
+$C_{2n}^n = \frac{(2n)!}{n!n!}  = \prod\limits_{p \leq 2n} p^{[\frac{2n}{p}] +[\frac{2n}{p^2}] + .... - 2([\frac{n}{p}]) + [\frac{n}{p^2}] + ...} = \prod\limits_{p \leq 2n} p^{([\frac{2n}{p}] - 2[\frac{n}{p}]) +([\frac{2n}{p^2}] - 2[\frac{n}{p^2}]) + ...} \\ \\$ Заметим, что $[2x] - 2[x] \leq 1 \Longrightarrow \leq \prod\limits_{p \leq 2n} p^{[log_p(2n)]} = \prod\limits_{p \leq 2n}p^{[\frac{ln(2n)}{ln(p)}]} \\ \\ \frac{2^{2n}}{2n +1} < \prod\limits_{p \leq 2n} p^{[\frac{ln(2n)}{ln(p)}]}$ 
+\\
+Логарифмируем по натруральному основанию. Получаем:\\
+$2n ln( 2) - ln(2n + 1) < \sum\limits_{p \leq 2n} ln (p) * [\frac{ln(2n)}{ln(p)}] = \psi(2n)$
+\\
+Как и в предыдущих рассуждениях, берем произвольный х, $x \in [2n, 2n+2) \\ \psi(x) \geq \psi(2n) > 2n ln(2) - ln(2n+1) > (x-2)ln(2) - ln(x+1) \Longrightarrow \frac{\psi(x)}{x} > ln(2) - \frac{2ln(2)}{x} - \frac{ln(x+1)}{x}$. И переходим к нижнему пределу:\\
+$\mu_2 \geq ln(2) \Longrightarrow \mu_3 \geq ln(2) \Longrightarrow \pi(x) \geq (ln(2) - \epsilon)\frac{x}{ln(x)})$
+\\
+\\Ура!$\blacksquare$

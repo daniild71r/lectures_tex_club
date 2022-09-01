@@ -1,0 +1,281 @@
+\newpage
+\lecture{8}{Дискретные цепи Маркова}
+\section{Марковские процессы}
+\subsection{Марковские процессы}
+Динамические системы~--- системы, будущие состояния которых определяются лишь
+текущим.
+\begin{Def}
+    Случайный процесс $\{X(t), \ t \in T\}$ называется \textbf{марковским},
+    если
+    \begin{align*}
+      & \forall n \geq 2, \ \forall t_1 < t_2 < \dots < t_n \in T, \ \forall X_1, \dots, X_n, \ \forall \cB \ \PP\left( X(t_{n+1}) \in\cB \mid X(t_n) = X_n, \right. \\
+      & \left. X(T_{n-1}) = X_{n-1}, \dots, X(t_1) = X_1 \right) = \PP\left( X(t_{n+1}) \in\cB \mid X(t_n) = X_n \right)
+    \end{align*}
+    (для которых вероятности существуют).
+\end{Def}
+Говорят, что верхняя условная вероятность равна нижней; будущее при
+фиксированном настоящем не зависит от прошлого.
+\begin{theorem} (без доказательства)
+    \\
+    Всякий процесс с независимыми приращениями марковский.
+\end{theorem}
+\begin{corollary}
+    Винеровский, пуассоновский процессы, случайные блуждания есть марковские процессы.
+\end{corollary}
+\begin{Note}
+    Из марковости не следует независимость приращений.
+\end{Note}
+\subsection{Классификация марковских процессов}
+\begin{Def}
+    $S$~--- \textbf{множество состояний}.
+\end{Def}
+\begin{Def}
+    $T$~--- \textbf{множество времён}.
+\end{Def}
+\textbf{Классы марковских процессов}
+\begin{enumerate}
+    \item Дискретное $S$, дискретное $T$~--- дискретные цепи Маркова;
+    \item Дискретное $S$, непрерывное $T$~--- непрерывные цепи Маркова;
+    \item Непрерывное $S$, дискретное $T$
+    \item Непрерывное $S$, непрерывное $T$
+\end{enumerate}
+\begin{example}
+    Винеровский процесс есть дискретная марковская цепь, пуассоновский~---
+    непрерывная, случайное блуждание~--- третий тип.
+\end{example}
+\section{Дискретные цепи Маркова}
+\subsection{Дискретные цепи Маркова}
+\begin{Def}
+    Марковский процесс с дискретным $S \subseteq \ZZ$ и счетным $T = \NN_0$
+    называется \textbf{дискретной марковской цепью}.
+\end{Def}
+\begin{Def}
+    Случайная последовательность
+    \begin{align*}
+      \{x_k\}_{k=1}^\infty, \ \forall k \ x_k \in S \subseteq \ZZ, \ \left| S \right|\leq \infty
+    \end{align*}
+    со свойством
+    \begin{align*}
+      & \forall n \geq 1, \ \forall m_0 < m_1 < \dots < m_n \ \PP\left( X_{m_n} = x_n \mid X_{m_{n-1}} = x_{n-1}, \dots, X_{m_0} = x_0 \right) = \\
+      & = \PP\left( X_{m_n} = x_n \mid X_{m_{n-1}} = x_{n-1}\right)
+    \end{align*}
+    где эти вероятности определены, называется \textbf{дискретной марковской
+      цепью (ДМЦ)}.
+\end{Def}
+\begin{Def}
+    Если состояний конечное число, то ДМЦ называется \textbf{конечной}, иначе \textbf{счетной}.
+\end{Def}
+\begin{Note}
+    Свойство из определения $10.2$ равносильно свойству
+    \begin{align*}
+      & \forall n \geq 1 \ \PP\left( X_{n} = x_n \mid X_{n-1} = x_{n-1}, \dots, X_{0} = x_0 \right) = \PP\left( X_{n} = x_n \mid X_{n-1} = x_{n-1} \right)
+    \end{align*}  
+\end{Note}
+\begin{Def}
+    \textbf{Траектория} марковской цепи~--- последовательность её состояний.
+    $X_n$~--- состояние цепи в момент $n$, запись $\{X_n = j\}$ читается как
+    <<на шаге $n$ цепь находится в состоянии $j$>>.
+\end{Def}
+\begin{Def}
+    \textbf{Стохастический граф}~--- граф, вершины которого есть состояния, а
+    ребра~--- переходы (с некоторыми вероятностями).
+\end{Def}
+\subsection{Конечномерные распределения}
+Пусть
+\begin{align*}
+  & m_0 < m_1 < \dots < m_n \\
+  & x_0, x_1, \dots, x_n
+\end{align*}
+и для вектора
+\begin{align*}
+  & \left( X_{m_0}, X_{m_1}, \dots, X_{m_n} \right)
+\end{align*}
+запишем функцию вероятности
+\begin{align*}
+  & \PP \left( X_{m_0}=x_0, X_{m_1}=x_1, \dots, X_{m_n}=x_n \right) = \PP\left( X_{m_n} = x_n \mid X_{m_{n-1}} = x_{n-1}, \dots, X_{m_0} = x_0 \right)\cdot \\
+  & \cdot \PP\left( X_{m_{n-1}} = x_{n-1}, \dots, X_{m_0} = x_0 \right) = \PP\left( X_{m_n} = x_n \mid X_{m_{n-1}} = x_{n-1}\right)\PP\left( X_{m_{n-1}} = x_{n-1}, \dots, \right. \\
+  & \left. X_{m_0} = x_0 \right) = \dots = \PP\left( X_{m_0} = x_0 \right) \prod_{k=1}^n \PP\left( X_{m_k} = x_{k} \mid X_{m_{k-1}} = x_{k-1} \right)
+\end{align*}
+\begin{Def}
+    Вероятность
+    \begin{align*}
+      & p_{ij}(m,n) = \PP \left( X_n=j \mid X_{m} = i\right)
+    \end{align*}
+    назовем \textbf{вероятностью перехода из из состояния $i$ в момент $m$ в
+      состояние $j$ в момент $n$} ($m \leq n$).
+\end{Def}
+\begin{Def}
+    Матрица
+    \begin{align*}
+      & P(m,n) = \left| \left| \begin{matrix} p_{ij}(m,n) \end{matrix} \right| \right|
+    \end{align*}
+    называется \textbf{матрицей перехода цепи от момента $m$ к моменту $n$} ($m \leq n$).
+\end{Def}
+\begin{example}
+    Пусть цепь с состояниями
+    \begin{align*}
+      & S = \{1, 2, \dots, N\}, \ N < \infty
+    \end{align*}
+    и матрицей переходов
+    \begin{align*}
+      & P(m,n) = \left[ \begin{matrix}
+              p_{11}(m,n) & p_{12}(m,n) & \dots & p_{1N}(m,n) \\
+              p_{21}(m,n) & p_{22}(m,n) & \dots & p_{2N}(m,n) \\
+              \dots & \dots & \dots & \dots \\
+              p_{N1}(m,n) & p_{N2}(m,n) & \dots & p_{NN}(m,n) \\
+          \end{matrix} \right]
+    \end{align*}
+\end{example}
+\begin{Note}
+    Для всякой цепи Маркова
+    \begin{align*}
+      & \sum_{j \in S} \PP \left( X_n = j \mid X_{m}=i \right) =1
+    \end{align*}
+    что равносильно
+    \begin{align*}
+      & \sum_{j \in S} p_{ij} = 1
+    \end{align*}   
+\end{Note}
+\begin{Def}
+    Матрицы вида
+    \begin{align*}
+      & P(m,n) = \left[ \begin{matrix}
+              p_{11}(m,n) & p_{12}(m,n) & \dots & p_{1N}(m,n) \\
+              p_{21}(m,n) & p_{22}(m,n) & \dots & p_{2N}(m,n) \\
+              \dots & \dots & \dots & \dots \\
+              p_{N1}(m,n) & p_{N2}(m,n) & \dots & p_{NN}(m,n) \\
+          \end{matrix} \right]
+    \end{align*}
+    у которых
+    \begin{align*}
+      & \sum_{j \in S} p_{ij} = 1
+    \end{align*}   
+    \begin{align*}
+      & \forall i, j \ p_{ij} \in [0;1]
+    \end{align*}
+    называются \textbf{стохастическими матрицами}.
+\end{Def}
+\begin{theorem} Уравнение Колмогорова-Чепмена
+    \\
+    Для любых $n \geq k \geq m \geq 0$ выполняется
+    \begin{align*}
+      & P(m,n) = P(m,k)P(k,n) \Leftrightarrow p_{ij}(m,n) = \sum_{l \in S}p_{il}(m,k)p_{lj}(k,n)
+    \end{align*}
+\end{theorem}
+\begin{Proof}
+    По формуле полной вероятности
+    \begin{align*}
+      & p_{ij}(m,n) = \PP\left( X_n = j \mid X_m = i \right) = \sum_{l \in S}\PP\left( X_n = j \mid X_m = i, X_k = l \right)\PP\left( X_k = l \mid X_m = i \right) = \\
+      & = \sum_{l \in S}\PP\left( X_n = j \mid X_k = l \right)\PP\left( X_k = l \mid X_m = i \right) = \sum_{l \in S} p_{il}(m,k)p_{lj}(k,n)
+    \end{align*}
+\end{Proof}
+\begin{corollary}
+     \begin{align*}
+      & P(0,n) = P(0,1)P(1,n) = \dots = P(0,1)P(1,2)\dots P(n-1,n)
+    \end{align*}  
+\end{corollary}
+\begin{Def}
+    Вероятность $\pi_k(n) = \PP\{X_n = k\}$ называется \textbf{вероятностью
+      состояния $k$ в момент $n$}.
+\end{Def}
+\begin{Def}
+    Вектор $\pi(n) = \left[ \pi_0(n), \pi_1(n), \dots \right]^T$ называется
+    \textbf{распределением вероятностей состояний в момент $n$}.
+\end{Def}
+\begin{theorem}
+    \begin{align*}
+      & \pi(n) = P(n-1,n)\pi(n-1)
+    \end{align*}
+\end{theorem}
+\begin{Proof}
+    \begin{align*}
+      & \PP\{X_n=k\} = \sum_{j \in S}\{X_n-k \mid X_{n-1}=j\}\PP\{X_{n-1}=j\} = \sum_{j \in S}p_{jk}(n-1,n)\pi_{j}(n-1) = \pi_k(n)
+    \end{align*}
+\end{Proof}
+\subsection{Однородные цепи Маркова}
+\begin{Def}
+    Если
+    \begin{align*}
+      & \forall n\geq m, \ \forall k \ P(m,n) = P(m+k, n+k)
+    \end{align*}
+    то цепь Маркова называется \textbf{однородной}, иначе \textbf{неоднородной}.
+\end{Def}
+\begin{Des}
+    Введем обозначение
+    \begin{align*}
+      & P(m,n) = P(0, n-m) \Rightarrow P(0,n) = P(n)
+    \end{align*}
+\end{Des}
+\begin{theorem} Уравнение Колмогорова-Чепмена
+    \\
+    Для любых $n \geq m \geq 0$ выполняется
+    \begin{align*}
+      & P(n) = P(n-m)P(m) \Leftrightarrow p_{ij}(n) = \sum_{l \in S}p_{il}(n-m)p_{lj}(m)
+    \end{align*}
+\end{theorem}
+\begin{corollary}
+    \begin{align*}
+      & P\left( \sum_{i=1}^m n_i \right) = \prod_{i=1}^m P(n_i) \Leftrightarrow p_{ij}\left( \sum_{i=1}^m n_i \right) = \sum_{k_1 \in S}\dots \sum_{k_m \in S} p_{ik_1}(n_1)\dots p_{k_m j}(n_m)
+    \end{align*}
+\end{corollary}
+\begin{Note}
+    \begin{align*}
+      & \forall \forall p_{ij}\left( \sum_{i=1}^m n_i \right) \geq p_{ik_1}(n_1)\dots p_{k_m j}(n_m)
+    \end{align*}
+\end{Note}
+\begin{Des}
+    Введем обозначение
+    \begin{align*}
+      & P(n-1,n) = P(1) = P
+    \end{align*}
+\end{Des}
+Тогда
+\begin{theorem}
+    \begin{align*}
+      & P(n) = P(1)^n = P^n \Rightarrow \pi(n) = \pi(0)\left( P^T \right)^n
+    \end{align*}
+\end{theorem}
+Всё, что происходит в однородной цепи, определяется $\pi(0)$ и $P$.
+\begin{Note}
+    $P$~--- стохастическая матрица, и $n$-я степень стохастической матрицы также
+    стохастическая матрица.
+\end{Note}
+\begin{theorem} существования (без доказательства)
+    \\
+    Пусть дано счетное $S$, последовательность $\pi_k$ и стохастическая матрица
+    $P$. Тогда существует вероятностное пространство и определенная на нем цепь
+    Маркова с множеством состояний $S$, начальным распределением $\pi_k =
+    \pi_k(0)$ и матрицей переходов за один шаг $P$.
+\end{theorem}
+\begin{Note}
+    Конечное множество легко получить, добив с некоторого номера
+    последовательность нулями.
+\end{Note}
+\begin{example}
+    Стохастическому графу
+    \\
+    соответствует матрица переходов
+    \begin{align*}
+      & P = \left[ \begin{matrix}
+              1/2 & 1/2 \\
+              1 & 0
+          \end{matrix} \right]
+    \end{align*}
+    \begin{align*}
+      & P(2) = P^2 = \left[ \begin{matrix}
+              1/2 & 1/2 \\
+              1 & 0
+          \end{matrix} \right]^2 = \left[ \begin{matrix}
+              3/4 & 1/4 \\
+              1/2 & 1/2
+          \end{matrix} \right] \Rightarrow p_{00}(2) = \frac{3}{4}, \ p_{01}(2) = \frac{1}{4}, p_{10}(2) = \frac{1}{2}, p_{11}(2) = \frac{1}{2}
+    \end{align*}
+    Всё зависит от начального распределения. Допустим,
+    \begin{align*}
+      & \pi(0) = \left[ 1,0 \right]^T
+    \end{align*}
+    Тогда
+    \begin{align*}
+      & \pi(1) = P^T\pi(0) = \left[ \frac{1}{2},\frac{1}{2} \right]^T
+    \end{align*}  
+\end{example}

@@ -1,0 +1,207 @@
+% \newpage
+\lecture{2}{Моментные функции и пуассоновский процесс}
+\section{Моментные функции случайных процессов}
+\begin{Def}
+    \textbf{Математическим ожиданием} случайного процесса $\left\{\xi(t), \ t \in T\right\}$ называется функция $m_\xi: T \mapsto \RR$, такая, что
+    \begin{align*}
+      & \forall t \in T \ m_\xi(t) = \EE \xi(t)
+    \end{align*}
+    \begin{align*}
+      & m_\xi(t) = \int xdF_\xi(x,t)
+    \end{align*}
+    В дискретном случае этот интеграл приобретает вид
+    \begin{align*}
+      & m_\xi(t) = \sum_i x_i \PP\left(\xi \mid t\right)
+    \end{align*}
+    а в непрерывном
+    \begin{align*}
+      & m_\xi(t) = \int_\RR xf_\xi(x,t) dx
+    \end{align*}
+\end{Def}
+\begin{Def}
+    \textbf{Корреляционной функцией} случайного процесса $\left\{\xi(t), \ t \in T\right\}$ называется функция $R_\xi: T\times T \mapsto \RR$, такая, что
+    \begin{align*}
+      & \forall t_1, t_2 \in T \ R_\xi(t_1, t_2) = \cov(\xi(t_1), \xi(t_2) = \EE \cent{\xi}(t_1)\cent{\xi}(t_2) = \EE \left(\xi(t_1) - \EE \xi(t_1)\right)\left(\xi(t_2) - \EE \xi(t_2)\right) = \\
+      & = \EE \xi(t_1)\xi(t_2) - \EE \xi(t_1) \EE \xi(t_2)
+    \end{align*}
+\end{Def}
+\begin{Def}
+    \textbf{Ковариационной функцией} случайного процесса $\left\{\xi(t), \ t \in T\right\}$ называется функция $K_\xi: T\times T \mapsto \RR$, такая, что
+    \begin{align*}
+      & \forall t_1, t_2 \in T \ K_\xi(t_1, t_2) = \EE \xi(t_1)\xi(t_2)
+    \end{align*}
+\end{Def}
+Эти две функции связаны между собой:
+\begin{align*}
+  & R_\xi(t_1, t_2) = K_\xi(t_1, t_2) - m_\xi(t_1)m_\xi(t_2)
+\end{align*}
+Также они могут быть выражены в терминах многомерной функции распределения:
+\begin{align*}
+  & R_\xi(t_1, t_2) = \int_{\RR} (x-m_\xi(t_1))(y-m_\xi(t_2))dF_\xi(x,y;t_1,t_2)
+\end{align*}
+\begin{align*}
+  & K_\xi(t_1, t_2) = \int_{\RR} xy dF_\xi(x,y;t_1,t_2)
+\end{align*}
+\begin{Def}
+    \textbf{Дисперсией} случайного процесса $\left\{\xi(t), \ t \in T\right\}$ называется функция $D_\xi: T \mapsto \RR$, такая, что
+    \begin{align*}
+      & D_\xi(t) = \EE \cent{\xi}^2(t) = \EE \left(\xi(t) - \EE \xi(t)\right)^2 = \EE \xi^2(t) - \EE^2 \xi(t)
+    \end{align*}
+\end{Def}
+Корреляционная функция имеет следующие свойства:
+\begin{itemize}
+    \item $R_\xi(t,t) = D_\xi(t) \geq 0$
+    \item $R_\xi(t_1,t_2) = R_\xi(t_2,t_2)$
+    \item $\left|R_\xi(t_1,t_2)\right|\leq \sqrt{D\xi(t_1)D_\xi(t_2)}$
+\end{itemize}
+\begin{Def}
+    \textbf{Взаимной корреляционной функцией} случайных процессов $\left\{\xi(t), \ t \in T\right\}$ и $\left\{\eta(t), \ t \in T\right\}$ называется функция $R_{\xi, \eta}: T\times T \mapsto \RR$, такая, что
+    \begin{align*}
+      & \forall t_1, t_2 \in T \ R_{\xi, \eta}(t_1, t_2) = \EE \cent{\xi}(t_1)\cent{\eta}(t_2)
+    \end{align*}
+\end{Def}
+\begin{Def}
+    \textbf{Характеристической функцией} случайного процесса $\left\{\xi(t), \ t \in T\right\}$ называется функция
+    \begin{align*}
+      & \varphi_{\xi(t)}(s) = \EE \exp (i s \xi(t)), \ s \in \RR
+    \end{align*}
+\end{Def}
+\section{Пуассоновский процесс}
+\subsection{Пуассоновский процесс}
+Пуассоновский процесс определен на $T = [0; +\infty]$, обозначается как $K(t)$ и
+представляет собой \textit{счетчик событий}.
+\begin{theorem} Пуассона (из теории вероятностей)
+    \\
+    Пусть
+    \begin{align*}
+      & \{\xi_i\}_{i=1}^n, \ \xi_i \in Be(p), \ pn \to \lambda > 0, \ n \to \infty
+    \end{align*}
+    Тогда
+    \begin{align*}
+      & \sum_{i=1}^n\xi_i \to \xi \in Po(\lambda), \ n \to \infty
+    \end{align*}    
+\end{theorem}
+\begin{Def}
+    Случайная функция $\left\{ K(t) \mid t \geq 0 \right\}$ называется
+    \textbf{пуассоновским процессом интенсивности $\lambda$}, если
+    \begin{enumerate}
+        \item $K(0) = 0$ почти наверное;
+        \item $K(t)$~--- процесс с независимыми приращениями;
+        \item $\forall t > s \geq 0$ $K(t) - K(s) \in Po(\lambda(t-s))$
+    \end{enumerate}
+\end{Def}
+\begin{Def}
+    $K(t)$ называется \textbf{процессом с независимыми приращениями}, если
+    \begin{align*}
+      & \forall n \geq 1, \ 0 \leq t_1 \leq t_2 \leq t_n \ K(t_1), K(t_2) - K(t_1), \dots, K(t_n) - K(t_{n-1})
+    \end{align*}
+    независимы в совокупности.
+\end{Def}
+\textbf{Свойства пуассоновского процесса}
+\begin{enumerate}
+    \item Все значения~--- натуральные числа.
+    \item Каждая реализация не убывает.
+    \item $\EE K(t) = \DD K(t) = \lambda t$
+    \item Корреляционная функция
+    \begin{align*}
+      & t > s: \ R_K(t,s) = \EE K(t)K(s) - \EE K(t) \EE K(s) = \EE K(t)K(s) - \lambda^2 ts = \EE(K(t) - K(s))K(s) + \\
+      & + \EE^2K(s) - \lambda^2 ts = \EE(K(t)-K(s))\EE K(s) + \DD K(s) + \EE^2K(s) - \lambda^2 ts = \lambda(t-s)\lambda s+ \lambda s + \\
+      & + (\lambda s)^2 - \lambda^2 ts = \lambda s = K_K(t,s)
+    \end{align*}
+    \begin{align*}
+      & t = s: \ R_K(t,t) = \EE K(t)K(t) - \EE K(t) \EE K(t) = \DD K(t) + \EE^2 K(t) - \EE^2 K(t) = \lambda t = K_K(t,t)
+    \end{align*}
+    \begin{align*}
+      & R_K(t,s) = K_K(t,s) = \lambda \min\{t,s\}
+    \end{align*}  
+\end{enumerate}
+\begin{theorem} Явная конструкция пуассоновского процесса
+    \\
+    Пусть $\{\xi_n\}$~--- последовательность независимых случайных величин с
+    распределением $Exp(\lambda)$. Обозначим
+    \begin{align*}
+      & S_0 = 0, \ S_n = \sum_{i=1}^n \xi_i
+    \end{align*}
+    Введём процесс
+    \begin{align*}
+      & X(t) = \sup \{n \mid S_n \leq t\}
+    \end{align*}
+    Это будет пуассоновский с параметром $\lambda$ процесс.
+\end{theorem}
+\begin{Proof}
+    Рассмотрим случайный вектор $(S_1, \dots, S_n)$.
+    \begin{align*}
+      & \left[ \begin{matrix}
+              S_1 \\
+              \dots \\
+              S_n
+          \end{matrix} \right] =\left[ \begin{matrix}
+              1 & 0 & \dots & 0 \\
+              1 & 1 & \dots & 0 \\
+              \dots & \dots & \dots & \dots \\
+              1 & 1 & \dots & 1
+          \end{matrix} \right] = \left[ \begin{matrix}
+              \xi_1 \\
+              \dots \\
+              \xi_n
+          \end{matrix} \right]
+    \end{align*}
+    \begin{align*}
+      & p_{S_1, \dots, S_n}(x_1, \dots, x_n) = p_{\xi_1, \dots, \xi_n}(x_1, x_2-x_1, \dots, x_n-x_{n-1}) = \prod_{j=1}^n p_{\xi_j} = \prod_{j=1}^n \lambda e^{-\lambda(x_j-x_{j-1})}\chi_{x_{j}\geq x_{j-1}} = \\
+      & = \lambda^n e^{\lambda x_{n}} \chi_{x_n \geq x_{n-1} \geq \dots \geq x_1 \geq 0}
+    \end{align*}
+    Проверим пункты определения.
+    \begin{itemize}
+        \item Равенство нулю почти наверное очевидно следует из построения.
+        \item Докажем теперь независимость в совокупности: покажем выполнимость
+        определения.
+        \begin{align*}
+          & \forall n \geq 1, \ \forall t_1, \dots, t_n, \ \forall k_1, \dots, k_n \in \NN_0 \\
+          & \PP(X(t_n)-X(t_{n-1}) = k_n-k_{n-1}, \dots, X(t_2) - X(t_1) = k_2-k_1, X(t_1) = k_1) = \PP(X(t_n)- \\
+          & - X(t_{n-1}) = k_n-k_{n-1})\dots \PP(X(t_2) - X(t_1) = k_2-k_1) \PP(X(t_1) = k_1)
+        \end{align*}
+        Это значит, что
+        \begin{align*}
+          & S_{k_1} \in [0; t_{1}), S_{k_2} \in [t_1, t_2), \dots, S_{k_n} \in [t_{n-1}, t_n)
+        \end{align*}
+        \begin{align*}
+          & \PP(X(t_n)-X(t_{n-1}) = k_n-k_{n-1})\dots \PP(X(t_2) - X(t_1) = k_2-k_1) \PP(X(t_1) = k_1) = \\
+          & = \PP(S_{k_1} \in [0; t_1)) \dots \PP(S_{k_2} \in [t_1, t_2)) \PP(S_{k_1} \in [0; t_{1})) = \underset{\{x_{k_i+1}, \dots, x_{k_{i+1}}\} \subseteq (t_i, t_{i+1})}{\iint \dots \iint}\lambda^{k_n+1}e^{-\lambda x_{k_n+1}}\cdot \\
+          & \cdot \chi_{0 < x_1 < \dots < x_{k_n+1}}dx_1dx_2\dots dx_{k_n+1} = \int_{t_n}^{\infty} \lambda e^{-\lambda x_{k_n+1}}dx_{k_n+1}\lambda^{k_n} \cdot \\
+          & \cdot\underset{\{x_{k_i+1}, \dots, x_{k_{i+1}}\} \subseteq (t_i, t_{i+1})}{\iint \dots \iint}\chi_{0 < x_1 < \dots < x_{k_n}}dx_1dx_2\dots dx_{k_n} = e^{-\lambda t_{k_n+1}}\lambda^{k_n}\cdot \\
+          & \cdot \prod_{i=1}^n \underset{\{x_{k_i+1}, \dots, x_{k_{i+1}}\} \subseteq (t_i, t_{i+1})}{\iint \dots \iint}\chi_{0 < x_{k_{i-1}} < \dots < x_{k_{i}-1}}dx_{k_{i-1}}\dots dx_{k_i-1} =  e^{-\lambda t_{k_n+1}}\lambda^{k_n} \cdot \\
+          & \cdot \prod_{i=1}^n \frac{(t_i-t_{i-1})^{k_i-k_{i-1}}}{(k_i-k_{i-1})!} = \prod_{i=1}^{n} \frac{(\lambda(t_i-t_{i-1}))^{k_i-k_{i-1}}}{(k_i-k_{i-1})!}e^{-\lambda(t_i-t_{i-1})}
+        \end{align*}
+        Это распределения Пуассона с параметром $\lambda(t_i-t_{i-1})$ (для
+        приращений).
+        \item Вычислив это, можем получить, что итоговый процесс пуассоновский.
+    \end{itemize}
+\end{Proof}
+\textbf{Свойства пуассоновского процесса}
+\begin{enumerate}
+    \item Скачки:
+    \begin{align*}
+      & \tau_1 = S_1, \dots, \tau_n = S_n; \ \tau_n \in Erl(n, \lambda)
+    \end{align*}
+    Распределение Эрланда.
+    \item Длительность:
+    \begin{align*}
+      & \tau_n - \tau_{n-1} = S_n-S_{n-1}\in Exp(\lambda)
+    \end{align*}
+    \item Величины скачков:
+     \begin{align*}
+      & \PP\{\exists \text{ скачок величины }\geq 2\} = \PP\{\exists n: \ S_n = S_{n+1}\} = \PP\{\exists n: \ \xi_{n+1} = 0\} = 0
+    \end{align*}  
+\end{enumerate}
+\begin{Def}
+    Пусть $\{\xi_n\}$~--- последовательность независимых случайных величин.
+    Обозначим
+    \begin{align*}
+      & S_0 = 0, \ S_n = \sum_{i=1}^n \xi_i
+    \end{align*}
+    Введём процесс
+    \begin{align*}
+      & X(t) = \sup \{n \mid S_n \leq t\}
+    \end{align*}
+    Это называется \textbf{процессом восстановления.}
+\end{Def}

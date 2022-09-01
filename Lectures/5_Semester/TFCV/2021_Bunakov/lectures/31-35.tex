@@ -1,0 +1,767 @@
+\section{Конформные отображения}
+
+\begin{note}
+	Пусть функция $f$ регулярна в точке $z_0 \in \Cm$, $f(z_0) = w_0$ и $f'(z_0) \ne 0$. Тогда, по теореме об обратной функции, $f$ взаимно однозначно отображает некоторую область $G \subset B_\delta(z_0)$ на круг $B_\epsilon(w_0)$.
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-5, -2) rectangle (5, 2);
+			
+			\fill [opacity=0.05] (-2,0) circle [radius=1.6];
+			\draw[black, dashed] (-2,0) circle [radius=1.6];
+			
+			\fill [opacity=0.05] (-1.8, 0) circle [radius=1];
+			\draw[black, dashed] (-1.8, 0) circle [radius=1];
+			
+			\fill [opacity=0.05] (2, 0) circle [radius=1.2];
+			\draw[black, dashed] (2, 0) circle [radius=1.2];
+			
+			\draw[->] (-1.5, 0.5) arc (120:60:3);
+			\draw[<-] (-1.5, -0.5) arc (-120:-60:3);
+			
+			\node[] at (0, 1.2) {$f$};
+			\node[] at (0.2, -1.2) {$f^{-1}$};
+			\node[] at (3, 1.5) {$B_\epsilon(w_0)$};
+			\node[] at (-3.7, -1.5) {$B_\delta(z_0)$};
+			\node[] at (-2.4, 0.3) {$G$};
+			\node[] at (-2.27, -0.6) {$\gamma$};
+			\node[] at (2, 0.7) {$\Gamma$};
+			
+			\path
+			coordinate (p1) at (-2, 0)
+			coordinate (p2) at (-2.1, -0.3)
+			coordinate (p3) at (-1.8, -0.7)
+			coordinate (q1) at (2, 0)
+			coordinate (q2) at (2.3, 0.6)
+			coordinate (q3) at (2.8, 0.4);
+			
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.5 with {\arrow{>}}},
+			postaction={decorate}
+			] plot [smooth, tension=0.85] coordinates {(p1) (p2) (p3)};
+			
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+			postaction={decorate}
+			] plot [smooth, tension=0.85] coordinates {(q1) (q2) (q3)};
+			
+			\node[draw, circle, inner sep=1pt, fill, black, label={right:$z_0$}] at (-2, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black, label={below right:$w_0$}] at (2, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (p3) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (q3) {};
+		\end{tikzpicture}
+	\end{center}
+	
+	В частности, любую гладкую простую кривую $\gamma$ на $G$ функция $f$ переводит в простую гладкую кривую $\Gamma$ на $B_\epsilon(w_0)$.
+\end{note}
+
+\begin{definition}
+	Пусть функция $f$ регулярна в точке $z_0 \in \Cm$, $\gamma$ "--- гладкая кривая с параметризацией $z(t)$, $t \in [t_0, t_1]$, $z(t_0) = z_0$, и $\Gamma = f(\gamma)$ "--- гладкая кривая с параметризацией $w(t) = f(z(t))$, $w(t_0) = f(z_0) = w_0$. \textit{Линейным растяжением кривой $\gamma$} в точке $z_0$ называется следующий предел, если он существует:
+	\[K := \lim_{t \to t_0 + 0}\frac{|w(t) - w_0|}{|z(t) - z_0|}\]
+\end{definition}
+
+\begin{proposition}
+	Если $f$ регулярна в точке $z_0 \in \Cm$ и $f'(z_0) \ne 0$, то линейное растяжение любой гладкой кривой $\gamma$ в точке $z_0$ существует и равно $|f'(z_0)|$.
+\end{proposition}
+
+\begin{proof}
+	В силу непрерывности модуля и регулярности функции $f$, имеем:
+	\[K = \left|\lim_{t \to t_0 + 0}\frac{w(t) - w_0}{z(t) - z_0}\right| = \left|\lim_{t \to t_0 + 0}\frac{f(z(t)) - f(z_0)}{z(t) - z_0}\right| = |f'(z_0)|\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{note}
+	Поскольку $w - w_0 = f'(z_0)(z-z_0) + o(|z - z_0|)$, $z \to z_0$, то для любого $\rho > 0$ окружность $\{z \in \Cm : |z - z_0| = \rho\}$ под действием функции $f$ с точностью до $o(\rho)$ переходит в окружность $\{w \in \Cm : |w - w_0| = |f'(z_0)|\rho\}$.
+\end{note}
+
+\begin{definition}
+	Пусть $\gamma_1, \gamma_2$ "--- кривые, пересекающиеся в точке $z_0 \in \Cm$. \textit{Углом между кривыми $\gamma_1, \gamma_2$ в точке $z_0$} называется ориентированный угол, образованный касательными к этим кривым в точке $z_0$.  Обозначение "--- $\angle(\gamma_1, \gamma_2)_{z_0}$.
+\end{definition}
+
+\begin{note}
+	Пусть $\theta_0 := \arg{z'(t_0)}$, $\theta_1 := \arg{w'(t_0)}$, тогда поскольку $w'(t_0) = f'(z_0)z'(t_0)$, то $\theta_1 = \arg{f'(z_0)} + \theta_0$. Значит, отображение $f$ поворачивает все кривые в точке $z_0$ на один и тот же угол, сохраняя углы между ними.
+\end{note}
+
+\begin{definition}
+	Пусть $G \subset \CM$ "--- область. Отображение $f : G \to \CM$ называется \textit{конформным в точке} $z_0 \in G$, если выполнено одно из следующих условий:
+	\begin{enumerate}
+		\item Функция $f$ регулярна в точке $z_0$ и $f'(z_0) \ne 0$
+		\item $z_0$ является полюсом первого порядка функции $f$
+		\item $z_0 = \infty$ является устранимой особой точкой функции $f$, и $\res_{z_0}f \ne 0$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	В каждом из случаев выше функция $f$ регулярна на $\mathring B_\epsilon(z_0)$.
+\end{note}
+
+\begin{example}
+	Рассмотрим следующую функцию:
+	\[f(z) := \System{
+		& e^{\frac 1z}, & \text{если } &z \ne 0\text{ и } z \ne \infty
+		\\
+		& 1, & \text{если } &z = 0\text{ или } z = \infty
+	}\]
+	
+	Исследуем отображение $f$ на конформность. На $\Cm \bs \{0\}$ функция $f$ регулярна, а ее производная отлична от нуля. Точка $z = 0$ является существенно особой, поэтому $f$ не конформна в нуле. Наконец, $z = \infty$ является устранимой особой точкой, и $\res_\infty f = -1 \ne 0$, поэтому $f$ конформна в бесконечно удаленной точке.
+\end{example}
+
+\begin{definition}
+	Пусть $G \subset \CM$ "--- область. Отображение $f : G \to \CM$ называется \textit{однолистным} на $G$, если оно инъектвно на $G$.
+\end{definition}
+
+\begin{definition}
+	Пусть $G \subset \CM$ "--- область. Отображение $f : G \to \CM$ называется \textit{конформным на области $G$}, если оно однолистно на $G$ и конформно в каждой точке из $G$.
+\end{definition}
+
+\begin{example}
+	Функция $f(z) := e^z$ конформна в любой точке из $\Cm$, при этом она конформна на области $\{z \in \Cm : |z| < 3\}$, но не конформна на области $\{z \in \Cm : |z| < 4\}$, потому что на ней уже не выполнена инъективность.
+\end{example}
+
+\begin{example}
+	Рассмотрим следующую функцию:
+	\[
+		f(z) := \System{
+			& \frac{1}{z^2 - 2z}, & \text{если } &z \ne 0, z \ne 2 \text{ и } z \ne \infty
+			\\
+			& 0, & \text{если } &z = 0, z = 2\text{ или } z = \infty
+		}
+	\]
+	
+	Отображение $f$ не является конформным ни на одной области, содержащей одновременно точки $0$ и $2$, поскольку $f(0) = f(2) = 0$.
+\end{example}
+
+\begin{definition}
+	Пусть $z = z(t)$, $t \in [t_0, +\infty)$ "--- непрерывная функция такая, что $\lim_{t \to +\infty} z(t) = \infty$. Говорят, что функция $z(t)$ задает \textit{бесконечную кривую}.
+\end{definition}
+
+\begin{definition}
+	Пусть $\gamma_1, \gamma_2$ "--- бесконечные кривые, $\Gamma_1, \Gamma_2$ "--- образы этих кривых при отображении $\zeta(z) = \frac 1z$. \textit{Углом между кривыми $\gamma_1, \gamma_2$ в точке $\infty$} называется угол между кривыми $\Gamma_1, \Gamma_2$ в нуле, если он существует. Обозначение "--- $\angle(\gamma_1, \gamma_2)_\infty$.
+\end{definition}
+
+\begin{example}
+	Пусть бесконечные кривые $\gamma_1, \gamma_2$ задаются параметризациями $z_1(t) = te^{i\frac\pi 6}$ и $z_2(t) = te^{i\frac\pi 3}$, $t \in [1, +\infty)$. Тогда в точке $\infty$ угол между ними равен $-\frac\pi 6$.
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-5.5, -2.2) rectangle (5.9, 2.6);
+			
+			\draw[->] (-5, 0) -- (-1, 0) node [right] {$\re z$};
+			\draw[->] (-3, -2) -- (-3, 2) node[above] {$\im {z}$};
+			
+			\draw[black] (-3 + 1.2,0.1) -- (-3 + 1.2,-0.1) node [below right] {$1$};
+			\draw[black] (-3 + 0.1,1.2) -- (-3 -0.1,1.2) node [above left] {$i$};
+			\draw[black] (3 + 1.2,0.1) -- (3 + 1.2,-0.1) node [above right] {$1$};
+			\draw[black] (3 + 0.1,1.2) -- (3 -0.1,1.2) node [above right] {$i$};
+			
+			\draw[->] (1, 0) -- (5, 0) node [right] {$\re \zeta$};
+			\draw[->] (3, -2) -- (3, 2) node[above] {$\im {\zeta}$};
+			
+			\draw[black, dashed] (-3, 0) circle [radius=1.2];
+			\draw[black, dashed] (3, 0) circle [radius=1.2];
+			
+			\draw[->] (-0.5, 0.5) arc (120:60:2);
+			\node[] at (0.55, 1.15) {$\zeta$};
+			\node[] at (-1, 1.5) {$\gamma_1$};
+			\node[] at (-2, 2.2) {$\gamma_2$};
+			\node[] at (4.35, -0.9) {$\Gamma_1$};
+			\node[] at (3.6, -1.43) {$\Gamma_2$};
+			
+			\node[draw, circle, inner sep=1pt, fill, black] at (-3 + 0.866 * 1.2, 0 + 0.5 * 1.2) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (-3 + 0.5 * 1.2, 0 + 0.866 * 1.2) {};
+			
+			\node[draw, circle, inner sep=1pt, fill, black] at (3 + 0.866 * 1.2, 0 - 0.5 * 1.2) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (3 + 0.5 * 1.2, 0 - 0.866 * 1.2) {};
+			
+			\draw[black,
+			decoration={markings, mark=at position 0.8 with {\arrow{>}}},
+			postaction={decorate}
+			] (-3 + 0.866 * 1.2, 0 + 0.5 * 1.2) -- (-3 + 0.866 * 2.5, 0 + 0.5 * 2.5);
+			\draw[black,
+			decoration={markings, mark=at position 0.8 with {\arrow{>}}},
+			postaction={decorate}
+			] (-3 + 0.5 * 1.2, 0 + 0.866 * 1.2) -- (-3 + 0.5 * 2.5, 0 + 0.866 * 2.5);
+			
+			\draw[black,
+			decoration={markings, mark=at position 0.3 with {\arrow{>}}},
+			postaction={decorate}
+			] (3 + 0.866 * 1.2, 0 - 0.5 * 1.2) -- (3, 0);
+			\draw[black,
+			decoration={markings, mark=at position 0.3 with {\arrow{>}}},
+			postaction={decorate}
+			] (3 + 0.5 * 1.2, 0 - 0.866 * 1.2) -- (3, 0);
+			
+			\coordinate (a1) at (3 + 0.866 * 1.2, 0 - 0.5 * 1.2);
+			\coordinate (a2) at (3, 0);
+			\coordinate (a3) at (3 + 0.5 * 1.2, 0 - 0.866 * 1.2);
+			\pic [draw, <-, angle radius = 0.6cm] {angle = a3--a2--a1};
+		\end{tikzpicture}
+	\end{center}
+\end{example}
+
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $z_0 \in \Cm$ "--- полюс первого порядка функции $f$
+		\item $\gamma_1, \gamma_2$ "--- гладкие кривые, проходящие через точку $z_0$
+		\item $\Gamma_1 = f(\gamma_1)$, $\Gamma_2 = f(\gamma_2)$
+	\end{enumerate}
+	
+	Тогда $\angle(\Gamma_1, \Gamma_2)_\infty = \angle(\gamma_1, \gamma_2)_{z_0}$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\widetilde\gamma_1, \widetilde\gamma_2$ "--- кривые, в которые переходят бесконечные $\Gamma_1, \Gamma_2$ при отображении $\zeta(w) = \frac 1w$. Достаточно проверить, что $\angle(\widetilde\gamma_1, \widetilde\gamma_2)_0 = \angle(\gamma_1, \gamma_2)_{z_0}$. Поскольку точка $z_0$ "--- полюс первого порядка функции $f$, то на $B_\epsilon(z_0)$ выполнено тождество $f(z) \equiv \frac{g(z)}{z - z_0}$, где $g$ "--- регулярная на $B_\epsilon(z_0)$ функция такая, что $g(z_0) \ne 0$. Значит, функция $\zeta(f(z)) = \frac{z - z_0}{g(z)}$ регулярна на некотором круге $B_\delta(z_0)$, причем $(\zeta \circ f)'(z_0) \ne 0$. Такая функция сохраняет углы между кривыми в точке $z_0$, что и требовалось.
+\end{proof}
+
+\begin{note}
+	Нетрудно проверить, что и во всех остальных случаях конформное в точке $z_0$ отображение сохраняет углы между кривыми, проходящими через эту точку.
+\end{note}
+
+\begin{proposition}
+	Пусть функция $f$ регулярна и однолистна на области $G \subset \Cm$. Тогда функция $f$ конформна на $G$.
+\end{proposition}
+
+\begin{proof}
+	Достаточно проверить, что $f' \ne 0$ на $G$. Пусть это не так, то есть существует точка $z_0 \in G$ такая, что $f'(z_0) = 0$. Если для всех $n \in \N$ выполнено $f^{(n)}(z_0) = 0$, то $f \equiv f(z_0)$ на $G$, то есть $f$ не однолистна. Если же существует $m \in \N$ такое, что $f^{(m)}(z_0) \ne 0$, то $f$ не однолистна по теореме о локальной структуре отображения.
+\end{proof}
+
+\begin{note}
+	Если функция $f$ регулярна и однолистна на области $G \subset \Cm$, то:
+	\begin{enumerate}
+		\item Множество $D := f(G)$ является областью по принципу сохранения области
+		\item Функция $f^{-1} : D \to G$ тоже является регулярной и однолистной по теореме об обратной функции
+	\end{enumerate}
+\end{note}
+
+\pagebreak
+\begin{note}
+	Если функция $f$ регулярна и однолистна на области $G \subset \Cm$, а функция $g$ регулярна и однолистна на $D := f(G)$, то функция $g \circ f$ регулярна и однолистна на $G$.
+\end{note}
+
+\begin{note}
+	Можно проверить, что замечания выше справедливы и для конформных отображений, не являющихся регулярными, то есть обратное к конформному отображение и композиция конформных отображений являются конформными.
+\end{note}
+
+\begin{example}
+	Построим конформное отображение, переводящее область $D$, изображенную ниже, в область $\{z \in \Cm: \im z > 0\}$.
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-2.8, -2.6) rectangle (2.8, 2.8);
+			
+			\fill [opacity=0.24, path fading=fade out] (0,0) circle [radius=2.5];
+			\fill [white] (0,0) rectangle (2.8, -2.8);
+			
+			\draw[->] (-2.4, 0) -- (2.4, 0) node [above] {$\re z$};
+			\draw[->] (0, -2.4) -- (0, 2.4) node[right] {$\im {z}$};
+			
+			\draw[thick, dashed] (0, 0) -- (2.4, 0);
+			\draw[thick, dashed] (0, -2.4) -- (0, 0);
+			
+			\node[] at (-1.1, 1.1) {$D$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Сначала переведем область $D$ в область $D_1$ следующего вида:
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-2.8, -2.6) rectangle (2.8, 2.8);
+			
+			\begin{scope}
+				\clip (0,0) rectangle (2.8, 2.8);
+				\fill [opacity=0.24, path fading=fade out] (0,0) circle [radius=2.5];
+			\end{scope}
+			
+			\draw[->] (-2.4, 0) -- (2.4, 0) node [above] {$\re z$};
+			\draw[->] (0, -2.4) -- (0, 2.4) node[right] {$\im {z}$};
+			
+			\draw[thick, dashed] (0, 0) -- (2.4, 0);
+			\draw[thick, dashed] (0, 0) -- (0, 2.4);
+			
+			\node[] at (1.1, 1.1) {$D_1$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Для этого подойдет функция $z_1(z) = \sqrt[3]{z}$. Действительно, поскольку функция $z(z_1) = z_1^3$ конформна на $D_1$, то и обратная к ней функция конформна на прообразе $D$. Остается перевести область $D_1$ в $\{z \in \Cm: \im z > 0\}$, но для этого подойдет функция $z_2(z_1) = z_1^2$. Ответом будет композиция $z_2(z_1(z))$, также являющаяся конформным отображением.
+\end{example}
+
+\section{Теорема Римана и принцип соответствия границ}
+
+\begin{theorem}[Римана, \textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $D, G \subset \CM$ "--- односвязные области
+		\item Оба множества $\partial D, \partial G$ содержат более одной точки
+		\item $z_0 \in D \bs \{\infty\}$, $w_0 \in G \bs \{\infty\}$, $\alpha \in [0, 2\pi)$
+	\end{enumerate}
+	
+	Тогда существует единственное конформное отображение $f : D \to G$ такое, что выполнены равенства $f(D) = G$, $f(z_0) = w_0$ и $\arg f'(z_0) = \alpha$.
+\end{theorem}
+
+\begin{example}
+	Зададимся вопросом, существует ли конформное отображение плоскости $\Cm$ на $\{w \in \Cm: |w| < 1\}$. Теорема Римана не дает ответа на этот вопрос, поскольку $\partial \Cm = \{\infty\}$. Покажем, что такого отображения не существует. Пусть не так, и $f$ "--- искомое отображение. Тогда $f$ регулярна на $\Cm$, поскольку ни одна из областей не содержит точку $\infty$, и $f$ ограниченна на $\Cm$. Тогда, по теореме Лиувилля, $f$ постоянна на $\Cm$ --- противоречие.
+\end{example}
+
+\begin{theorem}[принцип соответствия границ]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $D, G \subset \Cm$ "--- ограниченные односвязные области с простыми кусочно-гладкими границами
+		\item Функция $f$ регулярна на $\overline{D}$
+		\item Функция $f$ взаимно однозначно отображает $\partial D$ на $\partial G$ с сохранением ориентации
+	\end{enumerate}
+	
+	Тогда $f$ конформно отображает $D$ на $G$.
+\end{theorem}
+
+\begin{proof}
+	Выберем $w_0 \in G$ и $w_1 \in \Cm \bs \overline G$.
+		\begin{center}
+		\begin{tikzpicture}
+			\clip (-5, -2) rectangle (6, 2);
+			
+			\fill [opacity=0.05] (-2,0) circle [radius=1.6];
+			\draw[
+				decoration={markings, mark=at position 0.2 with {\arrow{>}}},
+				decoration={markings, mark=at position 0.7 with {\arrow{>}}},
+				postaction={decorate}
+			] (-2,0) circle [radius=1.6];
+			
+			\fill [opacity=0.05] (2, 0) circle [radius=1.2];
+			\draw[
+				decoration={markings, mark=at position 0.3 with {\arrow{>}}},
+				decoration={markings, mark=at position 0.8 with {\arrow{>}}},
+				postaction={decorate}
+			] (2, 0) circle [radius=1.2];
+			
+			\draw[->] (-0.3, 0.7) arc (120:60:1.1);
+			
+			\node[] at (0.25, 1.2) {$f$};
+			\node[] at (-2.9, 0.6) {$D$};
+			\node[] at (2.5, -0.5) {$G$};
+			\node[] at (-0.6, -1.6) {$\partial D$};
+			\node[] at (2.9, -1.4) {$\partial G$};
+			
+			
+			\node[draw, circle, inner sep=1pt, fill, black, label={below:$w_0$}] at (1.5, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black, label={below:$w_1$}] at (4, -0.6) {};
+			
+			\draw[->] (4, -0.6) -- (3.23, 0.12);
+			\node[draw, circle, inner sep=1pt, fill, black, label={above right:$w$}] at (3.19, 0.15) {};
+			
+			\draw[->] (1.5, 0) -- (2.12, 1.16);
+			\node[draw, circle, inner sep=1pt, fill, black, label={above:$w$}] at (2.13, 1.19) {};
+		\end{tikzpicture}
+	\end{center}
+	
+	Найдем число $N_1$ корней уравнения $f(z) = w_1$ в области $D$. Для этого воспользуемся принципом аргумента для функции $f(z) - w_1$ и тем фактом, что $f$ взаимно однозначно отображает $\partial D$ на $\partial G$ с сохранением ориентации:
+	\[N_1 = \frac1{2\pi}\Delta_{\partial D}\arg(f - w_1) = \frac1{2\pi}\Delta_{\partial G}\arg(w - w_1) = 0\]
+	
+	Значит, уравнение не имеет корней, поэтому $f(D) \subset G$ в силу произвольности выбора точки $w_1$. Теперь найдем число $N_0$ корней уравнения $f(z) = w_0$ в области $D$. Для этого снова воспользуемся принципом аргумента, но для функции $f(z) - w_0$:
+	\[N_0 = \frac1{2\pi}\Delta_{\partial D}\arg(f - w_0) = \frac1{2\pi}\Delta_{\partial G}\arg(w - w_0) = 1\]
+	
+	Значит, уравнение имеет ровно один корень для каждого $w_0 \in G$, то есть $f(D) = G$, причем отображение $f$ однолистно. Тогда, поскольку функция $f$ регулярна на $D$, она конформно отображает $D$ на $G$.
+\end{proof}
+
+\section{Дробно-линейные отображения}
+
+\begin{definition}
+	\textit{Линейным отображением} называется функция вида $w(z) = az + b$, где $a \in \Cm \bs \{0\}$, $b \in \Cm$, при этом считается, что $w(\infty) = \infty$.
+\end{definition}
+
+\begin{note}
+	Легко видеть, что линейное отображение непрерывно на $\CM$ и обратимо, причем обратное отображение $z(w) = \frac{w - b}{a}$ тоже линейно. Кроме того, композиция линейных отображений также является линейным отображением, поэтому линейные отображения с операцией композиции образуют группу.
+\end{note}
+
+\begin{example}
+	Группа линейных отображений не является абелевой. Рассмотрим отображения $w = z + 1$ и $\zeta = 2z$, тогда $w(\zeta(z)) = 2z + 1$, но $\zeta(w(z)) = 2z + 2$.
+\end{example}
+
+\begin{note}
+	Каждое линейное отображение конформно на $\CM$. Действительно, в конечных точках из $\Cm$ оно регулярно, а точка $\infty$ является его полюсом первого порядка.
+\end{note}
+
+\begin{definition}
+	\textit{Дробно-линейным отображением} называется функция вида $w(z) \hm= \frac{az + b}{cz + d}$, где $a, b, c, d \in \Cm$, $ad - bc \ne 0$.
+\end{definition}
+
+\begin{note}
+	В случае, когда в определении выше $c = 0$, получается уже линейное отображение, поэтому далее будем считать, что $c \ne 0$. Для такого дробно-линейного отображения можно также считать, что $w(\infty) = \frac ac$ и $w(-\frac dc) = \infty$.
+\end{note}
+
+\begin{proposition}
+	Каждое дробно-линейное отображение обратимо, причем его обратное отображение тоже является дробно-линейным.
+\end{proposition}
+
+\begin{proof}
+	Пусть $w(z) = \frac{az + b}{cz + d}$, тогда непосредственной подстановкой легко убедиться, что отображение $z(w) = \frac{dw - b}{-cw + a}$ является обратным к $w$.
+\end{proof}
+
+\begin{corollary}
+	Дробно-линейные отображения с операцией композиции образуют группу.
+\end{corollary}
+
+\begin{proof}
+	Композиция дробно-линейных отображений также является дробно-ли-нейным отображением, и каждое дробно-линейное отображение имеет обратное дробно-линейное отображение, что и означает требуемое.
+\end{proof}
+
+\begin{note}
+	Назовем \textit{матрицей отображения} $w(z) = \frac{az + b}{cz + d}$ следующую матрицу:
+	\[A_w := \begin{pmatrix} a&b\\c&d\end{pmatrix}\]
+	
+	Тогда при взятии композиции двух дробно-линейных отображения их матрицы перемножаются в соответствующем порядке.
+\end{note}
+
+\begin{proposition}
+	Каждое дробно-линейное отображение конформно на $\CM$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $w(z) = \frac{az + b}{cz + d}$. Отображение $w$ однолистно на $\CM$ в силу обратимости, поэтому достаточно проверить, что оно конформно в каждой точке из $\CM$:
+	\begin{itemize}
+		\item Если $z \in \Cm \bs \{-\frac dc\}$, то $w$ регулярно в точке $z$, причем $w'(z) = \frac{ad - bc}{(cz + d)^2} \ne 0$
+		
+		\item Точка $z = -\frac dc$ является полюсом первого порядка отображения $w$
+		
+		\item Точка $z = \infty$ является устранимой особой точкой отображения $w$, причем выполнено условие $\res_\infty w = \frac{ad - bc}{c^2} \ne 0$\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть $z_1, z_2, z_3 \in \CM$ и $w_1, w_2, w_3 \in \CM$  "--- тройки попарно различных точек. Тогда существует единственное дробно-линейное отображение $w$ такое, что $w(z_k) = w_k$ для каждого $k \in \{1, 2, 3\}$
+\end{proposition}
+
+\begin{proof}
+	Сначала будем считать, что все точки из условия конечны. Рассмотрим отображения $\zeta(z) := \frac{z - z_1}{z - z_2}\cdot\frac{z_3 - z_2}{z_3 - z_1}$ и $\eta(z) := \frac{w - w_1}{w - w_2}\cdot\frac{w_3 - w_2}{w_3 - w_1}$. Тогда:
+	\begin{center}
+		\begin{tikzcd}[row sep = tiny, column sep = normal]
+			z_1 \rar[maps to, "\zeta"] & 0 & \lar[maps to, swap, "\eta"]w_1
+			\\
+			z_2 \rar[maps to, "\zeta"] & \infty & \lar[maps to, swap, "\eta"]w_2
+			\\
+			z_3 \rar[maps to, "\zeta"] & 1 & \lar[maps to, swap, "\eta"]w_3
+		\end{tikzcd}
+	\end{center}
+	
+	Значит, отображение $w = \eta^{-1} \circ \zeta$ является искомым. Его удобнее задавать следующим равенством:
+	\[\frac{z - z_1}{z - z_2}\cdot\frac{z_3 - z_2}{z_3 - z_1} = \frac{w - w_1}{w - w_2}\cdot\frac{w_3 - w_2}{w_3 - w_1}\]
+	
+	Если же среди точек из условия есть бесконечно удаленная точка, то формальное сокращение бесконечностей в равенстве выше дает новое равенство, задающее искомое отображение для этого случая. Опустим непосредственную проверку этого факта. \textit{Единственность лектор не доказал.}
+\end{proof}
+
+\begin{note}
+	Образом прямой под действием линейного отображения всегда является прямая, а образом окружности под действием линейного отображения всегда является окружность. Далее мы получим аналогичное свойство для дробно-линейных отображений.
+\end{note}
+
+\begin{definition}
+	\textit{Обобщенной окружностью} на $\CM$ называется множество, являющееся либо окружностью, либо объединением прямой и точки $\infty$.
+\end{definition}
+
+\begin{proposition}[круговое свойство дробно-линейных отображений]
+	Образом обобщенной окружности под действием дробно-линейного отображения всегда является обобщенная окружность.
+\end{proposition}
+
+\begin{proof}
+	Пусть $w(z) = \frac{az + b}{cz + d}$, тогда $w(z) = \frac ac - \frac{ad - bc}{c(cz + d)}$, то есть $w$ можно представить в виде композиции $w = z_3 \circ z_2 \circ z_1$, где $z_1(z) := cz + d$, $z_2(z_1) := \frac 1{z_1}$, $z_3(z_2) := \frac ac - \frac{ ad - bc}c z_2$. Значит, остается проверить, что отображение $z \mapsto \frac 1z$ переводит обобщенные окружности в обобщенные окружности. Известно, что любая прямая или окружность задается следующим уравнением с вещественными коэффициентами:
+	\[A(x^2 + y^2) + Bx + Cy + D = 0,~B^2 + C^2 > 4AD\]
+	
+	Пусть $z = x + iy$, тогда $\frac 1z = \frac{x - iy}{x^2 + y^2} = \frac{x}{x^2 + y^2} - i\frac{y}{x^2 + y^2}$. Преобразование $(x, y) \mapsto \big(\frac{x}{x^2 + y^2}, -\frac{y}{x^2 + y^2}\big)$ дает следующее уравнение:
+	\[D(x^2 + y^2) + Bx - Cy + A = 0,~B^2 + C^2 > 4AD\]
+	
+	Как видно, это уравнение тоже задает прямую или окружность. Наконец, образом обобщенной окружности является вся обобщенная окружность, поскольку отображение $z \mapsto \frac 1z$ является обратным к самому себе.
+\end{proof}
+
+\begin{definition}
+	Пусть $\Gamma$ "--- обобщенная окружность. Точки $z_1, z_2 \in \CM$ называются симметричными относительно $\Gamma$, если выполнено одно из условий:
+	\begin{itemize}
+		\item $\Gamma$ "--- прямая, и точки $z_1, z_2$ симметричны относительно $\Gamma$ как прямой
+		\item $\Gamma$ "--- окружность с центром $z_0 \in \Cm$ и радиусом $R > 0$, и либо $z_1 = z_0$ и $z_1 = \infty$, либо точки $z_1, z_2$ лежат на одном луче с началом в точке $z_0$ и $|z_0 - z_1||z_0 - z_2| = R^2$
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}
+	Пусть $\Gamma$ "--- обобщенная окружность. Тогда $z_1, z_2 \in \CM$, $z_1 \ne z_2$, симметричны относительно $\Gamma$ $\lra$ любая обобщенная окружность $\gamma$, проходящая через $z_1$ и $z_2$, пересекает $\Gamma$ под прямым углом.
+\end{proposition}
+
+\begin{proof}
+	Случай, когда $\Gamma$ "--- прямая, тривиален, поэтому далее будем считать, что $\Gamma = \{z \in \Cm: |z - z_0| = R\}$.
+	\begin{itemize}
+		\item[$\ra$] Пусть $\gamma$ "--- обобщенная окружность, проходящая через $z_1$ и $z_2$. Если $z_1 = z_0$, $z_2 = \infty$, то $\gamma$ является прямой, проходящей через центр окружности $\Gamma$, и получено требуемое. Иначе --- либо снова имеем тривиальный случай, когда $\gamma$ "--- прямая, либо ситуацию, изображенную ниже.
+		\begin{center}
+			\scalebox{1}{
+				\begin{tikzpicture}
+					\clip (-4, -2) rectangle (4, 3.72);
+					
+					\draw[black] (-1, 0) circle [radius = 1.5]; 
+					
+					\node [black, below right, scale = 0.9] at (-1 - 0.9, 0.5) {$R$};
+					\draw[->] (-1, 0) -- (-1 - 1.05, 1.05);
+					\node[draw, circle, inner sep=1.1pt, fill, black, label={below:$z_0$}] at (-1, 0) {};
+					
+					\draw[] (-1, 0) -- (3, 0);
+					\node[draw, circle, inner sep=1.1pt, fill, black, label={below:$z_1$}] at (-1 + 0.75, 0) {};
+					\node[draw, circle, inner sep=1.1pt, fill, black, label={below:$z_2$}] at (-1 + 3, 0) {};
+					\node[draw, circle, inner sep=1.1pt, fill, black, label={[xshift=-6pt, yshift=1pt]:$z^*$}] at (-1.11, 1.5) {};
+					\draw[] (-1, 0) -- (-1.11, 1.5);
+					
+					\draw[black] (-1 + 1.875, 1.64) circle [radius = 2]; 
+					
+					\node[] at (3, 1) {$\gamma$};
+					\node[] at (-2.4, -1.4) {$\Gamma$};
+			\end{tikzpicture}}
+		\end{center}
+		
+		Пусть $z^*$ "--- одна из точек пересечения $\gamma$ и $\Gamma$, тогда $|z^* - z_0|^2 = R^2 = |z_1 - z_0||z_2 - z_0|$. Но это и означает, что отрезок $[z_0, z^*]$ касается окружности $\gamma$.
+		
+		\item[$\la$] Пусть $\gamma$ "--- прямая, проходящая через $z_1$ и $z_2$. Тогда, по условию, $\gamma$ пересекает $\Gamma$ под прямым углом и потому проходит через $z_0$. Значит, точки $z_0$, $z_1$ и $z_2$ лежат на одной прямой. При этом легко видеть, что если $z_1$ и $z_2$ не лежат на одном луче с началом в $z_0$, то окружность с диаметром $[z_1, z_2]$ не может пересекать $\Gamma$ под прямым углом. Значит, эти точки лежат на одном луче. Тогда можно провести рассуждение, симметричное прошлому пункту, пользуясь той же картинкой.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть $\Gamma$ "--- обобщенная окружность, точки $z_1, z_2 \in \CM$ симметричны относительно $\Gamma$, и $w(z)$ "--- дробно-линейное отображение. Тогда точки $w_1 := w(z_1)$ и $w_2  := w(z_2)$ симметричны относительно $\widetilde\Gamma := w(\Gamma)$.
+\end{proposition}
+
+\begin{proof}
+	Пусть сначала $z_1 \ne z_2$. Рассмотрим произвольную обобщенную окружность $\widetilde{\gamma}$, проходящую через $w_1$ и $w_2$. Тогда $\gamma := w^{-1}(\widetilde\gamma)$ "--- обобщенная окружность, проходящая через $z_1$ и $z_2$ и потому пересекающая $\Gamma$ под прямым углом. Но отображение $w(z)$ конформно на $\CM$, поэтому $\widetilde \gamma$ тоже пересекает $\widetilde \Gamma$ под прямым углом. В силу произвольности выбора обобщенной окружности $\widetilde\gamma$, получено требуемое. Если же $z_1 = z_2$, то $z_1 = z_2 \in \Gamma$, откуда $w_1 = w_2 \in \widetilde\Gamma$, и симметричность этих точек очевидна.
+\end{proof}
+
+\begin{proposition}
+	Пусть $D := \{z \in \Cm: |z| < 1\}$, $G := \{w \in \Cm: |w| < 1\}$, и функция $f$ конформно отображает $D$ на $G$. Тогда существуют $z_0 \in D$ и $\alpha \in [0, 2\pi)$ такие, что $f$ имеет следующий вид:
+	\[f(z) = \frac{z - z_0}{1 - \overline{z_0}z}e^{i\alpha},~z \in D\]
+\end{proposition}
+
+\begin{proof}
+	Зафиксируем $z_0 := f^{-1} \in D$ и рассмотрим следующее отображение:
+	\[w(z) := \frac{z - z_0}{1 - z\overline{z_0}}\]
+	
+	Параметризуем окружность $\partial D$ как $z = e^{it}$, $t \in [0, 2\pi)$. Тогда для любого $t \in [0, 2\pi)$ выполнены следующие равенства:
+	\[\left|w\left(e^{it}\right)\right| = \left|\frac{e^{it} - z_0}{1 - e^{it}\overline{z_0}}\right| = \frac{|e^{it} - z_0|}{|e^{-it} - \overline{z_0}|} = \frac{|e^{it} - z_0|}{|\overline{e^{it} - z_0}|} = 1\]
+	
+	Значит, $w(\partial D) \subset \partial G$, причем имеет место равенство  $w(\partial D) = \partial G$ в силу кругового свойства. Проверим, что тогда $w(D) \subset G$. Действительно, пусть существует такая точка $z_1 \in D$, что $w(z_1) \not\in G$, тогда отрезок $[z_0, z_1]$ переходит в дугу с концами $w(z_0) = 0$ и $w(z_1)$, поэтому существует точка $z^* \in [z_0, z_1]$ такая, что $w(z^*) \in \partial G$. Но это невозможно, поскольку $z^* \not \in \partial D$, а отображение $w(z)$ конформно. Аналогично доказывается, что $w^{-1}(G) \subset D$, тогда $w(D) = G$.
+	
+	Итак, $w(z)$ конформно отображает $D$ на $G$, тогда и отображения вида $g(z) = w(z)e^{i\alpha}$ для произвольного $\alpha \in [0, 2\pi)$. В частности, это верно для $\alpha := \arg{f'(z_0)}$. Но, по теореме Римана, отображение $f$ однозначно задается значениями $z_0 = f^{-1}(0)$ и $\alpha = \arg{f'(z_0)}$, поэтому оно имеет требуемый вид.
+\end{proof}
+
+\begin{proposition}
+	Пусть $D := \{z \in \Cm: \im{z} > 0\}$, $G := \{w \in \Cm: |w| < 1\}$, и функция $f$ конформно отображает $D$ на $G$. Тогда существуют $z_0 \in D$ и $\alpha \in [0, 2\pi)$ такие, что $f$ имеет следующий вид:
+	\[f(z) = \frac{z - z_0}{z - \overline{z_0}}e^{i\alpha},~z \in D\]
+\end{proposition}
+
+\begin{proof}
+	Зафиксируем $z_0 \in D$ и рассмотрим следующее отображение:
+	\[w(z) := \frac{z - z_0}{z - \overline{z_0}}\]
+	
+	Параметризуем прямую $\partial D$ как $z = t$, $t \in \R$. Тогда для любого $t \in \R$ выполнены следующие равенства:
+	\[\left|w\left(t\right)\right| = \left|\frac{t - z_0}{t - \overline{z_0}}\right| = \frac{|t - z_0|}{\left|\overline{t - z_0}\right|} =  1\]
+	
+	Значит, $w(\partial D) \subset \partial G$, причем имеет место равенство  $w(\partial D) = \partial G$ в силу кругового свойства. Дальнейшее рассуждение аналогично предыдущему утверждению, но в данном случае следует положить $\alpha := \arg{f'(z_0)} + \frac\pi 2$.
+\end{proof}
+
+\section{Регулярные ветви многозначных функций}
+
+\begin{definition}
+	Пусть $D \subset \Cm$ "--- область. \textit{Многозначной функцией}, заданной на $D$, называется отображение $F : D \to (2^{\Cm} \bs \{\emptyset\})$, то есть отображение, сопоставляющее каждой точке $z \in D$ некоторое непустое множество $F(z) \subset \Cm$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров многозначных функций:
+	\begin{enumerate}
+		\item $D := \Cm \bs \{0\}$, $F(z) := \Ln{z}$
+		\item $D := \Cm$, $F(z) := \Root{n}{z}$, где $n \in \N$, $n \ge 2$
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $D \subset \Cm$ "--- область, $F$ "--- многозначная функция на $D$. \textit{Регулярной ветвью} многозначной функции $F$ называется однозначная функция $g \in C^1(D)$ такая, что для любого $z \in D$ выполнено $g(z) \in F(z)$.
+\end{definition}
+
+\begin{note}
+	Переформулируем определение выше для важных частных случаев:
+	\begin{enumerate}
+		\item Регулярной ветвью многозначной функции $\Ln{z}$ на области $\Cm \bs \{0\}$ называется функция $g \in C^1(\Cm \bs \{0\})$ такая, что $e^{g(z)} \equiv z$ на $\Cm \bs \{0\}$
+		\item Регулярной ветвью многозначной функции $\Root{n}{z}$ на области $\Cm$ называется функция $g \in C^1(\Cm)$ такая, что $g(z)^n \equiv z$ на $\Cm$
+	\end{enumerate}
+\end{note}
+
+\begin{example}
+	Рассмотрим функцию $f(z) := e^z$. Легко видеть, что она конформно отображает область $G := \{z \in \Cm: |\im{z}| < \pi\}$ на область $D := \Cm \bs (-\infty, 0]$.
+	\begin{center}
+		\begin{tikzpicture}
+			\fill [opacity=0.2, path fading=fade out] (3, 0) circle[radius=2.3];
+			\fill [white] (0, -0.15) rectangle (3, 0.15);
+			\fill [white] (3, 0) circle[radius=0.15];
+			
+			\clip (-6, -2.2) rectangle (6, 2.6);
+			
+			\draw[->] (-5, 0) -- (-1, 0) node [right] {$\re z$};
+			\draw[->] (-3, -2) -- (-3, 2) node[above] {$\im {z}$};
+			
+			\draw[black] (-3 + 0.1,1.2) -- (-3 -0.1,1.2) node [above left] {$\pi i$};
+			\draw[black] (-3 + 0.1,-1.2) -- (-3 -0.1,-1.2) node [below left] {$-\pi i$};
+			
+			\draw[->] (1, 0) -- (5, 0) node [right] {$\re w$};
+			\draw[->] (3, -2) -- (3, 2) node[above] {$\im {w}$};
+			
+			\draw[->] (-0.5, 0.5) arc (120:60:2);
+			\draw[<-] (-0.5, -0.5) arc (240:300:2);
+			\node[] at (0.55, 1.15) {$f$};
+			\node[] at (0.52, -1.25) {$g_0$};
+			
+			\node[] at (-3.9, 0.6) {$G$};
+			\node[] at (3.9, -0.8) {$D$};
+			
+			\draw[dashed] (3, -0.15) arc (-90:90:0.15);
+			\draw[dashed] (0.8, 0.15) -- (3, 0.15);
+			\draw[dashed] (0.8, -0.15) -- (3, -0.15);
+			
+			\draw[dashed] (-5.2, 1.2) -- (-0.8, 1.2);
+			\draw[dashed] (-5.2, -1.2) -- (-0.8, -1.2);
+			
+			\begin{scope}
+				\clip (-7,-1.2) rectangle (1, 1.2);
+				\fill [opacity=0.24, path fading=fade out] (-6,-1.8) rectangle (0, 1.8);
+			\end{scope}
+		
+			\node[draw, circle, inner sep=1.1pt, fill, black, label={below:\scalebox{0.95}{$x+iy$}}] at (-2, 0.7) {};
+			
+			\node[draw, circle, inner sep=1.1pt, fill, black] at (4, 1.2) {};
+			\draw[->] (3, 0) -- (3.97, 1.17) {};
+			
+			\node[] at (3.5, 0.9) {$e^x$};
+			
+			\coordinate (a1) at (4,0);
+			\coordinate (a2) at (3,0);
+			\coordinate (a3) at (4, 1.2);
+			
+			\pic [draw, ->, angle radius = 0.8cm] {angle = a1--a2--a3};
+			\node [] at (3.95, 0.3) {$y$};
+		\end{tikzpicture}
+	\end{center}
+	
+	По теореме об обратной функции, на области $D$ определена обратная к функции $f$ функция $g_0 \in C^1(D)$, конформно отображающая $D$ на $G$. Эта функция называется \textit{главной регулярной ветвью функции} $\Ln{w}$ на области $D$. Найдем производную функции $g_0(w)$:
+	\[e^{g_0(w)} \equiv w \ra e^{g_0(w)}g_0'(w) \equiv 1 \ra g_0'(w) \equiv e^{-g_0(w)} \equiv \frac{1}{w}\]
+	
+	Теперь найдем функцию $g_0$ в явном виде. Поскольку для любой точки $w \in D$ выполнено $g_0(w) \in \Ln{w}$, то $g_0(w) = \ln|w| + i\phi$ для некоторого $\phi \in \Arg{w}$, причем, в силу ограничения $\im|g_0(w)| < \pi$, имеем $\phi = \arg_0(w)$. Таким образом, $g_0(w) = \ln|w| + i\arg_0{w}$.
+\end{example}
+
+\begin{note}
+	Из результата выше следует, что функции $\ln|w|$ и $\arg_0w$ являются гармоническими на области $\Cm \bs (-\infty, 0]$, а функции вида $g_0(w) + 2\pi k i$ для любых $k \in \Z$ тоже являются регулярными ветвями функции $\Ln{w}$ на области $\Cm \bs (-\infty, 0]$.
+\end{note}
+
+\begin{example}
+	\textit{Главной регулярной ветвью функции $\Root{n}{w}$} на области $D := \Cm \bs (-\infty, 0]$ назовем следующую функцию:
+	\[g_n(w) := e^{\frac{1}ng_0(w)},~w \in D\]
+	
+	Функция $g_n$ действительно является регулярной ветвью в силу уже доказанного. Выпишем ее в явном виде, используя явный вид функции $g_0$:
+	\[g_n(w) := \sqrt[n]{|w|}e^{i\frac{\arg_0{w}}n},~w \in D\]
+	
+	Заметим теперь, что функция $g_n$ конформно отображает область $D$ на область $G_n$, имеющую вид $\{z \in \Cm: -\frac\pi n < \arg{z} < \frac\pi n\}$.
+	\begin{center}
+		\begin{tikzpicture}
+			\fill [opacity=0.2, path fading=fade out] (3, 0) circle[radius=2.3];
+			\fill [white] (0, -0.15) rectangle (3, 0.15);
+			\fill [white] (3, 0) circle[radius=0.15];
+			
+			\clip (-6, -2.2) rectangle (6, 2.6);
+			
+			\draw[->] (-5, 0) -- (-1, 0) node [right] {$\re z$};
+			\draw[->] (-3, -2) -- (-3, 2) node[above] {$\im {z}$};
+			
+			
+			\draw[->] (1, 0) -- (5, 0) node [right] {$\re w$};
+			\draw[->] (3, -2) -- (3, 2) node[above] {$\im {w}$};
+			
+			\draw[->] (-0.5, 0.5) arc (120:60:2);
+			\draw[<-] (-0.5, -0.5) arc (240:300:2);
+			\node[] at (0.55, 1.15) {$z^n$};
+			\node[] at (0.52, -1.25) {$g_n$};
+			
+			\node[] at (-1.1, 0.5) {$G$};
+			\node[] at (3.9, -0.8) {$D$};
+			
+			\draw[dashed] (3, -0.15) arc (-90:90:0.15);
+			\draw[dashed] (0.8, 0.15) -- (3, 0.15);
+			\draw[dashed] (0.8, -0.15) -- (3, -0.15);
+			
+			\draw[dashed] (-3, 0) -- (-0.8, 1.2);
+			\draw[dashed] (-3, 0) -- (-0.8, -1.2);
+		
+			\fill[opacity=0.2, path fading=fade out] (-0.36, 1.44)--(-3, 0)--(-0.36, -1.44);
+			
+			\coordinate (a1) at (-2,0);
+			\coordinate (a2) at (-3,0);
+			\coordinate (a3) at (-0.8, 1.2);
+			\coordinate (a4) at (-0.8, -1.2);
+			
+			\pic [draw, ->, angle radius = 1.2cm] {angle = a1--a2--a3};
+			\node [] at (-1.65, 0.3) {\scalebox{0.9}{$\frac\pi n$}};
+			\pic [draw, <-, angle radius = 1.1cm] {angle = a4--a2--a1};
+			\node [] at (-1.63, -0.35) {\scalebox{0.9}{$-\frac\pi n$}};
+		\end{tikzpicture}
+	\end{center}
+
+	Наконец, найдем производную функции $g_n(w)$:
+	\[g_n(w)^n \equiv w \ra ng_n(w)^{n-1}g'_n(w) \equiv 1 \ra g'_n(w) \equiv \frac{1}{ng_n(w)^{n-1}} \equiv \frac{g_n(w)}{nw}\]
+\end{example}
+
+\begin{note}
+	Из результата выше следует, что функции вида $g_n(w)e^{i \frac{2\pi k}n}$ для любых $k \in \Z$ тоже являются регулярными ветвями функции $\Root{n}{w}$ на области $\Cm \bs (-\infty, 0]$.
+\end{note}
+
+\section{Функция Жуковского}
+
+\begin{definition}
+	\textit{Функцией Жуковского} называется функция $f_*: \CM\to \CM$, имеющая следующий вид:
+	\[f_*(z) := \System{
+		& \frac12\left(z + \frac1z\right), & \text{если } &z \ne 0\text{ и } z \ne \infty
+		\\
+		& \infty, & \text{если } &z = 0\text{ или } z = \infty
+	}\]
+\end{definition}
+
+\begin{proposition}
+	Функция $f_*$ конформна на любой области $D \subset \CM$, не содержащей одновременно точки $0$ и $\infty$ и не содержащей пар точек $z_1, z_2 \in \Cm$ таких, что $z_1z_2 = 1$.
+\end{proposition}
+
+\begin{proof}
+	Проверим, что функция $f_*$ конформна в каждой точке из $\CM \bs \{\pm 1\}$:
+	\begin{itemize}
+		\item Точки $0$ и $\infty$ являются полюсами первого порядка функции $f_*$
+		\item Для любого $z \in \Cm \bs \{0\}$ функция $f_*$ регулярна в точке $z$, причем $f_*'(z) = \frac12\left(1 - \frac1{z^2}\right)$, поэтому $f_*'(z) = 0 \lra z = \pm1$
+	\end{itemize}
+
+	Кроме того, для любых $z_1, z_2 \in \CM$ условие $f_*(z_1) = f_*(z_2)$ равносильно тому, что либо $\{z_1, z_2\} = \{0, \infty\}$, либо $z_1z_2 = 1$. Это и означает требуемое.
+\end{proof}
+
+\begin{note}
+	Из доказательства выше следует, что функция $f_*$ конформна на любой своей области однолистности. Такими областями, в частности, являются следующие области:
+	\begin{itemize}
+		\item $D_1 := \{z \in \Cm : |z| < 1\}$ и $D_2 := \{w \in \Cm : |w| > 1\}$, причем область $D_2$ является образом области $D_1$ при отображении $w(z) = \frac 1z$
+		\item $D_3 := \{z \in \Cm : \im{z} > 0\}$ и $D_4 := \{w \in \Cm : \im{w} < 0\}$, причем область $D_4$ является образом области $D_3$ при отображении $w(z) = \frac 1z$
+	\end{itemize}
+\end{note}
+
+\begin{proposition}
+	Пусть $\Omega_1 \subset \CM$ "--- область, $\Omega_2$ "--- область, являющаяся образом области $\Omega_1$ при отображении $w(z) = \frac 1z$. Тогда выполнено следующее:
+	\begin{enumerate}
+		\item Функция $f_*$ конформна на $\Omega_1$ $\lra$ $f_*$ конформна на $\Omega_2$
+		\item $f_*(\Omega_1) = f_*(\Omega_2)$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Достаточно заметить, что $f(w(z)) \equiv f(z)$ на $\CM$.
+\end{proof}
+
+\begin{note}
+	Перечислим простые свойства функции Жуковского:
+	\begin{itemize}
+		\item $f_*(D_1) = f_*(D_2) = \CM \bs [-1, 1]$
+		\item $f_*(D_3) = f_*(D_4) = \CM \bs \big((-\infty, -1] \cup [1, +\infty)\big)$
+		\item Окружность с центром в точке $0$ и радиусом $\rho \ne 1$ под действием функции Жуковского переходит в эллипс с фокусами $\pm 1$, задаваемый следующим уравнением:
+		\[\frac{u^2}{\left(\frac12\left(\rho + \frac 1\rho\right)\right)^2} + \frac{v^2}{\left(\frac12\left(\rho - \frac 1\rho\right)\right)^2} = 1\]
+		\item Открытый луч с началом в точке $0$, состоящий из точек с аргументом $\phi \in \left(0, \frac\pi 2\right)$, под действием функции Жуковского переходит в ветвь гиперболы, задаваемой следующим уравнением:
+		\[\frac{u^2}{\cos^2\phi} - \frac{v^2}{\sin^2\phi} = 1\]
+		\item \textit{И многие другие свойства похожего вида}
+	\end{itemize}
+\end{note}

@@ -1,0 +1,107 @@
+Следствия из теоремы:
+\begin{enumerate}
+	\item Если $f$ суммируема на измеримом по Лебегу множестве $E\subset \R^n$ конечной меры, $f(x)=g(x)$ при почти всех $x\in E$, то $g$ --- суммируема на $E$, причем $\int\limits_{E}f(x)d\mu(x)=~\int\limits_{E}g(x)d\mu(x)$.
+	\item Если $f\geqslant 0$ почти всюду на $E\subset \R^n$ измеримом конечной меры, и $\int\limits_{E}f(x)d\mu(x)=0$, то $f(x)=0$ почти всюду на $E$.
+\end{enumerate}
+
+\begin{proof}
+	
+	1) Пусть $E_0\subset E, E_0=\{x\in E: f(x)=g(x)\}$, тогда слова почти всюду означают, что $\mu(E\backslash E_0)=0$. Заметим, что для любой функции и множества нулевой меры следует, что $\forall h(x):E\backslash E_0 \rightarrow \overline{\R}$ --- суммируема на $E\backslash E_0$, причем $\int\limits_{E\backslash E_0}h(x)d\mu(x)=0$. Это следует из соглашения, что если $\mu(E_0)=0$, то даже $(+\infty)\cdot \mu(E_0)=0$. Значит и $g(x)$ --- суммируема на $E\backslash E_0$. Но также $g(x)$ --- суммируема на $E_0$, потому что $g$
+	совпадает с $f$ на $E_0$, а $f$ --- суммируема на $E$ по условию, а значит суммируема и на его подмножестве. Из этих заключений следует, что $g$ --- суммируема на $E$. По свойству аддитивности $\int\limits_{E}g(x)d\mu(x)=~\underbrace{\int\limits_{E\backslash E_0}g(x)d\mu(x)}_{=0}+\int\limits_{E_0}g(x)d\mu(x) =~\underbrace{\int\limits_{E\backslash E_0}f(x)d\mu(x)}_{=0}+\int\limits_{E_0}f(x)d\mu(x) =~\int\limits_{E}f(x)d\mu(x)$.
+	
+	2) Заметим, что $f$ --- суммируемая, поскольку интеграл равен 0. Пойдем от противного: предположим, что множество $\{x\in E:f(x)>0\}$ имеет положительную меру. Заметим, что $\{x\in E:f(x)>0\}=\lim\limits_{m\to\infty}\{x\in E: f(x)\geqslant \dfrac{1}{m}\}$. Так как предел положительный, то найдется число $(\exists m_0 \in \N)\  \underbrace{\mu\{x\in E: f(x)\geqslant \dfrac{1}{m_0}\}}_{=:B}=~\mu(B)>0$. По свойству аддитивности $\int\limits_{E}f(x)d\mu(x)=\int\limits_{B}f(x)d\mu(x)+\int\limits_{E\backslash B}f(x)d\mu(x)\geqslant \text{[поскольку функция неотрицательна, то второе слагаемое неотрицательно]} \geqslant \int \limits_{B}f(x)d\mu(x)\geqslant \text{[из-за монотонности интеграла]}\geqslant \int\limits_{B}\dfrac{1}{m_0}d\mu(x)=\dfrac{\mu(B)}{m_0}>0$. С другой стороны по условию $\int\limits_{E}f(x)d\mu(x)=0 \Rightarrow$ получили противоречие.
+\end{proof}
+
+\newpage
+\subsection{Предельный переход в интеграле Лебега.}
+\begin{theorem}(Лебег)
+	Если $f_m$ измеримы на множестве $E\subset\R^n$ конечной меры, $\lim\limits_{m\to\infty}f_m(x)=f(x)$ почти всюду на $E$, и $|f_m(x)|\leqslant F(x)$ при почти всех $x\in E$, всех $m\in\N$, где $F$ --- суммируема на $E$, то $f$ суммируема на $E$, $\int\limits_Ef(x)d\mu(x)=\lim\limits_{m\to\infty}\int\limits_{E}f_m(x)d\mu(x)$
+\end{theorem}
+\begin{proof}
+Из теоремы о связи сходимости почти всюду и сходимости по мере, если $f_m \rightarrow f$ почти всюду, то $f_m\Rightarrow f$ (сходится по мере). Сходимость по мере означает, что $(\forall \varepsilon >0)\lim\limits_{m\to\infty}\mu\underbrace{\{x\in E: |f_m(x)-f(x)|>\varepsilon\}}_{E_m}=0$. Предел некоторой числовой последовательности равен 0 $\Leftrightarrow$ $(\forall \delta>0)(\exists M\in \N)(\forall m > M)\ \mu\{x\in E:|f_m(x)-f(x)>\varepsilon\}<\delta$. Заметим, что $f$ измерима на $E$, поскольку $f$ это предел последовательности измеримых фукнций. Также $|f(x)|\leqslant F(x)$ при почти всех $x\in E$. Тогда по Лемме 10.1 (Признак суммируемости) следует, что $f$ суммируема. Оценим разность
+\begin{multline}
+ \left|\int\limits_{E}(f(x)-f_m(x))d\mu(x)\right|\leqslant\int\limits_{E}\left|f(x)-f_m(x)\right|d\mu(x)=\\= \int\limits_{E_m}\left|f(x)-f_m(x)\right|d\mu(x)\?+\underbrace{\int\limits_{E\backslash E_m}\left|f(x)-f_m(x)\right|d\mu(x)}_{\text{на } E\backslash E_m\ \left|f(x)-f_m(x)\right|\leqslant\varepsilon}\leqslant\\
+ \leqslant 2\underbrace{\cdot\int\limits_{E_m}F(x)d\mu(x)}_{\to 0,\  m\to\infty}+\underbrace{\varepsilon\cdot\mu(E\backslash E_0)}_{\leqslant\varepsilon\cdot\mu(E)}<\varepsilon\cdot(\mu(E)+2),
+\end{multline}
+  так как $\left|f(x)-f_m(x)\right|\leqslant |f(x)|+|f_m(x)|\leqslant F(x)+F(x)$. Мера $E_m$ стремится к 0, воспользуемся свойством абсолютной непрерывности и получим $\int\limits_{E_m}F(x)d\mu(x)\to 0, m\to\infty$.
+  
+  Из (2) следует, что предел последовательности интегралов от $f_m$ равен интегралу от $f$.
+\end{proof}
+
+\begin{theorem}(Леви или теорема о монотонной сходимости)
+	Если последовательность неотрицательных измеримых на измеримом множестве $E\subset \R^n$ конечной меры функций $f_m$--- неубывающая при почти всех $x\in E$, то $\lim\limits_{m\to\infty}\int\limits_{E}f_m(x)d\mu(x)=\int\limits_{E}\lim\limits_{m\to\infty}f_m(x)d\mu(x)$
+\end{theorem}
+
+\begin{proof}
+	Если $f=\lim\limits_{m\to\infty}f_m$ --- суммируемая на $E$, то из того, что последовательность неубывающая следует, что предел неубывающей последовательности --- это точная верхняя грань, то есть выполняется неравенство $0\leqslant f_m(x)\leqslant f(x)$. Тогда по теореме Лебега получается требуемое равенство.
+	
+	Если $f=\lim\limits_{m\to\infty}f_m$ --- не является суммируемой, то $\int\limits_{E}f(x)d\mu(x)=+\infty$. То что интеграл существует: конечный или бесконечный, следует из того, что $f$ является неотрицательной и измеримой функцией, поскольку она является пределом последовательности измеримых функций. Наша задача установить, что $\lim\limits_{m\to\infty}\int\limits_{E}f_m(x)d\mu(x)=+\infty$. По теореме 10.1.1 о возможности определения интеграла через срезки: $\lim\limits_{N\to\infty}\int\limits_{E}f_{[N]}(x)d\mu(x)=+\infty$ --- это предел числовой последовательности, тогда $(\forall K)(\exists N_0)(\forall N\geqslant N_0)\int\limits_{E}f_{[N]}(x)d\mu(x)>K$, то есть $\int\limits_{E}f_{[N_0]}(x)d\mu(x)>K$. Если рассмотреть соответсвующие срезки $f_{m_{[N_0]}}(x)$ --- эта последовательность тоже неубывающая и почти всюду $f_{m_{[N_0]}}(x)\underset{m\to\infty}{\longrightarrow}f_{[N_0]}(x)$. Так как срезка $f_{[N_0]}(x)$ --- ограниченная измеримая функция, значит она суммируемая, срезки $f_{m_{[N_0]}}(x)$ --- неубывающая последовательность, значит она ограничена сверху своим пределом $f_{[N_0]}(x)$. Применяя доказанную часть теоремы Леви получаем $\lim\limits_{m\to\infty}\int\limits_{E}f_{m_{[N_0]}}(x)=\int\limits_{E}f_{[N_0]}(x)d\mu(x)$. Поскольку $\int\limits_{E}f_{[N_0]}(x)d\mu(x)>K$, то $(\exists m_0)(\forall m>m_0)\int\limits_{E}f_{m_{[N_0]}}(x)d\mu(x)>K$, но срезка не превосходит самой функции $\Rightarrow \int\limits_{E}f_m(x)d\mu(x)\geqslant\int\limits_{E}f_{m_{[N_0]}}(x)d\mu(x)>K$. Так как $K$ --- произвольное, это означает, что $\lim\limits_{m\to\infty}\int\limits_{E}f_m(x)d\mu(x)=+\infty$.
+\end{proof}
+\begin{corollary}
+	Если $f_m(x)\geqslant$ измеримые на $E\subset\R^n$ конечной меры, то $\int\limits_{E}\sum\limits_{m=1}^\infty f_m(x)d\mu(x)=\sum\limits_{m=1}^\infty \int\limits_{E}f_m(x)d\mu(x)$
+\end{corollary}
+
+\begin{theorem}(Фату)
+	Если $f_m(x)\geqslant 0$ при почти всех $x\in E\subset\R^n$ конечной меры, $(\forall m\in \N) f_m$ --- измеримы на $E, \lim\limits_{m\to\infty}f_m(x)=f(x)$ почти всюду на $E$, то $\int\limits_{E}f(x)d\mu(x)\?\leqslant \underset{m\to\infty}{\underline{\lim}}\int\limits_{E}f_m(x)d\mu(x)$ 
+\end{theorem}
+\begin{proof}
+	Введем последовательность функций $g_m(x):=\inf\limits_{k
+	\geqslant m}f_k(x)$ точная нижняя грань последовательности измеримых функций, поскольку они неотрицательны, обязательно конечная и неотрицательная почти всюду и является измеримой измеримой функцией при каждом $m$. Последовательность $g_m$ неубывающая при почти всех $x$, так как с ростом $m$, множество по которому берется точная нижняя грань уменьшается, соответственно $g_m$ неуменьшается. Тогда применим теорему Леви
+ $$\int\limits_{E}\lim\limits_{m\to\infty}g_m(x)d\mu(x)=\lim\limits_{m\to\infty}\int\limits_{E}g_m(x)d\mu(x).\eqno{(*)}$$ 
+ Рассмотрим $$\lim\limits_{m\to\infty}g_m(x) = \lim\limits_{m\to\infty}\inf\limits_{k
+	\geqslant m}f_k(x)\overset{(1)}{=}\underset{m\to\infty}{\underline{\lim}}f_m(x)\overset{(2)}{=}f(x)\eqno{(**)}$$ 
+
+	(1) --- следует из теоремы 1 семестра о верхнем и нижнем пределах.
+	
+	(2) --- так как по условию $f_m(x)$ сходится к $f(x)$ почти всюду, то нижний предел совпадает с пределом.
+	
+	Осталось заметить, что $\int\limits_{E}g_m(x)d\mu(x)\leqslant\int\limits_{E}f_k(x)d\mu(x)\ (\forall k \geqslant m)$, 
+	но раз это верно при всех $k$, значит интеграл $\int\limits_{E}g_m(x)d\mu(x)$ годится в качестве  нижней грани множества таких интегралов $\int\limits_{E}f_k(x)d\mu(x)$. Следовательно $$\int\limits_{E}g_m(x)d\mu(x)\leqslant\inf\limits_{k\geqslant m}\int\limits_{E}f_k(x)d\mu(x)\eqno{(***)}$$
+	$(**), (***) \Rightarrow (*): \int\limits_{E}f(x)d\mu(x)\leqslant\lim\limits_{m\to\infty}\inf\limits_{k\geqslant m}\int\limits_{E}f_k(x)d\mu(x)=\underset{m\to\infty}{\underline{\lim}}\int\limits_{E}f_m(x)d\mu(x)$
+\end{proof}
+
+Пусть $E\subset\R^n$ --- измеримо по Лебегу, $\mu(E)=+\infty$. Если $(\forall x\in E)\ f(x)\geqslant 0, f$ --- измерима на $E$, то $\forall\mathcal{E}\subset E, \mu(\mathcal{E})<+\infty$, определен $\int\limits_{\mathcal{E}}f(x)d\mu(x)$.
+\begin{Def}
+	Интегралом Лебега неотрицательной измеримой на $E\subset\R^n, \mu(E)=+\infty$, функции $f(x)$ называется $\lim\limits_{m\to\infty}\int\limits_{E_m}f(x)d\mu(x)$, где $E_1 \subset E_2 \subset \ldots$ --- последовательность измеримых множеств конечной меры, такая что $\lim\limits_{m\to\infty}E_m=E$.
+\end{Def}
+
+\begin{corollary}
+	$$\text{Если }f(x)\geqslant 0\text{, то} \int\limits_{E_{m+1}}f(x)d\mu(x) = \int\limits_{E_m}f(x)d\mu(x)+\underbrace{\int\limits_{E_{m+1}\backslash E_m}f(x)d\mu(x)}_{\geqslant 0}\geqslant\int\limits_{E_m}f(x)d\mu(x)$$
+\end{corollary}
+
+\begin{theorem}(Корректность определения интеграла Лебега по множеству бесконечной меры)
+	
+	Если $f(x)\geqslant0$, измеримая на $E\subset\R^n, \mu(E)=+\infty$, то $\forall$ неубывающих последовательностей измеримых множеств $\{E_m\}, \{E_m'\}$ конечной меры, $\lim\limits_{m\to\infty}E_m=\lim\limits_{m\to\infty}E_m'=E$ 
+	$\lim\limits_{m\to\infty}\int\limits_{E_m}f(x)d\mu(x)=
+	\lim\limits_{m\to\infty}\int\limits_{E_m'}f(x)d\mu(x)$.
+\end{theorem}
+
+\begin{proof}
+	(От противного). Пусть $a=\lim\limits_{m\to\infty}\int\limits_{E_m}f(x)d\mu(x)>\lim\limits_{m\to\infty}\int\limits_{E_m'}f(x)d\mu(x)=~b$.
+Пусть $a<+\infty$. Выберем $c: a>c>b$. Тогда $(\exists m\in \N)\int\limits_{E_m}f(x)d\mu(x)>c$. Поскольку $E_1'\subset E_2'\subset \ldots$, то имеет место $(E_1'\cap E_m)\subset (E_2'\cap E_m)\subset \ldots$, кроме того $ \lim\limits_{k\to\infty}E_k'\cap E_m=E_m$. Следовательно по свойству непреывности меры$\lim\limits_{k\to\infty}\mu(E_k'\cap E_m)=\mu(E_m)$. Пользуясь свойством конечной аддитивности для суммируемой функции $f(x):$\\ 
+$$\int\limits_{E_m}f(x)d\mu(x)= \int\limits_{E_k'\cap E_m}f(x)d\mu(x)+\int\limits_{E_m\backslash (E_k'\cap E_m)}f(x)d\mu(x).$$ 
+При $k\to\infty,\ \mu( E_m\backslash (E_k'\cap E_m))\to 0$, тогда в силу абсолютной непрерывности интеграла Лебега и того, что функция $f(x)$ --- суммируемая, следует, что $\int\limits_{E_m\backslash (E_k'\cap E_m)}f(x)d\mu(x)\to 0$. Тогда $(\exists k_0)(\forall k>k_0)\int\limits_{E_k'\cap E_m}f(x)d\mu(x)>c$. Вновь пользуемся аддитивностью:
+$$\int\limits_{E_k'}f(x)d\mu(x)=\int\limits_{E_k'\cap E_m}f(x)d\mu(x)+\int\limits_{E_k'\backslash (E_k'\cap E_m)}f(x)d\mu(x)\geqslant\int\limits_{E_k'\cap E_k}f(x)d\mu(x)>c,$$ с другой стороны 
+$\lim\limits_{k\to\infty}\int\limits_{E_k'}f(x)d\mu(x)=b<c$. Противоречие.
+
+Пусть $a=+\infty$. Также возьмем $+\infty>c>b$, снова $(\exists m \in \N)\int\limits_{E_m}f(x)d\mu(x)>c+1$. Так как $f$ --- неотрицательная измеримая функция, то воспользуемся возможностью определения интеграла как предел интегралов от срезок: $(\exists N) \int\limits_{E_m}f_{[N]}(x)d\mu(x)>c$, но срезка будучи ограниченной функцией, гарантированно суммируемая, значит для нее все рассуждения можно повторить, следовательно получим, что $\int\limits_{E_k'}f_{[N]}(x)d\mu(x)>c$, но $\int\limits_{E_k'}f(x)d\mu(x)\geqslant\int\limits_{E_k'}f_{[N]}(x)d\mu(x)$, мы вновь пришли к противоречию.
+\end{proof}
+Для завершения построения интеграла Лебега по множеству бесконечной меры, рассмотрим функцию любого знака: $f(x)=f^+(x)-f^-(x)$,
+ $$\int\limits_{E}f(x)d\mu(x):=\int\limits_{E}f^+(x)d\mu(x)-\int\limits_{E}f^-(x)d\mu(x)$$
+
+\begin{lemma}
+	Пусть $a_k^{(s)}$ --- неотрицательные числа, $(\forall k\in \N)\ a_k^{(1)}\leqslant a_k^{(2)}\leqslant \ldots \\ \lim\limits_{s\to\infty}a_k^{(s)}=a_k \geqslant0$.
+	Тогда $\lim\limits_{s\to\infty}\sum\limits_{k=1}^\infty a_k^{(s)}=\sum\limits_{k=1}^\infty a_k$.
+\end{lemma}
+
+\begin{proof}
+	Заметим, что $a_k^{(s)}\leqslant a_k$, $\forall k, s \Rightarrow\sum\limits_{k=1}^\infty a_k^{(s)} \leqslant \sum\limits_{k=1}^\infty a_k \Rightarrow \lim\limits_{s\to\infty}\sum\limits_{k=1}^\infty a_k^{(s)}\leqslant \sum\limits_{k=1}^\infty a_k$. Хотим доказать равенство, пойдем от противного: $\lim\limits_{s\to\infty}\sum\limits_{k=1}^\infty a_k^{(s)}< c <\sum\limits_{k=1}^\infty a_k \Rightarrow \\ (\exists N)\sum\limits_{k=1}^N a_k >c> \lim\limits_{s\to\infty} \sum\limits_{k=1}^\infty a_k^{(s)}\Rightarrow (\exists s_0)(\forall s>s_0)\sum\limits_{k=1}^\infty a_k^{(s)}<c\Rightarrow \sum\limits_{k=1}^N a_k^{(s)}<c$, устремим $s$ к бесконечности: $\sum\limits_{k=1}^N a_k \leqslant c$. Получили противоречие.
+\end{proof}
+
+\begin{prop}($\sigma$- аддитивность для $\mu(E)=+\infty$)
+	Если $f$ --- суммируема на $E\subset \R^n, \mu(E)=+\infty$, то $\forall E=\bigsqcup\limits_{k=1}^\infty E_k, E_k$ --- измеримы, $\int\limits_{E}f(x)d\mu(x)=\sum\limits_{k=1}^\infty \int\limits_{E_k}f(x)d\mu(x)$. Обратно, если $f$ суммируема на $E_k, k=1,2,\ldots$ и $\sum\limits_{k=1}^\infty\int\limits_{E_k}|f(x)|d\mu(x)$ сходится, то $f$ суммируема на $E=\bigsqcup\limits_{k=1}^\infty E_k$, причем справедливо равенство $\int\limits_{E}f(x)d\mu(x)=\sum\limits_{k=1}^\infty \int\limits_{E_k}f(x)d\mu(x)$.
+\end{prop}
+
+
+
+

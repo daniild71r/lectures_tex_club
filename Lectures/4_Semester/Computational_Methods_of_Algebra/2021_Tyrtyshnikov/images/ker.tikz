@@ -1,0 +1,34 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Ellipse [id:dp7555518550305362] 
+\draw   (22.21,101.67) .. controls (52.33,83.99) and (132.02,69.67) .. (200.21,69.67) .. controls (268.39,69.67) and (299.25,83.99) .. (269.13,101.67) .. controls (239,119.34) and (159.31,133.67) .. (91.13,133.67) .. controls (22.94,133.67) and (-7.91,119.34) .. (22.21,101.67) -- cycle ;
+%Straight Lines [id:da8611871472064767] 
+\draw    (251,64.33) -- (227.58,92.69) ;
+\draw [shift={(225.67,95)}, rotate = 309.56] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Flowchart: Connector [id:dp3708456265538911] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (70.67,105.17) .. controls (70.67,103.42) and (72.08,102) .. (73.83,102) .. controls (75.58,102) and (77,103.42) .. (77,105.17) .. controls (77,106.92) and (75.58,108.33) .. (73.83,108.33) .. controls (72.08,108.33) and (70.67,106.92) .. (70.67,105.17) -- cycle ;
+%Flowchart: Connector [id:dp6480582811904614] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (85.33,179.83) .. controls (85.33,178.08) and (86.75,176.67) .. (88.5,176.67) .. controls (90.25,176.67) and (91.67,178.08) .. (91.67,179.83) .. controls (91.67,181.58) and (90.25,183) .. (88.5,183) .. controls (86.75,183) and (85.33,181.58) .. (85.33,179.83) -- cycle ;
+%Straight Lines [id:da2615434521627906] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ]   (88.5,179.83) -- (150.55,87.99) ;
+\draw [shift={(151.67,86.33)}, rotate = 484.04] [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da13563403014940367] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (74.22,107.13) -- (88.5,179.83) ;
+\draw [shift={(73.83,105.17)}, rotate = 78.89] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da7842292979954639] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (73.83,105.17) -- (151.67,86.33) ;
+
+% Text Node
+\draw (228.67,45) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \operatorname{ker}( A)$};
+% Text Node
+\draw (148.67,92.33) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle x_{0}$};
+% Text Node
+\draw (82.67,108.33) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle z$};
+
+
+\end{tikzpicture}

@@ -1,0 +1,212 @@
+\begin{example}
+    Пусть $\displaystyle X_{1} ,\ \dotsc ,\ X_{n} \ \sim \ \mathcal{N}\left( a_{1} ,\ \sigma ^{2}\right) ,\ Y_{1} ,\ \dotsc ,\ Y_{m} \ \sim \ \mathcal{N}\left( a_{2} ,\ \sigma ^{2}\right)$. Построим F-критерий для проверки гипотезы $\displaystyle H_{0} :\ a_{1} =a_{2}$. Сведем задачу к гауссовской модели линейной регрессии:
+    \begin{equation*}
+        W:=\begin{pmatrix}
+        X_{1}\\
+        \dotsc \\
+        X_{n}\\
+        Y_{1}\\
+        \dotsc \\
+        Y_{m}
+        \end{pmatrix} =Z\cdotp \theta +\varepsilon ,
+    \end{equation*}
+    где
+    \begin{equation*}
+        Z=\begin{pmatrix}
+        1 & 0\\
+        \dotsc  & \dotsc \\
+        1 & 0\\
+        0 & 1\\
+        \dotsc  & \dotsc \\
+        0 & 1
+        \end{pmatrix} ,\ \theta =\begin{pmatrix}
+        a_{1}\\
+        a_{2}
+        \end{pmatrix} ,\ \varepsilon =\begin{pmatrix}
+        \varepsilon _{1}\\
+        \dotsc \\
+        \varepsilon _{n}\\
+        \varepsilon _{n+1}\\
+        \dotsc \\
+        \varepsilon _{n+m}
+        \end{pmatrix} ,\ T=\begin{pmatrix}
+        1 & -1
+        \end{pmatrix} ,\ t=0,
+    \end{equation*}
+     и $\displaystyle \varepsilon _{j} \ \sim \ \mathcal{N}\left( 0,\ \sigma ^{2}\right) ,\ cov( \varepsilon _{i} ,\ \varepsilon _{j}) =0,\ i\neq j$. Тогда $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} W=\begin{pmatrix}
+    \overline{X}\\
+    \overline{Y}
+    \end{pmatrix}$, и $\displaystyle \hat{t} =T\hat{\theta } =\overline{X} -\overline{Y}$. Следовательно, $\displaystyle T\left( Z^{T} Z\right)^{-1} T^{T} =\frac{1}{n} +\dfrac{1}{m}$. Таким образом, $\displaystyle \hat{Q} =\left(\dfrac{1}{n} +\dfrac{1}{m}\right)^{-1}(\overline{X} -\overline{Y})^{2}$, и $\displaystyle \Vert W-Z\hat{\theta }\Vert ^{2} =\sum _{i=1}^{n}( X_{i} -\overline{X})^{2} +\sum _{j=1}^{m}( Y_{j} -\overline{Y})^{2} =nS_{X}^{2} +mS_{Y}^{2}$. Тогда F-критерий имеет вид
+    \begin{equation*}
+        \left\{\dfrac{nm}{n+m} \cdotp \dfrac{(\overline{X} -\overline{Y})^{2}}{nS_{X}^{2} +mS_{Y}^{2}} \cdotp \dfrac{n+m-2}{1}  >u_{1-\varepsilon }\right\} ,
+    \end{equation*}
+    где $\displaystyle u_{1-\varepsilon }$ -- $\displaystyle ( 1-\varepsilon )$-квантиль распределения $\displaystyle F_{1,n+m-2}$.
+\end{example}
+\section{Критерии согласия}
+\subsection{Критерий согласия Пирсона (критерий хи-квадрат)}
+
+Пусть выборка $\displaystyle X_{1} ,\ \dotsc ,\ X_{n}$ с распределением $\displaystyle P( X_{1} =a_{i}) =p_{i} ,\ i=\overline{1,m} ,\ \sum _{i=1}^{m} p_{i} =1$ (полиномиальная схема). Положим $\displaystyle \nu _{j} =\sum _{i=1}^{n} I_{X_{i} =a_{j}} ,\ j=\overline{1,m}$ -- количество осуществлений исхода $\displaystyle a_{j}$. Тогда $\displaystyle \sum _{i=1}^{m} \nu _{i} =n$. Вектор $\displaystyle \overline{p} =\begin{pmatrix}
+p_{1}\\
+\dotsc \\
+p_{m}
+\end{pmatrix}$ считается неизвестным. Хотим проверить простую гипотезу $\displaystyle H_{0} :\ \overline{p} =\overline{p}_{0}$, где $\displaystyle \overline{p}_{0} =\begin{pmatrix}
+p_{1}^{0}\\
+\dotsc \\
+p_{m}^{0}
+\end{pmatrix}$ -- заданный вектор с положительными координатами, и $\displaystyle \sum _{i=1}^{m} p_{i}^{0} =1$.
+\begin{definition}
+    \textit{Статистикой хи-квадрат Пирсона} называют величину
+    \begin{equation*}
+        \hat{\chi }_{n}^{2} =\sum _{j=1}^{m}\dfrac{\left( \nu _{j} -np_{j}^{0}\right)^{2}}{np_{j}^{0}} .
+    \end{equation*}
+\end{definition}
+\begin{theorem}
+    (Пирсона) Если $\displaystyle H_{0}$ верна, то $\displaystyle \hat{\chi }_{n}^{2}\xrightarrow[n\rightarrow \infty ]{d} \chi _{m-1}^{2}$.
+\end{theorem}
+\begin{proof}
+    Положим $\displaystyle Y_{j} =\begin{pmatrix}
+    I_{X_{j} =a_{1}}\\
+    \dotsc \\
+    I_{X_{j} =a_{m}}
+    \end{pmatrix} ,\ j=\overline{1,n}$ -- независимые одинаково распределенные случайные векторы, $\displaystyle EY_{j} =\begin{pmatrix}
+    p_{1}\\
+    \dotsc \\
+    p_{m}
+    \end{pmatrix} =\begin{pmatrix}
+    p_{1}^{0}\\
+    \dotsc \\
+    p_{m}^{0}
+    \end{pmatrix}$. Найдем матрицу ковариаций вектора $\displaystyle Y_{j}$:
+    \begin{equation*}
+        cov( I_{X_{j} =a_{i}} ,\ I_{X_{j} =a_{k}}) =EI_{X_{j} =a_{i} ,\ X_{j} =a_{k}} -EI_{X_{j} =a_{i}} \cdotp EI_{X_{j} =a_{k}} =\begin{cases}
+        p_{i}^{0} -p_{i}^{0} p_{k}^{0} & ,\ i=k\\
+        -p_{i}^{0} p_{k}^{0} & ,\ i\neq k
+        \end{cases} .
+    \end{equation*}
+    Положим $\displaystyle B:=\begin{pmatrix}
+    p_{1}^{0} & 0 & \dotsc  & 0\\
+    0 & p_{2}^{0} & \dotsc  & 0\\
+    \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+    0 & 0 & \dotsc  & p_{m}^{0}
+    \end{pmatrix} \Rightarrow DY_{j} =B-\overline{p}_{0}\overline{p}_{0}^{T}$. По многомерной ЦПТ
+    
+    
+    \begin{equation*}
+        \dfrac{Y_{1} +\ \dotsc \ +Y_{n}}{\sqrt{n}} -\sqrt{n}\overline{p}_{0}\xrightarrow{d}\mathcal{N}\left( 0,\ B-\overline{p}_{0}\overline{p}_{0}^{T}\right) .
+    \end{equation*}
+    Заметим, что $\displaystyle Y_{1} +\ \dotsc \ +Y_{n} =\begin{pmatrix}
+    \nu _{1}\\
+    \dotsc \\
+    \nu _{m}
+    \end{pmatrix} =:\overline{\nu }$, и матрица $\displaystyle B$ симметрична и положительно определена в силу положительности $\displaystyle p_{j}^{0} \ \forall j\in \{1,\ \dotsc ,\ m\}$. Пусть $\displaystyle \xi _{n} =\left(\sqrt{B}\right)^{-1}\sqrt{n}\left(\dfrac{\overline{\nu }}{n} -\overline{p}_{0}\right)$. По теореме о наследовании сходимостей
+    
+    
+    \begin{equation*}
+        \xi _{n}\xrightarrow{d}\mathcal{N}\left( 0,\ \left(\sqrt{B}\right)^{-1}\left( B-\overline{p}_{0}\overline{p}_{0}^{T}\right)\left(\sqrt{B}\right)^{-1}\right) =\mathcal{N}\left( 0,\ I_{m} -zz^{T}\right) ,
+    \end{equation*}
+    где $\displaystyle z=\left(\sqrt{B}\right)^{-1}\overline{p}_{0} =\begin{pmatrix}
+    \sqrt{p_{1}^{0}}\\
+    \dotsc \\
+    \sqrt{p_{m}^{0}}
+    \end{pmatrix}$. Заметим, что $\displaystyle \Vert z\Vert ^{2} =\sum _{i=1}^{m} p_{i}^{0} =1\Rightarrow \Vert z\Vert =1$. Рассмотрим ортогональную матрицу $\displaystyle V\in M_{m\times m}$ такую, что ее первая строка -- это вектор $\displaystyle z$. Тогда по теореме о наследовании сходимости
+    \begin{equation*}
+        V\xi _{n}\xrightarrow{d} V\cdotp \mathcal{N}\left( 0,\ I_{m} -zz^{T}\right) =\mathcal{N}\left( 0,\ V\left( I_{m} -zz^{T}\right) V^{T}\right) .
+    \end{equation*}
+    Рассмотрим вектор $\displaystyle Vz$. В силу ортогональности матрицы $\displaystyle V$ выполнено
+    \begin{equation*}
+        Vz=\begin{pmatrix}
+        \sqrt{p_{1}^{0}} & \sqrt{p_{2}^{0}} & \dotsc  & \sqrt{p_{m}^{0}}\\
+        v_{21} & v_{22} & \dotsc  & v_{2m}\\
+        \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+        v_{m1} & v_{m2} & \dotsc  & v_{mm}
+        \end{pmatrix} \cdotp \begin{pmatrix}
+        \sqrt{p_{1}^{0}}\\
+        \sqrt{p_{2}^{0}}\\
+        \dotsc \\
+        \sqrt{p_{m}^{0}}
+        \end{pmatrix} =\begin{pmatrix}
+        1\\
+        0\\
+        \dotsc \\
+        0
+        \end{pmatrix} .
+    \end{equation*}
+    Таким образом, 
+    \begin{equation*}
+    V\left( I_{m} -zz^{T}\right) V^{T} =I_{m} -\begin{pmatrix}
+    1 & 0 & \dotsc  & 0\\
+    0 & 0 & \dotsc  & 0\\
+    \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+    0 & 0 & \dotsc  & 0
+    \end{pmatrix} =\begin{pmatrix}
+    0 & 0 & \dotsc  & 0\\
+    0 & 1 & \dotsc  & 0\\
+    \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+    0 & 0 & \dotsc  & 1
+    \end{pmatrix} =:\tilde{I}_{m} .
+    \end{equation*}
+    По теореме о наследовании сходимости
+    \begin{equation*}
+        \Vert V\xi _{n}\Vert ^{2}\xrightarrow{d}\left\Vert \mathcal{N}\left( 0,\ \tilde{I}_{m}\right)\right\Vert ^{2} =\chi _{m-1}^{2} .
+    \end{equation*}
+    Но в силу ортогональности матрицы $\displaystyle V$ выполнено
+    
+    
+    \begin{equation*}
+        \Vert V\xi _{n}\Vert ^{2} =\Vert \xi _{n}\Vert ^{2} =\left\Vert \left(\sqrt{B}\right)^{-1}\sqrt{n}\left(\dfrac{\overline{\nu }}{n} -\overline{p}_{0}\right)\right\Vert ^{2} =\sum _{i=1}^{m}\dfrac{\left( \nu _{i} -np_{i}^{0}\right)^{2}}{np_{i}^{0}} =\hat{\chi }_{n}^{2} .
+    \end{equation*}
+\end{proof}
+\begin{definition}
+    Пусть $\displaystyle u_{1-\varepsilon }$ -- $\displaystyle ( 1-\varepsilon )$-квантиль $\displaystyle \chi _{m-1}^{2}$. Тогда \textit{критерием хи-кварат называется} $\displaystyle \left\{\hat{\chi }_{n}^{2}  >u_{1-\varepsilon }\right\}$.
+\end{definition}
+\begin{note}
+    На практике критерий применяется при $\displaystyle np_{j}^{0} \geqslant 5,\ 1\leqslant j\leqslant m$.
+\end{note}
+\begin{note}
+    Критерий хи-квадрат является асимптотическим, т.е. вероятность ошибки только стремится к $\displaystyle \varepsilon $ при $\displaystyle n\rightarrow \infty $.
+\end{note}
+\begin{proposition}
+    Критерий хи-квадрат состоятелен.
+\end{proposition}
+\begin{proof}
+    Пусть на самом деле $\displaystyle \overline{p} \neq \overline{p}_{0}$. Тогда $\displaystyle \hat{\chi }_{n}^{2} =n\sum _{i=1}^{m}\left(\dfrac{\nu _{i}}{n} -p_{i}^{0}\right)^{2}\dfrac{1}{p_{i}^{0}}$. В силу УЗБЧ для любого фиксированного $\displaystyle i\in \{1,\ \dotsc ,\ m\}$ выполнено $\displaystyle \dfrac{\nu _{i}}{n} =\dfrac{1}{n}\sum _{j=1}^{n} I_{X_{j} =a_{i}}\xrightarrow{a.s.} p_{i}$. По теореме о наследовании сходимости $\displaystyle \sum _{i=1}^{m}\left(\dfrac{\nu _{i}}{n} -p_{i}^{0}\right)^{2} \cdotp \dfrac{1}{p_{i}^{0}}\xrightarrow{a.s.}\sum _{i=1}^{m}\dfrac{\left( p_{i} -p_{i}^{0}\right)^{2}}{p_{i}^{0}}  >0$. Значит, $\displaystyle \hat{\chi }_{n}^{2}\xrightarrow[n\rightarrow \infty ]{} \infty $, а, следовательно, и $\displaystyle P\left(\hat{\chi }_{n}^{2}  >u_{1-\varepsilon }\right)\xrightarrow[n\rightarrow \infty ]{} 1$. Таким образом, вероятность ошибки второго рода стремится к нулю.
+\end{proof}
+\subsection{Критерий согласия Колмогорова (Колмогорова-Смирнова)}
+
+Пусть $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n})$ -- выборка из неизвестного распределения с непрерывной функцией распределения $\displaystyle F$. Тогда $\displaystyle D_{n} =\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| $.
+\begin{theorem}
+    (Колмогорова, б/д) Пусть $\displaystyle F$ -- непрерывна. Тогда
+    
+    1) Распределение $\displaystyle \sqrt{n} D_{n}$ не зависит от вида $\displaystyle F$
+    
+    2) $\displaystyle \sqrt{n} D_{n}\xrightarrow{d} \xi $, где $\displaystyle \xi $ имеет распределение Колмогорова, т.е. $\displaystyle P( \xi \leqslant z) =\sum _{j\in \mathbb{Z}}( -1)^{j} e^{-2j^{2} z^{2}} I_{z >0}$.
+\end{theorem}
+Рассмотрим гипотезу $\displaystyle H_{0} :\ F=F_{0}$.
+\begin{definition}
+    \textit{Критерием Колмогорова} называется
+    \begin{equation*}
+        S=\left\{\sqrt{n}\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F_{0}( x)\right|  >K_{1-\alpha }\right\} ,
+    \end{equation*}
+    где $\displaystyle K_{1-\alpha }$ -- $\displaystyle ( 1-\alpha )$-квантиль распределения Колмогорова.
+\end{definition}
+\begin{note}
+    На практике критерий применяется при $\displaystyle n\geqslant 20$.
+\end{note}
+\subsection{Критерий омега-квадрат (Смирнов, Фон Мизес)}
+
+Пусть гипотеза $\displaystyle H_{0} :\ F=F_{0}$, где $\displaystyle F_{0}$ -- непрерывная функция распределения.
+\begin{definition}
+    \textit{Статистикой омега-квадрат} называется
+    \begin{equation*}
+        \omega ^{2} :=n\int \left| F_{n}^{*}( x) -F_{0}( x)\right| ^{2} dF_{0}( x) .
+    \end{equation*}
+\end{definition}
+\begin{proposition} (б/д)
+    Если гипотеза $\displaystyle H_{0}$ верна, то статистика $\displaystyle \omega ^{2}$ слабо сходится к известному распределению.
+\end{proposition}
+\begin{definition}
+    \textit{Критерием омега-квадрат} называется $\displaystyle S:=\left\{\omega ^{2}  >u_{1-\alpha }\right\}$, где $\displaystyle u_{1-\alpha }$ -- $\displaystyle ( 1-\alpha )$-квантиль распределения из предыдущего утверждения.
+\end{definition}
+\begin{definition}
+    Критерии Пирсона, Колмогорова и омега-квадрат называют \textit{критериями согласия}, так как они проверяют гипотезу $\displaystyle H_{0} :\ P=P_{0}$ против альтернативы $\displaystyle H_{1} :\ P\neq P_{0}$.
+\end{definition}

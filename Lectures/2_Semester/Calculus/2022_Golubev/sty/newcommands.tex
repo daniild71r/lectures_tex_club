@@ -1,0 +1,144 @@
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\ensuremath{\varnothing}}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Ln}{Ln}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Arsh}{Arsh}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator*{\Inf}{inf}
+\DeclareMathOperator*{\Sup}{sup}
+\DeclareMathOperator{\cl}{cl}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\ensuremath{\mathbb{R}^n}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\goth}{\mathfrak}
+\newcommand{\mc}{\mathring}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\veps}{\epsilon}
+\newcommand{\vdelta}{\partial}
+\newcommand{\Tau}{\mathcal{T}}
+\newcommand{\dvec}[1]{\Delta\vec{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\liml}{\lim\limits}
+\newcommand{\suml}{\sum\limits}
+\newcommand{\prodl}{\prod\limits}
+\newcommand{\such}{\ \big|\ }
+\newcommand{\range}[1]{\{1, \ldots, #1\}}
+
+\newcommand{\hence}{\ensuremath{\Rightarrow}}
+\newcommand{\lhence}{\ensuremath{\Leftarrow}}
+\newcommand{\nas}{\ensuremath{\Leftrightarrow}~}
+
+\newcommand{\eqcom}[1]{{
+	\color{gray}
+	\begin{bNiceArray}{l}
+		#1
+	\end{bNiceArray}
+}
+}
+
+\newcommand{\System}[1]{
+	\begin{cases}#1\end{cases}
+}
+\newcommand{\Root}[2]{
+	\left\{\!\sqrt[#1]{#2}\right\}
+}
+\newcommand{\Matrix}[1]{
+	\left(\begin{aligned}#1\end{aligned}\right)
+}
+\newcommand{\Det}[1]{
+	\left|\begin{aligned}#1\end{aligned}\right|
+}
+\newcommand{\trbr}[1]{
+	\left\langle#1\right\rangle
+}
+
+\newcommand{\partder}[2]{\ensuremath{\dfrac{\partial #1}{\partial #2}}}
+\newcommand{\extpartder}[3]{\ensuremath{\left(\partder{#1}{#2}\right)_{#3}}}
+
+\renewcommand\labelitemi{$\triangleright$}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{proposition}{Утверждение}[section]
+\newtheorem*{exercise}{Упражнение}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem*{adefinition}{Определение(не материал лектора)}
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{addition}{Дополнение}
+\newtheorem*{note}{Замечание}
+\newtheorem*{anote}{Замечание автора}
+\newtheorem*{reminder}{Напоминание}
+\newtheorem*{example}{Пример}
+\newtheorem*{examples}{Примеры}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Решение}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+  \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+%%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\newcommand{\segment}{\subsubsection*}
+
+%%% Нумерация уравнений
+\makeatletter
+\def\eqref{\@ifstar\@eqref\@@eqref}
+\def\@eqref#1{\textup{\tagform@{\ref*{#1}}}}
+\def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
+\makeatother                      % \eqref* без гиперссылки
+\numberwithin{equation}{section}  % Нумерация вида (номер_секции).(номер_уравнения)
+\mathtoolsset{showonlyrefs=true} % Номера только у формул с \eqref{} в тексте.
+
+
+%%% Мои команды
+
+\newcommand{\cell}{~\text{--- клет.}}
+
+\renewcommand{\bar}{\overline}
+
+\newcommand{\fabr}{\ensuremath{f:[a,b] \to \R}}
+\newcommand{\fgabr}{\ensuremath{f,g:[a,b] \to \R}}
+\newcommand{\fintonab}{$f$~--- интегрируема на \segab}
+\newcommand{\pab}{\ensuremath{~\text{--- разбиение }[a,b]}}
+\newcommand{\tpab}{\ensuremath{$T$\pab}}
+\newcommand{\segab}{\ensuremath{[a,b]}}
+\newcommand{\intab}{\ensuremath{\int_a^b}}
+\newcommand{\intfab}{\ensuremath{\intab f(x) dx}}
+\newcommand{\intgab}{\ensuremath{\intab g(x) dx}}
+\newcommand{\sumifromto}[2]{\ensuremath{\sum_{i=#1}^{#2}}}
+\newcommand{\sumkfromto}[2]{\ensuremath{\sum_{k=#1}^{#2}}}
+\DeclareMathOperator*{\limto}{\to}
+\newcommand{\eqincon}{\stackrel{\mathclap{\normalfont\mbox{\tiny cx.}}}{\sim}}
+% \newcommand{\convergesuniformly}[2]{\ensuremath{\overset{\xrightarrow[]{\lefteqn{\small#2}\hphantom{#1}}}{\xrightarrow[\lefteqn{#1}\hphantom{\small #2}]{}}}}
+\newcommand{\convergesuniformly}[2]{\overset{#2}{\underset{#1}{\rightrightarrows}}}
+
+
+\newcommand{\at}[2]{\bigg|_{#1}^{#2}}
+\newcommand{\tat}[2]{\big|_{#1}^{#2}}
+
+\newcommand{\ito}[1]{\ensuremath{{i \in\{\overrightarrow{1,#1}\}}}}
+\newcommand{\rto}[1]{\ensuremath{{\{\overrightarrow{1,#1}\}}}}
+
+\DeclareMathOperator*{\ulim}{\ensuremath{\overline{\lim}}}
+
+\newcommand{\s}{\mathfrak{S}}

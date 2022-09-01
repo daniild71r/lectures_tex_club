@@ -1,0 +1,192 @@
+\newpage
+\lecture{6}{Применения сингулярного разложения.}
+
+\subsection{Псевдорешения СЛУ.}
+
+Рассмотрим систему линейных алгебраических уравнений:
+\[
+    Ax=b,\quad A\in\Cx^{m\times n},\quad b\in\Cx^{n},\quad x=\text{?}    
+\]
+
+Иногда бывает так, что система не имеет решения, но очень хочется что-то предъявить в качестве решения. Тогда вводят понятие обобщенного 
+решения. Для этого используется некоторая векторная норма.
+
+\begin{definition}
+    Вектор вида $r(x)=b-Ax$ называется \mdef{невязкой} вектора $x$ для системы $Ax=b$.
+\end{definition}
+
+Соответственно можем поставить задачу минимизации невязки для некоторой векторной нормы:
+\[
+    \min_{x}\|r(x)\| = \text{?}
+\]
+Мы возьмем в качестве нормы возьмем евклидову:
+\[
+    \|x\|=\|x\|_2=\sqrt{\sum_{i=1}^n |x_i|^2}.
+\]
+\begin{definition}
+    Любой вектор, минимизирующий длину невязки, называется \mdef{псевдорешением}.
+\end{definition}
+
+Опишем множество всех псевдорешений. Подумаем геометрически над задачей. Пусть имеется $\im(A)$ (напомним, что $\im(A)=\{y:\ \exists x,\, Ax=y\}$) и произвольный 
+вектор $b$ (смотри рисунок \ref{fig:im}).
+
+\begin{figure}[!ht]
+    \centering
+    \input{images/im.tikz}
+    \caption{К задаче о поиске псевдорешений.}
+    \label{fig:im}
+\end{figure}
+
+Понятно, что для минимизации нормы, нужно опустить перпендикуляр на множество $\im(A)$, тогда для соответствующего 
+вектора (на рисунке $Ax_0=b_0$) система $Ax=b_0$ уже будет совместной.
+
+Итак, множество всех псевдорешений есть множество всех решений совместной системы $Ax=b_0\ (=Ax_0)$.
+
+Обычно есть желание найти какой-нибудь один вектор в качестве псевдорешения, то есть нужен некоторый критерий отбора вектора среди всех векторов,
+минимизирующих длину невязки. В качестве такого критерия часто берут длину вектора, то есть среди всех таких векторов ищут минимальный по длине.
+
+\begin{definition}
+    Псевдорешение минимальной длины называется \mdef{нормальным} псевдорешение.
+\end{definition}
+
+Итак, более формально, имеем множество решений системы $Ax=b_0\ (=Ax_0)$, то есть $x = x_0+\ker(A)$ (напомним, что $\ker(A)=\{x:\ Ax=0\}$).
+Рассуждая снова геометрически (смотри рисунок \ref{fig:ker}), получим, что искомое нормальное псевдорешение $z\bot \ker(A)$.
+
+\begin{figure}[!ht]
+    \centering
+    \input{images/ker.tikz}
+    \caption{Нормальное псевдорешение.}
+    \label{fig:ker}
+\end{figure}
+
+Суммируя сказанное можно сформулировать утверждение:
+\begin{claim}
+    \label{lect6:cl:1}
+    Нормальное псевдорешение $z$ системы $Ax=b$ однозначно определяется двумя условиями:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $b-Az\bot \im(A)$,
+        \item $z\bot \ker(A)$.
+    \end{enumerate}
+\end{claim}
+
+\begin{task}
+    Доказать, что система $A^*Ax=A^*b$ всегда совместна и множество ее решений совпадает с множеством псевдорешений системы $Ax=b$.
+\end{task}
+
+\subsection{Формула для нормального псевдорешения.}
+
+Рассмотрим сингулярное разложение матрицы (ранг матрицы равен $r$):
+\[
+    A=\sum_{i=1}^r \sigma_i\vect{v}_i\vect{u}_i^*.
+\]
+Далее имеем $\vect{v}_1,\,\ldots\,\, \vect{v}_m$~--- ортонормированный базис пространства $\Cx^m$, то есть 
+\[
+    \vect{b} = \sum_{i=1}^m b_i\vect{v}_i\Rightarrow (\vect{v}_i,\, \vect{b})=\vect{v}_i^*\vect{b}=b_i\Rightarrow \vect{b}=\sum_{i=1}^m(\vect{v}_i^*\vect{b})\vect{v}_i.
+\]
+
+\begin{claim}
+    Нормальное псевдорешение $z$ имеет вид  
+    \[
+        \vect{z} = \sum_{i=1}^r \dfrac{\vect{v}_i^*\vect{b}}{\sigma_i}\vect{u}_i.    
+    \]
+
+    \begin{proof}
+        
+        Для доказательства достаточно проверить оба условия из утверждения \ref{lect6:cl:1}. 
+        \begin{enumerate}[label=(\arabic*)]
+            \item Для начала заметим, что $\im(A)=L(\vect{v}_1,\,\ldots,\,\vect{v}_r)$. Рассмотрим вектор $\vect{b}-A\vect{z}$:
+            \[
+                \vect{b}-A\vect{z}=\underbrace{\sum_{i=1}^r \left(\vect{v}^*_i\vect{b}-\dfrac{\vect{v}_i^*\vect{b}}{\sigma_i}\sigma_i\right)\vect{v}_i}_0
+                +\sum_{i=r+1}^m \left(\vect{v}_i^*\vect{b}\right)\vect{v}_i.
+            \]
+            То есть вектор $\vect{b}-A\vect{z}\in L(\vect{v}_{r+1},\,\ldots,\, \vect{v}_m)$. Значит условие (1) выполняется.
+            \item Аналогично, $z\in L(\vect{u}_1,\,\ldots,\, \vect{u}_r)$, $\ker(A)=L(\vect{u}_{r+1},\,\ldots,\, \vect{u}_n)$. 
+        \end{enumerate}
+
+    \end{proof}
+\end{claim}
+
+\begin{exercise}
+    Рассмотрим систему $0\cdot x = 1$. Данная система не имеет решений, но она имеет нормальное псевдорешение. Длина невязки в данном случае равна 1 вне зависимости от вектора 
+    $x$. Значит минимальный по длине вектор~--- нулевой. Итак, $z(0)=0$.
+
+    Немного видоизменим систему: $\varepsilon\cdot x(\varepsilon) = 1$. 
+    Понятно, что теперь $z(\varepsilon)=\dfrac{1}{\varepsilon}$. Но тогда 
+    \[
+        z(\varepsilon) - z(0)=\dfrac{1}{\varepsilon}\xrightarrow[\varepsilon\to 0]{}\infty.
+    \]
+    Полученный результат указывает на проблему: в самом деле, если чуть-чуть изменить значения матрицы, нормальные псевдорешения меняются кардинальным образом.
+\end{exercise}
+
+\subsection{Поиск нормальных псевдорешений.}
+Допустим теперь, что нужно найти нормальное псевдорешение для системы, которая неизвестна, 
+но известны приближения: $A_{\varepsilon}\approx A$ и $\vect{b}_{\varepsilon}\approx \vect{b}$, то есть 
+$\|A_{\varepsilon}-A\|\leqslant \varepsilon$ и $\|\vect{v}_{\varepsilon}-\vect{b}\|\leqslant \varepsilon$.
+Для решения данной задачи предлагается метод регуляризации.
+
+\subsubsection{Метод регуляризации.}
+Возьмем некоторое $\alpha>0$. Рассмотрим систему:
+\[
+    (A^*_{\varepsilon}A_{\varepsilon}+\alpha I)\vect{z}_{\varepsilon,\alpha}=A_{\varepsilon}^{*}\vect{b}.    
+\]
+Данная система имеет единственное решение для любого $\alpha>0$, в самом деле матрица $A^*_{\varepsilon}A_{\varepsilon}$~--- эрмитова неотрицательно 
+определенная (смотри определение ниже) матрица. 
+
+\begin{definition}
+    Матрица $H$ называется \mdef{неотрицательно определенной}, если $(H\vect{x},\, \vect{x})\geqslant 0\ \forall\vect{x}$.
+\end{definition}
+
+\begin{definition}
+    Матрица $H$ называется \mdef{положительно определенной}, если $(H\vect{x},\, \vect{x})> 0\ \forall\vect{x}$.
+\end{definition}
+
+Тогда матрица $A^*_{\varepsilon}A_{\varepsilon}+\alpha I$ является положительно определенной эрмитовой матрицей. 
+Предлагается взять в качестве приближения к нормальному псевдорешению исходной системы решение новой системы.
+Пусть $\vect{z}_0$~--- нормальное псевдорешение исходной системы. Тогда справедлива следующая теорема.
+
+\begin{theorem}
+    $\|\vect{z}_{\varepsilon,\, \sqrt{\varepsilon}}-\vect{z}_0\|=O(\sqrt{\varepsilon})\to 0$ при $\varepsilon\to 0$.
+    
+    \begin{proof}
+        
+        Итак, $A_0=A$. Рассмотрим систему $(A^*A+\alpha I)\vect{z}_{0,\, \alpha}=A^*\vect{b}$.
+        Докажем, что $\|\vect{z}_{0,\,\alpha}-\vect{z}_0\|=O(\alpha)$. Вспомним формулу для нормального псевдорешения:
+        \[
+            \vect{z}_0=\sum_{i=1}^r\dfrac{\vect{v}_i^*\vect{b}}{\sigma_i}\vect{u}_i.\quad \vect{z}_{0,\,\alpha}=
+            \sum_{i=1}^r\dfrac{\sigma_i}{\sigma_i^2+\alpha}(\vect{v}_i^*\vect{b})\vect{u}_i.
+        \]
+        В самом деле распишем обе стороны:
+        \begin{align*}
+            &A^*A+\alpha I=\sum_{i=1}^r(\sigma_i^2+\alpha)\vect{u}_i\vect{u}_i^*+\sum_{i=r+1}^n \alpha\vect{u}_i\vect{u}_i^*\\
+            &A^*\vect{b}=\sum_{i=1}^r \sigma_i(\vect{v}_i^*\vect{b})\vect{u}_i.
+        \end{align*}
+
+        Оценим теперь разность: 
+        \[
+            \vect{z}_0-\vect{z}_{0,\,\alpha}=\sum_{i=1}^r\dfrac{\alpha}{\sigma_i(\sigma_i^2+\alpha)}(\vect{v}_i^*\vect{b})\vect{u}_i.
+        \]
+
+        Теперь рассмотрим $\vect{z}_{0,\,\alpha}-\vect{z}_{\varepsilon,\, \alpha}$. Умножим на матрицу $A^*_{\varepsilon}A_{\varepsilon}+\alpha I$:
+        \[
+            (A^*_{\varepsilon}A_{\varepsilon}+\alpha I)(\vect{z}_{0,\,\alpha}-\vect{z}_{\varepsilon,\, \alpha})=((A^*_{\varepsilon}A_{\varepsilon}+\alpha I) -
+            (A^*A+\alpha I))\vect{z}_{0,\,\alpha}+\underbrace{(A^*A+\alpha I)\vect{z}_{0,\,\alpha}}_{A^*\vect{b}}-
+            \underbrace{(A^*_{\varepsilon}A_{\varepsilon}+\alpha I)\vect{z}_{\varepsilon,\,\alpha}}_{A_{\varepsilon}^*\vect{b}_{\varepsilon}}.
+        \]
+        Тогда имеем 
+        \[
+            \vect{z}_{0,\,\alpha}-\vect{z}_{\varepsilon,\,\alpha}=(A^*_{\varepsilon}A_{\varepsilon}+\alpha I)^{-1}((A^*_{\varepsilon}A_{\varepsilon}-A^*A)\vect{z}_{0,\,\alpha}+
+            A^*\vect{b}-A_{\varepsilon}^*\vect{b}_{\varepsilon}^*).
+        \]
+        Следовательно,
+        \begin{align*}
+            \|\vect{z}_{0,\,\alpha}-\vect{z}_{\varepsilon,\,\alpha}\|&\leqslant \dfrac{1}{\alpha}\left(\|A^*_{\varepsilon}(A_{\varepsilon}-A)+(A^*_{\varepsilon}-A^*)A\|
+            \cdot\|\vect{z}_{0,\,\alpha}\|+\|A^*(\vect{b}-\vect{b}_{\varepsilon}+(A^*-A_{\varepsilon}^*)\vect{b}_{\varepsilon}\|\right)\\
+            &\leqslant\dfrac{1}{\alpha}\left(((\|A\|+\varepsilon)\varepsilon+\|A\|\varepsilon)(\|\vect{z}_0\|+c\alpha)+\|A\|\varepsilon+(\|\vect{b}\|+\varepsilon)\varepsilon\right)
+            \leqslant\dfrac{c_0\varepsilon}{\alpha}. 
+        \end{align*}
+        И окончательно,
+        \[
+            \|\vect{z}_{\varepsilon,\,\alpha}-\vect{z}_0\|\leqslant \dfrac{c_0\varepsilon}{\alpha}+c\alpha=[\alpha = \sqrt{\varepsilon}]=(c_0+c)\sqrt{\varepsilon}.    
+        \]
+    \end{proof} 
+\end{theorem}

@@ -1,0 +1,296 @@
+\subsection{Топология пространства $\R^n$ и непрерывные отображения}
+
+\subsubsection*{Пределы в частных случаях}
+
+\begin{proposition}
+	Если $X$ - метрическое пространство, то
+	\[
+		\liml_{n \to \infty} x_n = x_0 \lra \forall \eps > 0\ \exists N \in \N \such \forall n > N\ \rho(x_n, x_0) < \eps
+	\]
+\end{proposition}
+
+\begin{proposition}
+	Если $X$ - линейное нормированное пространство, то
+	\[
+		\liml_{n \to \infty} x_n = x_0 \lra \forall \eps > 0\ \exists N \in \N \such \forall n > N\ \|x_n - x_0\| < \eps
+	\]
+\end{proposition}
+
+\begin{theorem} (Основные свойства предела последовательностей в $\R^n$)
+	\begin{enumerate}
+		\item (Единственность предела) В метрическом пространстве последовательность $\{x_n\}_{n = 1}^\infty$ не может иметь более одного предела
+		
+		\item (Ограниченность сходящейся последовательности) Если последовательность $\{x_n\}_{n = 1}^\infty \subset \trbr{X, \rho}$ - сходящаяся к $x_0 \in X$, то она ограничена. То есть
+		\[
+			\exists R > 0 \such \forall n \in \N\ \rho(x_n, x_0) < R
+		\] 
+		
+		\item (Отделимость от нуля) Если последовательность $\{x_n\}_{n = 1}^\infty \subset E$ (ЛНП) сходится к $x_0 \neq 0 \in E$, то она отделена от нуля. То есть
+		\[
+			\exists c > 0\ \exists N \in \N \such \forall n > N\ ||x_n|| \ge c
+		\]
+		
+		\item (Предел и арифметические операции) Если последовательности $\{x_n\}_{n = 1}^\infty$, $\{y_n\}_{n = 1}^\infty \subset E$ (ЛНП) - сходящиеся к $x_0, y_0 \in E$ соответственно, $\{\alpha_n\}_{n = 1}^\infty \subset \R(\Cm)$ сходится к $\alpha_0 \in \R(\Cm)$, то
+		\begin{enumerate}
+			\item $\liml_{n \to \infty} (x_n + y_n) = x_0 + y_0$
+			
+			\item $\liml_{n \to \infty} (\alpha_n \cdot x_n) = \alpha_0 \cdot x_0$
+		\end{enumerate}
+	
+	\item (Предел и скалярное произведение) Если последовательности $\{x_n\}_{n = 1}^\infty, \{y_n\}_{n = 1}^\infty \subset E$ (евклидово) - сходящиеся к $x_0, y_0$ соответственно, то
+	\[
+		\liml_{n \to \infty} \trbr{x_n, y_n} = \trbr{x_0, y_0}
+	\]
+	
+	\item (Предел и векторное произведение) Если последовательности $\{\vec{x}_n\}_{n = 1}^\infty, \{\vec{y}_n\}_{n = 1}^\infty \subset \R^n$ - сходящиеся к $\vec{x}_0, \vec{y}_0$ соответственно, то
+	\[
+		\liml_{n \to \infty} [\vec{x}_n, \vec{y}_n] = [\vec{x}_0, \vec{y}_0]
+	\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item От противного. Пусть $\liml_{n \to \infty} x_n = x_0,\ \liml_{n \to \infty} x_n = y_0,\ x_0 \neq y_0$. Из условия сразу следует, что $\rho(x_0, y_0) > 0$. Рассмотрим $\eps := \frac{1}{2}\rho(x_0, y_0)$:
+		\begin{align*}
+			&\exists N_1 \in \N \such \forall n > N_1\ \rho(x_n, x_0) < \eps
+			\\
+			&\exists N_2 \in \N \such \forall n > N_2\ \rho(x_n, y_0) < \eps
+		\end{align*}
+		Следовательно, если положить $N := \max(N_1, N_2)$, то
+		\[
+			\forall n > N\ \rho(x_0, y_0) \le \rho(x_0, x_n) + \rho(x_n, y_0) < 2\eps = \rho(x_0, y_0)
+		\]
+		Противоречие.
+		
+		\item Положим $\eps := 1$. По условию
+		\[
+			\exists N \in \N \such \forall n > N\ \rho(x_n, x_0) < 1
+		\]
+		Обозначим за $R$ следующую величину:
+		\[
+			R := \max(\rho(x_1, x_0), \rho(x_2, x_0), \ldots, \rho(x_N, x_0)) + 1
+		\]
+		Из определения следует, что
+		\[
+			\forall n \in \N\ \rho(x_n, x_0) < R
+		\]
+		
+		\item По определению
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N\ \|x_n - x_0\| < \eps
+		\]
+		Положим $\eps := \frac{\|x_0\|}{2}$. По неравенству треугольника имеем
+		\[
+			\|x_0\| \le \|x_0 - x_n\| + \|x_n - 0\| = \|x_n - x_0\| + \|x_n\| < \frac{\|x_0\|}{2} + \|x_n\|
+		\]
+		А уже отсюда
+		\[
+			\|x_n\| \ge \frac{\|x_0\|}{2}
+		\]
+		
+		\item
+		\begin{enumerate}
+			\item Раз исходные последовательности сходятся, то справедливы утверждения
+			\begin{align*}
+				&{\forall \eps > 0\ \exists N_1 \in \N \such \forall n > N_1\ \ \|x_n - x_0\| < \frac{\eps}{2}}
+				\\
+				&{\forall \eps > 0\ \exists N_2 \in \N \such \forall n > N_2\ \ \|y_n - y_0\| < \frac{\eps}{2}}
+			\end{align*}
+			Ну и как обычно: $N := \max(N_1, N_2)$ и тогда $\forall n > N$ оба неравенства верны одновременно. Отсюда
+			\[
+				\|(x_n + y_n) - (x_0 + y_0)\| = \|(x_n - x_0) + (y_n - y_0)\| \le \|x_n - x_0\| + \|y_n - y_0\| < \eps
+			\]
+			
+			\item По уже доказанному свойству, сходящаяся последовательность ограничена:
+			\[
+				\exists C > 0 \such \forall n \in \N\ \ \|x_n\| < C
+			\]
+			Из условия можем также заключить два утверждения:
+			\begin{align*}
+				&{\forall \eps > 0\ \exists N_1 \in \N \such \forall n > N_1\ \ |\alpha_0| \cdot \|x_n - x_0\| < \frac{\eps}{2}}
+				\\
+				&{\forall \eps > 0\ \exists N_2 \in \N \such \forall n > N_2\ \ |\alpha_n - \alpha_0| < \frac{\eps}{2C}}
+			\end{align*}
+			В итоге имеем $N := \max(N_1, N_2)$ и $\forall n > N$:
+			\begin{multline*}
+				\|\alpha_n x_n - \alpha_0 x_0\| \le \|\alpha_n x_n - \alpha_0 x_n\| + \|\alpha_0 x_n - \alpha_0 x_0\| =
+				\\
+				|\alpha_n - \alpha_0| \cdot \|x_n\| + |\alpha_0| \cdot \|x_n - x_0\| < \frac{\eps}{2C} \cdot C + \frac{\eps}{2} = \eps
+			\end{multline*}
+		\end{enumerate}
+	
+		\item Аналогично предыдущему пункту
+		\begin{align*}
+			&{\exists C > 0 \such \forall n \in \N\ \ \|x_n\| < C}
+			\\
+			&{\forall \eps > 0\ \exists N_1 \in \N \such \forall n > N_1\ \ \|y_0\| \cdot \|x_n - x_0\| < \frac{\eps}{2}}
+			\\
+			&{\forall \eps > 0\ \exists N_2 \in \N \such \forall n > N_2\ \ \|y_n - y_0\| < \frac{\eps}{2C}}
+		\end{align*}
+		Теперь $N := \max(N_1, N_2)$ и тогда $\forall n > N$:
+		\begin{multline*}
+			|\trbr{x_n, y_n} - \trbr{x_0, y_0}| \le |\trbr{x_n, y_n} - \trbr{x_n, y_0}| + |\trbr{x_n, y_0} - \trbr{x_0, y_0}| =
+			\\
+			|\trbr{x_n, y_n - y_0}| + |\trbr{x_n - x_0, y_0}| \le \|x_n\| \cdot \|y_n - y_0\| + \|x_n - x_0\| \cdot \|y_0\| <
+			\\
+			C \cdot \frac{\eps}{2C} + \frac{\eps}{2} = \eps
+		\end{multline*}
+		
+		\item Снова аналогично пункту про скалярное произведение
+		\begin{align*}
+			&{\exists C > 0 \such \forall n \in \N\ \ |x_n| < C}
+			\\
+			&{\forall \eps > 0\ \exists N_1 \in \N \such \forall n > N_1\ \ |y_0| \cdot |x_n - x_0| < \frac{\eps}{2}}
+			\\
+			&{\forall \eps > 0\ \exists N_2 \in \N \such \forall n > N_2\ \ |y_n - y_0| < \frac{\eps}{2C}}
+		\end{align*}
+		Положим $N := \max(N_1, N_2)$ и рассмотрим $\forall n > N$:
+		\[
+			|[x_n, y_n] - [x_0, y_0]| \le |[x_n, y_n] - [x_n, y_0]| + |[x_n, y_0] - [x_0, y_0]| \le |x_n| \cdot |y_n - y_0| + |y_0| \cdot |x_n - x_0| < \eps
+		\]
+		Предпоследний переход получен из тех соображений, что
+		\[
+			|[a, b]| = |a| \cdot |b| \cdot \sin \angle(a, b) \le |a| \cdot |b|
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma} (Критерий сходимости последовательности в $\R^n$)
+	Последовательность $\{\vec{x}_m = (x_m^{(1)}, \ldots, x_m^{(n)})\}_{m = 1}^\infty$ сходится к $\vec{x}_0 = (x_0^{(1)}, \ldots, x_0^{(n)})$ тогда и только тогда, когда $\forall j \in \{1, \ldots, n\}$ последовательность $\{x_m^{(j)}\}_{m = 1}^\infty$ сходится к $x_0^{(j)}$.
+\end{lemma}
+
+\begin{proof}
+	Докажем необходимость. По условию
+	\[
+		\forall \eps > 0\ \exists N \in \N\ \such \forall m > N\ \ |\vec{x}_m - \vec{x}_0| < \eps
+	\]
+	При этом
+	\[
+		|\vec{x}_m - \vec{x}_0| = \sqrt{(x_m^{(1)} - x_0^{(1)})^2 + \ldots + (x_m^{(n)} - x_0^{(n)})^2}
+	\]
+	Отсюда
+	\[
+		\forall j \in \{1, \ldots, n\}\ \ |x_m^{(j)} - x_0^{(j)}| \le \sqrt{(x_m^{(1)} - x_0^{(1)})^2 + \ldots + (x_m^{(n)} - x_0^{(n)})^2} = |\vec{x}_m - \vec{x}_0| < \eps
+	\]
+	
+	Теперь докажем достатовность. Из условия
+	\[
+		\forall j \in \range{n}\ \left(\forall \eps > 0\ \exists N_j \in \N \such \forall n > N_j\ \ |x_m^{(j)} - x_0^{(j)}| < \frac{\eps}{\sqrt{n}}\right)
+	\]
+	Снова распишем метрику:
+	\[
+		|\vec{x}_m - \vec{x}_0| = \sqrt{(x_m^{(1)} - x_0^{(1)})^2 + \ldots + (x_m^{(n)} - x_0^{(n)})^2} < \left(\max\limits_{j \in \{1, \ldots, n\}} |x_m^{(j)} - x_0^{(j)}|\right) \cdot \sqrt{n} < \frac{\eps}{\sqrt{n}} \cdot \sqrt{n} = \eps
+	\]
+\end{proof}
+
+\begin{theorem} (Больцано-Верейштрасса в $\R^n$)
+	Из каждой ограниченной последовательности в $\R^n$ можно выделить сходящуюся подпоследовательность.
+\end{theorem}
+
+\begin{proof}
+	Пусть $\{\vec{x}_m\}_{m = 1}^\infty$ - ограниченная последовательность. Это означает, что
+	\[
+		\exists C > 0 \such \forall m \in \N\ \ |\vec{x}_m| < C \Ra \forall j \in \range{n}\ |x_m^{(j)}| < C
+	\]
+	Рассмотрим произвольное $j \in \range{n}$. Тогда последовательность $\{x_m^{(j)}\}_{m = 1}^\infty$ - ограниченная, а значит, по теореме Больцано-Вейерштрасса, существует $\{x_{m_k}^{(j)}\}_{k = 1}^\infty$ - сходящаяся подпоследовательность. Применим доказанную выше лемму, получим:
+	\[
+		\liml_{k \to \infty} \vec{x}_{m_k, l_k, \ldots, p_k} = \vec{x}_0
+	\]
+	где $l_k, \ldots, p_k$ - натуральные последовательности для других координат. Что и требовалось доказать.
+\end{proof}
+
+\begin{definition}
+	\textit{Фундаментальной последовательностью в метрическом пространстве} $\trbr{X, \rho}$ называется такая последовательность $\{x_n\}_{n = 1}^\infty \subset X$, что
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N,\ \forall p \in \N\ \ \rho(x_n, x_{n + p}) < \eps
+	\]
+\end{definition}
+
+\begin{theorem} (Критерий Коши в $\R^n$)
+	Последовательность $\{\vec{x}_m\}_{m = 1}^\infty \subset \R^n$ сходится тогда и только тогда, когда $\{\vec{x}_m\}_{m = 1}^\infty$ фундаментальная
+\end{theorem}
+
+\begin{proof}~
+\begin{itemize}
+	\item Сходимость $\Ra$ Фундаментальность (эта часть верна в \textbf{любом} метрическом пространстве) По условию
+	\[
+		\forall \eps > 0\ \exists M \in \N \such \forall m > M\ \ \rho(x_m, x_0) < \frac{\eps}{2}
+	\]
+	Оценим $\rho(x_m, x_{m + p})$ для $\forall p \in \N$ при уже зафиксированных $\eps$ и $M$:
+	\[
+		\rho(x_m, x_{m + p}) \le \rho(x_m, x_0) + \rho(x_0, x_{m + p}) < \frac{\eps}{2} + \frac{\eps}{2} = \eps
+	\]
+	
+	\item Фундаментальность $\Ra$ Сходимость (эта часть верна \textbf{только для} $R^n$) По определению фундаментальности
+	\[
+		\forall \eps > 0\ \exists M \in \N \such \forall m > M, p \in \N\ \ |\vec{x}_m - \vec{x}_{m + p}| < \eps
+	\]
+	Следовательно, для $\forall j \in \range{n}$ верно неравенство $|x_m^{(j)} - x_{m + p}^{(j)}| < \eps$. Воспользовавшись критерием Коши из $\R$ получим, что
+	\[
+		\forall j \in \range{n}\ \ \exists \liml_{m \to \infty} x_m^{(j)} = x_0^{(j)}
+	\]
+	Отсюда по критерию сходимости в $\R^n$ уже получаем, что
+	\[
+		\exists \liml_{m \to \infty} \vec{x}_m = \vec{x}_0
+	\]
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Метрическое пространство, в котором каждая фундаментальная последовательность сходится, называется \textit{полным метрическим пространством}.
+	
+	Полное линейное нормированное пространство называется \textbf{банаховым}, в честь Стефана Банаха.
+	
+	Полное евклидово пространство называется \textit{гильбертовым} (не конечномерное), в честь Гильберта.
+\end{definition}
+
+\begin{theorem} (Критерий замкнутости множества)
+	Множество $F$ в метрическом пространстве является \textit{замкнутым} тогда и только тогда, когда
+	\[
+		\left(\forall \{x_n\}_{n = 1}^\infty \subset F,\ \liml_{n \to \infty} x_n = x_0\right) x_0 \in F
+	\]
+\end{theorem}
+
+\begin{proof}
+	Докажем необходимость. Из замкнутости следует, что
+	\[
+		\cl F \subset F
+	\]
+	Запишем предел $\{x_n\}$ по определению:
+	\[
+		\liml_{n \to \infty} x_n = x_0 \lra \forall \eps > 0\ \exists N \in \N \such \forall n > N\ \ \rho(x_n, x_0) < \eps
+	\]
+	Коль скоро $\forall n \in \N\ x_n \in F$, то
+	\[
+		\forall \eps > 0\ (U_\eps(x_0) \cap F) \supset \{x_{N + 1}, \ldots\}
+	\]
+	То есть $x_0$ - точка прикосновения, а значит $x_0 \in F$
+	
+	Докажем достаточность. Пусть $x_0 \in \cl F$. Тогда по определению
+	\[
+		\forall \eps > 0\ U_\eps(x_0) \cap F \neq \emptyset
+	\]
+	Последовательно будем рассматривать $\eps := 1, \frac{1}{2}, \ldots, \frac{1}{n}, \ldots$ и выбирать произвольную точку $x_n \in (U_\eps(x_0) \cap F)$. Получим $\{x_n\}$, удовлетворяющую условию
+	\[
+		\forall n \in \N\ \ \rho(x_n, x_0) < \frac{1}{n}
+	\]
+	Следовательно
+	\[
+		\liml_{n \to \infty} x_n = x_0
+	\]
+	А отсюда по условию получаем, что $x_0 \in F$
+\end{proof}
+
+\subsubsection*{Примеры метрических пространств}
+
+\begin{example}~
+\begin{itemize}
+	\item $R^n$ с \textbf{манхэттенской метрикой}:
+	\[
+		\rho(\vec{a}, \vec{b}) = \suml_{j = 1}^n |a_i - b_i|
+	\]
+	
+	\item Связный взвешенный граф с положительными весами
+\end{itemize}
+\end{example}

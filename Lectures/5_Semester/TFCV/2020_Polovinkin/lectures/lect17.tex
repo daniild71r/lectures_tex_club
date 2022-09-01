@@ -1,0 +1,259 @@
+\begin{flushright}
+    \textit{Лекция 17 (от 02.11)}
+\end{flushright}
+\section{$\S 22.$ Конформные отображения в $\overline{\CC}$.}
+\begin{center}
+    \textbf{Геометрический смысл аргумента и модуля производной}
+\end{center}
+Рассмотрим $f: B_r(z_0) \mapsto \CC$, $f'(z_0) \neq 0$.
+\\
+Пусть $w = f(z)$, $w_0 = f(z_0)$, $w-w_0 = f'(z_0)(z-z_0) + o(z-z_0)$.
+\\
+Покоординатно:
+\begin{align*}
+  & f'(z_0) = u_x+iv_x, \ f=u+iv
+\end{align*}
+\begin{align*}
+  & \left( \begin{matrix}
+          \Delta u \\
+          \Delta v
+      \end{matrix} \right) = \left( \begin{matrix}
+          u_x & -v_x \\
+          v_x & u_x
+      \end{matrix} \right)  \left( \begin{matrix}
+          \Delta x \\
+          \Delta y
+      \end{matrix} \right) = K \left( \begin{matrix}
+          \frac{u_x}{K} & \frac{-v_x}{K} \\
+          \frac{v_x}{K} & \frac{u_x}{K}
+      \end{matrix} \right) \left( \begin{matrix}
+          \Delta x \\
+          \Delta y
+      \end{matrix} \right)
+\end{align*}
+\begin{align*}
+  & K = \sqrt{u^2_x+v^2_x} = \left| f'(z_0) \right|
+\end{align*}
+Видим, что это ортогональное преобразование.
+\\
+\textbf{Свойство сохранения окружности в малом:}
+\\
+Рассмотрим $\gamma_r = \left\{ z: \left| z-z_0 \right| = r, \ 0 < r <
+    r_0\right\}$. Пусть в области, ограниченной кривой, производная ненулевая.
+\begin{align*}
+  & \left| \Delta w \right| \approx \left| f'(z_0) \right|\cdot \left| \Delta z \right| \approx K r
+\end{align*}
+(получаем <<примерно окружность>>).
+\\
+\textbf{Свойство сохранения углов:}
+\\
+Рассмотрим теперь $\gamma_1, \gamma_2: \ z = z_k(t), \ t \in \left[ t_0 -\delta;
+    t_0+\delta\right], \ z_k(t_0) = z_0$. Пусть при таких $t$ $z'_k\neq 0$, угол
+между кривыми $\alpha$. Пусть $\gamma_1^* = f(\gamma_1)$, $\gamma_2^* =
+f(\gamma_2)$. Тогда угол между $\gamma_1^*$ и $\gamma_2^*$ также равен $\alpha$.
+\\
+Действительно,
+\begin{align*}
+  & w'_k(t_0) = f'(z_0)z'_k(t_0)
+\end{align*}
+\begin{align*}
+  & \Arg w'_k(t_0) = \argm f'(z_0) + \Arg z'_k(t_0)
+\end{align*}
+(изменение на одинаковый угол).
+\begin{center}
+    \textbf{Конформные отображения в $\CC$}
+\end{center}
+\Def
+Функция $f: G \mapsto \CC$ называется \textbf{конформной в точке $z_0$}, если
+$f= u+iv$, $u$ и $v$ дифференцируемы в $z_0$ и линейное отображение вида
+\begin{equation}\label{(22.1)}
+    \begin{cases}
+        du = u_x(x_0,y_0)\Delta x + u_y(x_0,y_0) \Delta y \\
+        dv = v_x(x_0,y_0)\Delta x + v_y(x_0,y_0) \Delta y
+    \end{cases}
+\end{equation}
+является суперпозицией линейного растяжения и поворота относительно нуля.
+\theorem
+Функция $f$ конформна в $Z_0 \in \CC$ тогда и только тогда, когда она в этой
+точке дифференцируема, а производная отлична от нуля.
+\pr
+~
+\begin{itemize}
+    \item $\Leftarrow$
+    \\
+    Следует из геометрического смысла и определения.
+    \item $\Rightarrow$
+    \\
+    Пусть $f$ конформна в $z_0$. Тогда $\exists K > 0$, $\exists \theta \in
+    [0;2\pi)$ такие, что из \eqref{(22.1)} получаем
+    \begin{equation}\label{(22.2)}
+        \left( \begin{matrix}
+                \Delta u \\
+                \Delta v
+            \end{matrix} \right) = K \left( \begin{matrix}
+                \cos \theta & \sin \theta \\
+                -\sin \theta & \cos \theta
+            \end{matrix} \right) \left( \begin{matrix}
+                \Delta x \\
+                \Delta y
+            \end{matrix} \right)
+    \end{equation}
+    В силу дифференцируемости $u$ и $v$
+    \begin{align*}
+      & u_x = K \cos \theta, \ u_y = K \sin \theta, \ v_x = -K \sin \theta, \ u_y = K \cos \theta
+    \end{align*}
+    Выполняется УКР, значит, $\exists f'(z_0)$, $\left| f'(z_0) \right| = K >
+    0$.
+\end{itemize}
+\Def
+$f: G \mapsto \CC$ \textbf{конформна на области $G$}, если $f$ однолистна на $G$
+и конформна в каждой ее точке.
+\corollary
+$f$ конформна в $G \subset \CC$ $\Leftrightarrow$ $f$ однолистна и регулярна в
+$G$.
+\begin{center}
+    \textbf{Конформные отображения в $\CCC$}
+\end{center}
+\underline{\textbf{Свойства стереографической проекции}}
+\begin{enumerate}
+    \item Образы любых двух пересекающихся кривых на комплексной плоскости будут
+    пересекаться на сфере Римана под тем же углом.
+    \item $w = \frac{1}{z}: \CCC \mapsto \CCC$ соответствует при
+    стереографической проекции отображению сферы Римана на себя путем поворота
+    ее на $\pi$ относительно ее диаметра с концами в точках, являющихся образами
+    $1$ и $-1$ на $\CC$.
+\end{enumerate}
+\Def
+Пусть $f$ имеет УОТ в $\infty$. Тогда $f$ называется \textbf{конформной в
+  $\infty$}, если $g(z) = f\left( \dst \frac{1}{z} \right)$, доопределенная по
+непрерывности в нуле, конформна в нуле.
+\Def
+Пусть $a \in \CCC$~--- полюс или СОТ $f$. Тогда $f$ называется
+\textbf{конформной в $a$}, если $\varphi(z) = \dst \frac{1}{f(z)}$,
+доопределенная по непрерывности, конформна в этой точке.
+\Exse
+Доказать, что в определении $22.4$ допустим лишь полюс $1$ порядка.
+\Def
+Пусть $f: G \mapsto \CCC$. Тогда $f$ называется \textbf{конформной в области
+  $G$}, если она однолистна на ней и конформна в каждой ее точке.
+\prop
+$f$ конформна в $G \subseteq \CCC$, если $f$ однолистна на ней и регулярна на
+ней, за исключением, быть может, двух точек:
+\begin{itemize}
+    \item $\infty$, если $\infty \in G$ и является УОТ или полюсом $1$ порядка;
+    \item $a \in G$, $a \neq \infty$~--- полюс $1$ порядка, если $\infty$~---
+    УОТ или $\infty \not \in G$.
+\end{itemize}
+\section{$\S 23.$ Дробно-линейные функции.}
+\Def
+Функция
+\begin{equation}\label{(23.1)}
+    w = \frac{az+b}{cz+d}, \ a,b,c,d \in \CC, \ ad-cb \neq 0
+\end{equation}
+называется \textbf{дробно-линейной функцией (ДЛФ)} и задает
+\textbf{дробно-линейное отображение (ДЛО).} Бывает:
+\begin{equation}\label{(23.2)}
+    \left[ \begin{matrix}
+            c = 0 \Rightarrow w = az+b \Rightarrow w(\infty) = \infty \\
+            c \neq 0 \Rightarrow w(\infty) = \dst \frac{a}{c}, \ w\left( -\dst \frac{d}{c} \right) = \infty
+        \end{matrix} \right.
+\end{equation}
+ДЛФ \eqref{(23.1)}, \eqref{(23.2)} действует из $\CCC$ в $\CCC$.
+\theorem
+ДЛФ \eqref{(23.1)}, \eqref{(23.2)} конформно отображает $\CCC$ на $\CCC$.
+\pr
+~
+\begin{enumerate}
+    \item Проверим однолистность на $\CCC$.
+    \\
+    Из \eqref{(23.1)}
+    \begin{equation}\label{(23.3)}
+        z = \frac{dw-b}{cw-a}
+    \end{equation}
+    Видим, что $ad - cb \neq 0$, а значит, существует обратное ДЛО.
+    \item Покажем конформность в каждой точке.
+    \begin{itemize}
+        \item $z_0 \neq - \dst \frac{d}{c}$, $z_0 \in \CC$. Тогда
+        \begin{align*}
+          & w'(z_0) = \frac{ad-cb}{(cz_0+d)^2} \neq 0
+        \end{align*}
+        что и хотим видеть.
+        \item $z_0  = -\dst \frac{d}{c}$. Положим
+        \begin{align*}
+          & \varphi(z) = \frac{1}{f(z)} = \frac{cz+d}{az+b}
+        \end{align*}
+        и тогда
+        \begin{align*}
+          & \varphi'(z_0) = \frac{cb - ad}{\left( -a\dst \frac{d}{c} + b \right)^2} = \frac{c^2}{-ad + bc} \neq 0
+        \end{align*}
+        что и хотим видеть.
+        \item $z_0 = \infty$. Положим
+        \begin{align*}
+          & g(z) = f\left( \frac{1}{z} \right) = \frac{a+bz}{c+dz}
+        \end{align*}
+        и тогда
+        \begin{align*}
+          & g'(z_0) = \frac{bc - ad}{c^2} \neq 0
+        \end{align*}
+        что и хотим видеть.
+    \end{itemize}
+\end{enumerate}
+\Exse
+Пусть $f: \CCC \mapsto \CCC$ конформно, тогда $f$~--- ДЛФ. Доказать это
+утверждение.
+\theorem
+При ДЛО \eqref{(23.1)}, \eqref{(23.2)} образом окружности или прямой будет
+окружность или прямая.
+\pr
+~
+\begin{enumerate}
+    \item Рассмотрим аффинное отображение $w = az+b$ ($c = 0$).
+    \\
+    Знаем из аналитической геометрии, что окружность переходит в окружность, а
+    прямая~--- в прямую.
+    \item Рассмотрим теперь $c \neq 0$.
+    \\
+    Представим отображение в виде
+    \begin{align*}
+      & w = \frac{az+b}{cz+d} = \frac{a}{c} + \frac{-ad+bc}{c}\cdot \frac{1}{cz+d}
+    \end{align*}
+    \begin{equation}\label{(23.4)}
+        w = \alpha + \beta t, \ \alpha = \frac{a}{c}, \ \beta = \frac{-ad+bc}{c}, \ t = \frac{1}{\zeta}, \ \zeta = cz+d
+    \end{equation}
+    Видим, что $w(t)$ и $\zeta(z)$~--- аффинные, проверим выполнимость
+    утверждения теоремы для $z = \dst \frac{1}{\zeta}$.
+    \\
+    Положим $\zeta = \xi + i \eta$. Уравнение
+    \begin{align*}
+      & A(\xi^2+\eta^2) + B\xi + C\eta + D = 0, \ 4AD < B^2+C^2
+    \end{align*}
+    задает невырожденную окружость при $A \neq 0$ и невырожденную прямую при $A =
+    0$. Полагая $t = \dst \frac{1}{\zeta}$, учитывая $\xi^2 + \eta^2 =
+    \zeta\bar{\zeta}$, $\xi = \dst \frac{\zeta + \bar{\zeta}}{2}$, $\eta = \dst
+    \frac{\zeta - \bar{\zeta}}{2i}$, запишем уравнение в виде
+    \begin{align*}
+      & A\zeta\bar{\zeta} + \left( \frac{B}{2} + \frac{C}{2i}\right)\zeta + \left( \frac{B}{2} - \frac{C}{2i}\right)\bar{\zeta} + D = 0
+    \end{align*}
+    и отсюда получим
+    \begin{align*}
+      & A + \left( \frac{B}{2} + \frac{C}{2i}\right)\bar{t} + \left( \frac{B}{2} - \frac{C}{2i}\right)t + Dt\bar{t} = 0
+    \end{align*}
+    что задает окружность при $D \neq 0$ и прямую при $D = 0$. Суперпозиция
+    преобразований, переводящих окружности и прямые в окружности и прямые,
+    переводит окружности и прямые в окружности и прямые.
+\end{enumerate}
+\Note
+Окружность или прямая $\gamma$ переходит при ДЛО в прямую, если нуль знаменателя
+принадлежит $\gamma$, и в окружность иначе.
+\\
+Это называется \textbf{круговым свойством}.
+\Def
+Точки $M$ и $M^*$ называются \textbf{симметричными относительно окружности с
+  центром в точке $A$ радиуса $R > 0$}, если они лежат на одном луче, исходящем
+из точки $A$, и $\left| AM \right| \cdot \left| AM^* \right| = R^2$. На $\CCC$
+$z$ и $z^*$ симметричны относительно окружности $\gamma_r$ с центром в точке
+$a$, если
+\begin{equation}\label{(23.5)}
+    z^* - a = \frac{R^2}{\bar{z} - \bar{a}}
+\end{equation}
+Заметим, что при $z \to a$ $z^* \to \infty$, т.~е. $a$ и $\infty$ симметричны.

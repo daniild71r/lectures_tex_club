@@ -1,0 +1,228 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{proposition}[Признак Коши]
+  Пусть $\forall k \in \N a_k \geq 0$. Тогда 
+  \begin{enumerate}
+    \item Если $\exists k_0 \in \N, \exists q \in (0, 1): \forall k \geq k_0 \hence \sqrt[k]{a_k } \leq q$, то $ \sum_{k=1}^{\infty} a_k $~---  сходится.
+    \item Если $\exists k_0 : \forall k \geq k_0 \hence \sqrt[k]{a_k }\geq 1$, тогда $ \sum_{k=1}^{\infty} a_k $~--- расходится. 
+  \end{enumerate}
+\end{proposition}
+
+
+\begin{note}
+  Можно ослабить требование на $k$  пользуясь принципом локализации.
+\end{note}
+
+
+\begin{proof}
+  \begin{enumerate}
+    \item $a_k \leq q^{k}$. По принципу локализации нас интересует ряд $ \sum_{k=k_0 }^{\infty} a_k $. Рассмотрим $b_k = q^{k}, k\geq k_0$. Тогда $ \sum_{k=k_0 }^{\infty} b_k  $~---  сходится, при этом $\forall k \geq k_0 \hence a_k \leq b_k $, тогда по первому признаку сравнения $ \sum_{k=1}^{\infty} a_k $~--- сходится.
+    \item $a_k \geq 1 $, тогда если $\exists \lim_{n \to \infty} a_k \geq 1$, в любом случае не выполняется необходимое условие сходимости. 
+  \end{enumerate}
+\end{proof}
+
+
+\begin{corollary}[Предельный признак Коши]
+  Пусть $\forall k \in \N a_k \geq 0$ и $\lim_{k \to \infty} \sqrt[k]{a_k }= a \in \R$. Тогда
+  \begin{enumerate}
+    \item если $a<1$, то $ \sum_{k=1}^{\infty} a_k $ сходится;
+    \item если $a > 1$, то $ \sum_{k=1}^{\infty} a_k $ расходится;
+    \item если $a = 1$, то ничего нельзя сказать.  
+  \end{enumerate} 
+\end{corollary}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Из определения предела выберем $\eps = \frac{1-a}{2}$. Тогда начиная с некоторого $k = k_0$ верно $\sqrt[k]{a_k } < a + \frac{1-a}{2} = \frac{a+1}{2} < 1$. Тогда по первому пункту признака Коши ряд сходится.
+    \item Из определения предела выберем $\eps = \frac{a - 1}{2}$. Тогда начиная с некоторого $k = k_0$ верно $\sqrt[k]{a_k} > a + \frac{1-a}{2} = \frac{1+a}{2} > 1$. Тогда по второму пункту признака Коши ряд расходится. 
+    \item Нужно привести два примера. Рассмотрим $\frac{1}{\sqrt[k]{k}}  \xrightarrow[k \to  \infty ]{} 1 $. При этом гармонический ряд расходится. \\ Рассмотрим $\frac{1}{\sqrt[k]{k^{2}}}  \xrightarrow[k \to  \infty ]{} 1 $, при этом ряд из обратных квадратов сходится.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Знакопеременные ряды}
+
+
+\begin{definition}
+  Будем говорить, что ряд $ \sum_{k=1}^{\infty} a_k $  \emph{сходится абсолютно}, если $ \sum_{k=1}^{\infty} \left| a_k \right|  $ сходится.
+\end{definition}
+
+\begin{definition}
+  Будем говорить, что ряд \emph{сходится условно}, если он сходится, но не сходится абсолютно.
+\end{definition}
+
+
+\begin{proposition}[Критерий Коши]
+  Ряд $ \sum_{k=1}^{\infty} a_k $ сходится \nas 
+  \begin{gather} 
+    \forall \eps > 0 \exists N \in \N : \forall k_1 > k_2 \geq N \hence \left| \sum_{k=k_1 }^{k_2 } a_k  \right| < \eps  .
+  \end{gather}
+\end{proposition}
+
+
+\begin{proof}
+  Ряд $ \sum_{k=1}^{\infty} a_k $ сходится \nas $S_n = \sum_{k=1}^{\infty} a_k $~--- сходится \nas (по критерию Коши для последовательностей) 
+  \begin{gather} 
+    \forall \eps > 0 \exists N \in \N : \forall k_1, k_2 \geq N \hence \left| S_{k_2 }  - S_{k_1-1 }\right| = \left| \sum_{k=k_1 }^{k_2 } \right|  < \eps.
+  \end{gather} 
+\end{proof}
+
+
+\begin{proposition}
+  Если ряд $ \sum_{k=1}^{\infty} a_k $ сходится абсолютно, тогда он сходится.
+\end{proposition}
+
+\begin{proof}
+  Запишем условие критерия Коши и воспользуемся критерием Коши для $ \sum_{k=1}^{\infty} \left| a_k \right|  $: 
+  \begin{gather} 
+    \forall \eps > 0 \exists N \in \N: \forall k_1 > k_2 \geq N \hence \left| \sum_{k=k_1 }^{k_2 }  a_k  \right| \leq \left| \sum_{k=k_1 }^{k_2 } \left| a_k \right|  \right| < \eps.
+  \end{gather} 
+  По критерию Коши ряд сходится.
+\end{proof}
+
+
+\begin{proposition}
+  Пусть $ \sum_{k=1}^{\infty} a_k $, $ \sum_{k=1}^{\infty} b_k $~--- сходятся абсолютно, тогда $\forall \alpha, \beta \in \R$ ряд $ \sum_{k=1}^{\infty} (\alpha a_k + \beta b_k ) $  сходится абсолютно. 
+\end{proposition}
+
+
+\begin{proof}
+  Заметим, что 
+  \begin{gather} 
+    \left| \sum_{k=k_1 }^{k_2 } (\alpha a_k + \beta b_k )  \right| \leq \sum_{k=k_1 }^{k_2 } \left( \left| \alpha a_k  \right| + \left| \beta b_k  \right| \right) = \left| \alpha \right| \sum_{k=1}^{\infty} \left| a_k \right| + \left| \beta \right| \sum_{k=1}^{\infty} \left| b_k  \right| .  
+  \end{gather}
+  Подставляя в условие критерия Коши $N = \max \{ N_{a}, N_{b} \}$ получаем, что $ \left| \sum_{k=k_1 }^{k_2 } (\alpha a_k + \beta b_k )  \right| $  сходится, значит искомый ряд сходится абсолютно.
+\end{proof}
+
+
+\begin{proposition}[Признак Дирихле] \label{prop:ser:dirichlet}
+  Если
+  \begin{enumerate} 
+    \item последовательность частичных сумм $ \sum_{k=1}^{\infty} a_k $ ограничена;
+    \item последовательность $b_k$~--- монотонна;
+    \item $\lim_{k \to \infty} b_k = 0$,
+  \end{enumerate}
+  тогда $ \sum_{k=1}^{\infty} a_k b_k  $ сходится. 
+\end{proposition}
+
+
+\begin{proof}
+  Пусть $A_n = \sum_{k=1}^{n} a_k $ и $A_0 = 0$ , $a_n = A_n - A_{n-1}$, без ограничения общности $b_k $ убывает. Рассмотрим 
+  \begin{multline} \label{proof:ser:dirichlet}
+    \sum_{k=1}^{n} a_k b_k = \sum_{k=1}^{n} \left(A_k b_k - A_{k-1} b_k \right) =  \sum_{k=1}^{n} A_k b_k - \sum_{k=1}^{n} A_{k-1} b_k = \sum_{k=1}^{n} A_k b_k - \sum_{j=0}^{n-1} A_j b_{j+1} = \eqcom{A_0 = 0}  \\ = \sum_{k=1}^{n} A_k b_k - \sum_{j=1}^{n-1} A_j b_{j+1}  = A_n b_n + \sum_{k=1}^{n-1} A_k (b_k - b_{b+1})  .
+  \end{multline} 
+  Исследуем $ \sum_{k=1}^{\infty} (b_k - b_{k+1}) $. Рассмотрим 
+  \begin{gather} 
+    \sum_{k=1}^{n} (b_k - b_{k+1}) = b_1 - b_{n+1} \eqcom{\text{по п. 3}}  \xrightarrow[n \to  \infty ]{} b_1 \in \R  .
+  \end{gather}  
+  Значит $ \sum_{k=1}^{\infty} (b_k - b_{k+1}) $ сходится (в силу монотонности $b_k$ сходится абсолютно). Тогда $ \sum_{k=1}^{\infty} \left| C (b_k - b_{k+1}) \right|  $ сходится. Тогда по первому признаку сравнения $ \sum_{k=1}^{\infty} \left| A_k (b_k - b_{k+1}) \right|  $ сходится, тогда $ \sum_{k=1}^{\infty} A_k (b_k - b_{k+1}) $ сходится. Причём из пп. 1 и 2 $A_k b_k  \xrightarrow[k \to  \infty ]{} 0 $. Значит, переходя к пределу в \eqref{proof:ser:dirichlet} получаем, что искомый ряд сходится.
+\end{proof}
+
+
+\begin{corollary}[Признак Лейбница]
+  Пусть $b_k $ монотонно стремится к $0$ при $k \to 0$. Тогда $ \sum_{k=1}^{\infty} (-1)^{k}b_k $ сходится. 
+\end{corollary}
+
+
+\begin{proof}
+  Заметим, что $ \left| \sum_{k=1}^{n} (-1)^{k}  \right| \leq 1$. Тогда по признаку Дирихле искомый ряд сходится. 
+\end{proof}
+
+
+\begin{proposition}[Признак Абеля]
+  Если 
+  \begin{enumerate}
+    \item $ \sum_{k=1}^{\infty} a_k $ сходится;
+    \item $b_k$ монотонна;
+    \item $b_k $ ограниченна,
+  \end{enumerate}
+  тогда $ \sum_{k=1}^{\infty} a_k b_k  $ сходится.
+\end{proposition}
+
+
+\begin{proof}
+  Заметим, что $b_k$ монотонна и ограничена, тогда $\exists \lim_{k \to \infty} b_k = b_0 \in \R$. Заметим из первого пункта, что $a_k$ ограничена. Тогда по признаку Дирихле $ \sum_{k=1}^{\infty} a_k (b_k - b_0)  $ сходится. При этом из п. 1 $ \sum_{k=1}^{\infty} a_k b_0  $ сходится, тогда и $ \sum_{k=1}^{\infty} a_k (b_k - b_0 ) + \sum_{k=1}^{\infty} a_k b_0 = \sum_{k=1}^{\infty} a_k b_k  $ сходится.
+\end{proof}
+
+
+\begin{note}
+  И снова, доказательство полностью аналогично интегралам.
+\end{note}
+
+\section{Функциональные последовательности}
+
+\begin{definition}
+  Будем называть \emph{функциональной последовательностью} $ \{ f_{k}(x) \}_{k = 1}^{\infty} $.
+\end{definition}
+
+
+\begin{definition}
+  Будем говорить, что $ f_k(x) $ \emph{поточечно сходится} к $ f(x) $ ( $ f(x)  \xrightarrow[k \to  \infty ]{X} f(x)$) на множестве $ X$, если 
+  \begin{gather} 
+     \forall x_0 \in X \hence \lim_{k \to \infty } f_k(x_0 ) = f(x_0 ).
+  \end{gather}
+\end{definition}
+
+
+\begin{definition}
+  Будем говорить, что $ f_k(x) $ \emph{равномерно сходится} к $ f(x) $ ($ f_k(x)  \convergesuniformly{k \to \infty}{X} f(x) $), если 
+  \begin{gather} 
+    \forall \eps > 0 \exists N \in \N : \forall x \in X \forall k \geq N \Rightarrow \left| f_k(x) - f(x)  \right| < \eps .
+  \end{gather} 
+\end{definition}
+
+
+\begin{note}
+  Во втором случае номер зависит только от $ \eps$, в первом ещё и от $ x_0 $. Аналогично паре непрерывность~--- равномерная непрерывность.
+\end{note}
+
+\begin{proposition}
+  Из равномерной непрерывности следует поточечная.
+\end{proposition}
+
+
+\begin{proof}
+  Очевидно.
+\end{proof}
+
+
+\begin{proposition}[Критерий равномерной сходимости]
+  $ \{ f_{k}(x) \}_{k = 1}^{\infty} $ сходится равномерно на множестве $ X$ к $ f(x) $  \nas $ \lim_{k \to \infty} \sup_{x\in X} \left| f_k(x) - f(x)  \right| = 0$.   
+\end{proposition}
+
+
+\begin{proof}[\circled{\hence}]
+    Из равномерной сходимости 
+    \begin{gather} 
+      \forall \eps > 0 \exists N: \forall x \in X \forall k \geq N \hence \left| f_k(x) - f(x)  \right| < \eps .
+    \end{gather}
+    Тогда и 
+    \begin{gather} 
+      \forall \eps > 0 \exists N: \forall k \geq N \hence \sup_{x\in X} \left| f_k(x) - f(x)  \right| \leq \eps .
+    \end{gather}
+\end{proof}
+
+
+\begin{proof}[\circled{\lhence}]
+  Повторяем в обратном порядке.
+\end{proof}
+
+
+\begin{corollary}
+  $ f_k(x)  \convergesuniformly{k \to \infty}{X} f(x)$  \nas $ \exists \{ a_k  \} \subset \R: \lim_{k \to \infty} a_k  = 0$ и $\exists N \in \N: \forall k \geq N \hence \sup_{x\in X} \left| f_k(x) - f(x)  \right| \leq a_k$. 
+\end{corollary}
+
+\begin{proof}[\circled{\lhence}]
+  Переходя к пределу получаем, что $ \lim_{k \to \infty} \sup_{x\in X} \left| f_k(x) - f(x)  \right| = 0$ \nas  $ f_k(x)  \convergesuniformly{k \to \infty}{X} f(x)$.
+\end{proof}
+
+\begin{proof}[\circled{\hence}]
+  Из определения равномерной непрерывности 
+  \begin{gather} 
+    \forall \eps > 0 \exists N: \forall k \geq N \hence \sup_{x\in X} \left| f_k(x) - f(x)  \right| \leq \eps .
+  \end{gather}
+  Пусть $a_k = 2  \sup_{x\in X} \left| f_k(x) - f(x)  \right|$. Тогда оба условия выполняются.
+\end{proof}
+
+\end{document}

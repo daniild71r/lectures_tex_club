@@ -1,0 +1,331 @@
+\begin{corollary} (Производные обратных тригонометрических и логарифмических функций)
+	Для всех $a$ из интервалов, входящих в область определения, справедливы равенства:
+	\begin{align*}
+		&(\arcsin x)' \big|_{x = a} = \frac{1}{\sqrt{1 - a^2}}
+		\\
+		&(\arccos x)' \big|_{x = a} = -\frac{1}{\sqrt{1 - a^2}}
+		\\
+		&(\arctg x)' \big|_{x = a} = \frac{1}{1 + a^2}
+		\\
+		&(\arcctg x)' \big|_{x = a} = -\frac{1}{1 + a^2}
+		\\
+		&(\log_b x)' \big|_{x = a} = \frac{1}{a \cdot \ln b},\ b \in (0; 1) \cup (1; +\infty)
+	\end{align*}
+\end{corollary}
+
+\begin{proof}
+	$$
+		(\arcsin x)' \big|_{x = a} = \frac{1}{(\sin y) \big|_{y = \arcsin a}} = \frac{1}{\cos(\arcsin a)}
+	$$
+	Так как $\arcsin a \in (-\frac{\pi}{2}; \frac{\pi}{2})$, то
+	$$
+		(\arcsin x)' \big|_{x = a} = \frac{1}{\sqrt{1 - \sin^2(\arcsin a)}} = \frac{1}{\sqrt{1 - a^2}}
+	$$
+	
+	$$
+		(\arctg x)' \big|_{x = a} = \frac{1}{(\tg y)' \big|_{y = \arctg a}} = \cos^2 (\arctg a) = \frac{1}{\tg^2 (\arctg a) + 1} = \frac{1}{1 + a^2}
+	$$
+	С $\arcctg$ аналогично.
+	$$
+		(\log_b x)' \big|_{x = a} = \frac{1}{(b^y)' \big|_{y = \log_b a}} = \frac{1}{b^{\log_b a} \cdot \ln b} = \frac{1}{a \cdot \ln b}
+	$$
+\end{proof}
+
+\begin{note}
+	Предположение непрерывности функции в окрестности точки $a$ существенно.
+\end{note}
+
+\begin{example}
+	Определим $y = f(x)$ как
+	\[
+		f\left(\frac{1}{n}\right) = f\left(\frac{1}{n} + 0\right) := \frac{1}{2n - 1},\ \forall n \in \N
+	\]
+	При этом
+	\[
+		f\left(\frac{1}{n} - 0\right) := \frac{1}{2n}
+	\]
+	А также
+	\[
+	\System{
+		&{f(0) := 0}
+		\\
+		&{f(-x) := -f(x)}
+		\\
+		&{f \text{ линейна на } \bigg[\frac{1}{n}; \frac{1}{n - 1}\bigg)}\ \forall n \in \N
+	}
+	\]
+	%%% Здесь нужен график функции. 11я лекция 2019 года 56:05
+	Сузим данную функцию на отрезок $[-1; 1]$ и посчитаем её производную в нуле:
+	
+	В силу нечётности достаточно посмотреть предел $\liml_{\Delta x \to +0} \frac{\Delta y}{\Delta x}$. Рассмотрим такое $\Delta x$, что
+	\[
+		\Delta x \in \bigg[\frac{1}{n}; \frac{1}{n - 1}\bigg)
+	\]
+	Оценим дробь предела:
+	\[
+		\frac{\Delta y}{\Delta x} = \frac{f(\Delta x)}{\Delta x}
+	\]
+	Так как $f$ линейна на полуинтервале, то
+	\[
+		\frac{n - 1}{2n - 1} = \frac{f\left(\frac{1}{n}\right)}{\frac{1}{n - 1}} < \frac{f\left(\frac{1}{n}\right)}{\Delta x} < \frac{f(\Delta x)}{\Delta x} < \frac{f\left(\frac{1}{n - 1} - 0\right)}{\Delta x} < \frac{f\left(\frac{1}{n - 1} - 0\right)}{\frac{1}{n}} = \frac{n}{2n - 2}
+	\]
+	Обе оценки стремятся к $\frac{1}{2}$. Стало быть
+	\[
+		\liml_{\Delta x \to +0} \frac{\Delta y}{\Delta x} = \liml_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = f'(0) = \frac{1}{2}
+	\]
+	При этом функция на $[-1; 1]$ непрерывной не является. Посмотрим на образ этого отрезка:
+	\[
+		f([-1; 1]) = [-1; 1] \bs \bigcup\limits_{n = 1}^\infty \left(\bigg[\frac{1}{2n}; \frac{1}{2n - 1}\bigg) \cup \bigg(-\frac{1}{2n - 1}; -\frac{1}{2n}\bigg]\right)
+	\]
+	Это же множество будет являться областью определения обратной функции. Но как видно из записи, образ $[-1; 1]$ не включает в себя ни одну окрестность нуля $\Ra$ обратная функция не имеет окрестности нуля, в которой она всюду определена и потому не имеет производной в нуле.
+\end{example}
+
+\subsection{Дифференцируемость}
+
+\begin{definition}
+	Функция $y = f(x)$ называется \textit{дифференцируемой} в точке $a \in \R$, если её приращение в этой точке может быть записано в виде
+	\[
+		\Delta y = A\Delta x + o(\Delta x),\ \Delta x \to 0
+	\]
+	где $A \in \R$.
+	
+	Выражение $A\Delta x$ называется \textit{дифференциалом} функции $y = f(x)$ в точке $a$. Обозначается как $dy := A \Delta x$
+\end{definition}
+
+\begin{theorem}
+	(Дифференцируемость и производная) Функция $y = f(x)$ дифференцируема в точке $a$ тогда и только тогда, когда она имеет производную в этой точке. При этом $A$ в точности равно $f'(a)$.
+\end{theorem}
+
+\begin{proof}
+	Пусть $f$ дифференцируема в точке $a$. То есть
+	$$
+		\Delta y = A \Delta x + o(\Delta x),\ \Delta x \to 0
+	$$
+	Так как функция определена в окрестности нуля, то мы можем записать
+	$$
+		\frac{\Delta y}{\Delta x} = A + o(1),\ \Delta x \to 0
+	$$
+	Отсюда имеем
+	$$
+		\liml_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = A = f'(a)
+	$$
+	В обратную сторону доказывается аналогично.
+\end{proof}
+
+\begin{corollary}
+	Если $f$ дифференцируема в точке $a$, то она непрерывна в точке $a$.
+\end{corollary}
+
+\begin{note}
+	Утверждение верно лишь в одну сторону
+\end{note}
+
+\begin{example}
+	$y = |x|$. Тогда если рассмотреть $a = 0$
+	$\liml_{\Delta x \to 0} \Delta y = 0,\ \Delta y = |\Delta x|$
+	При этом рассмотрим односторонние пределы:
+	\begin{align*}
+		\liml_{\Delta x \to 0+} \frac{\Delta y}{\Delta x} = \liml_{\Delta x \to 0+} \frac{\Delta x}{\Delta x} = 1
+		\\
+		\liml_{\Delta x \to 0-} \frac{\Delta y}{\Delta x} = \liml_{\Delta x \to 0-} -\frac{\Delta x}{\Delta x} = -1
+	\end{align*}
+\end{example}
+
+\begin{note}
+	Если смотреть предел производной лишь с одной стороны, то можно говорить о правосторонней и левосторонней производной.
+\end{note}
+
+\begin{example}
+	\[
+		y = \System{&{x \sin \frac{1}{x},\ x \neq 0} \\ &{0,\ x = 0}}
+	\]
+	Здесь предела в точке 0 нет вообще
+	\[
+		\liml_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \liml_{\Delta x \to 0} \sin \frac{1}{\Delta x}
+	\]
+\end{example}
+
+\begin{theorem} (Дифференцируемость сложной функции)
+	Если $u = f(y)$ дифференцируема в точке $g(a)$, функция $y = g(x)$ дифференцируема в точке $a$, то композиция $u = h(x) = f(g(x))$ дифференцируема в точке $a$, причём $h'(a) = f'(g(a)) \cdot g'(a)$
+\end{theorem}
+
+\begin{proof}
+	Выпишем всё, что нам даёт условие:
+	\begin{align*}
+		&{\Delta u = f'(g(a))\Delta y + o(\Delta y),\ \Delta y \to 0}
+		\\
+		&{\Delta u = f(g(a) + \Delta y) - f(g(a))}
+		\\
+		&{\Delta y = g'(a)\Delta x + o(\Delta x),\ \Delta x \to 0}
+		\\
+		&{\Delta y = g(a + \Delta x) - g(a)}
+	\end{align*}
+	Сразу отметим то, что если $\Delta x \to 0$, то и $\Delta y \to 0$. Это следует, например, из третьей строки. Значит, $o(\Delta y)$ является также и $o(\Delta x)$: если $u = o(\Delta y(\Delta x))$, то её можно записать как
+	\[
+		u(\Delta y(\Delta x)) = \lambda(\Delta x) \cdot \Delta y(\Delta x) = \lambda(\Delta x) \cdot (g'(a) + o(1))\Delta x
+	\]
+	При этом $\lambda(\Delta x) \cdot (g'(a) + o(1)) \xrightarrow[\Delta x \to 0]{} 0$ Значит, $u = o(\Delta x)$.
+	
+	Подставим во вторую строку четвёртую. Получим следующее утверждение:
+	\[
+		\Delta u = f(g(a) + g(a + \Delta x) - g(a)) - f(g(a)) = h(a + \Delta x) - h(a) = \Delta h
+	\]
+	Подставим теперь в первую строку третью и получим нужный результат:
+	\[
+		\Delta h = \Delta u = f'(g(a))g'(a) \cdot \Delta x + \underbrace{f'(g(a)) \cdot o(\Delta x) + o(\Delta y)}_{o(\Delta x)},\ \Delta x \to 0
+	\]
+\end{proof}
+
+\begin{note}
+	По определению считается, что $dx := \Delta x$. Это можно также получить из функции $y = x$. Отсюда получаем, что
+	$$
+		dy = f'(a)dx,\ \ y' = \frac{dy}{dx} 
+	$$
+\end{note}
+
+\begin{corollary} (Инвариантность формы первого дифференциала)
+	Формула для дифференциала $dy = f'(a)dx$ справедлива как в случае, когда $x$ - независимая переменная, так и в случае, когда $x$ является функцией от другой переменной.
+\end{corollary}
+
+\begin{proof}
+	Пусть $x = g(t),\ y = f(x)$. Тогда
+	$$
+		y = f(x) = f(g(t)) =: h(t)
+	$$
+	Положим $a = g(b)$.
+	\begin{align*}
+		&h'(b) = f'(a) \cdot g'(b)
+		\\
+		&dx = g'(b)dt
+	\end{align*}
+	Распишем $dy$:
+	$$
+		dy = h'(b) \cdot dt = f'(a) \cdot g'(h) dt = f'(a) dx
+	$$
+\end{proof}
+
+\begin{definition}
+	\textit{Касательной} к графику функции $y = f(x)$ в точке $a; f(a)$ называется предельное положение секущей, то есть прямой, проходящей через точки $(a; f(a))$ и $(a + \Delta x; f(a + \Delta x))$ при $\Delta x \to 0$
+\end{definition}
+
+\begin{proof}
+	Уравнение секущей имеет вид
+	$$
+		\frac{y - f(a)}{x - a} = \frac{f(a + \Delta x) - f(a)}{\Delta x}
+	$$
+	То есть
+	$$
+		y = f(a) + \frac{f(a + \Delta x) - f(a)}{\Delta x} (x - a)
+	$$
+\end{proof}
+
+\begin{definition}
+	Если предел $\liml_{\Delta x \to 0} \frac{f(a + \Delta x) - f(a)}{\Delta x} = +\infty$ или $-\infty$ и $f(x)$ непрерывна в точке $a$, то будем говорить, что $f'(a)$ равна $+\infty$ или $-\infty$ соответственно.
+\end{definition}
+
+\begin{example}
+	$f(x) = \sqrt[3]{x}$. Посчитаем $f'(0)$:
+	$$
+		f'(0) = \liml_{\Delta x \to 0} \frac{\sqrt[3]{\Delta x}}{\Delta x} = \liml_{\Delta x \to 0} \frac{1}{\sqrt[3]{(\Delta x)^2}} = +\infty
+	$$
+\end{example}
+
+\begin{example}
+	$f(x) = \sqrt[3]{|x|}$. Если посмотреть на график, то касательная в нуле вроде есть. Но предел будет
+	$$
+		\liml_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \infty
+	$$
+	Что не соответсвует нашему определению.
+\end{example}
+
+\begin{theorem} (Геометрический смысл производной и дифференциала)
+	Пусть $f(x)$ непрерывна в некоторой окрестности точки $a$. Тогда, касательная к графику $y = f(x)$ в точке $(a; f(a))$ существует тогда и только тогда, когда существует предел $\liml_{\Delta x \to 0} \frac{\Delta y}{\Delta x} \in \bar{\R}$. 
+	
+	При этом уравнение касательной в случае дифференцируемости в точке $a$:
+	$$
+		y = f(a) + f'(a)(x - a)
+	$$
+	В случае бесконечной производной в точке $a$:
+	$$
+		x = a
+	$$
+	
+	Дифференциал представляет приращение ординаты касательной, соответствующее приращению $\Delta x$.
+\end{theorem}
+
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+		% Axis
+		\coordinate (y) at (0,5);
+		\coordinate (x) at (6,0);
+		\draw[<->, style={thick}] (y) node[above] {$y$} -- (0,0) --  (x) node[right] {$x$};
+		\draw (-0.4,0) -- (0,0) --  (0,-0.4);
+		
+		\path
+		coordinate (start) at (1,2)
+		coordinate (c) at (2.8,1.1)
+		coordinate (top) at (4.2,3.9);
+		
+		\draw[style={thick}] plot [smooth, tension=0.9] coordinates {(start) (c) (top)};
+		
+		\draw[style={dashed}] (c) -- (2.8,0) node[circle, fill, inner sep = 1pt, label={below:$x_0$}] {};
+		\draw[style={dashed}] (5.2, 1.1) -- (0,1.1) node[circle, fill, inner sep = 1pt, label={left:$f(x_0)$}] {};
+		\draw[style={dashed}] (3.5, 2) -- (0,2) node[circle, fill, inner sep = 1pt, label={left:$f(x)$}] {};
+		\draw[style={dashed}] (3.5, 2) -- (3.5,0) node[circle, fill, inner sep = 1pt, label={below:$x$}] {};
+		
+		\filldraw [black] (3.5, 2) circle (1.2pt);
+		\filldraw [black] (c) circle (1.2pt);
+		
+		\draw (2.1, 0.2) -- (4.2, 2.9);
+		\draw[<->] (2.8, 0.4) -- (3.5, 0.4);
+		\draw[<->] (0.35, 1.1) -- (0.35, 2);
+		\draw[<->] (3.5, 1.1) -- (3.5, 1.45);
+		\draw (c) -- (5.2, 2.3);
+		\draw (c) -- (1.6, 0.5);
+		\draw (top) (3.15, 0.4) node[above] {$\Delta x$};
+		\draw (top) (0.35, 1.5) node[right] {$\Delta y$};
+		\draw (top) (3.5, 1.3) node[right] {$dy$};
+		
+		\draw (top) node[below right, black] {$y = f(x)$};
+		
+		\coordinate (a) at (5.2, 1.1);
+		\coordinate (m) at (5.2, 2.3);
+		\pic [draw, angle radius = 1.5cm] {angle = a--c--m};
+		\draw (4.6, 1.4) node {$\alpha$};
+	\end{tikzpicture}
+\end{center}
+
+\subsection{Производные и дифференциалы высших порядков}
+
+\begin{definition}
+	Если рассмотреть производную как функцию и от неё можно тоже взять производную, то мы получим \textit{производную второго порядка}:
+	$$
+		f''(x) := (f'(x))' \big|_{x = a}
+	$$
+	Индуктивно определяется так:
+	\begin{align*}
+		&f^{(0)}(x) := f(x)
+		\\
+		&f^{(n)}(a) := (f^{(n - 1)}(x))' \big|_{x = a}
+	\end{align*}
+\end{definition}
+
+\begin{example}
+	\begin{align*}
+		&{(\sin x)' = \cos x}
+		\\
+		&{(\cos x)' = -\sin x}
+		\\
+		&{(-\sin x)' = \cos x}
+		\\
+		\vdots
+	\end{align*}
+	Несложно понять, что
+	$$
+		(\sin x)^{(n)} = \sin (x + \frac{n\pi}{2}),\ n \in \N \cup \{0\}
+	$$
+	Доказательство по индукции
+	$$
+		(\sin x)^{(n + 1)} = \left((\sin x)^{(n)}\right)' = \left(\sin(x + \frac{n\pi}{2})\right)' = \cos(x + \frac{n\pi}{2}) = \sin\left(x + \frac{(n + 1)\pi}{2}\right)
+	$$
+\end{example}

@@ -1,0 +1,78 @@
+\begin{task}{1}
+	Пусть $\mu : \F \rightarrow [0, +\infty]$ конечно аддитивна на кольце $\F$.
+	\begin{enumerate}
+		\item[(а)] Докажите, что если $\mu$ счетно аддитивна, то для любых $A_k \in \F$ (при $k \in \N$) если $\mu(A_1)  < + \infty$, то 
+		$$
+		\mu\left(\bigcap_{k=1}^{\infty}A_k\right) = \lim\limits_{n \rightarrow \infty} \left(\bigcap_{k=1}^{n}A_k\right)
+		$$
+		Является ли данное условие достаточным для счетной аддитивности $\mu$?
+		\item[(б)] Докажите, что если для любых $A_k \in \F$ (при $k \in \N$):
+		$$
+		\mu\left(\bigcap_{k=1}^{\infty}A_k\right) = \lim\limits_{n \rightarrow \infty} \left(\bigcap_{k=1}^{n}A_k\right)
+		$$
+		То $\mu$ счетно аддитивна. \newline
+		Является ли данное условие необходимым для счетной аддитивности?
+	\end{enumerate}
+\end{task}
+
+\begin{solution}
+	\begin{enumerate}
+		\item[(а)] Пусть имеется семейство $\{A_k\}_{k\in \N} \subset \F$, и $\mu$ --- счетно аддитивна, тогда так как $\mu(A_1) < \infty$ имеем данный страшный вывод:
+		\begin{multline*}
+				\mu\left(\bigcap_{k=1}^{\infty}A_k\right) = \mu(A_1) - \mu\left(A_1 \setminus \bigcap_{k=1}^{\infty}A_k\right) = \mu(A_1) - \mu\left(\bigcup_{k=1}^{\infty}A_1 \setminus A_k \right) = \\ = \mu(A_1) - \lim\limits_{n \rightarrow \infty}\mu \left(\bigcup_{k=1}^{n}A_1 \setminus A_k\right)  = \mu(A_1) - \lim\limits_{n \rightarrow \infty}\mu\left(A_1 \setminus \bigcap_{k=1}^{n}A_k\right) = \\ = \lim\limits_{n \rightarrow \infty} \left[ \mu(A_1) - \mu\left( A_1 \setminus \bigcap_{k=1}^{n}A_k\right) \right] = \lim\limits_{n \rightarrow \infty}\mu\left(\bigcap_{k=1}^{n}A_k\right)
+		\end{multline*}
+	Данное условие не является достаточным, контрпример:
+	$$
+	\mu(A) := 
+	\begin{cases}
+		0, A\text{ --- конечно}  \\
+		+\infty,\text{ иначе}
+	\end{cases}
+	$$
+	В таком случае, $\mu$ очевидно является конечно аддитивной, однако не счетно аддитивной.
+	\item[(б)]
+	 Пусть теперь выполнено $\forall \{A_k\}_{k \in \N} \subset \F$: 
+	 $$
+	 \mu\left(\bigcap_{k=1}^{\infty}A_k\right) = \lim\limits_{n \rightarrow \infty} \left(\bigcap_{k=1}^{n}A_k\right)
+	 $$
+	 Докажем, что $\mu$ --- счетно аддитивна. Не умаляя общности считаем, что $\mu(\varnothing) = 0$
+	 Пусть $\{A_k\}_{k \in \N} \subset \F$. Обозначим 
+	 $$
+	 B_n := \bigcup_{k>n} A_k
+	 $$
+	 Тогда $B_n \in \F$ как разность. Кроме того имеем:
+	 $$
+	 \bigcap_{n \in \N} B_n = \varnothing; ~ B_{n+1} \subset B_n
+	 $$
+	 Тогда по предположению имеем:
+	 $$
+	 \lim\limits_{n \rightarrow \infty} \mu\left(B_n\right) = \lim\limits_{n \rightarrow \infty}\mu\left(\bigcap_{k=1}^nB_k\right) = \mu\left(\bigcap_{k=1}^{\infty}B_k \right) = \mu(\varnothing) = 0
+	 $$
+	 Тогда в силу конечной аддитивности $\mu$ имеем:
+	 $$
+	 \mu\left(\bigcup_{k=1}^{\infty}A_k\right) = \mu\left(\bigcup_{k=1}^n A_k \right) + \mu\left(B_n\right) = \sum_{k=1}^n\mu(A_k) + \mu(B_n)
+	 $$
+	 Переходя в данном равенстве к пределу при $n \rightarrow \infty$, получаем:
+	 $$
+	 \mu\left(\bigcup_{k=1}^{\infty}A_k\right) = \sum_{k=1}^{\infty}\mu(A_k)
+	 $$
+	 Таким образом, $\mu$ --- счетно аддитивна.
+	 Данное условие не является необходимым, действительно, рассмотрим считающую меру:
+	 $$
+	 \#(A) = |A|
+	 $$
+	 Она, очевидно, счетно аддитивна, однако рассмотрим множества 
+	 $$
+	 A_k := [k, +\infty] \cap \N
+	 $$
+	 Ясно, что 
+	 $$
+	 \mu\left(\bigcap_{k\in \N} A_k\right) = \mu(\varnothing) = 0
+	 $$
+	 Хотя $\forall n \in \N$ выполнено
+	 $$
+	 \mu\left(\bigcap_{k=1}^n A_k\right) = +\infty
+	 $$
+	 Таким образом равенство не выполняется.
+	\end{enumerate}
+\end{solution}

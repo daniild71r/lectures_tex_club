@@ -1,0 +1,300 @@
+\begin{example}
+	Изучим следующий параметрический интеграл:
+	\[
+		\int_0^{+\infty} \frac{\sin x}{x^\alpha + \sin x} dx,\ \alpha > 0
+	\]
+	Распишем подынтегральное выражение:
+	\[
+		\frac{\sin x}{x^\alpha + \sin x} = \frac{\sin x}{x^\alpha} - \frac{\sin^2 x}{x^\alpha (x^\alpha + \sin x)}
+	\]
+	Из предыдущих примеров уже известно, что интеграл от первого слагаемого сходится при $\alpha > 0$. Что было бы, если бы не заметили наличие отрицательных значений у подынтегральной функции, и попробовали бы применить следствие признака сравнения? Отношение первого слагаемого и левой части стремится к единице (полагая, что мы можем в точках обнуления синуса доопределить значение отношения):
+	\[
+		\liml_{x \to \infty} \frac{\sin x}{x^\alpha + \sin x} \cdot \frac{x^\alpha}{\sin x} = 1
+	\]
+	И, казалось бы, наш интеграл сходится для $\alpha > 0$. Однако, это не так. Оценим второе слагаемое (которое уже действительно является неотрицатльным при $x \in [1; +\infty)$):
+	\[
+		\frac{1}{x^\alpha (x^\alpha + 1)} \le \frac{\sin^2 x}{x^\alpha (x^\alpha + \sin x)} \le \frac{1}{x^\alpha (x^\alpha - 1)}
+	\]
+	Про оценку сверху мы аналогично знаем следующий предел:
+	\[
+		\liml_{x \to +\infty} \frac{1}{x^\alpha (x^\alpha - 1)} \cdot \frac{x^{2\alpha}}{1} = 1
+	\]
+	И интеграл $\int_1^{+\infty} \frac{1}{x^{2\alpha}}$ сходится при $\alpha > 1/2$. Значит, это же верно и для исходного интеграла. Теперь разберёмся с $0 < \alpha \le 1/2$: по признаку Харди:
+	\[
+		\int_1^{+\infty} \frac{\sin^2 x}{x^\alpha (x^\alpha + 1)} dx \text{ - сходится} \lra \int_1^{+\infty} \frac{dx}{x^\alpha (x^\alpha + 1)} \text{ - тоже сходится} \lra \alpha > \frac{1}{2}
+	\]
+\end{example}
+
+\section{Теория рядов}
+
+\subsection{Числовые ряды}
+
+\begin{definition}
+	\textit{Числовым рядом} называется объект вида $\suml_{n = 1}^\infty a_n$, где $a_n \in \R$ - \textit{члены ряда}. 
+\end{definition}
+
+\begin{definition}
+	Ряд $\suml_{n = 1}^\infty a_n$ называется \textit{сходящимся}, если последовательность его частичных сумм $S_n = \suml_{k = 1}^n a_k$ имеет конечный предел, который называется \textit{суммой ряда}:
+	\[
+		\liml_{n \to \infty} S_n = \suml_{n = 1}^\infty a_n
+	\]
+	Если ряд не сходится, то он \textit{расходится}.
+\end{definition}
+
+\begin{note}
+	Стоит держать в голове, что запись $\suml_{n = 1}^\infty a_n$ имеет два смысла: определение ряда в текущем определении и обозначение суммы ряда.
+\end{note}
+
+\begin{theorem} (Необходимое условие сходимости ряда)
+	Если ряд $\suml_{n = 1}^\infty a_n$ сходится, то $\exists \liml_{n \to \infty} a_n = 0$.
+\end{theorem}
+
+\begin{proof}
+	Коль скоро ряд сходится, это означает, что
+	\[
+		\exists \liml_{n \to \infty} S_n = S
+	\]
+	Заметим следующее соотношение:
+	\[
+		a_n = S_n - S_{n - 1}
+	\]
+	А отсюда имеем требуемое:
+	\[
+		\liml_{n \to \infty} a_n = \liml_{n \to \infty} S_n - \liml_{n \to \infty} S_{n - 1} = S - S = 0
+	\]
+\end{proof}
+
+\begin{example}
+	Докажем школьную теорему:
+	\[
+		\suml_{k = 0}^\infty q^k = \System{
+			&{\frac{1}{1 - q},\ |q| < 1}
+			\\
+			&{\text{расходится},\ |q| \ge 1}
+		}
+	\]
+	Запишем значение частичной суммы:
+	\[
+		S_n = \suml_{k = 0}^n q^k = \frac{1 - q^{n + 1}}{1 - q}
+	\]
+	\begin{enumerate}
+		\item Если $|q| < 1$, то всё очевидно, ибо
+		\[
+			\liml_{n \to \infty} q^n = 0
+		\]
+		
+		\item Если $|q| = 1$, то либо будет колебание $S_n = (-1)^n$, либо $S_n = n + 1$, что очевидным образом не сходится.
+		
+		\item Если $|q| > 1$, тогда
+		\[
+			\liml_{n \to \infty} q^n = \infty
+		\]
+		И уже отсюда тривиальным образом $\liml_{n \to \infty} S_n = \infty$
+	\end{enumerate}
+\end{example}
+
+\begin{theorem} (Критерий сходимости рядов с неотрицательными слагаемыми)
+	Если $\forall n \in \N\ a_n \ge 0$, то $\suml_{n = 1}^\infty a_n$ сходится тогда и только тогда, когда $\{S_n\}_{n = 1}^\infty$ ограничена.
+\end{theorem}
+
+\begin{proof}
+	Из условия следует, что последовательность $\{S_n\}_{n = 1}^\infty$ неубывающая. А из теории пределов мы знаем, что в таком случае
+	\[
+		\exists \liml_{n \to \infty} S_n = S \in [0; +\infty]
+	\]
+	Причём $S < +\infty \lra \{S_n\}$ - ограничена (по теореме Вейерштрасса).
+\end{proof}
+
+\begin{theorem} (Признак сравнения числовых рядов)
+	Если $\forall n \in \N\ 0 \le a_n < b_n$, то из сходимости $\suml_{n = 1}^\infty b_n$ следует сходимость ряда $\suml_{n = 1}^{\infty} a_n$, а из расходимости $\suml_{n = 1}^\infty a_n$ следует расходимость ряда $\suml_{n = 1}^\infty b_n$
+\end{theorem}
+
+\begin{proof}
+	Обозначим частичные суммы $\suml_{n = 1}^\infty b_n$ за $B_n$. Аналогично для $\suml_{n = 1}^\infty a_n$ за $A_n$. Тогда
+	\begin{itemize}
+		\item Если $\suml_{n = 1}^\infty b_n$ сходится, то $\{B_n\}_{n = 1}^\infty$ ограничена. Следовательно, $\{A_n\}_{n = 1}^\infty$ тоже ограничена и по критерию сходимости $\suml_{n = 1}^\infty a_n$ тоже сходится.
+		
+		\item Если $\suml_{n = 1}^\infty a_n$ расходится, то $\{A_n\}_{n = 1}^\infty$ неограничена. Получаем, что $\{B_n\}_{n = 1}^\infty$ также неограничена и по критерию сходимости для рядов с неотрицательными слагаемыми $\suml_{n = 1}^\infty b_n$  расходится.
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	Если $\forall n \in \N\ 0 < a_n,\ 0 \le b_n$ и $\liml_{n \to \infty} \frac{b_n}{a_n} = c \in (0; +\infty)$, то ряды $\suml_{n = 1}^\infty a_n$ и $\suml_{n = 1}^\infty b_n$ сходятся или расходятся одновременно.
+\end{corollary}
+
+\begin{theorem} (Интегральный признак Коши-Маклорена)
+	Пусть $f(x) \ge 0$ и монотонна на $[1; +\infty]$. Тогда несобственный интеграл Римана $\int_1^{+\infty} f(x) dx$ и ряд $\suml_{n = 1}^\infty f(n)$ сходятся или расходятся одновременно.
+\end{theorem}
+
+\begin{proof}
+	Пусть $f$ - невозрастающая. Тогда справедливы следующие неравенства:
+	\[
+		\forall x \in [n; n + 1]\ f(n + 1) \le f(x) \le f(n)
+	\]
+	Возьмём интеграл во всех частях неравенства на отрезке $[n; n + 1]$:
+	\[
+		1 \cdot f(n + 1) \le \int_n^{n + 1} f(x) dx \le 1 \cdot f(n)
+	\]
+	Просуммируем такие неравенства на всех отрезках $[1; m + 1]$:
+	\[
+		\suml_{n = 1}^m f(n + 1) \le \int_1^{m + 1} f(x) dx \le \suml_{n = 1}^m f(n)
+	\]
+	Если $\suml_{n = 1}^\infty f(n)$ сходится $\Ra$ $\{\suml_{n = 1}^m f(n)\}_{m = 1}^\infty$ ограничена $\Ra$ $F(x) = \int_1^x f(t) dt$ - ограничена $\Ra$ $\int_1^{+\infty} f(x) dx$ - сходится.
+	Если $\int_1^{+\infty} f(x)dx$ сходится, то $F(x) = \int_1^x f(t)dt$ ограничена $\Ra$ $\{\suml_{n = 1}^m f(n)\}_{m = 1}^\infty$  ограничена  $\Ra$ $\suml_{n = 1}^\infty f(n)$ сходится. Аналогичные рассуждения можно провести и для случая расхождения.
+\end{proof}
+
+\begin{example}
+	Рассмотрим ряд $\suml_{n = 1}^\infty \frac{1}{n^\alpha}$:
+	\begin{itemize}
+		\item $\alpha \ge 0$
+		\[
+			\suml_{n = 1}^\infty \frac{1}{n^\alpha} \text{ - сходится} \lra \int_1^{+\infty} \frac{dx}{x^\alpha} \text{ - сходится} \lra \alpha > 1
+		\]
+		
+		\item $\alpha < 0$ - ряд расходится.
+	\end{itemize}
+\end{example}
+
+\begin{theorem} (Признак Даламбера)
+	Пусть $\forall n \in \N\ a_n \ge 0$
+	\begin{enumerate}
+		\item Если $\exists \varlimsup\limits_{n \to \infty} \frac{a_{n + 1}}{a_n} = p < 1$, то ряд $\suml_{n = 1}^\infty a_n$ сходится
+		
+		\item Если $\exists \varliminf\limits_{n \to \infty} \frac{a_{n + 1}}{a_n} = q > 1$, то ряд $\suml_{n = 1}^\infty a_n$ расходится
+	\end{enumerate}
+	Естественно, если ряд не попадает под оба случая, то сказать ничего нельзя.
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Вспомним часть определения верхнего предела:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N\ \frac{a_{n + 1}}{a_n} < p + \eps
+		\]
+		Выберем такое $\eps$, что $p + \eps < 1$. В таком случае
+		\[
+			a_{n + N} = \frac{a_{n + N}}{a_{n + N - 1}} \cdot \frac{a_{n + N - 1}}{a_{n + N - 2}} \cdot \ldots \cdot \frac{a_{N + 2}}{a_{N + 1}} \cdot a_{N + 1} < a_{N + 1} \cdot (p + \eps)^{n - 1}
+		\]
+		Поскольку ряд $\suml_{n = 1}^\infty a_{N + 1}(p + \eps)^{n - 1}$ сходится (это геометрическая прогрессия), то отсюда следует, что и ряд $\suml_{n = 1}^\infty a_{n + N}$ - сходится. Так как данный ряд отличается от исходного на фиксированную константу (сумму первых $N$ членов ряда), то и исходный очевидным образом сходится.
+		
+		\item Снова распишем часть нижнего предела:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N\ \ \frac{a_{n + 1}}{a_n} > q - \eps > 1
+		\]
+		Отсюда $a_{n + N} > a_{N + 1} \cdot (q - \eps)^{n - 1} \xrightarrow[n \to \infty]{} \infty$. Значит, ряд расходится.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Признак Коши)
+	Пусть $\forall n \in \N\ a_n \ge 0$. Тогда
+	\begin{enumerate}
+		\item Если $\varlimsup\limits_{n \to \infty} \sqrt[n]{a_n} = p < 1$, то ряд $\suml_{n = 1}^\infty a_n$ сходится.
+		
+		\item Если $\varlimsup\limits_{n \to \infty} \sqrt[n]{a_n} = p > 1$, то ряд $\suml_{n = 1}^\infty a_n$ расходится.
+	\end{enumerate}
+	Естественно, если ряд не попадает под эти два случая, то сказать ничего нельзя.
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Снова обратимся к теореме об эквивалентных определениях верхнего предела:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N\ \sqrt[n]{a_n} < p + \eps < 1
+		\]
+		В частности, из неравенства следует $a_n < (p + \eps)^n$, а $\suml_{n = N + 1}^\infty (p + \eps)^n$ сходится. По признаку сравнения получаем, что и наш ряд тоже сходится.
+		
+		\item Существование верхнего предела означает существование подпоследовательности \\ $\{n_k\}_{k = 1}^\infty \such \liml_{k \to \infty} \sqrt[n_k]{a_{n_k}} = p$. То есть
+		\[
+			\forall \eps > 0\ \exists K \in \N \such \forall k > K\ \ \sqrt[n_k]{a_{n_k}} > p - \eps > 1
+		\]
+		То есть $a_{n_k} > (p - \eps)^{n_k} \xrightarrow[k \to \infty]{} +\infty$. Значит, исходный ряд расходится.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Нетрудно встретить утверждения о том, что расходящийся ряд суммируется к какому-то значению:
+	\[
+		1 - 1 + 1 - 1 + \cdots = \frac{1}{2}
+	\]
+	На деле же:
+	\[
+		1 - x + x^2 - x^3 + \cdots = \frac{1}{1 + x}, |x| < 1
+	\]
+\end{example}
+
+\begin{definition}
+	Говорят, что числовой ряд $\suml_{n = 1}^\infty a_n$ \textit{суммируется по Чезаро} к числу $S$, если последовательность средних арифметических $\sigma_n = \frac{S_1 + \ldots + S_n}{n}$, где $S_n = \suml_{k = 1}^n a_k$, имеет предел $S$, то есть
+	\[
+		\liml_{n \to \infty} \sigma_n = S
+	\]
+\end{definition}
+
+\begin{definition}
+	Метод суммирования называется \textit{регулярным}, если из сходимости ряда к числу $S$ следует, что он суммируется к числу $S$.
+\end{definition}
+
+\begin{theorem}
+	Метод суммирования рядов по Чезаро регулярен.
+\end{theorem}
+
+\begin{proof}
+	Пусть $\exists \liml_{n \to \infty} S_n = S$. Это означает, что
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N\ \ |S_n - S| < \frac{\eps}{2}
+	\]
+	Распишем разность $\sigma_n - S$:
+	\[
+		\sigma_n - S = \frac{S_1 + \ldots + S_n}{n} - \frac{nS}{n} = \frac{(S_1 - S) + \ldots + (S_N - S)}{n} + \frac{(S_{N + 1} - S) + \ldots + (S_n - S)}{n}
+	\]
+	Для второго слагаемого верна оценка:
+	\[
+		\left|\frac{(S_{N + 1} - S) + \ldots + (S_n - S)}{n}\right| < \frac{(n - N)\eps}{2n} < \frac{\eps}{2}
+	\]
+	А для первого слагаемого вначале заметим, что оно стремится к нулю, так как в числителе стоит константа. Это означает, что по текущему $\eps$ можно определить $N_1 \in \N$ со следующим свойством:
+	\[
+		\exists N_1 \in \N \such \forall n > N_1\ \ \left|\frac{(S_1 - S) + \ldots + (S_N - S)}{n}\right| < \frac{\eps}{2}
+	\]
+	Откуда:
+	\[
+		\forall n > max(N_1, N)\ |\sigma_n - S| < \eps
+	\]
+\end{proof}
+
+\begin{note}
+	Аналогично доказывается, что $\liml_{n \to \infty} \sigma_n = \liml_{n \to \infty} S_n = S$, даже если $S = \pm \infty$.
+\end{note}
+
+\begin{corollary}
+	Если $\forall n \in \N\ p_n > 0$ и $\liml_{n \to \infty} p_n = L$, то
+	\[
+		\liml_{n \to \infty} \sqrt[n]{p_1 \cdot \ldots \cdot p_n} = L
+	\]
+\end{corollary}
+
+\begin{proof}
+	Положим $a_n := \ln p_n$. В силу непрерывности логарифма
+	\[
+		\liml_{n \to \infty} a_n = \ln L \Ra \liml_{n \to \infty} \frac{a_1 + \ldots + a_n}{n} = \liml_{n \to \infty} \ln (\sqrt[n]{p_1, \ldots, p_n}) = \ln L
+	\]
+	Что равносильно исходному утверждению.
+\end{proof}
+
+\begin{corollary}
+	Если $\forall n \in \N\ a_n > 0$ и $\exists \liml_{n \to \infty} \frac{a_{n + 1}}{a_n} = p$, то $\exists \liml_{n \to \infty} \sqrt[n]{a_n} = p$ (то есть признак Коши в предельной форме сильнее признака Даламбера в предельной форме).
+\end{corollary}
+
+\begin{proof}
+	Для предыдущего следствия построим последовательность $\{p_n\}_{n = 1}^\infty$:
+	\begin{align*}
+		&{p_1 := a_1}
+		\\
+		&{p_2 := \frac{a_2}{a_1}}
+		\\
+		&{\ldots}
+		\\
+		&{p_n := \frac{a_n}{a_{n - 1}}}
+		\\
+		&{\ldots}
+	\end{align*}
+	Тогда $\liml_{n \to \infty} \sqrt[n]{p_1 \cdot \ldots \cdot p_n} = \liml_{n \to \infty} \sqrt[n]{a_n} = \liml_{n \to \infty} p_n = \liml_{n \to \infty} \frac{a_{n + 1}}{a_n}$
+\end{proof}

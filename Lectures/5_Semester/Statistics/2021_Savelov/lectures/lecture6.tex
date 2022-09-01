@@ -1,0 +1,217 @@
+\newcommand{\nequiv}{\not\equiv}
+
+\begin{definition}
+Пусть $\displaystyle \xi $ -- дискретная случайная величина, принимающая значения в $\displaystyle \mathbb{Z}$. Ее плотностью относительно считающей меры называется
+
+\begin{equation*}
+p( x) =P( \xi =x) ,\ x\in \mathbb{Z} .
+\end{equation*}
+\end{definition}
+\begin{example}
+$\displaystyle \xi \ \sim \ Bin(n,\, p)$.
+
+
+\begin{equation*}
+p( k) =P( \xi =k) =C_{n}^{k} p^{k}( 1-p)^{n-k}\mathbb{I}_{k\in \{0,1,\dotsc ,n\}} .
+\end{equation*}
+\end{example}
+Если $\displaystyle \xi $ дискретная случайная величина с плотностью $\displaystyle p( x)$, то для любой борелевсккой функции $\displaystyle g$ выполняется
+
+
+\begin{equation*}
+Eg( x) =\sum _{k\in \mathbb{Z}} g( k) p( k) =\sum _{k\in \mathbb{Z}} g( k) P( \xi =k) =\int _{\mathbb{R}} g( x) p( x) \mu ( dx) .
+\end{equation*}
+\begin{note}
+Всюду далее, говоря о плотности, будем подразумевать либо привычную плотность распределения, либо плотность дискретной случайной величины относительно считающей меры на $\displaystyle \mathbb{Z}$ (или на $\displaystyle \mathbb{Z}^{n}$).
+\end{note}
+\subsection{Среднеквадратичный подход}
+\begin{definition}
+Среднеквадратичный подход -- это равномерный подход с квадратичной функцией потерь.
+\end{definition}
+\begin{exercise}
+Пусть $\displaystyle K$ -- класс несмещенных оценок параметра $\displaystyle \tau ( \theta ),\ \tau :\Theta \rightarrow \mathbb{R}$, и $\displaystyle T_{1},\, T_{2} \in K$. Если $\displaystyle \forall \theta \in \Theta \hookrightarrow E_{\theta }( T_{i} -\tau ( \theta ))^{2} =\inf_{T\in K} E_{\theta }( T-\tau ( \theta ))^{2} < \infty $, то $\displaystyle T_{1} =T_{2} \ P_{\theta }$-п.н. $\displaystyle \forall \theta \in \Theta $.
+\end{exercise}
+\begin{definition}
+Пусть $\displaystyle X$ -- наблюдение с неизвестным распределением $\displaystyle P\in \{P_{\theta },\ \theta \in \Theta \}$, и $\displaystyle \forall \theta \in \Theta\ P_{\theta }$ имеет плотность $\displaystyle p_{\theta }( x)$ по одной и той же мере $\displaystyle \mu $ (мера Лебега, либо считающая). В этом случае семейство $\displaystyle \{P_{\theta },\ \theta \in \Theta \}$ называется доминируемым относительно $\displaystyle \mu $.
+\end{definition}
+\begin{definition}
+Случайная величина $\displaystyle u_{\theta }( X) =\frac{\partial }{\partial \theta }\ln p_{\theta }( X)$ называется вкладом наблюдения $\displaystyle X$, а функция $\displaystyle I_{X}( \theta ) =E_{\theta } u_{\theta }^{2}( X)$ называется количеством информации о параметре $\displaystyle \theta $ (информация по Фишеру).
+\end{definition}
+\section{Условия регулярности}
+\begin{definition}
+Следующие условия называются условиями регулярности
+\end{definition}
+\begin{enumerate}
+\item $\displaystyle \Theta \subset \mathbb{R}$ -- открытый интервал, возможно, бесконечный.
+\item $\displaystyle A=\{x\in \mathcal{X} :p( x)  >0\}$ -- носитель, не зависит от $\displaystyle \theta $.
+\item Для любой статистики $\displaystyle S( X)$ с условием $\displaystyle \forall \theta \in \Theta \hookrightarrow \ E_{\theta } S^{2}( X) < \infty $ выполняется
+\begin{equation*}
+\frac{\partial }{\partial \theta }\int _{\mathcal{X}} S( x) p_{\theta }( x) \mu ( dx) =\int _{\mathcal{X}} S( x)\frac{\partial }{\partial \theta } p_{\theta }( x) \mu ( dx),
+\end{equation*}
+откуда
+\begin{equation*}
+\frac{\partial }{\partial \theta } E_{\theta } S( X) =\int _{A} S( x)\left(\frac{\partial }{\partial \theta } p_{\theta }( x)\right)\frac{p_{\theta }( x)}{p_{\theta }( x)} \mu ( dx) =E_{\theta }\left[ S( X)\frac{\partial }{\partial \theta }\ln p_{\theta }( x)\right] =E_{\theta } S( X) u_{\theta }( X) .
+\end{equation*}
+В частности, будем считать, что $\displaystyle \forall \theta \in \Theta$ величина $\displaystyle \frac{\partial }{\partial \theta }\ln p_{\theta }( x)$ существует на $\displaystyle A$ и конечна.
+\item $\displaystyle 0< I_{X}( \theta ) < \infty, \ \forall \theta \in \Theta $.
+\end{enumerate}
+\begin{exercise}
+Проверить, что $\displaystyle \mathcal{N}\left(a,\, \sigma ^{2}\right)$ регулярно.
+\end{exercise}
+\begin{theorem}
+(Неравенство Рао-Крамера) Пусть выполняется условие регулярности, и $\displaystyle \hat{\theta }( X)$ -- несмещенная оценка $\displaystyle \tau ( \theta )$ с условием, что $\displaystyle E_{\theta }(\hat{\theta }( X))^{2} < \infty \ \forall \theta \in \Theta $. Тогда
+
+
+\begin{equation*}
+D_{\theta }\hat{\theta }( X) \geqslant \frac{( \tau '( \theta ))^{2}}{I_{X}( \theta )} .
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Положим $\displaystyle S( X) \equiv 1$. Тогда по третьему условию регулярности имеем $\displaystyle \frac{\partial }{\partial \theta } E_{\theta } S( X) =\frac{\partial }{\partial \theta } 1=0$. С другой стороны,
+
+
+\begin{equation*}
+\frac{\partial }{\partial \theta } E_{\theta } S( X) =E_{\theta }\frac{\partial }{\partial \theta }\ln p_{\theta }( x) \Rightarrow E_{\theta } u_{\theta }( X) =0.
+\end{equation*}
+Пусть теперь $\displaystyle S( X) =\hat{\theta }( X),\ \tau '( \theta ) =E_{\theta } S( X) u_{\theta }( X)$. С учетом предыдущих неравенств получаем
+\begin{equation*}
+\tau '( \theta ) =E_{\theta } S( X) u_{\theta }( X) -\tau ( \theta ) E_{\theta } u_{\theta }( X) =E_{\theta }( S( X) -\tau ( \theta )) u_{\theta }( X) .
+\end{equation*}
+Использую неравенство Коши-Буняковского получаем
+\begin{gather*}
+( \tau '( \theta ))^{2} \leqslant E_{\theta }( S( X) -\tau ( \theta ))^{2} E_{\theta } u_{\theta }^{2}( X) =D_{\theta } S( X) \cdotp I_{X}( \theta ) \Rightarrow \\
+D_{\theta } S( X) \geqslant \frac{( \tau '( \theta ))^{2}}{I_{X}( \theta )} .
+\end{gather*}
+\end{proof}
+\begin{corollary}
+Если $\displaystyle \tau ( \theta ) =\theta $, то в условиях предыдущей теоремы $\displaystyle D_{\theta }\hat{\theta }( X) \ge\frac{1}{I_{X}( \theta )}$, где $\displaystyle \hat{\theta }$ -- несмещенная оценка $\displaystyle \tau ( \theta )$.
+\end{corollary}
+\begin{exercise}
+$\displaystyle I_{X}( \theta ) =n\cdotp i( \theta )$, где $\displaystyle i( \theta )$ -- информация одного наблюдения.
+\end{exercise}
+\begin{definition}
+Если в неравенстве Рао-Крамера для несмещенной оценки $\displaystyle \hat{\theta }$ достигается равенство, то $\displaystyle \hat{\theta }$ называется эффективной оценкой $\displaystyle \tau ( \theta )$.
+\end{definition}
+\begin{theorem}
+(Критерий эффективности) В условиях регулярности $\displaystyle \hat{\theta }$ -- эффективная оценка для $\displaystyle \tau ( \theta )$ $\displaystyle \Leftrightarrow $ $\displaystyle \hat{\theta }$ -- линейная функция от $\displaystyle u_{\theta }( X)$, т.е.
+
+
+\begin{equation*}
+\hat{\theta }( X) -\tau ( \theta ) =c( \theta ) \cdotp u_{\theta }( X)
+\end{equation*}
+для некоторого $\displaystyle c( \theta )$. Причем равенство выполняется тогда и только тогда, когда $\displaystyle c( \theta ) =\frac{\tau '( \theta )}{I_{X}( \theta )}$.
+\end{theorem}
+\begin{proof}
+Пусть $\displaystyle \hat{\theta }$ -- эффективная оценка для $\displaystyle \tau ( \theta )$. Тогда
+\begin{equation*}
+\tau '( \theta ) =E_{\theta }(\hat{\theta }( X) -\tau ( \theta )) u_{\theta }( X) .
+\end{equation*}
+Так как оценка $\displaystyle \hat{\theta }$ эффективна, то выполнилось равенство в КБШ. Тогда величины $\displaystyle \xi :=(\hat{\theta }( X) -\tau ( \theta ))$ и $\displaystyle \eta :=u_{\theta }( X)$ линейно зависимы, т.е. $\displaystyle \alpha ( \theta ) +\beta ( \theta ) \eta +\gamma ( \theta ) \xi =0$. Беря математическое ожидание от обеих частей, получаем
+
+
+\begin{equation*}
+E\alpha ( \theta ) + \beta ( \theta ) Eu_{\theta }( X) + \gamma ( \theta ) E(\hat{\theta } -\tau ( \theta )) =\alpha ( \theta ) =0.
+\end{equation*}
+Тогда
+
+
+\begin{equation*}
+\beta ( \theta ) u_{\theta }( X) +\gamma ( \theta )(\hat{\theta } -\tau ( \theta )) =0.
+\end{equation*}
+Предположим, что $\displaystyle \gamma ( \theta ) \equiv 0$. Тогда $\displaystyle D_{\theta } \beta ( \theta ) u_{\theta }( X) =\beta ^{2}( \theta ) D_{\theta } u_{\theta }( X) =0$. То, что $\displaystyle \hat{\theta }$ эффективная оценка, подразумевает существование обеих частей в выражении
+
+
+\begin{gather*}
+D_{\theta }\hat{\theta } =\frac{( \tau '( \theta ))^{2}}{I_{X}( \theta )} \Rightarrow I_{X}( \theta )  >0\Rightarrow I_{X}( \theta ) =E_{\theta } u_{\theta }^{2}( X) =D_{\theta } u_{\theta }( X) +( E_{\theta } u_{\theta }( X))^{2} =\\
+D_{\theta } u_{\theta }( X)  >0.
+\end{gather*}
+Из этого заключаем, что и $\displaystyle \beta ( \theta ) \equiv 0$. Пришли к противоречию с тем, что существует нетривиальная линейная зависимость. Следовательно, $\displaystyle \gamma ( \theta ) \neq 0$, и
+
+
+\begin{equation*}
+\hat{\theta } -\tau ( \theta ) =-\frac{\beta ( \theta )}{\gamma ( \theta )} u_{\theta }( X) =c( \theta ) u_{\theta }( X) .
+\end{equation*}
+Обратно, пусть
+
+
+\begin{equation*}
+\hat{\theta } -\tau ( \theta ) =c( \theta ) u_{\theta }( X) .
+\end{equation*}
+Тогда, взяв математическое ожидание от обеих частей, получаем
+\begin{gather*}
+E_{\theta }\hat{\theta } =\tau ( \theta ) ,\\
+E_{\theta }(\hat{\theta } -\tau ( \theta ))^{2} =c^{2}( \theta ) Eu_{\theta }^{2}( X) < \infty \Rightarrow E_{\theta }\hat{\theta }^2 < \infty .
+\end{gather*}
+Домножив обе части на $\displaystyle u_{\theta }( X)$, выходит, что
+\begin{gather*}
+\tau '( \theta ) =E_{\theta }(\hat{\theta } -\tau ( \theta )) u_{\theta }( X) =E_{\theta } c( \theta ) u_{\theta }^{2}( X) =c( \theta ) I_{X}( \theta ) \Leftrightarrow \\
+c( \theta ) =\frac{\tau '( \theta )}{I_{X}( \theta )} ,
+\end{gather*}
+и из линейной зависимости $\displaystyle \xi ,\eta $ следует эффективность.
+\end{proof}
+\begin{corollary}
+Если $\displaystyle \theta ^{*}$ не хуже $\displaystyle \hat{\theta} $ из предыдущей теоремы, то из критерия эффективности следует, что $\displaystyle \theta ^{*} =\hat{\theta } \ P_{\theta }$-п.н.
+\end{corollary}
+\begin{note}
+Эффективная оценка -- наилучшая оценка в классе несмещенных в равномерном подходе с квадратичной функцией потерь (обратное неверно).
+\end{note}
+\begin{theorem}
+Если в условиях регулярности существует эффективная оценка для $\displaystyle \tau ( \theta ) \nequiv const$, то множество функций, для которых существует эффективная оценка -- это
+
+
+\begin{equation*}
+\{a+b\tau ( \theta ):a,\, b-const\} .
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Если $\displaystyle T( X)$ -- эффективная оценка для $\displaystyle \tau ( \theta )$, $\displaystyle V( X)$ -- эффективная оценка $\displaystyle v( \theta )$. Производная функции $\displaystyle \tau $ существует в любой точке в силу условий регулярности. Из того, что $\displaystyle \tau \nequiv const$ следует, что $\displaystyle \exists \theta _{0} \in \Theta :\tau '( \theta _{0}) \neq 0$. Так как $\displaystyle 0< I_{X}( \theta ) < \infty $, то $\displaystyle c( \theta ) \neq 0$. Тогда
+
+
+\begin{equation*}
+u_{\theta _{0}}( X)\xlongequal{P_{\theta _{0}} -a.s.}\frac{T( X) -\tau ( \theta _{0})}{c( \theta _{0})} \Rightarrow V( X)\xlongequal{P_{\theta _{0}} -a.s.} v( \theta _{0}) +\frac{d( \theta _{0})}{c( \theta _{0})}( T( X) -\tau ( \theta _{0})) .
+\end{equation*}
+\begin{exercise}
+Рассмотрим $\displaystyle A=\{x:p_{\theta }( x)  >0\}$ не зависит от $\displaystyle \theta $. Тогда
+
+
+\begin{equation*}
+( \exists \theta :\ P_{\theta }( x\in B) =1) \Leftrightarrow ( \forall \theta :P_{\theta }( x\in B) =1) .
+\end{equation*}
+\end{exercise}
+\begin{proof}
+Пусть $\displaystyle C=X\backslash B$. Тогда
+
+
+\begin{equation*}
+P_{\theta }( x\in C) =P_{\theta }( x\in C\cap A) =\int _{C\cap A} p_{\theta }( x) \mu ( dx) .
+\end{equation*}
+Если $\displaystyle P_{\theta _{0}}( x\in B) =1$, то
+
+
+\begin{equation*}
+P_{\theta _{0}}( x\in C) =\int _{C\cap A} p_{\theta _{0}}( x) \mu ( dx) =0\Rightarrow \mu ( C\cap A) =0\Rightarrow P_{\theta }( x\in C) =0.
+\end{equation*}
+\end{proof}
+Получили, что $\displaystyle \forall \theta \hookrightarrow V( X)\xlongequal{P_{\theta } -a.s.} a+bT( X)$. Взяв математическое ожидание, получаем
+
+
+\begin{equation*}
+v( \theta ) =a+b\tau ( \theta ) .
+\end{equation*}
+\end{proof}
+Пусть $\displaystyle \theta =( \theta _{1} ,\dotsc ,\theta _{k})$.
+\begin{definition}
+Экспоненциальным семейством распределений называются все распределения, обобщенная плотность которых имеет вид
+
+
+\begin{equation*}
+h( x)\exp\left(\sum _{i=1}^{k} a_{i}( \theta ) T_{i}( x) +V( \theta )\right) ,
+\end{equation*}
+и где функции $\displaystyle a_{0}( \theta ) \equiv 1,\, a_{1}( \theta ) ,\dotsc ,\, a_{k}( \theta )$ линейно независимы.
+\end{definition}
+\begin{example}
+Рассмотрим распределение $\displaystyle \Gamma ( \alpha ,\lambda )$. Его плотность распределения имеет вид
+\begin{gather}
+    p_{\alpha ,\lambda }( x) =\frac{\alpha ^{\lambda } x^{\lambda -1}}{\Gamma ( \alpha )} e^{-\alpha x}\mathbb{I}_{x >0} =\frac{1}{x}\exp\left( \lambda \ln x-\alpha x+\ln\frac{\alpha ^{\lambda }}{\Gamma ( \alpha )}\right)\mathbb{I}_{x >0}.
+\end{gather}
+\end{example}

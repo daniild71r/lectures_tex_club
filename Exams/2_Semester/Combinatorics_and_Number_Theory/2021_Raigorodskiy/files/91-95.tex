@@ -1,0 +1,72 @@
+\setcounter{section}{90}
+\section{Показатели. Первообразные корни. Существование по модулю $p$.}
+\par \textbf{Лемма:} Если порядки чисел $x_1, \ldots, x_k$ взаимно-просты, то порядок $x_1\cdot\ldots\cdot x_k$ равен произведению порядков.
+\par $\blacktriangle$ Докажем для двух чиел, для большего числа - по индукции. Пусть $\ord_n a=\delta_a, \ord_n b=\delta_b, (\delta_a, \delta_b)=1$. Тогда $(ab)^{\delta_a\delta_b}=(a^{\delta_a})^{\delta_b}(b^{\delta_b})^{\delta_a}=1 \: (\md \: n)$. Докажем, что $k<\delta_a \delta_b$ не являются порядками. Пусть $(ab)^k =1 \: (\md n)$. Возведем обе части в степень $\delta_a$: $(a^{\delta_a})^kb^{k\delta_a}=b^{k\delta_a}=1\Rightarrow k \delta_a \: \vdots \: \delta_b, \: (\delta_a, \delta_b)=1 \Rightarrow \: k \: \vdots \: \delta_b$. Аналогично показываем, что $k \: \vdots \: \delta_a \Rightarrow \ord_n(ab)=\delta_a \delta_b \: \blacksquare$
+\par \textbf{Утверждение:} Если $p$ нечетное простое число то по модулю $p$ существует первообразный корень.
+\par $\blacktriangle$ Пусть $\delta_1, \ldots, \delta_{p-1}$ - показатели (порядки) чисел $1, \ldots, p-1$ соответственно. Рассмотрим $\tau:=[\delta_1, \ldots, \delta_{p-1}]=q_1^{\alpha_1}\cdot \ldots \cdot q_k^{\alpha_k}$ - каноническое разложение.
+\par $\forall i \in \{1, \ldots, k\} \: \exists \delta \in \{\delta_1, \ldots, \delta_n\} \: \exists a: \: \delta=aq_i^{\alpha_i}, \: (a, q_i)=1$ (верно, так как если полная степень делителя НОКа не входит ни в какое из чисел, то ее не должно быть в НОКе)
+\par Зафиксируем $i$ и найдем соответствующую ему $\delta$. Выберем $x$ такой что $\delta$ - его показатель. $1=x^\delta=x^{aq_i^{\alpha_i}}=(x^a)^{q_i^{\alpha^i}} \: (\md \: p) \Rightarrow q_i^{\alpha_i}$ - порядок $x^a$ (меньше не может быть так как иначе $\delta$ не был бы порядком $x$)
+\par Рассмотрим $g=\prod_{i=1}^k x_i^{a_i}$ (по всем $i$). По лемме порядок $g$ равен $q_1^{\alpha_1}\cdot \ldots \cdot q_k^{\alpha_k}=\tau \Rightarrow \tau \leq p-1$ (так как это порядок).
+\par Рассмотрим сравнение $x^\tau \equiv 1 \: (\md p)$. Все числа $1. \ldots, p-1$ являются его корнями (так как $\tau$ - НОК их порядков) $\Rightarrow \tau \geq p-1$ (так как многочлен не может иметь больше корней чем его степень) $\Rightarrow \tau=p-1 \Rightarrow g$ - первообразный корень. $\blacksquare$
+
+
+\section{Показатели. Первообразные корни. Существование по модулю $p^\alpha$, $\alpha \geq 2$: формулировка и доказательство леммы. Существование по модулю $2p^\alpha$.}
+\par \textbf{Лемма:} $\exists t: \: (g+pt)^{p-1}=1+pu, \: (p,u)=1$
+\par $\blacktriangle$ $$(g+pt)^{p-1}=g^{p-1}+g^{p-2}(p-1)pt+p^2a=\underbrace{1+pv}_{g^{p-1}}+p(g^{p-2}(p-1)t+pa)=1+p(v+\underbrace{g^{p-2}(p-1)}_\text{взаимно просто с $p$}t+pa)$$
+\par Так как $t$ можно выбирать любым, легко можем подобрать его так, чтобы $v+g^{p-2}(p-1)t$ было взаимно просто с $p$. Тогда $u=v+g^{p-2}(p-1)t+pa$ - искомое $\blacksquare$
+\par \textbf{Утверждение 1:} По модулю $p^\alpha, \alpha>2$ ($p$ - нечетное простое) существует первообразный корень.
+\par \textbf{Утверждение:} По модулю $2p^\alpha$ ($p$ - нечетное простое) существует первообразный корень.
+\par $\blacktriangle$ $$\varphi(2p^\alpha)=\varphi(2)\varphi(p^\alpha)=\varphi(p^\alpha)=p^\alpha-p^{\alpha-1}=p^{\alpha-1}(p-1)$$
+\par Для подсчета $\varphi(p^\alpha)$ воспользовались тем, что чисел кратных $p$, которые меньше $p^\alpha$ всего $p^{\alpha-1}$.
+\par Пусть $g+pt$ - первообразный корень по модулю $p^\alpha$. Если $g+pt$ - нечетное, то это и есть первообразный корень по модулю $2p^\alpha$ (если $a=(g+pt)^{\varphi(2p^\alpha)}$ нечетное, то $a-1$ - четное, а значит $a-1 \: \vdots \: p^\alpha \Leftrightarrow a-1 \: \vdots \: 2p^\alpha$)
+\par Если $g+pt$ - чётное, то берем $g+pt+p^\alpha \: \blacksquare$
+
+
+\section{Показатели. Первообразные корни. Существование по модулю $p^\alpha$, $\alpha \geq 2$: формулировка леммы (б/д) и вывод существования из неё. Существование по модулю $2p^\alpha$.}
+\par \textbf{Лемма:} $\exists t: \: (g+pt)^{p-1}=1+pu, \: (p,u)=1$
+\par \par \textbf{Утверждение 1:} По модулю $p^\alpha, \alpha>2$ ($p$ - нечетное простое) существует первообразный корень.
+\par $\blacktriangle$ Покажем, что найденный в лемме $g+pt$ - первообразный корень по модулю $p^\alpha$. Пусть $\delta$ - показатель $g+pt$ по модулю $p^\alpha$.
+$$(g+pt)^\delta\equiv 1 \: (\md \: p^\alpha) \Rightarrow (g+pt)^\delta\equiv 1 \: (\md \: p)$$
+\par $g$ - первообразный корень по модулю $p \Rightarrow \delta \: \vdots \: (p-1)$. С друой строны $\delta$ делит $\varphi(p^\alpha)=p^{\alpha-1}(p-1) \Rightarrow \delta=p^k(p-1), k \leq a-1$.
+$$(g+pt)^{p-1}=1+pu, (p,u)=1 \text{ (по лемме)}$$
+$$(g+pt)^{p(p-1)}=(1+pu)^p=1+p^2u+p^3v=1+p^2(u+pv)=1+p^2u_1, (u_1, p)=1$$
+\par $(u_1, p)=1 \Rightarrow u_1$ не содержит делителя $p^{\alpha-2}$ (при $\alpha \neq 2$) $\Rightarrow (1+gt)^{p(p-1)} \not\equiv 1 \: (\md \: p^\alpha)$
+\par Будем повторять такой процесс для получившегося равенства пока не получим
+$$(g+pt)^{p^{\alpha-1}(p-1)}=1+p^\alpha u_{\alpha-1} \equiv 1 \: (\md \: p^\alpha)$$
+\par Следовательно, так как все меньшие $\delta$ вида $p^k(p-1)$ не подходят, порядком $g+pt$ является $p^{\alpha-1}(p-1)=\varphi(p^\alpha) \Rightarrow g+pt$ - первообразный корень $\blacksquare$
+\par \textbf{Замечание:} существование по модулю $2p^\alpha$ см. билет 93.
+
+
+\section{Показатели. Первообразные корни. Несуществование по модулю $2^n$, $n > 3$.}
+\par \textbf{Замечание:} Покажем, что по модулям 2 и 4 первообразные корни существуют.
+\begin{itemize}
+    \item[]$m=2$: $\varphi(2)=1, 1^1 \equiv 1 \: (\md \: 2) \Rightarrow 1$ - первообразный корень
+    \item[]$m=4$: $\varphi(4)=2, 3^2=9 \equiv 1 \: (\md \: 4)$, $3^1 \not\equiv 1 \: (\md \: 4) \Rightarrow 3$ - первообразный корень
+\end{itemize}
+\par \textbf{Утверждение:} По модулю $2^\alpha, \alpha \geq 3$ не существует первообразных корней.
+\par $\blacktriangle$ $\varphi(2^\alpha)=2^{\alpha-1}$ (все нечетные числа)
+\par Пусть $a=1+2t$ - нечетное. Покажем, что $a^{(2^{\alpha-2})} \equiv 1 \: (\md \: 2^\alpha)$
+$$(1+2t)^2=1+4t+4t^2=1+4\underbrace{t(t+1)}_\text{четное}=1+8t_1$$
+$$(1+2t)^4=(1+8t_1)^2=1+16t_1+64t_1^2=1+16t_2$$
+$$\ldots$$
+$$(1+2t)^{(2^{k})}=1+2^{k+2} t_{k}$$
+$$\ldots$$
+$$(1+2t)^{(2^{\alpha-2})}=1+2^\alpha t_{\alpha-2} \equiv 1 \: (\md \: 2^\alpha)$$
+\par Следовательное любое нечетное число (то есть любое число, взаимно простое с $2^\alpha$) не является первообразным корнем $\Rightarrow$ первообразных корней по этому модулю нет $\blacksquare$
+
+
+\section{Показатели. Первообразные корни. Несуществование по модулям, отличным от $2^n, p^\alpha, 2p^\alpha$.}
+\par $\blacktriangle$ Пусть $n=p_1^{k_1} \cdot \ldots \cdot p_m^{k_m}$. $\varphi(n)=\prod_{i=1}^m \varphi(p_i^{k_i})=\prod_{i=1}^m p_i^{k_i-1}(p_i-1)$. Предположим противное: пусть существует $g$ - первообразный корень по модулю $n$. Из теоремы Эйлера верно
+$$\begin{cases}
+   g^{(p_1-1)p_1^{k_1-1}} \equiv 1 \: (\md \: p_1^{k_1})\\
+   \ldots\\
+   g^{(p_m-1)p_m^{k_m-1}} \equiv 1 \: (\md \: p_m^{k_m})
+ \end{cases}$$
+ \par Очевидно, что $\forall i \: z=\varphi(n)/2=\frac{\prod_{i=1}^m p_i^{k_i-1}(p_i-1)}{2} \: \vdots \: (p_i-1)p_i^{k_i-1}$ (двойку можно забрать из любого множителя относящегося к простому делителю, отличному от $i$-ого). Тогда верно
+ $$\begin{cases}
+   g^{z} \equiv 1 \: (\md \: p_1^{k_1})\\
+   \ldots\\
+   g^{z} \equiv 1 \: (\md \: p_m^{k_m})
+ \end{cases}$$
+ \par Пусть $g^z=1+p_1^{k_1}a=1+p_2^{k_2}b \Rightarrow p_1^{k_1}a=p_2^{k_2}b$. В силу взаимной простоты $p_1, p_2 \Rightarrow a \: \vdots \: p_2^{k_2} \Rightarrow g^z=1+p_1^{k_1}p_2^{k_2}a_1$. По индукции будем присоединять все больше множителей и в итоге получим
+ $$g^z=1+p_1^{k_1}\cdot\ldots\cdot p_m^{k_m}t=1+nt \equiv 1 \: (\md \: n), \: z=\varphi(n)/2 < \varphi(n) \Rightarrow$$ $$\Rightarrow g \text{ не является первообразным корнем по модулю $n$ } \blacksquare$$

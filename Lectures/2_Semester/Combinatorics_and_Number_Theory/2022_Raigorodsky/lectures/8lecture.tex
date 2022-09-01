@@ -1,0 +1,220 @@
+\begin{theorem}
+	Число Эйлера $e$ - иррациональное.
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Пока поверим, что}
+	\[
+		e = \suml_{k = 0}^\infty \frac{1}{k!}
+	\]
+	Предположим, что $e = a/n$ для некоторых $a \in \Z,\ n \in \N$. С одной стороны, очевидно, $en! \in \Z$. С другой стороны,
+	\begin{multline*}
+		en! = A + \frac{n!}{(n + 1)!} + \frac{n!}{(n + 2)!} + \ldots = A + \frac{1}{n + 1} + \frac{1}{(n + 1)(n + 2)} + \ldots =
+		\\
+		A + \frac{1}{n + 1} \left(1 + \frac{1}{n + 2} + \frac{1}{(n + 2)(n + 3)} + \ldots\right)
+	\end{multline*}
+	где $A \in \Z$, а сумма в скобках
+	\[
+		1 < 1 + \frac{1}{n + 2} + \frac{1}{(n + 2)(n + 3)} + \ldots < 1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \ldots = 2
+	\]
+	То есть
+	\[
+		0 < \frac{1}{n + 1} \left(1 + \frac{1}{n + 2} + \frac{1}{(n + 2)(n + 3)} + \ldots\right) < \frac{2}{n + 1} \le \frac{2}{2} = 1
+	\]
+	Получили, что $en!$ не целое число. Противоречие.
+\end{proof}
+
+\begin{theorem}
+	Числа Эйлера $e$ - трансцендентное.
+\end{theorem}
+
+\begin{lemma} (тождество Эрмита)
+	Пусть $f(t) = b_{\nu}t^{\nu} + \ldots + b_1 t + b_0$, где $b_i \in \R$. Утверждается, что
+	\[
+		\int_0^x f(t) e^{-t} dt = F(0) - F(x)e^{-x}
+	\]
+	где $F(x) = f(x) + f'(x) + \ldots + f^{(\nu)}(x)$
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим следующий интеграл от многочлена $f(t)$:
+	\[
+		\int_0^x f(t) e^{-t} dt = -\int_0^x f(t) d(e^{-t}) = -f(t) e^{-t} |_0^x + \int_0^x f'(t) e^{-t} dt = f(0) - f(x)e^{-x} + \int_0^x f'(t)e^{-t} dt
+	\]
+	Рекурсивно вычислим оставшийся интеграл. В итоге получится следующее выражение:
+	\begin{multline*}
+		\int_0^x f(t) e^{-t} dt = \underbrace{f(0) - f(x)e^{-x} + f'(0) - f'(x)e^{-x} + \ldots + f^{(\nu)}(0) - f^{(\nu)}(x)e^{-x}}_{F(0) - F(x)e^{-x}} +
+		\\
+		\underbrace{\int_0^x f^{(\nu + 1)}(t) e^{-t} dt}_{0}
+	\end{multline*}
+\end{proof}
+
+\begin{proof} (трансцендентности)
+	Предположим, что $e$ - не трансцендентное. Это значит существование многочлена $g(x)$, для которого $e$ - это корень:
+	\[
+		g(x) = a_m x^m + \ldots + a_1 x + a_0
+	\]
+	Перепишем тождество Эрмита для $x = k \in \range{0, m}$ в следующем виде:
+	\[
+		e^k F(0) - F(k) = e^k \int_0^k f(t) e^{-t} dt
+	\]
+	Определим для числа $n \in \N$ многочлен $f(x)$:
+	\[
+		f(x) = \frac{1}{(n - 1)!} x^{n - 1} \big((x - 1) \cdot \ldots \cdot (x - m)\big)^n
+	\]
+	Теперь, рассмотрим следующую сумму для нашего $f(x)$ ($n$ выберем позже):
+	\[
+		\suml_{k = 0}^m a_k (e^k F(0) - F(k)) = F(0) \underbrace{\suml_{k = 0}^m a_k e^k}_{0} - \suml_{k = 0}^m a_k F(k) = \suml_{k = 0}^m a_k e^k \int_0^k f(t) e^{-t} dt 
+	\]
+	Чтобы посчитать $F(k)$, нам нужно посчитать все $\nu := n - 1 + nm$ производные в целых точках:
+	\begin{itemize}
+		\item Производные в нуле
+		\begin{enumerate}
+			\item Для $\mu \in \range{0}{n - 2}$ верно, что
+			\[
+				f^{(\mu)}(0) = 0
+			\]
+			так как за одно дифференцирование степень каждого слагаемого в производной уменьшается лишь на 1.
+			
+			\item Производная в нуле при $\mu = n - 1$ получается лишь из того слагаемого, где всегда брали производную лишь от $x^{n - 1}$. То есть
+			\[
+				f^{(n - 1)}(0) = (-1)^{mn} (m!)^n
+			\]
+			
+			\item $\mu \ge n$. Тут уже конкретное значение производной сложно узнать. Тем не менее, можно заключить следующее:
+			\[
+				f^{(\mu)}(0) = nB,\ B \in \Z
+			\]
+		\end{enumerate}
+		
+		\item Производные для $k \in \range{1}{m}$
+		\begin{enumerate}
+			\item Для $\mu \in \range{0}{n - 1}$ очевидно
+			\[
+				f^{(\mu)}(k) = 0
+			\]
+			
+			\item Для $\mu \ge n$ скажем то же, что и в последнем пункте про производные в нуле:
+			\[
+				f^{(\mu)}(k) = nC,\ C \in \Z
+			\]
+		\end{enumerate}
+	\end{itemize}
+	Посчитав производные, мы можем вычислить сумму:
+	\[
+		\suml_{k = 0}^m a_k F(k) = a_0 F(0) + \suml_{k = 1}^m a_k F(k) = a_0 (-1)^{mn}(m!)^n + a_0 nD + nE \equiv a_0 (-1)^{mn} (m!)^n \pmod n
+	\]
+	Выберем такое $n$, что $n > |a_0|$ и $(n, m!) = 1$. Тогда гарантированно можем заявить следующее:
+	\[
+		\left|-\suml_{k = 0}^m a_k F(k)\right| \ge 1
+	\]
+	Если мы докажем, что правая часть исходного равенства стремится к нулю при $n \to \infty$, то мы получим необходимое противоречие. Рассмотрим эту часть:
+	\[
+		\left|\sum_{k = 0}^m a_k e^k \int_0^k f(t) e^{-t} dt\right| \le \suml_{k = 0}^m |a_k| e^k \int_0^k |f(t)| e^{-t} dt
+	\]
+	Оценим модуль $|f(t)|$. Заметим, что
+	\[
+		\forall t \in [0; m]\ \forall i \in \range{0}{m}\ \ |t - i| \le m
+	\]
+	Отсюда следует
+	\begin{multline*}
+		\suml_{k = 0}^m |a_k|e^k \int_0^k |f(t)|e^{-t} dt \le \suml_{k = 0}^m |a_k|e^k \int_0^k \frac{1}{(n - 1)!} m^{mn + n - 1} e^{-t} dt =
+		\\
+		\frac{1}{(n - 1)!} m^{mn + n - 1} \suml_{k = 0}^m |a_k| e^k \left(\frac{1}{e^0} - \frac{1}{e^k}\right) \le \frac{1}{(n - 1)!} \underbrace{m^{mn + n - 1} \suml_{k = 0}^m |a_k|e^k}_{C^n \cdot C'} \xrightarrow[n \to \infty]{} 0
+	\end{multline*}
+\end{proof}
+
+\begin{theorem} (без доказательства)
+	Число Пи $\pi$ - трансцендентное.
+\end{theorem}
+
+\begin{theorem} (Гельфонда, 1929г., одна из проблем Гильберта. Без доказательства)
+	Если $\alpha, \beta \in \A$, $\alpha \notin \{0, 1\}$, $\beta \notin \Q$, то $\alpha^\beta \notin \A$.
+\end{theorem}
+
+\begin{corollary}
+	$e^\pi \notin \A$ - тоже трансцендентное число.
+\end{corollary}
+
+\begin{proof}
+	Предположим, что $e^\pi \in \A$. Но заметим, что $i \in \A \bs \Q$:
+	\[
+		(e^\pi)^i = e^{i\pi} = -1 \in \A
+	\]
+	Получили противоречие с теоремой Гельфонда.
+\end{proof}
+
+\begin{definition}
+	Числа $x, y$ называются \textit{алгебраически независимыми}, если для любого многочлена $P$ выполнено неравенство:
+	\[
+		P(x, y) \neq 0
+	\]
+\end{definition}
+
+\begin{theorem} (Нестеренко. Без доказателсьтва)
+	Числа $\pi, e^\pi, \Gamma(1/4)$ алгебраически независимы. $\Gamma(x)$ - обобщение факториала на всю действительную числовую прямую.
+\end{theorem}
+
+\subsection{Решётки в $\R^n$}
+
+\begin{note}
+	Зафиксируем линейно независимые вектора $\vec{a}_1, \ldots, \vec{a}_k \in \R^n$.
+\end{note}
+
+\begin{definition}
+	\textit{Решёткой} $\Lambda$ в пространстве $\R^n$ будем называть следующее множество векторов:
+	\[
+		\Lambda = \{b_1\vec{a}_1 + \ldots + b_n\vec{a}_k \such \forall i\ b_i \in \Z\}
+	\]
+\end{definition}
+
+\begin{definition}
+	Вектора $\vec{a}_1, \ldots, \vec{a}_k$ также можно назвать \textit{базисом решётки} $\Lambda$.
+\end{definition}
+
+\begin{note}
+	Базис в $\Lambda$, понятное дело, определён неоднозначно. Тем не менее, матрица перехода от базиса к базису должна быть целочисленной, а следовательно, её детерминант - это $\pm 1$. Отсюда вытекает следующее определение:
+\end{note}
+
+\begin{definition}
+	\textit{Определителем решётки} называется модуль детерминанта матрицы
+	\[
+		\det \Lambda = \left|\det \Matrix {\alpha_1 & &\cdots & &\alpha_k}\right|,\ \ \vec{a}_i \leftrightarrow_e \alpha_i
+	\]
+	где $e$ - ортонормированный базис
+\end{definition}
+
+\begin{note}
+	В $\R^2$ $\det \Lambda$ символизирует объём параллелограмма, натянутого на базисные вектора решётки. В $\R^3$ - объём соответственно.
+\end{note}
+
+\begin{definition}
+	Множество $\Omega \subset \R^2$ называется \textit{выпуклым}, если для любых двух точек из этого множества отрезок, соединяющих их, тоже лежит в этом множестве.
+\end{definition}
+
+\begin{definition}
+	Зафиксируем ПДСК на плоскости. Будем называть множество $F \subset \R^2$ \textit{простым}, если оно представляет собой совокупность прямоугольников, чьи стороны параллельны осям.
+\end{definition}
+
+\begin{definition}
+	\textit{Площадь простой фигуры} $F$ - это просто сумма площадей прямоугольников, её составляющих. 
+\end{definition}
+
+\begin{definition}
+	Будем говорить, что множество $\Omega \subset \R^2$ обладает \textit{площадью} $S$, если выполнено условие:
+	\[
+		\mu_*(\Omega) = \mu^*(\Omega)
+	\]
+	где $\mu_*(\Omega) = \sup\limits_{F \subset \Omega} S(F)$, $\mu^*(\Omega) = \inf\limits_{\Omega \subset F} S(F)$
+\end{definition}
+
+\begin{note}
+	Величина $S$ является частным случаем \textit{меры Жордана}.
+\end{note}
+
+\begin{theorem} (Минковского)
+	Пусть $\Omega \subset \R^2$, $S(\Omega) > 4$, $S$ - выпукло и центрально симметрично относительно центра ПДСК. Тогда
+	\[
+		(\Omega \cap \Z^2) \bs \{0\} \neq \emptyset
+ 	\]
+\end{theorem}

@@ -1,0 +1,278 @@
+\begin{flushright}
+    \textit{Лекция 6 (от 22.09)}
+\end{flushright}
+\section{$\S 8.$ Интегральная формула Коши}
+\theorem
+Пусть $G$~--- ограниченная область в $\CC$ с кусочно гладкой положительно
+ориентированной границей $\Gamma$. Пусть $f: \overline{G} \mapsto \CC$ регулярна
+на $G$ и непрерывна на $\overline{G}$. Тогда
+\begin{equation} \label{(8.1)}
+    \forall z \in G f(z) = \frac{1}{2\pi i}\int_{\Gamma}\frac{f(\zeta)}{\zeta - z}d\zeta
+\end{equation}
+\pr
+Зафиксируем
+\begin{align*}
+  & z \in G: \ \zeta \to \frac{f(\zeta)}{\zeta - z}
+\end{align*}
+\begin{align*}
+  & \exists r_0 > 0: \ \forall r \leq r_0 \ \overline{B_r(z)} \subseteq G
+\end{align*}
+Пусть
+\begin{align*}
+  & \gamma_r = \{\zeta \mid \left| \zeta - z \right| = r\}, \ r > 0, \ r \leq r_0
+\end{align*}
+причем $\gamma_r$ положительно ориентированная. Пусть
+\begin{align*}
+  & G = \tilde{G} \setminus \overline{B_r(z)}
+\end{align*}
+Тогда
+\begin{align*}
+  & \frac{f(\zeta)}{\zeta - z}
+\end{align*}
+регулярна и непрерывна на $\Gamma_r = \Gamma \cup \gamma_r^{-1}$.
+По теореме $3$ $\S 7$
+\begin{align*}
+  & 0 = \int_{\Gamma_r} \frac{f(\zeta)}{\zeta - z} d \zeta =  \int_{\Gamma} \frac{f(\zeta)}{\zeta - z} d \zeta - \int_{\gamma_r} \frac{f(\zeta)}{\zeta - z} d \zeta
+\end{align*}
+\begin{align*}
+  & \forall r \in (0; r_0) \ J(z) = \frac{1}{2 \pi i} \int_{\Gamma} \frac{f(\zeta)}{\zeta - z} d \zeta = \frac{1}{2 \pi i} \int_{\gamma_r} \frac{f(\zeta)}{\zeta - z} d \zeta
+\end{align*}
+$f$ непрерывна в $z$ $\Rightarrow$
+\begin{align*}
+  & \forall \varepsilon > 0 \ \exists \delta > 0: \ \forall \zeta: \ \left| \zeta - z \right| < \delta(\varepsilon) \hookrightarrow \left| f(\zeta) - f(z) \right| < \varepsilon; \ 0 < r < \delta(\varepsilon)
+\end{align*}
+\begin{align*}
+  & \frac{1}{2 \pi i} \int_{\gamma_r} \frac{1}{\zeta - z} d \zeta = 1
+\end{align*}
+\begin{align*}
+  & J(z) - f(z) = \frac{1}{2 \pi i} \int_{\gamma_r} \frac{f(\zeta) - f(z)}{\zeta - z} d \zeta
+\end{align*}
+\begin{align*}
+  & \left| J(z) - f(z) \right| \leq \frac{1}{2 \pi i} \int_{\gamma_r} \frac{\left| f(\zeta) - f(z) \right|}{\left| \zeta - z \right|} \cdot \left| d\zeta \right| \leq \frac{\varepsilon}{2 \pi r} \int_{\gamma_r}\left| d\zeta \right| = \varepsilon
+\end{align*}
+ч.~т.~д.
+\Def
+Пусть $\gamma$~--- кусочно гладкая в $\CC$; $q: \gamma \mapsto \CC$ непрерывна.
+Тогда \textbf{интегралом Коши} называется выражение
+\begin{equation} \label{(8.2)}
+    I(z) = \frac{1}{2 \pi i} \int_{\gamma} \frac{q(\zeta)}{\zeta - z} d\zeta, \ z \in \CC \setminus \gamma
+\end{equation}
+\theorem
+В условиях определения интеграла Коши он бесконечно дифференцируем на
+$\CC\setminus\gamma$, причем
+\begin{equation} \label{(8.3)}
+    \forall n \in \NN, \  z \in \CC \setminus \gamma \ I^{(n)}(z) = \frac{n!}{2 \pi i} \int_{\gamma} \frac{q(z)}{(\zeta - z)^{n+1}} d\zeta
+\end{equation}
+\pr
+По индукции.
+\\
+База: при $n=0$, очевидно, верно.
+\\
+Шаг: пусть верно для $n-1$, тогда для $n$ фиксируем произвольное $z_0 \in \CC
+\setminus \gamma$.
+\\
+Пусть
+\begin{align*}
+  & d = \inf\{\left| z_0 - \zeta \right| \mid \zeta \in \gamma\}; \ d < +\infty
+\end{align*}
+Пусть
+\begin{align*}
+  & \Delta z: \ 0 < \left| \Delta z \right| < \frac{d}{2}
+\end{align*}
+Тогда
+\begin{align*}
+  & \zeta \in \gamma: \ \left| \zeta - (z_0+\Delta z)\right| \geq \left| \zeta - z_0 \right| - \left| \Delta z \right| > d - \frac{d}{2} = \frac{d}{2} > 0
+\end{align*}
+\begin{align*}
+  & \frac{I^{(n-1)}(z_0+\Delta z) - I^{(n-1)}(z_0)}{\Delta z} - \frac{n!}{2 \pi i}\int_{\gamma}\frac{q(\zeta)}{(\zeta-z)^{n+1}}d\zeta = \frac{(n-1)!}{2 \pi i}\int_{\gamma}q(\zeta)\left( \left( \frac{1}{(\zeta-z_0-\Delta z)^n} - \right. \right.\\
+  & \left. \left. - \frac{1}{(\zeta-z_0)^n} \right)\frac{1}{\Delta z} - \frac{n}{(\zeta-z_0)^{n+1}}\right)d\zeta
+\end{align*}
+В силу
+\begin{align*}
+  & (\zeta-z_0)^n - (\zeta - z_0 - \Delta z)^n = n\Delta z(\zeta - z_0)^{n-1} + O(\Delta z^2)
+\end{align*}
+\begin{align*}
+  & \frac{n(\zeta-z_0)^{n-1}+O(\Delta z)}{(\zeta - z_0)^n(\zeta-z_0-\Delta z)^n} - \frac{n}{(\zeta - z_0)^{n+1}} = \frac{n(\zeta-z_0)^n+O(\Delta z) - (\zeta-z_0-\Delta z)^n}{(\zeta - z_0)^{n+1}(\zeta - z_0 - \Delta z)^n} = \\
+  & = n \frac{O(\Delta z)}{(\zeta - z_0)^{n+1}(\zeta - z_0)^n}
+\end{align*}
+\begin{align*}
+  & \exists C > 0: \ \left| O(\Delta z) \right| < C \left| \Delta z \right|
+\end{align*}
+\begin{align*}
+  & \left| \zeta - z_0 \right| \geq d; \ \left| \zeta - z_0 - \Delta z \right| > \frac{d}{2}
+\end{align*}
+\begin{align*}
+  & \left| \frac{\Delta I}{\Delta z} - \frac{1}{2 i\pi} \int_{\gamma}\dots d \zeta\right|\leq \frac{n!}{2 \pi}\int_{\gamma}\left| q(\zeta) \right|\frac{c\left| \Delta z \right|}{d^{n+1}\left( \dst \frac{d}{2} \right)^n}\left| d\zeta \right| \leq A \left| \Delta z \right|
+\end{align*}
+\theorem
+Пусть $f: G \mapsto \CC$ регулярна в $G$, тогда $f$ бесконечно дифференцируема в
+$G$ и $\forall z \in \overline{B_r(z_0)} \subseteq G$
+\begin{equation} \label{(8.4)}
+    f^{(n)}(z) = \frac{n!}{2 \pi i}\int_{\gamma_r}\frac{f(\zeta)}{(\zeta - z)^{n+1}}d\zeta
+\end{equation}
+\pr
+Из \eqref{(8.1)}
+\begin{align*}
+  f(z) = \frac{1}{2 \pi i}\int_{\gamma_r}\frac{f(\zeta)}{(\zeta - z)}d\zeta
+\end{align*}
+Тогда по \eqref{(8.3)} выполняется \eqref{(8.4)}.
+\section{$\S 9.$ Ряд Тейлора. Теорема Вейерштрасса}
+\Def
+\textbf{Степенным рядом} называется ряд
+\begin{equation} \label{(9.1)}
+    \sum_{n=0}^{\infty}c_n(z-a)^n, \ a \in \CC, \ c_n \in \CC
+\end{equation}
+\theorem (Абеля)
+Пусть \eqref{(9.1)} сходится в $z_0 \neq a$.
+\\
+Тогда
+\begin{enumerate}
+    \item $\forall z \in B_{\left| z_0 - a \right|}(a)$ \eqref{(9.1)}
+    сходится абсолютно;
+    \item $\forall r \in (0; \left| z_0-a \right|)$ \eqref{(9.1)} сходится
+    равномерно на $\overline{B_r(a)}$.
+\end{enumerate}
+\pr
+\begin{enumerate}
+    \item Пусть $z \in B_{\left| z_0-a \right|}(a)$.
+    \\
+    \eqref{(9.1)} сходится в $z_0 \Rightarrow \dst
+    \sum_{n=0}^{\infty}c_n(z-a)^n$ сходится.
+    \\
+    По критерию Коши
+    \begin{align*}
+      \lim_{n \to \infty}\left| c_n(z_0-a)^n \right| = 0
+    \end{align*}
+    \begin{align*}
+      \exists \alpha > 0: \ \forall n \in \NN \ \left| c_n(z_0-a)^n \right| \leq \alpha
+    \end{align*}
+    \\
+    Пусть
+    \begin{align*}
+      z \in B_{\left| z_0-a \right|}(a), \ \left| z-a \right|< \left| z_0-a \right|
+    \end{align*}
+    \begin{align*}
+      q_z = \frac{\left| z-a \right|}{\left| z_0-a \right|} < 1
+    \end{align*}
+    \begin{align*}
+      \left| c_n(z-a)^n \right| = \left| c_n(z_0-a)^n \right|\frac{\left| (z-a)^n \right|}{\left| (z_0-a)^n \right|} \leq \alpha q_z^n
+    \end{align*}
+    В силу того, что $\dst \sum_{n=0}^{\infty}q_{z}^{n} < \infty$, то по
+    признаку сравнения сходится абсолютно.
+    \item Имеем
+    \begin{align*}
+      \forall z \in \overline{B_{r}(a)}, \ r < \left| z_0-a \right|
+    \end{align*}
+    \begin{align*}
+      q = \frac{r}{\left| z_0-a \right|} < 1
+    \end{align*}
+    \begin{align*}
+      \forall z \in \overline{B_r(a)} \ \left| c_n(z-a)^n \right| = \leq \alpha q^n
+    \end{align*}
+    По признаку Вейерштрасса сходится равномерно.
+\end{enumerate}
+\begin{align*}
+  R = \sup\{\left| z-a \right|\mid \sum_{n=0}^{\infty}c_n(z-a)^n \text{ сходится}\}
+\end{align*}
+Тогда при $\left| z-a \right|<R$ ряд сходится, при $\left| z-a \right|>R$
+расходится.
+\begin{align*}
+  R = \frac{1}{\overline{\dst \lim_{n \to \infty}} \sqrt[n]{\left| c_n \right|}}
+\end{align*}
+\example
+\begin{align*}
+  \sum_{n=0}^{+\infty}z^n, \ \left| z \right|< 1
+\end{align*}
+\begin{align*}
+  f(z) = \frac{1}{1-z}
+\end{align*}
+\begin{align*}
+  S_N = \sum_{n=0}^Nz^n
+\end{align*}
+\begin{align*}
+  (1-z)S_N = 1- z^{N+1}
+\end{align*}
+\begin{equation}\label{(9.2)}
+  S_N = \frac{1}{1-z} - \frac{z^{N+1}}{1-z} \underset{N \to \infty}{\to} \frac{1}{1-z}
+\end{equation}
+\Def
+Пусть $f: B_r(a) \mapsto \CC$ регулярна. Пусть
+\begin{equation}\label{(9.3)}
+    \exists f^{(n)}(a): \ \sum_{n=0}^{\infty}c_n(z-a)^n, \ c_n = \frac{f^{(n)}(a)}{n!}
+\end{equation}
+Такой ряд называется \textbf{рядом Тейлора для функции $f$}.
+\theorem
+Пусть $f: B_r(a) \mapsto \CC$ регулярна. Тогда $\forall z \in B_r(a)$
+выполняется разложение $f$ в ряд Тейлора \eqref{(9.3)}, т.~е.
+\begin{align*}
+  f(z)= \sum_{n=0}^{\infty}c_n(z-a)^n, \ z \in B_r(a)
+\end{align*}
+\pr
+Зафиксируем $z_0 \in B_r(a)$.
+\\
+Тогда $\exists r_1 > 0: \ \left| a-z_0 \right|<r_1<r$; пусть $\gamma_1 = \{\zeta
+\mid \left| \zeta - a \right| = r_1\}$~--- положительно ориентированная. Тогда
+по интегральной формуле Коши
+\begin{equation}\label{(9.4)}
+  f(z_0) = \frac{1}{2 \pi i} \int_{\gamma_1}\frac{f(\zeta)}{\zeta - z_0} d \zeta 
+\end{equation}
+\begin{align*}
+  \frac{1}{\zeta - z_0} = \frac{1}{(\zeta - a) - (z_0 - a)} = \frac{1}{(\zeta - a)\left( 1-\frac{z_0-a}{\zeta - a} \right)} = \frac{1}{\zeta - a} \sum_{n=0}^{\infty}\left( \frac{z_0-a}{\zeta - a} \right)^n
+\end{align*}
+Это верно, т.~к. $\left| \dst \frac{z_0-a}{\zeta-a} \right| = q < 1$ю
+\\
+При $\zeta \in \gamma_1$ ряд сходится равномерно.
+\begin{align*}
+  \frac{f(\zeta)}{z - z_0} = \frac{1}{z - a} \sum_{n=0}^{\infty}\frac{f(\zeta)}{(\zeta - a)^{n+1}}\left( z_0-a\right)^n
+\end{align*}
+сходится равномерно на $\zeta \in \gamma$. Тогда по теореме $3$ $\S 6$
+\begin{align*}
+  f(z_0) = \sum_{n=0}^{\infty}\left( \frac{1}{2\pi i} \int_{\gamma} \frac{f(\zeta)}{(\zeta - a)^{n+1}} d \zeta \right)(z_0-a)^n
+\end{align*}
+По теореме $3$ $\S 8$
+\begin{align*}
+  \frac{1}{2 \pi i}\int_{\gamma_1}\frac{f(\zeta)}{(\zeta - a)^{n+1}}d \zeta = \frac{f^{(n)}(a)}{n!} = c_n
+\end{align*}
+не зависит от $z_0$.
+\\
+ч.~т.~д.
+\corollary
+Пусть $f: G \mapsto \CC$ регулярна. Пусть $a \in G$, $d = \inf \{\left| a-\zeta
+\right| \mid \zeta \in \Gamma\}$.
+\\
+Тогда $f(z)$ представима в виде ряда Тейлора в $B_d(a)$, т.~е. радиус сходимости
+ряда Тейлора не менее $d$.
+\note
+Как известно, на $\RR$ $f(x) = \dst \frac{1}{x^2+1}$ всюду непрерывна, а ее ряд
+Тейлора сходится только при $\left| x \right|< 1$. Это легко понять, перейдя в
+$\CC$, ведь там $f(x) = \dst \frac{1}{(x+i)(x-i)}$ и, очевидно, регулярна при
+$\left| x \right| < 1$.
+\example
+$w = e^z$: всюду дифференцируема, $w^{(n)}(z) = e^z = w(z)$. Тогда $\forall R$
+ряд Тейлора будет сходиться в $B_R(0)$, причем $c_n = \dst \frac{1}{n!}$.
+\begin{align*}
+  e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}, \ R = +\infty
+\end{align*}
+\example
+$\sin z = \dst \frac{e^{iz} - e^{-iz}}{2i}$~--- регулярна в $\CC$.
+\begin{align*}
+  \sin z = \sum_{n=0}^{\infty} \frac{(-1)^nz^{2n+1}}{(2n+1)!}, \ R = +\infty
+\end{align*}
+\example
+$\cos z = \dst \frac{e^{iz} + e^{-iz}}{2}$~--- регулярна в $\CC$.
+\begin{align*}
+  \cos z = \sum_{n=0}^{\infty} \frac{(-1)^nz^{2n}}{(2n)!}, \ R = +\infty
+\end{align*}
+\example
+$h(z) = \ln \left| z \right| + i \cdot arg_r(z)$~--- регулярна в $\CC \setminus
+(-\infty; 0]$.
+\\
+Если $h(z+1) = \varphi(z)$, то $\varphi(z)$ регулярна в $\CC\setminus (-\infty; -1]$
+\\
+$\varphi(z)$ регулярна в $B_1(0)$.
+\begin{align*}
+  \varphi^{(n)}(z) = \frac{(-1)^{n+1}(n-1)!}{(z+1)^n}
+\end{align*}
+\begin{align*}
+  \varphi(z) = \sum_{n=1}^{\infty}\frac{(-1)^{n+1}z^n}{n!}, \ R < 1
+\end{align*}

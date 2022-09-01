@@ -1,0 +1,37 @@
+\setcounter{section}{80}
+\section{Сумма Гаусса}
+Для начала узнаем, чему равны следующие суммы:
+\\
+$\sum\limits_{x=1}^k e^{2\pi i x}$\\ Она с очевидностью равна k, т.к. $e^{2\pi i x} = 1 \ \forall x \in N$
+\\
+Теперь рассмотрим такую сумму:\\
+$\sum\limits_{x=1}^q e^{2\pi i \frac{ax}{q}}$, где $(a,q) = 1$\\
+$\sum\limits_{x=1}^q e^{2\pi i \frac{ax}{q}} = e^{2\pi i \frac{a}{q}} \ * \ (\frac{e^{2\pi i a} - 1}{e^{\frac{2\pi i a}{q} - 1}}) = 0$ \\
+Таким образом, если a и q взаимнопросты, сумма равна 0, иначе - q
+\\
+\\
+\textit{Суммой Гаусса} называется сумма вида $S = \sum\limits_{x=1}^q e^{2\pi i \frac{ax^2}{q}}$. Посчитаем, чему равен ее модуль \\
+$|S|^2 = S*\overline{S} = \sum\limits_{x=1}^q e^{2\pi i \frac{ax^2}{q}} \sum\limits_{y=1}^q e^{ -2\pi i \frac{ay^2}{q}}$.\\ Заметим, что суть данной суммы - суммирование по окружности через равные промежуточки. Поэтому разницы нет, начнем мы из точки "y"  или из какой-то другой, полученной из "y" сдвигом по этой окружности. Результат не изменится. Поэтому давайте заменим по второй сумме "у" на "х + у". Продолжаем равенство:\\ $= \sum\limits_{x=1}^q e^{2\pi i \frac{ax^2}{q}}\sum\limits_{y=1}^q e^{- 2\pi i *  \frac{ay^2 + 2axy + ax^2}{q}} =\sum\limits_{x=1}^q \sum\limits_{y=1}^q e^{-2\pi i \frac{ay^2 + 2axy}{q}} = \sum\limits_{y=1}^q \sum\limits_{x=1}^q e^{-2\pi i \frac{ay^2 + 2axy}{q}} = \sum\limits_{y=1}^q e^{-2\pi i \frac{ay^2}{q}} \sum\limits_{x=1}^q e^{-2\pi i \frac{2axy}{q}}$\\ \\
+Обозначим  $b = -2ay$; $\sum\limits_{x=1}^q e^{-2\pi i \frac{2axy}{q}} = \sum\limits_{x=1}^q e^{2\pi i \frac{bx}{q}} (*)$
+\\
+Рассмотрим, каким может быть q;
+\begin{itemize}
+    \item Пусть q - нечетное. Тогда  2a не делится на q, а y делится на q только при y = q. $\Longrightarrow$ \\ (*) = 0 $\forall y \neq q$. При y = q $\longrightarrow$ (*) = q; $|S|^2 = e^{-2\pi i a q} * q = q$
+    \item Пусть q - четное. Тогда b делится нa q $\Longleftrightarrow y = q, \frac{q}{2}$ \\Рассуждая таким же образом, как в первом пункте, получим, что (*) не обнуляется только при двух значениях y. Тогда посчитаем сумму, учитывая это знание (подставляя в необнулившиеся слагаемые соответствующие у)
+    $|S|^2 = 1*q + e^{-2 \pi i \frac{a}{q}*\frac{q^2}{4}} * q = q + q*e^{\frac{-\pi i a}{2}*q}$ =
+ $\begin{cases}
+    2q & q \equiv 0(4)
+    \\
+    0 & q \equiv 2(4)
+ \end{cases}$
+\end{itemize}
+
+Таким образом:
+
+$|S| = \begin{cases}
+   \sqrt{q} & q \text{ - нечетное}
+   \\
+   \sqrt{2q} & q \equiv 0(4)
+   \\
+   0 & q \equiv 2(4)
+\end{cases}$

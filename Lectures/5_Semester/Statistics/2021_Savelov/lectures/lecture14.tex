@@ -1,0 +1,230 @@
+\section{Байесовские оценки}
+
+Пусть $\displaystyle \Theta \subset \mathbb{R}^{d} ,\ \{P_{\theta } ,\ \theta \in \Theta \}$ -- доминируемое семейство распределений относительно меры $\displaystyle \mu $, т.е. $\displaystyle P_{\theta }$ имеет плотность $\displaystyle p_{\theta }( x)$ относительно меры $\displaystyle \mu $. В байесовском подходе параметр $\displaystyle \theta $ является случайной величиной (вектором) с известным априорным распределением $\displaystyle Q$ на множестве $\displaystyle \Theta $.
+
+Пусть $\displaystyle Q$ -- распределение на $\displaystyle ( \Theta ,\ \mathcal{B}_{\Theta })$ с плотностью $\displaystyle q( t)$. Рассматриваем вероятностное пространство $\displaystyle \left( \Theta \times \mathcal{X} ,\ \mathcal{B}_{\Theta } \times B_{\mathcal{X}} ,\ \tilde{P}\right)$, где мера $\displaystyle \tilde{P}$ -- вероятностная мера с плотностью $\displaystyle f( t,\ x) =q( t) p_{t}( x)$. Таким образом, $\displaystyle ( \theta ,\ X)$ -- случайный вектор на вероятностном пространстве с плотностью $\displaystyle f( t,\ x)$. При таком подходе $\displaystyle p_{t}( x)$ -- условная плотность $\displaystyle X$ при условии, что $\displaystyle \theta =t$.
+\subsection{Математическая модель эксперимента}
+
+Рассмотрим $\displaystyle \theta ( t) =t$ -- случайная величина (вектор) на $\displaystyle ( \Theta ,\ \mathcal{B}_{\Theta } ,\ Q)$, и пусть $\displaystyle X$ -- случайная величина, определенная на $\displaystyle (\mathcal{X} ,\ \mathcal{B}_{\mathcal{X}} ,\ P_{t})$, определенная как тождественное отображение $\displaystyle X( x) =x$. Тогда $\displaystyle ( \theta ,\ X)$ -- случайный вектор на $\displaystyle \left( \Theta \times \mathcal{X} ,\ \mathcal{B}_{\Theta } \times \mathcal{B}_{\mathcal{X}} ,\ \tilde{P}\right)$ с плотностью $\displaystyle f( t,\ x)$, причем $\displaystyle q( t)$ -- плотность $\displaystyle \theta $, а $\displaystyle p_{t}( x)$ -- условная плотность $\displaystyle X$ при условии $\displaystyle \theta =t$.
+\begin{definition}
+    Плотность $\displaystyle q( t)$ называется \textit{априорной плотностью} параметра $\displaystyle \theta $.
+\end{definition}
+\begin{definition}
+    Условная плотность $\displaystyle \theta $ относительно $\displaystyle X$
+    \begin{equation*}
+        q( t\ |\ x) =\dfrac{q( t) p_{t}( x)}{\int _{\Theta } q( u) p_{u}( x) du} =\dfrac{f( t,\ x)}{\int _{\Theta } f( u,\ x) du}
+    \end{equation*}
+    называется \textit{апостериорной плотностью}.
+\end{definition}
+\begin{definition}
+    Оценка $\displaystyle \hat{\theta }( X) =\int _{\Theta } tq( t\ |\ x) dt=E_{\tilde{P}}( \theta \ |\ x)$ называется \textit{байесовской оценкой} $\displaystyle \theta $.
+\end{definition}
+\begin{theorem}
+    (о наилучшем среднеквадратичном прогнозе, б/д) Пусть $\mathcal{G} \subset \mathcal{F}$, $\xi$ -- случайная величина на $(\Omega, \mathcal{F}, P),\ \mathcal{L}$ -- множество $\mathcal{G}$-измеримых случайных величин с конечным математическим ожиданием. Тогда выполнено
+    \begin{equation*}
+        \arg\min_{\eta\in\mathcal{L}}E(\xi - \eta)^2 = E(\xi\, \vert\, \mathcal{G})\ \text{п.н.}
+    \end{equation*}
+\end{theorem}
+\begin{theorem}
+    Байесовская оценка является наилучшей оценкой в байесовском подходе с квадратичной функцией потерь.
+\end{theorem}
+\begin{proof}
+    Пусть $\displaystyle \hat{\theta }$ -- байесовская оценка параметра $\displaystyle \theta $. Тогда
+    \begin{equation*}
+        \int _{\Theta } R(\hat{\theta } ,\ \theta) q( \theta ) d\theta =\int _{\Theta } E_{\theta }(\hat{\theta } -\theta )^{2} q( t) dt=\int _{\Theta }\int _{\mathcal{X}}(\hat{\theta } -\theta )^{2} f( t,\ x) dxdt=E_{\tilde{P}}(\hat{\theta }( X) -\theta )^{2} .
+    \end{equation*}
+    По теореме о наилучшем среднеквадратичном прогнозе
+    \begin{equation*}
+        \arg\min_{\hat{\theta}}E_{\tilde{P}}(\hat{\theta }( X) -\theta )^{2} = E_{\tilde{P}}(\theta\, \vert\, x).
+    \end{equation*}
+\end{proof}
+\section{Коэффициенты корреляции}
+
+Пусть $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n})$ и $\displaystyle Y=( Y_{1} ,\ \dotsc ,\ Y_{n})$ -- выборки одинакового размера. Рассмотрим гипотезу $\displaystyle H_{0} :\ F_{X,Y}( t,\ s) =F_{X}( t) F_{Y}( s) \ \forall t,\ s$.
+\begin{definition}
+    Гипотеза $\displaystyle H_{0}$ называется \textit{гипотезой о независимости выборок}.
+\end{definition}
+Пусть $\displaystyle EX_{1}^{2} < \infty ,\ EY_{1}^{2} < \infty $.
+\subsection{Коэффициент корреляции Пирсона}
+\begin{definition}
+    Величина
+    \begin{equation*}
+        \hat{\rho } =\dfrac{\sum _{i=1}^{n}( X_{i} -\overline{X})( Y_{i} -\overline{Y})}{\sqrt{\sum _{i=1}^{n}( X_{i} -\overline{X})^{2}\sum _{i=1}^{n}( Y_{i} -\overline{Y})^{2}}}
+    \end{equation*}
+    называется \textit{коэффициентом корреляции Пирсона}.
+\end{definition}
+\begin{proposition}
+    $\displaystyle \hat{\rho }\xrightarrow{a.s.} \rho =\dfrac{cov( X_{1} ,\ Y_{1})}{\sqrt{DX_{1} DY_{1}}}$.
+\end{proposition}
+\begin{proof}
+    $\displaystyle S_{X}^{2} =\dfrac{1}{n}\sum _{i=1}^{n}( X_{i} -\overline{X})^{2} =\overline{X^{2}} -(\overline{X})^{2}$. Из УЗБЧ $\displaystyle \begin{cases}
+    \overline{X^{2}}\xrightarrow{a.s.} EX_{1}^{2}\\
+    \overline{X}\xrightarrow{a.s.} EX_{1}
+    \end{cases}$. Значит, по теореме о наследовании сходимости $\displaystyle S_{X}^{2}\xrightarrow{a.s.} EX_{1}^{2} -( EX_{1})^{2} =DX_{1}$. Аналогично, $\displaystyle S_{Y}^{2}\xrightarrow{a.s.} DY_{1}$. Тогда
+    \begin{gather*}
+        \dfrac{1}{n}\sum _{i=1}^{n}( X_{i} -\overline{X})( Y_{i} -\overline{Y}) =\dfrac{\sum _{i=1}^{n} X_{i} Y_{i}}{n} -\overline{X}\dfrac{\sum _{i=1}^{y} Y_{i}}{n} -\overline{Y}\dfrac{\sum _{i=1}^{y} X_{i}}{n} +\overline{X}\overline{Y} =\\
+        \dfrac{\sum _{i=1}^{n} X_{i} Y_{i}}{n} -\overline{X}\overline{Y} .
+    \end{gather*}
+    Следовательно, по УЗБЧ
+    \begin{equation*}
+        \dfrac{\sum _{i=1}^{n} X_{i} Y_{i}}{n} -\overline{X}\overline{Y}\xrightarrow{a.s.} E( X_{1} Y_{1}) -EX_{1} EY_{1} =cov( X_{1} ,\ Y_{1}) .
+    \end{equation*}
+\end{proof}
+\begin{theorem}
+    (б/д) Пусть $\displaystyle n >2$, $\displaystyle X,\ Y$ -- независимые выборки, имеющие нормальное распределение. Тогда $\displaystyle T:=\hat{\rho }\sqrt{\dfrac{n-2}{1-\hat{\rho }^{2}}} \ \sim \ T_{n-2}$.
+\end{theorem}
+В условиях предыдущей теоремы критерий для проверки $\displaystyle H_{0}$ имеет вид $\displaystyle S:=\{| T|  >const\}$.
+\subsection{Коэффициент корреляции Спирмена}
+
+Пусть $\displaystyle X_{1} ,\ \dotsc ,\ X_{n}$ -- выборка из непрерывного распределения. Тогда $\displaystyle P( X_{i} \neq X_{j}) =1$. Упорядочим элементы выборки по возрастанию.
+\begin{definition}
+    Номера, которые получили элементы выборки после упорядовачивания, называются \textit{рангами}\textit{, т.е. }$\displaystyle R( X_{i})$ -- номер $\displaystyle X_{i}$ в вариационном ряду.
+\end{definition}
+Если $\displaystyle \left( r_{1} ,\ \dotsc ,\ r_{n}\right) \in S_{n}$, то $\displaystyle P( R( X_{1}) =r_{1} ,\ \dotsc ,\ R( X_{n}) =r_{n}) =\dfrac{1}{n!}$. Положим $\displaystyle R_{i} =R\left( X_{i}\right)$. Аналогично рассмотрим $\displaystyle Y_{1} ,\ \dotsc ,\ Y_{n}$ -- выборка из непрерывного распределения и $\displaystyle S_{1} ,\ \dotsc ,\ S_{n}$ -- соответствующие ранги. Положим
+
+
+\begin{equation*}
+    \overline{R} =\dfrac{\sum _{i=1}^{n} R_{i}}{n} =\dfrac{\sum _{i=1}^{n} i}{n} =\dfrac{n+1}{2} ,\ \overline{S} =\dfrac{\sum _{i=1}^{n} S_{i}}{n} =\dfrac{n+1}{2} .
+\end{equation*}
+\begin{definition}
+    \textit{Коэффициентом корреляции Спирмена} называется величина
+    \begin{equation*}
+        \rho _{S} =\dfrac{\sum _{i=1}^{n}\left( R_{i} -\overline{R}\right)\left( S_{i} -\overline{S}\right)}{\sqrt{\sum _{i=1}^{n}\left( R_{i} -\overline{R}\right)^{2}\sum _{i=1}^{n}\left( S_{i} -\overline{S}\right)^{2}}} .
+    \end{equation*}
+\end{definition}
+\begin{note}
+    \begin{gather*}
+        \sum _{i=1}^{n}\left( R_{i} -\overline{R}\right)^{2} =\sum _{i=1}^{n}\left( R_{i} -\dfrac{n+1}{2}\right)^{2} =\sum _{i=1}^{n}\left( i-\dfrac{n+1}{2}\right)^{2} =\\
+        \sum _{i=1}^{n} i^{2} -\left( n+1\right)\sum _{i=1}^{n} i+\dfrac{n\left( n+1\right)^{2}}{4} =\dfrac{n\left( n+1\right)\left( 2n+1\right)}{6} -\dfrac{n\left( n+1\right)^{2}}{2} +\dfrac{n\left( n+1\right)^{2}}{4} =\\
+        \dfrac{n^{3} -n}{12} =\sum _{i=1}^{n}\left( S_{i} -\overline{S}\right)^{2} .
+    \end{gather*}
+\end{note}
+\begin{proposition}
+    \begin{equation*}
+        \rho _{S} =1-\dfrac{6}{n^{3} -n}\sum _{i=1}^{n}\left( R_{i} -S_{i}\right)^{2} .
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Определим $\displaystyle T_{i}$: переставим пары $\displaystyle \left( R_{i} ,\ S_{i}\right)$ в порядке возрастания первой компоненты. В итоге получим пары $\displaystyle \left( 1,\ T_{1}\right) ,\ \left( 2,\ T_{2}\right) ,\ \dotsc ,\ \left( n,\ T_{n}\right)$. Таким образом из пары $\displaystyle ( R_{i} ,\ S_{i})$ образовалась пара $\displaystyle \left( k,\ T_{k}\right)$, т.е. $\displaystyle \left( R_{i} =k\right) \Leftrightarrow \left( T_{k} =S_{i}\right)$. В силу замечания
+    \begin{gather*}
+        \rho _{S} =\dfrac{12}{n^{3} -n}\sum _{i=1}^{n}\left( R_{i} -\dfrac{n+1}{2}\right)\left( S_{i} -\dfrac{n+1}{2}\right) =\dfrac{12}{n^{3} -n}\sum _{k=1}^{n}\left( k-\dfrac{n+1}{2}\right)\left( T_{k} -\dfrac{n+1}{2}\right) =\\
+        \dfrac{12}{n^{3} -n}\left(\sum _{k=1}^{n} kT_{k} -\dfrac{n+1}{2}\sum _{k=1}^{n} T_{k} -\dfrac{n+1}{2}\sum _{k=1}^{n} k+n\left(\dfrac{n+1}{2}\right)^{2}\right) =\\
+        \dfrac{6}{n^{3} -n}\left( 2\sum _{k=1}^{n} kT_{k} -\dfrac{n( n+1)^{2}}{2}\right) =\\
+        \dfrac{6}{n^{3} -n}\left( -\sum _{k=1}^{n} k^{2} +2\sum _{k=1}^{n} kT_{k} -\sum _{k=1}^{n} T_{k}^{2} +2\dfrac{n( n+1)( 2n+1)}{6} -\dfrac{n( n+1)^{2}}{2}\right) =\\
+        1-\dfrac{6}{n^{3} -n}\sum _{k=1}^{n}( k-T_{k})^{2} =1-\dfrac{6}{n^{3} -n}\sum _{i=1}^{n}( R_{i} -S_{i})^{2} .
+    \end{gather*}
+\end{proof}
+\begin{note}
+    $\displaystyle ( T_{1} ,\ \dotsc ,\ T_{n}) \in S_{n}$. Причем, если гипотеза $\displaystyle H_{0}$ верна, то все перестановки равновероятны.
+\end{note}
+\begin{proposition}
+    Если $\displaystyle H_{0}$ верна, то $\displaystyle E\rho _{S} =0$.
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle ET_{k} =\sum _{j=1}^{n} jP( T_{k} =j) =\sum _{j=1}^{n} j\dfrac{1}{n} =\dfrac{n+1}{2}$, то
+    \begin{equation*}
+        E\rho _{S} =\dfrac{12}{n^{3} -n}\sum _{k=1}^{n}\left( k-\dfrac{n+1}{2}\right) E\left( T_{k} -\dfrac{n+1}{2}\right) =0.
+    \end{equation*}
+\end{proof}
+\begin{exercise}
+    $\displaystyle D\rho _{S} =\dfrac{1}{n-1}$.
+\end{exercise}
+\begin{proposition}
+    $\displaystyle \rho _{s} \in [ -1,\ 1]$, причем крайние значения достигаются.
+\end{proposition}
+\begin{proof}
+    Ограниченность следует из неравенста Коши-Буняковского. $\displaystyle \rho _{s} =1$, когда $\displaystyle R_{i} =S_{i} \ \forall i\in \{1,\ \dotsc ,\ n\}$, $\displaystyle \rho _{S} =-1$, если $\displaystyle R_{i} =n+1-S_{i}$.
+\end{proof}
+\begin{proposition}
+    При $\displaystyle H_{0}$ распределение $\displaystyle \rho_{0}$ известно, не зависит от конкретных функций распределений $\displaystyle F_{X}$ и $\displaystyle F_{Y}$, и его квантиль есть в таблицах.
+\end{proposition}
+\begin{proof}
+    Следует из того, что распределение $\displaystyle \rho _{S}$ зависит только от распределения $\displaystyle T_{k}$, которое известно.
+\end{proof}
+\begin{proposition}
+    (б/д) Если $\displaystyle H_{0}$ верна, то $\displaystyle \dfrac{\rho _{S}}{\sqrt{D\rho _{S}}}\xrightarrow{d}\mathcal{N}( 0,\ 1)$.
+\end{proposition}
+\begin{note}
+    Нормальное приближение применяют при $\displaystyle n\geqslant 50$.
+\end{note}
+Критерий для проверки $\displaystyle H_{0}$ имеет вид $\displaystyle \{| \rho _{S}|  >c\}$, где $\displaystyle c$ является квантилью распределения $\displaystyle \rho _{S}$.
+\subsection{Коэффициент корреляции Кендалла}
+
+Пусть $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n}) ,\ Y=( Y_{1} ,\ \dotsc ,\ Y_{n})$ -- выборки.
+\begin{definition}
+    Пары $\displaystyle \begin{pmatrix}
+    X_{i}\\
+    Y_{i}
+    \end{pmatrix}$ и $\displaystyle \begin{pmatrix}
+    X_{j}\\
+    Y_{j}
+    \end{pmatrix}$ при $\displaystyle 1\leqslant i< j\leqslant n$ называются \textit{согласованными}, если $\displaystyle \sgn( X_{i} -X_{j})\sgn( Y_{i} -Y_{j}) =\sgn( X_{i} -X_{j})( Y_{i} -Y_{j}) =1$.
+\end{definition}
+Пусть $\displaystyle S$ -- число согласованных пар, $\displaystyle R$ -- число несогласованных пар. $\displaystyle S+R=\dfrac{n( n-1)}{2}$ -- число всех (неупорядоченных) пар, $\displaystyle T=S-R=\sum _{i< j}\sgn( X_{i} -X_{j})( Y_{i} -Y_{j})$. Следовательно, $\displaystyle -\dfrac{n( n-1)}{2} \leqslant T\leqslant \dfrac{n( n-1)}{2}$.
+\begin{definition}
+    \textit{Коэффициентом корреляции Кендалла} называется величина $\displaystyle \tau =\dfrac{T}{\frac{n( n-1)}{2}}$.
+\end{definition}
+\begin{proposition}
+    Если $\displaystyle H_{0}$ верна, то $\displaystyle E\tau =0$.
+\end{proposition}
+\begin{proof}
+    Аналогично $\displaystyle \rho _{S}$.
+\end{proof}
+\begin{proposition}
+    (б/д) Если $\displaystyle H_{0}$ верна, то $\displaystyle D\tau =\dfrac{2( 2n+5)}{9n( n-1)}$.
+\end{proposition}
+\begin{proposition}
+    $\displaystyle \tau \in [ -1,\ 1]$, и границы достигаются.
+\end{proposition}
+\begin{proof}
+    Ограниченность очевидна. Границы достигаются, если все пары согласованы, и, если все пары не согласованы.
+\end{proof}
+\begin{proposition}
+    $\displaystyle \tau =1-\dfrac{4}{n( n-1)}\sum _{i< j} I_{T_{i}  >T_{j}}$.
+\end{proposition}
+\begin{proof}
+    Пусть $\displaystyle \begin{pmatrix}
+    R_{a}\\
+    S_{a}
+    \end{pmatrix} =\begin{pmatrix}
+    R( X_{a})\\
+    R( Y_{a})
+    \end{pmatrix} =\begin{pmatrix}
+    i\\
+    T_{i}
+    \end{pmatrix} ,\ \begin{pmatrix}
+    R_{b}\\
+    S_{b}
+    \end{pmatrix} =\begin{pmatrix}
+    j\\
+    T_{j}
+    \end{pmatrix} ,\ i< j$. Тогда для согласованности пары $\displaystyle \begin{pmatrix}
+    R_{a}\\
+    S_{a}
+    \end{pmatrix}$ и $\displaystyle \begin{pmatrix}
+    R_{b}\\
+    S_{b}
+    \end{pmatrix}$ необходимо и достаточно, чтобы $\displaystyle T_{i} < T_{j}$. Следовательно,
+    \begin{equation*}
+        \tau =\dfrac{2}{n( n-1)}( S-R) =\dfrac{2( S+R) -4R}{n( n-1)} =1-\dfrac{4R}{n( n-1)} =1-\dfrac{4}{n( n-1)}\sum _{i< j} I_{T_{i}  >T_{j}} .
+    \end{equation*}
+\end{proof}
+\begin{exercise}
+    $\displaystyle \rho _{S} =1-\dfrac{12}{n^{3} -n}\sum _{i< j}( j-i) I_{T_{i}  >T_{j}}$.
+\end{exercise}
+\begin{note}
+    Другими словами, $\displaystyle \rho _{S}$ сильнее реагирует на различия рангов.
+\end{note}
+\begin{proposition}
+    (б/д) Если гипотеза $\displaystyle H_{0}$ верна, то $\displaystyle \rho ( \tau ,\ \rho _{S})\xrightarrow[n\rightarrow \infty ]{} 1$.
+\end{proposition}
+\begin{proposition}
+    Если $\displaystyle H_{0}$ верна, то распределение $\displaystyle \tau $ считается известным. Оно не зависит от выбора функций $\displaystyle F_{X}$ и $\displaystyle F_{Y}$ и квантили этого распределения известны.
+\end{proposition}
+\begin{proof}
+    Аналогично $\displaystyle \rho _{S}$.
+\end{proof}
+\begin{proposition}
+    Если $\displaystyle H_{0}$ верна, то $\displaystyle \dfrac{\tau }{\sqrt{D\tau }}\xrightarrow{d}\mathcal{N}( 0,\ 1)$.
+\end{proposition}
+Критерий для проверки гипотезы $\displaystyle H_{0}$ имеет вид $\displaystyle \{| \tau |  >c\}$, где $\displaystyle c$ -- квантиль из известного распределения $\displaystyle \tau $ при верности $H_0$.

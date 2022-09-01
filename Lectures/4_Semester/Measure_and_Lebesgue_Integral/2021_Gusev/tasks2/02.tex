@@ -1,0 +1,39 @@
+\begin{task}{2}
+	Привести пример конечно-аддитивной на полукольце меры, не являющейся счетно-аддитивной
+\end{task}
+
+\begin{solution}
+	Рассмотрим меру $\mu: \CP(N) \rightarrow [0, +\infty]$
+	$$
+	\mu(A) = 
+	\begin{cases}
+		0, ~|A| < +\infty \\
+		+\infty, ~|A| = +\infty
+	\end{cases}
+	$$
+	Докажем, что данная мера является конечно-аддитивной. Рассмотрим семейство $\{A_k\}_{k=1^n}$. Рассмотрим два варианта. 
+	\begin{itemize}
+		\item Пусть $\exists k: |A_k| = +\infty$, тогда $\mu(A_k) = +\infty$ и так как
+		$$
+		\left|\bigcup_{k=1}^nA_k\right| = +\infty
+		$$
+		То по определению $\mu$
+		$$
+		\mu\left(\bigcup_{k=1}^nA_k\right) = +\infty = \sum_{k=1}^{n}\mu(A_k)
+		$$
+		\item Пусть теперь в семействе $\{A_k\}$ все множества конечны, тогда и $\cup_{k=1}^nA_k$ --- конечно, тогда:
+		$$
+		\mu\left(\bigcup_{k=1}^nA_k\right) = 0 = \sum_{k=1}^n\mu(A_k)
+		$$
+	\end{itemize}
+	Теперь, пусть $A_k = \{k\}$, тогда: 
+	$$
+	\mu(\bigcup_{k=1}^{\infty}A_k) = \mu(\N) = \infty
+	$$
+	Но
+	$$
+	\sum_{k=1}^{\infty}\mu(A_k) = \sum_{k=1}^{\infty} 0 = 0
+	$$
+	Таким образом $\mu$ является конечно-аддитивной, но не счетно-аддитивной.
+	
+\end{solution}

@@ -1,0 +1,20 @@
+\subsection{Построение комбинаторов взятия предыдущего и вычитания для нумералов Чёрча в $\lambda$-исчислении (с доказательством корректности).}
+\begin{enumerate}
+ \item $Pair=\lambda xyp.pxy$ (пара из $x$ и $y$)
+    \par $Left=\lambda p.p \: True$ (возвращает левый элемент пары)
+    \par $Left \: (Pair \: x \: y)=(\lambda p.p \: True)(\lambda p.pxy)=(\lambda p.pxy)True=True \: xy=x$
+    \par $Right=\lambda p.p\:False$ (доказательство аналогично)
+    \item $Decfn=\lambda fp.Pair(f(Left \: p))(Left \: p)$ - по $(x,x)$ получаем $(f(x),x)$ (вспомогательный терм)
+    \par $Dec=\lambda nfx.Right(n(Decfn \: f)(Pair \: xx))$ (взятие предыдущего)% (применим $f$ $n$ раз и возьмем правую часть, которая равна $f(f(\ldots(fx)\ldots))$, то есть $f$ примененную $n-1$ раз). Чтобы полностью доказать корректность, нужно проверить, что при $n=\overline{0}$ все работает (очевидно).
+    \par \textbf{Корректность:} Рассмотрим 2 случая \begin{enumerate}
+        \item $Dec \: \overline{0}=\lambda fx.Right((\lambda fx.x)(Decfn \: f)(Pair \: xx))=\lambda fx.Right(Pair \: xx)=$ \par $=\lambda fx.x=\overline{0}$
+        \item Идея: $(x,x) \rightarrow (f(x), x) \rightarrow \ldots \rightarrow (f^n(x), f^{n-1}(x))$
+        \par $Dec \: \overline{n+1}=\lambda fx.Right([\lambda fx.\underbrace{f(f(\ldots(f}_\text{$n+1$ раз}x)\ldots))](Decfn \: f))(Pair \: xx))=$ \par$=\lambda fx.Right(\underbrace{(Decfn \: f)(\ldots((Decfn \: f)}_\text{$n+1$ раз}(Pair \: xx))\ldots))=$ \par $=\lambda fx.Right(Pair \underbrace{f(f(\ldots(f}_\text{$n+1$ раз}x)\ldots) \: \underbrace{f(f(\ldots(f}_\text{$n$ раз}x)\ldots))=$ \par $=\lambda fx.\underbrace{f(f(\ldots(f}_\text{$n$ раз}x)\ldots)=\overline{n}$
+    \end{enumerate}
+    \item $Sub=\lambda mn.n \: Dec \: m$ $(\max\{m-n,0\})$
+    \par \textbf{ВАЖНО:} скобок нет!!! $Dec$ подставится в нумерал Черча $n$ и у нас получится, что $Dec$ применится к $m$ $n$ раз
+    \par $Sub \: \overline{m} \: \overline{n}=(\lambda fx.\underbrace{f(f(\ldots(f}_\text{$n$ раз}x)\ldots)))Dec \: \overline{m}=\underbrace{Dec(Dec(\ldots(Dec}_\text{$n$ раз}\overline{m})\ldots))=\begin{cases}
+    \overline{m-n} & m > n\\
+    \overline{0} & \text{иначе}
+    \end{cases}$
+\end{enumerate}

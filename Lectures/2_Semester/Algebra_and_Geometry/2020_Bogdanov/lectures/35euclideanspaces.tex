@@ -1,0 +1,215 @@
+\section{Операторы в евклидовых и эрмитовых пространствах}
+
+\subsection{Евклидовы и эрмитовы пространства}
+
+\begin{definition}
+	\textit{Евклидовым пространством} называется линейное пространство $V$ над $\mathbb{R}$, на котором определена положительно определенная симметрическая билинейная форма $(\overline{u}, \overline{v})$ "--- \textit{скалярное произведение}.
+\end{definition}
+
+\begin{definition}
+	\textit{Эрмитовым пространством} называется линейное пространство $V$ над $\mathbb{C}$, на котором определена положительно определенная эрмитова форма $(\overline{u}, \overline{v})$ "--- \textit{эрмитово скалярное произведение}.
+\end{definition}
+
+\textbf{В данном разделе} зафиксируем евклидово (эрмитово) пространство $V$.
+
+\begin{definition}
+	\textit{Длиной} вектора $\overline{v} \in V$ называется $||\overline{v}|| := \sqrt{(\overline{v}, \overline{v})}$.
+\end{definition}
+
+\begin{note}
+	$||\overline{v}|| = 0$ $\Leftrightarrow$ $\overline{v} = \overline{0}$ в силу положительной определенности.
+\end{note}
+
+\begin{definition}
+	Пусть $(\overline{v_1}, \dots, \overline{v_k})$ "--- система векторов из $V$. \textit{Матрицей Грама} этой системы называется следующая матрица:
+	\[\Gamma = ((\overline{v_i}, \overline{v_j})) = \begin{pmatrix}(\overline{v_1}, \overline{v_1}) & \dots & (\overline{v_1}, \overline{v_k})\\
+		\vdots & \ddots & \vdots\\
+		(\overline{v_k}, \overline{v_1}) & \dots & (\overline{v_k}, \overline{v_k})
+	\end{pmatrix}\]
+\end{definition}
+
+\begin{note}
+	В евклидовом случае матрица $\Gamma$ симметрична, в эрмитовом "--- эрмитова. Более того, очевидно, для любых векторов $\overline{u_1} = (\overline{v_1}, \dots, \overline{v_k})x$, $\overline{u_2} = (\overline{v_1}, \dots, \overline{v_k})y$ выполнено $(\overline{u_1}, \overline{u_2}) = x^T\Gamma \overline{y}$. В частности, матрица $\Gamma$ положительно полуопределена.
+\end{note}
+
+\begin{theorem}
+	Система $(\overline{v_1}, \dots, \overline{v_k})$ линейно независима $\lra$ ее матрица Грама $\Gamma$ положительно определена $\Leftrightarrow$ $\det{\Gamma} > 0$.
+\end{theorem}
+
+\begin{proof}
+	Если система $(\overline{v_1}, \dots, \overline{v_k})$ линейно зависима, то тогда существует столбец $x \ne \overline0$ такой, что $(\overline{v_1}, \dots, \overline{v_k})x = \overline{0}$. Тогда $\forall i \in \{1, \dots, k\}: (0, \dotsc, 1_i, 0, \dotsc, 0)\Gamma x = 0 \hm\Rightarrow E\Gamma x = \Gamma x = 0$ $\Rightarrow$ $\Gamma$ вырожденна, откуда $\det{\Gamma} = 0$ и $\Gamma$ не положительно определена. Если же система $(\overline{v_1}, \dots, \overline{v_k})$ линейно независима, то $\Gamma$ "--- это матрица ограничения скалярного произведения на $\langle\overline{v_1}, \dots, \overline{v_k}\rangle$, тогда $\Gamma$ положительно определена в силу положительной определенности скалярного произведения и, в частности, $\det{\Gamma} > 0$.
+\end{proof}
+
+\begin{theorem}[неравенство Коши-Буняковского-Шварца]
+	Для любых векторов $\overline{u}, \overline{v} \in V$ выполнено $|(\overline{u}, \overline{v})| \le ||\overline{u}||\cdot||\overline{v}||$, причем равенство достигается тогда и только тогда, когда $\overline{u}$ и $\overline{v}$ коллинеарны.
+\end{theorem}
+
+\begin{proof}
+	Обозначим через $\Gamma$ матрицу Грама системы векторов $(\overline{u}, \overline{v})$, тогда выполнено $0 \ge \det{\Gamma} = ||\overline{u}||^2\cdot||\overline{v}||^2 - |(\overline{u}, \overline{v})|^2$, откуда $|(\overline{u}, \overline{v})| = \sqrt{||\overline{u}||^2\cdot||\overline{v}||^2 - \det{\Gamma}}$, причем $\det{\Gamma} = 0 \lra \overline{u}$ и $\overline{v}$ коллинеарны.
+\end{proof}
+
+\begin{theorem}[неравенство треугольника]
+	Для любых векторов $\overline{u}, \overline{v} \in V$ выполнено $||\overline{u} + \overline{v}|| \le ||\overline{u}|| \hm{+} ||\overline{v}||$.
+\end{theorem}
+
+\begin{proof}
+	Воспользуемся неравенством Коши-Буняковского-Шварца:
+	\begin{multline*}
+		||\overline{u} + \overline{v}||^2 = (\overline{u} + \overline{v}, \overline{u} + \overline{v}) = ||\overline{u}||^2 + ||\overline{v}||^2 + 2\re{(\overline{u}, \overline{v})} \le
+		\\
+		\le ||\overline{u}||^2 + ||\overline{v}||^2 + 2|{(\overline{u}, \overline{v})}| \le ||\overline{u}||^2 + ||\overline{v}||^2 + 2||\overline{u}||\cdot||\overline{v}|| = (||\overline{u}|| \hm{+} ||\overline{v}||)^2
+	\end{multline*}
+	
+	Значит, $||\overline{u} + \overline{v}|| \le ||\overline{u}|| + ||\overline{v}||$.
+\end{proof}
+
+\begin{note}
+	Равенство в теореме выше достигается тогда и только тогда, когда выполнены равенства $\re{(\overline{u}, \overline{v})} = |(\overline{u}, \overline{v})| = ||\overline{u}||\cdot||\overline{v}||$, то есть $\overline{u}$ и $\overline{v}$ коллинеарны с вещественным коэффициентом.
+\end{note}
+
+\begin{definition}[только для евклидова пространства]
+	Пусть $\overline{u}, \overline{v} \in V \backslash \{\overline0\}$. \textit{Углом между векторами $\overline{u}$ и $\overline{v}$} называется величина $\arccos{\frac{(\overline{u}, \overline{v})}{||\overline{u}||\cdot||\overline{v}||}}$.
+\end{definition}
+
+\begin{definition}
+	Векторы $\overline{u}, \overline{v} \in V$ называются \textit{ортогональными}, если $(\overline{u}, \overline{v}) = 0$. Обозначение "--- $\overline{u} \perp \overline{v}$. Система векторов $(\overline{v_1}, \dots, \overline{v_k})$ из $V$ называется \textit{ортогональной}, если все векторы системы попарно ортогональны, и \textit{ортонормированной}, если она ортогональна и $\forall i \in \{1, \dots, k\}: ||\overline{v_i}|| = 1$.
+\end{definition}
+
+\begin{definition}
+	Подпространства $U_1, U_2 \le V$ называются \textit{ортогональными}, если $\forall \overline{u_1} \in U_1: \forall \overline{u_2} \in U_2: \overline{u_1} \perp \overline{u_2}$. Аналогично определяется ортогональность системы подпространств.
+\end{definition}
+
+\begin{proposition}
+	Пусть $(U_1, \dots, U_k)$ "--- ортогональная система подпространств в $V$. Тогда сумма $\sum_{i = 1}^kU_i$ "--- прямая.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{0} = \overline{u_1} + \dots + \overline{u_k}$, где $\forall i \in \{1, \dotsc, k\}: \overline{u_i} \in U_i$. Достаточно проверить, что $\forall j \in \{1, \dots, k\}: \overline{u_j} = \overline{0}$. Умножая равенство выше скалярно на $\overline{u_j}$, получаем, что $||\overline{u_j}|| \hm{=} 0$, откуда $\overline{u_j} = \overline{0}$.
+\end{proof}
+
+\begin{corollary}
+	Если $(v_1, \dots, v_k)$ "--- ортогональная система ненулевых векторов из $V$, то она линейно независима.
+\end{corollary}
+
+\begin{proposition}
+	В пространстве $V$ существует ортонормированный базис.
+\end{proposition}
+
+\begin{proof}
+	Приведем скалярное произведение к нормальному виду $E$. Нормальный базис и будет искомым ортонормированным базисом.
+\end{proof}
+
+\begin{definition}
+	Пусть $V_1$ и $V_2$ "--- евклидовы (эрмитовы) пространства. Отображение $\phi: V_1 \rightarrow V_2$ называется \textit{изоморфизмом евклидовых (эрмитовых) пространств}, если:
+	\begin{enumerate}
+		\item $\phi$ "--- изоморфизм линейных пространств $V_1$ и $V_2$
+		\item $\forall \overline{u}, \overline{v} \in V_1: (\overline{u}, \overline{v}) = (\phi(\overline{u}), \phi(\overline{v}))$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Пусть $V_1$ и $V_2$ "--- евклидовы (эрмитовы) пространства. Тогда $V_1 \cong V_2 \hm\lra \dim{V_1} = \dim{V_2}$.
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Leftarrow$]Пусть $e_1$, $e_2$ "--- ортонормированные базисы в $V_1$ и $V_2$, $\phi$ "--- линейное отображение такое, что $\phi(e_1) = e_2$. Тогда $\phi$ "--- изоморфизм линейных пространств, причем для любых $\overline{u}, \overline{v} \in V_1$, $\overline{u} \leftrightarrow_{e_1} x, \overline{v} \leftrightarrow_{e_1} y$, выполнено $(\overline{u}, \overline{v}) = x^TE\overline{y} \hm{=} x^T\overline{y} = (\phi(\overline{u}), \phi(\overline{v}))$.
+		\item[$\Rightarrow$]Поскольку $V_1 \cong V_2$, то они в частности изоморфны как линейные пространства, откуда $\dim{V_1} = \dim{V_2}$.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Если $V$ "--- евклидово пространство и $\overline{u}, \overline{v} \in V$ образуют линейно независимую систему, то $\langle\overline{u}, \overline{v}\rangle \cong V_2$.
+\end{note}
+
+\begin{note}
+	Далее в курсе будет показано, что если для отображения $\phi: V_1 \rightarrow V_2$ выполнено $\forall \overline{u}, \overline{v} \in V_1: (\phi(\overline{u}), \phi(\overline{v})) = (\overline{u}, \overline{v})$, то $\phi \in \mathcal{L}(V_1, V_2)$. Это означает, что для изоморфизма евклидовых пространств достаточно проверять биективность и сохранение скалярного произведения.
+\end{note}
+
+\begin{note}
+	Скалярное произведение "--- положительно определенная форма, поэтому любое подпространство $U \le V$ невырожденно относительно скалярного произведения, тогда, по уже доказанной теореме, $V = U \oplus U^\perp$.
+\end{note}
+
+\begin{definition}
+	Пусть $U \le V$, $\overline{v} \in V$. Вектор $\overline{v}$ единственным образом представляется в виде суммы $\overline{u} + \overline{u'}$, $\overline{u} \in U$, $\overline{u'} \in U^\perp$. Вектор $\overline{u}$ называется \textit{ортогональной проекцией $\overline{v}$ на подпространство $U$}. Обозначение "--- $\pr_U{\overline{v}}$.
+\end{definition}
+
+\begin{proposition}
+	Пусть $e = (\overline{e_1}, \dots, \overline{e_k})$ "--- это ортогональный базис в $U$. Тогда для любого вектора $\overline{v} \in V$ выполнено равенство:
+	\[\pr_U{\overline{v}} = \sum_{i = 1}^k\frac{(\overline{v}, \overline{e_i})}{||\overline{e_i}||^2}\overline{e_i}\]
+	
+	В частности, если базис $e$ "--- ортонормированный, то $\pr_U{\overline{v}} = \sum_{i = 1}^k(\overline{v}, \overline{e_i})\overline{e_i}$.
+\end{proposition}
+
+\begin{proof}
+	Представим $\overline{v}$ в виде $\overline{v} = \overline{u} + \overline{u'}$, $\overline{u} \in U$, $\overline{u'} \in U^\perp$, тогда $\overline{u} = \sum_{i = 1}^k\alpha_i\overline{e_i}$. Заметим теперь, что $\forall j \in \{1, \dots, k\}: (\overline{v}, \overline{e_j}) = (\overline{u} + \overline{u'}, \overline{e_j}) = (\overline{u}, \overline{e_j}) = \alpha_j||\overline{e_j}||^2$, откуда получаем требуемое.
+\end{proof}
+
+\begin{proposition}[теорема Пифагора]
+	Если $(\overline{v_1}, \dots, \overline{v_k})$ "--- ортогональная система векторов из $V$, то $||\overline{v_1} + \dots + \overline{v_k}||^2 = ||\overline{v_1}||^2 + \dots + ||\overline{v_k}||^2$.
+\end{proposition}
+
+\begin{proof}
+	Раскрывая произведение $(\overline{v_1} + \dots + \overline{v_k}, \overline{v_1} + \dots + \overline{v_k})$ по линейности, получаем требуемое.
+\end{proof}
+
+\begin{proposition}
+	Пусть $U \le V$, $\overline{v} \in V$, $\overline{u} = \pr_U{\overline{v}}$. Тогда для любого вектора $\overline{u_1} \in U$, отличного от $\overline{u}$, выполнено $||\overline{v} - \overline{u_1}|| \hm{>} ||\overline{v} - \overline{u}||$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{v} = \overline{u} + \overline{u'}, \overline{u'} \in U^\perp$. Тогда $\overline{v} - \overline{u_1} = (\overline{v} \hm{-} \overline{u}) + (\overline{u} - \overline{u_1}) = \overline{u'} + (\overline{u} - \overline{u_1})$. Тогда, по теореме Пифагора, $||\overline{v} - \overline{u_1}||^2 \hm{=} ||\overline{u'}||^2 + ||\overline{u} - \overline{u_1}||^2 > ||\overline{u'}||^2$.
+\end{proof}
+
+\begin{definition}
+	Пусть $V$ "--- евклидово (эрмитово) пространство, $U \le V$, $\overline{v} \in V$. Тогда \textit{расстоянием от $\overline{v}$ до $U$} называется $\rho(\overline{v}, U) \hm{:=} \inf_{\overline{u} \in U}||\overline{v} - \overline{u}|| = ||\overline{v} - \pr_U{\overline{v}}|| = ||\pr_{U^\perp}\overline{v}||$. 
+\end{definition}
+
+\begin{theorem}[метод Грама-Шмидта]
+	Пусть $(\overline{f_1}, \dots, \overline{f_n})$ "--- базис в $V$. Тогда в $V$ существует ортогональный базис $(\overline{e_1}, \dots, \overline{e_n})$ такой, что $\forall k \hm{\in} \{1, \dots, n\}: \langle\overline{e_1}, \dots, \overline{e_k}\rangle \hm= \langle\overline{f_1}, \dots, \overline{f_k}\rangle$, причем матрица перехода $S$ "--- верхнетреугольная с единицами на главной диагонали.
+\end{theorem}
+
+\begin{proof}
+	Положим $\overline{e_1} := \overline{f_1}$ и $\overline{e_k} := \overline{f_i} \hm{-} \pr_{\langle\overline{f_1}, \dots, \overline{f_{k - 1}}\rangle}\overline{f_k}$ при всех $k \in \{2, \dots, n\}$. Тогда матрица перехода $S$ "--- верхнетреугольная с единицами на главной диагонали, поэтому $(\overline{e_1}, \dotsc, \overline{e_n})$ является базисом в $V$. Проверим равенство $\langle\overline{e_1}, \dots, \overline{e_k}\rangle \hm= \langle\overline{f_1}, \dots, \overline{f_k}\rangle$ индукцией по $k$. База, $i = 1$, тривиальна. Пусть теперь $i > 1$, тогда: $\langle\overline{e_1}, \dots, \overline{e_{k-1}}, \overline{e_k}\rangle \hm= \langle\overline{e_1}, \dots, \overline{e_{k-1}}, \overline{f_k}\rangle = \langle\overline{f_1}, \dots, \overline{f_{k-1}}, \overline{f_i}\rangle$.
+\end{proof}
+
+\begin{note}
+	Получим явную формулу для $\overline{e_k}$ при всех $k \in \{2, \dots, n\}$:
+	\[\overline{e_k} = \overline{f_k} - \pr_{\langle\overline{f_1}, \dots, \overline{f_{k - 1}}\rangle}{\overline{f_k}} = \overline{f_k} - \pr_{\langle\overline{e_1}, \dots, \overline{e_{k - 1}}\rangle}{\overline{f_k}} = \overline{f_k} - \sum_{j = 1}^{k - 1}\frac{(\overline{f_k}, \overline{e_j})}{||\overline{e_j}||^2}\overline{e_j}\]
+\end{note}
+
+\begin{corollary}
+	Пусть $(\overline{e_1}, \dots, \overline{e_k})$ "--- ортогональная система ненулевых векторов из $V$. Тогда в $V$ существует ортогональный базис $(\overline{e_1}, \dots, \overline{e_n}) \supset (\overline{e_1}, \dots, \overline{e_k})$.
+\end{corollary}
+
+\begin{proof}
+	Дополним систему $(\overline{e_1}, \dots, \overline{e_k})$ до произвольного базиса и применим метод Грама-Шмидта. Тогда базис станет ортогональным, при этом первые $k$ векторов в нем не изменятся, поскольку $\forall i \hm{\in} \{1, \dots, k\}: \overline{e_i} \hm{\mapsto} \overline{e_i} - \pr_{\langle\overline{e_1}, \dots, \overline{e_{i - 1}}\rangle}{\overline{e_i}} = \overline{e_i}$.
+\end{proof}
+
+\begin{note}
+	Из ортогонального базиса $(\overline{e_1}, \dots, \overline{e_n})$ в $V$ легко получить ортонормированный базис $(\frac{\overline{e_1}}{||\overline{e_1}||}, \dots, \frac{\overline{e_n}}{||\overline{e_n}||})$.
+\end{note}
+
+\begin{definition}
+	Матрица $S \in M_n(\mathbb{R})$ называется \textit{ортогональной}, если $S^TS = E$. Матрица $S \in M_n(\mathbb{C})$ называется \textit{унитарной}, если $\overline{S^T}S = E$, или $S^T\overline{S} = E$.
+\end{definition}
+
+\begin{theorem}
+	Пусть $e$ "--- ортонормированный базис в $V$, $e' = eS$ "--- произвольный базис в $V$. Тогда $e'$ "--- ортонормированный $\Leftrightarrow$ $S$ "--- ортогональная (унитарная).
+\end{theorem}
+
+\begin{proof}
+	По условию, $\Gamma(e) = E$, и $e' = eS$. Тогда $e'$ "--- ортонормированный $\hm\Leftrightarrow \Gamma(e') = E$ $\Leftrightarrow$ $S^T\Gamma(e)\overline{S} \hm{=} E \hm{\Leftrightarrow}$ $S^T\overline{S} = E$.
+\end{proof}
+
+\begin{proposition}
+	Ортогональные (унитарные) матрицы порядка $n$ образуют группу по умножению.
+\end{proposition}
+
+\begin{proof}
+	Достаточно проверить замкнутость соответствующих множеств матриц относительно умножения и взятия обратного элемента. Пусть $S, T$ "--- ортогональные (унитарные) матрицы порядка $n$. Рассмотрим $e$ "--- ортонормированный базис в $V$, тогда базисы $e' = eS$ и $e'' = e'T$ "--- тоже ортонормированные. Но $e'' = eST$ и $e = e'S^{-1}$, поэтому матрицы $ST$ и $S^{-1}$ ортогональны (унитарны).
+\end{proof}
+
+\begin{definition}
+	Группа ортогональных матриц порядка $n$ обозначается через $\mathcal{O}(n)$, группа унитарных матриц порядка $n$ "--- через $\mathcal{U}(n)$.
+\end{definition}

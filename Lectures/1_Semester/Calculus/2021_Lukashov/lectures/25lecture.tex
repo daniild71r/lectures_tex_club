@@ -1,0 +1,240 @@
+\begin{lemma} (Правила дифференцирования вектор-функций)
+	\begin{enumerate}
+		\item Если $\vec{a}(t), \vec{b}(t)$ дифференцируемы в $t_0$, то $(\vec{a} + \vec{b})(t)$ дифференцируема в $t_0$, причём
+		\[
+			(\vec{a} + \vec{b})'(t_0) = \vec{a'}(t_0) + \vec{b'}(t_0)
+		\]
+		
+		\item Если $\vec{a}(t), \phi(t)$ дифференцируемы в $t_0$, то $\phi(t) \cdot \vec{a}(t)$ дифференцируема в $t_0$, причём
+		\[
+			(\phi\vec{a})'(t_0) = \phi'(t_0)\vec{a}(t_0) + \phi(t_0)\vec{a'}(t_0)
+		\]
+		
+		\item Если $\vec{a}(t), \vec{b}(t)$ дифференцируемы в $t_0$, то $\trbr{\vec{a}, \vec{b}}(t)$ дифференцируемо в $t_0$, причём
+		\[
+			(\trbr{\vec{a}, \vec{b}})'(t_0) = \trbr{\vec{a'}(t_0), \vec{b}(t_0)} + \trbr{\vec{a}(t_0), \vec{b'}(t_0)}
+		\]
+		
+		\item Если $n = 3$ и $\vec{a}(t), \vec{b}(t)$ дифференцируемы в $t_0$, то $[\vec{a}(t), \vec{b}(t)]$ дифференцируемо в $t_0$, причём
+		\[
+			([\vec{a}, \vec{b}])'(t_0) = [\vec{a'}(t_0), \vec{b}(t_0)] + [\vec{a}(t_0), \vec{b'}(t_0)]
+		\]
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	Все пункты однотипны, поэтому докажем только третий:
+	\begin{multline*}
+		\liml_{\Delta t \to 0} \frac{\Delta (\trbr{\vec{a}, \vec{b}})(t_0)}{\Delta t} = \liml_{\Delta t \to 0} \frac{\trbr{\vec{a}(t_0 + \Delta t), \vec{b}(t_0 + \Delta t)} - \trbr{\vec{a}(t_0), \vec{b}(t_0)}}{\Delta t} =
+		\\
+		\liml_{\Delta t \to 0} \frac{\trbr{\vec{a}(t_0 + \Delta t), \vec{b}(t_0 + \Delta t)} - \trbr{\vec{a}(t_0), \vec{b}(t_0 + \Delta t)}}{\Delta t} + \liml_{\Delta t \to 0} \frac{\trbr{\vec{a}(t_0), \vec{b}(t_0 + \Delta t)} - \trbr{\vec{a}(t_0), \vec{b}(t_0)}}{\Delta t} =
+		\\
+		\trbr{\liml_{\Delta t \to 0} \frac{\vec{a}(t_0 + \Delta t) - \vec{a}(t_0)}{\Delta t}, \liml_{\Delta t \to 0} \vec{b}(t_0 + \Delta t)} + \trbr{\vec{a}(t_0), \liml_{\Delta t \to 0} \frac{\vec{b}(t_0 + \Delta t) - \vec{b}(t_0)}{\Delta t}} = 
+		\\
+		\trbr{\vec{a'}(t_0), \vec{b}(t_0)} + \trbr{\vec{a}(t_0), \vec{b'}(t_0)}
+	\end{multline*}
+\end{proof}
+
+\begin{note}~
+\begin{enumerate}
+	\item Теорема о среднем (Лагранжа) не имеет места для вектор-функций (без дополнительных изменений):
+	\[
+		\vec{r}(t_1) - \vec{r}(t_0) = \vec{r'}(c)(t_1 - t_0),\ c \in (t_0, t_1)
+	\]
+	Контрпример:
+	\[
+		\vec{r}(t) = (\cos t, \sin t),\ t \in [0; 2\pi]
+	\]
+	Положим $t_0 = 0, t_1 = 2\pi$. Тогда $\vec{r}(t_0) = \vec{r}(t_1)$. При этом
+	\[
+		\vec{r'}(t) = (-\sin t, \cos t),\ |\vec{r'}(t)| = 1
+	\]
+	Из постоянства модуля следует, что нет такой точки, при которой производная обратится в нуль.
+	
+	\item Правило Лопиталя для вектор-функций $\R \to \Cm$, вообще говоря, неверно.
+	\[
+		\liml_{t \to t_0} \frac{f(t)}{g(t)} \not = \liml_{t \to t_0} \frac{f'(t)}{g'(t)},\ \ f, g: \R \to \Cm
+	\]
+	Контрпример: \(f(x) = x\), \(g(x) = x + x^2 \cdot e^{i / x^2}\). Рассмотрим предел отношения этих функций к нулю:
+	\[
+		\liml_{x \to 0} \frac{f(x)}{g(x)} = \liml_{x \to 0} \frac{x}{x + x^2 e^{i / x^2}} = \liml_{x \to 0} \frac{1}{1 + xe^{i / x^2}} = 1
+	\]
+	При этом $|e^{i / x^2}| = 1\ \forall x \in \R \bs \{0\}$. Посмотрим же теперь предел производных:
+	\[
+		\liml_{x \to 0} \frac{f'(x)}{g'(x)} = \liml_{x \to 0} \frac{1}{1 + 2xe^{i / x^2} - \frac{2i}{x}e^{i / x^2}}
+	\]
+	Оценим модуль знаменателя:
+	\[
+		\left|1 + 2xe^{i / x^2} - \frac{2i}{x}e^{i / x^2}\right| \ge 2\left|x - \frac{i}{x}\right| - 1 \ge \frac{2}{|x|} - 1
+	\]
+	Следовательно
+	\[
+		\liml_{x \to 0} \frac{f'(x)}{g'(x)} = \liml_{x \to 0} \frac{1}{1 + 2xe^{i / x^2} - \frac{2i}{x}e^{i / x^2}} = 0 \neq \liml_{x \to 0} \frac{f(x)}{g(x)}
+	\]
+\end{enumerate}
+\end{note}
+
+\begin{theorem} (Теорема Лагранжа для вектор-функций)
+	Если $\vec{r}(t)$ непрерывна на $[t_0; t_1]$, дифференцируема на $(t_0, t_1)$, то найдётся $c \in (t_0; t_1)$ такое, что
+	\[
+		|\vec{r}(t_1) - \vec{r}(t_0)| \le |\vec{r'}(c)|(t_1 - t_0)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим числовую функцию $\phi(t)$:
+	\[
+		\phi(t) := \trbr{\vec{r}(t), \vec{r}(t_1) - \vec{r}(t_0)}
+	\]
+	В силу свойств пределов и правил дифференцирования, $\phi(t)$ является также непрерывной на $[t_0; t_1]$ и диффиренцируемой на $(t_0; t_1)$. А по теореме Лагранжа для вещественных функций
+	\[
+		\exists c \in (t_0; t_1) \such \phi(t_1) - \phi(t_0) = \phi'(c)(t_1 - t_0)
+	\]
+	Распишем функцию $\phi$ в равенстве:
+	\[
+		\trbr{\vec{r}(t_1) - \vec{r}(t_0), \vec{r}(t_1) - \vec{r}(t_0)} = \trbr{\vec{r'}(c), \vec{r}(t_1) - \vec{r}(t_0)} \cdot (t_1 - t_0)
+	\]
+	По неравенству Коши-Буняковского-Шварца получим:
+	\[
+		\trbr{\vec{r}(t_1) - \vec{r}(t_0), \vec{r}(t_1) - \vec{r}(t_0)} = \trbr{\vec{r'}(c), \vec{r}(t_1) - \vec{r}(t_0)} \cdot (t_1 - t_0) \le |\vec{r'}(c)| \cdot |\vec{r}(t_1) - \vec{r}(t_0)| \cdot (t_1 - t_0)
+	\]
+	При этом в левой части равенства
+	\[
+		\trbr{\vec{r}(t_1) - \vec{r}(t_0), \vec{r}(t_1) - \vec{r}(t_0)} = |\vec{r}(t_1) - \vec{r}(t_0)|^2
+	\]
+	В итоге
+	\[
+		|\vec{r}(t_1) - \vec{r}(t_0)| \le |\vec{r'}(c)|(t_1 - t_0)
+	\]
+\end{proof}
+
+\begin{theorem} (Формула Тейлора с остаточным членом в форме Пеано для вектор-функций)
+	Если $\exists \vec{r}^{(m)}(t_0)$, то
+	\[
+		\vec{r}(t) = \vec{r}(t_0) + \vec{r'}(t_0)(t - t_0) + \frac{\vec{r''}(t_0)}{2!}(t - t_0)^2 + \ldots + \frac{\vec{r}^{(m)}(t_0)}{m!}(t - t_0)^m + \vec{o}\left((t - t_0)^m\right),\ t \to t_0
+	\]
+\end{theorem}
+
+\begin{proof}
+	Просто объединим формулы Тейлора для каждой компоненты в одну.
+\end{proof}
+
+\begin{definition}
+	Кривая $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ считается \textit{ориентированной} в направлении возрастания параметра $t$.
+\end{definition}
+
+\begin{definition}
+	Если $P := a = t_0 < t_1 < \ldots < t_m = b$ - разбиение отрезка $[a; b]$, то кривая $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ \textit{разбита на кривые} $\Gamma_j = \{\vec{r}(t),\ t_{j - 1} \le t \le t_j\}, j \in \range{m}$
+\end{definition}
+
+\begin{definition}
+	Функция $f(x)$ называется \textit{непрерывно дифференцируемой} на $[a; b]$, если она дифференцируемая и $f'(x)$ непрерывна на этом отрезке.
+\end{definition}
+
+\begin{definition}
+	Если $\vec{r}(t)$ дифференцируема (непрерывно дифференцируема, $k$-раз дифференцируема), то кривая $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ называется \textit{дифференцируемой (непрерывно дифференцируемой, $k$-раз дифференцируемой)}
+\end{definition}
+
+\begin{definition}
+	Непрерывно дифференцируемая кривая такая, что $\vec{r'}(t) \neq \vec{0}$ ни в какой точке $t \in (a; b)$ называется \textit{гладкой}.
+\end{definition}
+
+\begin{definition}
+	\textit{Касательным вектором} к кривой $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ в точке $\vec{r}(t_0)$ называется предельное положение направляющего вектора секущей $\dvec{r}(t_0)$, если оно существует.
+	
+	Точнее, если $\vec{l}(\Delta t)$ - единичный направляющий вектор секущей:
+	\[
+		\vec{l}(\Delta t) = \pm \frac{\dvec{r}(t_0)}{|\dvec{r}(t_0)|}
+	\]
+	тогда
+	\[
+		\liml_{\Delta t \to 0} \vec{l}(\Delta t) = \pm \vec{\tau}
+	\]
+	где $\vec{\tau}$ - единичный вектор касательной.
+\end{definition}
+
+\begin{definition}
+	Линейное пространство $\{t \cdot \vec{\tau},\ t \in \R\}$ называется \textit{касательным пространством}.
+\end{definition}
+
+\begin{definition}
+	Прямая, заданная векторно-параметрическим уравнением
+	\[
+		\vec{r}(t) = \vec{r}(t_0) + t\cdot \vec{\tau}
+	\]
+	называется \textit{касательной к кривой} $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ в точке $t_0 \in [a; b]$
+\end{definition}
+
+%% Нарисовать. Введение в матанализ 26, доступ по ссылке (пнуть меня). 1:22:36
+
+\begin{lemma}
+	Пусть кривая $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ дифференцируема и $\vec{r'}(t_0) \neq 0$. Тогда существует касательная к $\Gamma$ в точке $\vec{r}(t_0)$ с направляющим вектором $\vec{\tau} = \frac{\vec{r'}(t_0)}{|\vec{r'}(t_0)|}$
+\end{lemma}
+
+\begin{proof}
+	\[
+		\vec{l}(\Delta t) = \frac{\dvec{r}(t_0)}{|\dvec{r}(t_0)|} = \pm \frac{\dvec{r}(t_0)}{\Delta t} \cdot \frac{1}{\left|\frac{\dvec{r}(t_0)}{\Delta t}\right|} \xrightarrow[\Delta t \to 0]{} \pm \frac{\vec{r'}(t_0)}{|\vec{r'}(t_0)|}
+	\]
+\end{proof}
+
+\begin{definition}
+	Замена параметра $t = \phi(\wt{t}),\ \wt{t} \in [c; d]$ называется \textit{допустимой} для кривой $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ заданного класса, если кривая $\wt{\Gamma} = \{\vec{r}(\phi(\wt{t})),\ c \le \wt{t} \le d\}$ - кривая того же класса, а также $\phi([c; d]) = [a; b]$
+	
+	Так, будем считать допустимыми непрерывные строго монотонные функции $t = \phi(\wt{t})$ для кривых без дополнительных ограничений; добавляя (непрерывную) дифференцируемость для (непрерывно) дифференцируемых; $\phi' \neq 0$ для гладких; строгое возрастание для ориентированных.
+\end{definition}
+
+\begin{definition}
+	Пусть $\vec{r}(t),\ a \le t \le b$ - вектор-функция, $P: a = t_0 < t_1 < \ldots < t_m = b$ - разбиение $[a; b]$.
+	
+	\textit{Вариацией} вектор-функции $\vec{r}(t)$, соответствующей разбиению $P$, называется 
+	\[
+		V(P, \vec{r}) = \suml_{k = 1}^m |\vec{r}(t_k) - \vec{r}(t_{k - 1})|
+	\]
+\end{definition}
+
+\begin{definition}
+	Вектор-функция $\vec{r}(t),\ a \le t \le b$, является \textit{функцией ограниченной вариации} на $[a; b]$, если множество $\{V(P, \vec{r}), P \text{ - всевозможные разбиения }[a; b]\}$ ограничено. Число $V(\vec{r}) = \sup\limits_{P} V(P, \vec{r})\left(=: V(\vec{r}, [a; b])\right)$ называется \textit{полной вариацией функции} $\vec{r}$ на $[a; b]$.
+\end{definition}
+
+\begin{definition}
+	Если кривая $\Gamma = \{\vec{r}(t),\ a \le t \le b\}$ задана с помощью функции ограниченной вариации $\vec{r}(t)$, то она называется \textit{спрямляемой}, а $V(\vec{r})$ называется \textit{длиной} $\Gamma$.
+\end{definition}
+
+%%% Тоже хорошо бы рисунок сделать. Введение в матан 26, 1:55:30, пнуть меня для ссылки
+
+\begin{theorem} (Ограниченность функции ограниченной вариации)
+	Если $f: [a; b] \to \R$ - функция ограниченной вариации, то она ограничена
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим разбиение $P: a < x < b$. Тогда
+	\[
+		V(P, f) = |f(a) - f(x)| + |f(x) - f(b)| \le V(f, [a; b])
+	\]
+	Коль скоро $V(f, [a; b])$, $f(a)$ и $f(b)$ - определённые числа, то $f$ ограничено.
+\end{proof}
+
+\begin{theorem} (Арифметические операции с функциями ограниченной вариации)
+	Если $f, g: [a; b] \to \R$ - функции ограниченной вариации, то $f \pm g$ и $f \cdot g$ - тоже функции ограниченной вариации
+\end{theorem}
+
+\begin{proof}
+	Вначале докажем для $f \pm g$. Рассмотрим произвольное разбиение $P$ и одно из слагаемых вариации $V(P, f \pm g)$:
+	\[
+		|(f \pm g)(t_k) - (f \pm g)(t_{k - 1})| = |(f(t_k) - f(t_{k - 1})) \pm (g(t_k) - g(t_{k - 1}))| \le |f(t_k) - f(t_{k - 1})| + |g(t_k) - g(t_{k - 1})|
+	\]
+	Стало быть
+	\[
+		V(P, f \pm g) \le V(P, f) + V(P, g)
+	\]
+	Так как неравенство верно для любого $P$, то $f \pm g$ - функция ограниченной вариации.
+	
+	Теперь докажем для $f \cdot g$. Рассмотрим вариацию этой функции для произвольного $P$:
+	\begin{multline*}
+		V(P, fg) = \suml_{k = 1}^m |fg(t_k) - fg(t_{k - 1})| \le
+		\\
+		\suml_{k = 1}^m |f(t_k)g(t_k) - f(t_{k - 1})g(t_k)| + \suml_{k = 1}^m |f(t_{k - 1})g(t_k) - f(t_{k - 1})g(t_{k - 1})| \le
+		\\
+		\sup\limits_{t \in [a; b]} |g(t)| \cdot V(P, f) + \sup\limits_{t \in [a; b]} |f(t)| V(P, g)
+	\end{multline*}
+\end{proof}
