@@ -1,9 +1,0 @@
-\setcounter{section}{104}
-\section{Алгоритм AKS. Определение и неравенства, связывающие $p, r, \log_2 n, t$, группы $G$, $\mathcal{G}$, многочлена $h(x)$ (б/д). Неравенство $|\mathcal{G}| \leq n^{\sqrt{t}}$ при $n \neq p^k$.}
-\par \textbf{Неравенства:} $p>r>\log_2^2n$, $\varphi(r)\geq|G|=t>\log_2^2 n$, $\deg h(x) > \ord_r p > 1$
-\par \textbf{Лемма 2:} $|\mathcal{G}| \leq n^{\sqrt{t}}$ при $n \neq p^k$
-\par $\blacktriangle$ Рассмотрим в множестве $I$ все элементы с $0\leq i, j \leq [\sqrt{t}]$. Всего таких чисел $([\sqrt{t}]+1)^2>t$ чисел $\Rightarrow$ среди них $\exists m_1, m_2 \: (m_1 > m_2)$, такие что $m_1 \equiv m_2 \: (\md \: r)$ (так как в группе $G$ всего $t$ различных элементов). Тогда $$x^{m_1} = x^{m_2} \: (\md \: x^r-1, p) \text{, так как } (x^{m_1-m_2}-1)x^{m_2} \: \vdots \: x^r -1 \text{ (см. замечание в билете 84)}$$
-\par Рассмотрим произвольное $f \in \mathcal{G}$. По построению $\mathcal{G}$ он перестановочен с $m_1$ и $m_2$. Следовательно, так как $h(x) \: | \: x^r-1$
-$$(f(x))^{m_1}=f(x^{m_1})=f(x^{m_2})=(f(x))^{m_2} \: (\md \: h(x), p)$$
-\par Уравнение $(f(x))^{m_1}=(f(x))^{m_2}$ имеет $\leq \max\{m_1, m_2\}=m_1$ корней (уравнение относительно $f(x)$). Так как это выполнено для любого $f \in \mathcal{G}$, то $|\mathcal{G}| \leq m_1$.
-\par По построению $m_1=\left(\frac{n}{p}\right)^i \cdot p^j, \: 0 \leq i, j \leq [\sqrt{t}] \Rightarrow |\mathcal{G}|\leq m_1 \leq n^{\sqrt{t}} \: \blacksquare$
