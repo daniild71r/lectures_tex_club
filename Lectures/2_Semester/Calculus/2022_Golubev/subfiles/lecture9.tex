@@ -1,0 +1,245 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\begin{definition}
+   \emph{ Нижним интегралом Дарбу} $f(x)$ назовём $J_* = \sup_T s(f, T)$. 
+\end{definition}
+
+\begin{definition}
+   \emph{ Верхним интегралом Дарбу} $f(x)$ назовём $J^* = \inf_T S(f, T)$.
+\end{definition}
+
+\begin{note}
+    Это очень похоже на определение меры.
+\end{note}
+
+
+\begin{proposition}
+    Пусть \fabr, $\forall T$~--- разбиение $[a,b]$. Тогда
+    \begin{gather*}
+        s(f, T) \leq J_* \leq J^* \leq S(f, T).
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Первое и последнее неравенства очевидны из определения $J$. \\ 
+    Рассмотрим
+    \begin{gather*}
+        s(f, T_1) \leq S(f, T_2) \hence s(f, T_1) \leq J^* \hence J_* \leq J^*.    
+    \end{gather*}
+\end{proof}
+
+\begin{definition}
+    Назовём $\omega_i(f)$~--- \emph{колебанием функции $f$ на отрезке $[x_i,x_{i+1}]$}, если 
+    \begin{gather*}
+        \omega_i(f) = \sup_{x',x'' \in [x_i,x_{i+1}]}(f(x') - f(x'')).
+    \end{gather*}
+\end{definition}
+
+\begin{definition}
+    Обозначим $\Delta(f, T) = S(f, T) - s(f, T)$.
+\end{definition}
+
+\begin{proposition}
+    Пусть \fabr, $\forall T$~--- разбиение $[a,b]$. Тогда
+    \begin{gather*}
+        \Delta(f, T) = \sum_{i=1}^{m-1} \omega_i(f) (x_{i+1} - x_{i}).
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Рассмотрим 
+    \begin{multline*}
+        \sum_{i=1}^{m-1} \omega_i(f) (x_{i+1} - x_{i}) = \sum_{i=1}^{m-1} \sup_{x',x'' \in [x_i,x_{i+1}]}(f(x') - f(x'')) (x_{i+1} - x_{i}) = \\ =\sum_{i=1}^{m-1} \sup_{x \in [x_i,x_{i+1}]}f(x)(x_{i+1} - x_{i}) + \sum_{i=1}^{m-1} \sup_{x \in [x_i,x_{i+1}]}(-f(x))(x_{i+1} - x_{i}) = \\ = \sum_{i=1}^{m-1} \sup_{x \in [x_i,x_{i+1}]}f(x)(x_{i+1} - x_{i}) - \sum_{i=1}^{m-1} \inf_{x \in [x_i,x_{i+1}]}(f(x))(x_{i+1} - x_{i}) = S(f,T) - s(f,T) = \Delta(f, T).
+    \end{multline*}
+\end{proof}
+
+\begin{proposition}
+    Пусть \fabr, тогда $f$~--- интегрируема на $[a,b]$ тогда и только тогда, когда 
+    \begin{gather*}
+        \lim_{l(T) \to 0} \Delta(f, T) = 0 \nas \forall \eps > 0 \exists \delta : \forall T\ l(T) < \delta \hence S(f, T) - s(f,T) < \eps
+    \end{gather*}
+\end{proposition}
+
+
+\begin{proof}[\circled{\hence}]
+    $f$~--- интегрируема на $[a,b]$, значит $\exists J \in \R$. Распишем определение
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T \ l(T) < \delta \System{|s(f,T) - J| < \eps/2 \\ |S(f,T) - J| < \eps/2} \hence \\
+        \forall \eps > 0 \exists \delta : \forall T \ l(T) < \delta \hence |S(f,T) - s(f,T)| \leq |S(f,T) - J| + |J - s(f,T)| < \eps.
+    \end{gather*}
+\end{proof}
+
+\begin{proof}[\circled{\lhence}]
+    Используем 
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T\ l(T) < \delta \hence S(f, T) - s(f,T) < \eps
+    \end{gather*}
+    Заметим, что $f$~--- ограничена (иначе $S(f,T) - s(f, T) = + \infty$). Тогда 
+    \begin{gather*}
+        s(f, T) \leq J_* \leq J^* \leq S(f, T) \hence J^* - J_* < \eps.
+    \end{gather*}
+    Заметим, что $J_*$ и $J^*$ от $\eps$ не зависят. В таком случае они обязаны быть равны. Обозначим $J = J^* = J_*$. Подставим $J$ с учётом неравенств. 
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T\ l(T) < \delta \hence \System{J - s(f,T) < \eps \\ S(f, T) - J < \eps}.
+    \end{gather*}
+    Тогда по определению $J$~--- определённый интеграл $f$ на $[a,b]$.
+\end{proof}
+
+\begin{definition}
+    Пусть \fabr, $T = \{x_i\}_{i=1}^m$~--- разбиение $[a,b]$. Для любого $[x_i, x_{i+1}]$ выберем $\xi_i \in [x_i, x_{i+1}]$. Обозначим \emph{выборкой} $\xi = \{\xi_i\}$.
+\end{definition}
+
+\begin{definition}
+    Назовём \emph{интегральной суммой Римана} 
+    \begin{gather*}
+        \s (f, T, \xi) = \sum_{i=1}^m f(\xi_i) (x_{i+1} - x_{i})
+    \end{gather*}
+\end{definition}
+
+\begin{proposition}
+    Пусть \fabr, \tpab. Тогда 
+    \begin{align*}
+        s(f,T) &= \inf_\xi \s(f,T,\xi), \\
+        S(f,T) &= \sup_\xi \s(f,T,\xi).
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    Докажем первое равенство, второе аналогично.\\ Рассмотрим
+    \begin{gather*}
+        \inf_\xi \s (f, T, \xi) = \inf_{\xi_i} \sum_{i=1]}^{m-1} f(\xi_i)(x_{i+1} - x_i) = \\ = 
+        \inf_{\xi_1} \left(\inf_{\xi_2} \ldots \left(\inf_{\xi_{m-1}} \sum_{i=1]}^{m-1} f(\xi_i)(x_{i+1} - x_i)\right)\ldots\right) = \sum_{i=1}^{m-1} m_i(x_{i+1} - x_i) = s(f, T).
+    \end{gather*}
+\end{proof}
+
+\begin{proposition}
+    Пусть \fabr, $f$~--- интегрируема \nas $\lim\limits_{l(T)\to 0} \s (f, T, \xi) = J$. 
+\end{proposition}
+
+\begin{note}
+    По сути сейчас мы доказываем эквивалентность определений.
+\end{note}
+
+\begin{proof}[\circled{\hence}]
+    Из определения интегрируемости:
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T\ l(T) < \delta \hence \System{J - s(f,T) < \eps \\ S(f, T) - J < \eps}.
+    \end{gather*}
+    Тогда 
+    \begin{gather*}
+        J - \eps < s(f, T) \leq S(f, T) < J + \eps, \\
+        J - \eps < \inf_\xi \s(f, T, \xi) \leq \sup_\xi \s(f, T, \xi) < J + \eps \hence \\
+        \forall \xi \hence J - \eps < \s (f, T, \xi) < J + \eps
+    \end{gather*}
+    Собирая всё воедино:
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T\ l(T) < \delta \forall \xi \hence |\s(f, T, \xi) - J| < \eps.
+    \end{gather*}
+\end{proof}
+
+\begin{proof}[\circled{\lhence}]
+    Из утверждения 
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T\ l(T) < \delta \forall \xi \hence J - \eps < \s (f, T, \xi) < J + \eps.
+    \end{gather*}
+    Значит $J - \eps \leq \inf_\xi \s (f, T, \xi) = s(f, T)$. Аналогично $J + \eps \leq S(f, T)$.
+    Собирая всё воедино:
+    \begin{gather*}
+        \forall \eps > 0 \exists \delta : \forall T \ l(T) < \delta \System{|s(f,T) - J| < \eps \\ |S(f,T) - J| < \eps}.
+    \end{gather*}
+    Получили определение интегрируемости.
+\end{proof}
+
+\begin{example}
+    Рассмотрим функцию Дирихле $f:[0,1] \to \R$. Тогда можем подобрать $\xi'$ такую, что $\xi'_i \in \Q$, значит $\s(f, T, \xi') = 1$. С другой стороны можем выбрать $\xi'':\ \xi''_i \in \R \setminus \Q$ и $\s(f,T, \xi'') = 0$. Получили, что функция не интегрируема по критерию.
+\end{example}
+
+\begin{proposition}
+    Пусть $g,\fabr$. $g,f$~--- интегрируемы на \segab. Тогда $\forall \alpha, \beta \in \R\ \alpha f + \beta g$~--- интегрируема на \segab, и 
+    \begin{gather*}
+        \intab (\alpha f(x) + \beta g(x)) dx = \alpha \intab f(x) dx + \beta \intab f(x) dx.
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Пусть \tpab. Рассмотрим 
+    \begin{multline*}
+        \s(\alpha f + \beta g, T, \xi) = \sumifromto{1}{m-1}(\alpha f + \beta g)(\xi_i)(x_{i+1} - x_{i}) = \sumifromto{1}{m-1}(\alpha f(\xi_i) + \beta g(\xi_i))(x_{i+1} - x_{i}) = \\ = \alpha \sumifromto{1}{m-1}f(\xi_i)(x_{i+1} - x_i) + \beta \sumifromto{1}{m-1}g(\xi_i)(x_{i+1} - x_i) = \\ = \alpha \s(f,T,\xi) + \beta \s(g,T,\xi) \limto_{l(T) \to 0} \intab f(x) dx + \intab g(x) dx.
+    \end{multline*}
+    Значит $\exists \lim_{l(T) \to 0} \s(\alpha f + \beta g, T, \xi)$ \hence $\alpha f + \beta  g$~--- интегрируема на \segab, причём 
+    \begin{gather*}
+        \intab (\alpha f(x) + \beta g(x)) dx = \alpha \intab f(x) dx + \beta \intab f(x) dx.
+    \end{gather*}
+\end{proof}
+
+\begin{note}
+    Функции интегрируемые на отрезке \segab\space образуют линейное пространство. При этом определенный интеграл является линейным оператором.
+\end{note}
+
+\begin{proposition}
+    Пусть \fgabr, $f,g$~--- интегрируемы на \segab, и $f \leq g$. Тогда 
+    \begin{gather*}
+        \intfab \leq \intgab.
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Пусть \tpab, $\xi$~--- выборка. По определению 
+    \begin{gather*}
+        \s(f, T, \xi) = \sumifromto{1}{m-1} f(\xi_i)(x_{i+1} - x_{i-1}) \leq \sumifromto{1}{m-1} g(\xi_i)(x_{i+1} - x_{i-1}) = \s(g, T,\xi).
+    \end{gather*}
+    Переходя к пределу при $l(T) \to 0$ получаем искомое выражение.
+\end{proof}
+
+\begin{note}
+    Сейчас мы использовали нестрогое неравенство. Если отношение функций будет строгим, то отношение интегралов может быть не строгим (как это было с последовательностями).
+\end{note}
+
+\begin{proposition}
+    Пусть \fabr, \fintonab. Тогда $|f|$~--- интегрируема на \segab \space и 
+    \begin{gather*}
+        \left|\intfab\right| \leq \intab|f(x)|dx.
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Пусть \tpab. Тогда 
+    \begin{gather*}
+        w_i(f) = \sup_{x',x'' \in [x_i,x_{i+1}]}(f(x') - f(x'')), \\
+        w_i(|f|) = \sup_{x',x'' \in [x_i,x_{i+1}]}(|f(x')| - |f(x'')|).
+    \end{gather*}
+    Рассмотрим неравенство треугольника 
+    \begin{gather*}
+        |f(x')| - |f(x'')| \leq |f(x') - f(x'')|. 
+    \end{gather*}
+    Переходя в обеих частях неравенства к $\sup$
+    \begin{gather*}
+        \omega_i(|f|) \leq \omega_i(f). 
+    \end{gather*}
+    Рассмотрим 
+    \begin{gather*}
+        \Delta (|f|, T) = \sumifromto{1}{m-1} \omega_i(|f|)(x_{i+1} - x_i) \leq \sumifromto{1}{m-1} \omega_i(f](x_{i+1} - x_i) = \Delta (f, T) \limto_{l(T) \to 0},
+    \end{gather*}
+    значит $\lim \limits_{l(t)\to 0} \Delta (|f|, T) = 0$ \hence  $|f|$~--- интегрируема на \segab. \\
+    Рассмотрим 
+    \begin{gather*}
+        |\s(f, T, \xi)| = \left|\sumifromto{1}{m-1}f(x\xi_i)(x_{i+1} - x_i)\right| \leq \sumifromto{1}{m-1}|f(x\xi_i)|(x_{i+1} - x_i) = \s(|f|, T, \xi).
+    \end{gather*}
+    Переходя к пределу при $l(T) \to 0$ получаем искомое выражение.
+\end{proof}
+
+\begin{proposition}
+    Пусть \fabr, \fintonab, $[\alpha,\beta] \subset [a,b]$. Тогда $f$~--- интегрируема на $[\alpha,\beta]$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $T$~--- разбиение отрезка $[\alpha,\beta]$. Рассмотрим $T'$~--- разбиение отрезка \segab, причём $T'$ содержит все точки $T$ и $l(T') \leq l(T)$.
+    Рассмотрим 
+    \begin{gather*}
+        \Delta_{[\alpha,\beta]} (f, T) \leq \Delta_{[a,b]} (f, T').
+    \end{gather*}
+    При $l(T) \to 0$ выполняется $l(T') \to 0$, значит $\lim\limits_{l(T) \to 0} \Delta_{[\alpha,\beta]} (f, T) = 0$ \hence \fintonab.
+\end{proof}
+
+\end{document}

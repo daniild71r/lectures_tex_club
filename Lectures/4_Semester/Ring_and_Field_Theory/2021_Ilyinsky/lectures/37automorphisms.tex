@@ -1,0 +1,173 @@
+\subsection{Автоморфизмы полей}
+
+\begin{definition}
+	\textit{Автоморфизмом} поля $L$ называется изоморфизм $\phi: L \to L$, то есть такое биективное отображение, что $\forall a, b \in L: \phi(a + b) = \phi(a) + \phi(b), \phi(ab) = \phi(a)\phi(b)$.
+\end{definition}
+
+\begin{definition}
+	Пусть $F$ "--- поле, $L \supset F$ "--- его расширение. Группой автоморфизмов поля $L$, \textit{сохраняющих $F$}, называется множество автоморфизмов $\phi : L \to L$ таких, что $\forall \alpha \in F: \phi(\alpha) = \alpha$. Обозначение "--- $\Aut_F{L}$.
+\end{definition}
+
+\begin{note}
+	$\Aut_F{L}$ действительно является группой, поскольку $\Aut{L}$ "--- группа, а $\Aut_F{L} \subset \Aut{L}$ замкнуто относительно композиции и взятия обратного отображения.
+\end{note}
+
+\begin{proposition}
+	Пусть $L$ "--- поле, $F \subset L$ "--- его простое подполе. Тогда любой автоморфизм поля $L$ сохраняет $F$, то есть $\Aut_F{L} = \Aut{L}$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\phi$ "--- автоморфизм, тогда $\phi(0) = 0$ и $\phi(1) = 1$. Следовательно:
+	\begin{itemize}
+		\item Если $\cha{L} = p$, то $F \cong \Z/(p)$ и $\forall m \in \Z/(p): \phi(\overline{m}) = \overline{m}$.
+		\item Если $\cha{L} = 0$, то $F \cong \Q$, $\forall m \in \Z: \phi(\overline{m}) = \overline{m}$ и $\forall n \in \N: \phi(\overline{n}^{-1}) = \overline{n}^{-1}$, поэтому $\forall q \in \Q: \phi(\overline{q}) = \overline{q}$.\qedhere
+	\end{itemize}
+\end{proof}
+
+Теперь \textbf{до конца раздела} зафиксируем поле $F$ и его конечное расширение $L$.
+
+\begin{proposition}
+	Для каждого алгебраического над $F$ элемента $\alpha \in L$ элемент $\phi(\alpha)$ сопряжен с $\alpha$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $m_\alpha \in F[x]$ "--- минимальный многочлен элемента $\alpha \in L$. Тогда $m_\alpha(\phi(\alpha)) = \phi(m_\alpha(\alpha)) = \phi(0) = 0$, поэтому $\phi(\alpha)$ сопряжено с $\alpha$.
+\end{proof}
+
+\begin{example}
+	Рассмотрим несколько примеров нахождения всех автоморфизмов поля:
+	\begin{enumerate}
+		\item Рассмотрим поле $\Q(\sqrt{2}, \sqrt{3})$. По теореме о примитивном элементе, легко видеть, что $\Q(\sqrt{2}, \sqrt{3}) = \Q(\sqrt{2} + \sqrt{3})$. В силу утверждения выше, любой автоморфизм $\phi$ этого поля переводит $\sqrt{2} + \sqrt{3}$ в сопряженный с ним элемент, то есть одно из четырех чисел $\pm\sqrt{2} \pm\sqrt{3}$. Заметим, что $\phi$ однозначно задается значением $\phi(\sqrt{2} + \sqrt{3})$, и каждый из четырех вариантов возможен, поскольку $\pm\sqrt{2} \pm\sqrt{3} \in \Q(\sqrt{2}, \sqrt{3})$.
+		\item Рассмотрим поле $\Q(\sqrt[3]{2})$. В силу утверждения выше, любой автоморфизм $\phi$ этого поля переводит $\sqrt[3]{2}$ в сопряженный с ним элемент. Но $\sqrt[3]{2}\omega, \sqrt[3]{2}\omega^2 \not\in \Q(\sqrt[3]{2})$, поэтому $\phi(\sqrt[3]{2}) = \sqrt[3]{2}$. Значит, единственный автоморфизм $\phi$ "--- это $\id$.
+	\end{enumerate}
+\end{example}
+
+\begin{proposition}
+	Пусть $\gamma \in L$ "--- такой элемент, что $L = F(\gamma)$. Тогда выполенно равенство $|\Aut_{F}L| = |\{\alpha \in L : \alpha\text{ сопряжен с }\gamma\}|$.
+\end{proposition}
+
+\begin{proof}
+	Автоморфизм $\phi \in \Aut_F{L}$ должен сохранять $F$ и потому не более чем однозначно задается значением $\phi(\gamma)$, сопряженным с $\gamma$. С другой стороны, если элемент $\alpha \in L$ сопряжен с $\gamma$, то $F(\alpha) \cong F[x]/(m_\gamma) \cong F(\gamma)$, причем изоморфизм $\psi: F(\alpha) \to F(\gamma)$ сохраняет $F$ по построению и $F(\alpha) = F(\gamma)$, поэтому $\psi \in \Aut_F{L}$.
+\end{proof}
+
+\begin{definition}
+	Пусть $H \le \Aut_F(L)$ "--- подгруппа в $\Aut_F(L)$. Подполем, \textit{сохраняемым подгруппой $H$}, называется $L^H := \{a \in L: \forall h \in H: h(a) = a\}$.
+\end{definition}
+
+\begin{note}
+	Легко проверить, что $L^H$ действительно является полем. Однако в общем случае неверно, что сопоставление $K \mapsto \Aut_{K}L$ осуществляет биекцию между полями $K$ такими, что $F \subset K \subset L$, и подгруппами в $\Aut_F{L}$. Далее мы будем исследовать достаточные условия того, чтобы это было выполнено.
+\end{note}
+
+\begin{example}
+	Рассмотрим поле $\Q(\sqrt[3]{2})$. Как мы уже знаем, $\Aut_{\Q}\Q(\sqrt[3]{2}) = \{\id\}$, однако полей $K$ таких, что $\Q \subset K \subset \Q(\sqrt[3]{2})$, два: $\Q$ и $\Q(\sqrt[3]{2})$.
+\end{example}
+
+\begin{example}
+	Рассмотрим поле $\Q(\sqrt{2}, \sqrt{3})$. Заметим, что $\Aut_{\Q}\Q(\sqrt{2}, \sqrt{3}) \cong V_4 \cong \Z_2 \oplus \Z_2$, причем можно считать, что $V_4 \le S_4$ осуществляет перестановки на множестве $\{\pm\sqrt{2}\pm\sqrt{3}\}$. Для данного поля соответствие между подгруппами в $\Aut_{\Q}\Q(\sqrt{2}, \sqrt{3})$ и промежуточными полями имеет следующий вид:
+	\begin{center}
+		\begin{tikzcd}[row sep = small, column sep = tiny, font = \small]
+			&\Q
+			\arrow[sloped]{dr}\arrow[sloped]{d}\arrow[sloped]{dl}
+			&&&&&
+			V_4
+			\arrow[sloped]{dr}\arrow[sloped]{d}\arrow[sloped]{dl}
+			&&&\\
+			\Q(\sqrt{2})
+			&
+			\Q(\sqrt{3})
+			&
+			\Q(\sqrt{6})
+			\arrow[Mapsto]{rrr}
+			&&&
+			\gl(12)(34)\gr
+			&
+			\gl(13)(24)\gr
+			&
+			\gl(14)(23)\gr
+			&&\\
+			&\Q(\sqrt{2}, \sqrt{3})
+			\arrow[leftarrow, sloped]{ur}\arrow[leftarrow, sloped]{u}\arrow[leftarrow, sloped]{ul}
+			&&&&&
+			\{\id\}
+			\arrow[leftarrow, sloped]{ur}\arrow[leftarrow, sloped]{u}\arrow[leftarrow, sloped]{ul}
+			&&&
+		\end{tikzcd}
+	\end{center}
+\end{example}
+
+\begin{definition}
+	Расширение $L \supset F$ называется \textit{нормальным}, если для каждого элемента $\alpha \in L$ все сопряженные с ним элементы лежат в $L$.
+\end{definition}
+
+\begin{theorem}
+	Пусть расширение $L \supset F$ сепарабельно. Тогда следующие условия эквивалентны:
+	\begin{enumerate}
+		\item Расширение $L$ нормально
+		\item $L$ является полем разложения некоторого многочлена $f \in F[x]$
+		\item $|\Aut_F{L}| = [L : F]$
+		\item $L^{\Aut_F{L}} = F$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item\imp{1}{2}Рассмотрим $\gamma \in L$ такой, что $L = F(\gamma)$. Все сопряженные с $\gamma$ элементы лежат в $L$, поэтому минимальный многочлен $m_\gamma \in F[x]$ раскладывается на линейные сомножители над $F$. Поскольку $L = F(\gamma)$, то это минимальное поле, удовлетворяющее этому условию. Значит, $L$ "--- это поле разложения многочлена $m_\gamma$.
+		\item\imp{2}{1}Пусть $L$ "--- поле разложения многочлена $f \in F[x]$. Рассмотрим произвольный элемент $\gamma \in L$ с минимальным многочленом $m_\gamma \in F[x]$. Пусть $\delta \in L$ "--- сопряженный с ним элемент. Тогда $F(\gamma) \cong F[x]/(m_\gamma) \cong F(\delta)$, причем изоморфизм $\phi: F(\gamma) \to F(\delta)$ сохраняет $F$. Пока оставим без доказательства, что тогда $\phi$ можно продолжить до гомоморфизма $\widetilde{\phi}: L \to \overline{F}$. Но тогда $\widetilde{\phi}$ переводит корни многочлена $f$ в сопряженные с ними элементы, поэтому $\widetilde{\phi}(L) \subset L$ и $\delta = \phi(\gamma) = \widetilde{\phi}(\gamma) \in L$.
+		\item\imp{1}{3}Мы знаем, что $|\Aut_{F}L| = |\{\alpha \in L : \alpha\text{ сопряжен с }\gamma\}|$. Тогда, поскольку расширение $L$ нормально, $|\Aut_{F}{L}| = [L : F]$.
+		\item\imp{3}{4}Пусть $L^{\Aut_FL} = K \supset F$, тогда $\Aut_FL = \Aut_KL$. Мы уже знаем, что всегда выполнено $|\Aut_KL| \le [L : K]$. Но тогда $[L : K] \ge |\Aut_KL| = |\Aut_FL| = [L : F]$, поэтому $[L : K] = [L : F]$ и $K = F$.
+		\item\imp{4}{1}Зафиксируем произвольный элемент $\gamma \in L$. Рассмотрим следующий многочлен: $f(x) := \prod_{g \in \Aut_FL}(x - g(\gamma)) \in L[x]$. Для любого автоморфизма $h \in \Aut_FL$ выполнено $h(f)(x) = \prod_{g \in \Aut_FL}(x - h(g(\gamma))) = \prod_{\widetilde{g} \in \Aut_FL}(x - \widetilde{g}(\gamma)) = f(x)$. Значит, все коэффициенты многочлена $f$ лежат в $L^{\Aut_FL} = F$. Тогда, по построению, любой сопряженный с $\gamma$ элемент является корнем $f$, поэтому он имеет вид $g(\gamma)$ для некоторого $g \in \Aut_FL$ и лежит в $L$.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Пусть $F$ "--- поле. Конечное нормальное сепарабельное расширение $L \supset F$ поля $F$ называется \textit{расширением Галуа}.
+\end{definition}
+
+\begin{note}
+	Аналогично доказанному выше, для необязательно сепарабельного расширения $L \supset F$ эквиваленты следующие условия:
+	\begin{enumerate}
+		\item Расширение $L$ нормально
+		\item $L$ является полем разложения некоторого многочлена $f \in F[x]$
+		\item Любой гомоморфизм полей $\phi: L \to \overline{F}$, сохраняющий $F$, является автоморфизмом $L$
+	\end{enumerate}
+\end{note}
+
+Докажем теперь утверждение, опущенное в последней теореме.
+
+\begin{proposition}
+	Пусть $F$ "--- поле, $L, \widetilde{L} \supset F$ "--- его конечные расширения такие, что существует $\phi: L \to \widetilde{L}$ "--- изоморфизм полей, сохраняющий $F$. Тогда для любого конечного расширения $K \supset L$ существует гомоморфизм $\widetilde{\phi}: K \to \overline{F}$ такой, что $\widetilde\phi|_{L} = \phi$.
+\end{proposition}
+
+\begin{proof}
+	По теореме о примитивном элементе, достаточно рассмотреть случай, когда $K = L(\gamma)$ для некоторого элемента $\gamma \in K$. Пусть $m_\gamma \in L[x]$ "--- минимальный многочлен элемента $\gamma$. Рассмотрим многочлен $\phi(m_\gamma) \in \widetilde{L}[x]$ и заметим, что, в силу изоморфности полей $L$ и $\widetilde{L}$, он неприводим. Выберем $\widetilde{\gamma} \in \overline{F}$ "--- корень многочлена $\phi(m_\gamma)$, и построим отображение $\widetilde{\phi}: L(\gamma) \to \overline{F}$ как $\widetilde{\phi}(p(\gamma)) := \phi(p)(\widetilde{\gamma})$ для любого $p \in L[x]$. Легко видеть, что это в точности отображение, задающее изоморфизм между $L(\gamma) = L[x] / (m_\gamma)$ и $L(\widetilde{\gamma}) = \widetilde{L}[x] / (\phi(m_\gamma))$.
+\end{proof}
+
+\begin{example}
+	Рассмотрим несколько примеров применения утверждения выше:
+	\begin{enumerate}
+		\item Рассмотрим следующий набор расширений:
+		\begin{center}
+			\begin{tikzcd}[row sep = small, column sep = tiny, font = \normalsize]
+				\Q(\sqrt[4]{2}, i)\arrow[phantom, sloped]{d}{\scalebox{1.2}{$\supset$}}\arrow[sloped]{rr}{i \mapsto \pm i}&&\Q(\sqrt[4]{2}i, i)\arrow[phantom, sloped]{d}{\scalebox{1.2}{$\supset$}}
+				\\
+				\Q(\sqrt[4]{2})\arrow[phantom, sloped]{dr}{\scalebox{1.2}{$\supset$}}\arrow[sloped]{rr}{\sqrt[4]{2} \mapsto \sqrt[4]{2}i}&&\Q(\sqrt[4]{2}i)\arrow[phantom, sloped]{dl}{\scalebox{1.2}{$\subset$}}
+				\\
+				&\Q&
+			\end{tikzcd}
+		\end{center}
+		
+		Пусть изоморфизм $\phi: \Q(\sqrt[4]{2}) \to \Q(\sqrt[4]{2}i)$ переводит $\sqrt[4]{2}$ в $\sqrt[4]{2}i$, и требуется продолжить его на $\Q(\sqrt[4]{2}, i)$. Многочлен $x^2 + 1 \in \Q(\sqrt[4]{2})[x]$, корнем которого является $i$, не меняется под действием $\phi$. Значит, образом $i$ можно объявить $i$ или $-i$.
+		\item Рассмотрим следующий набор расширений:
+		\begin{center}
+			\begin{tikzcd}[row sep = small, column sep = tiny, font = \normalsize]
+				\Q(\sqrt[4]{2})\arrow[phantom, sloped]{d}{\scalebox{1.2}{$\supset$}}\arrow[sloped]{rr}{\sqrt[4]{2} \mapsto \pm \sqrt[4]{2}i}&&\Q(\sqrt[4]{2})\arrow[phantom, sloped]{d}{\scalebox{1.2}{$\supset$}}
+				\\
+				\Q(\sqrt{2})\arrow[phantom, sloped]{dr}{\scalebox{1.2}{$\supset$}}\arrow[sloped]{rr}{\sqrt{2} \mapsto -\sqrt{2}}&&\Q(\sqrt{2})\arrow[phantom, sloped]{dl}{\scalebox{1.2}{$\subset$}}
+				\\
+				&\Q&
+			\end{tikzcd}
+		\end{center}
+		
+		Пусть изоморфизм $\phi: \Q(\sqrt{2}) \to \Q(\sqrt{2})$ переводит $\sqrt{2}$ в $-\sqrt{2}i$, и требуется продолжить его на $\Q(\sqrt[4]{2})$. Многочлен $x^2 - \sqrt{2} \in \Q(\sqrt{2})[x]$, корнем которого является $\sqrt[4]{2}$, под действием $\phi$ переходит в $x^2 + \sqrt{2}$. Значит, образом $\sqrt[4]{2}$ можно объявить корень многочлена $x^2 + \sqrt{2}$, то есть $\sqrt[4]{2}i$ или $-\sqrt[4]{2}i$.
+	\end{enumerate}
+\end{example}

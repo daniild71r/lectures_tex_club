@@ -1,0 +1,162 @@
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage{textcomp}
+\usepackage[russian]{babel}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{soulutf8}
+
+\usepackage{parskip}
+
+\usepackage{emptypage}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+% Math stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+% Fancy script capitals
+\usepackage{mathrsfs}
+\usepackage{cancel}
+% Bold math
+\usepackage{bm}
+% Some shortcuts
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\renewcommand\C{\ensuremath{\mathbb{C}}}
+
+%Make implies and impliedby shorter
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+
+\newmdtheoremenv[nobreak=true]{theorem}{Теорема}[section]
+\newmdtheoremenv[nobreak=true]{corollary}{Следствие}[theorem]
+\newmdtheoremenv[nobreak=true]{lemma}[theorem]{Лемма}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Утверждение}
+
+\theoremstyle{definition}
+\newmdtheoremenv[nobreak=true]{definition}{Определение}[section]
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=\parskip \thm@postskip=0pt
+}
+
+\usepackage{xifthen}
+
+
+\def\@lecture{}%
+\newcommand{\lecture}[2]{
+    \ifthenelse{\isempty{#2}}{%
+        \def\@lecture{Лекция #1}%
+    }{%
+        \def\@lecture{Лекция #1: #2}%
+    }%
+    \section{\@lecture}
+}
+
+\usepackage{geometry}  
+\geometry{left=20mm,right=20mm,top=25mm,bottom=30mm} % задание полей текста
+\setlength{\headheight}{18pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+
+% LE: left even
+% RO: right odd
+% CE, CO: center even, center odd
+
+\fancyhead[RO,LE]{\hyperlink{table}{К содержанию}} % Right odd,  Left even
+\fancyhead[RE,LO]{\@lecture}          % Right even, Left odd
+
+\fancyfoot[RO,LE]{\thepage}  % Right odd,  Left even
+\fancyfoot[RE,LO]{\CourseInfo}          % Right even, Left odd
+\fancyfoot[C]{}
+
+\makeatother
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{			
+	unicode=true,           
+	pdfstartview=FitH,
+	colorlinks=true,       	
+	linkcolor=blue,         
+	citecolor=green,        
+	filecolor=magenta,      
+	urlcolor=cyan,          
+}
+
+\usepackage{tcolorbox}
+
+\usepackage{listings}
+\lstset{ 
+  backgroundcolor=\color{white},   % цвет фона
+  basicstyle=\footnotesize,        % размер
+  breakatwhitespace=false,         % проблемы с отступами
+  breaklines=true,                 % автоматический переход на новую строку
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{black},      % стиль комментариев
+  escapeinside={\%*}{*)},          % для вставки латеха в код
+  frame=single,	                   % рамочка вокруг
+  keepspaces=true,                 % сохраняет пробелы в коде (чтобы был кодстайл)
+  keywordstyle=\color{blue},       % стиль кода
+  language=C++,                    % язык программирования!
+  morekeywords={*,...},            % увеличение словаря
+  numbers=left,                    % где будет нумерация строк (none, left, right)
+  numbersep=8pt,                   % расстояние между нумерацией и кодом
+  numberstyle=\color{gray},        % стиль нумерации
+  rulecolor=\color{gray},          % цвет рамки
+  showspaces=false,                % если тру, то заменяет пробелы на особые подчеркивания; конфликтует с 'showstringspaces'
+  showstringspaces=false,          % особые подчеркивания вместо пробелов в строках
+  showtabs=false,                  % подчеркивания вместо табов
+  stepnumber=1,                    % как часто показывать нумерацию. Если 1, то нумеруется каждая строка
+  stringstyle=\color{violet},      % цвет строк
+  tabsize=2,	                       % дефолтный размер таба
+  texcl=true,
+  title=\lstname                   % вставляет название файла, если импорт
+}
+
+\makeatletter
+\newcommand{\highlight}[1]{%
+  \setbox\@tempboxa\hbox{#1}%
+  \ifdim\wd\@tempboxa>\linewidth
+    \noindent
+    \colorbox{pink}{%
+      \parbox{\dimexpr\linewidth-2\fboxsep}{#1}%
+    }%
+  \else
+    \colorbox{pink}{#1}%
+  \fi}%Highlighter.
+\makeatother
+
+% Fast pictures
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1

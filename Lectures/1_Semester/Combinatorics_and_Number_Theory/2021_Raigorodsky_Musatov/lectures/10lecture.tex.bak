@@ -1,0 +1,157 @@
+\subsection{Основная теорема арифметики}
+
+\begin{theorem}
+	Любое натуральное число единственным образом (с точностью до перестановки) представляется как
+	\[
+	n = p_1^{\alpha_1} \cdot \ldots \cdot p_s^{\alpha_s},
+	\]
+	где $p_i$ --- простое число (1 не является таковым), а также $\forall i\ \alpha_i \ge 1$. Такой вид числа называется каноническим.
+\end{theorem}
+
+\begin{note}
+	Считается, что 1 не обладает каноническим видом.
+\end{note}
+
+\begin{proof}
+	\textcolor{red}{Ждите, пока что не завезли.}	
+\end{proof}
+
+\subsection{Функция Мёбиуса}
+
+\begin{definition}
+	\textit{Функцией Мёбиуса} $\mu \colon \N \ra \{-1, 0, 1\}$ называется функция
+	\[
+		\mu(n) = \System{
+			&{1,\ n = 1,}
+			\\
+			&{0,\ \exists \alpha_i \ge 2,\ 1 \le i \le s,}
+			\\
+			&{(-1)^s,\ n = p_1^1 \cdot \ldots \cdot p_s^1,}
+		}
+	\]
+	где $n$ в каноническом виде выглядит как
+	\[
+		n = p_1^{\alpha_1} \cdot \ldots \cdot p_s^{\alpha_s}.
+	\]
+\end{definition}
+
+\begin{lemma}
+	Сумма значений функции Мёбиуса от натурального числа равна 1 для единицы и 0 для всех остальных чисел.
+	\[
+		\suml_{d \mid n} \mu(d) = \System{
+			&{1,\ n = 1,}
+			\\
+			&{0, n > 1.}
+		}
+	\]
+\end{lemma}
+
+\begin{proof}
+	Пусть $n$ имеет канонический вид
+	\[
+		n = p_1^{\alpha_1} \cdot \ldots \cdot p_s^{\alpha_s}.
+	\]
+	Тогда $d$ --- делитель $n$, если
+	\[
+		d = p_1^{\beta_1} \cdot \ldots \cdot p_s^{\beta_s},
+	\]
+	где $0 \le \beta_i \le \alpha_i$.
+	
+	Это значит, что нашу сумму по делителям можно переписать как сумму по всем возможным наборам $\beta_1, \ldots, \beta_s \such 0 \le \beta_i \le \alpha_i$:
+	\[
+		\suml_{d \mid n} \mu(d) = \suml_{\beta_1, \ldots, \beta_s \over 0 \le \beta_i \le \alpha_i} \mu(d) = \suml_{\beta_1, \ldots, \beta_s \over 0 \le \beta_i \le 1} \mu(d).
+	\]
+	Заметим, что теперь у нас только $2^s$ делителей, которые влияют на сумму в зависимости от того, сколько простых чисел они содержат. Следовательно,
+	\[
+		\suml_{\beta_1, \ldots, \beta_s \over 0 \le \beta_i \le 1} \mu(d) = 1 - C_s^1 + C_s^2 - \ldots + (-1)^s C_s^s = \\
+		C_s^0 - C_s^1 + C_s^2 - \ldots + (-1)^s C_s^s = (1 - 1)^s = 0.
+	\]
+\end{proof}
+
+\begin{theorem} (Обращение Мёбиуса)
+	Пусть задана $f \colon \N \ra \R$. Определим $g$:
+	\[
+		g(n) := \suml_{d \mid n} f(d)
+	\]
+	Тогда
+	\[
+		f(n) = \suml_{d \mid n} \mu(d) \cdot g(n / d)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Распишем сумму:
+	\[
+		\suml_{d \mid n} \mu(d) \cdot g(n / d) = \suml_{d \mid n} \mu(d) \cdot \suml_{d' \mid \frac{n}{d}} f(d')
+	\]
+	Выбрать $d$ такое, что $d \mid n$ и потом выбрать $d' \mid \frac{n}{d}$ - это то же самое, что выбрать пару $(d, d'): d \cdot d' \mid n$. Отсюда
+	\begin{multline*}
+		\suml_{d \mid n} \mu(d) \cdot \suml_{d' \mid \frac{n}{d}} f(d') = \suml_{dd' \mid n} \mu(d) \cdot f(d') = \suml_{d'd \mid n} \mu(d') \cdot f(d) = \suml_{d \mid n} f(d) \cdot \suml_{d' \mid \frac{n}{d}} \mu(d') =
+		\\
+		f(n) + \suml_{{d: d \mid n} \over d < n} f(d) \cdot \underbrace{\suml_{d' \mid \frac{n}{d}} \mu(d')}_{0} = f(n) 
+	\end{multline*}
+	Последний переход следует из доказанной выше леммы.
+\end{proof}
+
+\subsection{Циклические слова}
+
+\begin{definition}
+	Пусть задан алфавит $X = \{b_1, \ldots, b_r\}$ и число $n \in \N$. Тогда \textit{линейным словом длины} $n$ называется последовательность букв из алфавита
+	\[
+		a_1, \ldots, a_n
+	\]
+\end{definition}
+
+Пусть $V$ - это множество всех линейных последовательностей длины $n \in \N$ над алфавитом $X,\ |X| = r$. Очевидно, что
+\[
+	|V| = r^n
+\]
+
+\begin{definition}
+	\textit{Сдвиг} - это операция, которая переводит линейное слово $a_1, \ldots, a_n$ в слово $a_2, \ldots, a_n, a_1$.
+\end{definition}
+
+\begin{definition}
+	Объединим слова, получающиеся из данного при помощи сдвига, в один класс эквивалентности. Тогда этот класс называется \textit{циклическим словом}.
+\end{definition}
+
+\begin{definition}
+	\textit{Период линейной последовательности} - это минимальное число сдвигов $d$, которое переводит линейное слово само в себя.
+\end{definition}
+
+\begin{lemma}
+	Если $d$ - период линейного слова длины $n$, то $d \mid n$.
+\end{lemma}
+
+\begin{proof}
+	Предположим обратное, тогда $n$ можно представить в виде
+	\[
+		n = kd + b,\ 0 < b < d
+	\]
+	Тогда, раз $d$ - период, то после $kd$ сдвигов слово перейдёт в себя. То же самое верно и для $n = kd + b$ сдвигов. Но это значит, что слово переходит в себя и за $(kd + b) - kd = b < d$ сдвигов, противоречие.
+\end{proof}
+
+\begin{lemma}
+	Любая последовательность длины $n$ и периода $d$ имеет вид
+	\[
+		a_1, \ldots, a_d, a_1, \ldots, a_d, \ldots, a_1, \ldots, a_d
+	\]
+\end{lemma}
+
+\begin{proof}
+	Пусть мы сделали $kd < n$ сдвигов некоторого слова. Тогда, на его первых d позициях стоит слово
+	\[
+		a_{kd + 1}, \ldots, a_{kd + d}
+	\]
+	Раз полученное и текущее слова равны, то
+	\[
+		a_i = a_{kd + i},\ 1 \le i \le d
+	\]
+\end{proof}
+
+\begin{theorem}
+	Если $T_r(n)$ - это количество циклических слов длины $n$ над алфавитом $X,\ |X| = r$. Тогда
+	\[
+		T_r(n) = \suml_{d \mid n} \frac{1}{d} \left(\suml_{d' \mid d} \mu(d') r^{d / d'}\right)
+	\]
+\end{theorem}

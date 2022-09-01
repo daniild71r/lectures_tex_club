@@ -1,0 +1,25 @@
+\begin{task}{10}
+	Верно ли, что для любой $\pi$-системы $\F$ подмножеств множества $X$ порожденная ею сигма-алгебра $\sigma(\F)$ совпадает с пересечением $\CD$ 
+	всех $\lambda$-систем $\CG \subset \CP(X)$ таких, что $\F \subset \CG$
+\end{task}
+
+\begin{solution}
+	Докажем, что действительно, если $\F$ --- $\pi$-система, то 
+	$$
+	\sigma(\F) = \bigcap\left\{\CG \mid \CG  \text{ --- }\lambda\text{-система}, ~ \F \subset \CG  \right\} = \bigcap_{i \in I}\CG_i
+	$$
+	\begin{itemize}
+		\item $\F$ ---$\pi$-система и $\CG_i$ --- $\lambda$-система, такая что $\F \subset \CG_i$, тогда по теореме Дынкина $\sigma(\F) \subset \CG_i$ верно для любого $i$, значит выполнено включение:
+		$$
+		\sigma(\F) \subset \bigcap_{i \in I}\CG_i
+		$$
+		\item С другой стороны, так как $\sigma(\F)$ --- сигма-алгебра, то является $\lambda$-системой, при этом она включает $\F$, значит выполнено обратное включение: 
+		$$
+		\bigcap_{i \in I}\CG_i \subset \sigma(\F)
+		$$
+	\end{itemize}
+	Таким образом
+	$$
+	\sigma(\F) = \bigcap_{i \in I}\CG_i
+	$$
+\end{solution}

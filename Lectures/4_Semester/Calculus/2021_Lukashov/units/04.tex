@@ -1,0 +1,114 @@
+\begin{Def}
+	$f$ называется кусочно-непрерывной на $[a,b]$, если $\exists P:a=x_0<x_1<\ldots<x_n=b$, что $f$ непрерывна на $(x_{i-1},x_i)$, и имеет односторонние производные в $x_i, i=0,\ldots,n$.
+\end{Def}
+
+\begin{Def}
+	$f$ называется кусочно-гладкой, если $\exists P:a=x_0<x_1<\ldots<x_n=b$, что $f$ непрерывно дифференцируема на $(x_{i-1},x_i)$, и имеет односторонние производные в $x_i, i=0,\ldots,n$.
+\end{Def}
+
+\begin{corollary}
+	Если $f$ непрерывна и кусочно-гладкая на $[a,b]$, то она абсолютно непрерывна на $[a,b]$.
+\end{corollary}
+
+\begin{proof}
+	Хотим доказать, что $$\forall\varepsilon>0\ \exists\delta>0\ \left(\forall\{x_i, y_i\}_{i=1}^n: \bigsqcup\limits_{i=1}^n[x_i,y_i]\subset[a,b],\sum\limits_{i=1}^n|y_i-x_i|<\delta\right) \sum\limits_{i=1}^n|f(y_i)-f(x_i)|<\varepsilon.$$
+	Рассмотрим отрезок $[x_i,y_i]$ и оценим $$\left|f(y_i)-f(x_i)\right|\leqslant |f(y_i)-f(t_j)|+|f(t_j)-f(t_{j+1})|+\ldots+|f(t_k)-f(x_i)|, $$ 
+	где $t_j,\ldots, t_k$ --- точки разрыва производной функции $f$ на отрезке $[x_i,y_i]$. Затем к каждому из этих отрезков применяем формулу Лагранжа: $|f(y_i)-f(x_i)|\leqslant\sup\limits_{x\in[a,b]}|f'(x)|\cdot|y_i-x_i|$, где под $\sup\limits_{x\in[a,b]}|f'(x)|$ подразумевается супремум из супремумов на каждом промежутке, где $f'(x)$ непрерывна и левой или правой производной в точках разрыва производной.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/mTHIbvr8tnE?t=564}[О скорости сходимости тригонометрического ряда Фурье]\ \\
+	Если $f$ --- непрерывная, кусочно-гладкая, $2\pi$-периодическая функция, то ее тригонометрический ряд Фурье сходится к $f$ равномерно на $\R$, причем $|S_n(f,x)-f(x)|\leqslant C\frac{\ln n}{n}$, где $C$ не зависит от $n$.
+\end{linkthm}
+
+\begin{proof}
+	\begin{multline*}
+		S_n(f,x)-f(x)=\frac{1}{\pi}\int\limits_{0}^\pi\underbrace{\frac{f(x+t)+f(x-t)-2f(x)}{2\sin \frac{t}{2}}}_{g_x(t)}\sin \left(n+\frac{1}{2}\right)t\cdot dt =
+		 \\ =\frac{1}{\pi}\int\limits_0^\delta g_x(t)\sin\left(n+\frac{1}{2}\right)t\cdot dt+\int\limits_\delta^\pi g_x(t)\sin\left(n+\frac{1}{2}\right)t\cdot dt=I_1+I_2, \delta\in(0,\pi).
+	\end{multline*}
+Обозначим $M=\sup |f'(x)|$. Оценим $$|f(x+t)+f(x-t)-2f(x)|\leqslant |f(x+t)-f(x)|+|f(x-t)-f(x)|\leqslant 2Mt, $$ также $\frac{2}{\pi}\cdot\alpha<\sin \alpha<\alpha$, при $ 0<\alpha<\frac{\pi}{2}$. Получаем	$|g_x(t)|\leqslant\frac{2Mt}{2\sin\frac{t}{2}}\leqslant \pi M\Rightarrow |I_1|\leqslant M\delta$.
+
+Оценим второй интеграл. $\left|\frac{dg_x(t)}{dt}\right|\leqslant \frac{|f'(x+t)-f'(x-t)|}{\frac{2}{\pi}t}+\frac{|f(x+t)+f(x-t)-2f(x)|\cos\frac{t}{2}}{\frac{4}{\pi^2}t^2}\leqslant\frac{C_1}{t}$.
+
+$|I_2|\leqslant\left|\frac{1}{\pi} g_x(t)\frac{\cos(n+\frac{1}{2})t}{n+\frac{1}{2}}\right|_\delta^\pi+\left|\frac{1}{\pi}\int\limits_\delta^\pi\frac{\cos(n+\frac{1}{2})t}{n+\frac{1}{2}}\frac{dg_x(t)}{dt}dt\right|\leqslant \frac{2M}{n+\frac{1}{2}}+\frac{C_1}{\pi(n+\frac{1}{2})}\int\limits_\delta^\pi\frac{dt}{t}=\frac{2M}{n+\frac{1}{2}}+\frac{C_1(\ln\pi+\ln\frac{1}{\delta})}{\pi(n+\frac{1}{2})}$. Положим $\delta = \frac{1}{n}\Rightarrow |S_n(f,x)-f(x)|\leqslant\frac{C_2\ln n}{n}$, так как выбираем более грубую оценку из оценок интегралов $I_1$ и $I_2$.
+\end{proof}
+
+Сводка основных достижений.
+\begin{enumerate}
+	\item (А. Н. Колмогоров, 1926) $(\exists f\in L_{2\pi}^1): S_n(f,x)\not\to f(x)$ (расходится всюду).
+	\item (Л. Карлесон, 1966) $(\forall f\in L_{2\pi}^2): S_n(f,x)\to f(x)$ (почти всюду). \\(Хант, $\forall f\in L_{2\pi}^p, p>1$).
+	\item (С. Б. Стечкин, 1951) $(\forall E, \mu(E)=0)(\exists f\in L_{2\pi}^2): S_n(f,x)$ расходится $\forall x\in E$. 
+	\item (Н. К. Бари, 1952) $\forall f$ --- измеримая, почти всюду конечная $\Rightarrow\exists F\in C_{2\pi}, F'(x)=f(x)$ почти всюду, и продифференцированный ряд Фурье от $F$ сходится к $f$ почти всюду.
+\end{enumerate}
+
+\subsection{Действия с рядами Фурье.}
+\begin{linklm}{https://youtu.be/mTHIbvr8tnE?t=2265}[Формула интегрирования по частям для интеграла Лебега]\ \\
+	Если $F, G$ --- абсолютно непрерывны на $[a,b]$, то $$\int\limits_a^bF(x)G'(x)d\mu(x)=F(b)G(b)-F(a)G(a)-\int\limits_a^bG(x)F'(x)d\mu(x).$$
+\end{linklm}
+\begin{proof}
+	Докажем, что $FG$ --- абсолютно непрерывная функция. 
+	Абсолютно непрерывная на отрезке функция непрерывна, а значит ограничена: $ |F(x)|\leqslant M_1,\\|G(x)|\leqslant M_2\ \forall x\in[a,b]$. Абсолютная непрерывность для каждой функции означает
+	\begin{align*}
+		(\forall\varepsilon>0)(\exists \delta_1>0)(\forall\{x_i,y_i\}_{i=1}^n:\bigsqcup\limits_{i=1}^n[x_i,y_i]\subset [a,b], \sum\limits_{i=1}^n|y_i-x_i|<\delta_1)\sum\limits_{i=1}^n|F(x_i)-F(y_i)|<\varepsilon,\\
+		(\forall\varepsilon>0)(\exists \delta_2>0)(\forall\{x_i,y_i\}_{i=1}^n:\bigsqcup\limits_{i=1}^n[x_i,y_i]\subset [a,b], \sum\limits_{i=1}^n|y_i-x_i|<\delta_2)\sum\limits_{i=1}^n|G(x_i)-G(y_i)|<\varepsilon.
+	\end{align*} 
+Положим $\delta:=\min(\delta_1, \delta_2)\Rightarrow \forall\{x_i,y_i\}:\bigsqcup\limits_{i=1}^n[x_i,y_i]\subset[a,b],\sum\limits_{i=1}^n |y_i-x_i|<\delta$. Тогда запишем
+\begin{multline*}
+	\sum\limits_{i=1}^n|F(x_i)G(x_i)-F(y_i)G(y_i)|\leqslant \sum\limits_{i=1}^n |F(x_i)G(x_i)-F(x_i)G(y_i)|+\\+\sum\limits_{i=1}^n |F(x_i)G(y_i)-F(y_i)G(y_i)|<\varepsilon.
+\end{multline*} 
+То есть мы доказали, что произведение абсолютно непрерывных функций --- является абсолютно непрерывной, значит $FG=\int\limits_{x_0}^x h(t)d\mu(t)$, где $h(t)$ --- некоторая суммируемая функция. Следовательно $F(b)G(b)-F(a)G(a)=\int\limits_a^b h(t)d\mu(t)$, кроме того $h(t)=(F(t)G(t))'$ почти всюду. Раскрываем производную произведения и получаем ответ.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/mTHIbvr8tnE?t=2789}[О почленном дифференцировании рядов Фурье]\ \\
+	Если $F-2\pi$ --- периодическая абсолютно непрерывная на периоде функция, то тригонометрический ряд Фурье ее производной совпадает с продифференцированным почленно тригонометрическим рядом Фурье функции $F$.
+\end{linkthm}
+
+\begin{proof}
+	Абсолютно непрерывная функция дифференцируема почти всюду и ее производная $F'(x)=f(x)\in L^1$. Значит $f\sim\frac{a_0}{2}+\sum\limits(a_n\cos nx+b_n\sin nx)$. Посчитаем коэффициенты 
+	\begin{multline*}
+		a_n=\frac{1}{\pi}\int\limits_{-\pi}^\pi f(x)\cos nx d\mu(x)=\frac{1}{\pi}\int\limits_{-\pi}^\pi F'(x)\cos nxd\mu(x) =\\=\frac{1}{\pi}F(x)\cos nx|_{-\pi}^\pi+\frac{n}{\pi}\int\limits_{-\pi}^\pi F(x)\sin nxd\mu(x).
+	\end{multline*}
+По условию $F-2\pi$-периодическая функция, следовательно первое слагаемое равно нулю. Получаем $a_n = n\cdot B_n$, где $B_n$ --- коэффициент Фурье функции $F$, $a_0 = 0$. Аналогично получаем, что $b_n=-n\cdot A_n$. Итого $F(x)=\frac{A_0}{2}+\sum\limits_{n=1}^\infty (A_n\cos nx + B_n\sin nx)$ и почленно продифференцировав это ряд, получим желаемое.
+\end{proof}
+
+\begin{corollary}
+	Если $f,\ldots,f^{(k-1)}$ --- $2\pi$-периодические, и $f^{(k-1)}$ --- абсолютно непрерывная на периоде, то коэффициенты Фурье функции $f(x)$ удовлетворяют: ${a_n=o(\frac{1}{n^k}), b_n=o(\frac{1}{n^k}), n\to\infty}$.
+\end{corollary}
+
+\begin{proof}
+	Пусть $k=1$. Тогда $f$ --- абсолютно непрерывная. Значит у производной $f'$ есть тригонометрический ряд Фурье. Тогда по предыдущей теореме $a_n(f)=-\frac{b_n(f')}{n},\\ b_n(f)=\frac{a_n(f')}{n}.$ Функция $f'$ --- суммируемая, значит ее коэффициенты Фурье по теореме Римана об осциляции стремятся к нулю. То есть $a_n$ --- это бесконечно малое деленое на $n\Rightarrow a_n=b_n=o(\frac{1}{n})$. Дальше по индукции, так как $f^{(k-1)}$ --- абсолютно непрерывная, то и предыдущие производные тоже абсолютно непрерывные, потому что, раз производная функции абсолютно непрерывна, то она ограничена, а ограниченная производная означает абсолютную непрерывность самой функции.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/mTHIbvr8tnE?t=3617}[Оценки коэффициентов Фурье функции ограниченной вариации]\ \\
+	Если $f-2\pi$-периодическая функция ограниченной вариации на периоде, то ее коэффициенты Фурье удовлетворяют: $a_n=O\left(\frac{1}{n}\right), b_n=O\left(\frac{1}{n}\right), n\to\infty$.
+\end{linkthm}
+
+\begin{proof}
+	\begin{multline*}
+		a_n=\frac{1}{\pi}\int\limits_{-\pi}^\pi f(x)\cos nx dx =[\text{если не понятен переход смотри \hyperref[theorem_12.1.1]{Теорему Римана}}]=\\= -\frac{1}{2\pi}\int\limits_{-\pi}^\pi \left(f\left(x+\frac{\pi}{n}\right)-f\left(x\right)\right)\cos nxdx=\\=-\frac{1}{2\pi}\int\limits_{-\pi}^\pi \left(f\left(x+\frac{k\pi}{n}\right)-f\left(x+\frac{(k-1)\pi}{n}\right)\right)\cos nxdx, k=1,\ldots, n.
+	\end{multline*}
+Сложим эти $n$ равенств. Получим $|na_n|\leqslant\frac{1}{2\pi}\int\limits_{-\pi}^\pi\sum\limits_{k=1}^n \left|f\left(x+\frac{k\pi}{n}\right)-f\left(x+\frac{(k-1)\pi}{n}\right)\right|dx\leqslant V(f)$, где $V(f)$ --- полная вариация функции.
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/mTHIbvr8tnE?t=4036}[Лебега об интегрировании рядов Фурье]\ \\
+	Если $f\in L_{2\pi}^1, f(x)\sim\frac{a_0}{2}+\sum\limits_{n=1}^\infty(a_n\cos nx+b_n\sin nx)$ --- ее тригонометрический ряд Фурье, $F(x)=\int\limits_{x_0}^x f(t)d\mu(t)$ --- неопределенный интеграл Лебега для $f$, то $F(x)=\frac{a_0}{2}x+C+\sum\limits_{n=1}^\infty\frac{-b_n\cos nx +a_n\sin nx}{n}$, где ряд равномерно сходится на $\R$.
+\end{linkthm}
+
+\begin{proof}
+	По свойству интеграла Лебега $F(x)$ --- абсолютно непрерывна. Следовательно $F(x)-\frac{a_0}{2}x$ также абсолютно непрерывна на периоде. Кроме того она $2\pi$-периодическая, так как $\left(F(x+2\pi)-\frac{a_0}{2}(x+2\pi)\right)-\left(F(x)-\frac{a_0}{2}x\right)=\int\limits_x^{x+2\pi}f(t)d\mu(t)-a_0\pi=0$, так как $a_0=\frac{1}{\pi}\int\limits_{-\pi}^\pi f(t)d\mu(t)$ и интегралы от $2\pi$-периодической функции по любому периоду равны. Тогда по предыдущей теореме ряд Фурье $\left(F(x)-\frac{a_0}{2}x\right)'$ получается почленным дифференцированием ряда Фурье для $F(x)-\frac{a_0}{2}x$. С другой стороны $F'(x)-\frac{a_0}{2}=f(x)-\frac{a_0}{2}$. Равномерная непрерывность следует из признака Жордана.
+\end{proof}
+
+\begin{corollary}[1]
+	Если $\frac{a_0}{2}+\sum\limits_{n=1}^\infty(a_n\cos nx+b_n\sin nx)$ --- тригонометрический ряд Фурье, то ряд $\sum\limits_{n=1}^\infty \frac{b_n}{n}$ сходится.
+\end{corollary}
+
+\begin{corollary}[2]
+	Если $f\in L_{2\pi}^1, f\sim \frac{a_0}{2}+\sum\limits_{n=1}^\infty (a_n\cos nx+b_b\sin nx)$, то \\$\int\limits_a^b f(x)d\mu(x)=\frac{a_0}{2}(b-a)+\sum\limits_{n=1}^\infty\int\limits_a^b (a_n\cos nx+b_n\sin nx)dx$.
+\end{corollary}
+
+
+
+
+
+
+
+

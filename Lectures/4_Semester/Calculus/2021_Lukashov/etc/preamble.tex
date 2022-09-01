@@ -1,0 +1,138 @@
+\geometry{left=20mm,right=20mm,top=25mm,bottom=20mm} % задание полей текста
+
+%% Стиль колонтитулов
+\fancyhead[RO,LE]{\hyperlink{intro}{Содержание}} % Right odd,  Left even
+\fancyhead[RE,LO]{\@lecture}        % Right even, Left odd
+
+\fancyfoot[RO,LE]{\thepage}         % Right odd,  Left even
+\fancyfoot[RE,LO]{\CourseName}      % Right even, Left odd
+\fancyfoot[C]{}
+% Un~comment these to erase foot (and comment footrulewidth renewcommand)
+%\fancyfoot{}
+%\fancyhead[C]{-~\thepage~-}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Новая команда \lecture{№ лекции}{название}
+% После этой команды весь текст до следующей такой же команды будет
+% принадлежать конкретной лекции, имя которой будет в колонтитуле каждой страницы
+\usepackage{xifthen}
+\def\@lecture{}%
+\newcommand{\lecture}[2]{
+    \ifthenelse{\isempty{#2}}{%
+        \def\@lecture{Лекция #1}%
+    }{%
+        \def\@lecture{Лекция #1: #2}%
+    }%
+    \section{\@lecture}
+}
+
+\def\@lecture{}%
+\newcommand{\question}[2]{
+    \ifthenelse{\isempty{#2}}{%
+        \def\@lecture{Билет #1}%
+    }{%
+        \def\@lecture{Билет #1: #2}%
+    }%
+    \section{\@lecture}
+}
+% ------------ Text settings ------------
+%%% Гиппер ссылки
+\renewcommand{\linkcolor}{blue}
+\renewcommand{\citecolor}{green}
+\renewcommand{\filecolor}{magenta}
+\renewcommand{\urlcolor}{NavyBlue}
+
+\usepackage{multicol}	   % Для текста в нескольких колонках
+
+% -----------  Images -----------
+\graphicspath{{images/}{img/}{figures/}{fig/}}  % Путь к папкам с картинками
+\newcommand{\figL}[3]{%      Для быстрой вставки картинок
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=#2\textwidth]{#1}
+    \label{fig:#3}
+\end{figure}%
+}
+\newcommand{\fig}[2]{%    
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=#2\textwidth]{#1}
+\end{figure}%
+}
+
+% ----------- Math and theorems -----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[subsection]
+
+\newtheorem{prop}{Утверждение}[subsection]
+\newtheorem{lemma}{Лемма}[subsection]
+\newtheorem{sug}{Предположение}[section]
+
+\theoremstyle{definition} % "Определение"
+\newtheorem*{Def}{Определение}
+\newtheorem*{corollary}{Следствие}
+\newtheorem{problem}{Задача}[section]
+
+\theoremstyle{remark} % "Примечание"
+\newtheorem*{nonum}{Решение}
+\newtheorem*{defenition}{Def}
+\newtheorem*{example}{Пример}
+\newtheorem*{note}{Замечание}
+\usepackage{amsmath} 
+% ----------- Math short-cats
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Cx}{\ensuremath{\mathbb{C}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+
+% You can write your commands below
+\usepackage{tikz}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+\usetikzlibrary{arrows}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\usepackage{mathrsfs}
+
+\newcommand{\myhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+\newtheoremstyle{linked}
+{}%      Space above, empty = `usual value'
+{}%      Space below
+{\itshape}% Body font
+{}%         Indent amount (empty = no indent, \parindent = para indent)
+{\bfseries}% Thm head font
+{.}%        Punctuation after thm head
+{ }%     Space after thm head: " " = normal interword space;
+%     \newline = linebreak
+{\myhref{\thislink}{\thmname{#1} \thmnumber{#2}}\thmnote{ (#3)}}% Thm head spec
+
+\newtheorem{thm}{Теорема}[subsection] % normal theorems
+\newtheorem{lm}{Лемма}[subsection]
+\newtheorem{pr}{Утверждение}[subsection]
+\theoremstyle{linked}
+\newtheorem{innlinkthm}[thm]{Теорема} % theorems with link
+\newenvironment{linkthm}[1]
+{\def\thislink{#1}\innlinkthm}
+{\endinnlinkthm}
+\newtheorem{innlinklm}[lm]{Лемма} % lemma with link
+\newenvironment{linklm}[1]
+{\def\thislink{#1}\innlinklm}
+{\endinnlinklm}
+\newtheorem{innlinkprop}[pr]{Утверждение} % prop with link
+\newenvironment{linkprop}[1]
+{\def\thislink{#1}\innlinkprop}
+{\endinnlinkprop}
+\newtheorem*{innlinkex}{Примеры} % example with link
+\newenvironment{linkex}[1]
+{\def\thislink{#1}\innlinkex}
+{\endinnlinkex}
+
+
+\usepackage{pgfplots}
+\usepackage{wrap fig}
+\usepackage{lipsum}
+
+
+\newsavebox{\mybox}% exam uses box0, possibly others
+\newcommand{\nopar}{\strut{\parfillskip=0pt \parskip=0pt \par}}

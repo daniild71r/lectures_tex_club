@@ -1,0 +1,381 @@
+\begin{definition}
+	\textit{Метрическим} пространством называется множество $X$ такое, что для любых $x, y \in X$ определено действительное число $\rho(x, y)$ (метрическое расстояние) и верны следующие утверждения:
+	\begin{enumerate}
+		\item $\forall x, y \in X\ \ \rho(x, y) \ge 0$, причём $\rho(x, y) = 0 \lra x = y$
+		
+		\item $\forall x, y \in X\ \ \rho(x, y) = \rho(y, x)$
+		
+		\item $\forall x, y, z \in X\ \ \rho(x, y) \le \rho(x, z) + \rho(z, y)$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Каждое линейное нормированное множество (над $\R(\Cm)$) является метрическим пространством с метрикой, индуцированной нормой по формуле:
+	\[
+		\rho(x, y) = ||x - y||
+	\]
+\end{theorem}
+
+\begin{proof}
+	Доказательство сводится к проверке свойств:
+	\begin{enumerate}
+		\item Очевидно
+		
+		\item
+		\[
+			\rho(y, x) = ||y - x|| = ||(-1) \cdot (x - y)|| = |-1| \cdot ||x - y|| = ||x - y|| = \rho(x, y)
+		\]
+		
+		\item 
+		\[
+			\rho(x, y) = ||x - y|| = ||(x - z) + (z - y)|| \le ||x - z|| + ||z - y|| = \rho(x, z) + \rho(z, y)
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	$\R^n$ и $\Cm^n$ - метрические пространства с метрикой
+	\[
+	\rho(\vec{x}, \vec{y}) = ||\vec{x} - \vec{y}||
+	\]
+\end{corollary}
+
+\begin{proposition}
+	Любое множество является метрическим пространством
+\end{proposition}
+
+\begin{proof}
+	Пусть $X$ - произвольное множество. Тогда можно определить метрику как
+	\[
+		\rho(x, y) = \System{
+			&{1,\ x \neq y}
+			\\
+			&{0,\ x = y}
+		}
+	\]
+\end{proof}
+
+\begin{note}
+	Дальнейшие определения даны для метрического пространства $X$. В качестве примера удобно брать $X = \R^2$.
+\end{note}
+
+\begin{definition}
+	\textit{Открытым шаром} с центром в точке $x_0 \in X$ радиусом $\eps > 0$ (или же $\eps$-окрестностью точки $x_0$) называется множество
+	\[
+		U_\eps(x_0) = \{x \in X \such \rho(x, x_0) < \eps\}
+	\]
+\end{definition}
+
+\begin{definition}
+	Точка $x_0$ называется \textit{внутренней точкой} множества $A \subset X$, если она принадлежит $A$ вместе с некоторой своей $\eps$-окрестностью:
+	\[
+		U_\eps(x_0) \subset A
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Внутренностью} множества $A$ называется множество всех внутренних точек множества $A$. Обозначается как
+	\[
+		\Int A,\ \mc{A}
+	\]
+	От слова interior.
+\end{definition}
+
+\begin{definition}
+	Множество $A \subset X$ называется \textit{открытым}, если все его точки - внутренние, то есть $A \subset \Int A$. Естественно, $\emptyset$ - открытое множество.
+\end{definition}
+
+\begin{definition}
+	Точка $x_0$ называется \textit{точкой прикосновения} множества $A \subset X$, если
+	\[
+		\forall \eps > 0\ U_\eps(x_0) \cap A \neq \emptyset
+	\]
+\end{definition}
+
+\begin{definition}
+	Множество всех точек прикосновения множества $A \subset X$ называется его \textit{замыканием} и обозначается как
+	\[
+		\cl A,\ \bar{A}
+	\]
+\end{definition}
+
+\begin{definition}
+	Множество $A \subset X$ называется \textit{замкнутым}, если оно содержит все свои точки прикосновения, то есть $A \supset \cl A$. Естественно, $\emptyset$ - замкнутое множество
+\end{definition}
+
+\begin{definition}
+	\textit{Замкнутым шаром} с центром в точке $x_0 \in X$ и радиусом $\eps > 0$ называется
+	\[
+		\bar{B}_\eps(x_0) = \{x \in X \such \rho(x_0, x) \le \eps\}
+	\] 
+\end{definition}
+
+\begin{lemma}
+	Для любого $A \subset X$ верно, что
+	\[
+		\Int A \subset A \subset \cl A
+	\]
+\end{lemma}
+
+\begin{proof}
+	Первое включение очевидно, потому что любая внутренняя точка принадлежит $A$.
+	
+	Второе включение следует из того, что если $x_0 \in A$, то
+	\[
+		\forall \eps > 0\ \ U_\eps(x_0) \cap A \supset \{x_0\}
+	\]
+	Значит, любая точка $A$ также лежит и в замыкании $A$.
+\end{proof}
+
+\begin{corollary}
+	$A$ - открытое множество $\lra \Int A = A$
+	
+	$A$ - замкнутое множество $\lra \cl A = A$ 
+\end{corollary}
+
+\begin{lemma} \label{includeLemma}
+	$\forall A_1 \subset A_2 \subset X$ верно, что
+	\begin{align*}
+		&\Int A_1 \subset \Int A_2
+		\\
+		&\cl A_1 \subset \cl A_2
+	\end{align*}
+\end{lemma}
+
+\begin{proof}~
+	\begin{itemize}
+		\item Вначале разберёмся с внутренностями множеств. Пусть $x_0 \in \Int A_1$. Тогда
+		\[
+			\exists \eps > 0 \such U_\eps(x_0) \subset A_1 \subset A_2
+		\]
+		Значит, $x_0 \in \Int A_2$ тоже.
+		
+		\item Теперь посмотрим на замыкание. Пусть $x_0 \in \cl A_1$. Тогда
+		\[
+			\forall \eps > 0\ \ U_\eps(x_0) \cap A_1 \neq \emptyset
+		\]
+		Коль скоро $A_1 \subset A_2$, то отсюда
+		\[
+			\forall \eps > 0\ \ U_\eps(x_0) \cap A_2 \neq \emptyset
+		\]
+		Следовательно, $x_0 \in \cl A_2$.
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}
+	Открытый шар является открытым множеством.
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим $\forall x_1 \in U_\eps(x_0)$. Тогда
+	\[
+		\rho(x_0, x_1) < \eps
+	\]
+	Рассмотрим шар с центром в точке $x_1$ и радиусом $\eps - \rho(x_0, x_1)$. Выберем $\forall x_2 \in U_{\eps - \rho(x_0, x_1)}(x_1)$. Тогда
+	\[
+		\rho(x_1, x_2) < \eps - \rho(x_0, x_1)
+	\]
+	Отсюда следует
+	\[
+		\rho(x_0, x_2) \le \rho(x_0, x_1) + \rho(x_1, x_2) < \eps
+	\]
+	То есть $U_{\eps - \rho(x_0, x_1)}(x_1) \subset U_\eps(x_0)$. Значит $x_1$ - внутренняя точка. А раз $x_1$ было ещё и произвольной точкой открытого шара, то открытый шар является открытым множеством.
+\end{proof}
+
+\begin{lemma}
+	Замкнутый шар является замкнутым множеством.
+\end{lemma}
+
+\begin{proof}
+	Пусть $x$ - точка прикосновения для $\bar{B}_\eps(x_0)$. Это означает, что
+	\[
+		\forall \eta > 0\ U_\eta(x) \cap \bar{B}_\eps(x_0) \neq \emptyset \Ra \exists x_1 \in U_\eta(x) \cap \bar{B}_\eps(x_0)
+	\]
+	Оценим расстояние от $x_0$ до $x$:
+	\[
+		\rho(x_0, x) \le \rho(x_0, x_1) + \rho(x_1, x) < \eps + \eta
+	\]
+	То есть получили утверждение
+	\[
+		\forall \eta > 0\ \rho(x_0, x) < \eps + \eta
+	\]
+	Значит
+	\[
+		\rho(x_0, x) \le \eps
+	\]
+	Следовательно, $x$ - точка замкнутого шара.
+\end{proof}
+
+\begin{theorem}~
+	\begin{enumerate}
+		\item Внутренность любого множества $A \subset X$ открыта.
+		
+		\item Замыкание любого множества $A \subset X$ замкнуто.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Положим $G := \Int A$. Выберем $\forall x_0 \in G$. Раз точка лежит в данном множестве, то
+		\[
+			\exists \eps > 0 \such U_\eps(x_0) \subset A
+		\]
+		По лемме \ref{includeLemma} из этого следует
+		\[
+			\Int U_\eps(x_0) \subset \Int A
+		\]
+		Так как открытый шар является открытым множеством, получаем вложение
+		\[
+			U_\eps(x_0) \subset G
+		\]
+		То есть $x_0$ - внутренняя точка $G$. Значит $G$ - открытое множество
+	
+		\item Положим $K := \cl A$. Пусть $x_0$ - точка прикосновения множества $K$. Это означает
+		\[
+			\forall \eps > 0\ U_{\eps / 2}(x_0) \cap K \neq 0
+		\]
+		Обозначим за $x_1 \in U_{\eps / 2}(x_0) \cap K$. Тогда сразу $x_1$ - точка прикосновения множества $A$. То есть
+		\[
+			U_{\eps / 2}(x_1) \cap A \neq \emptyset
+		\]
+		Теперь выберем $x_2 \in U_{\eps / 2}(x_1) \cap A$ и оценим расстояние между ней и $x_0$:
+		\[
+			\rho(x_0, x_2) \le \rho(x_0, x_1) + \rho(x_1, x_2) < \eps
+		\]
+		Следовательно
+		\[
+			\forall \eps > 0\ U_{\eps}(x_0) \cap A \supset \{x_2\}
+		\]
+		Значит $x_0$ - точка прикосновения множества $A$ $\lra x_0 \in K$.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Порой геометрическая интерпретация данной модели обманывает, ибо здесь есть возможность шара с большим радиусом оказаться вложенным в шар с меньшим радиусом. Рассмотрим метрическое пространство $X = (-1; 1)$:
+	\begin{align*}
+		&{U_{1}(0) = (-1; 1)}
+		\\
+		&{U_{5/4}(1/2) = \left(-\frac{3}{4}; 1\right) \Ra U_{5/4}(1/2) \subsetneq U_{1}(0)}
+	\end{align*}
+\end{example}
+
+\begin{lemma}
+	Для любого $A \subset X$ верны равенства
+	\begin{itemize}
+		\item $X \bs \Int A = \cl(X \bs A)$
+		
+		\item $X \bs \cl A = \Int(X \bs A)$
+	\end{itemize}
+\end{lemma}
+
+\begin{proof}~
+	\begin{itemize}
+		\item
+		\[
+			x \in X \bs \Int A \lra \left(\forall \eps > 0\ U_\eps(x) \cap (X \bs A) \neq \emptyset\right) \lra x \in \cl (X \bs A)
+		\]
+		
+		\item
+		\[
+			x \in X \bs \cl A \lra \left(\exists \eps > 0 \such U_\eps(x) \cap A = \emptyset\right) \lra \left(\exists \eps > 0 \such U_\eps(x) \subset X \bs A\right) \lra x \in \Int (X \bs A)
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	$A \subset X$ - открытое множество тогда и только тогда, когда $X \bs A$ - замкнутое.
+\end{corollary}
+
+\begin{definition}
+	Внутренняя точка дополнения множества $A \subset X$ называется \textit{внешней точкой}.
+\end{definition}
+
+\begin{definition}
+	\textit{Границей} множества $A \subset X$ называется множество
+	\[
+		\vdelta A = \cl A \bs \Int A
+	\]
+	Все точки $\vdelta A$ называются \textit{граничными} точками множества $A$.
+\end{definition}
+
+\begin{lemma}
+	$x_0 \in \vdelta A \lra \left(\forall \eps > 0\ \ U_\eps(x_0) \cap A \neq \emptyset,\ U_\eps(x_0) \cap (X \bs A) \neq \emptyset\right)$
+\end{lemma}
+
+\begin{proof}
+	$x_0 \in \vdelta A \lra x_0 \in \cl A \bs \Int A$. Значит, $x_0 \in \cl A$:
+	\[
+		\forall \eps > 0\ U_\eps(x_0) \cap A \neq \emptyset
+	\]
+	при этом $x_0 \notin \Int A$:
+	\[
+		\forall \eps > 0\ U_\eps(x_0) \cap (X \bs A) \neq \emptyset
+	\]
+\end{proof}
+
+\begin{theorem} (Основное свойство совокупности открытых множеств) \label{mainProp}
+	Пусть $X$ - метрическое пространство. Тогда совокупность $\Tau$ открытых подмножеств $X$ обладает следующими свойствами:
+	\begin{enumerate}
+		\item $\emptyset \in \Tau$, $X \in \Tau$
+		
+		\item $\forall G_1, G_2 \in \Tau \Ra G_1 \cap G_2 \in \Tau$
+		
+		\item $\forall \{G_\alpha\}_{\alpha \in A} \subset \Tau \Ra \bigcup\limits_{\alpha \in A} G_\alpha \in \Tau \text{, где } A \text{ является некоторым множеством индексов}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{note}
+	Под \textit{совокупностью} множеств подразумевается множество всех множеств, обладающих указанным свойством (в данном случае - множество всех открытых множеств).
+\end{note}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item $\emptyset$ - замкнутое и открытое множество. Следовательно $X \bs \emptyset = X$ - открытое множество.
+		
+		\item Рассмотрим $\forall x \in G_1 \cap G_2$. Из выбора следует
+		\begin{align*}
+			&\exists \eps_1 \such U_{\eps_1}(x) \subset G_1
+			\\
+			&\exists \eps_2 \such U_{\eps_2}(x) \subset G_2 
+		\end{align*}
+		Следовательно, $U_{\min(\eps_1, \eps_2)}(x) \subset G_1 \cap G_2$.
+		
+		\item $x \in \bigcup\limits_{\alpha \in A} G_\alpha \Ra \left(\exists \alpha_0 \in A \such x \in G_{\alpha_0}\right)$. Значит
+		\[
+			\exists \eps > 0 \such U_\eps(x) \subset G_{\alpha_0} \subset \bigcup\limits_{\alpha \in A} G_{\alpha}
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Множество $X$ называется \textit{топологическим пространством}, если в нём выделена система подмножеств $\Tau$, называемых \textit{открытыми}, которая удовлетворяет свойствам из теоремы \ref{mainProp}.
+	
+	Множество $\Tau$ называется \textit{топологией} множества $X$.
+\end{definition}
+
+\begin{definition}
+	Пусть $X$ - топологическое пространство с топологией $\Tau$. Тогда $x_0$ называется \textit{пределом последовательности} $\{x_n\}_{n = 1}^\infty \subset X$, если
+	\[
+		(\forall G \in \Tau, x_0 \in G)\ \exists N \in \N \such \forall n > N\ x_n \in G
+	\]
+	Предел обозначается как
+	\[
+		\liml_{n \to \infty} x_n = x_0
+	\]
+\end{definition}
+
+\begin{example}
+	Если не накладывать на топологию никаких дополнительных ограничений, то предел не обязан быть даже единственным. Рассмотрим $X = \{a, b\}$ с топологией $\Tau = \{\emptyset, \{a\}, \{a, b\}\}$. Рассмотрим последовательность
+	\[
+		x_n = a,\ n \in \N
+	\]
+	Тогда понятно, что $\liml_{n \to \infty} x_n = a,\ \liml_{n \to \infty} x_n = b$.
+\end{example}
+
+\begin{anote}
+	Чтобы обеспечить единственность предела, достаточно добавить свойство \textit{хаусдорфовости}:
+	\[
+		\forall x, y \in X\ \exists G_x, G_y \in \Tau \such (x \in G_x) \wedge (y \in G_y) \wedge (G_x \cap G_y = \emptyset)
+	\]
+	Такое топологическое пространство называется \textit{хаусдорфовым}.
+\end{anote}

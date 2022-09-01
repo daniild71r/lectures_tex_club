@@ -1,0 +1,159 @@
+\section{Параметрическая модель}
+\begin{definition}
+Вероятностно-статистическая модель называется параметрической, если семейство распределений $\displaystyle \mathcal{P}$ параметризовано, т.е. $\displaystyle \mathcal{P} =\{P_{\theta } :\theta \in \Theta \}$.
+\end{definition}
+\begin{example}
+$\displaystyle \mathcal{P} =\{exp( \theta ),\ \theta  >0\}$ -- семейство экспоненциальных распределений, параметризованных $\displaystyle \theta $.
+\end{example}
+\section{Статистики и оценки}
+
+Пусть $\displaystyle (\mathcal{X},\ \mathcal{B}_{\mathcal{X}},\ \mathcal{P})$ -- вероятностно-статистическая модель, $\displaystyle X$ -- наблюдение, $\displaystyle ( E,\ \mathcal{E})$ -- измеримое пространство.
+\begin{definition}
+Измеримое отображение $\displaystyle S:\mathcal{X}\rightarrow E$ называется статистикой от наблюдения $\displaystyle X$.
+\end{definition}
+\begin{definition}
+Если $\displaystyle E=\Theta $ ($\displaystyle E=\tau ( \theta )$), то $\displaystyle S$ -- оценка параметра $\displaystyle \theta $ ($\displaystyle \tau ( \theta )$).
+\end{definition}
+\begin{example}
+Пусть $\displaystyle X=( X_{1} ,\dotsc ,X_{n})$ -- выборка из распределения в $\displaystyle \mathbb{R}^{m}$.
+\begin{enumerate}
+    \item Если $\displaystyle g( x)$ -- борелевская функция, то $\displaystyle \overline{g( x)} =\frac{1}{n}\sum _{i=1}^{n} g( X_{i})$ называется выборочной характеристикой функции $\displaystyle g$.
+    
+    \item $\displaystyle \overline{X} =\frac{1}{n}\sum _{i=1}^{n} X_{i}$ -- выборочное среднее.
+    
+    \item Для $\displaystyle m=1\ \overline{X^{k}} =\frac{1}{n}\sum _{i=1}^{n} X_{i}^{k}$ -- выборочный момент $\displaystyle k$-го порядка.
+\end{enumerate}
+\end{example}
+Приведем примеры функций \ от выборочных характеристик 
+\begin{gather*}
+    S( X) =\ h\left(\overline{g_{1}( X)} ,\dotsc,\ \overline{g_{k}( X)}\right),
+\end{gather*}
+где $h$ -- борелевская функция.
+\begin{example}
+Все для $\displaystyle m=1$
+\begin{enumerate}
+    \item $\displaystyle S^{2} =\overline{X^{2}} -(\overline{X})^{2}$ -- выборочная дисперсия
+    
+    \item $\displaystyle M_{k} =\frac{1}{n}\sum _{i=1}^n( X_{i} -\overline{X})^{k}$ -- выборочный центральный момент $\displaystyle k$-го порядка.
+\end{enumerate}
+\end{example}
+\begin{exercise}
+Показать, что $\displaystyle S^{2} =M_{2}$.
+\end{exercise}
+\begin{exercise}
+Показать, что $\displaystyle M_{k}$ -- функция от выборочных характеристик.
+\end{exercise}
+\begin{exercise}
+Что будет аналогами в случае $\displaystyle m >1$?
+\end{exercise}
+\begin{definition}
+Для $\displaystyle m=1$ определим
+\begin{gather*}
+    X_{( 1)} =\min( X_{1} ,\dotsc ,\ X_{n}),\ X_{( 2)} =\min(\{X_{1},\dotsc,\ X_{n}\} \backslash \{X_{( 1)}\}),\ \dotsc,\ X_{( n)} =\max( X_{1}, \dotsc,\ X_{n}).
+\end{gather*}
+Тогда $\displaystyle X_{( k)}$ называется $\displaystyle k$-ой порядковой статистикой выборки $\displaystyle X$, а $\displaystyle ( X_{( 1)} ,\dotsc X_{( n)})$ называется вариационным рядом.
+\end{definition}
+\section{Свойства оценок}
+
+Пусть $\displaystyle X=( X_{1} ,\dotsc ,X_{n})$ -- выборка из неизвестного распределения $\displaystyle P\in \{P_{\theta },\ \theta \in \Theta \}$, где $\displaystyle \Theta \subset \mathbb{R}^{k}$.
+\begin{definition}
+Оценка $\displaystyle \theta ^{*}( X)$ называется несмещенной оценкой параметра $\displaystyle \theta $, если $\displaystyle \forall \theta \in \Theta \hookrightarrow E_{\theta } \theta ^{*}( X) =\theta $, где $\displaystyle E_{\theta }$ -- математическое ожидание в случае, когда элементы выборки имеют распределение $\displaystyle P_{\theta }$.
+\end{definition}
+\begin{example}
+$\displaystyle \{N( \theta ,1),\ \theta \in \mathbb{R}\}$, тогда $\displaystyle \overline{X}$ и $\displaystyle X_{1}$ являются несмещенными оценками параметра $\displaystyle \theta $.
+\end{example}
+Пусть $\displaystyle X_{1}, \dotsc,\ X_{n},\dotsc $ -- выборка неограниченного размера из распределения $\displaystyle P\in \{P_{\theta },\ \theta \in \Theta \},\ \Theta \subset \mathbb{R}^{k}$.
+\begin{definition}
+Оценка $\displaystyle \theta _{n}^{*}( X_{1} ,\dotsc ,X_{n})$ (а точнее, последовательность оценок) называется состоятельной, если $\displaystyle \forall \theta \in \Theta \hookrightarrow \theta _{n}^{*}\xrightarrow{P_{\theta }} \theta $, т.е.
+
+
+\begin{equation*}
+\forall \varepsilon  >0\ \lim _{n\rightarrow \infty } P_{\theta }\left(\left\Vert \theta _{n}^{*}( X) -\theta \right\Vert _{2}  >\varepsilon \right) =0.
+\end{equation*}
+\end{definition}
+\begin{definition}
+$\displaystyle \theta _{n}^{*}( X_{1} ,\dotsc ,X_{n})$ называется сильно состоятельной оценкой параметра $\displaystyle \theta $, если $\displaystyle \theta _{n}^{*}\xrightarrow{P_{\theta } -a.s.} \theta $, т.е.
+
+
+\begin{equation*}
+P_{\theta }\left( \theta _{n}^{*}( X)\rightarrow \theta \right) =1\ \forall \theta \in \Theta .
+\end{equation*}
+\end{definition}
+\begin{example}
+$\displaystyle \{N( \theta,\ 1),\ \theta \in \mathbb{R}\}$, $\displaystyle \overline{X}$ -- сильно состоятельная оценка параметра $\displaystyle \theta $ по УЗБЧ.
+\end{example}
+Пусть $\displaystyle X_{i}$ -- случайные величины образуют выборку.
+\begin{definition}
+Оценка $\displaystyle \theta _{n}^{*}( X_{1} ,\dotsc ,X_{n})$ называется асимптотически нормальной оценкой параметра $\displaystyle \theta $, если
+
+\begin{equation*}
+\sqrt{n}\left( \theta _{n}^{*}( X) -\theta \right)\xrightarrow{d_{\theta }} N\left( 0,\ \sigma ^{2}( \theta )\right),
+\end{equation*}
+
+где $\displaystyle \sigma ^{2}( \theta )$ называется асимптотической дисперсией.
+\end{definition}
+\begin{note}
+В многомерном случае вместо асимптотической дисперсии появляется асимптотическая матрица ковариаций $\displaystyle \Sigma ( \theta )$.
+\end{note}
+\begin{example}
+$\displaystyle \{N( \theta,\ 1),\ \theta \in \mathbb{R}\},\ \overline{X}$ является асимптотически нормальной оценкой параметра $\displaystyle \theta $ по ЦПТ.
+\end{example}
+\begin{note}
+Свойства состоятельности, сильной состоятельности и асимптотической нормальности называются асимптотическими свойствами и имеют смысл только при растущем объеме выборки.
+\end{note}
+\begin{note}
+Также, можно оценивать $\displaystyle \tau ( \theta )$. Все свойства оценок определяются аналогично.
+\end{note}
+\begin{theorem} \
+\begin{enumerate}
+    \item $\displaystyle \theta _{n}^{*}$ -- сильно состоятельная оценка параметра $\displaystyle \tau ( \theta )$$\displaystyle\ \Rightarrow\ $$\displaystyle \theta _{n}^{*}$ -- состоятельная оценка параметра $\displaystyle \tau ( \theta )$.
+    
+    \item \ $\displaystyle \theta _{n}^{*}$ -- асимптотически нормальная оценка параметра $\displaystyle \tau ( \theta )$$\displaystyle\ \Rightarrow\ $$\displaystyle \theta _{n}^{*}$ -- состоятельная оценка параметра $\displaystyle \tau ( \theta )$.
+    
+    \item Никакие другие импликации неверны.
+\end{enumerate}
+
+\end{theorem}
+\begin{proof} \
+\begin{enumerate}
+    \item $\displaystyle \theta _{n}^{*}\xrightarrow{P_{\theta } -a.s.} \theta \Rightarrow \theta _{n}^{*}\xrightarrow{P_{\theta }} \theta $.
+    
+    \item Так как $\displaystyle \frac{1}{\sqrt{n}}\xrightarrow{P_{\theta }} 0$, то по лемме Слуцкого
+
+\begin{equation*}
+\frac{1}{\sqrt{n}}\sqrt{n}\left( \theta _{n}^{*}( X) -\tau ( \theta )\right)\xrightarrow{d_{\theta }} \xi \cdotp 0,\ \forall \theta \in \Theta ,
+\end{equation*}
+
+где $\displaystyle \xi \sim N\left( 0,\ \sigma ^{2}( \theta )\right)$. Тогда $\displaystyle \theta _{n}^{*}( X) -\tau ( \theta )\xrightarrow{d_{\theta }} 0\Rightarrow \theta _{n}^{*}( X) -\tau ( \theta )\xrightarrow{P_{\theta }} 0\Rightarrow \theta _{n}^{*}( X)\xrightarrow{P_{\theta }} \tau ( \theta )$.
+\end{enumerate}
+\end{proof}
+ 
+\begin{exercise}
+Доказать п.3.
+\end{exercise}
+\begin{exercise}
+Верно ли, что квадрат несмещенной оценки несмещен?
+\end{exercise}
+
+\begin{proposition}
+Пусть $\displaystyle \theta _{n}^{*}( X)$ -- (сильно) состоятельная оценка $\displaystyle \theta $, $\displaystyle \tau ( \theta ) :\mathbb{R}^{k}\rightarrow \mathbb{R}^{s}$ -- непрерывная функция. Тогда $\displaystyle \tau \left( \theta ^{*}\right)$ -- (сильно) состоятельная оценка $\displaystyle \tau ( \theta )$.
+\end{proposition}
+\begin{proof}
+    $\displaystyle \theta _{n}^{*}\xrightarrow{P_{\theta } -a.s.} \theta $. По теореме о наследовании сходимостей $\displaystyle \tau \left( \theta _{n}^{*}\right)\xrightarrow{P_{\theta } -a.s.} \tau ( \theta )$.
+    $\displaystyle \theta _{n}^{*}\xrightarrow{P_{\theta }} \theta $. По теореме о наследовании сходимостей $\displaystyle \tau \left( \theta _{n}^{*}\right)\xrightarrow{P_{\theta }} \tau ( \theta )$.
+\end{proof}
+\begin{lemma}
+(о наследовании асимптотической нормальности) Пусть $\displaystyle \theta _{n}^{*}$ -- асимптотически нормальная оценка $\displaystyle \theta \in \Theta \subset \mathbb{R}$ с асимптотической дисперсией $\displaystyle \sigma ^{2}( \theta )$, $\displaystyle \tau ( \theta ) :\mathbb{R}\rightarrow \mathbb{R}$ дифференцируема $\displaystyle \forall \theta \in \Theta $. Тогда $\displaystyle \tau \left( \theta _{n}^{*}( X)\right)$ -- асимптотически нормальная оценка для $\displaystyle \tau ( \theta )$ с асимптотической дисперсией $\displaystyle \sigma ^{2}( \theta ) \cdotp ( \tau '( \theta ))^{2}$.
+\end{lemma}
+\begin{proof}
+    Из определения асимптотической нормальности $\displaystyle \sqrt{n}\left( \theta _{n}^{*}( X) -\theta \right)\xrightarrow{d_{\theta }} \xi \ \sim \ N\left( 0,\ \sigma ^{2}( \theta )\right)$. Обозначим $\displaystyle \xi _{n} =\sqrt{n}\left( \theta _{n}^{*}( X) -\theta \right),\ b_{n} =\frac{1}{\sqrt{n}}$. Тогда по следствию из леммы Слуцкого
+    \begin{equation*}
+    \frac{\tau ( \theta +\xi _{n} b_{n}) -\tau ( \theta )}{b_{n}} =\sqrt{n}\left( \tau \left( \theta _{n}^{*}\right) -\tau ( \theta )\right)\xrightarrow{d_{\theta }} \xi \cdotp \tau '( \theta ) .
+    \end{equation*}
+\end{proof}
+\begin{exercise}
+Показать, что несмещенность оценки не наследуется.
+\end{exercise}
+\begin{proposition}
+(о наследовании асимптотической нормальности в многомерном случае, б/д) Пусть $\displaystyle \Theta \subset \mathbb{R}^{k},\ \tau :\mathbb{R}^{k}\rightarrow \mathbb{R}^{s}$ -- дифференцируема в точках $\displaystyle \Theta $, $\displaystyle \theta _{n}^{*}$ -- асимптотически нормальная оценка для $\displaystyle \theta $ с асимптотической ковариационной матрицей $\displaystyle \Sigma ( \theta )$. Тогда $\displaystyle \tau \left( \theta _{n}^{*}\right)$ -- асимптотически нормальная оценка для $\displaystyle \tau ( \theta )$ с асимптотической ковариационной матрицей $\displaystyle \left(\frac{\partial \tau }{\partial \theta }\right) \cdotp \Sigma ( \theta ) \cdotp \left(\frac{\partial \tau }{\partial \theta }\right)^{T}$.
+\end{proposition}

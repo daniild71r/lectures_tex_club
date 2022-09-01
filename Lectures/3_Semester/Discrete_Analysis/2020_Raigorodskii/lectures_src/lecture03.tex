@@ -1,0 +1,211 @@
+\begin{theorem}[Эрдеш, Хватал]
+	Пусть $G(V, E)$ - граф, $ |V| \geqslant 3 $ и $\alpha(G) \leqslant \varkappa(G)$. Тогда $G$ -- гамильтонов.
+\end{theorem}
+
+\begin{proof}
+	\:
+	\begin{enumerate} \renewcommand{\theenumi}{\bfseries\arabic{enumi}}
+		\item Предположим, что в $ G $ нет циклов. Поскольку $1 \leqslant \alpha(G)$ (множество из одной вершины всегда независимое), то $ \alpha(G) \leqslant \varkappa(G) \Rightarrow 1 \leqslant \alpha(G)$, следовательно, мы должны удалить хотя бы одну вершину, чтобы $ G $ стал несвязен. Отсюда $ G $ связен и без циклов, т.е. дерево. Для $ |V| < 3$ утверждение очевидно. Если же $ |V| \geqslant 3$, то в дереве найдется две висячих вершины. Две вершины являются независимым множеством мощности 2, откуда $ \alpha(G) \geqslant 2$. Но в дереве на $ \geqslant 3$ вершинах, очевидно, есть и вершина степени $ \geqslant 2$. Её удаление разбивает граф на компоненты связности, откуда $ \varkappa = 1$. Получаем противоречие.
+		
+		\item Пусть в $ G $ есть цикл. Рассмотрим самый длинный простой цикл и предположим, что он не покрывает все вершины: $ C = {x_1, \ldots, x_k}, k < |V| = n $. Удалим вершины цикла и обозначим новый граф за $ G^\prime $. Пусть $ W $ -- множество вершин одной из компонент в $ G^\prime $. Обозначим $ N_{w}\left(G \right) = \left\lbrace y \in V\setminus W : \exists z \in W : (y, z) \in E(G)\right\rbrace$. т.\:е. множество соседей вершин из $ W $ в исходном графе $ G $.
+		
+		%\begin{wrapfigure}{r}{0.2\textwidth}
+		%	\centering
+		%	\begin{tikzpicture}
+		%		
+		%		\def \n {8}
+		%		\def \k {6}
+		%		\def \radius {2.5cm}
+		%		\def \margin {10} % margin in angles, depends on the radius
+				
+		%		\foreach \s in {1,...,\n}
+		%		{
+		%			\node[draw, circle] at ({360/\n * (\s - 1)}:\radius) %{$x_{\s}$};
+		%			\draw[->, >=latex] ({360/\n * (\s - 1)+\margin}:\radius) 
+		%			arc ({360/\n * (\s - 1)+\margin}:{360/\n * %(\s)-\margin}:\radius);
+		%		}
+		%	\end{tikzpicture}
+		%\end{wrapfigure}
+	
+		\begin{prop}
+			\:
+			\begin{enumerate} \renewcommand{\theenumi}{\arabic{enumi}}
+				\item $ N_{w}\left(G \right) \subseteq C$
+				\item $ N_{w}\left(G \right) \neq C$
+				\item $ \varkappa(G) \leqslant |N_w(G)| $
+			\end{enumerate} \label{prop:N_w}
+			
+		\end{prop}
+		
+		\begin{proof}
+			\:
+			\begin{enumerate} \renewcommand{\theenumi}{\arabic{enumi}}
+				\item Если предположить, что есть вершина не из $ C $, она после удаления $ С $ осталась в $ W $, противоречие.
+				\item Если нашлись две вершины $ x_i, x_{i + 1} \in N_w(G) $, то получим более длинный цикл, заменив в $ C $ кусок $\dots \rightarrow x_i \rightarrow x_{i + 1} \rightarrow \dots$ на $ \dots \rightarrow x_i \rightarrow c \rightarrow x_{i + 1} \rightarrow \dots$.
+				\item Когда мы удаляем $ N_w(G), $ по пункту (b) остается хотя бы одна вершина цикла $ C $, не соединенная с множеством $ W $, а также остается сам $ W $, т.е. граф распадается на компоненты связности.
+			\end{enumerate}
+		\end{proof}
+		Обозначим $ M = \left\lbrace x_{i + 1} : x_i \in N_w(G)\right\rbrace $, другими словами, это - множество вершин цикла $ C $, родители которых соединены с $ W $. Очевидно, $ |M| = |N_w(G)| $
+		\begin{prop}
+			$ M $ - независимое множество.
+		\end{prop}
+		\begin{proof}
+			Предположим, что множество $ M $ не независимое, т.е. $ \exists\: x_{i + 1}, x_{j + 1} \in M : (x_{i + 1}, x_{j + 1}) \in E $ и $ x_i, x_j \in N_w(G) $. Пусть вершины $ x_{i}, x_{j} $ соединены с какими-то вершинами $ a, b $ из $ M $ соответственно ($ a $ и $ b $ могут совпадать).
+			
+			
+			Имеем исходный цикл $ C $ : $x_1 \rightarrow \dots \rightarrow x_i \rightarrow x_{i + 1} \rightarrow \dots \rightarrow x_j \rightarrow x_{j + 1} \rightarrow \dots \rightarrow x_n$. Можем рассмотреть новый цикл $ C^\prime $ :
+			$x_1 \rightarrow \dots \rightarrow x_i \rightarrow a \rightarrow \dots \rightarrow b \rightarrow x_j \rightarrow \ldots \rightarrow x_{i + 1} \rightarrow x_{j + 1} \dots \rightarrow x_n \rightarrow x_1$. Он более длинный, поскольку добавились как минимум три ребра, а из исходного цикла были взяты все ребра, кроме $ x_ix_{i + 1}, x_jx_{j + 1} $. Это противоречит выбору $ C $ как наибольшего. Следовательно, $ M $ действительно независимое.
+			
+		\end{proof}
+		Получаем, что $ \alpha(G) \geqslant |M|$. Осталось заметить, что по построению $ M $ - точки, идущие в цикле $ C $ в выбранном порядке нумерации сразу за точками $ N_w(G) $. Две соседние точки цикла по пункту ($ b $) утверждения \ref{prop:N_w} не могут вместе лежать в цикле. Следовательно, вершины из $ M $ не соединены с $ W $. Поскольку мы изначально предположили, что $ W $ непусто, то, добавив к $ M $ произвольную точку $ w \in W$, получим $ M' = M \cup \left\lbrace w\right\rbrace $ - независимое множество. Отсюда $ \alpha(G) \geqslant  |N_w(G)| + 1 $. По пункту ($ c $) утверждения \ref{prop:N_w} $ \varkappa(G) \leqslant |N_w(G)| $, откуда $ \alpha(G) > \varkappa(G) $. Противоречие.
+			
+	\end{enumerate}
+\end{proof}
+
+\begin{Def}
+	Граф называется \emph{регулярным}, если степени всех его вершин равны.
+\end{Def}
+
+Рассмотрим следующий интересный регулярный граф и докажем, что он удовлетворяет признаку Эрдеша-Хватала.
+
+Обозначим $ N = \left\lbrace 1, 2, \ldots n\right\rbrace $.Рассмотрим $ G = (V, E) : V = \left\lbrace A \subset N  : |A| = 3 \right\rbrace, E = \left\lbrace (A, B) : |A\cap B| = 1\right\rbrace  $. Другими словами, $ G $ -- граф на множестве трехэлементных подмножеств $ N $, где два множества соединены ребром, если они пересекаются по одному элементу.
+
+Очевидно, $ |V| = C_n^3 $. Найдем $|E|$. Степень каждой вершины $  G $ -- $3 \cdot C_{n - 3}^2$, поскольку для каждого из трех элементов $ {a, b, c} $ мы можем выбрать двухэлементное подмножество $ Q \subset N \setminus \left\lbrace a, b, c \right\rbrace $ и объединить их. Очевидно, таким образом описываются все множества, смежные с вершиной  $ \left\lbrace a, b, c\right\rbrace $ в $ G $.
+
+Поскольку $  G $ регулярен,  $ |E| = \frac{1}{2} \cdot |V| \cdot 3 \cdot  C_{n - 3}^2  = \frac{1}{2} C_n^3 \cdot 3 \cdot  C_{n - 3}^2 $. Асимптотически
+
+$$ |E| \sim \dfrac{3}{2} \cdot \dfrac{n^3}{6} \cdot \dfrac{n^2}{2} =\dfrac{n^5}{8} $$.
+
+Вспомним, что признаку Дирака удволетворяют графы, у которых $ m $ вершин и не меньше, чем $ \dfrac{m^2}{4} $ ребер.
+Поскольку в нашем случае $|V| = O(n^3)$, а $|E| = O((n^3)^{\frac{5}{3}}) $, при больших $ n $ наш граф не будет удовлетворять признаку Дирака.
+
+Убедимся, что $ G $ удовлетворяет признаку Эрдеша-Хватала. 
+Посмотрим на $ \alpha(G) $. Укажем $ W \subset V : W = {A_1, \ldots A_k} : |A_i \cap A_j| \neq 1 $.
+Каждому множеству $ A_i $ сопоставим вектор $ \overrightarrow{x_i} $ в $ \left\lbrace 0, 1\right\rbrace ^{|V|} $, где на позиции $ i $ стоит 1, когда $ i \in W $, и 0 иначе.
+Отметим, что $ |A_i \cap A_j| = (\overrightarrow{x_i}, \overrightarrow{x_j}) $.
+
+\begin{lemma}
+	$ \overrightarrow{x_1}, \ldots \overrightarrow{x_k} $ линейно независимы над полем $ \Z_2 $.
+\end{lemma}  
+
+\begin{proof}
+	Предположим, что $ c_1 \overrightarrow{x_1} + \ldots + c_k \overrightarrow{x_k} = 0 $, где $ c_i \in \Z_2 $.
+	Скалярно умножим выражение на $ \overrightarrow{x_i} $ для $ i = 1, \ldots k $.
+	Для $ i = 1 $ получим $ c_1 (\overrightarrow{x_1}, \overrightarrow{x_1}) + \ldots + c_k (\overrightarrow{x_k}, \overrightarrow{x_1}) = 0$. Заметим теперь, что первое слагаемое равно $ 3 c_1 $, т.е. $ c_1 $ в поле $ \Z_2 $. Все оставшиеся слагаемые равны 0 или 2, т.е. 0 в нашем поле. Действительно, $ (\overrightarrow{x_j}, \overrightarrow{x_1}) \neq 1 $, поскольку векторы соответствуют множествам, не пересекающимся по 1 элементу. $ (\overrightarrow{x_j}, \overrightarrow{x_1}) \neq 3 $, поскольку $ j \neq 1 $. Следовательно, $ (\overrightarrow{x_j}, \overrightarrow{x_1}) = 0 $ над $ \Z_2 $. Получаем равенство $ c_1 = 0$, откуда $ c_1 = 0 $. Умножая скалярно выражение на $ x_i $ для остальных $ i $, получаем, что $ \forall i \; c_i = 0 $.
+\end{proof}
+
+\begin{corollary}
+	$ \alpha(G) \leqslant n $.
+\end{corollary} \label{cor:alpha}
+
+\begin{proof}
+	Количество линейно независимых векторов не превосходит размерности линейного пространства. 
+\end{proof}
+
+Несложно привести конструкцию для $ n - 2 $ независимых множеств.
+
+\begin{center}
+	\begin{tabular}[h!]{cccccc} 
+		1 & 2 & 3 &&& \\ 
+		1 & 2 & & 4 && \\ 
+		1 & 2 & & & 5 & \\
+		& $\ldots$ & & $ \ldots $ &&  \\
+		1 & 2 & & \ldots & & \hspace{5ex} n
+	\end{tabular}
+\end{center}
+
+Эту оценку можно в некоторых случаях улучшить.
+
+\begin{theorem}
+	$$
+	\alpha(G)=\begin{cases}
+		n, & \; n \equiv 0\bmod 4\\
+		n - 1, & \; n \equiv 1 \bmod{4}\\
+		n - 2, & \; \text{иначе} \\
+	\end{cases}
+	$$
+\end{theorem}
+
+\begin{proof}
+	Пример для каждого случая приводится конструкцией разбиения множества на 4-элементные множества, возожно, с остатком меньшей мощности. В каждом из них можно взять по 4 трехэлементых множества, каждые два из которых будут пересекаться по двум элементам.
+	\begin{enumerate} \renewcommand{\theenumi}{\arabic{enumi}}
+		\item Если $ n = 4k $, получаем в точности $ n $ независимых множеств.
+		\item Если $ n = 4k + 1 $, получаем $ 4k = n-1 $ независимых множеств.
+		\item Если $ n = 4k + 2 $, получаем $ 4k = n-2 $ множеств. Наконец, для $ n = 4k + 3 $ после разбиения получится 3-элементное множество в остатке, которое мы также возьмем в набор. Т.е. получим $ 4k + 1 = n-2 $ множеств.
+	\end{enumerate}
+
+Осталось показать, что в случаях 2 и 3 нельзя получить лучшей оценки.
+\end{proof}
+
+Вернемся к доказательству оценки $\alpha(G) \leqslant \varkappa(G)$. По \ref{cor:alpha} имеем $\alpha(G) \leqslant n $. Осталось показать, что $n \leqslant \varkappa(G) $.
+
+\begin{lemma}
+	Пусть дан $ G = (V, E) $. Пусть $ u, v \in V $. Обозначим за $ f(u, v) $ количество общих соседей для $ u $, $ v $. Тогда $ \varkappa(G) \geqslant \mathlarger {\min_{v, u \in V} f(u, v) }$
+\end{lemma} \label{lemma:neigh}
+
+ \begin{proof}
+ 	Для удобства $ \mathlarger \min_{v, u \in V} f(u, v) $ обозначим за $ k $.
+ 	Если удалить из графа не более $ k - 1 $ вершин, то для любых двух вершин $ u, v $ количество общих соседей не меньше $ k $, а следовательно между ними есть путь.
+ \end{proof}
+
+
+
+В следующей табличке приводятся случаи количества общих соседей у вершин нашего графа.
+
+\begin{center}
+	\begin{tabular}[h!]{|ccc|}
+		\hline
+		
+		Тип множеств по мощности пересечения & Кол-во $ N $ общих соседей & Асимптотика $ N $ \\
+		\hline 
+		$  \left\lbrace 1, 2, 3 \right\rbrace, \left\lbrace 4, 5, 6 \right\rbrace, \; |\cap| = 0 $ & $ 9(n - 6)$ & $ 9n $ \\ 
+		$  \left\lbrace 1, 2, 3 \right\rbrace, \left\lbrace 3, 4, 5 \right\rbrace, \; |\cap| = 1 $ & $ C_{n-5}^2 + 4(n-5) $ & $ n^2 $ \\
+		$  \left\lbrace 1, 2, 3 \right\rbrace, \left\lbrace 2, 3, 4 \right\rbrace, \; |\cap| = 2 $ & $ 2C_{n-4}^2 + n - 4 $ & $ n^2 $  \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{note}
+	Случай $ |\cap| = 3 $ мы не рассматриваем, поскольку количество общих с собой соседей у произвольной вершины равно ее степени и заведомо не меньше, чем количество общих сосдей с любой другой вершиной.
+\end{note}
+
+Следовательно, по лемме \ref{lemma:neigh} при больших $ n $  $ \varkappa(G) \geqslant 9n $, т.е. примерно в 9 раз больше $ \alpha(G) $. Следовательно, начиная с какого-то $ n $ граф гамильтонов. 
+
+\subsubsection{Граф  $G(n, r, s)$}
+
+Читатель уже мог догадаться, что рассмотрненный в предыдущем параграфе граф суть частный случай графа, строящегося на подмножествах $n$-элементного множества одной мощности. Дадим соответсвующие определения.
+
+\begin{Def}
+	Обозначим $ N = \{1, \ldots, n\}$. Рассмторим граф $ G = (V, E) : V = \left\lbrace A \subset N  : |A| = r \right\rbrace, E = \left\lbrace (A, B) : |A\cap B| = s\right\rbrace $. Такой граф обозначается $ G(n, r, s) $. 
+\end{Def}
+
+\begin{prop}
+	 B графе $ \mathlarger {G(n, r, s) : |E|=\frac{1}{2} C_{n}^{r} C_{r}^{s} C_{n-r}^{r-s} }$
+\end{prop}
+
+\begin{proof}
+	Поскольку граф регулярный, то количество вершин считается по формуле $ \frac{1}{2} |V| \cdot \deg(v)$. $|V| = C_{n}^{r}$ - кол-во $r$-элементных подмножеств $ N $. $C_{r}^{s}-$ кол-во способов
+	выбрать $s$ элементов из произвольного $ r $-элементного множества, а $C_{n-r}^{r-s}-$ кол-во способов добрать оставшиеся элементы во множество.
+\end{proof}
+
+%Утверждение 1.1.1.2. Количество треугольников в графе $G(n, r, s)$ равно
+%$$
+%\frac{|E|}{3}\left(\sum_{i=0}^{s} C_{s}^{i} C_{r-s}^{s-i} C_{r-s}^{s-i} C_{n-2 r+s}^{r-2 s+i}\right)
+%$$
+%$ G(n, r, s) $ 
+
+\begin{brainer}
+	Для $ n = 4k $ рассмотрим $ G(n, \frac{n}{2}, \frac{n}{4}), n = 4k $.
+	\begin{enumerate} \renewcommand{\theenumi}{\arabic{enumi}}
+		\item Найдите число треугольников в этом графе.
+		\item Какой объект соответствует максимальной клике в этом графе?
+	\end{enumerate}
+\end{brainer}
+
+
+
+
+
+
+
+

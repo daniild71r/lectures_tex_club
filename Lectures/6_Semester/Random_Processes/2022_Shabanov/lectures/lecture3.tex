@@ -1,0 +1,129 @@
+\begin{example}
+Пусть $\displaystyle ( X_{n} ,\ n\in \mathbb{Z}_{+})$ -- ветвящийся процесс с законом размножения частиц $\displaystyle Pois( c) ,\ c >0$. Найдем вероятность вырождения.
+
+
+\begin{equation*}
+q=\phi _{\xi }( q) =\sum _{k=0}^{\infty } q^{k}\dfrac{c^{k}}{k!} e^{-c} =e^{qc} e^{-c} =e^{c( q-1)} .
+\end{equation*}
+Обозначим $\displaystyle \beta =1-q$ -- вероятность невырождения. Тогда
+
+
+\begin{equation*}
+q=e^{-\beta c} \Leftrightarrow 1-\beta =e^{-\beta c} \Leftrightarrow \beta +e^{-\beta c} =1.
+\end{equation*}
+Если $\displaystyle c\leqslant 1$, то $\displaystyle q=1$, а при $\displaystyle c >1$ есть нетривиальное решение $\displaystyle q\in ( 0,\ 1)$.
+\end{example}
+\begin{example}
+Пусть $\displaystyle G( n,\ p)$ -- биномиальная модель случайного графа. Пусть $\displaystyle p=\dfrac{c}{n} ,\ c >0$. Обозначим $\displaystyle X_{n}$ -- максимальный размер компоненты в $\displaystyle G\left( n,\ \dfrac{c}{n}\right)$. Тогда
+
+\begin{enumerate}
+    \item $\displaystyle c< 1\Rightarrow \dfrac{X_{n}}{\ln n}\xrightarrow{P} \alpha ( c)  >0$.
+    \item $\displaystyle c=1\Rightarrow \dfrac{X_{n}}{n^{2/3}}\xrightarrow{d} \xi $ -- случайная величина.
+    \item $\displaystyle c >1\Rightarrow \dfrac{X_{n}}{n}\xrightarrow{P} \beta $, где $\displaystyle \beta $ -- решение уравнения $\displaystyle \beta +e^{-\beta c} =1$.
+\end{enumerate}
+\end{example}
+\begin{note}
+Если рассмотреть фиксированную вершину $\displaystyle v$ из множества вершин $\displaystyle G( n,\ p)$, то количество ее соседей имеет распределение $\displaystyle Bin( n-1,\ p)$, то есть в третьем случае при $\displaystyle n\rightarrow \infty $ это распределение стремится к $\displaystyle Pois( c)$.
+\end{note}
+Пусть $\displaystyle ( X_{n} ,\ n\in \mathbb{Z}_{+})$ -- ветвящийся процесс с законом размножения частиц $\displaystyle \xi $ с $\displaystyle \mu =E\xi $.
+\begin{definition}
+Процесс $\displaystyle ( X_{n} ,\ n\in \mathbb{Z}_{+})$ называется 
+
+\begin{enumerate}
+    \item \textit{докритическим}, если $\displaystyle \mu < 1$,
+    \item \textit{критическим}, если $\displaystyle \mu =1$,
+    \item \textit{надкритическим}, если $\displaystyle \mu  >1$.
+\end{enumerate}
+\end{definition}
+\begin{corollary}
+Если $\displaystyle \mu \leqslant 1$, то $\displaystyle X_{n} \xrightarrow{a.s.} 0,\ \xi \not\equiv 1$.
+\end{corollary}
+\begin{theorem}
+(Предельная теорема для надкритического случая, б/д) Пусть $\displaystyle ( X_{n} ,\ n\in \mathbb{Z}_{+})$ -- ветвящийся процесс с законом размножения частиц $\displaystyle \xi $, $\displaystyle \mu =E\xi  >1,\ \sigma ^{2} =D\xi < \infty $. Тогда существует случайная величина $\displaystyle W$, что
+
+
+\begin{equation*}
+\dfrac{X_{n}}{\mu ^{n}}\xrightarrow{a.s.} W,
+\end{equation*}
+причем
+
+\begin{enumerate}
+    \item $\displaystyle \dfrac{X_{n}}{\mu ^{n}}\xrightarrow{L_{2}} W$,
+    \item $\displaystyle EW=1,\ DW=\dfrac{\sigma ^{2}}{\mu ( \mu -1)}$,
+    \item $\displaystyle P( W=0) =q$ -- вероятность вырождения.s
+\end{enumerate}
+\end{theorem}
+\begin{note}
+Смысл теоремы в том, что ветвящийся процесс либо растет экспоненциально, либо вырождается.
+\end{note}
+\section{Конечномерные распределения случайных процессов}
+
+Пусть $\displaystyle X=( X_{t} ,\ t\in T)$ -- случайный процесс. Пусть $\displaystyle \forall t\in T$ $\displaystyle X_{t}$ является случайной величиной.
+\begin{definition}
+\textit{Пространством траекторий} процесса $\displaystyle X_{t}$ называется $\displaystyle \mathbb{R}^{T} =\{y=( y( t) ,\ t\in T) :\ y( t) \in \mathbb{R}\}$ -- вещественнозначные функции на $\displaystyle T$.
+\end{definition}
+\begin{definition}
+Для любого $\displaystyle t\in T$ и $\displaystyle B\in \mathcal{B}(\mathbb{R})$ введем $\displaystyle c( t,\ B) =\left\{y\in \mathbb{R}^{T} :\ y( t) \in B\right\}$ -- \textit{элементарный цилиндр}.
+\end{definition}
+\begin{definition}
+Цилиндрической $\displaystyle \sigma $-алгеброй на $\displaystyle \mathbb{R}^{T}$ называется минимальная $\displaystyle \sigma $-алгебра, содержащая все элементрые цилиндры. Обозначение $\displaystyle \mathcal{B}_{T} =\sigma ( c( t,\ B) :\ t\in T,\ B\in \mathcal{B}(\mathbb{R}))$.
+\end{definition}
+\begin{note}
+Таким образом, задав $\displaystyle \sigma $-алгебру, построили измеримое пространство $\displaystyle \left(\mathbb{R}^{T} ,\ \mathcal{B}_{T}\right)$. Встает вопрос об измеримости отображения $\displaystyle X:\Omega \rightarrow \mathbb{R}^{T}$.
+\end{note}
+\begin{lemma}
+(Эквивалентность определений случайного процесса). $\displaystyle X=( X_{t} ,\ t\in T)$ -- случайный процесс тогда и только тогда, когда $\displaystyle X:\Omega \rightarrow \mathbb{R}^{T}$ измеримо, т.е. $\displaystyle \forall E\in \mathcal{B}_{T} \hookrightarrow X^{-1}( E) =\{\omega :X( \omega ) \in E\} \in \mathcal{F}$, где $\displaystyle ( \Omega ,\ \mathcal{F} ,\ P)$ -- вероятностное пространство.
+\end{lemma}
+\begin{proof}
+Пусть $\displaystyle ( X_{t} ,\ t\in T)$ -- случайный процесс, и $\displaystyle c( t,\ B)$ -- элементарный цилиндр. Тогда $\displaystyle X^{-1}( c( t,\ B)) =\{\omega :\ X\in c( t,\ B)\} =\{X_{t} \in B\} \in \mathcal{F}$, так как $\displaystyle X_{t}$ -- случайная величина. Из критерия измеримости следует, что $\displaystyle X$ -- измеримо относительно $\displaystyle \mathcal{B}_{T}$.
+
+Пусть $\displaystyle t\in T$ и $\displaystyle B\in \mathcal{B}(\mathbb{R})$. Тогда $\displaystyle \{X_{t} \in B\} =\{X\in c( t,\ B)\} \in \mathcal{F}$, так как $\displaystyle c( t,\ B) \in \mathcal{B}_{T}$. Следовательно, $\displaystyle X_{t}$ -- случайная величина, и $\displaystyle X$ -- случайный процесс.
+\end{proof}
+\begin{note}
+Таким образом, можно рассматривать случайный процесс, как единый случайный элемент со значениями в $\displaystyle \mathbb{R}^{T}$. Поэтому, можно определить его распределение.
+\end{note}
+\begin{definition}
+\textit{Распределением случайного процесса }$\displaystyle X=( X_{t} ,\ t\in T)$ называется вероятностная мера $\displaystyle P_{X}$ на $\displaystyle \left(\mathbb{R}^{T} ,\ \mathcal{B}_{T}\right)$, заданная по правилу:
+\begin{equation*}
+\forall c\in \mathcal{B}_{T} \hookrightarrow P_{X}( c) =P( X\in c) .
+\end{equation*}
+\end{definition}
+\begin{definition}
+Пусть $\displaystyle n\in \mathbb{N} ,\ t_{1} ,\ \dotsc ,\ t_{n} \in T$. Обозначим через $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}$ -- распределение случайного вектора $\displaystyle ( X_{t_{1}} ,\ \dotsc ,\ X_{t_{n}})$, т.е. $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}$ -- вероятностная мера на $\displaystyle \left(\mathbb{R}^{n} ,\ \mathcal{B}\left(\mathbb{R}^{n}\right)\right)$, $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}( B) =P(( X_{t_{1}} ,\ \dotsc ,\ X_{t_{n}}) \in B)$. Тогда набор вероятностных мер $\displaystyle \{P_{t_{1} ,\ \dotsc ,\ t_{n}} ,\ n\in \mathbb{N} ,\ t_{1} ,\ \dotsc ,\ t_{n} \in T\}$ называется \textit{конечномерным распределением} случайного процесса $\displaystyle X=( X_{t} ,\ t\in T)$.
+\end{definition}
+\begin{lemma}
+Пусть $\displaystyle ( X_{t} ,\ t\in T)$ и $\displaystyle ( Y_{t} ,\ t\in T)$ -- случайные процессы. Тогда $\displaystyle P_{X} =P_{Y}$ тогда и только тогда, когда все их конечномерные распределения одинаковы.
+\end{lemma}
+\begin{proof}
+Пусть $\displaystyle t_{1} ,\ \dotsc ,\ t_{n} \in T,\ B_{1} ,\ \dotsc ,\ B_{n} \in \mathcal{B}(\mathbb{R})$. Введем цилиндр $\displaystyle c( t_{1} ,\ \dotsc ,\ t_{n} ,\ B_{1} ,\ \dotsc ,\ B_{n}) =\left\{y\in \mathbb{R}^{T} :\ \forall i=\overline{1,n} \hookrightarrow y( t_{i}) \in B_{i}\right\}$ -- пересечение элементарных цилиндров $\displaystyle c( t_{1} ,\ B_{1}) ,\ \dotsc ,\ c( t_{n} ,\ B_{n})$. Заметим, что цилиндры образуют $\displaystyle \pi $-систему $\displaystyle M$ (т.е. систему, замкнутую относительно конечного непустого пересечения множеств), и $\displaystyle \sigma ( M) =\mathcal{B}_{T}$. Тогда для проверки равенства мер на $\displaystyle \mathcal{B}_{T}$ достаточно доказать, что меры совпадают на всех множествах из $\displaystyle M$.
+
+Пусть $\displaystyle \forall t_{1} ,\ \dotsc ,\ t_{n} \hookrightarrow P_{t_{1} ,\ \dotsc ,\ t_{n}}^{X} =P_{t_{1} ,\ \dotsc ,\ t_{n}}^{Y}$. Рассмотрим цилиндр $\displaystyle c( t_{1} ,\ \dotsc ,\ t_{n} ,\ B_{1} ,\ \dotsc ,\ B_{n})$. Тогда
+\begin{gather*}
+P_{X}( c( t_{1} ,\ \dotsc ,\ t_{n} ;\ B_{1} ,\ \dotsc ,\ B_{n})) =P( X_{t_{1}} \in B_{1} ,\ \dotsc ,\ X_{t_{n}} \in B_{n}) =\\
+=P_{t_{1} ,\ \dotsc ,\ t_{n}}^{X}( B_{1} \times \ \dotsc \ \times B_{n}) =P_{t_{1} ,\ \dotsc ,\ t_{n}}^{Y}( B_{1} \times \ \dotsc \ \times B_{n}) =\\
+=P_{Y}( c( t_{1} ,\ \dotsc ,\ t_{n} ;\ B_{1} ,\ \dotsc ,\ B_{n})) .
+\end{gather*}
+$\displaystyle P_{X}$ и $\displaystyle P_{Y}$ совпадают на цилиндрах, а значит, совпадают и на всей $\displaystyle \mathcal{B}_{T}$.
+
+Пусть $\displaystyle P_{X} =P_{Y}$. Тогда $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}^{X}$ и $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}^{Y}$ совпадают на прямоугольниках $\displaystyle B_{1} \times \ \dotsc \ \times B_{n}$. Система таких прямоугольников является $\displaystyle \pi $-системой с наименьшей $\displaystyle \sigma $-алгеброй $\displaystyle \mathcal{B}\left(\mathbb{R}^{n}\right)$. Следовательно, $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}^{X} =P_{t_{1} ,\ \dotsc ,\ t_{n}}^{Y}$.
+\end{proof}
+\begin{lemma}
+(Условия симметрии и согласованности) Пусть $\displaystyle \{P_{t_{1} ,\ \dotsc ,\ t_{n}} ,\ n\in \mathbb{N} ,\ t_{1} ,\ \dotsc ,\ t_{n} \in T\}$ -- конечномерные распределения процесса $\displaystyle ( X_{t} ,\ t\in T)$. Тогда выполняются условия симметрии и согласованности:
+
+\begin{enumerate}
+    \item $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}( B_{1} \times \ \dotsc \ \times B_{n}) =P_{t_{\tau ( 1)} ,\ \dotsc ,\ t_{\tau ( n)}}( B_{\tau ( 1)} \times \ \dotsc \ \times B_{\tau ( n)}) ,\ \forall \tau \in S_{n}$.
+    \item $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}( B_{1} \times \ \dotsc \ \times B_{n-1} \times \mathbb{R}) =P_{t_{1} ,\ \dotsc ,\ t_{n-1}}( B_{1} \times \ \dotsc \ \times B_{n-1})$.
+\end{enumerate}
+\end{lemma}
+\begin{proof} ~
+\begin{enumerate}
+    \item очевидно.
+    \item тривиально.
+\end{enumerate}
+\end{proof}
+\begin{note}
+Оказывается, что условия симметрии и согласованности являются достаточными условиями для существования случайного процесса.
+\end{note}
+\begin{theorem}
+(Колмогорова, о существовании случайных процессов, б/д). Пусть $\displaystyle T$ -- произвольное множество, $\displaystyle \forall n\in \mathbb{N} ,\ \forall t_{1} ,\ \dotsc ,\ t_{n} \in T$ задана вероятностная мера $\displaystyle P_{t_{1} ,\ \dotsc ,\ t_{n}}$ на $\displaystyle \left(\mathbb{R}^{n} ,\ \mathcal{B}\left(\mathbb{R}^{n}\right)\right)$, причем набор мер $\displaystyle \{P_{t_{1} ,\ \dotsc ,\ t_{n}} ,\ \forall n\in \mathbb{N} ,\ \forall t_{1} ,\ \dotsc ,\ t_{n} \in T\}$ удовлетворяет условиям симметрии и согласованности. Тогда существует вероятностное пространство $\displaystyle ( \Omega ,\ \mathcal{F} ,\ P)$ и случайный процесс $\displaystyle ( X_{t} ,\ t\in T)$ на нем, что $\displaystyle \{P_{t_{1} ,\ \dotsc ,\ t_{n}}\}$ являются его конечномерными распределениями.
+\end{theorem}

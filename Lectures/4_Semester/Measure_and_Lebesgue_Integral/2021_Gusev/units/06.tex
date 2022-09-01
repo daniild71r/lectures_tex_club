@@ -1,0 +1,289 @@
+\newpage
+\lecture{6}{Теорема Каратеодори.}
+
+\subsection{Внешняя мера Лебега. Её свойства.}
+
+\begin{definition}
+    \mdef{Внешней мерой Лебега} множества $A\subset\R^d$ называется
+    \[
+        m^*(A):=\inf \left\{\sum_{k=1}^{\infty}m(E_k)\ \mid\ \{E_k\}_{k=1}^{\infty}\subset K^d,\ A\subset\bigcup_{k=1}^{\infty}E_k\right\}.
+    \]
+\end{definition}
+
+\begin{remark}
+    Отличие от верхней меры Жордана в том, что в случае меры Лебега рассматриваются счётные, а не конечные покрытия.
+\end{remark}
+
+\begin{definition}
+    Множество $E\subset\R^d$ будем называть \mdef{элементарным}, если \[E=\bigsqcup\limits_{k=1}^{\infty}E_k, \text{ где } E_k\in K^d\].
+\end{definition}
+
+\begin{remark}
+    Семейство всех элементарных множеств совпадает с кольцом, порожденным $K_d$, то есть $\CR(K_d)$.
+\end{remark}
+
+\begin{claim}
+    Для любых множеств $A_k\subset \R^d$ выполнено
+    \[
+        m^*\left(\bigcup_{k=1}^{\infty}A_k\right)\leqslant\sum_{k=1}^{\infty}m^*(A_k).
+    \]
+
+    \begin{proof}
+        Пусть $A_k\subset\bigcup\limits_{l=1}^{\infty}B_{k,\,l}$, где $B_{k,\,l}$~--- клетки такие, что
+        \[
+            \sum_{l=1}^{\infty}B_{k,\,l}<m^*\left(A_k\right) + \dfrac{\varepsilon}{2^k}.
+        \]
+        Так же считаем, что $m^*(A_k)<\infty$, так как иначе утверждение очевидно. Тогда можно записать
+        \begin{align*}
+            \bigcup_{k=1}^{\infty}A_k\subset \bigcup_{k=1}^{\infty}\bigcup_{l=1}^{\infty}B_{k,\, l}\Rightarrow
+            m^*\left(\bigcup_{k=1}^{\infty}A_k\right) & \leqslant \sum_{k=1}^{\infty}\underbrace{\sum_{l=1}^{\infty}m(B_{k,\, l})}_{<m^*(A_k)+\varepsilon/2^k}\leqslant \\
+                                                      & \leqslant \sum_{k=1}^{\infty}\left(m^*(A_k)+\dfrac{\varepsilon}{2^k}\right)=
+            \sum_{k=1}^{\infty}m^*(A_k)+\varepsilon.
+        \end{align*}
+
+        В силу произвольности $\varepsilon$ получаем, что
+        \[
+            m^*\left(\bigcup_{k=1}^{\infty}A_k\right)\leqslant \sum_{k=1}^{\infty}m^*(A_k).
+        \]
+
+    \end{proof}
+\end{claim}
+
+Зададимся вопросом, чему равна внешняя мера Лебега клетки? Легко догадаться до следующего утверждения.
+
+\begin{claim}
+    $\forall A\in K_d\quad m^*(A)=m(A)$.
+
+    \begin{proof}
+        По определению $m^*(A)\leqslant m(A)$ (инфинум суммы мер клеток, которые покрывают $A$, но $A$~--- и есть клетка, которая покрывает $A$).
+
+        Докажем неравенство в другую сторону. Пусть $\{A_k\}_{k=1}^{\infty}\in K_d$ и $A\subset\bigcup\limits_{k=1}^{\infty}A_k$.
+        Тогда $A = \bigcup\limits_{k=1}^{\infty}\left(A\cap A_k\right)$, следовательно в силу того, что клеточная мера счётно-субаддитивна, получаем
+        \[
+            m(A)\leqslant\sum_{k=1}^{\infty} m(A\cap A_k)\leqslant\sum_{k=1}^{\infty}m(A_k)\Rightarrow m^*(A)\geqslant m(A).
+        \]
+
+    \end{proof}
+\end{claim}
+
+То есть можно считать, что внешняя мера Лебега~--- продолжение клеточной меры, в том смысле, что это функция, у которой область определения шире,
+но на области определения клеточной меры они совпадают.
+
+\begin{definition}
+    Множество $A\subset \R^d$ называется \mdef{измеримым по Лебегу}, если $\forall T\subset\R^d$:
+    \[
+        m^*(T)=m^*(T\cap A)+m^*(T\setminus A).
+    \]
+\end{definition}
+
+Возникает желание доказать, что все такие множества образуют какое-то хорошее семейство. Сделаем это в более общем виде, то есть
+не для внешней меры Лебега, а для произвольной внешней меры.
+
+\begin{definition}
+    \mdef{Внешней мерой $\nu$} на множестве $X$ называется функция $\nu:\ \CP(X)\rightarrow[o,\,+\infty]$ такая, что
+    \begin{enumerate}[label=\arabic*\degree]
+        \item $\nu$~--- $\sigma$"=субаддитивна,
+        \item $\nu$~--- монотонна,
+        \item $\nu(\varnothing)=0$.
+    \end{enumerate}
+
+    \begin{remark}
+        Ясно, что внешняя мера Лебега является внешней мерой.
+    \end{remark}
+\end{definition}
+
+Обобщим аналогично измеримость:
+
+\begin{definition}
+    Множество $A\subset X$ называется \mdef{$\nu$"=аддитивным}, если $\forall T\subset X$:
+    \[
+        \nu(T)=\nu(T\cap A)+\nu(T\setminus A).
+    \]
+
+    Множество всех $\nu$"=аддитивных множеств обозначается $\Anu$.
+\end{definition}
+
+\begin{exercise}
+    Рассмотрим $\nu:\ \CP(\R)\rightarrow [0,\,+\infty]$ вида \[\nu(A)=\#\{k\in\Z:\ A\cap[k,\,k+1)\neq\varnothing\},\]
+    где \[
+        \# M = \begin{cases}
+            n,\text{ если } |M|=n, \\
+            +\infty, \text{ иначе.}
+        \end{cases}
+    \]
+
+    Если $A=\{x\}$, где $x\notin\Z$, то $A\notin \Anu$, так как для $k=[x]$ и $T=[k,\,k+1)$, то $\nu(T)=\nu(A)=\nu(T\setminus A)=1$, то есть
+    $\nu(T)\neq\nu(T\cap A)+\nu(T\setminus A)$.
+
+    Можно показать, что всякое множество, являющееся объединением полуинтервалов с целочисленными концами, является и $\nu$"=аддитивным.
+\end{exercise}
+
+\begin{claim}
+    \label{lect06:claim}
+    Если $A_k\in\Anu$ при $k\in \overline{1,n}$ и $A_k$ попарно не пересекаются, то $\forall T\subset X$
+    \[
+        \nu\left(T\cap\bigsqcup_{k=1}^{n}A_k\right)=\sum_{k=1}^{n}\nu(T\cap A_k).
+    \]
+
+    \begin{proof}
+
+        В силу того, что $A_n\in\Anu$ имеем:
+        \begin{align*}
+            \nu\left(T\cap\bigsqcup_{k=1}^{n}A_k\right) & =\nu\left[\left(T\cap\bigsqcup_{k=1}^{n}A_k\right)\cap A_n\right]+
+            \nu\left[\left(T\cap\bigsqcup_{k=1}^{n}A_k\right)\setminus A_n\right]=                                                                                 \\
+                                                        & =\nu(T\cap A_n)+\nu\left(T\cap \bigsqcup_{k=1}^{n-1}A_k\right)=\underbrace{\ldots}_{\text{по индукции}}=
+            \sum_{k=1}^{n}\nu(T\cap A_k).
+        \end{align*}
+
+    \end{proof}
+
+    \begin{remark}
+        Данное утверждение является усилением конечной-аддитивности, в самом деле если взять $T=X$, то
+        \[
+            \nu\left(\bigsqcup_{k=1}^{n}A_k\right)=\sum_{k=1}^n\nu(A_k).
+        \]
+
+        Следовательно на $\Anu$ функция $\nu$~--- конечно-аддитивна.
+        Но в силу еще и $\sigma$"=субаддитивности на $\Anu$ получаем, что $\nu$~--- $\sigma$"=аддитивна на $\Anu$.
+    \end{remark}
+\end{claim}
+
+\subsection{Теорема Каратеодори.}
+
+\begin{theorem}[Каратеодори]
+    Если $\nu$~--- внешняя мера, то $\Anu$~--- $\sigma$"=алгебра и $\nu$~--- $\sigma$"=аддитивна на $\Anu$.
+
+    \begin{proof}
+        Проверим, что $\Anu$~--- $\sigma$"=алгебра. Из определения:
+        \[
+            A\in\Anu\Leftrightarrow\nu(T)=\nu(T\cap A)+\nu(T\setminus A)=\nu(T\cap A)+\nu(T\cap A^C)\quad \forall T\subset X.
+        \]
+        Можно заметить, что если $A$ заменить на $A^C$, ничего не изменится, то есть
+        \[
+            A\in\Anu\Leftrightarrow A^C\in\Anu.
+        \]
+        Докажем, что $\Anu$~--- $\pi$"=система и $\lambda$"=система.
+
+        \circled{$\mathbf{\pi}$} Пусть $A,\, B\in\Anu$. Пусть $T\subset X$, тогда
+        \begin{align*}
+            \nu(T) & = \Cline[blue]{\nu(T\cap A)}+\Cline[red]{\nu(T\cap A^C)} = \\
+                   & =\Cline[blue]{\nu(T\cap A\cap B)+\nu(T\cap A\cap B^C)}+
+            \Cline[red]{\nu(T\cap A^C\cap B)+\nu(T\cap A^C\cap B^C)}.
+        \end{align*}
+
+        Далее легко видеть, что $T\setminus (A\cap B)=(T\cap A\cap B^C)\cup(T\cap A^C\cap B)\cup(T\cap A^C\cap B^C)$,
+        значит
+        \[
+            \nu(T\setminus (A\cap B))\leqslant \nu(T\cap A\cap B^C)+\nu(T\cap A^C\cap B)+\nu(T\cap A^C\cap B^C).
+        \]
+
+        Продолжая равенство выше, можно записать так:
+        \begin{align*}
+            \nu(T) & = \Cline[blue]{\nu(T\cap A)}+\Cline[red]{\nu(T\cap A^C)} = \\
+                   & =\Cline[blue]{\nu(T\cap A\cap B)+\nu(T\cap A\cap B^C)}+
+            \Cline[red]{\nu(T\cap A^C\cap B)+\nu(T\cap A^C\cap B^C)}\geqslant   \\
+                   & \geqslant \nu(T\cap(A\cap B))+\nu(T\setminus(A\cap B)).
+        \end{align*}
+
+        А неравенство $\nu(T)\leqslant \nu(T\cap(A\cap B))+\nu(T\setminus(A\cap B))$ выполнено по определению $\nu$. Следовательно
+        \[
+            \nu(T)= \nu(T\cap(A\cap B))+\nu(T\setminus(A\cap B))\Rightarrow A\cap B\in\Anu.
+        \]
+        Итак, $\Anu$~--- $\pi$"=система, то есть $\forall \{A_k\}_{k=1}^{n}\subset\Anu$ выполнено $\bigcap\limits_{k=1}^{n}A_k\in\Anu$.
+
+        \circled{$\mathbf{\lambda}$} Пусть $A_k\in\Anu\quad\forall k\in\N$. Докажем, что
+        \[
+            \nu(T)=\nu\left(T\cap\bigsqcup_{k=1}^{\infty}A_k\right)+\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right).
+        \]
+
+        Для этого докажем неравенства в обе стороны. Неравенство \circled{$\leqslant$} сразу следует в силу $\sigma$"=субаддитивности.
+
+        Докажем \circled{$\geqslant$}. Заметим, что $\bigsqcup\limits_{k=1}^{n}A_k\in\Anu$. В самом деле, пусть $A,\, B\in\Anu$, тогда
+        \[A\cap B,\, A^C,\, B^C\in\Anu\Rightarrow A^C\cap B^C\in\Anu.\] Поэтому для двух элементов имеем (а следовательно и для конечного числа)
+        \[
+            A\cup B=(A\cup B)^{CC}=(A^C\cap B^C)^C\in\Anu.
+        \]
+
+        Итак, раз дизъюнктное объединение лежит в $\Anu$, то
+        \[
+            \nu(T)=\underbrace{\nu\left(T\cap\bigsqcup_{k=1}^{n}A_k\right)}_{\circled{1}}+
+            \underbrace{\nu\left(T\setminus\bigsqcup_{k=1}^{n}A_k\right)}_{\circled{2}}.
+        \]
+        Рассмотрим слагаемые по отдельности:
+        \begin{enumerate}[label=\protect\circled{\arabic*}]
+            \item В силу утверждения \ref{lect06:claim} имеем \[
+                      \nu\left(T\cap\bigsqcup_{k=1}^{n}A_k\right)=\sum_{k=1}^{n}\nu(T\cap A_k).
+                  \]
+            \item В силу монотонности $\nu$ имеем \[
+                      \nu\left(T\setminus\bigsqcup_{k=1}^{n}A_k\right)\leqslant\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right).
+                  \]
+        \end{enumerate}
+
+        Итак,
+        \[\nu(T)\geqslant\sum_{k=1}^{n}\nu(T\cap A_k)+\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right)\]
+
+        Теперь если $\nu\left(T\setminus\bigsqcup\limits_{k=1}^{\infty}A_k\right)=+\infty$, то доказываемое равенство выполнено.
+        Если же мера конечна, то слагаемое можно перенести влево (неравенство будет выполнено для любого $n\in\N$):
+        \[
+            \sum_{k=1}^{n}\nu(T\cap A_k)\leqslant\nu(T)-\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right)\Rightarrow
+            \sum_{k=1}^{\infty}\nu(T\cap A_k)\leqslant\nu(T)-\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right).
+        \]
+
+        То есть доказано, что
+        \[
+            \nu(T)\geqslant\sum_{k=1}^{\infty}\nu(T\cap A_k)+\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right)\geqslant
+            \nu\left(T\cap\bigsqcup_{k=1}^{\infty}A_k\right)+\nu\left(T\setminus\bigsqcup_{k=1}^{\infty}A_k\right),
+        \]
+        что и требовалось.
+
+    \end{proof}
+\end{theorem}
+
+\begin{claim}
+    $K_d\in\CA_{m^*}$, то есть все клетки измеримы по Лебегу.
+
+    \begin{proof}
+        Нужно доказать, что $\forall T\subset\R^d$ выполнено $\nu(T)\geqslant\nu(T\cap A)+\nu(T\setminus A)$, где
+        $\nu=m^*$, $A\in K_d$~--- фиксированная.
+
+        Пусть $T\subset\bigcup\limits_{k=1}^{\infty}A_k$, где $A_k\in K_d$ таковы, что
+        \[
+            \nu(T)\geqslant \sum_{k=1}^{\infty}m(A_k)-\varepsilon.
+        \]
+
+        В частности,
+        \begin{align*}
+             & \nu(T\cap A)\leqslant \sum_{k=1}^{\infty}m(A_k\cap A), \text{ так как } T\cap A\subset \bigcup_{k=1}^{\infty}A_k\cap A                            \\
+             & \nu(T\setminus A)=\nu(T\cap A^C)\leqslant \sum_{k=1}^{\infty}m(A_k\cap A^C), \text{ так как } T\cap A^C\subset \bigcup_{k=1}^{\infty}A_k\cap A^C, \\
+        \end{align*}
+        где $m(A_k\cap A^C)$~--- сумма мер клеток, на которые разбивается $A_k\setminus A$.
+
+        Сложив два неравенства, получим:
+        \[
+            \nu(T\cap A)+\nu(T\cap A^C)\leqslant\sum_{k=1}^{\infty}\left(m(A_k\cap A)+m(A_k\cap A^C)\right)=
+            \sum_{k=1}^{\infty}m(A_k)\leqslant \nu(T)+\varepsilon.
+        \]
+        Следовательно в силу произвольности $\varepsilon$ имеем
+        \[
+            \nu(T)\geqslant\nu(T\cap A)+\nu(T\cap A^C).
+        \]
+
+    \end{proof}
+\end{claim}
+
+\begin{next0}
+    Все борелевские множества измеримы по Лебегу.
+
+    В самом деле, было доказано, что $K_d\subset\CA_{m^*}$, следовательно $\underbrace{\sigma(K_d)}_{\FB(\R^d)}\subset \CA_{m^*}$.
+\end{next0}
+
+\begin{definition}
+    Множество $A\subset\R^d$ называется \mdef{множеством меры 0} если $m^*(A)=0$.
+\end{definition}
+
+\begin{remark}
+    Измеримых по Лебегу множеств больше чем борелевских множеств. То есть существуют измеримые по Лебегу множества, не являющиеся борелевскими.
+
+    В самом деле, мощность борелевской сигма-алгебры~--- континуум, а мощность множества всех подмножеств множества Кантора больше чем континуум,
+    значит в нем есть множество, не являющееся борелевским. Но в то же время все они измеримы по Лебегу, так как являются множествами меры нуль.
+\end{remark}

@@ -1,0 +1,95 @@
+\setcounter{section}{86}
+\section{Нижняя оценка разброса (уклонения) величиной $\frac{\sqrt{n}}{2}$ с помощью матриц Адамара.}
+
+\textbf{Теорема} Если $n$ - порядок матрицы Адамара, то $\exists \mathcal{M}: \forall \chi \hookrightarrow disc(\mathcal{M}, \chi) \geq \frac{\sqrt{n}}{2}$, где $\mathcal{M} = \{\mathcal{M}_1, \ldots, \mathcal{M}_n\}, \forall i \ \mathcal{M}_i \subset \{1, 2, \cdots, n\} = \mathcal{R}$
+
+$\blacktriangle$
+В данном билете используются понятия, определённые в билетах "Матрицы Адамара" (билет 15) и "Разброс системы подмножеств относительно раскраски" (билет 18).
+
+По определению:
+$$disc(\mathcal{M}, \chi) = max|\sum_{j \in \mathcal{M}_i} \chi(j)|$$
+
+Пусть $H$ - матрица Адамара, которая имеет нормальный вид, $J$ - матрица из единиц. Рассмотрим матрицу $\frac{H + J}{2}$, она состоит только из нулей и единиц. Рассмотрим $\mathcal{M}$, в которой за $\mathcal{M}_i$ обозначим те позиции в $i$-ой строке, на которых стоят единицы. $\mathcal{M}_i \subset \{1, 2, \cdots, n\} $
+
+Пусть
+$$
+H
+\begin{pmatrix} 
+v_1 \\ 
+\cdots \\
+v_n
+\end{pmatrix}
+=
+\begin{pmatrix} 
+L_1 \\ 
+\cdots \\
+L_n
+\end{pmatrix},
+v_i \in \{+1, -1\}
+$$
+
+$$
+\left(\frac{H + J}{2}\right)
+\begin{pmatrix} 
+v_1 \\ 
+\cdots \\
+v_n
+\end{pmatrix}
+=
+\begin{pmatrix} 
+(L_1 + \lambda) / 2 \\ 
+\cdots \\
+(L_n + \lambda) / 2
+\end{pmatrix},
+v_i \in \{+1, -1\}, \lambda = \sum_{i = 1}^n v_i 
+$$
+
+Тогда $\forall i$
+$$(L_i + \lambda) / 2 = 
+(1...10...01...) 
+\begin{pmatrix} 
+v_1 \\ 
+\cdots \\
+v_n
+\end{pmatrix}
+$$
+
+Будем с помощью $v_i$-ых задавать раскраску множества $\mathcal{R}$: $v_i = \chi(i)$. Тогда 
+$$|(L_i + \lambda) / 2| = |\sum_{j \in \mathcal{M}_i} \chi(j)|$$
+
+Следовательно, нам необходимо доказать, что для любого набора $v_i$ (для любой раскраски множества $\mathcal{R}$), всегда найдётся $(L_i + \lambda) / 2$ по модулю не меньшее $\frac{\sqrt{n}}{2}$.
+
+$H = (\overline{h_1}, \ldots, \overline{h_n})$, т.е. $\overline{h_i}$ - $i$-ый столбец матрицы $H$. (Важное свойство $(h_i, h_j) = 0, \ \forall i \neq j$)
+$$
+(H\overline{v}, H\overline{v}) = L_1^2 + \ldots + L_n^2
+$$
+$$
+(H\overline{v}, H\overline{v}) = (\overline{h_1} \cdot v_1 + \ldots + \overline{h_n} \cdot v_n, \overline{h_1} \cdot v_1 + \ldots + \overline{h_n} \cdot v_n) = (\overline{h_1}, \overline{h_1}) v_1^2 + \ldots + (\overline{h_n}, \overline{h_n}) v_n^2 = n \cdot 1 + \ldots + n \cdot 1 = n^2 \Rightarrow
+$$
+$$
+L_1^2 + \ldots + L_n^2 = n^2
+$$
+$$
+(H + J) \overline{v} = 
+\begin{pmatrix} 
+L_1 + \lambda \\ 
+\cdots \\
+L_n + \lambda
+\end{pmatrix}
+,\text{где} \ \lambda = \sum_{i = 1}^n v_i 
+\text{- чётное число}
+$$
+$$
+((H + J)\overline{v}, (H + J)\overline{v}) = (L_1 + \lambda)^2 + 
+\ldots + (L_n + \lambda)^2 = L_1^2 + \ldots + L_n^2 + 2 \lambda \sum_{i = 1}^n L_i + \lambda^2 n = n^2 + 2 \lambda \sum_{i = 1}^n L_i + \lambda^2 n
+$$
+Используя структуру матрицы $H$ - матрицы Адамара нормального вида, можно сказать, что $\sum_{i = 1}^n L_i = \sum_{i = 1}^n v_i \sum_{j = 1}^n h_{ij} = v_1 \cdot n + v_2 \cdot 0 + \ldots + v_n \cdot 0 = \pm n$, следовательно
+$$
+((H + J)\overline{v}, (H + J)\overline{v}) = \lambda^2 n \pm 2 \lambda n + n^2 \geq n^2
+$$
+(Неравенство доказывается перебором целых значений в окрестности минимума)
+
+Так как $((H + J)\overline{v}, (H + J)\overline{v}) = (L_1 + \lambda)^2 + \ldots + (L_n + \lambda)^2$ ,то $\exists k: L_k + \lambda \geq \sqrt{n} \Rightarrow \frac{(L_k + \lambda)}{2} \geq \frac{\sqrt{n}}{2} $, следовательно, для рассматриваемого $\mathcal{M}$ верно:
+
+$$disc(\mathcal{M}, \chi) = max|\sum_{j \in \mathcal{M}_i} \chi(j)|  \geq |\sum_{j \in \mathcal{M}_k} \chi(j)| = \frac{(L_k + \lambda)}{2} \geq \frac{\sqrt{n}}{2}$$
+Следовательно, $\exists \mathcal{M}: \forall \chi \hookrightarrow disc(\mathcal{M}, \chi) \geq \frac{\sqrt{n}}{2}\ \blacksquare$

@@ -1,0 +1,22 @@
+\begin{task}{3}
+    Пусть $\F \subset \mathcal{P} (X)$~--- кольцо, $E\subset X$, $E\notin \F$. Найти (описать)
+    кольцо, порожденное семейством $\F\cup E$.
+\end{task}
+
+\begin{solution}
+    \begin{equation}
+        \mathcal{R} (\F\cup E) = \left\{A\setminus E,\, E\setminus A,\, A\cap E,\, A\cup E \ |\  A \in \F\cup E\right\} \cup \F.
+        \label{lect1task3}
+    \end{equation}
+
+    Обозначим множество, простроенное в формуле \eqref{lect1task3} $\mathcal{G}$.
+    $\mathcal{G} $ является кольцом, так как:
+    \begin{enumerate}
+        \item $\varnothing\in\F\Rightarrow\varnothing\in \mathcal{G} $;
+        \item Замкнутость для любых $A,\, B\in \F$~--- очевидна. Замкнутость для любого $A\in\F$ и $E$ выполняется благодаря
+              левой части.
+    \end{enumerate}
+
+    Минимальность \mdef{очевидна}.
+
+\end{solution}

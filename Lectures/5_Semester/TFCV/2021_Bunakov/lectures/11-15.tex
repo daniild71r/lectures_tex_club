@@ -1,0 +1,461 @@
+\section{Дифференцируемость и регулярные функции}
+
+\begin{definition}
+	Пусть функция $f$ определена в некоторой окрестности $B_{\delta_0}(z_0)$ точки  $z_0 \in \Cm$. Функция $f$ называется \textit{дифференцируемой в точке $z_0$}, если в окрестности $\mathring B_{\delta_0}{(0)}$ определена функция $\alpha$ такая, что $\lim_{\Delta z \to 0}\alpha(\Delta z) = 0$, и существует $A \in \Cm$ такое, что для любого $\Delta z \in \mathring B_{\delta_0}{(0)}$ выполнено $f(z_0 + \Delta z) - f(z_0) = A\Delta z + |\Delta z|\alpha(\Delta z)$.
+\end{definition}
+
+\begin{theorem}
+	Пусть $f(z) = f(x + iy) = u(x, y) + iv(x, y)$. Тогда $f$ дифференцируема в точке $z_0 = x_0 + iy_0 \in \Cm \lra$ $u, v$ дифференцируемы в точке $(x_0, y_0)$ и выполнены следующие равенства, называемые условиями Коши-Римана:
+	\[\System{u'_x(x_0, y_0) &= v'_y(x_0, y_0) \\ u'_y(x_0, y_0) &= -v'_x(x_0, y_0)}\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\ra$] Пусть $\Delta z = \Delta x + i \Delta y$, $\alpha(\Delta z) = \beta(\Delta x, \Delta y) + i\gamma(\Delta x, \Delta y)$, $A = B + iC$. По определению дифференцируемости, $\lim_{(\Delta x, \Delta y) \to (0, 0)}\beta(\Delta x, \Delta y) = 0$ и $\lim_{(\Delta x, \Delta y) \to (0, 0)}\gamma(\Delta x, \Delta y) = 0$. Тогда:
+		\begin{multline*}
+			u(x + \Delta x, y + \Delta y) + iv(x + \Delta x, y + \Delta y) - u(x, y) - iv(x, y) =  A\Delta z + |\Delta z|\alpha(\Delta z) =
+			\\
+			= (B + iC)(\Delta x + i\Delta y) + \sqrt{(\Delta x)^2 + (\Delta y)^2}(\beta(\Delta x, \Delta y) + i\gamma(\Delta x, \Delta y))
+		\end{multline*}
+		
+		Приравнивая действительную и мнимую части по отдельности, получим следующее:
+		\[\System{
+			u(x + \Delta x, y + \Delta y) - u(x, y) &=  B\Delta x - C\Delta y + \sqrt{(\Delta x)^2 + (\Delta y)^2}\beta(\Delta x, \Delta y)
+			\\
+			v(x + \Delta x, y + \Delta y) - v(x, y) &= C\Delta x + B\Delta y + \sqrt{(\Delta x)^2 + (\Delta y)^2}\gamma(\Delta x, \Delta y)
+		}\]
+	
+		Значит, $u, v$ дифференцируемы в точке $(x_0, y_0)$. Кроме того, $B = u'_x(x_0, y_0) = v'_y(x_0, y_0)$ и $C = v'_x(x_0, y_0) = -u'_y(x_0, y_0)$.
+		
+		\item[$\la$] Положим $B := u'_x(x_0, y_0) = v'_y(x_0, y_0)$, $C := v'_x(x_0, y_0) = -u'_y(x_0, y_0)$, тогда снова выполнена система из доказательства $(\ra)$. Умножая второе равенство системы на $i$ и складывая с первым, получим требуемое.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Легко видеть, что дифференцируемость функции $f$ в точке $z_0 \in \Cm$ равносильна существованию следующего предела:
+	\[\lim_{\Delta z \to 0}\frac{f(z_0 + \Delta z) - f(z_0)}{\Delta z} = A \in \Cm\]
+	
+	Число $A$ "--- это в точности число из определения дифференцируемости.
+\end{note}
+
+\begin{definition}
+	Пусть функция $f$ дифференцируема в точке $z_0 \in \Cm$. Значение предела $\lim_{\Delta z \to 0}\frac{f(z_0 + \Delta z) - f(z_0)}{\Delta z}$ называется \textit{производной} функции $f$ в точке $z_0$ и обозначается через $f'(z_0)$.
+\end{definition}
+
+\begin{note}
+	Из определения производной и теоремы выше легко видеть, что если $f$ дифференцируема в точке $z_0 = x_0 + iy_0 \in \Cm$ и $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, то выполнены следующие равенства:
+	\begin{multline*}
+		f'(z_0) = u'_x(x_0, y_0) + iv'_x(x_0, y_0) = v'_y(x_0, y_0) + iv'_x(x_0, y_0) =
+		\\
+		= v'_y(x_0, y_0) - iu'_y(x_0, y_0) = u'_x(x_0, y_0) - iu'_y(x_0, y_0)
+	\end{multline*}
+\end{note}
+
+\begin{note}
+	Пусть функции $f, g$ дифференцируемы в точке $z_0 \in \Cm$. Аналогично вещественному случаю, можно доказать, что тогда функции $f + g$ и $fg$ тоже дифференцируемы в точке $z_0$, причем выполнены следующие равенства:
+	\begin{gather*}
+		(f + g)'(z_0) = f'(z_0) + g'(z_0)\\
+		(fg)'(z_0) = f'(z_0)g(z_0) + f(z_0)g'(z_0)
+	\end{gather*}
+	
+	Если при этом $g(z_0) \ne 0$, то и функция $\frac fg$ дифференцируема в точке $z_0$, причем выполнено следующее равенство:
+	\[
+	\left(\frac fg\right)'(z_0) = \frac{f'(z_0)g(z_0) - f(z_0)g'(z_0)}{g(z_0)^2}\]
+\end{note}
+
+\begin{note}
+	Пусть функция $f$ дифференцируема в точке $z_0 \in \Cm$, $f(z_0) := w_0 \in \Cm$, функция $g$ дифференцируема в точке $w_0$. Аналогично вещественному случаю, можно доказать, что тогда функция $h := g \circ f$ дифференцируема в точке $z_0$, причем выполнено следующее равенство:
+	\[h'(z_0) = g'(w_0)f'(z_0)\]
+	
+	Наконец, упомянутые свойства позволяют заключить, что элементарные функции дифференцируемы в любой точке из $\Cm$.
+\end{note}
+
+\begin{example}
+	Проверка условий Коши-Римана для функций ниже дает следующее:
+	\begin{enumerate}
+		\item $f(z) =\overline{z}$ не дифференцируема ни в одной точке из $\Cm$
+		\item $f(z) = |z|^2 = z\overline{z}$ дифференцируема только в точке $0$
+		\item $f(z) = e^z$ дифференцируема в любой точке из $\Cm$
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Функция $f$ называется \textit{регулярной} на открытом множестве $G \subset \Cm$, если выполнены следующие условия:
+	\begin{enumerate}
+		\item $f$ дифференцируема в любой точке из $G$
+		\item $f'$ непрерывна в любой точке из $G$
+	\end{enumerate}
+
+	Обозначение "--- $f \in C^1(G)$.
+\end{definition}
+
+\begin{definition}
+	Функция $f$ называется \textit{регулярной} на множестве $A \subset \Cm$, если $A$ включено в открытое множество $G \subset \Cm$ такое, что $f \in C^1(G)$. Обозначение "--- $f \in C^1(A)$.
+\end{definition}
+
+\begin{note}
+	В частности, функция $f$ регулярна в точке $z_0 \in \Cm$, если $f$ регулярна в достаточно малой окрестности $B_{\delta_0}(z_0)$ этой точки.
+\end{note}
+
+\begin{note}
+	В силу уже полученных свойств дифференцируемости и непрерывности, справедливы утверждения, аналогичные утверждениям о дифференцируемости:
+	\begin{itemize}
+		\item Если $f, g$ регулярны в точке $z_0 \in \Cm$, то $f + g$, $fg$ тоже регулярны в $z_0$
+		\item Если $f, g$ регулярны в точке $z_0 \in \Cm$ и $g(z_0) \ne 0$, то $\frac fg$ тоже регулярна в $z_0$
+		\item Если $f$ регулярна в точке $z_0 \in \Cm$, $g$ регулярна в точке $w_0 := f(z_0) \in \Cm$, то $g \circ f$ тоже регулярна в $z_0$
+	\end{itemize}
+\end{note}
+
+\section{Интеграл вдоль кривой}
+
+\begin{definition}
+	Пусть $\gamma$ "--- кусочно-гладкая кривая, $z = \sigma(t)$, $t \in [a, b]$, "--- ее параметризация, и функция $f$ такова, что композиция $f\circ\sigma$ непрерывна на $[a, b]$.
+	\begin{itemize}
+		\item \textit{Интегралом первого рода} функции $f$ по кривой $\gamma$ называется следующая величина:
+		\[\int_{\gamma}f(z)|dz| := \int_a^bf(\sigma(t))|\sigma'(t)|dt\]
+		\item \textit{Интегралом второго рода} функции $f$ по кривой $\gamma$ называется следующая величина:
+		\[\int_{\gamma}f(z)dz := \int_a^bf(\sigma(t))\sigma'(t)dt\]
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Если $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, то, как нетрудно убедиться, выполнены следующие равенства:
+	\begin{gather*}
+		\int_{\gamma}f(z)|dz| = \int_\gamma u(x, y)ds + i\int_\gamma v(x, y)ds
+		\\
+		\int_{\gamma}f(z)dz = \int_\gamma udx - vdy + i\int_\gamma vdx + udy
+	\end{gather*}
+\end{note}
+
+\begin{theorem}
+	Пусть для кривой $\gamma$ и функций $f, g$ выполнены условия в определении интеграла первого и второго рода. Тогда выполнены следующие свойства:
+	\begin{enumerate}
+		\item (\textit{Линейность}) Если $\alpha, \beta \in \Cm$, то:
+		\[\int_{\gamma}(\alpha f+\beta g)dz = \alpha\int_\gamma fdz + \beta\int_\gamma gdz\]
+		
+		\item (\textit{Аддитивность}) Если $\gamma = \gamma_1\gamma_2$, то:
+		\[\int_{\gamma}fdz = \int_{\gamma_1}fdz + \int_{\gamma_2}fdz\]
+		
+		\item (\textit{Независимость от параметризации}) Если $\phi : [\alpha, \beta] \to [a, b]$ "--- кусочно-гладкая строго возрастающая функция, то:
+		\[\int_{\gamma}f(z)dz := \int_a^bf(\sigma(t))\sigma'(t)dt = \int_\alpha^\beta f(\sigma(\phi(u)))\sigma'(\phi(u))\phi'(u)du\]
+		
+		\item Аналогичные пунктам $(1), (2), (3)$ свойства выполнены для интегралов первого рода
+		
+		\item Если $\gamma^{-1}$ "--- кривая с параметризацией $z = \sigma(-t)$, $t \in [-b, -a]$, то:
+		\[\int_{\gamma^{-1}}f|dz| = \int_\gamma f|dz|,\text{ но }\int_{\gamma^{-1}}fdz = -\int_\gamma fdz\]
+		
+		\item Если $M := \max_{z \in M(\gamma)}|f(z)|$, $|\gamma|$ "--- длина кривой $\gamma$, то:
+		\[\left|\int_\gamma fdz\right| \le \int_\gamma|f||dz| \le M|\gamma|\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Справедливость всех свойств, кроме последнего, непосредственно следует из справедливости соответствующих свойств вещественных интегралов. Докажем последнее свойство. Если $I := \int_\gamma fdz = 0$, то утверждение тривиально. Пусть теперь это не так, тогда $I = |I|e^{i\theta}$ для некоторого $\theta \in \R$, откуда $|I| = Ie^{-i\theta}$. Зафиксируем параметризацию $z = \sigma(t)$, $t \in [a, b]$, тогда:
+	\begin{multline*}
+		|I| = \int_{a}^be^{-i\theta} f(\sigma(t))\sigma'(t)dt = \int_{a}^b\re\left(e^{-i\theta} f(\sigma(t))\sigma'(t)\right)dt \le \\
+		\le \int_{a}^b\left|e^{-i\theta} f(\sigma(t))\sigma'(t)\right|dt = \int_{a}^b|f(\sigma(t))||\sigma'(t)|dt = \int_\gamma |f||dz|
+	\end{multline*}
+
+	Таким образом, первое неравенство уже получено, а второе следует из свойств вещественных интегралов.
+\end{proof}
+
+\begin{example}
+	Зафиксируем произвольные числа $n \in \Z$, $z_0 \in \Cm$ и $R > 0$ и вычислим следующий интеграл:
+	\[I_n := \int_{|z - z_0| = R}(z - z_0)^ndz\]
+	
+	\textit{Здесь и всегда далее мы считаем окружность ориентированной против часовой стрелки}. Параметризуем ее как $z(t) = z_0 + Re^{it}$, $t \in [0, 2\pi]$. Тогда:
+	\[I_n = \int_0^{2\pi}\left(Re^{it}\right)^n(iRe^{it})dt = iR^{n+1}\int_0^{2\pi}e^{it(n+1)}dt = \System{
+	&2\pi i,& \text{если }&n = -1
+	\\
+	&0,& \text{если }&n \ne -1
+	}\]
+\end{example}
+
+\begin{note}
+	Если $z = \sigma(t)$, $t \in [a, b]$ "--- абсолютно непрерывная функция, а композиция $f \circ \sigma$ измерима и ограниченна на $[a, b]$, то формула интеграла второго рода остается применимой.
+\end{note}
+
+\section{Интегральная теорема Коши}
+
+\begin{theorem}[\textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \R^2$ "--- односвязная область
+		
+		\item $P, Q \in C^1(G)$
+		
+		\item $\D{P}{y} \equiv \D{Q}{x}$ на $G$
+		
+		\item $\gamma$ "--- кусочно-гладкая замкнутая кривая такая, что $M(\gamma) \subset G$
+	\end{enumerate}
+
+	Тогда верно следующее равенство:
+	\[\int_\gamma Pdx + Qdy = 0\]
+\end{theorem}
+
+\begin{theorem}[интегральная теорема Коши для односвязной области]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \Cm$ "--- односвязная область
+		\item $f \in C^1(G)$
+		\item $\gamma$ "--- кусочно-гладкая замкнутая кривая такая, что $M(\gamma) \subset G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\int_\gamma fdz = 0\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, тогда:
+	\[\int_\gamma fdz = \int_\gamma udx - vdy + i\int_\gamma vdx + udy\]
+	
+	Проверим, что первый интеграл в сумме выше равен нулю, поскольку равенство нулю второго интеграла проверяется аналогично. Поскольку функция $f$ регулярна, то выполнено $u, v \in C^1(G)$, причем $\D{u}{y} \equiv -\D{v}{x}$ на $G$ по условиям Коши-Римана, тогда $\int_\gamma udx - vdy = 0$ по предыдущей теореме.
+\end{proof}
+
+\begin{note}
+	Условие односвязности области $G$ существенно. Рассмотрим неодносвязную область $G := \{z \in \Cm : \frac12 < |z| < 2\}$, кривую $\gamma := \{z \in \Cm : |z| = 1\}$, ориентированную против часовой стрелки, и функцию $f(z) := \frac 1z \in C^1(G)$, тогда:
+	\[\int_\gamma fdz = 2\pi i  \ne 0\]
+\end{note}
+
+\begin{definition}
+	Область $G \subset \CM$ называется \textit{областью с простой границей}, если $\partial{G} = M(\gamma_1) \sqcup \dotsb \sqcup M(\gamma_n)$ для некоторых кусочно-гладких контуров $\gamma_1, \dotsc, \gamma_n$. Граничные кривые $\gamma_1, \dotsc, \gamma_n$ называются \textit{положительно ориентированными} относительно $G$, если при обходе каждой из них область всегда остается слева.
+\end{definition}
+
+\begin{example}
+	На рисунке ниже слева приведен пример области $G_1$ с простой положительно ориентированной границей, а справа --- пример области $G_2$, не являющейся областью с простой границей.
+		\begin{center}
+			\begin{tikzpicture}
+				\clip (-6, -2.2) rectangle (6, 2.2);
+				
+				\fill [opacity=0.05] (-3,0) circle [radius=2];
+				\draw[
+					black,
+					decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+					decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+					postaction={decorate}
+				] (-3,0) circle[radius=2];
+				\node[] at (-1, 1.2) {$\gamma_1$};
+				
+				\fill [white] (-3.9,0) circle [radius=0.7];
+				\draw[
+				black,
+				decoration={markings, mark=at position 0.1 with {\arrow{<}}},
+				decoration={markings, mark=at position 0.6 with {\arrow{<}}},
+				postaction={decorate}
+				] (-3.9,0) circle[radius=0.7];
+				\node[] at (-3.8, 0.9) {$\gamma_2$};
+				\node[] at (-3, -1) {$G_1$};
+				
+				\fill [white] (-2.1,0) circle [radius=0.7];
+				\draw[
+				black,
+				decoration={markings, mark=at position 0.1 with {\arrow{<}}},
+				decoration={markings, mark=at position 0.6 with {\arrow{<}}},
+				postaction={decorate}
+				] (-2.1,0) circle[radius=0.7];
+				\node[] at (-2.2, 0.9) {$\gamma_3$};
+				
+				\fill [opacity=0.05] (3,0) circle [radius=2];
+				\draw[black] (3,0) circle[radius=2];
+				\node[] at (1.03, 1.2) {$\gamma$};
+				\node[] at (3, -0.67) {$G_2 = \mathring B_\epsilon(z_0)$};
+				
+				\node[] at (3.2, 0.2) {$z_0$};
+				
+				\fill [white] (3,0) circle [radius=0.06];
+				\draw[black,=] (3,0) circle[radius=0.06];
+			\end{tikzpicture}
+	\end{center}
+	
+	Кроме того, не являются областями с простой границей, например, область $\Cm$ и область $\{z \in \Cm: \im{z} > 0\}$.
+\end{example}
+
+\begin{note}
+	Пусть $G \subset \CM$ "--- область с простой границей $M(\gamma_1) \sqcup \dotsb \sqcup M(\gamma_n)$, и граничные кривые $\gamma_1, \dotsc, \gamma_n$ положительно ориентированы относительно $G$. Под интегралом функции $f \in C^1(G)$ по границе $\partial G$ этой области понимается следующая величина:
+	\[\int_{\partial G}fdz := \sum_{k = 1}^n\int_{\gamma_k}fdz\]
+\end{note}
+
+\begin{definition}
+	\textit{Замыканием} множества $A \subset \Cm$ называется множество $\overline{A} := A \cup \partial A$.
+\end{definition}
+
+\begin{theorem}[\textit{без доказательства}, формула Грина для области с простой границей]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \R^2$ "--- ограниченная область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item $P, Q \in C(\overline{G})$ и $\D{P}{y}, \D{Q}{x} \in C(\overline{G})$, то есть функции $\D{P}{y}, \D{Q}{x}$ можно непрерывным образом продолжить на $\partial G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\iint_G\left(\D{Q}{x} - \D{P}{y}\right)dxdy = \int_{\partial G} Pdx + Qdy\]
+\end{theorem}
+
+\begin{theorem}[интегральная теорема Коши для ограниченной области с простой границей]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \Cm$ "--- ограниченная область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item $f \in C^1(\overline{G})$
+	\end{enumerate}
+
+	Тогда верно следующее равенство:
+	\[\int_{\partial G} fdz = 0\]
+\end{theorem}
+
+\begin{proof}
+	В силу регулярности функции $f$, можно выбрать открытое множество $A \subset \Cm$ такое, что $A \supset \overline{G}$ и $f \in C^1(A)$. Пусть $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, тогда:
+	\[\int_{\partial G} fdz = \int_{\partial G} udx - vdy + i\int_{\partial G} vdx + udy\]
+	
+	Применяя предыдущую теорему к парам функций $u, -v$ и $v, u$, а также пользуясь условиями Коши-Римана, получим:
+	\begin{gather*}
+		\int_{\partial G} udx - vdy  = \iint_G \left(-\D{v}{x} - \D{u}{y}\right)dxdy = 0
+		\\
+		\int_{\partial G} vdx + udy  = \iint_G \left(\D{u}{x} - \D{v}{y}\right)dxdy = 0
+	\end{gather*}
+
+	Таким образом, $\int_{\partial G} fdz = 0$.
+\end{proof}
+
+\section{Интегральная формула Коши}
+
+\begin{theorem}[интегральная формула Коши]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \Cm$ "--- ограниченная область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item $f \in C^1(\overline{G})$
+		
+		\item $z_0 \in G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[f(z_0) = \frac{1}{2\pi i}\int_{\partial G}\frac{f(z)}{z - z_0}dz\]
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем произвольное $\epsilon > 0$. Достаточно доказать, что выполнено следующее неравенство:
+	\[\left|\int_{\partial G}\frac{f(z)}{z - z_0}dz - 2\pi if(z_0)\right| \le 2\pi\epsilon\]
+	
+	Так как $f$ непрерывна в точке $z_0$, а множество $G$ "--- открытое, то существует $\delta > 0$ такое, что $\overline{B_\delta(z_0)} \subset G$ и для всех $z \in \overline{B_\delta(z_0)}$ выполнено $|f(z) - f(z_0)| \le \epsilon$. Рассмотрим область с простой границей $D := G \bs \overline{B_\delta(z_0)}$, тогда $\partial D = \partial G \cup \omega$, где $\omega$ "--- это окружность $\{z \in \Cm: |z - z_0| = \delta\}$, ориентированная \textit{по часовой стрелке}. Применим к $\frac{f(z)}{z - z_0}$ интегральную теорему Коши для области $D$ и получим следующее:
+	\[\int_{\partial D}\frac{f(z)}{z - z_0}dz = \int_{\partial G}\frac{f(z)}{z - z_0}dz + \int_{\omega}\frac{f(z)}{z - z_0}dz = 0 \ra \int_{\partial G}\frac{f(z)}{z - z_0}dz = -\int_{\omega}\frac{f(z)}{z - z_0}dz\]
+	
+	Заметим теперь, что верно следующее равенство:
+	\[\int_{\omega}\frac{dz}{z - z_0} = -2\pi i\]
+	
+	C учетом полученных равенств, имеем:
+	\[\left|\int_{\partial G}\frac{f(z)}{z - z_0}dz - 2\pi if(z_0)\right| = \left|\int_{\omega}\frac{-f(z) + f(z_0)}{z - z_0}dz\right| \le \max_{z \in \omega}\frac{|f(z) - f(z_0)|}{|z - z_0|}|\omega| \le 2\pi\epsilon\]
+	
+	Таким образом, получено требуемое.
+\end{proof}
+
+\section{Первообразная}
+
+\begin{definition}
+	Функция $F$ называется \textit{первообразной} функции $f$ на области $G \subset \Cm$, если $F$ дифференцируема на $G$ и $F' \equiv f$ на $G$.
+\end{definition}
+
+\begin{note}
+	Если $F$ "--- первообразная функции $f$ на области $G$, то для любого $C \in \Cm$ функция $F + C$ "--- тоже первообразная.
+\end{note}
+
+\begin{proof}
+	Тривиально, поскольку $C' \equiv 0$ на $\Cm$.
+\end{proof}
+
+\begin{proposition}
+	Если $F_1, F_2$ "--- первообразные функции $f$ на области $G$, то для некоторого $C \in \Cm$ выполнено $F_1 - F_2 \equiv C$ на $G$.
+\end{proposition}
+
+\begin{proof}
+	Положим $F := F_2 - F_1$, тогда $F$ тоже дифференцируема на $G$, причем $F' = F_2' - F_1' \equiv 0$ на $G$, откуда $F' \in C^1(G)$. Пусть $F(z) = U(x, y) + iV(x, y)$, тогда выполнено равенство $F' = U'_x +iV'_x$, и, по условиям Коши-Римана, $U'_x, U'_y, V'_x, V'_y \equiv 0$ на $G$. Значит, функции $U$ и $V$ постоянны на $G$, что и требовалось.
+\end{proof}
+
+\begin{proposition}[формула Ньютона-Лейбница]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $f$ непрерывна и имеет первообразную $F$ на области $G \subset \Cm$
+		\item $\gamma$ "--- кусочно гладкая-кривая, соединяющая точки $z_1, z_2 \in G$, такая, что $M(\gamma) \subset G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\int_{\gamma}fdz = F(z_2) - F(z_1)\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $z = \sigma(t)$, $t \in [a, b]$ "--- параметризация кривой $\gamma$, тогда $\sigma(a) = z_1$, $\sigma(b) = z_2$. Поскольку $F' \equiv f$ на $G$, то:
+	\[F(\sigma(t))'_t = F'(\sigma(t))\sigma'(t) = f(\sigma(t))\sigma'(t),~t \in [a, b]\]
+	
+	Значит, выполнено следующее:
+	\[\int_\gamma fdz = \int_a^b f(\sigma(t))\sigma'(t)dt = \int_a^b F(\sigma(t))'_t dt = F(\sigma(b)) - F(\sigma(a)) = F(z_2) - F(z_1)\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{corollary}
+	Пусть функция $f$ непрерывна и имеет первообразную на области $G \subset \Cm$. Тогда для любой замкнутой кусочно-гладкой кривой $\gamma$ такой, что $M(\gamma) \subset G$, выполнено равенство:
+	\[\int_\gamma fdz = 0\]
+\end{corollary}
+
+\begin{example}
+	Пусть $n \in \N$. Тогда для любых чисел $z_1, z_2 \in \Cm$ и для любой соединяющей их кусочно-гладкой кривой $\gamma$ выполнено следующее:
+	\[\int_{z_1}^{z_2}z^ndz := \int_\gamma z^ndz = \frac{z_2^{n+1} - z_1^{n+1}}{n+1}\]
+\end{example}
+
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $f$ непрерывна на области $G \subset \Cm$
+		\item Для любой замкнутой кусочно-гладкой кривой $\gamma$ такой, что $M(\gamma) \subset G$, выполнено равенство $\int_\gamma fdz = 0$
+	\end{enumerate}
+
+	Тогда $f$ имеет первообразную на $G$.
+\end{proposition}
+
+\begin{proof}
+	Из условия следует, что для любых $z_1, z_2 \in G$ интеграл $\int_{z_1}^{z_2} fdz$ не зависит от выбора лежащей в $G$ кусочно-гладкой кривой, соединяющей $z_1$ и $z_2$. Действительно, если $\gamma_1, \gamma_2$ "--- две такие кривые, то тогда:
+	\[0 = \int_{\gamma_1\gamma_2^{-1}}fdz = \int_{\gamma_1}fdz + \int_{\gamma_2^{-1}}fdz = \int_{\gamma_1}fdz - \int_{\gamma_2}fdz \ra \int_{\gamma_1}fdz = \int_{\gamma_2}fdz\]
+	
+	Зафиксируем $z_0 \in G$ и проверим, что первообразной функции $f$ является функция следующего вида:
+	\[F(z) := \int_{z_0}^zfdw,~z \in G\]
+	
+	Выберем произвольные $z \in G$ и $\epsilon > 0$. Достаточно доказать, что существует $\delta > 0$ такое, что для всех $0 < |\Delta z| \le \delta$ выполнено следующее неравенство:
+	\[\left|\frac{F(z + \Delta z) - F(z)}{\Delta z} - f(z)\right| \le \epsilon\]
+	
+	Поскольку $f$ непрерывна в точке $z$, то существует $\delta > 0$ такое, что для всех $w \in \Cm$, $|w - z| \le \delta$ выполнено неравенство $|f(w) - f(z)| < \epsilon$. Тогда, выбирая в качестве кривой, соединяющей $z$ и $z + \Delta z$, отрезок, получим:
+	\[\frac{F(z + \Delta z) - F(z)}{\Delta z} = \frac{1}{\Delta z}\left(\int_{z_0}^{z + \Delta z}fdw - \int_{z_0}^{z}fdw\right) = \frac{1}{\Delta z}\int_{z}^{z + \Delta z}fdw\]
+	
+	Таким образом, выполнено следующее:
+	\[\left|\frac{F(z + \Delta z) - F(z)}{\Delta z} - f(z)\right| = \frac1{|\Delta z|}\left|\int_z^{z + \Delta z}\left(f(w) - f(z)\right)dw\right| \le \frac1{|\Delta z|}(\epsilon|\Delta z|) = \epsilon\]
+	
+	В силу произвольности выбора $z$ и $\epsilon$, получено требуемое.
+\end{proof}
+
+\begin{corollary}
+	Пусть $G \subset \Cm$ "--- односвязная область, $f \in C^1(G)$. Тогда $f$ имеет первообразную на $G$.
+\end{corollary}
+
+\begin{proof}
+	Воспользуемся утверждением выше и интегральной теоремой Коши для односвязной области.
+\end{proof}
+
+\begin{note}
+	Условие односвязности в последнем утверждении существенно. Рассмотрим, например, область $G := \{z \in \Cm: \frac12 < |z| < 2\}$, функцию $f(z) := \frac1z$ и кривую $\gamma$, обходящую окружность $\{z \in \Cm: |z| = 1\}$ против часовой стрелки. Тогда:
+	\[\int_\gamma\frac1{z} = 2\pi i \ne 0\]
+	
+	Значит, функция $f$ не может иметь первообразную на $G$.
+\end{note}
+
+\begin{theorem}
+	Функция $f$, непрерывная на области $G \subset \Cm$, имеет первообразную $\lra$ для любой замкнутой кусочно-гладкой кривой $\gamma$ такой, что $M(\gamma) \subset G$, выполнено $\int_\gamma fdz = 0$.
+\end{theorem}
+
+\begin{proof}
+	Воспользуемся утверждениями выше.
+\end{proof}

@@ -1,0 +1,147 @@
+\begin{note}
+	Если расписать 5-е свойство для $n = 1, 2, 3, \ldots$, то можно получить сумму $1, 2, 3, \ldots$ степеней первых $m + 1$ натуральных чисел соответственно.
+\end{note}
+
+\subsection{Полиномиальный коэффициент}
+
+У нас есть $n_i$ объектов $a_i$ для всех $i \in [1, \ldots, t]$. Сколько различных последовательностей можно составить, используя абсолютно все объекты?
+
+Заметим, что у нас всегда одинаковая длина слова, равная $n$:
+\[
+	n = \suml_{i = 1}^t n_i.
+\]
+
+Чтобы собрать слово, будем последовательно расставлять все $t$ групп объектов.
+\begin{itemize}
+	\item Сколько мест есть для первой группы? Ответ: $n$.
+	\item Сколько мест есть для второй группы? Ответ: $n - n_1$ (первую поставили первой).
+	
+	\item~\vdots
+	\item Сколько мест есть для последней группы? Ответ: $n - n_1 - \ldots - n_{t - 1} = n_t$.
+\end{itemize}
+
+Очевидно, что для $i$-й группы происходит выбор $n_i$ мест из тех, что остались не занятыми. В итоге имеем
+\begin{multline*}
+	P(n_1, n_2, \ldots, n_t) = C_n^{n_1} \cdot C_{n - n_1}^{n_2} \cdot C_{n - n_1 - n_2}^{n_3} \cdot \ldots \cdot C_{n - n_1 - \ldots - n_{t - 1}}^{n_t} = \\ =
+	\frac{n!}{n_1! (n - n_1)!} \cdot \frac{(n - n_1)!}{n_2! (n - n_1 - n_2)!} \cdot \frac{(n - n_1 - n_2)!}{n_3! (n - n_1 - n_2 - n_3)!} \cdot \ldots \cdot \frac{(n - n_1 - \ldots - n_{t - 1})!}{n_t! (n - n_1 - \ldots - n_t)!} = \\ =
+	\frac{n!}{n_1! \cdot n_2! \cdot n_3! \cdot \ldots \cdot n_t! \cdot 0!} = \frac{n!}{n_1! \cdot n_2! \cdot n_3! \cdot \ldots \cdot n_t!}.
+\end{multline*}
+
+\begin{definition}
+	Число $P(n_1, \ldots, n_t)$ называют \textit{полиномиальным коэффициентом}.
+\end{definition}
+
+\subsection{Полиномиальная формула}
+
+\begin{definition}
+	Бином Ньютона позволяет выяснить разложение любой степени для суммы двух элементов. Его обобщением на случай $t$ переменных служит \textit{полиномиальная формула}.
+\end{definition}
+
+\begin{theorem}
+	\textit{Полиномиальной формулой} называется выражение
+	\[
+		(x_1 + \ldots + x_t)^n = \suml_{n_1 + \ldots + n_t = n} P(n_1, \ldots, n_t) \cdot x_1^{n_1} x_2^{n_2} \cdot x_t^{n_t}.
+	\]
+\end{theorem}
+
+\begin{proof}
+	Аналогично биному Ньютона распишем скобки:
+	\[
+		(x_1 + \ldots + x_t)^n = \underbrace{(x_1 + \ldots + x_t) \cdot \ldots \cdot (x_1 + \ldots + x_t)}_{n \text{ раз}}.
+	\]
+	
+	Чтобы получить полное слагаемое, нам нужно выбрать из каждой скобки по одному объекту. Если его привести, то мы получим выражение вида
+	\[
+		x_1^{n_1} \cdot \ldots \cdot x_t^{n_t}.
+	\]
+	При этом верно равенство:
+	\[
+		n_1 + \ldots + n_t = n,
+	\]
+	где $n_i$ значит то же, что и до этого: количество раз, сколько мы выбрали (имеем) $x_i$.
+	
+	Несложно понять, что такое слагаемое мы могли получить разными способами - в зависимости от того, из каких скобок какие объекты мы брали. Количество различных способов набрать $n_1, n_2, \ldots, n_t$ из скобок определяется полиномиальным коэффициентом. Отсюда 
+	\[
+		(x_1 + \ldots + x_t)^n = \suml_{n_1 + \ldots + n_t = n} P(n_1, \ldots, n_t) \cdot x_1^{n_1} \cdot \ldots \cdot x_t^{n_t}.
+	\]
+\end{proof}
+
+\subsubsection*{Сумма полиномиальных коэффициентов}
+
+\begin{proposition}
+	\[
+		\suml_{n_1 + \ldots + n_t = n} P(n_1, \ldots, n_t) = k^n.
+	\]
+\end{proposition}
+
+\begin{proof}
+	Просто положим в полиномиальной формуле все $x_i = 1$.
+\end{proof}
+
+\subsection{Формула включений и исключений}
+
+Пусть есть $N$ элементов. Обозначим $N(\alpha_i)$ --- количество элементов, обладающих свойством $\alpha_i$. $N(\alpha'_i)$ --- количество элементов, не обладающих свойством $\alpha_i$. Ну и понятно, что $N(\alpha_i, \alpha'_j)$ --- количество элементов, обладающих свойством $\alpha_i$ \textbf{и} не обладающих свойством $\alpha_j$.
+
+\begin{theorem}
+	Если мы рассмотрим $n$ свойств, которые мы можем приписать $N$ объектам, то имеет место \textit{формула включений и исключений}:
+	\begin{multline*}
+		N(\alpha'_1, \ldots, \alpha'_n) = N - N(\alpha_1) - \ldots - N(\alpha_n) + \\ +
+		N(\alpha_1, \alpha_2) + \ldots + N(\alpha_{n - 1}, \alpha_n) - \ldots + (-1)^n N(\alpha_1, \ldots, \alpha_n).
+	\end{multline*}
+\end{theorem}
+
+\begin{proof}
+	Воспользуемся математической индукцией
+	\begin{itemize}
+		\item База $n = 1$:
+		\[
+			N(\alpha'_1) = N - N(\alpha_1)
+		\]
+		верность очевидна.
+		
+		\item Предположение индукции: формула включений и исключений верна \textbf{для любых $N$ объектов и для любых $n$ свойств}. Докажем, что она также верна и в случае $(n + 1)$-го свойства для данного $N$.
+		
+		Применим предположение индукции для $N$ объектов и свойствам $\alpha_1, \ldots, \alpha_n$:
+		\begin{multline*}
+			N(\alpha'_1, \ldots, \alpha'_n) = N - N(\alpha_1) - \ldots - N(\alpha_n) + \\ +
+			N(\alpha_1, \alpha_2) + \ldots + N(\alpha_{n - 1}, \alpha_n) - \ldots + (-1)^n N(\alpha_1, \ldots, \alpha_n).
+		\end{multline*}
+		Теперь сделаем то же самое для $M \le N$ объектов, которые точно обладают свойством $\alpha_{n + 1}$, и свойств $\alpha_1, \ldots, \alpha_n$.
+		\begin{multline*}
+			M(\alpha'_1, \ldots, \alpha'_n) = M - M(\alpha_1) - \ldots - M(\alpha_n) + \\
+			M(\alpha_1, \alpha_2) + \ldots + M(\alpha_{n - 1}, \alpha_n) - \ldots + (-1)^n M(\alpha_1, \ldots, \alpha_n)
+		\end{multline*}
+		В силу определения $M$ также верно, что $M := N(\alpha_{n + 1})$. То есть можно переписать последнее выражение в виде
+		\begin{multline*}
+			N(\alpha'_1, \ldots, \alpha'_n, \alpha_{n + 1}) = N(\alpha_{n + 1}) - N(\alpha_1, \alpha_{n + 1}) - \ldots - N(\alpha_n, \alpha_{n + 1}) + \\
+			N(\alpha_1, \alpha_2, \alpha_{n + 1}) + \ldots + N(\alpha_{n - 1}, \alpha_n, \alpha_{n + 1}) - \ldots + (-1)^n N(\alpha_1, \ldots, \alpha_n, \alpha_{n + 1}).
+		\end{multline*}
+		Теперь вычтем полученное выражение из того, что было для всех $N$ объектов:
+		\begin{multline*}
+			N(\alpha'_1, \ldots, \alpha'_n, \alpha'_{n + 1}) = N(\alpha'_1, \ldots, \alpha'_n) - N(\alpha'_1, \ldots, \alpha'_n, \alpha'_{n + 1}) = \\ =
+			N - N(\alpha_1) - \ldots - N(\alpha_n) - N(\alpha_{n + 1}) + \\ +
+			N(\alpha_1, \alpha_2) + \ldots + N(\alpha_n, \alpha_{n + 1}) - \ldots + (-1)^n N(\alpha_1, \ldots, \alpha_n, \alpha_{n + 1}).
+		\end{multline*}
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	По понятным причинам слагаемых, содержащих ровно $k$ свойств, будет $C_n^k$.
+\end{note}
+
+\begin{corollary}
+	Пусть у нас есть множество $A = \{a_1, \ldots, a_n\}$. Рассмотрим все возможные $m$-размещения с повторениями из этого множества, при этом $m < n$. их $N := n^m$ штук. Положим их объектами для формулы включений и исключений и скажем, что $N(\alpha_i)$~---~это все размещения, в которые \textbf{не} входит элемент $a_i$. Тогда, верны следующие утверждения:
+	\begin{align*}
+		&N(\alpha_i) = (n - 1)^m,
+		\\
+		&N(\alpha_i, \alpha_j) = (n - 2)^m,
+		\\
+		&N(\alpha_1, \ldots, \alpha_n) = (n - n)^m = 0,
+		\\
+		&N(\alpha'_1, \ldots, \alpha'_n) = 0, \text{ так как } m < n.
+	\end{align*}
+	По формуле включений и исключений имеем:
+	\[
+		\suml_{k = 0}^n (-1)^k \cdot C_n^k \cdot (n - k)^m = 0.
+	\]
+\end{corollary}

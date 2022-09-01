@@ -1,0 +1,215 @@
+\subsection{Тензорная алгебра}
+
+\begin{definition}
+	Пусть $V_1, \dots, V_n$ "--- линейные пространства над полем $F$. Тогда их \textit{(внешней) прямой суммой} называется пространство $V_1 \times \dotsb \times V_n$ с операциями сложения и умножения на скаляр, введенными покомпонентно. Обозначение "--- $V_1 \oplus \dots \oplus V_n$.
+\end{definition}
+
+\begin{note}
+	Для любого $i \in \{1, 
+	\dotsc, n\}$ в $V_1 \oplus \dots \oplus V_n$ есть подпространство, канонически изоморфное $V_i$, вида $\{\overline{0}\} \times \dotsb \times \{\overline{0}\} \times V_i \times \{\overline{0}\} \times \dotsb \times \{\overline{0}\}$. Кроме того, каждый вектор $\overline{v} \in V_1 \oplus \dots \oplus V_n$ единственным образом раскладывается в сумму векторов из таких подпространств, поэтому $V_1 \oplus \dots \oplus V_n$ можно считать внутренней суммой таких подпространств, каждое из которых можно отождествить с соответствующим $V_i$.
+\end{note}
+
+\begin{corollary}
+	Все свойства прямой суммы переносятся на внешнюю прямую сумму, в частности, базис в $V_1 \oplus \dots \oplus V_n$ "--- это объединение базисов в $V_1, \dots, V_n$.
+\end{corollary}
+
+\begin{note}
+	В случае бесконечной прямой суммы $V := \bigoplus_{i = 1}^\infty V_i$ нужно дополнительно требовать, чтобы в каждом наборе $(\overline{v_1}, \overline{v_2}, \dotsc) \in V$ было лишь конечное число ненулевых векторов, чтобы сохранить связь с внутренней прямой суммой. Если разрешить бесконечное количество ненулевых векторов в наборах, то объединение базисов в $V_1, V_2, \dotsc$ уже не будет порождать $V$. Такая конструкция отличается от прямой суммы и называется \textit{прямым произведением}.
+\end{note}
+
+\textbf{До конца раздела} зафиксируем линейное пространство $V$ над полем $F$.
+
+\begin{definition}
+	$\mathbb{T} := \bigoplus_{p = 0}^\infty V^{\oplus p}$ называется \textit{тензорной алгеброй} пространства $V$.
+\end{definition}
+
+\begin{note}
+	В определении выше и везде далее считается, что $V^{\oplus 0} = F$.
+\end{note}
+
+\begin{example}
+	Элемент алгебры $\mathbb{T}$ может, например, иметь вид $\alpha + \overline{v} + \overline{u_1} \otimes \overline{u_2} \otimes \overline{u_3}$, где $\alpha \in F$, $\overline{v}, \overline{u_1}, \overline{u_2}, \overline{u_3} \in V$.
+\end{example}
+
+\begin{note}
+	Умножение в $\mathbb{T}$ задается как тензорное произведение тензоров на базисных тензорах и продолжается на все пространство $\mathbb{T}$ по билинейности.
+\end{note}
+
+\begin{note}
+	Если $e = ({e_1}, \dots, {e_n})$ "--- базис в $V$, то базис в $\mathbb{T}$ может быть получен как объединение систем $(1)$, $(e_1, \dots, e_n)$, $(e_1 \otimes e_1, e_1 \otimes e_2, \dots, e_n \otimes e_n)$, и так далее.
+\end{note}
+
+\begin{proposition}
+	Умножение в $\mathbb{T}$ ассоциативно, но необязательно коммутативно.
+\end{proposition}
+
+\begin{proof}
+	Данные свойства следуют из соответствующих свойств тензорного произведения.
+\end{proof}
+
+\begin{definition}
+	Пусть $t \in \mathbb{T}^p_q$. Тензор $t$ называется \textit{симметричным по первым двум координатам}, если для любых функционалов $f_1, \dots, f_p \in V^*$ и векторов $\overline{v_1}, \dots, \overline{v_q} \in V$ выполнено $t(f_1, f_2, \dots, f_p, \overline{v_1}, \dots, \overline{v_q}) = t(f_2, f_1, \dots, f_p, \overline{v_1}, \dots, \overline{v_q})$.
+\end{definition}
+
+\begin{note}
+	Легко видеть, что $t$ симметричен по первым двум верхним индексам $\lra$ его координаты симметричны по первым двум верхним индексам. Симметричность по другим наборам координат одного типа определяется аналогично.
+\end{note}
+
+\begin{definition}
+	Пусть $t \in \mathbb{T}^p_0$, $\sigma \in S_p$. Будем обозначать через $g_\sigma(t)$ такой тензор $g \in \mathbb{T}^p_0$, что $\forall f_1, \dotsc, f_p \in V^*: g(f_1, \dots, f_p) = t(f_{\sigma(1)}, \dots, f_{\sigma(p)})$.
+\end{definition}
+
+\begin{note}
+	Пусть $e$ "--- базис в $V$. Если $t$ имеет в базисе $e$ координаты $t^{i_1, \dots, i_p}$, то $g_\sigma(t)$ в этом же базисе имеет координаты $t^{i_{\sigma(1)}, \dots, i_{\sigma(p)}}$.
+\end{note}
+
+\begin{definition}
+	Тензор $t \in \mathbb{T}^p_0$ называется \textit{симметричным}, если $\forall \sigma \in S_p: g_\sigma(t) = t$. Такие тензоры образуют подпространство в $\mathbb{T}^p_0$, обозначаемое через $\mathbb{ST}^p$.
+\end{definition}
+
+\begin{note}
+	Равенство $g_\sigma(t) = t$ достаточно проверять только для набора перестановок $\sigma \in S_p$, порождающего $S_p$, например, для всех транспозиций соседних элементов. Иными словами, тензор $t \in \mathbb{T}^p$ симметричен $\hm{\Leftrightarrow}$ $t$ симметричен по любой паре соседних индексов.
+\end{note}
+
+\begin{definition}
+	\textit{Симметризацией} тензора $t \in \mathbb{T}^p_0$ называется следующий тензор:
+	\[s(t) := \frac1{p!}\sum_{\sigma \in S_p}g_\sigma(t) \in \mathbb{T}^p_0\]
+	
+	Симметризация определена, если $\cha{F} \nmid p$.
+\end{definition}
+
+\begin{proposition} Симметризация обладает следующими свойствами:
+	\begin{enumerate}
+		\item Для любого тензора $t \in \mathbb{T}^p_0$ выполнено $s(t) \in \mathbb{ST}^p$.
+		\item Если $t \in \mathbb{ST}^p$, то $s(t) = t$.
+		\item $\im{s} = \mathbb{ST}^p$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Пусть $\tau \in S_p$. Тогда:
+		\[g_\tau(s(t)) = g_\tau\left(\frac1{p!}\sum_{\sigma \in S_p}g_\sigma(t)\right) = \frac1{p!}\sum_{\sigma \in S_p} g_{\tau\sigma}(t) = \frac1{p!}\sum_{\widetilde\tau \in S_p} g_{\widetilde\tau}(t) = s(t)\]
+		
+		\item Если $t \in \mathbb{ST}^p$, то $\forall \sigma \in S_p: g_\sigma(t) = t$, из чего и следует требуемое.
+		
+		\item Равенство $\im{s} = \mathbb{ST}^p$ выполнено в силу пункта $(2)$.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Конечно, \textit{частичная симметризация} возможна и для произвольных тензоров типа $(p, q)$, в этом случае суммирование производится по всевозможным перестановкам того набора индексов, по которому производится симметризация.
+\end{note}
+
+\begin{proposition}
+	Для произвольных тензоров $t_1 \in \mathbb{T}^{p_1}(V)$, $t_2 \hm\in \mathbb{T}^{p_2}(V)$ выполнены равенства $s(t_1 \otimes t_2) = s(s(t_1) \otimes t_2) \hm= s(t_1 \otimes s(t_2))$.
+\end{proposition}
+
+\begin{proof}
+	Положим $p := p_1 + p_2$. Тогда:
+	\[s(s(t_1) \otimes t_2) = \frac1{p!}\sum_{\sigma \in S_{p}}g_{\sigma}(s(t_1)\hm\otimes t_2) = \frac1{p!}\sum_{\sigma \in S_{p}}g_{\sigma}\left(\left(\frac1{p_1!}\sum_{\tau \in S_{p_1}}g_\tau(t_1)\right)\otimes t_2\right)\]
+	
+	Теперь для каждой перестановки $\tau \in S_{p_1}$ определим перестановку $\widetilde{\tau} \in S_{p}$ следующим образом: $\widetilde\tau|_{\{1, \dotsc, p_1\}} = \tau$, $\widetilde\tau|_{\{p_1 + 1, \dotsc, p_1 + p_2\}} = \id$. Тогда:
+	\[s(s(t_1) \otimes t_2) = \frac1{p_1!}\sum_{\tau \in S_{p_1}}\frac1{p!}\sum_{\sigma \in S_{p}}g_{\sigma\tilde\tau}(t_1 \otimes t_2) =  \frac1{p_1!}\sum_{\tau \in S_{p_1}}s(t_1 \otimes t_2) = s(t_1 \otimes t_2)\qedhere\]
+	
+	Равенство $s(t_1 \otimes s(t_2)) = s(t_1 \otimes t_2)$ доказывается аналогично.
+\end{proof}
+
+\begin{definition}
+	Для произвольных тензоров $t_1 \in \mathbb{ST}^{p_1}$, $t_2 \hm\in \mathbb{ST}^{p_2}$ будем обозначать через $t_1 \lor t_2$ тензор $s(t_1 \otimes t_2) \in \mathbb{ST}^{p_1+p_2}$.
+\end{definition}
+
+\begin{proposition}
+	Пусть $t_1 \in \mathbb{ST}^{p_1}, t_2 \hm\in \mathbb{ST}^{p_2}, t_3 \in \mathbb{ST}^{p_3}$. Тогда выполнены следующие равенства:
+	\begin{enumerate}
+		\item $(t_1\lor t_2)\hm\lor t_3 = t_1\lor(t_2\lor t_3)$
+		
+		\item $t_1 \lor t_2 = t_2 \lor t_1$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item $(t_1\lor t_2)\lor t_3 = s(s(t_1 \otimes t_2) \otimes t_3) = s(t_1 \otimes t_2 \otimes t_3) = s(t_1 \otimes s(t_2 \otimes t_3)) = t_1 \lor (t_2 \lor t_3)$.
+		
+		\item Положим $p := p_1 + p_2$. Заметим, что $\exists \tau \in S_{p}: t_1 \otimes t_2 = g_\tau(t_2 \otimes t_1)$, тогда:
+		\[s(t_1 \otimes t_2) = \frac{1}{p!}\sum_{\sigma \in S_{p}}g_\sigma (t_1 \otimes t_2) = \frac{1}{p!}\sum_{\sigma \in S_{p}}g_{\sigma\tau} (t_2 \otimes t_1) = s(t_2 \otimes t_1)\qedhere\]
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Пусть $e = (e_1, \dotsc, e_n)$ "--- базис в $V$. Тогда $\mathbb{ST}^p$ порождается тензорами вида $e_1^{\lor\alpha_1}\lor\dotsb\lor e_n^{\lor\alpha_n}$, где $\alpha_1 + \dotsb + \alpha_n = p$. Легко видеть, что эти тензоры линейно независимы, поэтому $\dim\mathbb{ST}^p = \overline{C_n^p}$
+\end{note}
+
+\begin{definition}
+	Алгебра $\mathbb{S}\hm{:=}\bigoplus_{p = 0}^\infty\mathbb{ST}^p$ называется \textit{симметрической алгеброй} пространства $V$.
+\end{definition}
+
+\begin{note}
+	В отличие от тензорной алгебры, симметрическая алгебра коммутативна. Более того, нетрудно показать, что $\mathbb{S} \hm\cong F[x_1, \dots, x_k]$, где $k := \dim{V}$.
+\end{note}
+
+\begin{definition}
+	Тензор $t \in \mathbb{T}^p_0$ называется \textit{кососимметричным}, если $\forall \sigma \in S_p: g_\sigma(t) \hm= \sgn\sigma\cdot t$. Такие тензоры образуют подпространство в $\mathbb{T}^p_0$, обозначаемое через $\Lambda^p$.
+\end{definition}
+
+\begin{note}
+	Как и в симметричном случае, равенство $g_\sigma(t) = \sgn\sigma\cdot t$ достаточно проверять только для набора перестановок $\sigma \in S_p$, порождающего $S_p$, например, для всех транспозиций соседних элементов.
+\end{note}
+
+\begin{definition}
+	\textit{Альтернированием} тензора $t \in \mathbb{T}^p_0$ называется следующий тензор:
+	\[a(t) := \frac1{p!}\sum_{\sigma \in S_p}\sgn\sigma\cdot g_\sigma(t) \in \mathbb{T}^p_0\]
+	
+	Альтернирование определено, если $\cha{F} \nmid p$.
+\end{definition}
+
+\begin{note}
+	Как и в симметричном случае, \textit{частичное альтернирование} возможно и для произвольных тензоров типа $(p, q)$.
+\end{note}
+
+\begin{proposition} 
+	Альтернирование обладает следующими свойствами:
+	\begin{enumerate}
+		\item Для любого тензора $t \in \mathbb{T}^p_0$ выполнено $a(t) \in \Lambda^p$.
+		\item Если $t \in \Lambda^p$, то $a(t) = t$.
+		\item $\im{a} = \Lambda^p$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Доказательство аналогично симметричному случаю.
+\end{proof}
+
+\begin{proposition}
+	Для произвольных тензоров $t_1 \in \mathbb{T}^{p_1}(V)$, $t_2 \hm\in \mathbb{T}^{p_2}(V)$ выполнены равенства $a(t_1 \otimes t_2) = a(a(t_1) \otimes t_2) \hm= a(t_1 \otimes a(t_2))$.
+\end{proposition}
+
+\begin{proof}
+	Доказательство аналогично симметричному случаю.
+\end{proof}
+
+\begin{definition}
+	Для произвольных тензоров $t_1 \in \mathbb{T}^{p_1}_0(V)$, $t_2 \in \mathbb{T}^{p_2}_0(V)$ будем обозначать через $t_1 \land t_2$ тензор $a(t_1 \land t_2) \in \Lambda^{p_1 + p_2}$
+\end{definition}
+
+\begin{proposition}
+	Пусть $t_1 \in \Lambda^{p_1}, t_2 \hm\in \Lambda^{p_2}, t_3 \in \Lambda^{p_3}$. Тогда выполнены следующие равенства:
+	\begin{enumerate}
+		\item $(t_1\land t_2)\hm\land t_3 = t_1\land(t_2\land t_3)$
+		
+		\item $t_1 \land t_2 = t_2 \land t_1$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Доказательство аналогично симметричному случаю.
+\end{proof}
+
+\begin{definition}
+	Алгебра $\Lambda := \bigoplus_{p = 0}^\infty\Lambda^p$ называется \textit{внешней алгеброй}, или \textit{алгеброй Грассмана}, пространства $V$.
+\end{definition}
+
+\begin{note}
+	Аналогично симметричному случаю, можно показать, что базис в $\Lambda^p$ "--- это тензоры вида $e_{i_1} \land \dots \land e_{i_p}$, $i_1 < \dots < i_p$. Это, в частности, означает, что $\Lambda^p = \{0\}$ при $p > k$ и $\dim\Lambda(V) = 2^k$, где $k := \dim{V}$.
+\end{note}

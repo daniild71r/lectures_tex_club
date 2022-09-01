@@ -1,0 +1,60 @@
+\begin{Def}
+	Косинус-преобразованием Фурье функции $f\in L_1[0,+\infty)$ называется $f_c(\lambda)=\sqrt{\frac{2}{\pi}}\int\limits_0^{+\infty}f(t)\cos\lambda td\mu(t)$. Синус-преобразованием Фурте функции $f\in L_1[0,+\infty)$ называется $f_s(\lambda)=\sqrt{\frac{2}{\pi}}\int\limits_0^{+\infty}f(t)\sin\lambda td\mu(t)$.
+\end{Def}
+
+\begin{corollary}[из признака Дини]\ \\
+	\begin{enumerate}
+		\item Если $f\in L_1(\R)$ и удовлетворяет уловию Гельдера в точке $x$, то $\tilde{\hat{f}}=f(x)$ или обозначается $F^{-1}[F[f]](x)=f(x)$.
+		\item Если $f\in L_1([0,+\infty))$ и удовлетворяет уловию Гельдера в точке $x$, то $(f_c)_c(x)=f(x), (f_s)_s(x)=f(x)$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{linkthm}{https://youtu.be/qRAS2-XHKws?t=1009}[Свойства преобразования Фурье функций из $L_1(\R)$]\ \\
+	\begin{enumerate}
+		\item (Линейность) Если $f,g\in L_1(\R), \alpha, \beta\in\R$, то $\widehat{\left(\alpha f+\beta g\right)}(\lambda)=\alpha\hat{f}(\lambda)+\beta\hat{g}(\lambda)$.
+		\item Если $f\in L_1(\R)$, то $\hat{f}$ непрерывна на $\R, \lim\limits_{\lambda\to\infty}\hat{f}(\lambda)=0$.
+		\item Если $f\in L_1(\R), \varphi(x)=f(\alpha x), \alpha>0$, то $\hat{\varphi}(\lambda)=\frac{1}{\alpha}\hat{f}\left(\frac{\lambda}{\alpha}\right)$.
+		\item Если $f\in L_1(\R) \psi(x)=f(x+a), a\in\R$, то $\hat{\psi}(\lambda)=e^{ia\lambda}\hat{f}(\lambda)$. 
+	\end{enumerate}
+\end{linkthm}
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{linkthm}{https://youtu.be/qRAS2-XHKws?t=1512}[Преобразование Фурье производной]\ \\
+	Если $f$ абсолютно непрерывна на любой отрезке $[a,b]\subset\R$, и $f,f'\in L_1(\R)$, то $\widehat{f'}(\lambda)=(-i\lambda)\hat{f}(\lambda), \forall\lambda\in\R$.
+\end{linkthm}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{corollary}
+	Если $f^{(n-1)}$ --- абсолютно непрерывна на любом отрезке $[a,b]\subset\R$ и $f,f',\ldots,f^{(n)}\in L_1(\R)$, то $\widehat{f^{(n)}}(\lambda)=(-i\lambda)^n\hat{f}(\lambda),\lambda\in\R$.
+\end{corollary}
+
+\begin{linkthm}{https://youtu.be/qRAS2-XHKws?t=2370}[Производная преобразования Фурье]\ \\ 
+	Если $f(t),t\cdot f(t)\in L_1(\R)$, то преобразование Фурье $\hat{f}(\lambda)$ дифференцируемо, причем $\left(\hat{f}\right)'(\lambda)=\widehat{(-itf(t))}(\lambda), \lambda\in\R$.
+\end{linkthm}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{Def}
+	Сверткой функций $f,g\in L_1(\R)$ называется $(f\ast g)(t)=\int\limits_{-\infty}^{+\infty}f(x)g(t-x)d\mu(x)$.
+\end{Def}
+\begin{linkthm}{https://youtu.be/qRAS2-XHKws?t=3297}[Преобразование Фурье свертки]\ \\
+	Если $f,g\in L_1(\R)$, то $\widehat{(f\ast g)}(\lambda)=\sqrt{2\pi}\hat{f}(\lambda)\hat{g}(\lambda)$.
+\end{linkthm}
+\begin{proof}
+	TODO
+\end{proof}
+
+
+
+
+
+
+
+

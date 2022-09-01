@@ -1,0 +1,118 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\subsection{Признаки Дирихле и Абеля} 
+  Раньше мы работали только со знакопостоянными подынтегральными функциями.
+
+  \begin{theorem}[Критерий Коши]
+    Пусть $f:[a,b) \to \R$, $b$~--- единственная особая точка, $f$ интегрируема на $\forall [a,b'] \subset [a,b)$. Тогда $\int_{a}^{b} f(x) dx$ сходится \nas 
+    \begin{gather} 
+      \forall \eps > 0 \exists x_0 \in [a,b): \forall b_1, b_2 \in [x_0, b) \hence \left| \int_{b_1 }^{b_2 } f(x) dx \right|  < \eps.
+    \end{gather}  
+  \end{theorem}
+
+  
+  \begin{proof}
+    Рассмотрим $F(t) = \int_{a}^{t} f(x) dx$. Тогда условие сходимости эквивалентно существованию предела для $F(t)$. Запишем критерий Коши для предела: 
+    \begin{gather} 
+      \forall \eps > 0 \exists \delta > 0 : \forall b_1, b_2 \in \mathring U_{\delta} (b) \cap [a,b) \hence \left| F(b_1 ) - F(b_2) \right|  < \eps.
+    \end{gather}
+    Перепишем для наших нужд 
+    \begin{gather} 
+      \forall \eps > 0 \exists x_0 \in [a,b) : \forall b_1, b_2 \in [x_0 ,b) \hence \left| \int_{a}^{b_1} f(x) dx - \int_{a}^{b_2} f(x) dx  \right| = \left| \int_{b_1 }^{b_2 } f(x) dx \right|  < \eps.
+    \end{gather}
+  \end{proof}
+  
+  
+  \begin{definition}
+    Пусть $f:[a, b) \to \R$~--- интегрируема на $\forall [a, b'] \subset [a, b)$. Будем говорить, что $\int_{a}^{b} f(x) dx$ \emph{сходится абсолютно}, если $\int_{a}^{b} \left| f(x)  \right| dx$ сходится.    
+  \end{definition}
+
+  
+  \begin{corollary}
+    Пусть $\int_{a}^{b} f(x)  dx$ сходится абсолютно, тогда $\intab f(x) dx$ сходится.  
+  \end{corollary}
+  
+  
+  \begin{proof}
+    По определению $\intab \left| f(x) dx \right| $ сходится. Воспользуемся критерием Коши: 
+    \begin{gather} 
+      \forall \eps > 0 \exists x_0 \in [a,b): \forall b_1, b_2 \in [x_0, b) \hence \left| \int_{b_1 }^{b_2 } f(x)  dx \right| \leq\left| \int_{b_1 }^{b_2 } \left| f(x) \right|  dx \right|  < \eps.
+    \end{gather}
+  \end{proof}
+
+  \begin{example}
+    Обратное не всегда верно. Рассмотрим $f:[0,1] \to \R$: 
+    \begin{gather} 
+      f(x) = \System{1, &x\in\Q \\ -1, &x \in \R \setminus \Q} .
+    \end{gather} 
+    Тогда для любого разбиения нижняя сумма Дарбу будет равна $-1$, а верхняя~----$1$, значит функция не интегрируема. При этом $ \left| f(x)  \right| $~--- интегрируема.
+  \end{example}
+
+  \begin{definition}
+    Пусть $f:[a,b) \to \R$~--- интегрируема на $\forall [a, b'] \subset [a, b)$. Будем говорить, что $\int_{a}^{b} f(x) dx$ \emph{сходится условно}, если $\int_{a}^{b} f(x) dx$ сходится, но не сходится абсолютно.    
+  \end{definition}
+
+  \begin{theorem}[Признак Дирихле]
+    Пусть $f,g: [a,b) \to \R$, $f$~--- непрерывна, $g$~--- непрерывно дифференцируема. Если
+    \begin{enumerate}
+      \item $f$ имеет ограниченную первообразную;
+      \item $\lim_{x \to b-0} g(x) = 0$;
+      \item $ g(x) $~--- нестрого убывает (аналогично нестрого возрастает). 
+    \end{enumerate}  
+    Тогда $\int_{a}^{b} f(x) g(x) dx$ сходится. 
+  \end{theorem}
+  
+  
+  \begin{proof}
+    Если $f,g$~--- непрерывны, то и $fg$~--- непрерывна, значит интегрируема. Воспользуемся интегрированием по частям: 
+    \begin{gather} 
+      \int_{a}^{b'} f(x) g(x) dx = F(x) g(x) \at{a}{b'} - \int_{a}^{b'} F(x) g'(x) dx .
+    \end{gather}
+    Необходимо доказать существование предела у правой части. Исследуем первое слагаемое:
+    \begin{gather} 
+      \lim_{b' \to b-0} \left(F(b') g(b') - F(a)g(a)\right) = 0-F(a)g(a) ,
+    \end{gather}
+    переход сделан на основании первого и второго пунктов. Теперь рассмотрим 
+    \begin{gather} 
+      \int_{a}^{b'} \left| g'(x) \right| dx = - \int_{a}^{b'} g'(x) dx = -g(x) \at{a}{b'} = -g(b') + g(a)  \xrightarrow[b' \to  b-0 ]{} g(a) .
+    \end{gather}
+    Значит $\intab \left| g'(x)  \right| dx$ сходится. В таком случае и $\intab C \left| g'(x)  \right| dx$ сходится. Выберем $C$ из определения ограниченности: $F$~--- ограничена, значит $\exists C: \forall x \in[a,b) \hence \left| F(x) \right| \leq C$. Рассмотрим 
+    \begin{gather} 
+      \int_{a}^{b} \left| F(x) g'(x) \right| dx \leq \int_{a}^{b}  C \left| g'(x) \right| dx.
+    \end{gather}
+    По первому признаку сравнения $\intab \left| F(x) g'(x) \right| dx$~--- сходится, тогда $\intab F(x) g'(x) dx$ сходится абсолютно. По уже доказанному утверждению в таком случае он сходится.
+  \end{proof}
+
+  \begin{theorem}[Признак Абеля]
+    Пусть $f,g: [a,b) \to \R$, $f$~--- непрерывна, $g$~--- непрерывно дифференцируема. Если
+    \begin{enumerate}
+      \item $\int_{a}^{b} f(x) dx$ сходится.
+      \item $g(x)$ ограничена;
+      \item $ g(x) $~--- нестрого убывает (аналогично нестрого возрастает). 
+    \end{enumerate}  
+    Тогда $\int_{a}^{b} f(x) g(x) dx$ сходится. 
+  \end{theorem}
+
+  
+  \begin{proof}
+    Из второго и третьего условий получаем, что $\exists \lim_{x \to b-0} g(x) = g_0 \in \R$. Рассмотрим $\hat{g}x = g(x) - g_0 $. Тогда $\lim_{x \to b-0}  \hat{g}(x) =0$. Рассмотрим $\intab f(x) dx$, раз он сходится, тогда в любой полуокрестности точки $b$ он ограничен, то есть первообразная $f$ ограничена. Тогда по признаку Дирихле $\intab f(x) \hat{g}x dx$ сходится, очевидно $\intab f(x) g_0 dx$ сходится, тогда, как сумма сходящихся, $\intab f(x)  g(x)  dx$  сходится.
+  \end{proof}
+  
+  
+  \begin{corollary}
+    Пусть $f,g: [a,b) \to \R$, $f$~--- непрерывна, $g$~--- непрерывно дифференцируема. Если
+    \begin{enumerate}
+      \item $g$ монотонна;
+      \item $\exists \lim_{x \to b-0} g(x)  = g_0 \in \R \setminus \{ 0 \} $,
+    \end{enumerate}
+    тогда сходимость $\intab f(x) g(x) dx$ совпадает по типу с $\intab f(x) dx$.
+  \end{corollary}
+
+  
+  \begin{proof}
+    $ \left| f(x) g(x)  \right| \eqincon \left| f(x)  \right| $, тогда $\intab \left| f(x)  g(x)  \right| dx$ сходится \nas $\intab \left| f(x)  \right| dx$ сходится. Доказали одновременную абсолютную сходимость. По признаку Абеля из сходимости $\intab f(x) dx$ следует сходимость $\intab f(x) g(x) dx$. \\
+    В силу существования предела $\exists x_0 \in [a, b) : \forall x \in [x_0,b) g(x)$ знакопостоянна. Тогда рассмотрим функцию $g_1 (x) = \frac{1}{g(x)}$, $\lim_{x \to b-0} g_1 (x) = \frac{1}{g_0 }$, и $g_1 (x)$ монотонна. Тогда, если $\intab f(x) g(x) dx$ сходится, то по признаку Абеля в некоторой полуокрестности точки $b$ $\int_{x_0 }^{b} f(x)dx$ сходится, а $\intab f(x) dx$ сходится как сумма сходящихся. 
+  \end{proof}
+  
+\end{document}

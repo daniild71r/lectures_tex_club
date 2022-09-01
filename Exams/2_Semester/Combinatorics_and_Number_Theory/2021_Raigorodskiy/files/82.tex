@@ -1,0 +1,20 @@
+\setcounter{section}{81}
+\section{Асимптотическая оценка \texorpdfstring{$[1, 2, \ldots , n]$}{[1, 2, ..., n]} снизу. Более грубая оценка, верная для $n > 7$. (б/д)}
+\par \textbf{Лемма:} $m! \geq \left( \frac{m}{e}\right)^m$
+\par \begin{itemize}
+    \item[$\blacktriangle$ 1.] База $m=1$: $1 \geq \frac{1}{e}$
+    \item[2.] Пусть для $m$ верно. Покажем для $m+1$. Заметим, что $\left(\frac{m}{m+1}\right)^m$ убывает (так как $\frac{m}{m+1}<1$) и стремится к $e^{-1}$
+\end{itemize}
+$$(m+1)!=(m+1)\left(\frac{m}{e}\right)^m =(m+1) \left(\frac{m}{m+1}\right)^m \left(\frac{m+1}{e}\right)^m>\frac{m+1}{e}\left(\frac{m+1}{e}\right)^m=\left(\frac{m+1}{e}\right)^{m+1} \: \blacksquare$$
+\par \textbf{Утверждение:} НОК($1, \ldots, n):=[1, \ldots, n]\geq e^n$
+\par $\blacktriangle$ $$[1, \ldots, n] \geq \prod_{p\text{ - простое}, p\leq n} p$$
+\par Количество простых чисел $\leq n: \pi(n) \sim \frac{n}{\ln{n}}, p_k \geq k$. Тогда
+$$[1, \ldots, n] \geq \left[\frac{n}{\ln{n}}(1+o(1))\right]!$$
+\par Так как по лемме $m! \geq \left(\frac{m}{e}\right)^m$, получаем
+$$[1, \ldots, n] \geq \left(\frac{n}{e\ln{n}}(1+o(1))\right)^{\frac{n}{\ln{n}}(1+o(1))}=e^{\ln{\left(\frac{n}{e\ln{n}}(1+o(1))\right)}\frac{n}{\ln{n}}(1+o(1))}$$
+\par Распишем большой логарифм из степени
+$$\ln{\left(\frac{n}{e\ln{n}}(1+o(1))\right)}=\ln{n}-1-\ln{\ln{n}}+\ln{(1+o(1))}=\ln{n}\left(1-\frac{1}{\ln{n}}-\frac{\ln{\ln{n}}}{\ln{n}}+\frac{\ln{(1+o(1))}}{\ln{n}}\right)$$
+\par Функция в последней скобки стремится к 1 при $n \rightarrow \infty \Rightarrow$ этот логарифм равен $\quad \ln{n}(1+o(1))$
+\par Подставив все назад в степень получаем
+$$[1, \ldots, n] \geq e^{n(1+o(1))^2}=e^{n(1+o(1))} \: \blacksquare$$
+\par \textbf{Утверждение (б/д):} $[1, \ldots, n]\geq 2^n, n>7$

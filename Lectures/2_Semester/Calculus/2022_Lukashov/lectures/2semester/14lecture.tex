@@ -1,0 +1,256 @@
+\begin{example}
+	Рассмотрим ряд $\row{n = 1}{\frac{\sin (nx)}{n^\alpha}}$ и разберём случаи:
+	\begin{enumerate}
+		\item $\alpha > 1$ Тогда ряд равномерно сходится на $\R$, ибо
+		\[
+			\left|\frac{\sin (nx)}{n^\alpha}\right| \le \frac{1}{n^\alpha}
+		\]
+		причём ряд $\row{n = 1}{1/n^\alpha}$ сходится. Значит, применим признак Вейерштрасса.
+		
+		\item $0 < \alpha \le 1$ Тогда есть ещё 2 варианта:
+		\begin{enumerate}
+			\item Если мы рассматриваем отрезок $[a; b]$ такой, что $\centernot\exists k \in \Z\  2\pi k \notin [a; b]$, то можно применить признак Дирихле по двум причинам:
+			\[
+				\forall x \in [a; b] \quad \left|\suml_{k = 1}^n \sin (kx)\right| \le \frac{1}{\left|\sin \frac{x}{2}\right|} \le C
+			\]
+			а также $1/n^\alpha$ стремится монотонно к нулю при $n \to \infty$.
+			
+			\item $\exists k \in \Z \such 2\pi k \in [a; b]$. Для простоты рассмотрим частный случай $[0; \delta], \delta > 0$ и покажем, что ряд не сходится равномерно на нём.
+			
+			Запишем отрицание критерия Коши:
+			\[
+				\exists \eps > 0 \such \forall N \in \N\ \exists n > N, p \in \N, x \in [0; \delta] \quad \left|\suml_{k = n + 1}^{n + p} \frac{\sin (kx)}{k^\alpha}\right| \ge \eps
+			\]
+			Положим $p = n$. Тогда, нам надо оценить снизу модуль \(|\sum_{k = n + 1}^{2n} \sin(kx)/k^\alpha|\). Если положить $x = 1/n$, то для достаточно больших $n$ наш $x$ попадает в отрезок $[0; \delta]$. В сумме аргумент синуса тогда промежит значения в полуинтервале $(1; 2]$, что означает его положительность в любом слагаемом. Стало быть
+			\[
+				\left|\suml_{k = n + 1}^{2n} \frac{\sin (kx)}{k^\alpha}\right| \ge \sin (1) \cdot \suml_{k = n + 1}^{2n} \frac{1}{k^\alpha} \ge \sin(1) \cdot \frac{n}{(2n)^\alpha} > \sin(1) \cdot \frac{2}{2n} = \frac{\sin(1)}{2} =: \eps
+			\]
+		\end{enumerate}
+	
+		\item $\alpha \le 0$ Тогда ряд сразу расходится из расходимости функциональной последовательности.
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	Положим $f_n(x) = x^n$. Если $x \in [0; 1]$, то
+	\[
+		\liml_{n \to \infty} f_n(x) = \System{
+			&{0, x \in [0; 1)}
+			\\
+			&{1, x = 1}
+		}
+	\]
+	Все функции непрерывны на отрезке, а предельная - разрывная. Хотелось бы иметь какую-то теорему на этот счёт.
+\end{example}
+
+\begin{theorem} (Предельный переход в равномерно сходящихся последовательностях)
+	Если $f_n$ равномерно сходится к $f$ на множестве $E$ метрического пространства $X$, при этом $x_0$ - предельная точка $E$ и $\forall n \in \N\ \liml_{x \to x_0 \over x \in E} f_n(x) = a_n$, то
+	\[
+		\liml_{x \to x_0 \over x \in E} f_n(x) = \liml_{n \to \infty} a_n
+	\]
+	То есть оба предела существуют и равны.
+\end{theorem}
+
+\begin{proof}
+	Распишем критерий Коши равномерной сходимости последовательности $f_n$:
+	\[
+		\forall \eps > 0\ \exists N_1 \in \N \such \forall n > N_1, p \in \N, x \in E \quad |f_{n + p}(x) - f_n(x)| < \eps
+	\]
+	Зафиксируем все переменные, кроме $x \in E$, и совершим предельный переход $x \to x_0, x \in E$. Тогда
+	\[
+		|a_{n + p} - a_n| \le \eps
+	\]
+	Значит, $\exists \liml_{n \to \infty} a_n =: a$. Оценим расстояние между $f(x)$ и $a$:
+	\[
+		|f(x) - a| \le |f(x) - f_n(x)| + |f_n(x) - a_n| + |a_n - a|
+	\]
+	\begin{enumerate}
+		\item В критерие Коши аналогично фиксируем всё, кроме $p$. Его устремляем в бесконечность. Тогда
+		\[
+			\forall \eps > 0\ \exists N_1 \in \N \such \forall n > N_1, x \in E \quad |f(x) - f_n(x)| \le \eps
+		\]
+		
+		\item Зафиксируем $\eps > 0$ и найдём $N_1$ для условия выше. Тогда мы можем выбрать достаточно большое $n$, чтобы при этом ещё выполнялось условие
+		\[
+			|a_n - a| < \eps
+		\]
+		
+		\item При данном $n$ остаётся верно, что
+		\[
+			\liml_{x \to x_0 \over x \in E} f_n(x) = a_n
+		\]
+		Для фиксированного $\eps > 0$ это означает следующее:
+		\[
+			\exists \delta > 0 \such \forall x \in E, 0 < \rho(x, x_0) < \delta \quad |f_n(x) - a_n| < \eps
+		\]
+	\end{enumerate}
+	Отсюда $|f(x) - a| < 3\eps$, что даёт в итоге равенство пределов.
+\end{proof}
+
+\begin{corollary}
+	Если $f_n(x)$ непрерывны на $E$, $f_n \rra f$ на $E$, то $f$ непрерывна на $E$.
+\end{corollary}
+
+\begin{proof}
+	Следует непосредственно из доказанной теоремы.
+\end{proof}
+
+\begin{theorem} (Предельный переход в функциональных рядах)
+	Если $\row{n = 1}{f_n(x)}$ сходится равномерно на $E$, $x_0$ - предельная точка $E$ и $\forall n \in \N\ \ \liml_{x \to x_0 \over x \in E} f_n(x) = a_n$, то
+	\[
+		\row{n = 1}{a_n} = \liml_{x \to x_0 \over x \in E} \row{n = 1}{f_n(x)}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Нужно просто применить доказанную выше теорему к функциональной последовательности частичных сумм.
+\end{proof}
+
+\begin{theorem} (Признак Дини равномерной сходимости функциональных последовательностей)
+	Если верны следующие условия:
+	\begin{enumerate}
+		\item Для каждого $n \in \N$ $f_n(x)$ непрерывна на компактном множестве $E$ в метрическом пространстве $X$
+		
+		\item $\forall x \in E\ \{f_n(x)\}_{n = 1}^\infty$ - невозрастающая последовательность, причём $\liml_{n \to \infty f_n(x)} = f(x)$ и $f$ непрерывна на $E$
+	\end{enumerate}
+	Тогда $f_n \rra f$ на $E$.	
+\end{theorem}
+
+\begin{note}
+	Пример с $f_n(x) = x^n$ сразу даёт контрпример к данной теореме, если $E$ не компактно.
+\end{note}
+
+\begin{proof}
+	Положим $g_n(x) := f_n(x) - f(x)$. Несложно заметить, что $g_n(x)$ образует невозрастающую последовательность непрерывных на $E$ функций. Если мы докажем, что если $g_n$ стремится к нулю, то $g_n \rra 0$. Запишем это:
+	\[
+		\forall \eps > 0, x \in E\ \exists n_x \such 0 \le g_{n_x}(x) < \eps
+	\]
+	Так как $g_{n_x}$ непрерывна в точке $x$, то
+	\[
+		\exists \delta_x > 0 \such \forall t \in E, \rho(t, x) < \delta \quad 0 \le g_{n_x}(t) < \eps
+	\]
+	Более того, в силу невозрастания, мы можем гарантировать следующее:
+	\[
+		\forall n \ge n_x \quad 0 \le g_n(t) < \eps
+	\]
+	Теперь, заметим покрытие $\bigcup_{x \in E} U_{\delta_x}(x) \supset E$. В силу компактности
+	\[
+		\exists x_1, \ldots, x_N \in E \such \bigcup_{j = 1}^N U_{\delta_{x_j}}(x_j) \supset E
+	\]
+	Тогда
+	\[
+		\forall \eps > 0\ \exists n_0 := \max \{n_{x_1}, \ldots, n_{x_N}\} \such \forall n > n_0, x \in E \quad 0 \le g_n(x) < \eps
+	\]
+	Что и является равномерной сходимостью на множестве $E$.
+\end{proof}
+
+\begin{example}
+	Положим $f_n(x) := \liml_{n \to \infty} (\cos (m!\pi x)^{2n})$. Тогда
+	\[
+		f_n(x) = \System{
+			&{1, x = p/q, q \in \range{m}, p \in \Z}
+			\\
+			&{0, x \neq p / q, q \in \range{m!}, p \in \Z}
+		}
+	\]
+	Это не полное описание, но самое важное свойство - точек, где функция $f_n(x) = 1$, конечное число. Это означает, что функция $f_n$ разрывна только в конечном числе точек, а значит, она интегрируема по Риману. Заметим следующее:
+	\[
+		\liml_{m \to \infty} f_m(x) = \mathbb{D}(x) \text{ - функция Дирихле}
+	\]
+	А из главы про интегральное исчисление известно, что функция Дирихле не интегрируема по Риману.
+\end{example}
+
+\begin{theorem} (Интегрирование равномерно сходящихся последоватльностей)
+	Если для любого $n \in \N$ $f_n$ интегрируемы по Риману на $[a; b]$ и $f_n \rra f$ на $[a; b]$, то $f$ интегрируема по Риману на $[a; b]$ и имеет место равенство:
+	\[
+		\int_a^b f(x)dx = \liml_{n \to \infty} \int_a^b f_n(x)dx
+	\]
+\end{theorem}
+
+\begin{note}
+	Требование можно ослабить, сказав, что $f_n$ должны быть просто непрерывными.
+\end{note}
+
+\begin{proof}
+	Запишем критерий интегрируемости по Риману для $f_n$:
+	\[
+		\forall n \in \N\ \forall \eps > 0\ \exists P \such U(P, f_n) - L(P, f_n) < \frac{\eps}{3}
+	\]
+	Распишем равномерную сходимость $f_n$:
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, x \in [a; b] \quad |f_n(x) - f(x)| < \frac{\eps}{3(b - a)}
+	\]
+	Теперь, посмотрим на верхнюю сумму Дарбу:
+	\[
+		U(P, f) = \suml_{k = 1}^m \sup\limits_{x \in [x_{k - 1}; x_k]} f(x) \Delta x_k \le \suml_{k = 1}^m \left(\sup\limits_{x \in [x_{k - 1}; x_k]} f_n(x) + \frac{\eps}{3(b - a)}\right) \Delta x_k = U(P, f_n) + \frac{\eps}{3}
+	\]
+	Аналогично $L(P, f) \ge L(P, f_n) - \frac{\eps}{3}$. Значит
+	\[
+		U(P, f) - L(P, f) \le U(P, f_n) - L(P, f_n) + \frac{2\eps}{3} < \eps
+	\]
+	То есть $f$ интегрируема на $[a; b]$. Теперь докажем равенство. Для этого распишем расстояние между интегралом $f$ и $f_n$:
+	\[
+		\left|\int_a^b f_n(x)dx - \int_a^b f(x)dx\right| \le \int_a^b |f_n(x) - f(x)|dx < \frac{\eps}{3(b - a)} \cdot (b - a) = \eps
+	\]
+\end{proof}
+
+\begin{theorem}
+	Если $f_n \in R[a; b]$ и $\row{n = 1}{f_n(x)}$ равномерно сходится на $[a; b]$, то $\row{n = 1}{f_n(x)} \in R[a; b]$ и имеет место равенство:
+	\[
+		\int_a^b \left(\row{n = 1}{f_n(x)}\right)dx = \row{n = 1}{\left(\int_a^b f_n(x)dx\right)}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Применим доказанную выше теорему к последовательности частичных сумм.
+\end{proof}
+
+\begin{theorem} (Дифференцирование функциональных последовательностей)
+	Если $\forall n \in \N$ выполнены условия:
+	\begin{enumerate}
+		\item $f_n$ дифференцируемы на $(a; b)$
+		
+		\item $f_n$ равномерно сходятся на $(a; b)$
+		
+		\item $f_n(x_0)$ сходится при $n \to \infty$, где $x_0 \in (a; b)$
+	\end{enumerate}
+	Тогда
+	\begin{enumerate}
+		\item $f_n \rra f$ на $(a; b)$
+		
+		\item $f$ дифференцируема на $(a; b)$
+		
+		\item $f'_n \to f'$ на $(a; b)$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Распишем критерий Коши равномерной сходимости:
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, p \in \N, x \in (a; b) \quad |f'_{n + p}(x) - f'_n(x)| < \frac{\eps}{3(b - a)}
+	\]
+	Аналогично распишем критерий Коши для $f_n(x_0)$:
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, p \in \N \quad |f_{n + p}(x_0) - f_n(x_0)| < \frac{\eps}{3}
+	\]
+	А теперь распишем разность $(f_{n + p} - f_n)(x)$ для $\forall x, t \in (a, b)$:
+	\[
+		(f_{n + p}(x) - f_n(x)) - (f_{n + p}(t ) - f_n(t)) = (f'_{n + p}(\xi) - f'_n(\xi))(x - t),\ \xi \text{ между } x, t
+	\]
+	Положим $t := x_0$. Тогда
+	\[
+		|f_{n + p}(x) - f_n(x)| \le |f_{n + p}(x_0) - f_n(x_0)| + |f'_{n + p}(\xi) - f'_n(\xi)| \cdot |x - x_0| < \frac{\eps}{3} + \frac{\eps}{3(b - a)} \cdot |x - x_0| < \eps
+	\]
+	Таким образом, $f_n \rra f$ на $(a; b)$ по критерию Коши. Теперь, зафиксируем $x \in (a; b)$ и введём 2 новые функции:
+	\[
+		\forall t \in (a; b) \bs \{x\}, \quad \phi_n(t) = \frac{f_n(t) - f_n(x)}{t - x}, \quad \phi(t) = \frac{f(t) - f(x)}{t - x}
+	\]
+	Распишем модуль $|\phi_{n + p}(t) - \phi_n(t)|$:
+	\[
+		|\phi_{n + p}(t) - \phi_n(t)| = \frac{|(f_{n + p}(t) - f_n(t)) - (f_{n + p}(x) - f_n(x))|}{|t - x|} = |f'_{n + p}(\xi) - f'_n(\xi)| < \frac{\eps}{3(b - a)}
+	\]
+	Получается, по критерию Коши $\phi_n \rra \phi$ на $(a; b) \bs \{x\}$. Значит, по теореме о предельном переходе
+	\[
+		\exists f'_n(x) = \liml_{n \to \infty} \liml_{t \to x \over t \in (a; b)} \phi_n(t) = \liml_{t \to x \over t \in (a; b)} \phi(t) = f'(x)
+	\]
+\end{proof}

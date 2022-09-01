@@ -1,0 +1,177 @@
+\setcounter{theorem}{0}
+\subsection{Основные свойства интеграла Лебега.}
+\begin{lemma}[Признак суммируемости]
+Если $f(x)$ суммируема на измеримом по Лебегу множестве $E \subset \R^n$ конечной меры, а $F$ измерима на $E$ и $|F(x)| \leqslant f(x)\ \forall x \in E$, то $F$ суммируема на $E$.
+\end{lemma}
+\begin{proof}
+Заметим $\forall P: E = \bigsqcup\limits_{k=0}^{\infty}E_k\ \ \ \ \mathcal{U}(P, |F|) \leqslant \mathcal{U}(P, f)$ \Big(т. к. на каждом 
+
+$E_k: \sup\limits_{x\in E_k} |F(x)| \leqslant \sup\limits_{x\in E_k} f\left(x\right)\Big)$.
+Так как $f(x)$ суммируема, то 
+
+$(\forall \varepsilon > 0)\ \exists P: \mathcal{U}(P,f) \leqslant \underbrace{\int\limits_E f(x)d\mu(x)+\varepsilon}_{\text{конечное число}}$, следовательно ${\exists P: \mathcal{U}(P, |F|) < +\infty}$.
+
+Так как $|F|$ неотрицательна и измерима $ \Rightarrow \inf\limits_P \mathcal{U}(P, |F|) = \int\limits_E |F(x)|d\mu(x)<+\infty$
+
+По определению $F$ - суммируема $\Leftrightarrow F^+ \text{ и } F^-$ суммируемы. 
+
+Видно, что $0\leqslant F^\pm(x) \leqslant |F(x)| \Rightarrow \mathcal{U} (P,F^\pm) \leqslant \mathcal{U}(P,|F|)$. Откуда следует, что $F^+$ и $ F^-$ суммируемы, а значит и $F$ суммируема.
+\end{proof}
+
+
+\begin{theorem}(Линейность и монотонность интеграла Лебега)
+\begin{enumerate}
+\item(Линейность) Если функции $ f_1,f_2 $ суммируемы на множестве $ E\subset\mathbb{R}^n $ конечной меры, то для любых действительных чисел $ c_1,c_2 $ функция $ c_1f_1+c_2f_2 $ суммируема на $ E $ и $ \int\limits_E\left( c_1f_1(x)+c_2f_2(x)\right) d\mu(x)=c_1\int\limits_Ef_1(x)d\mu(x)+c_2\int\limits_Ef_2(x)d\mu(x). $
+
+\item(Монотонность) Если функции $ f_1,f_2 $ суммируемы на множестве $ E\subset\mathbb{R}^n $ конечной меры и $ f_1(x)\leqslant f_2(x) $ при всех $ x\in E, $ то $ \int\limits_Ef_1(x)d\mu(x)\leqslant\int\limits_Ef_2(x)d\mu(x). $
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+ 1. Пусть $f_1, f_2$ -- ограниченные, измеримые функции. Возьмем произвольное разбиение $\forall P: E=\bigsqcup\limits_{k=1}^N E_k$, тогда выполняется:
+ \begin{equation}
+ 	L(P,f_1)+L(P,f_2)\overset{(1)}{\leqslant} L(P, f_1+f_2) \leqslant \mathcal{U}(P, f_1+f_2) \? \leqslant \mathcal{U}(P, f_1)+\mathcal{U}(P, f_2) \tag{10.1.2}\label{10.1.2} 
+\end{equation}
+Неравенство (1) следует из того, что точная нижняя грань суммы значений двух функций, не меньше, чем сумма нижних граней функций. Остальные аналогично. Так как ограниченные измеримые функции суммируемы по Лебегу, то есть интеграл конечен, то $(\forall \varepsilon >0)(\exists P_1, P_2)\ \ \mathcal{U}(P_i, f_i)-L(P_i, f_i)<\varepsilon,\ i = 1,2.$ Взяв общее измельчение $P$, получим $(\forall \varepsilon >0)\ \mathcal{U}(P, f_i)-L(P, f_i)<\varepsilon,\ i = 1,2.$ Складывая эти два неравенства, получим $$\mathcal{U}(P, f_1)+\mathcal{U}(P, f_2)-L(P,f_1)-L(P,f_2)<2\cdot\varepsilon$$
+Зная, что 
+$$L(P, f_1+f_2) \leqslant \int\limits_E(f_1(x)+f_2(x))d\mu(x) \leqslant \mathcal{U}(P, f_1+f_2)$$ 
+$$L(P, f_1)+L(P, f_2)\leqslant \int\limits_Ef_1(x)d\mu(x)+\int\limits_E f_2(x)d\mu(x) \leqslant \mathcal{U}(P,f_1)+\mathcal{U}(P,f_2)$$
+Получаем:
+$$\left|\int\limits_E(f_1(x)+f_2(x))d\mu(x)-\left(\int\limits_Ef_1(x)d\mu(x)+\int\limits_E f_2(x)d\mu(x)\right)\right|<2\cdot\varepsilon$$
+Разберемся с константами. Рассмотри три случая:
+
+$(\forall c>0)\  \mathcal{U}(P, c\cdot f)=c\cdot \mathcal{U}(P, f),\ L(P, c\cdot f)=c\cdot L(P ,f)$, следовательно $\int\limits_{E}c\cdot f(x) d\mu (x) = c\int\limits_{E}f(x) d\mu (x)$
+
+$(\forall c<0)\  \mathcal{U}(P, c\cdot f)=c\cdot L(P, f),\ L(P, c\cdot f)=c\cdot \mathcal{U}(P ,f)$, следовательно $\int\limits_{E}c\cdot f(x) d\mu (x) = c\int\limits_{E}f(x) d\mu (x)$
+
+При $c = 0$ доказывать нечего.
+
+Пусть $f_1, f_2$ -- неотрицательные, суммируемые функции.
+Аналогично предыдущему доказательству возьмем произвольное разбиение, но с другими пределами суммирования $\forall P: E=\bigsqcup\limits_{k=0}^{\infty} E_k$. Отдельно рассмотрим $E_0$:
+$E_0^{(i)} = \{x\in E: f_i(x)=+\infty\}, i = 1,2$.
+
+$f_1(x)+f_2(x)=+\infty \Leftrightarrow x\in E_0^{(1)}\bigcup E_0^{(2)} = E_0$. Так как функции суммируемы, то 
+
+$\mu(E_0^{(i)})=0, i = 1, 2$, а значит и $\mu(E_0) = 0 \Rightarrow$ Доказательство не будет отличаться от предыдущего пункта, опасное множество мы исключили. В данном блоке можем доказать формулу для констант только при $(\forall c>0): \mathcal{U}(P, c\cdot f)=c\cdot \mathcal{U}(P, f),\ L(P, c\cdot f)=c\cdot L(P ,f)$, следовательно
+$\int\limits_{E}c\cdot f(x) d\mu (x) = c\int\limits_{E}f(x) d\mu (x)$. Для констант друго знака утверждение бессмысленно.
+
+Пусть $f_1, f_2$ --- любого знака.
+
+$$f_1+f_2=(f_1+f_2)^+-(f_1+f_2)^- \eqno(1)$$
+
+$$f_1=f_1^+-f_1^-\eqno(2)$$
+
+$$f_2=f_2^+-f_2^-\eqno(3)$$
+
+Так как $f_1, f_2$ --- суммируемы $\Leftrightarrow f_1^{\pm}, f_2^{\pm}$ --- суммируемы $\Leftrightarrow |f_1|, |f_2|$ --- суммируемы. Мы доказали, что сумма двух неотрицательных функций суммируема. Теперь заметим, что $f_1+f_2$ --- измеримая функция и $\underbrace{|f_1(x) +f_2(x)|}_{F}\leqslant \underbrace{|f_1(x)| + |f_2(x)|}_{f}$ по Лемме 10.1 следует, что $f_1+f_2$ является суммируемой. Сложив (2) и (3) и приравняв к (1) получаем:
+
+$(f_1+f_2)^++f_1^-+f_2^-=(f_1+f_2)^-+f_1^++f_2^+$ --- все слагаемые неотрицательные суммируемые фукнции. По доказанной части для неотрицательных суммируемых функций:
+\begin{multline*}
+\int\limits_{E}(f_1+f_2)^+(x)d\mu(x) + \int\limits_{E}f_1^-(x)d\mu(x) + \int\limits_{E}f_2^-(x)d\mu(x) =\\  =\int\limits_{E}(f_1+f_2)^-(x)d\mu(x)+\int\limits_{E}f_1^+(x)d\mu(x)+\int\limits_{E}f_2^+(x)d\mu(x)
+\end{multline*}
+Получаем:
+\begin{multline*}
+	\int\limits_{E}(f_1+f_2)(x)d\mu(x) \overset{\text{def}}{=} \int\limits_{E}(f_1+f_2)^+(x)d\mu(x) - \int\limits_{E}(f_1+f_2)^-(x)d\mu(x) =\\ =\int\limits_{E}f_1^+(x)d\mu(x)- \int\limits_{E}f_1^-(x)d\mu(x)+\int\limits_{E}f_2^+(x)d\mu(x) - \int\limits_{E}f_2^-(x)d\mu(x)
+\end{multline*}
+
+2. Доказательство монотонности. Возьмем $f_1(x)=0$. Тогда интеграл от 0 --- нуль. Раз $f_2$ неотрицательная, то интеграл от $f_2$ неотрицательный, поскольку все верхние и нижние суммы неотрицательны. Для доказательства общего случая рассмотрим разность $f_2$ и $f_1$. Линейность доказана, из суммируемости $f_2, f_1$ следует, что разность суммируема:
+
+$\int\limits_{E}(f_2-f_1)(x)d\mu(x) = \int\limits_{E}f_2(x)d\mu(x)-\int\limits_{E}f_1(x)d\mu(x)>0$
+\end{proof}
+
+\begin{theorem}(Интеграл от неотрицательной функции как предел интегралов от срезок)
+
+Если $f(x)\geqslant 0\ \ \forall x \in E \subset \R^n$ - измеримое конечной меры множество и $f$ измерима, то $\lim\limits_{N \to \infty} \int\limits_{E}f_{[N]}(x)d\mu(x)=\int\limits_{E}f(x)d\mu(x)$, где срезки 
+$f_{[N]}(x) = \begin{cases}
+	f(x)\text{, при } f(x)\leqslant N\\
+	N\text{, при }f(x)>N\\
+\end{cases},\ N\in \N$
+\end{theorem}
+
+\begin{proof}
+Начнем с изучения последовательностей интегралов от срезок. Из определения понятно, что все срезки --- это ограниченные измеримые функции, значит интегралы Лебега от них существуют и конечны. Также, при любом фиксированном $x$ последовательность срезок неубывающая и из свойств монотонности получаем, что и последовательность интегралов от срезок тоже неубывающая: $\int\limits_{E}f_{[N]}(x)d\mu(x)\leqslant\int\limits_{E}f_{[N+1]}(x)d\mu(x)$
+Положим $i:=\lim\limits_{N \to \infty} \int\limits_{E}f_{[N]}(x)d\mu(x)$. Наша задача установить, что этот предел совпадает с интегралом от функции. 
+
+Из определения следует, что $f_{[N]}(x)\leqslant f(x)$, тогда $\int\limits_{E}f_{[N]}(x)d\mu(x)\leqslant\int\limits_{E}f(x)d\mu(x)$. Здесь есть маленькая тонкость: мы нигде не говорим, что $f$ --- суммируема. Если $f$ --- суммируема, то ссылаемся на свойство монотонности и неравенство выполнено, если $f$ не является суммируемой, то $\int\limits_{E}f(x)d\mu(x) = +\infty$, и неравенство также справедливо. Получаем, что $i\leqslant\int\limits_{E}f(x)d\mu(x)$. Хотим доказать  равенство, а не неравенство. Пойдем от противного, предположим: $i<\int\limits_{E}f(x)d\mu(x)$. Написав строгое неравенство, мы автоматически утверждаем, что $i$ --- конечное число. Из определения интеграл --- это верхний и нижний интеграл одновременно, то есть $i<\int\limits_{E}f(x)d\mu(x) = \sup\limits_P L(P, f)$, ну и поскольку $i$ меньше чем точная верхняя грань некоторого множества, то это означает, что существует разбиение ${P: i<L(P, f).}$ Вспомним, что
+$L(P, f)=\sum\limits_{k=0}^\infty m_k\cdot \mu(E_k)$, также
+$E_0=\{x\in E: f(x)=+\infty\}$. Поскольку мы не предполагаем, что $f$ --- суммируема, то возможен случай $\mu(E_0)>0$, рассмотрим его: в этом случае
+$(\forall x \in E_0)\ f_{[N]}(x)=N$. Отсюда (по свойству конечной аддитивности для ограниченной измеримой функции, которое будет доказано позже)\newline
+$\int\limits_{E}f_{[N]}(x)d\mu(x)\geqslant\int\limits_{E_0}f_{[N]}(x)d\mu(x)$, а по свойству интеграла от константы, которое тоже будет доказано позже: $\int\limits_{E_0}f_{[N]}(x)d\mu(x)=N\cdot\mu(E_0)$. Тогда отсюда следует, что при $N\to\infty, i$ которое равно $\lim\limits_{N \to \infty} \int\limits_{E}f_{[N]}(x)d\mu(x)$, равно $+\infty$, что невозможно. Значит $\mu(E_0)=0$. Вернемся к $L(P, f)=\sum\limits_{k=1}^\infty m_k\cdot \mu(E_k)$ --- это числовой ряд, возможно и  расходящийся. Если сумма бесконечного числа слагаемых больше $i$, значит $\exists K : i<\sum\limits_{k=1}^Km_k\cdot\mu(E_k)$. Возьмем \newline
+$N>\max(m_1, \ldots, m_K)$, тогда $m_k=\inf\limits_{x\in E_k} f(x) < N,\ k =1, \ldots, K \Rightarrow \text{ обозначим } m_k^{(N)}=\inf\limits_{x\in E_k}f_{[N]}(x)=m_k$. Запишем следующую цепочку:
+
+$\int\limits_{E}f_{[N]}(x)d\mu(x)\geqslant\sum\limits_{k=1}^K\int\limits_{E_k}f_{[N]}(x)d\mu(x) 
+\geqslant
+\sum\limits_{k=1}^K m_k^{(N)}\cdot \mu(E_k)
+=
+\sum\limits_{k=1}^Km_k\cdot \mu(E_k)$. Получаем, что если $N$ больше $\max(m_1, \ldots, m_K)$, то все интегралы от срезок $\int\limits_{E}f_{[N]}(x)d\mu(x)$ больше или равны суммы $\sum\limits_{k=1}^Km_k\cdot \mu(E_k)$, а предел $i = \lim\limits_{N \to \infty} \int\limits_{E}f_{[N]}(x)d\mu(x)$, по предположению меньше $\sum\limits_{k=1}^Km_k\cdot\mu(E_k) \Rightarrow $ противоречие.
+\end{proof}
+\newpage
+\begin{theorem}(Три свойства)
+\begin{enumerate}
+\item (Интеграл от постоянной) Постоянная функция $f(x) \equiv c$ суммируема на измеримом множестве $E\subset \R^n$ конечной меры, причем $\int\limits_Ec\cdot d\mu(x)=c\cdot\mu(E)$
+\item (Полная или $\sigma$ - аддитивность) Если $f$ суммируема на измеримом множестве $E\subset \R^n$ конечной меры, и $E=\bigsqcup\limits_{k=1}^\infty E_k,\ E_k$ --- измеримы, то $f$ суммируема на $E_k\ \forall k$, и $\int\limits_Ef(x)d\mu(x) = \sum\limits_{k=1}^\infty\int\limits_{E_k} f(x)d\mu(x)$. Обратно, если $f$ суммируема на $E_k\ \forall k$ и $\sum\limits_{k=1}^\infty\int\limits_{E_k}| f(x)|d\mu(x)$ сходится, то $f$ суммируема на $E=\bigsqcup\limits_{k=1}^{\infty}E_k$ конечной меры, причем $\int\limits_Ef(x)d\mu(x) = \sum\limits_{k=1}^\infty\int\limits_{E_k} f(x)d\mu(x)$
+\item (Абсолютная непрерывность) Если $f$ суммируема на измеримом $E\subset \R^n$ конечной меры, то $(\forall \varepsilon >0)(\exists \delta>0)(\forall\text{ измеримого } e\subset E, \mu(e)<\delta)\  \left|\int\limits_e f(x)d\mu(x)\right|<\varepsilon$
+ \end{enumerate}
+\end{theorem}
+
+\begin{proof}\ 
+\begin{enumerate}
+	\item Так как и точные верхние грани и точные нижние грани значений постоянной функции равны $c$, то $\mathcal{U}(P, c)=L(P, c)=c\cdot \mu(E)$.
+	\item Пусть $f$ --- ограниченная измеримая функция, $E=E_1\bigsqcup E_2$. Хотим доказать, что $\int\limits_E f(x)d\mu(x)=\int\limits_{E_1} f(x)d\mu(x)+\int\limits_{E_2} f(x)d\mu(x)$. Для начала скажем, что все интегралы здесь определены и $E, E_1, E_2$  конечной меры. Обратимся к разбиениям Лебега:
+	$\inf\limits_{x\in E}f(x)=m=\underbrace{y_0<y_1<\ldots<y_N}_{=Q}=M=\sup\limits_{x\in E} f(x)$. По теореме 10.1.1 об интеграле от ограниченных измеримых функций $\int\limits_{E}f(x)d\mu(x)=\lim\limits_{\Delta(Q)\to0}S(Q, f,\{t_i\})$.\\
+	Напомним, что данный предел означает:\\ $(\forall \varepsilon >0)(\exists\delta>0)(\forall Q,  \Delta(Q)<\delta)(\forall \{t_i\}, t_i\in E^{(i)})\ |S(Q, f, \{t_i\})-\int\limits_E f(x)d\mu(x)|<\varepsilon$.\\
+	Напомним, что означает интегральная сумма: $S(Q, f, \{t_i\})=\sum\limits_{i=1}^Nf(t_i)\mu(E^{(i)})$.\\
+	Из последних двух строк следует, что:\\
+	$$\int\limits_E f(x)d\mu(x)-\varepsilon<S(Q, f, \{t_i\})=\sum\limits_{i=1}^Nf(t_i)\mu(E^{(i)})<\int\limits_E f(x)d\mu(x)+\varepsilon.$$
+	Точку $t_i$ берем любую на $E^{(i)}$, тогда возьмем точную верхнюю грань по точкам $t_i$ на $E^{(i)}$, тогда неравенство станет нестрогим, также перейдем к точной нижней грани. Тогда аналогичные неравенства, только нестрогие можно записать для верхних и нижних сумм Дарбу---Лебега, которые отвечают разбиениям Лебега. Отсюда можно записать: $\int\limits_{E}f(x)d\mu(x)=\lim\limits_{\Delta(Q)\to0}S(Q, f,\{t_i\}) = \lim\limits_{\Delta(Q)\to 0}\mathcal{U}(P, f)=\lim\limits_{\Delta(Q)\to 0}L(P, f),\\  
+	P:E=\bigsqcup\limits_{i=1}^N E^{(i)},\ E^{(i)} = \{x:f(x)\in [y_{i-1}, y_i)\}, i=1, \ldots, N-1, E^{(N)} = \{x:f(x)\in [y_{N-1}, y_N]\}$.\\
+	$$\mathcal{U}(P, f)=\sum\limits_{i=1}^N M_i\cdot\mu(E^{(i)})=\sum\limits_{i=1}^N M_i\cdot\left(\mu(E^{(i)}\cap E_1)+\mu(E^{(i)}\cap E_2) \right) \geqslant \underset{(E_1)}{\mathcal{U}}(P,f)+\underset{(E_2)}{\mathcal{U}}(P,f),$$ где $\underset{(E_1)}{\mathcal{U}}(P,f) = \sum\limits_{i=1}^N \sup\limits_{x\in E^{(i)}\cap E_1}f(x)\cdot\mu(E^{(i)}\cap E_1)$.\\ 
+	Итого получаем цепочки: 
+	$$\int\limits_E f(x)d\mu(x)-\varepsilon\leqslant
+	L(P,f) \leqslant\mathcal{U}(P,f) \leqslant
+	\int\limits_E f(x)d\mu(x)+\varepsilon$$
+	$$\int\limits_E f(x)d\mu(x)-\varepsilon\leqslant
+		\underset{(E_1)}{L}(P,f)+\underset{(E_2)}{L}(P,f)\leqslant
+	\underset{(E_1)}{\mathcal{U}}(P,f)+\underset{(E_2)}{\mathcal{U}}(P,f)\leqslant
+	\int\limits_E f(x)d\mu(x)+\varepsilon$$
+	$$\int\limits_{E_1}f(x)d\mu(x)-\varepsilon \leqslant \underset{(E_1)}{L}(P,f) \leqslant \underset{(E_1)}{\mathcal{U}}(P,f)\leqslant \int\limits_{E_1}f(x)d\mu(x)+\varepsilon$$
+	$$\int\limits_{E_2}f(x)d\mu(x)-\varepsilon \leqslant \underset{(E_2)}{L}(P,f) \leqslant \underset{(E_2)}{\mathcal{U}}(P,f)\leqslant \int\limits_{E_2}f(x)d\mu(x)+\varepsilon$$
+	 Из второго неравенства мы понимаем, что
+	 $$\underset{(E_1)}{L}(P,f)+\underset{(E_2)}{L}(P,f)\leqslant\int\limits_E f(x)d\mu(x) \leqslant
+	\underset{(E_1)}{\mathcal{U}}(P,f)+\underset{(E_2)}{\mathcal{U}}(P,f)$$
+	Складывая 3 и 4 неравенства получаем, что
+	$$\underset{(E_1)}{L}(P,f)+\underset{(E_2)}{L}(P,f)\leqslant\int\limits_{E_1}f(x)d\mu(x)+\int\limits_{E_2}f(x)d\mu(x) \leqslant
+	\underset{(E_1)}{\mathcal{U}}(P,f)+\underset{(E_2)}{\mathcal{U}}(P,f)$$
+	Итого $$\int\limits_E f(x)d\mu(x)=\int\limits_{E_1} f(x)d\mu(x)+\int\limits_{E_2} f(x)d\mu(x)$$
+	Пусть $f$ --- неотрицательная, измеримая. Тогда по теореме 10.2.2 воспользуемся срезками, для которых уже доказана конечная аддитивность:
+	$$\int\limits_{E}f_{[N]}(x)d\mu(x)=\int\limits_{E_1}f_{[N]}(x)d\mu(x)+\int\limits_{E_2}f_{[N]}(x)d\mu(x)$$
+	Из предположения о суммируемости функции $f$, получаем, что предел у левой части конечен, значит конечен предел и у правой части, который тоже существует.\\
+	Пусть $f$ --- измеримая, любого знака. Тогда также представляем функцию в виде суммы $f^+$ и $f^-$, и все аналогично.
+	
+	И теперь, рассмотрев все варианты $f$, докажем, что $\int\limits_E f(x)d\mu(x) = \sum\limits_{k=1}^\infty\int\limits_{E_k} f(x)d\mu(x)$. Пусть $E=\bigsqcup\limits_{k=1}^\infty E_k,\  f$ --- ограничена, измерима на $E$, то есть 
+	${|f(x)|\leqslant M\ (\forall x\in E)}$. Множество $E$ имеет конечную меру, из $\sigma$-аддитивности меры Лебега, получаем $\mu(E)=\sum\limits_{k=1}^\infty \mu(E_k)$ --- ряд сходится, тогда
+	${\exists K: \sum\limits_{k=K+1}^\infty \mu(E_k)<\dfrac{\varepsilon}{2\cdot M}}$. \\
+	Положим $R_K:=\bigsqcup\limits_{k=K+1}^\infty E_k \Rightarrow \mu(R_K)<\dfrac{\varepsilon}{M}$, и замечаем, что $E=(\bigsqcup\limits_{k=1}^K E_k)\bigsqcup R_K$ --- конечная аддитивность, тогда $\int\limits_{E}f(x) d\mu(x)=\sum\limits_{k=1}^K\int\limits_{E_k}f(x)d\mu(x)+\int\limits_{R_K}f(x)d\mu(x)$.\\
+	$|\int\limits_{R_K}f(x)d\mu(x)|\leqslant\int\limits_{R_K}|f(x)|d\mu(x)\leqslant M\cdot \mu(R_K)<\varepsilon$. \\Тогда получаем, что $\int\limits_{E}f(x) d\mu(x)-\sum\limits_{k=1}^K\int\limits_{E_k}f(x)d\mu(x)\leqslant|\int\limits_{R_K}f(x)d\mu(x)|<\varepsilon$, то есть $\int\limits_{E}f(x) d\mu(x)=\sum\limits_{k=1}^\infty\int\limits_{E_k}f(x)d\mu(x)$.
+	
+	Докажем обратное утверждение. 
+	
+	Для $f$ --- ограниченной, измеримой все просто, доказывать нечего.
+	
+	Для $f$ --- неотрицательной, измеримой на $E$, суммируемой. Мы знаем, что $\int\limits_{E}f(x)d\mu(x)=\lim\limits_{N\to\infty}\int\limits_{E}f_{[N]}(x)d\mu(x)$, тогда $$\int\limits_{E}f(x)d\mu(x)-\varepsilon<\int\limits_{E}f_{[N]}(x)d\mu(x)\leqslant\int\limits_{E}f(x)d\mu(x)+\varepsilon.$$
+	Срезка --- это ограниченная, измеримая фукнция, значит для нее $\sigma$-аддитивность доказана, $\int\limits_{E}f_{[N]}(x)d\mu(x) = \sum\limits_{k=1}^\infty \int\limits_{E_k}f_{[N]}(x)d\mu(x)$, срезки неотрицательные, имеем ряд из неотрицательных членов, сумма ряда из неотрицательных членов больше или равна некоторого фиксированного числа $\int\limits_{E}f(x)d\mu(x)-\varepsilon$, значит мы можем рассмотреть конечное число слагаемых и для них эта цепочка также будет верна, то есть $\exists K\  \int\limits_{E}f(x)d\mu(x)-\varepsilon<\sum\limits_{k=1}^K \int\limits_{E_k}f_{[N]}(x)d\mu(x)\leqslant\int\limits_{E}f(x)d\mu(x)$, так как интеграл от функции больше или равен интеграла от срезки и в силу конечной аддитивности $\int\limits_{E}f(x)d\mu(x)-\varepsilon<\sum\limits_{k=1}^K \int\limits_{E_k}f(x)d\mu(x)\leqslant\int\limits_{E}f(x)d\mu(x)$, откуда получаем, что сумма ряда из неотрицательных членов $\int\limits_{E}f(x)d\mu(x)=\sum\limits_{k=1}^\infty \int\limits_{E_k}f(x)d\mu(x)$
+	
+	Для $f$ --- любого знака, $f=f^++f^-, \int\limits_{E}f^\pm(x)d\mu(x)=\sum\limits_{k=1}^\infty \int\limits_{E}f^\pm(x)d\mu(x)$ и осталось произвести дейтсвия с рядами.
+	
+	Для доказательства обратного утверждения, увидим, что требование CONTINUE
+	
+	\item $f$ --- ограниченная измеримая, $|f(x)|\leqslant M$. Так как $|\int\limits_{e}f(x)d\mu(x)|\leqslant \int\limits_{e}|f(x)|d\mu(x)\?\leqslant M\cdot \mu(e)$. В качестве $\delta:=\dfrac{\varepsilon}{M}$
+	
+	$f$ --- неотрицательная, измеримая. Возьмем $N: 0\leqslant \int\limits_{E}f(x)d\mu(x)-\int\limits_{E}f_{[N]}(x)d\mu(x)<\varepsilon$. Тогда $(\exists \delta >0)(\forall e, \mu(e)<\delta)\ \  \int\limits_{e}f_{[N]}(x)d\mu(x)<\varepsilon$. 
+	Так как
+	
+	 $\int\limits_{e}f(x)d\mu(x)=\int\limits_{e}(f(x)-f_{[N]}(x))d\mu(x)+\int\limits_{e}f_{[N]}(x)d\mu(x)<\int\limits_{E}(f(x)-f_{[N]}(x))d\mu(x)+\varepsilon<2\cdot\varepsilon$
+	 
+	$f$ --- любого знака. Представляем $f=f^++f^-$, тогда $\exists \delta_1, \delta_2, \ \mu(e)<\delta_1 \Rightarrow \int\limits_{e}f^+(x)d\mu(x)<\varepsilon, \mu(e)<\delta_2 \Rightarrow \int\limits_{e}f^-(x)d\mu(x)<\varepsilon$, берем минимум из $\delta_1, \delta_2$, и получаем требуемое. 
+\end{enumerate}
+\end{proof}

@@ -1,0 +1,314 @@
+\begin{theorem} (О произведении абсолютно сходящихся рядов)
+	Если ряды $\row{n = 1}{a_n}$ и $\row{n = 1}{b_n}$ абсолютно сходятся к $A$ и $B$ соответственно, то ряд $\row{j = 1}{a_{n_j} b_{m_j}}$, составленный из всевозможных попарных произведений членов этих рядов (в произвольном порядке) абсолютно сходится к $AB$.
+\end{theorem}
+
+\begin{proof}
+	Оценим абсолютные частичные суммы нашего ряда:
+	\[
+		\suml_{j = 1}^N |a_{n_j} b_{m_j}| \le \left(\suml_{i = 1}^{\max \{n_1, \ldots, n_N\}} |a_i|\right) \cdot \left(\suml_{k = 1}^{\max (m_1, \ldots, m_N)} |b_k|\right) < M
+	\]
+	Отсюда есть абсолютная сходимость по теореме Вейерштрасса. Теперь, мы можем применить теорему о перестановках абсолютно сходящегося ряда. Рассмотрим следующую перестановку:
+	\[
+		a_1 b_1 + (a_1 b_2 + a_2 b_1 + a_2 b_2) + (a_1 b_3 + a_3 b_1 + a_2 b_3 + a_3 b_2 + a_3 b_3) + \ldots
+	\]
+	То есть подпоследовательность частичных сумм этого ряда является произведением частичных сумм исходных рядов (нужно брать номера частичных сумм, чьи последние слагаемые стоят у закрывающей скобки в ряде). При этом известно, что
+	\[
+		\left(\suml_{j = 1}^N a_j\right)\left(\suml_{k = 1}^N b_k\right) \xrightarrow[N \to \infty]{} AB
+	\]
+	Значит, и весь ряд сходится к $AB$.
+\end{proof}
+
+\begin{definition}
+	\textit{Произведением рядов} $\row{n = 1}{a_n}$ и $\row{n = 1}{b_n}$ \textit{по Коши} называется $\row{n = 1}{c_n}$:
+	\[
+		c_n = \suml_{k = 1}^n a_k b_{n + 1 - k}
+	\]
+\end{definition}
+
+\begin{theorem} (Мертенса)
+	Если хотя бы один из сходящихся рядов $\row{n = 1}{a_n}$, $\row{n = 1}{b_n}$ сходится абсолютно, то сходится и их произведение по Коши.
+\end{theorem}
+
+\begin{proof}
+	Пусть $\row{n = 1}{a_n}$ сходится абсолютно. Введём обозначения:
+	\begin{align*}
+		&{A := \suml_{n = 1}^\infty a_n}
+		\\
+		&{A_N := \suml_{n = 1}^N a_n}
+		\\
+		&{B := \suml_{n = 1}^\infty b_n}
+		\\
+		&{B_N := \suml_{n = 1}^N b_n}
+		\\
+		&{\beta_N := B_N - B}
+	\end{align*}
+	Распишем частичную сумму произведения по Коши:
+	\begin{multline*}
+		\suml_{k = 1}^n c_k = \suml_{k = 1}^n (a_1 b_k + \ldots + a_k b_1) = a_1 B_n + a_2 B_{n - 1} + \ldots + a_n B_1 =
+		\\
+		a_1 (B_n - B) + a_2 (B_{n - 1} - B) + \ldots + a_n (B_1 - B) + A_n B =
+		\\
+		a_1 \beta_n + a_2 \beta_{n - 1} + \ldots + a_n \beta_1 + A_n B
+	\end{multline*}
+	Уже знаем, что $\liml_{n \to \infty} A_n B = AB$. Значит, надо доказать, что последовательность $\gamma_n$:
+	\[
+		\gamma_n := a_1 \beta_n + a_2 \beta_{n - 1} + \ldots + a_n \beta_1 \xrightarrow[n \to \infty]{} 0
+	\]
+	Так как ряд $\row{n = 1}{a_n}$ сходится абсолютно, и $\liml_{n \to \infty} \beta_n = 0$, то их можно ограничить:
+	\[
+		\forall n \in \N\ \System{
+			&{\suml_{k = 1}^n |a_k| \le M_1}
+			\\
+			&{|\beta_n| \le M_2}
+		}
+	\]
+	Разобьём $\gamma_n$ на начало + конец и будем оценивать каждое по отдельности:
+	\[
+		\gamma_n = (a_1 \beta_n + \ldots + a_m \beta_{n + 1 - m}) + (a_{m + 1} \beta_{n - m} + \ldots + a_n \beta_1)
+	\]
+	\begin{itemize}
+		\item Для конца мы можем написать следующее:
+		\[
+			|a_{m + 1}\beta_{n - m} + \ldots + a_n \beta_1| \le M_2 (|a_{m + 1}| + \ldots + |a_n|)
+		\]
+		При этом ряд $\row{n = 1}{a_n}$, как это было много раз сказано, сходится абсолютно. Значит, по критерию Коши
+		\[
+			\forall \eps > 0\ \exists m \in \N \such \suml_{k = m + 1}^\infty |a_k| < \frac{\eps}{2 M_2}
+		\]
+		То есть для зафиксированного $\eps$ и $n > m$ верно, что
+		\[
+			M_2(|a_{m + 1}| + \ldots + |a_n|) < \frac{\eps}{2}
+		\]
+		
+		\item Для начала нужно просто оценить $\beta_{n + 1 - m}$:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N \quad |\beta_{n + 1 - m}| < \frac{\eps}{2M_1}
+		\]
+		Отсюда получаем для фиксированного $\eps$ и $n > N$:
+		\[
+			|a_1 \beta_n + \ldots + a_m \beta_{n + 1 - m}| \le (|a_1| + \ldots + |a_m|) \cdot \frac{\eps}{2M_1} < \frac{\eps}{2}
+		\]
+	\end{itemize}
+	В итоге имеем:
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N\ |\gamma_n| < \eps \llra \liml_{n \to \infty} \gamma_n = 0
+	\]
+\end{proof}
+
+\begin{example}
+	Рассмотрим ряд вида
+	\[
+		\row{n = 1}{a_n} = \row{n = 1}{(-1)^{n + 1} \frac{1}{\sqrt{n}}}
+	\]
+	Рассмотрим произведение по Коши этого ряда на самого себя: $\row{n = 1}{c_n}$. Тогда
+	\[
+		c_n = \suml_{k = 1}^n (-1)^{k + 1} \frac{1}{\sqrt{k}} \cdot (-1)^{(n + 1 - k) + 1} \frac{1}{\sqrt{n + 1 - k}} = (-1)^{n + 1} \suml_{k = 1}^n \frac{1}{\sqrt{k(n + 1 - k)}}
+	\]
+	При этом
+	\[
+		\forall k \in \range{n}\ \ k(n + 1 - k) \le \left(\frac{n + 1}{2}\right)^2
+	\]
+	Значит, можно оценить член ряда по модулю:
+	\[
+		|c_n| \ge \suml_{k = 1}^n \frac{2}{n + 1} = \frac{2n}{n + 1} \xrightarrow[n \to \infty]{} 2
+	\]
+	Отсюда следует расходимость $\row{n = 1}{c_n}$.
+\end{example}
+
+\begin{note}
+	На этом параграф числовых рядов завершается. Однако, стоит отметить, что ряды можно рассматривать не только над $\R$, но и вообще в любом линейно-нормированном пространстве. Возможно, у читателя возник вопрос: <<А почему мы называем сходящиеся ряды условно сходящимися, если нету абсолютной сходимости?>> Это связано как раз с тем, что если в линейно-нормированном пространстве ряд сходится, несмотря на перестановку своих членов, то он называется \textit{безусловно сходящимся}. Более того, безусловная и абсолютная сходимость в таком случае являются понятиями \underline{разными}.
+\end{note}
+
+\subsection{Функциональные последовательности и ряды}
+
+\begin{definition}
+	Говорят, что функциональная последовательность $\{f_n(x)\}_{n = 1}^\infty$ \textit{сходится равномерно} на $E$ к функции $f$ (обозначается как $f_n \rra f$), если
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, x \in E \quad |f_n(x) - f(x)| < \eps
+	\]
+	И \textit{сходится поточечно} на $E$ к функции $f$, если
+	\[
+		\forall x \in E\ \forall \eps > 0\ \exists N \in \N \such \forall n > N \quad |f_n(x) - f(x)| < \eps
+	\]
+\end{definition}
+
+\textcolor{red}{Сюда бы картиночку с 44:20 13й лекции матана весны 2022.}
+
+\begin{proposition}
+	$f_n \rra f$ на $E$ тогда и только тогда, когда
+	\[
+		\sup\limits_{x \in E} |f_n(x) - f(x)| \xrightarrow[n \to \infty]{} 0
+	\]
+\end{proposition}
+
+\begin{proof}
+	По факту это одно и то же условие, записанное разными формулами.
+\end{proof}
+
+\begin{corollary}
+	$f_n \not\rra f$ на $E$ тогда и только тогда, когда
+	\[
+		\exists \{x_n\}_{n = 1}^\infty \subset E \such |f_n(x_n) - f(x_n)| \centernot{\xrightarrow[n \to \infty]{}} 0
+	\]
+\end{corollary}
+
+\begin{example}
+	Рассмотрим функциональную последовательность следующего вида:
+	\[
+		f_n(x) = \System{
+			&{-c_n n^2 \left|x - \frac{1}{n}\right| + c_n, x \in \left[\frac{1}{n} - \frac{1}{n^2}; \frac{1}{n} + \frac{1}{n^2}\right]}
+			\\
+			&{0, x \in \left[0; \frac{1}{n} - \frac{1}{n^2}\right] \cup \left[\frac{1}{n} + \frac{1}{n^2}; 1\right]}
+		}
+	\]
+	Неформально говоря, $f_n(x)$ просто представляет собой небольшой пик в точке $1/n$ и почти везде 0 иначе. Тогда несложно увидеть, что $\liml_{n \to \infty} f_n(x) = 0$, то есть присутствует поточечная сходимость. Несложно понять, что тогда
+	\[
+		f_n \rra 0 \llra c_n \to 0
+	\]
+\end{example}
+
+\begin{theorem} (Критерий Коши равномерной сходимости функциональных последовательностей)
+	$f_n \rra f$ на $E$ тогда и только тогда, когда верно условие:
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, p \in \N, x \in E \quad |f_{n + p}(x) - f_n(x)| < \eps
+	\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item Необходимость. Раз $f_n \rra f$, то это означает следующее:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N, x \in E \quad |f_n(x) - f(x)| < \frac{\eps}{2}
+		\]
+		Так как верно для $n > N$, то это же верно и для $n + p > N, p \in \N$. Отсюда
+		\[
+			|f_{n + p}(x) - f_n(x)| \le |f_{n + p}(x) - f(x)| + |f_n(x) - f(x)| < \eps
+		\]
+		
+		\item Достаточность. Раз условие Коши выполнено, то
+		\[
+			\forall x \in E\ \exists f(x) \such \liml_{n \to \infty} f_n(x) = f(x)
+		\]
+		Зафиксируем в условии Коши $\eps > 0, N \in \N$ и $x \in E$, а $p$ устремим в бесконечность. Тогда
+		\[
+			|f_{n + p}(x) - f_n(x)| \xrightarrow[p \to \infty]{} |f(x) - f_n(x)| \le \eps
+		\]
+		Это и даёт равномерную сходимость $\{f_n(x)\}_{n = 1}^\infty$.
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Говорят, что \textit{функциональный ряд} $\row{n = 1}{f_n(x)}$ \textit{равномерно сходится на} $E$, если равномерно сходится на $E$ функциональная последовательность $S_n(x) = \suml_{k = 1}^n f_k(x)$.
+\end{definition}
+
+\begin{theorem} (Критерий Коши равномерно сходимости функциональных рядов)
+	$\row{n = 1}{f_n(x)}$ равномерно сходится на $E$ тогда и только тогда, когда
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, p \in \N, x \in E \quad \left|\suml_{k = n + 1}^{n + p} f_n(x)\right| < \eps
+	\]
+\end{theorem}
+
+\begin{proof}
+	Тривиально следует из определения равномерной сходимости функционального ряда и критерия Коши для функциональных последовательностей.
+\end{proof}
+
+\begin{corollary} \textit{(Необходимое условие равномерной сходимости ряда)}
+	Если $\row{n = 1}{f_n(x)}$ равномерно сходится на $E$, то $f_n \rra 0$ на $E$.
+\end{corollary}
+
+\begin{proof}
+	Действительно, положим $p = n + 1$ в критерие Коши и получим требуемое.
+\end{proof}
+
+\begin{theorem} (Вейерштрасса)
+	Если верно, что
+	\[
+		\forall x \in E, n \in \N \quad |f_n(x)| \le c_n
+	\]
+	и ряд $\row{n = 1}{c_n}$ - сходящийся, то $\row{n = 1}{f_n(x)}$ равномерно сходится на $E$.
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем все указанные в критерии Коши переменные и оценим модуль суммы из критерия Коши:
+	\[
+		\left|\suml_{k = n + 1}^{n + p} f_k(x)\right| \le \suml_{k = n + 1}^{n + p} |f_k(x)| \le \suml_{k = n + 1}^{n + p} c_k < \eps
+	\]
+\end{proof}
+
+\begin{definition}
+	Функциональная последовательность $\{f_n(x)\}_{n = 1}^\infty$ \textit{равномерно ограничена} на $E$, если
+	\[
+		\exists M \ge 0 \such \forall x \in E, n \in \N \quad |f_n(x)| \le M
+	\]
+\end{definition}
+
+\begin{theorem} (Признак Дирихле равномерной сходимости функциональных рядов)
+	Если верны следующие условия:
+	\begin{enumerate}
+		\item Последовательность частичных сумм ряда $\row{n = 1}{a_n}$ равномерно ограничена на $E$
+		
+		\item Последовательность $\forall x \in E\ \{b_n(x)\}_{n = 1}^\infty$ монотонна и равномерно сходится к 0 на $E$
+	\end{enumerate}
+	Тогда функциональный ряд $\row{n = 1}{a_n(x)b_n(x)}$ равномерно сходится на $E$.
+\end{theorem}
+
+\begin{note}
+	Для доказательства этой и следующей теорем, введём обозначение:
+	\[
+		A_k(x) := \suml_{j = n + 1}^k a_j(x)
+	\]
+	Тогда понятно, что
+	\[
+		a_k(x) = A_k(x) - A_{k - 1}(x)
+	\]
+\end{note}
+
+\begin{proof}
+	Применим преобразование Абеля для суммы из критерия Коши:
+	\begin{multline*}
+		\suml_{k = n + 1}^{n + p} a_k(x)b_k(x) = \suml_{k = n + 1}^{n + p} (A_k(x) - A_{k - 1}(x))b_k(x) = A_{n + p}(x) b_{n + p}(x) - A_n(x)b_{n + 1}(x) -
+		\\
+		\suml_{k = n + 2}^{n + p - 1} A_k(b_{k + 1} - b_k)
+	\end{multline*}
+	Коль скоро последовательность частичных сумм ряда $\row{n = 1}{a_n}$ ограничена числом $M$, то
+	\[
+		\forall k \in \N, x \in E\ \ |A_k(x)| \le 2M
+	\]
+	Значит
+	\[
+		\left|\suml_{k = n + 1}^{n + p} a_k(x)b_k(x)\right| \le 2M |b_{n + p}(x)| + 2M |b_{n + 1}(x)| + 2M \suml_{k = n + 2}^{n + p - 1} |b_{k + 1}(x) - b_k(x)|
+	\]
+	По старой схеме, знак выражения под модулем в сумме одинаков для всех $k$. Значит, модуль можно вынести за знак суммы и телескопировать саму сумму. При этом
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, x \in E \quad |b_n(x)| < \frac{\eps}{8M}
+	\]
+	Отсюда
+	\[
+		\left|\suml_{k = n + 1}^{n + p} a_k(x)b_k(x)\right| < \frac{\eps}{4} + \frac{\eps}{4} + \frac{\eps}{2} = \eps
+	\]
+\end{proof}
+
+\begin{theorem} (Признак Абеля равномерной сходимости функциональных рядов)
+	Если выполнены следующие условия:
+	\begin{enumerate}
+		\item Ряд $\row{n = 1}{a_n(x)}$ равномерно сходится
+		
+		\item Последовательность $\forall x \in E\ \ \{b_n(x)\}_{n = 1}^\infty$ монотонна и равномерно ограничена на $E$
+	\end{enumerate}
+	Тогда $\row{n = 1}{a_n(x)b_n(x)}$ равномерно сходится на $E$.
+\end{theorem}
+
+\begin{proof}
+	Доказательство повторяет предыдущую теорему до оценок. Из условий признака Абеля мы знаем, что
+	\[
+		\forall k \in \N, x \in E\ \ |b_k(x)| \le M
+	\]
+	А для сумм $A_k(x)$ из признака Коши верно, что
+	\[
+		\forall \eps > 0\ \exists N \in \N \such \forall n > N, x \in E \quad |A_k| < \frac{\eps}{4M}
+	\]
+	Значит, для модуля суммы верна оценка:
+	\[
+		\left|\suml_{k = n + 1}^{n + p}\right| < \frac{\eps}{4M} \cdot M + \frac{\eps}{4M} \cdot M + \frac{\eps}{4M} \cdot 2M = \eps
+	\]
+\end{proof}

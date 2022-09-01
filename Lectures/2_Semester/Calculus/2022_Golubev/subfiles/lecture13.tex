@@ -1,0 +1,152 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \subsection{Локализация. Признаки сравнения}
+
+    \begin{note}
+        В дальнейшем мы будем рассматривать интервалы вида $[a,b)$, где $b \in \R \cup \{ + \infty \} $ и точку $b$ называть \emph{особенностью}. Если особенность будет с другой стороны, все рассуждения аналогичны. 
+    \end{note}
+
+    
+    \begin{proposition}
+      Пусть \fabr, $a_1 \in (a, b)$, $f$~--- интегрируема на любом отрезке $\subset [a,b)$. Тогда $\int_{a}^{b} f(x) dx$ и $\int_{a_1}^{b} f(x) dx$ сходятся или расходятся одновременно.   
+    \end{proposition}
+    
+    
+    \begin{proof}
+      Рассмотрим 
+      \begin{gather} 
+        \lim_{b' \to b-0} \int_{a}^{b'} f(x) dx = \lim _ {b' \to b - 0} \left(\int_{a}^{a_1 } f(x) dx + \int_{a_1 }^{b'} f(x) dx\right) = \lim_{b' \to b-0} \left( C +  \int_{a_1 }^{b'} f(x) dx\right),
+      \end{gather}
+      значит существование первого предела эквивалентно существованию последнего.
+    \end{proof}
+    
+    
+    \begin{proposition}
+      Пусть $f, g: [a,b) \to \R$~--- интегрируемы на $\forall [a, b'] \subset [a,b)$, $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} g(x)dx$~---  сходятся, тогда $\forall \alpha, \beta \in \R$: 
+      \begin{gather} 
+        \exists \int_{a}^{b} (\alpha f(x) + \beta g(x) ) dx = \alpha \int_{a}^{b} f(x) dx + \beta \int_{a}^{b} g(x) dx .
+      \end{gather} 
+    \end{proposition}
+    
+    
+    \begin{proof}
+      Рассмотрим 
+      \begin{gather} 
+        \lim_{b' \to b-0} \int_{a}^{b'} \left(\alpha f(x)  + \beta g(x) \right) = \lim_{b' \to b-0} \left(\alpha \int_{a}^{b'} f(x) dx + \beta \int_{a}^{b'} g(x) dx \right) = \\ = \alpha \lim_{b' \to b-0} \int_{ab'fxd}^{+\infty} x + \beta \lim_{b' \to b-0} \int_{a}^{b'} g(x) dx = \alpha \int_{a}^{b} f(x) dx + \beta \int_{a}^{b} g(x) dx.
+      \end{gather}
+    \end{proof}
+    
+    \begin{example}
+    Исследуем $\int_{2}^{+\infty} \frac{dx}{x^{\alpha}\ln^{\beta} x}$. Рассмотрим несколько случаев:
+    \begin{enumerate}
+        \item $\alpha=1$ 
+        \begin{gather} 
+          \int_{2}^{+\infty} \frac{dx}{x \ln^{\beta} x} = \int_{2}^{+\infty} \frac{d \ln x}{ \ln^{\beta}x} 
+        \end{gather} 
+        сходится при $\beta > 1$, расходится при $\beta \leq 1$
+        \item $\alpha>1$, тогда $\alpha = 1 + 2 \gamma$, где $\gamma > 0$, перепишем 
+        \begin{gather} 
+          \frac{1}{x^{\alpha} \ln^{\beta}x} = \frac{1}{x^{1+\gamma}} \cdot \frac{1}{x^{\gamma} \ln^{\beta}x} ,
+        \end{gather} 
+        где второй множитель $ \xrightarrow[x \to  + \infty ]{} 0 $, значит начиная с некоторого $x_0 $ он меньше единицы. Тогда можем рассмотреть $\int_{\min \{x_0, 2\}}^{+\infty} \frac{dx}{x^{\alpha}\ln^{\beta} x}$, и оценить его сверху известным нам $ \int_{x_0 '}^{+ \infty} \frac{dx}{x^{1+\gamma}} $, который сходится. Значит в любом случае, независимо от $\beta $, интеграл сходится.
+        \item $\alpha < 1$, аналогично получаем, что $\forall \beta$ расходится.
+    \end{enumerate}
+
+    \end{example}
+
+    \begin{note}
+        В этом примере мы пользовались утверждениями (о замене переменного, об ограничении), которые еще не доказали, но сейчас докажем.
+    \end{note}
+
+    
+    \begin{proposition}
+      Пусть $x(t): [t_0, \beta) \to [x_0, b)$~--- строго возрастающая, непрерывно дифференцируемая функция ( $[x_0,b)$~--- в точности множество значений), $f:[x_0, b] \to \R$~--- интегрируема на $\forall [x_0, b'] \subset [x_0, b)$. Тогда 
+      \begin{gather} 
+        \int_{x_0 }^{b} f(x) dx = \int_{t_0 }^{\beta} f(x(t)) x'(t) dt .
+      \end{gather}
+    \end{proposition}
+    
+    
+    \begin{note}
+      Под равенством мы подразумеваем, что они либо оба существуют и равны, либо оба не существуют.
+    \end{note}
+    
+    
+    \begin{proof}
+      В силу непрерывности $x(t)  \xrightarrow[t \to  \beta - 0]{} b $, в силу монотонности $\exists t(x)  \xrightarrow[x \to  b-0 ]{} \beta $. Рассмотрим 
+      \begin{gather} 
+         \int_{x_0}^{b'} f(x) dx = \eqcom{x = x(t) \\ t = t(x)} = \int_{t_0 }^{\beta'} f(x(t)) x'(t) dt.
+      \end{gather} 
+      Переходя к пределу, получаем то, что нужно.
+    \end{proof}
+    
+    
+    \begin{proposition} \label{prop:int:sup}
+      Пусть \fabr, $\forall x \in [a,b) \hence f(x) \geq 0$, $f$~--- интегрируема на $\forall [a, b'] \subset [a, b)$. $\int_{a}^{b} f(x) dx$~--- сходится \nas $\sup_{b'} \int_{a}^{b'} f(x) dx < + \infty$.
+      
+    \end{proposition}
+    
+    
+    \begin{proof}
+      Пусть $F(b') = \int_{a}^{b'} f(x) dx$. Тогда $F(b')$~--- непрерывна и строго возрастает. При этом, в силу интегрируемости, $F(b')$ ограничена сверху. Тогда $\sup F < + \infty$. Функция ограничена, нестрого возрастает, значит предел существует.
+    \end{proof}
+    
+    
+    \begin{corollary}
+      Пусть $f, g: [a,b) \to \R^+$~--- интегрируемы на $\forall [a, b'] \subset [a, b)$, и $\forall x \in [a,b) \hence 0 \leq f(x)  \leq g(x) $. Тогда:
+      \begin{enumerate}
+          \item если $\int_{a}^{b} g(x) dx$ сходится, тогда $\int_{a}^{b} f(x) dx $ сходится;
+          \item если $\int_{a}^{b} f(x) dx$ расходится, тогда $\int_{a}^{b} g(x) dx$ расходится. 
+      \end{enumerate} 
+    \end{corollary}
+    
+    
+    \begin{proof}
+      \begin{enumerate}
+          \item Если $\int_{a}^{b} g(x) dx $ сходится, то $\sup \int_{a}^{b;'}  g(x) dx < + \infty$. При этом (как собственные интегралы) $\int_{a}^{b'} f(x) dx \leq \int_{a}^{b'} g(x) dx $. Как следствие 
+          \begin{gather} 
+            \sup_{b'} \int_{a}^{b'} f(x) dx \leq \sup_{b'}\int_{a}^{b'} g(x) dx < + \infty ,
+          \end{gather}
+          значит $\intab f(x) dx$ сходится.
+          \item Предположим противное, получили противоречие с первым пунктом.
+      \end{enumerate}
+    \end{proof}
+
+    
+    \begin{definition}
+      Пусть $f,g : [a, b) \to \R^{+}$. Будем говорить, что $f$ \emph{эквивалентно в смысле сходимости интеграла} $g$, при $b' \to b-0$, и писать $f \eqincon g$, если $\exists b_1 \in [a, b), \exists m, M > 0 : \forall x \in [b_1, b) \hence m g(x) \leq f(x)  \leq M g(x) $.     
+    \end{definition}
+
+    \begin{lemma}
+        Пусть $f_i, g_i: [a,b) \to \R^{+}$ \ito{3}, $ f_i \eqincon g_i$ при $x \to b-0$ и $\forall x \in [a, b) \hence f_3(x) > 0, g_3 (x) > 0$. Тогда 
+        \begin{gather} 
+          \frac{f_1 (x) f_2 (x)}{f_3 (x)} \eqincon \frac{g_1 (x) g_2 (x)}{g_3 (x)} .
+        \end{gather}  
+    \end{lemma}
+    
+    
+    \begin{proof}
+      По определению $\exists b' \in [a,b), \exists m_i, M_i > 0 \ito 3, \forall x[b',b) $ $$ m_i g_i(x) \leq f_i (x) \leq M_i f_i (x), \ito 3 .$$
+      Тогда $\frac{1}{M_3 f_3 (x)} \leq\frac{1}{f_3 (x)} \leq \frac{1}{m_3 g_3 (x)}$. Значит 
+      \begin{gather} 
+        \frac{m_1 m_2 }{M_3 } \cdot \frac{g_1 (x) g_2 (x)}{g_3 (x)} \leq \frac{f_1 (x) f_2 (x)}{f_3 (x)} \leq \frac{M_1 M_2 }{m_3 } \cdot  \frac{g_1 (x) g_2 (x)}{g_3 (x)} .
+      \end{gather}
+    \end{proof}
+    
+    
+    \begin{proposition}
+      Пусть $f, g: [a,b) \to \R^{+}$~--- интегрируемы на $\forall [a,b'] \subset [a,b)$, $f \eqincon g$ при $x \to b-0$.  Тогда $\intab f(x) dx$ и $\intab g(x) dx$ сходятся или расходятся одновременно.
+    \end{proposition}
+    
+    
+    \begin{proof}
+      Пусть $m, M, b'$~--- из определения, $m g(x) \leq f(x) \leq M g(x) $. Рассмотрим $\int_{b'}^{b} f(x) dx $ и $\int_{b'}^{b} g(x) dx $. 
+      Тогда:
+        \begin{enumerate}
+          \item если $\int_{b'}^{b} g(x)dx$ сходится, то (из второго неравенства) $\int_{b'}^{b} g(x) dx$ сходится;
+          \item далее аналогично. 
+      \end{enumerate}
+    \end{proof}
+    
+\end{document}

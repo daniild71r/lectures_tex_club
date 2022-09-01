@@ -1,0 +1,468 @@
+\section{Уравнения прямых и плоскостей}
+
+\subsection{Прямая в плоскости}
+
+\begin{definition}
+	\textit{Направляющим вектором} прямой $l \subset P_3$ называется вектор $\overline{a} \in V_3$, $\overline{a} \ne \overline 0$, представителем которого является направленный отрезок, лежащий в $l$.
+\end{definition}
+
+\begin{definition}
+	Пусть $l \subset P_2$ "--- прямая с направляющим вектором $\overline{a} \in V_2$, $M \in l$, и в декартовой системе координат $(O, e)$ в $P_2$ выполнены соотношения $\overline{a} \leftrightarrow_{e} (\alpha_1, \alpha_2)^T$, $M \leftrightarrow_{(O, e)} (x_0, y_0)^T$, $\overline{r_0} := \overline{OM}$.
+	\begin{itemize}
+		\item \textit{Векторно-параметрическим уравнением прямой} называется следующее семейство уравнений:
+		\[\overline{r} = \overline{r_0} + t\overline{a},~t \in \mathbb{R}\]
+		\item \textit{Параметрическим уравнением прямой} называется следующее семейство систем:
+		\[\left\{
+		\begin{aligned}
+			x = x_0 + t\alpha_1\\
+			y = y_0 + t\alpha_2
+		\end{aligned}
+		\right.,~t \in \R
+		\]
+		\item \textit{Каноническим уравнением прямой} называется следующее уравнение:
+		\[\frac{x - x_0}{\alpha_1} = \frac{y - y_0}{\alpha_2}\]
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Множество точек $X \in P_2$ таких, что $X \leftrightarrow_{(O, e)} (x, y)^T$, $\overline{r} := \overline{OX}$, являющихся решениями любого из уравнений прямой выше, совпадает с прямой $l$. Действительно, $X \in l \lra MX \parallel l \lra \overline{MX} \parallel \overline{a}$.
+\end{note}
+
+\begin{note}
+	В случае канонического уравнения прямой, если без ограничения общности $\alpha_1 = 0$, то тогда $\alpha_2 \ne 0$, и следует считать, что исходное уравнение эквивалентно условию $x = x_0$. Отметим также, что каноническое уравнение прямой эквивалентно следующему такому уравнению:
+	\[\alpha_2 x - \alpha_1 y + (\alpha_1 y_0 - \alpha_2 x_0) = 0\]
+\end{note}
+
+\begin{definition}
+	Пусть $A, B, C \in \R$, $A^2+B^2 \ne 0$. \textit{Общим уравнением прямой} называется следующее уравнение:
+	\[Ax+By+C = 0\]
+\end{definition}
+
+\begin{proposition}
+	Пусть прямая $l$ задана в декартовой системе координат $(O, e)$ в $P_2$ общим уравнением прямой $Ax+By+C=0$, $\overline{b} \in V_2$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда выполнена равносильность $\overline{b} \parallel l \Leftrightarrow A\beta_1 + B\beta_2 = 0$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $M \in l$, точка $N \in P_2$ такова, что $\overline{MN} \hm{=} \overline{b}$, и $M \leftrightarrow_{(O, e)} (x_0, y_0)^T$, тогда $N \leftrightarrow_{(O, e)} (x_0 + \beta_1, y_0 + \beta_2)^T$. Поскольку $M \in l$, выполнены следующие эквивалентности:
+	\[\overline{b} \parallel l \lra N \in l \lra A(x_0 + \beta_1) + B(y_0 + \beta_2) + C = 0 \lra A\beta_1 + B\beta_2 = 0\qedhere\]
+\end{proof}
+
+\begin{corollary}
+	Пусть прямая $l \subset P_2$ задана в декартовой системе координат $(O, e)$ общим уравнением прямой $Ax+By+C=0$, $\overline{b} \in V_2$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда направляющим вектором прямой $l$ является вектор $\overline{a} \in V_2$ такой, что $\overline a \leftrightarrow_{e} (-B, A)^T$.
+\end{corollary}
+
+\begin{definition}
+	\textit{Вектором нормали} прямой $l \subset P_3$ называется вектор $\overline{n} \in V_3$, $\overline{n} \ne \overline 0$, представителем которого является направленный отрезок, ортогональный прямой $l$.
+\end{definition}
+
+\begin{corollary}
+	Пусть прямая $l \subset P_2$ задана в декартовой системе координат $(O, e)$ общим уравнением прямой $Ax+By+C=0$, $\overline{b} \in V_2$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда вектором нормали прямой $l$ является вектор $\overline{n} \in V_2$ такой, что $\overline n \leftrightarrow_{e} (A, B)^T$.
+\end{corollary}
+
+\begin{definition}
+	Пусть $l \subset P_2$ "--- прямая с вектором нормали $\overline{n} \in V_2$, и пусть $M \in l$, $\overline{r_0} := \overline{OM}$. \textit{Нормальным уравнением прямой} называется следующее уравнение:
+	\[(\overline{r} - \overline{r_0}, \overline{n}) = 0\]
+\end{definition}
+
+\begin{note}
+	Множество точек $X \in P_2$, $\overline{r} := \overline{OX}$, являющихся решениями нормального уравнения прямой, совпадает с прямой $l$. Кроме того, это уравнение можно переписать в следующем виде при $\gamma := (\overline{r_0}, \overline{n})$:
+	\[(\overline{r}, \overline{n}) = \gamma\]
+\end{note}
+
+\begin{note}
+	Уравнения различного типа, задающие прямую, эквивалентны: из каждого из них можно получить любое другое.
+\end{note}
+
+\begin{note}
+	Рассмотренные способы задания прямой позволяют определить \textit{взаимное расположение прямых на плоскости}. Пусть прямые $l_1, l_2$ заданы векторно-параметричес\-кими уравнениями $\overline{r} \hm{=} \overline{r_1} + t\overline{a_1}$, $\overline{r} = \overline{r_2} + t\overline{a_2}$. Тогда:
+	\begin{itemize}
+		\item $l_1 \cap l_2 \ne \emptyset$ и $l_1 \ne l_2 \lra \overline{a_1} \nparallel \overline{a_2}$
+		\item $l_1 \parallel l_2$ и $l_1 \ne l_2 \Leftrightarrow \overline{a_1} \parallel \overline{a_2}$ и $(\overline{r_1} - \overline{r_2}) \nparallel \overline{a_1}$ 
+		\item $l_1 = l_2 \Leftrightarrow (\overline{r_1} - \overline{r_2}) \parallel \overline{a_1} \parallel \overline{a_2}$
+	\end{itemize}
+\end{note}
+
+\begin{note}
+	Прямая $l \subset P_2$ в плоскости делит ее на две полуплоскости. Выделим одну из открытых полуплоскостей $S \subset P_2$. Пусть прямая $l$ задана нормальным уравнением $(\overline{r} \hm{-} \overline{r_0}, \overline{n}) = 0$, причем вектор нормали $\overline{n}$ направлен в полуплоскость $S$. Тогда точка $X \in P_2$, $\overline r := \overline{OX}$, лежит в $S$ $\Leftrightarrow (\overline{r} \hm{-} \overline{r_0}, \overline{n}) > 0$. Противоположная полуплоскость задается противоположным неравенством.
+\end{note}
+
+\begin{definition}
+	\textit{Пучком прямых} называется либо множество всех прямых в $P_2$, проходящих через фиксированную точку $P \in P_2$, либо множество всех прямых, параллельных фиксированной прямой $l \subset P_2$.
+\end{definition}
+
+\begin{note}
+	Любые две прямые в $P_2$ лежат ровно в одном пучке.
+\end{note}
+
+\begin{theorem}
+	Пусть в декартовой системе координат $(O, e)$ в $P_2$ различные прямые $l_1, l_2$ заданы уравнениями $A_1x\hm{+}B_1y+C_1=0$, $A_2x+B_2y+C_2=0$. Тогда прямая $l \subset P_2$ лежит в одном пучке с прямыми $l_1$ и $l_2$ $\lra$ прямая $l$ задается уравнением следующего вида при некоторых $\alpha_1, \alpha_2 \in \R$:
+	\[\alpha_1(A_1x+B_1y+C_1) + \alpha_2(A_2x+B_2y+C_2) = 0\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\la$] Возможны два случая:
+		\begin{enumerate}
+			\item Если $l_1 \cap l_2 = \{P\}$, $P \in P_2$, то координаты точки $P$ удовлетворяют требуемому уравнению, то есть $P \in l$.
+			\item Если $l_1 \parallel l_2$, то из требуемого уравнения направляющий вектор прямой $l$ параллелен направляющим векторам $l_1$ и $l_2$. В этом случае уравнение задает прямую не при всех $\alpha_1, \alpha_2 \in \R$, но если задает, то лежащую в данном пучке.
+		\end{enumerate}
+		
+		\item[$\ra$] Возможны два случая:
+		\begin{enumerate}
+			\item Если $l \cap l_1 \cap l_2 = \{P\}$, $P \in P_2$, то выберем на $l$ точку $Q \ne P$, $Q \leftrightarrow_{(O, e)} (x_0, y_0)^T$. Тогда $Q$ удовлетворяет уравнению с коэффициентами $\alpha_1 := A_2x_0+B_2y_0+C_2$, $\alpha_2 := -(A_1x_0+B_1y_0+C_1)$. Хотя бы один из коэффициентов ненулевой, поскольку $Q$ лежит не более, чем на одной из прямых $l_1$, $l_2$. Значит, такое уравнение задает $l$, так как ему удовлетворяют две различных точки этой прямой.
+			
+			\item Если $l \parallel l_1 \parallel l_2$, то аналогичным образом выберем любую точку $Q \in l$ и соответствующие коэффициенты, тогда полученное уравнение задает $l$ при условии, что оно задает прямую. Но оно всегда задает прямую, поскольку множество его решений непусто и не содержит хотя бы одну из прямых $l_1, l_2$.\qedhere
+		\end{enumerate}
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть в прямоугольной декартовой системе координат $(O, e)$ в $P_2$ прямые $l_1, l_2$ заданы  уравнениями $A_1x\hm{+}B_1y+C_1=0$, $A_2x\hm{+}B_2y\hm{+}C_2=0$. Тогда угол $\phi$ между ними удовлетворяет следующему равенству:
+	\[\cos{\phi} = \frac{|A_1A_2+B_1B_2|}{\sqrt{A_1^2+B_1^2}\sqrt{A_2^2+B_2^2}}\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{n_1}, \overline{n_2} \in V_2$, $\overline{n_1} \leftrightarrow_{e} (A_1, B_1)^T$, $\overline{n_2} \leftrightarrow_{e} (A_2, B_2)^T$, "--- нормальные векторы прямых $l_1, l_2$, $\alpha := \angle(\overline{n_1}, \overline{n_2})$. Тогда угол $\phi$ равен меньшему из углов $\alpha$ и $\pi - \alpha$. В каждом из случаев выполнено следующее:
+	\[\cos{\phi} = |\cos{\alpha}| = \frac{|A_1A_2+B_1B_2|}{\sqrt{A_1^2+B_1^2}\sqrt{A_2^2+B_2^2}}\qedhere\]
+\end{proof}
+
+\begin{proposition}
+	Пусть в прямоугольной декартовой системе координат $(O, e)$ в $P_2$ прямая $l$ задана  уравнением $Ax\hm{+}By+C=0$, $M \in P_2$, $M \leftrightarrow_{(O, e)} (x_0, y_0)^T$. Тогда расстояние $\rho$ от точки $M$ до прямой $l$ равно следующей величине:
+	\[\rho = \frac{|Ax_0 + By_0 + C|}{\sqrt{A^2 + B^2}}\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{n} \in V_2$, $\overline n \leftrightarrow_{e} (A, B)^T$ "--- вектор нормали прямой $l$, $\overline{r_0} := \overline{OM}$, и пусть $X \in l$, $\overline{r} := \overline{OX}$. Тогда:
+	\[\rho = |\pr_{\overline{n}}(\overline{r_0} - \overline{r})|
+	=
+	\left|\frac{(\overline{r_0} - \overline{r}, \overline{n})}{|\overline{n}|^2}\overline{n}\right|
+	=
+	\frac{|(\overline{r_0} - \overline{r}, \overline{n})|}{|\overline{n}|}
+	=
+	\frac{|Ax_0 + By_0 + C|}{\sqrt{A^2 + B^2}}\qedhere\]
+\end{proof}
+
+\subsection{Плоскость в пространстве}
+
+\begin{definition}
+	Пусть $\nu \subset P_3$ "--- плоскость, $\overline{a}, \overline{b} \in V_3$ "--- неколлинеарные векторы, представители которых лежат в $\nu$, $M \in l$, и в декартовой системе координат $(O, e)$ в $P_3$ выполнены соотношения $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$, $M \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$, $\overline{r_0} := \overline{OM}$.
+	\begin{itemize}
+		\item \textit{Векторно-параметрическим уравнением плоскости} называется следующее семейство уравнений:
+		\[\overline{r} = \overline{r_0} + t\overline{a} + s\overline{b},~t, s \in \mathbb{R}\]
+		
+		\item \textit{Параметрическим уравнением плоскости} называется следующее семейство систем:
+		\[\left\{
+		\begin{aligned}
+			x = x_0 + t\alpha_1 + s\beta_1\\
+			y = y_0 + t\alpha_2 + s\beta_2\\
+			z = z_0 + t\alpha_3 + s\beta_3
+		\end{aligned}
+		\right.,~s, t \in \R
+		\]
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Множество точек $X \in P_3$ таких, что $X \leftrightarrow_{(O, e)} (x, y, z)^T$, $\overline{r} := \overline{OX}$, являющихся решениями любого из уравнений прямой выше, совпадает с плоскостью $\nu$. Действительно, $X \in \nu \lra MX \parallel \nu \lra \overline{MX} \text{ компланарен системе } (\overline{a}, \overline{b}) \lra \overline{MX} \text{ выражается через } \overline{a}, \overline{b}$.
+\end{note}
+
+\begin{note}
+	Векторно-параметрическое уравнение плоскости можно также переписать в следующем виде:
+	\[(\overline{r} - \overline{r_0}, \overline{a}, \overline{b}) = 0\]
+	
+	Перепишем это уравнение, положив $\gamma := (\overline{r_0}, \overline{a}, \overline{b})$:
+	\[(\overline{r}, \overline{a}, \overline{b}) = \gamma\]
+	
+	Если расписать смешанное произведение $(\overline{r}, \overline{a}, \overline{b})$ как определитель соответствующей матрицы, можно получить еще одно уравнение плоскости, определенное ниже.
+\end{note}
+
+\begin{definition}
+	Пусть $A, B, C, D \in \R$, $A^2+B^2+C^2 \ne 0$. \textit{Общим уравнением плоскости} называется следующее уравнение:
+	\[Ax + By + Cz + D = 0\]
+\end{definition}
+
+\begin{proposition}
+	Пусть плоскость $\nu$ задана в декартовой системе координат $(O, e)$ в $P_3$ общим уравнением плоскости $Ax+By+Cz+D=0$, $\overline{b} \in V_3$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда выполнена равносильность $\overline{b} \parallel \nu \Leftrightarrow A\beta_1 + B\beta_2 + C\beta_3 = 0$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $M \in \nu$, точка $N \in P_3$ такова, что $\overline{MN} \hm{=} \overline{b}$, и $M \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$, тогда $N \leftrightarrow_{(O, e)} (x_0 + \beta_1, y_0 + \beta_2, z_0 + \beta_3)^T$. Поскольку $M \in \nu$, выполнены следующие эквивалентности:
+	\begin{multline*}
+		\overline{b} \parallel \nu \lra N \in \nu \lra A(x_0 + \beta_1) + B(y_0 + \beta_2) + C(z_0 + \beta_3) + D = 0 \lra
+		\\
+		\lra A\beta_1 + B\beta_2 + C\beta_3 = 0\qedhere
+	\end{multline*}
+\end{proof}
+
+\begin{proposition}
+	Пусть $A, B, C, D \in \R$, $A^2+B^2+C^2 \ne 0$. Тогда общее уравнение плоскости $Ax+By+Cz+D=0$ действительно задает плоскость в декартовой системе координат $(O, e)$ в $P_3$.
+\end{proposition}
+
+\begin{proof}
+	Пусть без ограничения общности $A \ne 0$. Зафиксируем векторы $\overline{a}, \overline{b} \in V_3$, $\overline a \leftrightarrow_{e} (-B, A, 0)^T$, $\overline b \leftrightarrow_{e} (-C, 0, A)^T$, и точку $M \in P_3$, $M \leftrightarrow_{(O, e)} \big(-\frac DA, 0, 0\big)^T$. Векторы $\overline{a}$ и $\overline{b}$ неколлинеарны, поскольку их координаты непропорциональны. Рассмотрим плоскость $\nu \subset P_3$, содержащую точку $M$ и векторы $\overline{a}, \overline{b}$, отложенные от точки $M$. Тогда для произвольной точки $X \in P_3$, $X \leftrightarrow_{(O, e)} (x, y, z)^T$, $\overline r := \overline{ OX }$, выполнено $X \in \nu \Leftrightarrow (\overline{r} - \overline{r_0}, \overline{a}, \overline{b}) = 0$. Вычислим смешанное произведение $(\overline{r} - \overline{r_0}, \overline{a}, \overline{b})$:
+	\begin{multline*}
+		(\overline{r} - \overline{r_0}, \overline{a}, \overline{b}) = \begin{vmatrix}
+			x + \frac{D}{A} & -B & -C\\
+			y & A & 0\\
+			z & 0 & A
+		\end{vmatrix} = \left(x + \frac{D}{A}\right)A^2 - y\left(-B\right)A - z(-C)A = 
+		\\
+		= A^2x + ABy + ACz + AD = A(Ax + By + Cz + D)
+	\end{multline*}
+	
+	Таким образом, $X \in \nu \lra Ax + By + Cz + D = 0$, что и требовалось.
+\end{proof}
+
+\begin{definition}
+	\textit{Вектором нормали} плоскости $\nu \subset P_3$ называется вектор $\overline{n} \in V_3$, $\overline{n} \ne \overline 0$, представителем которого является направленный отрезок, ортогональный плоскости $\nu$.
+\end{definition}
+
+\begin{definition}
+	Пусть $\nu \subset P_3$ "--- плоскость с вектором нормали $\overline{n} \in V_3$, и пусть $M \in \nu$, $\overline{r_0} := \overline{OM}$. \textit{Нормальным уравнением плоскости} называется следующее уравнение:
+	\[(\overline{r} - \overline{r_0}, \overline{n}) = 0\]
+\end{definition}
+
+\begin{note}
+	Множество точек $X \in P_3$, $\overline{r} := \overline{OX}$, являющихся решениями нормального уравнения плоскости, совпадает с плоскостью $\nu$. Кроме того, это уравнение можно переписать в следующем виде при $\gamma := (\overline{r_0}, \overline{n})$:
+	\[(\overline{r}, \overline{n}) = \gamma\]
+\end{note}
+
+\begin{note}
+	Уравнения различного типа, задающие плоскость, эквивалентны: из каждого из них можно получить любое другое.
+\end{note}
+
+\begin{note}
+	В прямоугольной декартовой системе координат $(O, e)$ в $P_3$ нормальное уравнение плоскости преобразуется к виду $Ax+By+Cz\hm{+}D=0$, поэтому вектором нормали этой плоскости является вектор $\overline{n} \in V_3$ такой, что $\overline{n} \leftrightarrow_{e} (A, B, C)^T$.
+\end{note}
+
+\begin{definition}
+	Пусть в декартовой системе координат $(O, e)$ в $P_3$ плоскость $\nu$ задана уравнением $Ax+By+Cz\hm{+}D=0$. \textit{Сопутствующим вектором} плоскости $\nu$ в данной системе координат называется вектор $\overline n \in V_3$ такой, что $\overline{n} \leftrightarrow_{e} (A, B, C)^T$.
+\end{definition}
+
+\begin{proposition}
+	Пусть в декартовой системе координат $(O, e)$ в $P_3$ плоскости $\nu_1, \nu_2$ заданы общими уравнениями $A_1x+B_1y+C_1z+D_1 = 0$, $A_2x+B_2y+C_2z+D_2 = 0$. Тогда:
+	\begin{itemize}
+		\item $\nu_1 \cap \nu_2 \ne \emptyset$ и $\nu_1 \ne \nu_2 \Leftrightarrow \overline{n_1} \nparallel \overline{n_2}$
+		\item $\nu_1 \parallel \nu_2 \text{ и } \nu_1 \ne \nu_2 \Leftrightarrow \overline{n_1} \parallel \overline{n_2} \text{, но уравнения плоскостей непропорциональны}$
+		\item $\nu_1 = \nu_2 \Leftrightarrow \text{уравнения плоскостей пропорциональны}$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item Пусть $\overline{n_1} \nparallel \overline{n_2}$, тогда без ограничения общности столбцы $(A_1, B_1)^T$ и $(A_2, B_2)^T$ непропорциональны. Рассмотрим следующую систему уравнений относительно $x$ и $y$:
+		\[\left\{
+		\begin{aligned}
+		A_1x + B_1y = -C_1z -D_1\\
+		A_2x + B_2y = -C_2z -D_2
+		\end{aligned}
+		\right.
+		\]
+		По правилу Крамера, эта система имеет единственное решение при любом $z \in \R$. Значит, плоскости имеют общие точки, но не все их точки общие, и это означает, что они пересекаются.
+		
+		\item Пусть $\overline{n_1} \parallel \overline{n_2}$ и уравнения непропорциональны. Поскольку столбцы $(A_1, B_1, C_1)^T$ и $(A_2, B_2, C_2)^T$ пропорциональны из коллинеарности векторов $\overline{n_1}$ и $\overline{n_2}$, можно без ограничения общности считать, что $A_1 = A_2$, $B_1 = B_2$, $C_1 = C_2$, но $D_1 \ne D_2$. Тогда уравнения плоскостей не имеют общих решений, откуда $\nu_1 \parallel \nu_2 \text{ и } \nu_1 \ne \nu_2$.
+		
+		\item Пусть уравнения плоскостей пропорциональны, тогда можно считать, что они совпадают. Тогда совпадают и множества их решений, то есть $\nu_1 = \nu_2$.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть в декартовой системе координат $(O, e)$ пересекающиеся плоскости $\nu_1, \nu_2$ заданы уравнениями $A_1x+B_1y+C_1z+D_1 = 0$, $A_2x+B_2y+C_2z+D_2 = 0$. Тогда направляющим вектором прямой их пересечения является вектор $\overline v \in V_3$ такой, что:
+	\[\overline{v} \leftrightarrow_{e} \left(
+	\begin{vmatrix}
+	B_1&C_1\\
+	B_2&C_2
+	\end{vmatrix}, \begin{vmatrix}
+	C_1&A_1\\
+	C_2&A_2
+	\end{vmatrix}, \begin{vmatrix}
+	A_1&B_1\\
+	A_2&B_2
+	\end{vmatrix}\right)^T\]
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Поскольку $\nu_1 \nparallel \nu_2$, то хотя бы один из определителей, указанных в координатном столбце вектора $\overline{v}$, ненулевой, откуда $\overline v \ne \overline 0$.
+		\item Заметим, что выполнено следующее равенство:
+		\[A_1\begin{vmatrix}B_1&C_1\\B_2&C_2\end{vmatrix}+
+		B_1\begin{vmatrix}C_1&A_1\\C_2&A_2\end{vmatrix}+
+		C_1\begin{vmatrix}A_1&B_1\\A_2&B_2\end{vmatrix} = 
+		\begin{vmatrix}A_1&B_1&C_1\\A_1&B_1&C_1\\A_2&B_2&C_2\end{vmatrix}\]
+		
+		Поскольку определитель матрицы не меняется при транспонировании, выполнено следующее:
+		\[\begin{vmatrix}A_1&B_1&C_1\\A_1&B_1&C_1\\A_2&B_2&C_2\end{vmatrix} = \begin{vmatrix}A_1&A_1&A_2\\B_1&B_1&B_2\\C_1&C_1&C_2\end{vmatrix} = 0\]
+		
+		Определитель в правой части равенства равен $0$, поскольку он соответствует ориентированному объему от тройки векторов, среди которых есть два одинаковых. Получено следующее равенство:
+		\[A_1\begin{vmatrix}B_1&C_1\\B_2&C_2\end{vmatrix}+
+		B_1\begin{vmatrix}C_1&A_1\\C_2&A_2\end{vmatrix}+
+		C_1\begin{vmatrix}A_1&B_1\\A_2&B_2\end{vmatrix} = 0\]
+		
+		Значит, по критерию параллельности вектора и плоскости, $\overline{v} \parallel \nu_1$.
+		\item Аналогично пункту $(2)$, выполнено $\overline{v} \parallel \nu_2$.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Плоскость $\nu \subset P_3$ в пространстве делит его на два полупространства. Выделим одно из открытых полупространств $S \subset P_3$. Пусть плоскость $\nu$ задана нормальным уравнением $(\overline{r} \hm{-} \overline{r_0}, \overline{n}) = 0$, причем вектор нормали $\overline{n}$ направлен в полупространство $S$. Тогда точка $X \in P_3$, $\overline{r} := \overline{OX}$, лежит в $S$ $\Leftrightarrow (\overline{r} \hm{-} \overline{r_0}, \overline{n}) > 0$. Противоположное полупространство задается противоположным неравенством.
+\end{note}
+
+\begin{definition}
+	\textit{Пучком плоскостей} называется либо множество всех плоскостей в $P_3$, проходящих через фиксированную прямую $l \subset P_3$, либо множество всех плоскостей, параллельных фиксированной плоскости $\nu \subset P_3$.
+\end{definition}
+
+\begin{note}
+	Любые две плоскости в $P_3$ ровно в одном пучке.
+\end{note}
+
+\begin{theorem}
+	Пусть в декартовой системе координат $(O, e)$ в $P_3$ различные плоскости $\nu_1, \nu_2$ заданы уравнениями $A_1x\hm{+}B_1y+C_1z+D_1=0$, $A_2x+B_2y+C_2z+D_2=0$. Тогда плоскость $\nu \subset P_2$ лежит в одном пучке с плоскостями $\nu_1$ и $\nu_2$ $\lra$ плоскость $\nu$ задается уравнением следующего вида при некоторых $\alpha_1, \alpha_2 \in \R$:
+	\[\alpha_1(A_1x+B_1y+C_1z+D_1) + \alpha_2(A_2x+B_2y+C_2z+D_2) = 0\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\la$] Возможны два случая:
+		\begin{enumerate}
+			\item Если $\nu_1 \cap \nu_2 = l \subset P_3$, то координаты каждой точки $P$ на прямой $l$ удовлетворяют требуемому уравнению, откуда $l \subset \nu$.
+			\item Если $\nu_1 \parallel \nu_2$, то из требуемого уравнения сопутствующий вектор плоскости $\nu$ параллелен сопутствующим векторам плоскостей $\nu_1$ и $\nu_2$. В этом случае уравнение задает плоскость не при всех $\alpha_1, \alpha_2 \in \R$, но если задает, то лежащую в данном пучке.
+		\end{enumerate}
+		
+		\item[$\ra$] Возможны два случая:
+		\begin{enumerate}
+			\item Если $\nu \cap \nu_1 \cap \nu_2 = l \subset P_3$, то выберем на $\nu$ точку $Q \not\in l$, $Q \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$. Тогда $Q$ удовлетворяет уравнению с коэффициентами $\alpha_1 := A_2x_0+B_2y_0+C_2z_0 + D_2$, $\alpha_2 := -(A_1x_0+B_1y_0+C_1z_0 + D_1)$. \pagebreak Хотя бы один из коэффициентов ненулевой, поскольку $Q$ лежит не более, чем на одной из плоскостей $\nu_1$, $\nu_2$. Значит, такое уравнение задает $\nu$, так как ему удовлетворяют все точки прямой $l$ и точка, не лежащая на $l$.
+			
+			\item Если $\nu \parallel \nu_1 \parallel \nu_2$, то аналогичным образом выберем любую точку $Q \in \nu$ и соответствующие коэффициенты, тогда полученное уравнение задает $\nu$ при условии, что оно задает плоскость. Но оно всегда задает плоскость, поскольку множество его решений непусто и не содержит хотя бы одну из плоскостей $\nu_1, \nu_2$.\qedhere
+		\end{enumerate}
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть в прямоугольной декартовой системе координат $(O, e)$ в $P_3$ плоскости $\nu_1, \nu_2$ заданы уравнениями $A_1x\hm{+}B_1y+C_1z+D_1=0$, $A_2x\hm{+}B_2y\hm{+}C_2z+D_2=0$. Тогда угол $\phi$ между ними удовлетворяет равенству:
+	\[\cos{\phi} = \frac{|A_1A_2+B_1B_2+C_1C_2|}{\sqrt{A_1^2+B_1^2+C_1^2}\sqrt{A_2^2+B_2^2+C_2^2}}\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{n_1}, \overline{n_2} \in V_3$, $\overline{n_1} \leftrightarrow_{e} (A_1, B_1, C_1)^T$, $\overline{n_2} \leftrightarrow_{e} (A_2, B_2, C_2)^T$, "--- нормальные векторы плоскостей $\nu_1, \nu_2$, $\alpha := \angle(\overline{n_1}, \overline{n_2})$. Тогда угол $\phi$ равен меньшему из углов $\alpha$ и $\pi - \alpha$. В каждом из случаев выполнено следующее:
+	\[\cos{\phi} = |\cos{\alpha}| = \frac{|A_1A_2+B_1B_2 + C_1C_2|}{\sqrt{A_1^2+B_1^2 + C_1^2}\sqrt{A_2^2+B_2^2 + C_2^2}}\qedhere\]
+\end{proof}
+
+\begin{proposition}
+	Пусть в прямоугольной декартовой системе координат $(O, e)$ в $P_3$ плоскость $\nu$ задана уравнением $Ax\hm{+}By+Cz+D=0$, $M \in P_3$, $M \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$. Тогда расстояние $\rho$ от точки $M$ до плоскости $\nu$ равно следующей величине:
+	\[\rho = \frac{|Ax_0 + By_0 + Cz_0+D|}{\sqrt{A^2 + B^2 + C^2}}\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{n} \in V_3$, $\overline n \leftrightarrow_{e} (A, B, C)^T$ "--- вектор нормали плоскости $\nu$, $\overline{r_0} := \overline{OM}$, и пусть $X \in \nu$, $\overline{r} := \overline{OX}$. Тогда:
+	\[\rho = |\pr_{\overline{n}}(\overline{r_0} - \overline{r})|
+	=
+	\left|\frac{(\overline{r_0} - \overline{r}, \overline{n})}{|\overline{n}|^2}\overline{n}\right|
+	= 
+	\frac{|(\overline{r_0} - \overline{r}, \overline{n})|}{|\overline{n}|}
+	=
+	\frac{|Ax_0 + By_0 + Cz_0+D|}{\sqrt{A^2 + B^2+C^2}}\qedhere\]
+\end{proof}
+
+\begin{proposition}
+	Пусть в прямоугольной системе координат $(O, e)$ в $P_3$ параллельные плоскости $\nu_1, \nu_2$ заданы уравнениями $Ax+By+Cz\hm{+}D_1=0$, $Ax\hm{+}By\hm{+}Cz+D_2=0$. Тогда расстояние $\rho$ между ними равно следующей величине:
+	\[\rho = \frac{|D_1 - D_2|}{\sqrt{A^2 + B^2 + C^2}}\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $M_1\in \nu_1$, $M_2 \in \nu_2$, $\overline{r_1} := \overline{OM_1}$, $\overline{r_2} := \overline{OM_2}$. Плоскости $\nu_1, \nu_2$ имеют общий вектор нормали $\overline{n} \in V_3$, $\overline{n} \leftrightarrow_{e} (A, B, C)^T$, и выполнены равенства $(\overline{r_1}, \overline{n_1}) = -D_1$, $(\overline{r_2}, \overline{n_2}) = -D_2$, тогда:
+	\[\rho = |\pr_{\overline{n}}(\overline{r_1} - \overline{r_2})| = \left|\frac{(\overline{r_1}, \overline{n_1}) - (\overline{r_2}, \overline{n_2})}{|\overline{n}|}\right| = \frac{|D_1 - D_2|}{\sqrt{A^2 + B^2 + C^2}}\qedhere\]
+\end{proof}
+
+\subsection{Прямая в пространстве}
+
+\begin{definition}
+	Пусть $l \subset P_3$ "--- прямая с направляющим вектором $\overline{a} \in V_3$, $M \in l$, и в декартовой системе координат $(O, e)$ в $P_3$ выполнены соотношения $\overline{a} \leftrightarrow_{e} \alpha$, $M \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$, $\overline{r_0} := \overline{OM}$.
+	\begin{itemize}
+		\item \textit{Векторно-параметрическим уравнением прямой} называется следующее семейство уравнений:
+		\[\overline{r} = \overline{r_0} + t\overline{a},~t \in \mathbb{R}\]
+		
+		\item \textit{Параметрическим уравнением прямой} называется следующее семейство систем:
+		\[\left\{
+		\begin{aligned}
+			x = x_0 + t\alpha_1\\
+			y = y_0 + t\alpha_2\\
+			z = z_0 + t\alpha_3
+		\end{aligned}
+		\right.,~t \in \R
+		\]
+		\item \textit{Каноническим уравнением прямой} называется следующая система уравнений:
+		\[\frac{x - x_0}{\alpha_1} = \frac{y - y_0}{\alpha_2} = \frac{z - z_0}{\alpha_3}\]
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Множество точек $X \in P_3$ таких, что $X \leftrightarrow_{(O, e)} (x, y, z)^T$, $\overline{r} := \overline{OX}$, являющихся решениями любого из уравнений прямой выше, совпадает с прямой $l$. Действительно, $X \in l \lra MX \parallel l \lra \overline{MX} \parallel \overline{a}$.
+\end{note}
+
+\begin{note}
+	Для канонического уравнения прямой имеют место следующие соглашения:
+	\begin{itemize}
+		\item Если без ограничения общности $\alpha_1 = 0$ и $\alpha_2, \alpha_3 \ne 0$, то следует считать, что исходное уравнение эквивалентно системе уравнений $x = x_0$ и $\frac{y - y_0}{\alpha_2} = \frac{z - z_0}{\alpha_3}$.
+		
+		\item Если без ограничения общности $\alpha_1 = \alpha_2 = 0$, то тогда $\alpha_3 \ne 0$, и следует считать, что исходное уравнение эквивалентно системе уравнений $x = x_0$ и $y = y_0$.
+	\end{itemize}
+\end{note}
+
+\begin{definition}
+	Пусть $l \subset P_3$ "--- прямая с направляющим вектором $\overline{a}$, и пусть $M \in l$, $\overline{r_0} := \overline{OM}$. \textit{Векторным уравнением прямой} называется следующее уравнение:
+	\[[\overline{r} - \overline{r_0}, \overline{a}] = \overline{0}\]
+\end{definition}
+
+\begin{note}
+	Множество точек $X \in P_3$, $\overline{r} := \overline{OX}$, являющихся решениями векторного уравнения прямой, совпадает с прямой $l$. Кроме того, это уравнение можно переписать в следующем виде при $\overline{b} := [\overline{r_0}, \overline{a}]$:
+	\[[\overline{r}, \overline{a}]= \overline b\]
+	
+	Отметим также, что пространстве прямую также можно задать как пересечение двух плоскостей.
+\end{note}
+
+\begin{note}
+	Рассмотренные способы задания прямой позволяют определить \textit{взаимное расположение прямых в пространстве}. Пусть прямые $l_1, l_2$ заданы векторно-параметричес\-кими уравнениями $\overline{r} \hm{=} \overline{r_1} + t\overline{a_1}$, $\overline{r} = \overline{r_2} + t\overline{a_2}$. Тогда:
+	\begin{itemize}
+		\item $l_1 \parallel l_2 \text{ и } l_1 \ne l_2 \Leftrightarrow \overline{a_1} \parallel \overline{a_2} \text{ и } \overline{a_1} \nparallel (\overline{r_2} - \overline{r_1}) \lra [\overline{a_1}, \overline{a_2}] = \overline{0} \text{ и } [\overline{a_1}, \overline{r_2} - \overline{r_1}] \ne \overline{0}$
+		
+		\item $l_1 = l_2 \Leftrightarrow \overline{a_1} \parallel \overline{a_2} \text{ и } \overline{a_1} \parallel (\overline{r_2} - \overline{r_1}) \Leftrightarrow [\overline{a_1}, \overline{a_2}] = \overline{0} \text{ и } [\overline{a_1}, \overline{r_2} - \overline{r_1}] = \overline{0}$
+		
+		\item $l_1 \cap l_2 \ne \emptyset \text{ и } l_1 \ne l_2 \Leftrightarrow (\overline{a_1}, \overline{a_2}, \overline{r_2} - \overline{r_1}) = 0 \text{ и } \overline{a_1} \nparallel \overline{a_2} \Leftrightarrow (\overline{a_1}, \overline{a_2}, \overline{r_2} - \overline{r_1}) = 0 \text{ и } [\overline{a_1}, \overline{a_2}] \ne \overline{0}$
+		\item $l_1, l_2 \text{ скрещиваются} \Leftrightarrow (\overline{a_1}, \overline{a_2}, \overline{r_2} - \overline{r_1}) \ne 0$
+	\end{itemize}
+\end{note}
+
+\begin{note}
+	Рассмотренные способы задания прямой и плоскости позволяют определить \textit{взаимное расположение прямой и плоскости в пространстве}. Пусть в декартовой системе координат $(O, e)$ в $P_3$ плоскость $\nu$ задана общим уравнением $Ax + By + Cz + D = 0$, и пусть прямая $l$ задана векторно-параметрическим уравнением $\overline{r} \hm{=} \overline{r_0} + t\overline{a}$, $\overline{r_0} \leftrightarrow_{e} (x_0, y_0, z_0)^T$, $\overline{a} \leftrightarrow_{e} \alpha$. Тогда:
+	\begin{itemize}
+		\item $l \cap \nu \ne \emptyset \text{ и }  l \not\subset \nu \Leftrightarrow \overline{a} \nparallel \nu \Leftrightarrow A\alpha_1 + B\alpha_2 + C\alpha_3 \ne 0$
+		\item $l \parallel \nu \text{ и } l \not\subset \nu \Leftrightarrow
+		\left\{\begin{aligned}
+		&A\alpha_1 + B\alpha_2 + C\alpha_3 = 0\\
+		&Ax_0 + By_0 + Cz_0 + D \ne 0
+		\end{aligned}\right.$
+		\item $l \subset \nu \Leftrightarrow
+		\left\{\begin{aligned}
+		&A\alpha_1 + B\alpha_2 + C\alpha_3 = 0\\
+		&Ax_0 + By_0 + Cz_0 + D = 0
+		\end{aligned}\right.$
+	\end{itemize}
+\end{note}
+
+\begin{proposition}
+	Пусть прямая $l \subset P_3$ задана векторно-параметрическим уравнением $\overline{r} = \overline{r_0} + \overline{a}t$, $A \in P_3$, $\overline{r_A} := \overline{OA}$. Тогда расстояние $\rho$ от точки $A$ до прямой $l$ равно следующей величине:
+	\[\rho = \frac{|[\overline{r_A} - \overline{r_0}, \overline{a}]|}{|\overline{a}|}\]
+\end{proposition}
+
+\begin{proof}
+	Искомое расстояние $\rho$ является длиной высоты параллелограмма, построенного на векторах $\overline a$ и $\overline{r_A} - \overline{r_0}$, проведенной к стороне, образованной вектором $\overline{a}$ и имеющей длину $|\overline{a}|$, из чего и следует требуемое.
+\end{proof}
+
+\begin{proposition}
+	Пусть скрещивающиеся прямые $l_1, l_2 \subset P_3$ заданы уравнениями $\overline{r} = \overline{r_1} \hm{+} \overline{a_1}t$, $\overline{r} = \overline{r_2} + \overline{a_2}t$. Тогда расстояние $\rho$ между ними равно следующей величине:
+	\[\rho = \frac{|(\overline{a_1}, \overline{a_2}, \overline{r_1} - \overline{r_2})|}{|[\overline{a_1}, \overline{a_2}]|}\]
+\end{proposition}
+
+\begin{proof}
+	Искомое расстояние $\rho$ является длиной высоты параллелепипеда, построенного на векторах $\overline{a_1}$, $\overline{a_2}$ и $\overline{r_1} - \overline{r_2}$, проведенной к грани, образованной векторами $\overline{a_1}$, $\overline{a_2}$ и имеющей площадь $|\overline{a_1}||\overline{a_2}|\sin\angle(\overline{a_1}, \overline{a_2}) = |[\overline{a_1}, \overline{a_2}]|$, из чего и следует требуемое.
+\end{proof}

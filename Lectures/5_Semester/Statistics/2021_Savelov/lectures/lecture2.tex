@@ -1,0 +1,171 @@
+\section{Предельные теоремы для векторов}
+
+Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty } ,\xi $ -- случайные векторы в $\displaystyle \mathbb{R}^{m}$, $\displaystyle S_{n} =\xi _{1} +\dotsc +\xi _{n}$.
+\begin{theorem}
+	(ЗБЧ, б/д) Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty}$ попарно некоррелированные случайные векторы, и $\displaystyle \forall n \ge 1 \sup_{1\le i\le m} D\xi _{n}^{( i)} \leqslant c=const$. Тогда
+	
+	
+	\begin{equation*}
+		\frac{S_{n} -ES_{n}}{n}\xrightarrow{P} 0.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	(УЗБЧ, б/д) Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty }$ -- н.о.р.с.в., и $\displaystyle \forall i\in \{1,\dotsc ,m\} \ E\left| \xi _{1}^{( i)}\right| < \infty $. Тогда
+	
+	
+	\begin{equation*}
+		\frac{S_{n}}{n}\xrightarrow{a.s.} E\xi_{1} .
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	(ЦПТ, б/д) Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty }$ -- н.о.р.с.в., и существует ковариационная матрица $\displaystyle D\xi _{1}$. Тогда
+	
+	
+	\begin{equation*}
+		\sqrt{n}\left(\frac{S_{n}}{n} -E\xi_{1}\right)\xrightarrow{d} N( 0,D\xi_{1}) .
+	\end{equation*}
+\end{theorem}
+
+\section{Основные определения}
+
+Пусть $\displaystyle ( \Omega ,\mathcal{F})$ и $\displaystyle ( E,\mathcal{E})$ -- измеримые пространства.
+\begin{definition}
+	Если $\displaystyle \xi :\Omega \rightarrow E$ таково, что $\displaystyle \xi ^{-1}( B) \in \mathcal{F} \ \forall B\in \mathcal{E}$. Тогда $\displaystyle \xi $ называется случайным элементом. Если $\displaystyle ( E,\mathcal{E}) =\left(\mathbb{R}^{m} ,\mathcal{B}\left(\mathbb{R}^{m}\right)\right)$, то $\displaystyle \xi $ -- случайный вектор. 
+\end{definition}
+Пусть $\displaystyle ( \Omega ,\mathcal{F} ,P)$ -- вероятностное пространство.
+\begin{definition}
+	Распределением случайного элемента $\displaystyle \xi $ называют меру $\displaystyle P_{\xi }$ на $\displaystyle \mathcal{E}$, такую что $\displaystyle P_{\xi }( B) =P( \xi \in B)$.
+\end{definition}
+Пусть наблюдается некоторый эксперимент над $\displaystyle m$-мерным случайным вектором с распределением $\displaystyle P$. Нужно построить математическую модель эксперимента, то есть построить вероятностное пространство и случайный вектор над этим вероятностым пространством с распределением $\displaystyle P$.
+\begin{definition}
+	Множество $\displaystyle \mathcal{X}$ всевозможных исходов эксперимента называется выборочным пространством.
+\end{definition}
+    Определим $\displaystyle \mathcal{B}_{\mathcal{X}}$ -- некоторую $\displaystyle \sigma $-алгебру над выборочным множеством (обычно будем считать ее борелевской) и вероятностную меру $\displaystyle P$ на измеримом пространстве $\displaystyle (\mathcal{X} ,\mathcal{B}_{\mathcal{X}})$.
+    
+    Также, определим функцию $\displaystyle X( x) =x,\ \forall x\in \mathcal{X}$.
+\begin{proposition}
+	Функция $\displaystyle X:\mathcal{X}\rightarrow \mathcal{X}$ является случайным элементом на вероятностном пространстве $\displaystyle (\mathcal{X} ,\mathcal{B}_{\mathcal{X}} ,P)$ и имеет распределение $\displaystyle P_{X} =P$.
+\end{proposition}
+\begin{proof}
+    \begin{gather*}
+        \forall B\in \mathcal{B}_{\mathcal{X}} \ X^{-1}( B) =\{x\in \mathcal{X} :X( x) \in B\} =\{x\in \mathcal{X} :x\in B\} = B.
+    \end{gather*}
+    Значит, $X$ -- случайный элемент, и
+    \begin{gather*}
+        \forall B\in \mathcal{B}_{\mathcal{X}} \ P_{X}( B) =P( X\in B) =P( x\in \mathcal{X} :X( x) \in B) =P( x\in \mathcal{X} :x\in B) =P( B).
+    \end{gather*}
+\end{proof}
+
+\begin{definition}
+	Фукнция $\displaystyle X$, определенная выше, называется наблюдением.
+\end{definition}
+Построим модель $n$ независимых экспериментов. Пусть 
+\begin{gather*}
+    \mathcal{X}^{n} =\mathcal{X} \times \dotsc \times \mathcal{X},\\ \mathcal{B}_{\mathcal{X}}^{n} =\mathcal{B}\left(\mathcal{X}^{n}\right) =\sigma ( B_{1} \times \dotsc \times B_{n}, B_{i} \in \mathcal{B}_{\mathcal{X}}),\\ P^{n}( B_{1} \times \dotsc \times B_{n}) =P( B_{1}) \cdotp \dotsc \cdotp P( B_{n}).
+\end{gather*}
+Снова рассмотрим тождественное отображение $\displaystyle X:\mathcal{X}^{n}\rightarrow \mathcal{X}^{n}$. Также, определим функцию $\displaystyle X_{i} :\mathcal{X}^{n}\rightarrow \mathcal{X},\ X_{i}( x_{1} ,\dotsc ,x_{n}) =x_{i}$.
+\begin{proposition}
+	$\displaystyle X_{i}$ -- случайная величина на вероятностном пространстве $\displaystyle \left(\mathcal{X}^{n} ,\mathcal{B}_{\mathcal{X}}^{n} ,P^{n}\right)$ с распределением $\displaystyle P$, а $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- независимы в совокупности.
+\end{proposition}
+\begin{proof}
+    \begin{gather*}
+        \forall B\in \mathcal{B}_{\mathcal{X}} \ X^{-1}( B) =\left\{\overline{x} \in \mathcal{X}^{n} :X(\overline{x}) \in B\right\} =\left\{\overline{x} \in \mathcal{X}^{n} :x_{i} \in B\right\} =\\ \mathcal{X} \times \dotsc \times \mathcal{X} \times B\times \mathcal{X} \times \dotsc \times \mathcal{X} \in \mathcal{X}^{n}.
+    \end{gather*}
+
+    Зафиксируем 
+    $\displaystyle i\in \{1,\dotsc ,n\}$. Тогда
+    \begin{gather*}
+        P^{n}( X_{i} \in B_{i}) =P^{n}\left(\left\{\overline{x} \in \mathcal{X}^{n} :X_{i}(\overline{x}) \in B_{i}\right\}\right) =P^{n}\left(\left\{\overline{x} \in \mathcal{X}^{n} :x_{i} \in B_{i}\right\}\right) =\\ P(\mathcal{X} \times \dotsc \times \mathcal{X} \times B_{i} \times \mathcal{X} \times \dotsc \mathcal{X}) =\ P(\mathcal{X}) \cdot \dotsc \cdot P(\mathcal{X}) \cdot P( B_{i}) \cdot P(\mathcal{X}) \cdot \dotsc \cdot P(\mathcal{X}) =P( B_{i}).
+    \end{gather*}
+    Докажем, что случайные величины независимы в совокупности.
+    \begin{gather*}
+        P^{n}( X_{1} \in B_{1} ,\dotsc ,\ X_{n} \in B_{n}) =P^{n}\left(\overline{x} \in \mathcal{X}^{n} :X_{1}(\overline{x}) \in B_{1} ,\dotsc ,\ X_{n}(\overline{x}) \in B_{n}\right) =\\ P\left(\overline{x} \in \mathcal{X}^{n} :x_{1} \in B_{1} ,\dotsc ,\ x_{n} \in B_{n}\right) =P^{n}( B_{1} \times \dotsc \times B_{n}) =P( B_{1}) \dotsc P( B_{n}) =\\ P( X_{1} \in B_{1}) \dotsc P( X_{n} \in B_{n}).
+    \end{gather*}
+\end{proof}
+
+\begin{definition}
+	Совокупность $\displaystyle X=( X_{1} ,\dotsc ,X_{n})$ независимых одинаково распределенных случайных векторов с распределением $\displaystyle P$ называется выборкой размера $\displaystyle n$ с распределением $\displaystyle P$.
+\end{definition}
+Часто нам придется рассматривать выборку при $\displaystyle n\rightarrow \infty $. Поэтому, введем следующие объекты: 
+\begin{gather*}
+    \mathcal{X}^{\infty } =\mathcal{X} \times \mathcal{X} \times \dotsc =\{( x_{1} ,x_{2} ,\dotsc ) :x_{i} \in \mathcal{X}\},\\ \displaystyle \mathcal{B}_{\mathcal{X}}^{\infty } =\sigma \left(\left\{( x_{1} ,x_{2} ,\dotsc ) :\exists n\in \mathbb{N} ,\ \exists B\in \mathcal{B}_{\mathcal{X}}^{n} \hookrightarrow ( x_{1} ,\dotsc ,x_{n}) \in B\right\}\right),
+\end{gather*}
+$\displaystyle P^{\infty }$ -- вероятностная мера на $\displaystyle \left(\mathcal{X}^{\infty } ,\mathcal{B}_{\mathcal{X}}^{\infty }\right)$, такая что 
+\begin{gather*}
+    P^{\infty }( B_{1} \times B_{2} \times \dotsc \times B_{n} \times \mathcal{X} \times \mathcal{X} \times \dotsc ) =P( B_{1}) \dotsc P( B_{n}).
+\end{gather*}
+Снова определим $\displaystyle X:\mathcal{X}^{\infty }\rightarrow \mathcal{X}^{\infty }$ -- тождественное отображение, $\displaystyle X_{i}( x_{1} ,x_{2} ,\dotsc ) =x_{i}$. Тогда $\displaystyle X_{1},\ X_{2} ,\dotsc $ -- независимы и одинаково распределены с распределением $\displaystyle P$.
+
+В дальнейшем для простоты обозначений будем писать $\displaystyle (\mathcal{X},\ \mathcal{B}_{\mathcal{X}},\ P)$ вместо $\displaystyle \left(\mathcal{X}^{n},\ \mathcal{B}_{\mathcal{X}}^{n},\ P^{n}\right)$ и \ $\displaystyle \left(\mathcal{X}^{\infty },\ \mathcal{B}_{\mathcal{X}}^{\infty },\ P^{\infty }\right)$.
+
+Пусть $\displaystyle \mathcal{P}$ -- семейство вероятностных мер на измеримом пространстве $\displaystyle (\mathcal{X} ,\mathcal{B}_{\mathcal{X}})$.
+\begin{definition}
+	Тройка $\displaystyle (\mathcal{X},\ \mathcal{B}_{\mathcal{X}},\ \mathcal{P})$ называется вероятностно-статистической моделью.
+\end{definition}
+\begin{definition}
+	$\displaystyle X_{1}( \omega ) =x_{1},\,\ldots,\, X_{n}(\omega) = x_{n}$ будем называть реализацией выборки.
+\end{definition}
+Пусть $\displaystyle X_{1} ,\dotsc,\ X_{n}$ -- выборка из неизвестного распределения $\displaystyle P_{X}$ на $\displaystyle \left(\mathbb{R}^{m},\ \mathcal{B}\left(\mathbb{R}^{m}\right)\right)$, и $\displaystyle B\in \mathcal{B}\left(\mathbb{R}^{m}\right)$.
+\begin{definition}
+	$\displaystyle P_{n}^{*}( B) =\frac{\sum _{i=1}^{n}\mathbb{I}_{x_{i} \in B}}{n}$ называется эмпирическим распределением, построенным по выборке $\displaystyle X_{1} ,\dotsc ,X_{n}$.
+\end{definition}
+\begin{exercise}
+	Показать, что эмпирическое распределение является распределением.
+\end{exercise}
+\begin{proposition}
+	Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- выборка на вероятностном пространстве $\displaystyle ( \Omega ,\mathcal{F} ,P)$ из распределения $\displaystyle P_{X}$. Тогда $\displaystyle \forall B\in \mathcal{B}\left(\mathbb{R}^{m}\right) \hookrightarrow \ P_{n}^{*}( B)\xrightarrow{a.s.} P_{X}( B)$.
+\end{proposition}
+\begin{proof}
+    $\displaystyle \mathbb{I}_{x_{i} \in B}$ -- независимые (потому что являются функциями от $\displaystyle X_{i}$) одинаково распределенные случайные величины с конечным математическим ожиданием. Поэтому, по УЗБЧ
+    
+    \begin{equation*}
+    	P_{n}^{*}( B)\xrightarrow{a.s.} E\mathbb{I}_{x_{i} \in B} =P( X_{1} \in B) =P_{X}( B).
+    \end{equation*}
+\end{proof}
+
+В дальнейшем будем считать размерность $\displaystyle m=1$. Для $\displaystyle m >1$ доказательства аналогичны, но более громоздки.
+\begin{definition}
+	Функция $\displaystyle F_{n}^{*}( x) =\frac{\sum _{i=1}^{n}\mathbb{I}_{x_{i} \leqslant x}}{n}$ называется эмпирической функцией распределения.
+\end{definition}
+\begin{corollary}
+	$\displaystyle F_{n}^{*}( x)\xrightarrow{a.s.} F_{X_{1}}( x)$. Достаточно взять в утверждении $\displaystyle B=( -\infty ,x]$.
+\end{corollary}
+\begin{theorem}
+	(Гливенко-Кантелли) Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- независимые одинаково распределенные случайные величины с функцией распределения $\displaystyle F( x)$. Тогда $\displaystyle D_{n}( \omega ) :=\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| \xrightarrow{a.s.} 0$.
+\end{theorem}
+\begin{proof}
+    Так как обе функции $\displaystyle F_{n}^{*}$ и $\displaystyle F$ непрерывны справа, то
+    
+    
+    \begin{equation*}
+    	D_{n} =\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| =\sup _{x\in \mathbb{Q}}\left| F_{n}^{*}( x) -F( x)\right| .
+    \end{equation*}
+    Так как объединение счетного числа измеримых функций измеримо, то $\displaystyle D_{n}$ -- случайная величина. Зафиксируем $\displaystyle N\in \mathbb{N}$ и положим $\displaystyle x_{N,k} =\inf\left\{x\in \mathbb{R} :F( x) \geqslant \frac{k}{N}\right\}$. Рассмотрим произвольный $\displaystyle x\in [ x_{N,k} ,x_{N,k+1})$:
+    \begin{gather*}
+    F_{n}^{*}( x) -F( x) \leqslant F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k}) =F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0) +\\
+    +\ F( x_{N,k+1} -0) -F( x_{N,k}) \leqslant F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0) +\frac{k+1}{N} -\frac{k}{N} =\\
+    \ F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0) +\frac{1}{N} .
+    \end{gather*}
+    С другой стороны,
+    \begin{gather*}
+    F_{n}^{*}( x) -F( x) \geqslant F_n^{*}( x_{N,k}) -F( x_{N,k+1} -0) =F_n^{*}( x_{N,k}) -F( x_{N,k}) +F( x_{N,k}) -\\
+    F( x_{N,k+1} -0) \geqslant F_n^{*}( x_{N,k}) -F( x_{N,k}) +\frac{k}{N} -\frac{k+1}{N} =F_n^{*}( x_{N,k}) -F( x_{N,k}) -\frac{1}{N} .
+    \end{gather*}
+    Получили, что
+    \begin{gather*}
+    \left| F_{n}^{*}( x) -F( x)\right| \leqslant \max\left(\left| F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0)\right| ,\left| F_n^{*}( x_{N,k}) -F( x_{N,k})\right| \right) + \frac{1}{N}.
+    \end{gather*}
+    В итоге
+    \begin{gather*}
+    \sup _{x\in \mathbb{R}}| F^*_{n}( x) -F( x)| \leqslant\\ \max_{1\leqslant k\leqslant N-1}\max\left(\left| F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0)\right|,\ \left| F_n^{*}( x_{N,k}) -F( x_{N,k})\right| \right)+\frac{1}{N} .
+    \end{gather*}
+    Так как $\displaystyle F_{n}^{*}( x)\xrightarrow{a.s.} F( x)$, $\displaystyle F_n^{*}( x-0) =P^{*}(( -\infty ,x))\xrightarrow{a.s.} P_{X}(( -\infty ,x)) =F( x-0)$, то для достаточно большого $\displaystyle N\in \mathbb{N}$ и фиксированного $\displaystyle \omega \in \mathcal{X}$ выполняется
+    
+    \begin{equation*}
+    D_{n}( \omega ) =\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| < \varepsilon \Rightarrow P\left( \omega :D_{n}( \omega )\rightarrow 0\right) =1.
+    \end{equation*}
+\end{proof}
+
+\begin{exercise}
+Можно ли говорить, что $\displaystyle \forall B\in \mathcal{B}_{\mathcal{X}} \ \sup _{x\in \mathbb{R}}\left| P_{n}^{*}( x\in B) -P( x\in B)\right| \xrightarrow{п.н.} 0\ ?$
+\end{exercise}
