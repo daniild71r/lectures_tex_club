@@ -1,0 +1,174 @@
+\section{Основные понятия теории групп}
+
+\subsection{Повторение изученного}
+
+\begin{definition}
+	\textit{Группой} называется множество $G$ с определенной на нем бинарной операцией $\cdot: G^2 \to G$ такой, что:
+	\begin{enumerate}
+		\item $\forall a, b, c \in G: a(bc) = (ab)c$
+		
+		\item $\exists e \in G: \forall a \in G: ae = ea = a$ (элемент $e$ называется \textit{нейтральным})
+		
+		\item $\forall a \in G: \exists a^{-1} \in G: aa^{-1} = a^{-1}a = e$ (элемент $a^{-1}$ называется \textit{обратным} к $a$)
+	\end{enumerate}
+\end{definition}
+
+\begin{reminder}
+	Нейтральный элемент в группе единственен, как и обратный элемент к каждому элементу группы.
+\end{reminder}
+
+\begin{definition}
+	\textit{Порядком группы} $G$ называется мощность множества $G$. Обозначение "--- $|G|$. \textit{Порядком элемента} $a \in G$ называется минимальное число $n \in \mathbb{N}$ такое, что $a^n = e$. Если такого числа не существует, порядок $a$ считается равным $\infty$. Обозначение "--- $\ord{a}$.
+\end{definition}
+
+\begin{definition}
+	Пусть $G$ "--- группа. \textit{Подгруппой} $G$ называется множество $H \subset G, H \hm\ne \emptyset$ такое, что:
+	\begin{enumerate}
+		\item $\forall a, b \in H: ab \in H$
+		
+		\item $\forall a \in H: a^{-1} \in H$
+	\end{enumerate}
+	
+	Иными словами, множество $H$ само является группой с той же операцией. Обозначение "--- $H \le G$.
+\end{definition}
+
+\begin{definition}
+	Группа $G$ называется \textit{абелевой}, если операция в ней коммутативна: $\forall a, b \in G: ab = ba$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров групп:
+	\begin{enumerate}
+		\item $(\Z, +)$, $(\Z_n, +)$
+		
+		\item $(R, +)$, $(R^*, \cdot)$, где $R$ "--- произвольное кольцо
+		
+		\item $(V, +)$, где $V$ "--- произвольное линейное пространство
+		
+		\item $(S_n, \circ)$ "--- \textit{группа перестановок}
+	\end{enumerate}
+	
+	Далее групповая операция в записи группы будет опускаться, если она восстанавливается из контекста.
+\end{example}
+
+\begin{reminder}
+	$\forall \sigma \in S_n:$ $\sigma$ раскладывается в произведение независимых циклов.
+\end{reminder}
+
+\begin{definition}
+	\textit{Беспорядком} в перестановке $\sigma \in S_n$ называется пара $(i, j) \in \{1, \dotsc, n\}^2 $ такая, что $i < j$, но $\sigma(i) > \sigma(j)$. \textit{Знаком перестановки} $\sigma \in S_n$ называется число $(-1)^{N(\sigma)}$, где $N(\sigma)$ "--- количество беспорядков в $\sigma$. Обозначение "--- $\sgn{\sigma}$.
+\end{definition}
+
+\begin{reminder}
+	$\forall \sigma, \tau \in S_n: \sgn{(\sigma\tau)} = \sgn{\sigma}\cdot\sgn{\tau}$.
+\end{reminder}
+
+\begin{definition}
+	\textit{Изоморфизмом групп} $G$ и $H$ называется биекция $\phi: G \to H$ такая, что $\forall a, b \in G: \phi(ab) = \phi(a)\phi(b)$. Группы $G$ и $H$ называются \textit{изоморфными}, если существует соответствующий изоморфизм. Обозначение "--- $G \cong H$.
+\end{definition}
+
+\begin{reminder}[Теорема Кэли]
+	$\forall G, |G| = n: \exists H \le S_n: G \cong H$.
+\end{reminder}
+
+\begin{example}
+	Рассмотрим несколько примеров групп и подгрупп в них:
+	\begin{enumerate}
+		\item $\GL_n(F) = (M_n(F))^* = \{A \in M_n(F): \det{A} \ne 0\}$, $\SL_n(F) \hm= \{A \in M_n(F): \det{A} \hm= 1\} \le \GL_n$, где $F$ "--- произвольное поле
+		\item $\mathcal{O}_n = \{A \in M_n(\R): A^TA = E\} \le \GL_n(\R)$
+		\item $\mathcal{U}_n = \{A \in M_n(\Cm): A^T\overline{A} = E\} \le \GL_n(\Cm)$
+		\item $\Cm_n = \{z \in \Cm: z^n = 1\} \le \Cm^*$
+		\item $A_n = \{\sigma \in S_n: \sgn\sigma = 1\} \le S_n$
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $M \subset G$. Подгруппой, \textit{порожденной} $M$, называется наименьшая по включению подгруппа в $G$, содержащая $M$. Обозначение "--- $\langle M\rangle$.
+\end{definition}
+
+\begin{reminder}
+	Если $G$ "--- группа, $M \subset G$, то $\langle M\rangle = \{m_1^{\epsilon_1}\dotsm m_k^{\epsilon_k}: m_1, \dotsc, m_k \hm\in M, \epsilon_1, \dotsc, \epsilon_k \in \{\pm1\}\}$
+\end{reminder}
+
+\begin{definition}
+	Группа $G$ называется \textit{циклической}, если $\exists a \hm\in G: \langle a\rangle = G$, то есть $G = \{a^n: n \in \Z\}$.
+\end{definition}
+
+\begin{reminder}
+	Если группа $G$ "--- циклическая, то либо $G \cong \Z$ (если $G$ бесконечна), либо $G \cong \Z_n$ (если $G$ конечна). Более того, если $H \le G$, то $H$ "--- тоже циклическая, причем либо $H \cong n\Z, n \in \N\cup\{0\}$, либо $H \cong k\Z_n, k \in \N, k\mid n$.
+\end{reminder}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $A, B \subset G$. Тогда:
+	\begin{enumerate}
+		\item $AB := \{ab: a \in A, b \in B\}$
+		\item $A^{-1} := \{a^{-1}: a \in A\}$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Умножение подмножеств группы ассоциативно, но в общем случае неверно, что $\forall A \subset G: AA^{-1} = \{e\}$.
+\end{note}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $H \le G$, $a \in G$. Тогда \textit{левым смежным классом} $a$ по подгруппе $H$ называется $aH = \{ah: h \in H\}$, \textit{правым смежным классом} $a$ по подгруппе $H$ --- $Ha$. Обозначение множества всех левых смежных классов по $H$ в $G$ "--- $G/H$, правых смежных классов --- $H\bs G$.
+\end{definition}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $H \le G$, $a, b \in G$. Тогда следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item $aH \cap bH \ne \emptyset$
+		\item $b^{-1}a \in H$
+		\item $aH = bH$
+		\item $a \in bH$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item ($1 \Rightarrow 2$) По условию, $\exists h_1, h_2 \in H: ah_1 = bh_2$, откуда $b^{-1}a \hm= h_2h_1^{-1} \in H$
+		\item ($2 \Rightarrow 3$) Поскольку $H$ "--- группа и $b^{-1}a \in H$, то $(b^{-1}a)H = H$, и, следовательно, $aH = bH$
+		\item ($3 \Rightarrow 4$) Заметим, что $a = ae$, поэтому $a \in aH = bH$
+		\item ($4 \Rightarrow 1$) Поскольку $a = ae$ и $a \in bH$, то $a \in aH \cap bH$, следовательно, $aH \cap bH \ne \emptyset$
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Аналогичное утверждение для правых смежных классов будет верно, если заменить в формулировке второго пункта $b^{-1}a \in H$ на $ab^{-1} \in H$.
+\end{note}
+
+\begin{theorem}[Лагранжа]
+	Пусть $G$ "--- конечная группа, $H \le G$. Тогда $|G| = |H||G / H| \hm= |H||H \bs G|$.
+\end{theorem}
+
+\begin{proof}
+	Если смежные классы пересекаются хотя бы по одному элементу, то они совпадают. Тогда, поскольку $\forall a \in G: a \hm\in aH$, $G$ разбивается на непересекающиеся смежные классы порядка $|H|$, откуда и следует требуемое равенство.
+\end{proof}
+
+\begin{reminder}
+	Из теоремы выше, в частности, следует, что если $G$ "--- конечная группа, то $\forall H \hm\le G: |H| \mid |G|$, $\forall a \in G: \ord{a} \mid |G|$ и $\forall a \in G: a^{|G|} = e$.
+\end{reminder}
+
+\begin{proposition}
+	Пусть $G$ "--- группа. Тогда $\forall H \le G: |G / H| \hm= |H \bs G|$.
+\end{proposition}
+
+\begin{proof}
+	Сопоставление $aH \mapsto (aH)^{-1} = Ha^{-1}$ является биекцией, поскольку оно обратимо, из чего следует и сюръективность, и инъективность.
+\end{proof}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $H \le G$. \textit{Индексом} $H$ в $G$ называется величина $|G / H| = |H \bs G|$. Обозначение "--- $|G : H|$.
+\end{definition}
+
+\begin{exercise}
+	Пусть $G$ "--- группа, $K \le H \le G$. Докажите, что $|G : K| = |G : H||H : K|$.
+\end{exercise}
+
+\begin{solution}
+	Пусть $G / H = \{a_iH: i \in I\}$, $H / K = \{b_jK: j \in J\}$, где $\{a_i \in G: i \in I\}, \{b_j \hm\in H: j \in J\}$ "--- представители соответствующих смежных классов. Покажем, что $G / K \hm= \{a_ib_jK : i \in I, j \in J\}$.
+	
+	Очевидно, данный набор классов покрывает все множество $G$, значит, требуется показать, что эти классы не пересекаются. Предположим, что $a_{i_1}b_{j_1}K = a_{i_2}b_{j_2}K$ при $i_1 \ne i_2$ или $j_1 \ne j_2$. По предположению, $\exists k \in K: a_{i_1}b_{j_1} \hm= a_{i_2}b_{j_2}k$. Следовательно, $a_{i_1}H = (a_{i_1}b_{j_1})H \hm= (a_{i_2}b_{j_2}k)H = a_{i_2}H$, то есть $a_{i_1} = a_{i_2}$. Но тогда $b_{j_1} = b_{j_2}k$, поэтому $b_{j_1}K = (b_{j_2}k)K = b_{j_2}K$, то есть $b_{j_1} = b_{j_2}$ --- противоречие.
+	
+	Таким образом, $G / K$ имеет требуемый вид, и потому сопоставление $a_ib_jK \mapsto (a_iH, b_jK)$ осуществляет биекцию между $G / K$ и $(G / H) \times (H / K)$.
+\end{solution}
