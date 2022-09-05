@@ -19,8 +19,18 @@
 	\begin{enumerate}
 		\item $\forall H \le G: H \normal G$, где $G$ "--- абелева группа
 		\item $G \normal G$, $\{e\} \normal G$, где $G$ "--- произвольная группа
-		\item $A_n \normal S_n$, поскольку $\forall \sigma \in S_n: \forall \tau \in A_n: \sgn(\sigma\tau\sigma^{-1}) = \sgn\tau = 1$, то есть $\forall \sigma \in S_n: \sigma A_n\sigma^{-1} \subset A_n$
+		\item $A_n \normal S_n$, поскольку $\forall \sigma \in S_n, \forall \tau \in A_n\ \ \sgn(\sigma\tau\sigma^{-1}) = \sgn\tau = 1$, то есть $\forall \sigma \in S_n: \sigma A_n\sigma^{-1} \subset A_n$
 	\end{enumerate}
+\end{example}
+
+
+\textcolor{red}{Поменять порядок определений и утверждений}
+
+\begin{example}
+	Продемонстрируем ненормальную подгруппу. Рассмотрим $S_3$ и подгруппу $H = \gl(1\ 2)\gr = \{(1\ 2), e\}$. Проверим сопряжение $H$:
+	\[
+		(1\ 2)^{(1 \ 3)} = (1\ 3)(1\ 2)(1\ 3) = (2\ 3) \notin H
+	\]
 \end{example}
 
 \begin{proposition}
@@ -46,6 +56,34 @@
 		\item $\forall g \in G: g(HK)g^{-1} = (gHg^{-1})(gKg^{-1}) = HK$
 	\end{enumerate}
 \end{proof}
+
+\begin{example}
+	Требование, что хотя бы одна подгруппа нормальна, существенно. Рассмотрим подгруппы $S_3 \ge \gl(1\ 2)\gr, \gl(1\ 3)\gr$. Тогда $\gl(1\ 2)\gr\gl(1\ 3)\gr \not\le S_3$, ибо
+	\[
+		|\gl(1\ 2)\gr\gl(1\ 3)\gr| = 2 \cdot 2 = 4 \centernot\mid |S_3| = 6
+	\]
+\end{example}
+
+\begin{proposition}
+	Пусть $H, K \le G$, $H \cap K = \{e\}$. Тогда
+	\[
+		|HK| = |H| \cdot |K|
+	\]
+\end{proposition}
+
+\begin{proof}
+	Заметим факт: если $h_1, h_2 \in H$, $k_1, k_2 \in K$ и при этом $h_1k_1 = h_2k_2$, то $h_1 = h_2$ и $k_1 = k_2$. Действительно
+	\[
+		h_1k_1 = h_2k_2 \ra h^{-1}_2h_1 = k_2k^{-1}_1 \in H \cap K = \{e\} \ra h^{-1}_2 h_1 = k_2 k^{-1}_1 = e
+	\]
+\end{proof}
+
+\begin{exercise}
+	Если $H, K \le G$, $|G| < \infty$, $H \cap K = L$, то имеет место равенство:
+	\[
+		|HK| = \frac{|H| \cdot |K|}{|L|}
+	\]
+\end{exercise}
 
 \begin{proposition}
 	Пусть $G$ "--- группа, $H \le G$, $|G : H| = 2$. Тогда $H \normal G$.

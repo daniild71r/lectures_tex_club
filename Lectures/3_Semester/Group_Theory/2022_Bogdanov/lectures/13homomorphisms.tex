@@ -1,11 +1,16 @@
 \subsection{Гомоморфизмы групп и факторгруппа}
 
 \begin{definition}
-	Пусть $G, H$ "--- группы. \textit{Гомоморфизмом групп} $G$ и $H$ называется отображение $\phi : G \hm\to H$ такое, что $\forall g_1, g_2 \hm\in G: \phi(g_1g_2) \hm= \phi(g_1)\phi(g_2)$. Сюръективный гомоморфизм называется \textit{эпиморфизмом}, инъективный гомоморфизм --- \textit{мономорфизмом}.
+	Пусть $G, H$ "--- группы. \textit{Гомоморфизмом групп} $G$ и $H$ называется отображение $\phi \colon G \hm\to H$ такое, что
+	\[
+		\forall g_1, g_2 \hm\in G: \phi(g_1g_2) \hm= \phi(g_1)\phi(g_2)
+	\]
 \end{definition}
 
 \begin{note}
-	Изоморфизм групп "--- это гомоморфизм, являющийся биекцией, то есть эпиморфизмом и мономорфизмом одновременно.
+	Сюръективный гомоморфизм называется \textit{эпиморфизмом}, инъективный гомоморфизм --- \textit{мономорфизмом}.
+	
+	\textit{Изоморфизм} групп "--- это гомоморфизм, являющийся биекцией, то есть эпиморфизмом и мономорфизмом одновременно.
 \end{note}
 
 \begin{definition}
@@ -71,7 +76,14 @@
 \end{proof}
 
 \begin{note}
-	Если $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм и $G' \le G$, то $\phi|_{G'}: G' \hm\to H$ "--- тоже гомоморфизм, поэтому $\phi(G') \hm= \im\phi|_{G'} \le H$. С другой стороны, если $H' \le H$, то существует гомоморфизм $\psi = \id|_{H'}: H' \to H$ такой, что $H' = \im\psi$.
+	Пусть $H \le G$. Тогда существует гомоморфизм $\phi \colon H \to G$ тривиального вида:
+	\[
+		\forall h \in H\ \ \phi(h) = h \ra \Im \phi = H
+	\]
+\end{note}
+
+\begin{note}
+	Если $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм и $G' \le G$, то $\phi|_{G'} \colon G' \hm\to H$ "--- тоже гомоморфизм, поэтому $\phi(G') \hm= \im\phi|_{G'} \le H$. С другой стороны, если $H' \le H$, то существует гомоморфизм $\psi = \id|_{H'}: H' \to H$ такой, что $H' = \im\psi$.
 \end{note}
 
 \begin{definition}
@@ -89,16 +101,22 @@
 \begin{proof}
 	Проверим непосредственно, что множество $G / K$ является группой:
 	\begin{itemize}
-		\item (Ассоциативность) $\forall g_1K, g_2K, g_3K \in G / K: (g_1Kg_2K)g_3K \hm= (g_1g_2g_3)K \hm= g_1K(g_2Kg_3K)$
-		\item (Нейтральный элемент) $\exists K \in G / K: \forall gK \in G / K: (gK)K \hm= K(gK) = gK$
-		\item (Обратный элемент) $\forall gK \in G / K: \exists (gK)^{-1} = g^{-1}K \in G / K: (gK)(gK)^{-1} \hm= (gK)^{-1}(gK) = K$
+		\item (Ассоциативность) \[
+			\forall g_1K, g_2K, g_3K \in G / K \quad (g_1Kg_2K)g_3K = (g_1g_2g_3)K = g_1K(g_2Kg_3K)
+		\]
+		\item (Нейтральный элемент) \(
+			\exists K \in G / K: \forall gK \in G / K \quad (gK)K = K(gK) = gK
+		\)
+		\item (Обратный элемент) \[
+			\forall gK \in G / K\ \exists (gK)^{-1} = g^{-1}K \in G / K \such (gK)(gK)^{-1} \hm= (gK)^{-1}(gK) = K
+		\]
 	\end{itemize}
 	
 	Отображение $\pi$ "--- это гомоморфизм по определению, и его сюръективность очевидна: $\forall gK \in G / K: \exists g \in G: \pi(g) = gK$.
 \end{proof}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $K \normal G$. Группа $G / K$ называется \textit{факторгруппой} $G$ по $K$.
+	Пусть $G$ "--- группа, $K \normal G$. Группа $G / K$ называется \textit{факторгруппой} $G$ \textit{по} $K$.
 \end{definition}
 
 \begin{note}
@@ -133,6 +151,10 @@
 
 \begin{note}
 	Гомоморфный образ группы, будь во имя коммунизма изоморфен факторгруппе по ядру гомоморфизма!
+\end{note}
+
+\begin{note}
+	Эпиморфизм $\pi$ называется \textit{каноническим эпиморфизмом}.
 \end{note}
 
 \begin{theorem}[Первая теорема об изоморфизме]

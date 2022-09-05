@@ -5,11 +5,11 @@
 \begin{definition}
 	\textit{Группой} называется множество $G$ с определенной на нем бинарной операцией $\cdot: G^2 \to G$ такой, что:
 	\begin{enumerate}
-		\item $\forall a, b, c \in G: a(bc) = (ab)c$
+		\item (Ассоциативность) $\forall a, b, c \in G: a(bc) = (ab)c$
 		
-		\item $\exists e \in G: \forall a \in G: ae = ea = a$ (элемент $e$ называется \textit{нейтральным})
+		\item (Существование нейтрального элемента) $\exists e \in G: \forall a \in G: ae = ea = a$
 		
-		\item $\forall a \in G: \exists a^{-1} \in G: aa^{-1} = a^{-1}a = e$ (элемент $a^{-1}$ называется \textit{обратным} к $a$)
+		\item (Существование обратного элемента) $\forall a \in G: \exists a^{-1} \in G: aa^{-1} = a^{-1}a = e$
 	\end{enumerate}
 \end{definition}
 
@@ -18,7 +18,11 @@
 \end{reminder}
 
 \begin{definition}
-	\textit{Порядком группы} $G$ называется мощность множества $G$. Обозначение "--- $|G|$. \textit{Порядком элемента} $a \in G$ называется минимальное число $n \in \mathbb{N}$ такое, что $a^n = e$. Если такого числа не существует, порядок $a$ считается равным $\infty$. Обозначение "--- $\ord{a}$.
+	\textit{Порядком группы} $G$ называется мощность множества $G$. Обозначение "--- $|G|$.
+\end{definition}
+
+\begin{definition}
+	\textit{Порядком элемента} $a \in G$ называется минимальное число $n \in \mathbb{N}$ такое, что $a^n = e$. Если такого числа не существует, порядок $a$ считается равным $\infty$. Обозначение "--- $\ord{a}$.
 \end{definition}
 
 \begin{definition}
@@ -55,9 +59,9 @@
 	$\forall \sigma \in S_n:$ $\sigma$ раскладывается в произведение независимых циклов.
 \end{reminder}
 
-\begin{definition}
+\begin{reminder}
 	\textit{Беспорядком} в перестановке $\sigma \in S_n$ называется пара $(i, j) \in \{1, \dotsc, n\}^2 $ такая, что $i < j$, но $\sigma(i) > \sigma(j)$. \textit{Знаком перестановки} $\sigma \in S_n$ называется число $(-1)^{N(\sigma)}$, где $N(\sigma)$ "--- количество беспорядков в $\sigma$. Обозначение "--- $\sgn{\sigma}$.
-\end{definition}
+\end{reminder}
 
 \begin{reminder}
 	$\forall \sigma, \tau \in S_n: \sgn{(\sigma\tau)} = \sgn{\sigma}\cdot\sgn{\tau}$.
@@ -74,16 +78,26 @@
 \begin{example}
 	Рассмотрим несколько примеров групп и подгрупп в них:
 	\begin{enumerate}
-		\item $\GL_n(F) = (M_n(F))^* = \{A \in M_n(F): \det{A} \ne 0\}$, $\SL_n(F) \hm= \{A \in M_n(F): \det{A} \hm= 1\} \le \GL_n$, где $F$ "--- произвольное поле
-		\item $\mathcal{O}_n = \{A \in M_n(\R): A^TA = E\} \le \GL_n(\R)$
-		\item $\mathcal{U}_n = \{A \in M_n(\Cm): A^T\overline{A} = E\} \le \GL_n(\Cm)$
-		\item $\Cm_n = \{z \in \Cm: z^n = 1\} \le \Cm^*$
-		\item $A_n = \{\sigma \in S_n: \sgn\sigma = 1\} \le S_n$
+		\item $\GL_n(\F) = (M_n(\F))^* = \{A \in M_n(\F) \colon \det{A} \ne 0\}$, где $\F$ "--- произвольное поле. $\GL$ означает general linear
+		
+		\item $\SL_n(\F) = \{A \in M_n(\F) \colon \det A = 1\} \le \GL_n(\F)$, где $\F$ "--- произвольное поле. $\SL$ означает special linear
+		
+		\item $\mathcal{O}_n = \{A \in M_n(\R): A^TA = E\} \le \GL_n(\R)$ - группа ортогональных матриц
+		
+		\item $\mathcal{U}_n = \{A \in M_n(\Cm): A^T\overline{A} = E\} \le \GL_n(\Cm)$ - группа унитарных матриц
+		
+		\item $\mathbb{T} = \{z \in \Cm \colon |z| = 1\} \le \Cm^*$
+		
+		\item $\Cm_n = \{z \in \Cm: z^n = 1\} \le \mathbb{T} \le \Cm^*$ - группа комплексного корня $n$-й степени из единицы
+		
+		\item $A_n = \{\sigma \in S_n: \sgn\sigma = 1\} \le S_n$ - подгруппа чётных перестановок
+		
+		\item $\mathcal{O}_2$ символизирует все ортогональные преобразования на плоскости. Среди них есть те, что образуют особенные \textit{подгруппы Диэдра} $D_n \le \mathcal{O}_2$ - это группы самосовмещений правильного $n$-угольника, то есть $\forall \phi \in D_n\ \phi(P_n) = P_n$, если $P_n$ - это множество точек такого $n$-угольника.
 	\end{enumerate}
 \end{example}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $M \subset G$. Подгруппой, \textit{порожденной} $M$, называется наименьшая по включению подгруппа в $G$, содержащая $M$. Обозначение "--- $\langle M\rangle$.
+	Пусть $G$ "--- группа, $M \subset G$. \textit{Подгруппой, порожденной} $M$, называется наименьшая по включению подгруппа в $G$, содержащая $M$. Обозначение "--- $\gl M\gr$.
 \end{definition}
 
 \begin{reminder}
@@ -99,19 +113,29 @@
 \end{reminder}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $A, B \subset G$. Тогда:
+	Пусть $G$ "--- группа, $A, B \subset G$. Тогда, определим следующие операции на множествах:
 	\begin{enumerate}
 		\item $AB := \{ab: a \in A, b \in B\}$
+		
+		\item $A = \{a\} \ra aB := AB$
+		
 		\item $A^{-1} := \{a^{-1}: a \in A\}$
 	\end{enumerate}
 \end{definition}
 
 \begin{note}
-	Умножение подмножеств группы ассоциативно, но в общем случае неверно, что $\forall A \subset G: AA^{-1} = \{e\}$.
+	Введённые операции совершенно не означают, что мы сделали множество подмножеств само по себе группой. Тем не менее, верна ассоциативность:
+	\[
+		\forall A, B, C \subset G \quad (AB)C = A(BC) = \{abc \colon a \in A, b \in B, c \in C\}
+	\]
+\end{note}
+
+\begin{note}
+	Если $H \le G$, то $HH = H^{-1} = H$
 \end{note}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $H \le G$, $a \in G$. Тогда \textit{левым смежным классом} $a$ по подгруппе $H$ называется $aH = \{ah: h \in H\}$, \textit{правым смежным классом} $a$ по подгруппе $H$ --- $Ha$. Обозначение множества всех левых смежных классов по $H$ в $G$ "--- $G/H$, правых смежных классов --- $H\bs G$.
+	Пусть $G$ "--- группа, $H \le G$, $a \in G$. Тогда \textit{левым смежным классом $a$ по подгруппе $H$} называется $aH = \{ah: h \in H\}$, \textit{правым смежным классом $a$ по подгруппе $H$} --- $Ha$. Обозначение множества всех левых смежных классов по $H$ в $G$ "--- $G/H$, правых смежных классов --- $H\bs G$.
 \end{definition}
 
 \begin{proposition}
@@ -138,7 +162,10 @@
 \end{note}
 
 \begin{theorem}[Лагранжа]
-	Пусть $G$ "--- конечная группа, $H \le G$. Тогда $|G| = |H||G / H| \hm= |H||H \bs G|$.
+	Пусть $G$ "--- конечная группа, $H \le G$. Тогда верно равенство: 
+	\[
+		|G| = |H| \cdot |G / H| = |H| \cdot |H \bs G|
+	\]
 \end{theorem}
 
 \begin{proof}
@@ -146,7 +173,14 @@
 \end{proof}
 
 \begin{reminder}
-	Из теоремы выше, в частности, следует, что если $G$ "--- конечная группа, то $\forall H \hm\le G: |H| \mid |G|$, $\forall a \in G: \ord{a} \mid |G|$ и $\forall a \in G: a^{|G|} = e$.
+	Из теоремы выше, в частности, следует, что если $G$ "--- конечная группа, то имеет место 3 факта:
+	\begin{enumerate}
+		\item $\forall H \le G \quad |H| \div |G|$
+		
+		\item $\forall a \in G \quad \ord{a} \mid |G|$
+		
+		\item $\forall a \in G \quad a^{|G|} = e$
+	\end{enumerate}
 \end{reminder}
 
 \begin{proposition}
@@ -158,17 +192,13 @@
 \end{proof}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $H \le G$. \textit{Индексом} $H$ в $G$ называется величина $|G / H| = |H \bs G|$. Обозначение "--- $|G : H|$.
+	Пусть $G$ "--- группа, $H \le G$. \textit{Индексом $H$ в $G$} называется величина $|G / H| = |H \bs G|$. Обозначение "--- $|G : H|$.
 \end{definition}
 
 \begin{exercise}
-	Пусть $G$ "--- группа, $K \le H \le G$. Докажите, что $|G : K| = |G : H||H : K|$.
+	Если $K \le H \le G$, то имеет место равенство
+	\[
+		|G : K| = |G : H| \cdot |H : K|
+	\]
+	при условии, что $|G : H|$ и $|H : K|$ конечны (Оно верно и в общем случае, только надо говорить не о порядках, а о биекциях между множествами).
 \end{exercise}
-
-\begin{solution}
-	Пусть $G / H = \{a_iH: i \in I\}$, $H / K = \{b_jK: j \in J\}$, где $\{a_i \in G: i \in I\}, \{b_j \hm\in H: j \in J\}$ "--- представители соответствующих смежных классов. Покажем, что $G / K \hm= \{a_ib_jK : i \in I, j \in J\}$.
-	
-	Очевидно, данный набор классов покрывает все множество $G$, значит, требуется показать, что эти классы не пересекаются. Предположим, что $a_{i_1}b_{j_1}K = a_{i_2}b_{j_2}K$ при $i_1 \ne i_2$ или $j_1 \ne j_2$. По предположению, $\exists k \in K: a_{i_1}b_{j_1} \hm= a_{i_2}b_{j_2}k$. Следовательно, $a_{i_1}H = (a_{i_1}b_{j_1})H \hm= (a_{i_2}b_{j_2}k)H = a_{i_2}H$, то есть $a_{i_1} = a_{i_2}$. Но тогда $b_{j_1} = b_{j_2}k$, поэтому $b_{j_1}K = (b_{j_2}k)K = b_{j_2}K$, то есть $b_{j_1} = b_{j_2}$ --- противоречие.
-	
-	Таким образом, $G / K$ имеет требуемый вид, и потому сопоставление $a_ib_jK \mapsto (a_iH, b_jK)$ осуществляет биекцию между $G / K$ и $(G / H) \times (H / K)$.
-\end{solution}
