@@ -1,18 +1,54 @@
 \subsection{Нормальные подгруппы}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $H \le G$. Подгруппа $H$ называется \textit{нормальной} в $G$, если $\forall g \in G: gH = Hg$. Обозначение "--- $H \normal G$.
+	Пусть $G$ "--- группа, $g, x \in G$. Элементом, \textit{сопряженным к $g$ с помощью $x$}, называется $g^x := x^{-1}gx \in G$. Элементы $g_1, g_2 \in G$ называются \textit{сопряженными}, если $\exists x \in G: g_1 = g_2^x$.
 \end{definition}
 
 \begin{note}
-	Определение выше имеет ряд эквивалентных формулировок:
-	\begin{enumerate}
-		\item $G / H = H \bs G$
-		\item $\forall g \in G: gHg^{-1} = H$
-		\item $\forall g \in G: gH \subset Hg$ (поскольку тогда $\forall g \in G: Hg^{-1} \subset g^{-1}H)$
-		\item $\forall g \in G: gHg^{-1} \subset H$
-	\end{enumerate}
+	Пусть $G$ "--- группа, $H \le G$, $g \in G$. Будем обозначать $g^{-1}Hg$ как $H^g$.
 \end{note}
+
+\begin{proposition} Пусть $G$ "--- группа. Тогда:
+	\begin{enumerate}
+		\item $\forall g, x, y \in G: g^{xy} = (g^x)^y$
+		
+		\item $\forall g_1, g_2, x \in G: (g_1g_2)^x = g_1^xg_2^x$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} Произведем непосредственную проверку:
+	\begin{enumerate}
+		\item $(g^x)^y = y^{-1}(x^{-1}gx)y = (xy)^{-1}g(xy) = g^{xy}$
+		
+		\item $g_1^xg_2^x = (x^{-1}g_1x)(x^{-1}g_2x) = x^{-1}(g_1g_2)x = (g_1g_2)^x$
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	Сопряженность является отношением эквивалентности в группе $G$.
+\end{proposition}
+
+\begin{proof} Произведем непосредственную проверку:
+	\begin{itemize}
+		\item (Рефлексивность) $\forall g \in G: g = g^e$
+		
+		\item (Симметричность) Если $g_2 = g_1^x$, то $g_2^{x^{-1}} = (g_1^x)^{x^{-1}} = g_1^e = g_1$
+		
+		\item (Транзитивность) Если $g_2 = g_1^x$, $g_3 = g_2^y$, то $g_3 = (g_1^x)^y = g_1^{xy}$
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $g \in G$. \textit{Классом сопряженности} элемента $g$ называется множество $g^G$, то есть класс эквивалентности по отношению сопряженности, содержащий $g$.
+\end{definition}
+
+\begin{exercise}
+	Пусть $G$ "--- группа, $H \le G$. Тогда $H \normal G \hm\Leftrightarrow H$ "--- объединение некоторого количества классов сопряженности в $G$.
+\end{exercise}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $H \le G$. Подгруппа $H$ называется \textit{нормальной в $G$}, если $\forall g \in G\ gH = Hg$. Обозначение "--- $H \normal G$.
+\end{definition}
 
 \begin{example}
 	Рассмотрим несколько примеров нормальных подгрупп в соответствующих группах:
@@ -23,22 +59,47 @@
 	\end{enumerate}
 \end{example}
 
-
-\textcolor{red}{Поменять порядок определений и утверждений}
-
 \begin{example}
 	Продемонстрируем ненормальную подгруппу. Рассмотрим $S_3$ и подгруппу $H = \gl(1\ 2)\gr = \{(1\ 2), e\}$. Проверим сопряжение $H$:
 	\[
-		(1\ 2)^{(1 \ 3)} = (1\ 3)(1\ 2)(1\ 3) = (2\ 3) \notin H
+	(1\ 2)^{(1 \ 3)} = (1\ 3)(1\ 2)(1\ 3) = (2\ 3) \notin H
 	\]
 \end{example}
+
+\begin{proposition}
+	Определение выше имеет ряд эквивалентных формулировок:
+	\begin{enumerate}
+		\item $G / H = H \bs G$
+		
+		\item $\forall g \in G: H^g = H$
+		
+		\item $\forall g \in G: gH \subset Hg$
+		
+		\item $\forall g \in G: H^g \subset H$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	 \begin{itemize}
+	 	\item (опр. $\lra 1$) В сторону 1 очевидно, а в обратную предположим противное: $gH \neq Hg$. Но по условию это должно быть эквивалентно $gH \cap Hg = \emptyset$. Тем не менее, $gH \cap Hg \supset \{g\}$, а потому определение выполнено
+	 	
+	 	\item (опр. $\lra 2$) Очевидно
+	 	
+	 	\item (опр. $\lra 3$) Если выполнено условие 3, то тогда
+	 	\[
+	 		\forall g \in G\ g^{-1}H \subset Hg^{-1} \Longleftrightarrow \forall g \in G\ Hg \subset gH
+	 	\]
+	 	
+	 	\item ($3 \lra 4$) Очевидно
+	 \end{itemize}
+\end{proof}
 
 \begin{proposition}
 	Пусть $G$ "--- группа, $H_1 \normal G$, $H_2 \normal G$. Тогда $H_1 \cap H_2 \hm\normal G$.
 \end{proposition}
 
 \begin{proof}
-	$\forall g \in G: g(H_1 \cap H_2)g^{-1} \subset (gH_1g^{-1}) \cap (gH_2g^{-1}) \hm= H_1 \cap H_2$.
+	$\forall g \in G\ \ g(H_1 \cap H_2)g^{-1} \subset (gH_1g^{-1}) \cap (gH_2g^{-1}) \hm= H_1 \cap H_2$.
 \end{proof}
 
 \begin{proposition}
@@ -97,59 +158,9 @@
 	Покажем, что $|S_n : A_n| = 2$ при $n \ge 2$. Действительно, сопоставление $\sigma \hm\mapsto (1, 2)\sigma$ осуществляет биекцию между $A_n$ и $S_n \bs A_n$, поэтому $S_n / A_n = \{A_n, (1, 2)A_n\}$.
 \end{note}
 
-\begin{definition}
-	Пусть $G$ "--- группа, $g, x \in G$. Элементом, \textit{сопряженным} к $g$ с помощью $x$, называется $g^x := x^{-1}gx \in G$. Элементы $g_1, g_2 \in G$ называются \textit{сопряженными}, если $\exists x \in G: g_1 = g_2^x$.
-\end{definition}
-
-\begin{note}
-	Пусть $G$ "--- группа, $H \le G$, $g \in G$. Будем обозначать $g^{-1}Hg$ как $H^g$.
-\end{note}
-
-\begin{proposition} Пусть $G$ "--- группа. Тогда:
-	\begin{enumerate}
-		\item $\forall g, x, y \in G: g^{xy} = (g^x)^y$
-		\item $\forall g_1, g_2, x \in G: (g_1g_2)^x = g_1^xg_2^x$
-	\end{enumerate}
-\end{proposition}
-
-\begin{proof} Произведем непосредственную проверку:
-	\begin{enumerate}
-		\item $(g^x)^y = y^{-1}(x^{-1}gx)y = (xy)^{-1}g(xy) = g^{xy}$
-		\item $g_1^xg_2^x = (x^{-1}g_1x)(x^{-1}g_2x) = x^{-1}(g_1g_2)x = (g_1g_2)^x$
-	\end{enumerate}
-\end{proof}
-
-\begin{proposition}
-	Сопряженность является отношением эквивалентности в группе $G$.
-\end{proposition}
-
-\begin{proof} Произведем непосредственную проверку:
-	\begin{itemize}
-		\item (Рефлексивность) $\forall g \in G: g = g^e$
-		\item (Симметричность) Если $g_2 = g_1^x$, то $g_2^{x^{-1}} = (g_1^x)^{x^{-1}} = g_1^e = g_1$
-		\item (Транзитивность) Если $g_2 = g_1^x$, $g_3 = g_2^y$, то $g_3 = (g_1^x)^y = g_1^{xy}$
-	\end{itemize}
-\end{proof}
-
-\begin{definition}
-	Пусть $G$ "--- группа, $g \in G$. \textit{Классом сопряженности} элемента $g$ называется множество $g^G$, то есть класс эквивалентности по отношению сопряженности, содержащий $g$.
-\end{definition}
-
-\begin{proposition}
-	Пусть $G$ "--- группа, $H \le G$. Тогда $H \normal G \hm\Leftrightarrow H$ "--- объединение некоторого количества классов сопряженности в $G$.
-\end{proposition}
-
-\begin{proof}
-	$H \normal G \Leftrightarrow \forall g \in G: g^{-1}Hg \subset H \Leftrightarrow \forall g \in G: \forall h \hm\in H: h^g \in H \Leftrightarrow \forall h \in H: h^G \subset H \Leftrightarrow H = \bigcup_{h \in H}h^G$.
-\end{proof}
-
 \begin{exercise}
 	Пусть $G$ "--- группа, $g_1, g_2 \in G$. Докажите, что тогда $g_1^Gg_2^G$ "--- объединение нескольких классов сопряженности, причем необязательно одного.
 \end{exercise}
-
-\begin{solution}
-	Пусть $x, y \in G, x^{-1}g_1xy^{-1}g_2y \in g_1^Gg_2^G$. Нам достаточно показать, что если $a \hm\in G$ сопряжен с $x^{-1}g_1xy^{-1}g_2y$, то $a \in g_1^Gg_2^G$. Действительно, в силу сопряженности, $a \hm= z^{-1}x^{-1}g_1xy^{-1}g_2yz$ для некоторого $z \in G$, то есть $a = (xz)^{-1}g_1(xz)(yz)^{-1}g_2(yz) \in g_1^Gg_2^G$. Пример, когда класс сопряженности в $g_1^Gg_2^G$ действительно не один, легко строится на основе следующего примера.
-\end{solution}
 
 \begin{example}
 	Пусть $\sigma \in S_n$. Представим $\sigma$ в виде произведения независимых циклов, $\sigma \hm= (a_1\dotsc a_k)(b_1\dotsc b_l)\dotsc$, и рассмотрим $\sigma^\tau$ для произвольного $\tau \in S_n$. Если $a_i' := \tau^{-1}(a_i), i \hm\in \{1, \dots, k\}$, то $\sigma^\tau(a_i') \hm= (\tau^{-1}\sigma\tau)(a_i') = a_{i + 1}'$. Значит, $\sigma^\tau = (a_1'\dotsc a_k')(b_1'\dotsc b_l')\dotsc$, и, следовательно, $\sigma^{S_n}$ состоит из перестановок того же циклического типа, что и $\sigma$, причем из всех, потому что по каждой такой перестановке легко восстанавливается соответствующая $\tau \in S_n$.

@@ -1,101 +1,127 @@
 \subsection{Гомоморфизмы групп и факторгруппа}
 
 \begin{definition}
-	Пусть $G, H$ "--- группы. \textit{Гомоморфизмом групп} $G$ и $H$ называется отображение $\phi \colon G \hm\to H$ такое, что
+	Пусть $G, H$ "--- группы. \textit{Гомоморфизмом групп} $G$ и $H$ называется отображение $\phi \colon G \to H$ такое, что
 	\[
-		\forall g_1, g_2 \hm\in G: \phi(g_1g_2) \hm= \phi(g_1)\phi(g_2)
+		\forall g_1, g_2 \in G \quad\phi(g_1g_2) = \phi(g_1)\phi(g_2)
 	\]
 \end{definition}
 
 \begin{note}
-	Сюръективный гомоморфизм называется \textit{эпиморфизмом}, инъективный гомоморфизм --- \textit{мономорфизмом}.
-	
-	\textit{Изоморфизм} групп "--- это гомоморфизм, являющийся биекцией, то есть эпиморфизмом и мономорфизмом одновременно.
-\end{note}
-
-\begin{definition}
-	Пусть $G, H$ "--- группы, $\phi : G \hm\to H$ "--- гомоморфизм $G$ и $H$. Тогда:
+	Дадим определение всех остальных нужных морфизмов:
 	\begin{itemize}
-		\item \textit{Образом} $\phi$ называется $\im\phi := \{\phi(g): g \in G\} = \phi(G)$
-		\item \textit{Ядром} $\phi$ называется $\ke\phi := \{g \in G: \phi(g) = e\} = \phi^{-1}(e)$
+		\item \textit{Эпиморфизм} "--- это сюръективный гомоморфизм
+		
+		\item \textit{Мономорфизм} "--- это инъективный гомоморфизм
+		
+		\item \textit{Изоморфизм} "--- это биективный гомоморфизм
+		
+		\item \textit{Эндоморфизм} "--- это гомоморфизм группы в себя
+		
+		\item \textit{Автоморфизм} "--- это изоморфизм группы в себя
 	\end{itemize}
-\end{definition}
-
-\begin{note}
-	Далее мы часто будем обозначать $\phi(g)$ как $\overline{g}$.
 \end{note}
 
 \begin{example}
 	Рассмотрим несколько примеров гомоморфизмов групп:
 	\begin{enumerate}
-		\item Любой изоморфизм групп, в частности, изоморфизм вида $\phi: G \to G$ --- \textit{автоморфизм} группы $G$
+		\item Любой изоморфизм групп, в частности, автоморфизм $\phi(g) = g$
+		
 		\item $\phi: G \to H$, $\forall g \in G: \phi(g) = e$, где $G, H$ "--- произвольные группы
-		\item Сопряжение при помощи $x \in G$, где $G$ "--- произвольная группа, поскольку $\forall g_1, g_2 \hm\in G: (g_1g_2)^x = g_1^xg_2^x$ (более того, сопряжение "--- это автоморфизм, поскольку существует обратное отображение: $\forall g \in G: \phi^{-1}(g) = g^{x^{-1}}$)
-		\item $\det: \GL_n(F) \to F^*$, поскольку $\forall A, B \in \GL_n(F): \det(AB) \hm= \det A \det B$
-		\item $\sgn: S_n \to \Q^*$, поскольку $\forall \sigma, \tau \in S_n: \sgn(\sigma\tau) \hm= \sgn\sigma\sgn\tau$
-		\item Отображение $\phi: \Z \to \Z_n$ такое, что $\forall a \in \Z: \phi(a) = a + n\Z$, поскольку $\forall a, b \in \Z: \phi(a + b) \hm= (a + b) + n\Z = \phi(a) + \phi(b)$
+		
+		\item Сопряжение при помощи $x \in G$, где $G$ "--- произвольная группа, поскольку $\forall g_1, g_2 \in G: (g_1g_2)^x = g_1^xg_2^x$ (более того, сопряжение "--- это автоморфизм, поскольку существует обратное отображение: $\forall g \in G: \phi^{-1}(g) = g^{x^{-1}}$)
+		
+		\item $\det: \GL_n(F) \to F^*$, поскольку $\forall A, B \in \GL_n(F): \det(AB) = \det A \det B$
+		
+		\item $\sgn: S_n \to \Q^*$, поскольку $\forall \sigma, \tau \in S_n: \sgn(\sigma\tau) = \sgn\sigma\sgn\tau$
+		
+		\item Отображение $\phi: \Z \to \Z_n$ такое, что $\forall a \in \Z: \phi(a) = a + n\Z$, поскольку $\forall a, b \in \Z: \phi(a + b) = (a + b) + n\Z = \phi(a) + \phi(b)$
 	\end{enumerate}
 \end{example}
 
 \begin{proposition}
-	Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $\phi(e) = e$ и $\forall g \in G: \phi(g^{-1}) = (\phi(g))^{-1}$.
+	Пусть $\phi \colon G_1 \to G_2$ - гомоморфизм. Тогда верно 2 утверждения:
+	\begin{enumerate}
+		\item $\phi(e_1) = e_2$ - нейтральный элемент переходит в нейтральный элемент
+		
+		\item $\forall a \in G_1\ \ \phi(a^{-1}) = \phi(a)^{-1}$
+	\end{enumerate}
 \end{proposition}
 
 \begin{proof}~
-	\begin{itemize}
-		\item $\overline{e}^2 = \overline{e^2} = \overline{e} \Rightarrow \overline{e} = e$
-		\item $\overline{g^{-1}}\overline{g} = \overline{g^{-1}g} = \overline{e} = e \Rightarrow \overline{g}^{-1} = \overline{g^{-1}}$
-	\end{itemize}
+	\begin{enumerate}
+		\item \(\phi(e_1) = \phi(e_1^2) = \phi(e_1) \cdot \phi(e_1) \ra \phi(e_1) = \phi(e_1) \cdot \phi(e_1)^{-1} = e_2\)
+		
+		\item \(\phi(e_1) = \phi(a \cdot a^{-1}) = \phi(a) \cdot \phi(a^{-1}) = e_2 \ra \phi(a^{-1}) = \phi(a)^{-1}\)
+	\end{enumerate}
 \end{proof}
 
+\begin{definition}
+	Пусть $G, H$ "--- группы, $\phi : G \to H$ "--- гомоморфизм $G$ и $H$. Тогда:
+	\begin{itemize}
+		\item \textit{Образом} $\phi$ называется $\im \phi := \{\phi(g): g \in G\} = \phi(G)$
+		\item \textit{Ядром} $\phi$ называется $\ke \phi := \{g \in G: \phi(g) = e\} = \phi^{-1}(e)$
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Далее мы часто будем обозначать $\phi(g)$ как $\ol{g}$.
+\end{note}
+
 \begin{proposition}
-	Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм, $K := \ke\phi$. Тогда $\forall g \in G: \phi^{-1}(\overline{g}) = gK = Kg$.
+	Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм, $K := \ke \phi$. Тогда $\forall g \in G: \phi^{-1}(\ol{g}) = gK = Kg$.
 \end{proposition}
 
 \begin{proof}
-	Пусть $a \in G$. Тогда $a \in \phi^{-1}(\overline{g}) \Leftrightarrow \overline{a} = \overline{g} \Leftrightarrow e \hm= \overline{g}^{-1}\overline{a} = \overline{g^{-1}a} \Leftrightarrow g^{-1}a \hm\in \ke\phi = K \Leftrightarrow a \in gK$. Аналогично доказывается, что $a \in \phi^{-1}(\overline{g}) \Leftrightarrow a \in Kg$.
+	Пусть $a \in G$. Тогда $a \in \phi^{-1}(\ol{g}) \Leftrightarrow \ol{a} = \ol{g} \Leftrightarrow e \hm= \ol{g}^{-1}\ol{a} = \ol{g^{-1}a} \Leftrightarrow g^{-1}a \hm\in \ke \phi = K \Leftrightarrow a \in gK$. Аналогично доказывается, что $a \in \phi^{-1}(\ol{g}) \Leftrightarrow a \in Kg$.
 \end{proof}
 
 \begin{corollary}
-	$\phi$ "--- мономорфизм $\Leftrightarrow \ke\phi = \{e\}$.
+	$\phi$ "--- мономорфизм $\Leftrightarrow \ke \phi = \{e\}$.
 \end{corollary}
 
 \begin{proposition}
 	Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда:
 	\begin{enumerate}
-		\item $\im\phi \le H$
-		\item $\ke\phi \normal G$
+		\item $\im \phi \le H$
+		\item $\ke \phi \normal G$
 	\end{enumerate}
 \end{proposition}
 
 \begin{proof}~
 	\begin{enumerate}
-		\item Если $h_1, h_2 \in \im\phi$, то $h_1 = \overline{g_1}$, $h_2 = \overline{g_2}$, откуда $h_1h_2 = \overline{g_1g_2} \hm\in \im\phi$ и $h_1^{-1} = \overline{g^{-1}} \in \im\phi$
-		\item Если $g_1, g_2 \in \ke\phi$, то $\overline{g_1} = \overline{g_2} = e$, откуда $\overline{g_1g_2} = e$ и $\overline{g_1^{-1}} = e$, и, более того, $\forall g \in G: gK = Kg = \phi^{-1}(g)$
+		\item Если $h_1, h_2 \in \im \phi$, то $h_1 = \ol{g_1}$, $h_2 = \ol{g_2}$, откуда $h_1h_2 = \ol{g_1g_2} \hm\in \im \phi$ и $h_1^{-1} = \ol{g_1^{-1}} \in \im \phi$
+		\item Если $g_1, g_2 \in \ke \phi$, то $\ol{g_1} = \ol{g_2} = e$, откуда $\ol{g_1g_2} = e$ и $\ol{g_1^{-1}} = e$, и, более того, $\forall g \in G\ \ gK = Kg = \phi^{-1}(\ol{g})$
 	\end{enumerate}
 \end{proof}
 
 \begin{note}
 	Пусть $H \le G$. Тогда существует гомоморфизм $\phi \colon H \to G$ тривиального вида:
 	\[
-		\forall h \in H\ \ \phi(h) = h \ra \Im \phi = H
+		\forall h \in H\ \ \phi(h) = h \ra \im \phi = H
 	\]
 \end{note}
 
 \begin{note}
-	Если $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм и $G' \le G$, то $\phi|_{G'} \colon G' \hm\to H$ "--- тоже гомоморфизм, поэтому $\phi(G') \hm= \im\phi|_{G'} \le H$. С другой стороны, если $H' \le H$, то существует гомоморфизм $\psi = \id|_{H'}: H' \to H$ такой, что $H' = \im\psi$.
+	Если $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм и $G' \le G$, то $\phi|_{G'} \colon G' \hm\to H$ "--- тоже гомоморфизм, поэтому $\phi(G') \hm= \im \phi|_{G'} \le H$. С другой стороны, если $H' \le H$, то существует гомоморфизм $\psi = \id|_{H'}: H' \to H$ такой, что $H' = \im\psi$.
 \end{note}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $K \normal G$. Определим операцию на $G / K$ следующим образом: $\forall g_1, g_2 \in G: g_1K\cdot g_2K \hm= g_1(Kg_2)K = g_1(g_2K)K = g_1g_2K$.
+	Пусть $G$ "--- группа, $K \normal G$. Определим операцию на $G / K$ следующим образом:
+	\[
+		\forall g_1, g_2 \in G \quad g_1K\cdot g_2K \hm= g_1(Kg_2)K = g_1(g_2K)K = g_1g_2K
+	\]
 \end{definition}
 
 \begin{note}
-	Определение выше корректно, поскольку оно не зависит от выбора представителей классов смежности.
+	Определение опирается на конкретных представителей классов, а поэтому необходимо проверить его корректность, то есть независимость от выбора этих представителей. Пусть $g'_1 \in g_1 K$, $g'_2 \in g_2 K$, тогда нужно показать, что $g'_1 g'_2 K = g_1 g_2 K$. Действительно, $g'_1 = g_1 k_1$ и $g'_2 = g_2 k_2$. Стало быть
+	\[
+		g'_1 g'_2 e = g_1 g_2 k_1 k_2 \in g'_1 g'_2 K \cap g_1 g_2 K \ra g'_1 g'_2 K = g_1 g_2 K
+	\]
 \end{note}
 
 \begin{proposition}
-	Пусть $G$ "--- группа, $K \normal G$. Тогда $(G / K, \cdot)$ "--- группа. Более того, отображение $\pi: G \to G / K$, $\forall g \in G: \pi(g) \hm= gK$, является эпиморфизмом.
+	Пусть $G$ "--- группа, $K \normal G$. Тогда $(G / K, \cdot)$ "--- группа.
 \end{proposition}
 
 \begin{proof}
@@ -105,52 +131,85 @@
 			\forall g_1K, g_2K, g_3K \in G / K \quad (g_1Kg_2K)g_3K = (g_1g_2g_3)K = g_1K(g_2Kg_3K)
 		\]
 		\item (Нейтральный элемент) \(
-			\exists K \in G / K: \forall gK \in G / K \quad (gK)K = K(gK) = gK
+			\exists eK = K \in G / K \such \forall gK \in G / K \quad (gK)K = K(gK) = gK
 		\)
 		\item (Обратный элемент) \[
 			\forall gK \in G / K\ \exists (gK)^{-1} = g^{-1}K \in G / K \such (gK)(gK)^{-1} \hm= (gK)^{-1}(gK) = K
 		\]
 	\end{itemize}
-	
-	Отображение $\pi$ "--- это гомоморфизм по определению, и его сюръективность очевидна: $\forall gK \in G / K: \exists g \in G: \pi(g) = gK$.
 \end{proof}
 
 \begin{definition}
 	Пусть $G$ "--- группа, $K \normal G$. Группа $G / K$ называется \textit{факторгруппой} $G$ \textit{по} $K$.
 \end{definition}
 
-\begin{note}
-	$g \in \ke\pi \Leftrightarrow \pi(g) = gK = K \Leftrightarrow g \in K$, поэтому $\ke\pi = K$. Значит, любая нормальная подгруппа является ядром некоторого гомоморфизма, точно так же, как любая подгруппа является образом некоторого гомоморфизма.
-\end{note}
+\begin{definition}
+	\textit{Коммутативной диаграммой} называется рисунок, где отображены алгебраические структуры и функции, отображающие их друг в друга - морфизмы. Коммутативность диаграммы означает, что композиция морфизмов вдоль любого направленного пути зависит только от начал и конца пути (то есть композиции, полученные разными путями, должны давать равный результат).
+\end{definition}
 
 \begin{theorem}[Основная теорема о гомоморфизме]~
 	\begin{enumerate}
 		\item Пусть $G$ "--- группа, $K \normal G$. Тогда $\exists \pi: G \to G / K$ "--- эпиморфизм такой, что $\ke\pi \hm= K$.
-		\item Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $K \hm{:=} \ke\phi \normal G$, и, более того, $\im\phi \cong G / K$.
+		\item Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $\im \phi \cong G / K$.
 	\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-	Большая часть теоремы уже была доказана выше, остается доказать лишь последнее утверждение. Изобразим его на коммутативной диаграмме:
+	Традиционно эту теорему показывают при помощи \textit{коммутативной диаграммы}, которая отражает 2 соотношения: $\phi = \Theta \circ \pi$ и $\pi = \psi \circ \phi$
 	\[
 	\begin{tikzcd}[row sep = huge]
-		G \arrow{rr}{\phi} \arrow[swap]{dr}{\pi} && \im\phi \le H \arrow[dashrightarrow, swap, xshift = -4pt]{dl}{\psi}\\
+		G \arrow{rr}{\phi} \arrow[swap]{dr}{\pi} && \im \phi \le H \arrow[dashrightarrow, swap, xshift = -4pt]{dl}{\psi}\\
 		& G / K \arrow[dashrightarrow, swap, xshift = 4pt]{ur}{\Theta} &
 	\end{tikzcd}
 	\]
-	
-	Нам требуется предъявить такой изоморфизм $\Theta: G / K \to \im\phi$, что $\Theta \circ \pi = \phi$. Построим $\psi := \Theta^{-1}$: $\forall \overline{g} \in \im\phi: \psi(\overline{g}) = \phi^{-1}(\overline{g}) \hm= gK \in G / K$. Проверим, что это изоморфизм:
-	\begin{itemize}
-		\item (Гомоморфизм) $\forall \overline{g_1}, \overline{g_2} \in \im\phi: \psi(\overline{g_1}\cdot\overline{g_2}) = \psi(\overline{g_1g_2}) = g_1g_2K \hm= (g_1K)(g_2K) = \psi(\overline{g_1})\psi(\overline{g_2})$
-		\item (Сюръективность) $\forall gK \in G / K: gK = \psi(\overline{g})$
-		\item (Инъективность) Достаточно показать, что $\ke\psi = \{e\}$: $\forall \overline{g} \hm\in \im\phi: \psi(\overline{g}) = K \hm\Rightarrow gK = K \Rightarrow g \in K \Rightarrow \overline{g} = \overline{e}$
-	\end{itemize}
-	
-	Теорема доказана, но убедимся непосредственно в том, что диаграмма коммутативна, то есть $\Theta \circ \pi = \phi$, или $\Theta^{-1} \circ \phi = \psi \circ \phi = \pi$: $\forall g \hm\in G: \psi(\phi(g)) = \psi(\overline{g}) = gK = \pi(g)$.
+	\begin{enumerate}
+		\item Очевидным образом хочется определить $\pi \colon G \to G / K$ следующим образом:
+		\[
+			\forall g \in G \quad \pi(g) = gK
+		\]
+		Это уже эпиморфизм из доказанных выше свойств. Остаётся показать, что ядро действительно совпадает с подгруппой:
+		\[
+			\ke \pi = \{g \in G \colon \pi(g) = gK = K\} = K
+		\]
+		
+		\item Итак, нам нужно построить $\psi \colon \im \phi \to G / K$ - изоморфизм. Как его сделать, снова интуитивно понятно:
+		\[
+			\forall g \in G \quad \psi(\ol{g}) = gK
+		\]
+		Проверим, что полученная функция задаёт изоморфизм:
+		\begin{itemize}
+			\item (Гомоморфизм)
+			\[
+				\forall \ol{g_1}, \ol{g_2} \in \im \phi \quad \psi(\ol{g_1} \cdot \ol{g_2}) = \psi(\ol{g_1 g_2}) = g_1 g_2 K = (g_1 K)(g_2 K) = \psi(\ol{g_1}) \psi(\ol{g_2})
+			\]
+			
+			\item (Сюръективность)
+			\[
+				\forall gK \in G / K \quad \psi(\ol{g}) = gK
+			\]
+			
+			\item (Инъективность) Как уже известно, достаточно проверить тривиальность ядра:
+			\[
+				\forall \ol{g} \in \im \phi \quad \psi(\ol{g}) = K \ra gK = K \ra g \in K \ra \ol{g} = \ol{e}
+			\]
+		\end{itemize}
+	\end{enumerate}
+	Теорема доказана, но убедимся непосредственно в том, что диаграмма коммутативна, то есть $\Theta \circ \pi = \phi$, или $\Theta^{-1} \circ \phi = \psi \circ \phi = \pi$:
+	\[
+		\forall g \in G: \psi(\phi(g)) = \psi(\ol{g}) = gK = \pi(g)
+	\]
 \end{proof}
 
 \begin{note}
-	Гомоморфный образ группы, будь во имя коммунизма изоморфен факторгруппе по ядру гомоморфизма!
+	<<Гомоморфный образ группы, будь во имя коммунизма изоморфен факторгруппе по ядру гомоморфизма!>>
+\end{note}
+
+\begin{note}
+	Есть и другая версия стишка, позволяющая доказать недостижимость коммунизма:
+	
+	<<Гомоморфный образ группы изоморфен факторгруппе по ядру гомоморфизма до победы коммунизма>>
+	
+	Так как математическая истина вечна, то коммунизм никогда не победит.
 \end{note}
 
 \begin{note}
@@ -162,29 +221,29 @@
 \end{theorem}
 
 \begin{proof}
-	Первое утверждение теоремы уже было доказано, поэтому докажем оставшиеся два. Для этого рассмотрим канонический эпиморфизм $\pi: G \hm\to G / K$ и $\forall g \in G$ обозначим $\overline{g} := \pi(g)$.
+	Первое утверждение теоремы уже было доказано, поэтому докажем оставшиеся два. Для этого рассмотрим канонический эпиморфизм $\pi: G \hm\to G / K$ и $\forall g \in G$ обозначим $\ol{g} := \pi(g)$.
 	
-	Пусть $\phi := \pi|_H : H \to G/ K$. Тогда $\ke\phi = \ke\pi \cap H = K \cap H$, откуда $K \cap H \normal H$. $\im\phi = \{\overline{h}: h \in H\} = \{hK: h \hm\in H\} = HK / K$, поскольку $HK / K \hm= \{hkK: h \in H, k \hm\in K\} = \{hK: h \in H\}$. По основной теореме о гомоморфизме, $HK / K \cong H / (K \cap H)$.
+	Пусть $\phi := \pi|_H : H \to G/ K$. Тогда $\ke \phi = \ke\pi \cap H = K \cap H$, откуда $K \cap H \normal H$. $\im \phi = \{\ol{h}: h \in H\} = \{hK: h \hm\in H\} = HK / K$, поскольку $HK / K \hm= \{hkK: h \in H, k \hm\in K\} = \{hK: h \in H\}$. По основной теореме о гомоморфизме, $HK / K \cong H / (K \cap H)$.
 \end{proof}
 
 \begin{theorem}[Вторая теорема об изоморфизме, или теорема о соответствии]
-	Пусть $G$ "--- группа, $K \normal G$. Тогда каждой подгруппе $H$ такой, что $K \le H \le G$, соответствует подгруппа $\overline{H} = H / K \hm\le G / K = \overline{G}$, причем соответствие $H \mapsto \overline{H}$ "--- биекция между подгруппами вида $K \le H \le G$ и подгруппами $\overline{H} \le \overline{G}$. Более того, если $K \le H \le G$, то $H \normal G \Leftrightarrow \overline{H} \normal \overline{G}$, и в этом случае $G / H \cong \overline{G} / \overline{H}$.
+	Пусть $G$ "--- группа, $K \normal G$. Тогда каждой подгруппе $H$ такой, что $K \le H \le G$, соответствует подгруппа $\ol{H} = H / K \hm\le G / K = \ol{G}$, причем соответствие $H \mapsto \ol{H}$ "--- биекция между подгруппами вида $K \le H \le G$ и подгруппами $\ol{H} \le \ol{G}$. Более того, если $K \le H \le G$, то $H \normal G \Leftrightarrow \ol{H} \normal \ol{G}$, и в этом случае $G / H \cong \ol{G} / \ol{H}$.
 \end{theorem}
 
 \begin{proof}~
 	\begin{enumerate}
-		\item Рассмотрим канонический эпиморфизм $\pi: G \hm\to G / K = \overline{G}$. Тогда $\forall K \le H \le G: \pi(H) =\overline{H} = H / K \le G / K$. С другой стороны, $\forall L \le \overline{G}: \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \overline{G}: \pi(\pi^{-1}(L)) = L$.
+		\item Рассмотрим канонический эпиморфизм $\pi: G \hm\to G / K = \ol{G}$. Тогда $\forall K \le H \le G: \pi(H) =\ol{H} = H / K \le G / K$. С другой стороны, $\forall L \le \ol{G}: \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
 		
-		\item Если $H \normal G$, то $\forall g \in G: gH = Hg$, поэтому, применяя эпиморфизм $\pi$, получаем, что $\forall \overline{g} \in \overline{G}: \overline{g}\overline{H} = \overline{H}\overline{g}$, то есть $\overline{H} \normal \overline{G}$. Пусть теперь, наоборот, $\overline{H} \normal \overline{G}$. Рассмотрим канонический эпиморфизм $\pi': \overline{G} \to \overline{G} / \overline{H}$. Тогда $\phi := \pi'\circ\pi: G \hm\to \overline{G} \hm\to \overline{G} / \overline{H}$ "--- тоже эпиморфизм, причем $\ke\phi = \pi^{-1}(\pi'^{-1}(\overline{H})) \hm= \pi^{-1}(\overline{H}) = H$. Значит, $H \normal G$, и, по основной теореме о гомоморфизме, $\overline{G} / \overline{H} \cong G / H$.
+		\item Если $H \normal G$, то $\forall g \in G: gH = Hg$, поэтому, применяя эпиморфизм $\pi$, получаем, что $\forall \ol{g} \in \ol{G}: \ol{g}\ol{H} = \ol{H}\ol{g}$, то есть $\ol{H} \normal \ol{G}$. Пусть теперь, наоборот, $\ol{H} \normal \ol{G}$. Рассмотрим канонический эпиморфизм $\pi': \ol{G} \to \ol{G} / \ol{H}$. Тогда $\phi := \pi'\circ\pi: G \hm\to \ol{G} \hm\to \ol{G} / \ol{H}$ "--- тоже эпиморфизм, причем $\ke \phi = \pi^{-1}(\pi'^{-1}(\ol{H})) \hm= \pi^{-1}(\ol{H}) = H$. Значит, $H \normal G$, и, по основной теореме о гомоморфизме, $\ol{G} / \ol{H} \cong G / H$.
 	\end{enumerate}
 \end{proof}
 
 \begin{exercise}
-	Укажите в явном виде изоморфизм $G / H \hm\to \overline{G} / \overline{H}$ из предыдущей теоремы.
+	Укажите в явном виде изоморфизм $G / H \hm\to \ol{G} / \ol{H}$ из предыдущей теоремы.
 \end{exercise}
 
 \begin{solution}
-	В общем случае, при гомоморфизме групп $\phi: G_1 \to G_2$ изоморфизм из основной теоремы имеет вид $g_1\ke\phi \mapsto \phi(g_1)$. В теореме выше это отображение принимает следующий вид: $gH \hm\mapsto \phi(g) = \pi'(\pi(g)) = \overline{g}\overline{H}$.
+	В общем случае, при гомоморфизме групп $\phi: G_1 \to G_2$ изоморфизм из основной теоремы имеет вид $g_1\ke\phi \mapsto \phi(g_1)$. В теореме выше это отображение принимает следующий вид: $gH \hm\mapsto \phi(g) = \pi'(\pi(g)) = \ol{g}\ol{H}$.
 \end{solution}
 
 \begin{proposition}
@@ -198,6 +257,6 @@
 \begin{example} Рассмотрим несколько примеров применения теорем об изоморфизме:
 	\begin{enumerate}
 		\item Множество $V_4 = \{e, (12)(34), (13)(24), (14)(23)\} \subset S_4$ "--- это подгруппа в $S_4$ (\textit{четверная группа Клейна}), причем $V_4 \normal S_4$. Рассмотрим $S_3 \le S_4$, $S_3 \cap V_4 = \{e\}$. По первой теореме об изоморфизме, $S_3V_4 / V_4 \cong S_3 / \{S_3 \cap V_4\} = S_3$. Поскольку $|S_3V_4| = 24$, то $S_3V_4 = S_4$ и $S_4 / V_4 \cong S_3$.
-		\item Рассмотрим $\Z_n = \Z / n\Z$. По второй теореме об изоморфизме, $\forall \overline{H} \le Z_n: \overline{H} \mapsto H$, $n\Z \le H \le \Z$. Поскольку $\forall H \le \Z: H = k\Z$, это возможно только тогда, когда $k\mid n$. Значит, все подгруппы в $\Z_n$ "--- это $\overline{k\Z} \hm= k\Z_n$, $k\mid n$. Более того, $\Z_n / k\Z_n \cong \Z / k\Z = \Z_k$.
+		\item Рассмотрим $\Z_n = \Z / n\Z$. По второй теореме об изоморфизме, $\forall \ol{H} \le Z_n: \ol{H} \mapsto H$, $n\Z \le H \le \Z$. Поскольку $\forall H \le \Z: H = k\Z$, это возможно только тогда, когда $k\mid n$. Значит, все подгруппы в $\Z_n$ "--- это $\ol{k\Z} \hm= k\Z_n$, $k\mid n$. Более того, $\Z_n / k\Z_n \cong \Z / k\Z = \Z_k$.
 	\end{enumerate}
 \end{example}

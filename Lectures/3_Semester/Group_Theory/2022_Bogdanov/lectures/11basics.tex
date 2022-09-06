@@ -84,7 +84,7 @@
 		
 		\item $\mathcal{O}_n = \{A \in M_n(\R): A^TA = E\} \le \GL_n(\R)$ - группа ортогональных матриц
 		
-		\item $\mathcal{U}_n = \{A \in M_n(\Cm): A^T\overline{A} = E\} \le \GL_n(\Cm)$ - группа унитарных матриц
+		\item $\mathcal{U}_n = \{A \in M_n(\Cm): A^T\ol{A} = E\} \le \GL_n(\Cm)$ - группа унитарных матриц
 		
 		\item $\mathbb{T} = \{z \in \Cm \colon |z| = 1\} \le \Cm^*$
 		
@@ -141,9 +141,12 @@
 \begin{proposition}
 	Пусть $G$ "--- группа, $H \le G$, $a, b \in G$. Тогда следующие утверждения эквивалентны:
 	\begin{enumerate}
-		\item $aH \cap bH \ne \emptyset$
+		\item $aH \cap bH \neq \emptyset$
+		
 		\item $b^{-1}a \in H$
+		
 		\item $aH = bH$
+		
 		\item $a \in bH$
 	\end{enumerate}
 \end{proposition}
