@@ -1,0 +1,85 @@
+name: Build and deploy LaTeX
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+  
+      - id: set-matrix
+        run: |
+          python -c '
+          with open("current_courses.txt") as f:
+            result = []
+            for line in f.readlines():
+              if line.strip():
+                result.append(repr(line.strip()))
+            print("::set-output name=matrix::[", ", ".join(result), "]", sep="")
+          '
+
+  build:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        course: ${{fromJson(needs.prepare.outputs.matrix)}}
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: PrepareBuild
+        run: |
+          pwd
+          mkdir build
+          BRANCH_NAME=${{ matrix.course }}
+          echo "BRANCH_NAME=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+          BRANCH_ARGUMENTS=(${BRANCH_NAME//\// })
+          TYPE=${BRANCH_ARGUMENTS[0]}
+          SEMESTER=${BRANCH_ARGUMENTS[1]}
+          SUBJECT_NAME=${BRANCH_ARGUMENTS[2]}
+          CONSPECT_NAME=${BRANCH_ARGUMENTS[3]}
+          
+          case ${TYPE} in
+            l)
+              TYPE="Lectures"
+              ;;
+            s)
+              TYPE="Seminars"
+              ;;
+            e)
+              TYPE="Exams"
+              ;;
+            *)
+              TYPE="Other"
+              ;;
+          esac
+          
+          SEMESTER="${SEMESTER}_Semester"
+          echo "TYPE=$(echo ${TYPE})" >> $GITHUB_ENV
+          echo "SEMESTER=$(echo ${SEMESTER})" >> $GITHUB_ENV
+          echo "SUBJECT_NAME=$(echo ${SUBJECT_NAME})" >> $GITHUB_ENV
+          echo "CONSPECT_NAME=$(echo ${CONSPECT_NAME})" >> $GITHUB_ENV
+        id: extract_branch
+
+      - name: Build
+        uses: xu-cheng/latex-action@v2
+        env:
+          CONSPECT_NAME: ${{ env.CONSPECT_NAME }}
+        with:
+          root_file: main.tex
+          working_directory: "${{ env.TYPE }}/${{ env.SEMESTER }}/${{ env.SUBJECT_NAME }}/${{ env.CONSPECT_NAME }}"
+          args: -output-dir=../../../../build
+          compiler: pdflatex
+          post_compile: "pdflatex -output-dir=$GITHUB_WORKSPACE/build main.tex"
+
+      - name: Upload
+        run: |
+          set -o pipefail
+          URL=$(curl -f --silent --get --data-urlencode 'path=latex_lectures_club/${{ env.CONSPECT_NAME}}.pdf' --header 'Authorization: ${{ secrets.YANDEX_OAUTH }}' 'https://cloud-api.yandex.net/v1/disk/resources/upload' | jq -r '.["href"]')
+          curl -f --silent -X PUT --data-binary '@build/main.pdf' --header 'Authorization: ${{ secrets.YANDEX_OAUTH }}' ${URL}
