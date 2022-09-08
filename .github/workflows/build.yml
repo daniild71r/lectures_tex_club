@@ -26,6 +26,7 @@ jobs:
           for line in targets:
             if line.strip():
               result.append(repr(line.strip()))
+          raise Exception("::set-output name=matrix::[" + ", ".join(result) + "]")
           print("::set-output name=matrix::[", ", ".join(result), "]", sep="")
           
           # print("::set-output name=matrix::['", "', '".join(targets), "']", sep="")
