@@ -22,6 +22,7 @@ jobs:
           import os
 
           targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
+          raise Exception("::set-output name=matrix::[" + ", ".join(targets) + "]")
           print("::set-output name=matrix::[", ", ".join(targets), "]", sep="")
           '
 
