@@ -13,15 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
   
-      - id: set-matrix
+      - name: Get targets
+        id: get-targets
         run: |
           python -c '
-          with open("current_courses.txt") as f:
-            result = []
-            for line in f.readlines():
-              if line.strip():
-                result.append(repr(line.strip()))
-            print("::set-output name=matrix::[", ", ".join(result), "]", sep="")
+          import json
+
+          targets = json.load(open("config.json", "r"))["${GITHUB_REF#refs/heads/}"]
+          # with open("current_courses.txt") as f:
+          #   result = []
+          #   for line in f.readlines():
+          #     if line.strip():
+          #       result.append(repr(line.strip()))
+            print("::set-output name=matrix::[", ", ".join(targets), "]", sep="")
           '
 
   build:
@@ -34,6 +38,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Configure build
+        id: configure-build
         run: |
           pwd
           mkdir build
@@ -64,9 +69,9 @@ jobs:
 
           FULL_PATH="${TYPE}/${SEMESTER}/${SUBJECT_NAME}/${CONSPECT_NAME}"
           echo "FULL_PATH=$(echo ${FULL_PATH})" >> ${GITHUB_ENV}
-        id: extract_branch
 
       - name: Build
+        id: build
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
@@ -76,7 +81,13 @@ jobs:
           post_compile: "pdflatex -output-dir=${GITHUB_WORKSPACE}/build main.tex"
 
       - name: Upload
+        id: upload
         run: |
-          set -o pipefail
-          URL=$(curl -f --silent --get --data-urlencode 'path=Lectures Tex Club/${{ env.FULL_PATH }}.pdf' --data-urlencode 'overwrite=true' --header 'Authorization: ${{ secrets.YANDEX_OAUTH_TOKEN }}' 'https://cloud-api.yandex.net/v1/disk/resources/upload' | jq -r '.["href"]')
-          curl -f --silent -X PUT --data-binary '@build/main.pdf' --header 'Authorization: ${{ secrets.YANDEX_OAUTH_TOKEN }}' ${URL}
+          URL=$(curl -f --silent --get \
+          --data-urlencode 'path=Lectures Tex Club/${{ env.FULL_PATH }}.pdf' \
+          --data-urlencode 'overwrite=true' \
+          --header 'Authorization: ${{ secrets.YANDEX_OAUTH_TOKEN }}' \
+          'https://cloud-api.yandex.net/v1/disk/resources/upload' | jq -r '.["href"]')
+
+          curl -f --silent -X PUT --data-binary '@build/main.pdf' \
+          --header 'Authorization: ${{ secrets.YANDEX_OAUTH_TOKEN }}' ${URL}
