@@ -21,7 +21,14 @@ jobs:
           import json
           import os
           targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
-          print("::set-output name=matrix::['", "', '".join(targets), "']", sep="")
+
+          result = []
+          for line in targets:
+            if line.strip():
+              result.append(repr(line.strip()))
+          print("::set-output name=matrix::[", ", ".join(result), "]", sep="")
+          
+          # print("::set-output name=matrix::['", "', '".join(targets), "']", sep="")
           '
 
   build:
