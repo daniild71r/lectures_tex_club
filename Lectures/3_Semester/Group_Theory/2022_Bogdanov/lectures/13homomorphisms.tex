@@ -216,6 +216,17 @@
 	Эпиморфизм $\pi$ называется \textit{каноническим эпиморфизмом}.
 \end{note}
 
+\begin{example}
+	В группе перестановок у нас есть функция знака, которая тоже является гомоморфизмом (при $n \ge 2$):
+	\[
+		\sgn \colon S_n \to \Cm_2 = (\{\pm 1\}, \cdot) \cong \Z_2
+	\]
+	Верно 2 вещи: $\im \sgn = \Cm_2$ и $\ke \sgn = A_n \normal S_n$. Стало быть
+	\[
+		S_n / A_n \cong \Cm_2 \cong \Z_2и
+	\]
+\end{example}
+
 \begin{theorem}[Первая теорема об изоморфизме]
 	Пусть $G$ "--- группа, $K \normal G$, $H \le G$. Тогда $HK = KH \le G$, $K \cap H \normal H$ и $HK / K \cong H / (K \cap H)$.
 \end{theorem}
@@ -226,25 +237,51 @@
 	Пусть $\phi := \pi|_H : H \to G/ K$. Тогда $\ke \phi = \ke\pi \cap H = K \cap H$, откуда $K \cap H \normal H$. $\im \phi = \{\ol{h}: h \in H\} = \{hK: h \hm\in H\} = HK / K$, поскольку $HK / K \hm= \{hkK: h \in H, k \hm\in K\} = \{hK: h \in H\}$. По основной теореме о гомоморфизме, $HK / K \cong H / (K \cap H)$.
 \end{proof}
 
+\begin{example}
+	Положим $G = S_4$, за $H = S_3$, а $K = V_4 = \{e, (1\ 2)(3\ 4), (1\ 3)(2\ 4), (1\ 4)(2\ 3)\}$ - четверная группа Клейна. Заметим, что $V_4 \normal S_4$ - это так, потому что $V_4$ состоит из двух классов сопряженности. Более того, $HK = S_3 V_4 = S_4$. Стало быть
+	\[
+		S_4 / V_4 = HK / K \cong H / (H \cap K) = S_3 / \{e\} \cong S_3
+	\]
+\end{example}
+
 \begin{theorem}[Вторая теорема об изоморфизме, или теорема о соответствии]
-	Пусть $G$ "--- группа, $K \normal G$. Тогда каждой подгруппе $H$ такой, что $K \le H \le G$, соответствует подгруппа $\ol{H} = H / K \hm\le G / K = \ol{G}$, причем соответствие $H \mapsto \ol{H}$ "--- биекция между подгруппами вида $K \le H \le G$ и подгруппами $\ol{H} \le \ol{G}$. Более того, если $K \le H \le G$, то $H \normal G \Leftrightarrow \ol{H} \normal \ol{G}$, и в этом случае $G / H \cong \ol{G} / \ol{H}$.
+	Пусть $G$ "--- группа, $K \normal G$. 
+	\begin{enumerate}
+		\item Для любой подгруппы $H$ такой, что $K \le H \le G$, можно поставить в соответствие другую, $\ol{H}$:
+		\[
+			\ol{H} = H / K \le G / K = \ol{G}
+		\]
+		При этом соответствие $H \mapsto \ol{H}$ - это биекция между между множством подгрупп $H$ и подгрупп в $\ol{G}$.
+		
+		\item При этом $H \normal G \lra \ol{H} \normal \ol{G}$, и в этом случае
+		\[
+			G / H \cong \ol{G} / \ol{H}
+		\]
+	\end{enumerate}
 \end{theorem}
 
 \begin{proof}~
 	\begin{enumerate}
-		\item Рассмотрим канонический эпиморфизм $\pi: G \hm\to G / K = \ol{G}$. Тогда $\forall K \le H \le G: \pi(H) =\ol{H} = H / K \le G / K$. С другой стороны, $\forall L \le \ol{G}: \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
+		\item Рассмотрим канонический эпиморфизм $\pi: G \to G / K = \ol{G}$. Тогда
+		\[
+			\forall K \le H \le G: \pi(H) =\ol{H} = H / K \le G / K
+		\]
+		С другой стороны, $\forall L \le \ol{G}\ \ \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
 		
 		\item Если $H \normal G$, то $\forall g \in G: gH = Hg$, поэтому, применяя эпиморфизм $\pi$, получаем, что $\forall \ol{g} \in \ol{G}: \ol{g}\ol{H} = \ol{H}\ol{g}$, то есть $\ol{H} \normal \ol{G}$. Пусть теперь, наоборот, $\ol{H} \normal \ol{G}$. Рассмотрим канонический эпиморфизм $\pi': \ol{G} \to \ol{G} / \ol{H}$. Тогда $\phi := \pi'\circ\pi: G \hm\to \ol{G} \hm\to \ol{G} / \ol{H}$ "--- тоже эпиморфизм, причем $\ke \phi = \pi^{-1}(\pi'^{-1}(\ol{H})) \hm= \pi^{-1}(\ol{H}) = H$. Значит, $H \normal G$, и, по основной теореме о гомоморфизме, $\ol{G} / \ol{H} \cong G / H$.
 	\end{enumerate}
 \end{proof}
 
+\begin{example}
+	Рассмотрим $G = \Z$ и $G \ge n\Z \ge k\Z$, тогда $n \div k$, $\ol{H} = n\Z / k\Z = n \cdot \Z_k$. Вторая теорема утверждает, что
+	\[
+		\ol{G} / \ol{H} = \Z_k / n\Z_k \cong \Z_n
+	\]
+\end{example}
+
 \begin{exercise}
 	Укажите в явном виде изоморфизм $G / H \hm\to \ol{G} / \ol{H}$ из предыдущей теоремы.
 \end{exercise}
-
-\begin{solution}
-	В общем случае, при гомоморфизме групп $\phi: G_1 \to G_2$ изоморфизм из основной теоремы имеет вид $g_1\ke\phi \mapsto \phi(g_1)$. В теореме выше это отображение принимает следующий вид: $gH \hm\mapsto \phi(g) = \pi'(\pi(g)) = \ol{g}\ol{H}$.
-\end{solution}
 
 \begin{proposition}
 	Пусть $G$ "--- конечная группа, $H, K \le G$. Тогда $|HK| = \frac{|H||K|}{|H\cap K|}$.
@@ -253,10 +290,3 @@
 \begin{proof}
 	Рассмотрим отображение $\delta: H\times K \to G$ такое, что $\forall h \hm\in H: \forall k \in K: \delta(h, k) = hk$. Тогда $\delta(h_1, k_1) = \delta(h_2, k_2) \hm\Leftrightarrow h_1k_1 = h_2k_2 \hm\Leftrightarrow h_2^{-1}h_1 = k_2k_1^{-1} = x \in H \cap K$, то есть $h_1 = h_2x$, $k_1 = x^{-1}k_2$. Значит, $|HK||H \cap K| = |H \times K| = |H||K|$.
 \end{proof}
-
-\begin{example} Рассмотрим несколько примеров применения теорем об изоморфизме:
-	\begin{enumerate}
-		\item Множество $V_4 = \{e, (12)(34), (13)(24), (14)(23)\} \subset S_4$ "--- это подгруппа в $S_4$ (\textit{четверная группа Клейна}), причем $V_4 \normal S_4$. Рассмотрим $S_3 \le S_4$, $S_3 \cap V_4 = \{e\}$. По первой теореме об изоморфизме, $S_3V_4 / V_4 \cong S_3 / \{S_3 \cap V_4\} = S_3$. Поскольку $|S_3V_4| = 24$, то $S_3V_4 = S_4$ и $S_4 / V_4 \cong S_3$.
-		\item Рассмотрим $\Z_n = \Z / n\Z$. По второй теореме об изоморфизме, $\forall \ol{H} \le Z_n: \ol{H} \mapsto H$, $n\Z \le H \le \Z$. Поскольку $\forall H \le \Z: H = k\Z$, это возможно только тогда, когда $k\mid n$. Значит, все подгруппы в $\Z_n$ "--- это $\ol{k\Z} \hm= k\Z_n$, $k\mid n$. Более того, $\Z_n / k\Z_n \cong \Z / k\Z = \Z_k$.
-	\end{enumerate}
-\end{example}
