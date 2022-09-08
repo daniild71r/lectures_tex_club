@@ -16,7 +16,7 @@ jobs:
       - name: Get targets
         id: get-targets
         run: |
-          BRANCH=${GITHUB_REF#refs/heads/}
+          export BRANCH=${GITHUB_REF#refs/heads/}
           python -c '
           import json
           import os
