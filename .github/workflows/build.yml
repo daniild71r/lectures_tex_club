@@ -9,7 +9,7 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.get-targets.outputs.matrix }}
     steps:
       - uses: actions/checkout@v2
   
@@ -20,9 +20,7 @@ jobs:
           python -c '
           import json
           import os
-
           targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
-          raise Exception("::set-output name=matrix::[" + ", ".join(targets) + "]")
           print("::set-output name=matrix::[", ", ".join(targets), "]", sep="")
           '
 
