@@ -4,7 +4,9 @@
 \df{$\forall x \; P(x)$}{for all $x$ $P(x)$ is true.}
 \df{$\exists x \; P(x)$}{exists $x$ such that $P(x)$ is true.}
 \df{$\exists! x \; P(x)$}{exists unique $x$ such that $P(x)$ is true.
-\[ \exists! x \; P(x) \defev \exists x \; P(x) \wedge (\forall y \; P(y) \Rightarrow y = x) \]%
+\[ \exists! x \; P(x) \defev \exists x \; P(x) \wedge (\forall y \; P(y) \Rightarrow y = x) \]
+\[ \overline{\forall x \; P(x)} \Leftrightarrow \exists x \; \overline{P(x)} \]
+\[ \overline{\exists x \; P(x)} \Leftrightarrow \forall x \; \overline{P(x)} \]
 }
 
 \begin{equation}
@@ -174,7 +176,7 @@ For $\mathcal{F}$ -- an arbitrary family of sets
 \end{proof}
 
 \begin{theorem}
-    $ \NN\text{ is an inductive subset of } \RR;\ \nexists A \subsetneq \RR, A \text{ is inductive}$.
+    $ \NN\text{ is an inductive subset of } \RR;\ \nexists A \subsetneq \NN, A \text{ is inductive}$.
 \end{theorem}
 \begin{proof}\phantom\\
     \begin{enumerate}
@@ -205,4 +207,100 @@ For $\mathcal{F}$ -- an arbitrary family of sets
     Construct $M_1 \defeq \{x \sconstr x \in \NN,\; (m + x) \in \NN\}$. Obviously, $M_1$ satisfies requirements of \ref{minduction} $\thus M_1 = \NN \thus n \in M_1 \thus m + n \in \NN$.
 
     Construct $M_2 \defeq \{x \sconstr x \in \NN,\; m \cdot x \in \NN\}$. If $x \in M_2$, then $m \cdot (x + 1) = m \cdot x + m \in \NN$ (by part 1 as $x \in M_2 \Rightarrow m \cdot x \in \NN$, $m \in \NN$). Thus, $M_2$ satisfies requirements of \ref{minduction} $\thus M_2 = \NN \thus n \in M_2 \thus m \cdot n \in \NN$.
+\end{proof}
+
+\subsection{Supremum and infimum}
+
+For $A \subseteq R$
+\begin{gather}
+    x \text{ is an upper bound of $A$} \defev \forall y \in A \; y \le x \\
+    x \text{ is an lower bound of $A$} \defev \forall y \in A \; x \le y
+\end{gather}
+\df{Bounded above set}{a set which does have upper bound.}
+\df{Unbounded above set}{a set which does not have upper bound.}
+\df{Bounded below set}{a set which does have lower bound.}
+\df{Unbounded below set}{a set which does not have lower bound.}
+\df{Bounded set}{a set which does have upper and lower bound.}
+\df{Unbounded set}{a set which does not have upper and lower bound.}
+
+For bounded above/below set $A$
+\begin{gather}
+    \sup{A} = x \defev \nexists y < x : y \text{ is an upper bound of } A \\
+    \inf{A} = x \defev \nexists y > x : y \text{ is an lower bound of } A
+\end{gather}
+
+For unbounded above/below set $A$
+\begin{gather}
+    \sup{A} = +\infty \\
+    \inf{A} = -\infty
+\end{gather}
+
+$\sup{A}$ is also called a supremum of $A$ or the exact upper bound of $A$. $\inf{A}$ is also called an infimum of $A$ or the exact lower bound of $A$.
+
+\begin{theorem}
+\label{supremumexun}
+    (Existence of supremum) For a bounded above set $A \subseteq \RR$ $\exists! \sup{A}$.
+\end{theorem}
+\begin{proof}
+    Construct $B \defeq \{b \in \RR \sconstr b \text{ -- upper bound of $A$}\} $.
+
+    $\forall a \in A \; b \in B \; a \le b \thus \text{(axiom 16) } {\exists s \in \RR : \forall a \in A \; b \in B \; a \le s \le b} \thus {s \in B}$.
+
+    Suppose $\sup{A} < s$, then $\sup{A} \in B \thus s \le m$ -- contradiction $\thus \sup{A} = s$.
+
+    Suppose $x : \sup{A} = x, x \ne s \thus x \in B \thus s < x$, but $\forall y < x$ $y$ must not be an upper bound $\thus s $ is not an upper bound -- contradiction.
+\end{proof}
+
+\begin{theorem}
+    (Archimedean principle) $\forall x \in \RR \; \exists n \in \NN \; n > x$
+\end{theorem}
+\begin{proof}
+    Suppose $\overline{\forall x \in \RR \; \exists n \in \NN \; n > x} \Leftrightarrow \exists x \in \RR \; \forall n \in \NN \; n \le x \thus \NN$ is bounded above. By \ref{supremumexun} $\exists! s \in \RR, s = \sup{\NN} \thus (s - 1) \text{ is not an upper bound of $\NN$} \thus \exists m \in \NN : m > s - 1 \hm{\thus} m + 1 > s \thus (m + 1) \notin \NN$ -- contradiction as $\NN$ is inductive.
+\end{proof}
+
+\begin{note}
+    If $A \subseteq \R$, then $\sup{A}$ might either $\in A$ or $\notin A$.
+\end{note}
+
+\begin{theorem}
+    sup B = inf A
+\end{theorem}
+
+\subsection{Limit of sequence}
+\begin{equation}
+    \begin{gathered}
+        \fnis{x} \NN \rightarrow \RR \text{ -- sequence} \\
+        \forall n \in \NN : x_n \defeq x(n) \text{ -- $n^{\rm th}$ element of a sequence}
+    \end{gathered}
+\end{equation}
+
+For sequence $x(n)$
+\begin{equation}
+    \lim_{n \to \infty} x(n) \defev a \in \RR,\; \forall \varepsilon > 0 \; \exists N \in \NN \; \forall n \ge N \; \abs{x_n - a} < \varepsilon
+\end{equation}
+$\lim_{n \rightarrow \infty} x(n)$ is called the limit of a sequence.
+
+\begin{equation}
+    U_\varepsilon(a) \defeq \left(a - \varepsilon;\; a + \varepsilon\right); \quad
+    U_\varepsilon(+\infty) \defeq \left(\frac{1}{\varepsilon};\; +\infty\right); \quad
+    U_\varepsilon(-\infty) \defeq \left(-\infty;\; -\frac{1}{\varepsilon}\right)
+\end{equation}
+
+\df{Infinitesimal sequence}{a sequence with $\lim_{n\to\infty} x(n) = 0$.}
+
+\begin{theorem}
+    For a sequence $a(n)$ $\exists$ no more than one $x \in R : \lim_{n \rightarrow \infty} a(n) = x$.
+\end{theorem}
+\begin{proof}
+    Suppose there are $x \ne y$, $\lim_{n \rightarrow \infty} a(n) = x$, $\lim_{n \rightarrow \infty} a(n) = y$. Let $\varepsilon = \frac{\abs{b - a}}{2}$, then $U_\varepsilon(a) \cup U_\varepsilon(b) = \varnothing$ (as ...).
+
+    \begin{multline*}
+        \begin{rcases*}
+            \exists N_1 : \forall n \ge N_1 \; x_n \in U_\varepsilon(a) \\
+            \exists N_2 : \forall n \ge N_2 \; x_n \in U_\varepsilon(b)
+        \end{rcases*}
+        \thus \forall n \ge \max(N_1, N_2) \; x_n \in U_\varepsilon(a) \land x_n \in U_\varepsilon(b)
+        \thus \\ x_n \in U_\varepsilon(a) \cup U_\varepsilon(b)
+        \thus x_n \in \varnothing \text{ -- contradiction}
+    \end{multline*}
 \end{proof}
