@@ -22,7 +22,7 @@ jobs:
           import os
 
           targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
-          raise Exception(", ".join(targets), "]")
+          raise Exception(eval('print("::set-output name=matrix::[", ", ".join(targets), "]", sep="")'))
           # with open("current_courses.txt") as f:
           #   result = []
           #   for line in f.readlines():
