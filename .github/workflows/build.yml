@@ -16,10 +16,12 @@ jobs:
       - name: Get targets
         id: get-targets
         run: |
+          BRANCH=${GITHUB_REF#refs/heads/}
           python -c '
           import json
+          import os
 
-          targets = json.load(open("config.json", "r"))["${GITHUB_REF#refs/heads/}"]
+          targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
           # with open("current_courses.txt") as f:
           #   result = []
           #   for line in f.readlines():
