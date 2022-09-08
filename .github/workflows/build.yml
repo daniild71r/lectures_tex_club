@@ -81,5 +81,5 @@ jobs:
       - name: Upload
         run: |
           set -o pipefail
-          URL=$(curl -f --silent --get --data-urlencode 'path=latex_lectures_club/${{ env.CONSPECT_NAME}}.pdf' --header 'Authorization: ${{ secrets.YANDEX_OAUTH }}' 'https://cloud-api.yandex.net/v1/disk/resources/upload' | jq -r '.["href"]')
+          URL=$(curl -f --silent --get --data-urlencode 'path=latex_lectures_club/${{ env.CONSPECT_NAME}}.pdf' --data-urlencode 'overwrite=true' --header 'Authorization: ${{ secrets.YANDEX_OAUTH }}' 'https://cloud-api.yandex.net/v1/disk/resources/upload' | jq -r '.["href"]')
           curl -f --silent -X PUT --data-binary '@build/main.pdf' --header 'Authorization: ${{ secrets.YANDEX_OAUTH }}' ${URL}
