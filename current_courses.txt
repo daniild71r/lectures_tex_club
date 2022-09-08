@@ -1,2 +1,4 @@
 l/1/Calculus/2022_Gusev_en
 l/1/General_Physics/2022_Klimenok
+l/1/Algorithms_and_Data_Structures/2022_Ruhovich
+l/1/Analytic_Geometry/2022_Podlipskij
