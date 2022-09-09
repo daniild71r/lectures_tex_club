@@ -1,0 +1,136 @@
+\section{Big $\mathcal{O}$ notation}
+
+\begin{definition}
+    For $\fnis{f, g} \mathbb{N} \rightarrow \mathbb{R}^{+}$:
+    \[ f(n) = \mathcal{O}(g(n)) \defev \exists C > 0, N \in \mathbb{N}: \forall n > N \; f(n) \le C \cdot g(n) \]
+    \[ f(n) = \Omega(g(n)) \defev \exists c > 0, N \in \mathbb{N}: \forall n > N \; f(n) \ge c \cdot g(n) \]
+    \[ f(n) = \Theta(g(n)) \defev f(n) = \Omega(g(n)) \wedge f(n) = \mathcal{O}(g(n)) \]
+\end{definition}
+
+\begin{example}
+    Let $T(n) = 2 T(\frac{n}{2}) + \Theta(n)$, then
+    \[ T(n) = \Theta(n \log_2{n}) \]
+\end{example}
+\begin{proof}\phantom\\
+\begin{enumerate}
+\item
+    Prove $T(n) = \mathcal{O}(n \log_2{n})$, i. e. $\exists C > 0 : T(n) \le Cn \log_2{n}$. \\
+    \textbf{Base:}
+        \[ T(2) \le 2C, T(3) \le C \cdot 3 \log_2{3} \text{ -- true for sufficiently large $C$} \]
+    \textbf{Induction step:}
+        \[
+            T(n) \le
+            2 T(\frac{n}{2}) + \mathcal{O}(n) \le
+            2 T(\frac{n}{2}) + B n \le
+        \]\[
+            \le 2 C \frac{n}{2} \log_2{\frac{n}{2}} + Bn =
+            C n \log_2{n} + (B - C)n \le C n \log_2{n}
+            \text{-- for $C \ge B$}
+        \]
+\item
+    \[ T(n) = \Omega(n \log_2{n}) \]
+    By definition, we need to prove $\exists c > 0 : T(n) \le cn \log_2{n}$. \\
+    Base: $T(1) \ge c \cdot 0$ -- true \\
+    Induction step: $T(n) \ge 2T(\frac{n}{2}) + bn \ge cn \log_2{n} + (b - c) n \ge cn \log_2{n} $ -- for $c \le b$.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+    Let $T(n) = 2 T\left(\floor{\frac n 2}\right) + \Theta(n)$, then
+    \[ T(n) = \mathcal{O}(n \log_2 n) \]
+\end{example}
+\begin{proof}
+    \[ T(n) \le 2C \floor{\frac n 2} \log_2 \floor{\frac n 2} + Bn \le 2C \frac n 2 \log_2 \frac n 2 + Bn = C n \log_2 n + (B - C)n  \]
+\end{proof}
+
+
+\begin{example}
+    \[ T(n) = \Omega(n \log_2 n) \]
+\end{example}
+\begin{proof}
+    \[ T(n) \ge 2c \floor{\frac n 2} \log_2 \floor{\frac n 2} + bn \ge 2c \left(\frac n 2 - 1 \right) \log_2 \floor{\frac n 2} + bn = c (n - 2) \log_2 \floor{\frac n 2} + bn \ge (1) \]
+    \[ n \ge 2 \implies \floor{\frac n 2} > \frac n 4 \]
+    \[ (1) \ge c (n - 2) \log_2 \frac n 4 + bn = c (n - 2) (\log_2 n - 2) + bn = c n \log_2 n + 4c - 2c \log_2 n - 2cn + bn \]
+    TODO
+\end{proof}
+
+\begin{example}
+    Let $T(n) = T\left(\floor{\frac n 2}\right) + T\left(\ceil{\frac n 2}\right) + 1$, then
+    \[ T(n) = \Theta(n) \]
+\end{example}
+\begin{proof}
+    Suppose $T(n) \le Cn - D$: \\
+    \[ T(n) = T\left(\floor{\frac n 2}\right) + T\left(\ceil{\frac n 2}\right) + 1 \le C \left(\floor{\frac n 2} + \ceil{\frac n 2} \right) - 2D + 1 = Cn - D + (1 - D) \le Cn - D \]
+
+    Suppose $T(n) \ge cn$: \\
+    \[ T(n) = T\left(\floor{\frac n 2}\right) + T\left(\ceil{\frac n 2}\right) + 1 \ge c \left(\floor{\frac n 2} + \ceil{\frac n 2} \right) = cn \]
+\end{proof}
+
+\begin{example}\textbf{(Guess answer using substitution)} Let $ T(n) = 2 T(\ceil{\sqrt n}) + \log_2 n $, then
+    \[ T(n) = \mathcal{O}(\log_2 n \cdot \log_2 \log_2 n) \]
+\end{example}
+\begin{proof}
+    Let $S(x) = T(2 ^ x)$ and ignore ceiling on square root, $S(x) = 2 T(2 ^ {\frac x 2}) + x = 2S(\frac x 2) + x $.
+    Then we guess $S(x) = \mathcal{O}(x \log x)$ or $T(n) = \mathcal{O}(\log n \cdot \log \log n)$.
+
+    Suppose $ T(n) \le C \log_2 n \cdot \log_2 \log_2 n $:
+    \[
+        T(n) =
+        2 T(\ceil{\sqrt n}) + \log_2 n \le
+        2C \log_2{\ceil{\sqrt n}} \cdot \log_2 \log_2 {\ceil{\sqrt n}} + \log_2 n \le
+    \]\[
+        \le 2C \log_2{(2 \sqrt n)} \cdot \log_2 \log_2 {\ceil{\sqrt n}} + \log_2 n =
+        C \log_2{n} \cdot \log_2 \log_2 {\ceil{\sqrt n}} + 2C\log_2 \log_2 {\ceil{\sqrt n}} + \log_2 n \le
+    \]\[
+        \le C \log_2{n} \cdot \log_2 \left(\frac 1 2 \log_2 {n} + 1\right) + 2C\log_2 \log_2 {\ceil{\sqrt n}} + \log_2 n \le (\text{for } n \ge 4^{\sqrt{2} + 1})
+    \]\[
+        \le C \log_2{n} \cdot \log_2 \left(\frac{\log_2 {n}}{\sqrt{2}} \right) + 2C\log_2 \log_2 n + \log_2 n =
+    \]\[
+        = C \log_2{n} \cdot \log_2 \log_2 {n} + \left( 1 - \frac C 2 \right) \log_2{n} + 2C\log_2 \log_2 n
+    \]
+    The only thing is left is to kill the last term.
+    \[ 2C\log_2 \log_2 {\ceil{\sqrt n}} < \left(\frac C 2 - 1 \right) \log_2{n} \]
+\end{proof}
+
+\begin{theorem} (Master theorem)
+    $ \fnis{f} \mathbb{N} \rightarrow \mathbb{R^+};\; a, b > 0;\; T(n) = a T(\frac n b) + f(n) $, then
+    \begin{itemize}
+        \item $f(n) = \mathcal{O}\!\left(n^{\log_b a - \epsilon}\right)$, $\epsilon > 0$: $T(n) = \Theta\left( n^{log_b a} \right)$;
+        \item $f(n) = \Theta\!\left(n^{\log_b a}\right)$, $\epsilon > 0$: $T(n) = \Theta\left( n^{\log_b a} \log{n} \right)$;
+        \item $f(n) = \Omega\!\left(n^{\log_b a + \epsilon}\right)$, $\epsilon > 0$, $\forall n: a f(\frac{n}{b}) \le c f(n)$, $c < 1$: $T(n) = \Theta(f(n))$.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+Let $a = 1$, $T(n) = T(\floor{\frac n b}) + f(n)$.
+
+\begin{itemize}
+    \item $f(n) \le \frac{D}{n^\epsilon}$, then we should prove $T(n) = \Theta(1)$. Suppose $T(n) \le C - \frac E {n^\epsilon}$:
+    \[
+        T(n) =
+        T(\floor{\frac n b}) + f(n) \le
+        C - \frac E {\floor{\frac n b}^\epsilon} + \frac{D}{n^\epsilon} \le
+        C - \frac E {\left(\frac n b\right)^\epsilon} + \frac{D}{n^\epsilon} =
+        C - \frac{E b^\epsilon}{n^\epsilon} + \frac{D}{n^\epsilon} =
+        % C - \frac{1}{n^\epsilon} (D - E b^\epsilon}{n^\epsilon}
+    \]
+    Suppose $T(n) \ge c$:
+    \[ T(n) = T(\floor{\frac n b}) + f(n) \ge c + f(n) \ge c \]
+
+    \item $f(n) = \Theta(1)$, then we should prove $T(n) = \Theta(\log n)$. Suppose $T(n) \le C \log_b n$:
+    \[
+        T(n) =
+        T\left(\floor{\frac n b}\right) + f(n) \le
+        C \log_b {\frac n b} + D \le C \log_b n - C + D \le C \log_b n
+        \text{ -- true if } C > D
+    \]
+    Suppose $T(n) \ge c \log_b n$:
+    \[
+        T(n) =
+        % T\left(\floor{\frac n b}\right) + f(n) \gt
+    \]
+    TODO
+\end{itemize}
+
+Complete proof left for now.
+\end{proof}
