@@ -1,4 +1,8 @@
 {
   "main": ["l/5/TFCV/2021_Bunakov"],
-  "daniild71r": ["l/5/Functional_Analysis/2021_Konovalov"]
+  "daniild71r": ["l/5/Functional_Analysis/2021_Konovalov"],
+  "klishch_and_co":  [
+    "l/1/Algorithms_and_Data_Structures/2022_Ruhovich",
+  	"l/1/Calculus/2022_Gusev"
+  ]
 }
