@@ -1,0 +1,144 @@
+\section{Матрицы}
+\subsection{Базовые операции}
+
+\df{Матрица}{упорядоченный набор из $n \times m$ чисел, записанный в виде набора из $n$ строк $m$ столбцов.}
+\[ \bm{A} = \begin{pmatrix}
+    a_{11} & a_{12} & \ldots & a_{1m} \\
+    a_{21} & a_{22} & \ldots & a_{2m} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{n1} & a_{n2} & \ldots & a_{nm}
+\end{pmatrix} \]
+\df{Нулевая матрица $\bm{0}$}{матрица, состоящая из нулевых элементов.}
+\df{Матрица-строка}{матрица, состоящая из одной строки}
+\df{Матрица-столбец}{матрица, состоящая из одного столбца.}
+\df{Квадратная матрица}{матрица, у которой количество столбцов равно количеству строк.}
+\df{Главная диагональ}{элементы квадратной матрицы, у которых $i = j$.}
+\df{Единичная матрица $\bm{e}$}{квадратная матрица, элементы главной диагонали которой равны 1, остальные -- 0.}
+\df{Диагональная матрица}{квадратная матрица, элементы не на главной диагонали которой равны 0.}
+\df{Симметрическая/симметричная матрица}{квадратная матрица, у которой $\forall i, j \; a_{ij} = a_{ji}$.}
+\df{Кососимметрическая матрица}{\sloppy квадратная матрица, у которой ${\forall i, j \; a_{ij} = -a_{ji}}$.}
+Диагональные элементы кососимметрической матрицы равны 0.
+\df{Верхняя/нижняя треугольная матрица}{матрица, у которого элементы стоящие выше/ниже главной диагонали равны 0.}
+\begin{equation} \bm{A}_{nm} = \bm{B}_{nm} \defev \forall i, j \; a_{ij} = b_{ij} \end{equation}
+\begin{equation} \bm{C}_{nm} = \bm{A}_{nm} + \bm{B}_{nm} \defev \forall i, j \; c_{ij} = a_{ij} + b_{ij} \end{equation}
+\begin{equation} \bm{B}_{nm} = k \cdot \bm{A}_{nm} \defev \forall i, j \; b_{ij} = k \cdot a_{ij} \end{equation}
+\begin{equation} \bm{C}_{nm} = \bm{A}_{nm} + (-1) \cdot \bm{B}_{nm} \defev \forall i, j \; b_{ij} = k \cdot a_{ij} \end{equation}
+\begin{equation} \bm{B}_{mn} = \bm{A}_{nm}^T \defev \forall i, j \; b_{ij} = a_{ji} \end{equation}
+
+\begin{equation} \bm{A} = \bm{A}^T \implies \bm{A} \text{ -- симметрическая} \end{equation}
+\begin{equation} \bm{A} = -\bm{A}^T \implies \bm{A} \text{ -- кососимметрическая} \end{equation}
+
+\begin{equation} (\bm{A} + \bm{B})^T = \bm{A}^T + \bm{B}^T \end{equation}
+\begin{equation} (k \bm{A})^T = k \bm{A}^T \end{equation}
+\begin{equation} (\bm{A}^T)^T = \bm{A} \end{equation}
+
+\subsection{Определитель матрицы второго и третьего порядка}
+\df{Определитель (детерминант)}{функция, отображающая множество квадратных матриц на рациональные числа.
+\[ \abs{\bm{A}}; \quad \det{\bm{A}}; \quad \det\!\begin{pmatrix}
+    \ldots \\
+    \ldots \\
+\end{pmatrix} \]
+\[ \det(a) = a; \quad \det\!\begin{pmatrix}
+    a & b \\
+    c & d
+\end{pmatrix} = ad - bc \]
+\[ \det\!\begin{pmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+\end{pmatrix} = a_{11} \cdot (-1)^{1+1} \cdot \abs{\begin{matrix}
+    a_{22} & a_{23} \\
+    a_{32} & a_{33}
+\end{matrix}} + a_{12} \cdot (-1)^{1+2} \cdot \abs{\begin{matrix}
+    a_{21} & a_{23} \\
+    a_{31} & a_{33}
+\end{matrix}} + a_{13} \cdot (-1)^{1+3} \cdot \abs{\begin{matrix}
+    a_{21} & a_{22} \\
+    a_{31} & a_{32}
+\end{matrix}} = \]
+\[ = a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} - a_{11} a_{23} a_{32} - a_{12} a_{21} a_{33} - a_{13} a_{22} a_{31} \]
+}
+
+\begin{equation} \det \bm{A}^T = \det \bm{A} \end{equation}
+\begin{equation} \det \bm{A} = \sum_{s=1}^{n} a_{ks} \cdot (-1)^{k+s} \cdot M_{ks} \end{equation}
+\begin{equation} \det(t\bm{A_{nn}}) = t^n \det\bm{A} \end{equation}
+\begin{equation} \det(\bm{E}) = 1 \end{equation}
+\begin{equation} \det(\diag({a_{11},\; \ldots,\; a_{nn}})) = \prod_{i=1}^{n} a_{ii} \end{equation}
+\begin{equation} \det(\bm{A}) = \prod_{i=1}^{n} a_{ii}, \text{ где $\bm{A}$ -- треугольная матрица} \end{equation}
+Если в матрице поменять две строки/столбца местами, то определитель поменяет знак. \\
+Если к строке прибавить линейную комбинацию других строк, то определитель не изменится. \\
+Если в матрице есть нулевая строка/столбец или две одинаковых строки/стоблца, то определитель -- 0.
+
+
+\subsection{Системы линейных уравнений}
+\begin{equation*}
+    \begin{cases}
+        a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n} x_n = b_1 \\
+        \ldots \\
+        a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn} x_n = b_m
+    \end{cases}
+\end{equation*}
+
+\begin{equation}
+    \begin{pmatrix}
+        a_{11} & \ldots & a_{1n} \\
+        \vdots & \ddots & \vdots \\
+        a_{m1} & \ldots & a_{mn}
+    \end{pmatrix}\text{ -- матрица системы}
+\end{equation}
+
+\begin{equation}
+    \begin{pmatrix}
+        x_1 \\
+        \vdots \\
+        x_n
+    \end{pmatrix}\text{ -- cтолбец неизвестных}
+\end{equation}
+
+\begin{equation}
+    \begin{pmatrix}
+        b_1 \\
+        \vdots \\
+        b_m
+    \end{pmatrix}\text{ -- cтолбец свободных членов}
+\end{equation}
+
+\begin{equation}
+    \begin{pmatrix}
+        a_{11} & \ldots & a_{1n} & \vrule & b_1 \\
+        \vdots & \ddots & \vdots & \vrule & \vdots \\
+        a_{m1} & \ldots & a_{mn} & \vrule & b_m
+    \end{pmatrix}\text{ -- расширеная матрица системы}
+\end{equation}
+
+\df{Совместная система}{система, имеющая хотя бы одно решение.}
+\df{Однородная система}{стоблец свободных членов равен $\bm{0}$.}
+\begin{theorem} (Очевидно) Однородная система совместна. \end{theorem}
+
+\begin{theorem} (Теорема Крамора)
+    Пусть в системе линейных уравнений $\Delta = \abs{\begin{matrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{matrix}}$, тогда система имеет единственное решение согда $\Delta \ne 0$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\Delta \ne 0$, тогда определим $\Delta_1 = \abs{\begin{matrix}
+        b_1 & a_{12} \\
+        b_2 & a_{22}
+    \end{matrix}}$, $\Delta_2 = \abs{\begin{matrix}
+        a_{11} & b_1 \\
+        a_{21} & b_2
+    \end{matrix}}$.
+
+    \[ \begin{cases}
+        a_{11}x_1 + a_{12}x_2 = b_1 \\
+        a_{21}x_1 + a_{22}x_2 = b_2
+    \end{cases} \]
+    \[
+        \begin{cases}
+            x_1 = \frac{b_1 a_{22} - b_2 a_{12}}{a_{11} a_{22} - a_{21} a_{12}} = \frac{\Delta_1}{\Delta} \\
+            x_2 = \frac{b_2 a_{11} - b_1 a_{21}}{a_{11} a_{22} - a_{21} a_{12}} = \frac{\Delta_2}{\Delta} \\
+        \end{cases}
+    \]
+\end{proof}
