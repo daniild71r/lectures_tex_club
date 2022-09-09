@@ -3,7 +3,8 @@ name: build and upload latex
 on:
   push:
     branches:
-      - 'main'
+      - '**'
+      - '!main'
 
 jobs:
   prepare:
