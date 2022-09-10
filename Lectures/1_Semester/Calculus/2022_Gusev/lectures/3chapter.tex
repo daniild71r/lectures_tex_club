@@ -1,0 +1,145 @@
+\section{Верхняя и нижняя грани}
+\subsection{Определение}
+\begin{definition}
+    Пусть $ A \in \R $. Число $ m \in  \R $ называется верхней гранью множества $ A $,
+    если $ \forall a \in A \ a \leq  m $ ( $ m $ -- мажоранта)
+\end{definition}
+Аналогично определяется нижняя грань.
+\begin{definition}
+    Если у множества $ A $ существует верхняя грань, то $ A $ называется огрнаниченным сверху.
+    Если у множества $ A $ существует нижняя грань, то $ A $ называется огрнаниченным снизу.
+\end{definition}
+\begin{definition}
+    Если у $ A   \nexists  $ верхней грани, то оно не огрнаниченное сверху.
+    Аналогично с нижней гранью.
+\end{definition}
+\begin{definition}
+    Если у $ A \exists  $ верхняя и нижняя грань, то оно называется ограниченным.
+    Если у $ A \nexists  $ верхняя и нижняя грань, то оно называется ограниченным.
+\end{definition}
+\begin{example}
+   $ \R $ неограничено сверху. Иначе $ \exists m \in \R:\ \forall x \in \R\ x \leq  m $: \begin{gather}
+    m + 1 \leq\, m \\
+    1 \leq\, 0 \text{ -- противоречие }
+   \end{gather}
+\end{example}
+\subsection{Точные верхние грани}
+\begin{definition}
+    Пусть $ A \subset \R $ непусто. Если $ \exists s \in  \R \: s$ -- верхняя грань $ A $ и
+    $ \forall m \in  \R:  m < s \ m $ -- не верхняя грань $ A $, то $ s $ называется точной верхней гранью.
+    Если $ m $ точная верхняя грань $ A $, то $ \forall s > m \:  s$ -- верхняя грань, то \begin{gather}
+        \forall a \in A \ a \leq\, m < s
+    \end{gather} 
+\end{definition}
+\begin{theorem}[О точной верхней грани]\label{theorem_about_supremum}
+    Если $ A \subset \R $ непусто и огрнаничено сверху, то у $ A \exists ! $ точная верхняя грань $ s \in \R $
+\end{theorem}
+\begin{proof}
+    \begin{equation}
+        B : = \{b \in \R| b \text{ --  верхняя грань  }A\}
+   \end{equation}
+   По построенпию $ A $ лежит слева от $ B $( $ \forall a \in  A\ \forall b \in  B \ a  \leq  b $)
+   по аксиоме непрерывности $ \exists  s \in \R: s $ разделяет $ A \text{  и } B( \forall a \in A, b \in B\; a \leq s \leq b) \implies  s \in B $.
+   Если $\exists m\ m < s $ и $ m \in B $, то $ s \leq  m $ -- противоречие. \newline
+   Единственность. Пусть $ s' $ -- другая точная верхняя грань $ A \implies s' \in B \implies  s \leq  s'$
+   Но по определению точной верхней грани множества $ A $ выполнено условие, что $ \forall x \leq s \ s$ не может быть точной верхней гранью --- противоречие. 
+\end{proof}
+Точная верхняя грань множества $ A $ обозначается $ \sup A $(супремум $ A $)
+Аналогично для любого непустого огрнаниченного снизу множества $ A\subset \R $,
+ $ \exists !  $ точная нижняя грань и обозначается $ \inf A $(инфинум $ A $)
+ \begin{note}
+    Если $ A $ не огрнаничено сверху, то $ \sup A: =+ \infty $.
+    Если $ A $ не огрнаничено снизу, то $ \inf A : = - \infty $
+ \end{note}
+ \subsection{Принцип Архимеда}
+ \begin{theorem}[Принцип Архимеда]\label{Archemedian_principle}
+   \begin{gather}
+    \forall x \in \R\ \exists n \in\, \N, n > x
+   \end{gather}
+ \end{theorem}\begin{proof}
+    Иначе $ \exists n \in \R \ (\forall  n \in \N) \ n \leq  x \implies \N $ огрнаниченно сверху $ \implies  $ по 
+    \ref{theorem_about_supremum} $ \exists ! s = \sup \N  \implies \forall n \in \N\ n \leq  s $ и $ s - 1 $ --- не верхняя грань $ \N \implies  \exists m \in  \N: m > s - 1 \implies m + 1 > s \implies  (m + 1 \notin \N)$,
+    противоречие с индуктивностью $ \N $. 
+ \end{proof}
+\begin{note}
+    \begin{gather}
+        \lnot (\forall x \ P(x)) \longleftrightarrow (\exists x \ \lnot P(x)) \\
+        \lnot (\exists P(x)) \longleftrightarrow (\forall x \ \lnot P(x))
+    \end{gather}
+    При отрицании кванторы меняются на противоположные.
+\end{note}
+\begin{note}
+    Если $ A \subset \R $ непусто и огрнаничено сверху, то $ \sup A $ может как принадлежать $ A $,
+    так и не принадлежать $ A $.
+\end{note}
+\begin{example}
+    \begin{gather}
+        A = \{x \in \R|\ x \leq\, 1\} \\
+        \sup A = 1 \in A \\
+        A = \{x \in \R | x < 1\} \\
+        \sup A = 1 \notin A
+    \end{gather}
+\end{example}
+\begin{exercise}
+    Пусть $ B $ -- множество из доказательсва теоремы о точной верхней грани. Доказать, что $ \sup A = \inf B $
+\end{exercise} \begin{proof}
+    По построенпию $ A $ лежит слева от $ B $( $ \forall a \in  A\ \forall b \in  B \ a  \leq  b $)
+   по аксиоме непрерывности $ \exists  s \in \R: s $ разделяет $ A \text{  и } B( \forall a \in A, b \in B\; a \leq s \leq b) \implies s = \sup A $. Кроме того $ \forall b \in B s \leq  B \implies  s = \inf B \implies \sup A = \inf B $.
+\end{proof}
+\section{Предел числовой последовательности}
+\begin{definition}
+    Пусть $ x $ -- формула вида $ x: \N \to \R $
+    Тогда $ x $ называется числовой последовательностью и ( $ \forall n \in  \N \: x_n : = x(n) $) называется $ n $ - м членом последовательности.
+\end{definition}
+Пусть $ (x_n) $ -- числовая последовательность $ (x_n)_{n = 1}^\infty $
+\begin{definition}
+    Число $ a \in  \R $ называется пределом последовательности $ (x_n) $, если $ \forall \varepsilon > 0 $ \begin{gather}
+        \exists N \in \N \: \forall n \geq N \: |x_n\, - a| < \varepsilon
+    \end{gather}
+    В этом случае пишут $ a = : \lim_{n \to \infty} x_n $
+    Если $ a = 0 $, то $ (x_n) $ называется бесконечно малой.
+\end{definition}
+\begin{definition} $ \epsilon $-окрестность $ U $:
+    \begin{gather}
+        U_\epsilon(a): =(a - \epsilon; a + \epsilon); \quad U_\epsilon( + \infty): = \left(\frac{1}{\epsilon}; + \infty\right) \quad U_\epsilon( -\infty) = \left( - \infty; - \frac{1}{\epsilon}\right)
+    \end{gather}
+\end{definition}
+\begin{note}
+    \begin{equation}
+        (a, b): = \{x \in \R | \ a < x < b\}
+   \end{equation}
+   
+\end{note}
+\begin{theorem}[Единственность предела]
+    Если $ x_n \to a, n \to \infty $ и $ x_n \to b, n \to \infty $, то $ a = b $
+\end{theorem} \begin{proof}
+    Пусть $ a \neq  b $. Возьмём $ \varepsilon > 0 $ такое, что \begin{gather}
+        U_\varepsilon(a) \cap U_\varepsilon(b) = \emptyset \\
+        \text{ достаточно взять } \varepsilon < \frac{b - a}{2}  \\
+        a + \varepsilon < a + \frac{b - a}{2} = \frac{a + b}{2} \\
+        b - \varepsilon > b - \frac{b - a}{2} = \frac{a + b}{2}
+    \end{gather}
+    \begin{multline}
+        \begin{rcases}
+            \exists N_1 : \forall n \ge N_1 \; x_n \in U_\varepsilon(a) \\
+            \exists N_2 : \forall n \ge N_2 \; x_n \in U_\varepsilon(b)
+        \end{rcases}
+        \thus \forall n \ge \max(N_1, N_2) \; x_n \in U_\varepsilon(a) \land x_n \in U_\varepsilon(b)
+        \thus \\ x_n \in U_\varepsilon(a) \cap U_\varepsilon(b)
+        \thus x_n \in \varnothing \text{ -- противоречие}
+    \end{multline}
+\end{proof}
+\begin{example} Доказать
+    \[ \lim_{n \to \infty} \dfrac{1}{n} = 0 \]
+\end{example} \begin{proof}
+    Пусть $ \varepsilon = \frac{1}{2} $.
+    Нужно найти $ N \in \N: $ $ n \geq N $  $ \frac{1}{n} \in U_\varepsilon(0) $
+    По принципу Архимеда \begin{gather}
+        \exists N \in \N\, N > \frac{1}{2} \implies \forall n \in \N: n \geq\, N \text{ выполнено } n \geq  N > \frac{1}{\varepsilon} \implies  \frac{1}{n} < \varepsilon \implies\, \lim_{n \to \infty}\frac{1}{n} = 0
+    \end{gather}
+\end{proof}
+\begin{exercise}
+    Доказать, что $ \lim_{n \to +\infty}n = + \infty $.
+\end{exercise} \begin{proof}
+    Рассмотрим $ \frac{1}{\epsilon} $. По принципу Архимеда(\ref{Archemedian_principle}) \[ \exists N \in \N: N > \frac{1}{\epsilon} \implies N \in U_\epsilon( + \infty) \implies  \lim_{n \to \infty}n = + \infty \]
+\end{proof}
