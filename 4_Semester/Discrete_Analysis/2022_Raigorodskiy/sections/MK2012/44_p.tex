@@ -1,0 +1,15 @@
+\Th Пусть $G(n, p)$ $-$ случайный граф, $p = c \frac{\ln n}{n}$. \\
+$1.$ Если $c > 1$, то а. п. н. G связен; \\
+$2.$ Если $c < 1$, то а. п. н. G несвязен.
+
+\underline{Доказетальство пункта 1}:
+
+\Proof $\mathbb{P}(G(n, p)\: \text{не связен}) = \mathbb{P}(\exists k \in \overline{1..(n-1)}\! \wedge\! \exists W \subset \overline{1..n}: |W|=k\! \wedge\! G \big|_W\: \text{связен и}\: \forall x \notin W\: \text{нет рёбер из } x\: \text{в}\: W) \leqslant \sum^{n-1}_{k=1} \sum_{W:|W|=k} \mathbb{P}(\forall x \notin W \forall y \in W (\{ x, y\} \notin E)) = \sum^{n-1}_{k=1}C^k_n(1-p)^{k(n-k)}$. Назовём выражение под суммой $a_k(n)$. Нам известно, что $a_1(n) \rightarrow 0$. Заметим, что слагаемые симметричны относительно n/2, поэтому достаточно будет оценить только первую половину суммы. Разобьём её на две части: $\sum^{n/2}_{k=1}... = \sum^{n/\sqrt{\ln n}}_{k=1}... + \sum^{n / 2}_{k=n/\sqrt{\ln n} + 1}...$
+
+Заметим, что $C^k_n(1-p)^{k(n-k)} < 2^n e^{-pk(n-k)} \leqslant 2^n e^{-pk\frac{n}{2}} < 2^n e ^{-p \frac{n^2}{2 \sqrt{\ln n}}} = e^{n \ln 2 - c\sqrt{\ln n} \frac{n}{2}} \xrightarrow[n \rightarrow \infty]{} 0$. Значит, вторая сумма стремится к 0.
+
+Теперь заметим, что $\frac{a_{k+1}(n)}{a_k(n)} = \frac{C^{k+1}_n(1-p)^{(k+1)(n-k-1)}} {C^{k}_n(1-p)^{(k)(n-k)}} = \frac{n-k}{k+1}(1-p)^{n-2k-1} \sim \frac{n-k}{k+1}(1-p)^{n-2k} < n(1-p)^{n-2k} < n(1-p)^{n - n / \sqrt{\ln n}}=q(n)$.
+
+Значит, первая сумма расписывается как $\sum^{n / \sqrt{\ln n}}_{k=1} C^k_n (1-p)^{k(n-k)} \cdot (1 + q(n) + q^2(n) + ...) < n(1-p)^{n-1} \cdot \frac{1}{1-q(n)} \xrightarrow[n \rightarrow\infty]{} 0$
+
+Таким образом, обе части суммы стремятся к 0, значит и вся сумма стремится к 0 с ростом n. \EndProof

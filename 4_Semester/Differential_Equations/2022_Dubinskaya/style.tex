@@ -1,0 +1,151 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{cmap}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{indentfirst}
+\usepackage{epigraph}
+\usepackage{framed}
+\renewcommand{\epigraphsize}{\small}
+\usepackage{relsize}
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{stackengine,scalerel}
+\def\dclesize{\ThisStyle{\raisebox{-.7pt}{\scalebox{1.45}{$\SavedStyle\bigcirc$}}}}
+\def\dcle{\ensurestackMath{\stackon[0pt]{\leqslant}{\dclesize}}}
+\def\cleq{\def\stacktype{L}\mathbin{\scalerel*{\dcle}{\dclesize}}}
+% \pagestyle{empty}
+
+\usepackage[a4paper,top=0.75cm, bottom=1.2cm, left=0.75cm, right=0.75cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\newcommand{\RomanNumeralCaps}[1] {\MakeUppercase{\romannumeral #1}}
+
+\newcommand{\mysection}[2]{\setcounter{section}{#1}\addtocounter{section}{-1}\section{#2}}
+
+% код
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+\, \vcenter{%
+\offinterlineskip
+\hbox{.}
+\vskip0.25\normalbaselineskip
+\hbox{.}
+\vskip0.25\normalbaselineskip
+\hbox{.}%
+}%
+\,
+}
+\usepackage{listings}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{xcolor}
+
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{float}
+
+\usepackage{cancel}
+\usepackage{breqn}
+
+\usepackage{wrapfig}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+
+\definecolor{linkcolor}{HTML}{50006b} % цвет ссылок
+%\definecolor{urlcolor}{HTML}{107896} % цвет гиперссылок
+\definecolor{urlcolor}{HTML}{50006b} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{cmyk}{0,0,0,0.05}
+
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codegreen},
+keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2,
+texcl=true
+}
+\lstset{extendedchars=\true, style=mystyle}
+
+\usepackage[pages = some]{background}
+\backgroundsetup{
+	scale = 1,
+	angle = 0,
+	opacity = 1,
+	contents = {\includegraphics[height = \paperheight, keepaspectratio]{background.jpg}}}
+
+\newcommand{\Def}{\textbf{Определение:} }  % объявление новых макрокоманд
+\newcommand{\Statement}{\textbf{Утверждение:} }
+\newcommand{\Lemma}{\textbf{Лемма:} }
+\newcommand{\Th}{\textbf{Теорема:} }
+\newcommand{\Task}{\textbf{Задача:} }
+\newcommand{\Solution}{\textbf{Решение:} }
+\newcommand{\Example}{\textbf{Пример:} }
+\newcommand{\Note}{\textbf{Замечание:} } 
+\newcommand{\Cor}{\textbf{Следствие:} } 
+\newcommand{\Vars}{\textbf{Введем обозначения:} } 
+\newcommand{\Proof}{$\blacktriangle$ }
+\newcommand{\EndProof}{$\blacksquare$ }
+\newcommand{\del}{\partial}
+
+\renewenvironment{leftbar}[2][\hsize]
+{
+    \def\FrameCommand
+    {
+        {\hspace{20pt}
+        \color{gray}\vrule width 3pt}
+        \hspace{0pt}
+    }
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
+}
+{\endMakeFramed}
+
+\newcommand{\norm}{\triangleleft}
+\newcommand{\bnorm}{\triangleright}
+
+\newcommand{\angles}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\brackets}[1]{\left({#1}\right)}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{lemmanote}[theorem]{Замечание}
+\newtheorem{definition}[theorem]{Определение}
+
+\newcommand{\blank}[1]{\hspace*{#1}}
+
+\makeatletter
+\renewcommand{\dddot}[1]{%
+  {\mathop{\kern\z@#1}\limits^{\vbox to-1.4\ex@{\kern-\tw@\ex@
+   \hbox{\normalfont ...}\vss}}}}
+\renewcommand{\ddddot}[1]{%
+  {\mathop{\kern\z@#1}\limits^{\vbox to-1.4\ex@{\kern-\tw@\ex@
+   \hbox{\normalfont....}\vss}}}}
+\makeatother

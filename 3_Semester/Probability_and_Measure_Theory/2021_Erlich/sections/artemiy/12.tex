@@ -1,0 +1,159 @@
+
+\Th (о структуре измеримых множеств)\\
+$S$ - полукольцо с единицей $E$.\\
+$m$ - $\sigma$-аддитивная мера на $S$.\\
+$\mu$ - лебегово продолжение $m$\\
+$M$ - множество измеримых множеств\\
+Тогда $\forall A \in M$:
+$$A = (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij}) \backslash A_0,$$ причём 
+\begin{enumerate}
+    \item $A_{ij} \in R(S); \ \forall i \ A_{i1} \subseteq A_{i2} \subseteq A_{i3} \subseteq \dots $
+    \item $B_i = \bigcup_{j=1}^{\infty} A_{ij}; \ B_1 \supseteq B_2 \supseteq B_3 \supseteq \dots$
+    \item $A_0 \in M; \ \mu(A_0) = 0; \ A_0 \subseteq (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij})$
+\end{enumerate}
+
+\Proof
+
+$\mu(A) = \mu^*(A) \Rightarrow$(по следствию теоремы о внешней мере)\\ 
+$\forall \epsilon = \frac{1}{n} \ \exists C_n = \bigcup_{j=1}^{\infty} D_{nj} \supseteq A$ (покрытие $A$), т.ч. $D_{nj} \in S, \sum_{j=1}^{\infty} m(D_{nj}) < \mu(A) + \frac{1}{n} \ (1)$
+
+$$C_n \supset A \Rightarrow \mu(A) < \mu(C_n) \ (2)$$
+
+(1): $$\mu(A) > \sum m(D_{nj}) - \frac{1}{n} = \sum \mu(D_{nj}) - \frac{1}{n} \geq \mu(\bigcup D_{nj}) - \frac{1}{n} = \mu(C_n) - \frac{1}{n} \ (3)$$
+
+(2) \& (3): $$\mu(C_n \backslash A) < \frac{1}{n};$$
+
+Пусть $B_i = \bigcap^i_{n=1} C_n \Rightarrow B_1 \supseteq B_2 \supseteq B_3 \supseteq \dots$
+
+$$\forall k \ A \subset (\cap^k_{n=1} C_n) = B_k;\ \mu(B_k \backslash A) \leq \mu(C_k \backslash A) < \frac{1}{k}; \ B_1 \backslash A \supseteq B_2 \backslash A \supset \dots$$
+
+По полученным свойствам и непрерывности меры:
+
+$0 = \lim_{i \rightarrow \infty} \mu(B_i \backslash A) = \mu(\bigcap^{\infty}_{i=1} (B_i \backslash A)) = \mu((\bigcap^{\infty}_{i=1} B_i) \backslash A)$
+
+Тогда пусть $A_0 = (\bigcap^{\infty}_{i=1} B_i) \backslash A, \ \mu(A_0) = 0$
+
+$$B_i = \bigcap^i_{n=1} C_n;\ C_n = \bigcup^{\infty}_{j=1} D_{nj};\ D_{nj} \in S$$
+
+$$B_i = \bigcap^i_{n=1} \bigcup^{\infty}_{j=1} D_{nj} = \bigcup^{\infty}_{j = 1} \bigcap^{i}_{n = 1} D_{nj}; $$
+
+Пусть $A_{ij} = \bigcup^{j}_{r = 1} \bigcap^{i}_{n = 1} D_{nr} \in R(S) \Rightarrow A_{i1} \subseteq A_{i2} \subseteq A_{i3} \subseteq \dots $
+
+$$\bigcup^{\infty}_{j = 1} A_{ij} = \bigcup^{\infty}_{j = 1} (\bigcup^{j}_{r = 1} \bigcap^{i}_{n = 1} D_{nr}) = \bigcup^{\infty}_{j = 1} \bigcap^{i}_{n = 1} D_{nj} = B_i\ (4) \Rightarrow$$
+
+$$A_0 = (\bigcap^{\infty}_{i=1} B_i) \backslash A = (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij}) \backslash A \Rightarrow A_0 \subseteq (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij})$$
+
+Подставляем (4) в $A = (\bigcap^{\infty}_{i=1} B_i) \backslash A_0$:
+$$A = (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij}) \backslash A_0$$
+
+
+
+\EndProof
+
+\subsection*{Теорема Каратеодори.}
+
+Пусть $m$ - $\sigma$-конечная мера на полукольце S. (Полукольцо не обязательно с единицей. Если единицы нет, то её можно представить в как: $X = \bigsqcup^{\infty}_{i=1} X_i;\ X_i \in S$)
+Тогда $\exists!$ $\sigma$-конечная "мера" (см. замечание) $\mu$ на $\sigma(S)$, согласованная с мерой $m$, т.е. $\forall A \in S: m(A) = \mu(A)$
+
+\textbf{Замечание:} То что мы обычно называли мерой $m: S \rightarrow [0, +\infty)$ = конечная мера. Но иногда мера $m: S \rightarrow [0, +\infty]$ может принимать бесконечные значения (как, например, $\mu(\mathbb{R}) = +\infty$), такую меру мы обозначили как "мера".
+
+\Proof
+
+1) Существование меры $\mu$ мы доказали на прошлой лекции. Пример $\mu$ - лебегово продолжение $m$.
+
+2) Докажем единственность. Разберём 2 случая:
+
+\begin{enumerate}
+
+\item Пусть $S$ - полукольцо с единицей $E$:
+
+Пусть $\mu$ - лебегово продолжение. $\mu'$ - другая мера на $\sigma(S)$ согласованная с $m$ (предполагаем, что она есть).
+
+Так как мы ранее доказывали, что продолжение на полукольце единственное, то:
+
+$\forall A \in R(S), \ \mu(A) = \mu'(A) = \nu(A)$
+
+$\forall A \in \sigma(S) \Rightarrow$(поскольку множество измеримых по лебегу множеств является $\sigma$-алгеброй, а $\sigma(S)$ - минимальная $\sigma$-алгебра)
+
+$A \in M \Rightarrow$ (по теореме о структуре измеримых множеств)
+
+$A = (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij}) \backslash A_0,\ \mu(A_0) = 0,$
+
+$A_{ij} \in R(S) \Rightarrow A_0 = A \backslash (\bigcap \bigcup A_{ij}) \in \sigma(S)$
+
+\textbf{Докажем утверждение:} $\mu'(A_0) = 0$
+
+\Proof
+$\mu^*(A_0) = \mu(A_0) = 0 \Rightarrow$ (существует покрытие $A_0$)
+
+$A_0 \subset \bigcup^{\infty}_{i=1} C_i,\ $где $ C_i \in S$, такие что $\forall \epsilon > 0,\ \sum m(C_i) < \epsilon$, 
+
+т.к. $C_i \in S$, то $\forall \epsilon > 0,\ \mu'(A_0) \leq \sum \mu'(C_i) = \sum m(C_i) < \epsilon$
+
+Простремив $\epsilon \rightarrow 0$, получаем, что $\mu'$ не может быть положительной. 
+
+\EndProof
+
+Мы знаем, что $A_0 \subset \bigcap \bigcup A_{ij}$ и $A \sqcup A_0 = (\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij})$, но тогда
+
+$\mu'(A) + \mu'(A_0) = \mu'((\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij})) =$
+
+Но можества $A_{ij}$ вложенные (по предыдущей о структуре измеримых множеств), поэтому по непрерывности $\sigma$-адитивной меры, это можно записать как
+
+$= \lim_{i \rightarrow \infty} \lim_{j \rightarrow \infty} \mu'(A_{ij})$ 
+
+Аналогично для $\mu$:
+
+$\mu(A) + \mu(A_0) = \mu((\bigcap_{i=1}^{\infty} \bigcup_{j=1}^{\infty} A_{ij})) = \lim_{i \rightarrow \infty} \lim_{j \rightarrow \infty} \mu(A_{ij})$ 
+
+Т.к. мы знаем, что $\mu'(A_0) = 0 = \mu(A_0)$ и $\mu(A_{ij}) = \mu'(A_{ij})$ (потому что $A_{ij} \in R(S)$), то $\mu(A) = \mu'(A)$
+
+Доказали теорему для первого случая.
+
+\item Пусть $S$ - полукольцо без единицы:
+
+$X \not \in S,\ X = \bigsqcup^{\infty}_{i=1} X_i,\ X_i \in S$
+
+Рассмотрим $S_i = \{ A \cap X_i | A \in S \}$
+
+\textbf{Докажем утверждение:}
+$\forall A \in \sigma(S)\ \ (A \cap X_i) \in \sigma(S_i)$
+
+\Proof
+
+Пусть $F = \{A \in 2^X$, т.ч. $\forall i\ A \cap X_i \in \sigma(S_i)\}$, тогда
+
+1) $F - \sigma-$алгебра с единицей $X$, потому что:
+
+\begin{enumerate}
+\item Замкнутость относительно пересечения: $A \cap X_i \in \sigma(S_i), B \cap X_i \in \sigma(S_i) \Rightarrow (A \cap B) \cap X_i \in \sigma(S_i)$
+
+\item Замкнутость относительно бесконечного объединения: $A_1, A_2, \dots, A_n,\dots \in F \Rightarrow \bigcup A_i \in F$, такие что $\forall i \ A_j \cap X_i \in \sigma(S_i) \Rightarrow \forall i\ (\bigcup A_j) \cap X_i \in \sigma(S_i)$
+
+\item Замкнутость относительно взятия дополнения: Если $A \cap X_i \in \sigma(S_i)$, то $\overline{A} \cap X_i = X_i \backslash (A \cap X_i) \in \sigma(S_i)$
+
+\item $X \cap X_i = X_i \in \sigma(S_i) \Rightarrow X \in F$ - единица $\sigma-$алгебра $F$. 
+
+\end{enumerate}
+
+2) $S \subset F$:
+
+$\forall A \in S\ A \cap X_i \in S_i \subset \sigma(S_i)$
+
+$1) + 2) \Rightarrow \sigma(S) \subseteq F \Rightarrow \forall A \in \sigma(S)\ A \cap X_i \in \sigma(S_i)$
+
+\EndProof
+
+$S_i$ - полукольцо с единицей $X_i \Rightarrow\ $ (по предыдущему пункту теоремы)
+
+$\forall A \in \sigma(S_j),\ \mu(A) = \mu'(A) \ (5)$
+
+$\forall A \in \sigma(S) $, выполняется $\ A = \bigsqcup^{\infty}_{i=1} (A \cap X_i)$, где (по доказаному только что утверждению) $(A \cap X_i) \in \sigma(S_i) \Rightarrow ($по$ \ (5))\ \mu(A \cap X_i) = \mu'(A \cap X_i)$
+
+По $\sigma$-адитивности мер:
+
+$\mu(A) = \sum_{i=1}^{\infty} \mu(A \cap X_i) = \sum_{i=1}^{\infty} \mu'(A \cap X_i) = \mu'(A)$
+
+Теорема доказана.
+\EndProof
+\end{enumerate}

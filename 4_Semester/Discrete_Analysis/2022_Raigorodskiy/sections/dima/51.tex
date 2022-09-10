@@ -1,0 +1,39 @@
+\par \textbf{Жадный алгоритм:} фиксируем некоторую нумерацию вершин. Идем по порядку: каждую вершину красим в наименьший незанятый цвет.
+
+\par \Th Пусть $G = G(n, \frac{1}{2})$. Тогда $\forall \varepsilon > 0$ а.п.н. при $n\rightarrow \infty$ выполняется
+$$\frac{\chi_{\text{ж}}(G)}{\chi(G)} \leq 2+\varepsilon$$
+$$\frac{\alpha(G)}{\alpha_{\text{ж}}(G)} \leq 2+\varepsilon$$
+\par \Proof Мы знаем, что а.п.н. $\alpha(G) < 2\log_2 n$. Если покажем, что а.п.н. $\alpha_{\text{ж}} \geq (1-\varepsilon)\log_2 n$, то получим
+$$\frac{\alpha}{\alpha_{\text{ж}}} < \frac{2\log_2 n}{(1-\varepsilon)\log_2 n}=2+\varepsilon'$$
+
+\par Покажем, что $P(A):=P(\alpha_{\text{ж}} < (1-\varepsilon)\log_2 n)\rightarrow 0$. Введем $m:=[\frac{n}{2(1-\varepsilon)\log_2 n}]$. Пусть алгоритм нашел $m$ независимых подмножеств. Из события $A$ следует, что $$\exists a_1, \ldots, a_m: \: \forall i \: a_i < (1-\varepsilon)\log_2 n,$$ $$\exists C_1, \ldots, C_m: \forall i \: |C_i|=a_i, \: \forall i, j \: C_i \cap C_j = \varnothing$$ 
+$$\forall x \in V \setminus (C_1 \cup \ldots \cup C_n) \: \forall i \: \exists y \in C_i: \: (x, y)\in E$$
+
+\par Следствие верно, так как иначе $x$ можно было бы добавить к какому-то $C_i$. Заметим, что $\sum_{i=1}^m a_i < \frac{n}{2}$. Обозначим всё это событие как $B$, а последнюю строчку как $C$. Тогда
+$$P(A) \leq P(B) = \sum_{a_1=1}^{(1-\varepsilon)\log_2 n} \ldots \sum_{a_m=1}^{(1-\varepsilon)\log_2 n} \sum_{\substack{C_1, \ldots, C_m \\ \forall i \: |C_i|=a_i \\ \forall i, j \: C_i \cap C_j = \varnothing}} P(C)=*$$
+
+\par Перейдем к оценке $P(C)$. Будем постепенно «размораживать» параметры под кванторами.
+$$P(\exists y \in C_i: \: (x, y)\in E)=\left(1-\left(\frac{1}{2}\right)^{a_i}\right)$$
+$$P(\forall i \: \exists y \in C_i: \: (x, y)\in E)=\prod_{i=1}^m \left(1-\left(\frac{1}{2}\right)^{a_i}\right)$$
+
+\par Заметим, что $n-a_1-\ldots-a_m \geq \frac{n}{2}$. Тогда
+$$P(C)=P(\forall x \in V \setminus (C_1 \cup \ldots \cup C_n) \: \forall i \: \exists y \in C_i: \: (x, y)\in E))\leq\left(\prod_{i=1}^m \left(1-\left(\frac{1}{2}\right)^{a_i}\right)\right)^{\frac{n}{2}}=*$$
+
+\par Пользуясь тем, что $2^{a_i} \leq 2^{(1-\varepsilon)\log_2 n} = n^{1-\varepsilon}$, продолжим оценку
+$$*=\left(\prod_{i=1}^m \left(1-\frac{1}{2^{a_i}}\right)\right)^{\frac{n}{2}} \leq \left(\prod_{i=1}^m \left(1-\frac{1}{n^{1-\varepsilon}}\right)\right)^{\frac{n}{2}} \leq e^{-\frac{1}{n^{1-\varepsilon}}m \frac{n}{2}}=e^{-\frac{mn^\varepsilon}{2}}\leq e^{-\frac{n^{1+\varepsilon}}{4\log_2 n}} \underset{n \geq n_1}{\leq} e^{-n^{1+\frac{\varepsilon}{2}}}$$
+
+\par При переходе к экспоненте пользовались цепочкой $(1-p)=e^{\ln{(1-p)}}\leq e^{-p}$. Последний переход: с какого-то момента $n^{\varepsilon/2} > 4\log_2 n$, поэтому при откидывании из показателя части $\frac{n^{\varepsilon/2}}{4 \log_2 n}>1$ показатель по модулю уменьшится, а все выражение увеличится.
+
+\par Вернемся к оценке суммы: 
+$$\sum_{\substack{C_1, \ldots, C_m \\ \forall i \: |C_i|=a_i \\ \forall i, j \: C_i \cap C_j = \varnothing}} e^{-n^{1+\varepsilon/2}}=C_n^{a_1} C_{n-a_1}^{a_2}\ldots C_{n-a_1-\ldots-a_{m-1}}^{a_m}e^{-n^{1+\varepsilon/2}} < n^{a_1+a_2+\ldots+a_n}e^{-n^{1+\varepsilon/2}} \leq$$ $$\leq n^{n/2}e^{-n^{1+\varepsilon/2}}=e^{\frac{n}{2}\ln{n}-n^{1+\varepsilon/2}}$$
+
+\par Первое неравенство получено из соображений $C_n^k < n^k$, $C_{n-a_1}^{a_2}<(n-a_1)^{a_2}<n^{a_2}$. Подставим в сумму по $a_i$
+$$\sum_{\substack{a_1, \ldots, a_m \\ a_i \leq (1-\varepsilon)\log_2 n}} e^{\frac{n}{2}\ln{n}-n^{1+\varepsilon/2}} < (\log_2 n)^m e^{\frac{n}{2}\ln{n}-n^{1+\varepsilon/2}} < e^{\frac{n}{\log_2 n}\ln{\log_2 n}+\frac{n}{2}\ln{n}-n^{1+\varepsilon/2}}$$
+
+\par Посмотрим на асимптотику слагаемых показателя. Первое слагаемое $<n$, а $n^{1+\varepsilon/2}$ растет быстрее чем $\frac{n}{2}\ln{n}$. Отсюда получаем, что показатель будет стремиться к $-\infty$, а вся сумма будет стремиться к 0 \EndProof
+
+\par \textbf{Теорема (Кучеры):} $\forall \varepsilon>0 \: \forall \delta > 0$ существует последовательность графов $G_n: \: |V(G_n)|=n$ и $$P_\sigma\left(\frac{\alpha(G_n)}{\alpha_{\text{ж}, \sigma}(G_n)} \geq n^{1-\varepsilon}\right) \geq 1-\delta$$
+\par другими словами $$|\{\sigma: \: \frac{\alpha(G_n)}{\alpha_{\text{ж}, \sigma}(G_n)} \geq n^{1-\varepsilon}\}| \geq (1-\delta) n!$$,
+\par где $\sigma$ - перестановка вершин, на которой запускаем жадный алгоритм.
+
+\par \textbf{Интуитивно:} Существует последовательность графов, такая что в них существует очень много перестановок, на которых искомое отношение ужасно большое

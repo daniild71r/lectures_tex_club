@@ -1,0 +1,31 @@
+\Th Пусть для данных $n, k, s$ l: 
+\[ C_n^l \cdot \frac{C_{C_n^k - C_{n-l}^k}^s}{C_{C_n^k}^{s}} < 1\]
+Тогда $\exists M: \tau(M) > l$
+
+\Proof
+Рассмотрим случайное $M = \{M_1, \dots, M_s \}$; количество таких совокупностей - ${C_{C_n^k}^{s}}$. Фиксируем $L \subset R_n, |L| = l$. 
+
+$P(L$ является с.о.п. для $M) = \frac{C_{C_n^k - C_{n-l}^k}^s}{C_{C_n^k}^{s}}$
+
+$P(\exists L, |L| = l: L $ явл. с.о.п. для $M) \leqslant C_n^l \cdot \frac{C_{C_n^k - C_{n-l}^k}^s}{C_{C_n^k}^{s}} < 1$ (по усл. теоремы), значит $\exists M:$ у $M$ нет $l$ - элементных с.о.п.
+\EndProof
+
+\Cor \Th Пусть $n \to \infty$, $s=s(n), k=k(n) \to \infty, \frac{sk}{n} \to \infty$
+
+Пусть $ln ln (k) = o(ln \frac{sk}{n}), ln^2 \frac{sk}{n} = o(k), k^2 = o(n)$. 
+
+Тогда $\exists n_0 \forall n > n_0 \exists M: \tau(M) \geqslant \frac{n}{k} ln \frac{sk}{n} - \frac{n}{k} ln ln \frac{sk}{n} - \frac{n}{k} ln ln (k) - \frac{3n}{k} \sim \frac{n}{k} ln \frac{sk}{n}$
+
+\includegraphics[width=9cm]{images/est4.JPG}
+
+Осталось перемножить е в степенях и понять, что это стремится к нулю, значит, начиная с какого-то $n_0$ оно будет меньше 1.
+
+Проверим переходы:
+
+1) - тут на самом деле верхняя оценка и её достаточно. Ура.
+
+2) - \includegraphics[width=5cm]{images/est6.JPG}
+
+3) - тут надо в ориниальном переходе в правой части поставить $\leqslant$ и вместо $(1 - \frac{l}{n})^k$ написать $(1 - \frac{l}{n-k})^k$.
+
+4) - \includegraphics[width=9cm]{images/est7.JPG}
