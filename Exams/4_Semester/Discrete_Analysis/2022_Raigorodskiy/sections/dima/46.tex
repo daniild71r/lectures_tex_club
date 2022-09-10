@@ -1,0 +1,36 @@
+\par \Def Пусть $\Omega$ - множество всех графов на $n$ вершинах. Случайная величина $f: \Omega \rightarrow \mathbb{R}$ называется липшицевой по ребрам (по вершинам), если $|f(G)-f(G')|\leq 1$, коль скоро $G$ и $G'$ отличаются только в одном ребре (только в окрестности одной вершины).
+
+\par \Example $\chi$ - липшицева по вершинам (а следовательно и по ребрам). Количество треугольников - не липшицева.
+
+\par \textbf{Неравенство Азумы (оценка уклонения):} Пусть $f$ - липшицева по вершинам. Тогда $$\forall a > 0 \hookrightarrow P(|f-\mathbb{E}f| \geq a) \leq 2e^{-\frac{a^2}{2(n-1)}}$$
+
+\par \Note Для вероятности без модуля справедливо такое же неравенство, но без множителя 2
+
+\par \textbf{Теорема (Боллобаш):} Пусть $p=p(n)=n^{-\alpha}$, где $\alpha \in \left(\frac{1}{2}; 1\right)$. Тогда $\exists u: u = u(n, \alpha)\rightarrow \infty$ при $n\rightarrow\infty$: а.п.н. $\chi(G) \in \{u; u+1\}$.
+
+\par \Note Интуитивно: хроматическое число концентрируется в двух значениях. Мы будем доказывать для $\alpha > \frac{5}{6}$ и $\chi(G) \in \{u, u+1, u+2, u+3\}$.
+
+\par \Lemma Пусть $p=n^{-\alpha}, \alpha>\frac{5}{6}$. Тогда $$\exists n_0: \forall n \geq n_0 \hookrightarrow P(\forall S \subset \{1, \ldots, n\}, |S|\leq \sqrt{n}\ln{n}: \chi(G|_S) \leq 3) \geq 1-\frac{1}{\ln{n}}$$
+
+\par \Proof Докажем, что для отрицания этого события вероятность $\leq \frac{1}{\ln{n}}$, начиная с какого-то $n$. Отрицание: $$P(\exists S, |S| \leq \sqrt{n}\ln{n}: \chi(G|_S) \geq 4)=P(\exists S, 4 \leq |S| \leq \sqrt{n}\ln{n}: \chi(G|_S) \geq 4 \text{, но }\exists x \in S: \chi(G|_{S\setminus \{x\}}) \leq 3)$$ \par Интуитивно: существует $S \Leftrightarrow$ существует минимальное по включению $S$. Обозначим эту вероятность как $P(A)$
+
+\par Степень любой вершины $x \in S$ в $S$ больше 2, так как иначе при ее добавлении к $S\setminus \{x\}$ хроматическое число не подимется от $\leq 3$ до $\geq 4$ (если соседа всего 2, красим $x$ в незанятый цвет). Тогда количество ребер в индуцированном подграфе: $|E(G|_S)|\geq \frac{3|S|}{2}$
+
+\par Введем новое событие $B = \exists s \in [4; \sqrt{n} \ln{n}], \exists S: |S|=s: |E(G|_S)|\geq \frac{3|S|}{2}$. $B$ следует из $A$ (из соображений выше). Тогда $$P(A) \leq P(B) \leq \sum_{s=4}^{\sqrt{n}\ln{n}} \sum_{S \subset \{1, \ldots, n\}, |S|=s} P(|E(G|_S)|\geq \frac{3|S|}{2})=*$$
+
+\par Событие в последней сумме: в $S$ есть хотя бы $\frac{3s}{2}$ ребер. Его вероятность легко считается
+
+$$*=\sum_{s=4}^{\sqrt{n}\ln{n}} \sum_{S \subset \{1, \ldots, n\}, |S|=s} C_{C_s^2}^{\frac{3s}{2}} p^{\frac{3s}{2}}=\sum_{s=4}^{\sqrt{n}\ln{n}} C_n^s C_{C_s^2}^{\frac{3s}{2}} p^{\frac{3s}{2}}=*$$
+
+\par Воспользуемся неравенством $$C_a^b \leq \frac{a^b}{b!}; \: b! \geq \left(\frac{b}{e}\right)^b \Rightarrow C_a^b \leq \left(\frac{ea}{b}\right)^b$$
+
+$$* \leq \sum_{s=4}^{\sqrt{n}\ln{n}} \left(\frac{en}{s}\right)^s \left(\frac{eC_s^2}{3s/2}\right)^{\frac{3s}{2}} p^{\frac{3s}{2}} < \sum_{s=4}^{\sqrt{n}\ln{n}} \left(\frac{en}{s}\right)^s s^{\frac{3s}{2}} p^{\frac{3s}{2}} = *$$
+
+\par Последний переход получили из того, что $\frac{C_s^2}{s/2} < s$ + откинули $(e/3)^{\frac{3s}{2}} < 1$. Так как $s \leq \sqrt{n}\ln{n}$ и $p=n^{-\alpha}$ получим
+
+$$*=\sum_{s=4}^{\sqrt{n}\ln{n}} \left(\frac{en}{s}s^{\frac{3}{2}}p^{\frac{3}{2}}\right)^s \leq \sum_{s=4}^{\sqrt{n}\ln{n}} \left( en (\sqrt{n}\ln{n})^{1/2} n^{-\frac{3}{2}\alpha}\right)^s=*$$
+
+\par Введем $\beta = -\left(\frac{5}{4}-\frac{3}{2}\alpha\right) > 0$ при $\alpha > \frac{5}{6}$. Тогда
+
+$$*=\sum_{s=4}^{\sqrt{n}\ln{n}} (en^{-\beta}\sqrt{\ln{s}})^s \underset{n \geq n_1}{<} \sum_{s=4}^{\sqrt{n}\ln{n}} (n^{-\frac{\beta}{2}})^s \leq n^{-2\beta} \left(\frac{1}{1-n^{-\beta/2}}\right) \underset{n \geq n_0}{<} \frac{1}{\ln{n}} \: \blacksquare$$
+

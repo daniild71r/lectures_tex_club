@@ -1,0 +1,58 @@
+\setcounter{equation}{0}
+
+Линейным дифференциальным уравнением с переменными коэфициентами порядка $n$ называется уравнение
+\begin{equation}\label{varcoef-eq}
+    y^{(n)} + a_1(x)y^{(n-1)} + \ldots + a_n(x)y = f(x)
+\end{equation}
+где \(x \in I\) и \(a_j(x), f(x)\)  --- непрерывные функции на \(I\). Если \(f(x) \equiv 0\), то такое уравнение называется однородным.
+
+\begin{lemma}\label{varcoef-solsumlemma}
+Если  $f(x) = f_1(x) + f_2(x)$ и $y_i(x)$ ~--- решение уравнения (\ref{varcoef-eq}) при $f(x) \equiv f_i(x)$ на $[\alpha; \beta], i = 1, 2$, то функция \(y(x) = y_1(x) + y_2(x)\) является решением уравнения (\ref{varcoef-eq}).
+\end{lemma}
+\begin{corollary}[Принцип суперпозиции]
+Если $y_1(x), y_2(x)$~--- решения однородного уравнения (\ref{varcoef-eq}) (при $f \equiv 0$), то линейная комбинация $y = c_1 \cdot y_1(x) + c_2 \cdot y_2(x)$ также решение однородного уравнения (\ref{varcoef-eq}).
+\end{corollary}
+Решение уравнения (\ref{varcoef-eq}) всегда можно свести к решению системы линейных уравнений порядка $n$ следующего вида
+\begin{equation}\label{varcoef-sys}
+    \vec{y'}(x) = A(x)\vec{y}(x) + \vec{f}(x)
+\end{equation}
+где 
+\[
+y(x) =
+\begin{pmatrix}
+y_1(x) \\
+\vdots \\
+y_n(x) 
+\end{pmatrix},
+A(x) = \begin{pmatrix}
+0 & 1 & 0 & \ldots & 0 \\
+0 & 0 & 1 & \ldots & 0 \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+0 & 0 & 0 & \ldots & 1 \\
+-a_n(x) & -a_{n-1}(x) & -a_{n-2}(x) & \ldots & -a_1(x)
+\end{pmatrix},
+\vec{f}(x) =
+\begin{pmatrix}
+0 \\
+\vdots \\
+0  \\
+f(x)
+\end{pmatrix}.
+\]
+
+Давайте поймем что происходит в этой системе. Строки матрицы $A$ умножаются на столбец $y(x)$ и полученные суммы сравниваются с вектором $f(x)$. Последняя строчка матрицы $A$ в итоге даст условие 
+\[
+y'_n(x) = -a_n(x) \cdot y_1(x) + \ldots - a_1(x) \cdot y_n(x) + f(x).
+\]
+Все остальные строки матрицы дадут условия вида \(y'_i = y_{i + 1}, i \in [1; n-1].\) Получится цепочка, связывающая \(y_1, \ldots y_n\) и их производные.
+
+\begin{lemma}\label{varcoef-equivlemma}
+Уравнение (\ref{varcoef-eq}) эквивалентно системе (\ref{varcoef-sys}).
+\end{lemma}
+\begin{proof}
+Пусть \(y = \varphi(x)\)~--- решение (\ref{varcoef-eq}). Положим
+\[y_1(x) = \varphi(x), y_2(x) = \varphi'(x), \ldots, y_n(x) = \varphi^{(n-1)}(x).\]
+Тогда вектор-функция с компонентами \(\varphi(x), \varphi'(x), \ldots, \varphi^{(n-1)}(x)\) удовлетворяет системе (\ref{varcoef-sys}). Наоборот, если вектор-функция с компонентами \(\varphi(x), \varphi'(x), \ldots, \varphi^{(n-1)}(x)\)~--- решение системы (\ref{varcoef-eq}), то, исключив из (\ref{varcoef-sys}) переменные \(y_2, \ldots,y_n\) получаем, что \(y_1 = \varphi(x)\)~--- решение уравнения (\ref{varcoef-eq}).
+\end{proof}
+
+Теперь, благодаря лемме~\ref{varcoef-equivlemma} лемма~\ref{varcoef-solsumlemma} и ее следствие следуют из эквивалентных фактов для системы~(\ref{varcoef-sys}). Принцип суперпозиции и лемма~\ref{varcoef-solsumlemma}  проверяются непосредственной подстановкой и по-сути прямое следствие линейности производной.

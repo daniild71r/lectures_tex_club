@@ -1,0 +1,117 @@
+\Def Пусть $t$ - действительная переменная, $A_{n \times n}$ - комплекснозначная квадратная матрица. Матричной экспонентой называется ряд: $$e^{tA} = E_{n \times n} + \sum_{k=1}^{\infty} \frac{t^k}{k!} A^k$$
+где $a_{ij}^{(k)}$ - элемент матрицы $A^k$ на месте $ij$ (верхний индекс $a$ это не возведение в степень)
+
+Введём обозначение частичных сумм:
+$$S_m = E_{n \times n} + \sum_{k=1}^{m} \frac{t^k}{k!} A^k$$
+$$(S_m)_{ij} = \delta_{ij} + \sum_{k=1}^{m} \frac{t^k}{k!} a^{(k)}_{ij}$$
+
+\par Корректность определения.
+
+\Def Матричный ряд 
+$$e^{tA} = E_{n \times n} + \sum_{k=1}^{\infty} \frac{t^k}{k!} A^k$$ 
+называется \textit{сходящимся} при $t_0 \in \R$, если степенной ряд $$(S_m)_{ij} = \delta_{ij} + \sum_{k=1}^{m} \frac{t^k}{k!} a^{(k)}_{ij}$$ сходится для всех $i$ и $j$.
+
+\Lemma $\forall A \in M_{n \times n}(\R)$ верно, что ряд $e^{tA} = E + \sum_{k=1}^{\infty} \frac{t^k}{k!} A^k$ сходится абсолютно.
+
+\Proof
+Пусть $M = \max_{i, j}|a_{ij}|$. 
+
+1) Докажем по индукции: $|a_{ij}^{(k)}| \leqslant n^{k-1}M^k$. База:$ |a_{ij}^{(1)}| \leqslant n^0 M$
+
+2) $|a_{ij}^{(k)}| = |\sum_{l=1}^n a_{il}^{(1)}a_{lj}^{(k-1)}| \leqslant \sum_{l=1}^n |a_{il}^{(1)}a_{lj}^{(k-1)}| \leq M n (n^{k-2} M^{k-1}) \leqslant n^{k-1} M^k$\\
+Рассмотрим ряд 
+
+$1 + \frac{|t|}{1!} M + \frac{|t|^2}{2!} n M^2 + \dots + \frac{|t|^k}{k!} n^{k-1} M^k + \dots$ (*)
+
+$\overline{\lim}_{k \rightarrow \infty} \frac{\left(\frac{n^k M^{k+1}}{(k+1)!}\right)}{\left(\frac{n^{k-1} M^k}{k!}\right)} = \overline{\lim}_{k \rightarrow \infty} \frac{nM}{k+1} = 0 \rightarrow$ ряд (*) сходится по признаку Даламбера и мажорирует каждый компонентный ряд.
+
+\EndProof
+
+\textbf{Замечание}
+
+Матричная экспонента сходится равномерно на $\forall [\alpha, \beta] \in \R_t^1$
+
+\Lemma (формула матричного бинома)
+
+Если $A$ и $B$ перестановочны, то $\forall n \in \N: (A + B)^n = \sum_{k=0}^n C_n^k A^k B^{n-k}$
+
+\Lemma Если $A$ и $B$ перестановочны (т.е. $AB = BA$), то $\forall t \in \R$
+$$e^{tA} e^{tB} = e^{tB} e^{tA} = e^{t(A+B)}$$
+
+\Proof
+
+$$e^{t(A+B)} = \sum_{n=0}^{\infty} \frac{t^n}{n!} (A+B)^n = \sum_{n=0}^{\infty} \sum_{k+m=n} \frac{t^k A^k}{k!} \frac{t^m B^m}{m!} =\text{(сходится абсолютно)}=\sum_{k=0}^{\infty} \sum_{m=0}^{\infty} \frac{t^k A^k}{k!} \frac{t^m B^m}{m!} =$$ 
+$$= \sum_{k=0}^{\infty} \frac{t^k A^k}{k!} \sum_{m=0}^{\infty} \frac{t^m B^m}{m!} = e^{tB} e^{tA} = e^{tA} e^{tB}$$
+
+\EndProof
+
+\textbf{Следствие} 
+
+$e^{tA}$ невырождена $\forall t \in R,$ и $(e^{tA})^{-1} = e^{-tA}$
+
+\Proof
+
+$$E = e^{t(A-A)} = e^{tA} e^{-tA}$$
+
+\EndProof
+
+\Lemma (свойства матричной экспоненты)
+
+1) Если $S$-невырожденная и $A = SBS^{-1}$, то $e^{tA} = Se^{tB}S^{-1}, \forall t \in \R$
+
+2) $\frac{d}{dt}(e^{tA}) = Ae^{tA} = e^{tA}A$
+
+\Proof
+
+1) Заметим, что $A^k = SB^kS^{-1}$
+
+$$\sum_{k=0}^{\infty} \frac{t^k}{k!}A^k = S (\sum_{k=0}^{\infty} \frac{t^k}{k!}B^k) S^{-1} \rightarrow_{(k \rightarrow \infty)} S e^{tB} S^{-1}, \sum_{k=0}^{\infty} \frac{t^k}{k!}A^k \rightarrow_{(k \rightarrow \infty)} e^{tA}$$
+
+2) $$\frac{d}{dt} (\sum_{k=0}^n \frac{t^k}{k!} A^k) = (\sum_{k=1}^n \frac{t^{k-1}}{(k-1)!} A^k) = \sum_{k=0}^{n-1} \frac{t^{k}}{k!} A^{k+1} = A \sum_{k=0}^{n-1} \frac{t^{k}}{k!} A^{k} \rightarrow A e^{tA}$$
+
+\EndProof
+
+\Th (матричная экспонента для ФСР)\\
+Матрица $e^{tA}$ является фундаментальной матрицей для системы линейных уравнений $\dot{\overline{x}} = A \overline{x}$.
+
+\Proof
+
+$(e^{tA})' = Ae^{tA}$, следовательно, каждый столбец матрицы  $Ae^{tA}$ является решением системы $\dot{\overline{x}} = A \overline{x}$. Поскольку $det\  e^{tA} \neq 0$ при любом $t$ (т.е. столбцы содержат независимые решения), то $e^{tA}$ фундаментальна.
+\EndProof
+
+Общее решение системы $\dot{\overline{x}} = A \overline{x}$ это $\overline{x} = e^{tA} \overline{c}$, где $\overline{c}$ - вектор констант.
+
+\Th общее решение системы $\dot{\overline{x}} = A \overline{x} + \overline{f}(t)$ задаётся следующей формулой:
+
+$$\overline{x} = e^{tA} \left( \int_{t_0}^t e^{-\tau A} \overline{f}(\tau) d\tau + \overline{c}_0 \right)$$
+
+\Proof
+Метод вариации постоянных:
+
+$$\overline{x} = e^{tA}\overline{c}(t)$$
+$$(e^{tA}\overline{c}(t))' = Ae^{tA}\overline{c}(t) + e^{tA} \dot{\overline{c}}(t) = Ae^{tA}\overline{c}(t) + \overline{f}(t)$$
+$$e^{tA} \dot{\overline{c}}(t) = \overline{f}(t)$$
+$$\dot{\overline{c}}(t) = e^{-tA} \overline{f}(t)$$
+$$\overline{c}(t) = \left( \int_{t_0}^t e^{-\tau A} \overline{f}(\tau) d\tau + \overline{c}_0 \right)$$
+
+\EndProof
+
+\textbf{Следствие.} Решение задачи Коши
+$$\dot{\overline{x}} = A\overline{x} + \overline{f}(t) \quad \overline{x}(t_0) = \overline{x}_0$$
+
+выражается в следующем виде:
+
+$$\overline{x} = e^{tA} \left( \int_{t_0}^t e^{-\tau A} \overline{f}(\tau) d\tau + e^{-t_0 A} \overline{x}_0 \right) = e^{tA} \left( \int_{t_0}^t e^{-\tau A} \overline{f}(\tau) d\tau \right) + e^{(t - t_0) A} \overline{x}_0$$
+
+\Proof 
+
+Воспользуемся формулой 
+
+$$\overline{x} = e^{tA} \left( \int_{t_0}^t e^{-\tau A} \overline{f}(\tau) d\tau + \overline{c}_0 \right)$$
+
+положив \(t = t_0\), получим \(\overline{c}_0 = e^{-t_0 A}\overline{x}_0\).
+
+\EndProof
+
+\textbf{Пример.} 
+Если $t_0 = 0$ и $\overline{f}(t) \equiv \overline{0}$, то $\overline{x} = e^{tA}\overline{x}_0$.

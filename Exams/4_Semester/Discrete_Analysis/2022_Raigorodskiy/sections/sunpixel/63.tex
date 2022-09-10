@@ -1,0 +1,50 @@
+Пусть $X$ -- случайная величина, $X: \Omega \to S \subset \mathbb{R}, |S| < \infty$.
+
+\textit{Энтропией} случайной величины $X$ называется
+$H(X) := - \sum \limits_{s \in S} P(X = s) \cdot \log_2 P(X = s)$.
+
+Аналогично определяется энтропия для нескольких случайных величин:
+
+$$
+H(X_1, \ldots, X_n) := \sum_{s_1 \in S_1} \ldots \sum_{s_n \in S_n} 
+P(X_1 = s_1, \ldots, X_n = s_n) \cdot \log_2 P(X_1 = s_1, \ldots, X_n = s_n)
+$$
+
+\textbf{Теорема (свойство полуаддитивности).}
+
+$$
+H(X, Y) \leqslant H(X) + H(Y)
+$$
+
+\textit{Доказательство.}
+
+Пусть $X: \Omega \to S, Y: \Omega \to T$.
+
+Докажем, что $H(X) + H(Y) - H(X, Y) \geqslant 0$.
+
+\begin{multline*}
+H(X) + H(Y) - H(X, Y) = 
+- \sum_{s \in S} P(X = s) \cdot \log_2 P(X = s)
+- \sum_{t \in T} P(Y = t) \cdot \log_2 P(Y = t) + \\
++ \sum_{s \in S} \sum_{t \in T} P(X = s, Y = t) \cdot \log_2 P(X = s, Y = t) = 
+- \sum_{s \in S} \left( \left( \sum_{t \in T} P(X = s, Y = t) \right) 
+\cdot \log_2 P(X = s) \right) - \\
+- \sum_{t \in T} \left( \left( \sum_{s \in S} P(Y = t, X = s) \right) 
+\cdot \log_2 P(Y = t) \right)
++ \sum_{s \in S} \sum_{t \in T} P(X = s, Y = t) \cdot \log_2 P(X = s, Y = t) = \\
+= \sum_{s \in S} \sum_{t \in T} P(X = s, Y = t) \cdot 
+\log_2 \frac{P(X = S, Y = t)}{P(X = s) P(Y = t)} = \\
+= \sum_{s \in S} \sum_{t \in T} 
+\underbrace{\frac{P(X = s, Y = t)}{P(X = s) P(Y = t)}}_{z_{s, t}} \cdot 
+P(X = s) P(Y = t) \cdot 
+\log_2 \underbrace{\frac{P(X = S, Y = t)}{P(X = s) P(Y = t)}}_{z_{s, t}} = \\
+= \sum_{s \in S} \sum_{t \in T} z_{s, t} \cdot \log_2 z_{s, t} \cdot P(X = s) P(Y = t)
+\end{multline*}
+
+Так как функция $f(x) = x \log_2 x$ выпуклая, то можно воспользоваться неравенством Йенсена:
+
+\begin{multline*}
+\sum_{s \in S} \sum_{t \in T} f(z_{s, t}) \cdot P(X = s) P(Y = t) \geqslant
+f \left( \sum_{s \in S} \sum_{t \in T} P(X = s) P(Y = t) \cdot z_{s, t} \right) = \\
+ = f \left( \sum_{s \in S} \sum_{t \in T} P(X = s, Y = t) \right) = f(1) = 0
+\end{multline*}

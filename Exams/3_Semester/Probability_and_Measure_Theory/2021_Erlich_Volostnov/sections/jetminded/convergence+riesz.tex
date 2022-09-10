@@ -1,0 +1,154 @@
+$(X, M, \mu)$ - измеримое пространство с мерой $\mu$, $\mu$ - $\sigma$-аддитивная, $\sigma$-конечная,
+
+\Def Последовательность измеримых функций $\{ f_n \}$ \textbf{сходится по мере} к измеримой функции f ($f_n \convme f$): $\forall \varepsilon$ $lim_{n \to \infty}$ $\mu \{x \in X | |f_n(x) - f(x)| \geqslant \varepsilon \} = 0$
+
+\Def Последовательность измеримых функций $\{ f_n \}$ \textbf{сходится почти всюду} к измеримой функции f ($f_n \convae f$): $\mu \{ x \in X | f_n \nrightarrow f(x)\} = 0$
+
+\Note \textit{в теории вероятностей первое - сходимость по вероятности, второе - сходимость почти наверное}
+
+\Note Здесь и далее ВСЕ функции измеримые.
+
+\vspace{5pt}
+
+\textbf{Теорема.} $f_n \convae f$; $f_n \convae g$ $\Rightarrow$ $f \eqae g$
+
+\Proof Наследуется из свойств предела в определении сходимости почти всюду. \EndProof
+
+\textbf{Теорема.} \textbf{Арифметические свойства сходимости п.в.} $f_n \convae f$; $g_n \convae g$ Тогда:
+
+1) $\forall a, b \in \R$ $(af_n + bg_n) \convae (af + bg)$
+
+2) $h: \R \to \R$ непрерывна, тогда $h(f_n(x)) \convae h(f(x))$
+
+3)$f_n g_n \convae fg$
+
+4) $g_n, g \neq 0$ ни в одной точке, тогда $\frac{f_n}{g_n} \convae \frac{f}{g}$
+
+\Proof Пункт 2): Непрерывность по Гейне: $x_n \to x \Rightarrow h(x_n) \to h(x)$ $\Rightarrow$ $\{x \in X: h(f_n(x)) \nrightarrow h(f(x)) \} \subseteq \{x \in X: f_n(x) \nrightarrow f(x)\}$; аналогично остальные пункты наследуются из определения предела. \EndProof
+
+\vspace{5pt}
+
+\textbf{Теорема.} \textbf{критерий сходимости почти всюду}
+
+Если $\mu(X) < \infty$, то $f_n \convae f$ $\Leftrightarrow$ $\forall \varepsilon$ $\lim_{n \to \infty}$ $\mu (\cup_{k=n}^{\infty} \{ x: \abs{f_k(x) - f(x)} \geqslant \varepsilon \}) = 0$
+
+\Proof
+$f_n(x) \nrightarrow f(x)$ $\Rightarrow$ $\exists m \forall n \exists k > n: \abs{f_k(x) - f(x)} \geqslant \frac{1}{m}$ 
+
+$\{x: f_n(x) \nrightarrow f(x)\} = \cup_{m=1}^{\infty}\cap_{n=1}^{\infty}\cup_{k=n}^{\infty} \{ x: \abs{f_k(x) - f(x)} \geqslant \frac{1}{m} \} = C$; 
+
+$\mu(C) = 0$ $\Leftrightarrow$ $\forall m$ $\mu(\cap_{n=1}^{\infty}\cup_{k=n}^{\infty} \{ x: \abs{f_k(x) - f(x)} \geqslant \frac{1}{m} \}) = 0$ (в одну сторону очевидно, в другую - мера объединения больше или равна мере каждого из элементов)
+
+События вложены друг в друга, значит, можно перейти к пределу: 
+
+$\forall m$ $\lim_{n \to \infty}$ $\mu (\cup_{k=n}^{\infty} \{ x: \abs{f_k(x) - f(x)} \geqslant \frac{1}{m} \}) = 0$ ($\sigma$-аддитивность, конечность меры)
+\EndProof
+
+\vspace{5pt}
+
+\textbf{Теорема.} \textbf{связь сходимостей} Если $\mu(X) < \infty$, то $f_n \convae f$ $\Rightarrow$ $f_n \convme f$
+
+\Proof
+Кр-ий сх. п.в.: $\forall \varepsilon$ $\mu (\cup_{k=n}^{\infty} \{ x: \abs{f_k(x) - f(x)} \geqslant \varepsilon \}) \geqslant \mu (\{ x: \abs{f_n(x) - f(x)} \geqslant \varepsilon \})$; 
+\\ $\lim_{n \to \infty}$ $\mu (\cup_{k=n}^{\infty} \{ x: \abs{f_k(x) - f(x)} \geqslant \varepsilon \}) = 0$ $\Rightarrow$ $\lim_{n \to \infty}$ $\mu (\{ x: \abs{f_k(x) - f(x)} \geqslant \varepsilon \}) = 0$
+\EndProof
+
+\Note Обратное неверно, пример Рисса: $\forall n \in \N, k \in [1; n]$; $\varphi_{n, k} = I_{[(k-1)/n; k/n]}(x)$
+
+\vspace{5pt}
+
+\textbf{Теорема.} \textbf{теорема Рисса}: Пусть $(X, M, \mu)$ - $\sigma$-конечное измеримое пространство. Тогда $f_n \convme f$ $\Rightarrow$ $\exists n_k$: $f_{n_k} \convae f$ (можно выбрать подпоследовательность).
+
+\Proof
+1) Пусть мера конечная. $ \forall \varepsilon$ $lim_{n \to \infty}$ $\mu \{x \in X | |f_n(x) - f(x)| \geqslant \varepsilon \} = 0$ $\Rightarrow$ $\forall k \exists n_k$: $\mu \{x \in X | |f_{n_k}(x) - f(x)| \geqslant \frac{1}{k} \} \leqslant \frac{1}{2^k}$; Считаем $\varepsilon > 1/k$.
+Хотим доказать, что $f_{n_k} \convae f$: $\forall \varepsilon$  $\mu (\cup_{i=k}^{\infty} \{ x: \abs{f_{n_i}(x) - f(x)} \geqslant \varepsilon \}) \leqslant \mu (\cup_{i=k}^{\infty} \{ x: \abs{f_{n_i}(x) - f(x)} \geqslant 1/i \}) \leqslant \sum_{i=k}^{\infty} \mu (\{ x: \abs{f_{n_i}(x) - f(x)} \geqslant 1/i \}) \leqslant \sum_{i=k}^{\infty} \frac{1}{2^i} = \frac{1}{2^{k-1}}$. Таким образом, по т. о 2х миллиционерах изначальная функция стремится к нулю.
+
+2) Мера $\sigma$-конечная. $X = \cup_{i=1}^{\infty} X_i$, $\mu(X_i) < \infty$.
+
+$X_1$: $f_n \convme f$ $\Rightarrow$ $\exists n_{1, k}: f_{n_{1, k}} \convae f$
+
+$X_2$: $f_{n_{1, k}} \convme f$ $\Rightarrow$ $\exists n_{2, k}: f_{n_{2, k}} \convae f$
+
+и.т.д. Тогда имеем $f_{n_{m, k}} \convae f$ на $X_1, X_2, \dots, X_m$. Берём диагональ: $g_k = f_{n_{k, k}}$ - искомая подпоследовательность, т.к. $\{ x: g_k \nrightarrow f = \cup_{m=1}^{\infty} \{x \in X_m: g_k \nrightarrow f\}$, а меры таких мн-в 0. \EndProof
+
+\vspace{6pt}
+
+\textbf{Теорема.} \textbf{следствие: критерий сходимости по мере}
+
+Если $\mu(X) < \infty$, то $f_n \convme f$ $\Leftrightarrow$ $\forall n_k \exists n_{k_m}: f_{n_{k_m}} \convae f$
+
+\Proof
+В одну сторону: если посл-ть сходится по мере, то и подпосл-ть сходится по мере, а значит, по т. Рисса можно выбрать искомую подпосл-ть.
+
+В другую: от противного. Пусть $f_n \nrightarrow f$ по мере. Тогда $\exists \varepsilon > 0 \exists \delta > 0 \exists n_k \mu(x \in X: \abs{f_{n_k}(x) - f(x)} \geqslant \varepsilon) \geqslant \delta$; с другой стороны, выделим из этой последовательности $n_k$ подпоследовательность $n_{k_m}$: $f_{n_{k_m}} \convae f$ $\Rightarrow$ $f_{n_{k_m}} \convme f$, а это противоречие.
+\EndProof
+
+\vspace{5pt}
+
+\textbf{Теорема.} $f_n \convme f$; $f_n \convme g$ $\Rightarrow$ $f \eqae g$
+
+\Proof 
+Неравенство треугольника: $\abs{f_n - f} + \abs{f_n - g} \geqslant \abs{f - g} \geqslant \varepsilon$ $\Rightarrow$ $\forall \varepsilon$ $\{x: \abs{f(x) - g(x)} \geqslant \varepsilon\} \subseteq \{x: \abs{f(x) - f_n(x)} \geqslant \varepsilon/2\} \cup \{x: \abs{f_n(x) - g(x)} \geqslant \varepsilon/2\}$ получается неравенство по мере, причём для правых множеств мера стремится к нулю, значит, по т. о 2-х миллицонерах, левая последовательность так же стремится к нулю; однако она не зависит от n (это константа), значит, $\forall \varepsilon \mu(\{x: \abs{f(x) - g(x)} \geqslant \varepsilon\}) = 0$; $\mu(x: f(x) \neq g(x)) = \mu(x: \abs{f(x) - g(x)} > 0) = \mu(\cup_{m=1}^{\infty} \{x: \abs{f(x) - g(x)} \geqslant 1/m\}) \leqslant \sum_{m=1}^{\infty} \mu( \{x: \abs{f(x) - g(x)} \geqslant 1/m\}) = 0$
+\EndProof
+
+\vspace{5pt}
+
+\textbf{Теорема.} \textbf{арифметические св-ва сходимости по мере} $f_n \convme f$; $g_n \convme g$, $\mu(X) < \infty$ Тогда:
+
+1) $\forall a, b \in \R$ $(af_n + bg_n) \convme (af + bg)$
+
+2) $h: \R \to \R$ непрерывна, тогда $h(f_n(x)) \convme h(f(x))$
+
+3)$f_n g_n \convme fg$
+
+4) $g_n, g \neq 0$ ни в одной точке, тогда $\frac{f_n}{g_n} \convme \frac{f}{g}$
+
+\Proof
+Докажем пункт 3 (остальные аналогично). Воспользуемся критерий сходимости по мере: $\forall n_k \exists n_{k_m}: f_{n_{k_m}}g_{n_{k_m}} \convae fg$; Знаем, что $f_{n_k} \convme f$, $g_{n_k} \convme g$; воспользуемся теоремой Рисса сначала для $f_{n_k}$, получу $n_{k_l}$, и уже из него выберу такую подпоследовательность $n_{k_{l_m}}$, чтобы и $g_{...}$ сходилось почти всюду. Применим аналогичную теорему из сходимости почти всюду.
+\EndProof
+
+\vspace{5pt}
+
+\Def $\{f_n\}$ фундаментальна почти всюду, если $\mu(x: \{f_n(x)\}$ не фундаментальна $) = 0$
+
+\textbf{Теорема.} \textbf{критерий Коши для сходимости почти всюду}
+$\{f_n\}$ сходится почти всюду $\Leftrightarrow$ $\{f_n\}$ фундаментальна почти всюду.
+\Proof
+Прямое наследование свойств обычных пределов: в тех точках, где она фундаментальна, она сходится почти всюду, и наоборот.
+
+$\Rightarrow$: $\mu\{f_n\}$ не фунд. $) \leqslant \mu(x: f_n(x) \nrightarrow f(x)) = 0$
+
+$\Leftarrow$: $\{f_n\}$ фунд. п.в.; $E = \{x : \{f_n(x)\}$ фундаментальна $\}$. Тогда $\forall x \in E \exists \lim f_n(x) = f(x)$, f(x) измерима как предел измеримых функций; для x не из Е положим $f(x) = 0$. Тогда $f_n(x) \convae f(x)$
+\EndProof
+
+\vspace{5pt}
+
+\Def $\{f_n\}$ фундаментальна по мере, если 
+
+$\forall \varepsilon > 0 \lim_{n, m \to \infty}\mu(x \in X: \abs{f_n(x) - f_m(x)} \geqslant \varepsilon) = 0$
+
+\textbf{Теорема.} \textbf{критерий Коши для сходимости по мере}
+
+$\{f_n\}$ сходится по мере $\Leftrightarrow$ $\{f_n\}$ фундаментальна по мере.
+
+\Proof
+$\Rightarrow$: $f_n \convme f$: $\mu(x \in X: \abs{f_n(x) - f_m(x)} \geqslant \varepsilon) \leqslant \mu(x \in X: \abs{f_n(x) - f(x)} \geqslant \varepsilon/2) + \mu(x \in X: \abs{f_m(x) - f(x)} \geqslant \varepsilon/2)$, каждая из мер справа $\to 0$, значит, по т. о 2 миллиционерах левая часть $\to 0$.
+
+$\Leftarrow$: План: 1) найти $n_k$: $f_{n_k}$ фунд. п.в. Тогда 2) $\exists f: f_{n_k} \convae f$ 3) Докажем, что $f_{n_k} \convme f$ 4) докажем $f_n \convme f$
+
+1) Зададим явно $n_k$: $\mu(x \in X: |f_{n_{k+1}} - f_{n_k}| \geqslant 2^{-k}) \leqslant 2^{-k}$. Существование следует из фундаментальности по мере.
+
+$A_k = \{x \in X: |f_{n_{k+1}} - f_{n_k}| \geqslant 2^{-k}\}$; $A = \cap_{m=1}^{\infty} \cup_{k=m}^{\infty}A_k$; $\mu(A) = 0$, т.к. $\mu(A) \leqslant \mu(\cup_{k=m}^{\infty}A_k) \leqslant \sum_{k=m}^{\infty} \mu(A_k) \leqslant \frac{1}{2^{m-1}}$, а это $\to 0$.
+
+$x \in A$: $\forall m \exists k \geqslant m: \abs{f_{n_{k+1}} - f_{n_k}} \geqslant 2^{-k}$
+
+Отрицание: $\exists m \forall k \geqslant m: \abs{f_{n_{k+1}} - f_{n_k}} < 2^{-k}$ - выполнено почти всюду, значит, $f_{n_k}(x)$ фундаментальна (через неравенство треугольника) на $X\backslash A$
+
+2) $f_{n_{k+1}}$ фундаментально, значит, зададим $f(x)$ как предел, если $x \in A$, иначе 0; $f_{n_k} \convae f$.
+
+3) Выкладка: $\abs{f_{n_i}(x) - f(x)} = \abs{\sum_{k=i}^{\infty}f_{n_k}(x) - f_{n_{k+1}}(x)} \leqslant \sum_{k=i}^{\infty} \abs{f_{n_k}(x) - f_{n_{k+1}}(x)} \leqslant 2^{-i+1}$ (1), $x \not\in A$, а последнее неравенство из предположения, что на соответствующие модули есть оценка виде $<2^{-k}$.
+
+$\forall \varepsilon > 0$ $\mu (x \in X: \abs{f_{n_i}(x) - f(x)} \geqslant \varepsilon)$; для больших i точно $\varepsilon \geqslant 2^{-i+1}$, а значит, на тех точках, где это выполняется, не выполняется неравенство (1), значит, $\mu (x \in X: \abs{f_{n_i}(x) - f(x)} \geqslant \varepsilon) \leqslant \sum_{k=i}^{\infty} \mu(x \in \overline{A}: \abs{f_{n_k} - f_{n_{k+1}}} \geqslant 2^{-k}) \leqslant \sum_{k=i}^{\infty} 2^{-k} = \frac{1}{2^{-i+1}} \to 0, i \to \infty$; доказали сходимость по мере: $f_n \convme f$
+
+4) По определению и т. о 2 миллиционерах: $\forall \varepsilon > 0$ $\mu(x \in X: \abs{f_n(x) - f(x)} \geqslant \varepsilon) \leqslant \mu(x \in X: \abs{f_n(x) - f_{n_k}(x)} \geqslant \varepsilon/2) + \mu(x \in X: \abs{f(x) - f_{n_k}(x)} \geqslant \varepsilon/2)$; 1-ая мера стремится к нулю из фундаментальности по мере (если $n, n_k$ устремить к бесконечности), а вторая - так как последовательность сходится по мере. Значит, вся левая часть стремится к нулю, значит, $f_n \convme f$.
+\EndProof

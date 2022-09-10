@@ -1,0 +1,364 @@
+\section{Системы множеств (полукольца, кольца, алгебры, сигма-алгебры). Примеры. Минимальное кольцо, содержащее полукольцо. Понятие наименьшего кольца, алгебры, сигма-алгебры, содержащей систему множеств.}
+\input{sections/artemiy/9}
+
+\newpage
+
+\section{Меры на полукольцах. Классическая мера Лебега на полукольце промежутков и ее сигмааддитивность.}
+\input{sections/artemiy/10}
+
+\newpage
+
+\section{Продолжение меры с полукольца на минимальное кольцо. Наследование сигма-аддитивности при продолжении меры. Внешние меры Лебега и Жордана. Мера Лебега. Свойства. Сигмаалгебра измеримых по Лебегу множеств. Сигма-аддитивность меры Лебега на сигмаалгебре измеримых по Лебегу множеств.}
+
+\par \Th Пусть $S$ - полукольцо и $m$ - мера на $S$. Тогда $\exists! \nu$ - мера на $R(S)$, такая что $\forall A \in S \hookrightarrow m(A)=\nu(A)$. Кроме того, если $m$ сигма-аддитивна, то и $\nu$ сигма-аддитивна.
+\par \Proof Пусть $A \in R(S), A=\bigsqcup_{i=1}^n A_i, A_i \in S$. Тогда определим $\nu(A):=\sum_{i=1}^n m(A_i)$ (по-другому определить не можем, то есть мера не более чем единственна)
+\begin{enumerate}
+    \item Корректность (независимость от представления $A$): Пусть $A=\bigsqcup_{i=1}^n A_i=\bigsqcup_{j=1}^m B_j$. Определим $C_{ij}=A_i \cap B_j \in S$. Тогда $A=\bigsqcup_{ij}C_{ij}$.
+    $$\sum_{i=1}^n m(A_i)=\sum_{i=1}^n \sum_{j=1}^m m(C_{ij})=\sum_j \sum_i m(C_{ij})=\sum_j m(B_j)$$
+    \item Аддитивность: $A=\bigsqcup_{i=1}^n A_i; A, A_i \in R(S)$. Тогда $A_i=\bigsqcup_{j=1}^m B_{ij}$ и $A=\bigsqcup_{ij} B_{ij}$. 
+    $$\nu(A)=\sum_{i=1}^n \sum_{j=1}^m m(B_{ij})=\sum_{i=1}^n \nu(A_i)$$. Неотрицательность очевидна, значит $\nu$ - это мера
+    \item Сигма-аддитивность: $A=\bigsqcup_{i=1}^\infty A_i,  A_i=\bigsqcup_{j=1}^{l_i} B_{ij}, A=\bigsqcup_{k=1}^m C_k$. Определим $D_{ijk}=C_k \cap B_{ij}$.
+    $$\nu(A)=\sum_{k=1}^m m(C_k)=\sum_{k=1}^m \sum_{i=1}^\infty \sum_{j=1}^{l_i} m(D_{ijk})=\sum_{i=1}^\infty \sum_{k=1}^m \sum_{j=1}^{l_i} m(D_{ijk})=\sum_{i=1}^\infty \nu(A_i)$$
+    \par В предпоследнем равенстве имеем право поменять знаки суммы так как ряд сходится абсолютно. \EndProof
+\end{enumerate}
+
+\par \textbf{Следствия:} Пусть $m$ - мера на полукольце $S$. Тогда
+\begin{enumerate}
+    \item Если $\bigsqcup_{i=1}^\infty A_i \subset A \Rightarrow \sum_{i=1}^\infty m(A_i) \leq m(A)$
+    \item Если $A \subset \cup_{i=1}^n A_i \Rightarrow m(A) \leq \sum_{i=1}^n m(A_i)$
+    \item Если $m$ сигма-аддитивна и $A \subset \cup_{i=1}^\infty A_i \Rightarrow m(A) \leq \sum_{i=1}^\infty m(A_i)$
+\end{enumerate}
+\par \Proof Продолжим меру $m$ до $\nu$ на $R(S)$. \begin{enumerate}
+    \item $$m(A)=\nu(A)=\nu(\bigsqcup_{i=1}^n A_i \bigsqcup (A \setminus (\bigsqcup_{i=1}^n A_i)))=\sum_{i=1}^n \nu(A_i) + \nu(A \setminus (\bigsqcup_{i=1}^n A_i)) \geq \sum_{i=1}^n m(A_i)$$
+    \par Раскрыть по аддитивности (третье равенство) можем в силу замкнутости кольца относительно операций. Остается только перейти к пределу в полученном неравенстве.
+    \item Будем доказывать что $\nu(A) \leq \sum_{i=1}^n \nu(A_i)$. Введем $B_k=(A_k \setminus \cup_{i=1}^{k-1} A_i) \cap A$. Тогда $A=\bigsqcup_{k=1}^n B_i$. Так как $B_k \in R(S)$ можем записать $\nu(A)=\sum_{i=1}^n \nu(B_i) \leq \sum_{i=1}^n \nu(A_i)$ (последнее неравенство справедливо, так как $B_i \subset A_i$)
+    \item Доказывается аналогично прошлому пункту (теперь в последнем равенстве можем перейти к ряду в силу сигма-аддитивности) \EndProof
+\end{enumerate}
+\par Пусть $S$ - полукольцо с единицей $E$, $m$ - сигма-аддитивная мера на полукольце
+
+\par \Def $\mu^*(A)=\underset{A\subset \cup_{i=1}^\infty A_i, A_i \in S}{inf}\sum_{i=1}^\infty m(A_i)$ - \textit{внешняя мера} ($\mu^*: 2^E \rightarrow [0;+\infty)$ - обязательно конечна, так как живем в полукольце с единицей)
+
+\leftbar
+\par \textbf{Альтернативное определение:} $\overline{\mu^*}(A)=\underset{A \subset \bigsqcup A_i, A_i \in S}{inf} \sum_{i=1}^\infty m(A_i)$
+
+\par \Statement $\mu^*=\overline{\mu^*}$
+\par \Proof Покрытие непересекающимися множествами так же учитывается в определении $\mu^* \Rightarrow \mu^*(A) \leq \overline{\mu^*}(A)$
+\par Пусть $A \subset \cup_{i=1}^\infty A_i$. Положим $B_k=A_k \setminus \cup_{i=1}^{k-1}A_i$. Тогда $\cup_{i=1}^\infty A_i=\bigsqcup_{k=1}^\infty B_k$. Так как $B_k \in R(S)$, оно представляется в виде $B_k=\bigsqcup C_{jk}$. Тогда $$\overline{\mu^*}(A) \leq \sum_j \sum_k m(C_{jk})=\sum_k \nu(B_k) \leq \sum_k \nu(A_k)=\sum_k m(A_k)$$
+\par Остается только перейти к $inf$ в этом неравенстве $\Rightarrow \overline{\mu^*}(A) \leq \mu^*(A)$
+\endleftbar
+
+\par \textbf{Свойства внешней меры:} \begin{enumerate}
+    \item $\mu^*(A) \leq m(E) < +\infty$
+    \item Пусть $\nu$ - продолжение $m$ на $R(S)$. Тогда $\forall A \in R(S) \hookrightarrow \mu^*(A)=\nu(A)$
+    \par \Proof $A=\bigsqcup_{i=1}^n A_i, A_i \in S$. Тогда $\mu^*(A) \leq \sum_{i=1}^n m(A_i)=\nu(A)$
+    \par Пусть $A \subset \cup_{i=1}^\infty A_i$. Тогда по следствию 3 из прошлой теоремы: $\nu(A) \leq \sum_{i=1}^\infty \nu(A_i)=\sum_{i=1}^\infty m(A_i) \Rightarrow \nu(A) \leq \mu^*(A)$ (перешли к $inf$) \EndProof
+    \item $A \subset \cup_{i=1}^\infty A_i, \forall A, A_i \subset E \Rightarrow \mu^*(A) \leq \sum_{i=1}^\infty \mu^*(A_i)$
+    \par \Proof Рассмотрим такое покрытие $A_i \subset \cup_{j=1}^\infty B_{ij}$, что $\sum_{j=1}^\infty m(B_{ij}) \leq \mu^*(A_i)+\frac{\varepsilon}{2^i}$. Тогда $A \subset \cup_{i, j} B_{ij}$, а значит $\mu^*(A) \leq \sum_i \sum_j m(B_{ij}) \leq \sum_{i=1}^\infty \mu^*(A_i) + \varepsilon$. В силу произвольности выбора $\varepsilon$ получаем искомое неравенство при устремлении его к 0. \EndProof
+\end{enumerate}
+
+\par \Conseq $|\mu^*(A)-\mu^*(B)| \leq \mu^*(A \Delta B)$
+\par \Proof $A \subset B \cup (A \Delta B) \Rightarrow \mu^*(A) \leq \mu^*(B)+\mu^*(A \Delta B) \Rightarrow \mu^*(A)-\mu^*(B) \leq \mu^*(A \Delta B)$. Записав аналогичное выражение для $B$, получим $\mu^*(B)-\mu^*(A) \leq \mu^*(A \Delta B)$. Так как для любой из разностей это неравенство верно, то оно верно и для модуля \EndProof
+
+\Def $A \subset E$ называется \textit{измеримым по Лебегу}, если $\forall \varepsilon > 0 \: \exists A_\varepsilon \in R(S)$, такое что $\mu^*(A \Delta A_\varepsilon)<\varepsilon$. $\M$ - множество всех измеримых по Лебегу множеств из $2^E$
+
+\par \Def \textit{Лебеговым продолжением $m$ (мерой Лебега)} называется $\mu: \M \rightarrow [0;+\infty)$, такая что $\forall A \in \M \hookrightarrow \mu(A)=\mu^*(A)$
+
+\par \Statement $R(S) \subset \M$
+\par \Proof В качестве $A_\varepsilon$ можно выбрать $A$ и тогда определение будет выполнено. Кроме того, $\forall A \in R(S) \hookrightarrow \mu(A)=\nu(A)$ (по второму свойству внешней меры) \EndProof
+
+\par \Th $\M$ - сигма-алгебра, $\mu$ - сигма-аддитивная мера на $\M$
+\par \begin{itemize}
+    \item[\Proof 1.] $\M$ - алгебра: $\varnothing, E \in R(S) \subset \M$
+    \par $A, B \in \M$. Тогда $\forall \varepsilon > 0 \exists A_{\varepsilon/2}, B_{\varepsilon/2}: \mu^*(A \Delta A_{\varepsilon/2})<\frac{\varepsilon}{2}, \mu^*(B \Delta B_{\varepsilon / 2}) < \frac{\varepsilon}{2}$.
+    \par Из определения множественных операций справедливы включения
+    $$(A \cap B) \Delta (A_{\varepsilon/2} \cap B_{\varepsilon/2}) \subset (A \Delta A_{\varepsilon/2}) \cup (B \Delta B_{\varepsilon/2}) \supset (A \Delta B) \Delta (A_{\varepsilon/2} \Delta B_{\varepsilon/2})$$
+    \par Тогда из свойства 3 внешней меры получаем
+    $$\mu^*((A \cap B) \Delta (A_{\varepsilon/2} \cap B_{\varepsilon/2})) \leq \mu^*(A \Delta A_{\varepsilon/2})+\mu^*(B \Delta B_{\varepsilon/2}) < \varepsilon \Rightarrow A \cap B \in \M$$
+    \par Аналогично получаем $A \Delta B \in \M \Rightarrow \M$ - алгебра.
+    
+    \item[2.] $\mu$ - мера на $\M$: Достаточно показать, что $\forall B, C \in \M: B \cap C=\varnothing \hookrightarrow \mu(B \bigsqcup C)=\mu(B)+\mu(C)$. Обозначим $A=B \bigsqcup C$
+    \par Из третьего свойства внешней меры: $\mu(A) \leq \mu(B)+\mu(C)$. Докажем в обратную сторону.
+    \par Так как $B,C \in \M$, то $\forall \varepsilon>0 \exists B_\varepsilon, C_\varepsilon\in R(S): \mu^*(B \Delta B_\varepsilon) < \varepsilon, \mu^*(C \Delta C_\varepsilon)< \varepsilon$
+    \par $B_\varepsilon \cap C_\varepsilon \subset (C_\e \setminus C) \cup (B_\e \setminus B)$ (так как $B \cap C = \varnothing$, а значит если элемент был слева то он не выкинется хотя бы из одной скобки справа) $\subset (C_\e \Delta C) \cup (B_\e \Delta B) \Rightarrow \mu^*(B_\e \cap C_\e) \leq \mu^*(C_\e \Delta C)+\mu^*(B_\e \Delta B) < 2\e$
+    \par $A \Delta (B_\e \cup C_\e)\subset(B \Delta B_\e) \cup (C \Delta C_\e) \Rightarrow \mu^*(A \Delta (B_\e \cup C_\e)) \leq \mu^*(B \Delta B_\e)+\mu^*(C \Delta C_\e)<2\e$
+    \par $|\mu(A)-\mu(B_\e \cup C_\e)| \leq \mu^*(A \Delta (B_\e \cup C_\e)) < 2\e$ (по следствию), а значит $\mu(A) \geq \mu(B_\e \cup C_\e)-2\e$.
+    \par Так как $B_\e, C_\e \in R(S)$, получаем $\mu(B_\e \cup C_\e)=\nu(B_\e \cup C_\e)=\nu(B_\e)+\nu(C_\e)-\nu(B_\e \cap C_\e)=\mu(B_\e)+\mu(C_\e)-\mu(B_\e \cap C_\e) \geq \mu(B)+\mu(C)-4\e$. Тогда $\mu(A) \geq \mu(B)+\mu(C)-4\e$ и в силу произвольности выбора $\e$ верное $\mu(A)\geq \mu(B)+\mu(C)$ \EndProof
+    \item[3.] $\M$ - сигма-алгебра: Пусть $A_1, \ldots, A_n \ldots \in \M$. Покажем, что $A=\cup_{i=1}^\infty A_i \in \M$. Определим $B_k=A_k \setminus (\cup_{i=1}^{k-1} A_i)$. Тогда $A=\bigsqcup_{k=1}^\infty B_k \Rightarrow A \supset \bigsqcup_{k=1}^n B_k \Rightarrow \mu^*(A) \geq \mu^*(\bigsqcup_{k=1}^n B_k)=\mu(\bigsqcup_{k=1}^n B_k)=\sum_{k=1}^n \mu(B_k)$ (так как уже доказали что $\mu^*$ - это мера на $\M$) $\Rightarrow \sum_{k=1}^\infty \mu(B_k)$ сходится $\Rightarrow \exists N: \sum_{k=N+1}^\infty \mu(B_k) < \e$.
+    \par $A=(\bigsqcup_{k=1}^N B_k)\bigsqcup(\bigsqcup_{k=N+1}^\infty B_k)=C \bigsqcup D=C \Delta D$. $\mu^*(D) \leq \sum_{k=N+1}^\infty \mu^*(B_k) < \e$, $C \in \M$ (так как представляется в виде объединения множеств $\M$, а $\M$ - алгебра). Тогда $\exists C_\e \in R(S): \mu^*(C \Delta C_\e)<\e$. 
+    $$A \Delta C_\e=(C \Delta C_\e) \Delta D \subset (C \Delta C_\e) \cup D \Rightarrow \mu^*(A \Delta C_\e) \leq \mu^*(C \Delta C_\e)+\mu^*(D)<2\e \Rightarrow A\in \M$$
+    \item[4.] $\mu$ сигма-аддитивна: Пусть $A=\bigsqcup_{i=1}^\infty A_i$. Тогда $\mu(A) \leq \sum_{i=1}^\infty \mu(A_i)$ (из полуаддитивности внешней меры) и $\mu(A) \geq \sum_{i=1}^\infty \mu(A_i)$ (по следствию 1 из теоремы о продолжении меры на кольцо) \EndProof
+\end{itemize}
+
+\par \Def $\mu^*_J(A)=\underset{A\subset \cup_{i=1}^n A_i, A_i \in S}{inf}\sum_{i=1}^n m(A_i)$ - \textit{внешняя мера Жордана}. Аналогично можно определить алгебру (не сигма) измеримых по Жордану множеств ($\M_J \subset \M$), меру Жордана.
+
+\par \textbf{Теорема (б/д):} $\M_J$ - алгебра, $\mu_J$ - сигма-аддитивная мера на $\M_J$. $\M_J \subset \M$ и $\forall A \in \M_J \hookrightarrow \mu_J(A)=\mu(A)$.
+\newpage{}
+
+\section{Структура измеримых множеств. Теорема Каратеодори.}
+\input{sections/artemiy/12}
+
+\newpage{}
+
+\section{Полнота и непрерывность мер. Теоремы о связи непрерывности и сигма-аддитивности.}
+\input{sections/sunpixel/theme13}
+
+\section{Мера Бореля. Меры Лебега-Стилтьеса на прямой и ее сигма-аддитивность.}
+\input{sections/jetminded/borel+lebeg.tex}
+\newpage{}
+
+\section{Сигма-конечные меры.}
+
+\textbf{Определение} Пусть $S$ - полукольцо множеств $X$. $X \not\in S, \ m$ - $\sigma-$аддитивная мера на $S$. Если $\exists \{X_i\}_{i=1}^{\infty} \in S \left( X = \bigcup_{i=1}^{\infty}X_i\right)$, то m -  $\sigma-$конечная мера
+\\
+\\
+\textbf{Продолжим меру m}
+\\
+\\
+\textbf{Утверждение}\\
+X = $\bigsqcup_{i=1}^{\infty} B_i, B_i \in S$
+\\
+$\blacktriangle$ Определим $B_i = X_i\textbackslash (\bigcup_{j=1}^{i-1}X_i)$. Любой элмент  R(S) является дизъюнктным объединением элементов полукольца по доказанной теореме, откуда  $B_i = \bigsqcup_{j=1}^{n_i} C_{ij}, C_{ij} \in S \ \blacksquare$
+\\
+\\
+Далее будем считать, что X = $\bigsqcup_{i=1}^{\infty} X_i, X_i \in S$.
+\\
+Определим $S_i = S \cap X_i$. $S_i$ - это $\sigma-$алгебра с единицей $X_i$. Отсюда делаем вывод, что существует лебегово продолжение m до $\sigma-$аддитивной меры $\mu_i$ на $\sigma-$алгебре $M_i$
+\\
+\\
+\textbf{Определение} $A \subset X$ - измеримо, если $\forall i (A \cap X_i)$ - измерима, то есть $(A \cap X_i) \in M_i$. Тогда можно определить меру:
+\\
+\\
+\textbf{Определение} 
+\begin{center}
+    $\mu(A) = \sum\limits_{i=1}^{\infty} \mu_i(A \cap X_i)$
+\end{center}
+\textbf{Определение} $\mu$ - лебегово продолжение $\sigma$-конечной меры на M
+\\
+\\
+\textbf{Замечание} 
+\\
+$\mu: M \rightarrow [0, +\infty]$, то есть эта мера не является мерой в классическом определении
+\\
+\\
+\textbf{Утверждение}
+\\
+$\forall A \in S, A\in M$(А - измеримо) и $\mu(A) = m(A) \\ \blacktriangle \\$
+Для того чтобы A было измеримым, нужно чтобы $A \cap X_i \in S$ - очевидно, как пересечение лежащих в S множеств.
+\\
+$\mu(A) = \sum\limits_{i=1}^{\infty} \mu_i(A \cap X_i)$ = (продолжение меры и мера совпадают) $\sum\limits_{i=1}^{\infty} m(A \cap X_i) = m(A)$, так как $\bigsqcup_{i=1}^{\infty} (A \cap X_i) = A \ \blacksquare$
+\\
+\\
+\textbf{Теорема 1} $\mu$ корректно определена, то есть ее определение не зависит от разбиения множества $X$ - \textbf{б\textbackslash д}
+\\
+\\
+\textbf{Теорема 2} Множество $M$ измеримых подмножеств $X$ - $\sigma$-алгебра
+\\
+$\blacktriangle$
+\begin{itemize}
+    \item [1.] $X \in M$, так как  X = $\bigsqcup_{i=1}^{\infty} X_i \in M$
+     \item [2.] $A, B \in M$, тогда $A \cap X_i \in M_i, B \cap X_i \in M_i$, откуда  $(A \cap X_i) \cap (B \cap X_i) \in M_i \Longrightarrow (A \cap B) \cap X_i \in M_i$
+     \item [3.] Для  $\Delta$ - аналогично
+     \item [4.] $A_1, A_2,..., A_n, ... \in M$. Тогда $(\bigcup_{i=1}^{\infty} (A_i)) \cap X_j = \bigcup_{i=1}^{\infty} (A_i \cap X_j) \in M_j$, откуда $(\bigcup_{i=1}^{\infty} (A_i)) \in M$ 
+\end{itemize}
+$\blacksquare$
+\\
+\\
+\textbf{Теорема 3} $\mu$ на M является $\sigma-$аддитивной мерой
+\\
+\\
+$\blacktriangle \ \ A = \bigsqcup_{i=1}^{\infty} A_i \in M$ \\ \\
+$\mu(A) = \sum\limits_{i=1}^{\infty} \mu_i(A \cap X_i) = \sum\limits_{i=1}^{\infty} \mu_i (\bigsqcup_{j=1}^{\infty} (A_j \cap X_i)) = \sum\limits_{i=1}^{\infty}\sum\limits_{j=1}^{\infty} \mu_i(A_j \cap X_i) = \sum\limits_{j=1}^{\infty}\sum\limits_{i=1}^{\infty} \mu_i(A_j \cap X_i) = \sum\limits_{j=1}^{\infty}\mu(A_j) \blacksquare$
+\section{Неизмеримые множества.}
+В этом билете мы будем строить множество Витали
+\\
+\textbf{Теорема}
+\\
+Пусть А - измеримое по классической мере Лебега подмножество [0,1]. Тогда существует неизмеримое $B \subset A \\ \blacktriangle$ Введем на $A$ отношение эквивалентности на отрезке [0,1]: $a \sim b$ , если $a-b \in Q$. Используя аксиому выбора можем выбрать в каждом классе эквивалентноси представителя. Положим Е = $\{x_{\alpha}\}$ - множество этих представителей.
+\\
+Занумеруем все рациональные числа в отрезке [-1, 1]. $\{r_n\} = Q \cap [-1, 1];$ Рассмотрим $E_n - E + r_n$.
+\\
+Множества $E_n$ не пересекаются. Пусть это не так, тогда $\exists x_{\alpha} + r_{\alpha} = x_{\beta} + r_{\beta}$, тогда $x_{\alpha} \sim x_{\beta}$. Противоречие
+\\
+Покажем, что $\forall C_n \subset E_n \rightarrow \lambda(C_n) = 0$.
+\\
+Пусть $\lambda(C_n) = d  > 0, C_m = C_n - r_n + r_m, C_n \subset [0, 1] \Longrightarrow \forall m C_m \in [-1, 2]$. 
+\\
+$C_m \subset E_m \Longrightarrow \bigsqcup_{m=1}^{\infty}C_m \subset \bigsqcup_{m=1}^{\infty}E_m \leq [-1,2] \Longrightarrow \infty = \sum\limits_{m=1}^{\infty}\lambda(C_m)  \leq 3$. Противоречие
+\\
+\\
+$A = \bigsqcup_{n=1}^{\infty} A\cap E_n$ в силу того, что $E_n$ попарно не пересекаются и их объединение содержит отрезок [0,1], так как $\forall \ x \in [0,1] x = x_{\alpha} + r_n$.
+\\
+Положим $F_n = A\cap E_n$. Если какое-то множество $F_n$ неизмеримо по Лебегу, то мы уже победили, так как тогда $A$ неизмеримо. Предположим, что все $F_n$ измеримы, тогда в силу того, что $\lambda(A) \neq 0$. Тогда $\exists n: \lambda(F_n) \neq 0$. Противоречие с доказанным \ \ $\blacksquare$
+
+\newpage{}
+
+\section{Измеримые функции. Их свойства. Измеримые функции и предельный переход.}
+\textbf{Определение} $(X, M) $ - \textit{измеримое пространство}, где $X$ - единица, $M$ - $\sigma$-алгебра. Элементы $M$ называются \textit{измеримыми множествами}
+\\
+\\
+\textbf{Определение} Функция $f: X \rightarrow \overline{R}$ \textit{измеримая}, если $\forall c \in \overline{R} (f^{-1}((c, +\infty]) \in M)$
+\\
+\\
+\textbf{Лемма} Множества $f^{-1}(+- \infty), f^{-1}(R), f^{-1}<a, b>$ - измеримы
+\\
+\\
+\textbf{Теорема}
+\\
+Если $f$ - измерима на $(X, M)$, то $\forall B \in B(R)$(борелевская $\sigma$-алгебра) ($f^{-1}(B) \in M$)
+\\
+$\blacktriangle \\ S = \{A \subset R:\ f^{-1}(A) \in M\}$
+\begin{itemize}
+    \item $R \in S$
+     \item $\forall A, B \in S : \ A\cap B \in S, A\Delta B \in S$ в силу того, что $f^{-1}(A)\cap f^{-1}(B) = f^{-1}(A\cap B)$
+     \item $\forall A_1, ..., A_n, ... \ \bigcup_{i=1}^{\infty} A_i \in S$ в силу того, что $f^{-1}(\bigcup_{i=1}^{\infty} A_i) = \bigcup_{i=1}^{\infty} f^{-1}(A_i)$
+\end{itemize}
+Следовательно, $S -$ $\sigma$-алгебра, содержащая все полуинтервалы, а значит, $B(R) \subset S$, то есть прообраз любого борелевского множества измерим
+$\blacksquare$
+\\
+\\
+\textbf{Определение} \textit{Борелевская функция} - это отображение из $G \subset B(R)$ в $R$, для которого верно следующее: $\forall c \in R (f^{-1}((c, +\infty)) \in B(R))$
+\\
+\\
+\textbf{Замечание} Если  $f$ - борелевская функция и $B \in B(R)$, то $f^{-1}(B)\in B(R)$
+\\
+\textbf{Замечание} Если  $f$ - непрерывная функция, определенная на открытом $G \in R$, то $f$ - борелевская
+\\
+\\
+\textbf{Теорема(о композиции)} Пусть f - измерима и конечна на $(X, M)$. $f(x) \subset G \subset R$($G \in B(R)$) и g - борелевская, тогда $gf$ - измеримая на $(X, M)$
+\\
+$\blacktriangle (gf)^{-1}(c, +\infty) = f^{-1}(g^{-1}\underset{\in B(R)}{(c, +\infty)})$ - измеримо $\blacksquare$
+\\
+\textbf{Теорема (об арифметических операциях)}
+\\
+$f, g: X \rightarrow R $  - измеримые функции, $(X, M)$ - измеримое пространство. Тогда $\forall a,b \in R :$
+\begin{itemize}
+    \item [1] $af + bп$ - измерима
+     \item [2] $fg$ - измерима
+     \item [3] $\frac{f}{g}, g \neq 0$ - измерима
+\end{itemize}
+$\blacktriangle$
+\begin{itemize}
+    \item [1] $a*f, f + c$ - измеримые функции так как
+    \begin{itemize}
+        \item $h(y) = ay$
+        \item $h(y) = y + c$
+    \end{itemize}
+    $h(f(x))$ - измеримая по предыдущей теореме
+    \\
+    $\{x: f(x) < g(x)\} = \bigcup_{i=1}^{\infty}( \{x : f(x) < r_n\} \cap \{x : g(x) > r_n\}$ - измеримое, тогда
+    \\
+    $\{x: f(x) + g(x) < a\} = \{x: f(x) < a - g(x)\}$ - измеримо
+    \item[2] $f*g = \frac{1}{4}((f+g)^2 - (f-g)^2)$ - измерима
+    \item[3] $\frac{f}{g} = f *\frac{1}{g}$. Положим $h(y) = \frac{1}{y}$. Если $y \neq 0$, то $h$ - непрерывна на области определения, поэтому если g измерима, то и $\frac{1}{g}$ - измерима. После применяем п2 и получаем, что $\frac{f}{g}$ - измерима
+\end{itemize}
+$\blacksquare$
+\\
+\\
+\textbf{Теорема} (о переходе к пределу)
+\\
+$\{f_n\}_{n=1}^{\infty}$ - измеримые функции. $f_n: X \rightarrow \overline{R}$. Тогда
+\begin{itemize}
+    \item [1] $\underset{n \geq 1}{sup}f_n$ и $\underset{n \geq 1}{inf}f_n$ - измеримые
+     \item [2] $\overline{\underset{n\rightarrow\infty}{lim}}(f_n(x))$ и  $\underset{n\rightarrow\infty}{\underline{lim}}(f_n(x))$ - измеримы
+     \item [3] (Следствие)  E =$\{x: \exists \underset{n\rightarrow\infty}{lim}(f_n(x)) \} \in M$ \\
+     $g(x) = \underset{n\rightarrow\infty}{lim}(f_n(x)), g: E \rightarrow R$ - измеримая функция из $(E, M_E) : M_E = \{A \subset E: A\in M\}$
+\end{itemize}
+$\blacktriangle$
+\begin{itemize}
+    \item [1]  $\{ x:\underset{n \geq 1}{sup}(f_n) \leq a\} = \cap_{i=1}^{\infty} \{x:f_n(x)\leq a\} \in M$. Для inf аналогчино 
+     \item [2]$\overline{\underset{n\rightarrow\infty}{lim}}(f_n(x))$ = $\underset{n \geq 1}{inf}\ \underset{k \geq n}{sup}(f_k)$
+     \\
+     $\underset{n\rightarrow\infty}{\underline{lim}}(f_n(x)) = $ $\underset{n \geq 1}{sup}\ \underset{k \geq n}{inf}(f_k)$
+     \item [3] $\phi(x) = \overline{\underset{n\rightarrow\infty}{lim}}(f_n(x)),  \\ 
+     \psi(x) = \underset{n\rightarrow\infty}{\underline{lim}}(f_n(x)) 
+    \\
+    E = \{x: \phi(x) = \psi(x)\} = \overline{\{ x: \phi(x) > \psi(x)\} \cup \{x: \psi(x) > \phi(x)\}}$ - измеримо
+    \\
+    \\
+    $\forall x \in E \ \underset{n \rightarrow \infty}{lim}(f_n) = \phi(x)\\ \\ \phi: X\rightarrow\overline{R} \\ \phi|_E :E\rightarrow\overline{R}
+    \\
+    \\
+    \forall A \in B(R) \ \phi^{-1}|_E(A) = \phi^{-1}(A)\cap E$
+\end{itemize}
+$\blacksquare$
+\newpage{}
+
+\section{Множество Кантора и кривая Кантора. Теорема о существовании композиции измеримой от непрерывной, не являющейся измеримой функцией.}
+\input{sections/ksinus/kantor.tex}
+
+\section{Сходимость по мере и почти всюду. Их свойства (критерий Коши сходимости по мере, арифметические, связь сходимостей, Теорема Рисса).}
+\input{sections/jetminded/convergence+riesz}
+
+\section{Теорема Егорова.}
+\input{sections/jetminded/egorov}
+\newpage{}
+
+\section{Интеграл Лебега для конечно-простых функций и его свойства. Определение интеграла Лебега в общем случае. Основные свойства интеграла Лебега.}
+\input{sections/ksinus/properties_integral}
+\newpage{}
+
+\section{Теоремы о предельном переходе под знаком интеграла Лебега.}
+\textbf{Теорема} Пусть $\ g_n(x), g$ - простые функции. Последовательность$\ g_n(x)$ неубывающая неотрицательная (поточечно) на $E \in M$ и $\underset{n\rightarrow \infty}{lim}(g_n) \geq g(x)$. Тогда 
+\begin{center}
+    $$\underset{n\rightarrow \infty}{lim}\int_E g_n \ d\mu \geq \int_E g \ d\mu$$
+\end{center}
+$\blacktriangle $
+Если $$\underset{n\rightarrow \infty}{lim}\int_E g_n \ d\mu = +\infty$$то все сразу выпoлняется, так как конечен интеграл $$\int_E g \ d\mu$$
+\\
+Пусть  $$\underset{n\rightarrow \infty}{lim}\int_E g_n \ d\mu <+\infty$$
+\\
+ $g(x) = \sum\limits_k c_kI_{E_k}(x), c_i > 0$ Определим $\forall \varepsilon > 0 \ F_n = \{x\in E: g_n \leq g(x) - \varepsilon \} \Longrightarrow F_i \supset F_{i+1}, \  \bigcap_{n=1}^{\infty} F_n = \emptyset$. Определим $F = \bigsqcup E_k \\ \mu(F) < \infty$, отсюда по непрерывности меры $\underset{n\rightarrow \infty}{lim} \ \mu(F_n) = 0$
+ $$\int_E g \ d\mu = \int_{F_n} g \ d\mu + \int_{F\textbackslash F_n}g \ d\mu \ \leq \ c_m\mu(F_n) + \int_{F\textbackslash F_n}(g_n + \varepsilon) \ d\mu \ \leq \ c_m\mu(F_n) + \varepsilon\int_{F\textbackslash F_n} 1 \ d \mu + \int_{F\textbackslash F_n} g_n \ d \mu$$
+ $c_m\mu(F_n) \rightarrow 0$, откуда переходя к пределу $$\int_E g \ d\mu \leq \underset{n\rightarrow \infty}{lim} \int_E g_n \ d\mu \blacksquare$$
+ \\
+ \textbf{Утверждение} Пусть $\{g_n\}$ - неубывающая неотрицательная последовательность простых функций. $E \in M, \ g(x) = \underset{n\rightarrow \infty}{lim}(g_n(x)) \ \forall x \in E$. Тогда 
+   $$\underset{n\rightarrow \infty}{lim}\int_E g_n \ d\mu \ = \ \int_E g \ d\mu$$
+ $\blacktriangle $ $$\\ \int_E g \ d\mu \ = \ \underset{h \in Q_g}{sup} \int_E h \ d\mu$$ \\  $$\underset{n\rightarrow \infty}{lim}(g_n(x)) \geq h(x)$$ \\$$ \int_E h \ d\mu \leq \underset{n\rightarrow \infty}{lim} \int_E g_n \ d\mu $$ Переходя к супремуму в левой части \\ $$ \int_E g \ d\mu \leq \underset{n\rightarrow \infty}{lim} \int_E g_n \ d\mu $$
+ В силу того, что $g_n \in Q_g$, очевидно выполняется неравенство в обратную сторону (g - супремум) $\blacksquare$
+ \\
+ \textbf{Утверждение}
+Для любой неотрицательной измеримой функции $f$ и $E \in M$ существует неубывающая последовательность $\{f_n\}$ неотрицательных простых функций, которая поточечно сходится к $f$ на Е.
+\\
+$\blacktriangle$ Пусть $E = \bigsqcup_{k=1}^{\infty}E_k, \ \mu(E_k) < \infty$
+\begin{equation*}
+f_m(x) = 
+ \begin{cases}
+   0 & x \in \bigsqcup_{k = m+1}^{\infty} E_k\\
+   2^m & x \in \bigsqcup_{k = 1}^{m} E_k, f(x) \geq 2^m \\
+   \frac{k-1}{2^m} & f(x) \in [\frac{k-1}{2^m}, \frac{k}{2^m}), 1 \leq k \leq 2^m
+   
+ \end{cases}
+\end{equation*}
+\textbf{Теорема Леви} Пусть $\{f_n\}$ - неубывающая последовательность неотрицательных измеримых функций, $f = \underset{n\rightarrow \infty}{lim} \ f_n$. Тогда
+$$\int_E f \ d\mu = \underset{n\rightarrow \infty}{lim} \int_E f_n \ d\mu $$
+$\blacktriangle$ Рассмотрим  $g_n = f_n - f_{n-1}, g_1 = f_1$. Применяя предыдущее утверждение для неотрицательной измеримой функции $g_n$ получим, что $\exists \psi_{mn}$ - последовательность простых неотрицательных функций, сходящаяся к $g_n$.
+Определим $F_m = \sum\limits_{n=1}^{m} \psi_{mn}$. Заметим, что $F_{m+1} - F_m = \sum\limits_{n=1}^{m+1}\psi_{m+1 n} - \sum\limits_{n=1}^{m}\psi_{mn} = \sum\limits_{n=1}^{m+1}(\psi_{m+1 n} - \psi_{m n}) + \psi_{m+1 m+1} \geq 0$\\
+$F_m \leq \sum\limits_{n=1}^{m}g_n = f_m \leq f$\\
+Заметим, что в силу этого равенства $F_m = \sum\limits_{n=1}^{m} \psi_{mn}$ можно зафиксировать достаточно большое N и получить  оценку $\underset{m\rightarrow \infty}{lim} F_m \geq \underset{m\rightarrow \infty}{lim}\sum\limits_{n=1}^{N} \psi_{mn} = \sum\limits_{n=1}^{N} \underset{m\rightarrow \infty}{lim} \psi_{mn} = \sum\limits_{n=1}^{N} g_n = f_N$\\
+Следовательно $\underset{m\rightarrow \infty}{lim} F_m \geq f(x)$ (но $F_m \leq f$, откуда $\underset{m\rightarrow \infty}{lim} F_m = f(x)$ )\\
+Так как $F_m$ - простые функции
+$$\int_E f \ d\mu = \underset{m\rightarrow \infty}{lim} \int_E F_m \ d\mu $$
+\\
+С другой стороны для любого m $$\int_E F_m \ d\mu \leq \int_E f_m \ d\mu \leq \int_E f \ d\mu \ \blacksquare$$
+\textbf{Следствие} Пусть $\{f_n\}$ - неубывающая последовательность интегрируемых на Е функций,  $$\int_E f_n \ d\mu\leq K $$ Тогда $\underset{n\rightarrow \infty}{lim} f_n = f$ - интегрируема на E и $$\int_E f \ d\mu = \underset{n\rightarrow \infty}{lim} \int_E f_n \ d\mu $$
+\\
+\textbf{Лемма Фату}
+Пусть $\{f_n\}$ - последовательность неотрицательных измеримых функций,  $f_n \convae f$ - измерима, тогда 
+$$\int_E f \ d\mu \leq \underset{n\rightarrow \infty}{\underline{lim}} \int_E f_n$$
+$\blacktriangle$ Пусть $\phi_n = \underset{k\geq n}{inf} f_k$, $\phi_n$ - возрастающая последовательность. Заметим, что $\phi_n \leq f_n$ и $\underset{n\rightarrow \infty}{lim} \phi_n = f$ на $E_1 = \{x\in E: f_n \rightarrow f\}$
+$$\int_E f \ d\mu  =\ \int_{E_1} f \ d\mu = \underset{n\rightarrow \infty}{lim} \int_{E_1} \phi_n \ d\mu = \underset{n\rightarrow \infty}{\underline{lim}} \int_{E} \phi_n \ d\mu \leq \underset{n\rightarrow \infty}{\underline{lim}} \int_{E} f_n \ d\mu $$
+$\blacksquare$\\
+\textbf{Теорема Лебега} Пусть $\{f_n\}$ - последовательность измеримых функций, $f_n \convae f$ - измерима, F интегрируема на Е и $|f_n| \leq F $ на Е. Тогда f интегрируема на Е и $$\int_E f \ d\mu = \underset{n\rightarrow \infty}{lim} \int_E f_n \ d\mu = \underset{n\rightarrow \infty}{\underline{lim}}$$
+$\blacktriangle$ Заметим, что все $f_n$ интегрируемы, так как ограничены по модулю интегрируемой функцией. Определим $\phi_n = F + f_n, \ \psi_n = F - f_n$
+$$\int_E F\ d\mu - \int_E f\ d\mu = \int_E (F - f)\ d\mu \leq \underset{n\rightarrow \infty}{\underline{lim}} \int_E (F - f_n) \ d\mu \  =  \int_E F \ d\mu \ - \underset{n\rightarrow \infty}{\overline{lim}} \int_E f_n\ d\mu \ $$
+$$\int_E F\ d\mu + \int_E f\ d\mu \leq \int_E F \ d\mu \ + \underset{n\rightarrow \infty}{\underline{lim}} \int_E f_n \ d\mu \ $$
+$$\underset{n\rightarrow \infty}{\overline{lim}} \int_E f_n \ d\mu \leq \int_E f\ d\mu \leq \underset{n\rightarrow \infty}{\underline{lim}} \int_E f_n \ d\mu \Longrightarrow \underset{n\rightarrow \infty}{lim} \int_E f_n \ d\mu = \int_E f\ d\mu$$
+$\blacksquare$\\ 
+\textbf{Следствие}
+Теорема Лебега верна для сходимости по мере.
+\\
+$\blacktriangle$
+Предположим, что теорема Лебега неверна, т. е. существует подпоследовательность интегралов, которая не сходится к интегралу предела. По теореме Рисса у
+соответствующей подпоследовательности функций существует подпоследовательность, сходящаяся к пределу всей последовательности функций почти всюду, значит, по теореме Лебега интегралы подпоследовательности сходятся к интегралу предела — противоречие.
+$\blacksquare$
+\newpage{}

@@ -1,0 +1,35 @@
+\subsection{9. Алгоритм проверки равенства регулярных выражений. Теорема Майхилла-Нероуда.}
+\textbf{Лемма (из билета 6):} Для любых $u \in \Sigma^*$, $a \in \Sigma$ верно, что $\Delta \brackets{[u], a} = [ua]$
+
+\Proof
+ $u \sim_L v \Longrightarrow \forall w' \brackets{uw' \in L \Longleftrightarrow vw' \in L} \Longrightarrow \forall w \brackets{uaw \in L \Longleftrightarrow vaw \in L} \Longleftrightarrow ua \sim_L va$ \EndProof
+\\
+
+\Lemma Для любых $u, v \in \Sigma^*$ верно, что $\Delta \brackets{[u], v} = [uv]$
+\newline \Proof
+Индукция по $|v|$. База:
+
+$v = \varepsilon \Longrightarrow \Delta([u], \varepsilon) = [u] = [u\varepsilon]$
+
+$v = a \Longrightarrow \Delta([u], a) = [ua]$ — по предыдущей лемме.
+
+Шаг: $v = v'a$
+$$\Delta([u], v'a) = \Delta(\Delta([u], v'), a) = \Delta([uv'], a) = [uv'a] = [uv]$$
+\EndProof\\ 
+
+
+\textbf{Теорема Майхилла-Нероуда:} Язык $L$ является автоматным тогда и только тогда, когда $\Sigma^* /_{\sim_L}$ содержит конечное количество классов эквивалентности.
+
+\Proof
+
+$\Longrightarrow$ Так как $L$ является автоматным. то для него существует минимальный ПДКА, $\arrowvert \Sigma^* /_{\sim_L} \arrowvert = \arrowvert Q \arrowvert$, Q - конечно
+
+$\Longleftarrow$ Множество $\Sigma^* /_{\sim_L}$ конечно. Построим канонический ПДКА $M_0 = \langle Q, \Sigma, \Delta, [\varepsilon], F \rangle$, где $Q=\Sigma^* /_{\sim_L}, \ F = \{ [w] \;|\; w \in L \}$, $\Delta = \{\angles{[w], a} \rightarrow [wa] \;|\; w\in\Sigma^*, \, a\in\Sigma\}$. Докажем, что $L(M_0) = L$.
+$$
+w\in L(M_0) \Longleftrightarrow \Delta([\varepsilon],w)\in F \Longleftrightarrow [w] \in F \Longleftrightarrow \exists u \in L \, (w \sim_L u) \Longleftrightarrow w\in L.
+$$
+Заметим, что если $u \in L$, $w\notin L$ то $u \nsim w$. Автомат построен. \EndProof
+
+\subsubsection*{Алгоритм проверки регулярных выражений на равенство}
+
+Пусть $R_1$ и $R_2$ — регулярные выражения. Построим по ним минимальные ПДКА $M_1$ и $M_2$ соответственно. По теореме о существовании и единственности минимального ПДКА для автоматного языка $L \brackets{M}$ минимальный ПДКА единственен с точности до изоморфизма. Если $M_1$ и $M_2$ изоморфны, то регулярные выражения равны, иначе нет.

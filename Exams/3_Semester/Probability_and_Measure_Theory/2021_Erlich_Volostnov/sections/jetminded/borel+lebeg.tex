@@ -1,0 +1,28 @@
+M - множество всех измеримых множеств.
+
+\Def \textbf{Лебегово продолжение m (мера Лебега)} - $\mu: M \rightarrow [0; +\infty): \forall A \in M \mu (A) = \mu^* (A)$ (Классический случай: полукольцо - полукольцо промежутков, мера - разность концов -> классическая мера Лебега).
+
+(\Idea для задания меры нам нужно задать $\sigma$-аддитивную меру на полукольце с единицей, дальше продолжаем её до кольца с единицей, а дальше мы можем, используя внешнюю меру, перейти к измеримым множествам. Этот переход и есть лебегово продолжение)
+
+\vspace{5pt}
+
+\Def \textbf{Мера Лебега-Стильтеса}.
+
+Полукольцо $S = \{ (a; b] | -\infty \leqslant a \leqslant b \leqslant +\infty \}$; значит, есть нейтральный элемент относительно $\cdot$: $\mathbb{R} = (-\infty; +\infty)$ - значит, это полукольцо с единицей.
+
+$\varphi: \mathbb{R} \rightarrow \mathbb{R}$: неубывающая; непрерывна справа; ограниченная; $\Rightarrow \exists \varphi(-\infty), \varphi(+\infty)$; тогда $m((a; b]) = \varphi(b) - \varphi(a)$; мера Лебега-Стильтеса - лебегово продолжение m.
+
+\Th m $\sigma$-аддитивная мера.
+
+\Proof m - мера (очевидно); $(a; b] = \cup_{i = 1}^{\infty} (a_i; b_i]$.
+Зафиксируем $\varepsilon > 0$; $[c; d] \subseteq (a; b]: |\varphi(a) - \varphi(c)| < \varepsilon; |\varphi(b) - \varphi(d)| < \varepsilon$. Аналогично находим $c_i, d_i$: $(a_i, b_i] \subseteq (c_i, d_i); $ $|\varphi(a_i) - \varphi(c_i)| < \varepsilon / 2^i$; $|\varphi(b_i) - \varphi(d_i)| < \varepsilon / 2^i$
+
+Отсюда $[c; d] \subseteq \cup_{i = 1}^{\infty} (c_i; d_i)$. Тогда по лемме о конечном покрытии (принцип Гейне-Бореля) $\Rightarrow [c; d] \subseteq \cup_{i = 1}^{n} (c_i; d_i)$ $\Rightarrow (c; d] \subseteq \cup_{i = 1}^{n} (c_i; d_i]$
+
+m - мера. Тогда $m((a; b]) - 2\varepsilon \leqslant m((c; d]) \leqslant \sum_{i=1}^{n} m((c_i; d_i]) \leqslant \sum_{i=1}^{n} (m((a_i; b_i]) + \varepsilon / 2^i)$. Итого $m(a; b] \leqslant \sum_{i=1}^\infty (a_i; b_i] + 3 \varepsilon. $
+
+Неравенство в обратную сторону следует из свойств меры, значит, имеет место равенство.\EndProof
+
+\Note (б/д) любая мера на полукольце является мерой Лебега-Стильтеса для некоторого $\varphi$.
+
+\Def Мера Бореля - классическая мера Лебега на $\B_{a, b} = \{ A \cap [a. b] | A \in \B(\R)\}$

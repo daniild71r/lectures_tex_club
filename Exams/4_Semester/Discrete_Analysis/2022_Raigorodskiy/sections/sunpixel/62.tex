@@ -1,0 +1,60 @@
+\textbf{Задача об уклонении}
+
+Пусть задан гиперграф с множеством вершин $V = \{ 1, \ldots, n \}$ и множеством рёбер
+$\mathcal{M} = \{ M_1, \ldots, M_m \}$ (гиперграф не обязательно однородный). 
+Также $\mathcal{M}$ можно интерпретировать как набор подмножеств 
+множества $\{1, \ldots, n \}$.
+
+Пусть $\chi$ -- раскраска вершин в два цвета:
+$\chi: \{1, \ldots, n \} \to \{ -1, 1 \}$.
+
+Введём функцию $\chi(M_i) := \sum \limits_{j \in M_i} \chi(j)$. 
+Эта функция показывает "неравномерность" покраски ребра $M_i$. 
+Также введём функцию разброса 
+$disc(\mathcal{M}, \chi) := \max \limits_{M_i \in \mathcal{M}} \left| \chi(M_i) \right|$.
+Она показывает "неравномерность" покраски в целом (максимальная "неравномерность" покраски ребра). 
+Функция $disc(\mathcal{M}) := \min \limits_{\chi} disc(\mathcal{M}, \chi)$ 
+минимизирует "неравномерность" раскраски.
+
+\textbf{Теорема (б/д).}
+
+$$
+\forall n \forall \mathcal{M} = \{ M_1, \ldots, M_n \} \ 
+disc(\mathcal{M}) \leqslant 6 \sqrt{n}
+$$
+
+\textbf{Теорема.}
+
+$$
+\forall \mathcal{M} = \{ M_1, \ldots, M_m \} \ 
+disc(\mathcal{M}) \leqslant \sqrt{2n \ln (2m)}
+$$
+
+\textit{Доказательство.}
+
+Рассмотрим случайную раскраску $\chi$ 
+(каждой вершине независимо присвоим цвет $1$ или $-1$ с вероятностью $\frac{1}{2}$).
+
+Можно заметить, что $\chi(M_i)$ -- сумма независимых случайных величин, 
+принимающих значения $\pm 1$ с вероятностью $\frac{1}{2}$.
+Значит $\chi(M_i)$ можно интерпретировать как случайное блуждание ($k := |M_i|$):
+$$
+P \left( \left| \chi(M_i) \right| \geqslant a \right) \leqslant
+2 e^{-\frac{a^2}{2k}} \leqslant 2 e^{-\frac{a^2}{2n}}
+$$
+
+Двойка перед $e^{-\frac{a^2}{2k}}$ появилась из-за модуля. 
+Возьмём $a := \sqrt{2n \ln (2m)}$:
+
+$$
+P \left( \left| \chi(M_i) \right| \geqslant a \right) \leqslant 
+2 e^{-\frac{2n \ln (2m)}{2n}} = \frac{2}{2m} = \frac{1}{m}
+$$
+
+Значит, 
+
+$$
+P \left( \exists i : \left| \chi(M_i) \right| \geqslant a \right) <
+m \cdot \frac{1}{m} = 1 \Rightarrow
+P \left( \forall i : \left| \chi(M_i) \right| < a \right) > 0
+$$
