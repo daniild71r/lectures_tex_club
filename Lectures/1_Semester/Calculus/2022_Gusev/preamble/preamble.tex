@@ -1,4 +1,4 @@
-%\documentclass[a4paper,12pt,draft]{article}
+%\documentclass[a4paper,12pt, draft]{article}
 \documentclass[a4paper,12pt]{article}
 
 %%% Работа с русским языком
@@ -47,6 +47,22 @@
 }
 \newcommand{\Root}[2]{
 	\left\{\!\sqrt[#1]{#2}\right\}
+}
+\newcommand{\RR}{\R}
+\newcommand{\NN}{\N}
+\renewcommand{\subseteq}{\subset}
+\newcommand{\sub}{\subset}
+\newcommand{\sconstr}{\;\vert\;}
+\newcommand{\thus}{\implies}
+
+\newcommand{\defeq}{\vcentcolon= }
+\newcommand{\defev}{\stackrel{\Delta}{\Longleftrightarrow}}
+\newcommand{\deriv}[3][1]{%
+	\ifthenelse{#1>1}{%
+		\frac{\dlta^{#1} {#2}}{\dlta {#3}^{#1}}
+	}{%
+		\frac{\dlta {#2}}{\dlta {#3}}
+	}%
 }
 
 \renewcommand\labelitemi{$\triangleright$}
@@ -124,8 +140,10 @@
 \newcommand{\LecturerInitials}{Гусев Николай Анатольевич}
 \newcommand{\CourseDate}{осень 2022}
 \newcommand{\AuthorInitials}{Копанов Антон}
+\newcommand{\AuthorInitialssecond}{Клищ Данил}
 \newcommand{\VKLink}{https://vk.com/notnako}
 \newcommand{\GithubLink}{https://github.com/MIPT-Group/Lectures_Tex_Club}
+\newcommand{\VKLinksecond}{https://vk.com/dan.klishch}
 
 %%% Колонтитулы
 \usepackage{titleps}
