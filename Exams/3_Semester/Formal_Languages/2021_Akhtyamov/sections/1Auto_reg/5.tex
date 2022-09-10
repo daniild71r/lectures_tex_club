@@ -1,0 +1,174 @@
+\subsection{5. Минимальный ДКА, его существование.}
+
+\textbf{Мотивировка:} может быть много состояний. А еще не очень понятно, как сравнивать два автомата на эквивалентность. Вернее, если проверять <<в лоб>>, будет долго. Один из способов решить эти проблемы -- минимизация автомата.\\
+
+Пусть $L \subset \Sigma^*$ -- автоматный язык, $M$ -- ПДКА для $L$.
+
+\Def Минимальный ПДКА $M$, распознающий язык $L$, если $M$ -- минимальный по количеству состояний.
+
+\hspace{4ex}
+
+\Def Определим отношение эквивалентности $\sim_L$ на $\Sigma^*:$
+$$u \sim_L v \Longleftrightarrow \forall w \in \Sigma^* \,\,(uw \in L \Longleftrightarrow vw \in L)$$
+
+Определение корректно (рефлексивность, симметричность и транзитивность очевидны).
+
+\textit{Множество классов эквивалентности в этом случае:} 
+$\Sigma^* /_{\sim_L}:= \{\{u \arrowvert u \sim_L v\} \,\,\arrowvert\,\, v \in \Sigma^*\}$
+
+\Def Определим отношение эквивалентности $\sim_M$ на $Q:$
+$$q_1 \sim_M q_2 \Longleftrightarrow \forall w \in \Sigma^*\,\,(\Delta(q_1, w) \in F \Longleftrightarrow \Delta(q_2, w) \in F)$$
+
+Если $q_1 \sim_M q_2$, то состояния можно объединить.
+
+\textit{Напоминание:} Множество вершин, достижимых из $q$ по $w$ -- $\Delta (q, w) = \{ q' | \langle q, w \rangle \vdash \langle q', \varepsilon \rangle \}$..\\
+
+% \hspace{4ex} 
+\textbf{Лемма}
+Пусть $L_q := \{w \,\arrowvert\, \Delta(q_0, w) = q\}$. Тогда каждый класс эквивалентности в нашем фактор-множестве являетеся объединением классов в $L_q$.
+
+\Proof
+Возьмем слово $u \in [u] \in \Sigma^*/_{\sim_L}$, где $[u]$ -- это класс эквивалентности для $u$. Рассмотрим путь по $u$ из $q_0$, а именно,  $q_u = \Delta(q_0, u)$. Для любого слова $w \in [u]$, $q_w = \Delta \brackets{q_0, w}$. Тогда $[u] = \bigcup \limits_{q_w, w \in [u]} L_{q_w}$. Далее докажем, почему это так.
+% Из последнего очевидно, что $u \in L_{q_u}$. 
+
+Пусть $v \in [u] \,\Longrightarrow\, v \sim_L u \,\Longrightarrow\, q_v = \Delta \brackets{q_0, v} \,\Longrightarrow\, v \in L_{q_v}$. Тогда $v \in \bigcup \limits_{q_w, w \in [u]} L_{q_w}$.
+
+Пусть $v \in \bigcup \limits_{q_w, w \in [u]} L_{q_w}$. Тогда существует состояние $q_z$, $z \in [u]$, что $v \in L_{q_z} = \{ w | \Delta \brackets{q_0, w} = q_z \}$.
+\begin{center}
+    $z \in [u] \Longrightarrow z \sim_L u \stackrel{def}{\Longrightarrow} \; \forall w \in \Sigma^* \; \brackets{zw \in L \Longleftrightarrow uw \in L}$
+    \begin{equation*}
+        \left.
+          \begin{array}{ccc}
+            v \in L_{q_z} \Longrightarrow & \Delta \brackets{q_0, v} & = q_z \\
+            & \Delta \brackets{q_0, z} & = q_z \\
+          \end{array}
+        \right\} \quad
+    \Longrightarrow \quad v \sim_L z \text{ так как $\forall w \in \Sigma^*$ $\Delta \brackets{q_0, vw} \stackrel{(*)}{=} \Delta \brackets{q_0, zw}$}
+    \end{equation*}
+\end{center}
+
+$\brackets{*}$: $\Delta \brackets{q_0, vw} = \Delta \brackets{\Delta(q_0, v), w} = \Delta \brackets{q_z, w} = \Delta \brackets{\Delta(q_0, z), w} = \Delta \brackets{q_0, zw}$
+
+Так как $v \sim_L z$, $z \in [u]$, то $v \in [u]$. Значит, $[u] = \bigcup \limits_{q_w, w \in [u]} L_{q_w}$, и каждый класс эквивалентности из $\Sigma^* /_{\sim_L}$ — объединение классов в $L_q$. \quad \EndProof
+
+% И так для любого элемента $w \in [u] \hookrightarrow w \in L_{q_w}$. Поэтому \[ [u] \subset \bigcup_{q_w, w \in [u]} L_{q_w}.\]
+
+% Докажем теперь обратное включение. Возьмем $v \in L_{q_w}$. Для него верно $q_v = \Delta(q_0, v) = q_w$. Докажем, что тогда $v \in [w]$ ($[u] = [w]$).
+
+% Возьмем произвольное $m \in \Sigma^*$. Заметим, что тогда верно $vm \in L \Longleftrightarrow wm \in L$, ведь слово $w$ читается из состояния $q_v$ и приводит в завершающее тогда и только тогда, когда то же самое верно и для $q_w$ (просто в силу того, что $q_v = q_w$).
+
+
+\textbf{Следствие}
+$\arrowvert \Sigma^*/_{\sim_L} \arrowvert \leq \arrowvert Q \arrowvert$\\
+
+\textit{Теперь перейдем к минимальному ПДКА, а именно докажем его существование (тут) и единственность с точностью до изоморфизма (билет 6).}\\
+
+\textbf{Лемма} Для любого автоматного языка $L$ существует ПДКА $M'$ такой, что все состояния в $M'$ попарно неэквивалентны.
+
+Что необходимо доказать?\\
+1) Переходы и завершающие состояния согласованы\\
+2) Распознаваемые языки совпадают\\
+3) Состояния попарно неэквивалентны
+
+\Proof Рассмотрим автомат над классами эквивалентности $\sim_M$. Класс эквивалентности $q$ обозначим за $[q]$. $M' = \langle Q /_{\sim_M}, \Sigma, \Delta', [q_0], F' \rangle$, где:
+
+\begin{center}
+    $\Delta' = \{ \langle [q_1], a \rangle \rightarrow [q_2] \;|\; \exists \langle q_1, a \rangle \rightarrow q_2 \in \Delta \}$
+    
+    $F' = \{ [q_f] \;|\; q_f \in F \}$
+\end{center}
+
+1) Проверим, что множества $\Delta'$, $F'$ заданы корректно.
+
+Для $\Delta'$: Пусть $q_1 \sim_m q_1'$, и существует $a$ такое, что $\Delta \brackets{q_1, a} \nsim_m \Delta \brackets{q_1', a}$.
+\begin{center}
+    $q_1 \sim_M q_1' \stackrel{def}{\Longrightarrow} (\forall w \in \Sigma^* \;\;\Delta \brackets{q, w} \in F \Longleftrightarrow \Delta \brackets{q_1', w} \in F)$
+    
+    $w = au \Longrightarrow (\forall u \in \Sigma^* \;\; \Delta \brackets{q_1, au} \in F \Longleftrightarrow \Delta \brackets{q_1', au} \in F)$
+\end{center}
+
+Далее обозначим $\Delta \brackets{q_1, a} = q_2$, a $\Delta \brackets{q_1', a} = q_2'$.
+\begin{center}
+    $\Delta \brackets{q_1, au} = \Delta \brackets{\Delta(q_1, a), u} = \Delta \brackets{q_2, u}$
+    
+    $\Delta \brackets{q_1', au} = \Delta \brackets{q_2', u}$
+    
+    $(\Delta \brackets{q_2, u} \in F \Longleftrightarrow \Delta \brackets{q_2', u} \in F)\; \Longrightarrow q_2 \sim_m q_2'$.
+\end{center}
+
+Приходим к противоречию.
+
+Для $F'$:
+\begin{center}
+    $q_1 \in F$, $q_2 \sim_M q_1 \overset{w = \varepsilon}{\Longrightarrow} (\Delta \brackets{q_1, \varepsilon} \in F \Longleftrightarrow \Delta \brackets{q_2, \varepsilon} \in F)$
+    
+    Значит, $q_1 \in F \Longleftrightarrow q_2 \in F$
+\end{center}
+
+2) Теперь покажем, что $L \brackets{M} = L \brackets{M'}$. 
+
+Для этого нужно показать, что $w \in L \brackets{M} \Longleftrightarrow \Delta \brackets{q_0, w} \in F \stackrel{?}{\Longleftrightarrow} \Delta \brackets{[q_0], w} \in F'$.
+
+Докажем утверждение: $\forall u: \Delta \brackets{q_0, u} = q_1 \Longleftrightarrow \Delta \brackets{[q_0], u} = [q_1]$.
+
+Индукция по длине слова $u$.
+
+\textbf{База.} $|u| = 0 \Longrightarrow u = \varepsilon$. Тогда $\Delta \brackets{q_0, \varepsilon} = q_0$, $\Delta \brackets{[q_0], \varepsilon} = [q_0]$.
+
+\textbf{Переход.} Пусть $u = va$, $v \in \Sigma^*$, $a \in \Sigma$.
+
+\begin{center}
+    $\Delta \brackets{q_0, va} = q_1 \Longrightarrow \exists q_2\; \Delta \brackets{q_0, v} = q_2, \;\Delta \brackets{q_2, a} = q_1$
+\end{center}
+
+По предположению индукции, $\Delta \brackets{[q_0], u} = [q_2]$, $\Delta \brackets{[q_2], a} = [q_1]$, так как переход $\langle q_2, a \rangle \rightarrow q_1 \in \Delta$ тогда и только тогда, когда $\langle [q_2], a \rangle \rightarrow [q_1] \in \Delta'$. По транзитивности, $\Delta \brackets{[q_0], ua} = [q_1]$.
+
+3) Теперь покажем, что состояния попарно неэквивалентны. В автомате, построенном на классах эквивалентности состояний никакие два состояния не эквивалентны, потому что тогда бы они лежали в одном классе, т.е. были бы одним состоянием.
+
+Пусть $[q_1] \sim_{M'} [q_2]$. Тогда $\forall w : \Delta_{M'} \brackets{[q_1], w} \in F' \Longleftrightarrow \Delta_{M'} \brackets{[q_2], w} \in F'$ по определению. 
+
+\begin{center}
+    $[q_{1f}] = \Delta_{M'} \brackets{[q_1], w} \in F'$
+    
+    $[q_{2f}] = \Delta_{M'} \brackets{[q_2], w} \in F'$
+    
+    $\exists q_{1f} \in F : \Delta_M \brackets{q_1, w} = q_{1f} \in F \Longleftrightarrow \exists q_{2f} \in F : \Delta_M \brackets{q_2, w} = q_{2f} \in F$
+    
+    $q_1 \sim_{M} q_2 \Longrightarrow [q_1] = [q_2]$
+\end{center}
+\begin{flushright}
+  \EndProof
+\end{flushright} 
+
+
+\Th $M$ — минимальный ПДКА, распознающий язык $L$, тогда и только тогда, когда любые два состояния попарно неэквивалентны и все состояния достижимы из стартового.
+
+\textit{Теперь запишем более формально:}
+
+\begin{center}
+    $M$ — минимальный ПДКА $\Longleftrightarrow \begin{cases} \forall q_1, q_2 \in Q \ q_1 \nsim q_2 \\ \forall q \in Q \ \exists w \in \Sigma^* : \ \langle q_0, w \rangle \vdash \langle q, \varepsilon \rangle \end{cases}$
+\end{center}
+
+\Proof
+
+$\Longrightarrow$ Если $q_1 \sim_M q_2$, то $[q_1] = [q_2]$, и их можно объединить в одно состояние, значит, $M$ не был бы минимальным, и тогда из минимальности следует, что $q_1 \nsim_M q_2$. Если среди состояний есть недостижимые, то если их удалить, то множество принимаемых слов не изменится.
+
+$\Longleftarrow$ По следствию из леммы о $L_q$: $|\Sigma^* /_{\sim_L}| \leqslant |Q|$. Рассмотрим $w_1$, $w_2$ такие, что $\Delta \brackets{q_0, w_1} \neq \Delta \brackets{q_0, w_2}$. Введём обозначения:
+
+\begin{center}
+    $\Delta \brackets{q_0, w_1} = q_1$
+    
+    $\Delta \brackets{q_0, w_2} = q_2$
+\end{center}
+
+Неэквивалентность состояний $q_1$, $q_2$ означает, что существует слово $w$, что б.о.о:
+
+\begin{center}
+    $\Delta \brackets{q_1, w} = \Delta \brackets{q_0, w_1 w} \in F \Longleftrightarrow w_1 w \in L$
+    
+    $\Delta \brackets{q_2, w} = \Delta \brackets{q_0, w_2 w} \notin F \Longleftrightarrow w_2 w \notin L$
+    
+    Следовательно, получили что $w_1 \nsim_L w_2$
+\end{center}
+
+Тогда для автомата $M$ со множеством состояний $Q'$ выполняется, что $|\Sigma^* /_{\sim_L}| \geqslant |Q'|$, но тогда $|Q| \geqslant |\Sigma^* /_{\sim_L}| \geqslant |Q'|$, и $M$ — минимальный. \quad \EndProof
