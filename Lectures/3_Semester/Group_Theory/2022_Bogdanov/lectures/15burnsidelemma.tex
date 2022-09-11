@@ -1,0 +1,63 @@
+\subsection{Лемма Бернсайда}
+
+\begin{definition}
+	Действие группы $G$ на множестве $\Omega$ называется \textit{транзитивным}, если $\Omega$ является единственной орбитой действия. Иными словами, $\forall \omega_1, \omega_2 \in \Omega: \exists g \in G: g(\omega_1) = \omega_2$.
+\end{definition}
+
+\begin{example}
+	$S_n$ действует на $\{1, \dotsc, n\}$ транзитивно, а $S_{n-1} \le S_n$ действует на $\{1, \dotsc, n\}$ нетранзитивно.
+\end{example}
+
+\begin{theorem}[Лемма Бернсайда]
+	Пусть конечная группа $G$ действует на множестве $\Omega$ транзитивно. Для $\forall g \in G$ обозначим $F(g) := |\{\omega \hm\in \Omega: g\omega = \omega\}|$. Тогда:
+	\[\sum\limits_{g \in G}F(g) = |G|\]
+\end{theorem}
+
+\begin{proof}
+	Как уже было доказано, $\forall \omega \in \Omega: |\St(\omega)| = \frac{|G|}{|G(\omega)|}$, и, в силу транзитивности действия, $\forall \omega \in \Omega: |\St(\omega)| = \frac{|G|}{|\Omega|}$. Положим $S := \{(g, \omega) \in G \times \Omega: g\omega = \omega\}$, тогда:
+	\[S = \sum\limits_{\omega \in \Omega}|\St(\omega)| = \sum\limits_{g \in G}F(g) \ra \sum\limits_{g \in G}F(g) = |\Omega|\frac{|G|}{|\Omega|} = |G|\]
+	
+	Требуемое равенство доказано.
+\end{proof}
+
+\begin{corollary}[Лемма Бернсайда, другая формулировка]
+	Пусть конечная группа $G$ действует на множестве $\Omega$, и $k \in \N$ "--- количество орбит действия. Тогда:
+	\[k = \frac1{|G|}\sum\limits_{g \in G}F(g)\]
+\end{corollary}
+
+\begin{proof}
+	Представим $\Omega$ в виде $\Omega = \bigsqcup_{i = 1}^k\Omega_i$, где $\Omega_1, \dotsc, \Omega_k$ "--- орбиты действия. Тогда $\forall i \in \{1, \dotsc, k\}:$ $G$ действует на $\Omega_i$ транзитивно (значит, в частности, $\Omega$ конечно). Для $\forall g \in G$ положим $F_i(g) := |\{\omega \in \Omega_i: g\omega = \omega\}|$ и воспользуемся леммой Бернсайда:
+	\[\sum\limits_{g \in G}F(g) = \sum\limits_{g \in G}\sum\limits_{i = 1}^kF_i(g) = \sum\limits_{i = 1}^k|G| = k|G| \ra k = \frac1{|G|}\sum\limits_{g \in G}F(g)\]
+\end{proof}
+
+\begin{note}
+	Множество орбит действия $G$ на $\Omega$ часто обозначается как $\Omega / G$, поэтому вторая формулировка леммы Бернсайда "--- это формула для $|\Omega / G|$.
+\end{note}
+
+\begin{example}
+	Рассмотрим ожерелья из $p$ бусинок ($p > 2$ "--- простое число), в которых каждая бусинка покрашена в один из $k$ цветов. Найдем количество различных ожерелий (с точностью до поворота и переворота). Пусть $\Omega$ "--- множество неподвижных ожерелий, то есть не допускающих повороты и перевороты, тогда $|\Omega| = k^p$. Группа $G = \mathcal{D}_p$ действует на $\Omega$, и искомая величина "--- это $|\Omega / G|$, поскольку элементы одной орбиты отличаются друг от друга только композицией поворотов и переворотов. Элементы $G$ имеют один из следующих видов:
+	\begin{itemize}
+		\item Если $g = \id$, то $F(g) = |\Omega| = k^p$
+		\item Если $g$ "--- поворот на $2\pi\frac kp$, $0 < k < p$, то $F(g) = k$ в силу простоты $p$, поскольку любая фиксированная бусинка совпадает по цвету с бусинками, в которые она переходит при повороте на $2\pi\frac kp, 2\pi\frac {2k}p, \dotsc, 2\pi\frac {(p-1)k}p$, и полученные таким образом бусинки образуют все ожерелье
+		\item Если $g$ "--- переворот, то есть симметрия, то $F(g) = k^{\frac{p+1}2}$, поскольку ${\frac{p+1}2}$ подряд идущих бусинок, начиная с той, через которую проходит ось симметрии, однозначно задают цвета оставшихся
+	\end{itemize}
+	
+	Применим теперь лемму Бернсайда:
+	\[|\Omega / G| = \frac{k^p + (p-1)k + pk^{\frac{p+1}2}}{2p}\]
+\end{example}
+
+\begin{definition}
+	Пусть группа $G$ действует на множестве $\Omega$. Положим $\Omega^{[2]} := \{(a, b) \hm\in \Omega^2: a \ne b\}$. Действие $G$ на $\Omega$ называется \textit{$2$-транзитивным}, если действие $G$ на $\Omega^{[2]}$ транзитивно. Аналогично определяется \textit{$k$-транзитивность} действия.
+\end{definition}
+
+\begin{exercise}
+	Пусть группа $G$ действует на множестве $\Omega$, причем действие 2\nobreakdash-транзитивно. Для $\forall g \in G$ обозначим $F(g) := |\{a \hm\in \Omega: ga = a\}|$. Докажите, что выполнено следующее равенство:
+	\[\sum\limits_{g \in G}F(g)^2 = 2|G|\]
+\end{exercise}
+
+\begin{solution}
+	Рассмотрим сначала действие $G$ на $\Omega^2$ и заметим, что $\Omega^2 / G = \{\{(\omega, \omega): \omega \hm\in \Omega\}, \Omega^{[2]}\}$. Применим лемму Бернсайда к данному действию, обозначив $F'(g) := \{(a, b) \hm\in \Omega^2: ga = a, gb = b\}$:
+	\[2 = \frac{1}{|G|}\sum\limits_{g \in G}F'(g)\]
+	
+	Остается заметить, что $F'(g) = F(g)^2$, поскольку $\{(a, b) \in \Omega: ga = a, gb = b\} = \{a \in \Omega: ga = a\}^2$.
+\end{solution}

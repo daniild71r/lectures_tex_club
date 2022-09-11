@@ -11,14 +11,13 @@
 
 %%% Дополнительная работа с математикой
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % пакеты AMS
-\usepackage{bbm} % Blackboard bold для цифр
 \usepackage{icomma}                                    % "Умная" запятая
 
-%%% Свои символы и команды для математики, обозначений
+%%% Свои символы и команды
 \usepackage{centernot} % центрированное зачеркивание символа
 \usepackage{stmaryrd}  % некоторые спецсимволы
-\usepackage[e]{esvect}    % нормальные векторы
 
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
 \renewcommand{\kappa}{\ensuremath{\varkappa}}
 \renewcommand{\le}{\ensuremath{\leqslant}}
@@ -28,20 +27,9 @@
 \renewcommand{\emptyset}{\ensuremath{\varnothing}}
 
 \DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\Arg}{Arg}
-\DeclareMathOperator{\Ln}{Ln}
-\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\ke}{Ker}
 \DeclareMathOperator{\im}{Im}
-\DeclareMathOperator{\Arsh}{Arsh}
-\DeclareMathOperator{\Int}{int}
-\DeclareMathOperator{\cl}{cl}
-\DeclareMathOperator{\Deg}{deg}
-\DeclareMathOperator{\grad}{grad}
-\DeclareMathOperator{\upjm}{\mu^*_\mathfrak{J}}
-\DeclareMathOperator{\downjm}{\mu^\mathfrak{J}_*}
-\DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{J})}}
-\DeclareMathOperator{\downjlm}{\mu^{(\mathfrak{J})}_*}
-\DeclareMathOperator{\jlm}{\mu_{(\mathfrak{J})}}
+\DeclareMathOperator{\re}{Re}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -50,44 +38,17 @@
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\id}{\mathrm{id}}
-\newcommand{\goth}{\mathfrak}
-\newcommand{\gj}{\goth{j}}
-\newcommand{\gJ}{\goth{J}}
-\newcommand{\mc}{\mathring}
-\newcommand{\eps}{\varepsilon}
-\newcommand{\veps}{\epsilon}
-\newcommand{\vdelta}{\partial}
-\newcommand{\Tau}{\mathcal{T}}
-\newcommand{\dvv}[1]{\Delta\vv{#1}}
-\newcommand{\wt}[1]{\widetilde{#1}}
-\newcommand{\liml}{\lim\limits}
-\newcommand{\suml}{\sum\limits}
-\newcommand{\prodl}{\prod\limits}
-\newcommand{\bcupl}{\bigcup\limits}
-\newcommand{\bcapl}{\bigcap\limits}
-\newcommand{\bscup}{\bigsqcup}
-\newcommand{\bscupl}{\bigsqcup\limits}
 \newcommand{\such}{\ \big|\ }
-\newcommand{\range}[1]{\{1, \ldots, #1\}}
-\newcommand{\row}[2]{\sum_{#1}^\infty #2}
+\newcommand{\tr}{\triangle}
 
+\newcommand{\imp}[2]{
+	(#1\,\,$\ra$\,\,#2)\,\,
+}
 \newcommand{\System}[1]{
 	\left\{\begin{aligned}#1\end{aligned}\right.
 }
 \newcommand{\Root}[2]{
 	\left\{\!\sqrt[#1]{#2}\right\}
-}
-\newcommand{\Matrix}[1]{
-	\left(\begin{aligned}#1\end{aligned}\right)
-}
-\newcommand{\Det}[1]{
-	\left|\begin{aligned}#1\end{aligned}\right|
-}
-\newcommand{\trbr}[1]{
-	\left\langle#1\right\rangle
-}
-\newcommand{\pd}[2]{
-	\frac{\vdelta #1}{\vdelta #2}
 }
 \newcommand{\ps}[1]{
 	\left(#1\right)
@@ -96,21 +57,20 @@
 \renewcommand\labelitemi{$\triangleright$}
 
 \let\bs\backslash
-\let\lra\Leftrightarrow
-\let\llra\Longleftrightarrow
-\let\ra\rightarrow
-\let\rra\rightrightarrows
+\let\Lra\Leftrightarrow
+\let\lra\leftrightarrow
 \let\Ra\Rightarrow
+\let\ra\rightarrow
 \let\La\Leftarrow
-\let\emb\hookrightarrow
-\let\tr\triangle
+\let\la\leftarrow
 \let\Lora\Longrightarrow
 \let\Lola\Longleftarrow
-
-\newcommand{\dse}{\displaystyle}
+\let\emb\hookrightarrow
+\let\bscup\bigsqcup
+\let\bscap\bigsqcap
 
 %%% Перенос знаков в формулах (по Львовскому)
-\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+\newcommand{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
 
 %%% Работа с картинками
 \usepackage{graphicx}    % Для вставки рисунков
@@ -129,17 +89,14 @@
 \newtheorem{lemma}{Лемма}[section]
 \newtheorem{proposition}{Утверждение}[section]
 \newtheorem*{exercise}{Упражнение}
+\newtheorem*{problem}{Задача}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Определение}[section]
-\newtheorem*{adefinition}{Определение(не материал лектора)}
 \newtheorem*{corollary}{Следствие}
-\newtheorem*{addition}{Дополнение}
 \newtheorem*{note}{Замечание}
-\newtheorem*{anote}{Замечание автора}
 \newtheorem*{reminder}{Напоминание}
 \newtheorem*{example}{Пример}
-\newtheorem*{examples}{Примеры}
 
 \theoremstyle{remark}
 \newtheorem*{solution}{Решение}
@@ -164,13 +121,21 @@
 \usepackage{multicol}			  % Для текста в нескольких колонках
 \usepackage{soulutf8}             % Модификаторы начертания
 
+%%% Содержаниие
+\usepackage{tocloft}
+\tocloftpagestyle{main}
+%\setlength{\cftsecnumwidth}{2.3em}
+%\renewcommand{\cftsecdotsep}{1}
+%\renewcommand{\cftsecpresnum}{\hfill}
+%\renewcommand{\cftsecaftersnum}{\quad}
+
 %%% Шаблонная информация для титульного листа
-\newcommand{\CourseName}{Многомерный анализ, интегралы и ряды}
-\newcommand{\FullCourseNameFirstPart}{\so{МНОГОМЕРНЫЙ АНАЛИЗ, ИНТЕГРАЛЫ И РЯДЫ}}
-\newcommand{\SemesterNumber}{II}
-\newcommand{\LecturerInitials}{Лукашов Алексей Леонидович}
-\newcommand{\CourseDate}{весна 2022}
-\newcommand{\GithubLink}{https://github.com/MIPT-Group/Lectures_Tex_Club}
+\newcommand{\CourseName}{Основы вероятности и теории мер}
+\newcommand{\FullCourseNameFirstPart}{\so{ОСНОВЫ ВЕРОЯТНОСТИ И ТЕОРИИ МЕР}}
+\newcommand{\SemesterNumber}{III}
+\newcommand{\LecturerInitials}{Иван Генрихович Эрлих}
+\newcommand{\CourseDate}{осень 2022}
+\newcommand{\GithubLink}{https://github.com/daniild71r/lectures_tex_club}
 
 %%% Колонтитулы
 \usepackage{titleps}
