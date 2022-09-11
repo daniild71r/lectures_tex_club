@@ -1,0 +1,102 @@
+
+\Def Пусть $S$ — полукольцо. Функция $m : S \rightarrow [0, +\infty)$ называется \textit{конечной мерой} на $S$, если выполняется свойство \textit{аддитивности}:
+
+$\forall A, A_1, \dots , A_n \in S\ (\bigsqcup^n_{i=1} A_i = A \Rightarrow m(A) = \sum^n_{i=1} m(A_i))$
+
+\Def $m$ называется \textit{$\sigma$-аддитивной конечной мерой} на полукольце $S$, если:
+\begin{enumerate}
+    \item $m$ — конечная мера на $S$
+    \item $\forall A, \{A_i\}^{\infty}_{i=1} \in S\ (\bigsqcup^{\infty}_{i=1} A_i = A \Rightarrow m(A) = \sum^{\infty}_{i=1} m(A_i))$ (ряд должен сходиться)
+\end{enumerate}
+
+\Conseq (из теоремы о продолжении меры на кольцо, они будет ниже).
+\begin{enumerate}
+    \item Если $\bigsqcup_{i=1}^{\infty} A_i \subseteq A$, то 
+$$m(A) \geq \sum^{\infty}_{i=1} m(A_i)$$
+    \item Если $A \subseteq
+\bigcup_{i=1}^n A_i$, то 
+$$m(A) \leq \sum^n_{i=1} m(A_i)$$
+    \item $m$ - $\sigma$-аддитивна, если $A \subseteq \bigcup^{\infty}_{i=1} A_i$, то $$m(A) \leq \sum^{\infty}_{i=1} m(A_i)$$
+\end{enumerate}
+\Proof
+Пусть $\nu$ - продолжение меры $m$ на $R(S)$.
+\begin{enumerate}
+    \item $m(A) = \nu(A) = \nu((\bigsqcup^n_{i=1} A_i) \sqcup (A \backslash (\bigsqcup^n_{i=1} A_i))) = \sum^n_{i = 1} \nu(A_i) + \nu(A \backslash (\bigsqcup^n_{i=1} A_i)) \geq \sum^n_{i = 1} \nu(A_i) = \sum^n_{i = 1} m(A_i)$. Следовательно, по теореме о предельном переходе:
+    $$m(A) \geq \sum^{\infty}_{i=1} m(A_i)$$
+    
+    \item $B_1 = A_1 \cap A$.
+    $B_i = (A_i / \bigcup_{j = 1}^{i-1} A_j) \cap A$
+    Тогда $A = \bigsqcup_{i=1}^n B_i$
+    
+    $$\nu(A) = \sum^{n}_{i = 1}\nu(B_i) \leq \sum^{n}_{i = 1}\nu(A_i)$$
+    
+    \item Абослютно такое же. Но будет бесконесчно много $B_i$, а вместо $n$ должно быть $\infty$. 
+    
+\end{enumerate}
+
+\leftbar
+
+\LemmaN{1} Если $m$— мера на полукольце $S$, и множества $A, A_1, \dots , A_n \in S$ таковы, что $A \subset
+\bigcup_{i=1}^n A_i$, то 
+$$m(A) \leq \sum^n_{i=1} m(A_i)$$
+
+\Proof По ранее доказанной лемме существует такой набор попарно непересекающихся множеств $B_1, \dots, B_q$, что любое множество из $\{A, A_1, \dots , A_n\}$ представимо как объединение некоторых элементов набора (можно считать, что $\forall B_i\ \exists A_j\ (B_i \subseteq A_j ))$. Далее,
+
+$$\bigcup^n_{i=1} A_i = \bigsqcup_{i=1}^q B_i \supset A$$
+
+$$\sum^n_{i=1} m(A_i) = \sum^n_{i=1} \sum_{j:B_j \subseteq A-i} m(B_j) \geq \sum^q_{k=1} m(B_k) \geq m(A)$$ \EndProof
+
+\LemmaN{2} Если $m$ — мера на полукольце $S$, и множества $A, A_1, \dots , A_n \in S$ таковы, что $A_i$ попарно не пересекаются, и $A_i \subset A$, то 
+$$m(A) \geq \sum^n_{i=1} m(A_i)$$
+
+\Proof По определению полукольца набор $\{A_i\}$ можно “дополнить до $A$”, а дальше всё очевидно. \EndProof
+
+\Conseq С помощью предельного перехода данную лемму можно обобщить на бесконечный набор $\{A_i\}$.
+\endleftbar
+
+\Example 
+
+(Классическая мера Лебега на полукольце промежутков и ее сигмааддитивность) Промежутки в $\mathbb{R}$ образуют полукольцо, на котором длина промежутка является мерой.
+
+\Th Длина промежутка — $\sigma$-аддитивная мера.
+
+%\begin{enumerate}
+\Proof 
+
+1) Пусть $\lfloor a, b \rceil = \bigsqcup^{n}_{i=1} \lfloor a_i, b_i \rceil$ — некоторый промежуток. ($a = a_1, b_1 = a_2, b_2 = a_3, \dots, b_n = b$)
+
+Тогда $m(\lfloor a, b \rceil) = b - a = \sum^n_{i=1}(b_i - a_i) = \sum^n_{i=1} m(\lfloor a_i, b_i \rceil)$
+
+2) Пусть $\lfloor a, b\rceil = \bigsqcup^{\infty}_{i=1} \lfloor a_i, b_i \rceil$ — некоторый промежуток.
+
+Формулировка леммы о конечном покрытии (принцип Гейне-Бореля): 
+
+$I$ - отрезок, $\{U_{\alpha}\}$ - семейство интервалов. $I \in \bigcup U_{\alpha} \rightarrow \exists U_1, \dots, U_n$, т.ч. $I \subset \bigcup_{i=0}^n U_i$
+
+Продолжим,
+
+\begin{enumerate}
+
+\item Возьмём такой отрезок $[\alpha, \beta] \subseteq \lfloor a, b \rceil$, что $m[\alpha, \beta] > m \lfloor a, b\rceil - \frac{\epsilon}{2}$.
+
+\item Определим такие интервалы $(\alpha_i, \beta_i) \supseteq \lfloor a_i, b_i\rceil,$ что $m(\alpha_i, \beta_i) < m\lfloor a_i, b_i\rceil + \frac{\epsilon}{2^{i+1}}.$
+
+\item Так как $[\alpha, \beta] \subseteq \cup^{\infty}_{i=1} (\alpha_i, \beta_i)$, то по лемме Гейне-Бореля существует конечное подпокрытие (пусть это будут интервалы $\{(\alpha_i, \beta_i)\}^k_{i=1})$
+\end{enumerate}
+
+Далее,
+$$m\lfloor a, b\rceil < m[\alpha, \beta] + \frac{\epsilon}{2} \leq \sum^k_{j=1} m(\alpha_j, \beta_j) + \frac{\epsilon}{2}$$ 
+$$\leq
+\sum^{\infty}_{j=1} m(\alpha_j, \beta_j) + \frac{\epsilon}{2} \leq \sum^{\infty}_{j=1} m \lfloor a_i, b_i\rceil + \epsilon$$
+
+Устремляя $\epsilon$ к нулю, получаем $m\lfloor a, b\rceil \leq \sum^{\infty}_{j=1} m\lfloor a_i, b_i\rceil$. Равенство $m\lfloor a, b\rceil = \sum^{\infty}_{j=1} m\lfloor a_i, b_i\rceil$ получается по следствию 1 в начале билета (или по следствию из леммы 2). \EndProof
+%\end{enumerate}
+
+\leftbar
+\Example Полукольцо полуинтервалов $(a, b]$, мерой на котором является $m(a, b] = \phi(b) - \phi(a)$, где $\phi$ — ограниченная неубывающая непрерывная справа функция.
+
+\Th Указанная мера является $\sigma$-аддитивной.
+
+Доказательство для ограниченных полуинтервалов. \Proof Каждый полуинтервал
+$(A_i, B_i]$ из разбиения можно покрыть интервалом $(\alpha_i, \beta_i)$, где $\alpha_i = A_i и \beta_i-B_i < \frac{\epsilon}{2} i;$ эти интервалы покрывают произвольный подотрезок. Дальнейшее доказательство аналогично предыдущему. \EndProof
+\endleftbar

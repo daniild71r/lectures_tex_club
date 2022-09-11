@@ -1,0 +1,122 @@
+\textbf{Теорема}
+$$
+    u_n \sim \sqrt{\frac{\pi}{8}} n^{n - \frac{1}{2}}
+$$
+
+\textit{Доказательство.}
+Из предыдущего пункта известно, что
+\begin{equation*}
+    u_n = \sum_{k = 3}^{n} C_n^k \cdot
+\frac{(k - 1)!}{2} \cdot k \cdot n^{n - k - 1}
+\end{equation*}
+
+Перепишем $k$-й член этой суммы в следующем виде:
+
+\begin{multline*}
+C_n^k \cdot \frac{(k - 1)!}{2} \cdot k \cdot n^{n - k - 1} = 
+\frac{n(n - 1) \ldots (n - k + 1)}{k!} \cdot \frac{k!}{2} \cdot n^{n - k - 1} = \\
+= \frac{n^k}{\cancel{k!}} \left( 1 - \frac{1}{n} \right) \ldots \left( 1 - \frac{k - 1}{n} \right) \cdot
+\frac{\cancel{k!}}{2} \cdot n^{n - k - 1} = 
+\frac{1}{2} n^{n - 1} \cdot \left( 1 - \frac{1}{n} \right) \ldots \left( 1 - \frac{k - 1}{n} \right) = \\
+= \frac{1}{2} n^{n - 1} \cdot 
+e^{\ln \left( 1 - \frac{1}{n} \right) + \ldots + \ln \left( 1 - \frac{k - 1}{n} \right)}
+\end{multline*}
+
+С одной стороны, 
+$$
+\frac{1}{2} n^{n - 1} \cdot e^{\ln \left( 1 - \frac{1}{n} \right) + \ldots + \ln \left( 1 - \frac{k - 1}{n} \right)}
+\leqslant \frac{1}{2} n^{n - 1} e^{-\frac{1}{n} - \ldots - \frac{k - 1}{n}}
+= \frac{1}{2} n^{n - 1} e^{-\frac{k(k - 1)}{2n}}
+$$
+
+С другой строны по формуле Тейлора:
+
+$$
+\frac{1}{2} n^{n - 1} \cdot e^{\ln \left( 1 - \frac{1}{n} \right) + \ldots + \ln \left( 1 - \frac{k - 1}{n} \right)}
+\leqslant \frac{1}{2} n^{n - 1} 
+e^{-\frac{1}{n} - \ldots - \frac{k - 1}{n} + O \left( \frac{k^3}{n^2} \right)}
+= \frac{1}{2} n^{n - 1} e^{-\frac{k(k - 1)}{2n} + O \left( \frac{k^3}{n^2} \right)}
+$$
+
+Если $k \gg n^{\frac{1}{2}}$, то воспользуемся первой оценкой, 
+если $k \ll n^{\frac{2}{3}}$, то воспользуемся второй оценкой. 
+Для определенности разобьём отрезок от $3$ до $n$ на $[3, n^{0.6}]$ и $[n^{0.6}, n]$:
+
+$$
+\sum_{k = 3}^{n} C_n^k \cdot \frac{(k - 1)!}{2} \cdot k \cdot n^{n - k - 1} = 
+\underbrace{\sum_{k = 3}^{[n^{0.6}]} C_n^k \cdot \frac{(k - 1)!}{2} \cdot k \cdot n^{n - k - 1}}_{S_1} + 
+\underbrace{\sum_{k = [n^{0.6}] + 1}^{n} C_n^k \cdot \frac{(k - 1)!}{2} \cdot k \cdot n^{n - k - 1}}_{S_2}
+$$
+
+Оценим $S_2$. Воспользуемся тем, что 
+$$
+-\frac{k(k - 1)}{2n} \leqslant \frac{-([n^{0.6}] + 1) [n^{0.6}]}{2n} \sim
+-\frac{n^{1.2}}{2n} = -\frac{n^{0.2}}{2}
+$$
+
+Тогда $S_2$ можно оценить следующим образом:
+
+$$
+S_2 \leqslant \frac{1}{2} n^{n - 1} \sum_{[n^{0.6}] + 1}^{n} 
+e^{-\frac{k(k - 1)}{2n}} \leqslant
+\frac{1}{2} n^{n - 1} \cdot
+\underbrace{n \cdot e^{-(1 + o(1)) \frac{n^{0.2}}{2}}}_{\to 0} 
+= o \left( n^{n - \frac{1}{2}} \right)
+$$
+
+Оценим $S_1$:
+
+\begin{multline*}
+S_1 \leqslant \frac{1}{2} n^{n - 1} \sum_{k = 3}^{[n^{0.6}]}
+e^{-\frac{k(k - 1)}{2n} + O \left( \frac{k^3}{n^2} \right)} \leqslant
+\frac{1}{2} n^{n - 1} \sum_{k = 3}^{[n^{0.6}]}
+e^{-\frac{k(k - 1)}{2n} + 
+O \left( \underbrace{\frac{(n^{0.6})^3}{n^2}}_{\to 0} \right)} \sim \\
+\frac{1}{2} n^{n - 1} \sum_{k = 3}^{[n^{0.6}]} e^{-\frac{k(k - 1)}{2n}} \sim
+\frac{1}{2} n^{n - 1} \sum_{k = 3}^{[n^{0.6}]} e^{-\frac{k^2}{2n}}
+\end{multline*}
+
+Если мы докажем $\sim$, помеченную вопросом, то мы доказали теорему:
+
+$$
+\sum_{k = 3}^{[n^{0.6}]} e^{-\frac{k^2}{2n}} \overset{?}{\sim} 
+\sum_{k = 0}^{\infty} e^{-\frac{k^2}{2n}} \sim
+\int_{0}^{\infty} e^{-\frac{k^2}{2n}} = \sqrt{\frac{\pi n}{2}}
+$$
+
+Понятно, что первые три члена не влияют на асимптотику:
+$\sum \limits_{k = 0}^2 e^{-\frac{k^2}{2n}} = o(\sqrt{n})$.
+
+Посмотрим на "хвост" этого ряда:
+
+$$
+\sum_{[n^{0.6}] + 1}^{\infty} e^{-\frac{k^2}{2n}} = 
+\underbrace{\sum_{[n^{0.6}] + 1}^{n^2}}_{S_3} \ldots + 
+\underbrace{\sum_{n^2 + 1}^{\infty} \ldots}_{S_4}
+$$
+
+По аналогии с суммой $S_1$, $S_3$ оценим таким образом:
+
+$S_3 < e^{-\frac{n^{0.2}}{2}} \cdot n^2 \to 0$
+
+Чтобы оценить $S_4$, посмотрим на частное двух последовательных членов:
+
+$$
+\frac{e^{-\frac{k^2}{2n}}}{e^{-\frac{(k + 1)^2}{2n}}} = 
+e^{\frac{(k + 1)^2}{2n} - \frac{k^2}{2n}} = 
+e^{\frac{k}{n} + \frac{1}{2n}} > e^n \text{ (так как } k > n^2 \text{)}
+$$
+
+Вынесем из $S_4$ первый член за скобки и посчитаем сумму 
+бесконечной геометрической прогрессии
+(обозначим член последовательности за $a_k(n)$):
+
+$$
+S_4 = e^{-\frac{(n^2 + 1)^2}{2n}}
+\left( 1 + \underbrace{\frac{a_{n^2 + 2}}{a_{n^2 + 1}}}_{ < e^{-n}} + 
+\underbrace{\frac{a_{n^3 + 2}}{a_{n^2 + 2}} 
+\cdot \frac{a_{n^2 + 2}}{a_{n^2 + 1}}}_{ < e^{-2n}}
++ \ldots \right) <
+\underbrace{e^{-\frac{(n^2 + 1)^2}{2n}}}_{\to 0}
+\cdot \underbrace{\frac{1}{1 - e^{-n}}}_{\to 1} \to 0
+$$

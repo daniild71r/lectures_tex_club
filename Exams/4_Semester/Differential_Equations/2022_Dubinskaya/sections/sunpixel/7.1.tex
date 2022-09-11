@@ -1,0 +1,296 @@
+\setcounter{equation}{0}
+\textbf{Определение.}
+
+\textit{Метрическим пространством} называется пара $(X, \rho)$, где 
+$X$ -- произвольное непустое множества, а $\rho: X \times X \to \R_+$ -- метрика, которая
+удовлетворяет следующим аксиомам:
+
+\begin{enumerate}
+    \item $\forall x, y \in X\ \rho(x, y) = 0 \Leftrightarrow x = y$
+    \item $\forall x, y \in X\ \rho(x, y) = \rho(y, x)$
+    \item $\forall x, y, z \in X\ \rho(x, y) \leqslant \rho(x, z) + \rho(z, y)$
+\end{enumerate}
+
+\textbf{Замечание}
+
+В любом нормированном пространстве можно ввести такую метрику:
+$\rho(x, y) = \| x - y \|$
+
+\textbf{Нормы для некоторых пространств}
+
+$$
+    \left\| f(x) \right\|_{C [a, b]} = \sup_{x \in [a, b]} \left| f(x) \right|
+$$
+
+$$
+    \left\| f(x) \right\|_{C^k [a, b]} = 
+    \sum_{i = 0}^k \max_{x \in [a, b]} \left| f^{(i)} (x) \right|
+$$
+
+В частности, норма для $C^1 [a, b]$:
+
+$$
+    \left\| f(x) \right\|_{C^1 [a, b]} = 
+    \max_{x \in [a, b]} \left| f(x) \right| + 
+    \max_{x \in [a, b]} \left| f'(x) \right|
+$$
+
+\textbf{Определение.}
+
+Пусть $(X, \rho)$ -- метрическое пространство, $M \subset X$.
+Отображение $F: M \to \R$ называется \textit{функционалом}
+с облатью определения $M$.
+
+Пусть $F(x, y, p)$ -- непрерывно дифференируемая функция на 
+$[a, b] \times \R^2$. Рассмотрим функционал 
+
+\begin{equation}\label{J_func}
+    J(y) = \int_a^b F(x, y, y')dx, \;\;y(a) = A,\;\; y(b) = B,
+\end{equation}
+
+определённый на множестве 
+$M = \{ y(x) \in C^1 [a, b]: y(a) = A, y(b) = B\}$.
+
+\textbf{Определение.}
+
+Функция $\widehat{y}(x) \in M$ называется \textit{слабым локальным минимум (максимумом)}
+функционала (\ref{J_func}), если
+
+$$
+\exists \varepsilon > 0 : \forall y(x) \in M : 
+\left\| y - \widehat{y} \right\|_{C^1 [a, b]} < \varepsilon \; \Rightarrow \;
+J(y) \geqslant J(\widehat{y}) \;\;\;\left( J(y) \leqslant J(\widehat{y}) \right)
+$$
+
+\textbf{Определение.}
+
+Задача на отыскание слабого локального экстремума функционала (\ref{J_func})
+называется \textit{простейшей вариационной задачей} или 
+\textit{задачей с закреплёнными концами}.
+
+Рассмотрим две фукнции $y_1(x), y_2(x) \in M$ 
+и определим $\eta(x) := y_1(x) - y_2(x)$. Так как концы у функций $y_1(x)$ и
+$y_2(x)$ фиксированы, то $\eta(a) = 0$ и $\eta(b) = 0$. Назовём функцию
+$\eta$ \textit{вариацией} и введём обозначение для множества 
+допустимых вариаций:
+$$
+    \mathring{C}^1 [a, b] := \{ y(x) \in C^1 [a, b] : y(a) = 0, y(b) = 0\}
+$$
+
+Пусть $y(x) \in M, \eta(x) \in \mathring{C}^1 [a, b]$. 
+Рассмотрим семейство функций 
+$y_{\alpha} (x) = y(x) + \alpha \eta(x), \alpha \in \R$.
+Понятно, что для любого $\alpha$ $y_{\alpha}(x) \in M$.
+Мы хотим ввести понятие, аналогичное производной по направлению для
+числовых функций.
+
+$$
+J(y + \alpha \eta) = 
+\int_a^b F \left[ x; y(x) + \alpha \eta(x), y'(x) + \alpha \eta'(x) \right]
+dx
+$$
+
+При фиксированных $y$ и $\eta$ эта функция зависит только от числового
+аргумента $\alpha$.
+\pagebreak
+
+\textbf{Определение.}
+
+Выражение $\left. \frac{d}{d\alpha} J(y + \alpha \eta) \right|_{\alpha = 0}$
+, где $\eta \in \mathring{C}^1 [a, b]$ называется
+\textit{первой вариацией функционала $J(y)$ на функции $y(x)$}
+и обозначается $\delta J[y, \eta(x)]$.
+\bigbreak
+\textbf{Теорема.}
+
+Если $\widehat{y}(x) \in M$ является решением простейшей
+вариационной задачи, то
+$$
+\forall \eta(x) \in \mathring{C}^1 [a, b] \ \ 
+\delta J \left[ \widehat{y}, \eta(x) \right] = 0
+$$
+
+\underline{Доказательство.}
+
+Пусть, без ограничения общности, 
+$\widehat{y}$ -- слабый локальный минимум $J(y)$.
+Тогда
+
+$$
+\exists \varepsilon > 0 : \forall y(x) \in M : 
+\left\| y - \widehat{y} \right\|_{C^1 [a, b]} < \varepsilon \ 
+J(\widehat{y}) \leqslant J(y)
+$$
+
+Зафиксировав $\eta(x)$, подберём 
+$\alpha_0 : \| \alpha_0 \eta \|_{C^1} < \varepsilon$.
+Тогда 
+$\forall \alpha : |\alpha| < \alpha_0 \ \;\| \alpha \eta \| < \varepsilon$.
+
+Рассмотрим числовую функцию 
+$\Phi(\alpha) := J(\widehat{y} + \alpha \eta)$.
+Так как $\widehat{y}$ -- слабый локальный экстремум $J(y)$, то
+
+$$
+\Phi(\alpha) = J(\widehat{y} + \alpha \eta) \geqslant 
+J(\widehat{y}) = \Phi(0)
+$$
+
+Получается, что функция $\Phi(\alpha)$ имеет минимум в точке
+$\alpha = 0$, а значит $\Phi'(0) = 0$.
+Это и означает, что 
+$
+\forall \eta(x) \in \mathring{C}^1 [a, b] \ \ 
+\delta J[\widehat{y}, \eta(x)] = 0
+$.
+\bigbreak
+\textbf{Лемма Лагранжа (или основная лемма вариационного исчисления).}
+
+
+\begin{equation*}
+\text{Если } f(x) \in C [a, b] \text{ и } 
+\int_a^b f(x) \eta(x) dx = 0 \ \ \forall \eta(x) \in \mathring{C}^1 [a, b],
+\text{то } f(x) \equiv 0 \text{ на } [a, b].
+\end{equation*}
+
+\underline{Доказательство.}
+
+Предположим, что $f(x) \ \cancel{\equiv}\  0$ на $[a, b]$.
+Тогда $\exists x_0 \in (a, b) : f(x_0) \neq 0$ 
+(пусть, для определённости, $f(x_0) > 0$).
+Так как функция $f$ непрерывна, то 
+$\exists \varepsilon > 0 : 
+\forall x \in (x_0 - \varepsilon, x_0 + \varepsilon) \subset (a, b) \ f(x) > 0$.
+
+Теперь выберем $\eta(x)$ следующим образом:
+
+\begin{align*}
+    \eta(x) = 
+    \begin{cases}
+        \left( x - (x_0 - \varepsilon) \right)^2
+        \left( x - (x_0 + \varepsilon) \right)^2,
+        &x \in (x_0 - \varepsilon, x_0 + \varepsilon)\\
+        0, & x \notin (x_0 - \varepsilon, x_0 + \varepsilon)
+    \end{cases}
+\end{align*}
+
+Функция $\eta(x)$ имеет вид "шапочки" на 
+$(x_0 - \varepsilon, x_0 + \varepsilon)$ 
+и гладким образом спускается к нулю, 
+поэтому $\eta(x) \in \mathring{C}^1 [a, b]$.
+
+Так как на $(x_0 - \varepsilon, x_0 + \varepsilon)$ и $f(x) > 0$, 
+и $\eta(x) > 0$, то
+
+$$
+\int_a^b f(x) \eta(x) dx = 
+\int_{x_0 - \varepsilon}^{x_0 + \varepsilon} f(x) \eta(x) dx > 0.
+$$
+
+Получилось противоречие с условием
+$\int_a^b f(x) \eta(x) dx = 0 \ \ \forall \eta(x) \in \mathring{C}^1 [a, b]$,
+а значит $f(x) \equiv 0$ на $[a, b]$.
+\bigbreak
+\textbf{Теорема (необходимое условие слабого локального экстремума).}
+
+Пусть $F(x; y, p)$ -- дважды непрерывно дифференцируемая функция
+$\forall x \in [a, b]$ и $\forall (y, p) \in \R^2$.
+Если непрерывно дифференцируемая функция $\widehat{y}$ является
+решением простейшей вариационной задачи для (\ref{J_func}), то
+эта функция удовлетворяет уравнению Эйлера:
+
+\begin{equation}\label{euler_eq}
+\frac{\partial F}{\partial y} 
+- \frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) = 0
+\end{equation}
+
+на $[a, b]$.
+
+\pagebreak
+
+\underline{Доказательство.}
+
+Везде далее будем подразумеваться, что все записанные тождества верны для
+$y = \widehat{y}$.
+
+Распишем $\delta J(y, \eta(x))$:
+\begin{multline*}
+\delta J(y, \eta(x)) = 
+\left. \frac{d}{d\alpha} J(y + \alpha \eta) \right|_{\alpha = 0} = 
+\left. \left[ \frac{d}{d\alpha}
+\int_a^b F(x; y + \alpha \eta,  y' + \alpha \eta') dx
+\right] \right|_{\alpha = 0} = \\
+= \left. \left[ \int_a^b 
+\left( 
+\frac{\partial F(x, y + \alpha \eta, y' + \alpha \eta')}
+{\partial y} \cdot \eta +
+\frac{\partial F(x, y + \alpha \eta, y' + \alpha \eta')}
+{\partial y'} \cdot \eta' \right) dx
+\right] \right|_{\alpha = 0} = \\
+= \int_a^b \left(
+\frac{\partial F(x, y, y')}
+{\partial y} \cdot \eta + 
+\frac{\partial F(x, y, y')}{\partial y'} \cdot \eta'
+\right) dx
+\end{multline*}
+
+Проинтегрируем 
+$\int \limits_a^b \frac{\partial F(x, y, y')}
+{\partial y'} \cdot \eta' dx$ 
+по частям:
+
+\begin{equation*}
+\int_a^b \frac{\partial F(x, y, y')}
+{\partial y'} \cdot \eta' dx = 
+\underbrace{\left. 
+\frac{\partial F(x, y, y')}{\partial y'}
+\cdot \eta(x) \right|_{x = a}^{x = b}}
+_{= 0, \text{ так как } \eta(a) = \eta(b) = 0} 
+- \int_a^b \frac{d}{dx} \left(
+\frac{\partial F(x, y, y')}{\partial y'}
+\right) \cdot \eta(x) dx
+\end{equation*}
+
+\begin{equation*}
+\delta J(y, \eta(x)) = 
+\int_a^b \left(
+\frac{\partial F(x, y, y')}{\partial y} -
+\frac{d}{dx} \left(
+\frac{\partial F(x, y, y')}{\partial y'}
+\right)
+\right) \cdot \eta(x) dx
+\end{equation*}
+
+Так как $y$ -- локальный экстремум, то по предыдущей теореме
+$\forall \eta(x) \in \mathring{C}^1 [a, b] \ \ 
+\delta J(y, \eta(x)) = 0$:
+
+$$
+\forall \eta(x) \in \mathring{C}^1 [a, b] \ \ 
+\int_a^b \left(
+\frac{\partial F(x, y, y')}
+{\partial y} -
+\frac{d}{dx} \left(
+\frac{\partial F(x, y, y')}{\partial y'}
+\right)
+\right) \cdot \eta(x) dx = 0
+$$
+
+Теперь по лемме Лагранжа получаем требуемое:
+
+$$
+\frac{\partial F(x, y, y')}
+{\partial y} -
+\frac{d}{dx} \left(
+\frac{\partial F(x, y, y')}{\partial y'}
+\right) = 0
+$$
+
+на $[a, b]$.
+
+\textbf{Определение.}
+
+Решение уравнения (\ref{euler_eq}) называется \textit{экстремалью}
+функционала (\ref{J_func}).
+Если экстремаль удовлетворяет условиям $y(a) = A, y(b) = B$, то
+она называется \textit{допустимой}.

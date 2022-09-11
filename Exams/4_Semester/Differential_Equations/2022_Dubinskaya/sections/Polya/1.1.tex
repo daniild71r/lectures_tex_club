@@ -1,0 +1,187 @@
+Рассмотрим функцию $y(x)$, определённую вместе с $n$ производными на промежутке $I$. \newline Также рассмотрим функцию $F(x,y,p_1, \ldots,p_n)$, определённую и непрерывную на некотором $\Omega\subset \R^{n+2}$
+
+\Def Уравнение вида 
+\setcounter{equation}{0}
+\begin{equation}\label{eq1} 
+    F(x, y, y', \ldots, y^{(n)})=0
+\end{equation}
+называется \textit{дифференциальным уравнением $n$-го порядка}.
+
+\Def Функция $\varphi(x)$, определённая на $I$ вместе со своими $n$ производными,
+называется решением уравнения (\ref{eq1}), если:
+\begin{enumerate}
+    \item $\varphi$ и все её $n$ производных непрерывны на $I$.
+    \item $\forall x \in I \quad (x, \varphi(x), \varphi'(x), \ldots, \varphi^{n}(x)) \in \Omega$
+    \item $\forall x \in I \quad F(x, \varphi(x), \varphi'(x), \ldots, \varphi^{n}(x)) = 0$
+\end{enumerate}
+
+\Def \textit{Обыкновенным дифференциальным уравнением I-го порядка} называется уравнение вида $F(x,y,y') = 0$
+
+\Def $y'=\frac{dy}{dx}=f(x,y)$ -- \textit{уравнение, разрешённое относительно производной}
+
+\Def Функция $y = \varphi(x)$, определенная на промежутке $I$, называется \textit{решением дифференциального уравнения} $y'=f(x,y)$, если 
+\begin{enumerate}
+    \item $\varphi$ имеет непрерывную производную $\varphi'(x)$ на $I$.
+    \item $\forall x \in I \quad (x, \varphi(x)) \in \Omega$
+    \item $\varphi'(x) = f(x,\varphi(x))$ на $I$
+\end{enumerate}
+
+\Def $M(x,y)dx + N(x,y)dy = 0$ -- \textit{уравнение в дифференциалах}. Подмножество его решений:
+\begin{equation*}
+    \left[ 
+      \begin{gathered} 
+        y_x' = -\frac{M(x,y)}{N(x,y)} \\ 
+        x_y' = -\frac{N(x,y)}{M(x,y)} \\ 
+      \end{gathered} 
+\right.
+\end{equation*}
+
+
+
+
+
+\subsection*{Уравнения с разделяющимися переменными}
+
+Уравнения с разделяющимися переменными -- это уравнения, которые могут быть записаны в виде
+\begin{equation}\label{eq2} 
+    y' = f(x)g(y) \qquad f(x) \in C(I_1), g(y) \in C(I_2)
+\end{equation}
+\begin{center}
+    или же в виде
+\end{center}
+\begin{equation}\label{eq3} 
+    M(x)N(y)dx + P(x)Q(y)dy = 0
+\end{equation}
+
+\Note Если же $y_k\in I_2$ решение уравнение $g(y) = 0$, то $y\equiv y_k$ -- решение дифф. уравнения.
+\bigbreak
+Если же $y(x)$ нигде не принимает значение $y_k$, то $g(y) \neq 0$, а потому мы можем делить на него. Значит, чтобы решить исходное уравнение, необходимо \textit{разделить переменные}, то есть, привести уравнение к такой форме, чтобы при дифференциале $dx$ стояла
+функция, зависящая лишь от $x$, а при дифференциале $dy$ -- функция, зависящая от $y$. 
+
+Для этого уравнение вида (\ref{eq2}) или (\ref{eq3}) следует переписать в форме:
+
+\begin{equation*}
+    \frac{y'}{g(y)} = f(x) \qquad \qquad \frac{M(x)}{P(x)}dx + \frac{Q(y)}{N(y)}dy = 0
+\end{equation*}
+
+Будем работать с первым вариантом, так как он более общий. Проинтегрируем обе части по $x$:
+\begin{align*}
+    \int\frac{y'dx}{g(y)} &= \int f(x)dx \\
+    \int\frac{dy}{g(y)} &= \int f(x)dx \\
+    H(y) &= F(x) + C \\
+    y &= H^{-1}(F(x) + C)
+\end{align*}
+
+Поскольку $g(y)$ знакопостоянна, то $H(y)$ строго монотонна, а следовательно, обратима
+
+\subsection*{Уравнения, приводящиеся к уравнениям с разделяющимися переменными}
+\begin{equation*}
+    y' = f(ax + by + c)
+\end{equation*}
+Сделав в таком уравнении замену $z = ax + by + c$, получим уравнение с разделяющимися переменными $\frac{dz}{dx} = bf(z) + a$.
+
+
+\subsection*{Однородные уравнения}
+\Def Функция двух переменных $f(x, y)$ называется \textit{однородной степени} $m$ (еще
+говорят, с показателем однородности $m$), если для всех $t$ (или хотя бы для
+$t > 0$) справедливо соотношение: 
+\begin{center}
+    $f(tx, ty) = t^m f(x, y)$
+\end{center} 
+
+\textit{Однородным дифференциальным уравнением} называется уравнение вида 
+\begin{equation}
+    M(x, y) dx + N(x, y) dy = 0
+\end{equation}
+если $M(x, y)$ и $N(x, y)$ -- однородные функции одной и той же степени $m$. 
+
+Можно показать, что однородное уравнение может
+также быть записано в виде 
+\begin{center}
+    $y' = f(\frac{y}{x}), \qquad f(z)\in C(I)$
+\end{center}
+
+Однородное уравнение приводится к уравнению с разделяющимися переменными с помощью замены искомой функции $y(x)$ по формуле:
+\begin{center}
+    $t(x) = \frac{y(x)}{x}$
+\end{center}
+
+Тогда производная $y'$ и дифференциал $dy$ заменяются по формулам:
+\begin{equation*}
+    y' = t'x + t, \qquad dy = tdx + xdt
+\end{equation*}
+После решения полученного уравнения нужно сделать обратную подстановку $t = \frac{y}{x}$
+
+
+\subsection*{Уравнения, приводящиеся к однородным}
+\begin{equation*}
+    y' = f\Big(\frac{ax + by + c}{a_1x + b_1y + c_1}\Big), \qquad f(z)\in C(I)
+\end{equation*}
+приводится к однородному уравнению заменой $u = x - x_0, \; v = y - y_0$ , где $(x_0, y_0)$ — точка пересечения прямых $ax+by+c = 0$ и $a_1x+b_1y+c_1 = 0$. Если
+же эти прямые не пересекаются, то $a_1x + b_1y = k(ax + by)$ для некоторого $k \in \R$ и уравнение имеет вид $y' = f_1(ax+by)$.
+
+\Def Уравнение называется \textit{обобщенно-однородным}, если его можно привести к
+однородному заменой $y = z^m$ , где $m$ -- некоторое действительное число.
+
+\Example $9yy' - 18xy + 4x^3 = 0 \;\; \Rightarrow \;\; 9mz^{2m-1}z'-18xz^m+4x^3 = 0$. 
+
+Оно однородно, если $2m-1 = 1+m = 3 \;\; \Rightarrow \;\; m = 2 \;\; \Rightarrow \;\; 9z^3z' - 9xz^2 + 2x^3 = 0.$
+
+
+
+
+\subsection*{Линейные уравнения}
+
+\textit{Линейным уравнением первого порядка} называется уравнение, линейное относительно искомой функции $y(x)$ и ее производной, то есть, уравнение вида
+\begin{equation}\label{eq5}
+    y' + a(x)y = b(x) \qquad a(x), b(x) \in C(I)
+\end{equation}
+
+Функция $b(x)$ называется \textit{свободным членом} уравнения (4). Уравнение 
+\begin{equation}\label{eq6}
+    y' + a(x)y = 0
+\end{equation}
+называется \textit{линейным однородным уравнением}, соответствующим линейному уравнению (\ref{eq5}).
+
+Покажем, что однородное уравнение является уравнением с разделяющимися переменными (далее подразумевается, что $y \neq 0$):
+\begin{align*}
+    y' + a(x)y &= 0 \qquad \Rightarrow \qquad
+    \frac{y'}{y} = -a(x) \qquad \Rightarrow \qquad
+    \int\frac{dy}{y} = -\int a(x)dx \qquad \Rightarrow\\
+    \Rightarrow \qquad \ln|y| &= -\int\limits_{x_0}^xa(t)dt + C \qquad \Rightarrow \qquad
+    |y| = e^{C}\cdot e^{-\int\limits_{x_0}^xa(t)dt}
+\end{align*}
+Работаем с интегралом с переменным верхним пределом ($x_0$ -- любая точка из промежутка непрерывности $a(t)$). Таким образом, мы получили одну из возможных первообразных, а все остальные с помощью прибавления константы.
+
+Объединяя все решения, получаем \textit{общее решение}:
+\begin{equation*}
+    y_0=C\exp{\Big[-\int\limits_{x_0}^xa(t)dt\Big]}
+\end{equation*}
+Будем искать частное решение исходного линейного уравнения в виде 
+
+\textbf{метод вариации постоянной}:
+\begin{equation*}
+    y_{\text{ч}}=C(x)\cdot\exp{\Big[-\int\limits_{x_0}^xa(t)dt\Big]}
+\end{equation*}
+
+Подставим его в левую часть уравнения:
+\begin{align*}
+    y' + a(x)y = \exp{\Big[-\int\limits_{x_0}^xa(t)dt\Big]}\cdot \Big(C'(x) - C(x)a(x) + C(x)a(x)\Big) 
+    = C'(x)\cdot \exp{\Big[-\int\limits_{x_0}^xa(t)dt\Big]}
+\end{align*}
+Тогда получаем, что исходное уравнение (\ref{eq5}) имеет вид:
+\begin{align*}
+    C'(x) &= b(x) \cdot \exp{\Big[\int\limits_{x_0}^xa(t)dt\Big]}\\
+    C(x) &= \int\limits_{x_1}^{x}b(t)\exp{\Big[\int\limits_{t_0}^ta(\tau)d\tau\Big]}dt + C \\
+    y &= \underbrace{\Big(\int\limits_{x_1}^{x}b(t)\exp{\Big[\int\limits_{t_0}^ta(\tau)d\tau\Big]}dt\Big)\cdot \exp{\Big[-\int\limits_{x_0}^xa(t)dt\Big]}}_{\text{частного решение линейного}} + \underbrace{C\exp{\Big[-\int\limits_{x_0}^xa(t)dt\Big]}}_{\text{общее решение однородного}}
+\end{align*}
+
+\Example $y' + y = 4x$
+
+Решение однородного: $y = Ce^{-x}$
+
+Подстановка: $C'(x)e^{-x} - C(x)e^{-x} + C(x)e^{-x} = 4x \;\; \Rightarrow \; C'(x) = 4xe^{x}$
+\begin{align*}
+    C(x) &= 4(xe^x - \smallint e^xdx) = 4(x-1)e^x + C \\
+    y &= 4(x-1) + Ce^{-x}
+\end{align*}

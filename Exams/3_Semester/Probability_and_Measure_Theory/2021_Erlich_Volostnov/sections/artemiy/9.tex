@@ -1,0 +1,158 @@
+\Def \textit{Система множеств} - это множество множеств.
+
+\Examples
+\begin{enumerate}
+    \item $\{\varnothing\}$
+    \item $2^X$ - множество всех подмножеств $X$.
+\end{enumerate}
+
+\Def Система множеств S называется \textit{полукольцом}, если:
+
+\begin{enumerate} 
+    \item $\varnothing \in S$
+    \item $\forall A, B \in S \ (A \cap B \in S)$
+    \item $\forall A, A_1 \in S \ (A_1 \subset A \Rightarrow \exists A_2, \dots, A_n \in S \ (\bigsqcup_{i = 1}^{n} A_i = A))$
+\end{enumerate} 
+
+\Example $\{[a, b)\ |\ [a, b) \subseteq [A, B)\}$ - полукольцо.
+
+\Def Система множеств R называется \textit{кольцом}, если:
+
+\begin{enumerate} 
+    \item $R \neq \varnothing$
+    \item $\forall A, B \in R\ (A \cap B \in R)$
+    \item $\forall A, B \in R\ (A \triangle B \in R)$
+\end{enumerate} 
+
+Обозначения лектора: $S$ - полукольцо (semiring), $R$ - кольцо (ring).
+
+\Def \textit{Единицей системы множеств} называется множество $E$ из этой системы, чьими подмножествами являются все множества системы.
+
+\Example $\{[a, b)\ |\ [a, b) \subset \mathbb{R}\}$ - полукольцо без единицы.
+
+\Example $\{[a, b), (a, b], (a, b), [a, b]\ |\ a \leq b; a, b \in [A, B] \}$ - полукольцо с единицей.
+
+
+\Def Кольцо с единицей называется \textit{алгеброй}.
+
+\Statement (кольцо замкнуто относительно всех теоретико множественных операций) Если $R$ — кольцо, то:
+
+\begin{enumerate} 
+    \item $R$ - полукольцо
+    \item $\forall A, B \in R (A \cup B \in R)$
+    \item $\forall A, B \in R (A \backslash B \in R)$
+\end{enumerate} 
+
+\Proof
+\begin{enumerate} 
+    \item $\varnothing = A \triangle A \in R$ \\
+    $\forall A, B \in R\ (A \cap B \in R)$ \\
+    $A_1 \subset A \Rightarrow A = A_1 \sqcup (A \triangle A_1)$
+    \item $A \backslash B = A \triangle (A \cap B)$
+    \item $A \cup B = (A \triangle B) \triangle (A \cap B)$ \EndProof
+\end{enumerate} 
+
+\Statement Пересечение произвольного числа колец является кольцом.
+
+\Proof Пусть $\bigcap_{\alpha \in \Lambda} R_{\alpha} = R$, тогда:
+
+\begin{enumerate} 
+    \item $\forall \alpha \in \Lambda\ (\varnothing \in R_{\alpha}) \Rightarrow \varnothing \in R$
+    \item $A, B \in R \Rightarrow \forall \alpha \in \Lambda \ (A, B \in R_{\alpha}) \Rightarrow \forall \alpha \in \Lambda (A \cap B \in R_{\alpha}) \Rightarrow A \cap B \in R$ (аналогично для $\triangle$) \EndProof
+\end{enumerate} 
+
+\Conseq Пересечение произвольного числа алгебр с общей единицей является алгеброй.
+
+\Statement (Наименьшее кольцо содержащее $X$) Пусть $X$ — система множеств, тогда существует кольцо $R(X)$, для которого верно следующее:
+
+\begin{enumerate} 
+    \item $X \subseteq R(X)$
+    \item $\forall$ кольца $R_1 \supseteq X\ (R(X) \subseteq R_1)$
+\end{enumerate} 
+ то есть, $R(X)$ — минимальное (по включению) кольцо, содержащее $X$.
+
+\Proof Пусть $X = \{A_{\alpha}\}_{\alpha\in\Lambda}$. Определим $M(X) =\bigcup_{\alpha \in\Lambda} A_{\alpha}$; Множество $2^M$ является кольцом (легко проверить самостоятельно) и $X \subset 2^M$. Следовательно, существуют кольца содержащие $X$. Рассмотрим $P = \{R \subset 2^M\ |\ R - $кольцо и $ X \subset R\}$. Тогда $R(X) = \cap_{R \in P} R$. Проверим, что $R(X)$ искомое:
+\begin{enumerate}
+    \item $R(x)$ - кольцо (потому что пересечение колец)
+    \item $X \subset R(x)$ (следует из построения)
+    \item $\forall$ кольца $R \supseteq X\ $, рассмотрим $R_2 = R \cap 2^M$ - это кольцо. $X \subset R,\ 2^M \Rightarrow X \subset R_2 \Rightarrow R_2 \in P \Rightarrow R(X) \subset R_2, R(X) \subset R$.
+\end{enumerate}
+ \EndProof
+
+\Lemma Пусть $S$ — полукольцо, $A, A_1, \dots, A_n \in S: \forall i \neq j\ A_i \cap A_j = \varnothing$, и $\bigsqcup^n_{k=1} A_k \subseteq A$, тогда
+
+$$\exists A_{n+1}, \dots, A_m \in S\ ( \bigsqcup^m_{k=1} A_k = A)$$
+
+\Proof Индукция по $n$:
+\begin{itemize}
+\item $n = 1$: из определения полукольца
+\item $(n - 1) \rightarrow n$: пусть $A = (\bigsqcup^{n-1}_{k=1} A_k) \sqcup (\bigsqcup^q_{j=1} B_j)$. Понятно, что $A_n \subseteq \bigsqcup^q_{j=1} B_j$. Определим $D_j = A_n \cap B_j$, тогда $D_j \in S$, и $B_j = D_j \sqcup (\bigsqcup^{r_j}_{r=1} C_{j,r})$. Заметим, что $\bigsqcup^q_{j=1} D_j = A_n$, и
+$$A = (\bigsqcup^{n}_{k=1} A_k) \cup (\bigsqcup^{q}_{j=1} \bigsqcup^{r_j}_{r=1} C_{j,r})$$ \EndProof 
+\end{itemize}
+
+\Th Пусть $S$ - полукольцо, тогда 
+$$R(S)\ \text{равно}\ K(S) = \{\bigsqcup_{i=1}^n A_i | \forall n,\ \forall A_i \in S\}$$
+
+\Proof
+\begin{enumerate}
+    \item $K(S)$ - кольцо, так как
+$\forall A, B \in K(S): A = \bigsqcup^n_{i = 1} A_i, B = \bigsqcup^m_{i = 1} B_j \Rightarrow A \cap B = (\bigsqcup^n_{i = 1} A_i \cap \bigsqcup^m_{i = 1} B_j) = \bigsqcup_{i, j} (A_i \cap B_j) \in K(S)$
+
+Пусть $C_{ij} = A_i \cap B_j \in S$
+
+$C_{ij} \subset A \Rightarrow \text{(по предыдущей лемме)} A = (\bigsqcup C_{ij}) \sqcup (\bigsqcup D_{r})$
+
+$C_{ij} \subset B \Rightarrow \text{(по предыдущей лемме)} B = (\bigsqcup C_{ij}) \sqcup (\bigsqcup E_{k})$
+
+$A \triangle B = (\bigsqcup D_r) \sqcup (\bigsqcup E_k) \in K(S)$
+    \item $S \subset K(S)$
+    \item $K(S) \subseteq R(S)$ (т.к. любой элемент $K(S)$ по определению должен лежать и в $R(S)$).
+\EndProof
+\end{enumerate}
+
+\leftbar
+
+\LemmaN{2} Пусть $S$ — полукольцо, и $A_1, \dots, A_n \in S$, тогда $\exists B_1, \dots , B_k \in S \ \forall i (A_i = \bigsqcup_{k \in \Lambda_i} B_k)$
+
+(обратите внимание, что $B_i$ попарно не пересекаются).
+\Proof Индукция по $n$:
+\begin{itemize}
+\item $n = 1: B_1 = A_1$
+\item $n - 1 \rightarrow n$: пусть $B_1, \dots, B_q$ — искомый набор для $A_1, \dots, A_{n-1}$. Определим $C_s = B_s \cap A_n$, тогда $A_n = (\bigsqcup^q_{s=1} C_s) \sqcup (\bigsqcup^m_{p=1} D_p)$, где $D_p \in S$. Далее, $B_s = C_s \cup (\sqcup_{r-1}^{r_s} B_{s,r})$, и $\{C_s\} \cup \{B_{s,r}\} \cup \{D_p\}$ является искомым набором. \EndProof
+\end{itemize}
+\endleftbar
+
+\Def Система множеств $R$ называется \textit{$\sigma$-кольцом}, если:
+\begin{enumerate}
+    \item  $R$ — кольцо
+    \item  $\forall \{A_i\}^{\infty}_{i=1} \subseteq R \ (\bigcup^{\infty}_{i=1} A_i \in R)$
+\end{enumerate}
+
+\Def Система множеств $R$ называется \textit{$\delta$-кольцом}, если:
+\begin{enumerate}
+    \item $R$ — кольцо
+    \item $\forall \{A_i\}^{\infty}_{i=1} \subseteq R \ (\bigcap^{\infty}_{i=1} A_i \in R)$
+\end{enumerate}
+
+\Def \textit{$\sigma$-алгебра} - $\sigma$-кольцо c еденицей. \textit{$\delta$-алгебра} - $\delta$-кольцо c еденицей.
+
+\Statement $\sigma$-кольцо является $\delta$-кольцом; $\delta$-алгебра является $\sigma$-алгеброй.
+
+\Proof
+$$\bigcap^{\infty}_{i=1} A_i = A_1 \backslash \bigcup^{\infty}_{i=1} (A_1 \backslash A_i)$$
+
+$$\bigcup^{\infty}_{i=1} A_i = E \backslash \bigcap^{\infty}_{i=1} (E \backslash A_i)$$ \EndProof
+
+\Conseq $\sigma$-алгебра является $\delta$-алгеброй.
+
+\Example (когда $\delta$-кольцо не является $\sigma$-кольцом) Множество ограниченных подмножеств $\mathbb{R}$ является $\delta$-кольцом, но не является
+$\sigma$-кольцом.
+
+\Def $\sigma(X)$ - наименьшая $\sigma$-алгебра содержащая $X$ (Определение аналогично определеню наименьшего кольца содержащего $X$):
+
+\begin{enumerate} 
+    \item $X \subseteq \sigma(X)$
+    \item $\forall$ $\sigma$-алгебры $\sigma_1 \supseteq X\ (\sigma(X) \subseteq \sigma_1)$
+\end{enumerate} 
+
+\Def \textit{Борелевская $\sigma$-алгебра} на множестве $A$ — наименьшая $\sigma$-алгебра, содержащая все открытые подмножества. (Названа в честь Эмиля Бореля.)

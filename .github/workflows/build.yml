@@ -1,0 +1,90 @@
+name: build and upload latex
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.get-targets.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+  
+      - name: Get targets
+        id: get-targets
+        run: |
+          export BRANCH=${GITHUB_REF#refs/heads/}
+          python -c '
+          import json
+          import os
+          targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
+          print("::set-output name=matrix::[", ", ".join(repr(t) for t in targets), "]", sep="")
+          '
+
+  build:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        course: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Configure build
+        id: configure-build
+        run: |
+          pwd
+          mkdir build
+          BRANCH_NAME=${{ matrix.course }}
+          echo "BRANCH_NAME=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+          BRANCH_ARGUMENTS=(${BRANCH_NAME//\// })
+          
+          TYPE=${BRANCH_ARGUMENTS[0]}
+          SEMESTER=${BRANCH_ARGUMENTS[1]}
+          SUBJECT_NAME=${BRANCH_ARGUMENTS[2]}
+          CONSPECT_NAME=${BRANCH_ARGUMENTS[3]}
+          
+          case ${TYPE} in
+            l)
+              TYPE="Lectures"
+              ;;
+            s)
+              TYPE="Seminars"
+              ;;
+            e)
+              TYPE="Exams"
+              ;;
+            *)
+              TYPE="Other"
+              ;;
+          esac
+          SEMESTER="${SEMESTER}_Semester"
+
+          FULL_PATH="${TYPE}/${SEMESTER}/${SUBJECT_NAME}/${CONSPECT_NAME}"
+          echo "FULL_PATH=$(echo ${FULL_PATH})" >> ${GITHUB_ENV}
+
+      - name: Build
+        id: build
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          working_directory: ${{ env.FULL_PATH }}
+          args: -output-dir=../../../../build
+          compiler: pdflatex
+          post_compile: "pdflatex -output-dir=${GITHUB_WORKSPACE}/build main.tex"
+
+      - name: Upload
+        id: upload
+        run: |
+          URL=$(curl -f --silent --get \
+          --data-urlencode 'path=Lectures Tex Club/${{ env.FULL_PATH }}.pdf' \
+          --data-urlencode 'overwrite=true' \
+          --header 'Authorization: ${{ secrets.YANDEX_OAUTH_TOKEN }}' \
+          'https://cloud-api.yandex.net/v1/disk/resources/upload' | jq -r '.["href"]')
+
+          curl -f --silent -X PUT --data-binary '@build/main.pdf' \
+          --header 'Authorization: ${{ secrets.YANDEX_OAUTH_TOKEN }}' ${URL}

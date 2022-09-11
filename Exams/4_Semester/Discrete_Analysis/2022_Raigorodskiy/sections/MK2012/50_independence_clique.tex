@@ -1,0 +1,9 @@
+Известные оценки: $\chi(G)\! \geqslant\! \omega(G)$ и $\chi(G)\! \geqslant\! \left \lceil \frac{|V|}{\alpha(G)} \right \rceil$, где $\alpha(G)$ $-$ число независимости графа $G$, а $\omega(G)$ $-$ кликовое число графа $G$.
+
+\textbf{Теорема}(обычная формулировка)\textbf{:} Доля графов на n вершинах, для которых $\frac{n}{\alpha} > \omega$ стремится к 1 при $n\! \rightarrow\! \infty$. Более того, доля графов, для которых $\omega\: \text{или}\: \alpha\! \leqslant\! 2 \log_2 n$ стремится к 1.
+
+\textbf{Теорема}(вероятностная формулировка)\textbf{:} Для случайного графа \\ $G(n, \frac{1}{2})\; \mathbb{P}(\omega(G) \leqslant 2 \log_2 n) \xrightarrow[n \rightarrow \infty]{} 1$.
+
+\Proof Обозначим $k = 2\log_2 n$. Рассмотрим событие $\{\omega(G) > k \}$. Перенумеруем все k-элементные подмножества множества $V$ как $A_1, ..., A_{C^k_n}$. Тогда событие $\mathscr{A}_i \Leftrightarrow \text{в графе есть клика на}\: A_i$. Тогда $\{\omega(G) > k\} \subset \bigcup^{C^k_n}_{i=1} \mathscr{A}_i$.
+
+Значит, можно оценить вероятности так: $\mathbb{P}(\omega(G) > k)\! \leqslant\! \sum^{C^k_n}_{i=1} \mathbb{P} \mathscr{A}_i=C^k_n 2^{-C^2_k} \leqslant \newline \leqslant \frac{n^k}{k!} \cdot 2^{-\frac{k^2}{2} + \frac{k}{2}} = \frac{2^{2 \log^2_2 n}}{k!} \cdot 2^{-2\log^2_2 n + \log_2 n} = \frac{2^{\log_2 n}}{(\log_2 n)!} \xrightarrow[n \rightarrow \infty]{} 0$. \EndProof

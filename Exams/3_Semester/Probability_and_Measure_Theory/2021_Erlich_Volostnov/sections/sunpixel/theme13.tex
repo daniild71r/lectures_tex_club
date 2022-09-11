@@ -1,0 +1,66 @@
+\Def
+
+Заданная на кольце $R$ подмножеств некоторого множества $X$ мера $\mu$ называется \textit{полной}, если из того, что $A \in R$, $\mu(A) = 0$ и $B \subset A$, следует, что $B \in R$ и $\mu(B) = 0$.
+
+\Statement Меры Лебега и Жордана является полными.
+
+\Proof
+Пусть $A$ измеримо по Лебегу и $\mu(A) = 0$. Так как $B \subset A$, то $\mu^*(B) \leq \mu^*(A) = \mu(A) = 0$. Докажем, что если $\mu^*(B) = 0$, то $B$ измеримо по Лебегу.
+
+$\forall \varepsilon > 0 \ \exists B_\varepsilon = \emptyset : \mu^*(B \triangle B_\varepsilon) = 0 < \varepsilon$, а значит $B$ измеримо по Лебегу и $\mu(B) = 0$.
+
+Доказательство для меры Жордана аналогично.
+\EndProof
+
+\Note Мера Бореля не является полной 
+Можно взять континуальное множество меры нуль (например, множество Кантора) -- обозначим его $E$. Тогда $2^E$ более, чем континуально, а значит найдется неборелевское подмножество $E$ (так как борелевских множеств континуальное количество).
+
+\Def
+
+Пусть на кольце $R$ задана конечная мера $\mu$, и дана такая последовательность элементов кольца $A_1 \supset A_2 \supset \ldots$, что
+$A = \bigcap \limits_{i = 1}^{\infty} A_i, A_i \in R$.
+
+Если для такой последовательности $\{ A_i \}$ верно, что $\mu(A) = \lim \limits_{i \to \infty} \mu(A_i)$, то $\mu$ называется \textit{непрерывной}.
+
+\Th Заданная на кольце $R$ мера $\mu$ непрерывна тогда и только тогда, когда она $\sigma$-аддитивна.
+
+\Proof
+
+Пусть $\mu$ $\sigma$-аддитивна и $A = \bigcap \limits_{i = 1}^{\infty} A_i$, где множества $A_i$ вложены и $A, A_1, A_2, \ldots \in R$. 
+Положим $B_i = A_i \setminus A_{i + 1}$ при $i \geq 1$. Тогда
+
+$$
+    A_1 \setminus A = \bigsqcup_{n = 1}^{\infty} B_n
+$$, откуда
+
+$$
+    \mu(A_1 \setminus A) = \mu(A_1) - \mu(A) = \sum_{n = 1}^{\infty} \mu(B_n)
+    = \lim_{n \to \infty} \sum_{k = 1}^{n - 1} \mu(B_k) = 
+$$
+$$
+    = \lim_{n \to \infty} \left( \sum_{k = 1}^{n - 1} \left( \mu(A_k) - \mu(A_{k + 1}) \right) \right) = 
+    \mu(A_1) - \lim_{n \to \infty} \mu(A_n)
+$$, то есть
+
+$$
+    \mu(A) = \lim_{n \to \infty} \mu(A_n)
+$$
+
+Пусть теперь мера $\mu$ непрерывна и $A = \bigsqcup \limits_{n = 1}^{\infty} A_n$, где $A, A_1, A_2, \ldots \in R$. Положим 
+
+$$
+    B_n = \bigsqcup_{i = n}^{\infty} A_i = 
+    A \setminus \bigsqcup_{i = 1}^{n - 1} A_i.
+$$
+
+Тогда $B_1 \supset B_2 \supset \ldots$ и $\bigcap \limits_{n = 1}^{\infty} B_n = \emptyset$. Поэтому
+
+$$
+    0 = \lim_{n \to \infty} \mu(B_n) = 
+    \lim_{n \to \infty} \mu \left( A \setminus \bigsqcup_{i = 1}^{n - 1} A_i \right) = 
+    \lim_{n \to \infty} \left( \mu(A) - \sum_{k = 1}^{n - 1} \mu(A_k) \right) = 
+    \mu(A) - \lim_{n \to \infty} \sum_{k = 1}^{n - 1} \mu(A_k)
+$$.
+
+Это и означает, что $\mu(A) = \sum \limits_{n = 1}^{\infty} \mu(A_n)$.
+\EndProof

@@ -1,0 +1,198 @@
+\subsection{10. Иерархия Хомского. Праволинейные грамматики. Праволинейные языки. Теорема о совпадении классов автоматных и праволинейных языков.}
+
+\subsubsection*{Иерархия Хомского}
+
+$A, B \in N, \; \alpha, \varphi, \psi \in \brackets{N \cup \Sigma}^{*}, \, w \in \Sigma^*$
+
+\begin{center}
+    \centering
+    \begin{tabular}{|c|c|p{250px}|}
+        \hline
+         Грамматики &
+         Правила &
+         Автоматы \\
+         \hline
+         Праволинейные &
+         $A \rightarrow wB, \ A \rightarrow w$ &
+         НКА \\
+         \hline
+         Контекстно-свободные &
+         $A \rightarrow \alpha$ &
+         Автоматы с магазинной памятью \\
+         \hline
+         Контекстно-зависимые &
+         $\varphi A \psi \rightarrow \varphi \alpha \psi$ &
+         Линейно-ограниченные недетерминированные автоматы, машины Тьюринга \\
+         \hline
+         Порождающие &
+         Любые &
+         Машины Тьюринга \\
+         \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection*{Порождающие грамматики}
+
+\Def
+\textit{Порождающая грамматика}: $G = \{N, \Sigma, P, S\}$, где:
+
+1) $N$ -- множество вспомогательных (нетерминальных) символов, $\abs{N} < \infty$.
+
+2) $\Sigma$ -- алфавит -- множество (терминальных) символов, $\abs{\Sigma} < \infty$, $\Sigma \cap N = \varnothing$.
+
+3) $S \in N$ -- стартовый нетерминал
+
+4) $P \subset \brackets{N \cup \Sigma}^{+} \times \brackets{N \cup \Sigma}^{*}$ -- множество правил, $\abs{P} < \infty$.
+
+Правила грамматики грамматики задаются следующим образом:
+$$
+    \alpha \rightarrow \beta \in P, 
+    \alpha \in \brackets{N \cup \Sigma}^{+},
+    \beta \in \brackets{N \cup \Sigma}^{*}
+$$
+То есть $\alpha$ должен содержать хотя бы один символ — либо терминальный, либо нетерминальный, а $\beta$ может быть равным $\varepsilon$, то есть пустому слову. \\
+
+В следующих определениях $G = \{N, \Sigma, P, S\}$ -- порождающая грамматика.
+
+\Def
+Наименьшее рефлексивное транзитивное отношение $\vdash_{G}$ 
+называется \textit{отношением выводимости} в грамматике $G$, если 
+$$
+    \forall \brackets{\alpha \rightarrow \beta} \in P, \;\;
+    \forall \varphi, \psi \in \brackets{N \cup \Sigma}^{*}:
+    \varphi \alpha \psi \vdash_{G} \varphi \beta \psi
+$$
+\textit{По сути, это операция замены левой части на правую часть несколько раз, возможно, нуль.}
+
+\Def
+Слово $w \in \Sigma^{*}$ называется \textit{выводимым} в грамматике $G$,
+если $S \vdash_{G} w$, то есть из стартового символа достижимо слово $w$.
+
+\Def 
+Язык $L$ \textit{распознаётся} грамматикой $G$, если $L = \{w \in \Sigma^{*}\ |\ S \vdash_{G} w\}$, то есть язык $L$ состоит из таких слов, которые выводимы в грамматике $G$. Если $L$ распознаётся грамматикой $G$, то его обозначают как $L \brackets{G}$.
+
+\subsubsection*{Праволинейные грамматики и праволинейные языки}
+
+\Def Грамматика $G$ называется праволинейной, если правила из $P$ имеют вид либо $A \rightarrow wB$, либо $A \rightarrow w$, где $A$, $B$ — нетерминальные символы, то есть $A$, $B \in N$, и $w \in \Sigma^*$.
+
+\Def Язык $L(G)$ называется праволинейным, если грамматика $G$, которой распознаётся (задаётся) язык $L$, является праволинейной.
+
+
+\subsubsection*{Теорема о совпадении классов автоматных и праволинейных языков}
+
+\Th Множество автоматных языков равно множеству языков, 
+задаваемых праволинейными грамматиками.
+
+\Proof \textbf{Грамматика $\rightarrow$ Автомат:} Состояния в автомате $=$ нетерминалы в грамматике $+$ сток
+
+Пусть дан язык, задаваемый праволинейной грамматикой: $\mathcal{L} = \mathcal{L}(G),\ G = \{N, \Sigma, P, S\}$
+
+Построим $M = \{N \cup \{q_f\}, \Sigma, \Delta', S, \{q_f\}\}$, где
+
+$\Delta' = \{ \{A, w\} \rightarrow B \text{, если}\ A \rightarrow wB \in P  \} \cup
+\{\{A, w\} \rightarrow q_f \text{, если}\ A \rightarrow w \in P \}$
+
+Надо показать, что $\mathcal{L}(G) = \mathcal{L}(M)$
+
+\underline{$\mathcal{L}(G) \subset \mathcal{L}(M)$}:
+Индукция по длине вывода грамматики (количество $\vdash$)
+
+$$
+w \in \mathcal{L}(G) \Rightarrow 
+S \vdash_{G} w  \Rightarrow ..?.. \Rightarrow
+\{S, w\} \vdash_{M} \{q_f, \varepsilon\} \Rightarrow
+w \in \mathcal{L}(M)\ \qquad  (*)
+$$
+
+Покажем, что если $C \vdash_{G} wD$ (за $k$ шагов), 
+то $\{C, w\} \vdash_{M} \{D, \varepsilon\}$.
+
+Индукция по $k$:
+
+$k = 0$:
+$$
+C \vdash_{G} C \Rightarrow 
+w = \varepsilon \Rightarrow
+\{C, \varepsilon\} \vdash_{M} \{C, \varepsilon\}
+$$
+
+Переход:
+$$
+C \vdash wD \text{ за } k \text{ шагов } \Rightarrow
+\exists E, u, v\ :\ C \vdash_{G} uE \text{ за } k - 1 \text{ шаг },
+uE \vdash_{G} uvD \text{ за 1 шаг } (w = uv) 
+$$
+
+Тогда по предположению индукции
+$$
+\{C, u\} \vdash_M \{E, \varepsilon\},
+\{E, v\} \vdash_M \{D, \varepsilon\} \Rightarrow
+\{C, uv\} \vdash_M \{D, \varepsilon\} \text{ (по транзитивности)}
+$$
+
+Если $C \vdash_{G} w$, то $\{C, w\} \vdash_{M} \{q_f, \varepsilon\}$
+
+Так как из $q_f$ нет переходов, то $\exists E : C \vdash_{G} uE$ (за $k - 1$),
+$uE \vdash_{G} uv$ (за 1) \ ($E \rightarrow v \in P$)
+
+Тогда $\{C, uv\} \vdash_{M} \{E, \} \vdash \{q_f, \varepsilon\}$
+
+Чтобы доказать $(*)$, достаточно вместо $C$ подставить $S$
+
+$\{S, w\} \vdash \{q_f, \varepsilon\} \Rightarrow w \in \mathcal{L}(M)$
+
+\underline{$\mathcal{L}(M) \subset \mathcal{L}(G)$}:
+$w \in \mathcal{L}(M) \Rightarrow \{S, w\} \vdash_{M} \{q_f, \varepsilon\}$
+
+Покажем, что если $\{C, w\} \vdash_{M} \{D, \varepsilon\}$, 
+то $C \vdash_{G} wD$
+
+Индукция по длине пути в автомате:
+
+База: $k = 0$
+$$
+\{C, w\} \vdash_{M} 
+\{D, \varepsilon\},  \;\; C = D, \, w = \varepsilon \;\Rightarrow\;
+C \vdash_{G} C
+$$
+
+Переход:
+$$
+\exists E, u : \langle C, w\rangle \vdash_{M} \langle E, u\rangle \vdash_{M} \{D, \varepsilon\}
+$$
+$$
+w = uv \Rightarrow \text{ по предположению индукции: }
+C \vdash_{G} uE, \; E \vdash vD \Rightarrow
+C \vdash_{G} uvD = wD
+$$
+
+Так как из $q_f$ нет переходов, то $\{S, w\} \vdash \{q_f, \varepsilon\} \Rightarrow$
+
+$\exists E, u, v: \{S, uv\} \vdash_{M} 
+\{E, v\} \vdash_{M} 
+\{q_f, \varepsilon\} \Rightarrow
+\{S, u\} \vdash \{E, \varepsilon\} \Rightarrow
+S \vdash_{G} uE
+$
+$$
+\{E, v\} \vdash_{M} \{q_f, \varepsilon\} \Rightarrow
+E \vdash_{G} v
+$$
+$$
+S \vdash_{G} uE, \; E \vdash_{G} v \Rightarrow S \vdash_{G} uv
+$$
+
+\textbf{Автомат $\rightarrow$ Грамматика:}
+Идея: возьмём автомат с 1 завершающим состоянием $q_{stock}$ (и из этого $q_{stock}$ нет переходов)
+
+$M = \{Q, \Sigma, \Delta, q_0, \{q_{stock}\}\}$
+
+$G = \{Q \setminus \{q_{stock}\}, \Sigma, P, q_0\}$
+
+$$
+P = \{q_1 \vdash wq_2\ |\ q_2 \neq q_{stock} \text{ и } 
+\{q_1, w\} \rightarrow q_2 \in \Delta \} \cup
+\{q_1 \rightarrow w\ |\ \{q_1, w\} \rightarrow q_{stock} \in \Delta \}
+$$
+
+Доказательство аналогично \textit{Грамматика $\rightarrow$ Автомат}

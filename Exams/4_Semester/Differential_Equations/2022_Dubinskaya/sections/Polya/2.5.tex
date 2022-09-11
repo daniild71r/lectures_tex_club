@@ -1,0 +1,15 @@
+\Th Если при $(x,y)\in G$ и $|\vec{\mu} - \vec{\mu}_0| \leqslant \delta$ функции \[f(x,y,\vec{\mu}) \qquad \frac{\partial f}{\partial y} \qquad \frac{\partial f}{\partial \mu_i}\]
+непрерывны, а также $(x_0,y_0)\in G$, то $\exists h > 0 \;\mapsto$, что при  $|x-x_0|\leqslant h$, $|\vec{\mu}-\vec{\mu}_0|\leqslant \delta$ для решения $y = \varphi(x,\vec{\mu})$ задачи Коши (\ref{eq_0}) верно следующее:
+\begin{enumerate}
+    \item $z_i(x,\vec{\mu}) = \mathlarger{\frac{\partial \varphi}{\partial\mu_i}}$ непрерывны для указанных $x$ и $\vec{\mu}$
+    \item  Смешанные производные $\mathlarger{\frac{\partial^2\varphi}{\partial x \partial \mu_i}}$ непрерывны и не зависят от порядка дифференцирования
+    \item  Частные производные $z_i$ удовлетворяют уравнениям в вариациях по параметру $\vec{\mu}$:
+    \begin{equation}\label{eq_1}
+    \frac{\partial z_i}{\partial x}= \frac{\partial f(x, \varphi(x, \vec{\mu}), \vec{\mu})}{\partial y}\cdot z_i + \frac{\partial f(x, \varphi(x, \vec{\mu}), \vec{\mu})}{\partial\mu_i}
+    \end{equation}
+    и  начальным условиям $z_i(x_0,\vec{\mu}) = 0$.
+\end{enumerate}
+
+\Def Если обе части уравнения (\ref{eq_1}) продифференцировать по $\mu_i$, то получим уравнение, которое называется \textit{уравнением в вариациях}.
+
+\Note Уравнение в вариациях всегда линейное.

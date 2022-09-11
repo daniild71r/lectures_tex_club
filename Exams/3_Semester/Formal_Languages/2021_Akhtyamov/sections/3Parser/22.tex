@@ -1,0 +1,19 @@
+\subsection{22. Алгоритм Эрли синтаксического разбора для КС-грамматик: доказательство корректности.}
+
+Нужно доказать, что алгоритм правильно строит множества $D_0, \dots, D_{|w|}$. Это равносильно тому, что он  поддерживает инвариант вида $(A \rightarrow \alpha \cdot \beta, i) \in D_j \Leftrightarrow \exists \delta \in (\Sigma \cup N)^* ((S \vdash w_{0i} A\delta) \wedge \alpha \vdash w_{ij})$.
+
+\Proof 
+$\Rightarrow$. Индукция по построению множеств $D_j$. $(A \rightarrow \alpha \cdot \beta, i)$ попадает в $D_j$ в результате некоторой операции: база - $(S \rightarrow S', 0)$ удовлетворяет инварианту; 
+
+Если операция \textbf{Scan}, то $\alpha = \alpha' a$, $a = w[j - 1]$ и $(A \rightarrow \alpha' \cdot a \beta, i) \in D_{j-1}$. По индукции $S \vdash w_{0i}A\delta$, а значит $\alpha' \vdash w_{i(j - 1)}$. Тогда из равенства $a = w[j - 1]$ следует $\alpha = \alpha' a \vdash  w_{i(j - 1)}w[j - 1] = w_{ij}$. Чтд.
+
+Если операция \textbf{Predict}, то $\alpha = \varepsilon$, $i = j$ - отсюда второй пункт утверждения. Также $\exists i' \leqslant i$ и ситуация $(A' \rightarrow \alpha'A \delta', i') \in D_i$, откуда по индукции $S \vdash w_{0i'}A'\delta'', \alpha' \vdash w_{i'i}. $ Получаем $S \vdash  w_{0i'}A'\delta'' \vdash w_{0i'}\alpha' A \delta' \delta'' \vdash w_{0i'}w_{i'i}A\delta' \delta'' = w_{0i}A \delta$. Чтд.
+
+Если операция \textbf{Complete}, то $\alpha = \alpha' A'$ и $\exists i', \delta$ : $(A \rightarrow \alpha' \cdot A' \beta, i) \in D_{i'}$, $(A' \rightarrow \gamma \cdot, i') \in D_j$. Отсюда $\alpha = \alpha' A' \vdash w_{ii'}w_{i'j} = w_{ij}$; $S \vdash w_{0i}A\delta$ по предположению индукции. Чтд.
+
+$\Leftarrow$. Доказательство индукцией по суммарной длине $w_{0i}A\delta$ из S и $w_{ij}$ из $\alpha$. 
+
+Разбираем случаи в зависимости от $\alpha$. Если $\alpha = \alpha' a$, то $a = w[j-1]$, $\alpha' \vdash w_{i(j-1)}$. По предположению индукции $(A \rightarrow \alpha ' \cdot \beta, i) \in D_{j - 1}$. Тогда по правилу \textit{Scan} получаем  $(A \rightarrow \alpha ' \cdot \beta, i) \in D_{j}$
+
+\includegraphics[]{images/formal18_2.JPG}
+\EndProof
