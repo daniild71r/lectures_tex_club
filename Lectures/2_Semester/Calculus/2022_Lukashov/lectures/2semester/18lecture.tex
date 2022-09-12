@@ -15,7 +15,7 @@
 \begin{definition}
 	\textit{Внешней мерой Лебега} множества $A$ называется величина
 	\[
-		\upjm(A) = \inf_{A \subset \bigcup_{i = 1}^\infty M_i} \ \left\{\suml_{i = 1}^\infty |M_i|\right\}
+		\mu^*(A) = \inf_{A \subset \bigcup_{i = 1}^\infty M_i} \ \left\{\suml_{i = 1}^\infty |M_i|\right\}
 	\]
 	где $\inf$ берётся по всем покрытиям $A$ счётным числом элементарных множеств.
 \end{definition}
@@ -29,9 +29,9 @@
 	\[
 		\upjm(A) = 1,\ \mu^*(A) = 0
 	\]
-	С внешней мерой Жордана понятно, а вот для меры Лебега непонятно. В силу счётности рациональных чисел, $A$ можно представить как $A = \{x_i\}_{i = 1}^\infty$. Тогда, положим $M_i$ следующим образом:
+	С внешней мерой Жордана понятно, а вот для меры Лебега не очень. В силу счётности рациональных чисел, $A$ можно представить как $A = \{x_i\}_{i = 1}^\infty$. Тогда, положим $M_i$ следующим образом:
 	\[
-		M_i = \left(x_i - \frac{\eps}{2}; x_i + \frac{\eps}{2}\right) \cap \left[-\frac{1}{2}; \frac{1}{2}\right]
+		M_i = \left(x_i - \frac{\eps}{2^i}; x_i + \frac{\eps}{2^i}\right) \cap \left[-\frac{1}{2}; \frac{1}{2}\right]
 	\]
 	Объединение $M_i$ очевидным образом покроет $A$. При этом
 	\[
@@ -70,11 +70,11 @@
 \begin{proof}~
 	\begin{enumerate}
 		\item \begin{enumerate}
-			\item \(A \subset A \Longrightarrow \upjm(A) \le |A|,\ \mu^*(A) \le |A|\)
+			\item \(A \subset A \Lora \upjlm(A) \le |A|\)
 			
-			\item \(A \subset \bigcup_{i = 1}^r M_i \Longrightarrow |A| \le \sum_{i = 1}^r |M_i| \Ra |A| \le \upjm(A)\)
+			\item \(A \subset \bigcup_{i = 1}^r M_i \Lora |A| \le \sum_{i = 1}^r |M_i| \Lora |A| \le \upjm(A)\)
 			
-			\item \(A \subset \bigcup_{i = 1}^\infty M_i \Longrightarrow |A| \le \sum_{i = 1}^\infty |M_i| \Ra |A| \le \mu^*(A)\)
+			\item \(A \subset \bigcup_{i = 1}^\infty M_i \Lora |A| \le \sum_{i = 1}^\infty |M_i| \Lora |A| \le \mu^*(A)\)
 		\end{enumerate}
 	
 		\item Распишем внешнюю меру Жордана для $A_i$:
@@ -83,7 +83,7 @@
 		\]
 		Это означает, что
 		\[
-			\forall \eps > 0\ \exists \{M_{i, j}\}_{j = 1}^{r_i} \quad \suml_{j = 1}^{r_i} |M_{i, j}| < \upjm(A_i) + \frac{\eps}{2}
+			\forall \eps > 0\ \exists \{M_{i, j}\}_{j = 1}^{r_i} \quad \suml_{j = 1}^{r_i} |M_{i, j}| < \upjm(A_i) + \frac{\eps}{2^i}
 		\]
 		Так как $A_i$ вложены в объединения $M_{i, j}$, то верен следующий факт:
 		\[
@@ -103,6 +103,10 @@
 		\]
 	\end{enumerate}
 \end{proof}
+
+\begin{note}
+	Контрпримером четвёртого свойства для меры Жордана служит уже вышеупомянутый пример с $A = \Q \cap [-1/2; 1/2]$. Действительно, мера любой рациональной точки будет ноль, но вместе они дают единицу.
+\end{note}
 
 \begin{definition}
 	Для $A \subset K_I$ \textit{внутренней мерой Жордана (Лебега)} называется величина
@@ -130,7 +134,7 @@
 \subsection{Измеримые множества. Основные свойства мер Жордана и Лебега}
 
 \begin{note}
-	Сначала будем рассматривать лишь подмножества $K_I$
+	Будьте внимательны к формулировкам в этом параграфе. Мы живём в кубе лишь в начале.
 \end{note}
 
 \begin{definition}
@@ -163,6 +167,8 @@
 	где $M_\eps$ - элементарное множество.
 \end{theorem}
 
+\textcolor{red}{Сюда бы надо картинку с 19й лекции 2022 4:55}
+
 \begin{proof}~
 	\begin{itemize}
 		\item Достаточность $(\La)$. Снова воспользуемся фактом, что $K_I \subset A \cup A'$, где $A' = K_I \bs A$. Тогда
@@ -175,9 +181,9 @@
 			
 			\item \(A' \subset \underbrace{(A' \bs M'_\eps)}_{M_\eps \bs A} \cup M'_\eps \Longrightarrow \upjlm(A') \le \upjlm(M_\eps \tr A) + \underbrace{\upjlm(M'_\eps)}_{|M'_\eps|}\)
 		\end{itemize}
-		Уже отсюда получаем неравенство:
+		Отметим, что в неравенстве на меры стоят симметрические разности потому, что это только увеличивает сумму. Уже отсюда получаем неравенство:
 		\[
-			1 \le \upjlm(A) + \upjlm(A') \le 2\upjlm(A \tr M_\eps) + |M_\eps| + |M'_\eps| = 1 + 2\eps \xrightarrow[\eps \to 0]{} 1
+			1 \le \upjlm(A) + \upjlm(A') \le 2\upjlm(A \tr M_\eps) + |M_\eps| + |M'_\eps| = 2\eps + 1 \xrightarrow[\eps \to 0]{} 1
 		\]
 		
 		\item Необходимость $(\Ra)$. Условие означает, что $\upjlm(A) = \downjlm(A)$. Это также значит следующее:
@@ -188,7 +194,7 @@
 		\end{itemize}
 		Зафиксируем $\eps > 0$. Сходимость последовательности частичных сумм позволяет нам ограничить остаток (это нужно для Лебега):
 		\[
-			\exists r \such \suml_{i = r + 1}^\infty |P_i| < \eps; \quad \exists s \such \suml_{j = 1}^\infty |Q_j| < \eps
+			\exists r \such \suml_{i = r + 1}^\infty |P_i| < \eps; \quad \exists s \such \suml_{j = s + 1}^\infty |Q_j| < \eps
 		\]
 		Положим $P_\eps := \bigcup_{i = 1}^r P_i$ (для Жордана просто по всем $i$, ибо там и без того конечное объединение). Мы хотим теперь показать, что $P_\eps$ подходит под условие. Для этого, рассмотрим $A \tr P_\eps$:
 		\[
@@ -222,21 +228,17 @@
 \end{proof}
 
 \begin{theorem}
-	Семейство измеримых по Лебегу (Жордану) подмножеств $K_i$ образует алгебру множеств.
+	Семейство измеримых по Лебегу (Жордану) подмножеств $K_i$ образует алгебру множеств (иначе говоря, есть замкнутость относительно стандартных операций над множествами).
 \end{theorem}
-
-\begin{note}
-	Для упрощения нотаций, будем обозначать любую из верхних/нижних мер как просто $\mu^*$/$\mu_*$. Аналогично и в случае просто меры.
-\end{note}
 
 \begin{proof}
 	Пусть $A, B$ - измеримые множества
 	\begin{itemize}
 		\item Объединение $A \cup B$. По критерию измеримости
 		\[
-			\forall \eps > 0\ \exists M_\eps, N_\eps \such \mu^*(A \tr M_\eps) < \eps, \mu^*(B \tr N_\eps) < \eps
+			\forall \eps > 0\ \exists M_\eps, N_\eps \such \upjlm(A \tr M_\eps) < \eps, \upjlm(B \tr N_\eps) < \eps
 		\]
-		Тогда покажем, что множество $(A \cup B) \tr (M_\eps \cup N_\eps)$ имеет хорошую меру:
+		Тогда покажем, что мера множества $(A \cup B) \tr (M_\eps \cup N_\eps)$ подходит под критерий измеримости:
 		\begin{multline*}
 			(A \cup B) \tr (M_\eps \cup N_\eps) = \big((A \cup B) \bs (M_\eps \cup N_\eps)\big) \cup \big((M_\eps \cup N_\eps) \bs (A \cup B)\big) \subset
 			\\
@@ -244,10 +246,10 @@
 		\end{multline*}
 		Следовательно
 		\[
-			\mu^*((A \cup B) \tr (M_\eps \cup N_\eps)) \le \mu^*(A \tr M_\eps) + \mu^*(B \tr N_\eps) < 2\eps
+			\upjlm((A \cup B) \tr (M_\eps \cup N_\eps)) \le \upjlm(A \tr M_\eps) + \upjlm(B \tr N_\eps) < 2\eps
 		\]
 		
-		\item Все остальные свойства доказываются из соображения, что $A$ - измеримо $\lra$ $A'$ - измеримо:
+		\item Все остальные свойства доказываются из соображения, что $A$ - измеримо $\lra$ $A' = K_I \bs A$ тоже измеримо:
 		\begin{itemize}
 			\item \((A \cap B)' = A' \cup B'\)
 			
@@ -257,5 +259,3 @@
 		\end{itemize}
 	\end{itemize}
 \end{proof}
-
-\textcolor{red}{На этом мои полномочия всё. Я устал, я - мухожук... (Продолжение будет после конца сессии.)}

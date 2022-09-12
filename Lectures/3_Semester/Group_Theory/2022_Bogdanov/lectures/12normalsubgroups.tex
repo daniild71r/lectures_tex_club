@@ -1,0 +1,167 @@
+\subsection{Нормальные подгруппы}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $g, x \in G$. Элементом, \textit{сопряженным к $g$ с помощью $x$}, называется $g^x := x^{-1}gx \in G$. Элементы $g_1, g_2 \in G$ называются \textit{сопряженными}, если $\exists x \in G: g_1 = g_2^x$.
+\end{definition}
+
+\begin{note}
+	Пусть $G$ "--- группа, $H \le G$, $g \in G$. Будем обозначать $g^{-1}Hg$ как $H^g$.
+\end{note}
+
+\begin{proposition} Пусть $G$ "--- группа. Тогда:
+	\begin{enumerate}
+		\item $\forall g, x, y \in G: g^{xy} = (g^x)^y$
+		
+		\item $\forall g_1, g_2, x \in G: (g_1g_2)^x = g_1^xg_2^x$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} Произведем непосредственную проверку:
+	\begin{enumerate}
+		\item $(g^x)^y = y^{-1}(x^{-1}gx)y = (xy)^{-1}g(xy) = g^{xy}$
+		
+		\item $g_1^xg_2^x = (x^{-1}g_1x)(x^{-1}g_2x) = x^{-1}(g_1g_2)x = (g_1g_2)^x$
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	Сопряженность является отношением эквивалентности в группе $G$.
+\end{proposition}
+
+\begin{proof} Произведем непосредственную проверку:
+	\begin{itemize}
+		\item (Рефлексивность) $\forall g \in G: g = g^e$
+		
+		\item (Симметричность) Если $g_2 = g_1^x$, то $g_2^{x^{-1}} = (g_1^x)^{x^{-1}} = g_1^e = g_1$
+		
+		\item (Транзитивность) Если $g_2 = g_1^x$, $g_3 = g_2^y$, то $g_3 = (g_1^x)^y = g_1^{xy}$
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $g \in G$. \textit{Классом сопряженности} элемента $g$ называется множество $g^G$, то есть класс эквивалентности по отношению сопряженности, содержащий $g$.
+\end{definition}
+
+\begin{exercise}
+	Пусть $G$ "--- группа, $H \le G$. Тогда $H \normal G \hm\Leftrightarrow H$ "--- объединение некоторого количества классов сопряженности в $G$.
+\end{exercise}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $H \le G$. Подгруппа $H$ называется \textit{нормальной в $G$}, если $\forall g \in G\ gH = Hg$. Обозначение "--- $H \normal G$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров нормальных подгрупп в соответствующих группах:
+	\begin{enumerate}
+		\item $\forall H \le G: H \normal G$, где $G$ "--- абелева группа
+		\item $G \normal G$, $\{e\} \normal G$, где $G$ "--- произвольная группа
+		\item $A_n \normal S_n$, поскольку $\forall \sigma \in S_n, \forall \tau \in A_n\ \ \sgn(\sigma\tau\sigma^{-1}) = \sgn\tau = 1$, то есть $\forall \sigma \in S_n: \sigma A_n\sigma^{-1} \subset A_n$
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	Продемонстрируем ненормальную подгруппу. Рассмотрим $S_3$ и подгруппу $H = \gl(1\ 2)\gr = \{(1\ 2), e\}$. Проверим сопряжение $H$:
+	\[
+	(1\ 2)^{(1 \ 3)} = (1\ 3)(1\ 2)(1\ 3) = (2\ 3) \notin H
+	\]
+\end{example}
+
+\begin{proposition}
+	Определение выше имеет ряд эквивалентных формулировок:
+	\begin{enumerate}
+		\item $G / H = H \bs G$
+		
+		\item $\forall g \in G: H^g = H$
+		
+		\item $\forall g \in G: gH \subset Hg$
+		
+		\item $\forall g \in G: H^g \subset H$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	 \begin{itemize}
+	 	\item (опр. $\lra 1$) В сторону 1 очевидно, а в обратную предположим противное: $gH \neq Hg$. Но по условию это должно быть эквивалентно $gH \cap Hg = \emptyset$. Тем не менее, $gH \cap Hg \supset \{g\}$, а потому определение выполнено
+	 	
+	 	\item (опр. $\lra 2$) Очевидно
+	 	
+	 	\item (опр. $\lra 3$) Если выполнено условие 3, то тогда
+	 	\[
+	 		\forall g \in G\ g^{-1}H \subset Hg^{-1} \Longleftrightarrow \forall g \in G\ Hg \subset gH
+	 	\]
+	 	
+	 	\item ($3 \lra 4$) Очевидно
+	 \end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $H_1 \normal G$, $H_2 \normal G$. Тогда $H_1 \cap H_2 \hm\normal G$.
+\end{proposition}
+
+\begin{proof}
+	$\forall g \in G\ \ g(H_1 \cap H_2)g^{-1} \subset (gH_1g^{-1}) \cap (gH_2g^{-1}) \hm= H_1 \cap H_2$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $H \normal G$, $K \le G$. Тогда:
+	\begin{enumerate}
+		\item $HK \le G$
+		\item Если $K \normal G$, то $HK \normal G$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Заметим, что $HK = \bigcup_{k \in K}Hk = \bigcup_{k \in K}kH = KH$. Воспользуемся этим свойством:
+	\begin{enumerate}
+		\item $(HK)(HK) = H(KH)K = H(HK)K = (HH)(KK) = HK$, поэтому $HK$ замкнуто относительно умножения, и, аналогично, $(HK)^{-1} = K^{-1}H^{-1} = KH = HK$
+		\item $\forall g \in G: g(HK)g^{-1} = (gHg^{-1})(gKg^{-1}) = HK$
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Требование, что хотя бы одна подгруппа нормальна, существенно. Рассмотрим подгруппы $S_3 \ge \gl(1\ 2)\gr, \gl(1\ 3)\gr$. Тогда $\gl(1\ 2)\gr\gl(1\ 3)\gr \not\le S_3$, ибо
+	\[
+		|\gl(1\ 2)\gr\gl(1\ 3)\gr| = 2 \cdot 2 = 4 \centernot\mid |S_3| = 6
+	\]
+\end{example}
+
+\begin{proposition}
+	Пусть $H, K \le G$, $H \cap K = \{e\}$. Тогда
+	\[
+		|HK| = |H| \cdot |K|
+	\]
+\end{proposition}
+
+\begin{proof}
+	Заметим факт: если $h_1, h_2 \in H$, $k_1, k_2 \in K$ и при этом $h_1k_1 = h_2k_2$, то $h_1 = h_2$ и $k_1 = k_2$. Действительно
+	\[
+		h_1k_1 = h_2k_2 \ra h^{-1}_2h_1 = k_2k^{-1}_1 \in H \cap K = \{e\} \ra h^{-1}_2 h_1 = k_2 k^{-1}_1 = e
+	\]
+\end{proof}
+
+\begin{exercise}
+	Если $H, K \le G$, $|G| < \infty$, $H \cap K = L$, то имеет место равенство:
+	\[
+		|HK| = \frac{|H| \cdot |K|}{|L|}
+	\]
+\end{exercise}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $H \le G$, $|G : H| = 2$. Тогда $H \normal G$.
+\end{proposition}
+
+\begin{proof}
+	По условию, $G / H = \{H, G \bs H\} = H \bs G$.
+\end{proof}
+
+\begin{note}
+	Покажем, что $|S_n : A_n| = 2$ при $n \ge 2$. Действительно, сопоставление $\sigma \hm\mapsto (1, 2)\sigma$ осуществляет биекцию между $A_n$ и $S_n \bs A_n$, поэтому $S_n / A_n = \{A_n, (1, 2)A_n\}$.
+\end{note}
+
+\begin{exercise}
+	Пусть $G$ "--- группа, $g_1, g_2 \in G$. Докажите, что тогда $g_1^Gg_2^G$ "--- объединение нескольких классов сопряженности, причем необязательно одного.
+\end{exercise}
+
+\begin{example}
+	Пусть $\sigma \in S_n$. Представим $\sigma$ в виде произведения независимых циклов, $\sigma \hm= (a_1\dotsc a_k)(b_1\dotsc b_l)\dotsc$, и рассмотрим $\sigma^\tau$ для произвольного $\tau \in S_n$. Если $a_i' := \tau^{-1}(a_i), i \hm\in \{1, \dots, k\}$, то $\sigma^\tau(a_i') \hm= (\tau^{-1}\sigma\tau)(a_i') = a_{i + 1}'$. Значит, $\sigma^\tau = (a_1'\dotsc a_k')(b_1'\dotsc b_l')\dotsc$, и, следовательно, $\sigma^{S_n}$ состоит из перестановок того же циклического типа, что и $\sigma$, причем из всех, потому что по каждой такой перестановке легко восстанавливается соответствующая $\tau \in S_n$.
+\end{example}
