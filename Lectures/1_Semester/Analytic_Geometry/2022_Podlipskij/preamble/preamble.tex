@@ -80,14 +80,14 @@
 
 %%% Теоремы
 \theoremstyle{plain}
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{lemma}{Лемма}[section]
-\newtheorem{proposition}{Утверждение}[section]
+\newtheorem{theorem}[equation]{Теорема}
+\newtheorem{lemma}[equation]{Лемма}
+\newtheorem{proposition}[equation]{Утверждение}
 \newtheorem*{exercise}{Упражнение}
 \newtheorem*{problem}{Задача}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Определение}[section]
+\newtheorem{definition}[equation]{Определение}
 \newtheorem*{corollary}{Следствие}
 \newtheorem*{note}{Замечание}
 \newtheorem*{reminder}{Напоминание}
@@ -95,6 +95,7 @@
 
 \theoremstyle{remark}
 \newtheorem*{solution}{Решение}
+
 
 %%% Оформление страницы
 \usepackage{extsizes}     % Возможность сделать 14-й шрифт
@@ -150,7 +151,7 @@
 \def\@eqref#1{\textup{\tagform@{\ref*{#1}}}}
 \def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
 \makeatother                      % \eqref* без гиперссылки
-\numberwithin{equation}{section}  % Нумерация вида (номер_секции).(номер_уравнения)
+\numberwithin{equation}{subsection}  % Нумерация вида (номер_секции).(номер_уравнения)
 \mathtoolsset{showonlyrefs=false} % Номера только у формул с \eqref{} в тексте.
 
 %%% Гиперссылки
@@ -190,6 +191,7 @@
 		\frac{\dlta {#2}}{\dlta {#3}}
 	}%
 }
+\newcommand{\vv}[1]{\bm{#1}}
 \newcommand{\vc}[3]{
 	\ensuremath{\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}
 }
@@ -204,3 +206,17 @@
 
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+\newcommand{\iffproofR}[2]{\phantom{}
+	\begin{itemize}
+		\item[$\Rightarrow$] #1
+		\item[$\Leftarrow$] #2
+	\end{itemize}
+}
+
+\newcommand{\iffproofL}[2]{\phantom{}
+	\begin{itemize}
+		\item[$\Leftarrow$] #1
+		\item[$\Rightarrow$] #2
+	\end{itemize}
+}
