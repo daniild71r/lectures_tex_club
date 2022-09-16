@@ -147,8 +147,17 @@
         \left(1 + \frac{\alpha_n}{n} \right)^n\left(1 - \frac{\alpha_n}{n} \right)^n = \left(1 - \dfrac{\alpha_n^2}{n^2} \right)^n \leq\, 1
     \end{equation}
     По неравенству Бернулли \begin{equation}
-        1 + \alpha_n  \leq \left(1 + \dfrac{\alpha_n}{n} \right)^n \leq \dfrac{1}{\left(1 - \dfrac{\alpha_n}{n}\right)^n} \implies 
+        1 + \alpha_n  \leq \left(1 + \dfrac{\alpha_n}{n} \right)^n \leq \dfrac{1}{\left(1 - \dfrac{\alpha_n}{n}\right)^n} \underset{\left(\frac{\alpha_n}{n} > - 1\right)}{ \leq }\dfrac{1}{1 - \alpha_n}
     \end{equation}
+    Так как $ |\alpha_n| < 1 $:
+    \begin{equation}
+    \begin{cases}
+        \lim_{n \to \infty}1 - \alpha_n = 1 \\
+        \lim_{n \to \infty}1 + \alpha_n = 1 \\
+    \end{cases} \implies 1 + \alpha_n \leq \left(1 + \dfrac{\alpha_n}{n}\right)^n \implies \dfrac{1}{1 - \alpha_n} \implies\,\lim_{n \to \infty}\left(1 + \dfrac{\alpha_n}{n}\right)^n = 1 
+   \end{equation}
+   
+   
     
     
 \end{proof}
