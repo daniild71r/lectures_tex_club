@@ -1,0 +1,288 @@
+\section{Теория множеств}
+
+\begin{comment}
+\subsection{О приближениях}
+
+    Математический анализ "--- это наука о приближениях.
+
+    \begin{definition}
+        Определение производной по Коши:
+        Пусть $f = f(x)$ -- функция, число $A$ называется производной функции $f$ в
+        точке $x$, если при неограниченным уменьшении $|h|$ \[
+        P(\varepsilon, \delta) :=   0 < |h| < \delta \longrightarrow \left(\frac{f(x + h) - f(x)}{h} - A\right) < \varepsilon,
+        \text{ где } P(x) = \text{истина или ложь} \]
+        \[\forall \varepsilon > 0 \
+        \exists \delta > 0 \ P(\varepsilon, \delta)
+        \]
+    \end{definition}
+    \begin{example}
+        $f(x) = x^2$:
+        \begin{equation*}
+            \frac{f(x + h) - f(x)}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h} = 2x + h 
+        \end{equation*}
+        Проверим, что $A  = 2x$ является производной $f$ в точке $x$:
+        \begin{equation*}
+            \forall \varepsilon \ \exists \delta > 0 \ (0 < |h| < \delta) \rightarrow \left|\frac{(f(x + h )
+            - f(x))}{h} - 2x\right| < \varepsilon
+        \end{equation*}
+        Дано $\varepsilon > 0$. Какое $\delta$ взять, чтобы $P(\varepsilon, \delta) = 1$?
+        Если взять $\delta = \dfrac{\varepsilon}{2}$, то $0 < |h| < \delta \longleftrightarrow  |h|\hm{<} \dfrac{\varepsilon}{2}
+        \longrightarrow P(\varepsilon, \delta) = 1$
+    \end{example}
+    \begin{exercise}
+        Проверить, что утверждения имеют одинаковые значения: (кто не с нами, тот 
+        против нас) $\longleftrightarrow$ (кто не против нас, тот с нами)
+    \end{exercise}
+    В этом семестре:
+    \begin{enumerate}
+        \item приближение функций многочленами
+        \item евклидова топология вещественной прямой
+        \item приложения к исследованию функций
+    \end{enumerate}
+\end{comment}
+
+\subsection{Кванторы}
+
+\df{$\forall x \; P(x)$}{для любого $x$ выполнено $P(x)$.}
+\df{$\exists x \; P(x)$}{существует $x$, для которого выполнено $P(x)$.}
+\df{$\exists! x \; P(x)$}{существует и единственно $x$, для которого  $P(x)$.
+\[ \exists! x \; P(x) \defev \exists x \; P(x) \wedge (\forall y \; P(y) \Rightarrow y = x) \]
+\[ \overline{\forall x \; P(x)} \Leftrightarrow \exists x \; \overline{P(x)} \]
+\[ \overline{\exists x \; P(x)} \Leftrightarrow \forall x \; \overline{P(x)} \]
+}
+
+\begin{gather}
+    \forall x \in A \;   P(x) \defev \forall x \left( x \in A \Rightarrow P(x) \right) \\
+    \forall x (\forall y \ P(x, y)) \defev \forall x, y \ P(x, y)
+\end{gather}
+
+\begin{note}
+    \[ \forall x \in \mathbb{R} \; \exists n \in \mathbb{N} \; n > x \text{ -- истина} \]
+    \[ \exists n \in \mathbb{N} \; \forall x \in \mathbb{R} \; n > x \text{ -- ложь} \]
+\end{note}
+
+
+
+\subsection{Базовые определения}
+\df{Декартовым произведением множеств $X$ и $Y$}{
+    множество, состоящее из всех возможных пар $(x, y)$, где $x \in X,\ y \in Y$.
+    \[ X \times Y \defeq \{(x, y) \; \vert \; x \in X, y \in Y\} \]
+}
+\begin{gather}
+    X^2 := X \times X \\
+    Y \subseteq X \defev \forall y \; (y \in Y \Rightarrow x \in X) \\
+    2^{X} \defeq \{ Y \sconstr Y \subseteq X \}
+\end{gather}
+
+\begin{proposition}
+    Если $ X $ состоит из $ n $ элементов, то $ 2^X $ состоит из $ 2^n $ 
+    элементов.
+\end{proposition}
+
+\df{Отношение на множестве $X$}{
+    любое подмножество $ R\subset X^2 $, \guillemotleft $x$ и $y$ находятся в отношении $R$\guillemotright $\;\defev (x, y) \in R \defev x \; R \; y$.
+}
+
+\begin{definition}
+    Пусть $ X, Y $ -- множества, $ \Gamma\subseteq X  \times  Y$, причём $ \forall x \in X\ \exists! y \in Y: (x, y) \in \Gamma $, тогда тройка $ f \defeq \left(X, Y, \Gamma\right) $ называется
+    функцией, а $ \Gamma $ --- её графиком.
+    %
+    \begin{gather*}
+        (y = f(x)) \defev (x \in X \lor y \in Y \lor (x, y) \in \Gamma) \\
+        \fnis{f} X \mapsto Y; \quad \fnis{f} X\mapsto f(x); \quad \fnis{f} X \ni x \mapsto f(x) \in Y
+    \end{gather*}
+\end{definition}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          width=0.5\textwidth,
+          height=0.4\textwidth,
+          xmin=-0.4,
+          xmax=4,
+          ymin=-0.4,
+          ymax=4,
+          axis lines = middle,
+          yticklabels={,,},
+          x tick label style={major tick length=0pt},
+          y tick label style={major tick length=0pt},
+          xticklabels={,,}
+        ]
+            \addplot[mark=none, black, samples=150, domain=1.5:3.75] {(x-3)^3-x+6} node[pos=1] (endofplotsquare) {};
+            \node [below] at (endofplotsquare) {$\Gamma$};
+
+            \draw (2, 3) node[circle,fill=black,inner sep=1] {};
+            \draw[dashed] (2, 3) -- (0, 3)
+                          (2, 3) -- (2, 0);
+            \draw (0, 3) node[left] {$y$};
+            \draw (2, 0) node[below] {$x$};
+            \draw (0, 4) node[below left] {$Y$};
+            \draw (4, 0) node[below left] {$X$};
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Для $\fnis{f} X \times Y \mapsto Z$
+\begin{equation}
+    \forall x \in X, y \in Y f(x, y) \defeq f((x, y))
+\end{equation}
+
+
+
+\subsection{Аксиомы вещественных чисел}
+\df{Вещественные числа}{
+    четвёрка из множества $\RR$, операций $\fnis{+} \RR^2 \mapsto \RR$, $\fnis{\cdot} \RR^2 \mapsto \RR$ и отношения на этом множестве $\le \; \subseteq \RR^2$ такая, что
+\begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $a + b \defev +(a, b)$; $a \cdot b \defev \cdot(a, b)$; $x < y \defev (x \le y) \land (x \ne y)$; \ldots
+    \item $\exists 0 \in \RR : \forall x \in \RR \; 0 + x = x + 0 = x$ 
+    \item $\forall x \in \RR \; \exists (-x) \in \RR : x + (-x) = (-x) + x = 0$ 
+    \item $\forall x, y, z \in \RR \; x + (y + z) = (x + y) = z$ % ассоциативность 
+    \item $\forall x, y \in \RR \; x + y = y + x$ % коммутативность 
+    \item $\exists 1 \in \RR \setminus \{0\} : \forall x \in \RR \; 1 \cdot x = x \cdot 1 = 1$
+    \item $\forall x \in \RR \setminus \{0\} \; \exists x^{-1} \in \RR : x \cdot x^{-1} = x^{-1} x = 1$
+    \item $\forall x, y, z \in \RR \; x \cdot (y \cdot z) = (x \cdot y) \cdot z$
+    \item $\forall x, y \in \RR \; x \cdot y = y \cdot x$
+    \item $\forall x, y, z \in \RR \; (x + y) \cdot z = x \cdot z + y \cdot z$ % дистрибутивность
+    \item $\forall x \in \RR \; x \le x$
+    \item $\forall x, y \in \RR \; (x \le y) \land (y \le x) \Rightarrow (x = y)$
+    \item $\forall x, y, z \in \RR \; (x \le y) \land (y \le z) \Rightarrow (x \le z)$
+    \item $\forall x, y \in \RR \; (x \le y) \lor (y \le x)$
+    \item $\forall x, y, z \in \RR \; (x \le y) \Rightarrow (x + z \le y + z)$
+    \item $\forall x, y \in \RR \; (0 \le x) \land (0 \le y) \Rightarrow (0 \le x \cdot y)$
+    \item $\forall X, Y \subseteq \RR : (\forall x \in X \; \forall y \in Y \; x \le y) \; \exists c \in \RR : (\forall x \in X \; \forall y \in Y \; x \le c \le y)$
+\end{enumerate}
+}
+
+\begin{theorem}[Единственность нуля]
+    $\exists!0$.    
+\end{theorem}
+\begin{proof}
+    Пусть $ 0_1 $ и $ 0_2 $ -- нейтральные элементы, тогда
+    \begin{equation*}
+        \begin{rcases}
+            0_1 + 0_2 = 0_2, \text{ так как } 0_1 \text{ -- нейтральное } \\
+            0_1 + 0_2 = 0_1, \text{ так как } 0_2 \text{ -- нейтральное }
+        \end{rcases} \thus 0_1 = 0_2.
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}[Единственность противоположного элемента]
+    $\exists! (-x): x + (-x) = 0$.
+\end{theorem}
+\begin{proof}
+    Пусть $ a $ и $ b $ $ \in \R $ и являются противоположными к
+$ x \in \R $:
+\begin{gather*}
+    a + x =  x + a = 0 \\ b + x =  x + b = 0 \\
+   x + a =  x + b = 0 \\ a + x + a =  a + x + b \\ 0 + a =  0 + b \\
+   a = b
+\end{gather*}
+\end{proof}
+
+\begin{theorem}
+    $
+        \forall a, b \in \R\ \exists! x : a + x = b \text{, причём } x = (-a) + b
+    $
+\end{theorem}
+\begin{proof}
+    Предыдущие две теоремы задают достаточно много ограничений на множество вещественных чисел, что можно решить это уравнение с помощью материала 2-го класса.
+\end{proof}
+
+    \begin{theorem}
+        $ \forall x = \R \ 0 \cdot  x = 0 $ 
+    \end{theorem} \begin{proof}
+        \begin{gather*}
+            0 \cdot x = (0 + 0) \cdot x = 0 \cdot x + 0 \cdot x \\
+            ( -(0 \cdot x)) + 0 \cdot x = ( -(0 \cdot x) + 0 \cdot x) + 0 \cdot x \\
+            0 = 0 + 0 \cdot x \\
+            0 = 0 \cdot x
+        \end{gather*}
+    \end{proof} 
+
+    \begin{theorem}
+        $\forall x \in \RR \; (-x) = (-1) \cdot x$
+    \end{theorem} \begin{proof}
+        \begin{gather*}
+            0 = 0 \\
+        x + (-x) = x \cdot 0 \\
+        x + (-x) = x \cdot (1 + (-1)) \\
+        x + (-x) = x + (-1) \cdot x \\
+        (-x) = (-1) \cdot x
+        \end{gather*}
+    \end{proof}
+    \begin{theorem}
+        $ 0 < 1 $
+    \end{theorem} \begin{proof}
+        Предположим $ 1 \leq 0 $, тогда из аксиомы 14 следует $ 1 + (-1) \leq 0 + (-1) $, то есть $ 0 \leq - 1 $.
+        Тогда $ 0 \leq ( - 1)^2 = 1 $, получили $ 0 \leq  1 $ --- противоречие.
+    \end{proof}
+
+
+
+\subsection{Натуральные числа}
+
+Для произвольного семейства множеств $\mathcal{F}$
+\begin{gather}
+    \cap \mathcal{F} : = \{x \sconstr \forall A \in \mathcal{F}\ x \in A\} \\
+    \cup \mathcal{F} : = \{x \sconstr \exists A \in \mathcal{F}\ x \in A\}
+\end{gather}
+
+\df{Индуктивное подмножество $\R$}{подмножество $\R$ такое, что
+    \begin{enumerate}
+        \item $ 1 \in  X $ 
+        \item $ \forall  x \in X $ выполнено $ x + 1 \in X $
+    \end{enumerate}
+}
+
+ \begin{theorem}
+     \label{definition_inductive}
+    Пусть $ \mathcal{G} $ -- семейство подмножеств $ \R $ и $ \forall A \in \mathcal{G} \ A $ -- индуктивно, тогда
+    $ \cap \mathcal{G} $ тоже индуктивно.
+ \end{theorem}
+ \begin{proof} $ M : = \cap \mathcal{G}$
+    \begin{enumerate}
+        \item $ \forall A \in  \mathcal{G} \ 1 \in A \thus 1 \in M $
+        \item $x \in M \thus \forall A \in \mathcal{G} \; x \in A \thus \forall X \in \mathcal{G} \; (x + 1) \in A \thus (x + 1) \in M$
+    \end{enumerate}
+ \end{proof}
+
+ \begin{equation}
+     \begin{gathered}
+        \label{definition_F}
+        \mathcal{F} \defeq \{A \subset \R \sconstr A \text{ -- индуктивно}\} \\
+        \N \defeq \cup \mathcal{F}
+     \end{gathered}
+ \end{equation}
+
+\begin{theorem}
+    $\N$ -- индуктивное подмножество $\R$; $\nexists A \subsetneq \N : A \text{ -- индуктивно}$ 
+\end{theorem}
+\begin{proof}  
+    \phantom \\
+    \begin{enumerate}
+        \item $\N$ индуктивно по теореме \ref{definition_inductive}
+        \item По определению пересечения множеств, $\forall A \in \mathcal{F}\ \N \subseteq A$. Не существует такого множества, что одновременно выполнено $X \subsetneq Y$ и $Y \subseteq X$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Математическая индукция] \label{math_induction}
+    Если $ M \subset \N, 1 \in M $\! и $ \forall n \in M \; n + 1 $, то $ M = \N $
+\end{theorem} \begin{proof}
+    $ M $ удовлетворяет определению индуктивого подмножества $ \R $, значит $ N \sub M $, но $ M \sub N \thus M = \N$.
+\end{proof}
+\begin{theorem}
+    $ \forall x \in \N \; x \ge 1 $
+\end{theorem}
+\begin{proof}
+    Пусть $\exists x \in N : x < 1$. Выберем произвольный набор $A \in \mathcal{F}$ (из определения \ref{definition_F}) и построим $B \defeq \{b \sconstr b \in A, b > x\}$. $1 \in B$, потому что $1 \in A$ и $x < 1$, $\forall c \in B \; (1 + c) \in A$ и так как $(1 + c) > (1 + x) > x$, $(1 + c) \in B$ $\thus B \in \mathcal{F}$. $x \notin B \thus x \notin \cap \mathcal{F} \thus  x \notin \N$ -- противоречие.
+\end{proof}
+\begin{theorem}
+    $ \forall m, n \in \N \; m + n \in \N,\ m \cdot n \in \N$
+\end{theorem}
+\begin{proof}
+    Построим $M_1 \defeq \{x \sconstr x \in \N,\; (m + x) \in \N\}$. $M_1$ удовлетворяет критериям теоремы \ref{math_induction} $\thus M_1 = \N \thus n \in M_1 \thus m + n \in \N$.
+
+    Построим $M_2 \defeq \{x \sconstr x \in \N,\; m \cdot x \in \N\}$. Если $x \in M_2$, то $m \cdot (x + 1) = m \cdot x + m \in \N$ (по 1 части утвержения, так как $x \in M_2 \Rightarrow m \cdot x \in \N$, $m \in \N$). Поэтому, $M_2$ удовлетворяет критериям теоремы \ref{math_induction} $\thus M_2 = \N \thus n \in M_2 \thus m \cdot n \in \N$.
+\end{proof}

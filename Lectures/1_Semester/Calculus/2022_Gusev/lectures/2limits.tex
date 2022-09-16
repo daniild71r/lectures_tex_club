@@ -1,0 +1,264 @@
+\section{Предел последовательности}
+
+% TODO Переформатировать и исправить орфографию
+
+\subsection{Супремум и инфимум}
+Для $A \subseteq R$
+\begin{gather}
+    x \text{ -- верхняя грань $A$} \defev \forall y \in A \; y \le x \\
+    x \text{ -- нижняя грань $A$} \defev \forall y \in A \; x \le y
+\end{gather}
+
+\df{Ограниченное сверху множество}{множество, у которого существует верхняя грань.}
+\df{Ограниченное снизу множество}{множество, у которого существует нижняя грань.}
+\df{Неограниченное сверху множество}{множество, у которого не существует верхней грани.}
+\df{Неограниченное снизу множество}{множество, у которого не существует нижней грани.}
+\df{Ограниченное множество}{множество, у которого существует верхняя и нижняя грань.}
+\df{Неограниченное множество}{множество, не являющееся ограченным.}
+
+\begin{example}
+   $ \R $ неограничено сверху.
+\end{example}
+\begin{proof}
+    От противного. $ \exists m \in \R:\ \forall x \in \R\ x \leq  m \thus m + 1 \leq\, m \thus 1 \le 0$ -- противоречие.
+\end{proof}
+
+Для ограниченного сверху/снизу непустого множества $A$
+\begin{gather}
+    \sup{A} = x \defev \nexists y < x : y \text{ -- верхняя грань } A \\
+    \inf{A} = x \defev \nexists y > x : y \text{ -- нижняя грань } A
+\end{gather}
+
+Для неограниченного сверху/снизу множества $A$
+\begin{gather}
+    \sup{A} = +\infty \\
+    \inf{A} = -\infty
+\end{gather}
+
+Если $x$ -- верхняя грань $A$, говорят: $x$ -- мажоранта $A$; для нижней грани: $x$ -- миноранта $A$. $\sup{A}$ -- супремум или точная верхняя грань множества $A$. $\inf{A}$ -- инфимум или точная нижняя грань множества $A$.
+
+
+\begin{theorem}[Существование точной верхней грани]\label{theorem_about_supremum}
+    Для $A \subseteq \R \ne \varnothing\ \exists !\sup{A} \in \overline{\R}$.
+\end{theorem}
+\begin{proof}
+    TODO Неограниченное сверху множество
+
+    От противного. Построим $B \defeq \{b \in \R \sconstr b \text{ --  верхняя грань } A\}$. По определению верхней грани, \sloppy $\forall a \in A\ \forall b \in B \ a \le b \thus \text{(аксиома непрерывности) } \exists s \in \RR : {\forall a \in A \; b \in B \; a \le s \le b} \thus s \in B$.
+
+    Предположим $\sup{A} < s \thus \sup{A} \in B$ -- противоречие, так как $s$ не больше всех элементов в $A$.
+
+    Единственность. От противного. Пусть $ s' $ -- другая точная верхняя грань $ A \thus s' \in B \thus s \le s'$. По определению точной верхней грани множества $ A $ выполнено, что $ \forall x \le s' \ x$ не может быть точной верхней гранью -- противоречие. 
+\end{proof}
+
+Аналогично формулируется и доказывается теорема о существовании и единственности точной нижней грани.
+
+\begin{exercise}
+    Для $A$ и $ B $ -- множеств из доказательства теоремы о точной верхней грани
+    \[ \sup A = \inf B \]
+\end{exercise}
+\begin{proof}
+    TODO Это ничего не доказывает
+
+    По построению $A$ лежит слева от $B \thus \forall a \in A\ \forall b \in  B \ a \leq  b \thus
+   \text{(аксиома непрерывности) } \exists  s \in \R: s\forall a \in A, b \in B\; a \leq s \leq b \thus s = \sup A $. Кроме того $ \forall b \in B s \leq  B \thus  s = \inf B \thus \sup A = \inf B $.
+\end{proof}
+
+\begin{note}
+    Если $ A \subseteq \R $ непусто и ограничено сверху, то $ \sup A $ может как принадлежать,
+    так и не принадлежать $A$.
+    \begin{gather*}
+        A = \{x \in \R|\ x \leq\, 1\} \\
+        \sup A = 1 \in A \\
+        A = \{x \in \R | x < 1\} \\
+        \sup A = 1 \notin A
+    \end{gather*}
+\end{note}
+
+
+ \begin{theorem}[Принцип Архимеда]\label{Archemedian_principle}
+   \[ \forall x \in \R\ \exists n \in \N : n > x \]
+ \end{theorem}
+ \begin{proof}
+    От противного. Предположим $\overline{\forall x \in \R \; \exists n \in \N \; n > x} \thus \exists x \in \R \; \forall n \in \N \; n \le x \thus \N$ ограничено сверху. По теореме \ref{theorem_about_supremum} $\exists! s \in \R : s = \sup{\NN} \thus (s - 1) \text{ не верхняя грань $\NN$} \thus \exists m \in \NN : m > s - 1 \thus m + 1 > s \thus (m + 1) \notin \NN$ -- противоречие с индуктивностью $\NN$.
+\end{proof}
+
+\subsection{Определение}
+\begin{definition}
+    Пусть $ x $ -- формула вида $ x: \N \to \R $
+    Тогда $ x $ называется числовой последовательностью и ( $ \forall n \in  \N \: x_n : = x(n) $) называется $ n $ - м членом последовательности.
+\end{definition}
+Пусть $ (x_n) $ -- числовая последовательность $ (x_n)_{n = 1}^\infty $
+\begin{definition}
+    Число $ a \in  \R $ называется пределом последовательности $ (x_n) $, если $ \forall \varepsilon > 0 $ \begin{gather}
+        \exists N \in \N \: \forall n \geq N \: |x_n\, - a| < \varepsilon
+    \end{gather}
+    В этом случае пишут $ a = : \lim_{n \to \infty} x_n $
+    Если $ a = 0 $, то $ (x_n) $ называется бесконечно малой.
+\end{definition}
+\begin{definition} $ \epsilon $-окрестность $ U $:
+    \begin{gather}
+        U_\epsilon(a): =(a - \epsilon; a + \epsilon); \quad U_\epsilon( + \infty): = \left(\frac{1}{\epsilon}; + \infty\right) \quad U_\epsilon( -\infty) = \left( - \infty; - \frac{1}{\epsilon}\right)
+    \end{gather}
+\end{definition}
+\begin{note}
+    \begin{equation}
+        (a, b): = \{x \in \R | \ a < x < b\}
+   \end{equation}
+   
+\end{note}
+\begin{theorem}[Единственность предела]
+    Если $ x_n \to a, n \to \infty $ и $ x_n \to b, n \to \infty $, то $ a = b $
+\end{theorem} \begin{proof}
+    Пусть $ a \neq  b $. Возьмём $ \varepsilon > 0 $ такое, что \begin{gather}
+        U_\varepsilon(a) \cap U_\varepsilon(b) = \emptyset \\
+        \text{ достаточно взять } \varepsilon < \frac{b - a}{2}  \\
+        a + \varepsilon < a + \frac{b - a}{2} = \frac{a + b}{2} \\
+        b - \varepsilon > b - \frac{b - a}{2} = \frac{a + b}{2}
+    \end{gather}
+    \begin{multline}
+        \begin{rcases}
+            \exists N_1 : \forall n \ge N_1 \; x_n \in U_\varepsilon(a) \\
+            \exists N_2 : \forall n \ge N_2 \; x_n \in U_\varepsilon(b)
+        \end{rcases}
+        \thus \forall n \ge \max(N_1, N_2) \; x_n \in U_\varepsilon(a) \land x_n \in U_\varepsilon(b)
+        \thus \\ x_n \in U_\varepsilon(a) \cap U_\varepsilon(b)
+        \thus x_n \in \varnothing \text{ -- противоречие}
+    \end{multline}
+\end{proof}
+\begin{example} Доказать
+    \[ \lim_{n \to \infty} \dfrac{1}{n} = 0 \]
+\end{example} \begin{proof}
+    Пусть $ \varepsilon = \frac{1}{2} $.
+    Нужно найти $ N \in \N: $ $ n \geq N $  $ \frac{1}{n} \in U_\varepsilon(0) $
+    По принципу Архимеда \begin{gather}
+        \exists N \in \N\, N > \frac{1}{2} \thus \forall n \in \N: n \geq\, N \text{ выполнено } n \geq  N > \frac{1}{\varepsilon} \thus  \frac{1}{n} < \varepsilon \thus\, \lim_{n \to \infty}\frac{1}{n} = 0
+    \end{gather}
+\end{proof}
+\begin{exercise}
+    Доказать, что $ \lim_{n \to +\infty}n = + \infty $.
+\end{exercise} \begin{proof}
+    Рассмотрим $ \frac{1}{\epsilon} $. По принципу Архимеда(\ref{Archemedian_principle}) \[ \exists N \in \N: N > \frac{1}{\epsilon} \thus N \in U_\epsilon( + \infty) \thus  \lim_{n \to \infty}n = + \infty \]
+\end{proof}
+
+\begin{theorem}
+    Для числовых последовательностей $\{ a_n \}$ и $\{ b_n \}$ таких, что $ \exists m \in \N : b_n = a_{n + m}$
+    \[ \lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n \]
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \lim_{n \to \infty} a_n = p \thus
+        \forall \epsilon > 0 \ \exists N \in \N: (\forall n \ge N\ a_n \in U_\epsilon(p)) \thus \\
+        \thus (\forall n \ge N\ b_n \in U_\epsilon(p)) \thus
+        \lim_{n \to \infty} b_n = p
+    \end{multline*}
+    \[ \forall \epsilon > 0 \ \exists N : (\forall n \ge N\ b_n \in U_\epsilon(a)) \thus (\forall n \ge N\ a_{n + m} \in U_\epsilon(a)) \thus (\forall n \ge N + m \ a_{n} \in U_\epsilon(a)) \]
+\end{proof}
+
+\df{Сходящаяся последовательность}{последовательность, у которой существует конечный предел.}
+
+\begin{theorem}
+    Сходящаяся последовательность ограничена.
+    \label{limit_means_bounds}
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \limpinf a_n = b \thus
+        \exists N \in \N: \forall n \ge N\ a_n \in U_1(b) \thus \\
+        \thus \sup(a_n) = \max(\{a_i\}_{i=1}^{N - 1}, \sup(\{a_i\}_{i=N}^{+\infty})) \le
+        \max(\{a_i\}_{i=1}^{N - 1}, b + 1) \ne +\infty
+    \end{multline*}
+    Аналогично для нижней грани.
+\end{proof}
+
+\begin{theorem}
+    Пусть $\limpinf a_n = a$, $\limpinf b_n = b$, тогда
+    \begin{gather*}
+        a < b \Rightarrow \exists N \in \N\ \forall n > N\ a_n < b_n \\
+        \exists N \in \N\ \forall n > N\ a_n \le b_n \Rightarrow a \le b
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ a_n < a + \frac{b - a}{2} \\
+            \exists N_2 \in \N\ \forall n > N_2\ b_n > b - \frac{b - a}{2}
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2)\ \left(a_n < a + \frac{b - a}{2} = b - \frac{b - a}{2} < b_n \thus
+                a_n < b_n\right)
+    \end{multline*}
+    % TODO prove second case by contradition
+\end{proof}
+
+\begin{theorem}
+    (Теорема о двух миллиционерах) Для последовательностей $a_n$, $b_n$, $c_n$
+    \[ \exists N \in \N: \forall n > N\ a_n \le c_n \le b_n, \limpinf a_n = \limpinf b_n = a \thus \limpinf c_n = a \]
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \forall \varepsilon > 0\ 
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ a_n > a - \varepsilon \\
+            \exists N_2 \in \N\ \forall n > N_2\ b_n < a + \varepsilon
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2, n)\ a_n > a - \varepsilon, b_n < a + \varepsilon, a_n < c_n < b_n \thus \\
+        \thus c_n \in U_\varepsilon(a) \thus
+        \limpinf c_n = a
+    \end{multline*}
+\end{proof}
+
+\begin{theorem}
+    Для любой последовательности $c_n$ и бесконечно малой $\alpha_n$ 
+    \[ \exists N \in \N: \forall n > N\ \abs{c_n} \le \alpha_n \thus \limpinf c_n = 0 \]
+\end{theorem}
+\begin{proof}
+    % TODO
+\end{proof}
+
+\begin{theorem}
+    $\forall q : \abs{q} \le 1 \thus \limpinf{q^n} = 0$
+\end{theorem}
+\begin{proof}
+    % TODO
+\end{proof}
+
+
+\begin{theorem}
+    Если для последовательностей $a_n$ и $b_n$ $\limpinf a_n = a$, $\limpinf b_n = b$,
+    \[ \limpinf a_n \pm b_n = a \pm b, \limpinf a_n \cdot b_n = a \cdot b \]
+    \[ \forall n \in \N\ b_n \ne 0, b \ne 0 \thus \limpinf \frac{a_n}{b_n} = \frac{a}{b} \]
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \forall \varepsilon > 0\ 
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ \abs{a_n - a} < \frac{\varepsilon}{2} \\
+            \exists N_2 \in \N\ \forall n > N_2\ \abs{b_n - b} < \frac{\varepsilon}{2}
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2)\ \abs{(a_n + b_n) - (a - b)} <
+        \abs{a_n - a} + \abs{b_n - b} < \varepsilon \thus \\
+        \thus \limpinf{a_n + b_n} = a + b
+    \end{multline*}
+    По теореме \ref{limit_means_bounds} $\exists C : \forall n\in\N\ \abs{a_n} < C, \abs{b_n} < C$.
+    \begin{multline*}
+        \forall \varepsilon > 0\ 
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ \abs{a_n - a} < \frac{\varepsilon}{2C} \\
+            \exists N_2 \in \N\ \forall n > N_2\ \abs{b_n - b} < \frac{\varepsilon}{2C}
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2)\ \abs{a_n b_n - ab} = \abs{a_n b_n - a_n b + a_n b - ab} \le \\
+        \le \abs{a_n} \abs{b_n - b} + \abs{b} \abs{a_n - a} <
+        C \frac{\varepsilon}{2C} + C \frac{\varepsilon}{2C} = \varepsilon \thus
+        \limpinf{a_n b_n} = a b
+    \end{multline*}
+
+    TODO % Доказать, что модуль больше b/2 => расписываем формулу разности и всё сокращается
+    \begin{multline*}
+        \forall \varepsilon > 0 \exists N_1 \in \N\ \forall n > N_1\ \abs{b_n - b} < \frac{\varepsilon}{2C} \\
+    \end{multline*}
+     
+\end{proof}
+
+\begin{theorem}
+    бесконечно малая * ограниченная = бесконечно малая
+\end{theorem}
