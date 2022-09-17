@@ -1,0 +1,19 @@
+\subsection{Кванторы}
+
+\df{$\forall x \; P(x)$}{для любого $x$ выполнено $P(x)$.}
+\df{$\exists x \; P(x)$}{существует $x$, для которого выполнено $P(x)$.}
+\df{$\exists! x \; P(x)$}{существует и единственно $x$, для которого  $P(x)$.
+\[ \exists! x \; P(x) \defev \exists x \; P(x) \wedge (\forall y \; P(y) \Rightarrow y = x) \]
+\[ \overline{\forall x \; P(x)} \Leftrightarrow \exists x \; \overline{P(x)} \]
+\[ \overline{\exists x \; P(x)} \Leftrightarrow \forall x \; \overline{P(x)} \]
+}
+
+\begin{gather}
+    \forall x \in A \;   P(x) \defev \forall x \left( x \in A \Rightarrow P(x) \right) \\
+    \forall x (\forall y \ P(x, y)) \defev \forall x, y \ P(x, y)
+\end{gather}
+
+\begin{note}
+    \[ \forall x \in \mathbb{R} \; \exists n \in \mathbb{N} \; n > x \text{ -- истина} \]
+    \[ \exists n \in \mathbb{N} \; \forall x \in \mathbb{R} \; n > x \text{ -- ложь} \]
+\end{note}

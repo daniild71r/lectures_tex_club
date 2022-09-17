@@ -1,0 +1,78 @@
+\subsection{Супремум и инфимум}
+Для $A \subseteq R$
+\begin{gather}
+    x \text{ -- верхняя грань $A$} \defev \forall y \in A \; y \le x \\
+    x \text{ -- нижняя грань $A$} \defev \forall y \in A \; x \le y
+\end{gather}
+
+\df{Ограниченное сверху множество}{множество, у которого существует верхняя грань.}
+\df{Ограниченное снизу множество}{множество, у которого существует нижняя грань.}
+\df{Неограниченное сверху множество}{множество, у которого не существует верхней грани.}
+\df{Неограниченное снизу множество}{множество, у которого не существует нижней грани.}
+\df{Ограниченное множество}{множество, у которого существует верхняя и нижняя грань.}
+\df{Неограниченное множество}{множество, не являющееся ограченным.}
+
+\begin{example}
+   $ \R $ неограничено сверху.
+\end{example}
+\begin{proof}
+    От противного. $ \exists m \in \R:\ \forall x \in \R\ x \leq  m \thus m + 1 \leq\, m \thus 1 \le 0$ -- противоречие.
+\end{proof}
+
+Для ограниченного сверху/снизу непустого множества $A$
+\begin{gather}
+    \sup{A} = x \defev \nexists y < x : y \text{ -- верхняя грань } A \\
+    \inf{A} = x \defev \nexists y > x : y \text{ -- нижняя грань } A
+\end{gather}
+
+Для неограниченного сверху/снизу множества $A$
+\begin{gather}
+    \sup{A} = +\infty \\
+    \inf{A} = -\infty
+\end{gather}
+
+Если $x$ -- верхняя грань $A$, говорят: $x$ -- мажоранта $A$; для нижней грани: $x$ -- миноранта $A$. $\sup{A}$ -- супремум или точная верхняя грань множества $A$. $\inf{A}$ -- инфимум или точная нижняя грань множества $A$.
+
+
+\begin{theorem}[Существование точной верхней грани]\label{theorem_about_supremum}
+    Для $A \subseteq \R \ne \varnothing\ \exists !\sup{A} \in \overline{\R}$.
+\end{theorem}
+\begin{proof}
+    От противного. Построим $B \defeq \{b \in \RR \sconstr b \text{ --  верхняя грань } A\}$. По определению верхней грани, \sloppy $\forall a \in A\ \forall b \in B \ a \le b \thus \text{(аксиома непрерывности) } \exists s \in \RR : {\forall a \in A \; b \in B \; a \le s \le b} \thus s \in B$.
+
+    Предположим $\sup{A} < s \thus \sup{A} \in B$ -- противоречие, так как $s$ не больше всех элементов в $A$.
+
+    Единственность. От противного. Пусть $ s' $ -- другая точная верхняя грань $ A \thus s' \in B \thus s \le s'$. По определению точной верхней грани множества $ A $ выполнено, что $ \forall x \le s' \ x$ не может быть точной верхней гранью -- противоречие. 
+\end{proof}
+
+Аналогично формулируется и доказывается теорема о существовании и единственности точной нижней грани.
+
+\begin{exercise}
+    Для $A$ и $ B $ -- множеств из доказательства теоремы о точной верхней грани
+    \[ \sup A = \inf B \]
+\end{exercise}
+\begin{proof}
+    TODO Это ничего не доказывает
+
+    По построению $A$ лежит слева от $B \thus \forall a \in A\ \forall b \in  B \ a \leq  b \thus
+   \text{(аксиома непрерывности) } \exists  s \in \R: s\forall a \in A, b \in B\; a \leq s \leq b \thus s = \sup A $. Кроме того $ \forall b \in B s \leq  B \thus  s = \inf B \thus \sup A = \inf B $.
+\end{proof}
+
+\begin{note}
+    Если $ A \subseteq \R $ непусто и ограничено сверху, то $ \sup A $ может как принадлежать,
+    так и не принадлежать $A$.
+    \begin{gather*}
+        A = \{x \in \R|\ x \leq\, 1\} \\
+        \sup A = 1 \in A \\
+        A = \{x \in \R | x < 1\} \\
+        \sup A = 1 \notin A
+    \end{gather*}
+\end{note}
+
+
+ \begin{theorem}[Принцип Архимеда]\label{Archemedian_principle}
+   \[ \forall x \in \R\ \exists n \in \N : n > x \]
+ \end{theorem}
+ \begin{proof}
+    От противного. Предположим $\overline{\forall x \in \R \; \exists n \in \N \; n > x} \thus \exists x \in \R \; \forall n \in \N \; n \le x \thus \N$ ограничено сверху. По теореме \ref{theorem_about_supremum} $\exists! s \in \R : s = \sup{\N} \thus (s - 1) \text{ не верхняя грань $\N$} \thus \exists m \in \N : m > s - 1 \thus m + 1 > s \thus (m + 1) \notin \N$ -- противоречие с индуктивностью $\N$.
+\end{proof}

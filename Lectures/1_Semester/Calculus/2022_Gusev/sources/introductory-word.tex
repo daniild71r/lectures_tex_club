@@ -1,0 +1,40 @@
+% Currently not used anywhere
+
+\subsection{О приближениях}
+
+    Математический анализ "--- это наука о приближениях.
+
+    \begin{definition}
+        Определение производной по Коши:
+        Пусть $f = f(x)$ -- функция, число $A$ называется производной функции $f$ в
+        точке $x$, если при неограниченным уменьшении $|h|$ \[
+        P(\varepsilon, \delta) :=   0 < |h| < \delta \longrightarrow \left(\frac{f(x + h) - f(x)}{h} - A\right) < \varepsilon,
+        \text{ где } P(x) = \text{истина или ложь} \]
+        \[\forall \varepsilon > 0 \
+        \exists \delta > 0 \ P(\varepsilon, \delta)
+        \]
+    \end{definition}
+    \begin{example}
+        $f(x) = x^2$:
+        \begin{equation*}
+            \frac{f(x + h) - f(x)}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h} = 2x + h 
+        \end{equation*}
+        Проверим, что $A  = 2x$ является производной $f$ в точке $x$:
+        \begin{equation*}
+            \forall \varepsilon \ \exists \delta > 0 \ (0 < |h| < \delta) \rightarrow \left|\frac{(f(x + h )
+            - f(x))}{h} - 2x\right| < \varepsilon
+        \end{equation*}
+        Дано $\varepsilon > 0$. Какое $\delta$ взять, чтобы $P(\varepsilon, \delta) = 1$?
+        Если взять $\delta = \dfrac{\varepsilon}{2}$, то $0 < |h| < \delta \longleftrightarrow  |h|\hm{<} \dfrac{\varepsilon}{2}
+        \longrightarrow P(\varepsilon, \delta) = 1$
+    \end{example}
+    \begin{exercise}
+        Проверить, что утверждения имеют одинаковые значения: (кто не с нами, тот 
+        против нас) $\longleftrightarrow$ (кто не против нас, тот с нами)
+    \end{exercise}
+    В этом семестре:
+    \begin{enumerate}
+        \item приближение функций многочленами
+        \item евклидова топология вещественной прямой
+        \item приложения к исследованию функций
+    \end{enumerate}

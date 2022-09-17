@@ -1,0 +1,75 @@
+\subsection{Определение}
+\begin{equation}
+    \begin{gathered}
+        \fnis{x} \N \rightarrow \R \text{ -- числовая последовательность} \\
+        x \defev \{x_n\} \defev \{x_n\}_{n=1}^{+\infty} \defev (x_n) \defev x(n) \\
+        \forall n \in \N : x_n \defeq x(n) \text{ -- $n$-ый член последовательности}
+    \end{gathered}
+\end{equation}
+
+Для последовательности $x(n)$:
+\begin{equation}
+    \limpinf x_n = a \defev a \in \RR,\ \forall \varepsilon > 0 \ \exists N \in \N \ \forall n \ge N \ x_n \in U_\varepsilon(a)
+\end{equation}
+$\limpinf x_n$ -- предел числовой последовательности.
+
+\begin{theorem}[Единственность предела] Для последовательности $x(n)$ $\exists$ не более одного $x \in \RR : \displaystyle \limpinf x(n) = a$.
+\end{theorem} \begin{proof}
+    От противного.
+
+    $\exists a \neq  b : \displaystyle \limpinf x(n) = a,\ \limpinf x(n) = b$. Пусть $\varepsilon \defeq \sep(a, b)$, тогда
+    \begin{multline*}
+        \begin{rcases}
+            \exists N_1 : \forall n \ge N_1 \; x_n \in U_\varepsilon(a) \\
+            \exists N_2 : \forall n \ge N_2 \; x_n \in U_\varepsilon(b)
+        \end{rcases}
+        \thus \forall n \ge \max(N_1, N_2) \; x_n \in U_\varepsilon(a) \land x_n \in U_\varepsilon(b)
+        \thus \\ \thus x_n \in U_{\sep(a, b)}(a) \cap U_{\sep(a, b)}(b)
+        \thus x_n \in \varnothing \text{ -- противоречие}
+    \end{multline*}
+\end{proof}
+
+\df{Бесконечно малая последовательность}{последовательность, предел которой 0.}
+
+\begin{example} $ \displaystyle \limpinf \dfrac{1}{n} = 0 $
+\end{example} \begin{proof}
+    TODO выглядит, как будто ничего не доказывает
+
+    Пусть $ \varepsilon = \frac{1}{2} $.
+    Нужно найти $ N \in \N: $ $ n \geq N $  $ \frac{1}{n} \in U_\varepsilon(0) $
+    По принципу Архимеда \begin{gather}
+        \exists N \in \N\, N > \frac{1}{2} \thus \forall n \in \N: n \geq\, N \text{ выполнено } n \geq  N > \frac{1}{\varepsilon} \thus  \frac{1}{n} < \varepsilon \thus\, \lim_{n \to \infty}\frac{1}{n} = 0
+    \end{gather}
+\end{proof}
+\begin{example}
+    \[ \limpinf n = +\infty \]
+\end{example}
+\begin{proof}
+    TODO format
+
+    Рассмотрим $ \frac{1}{\epsilon} $. По принципу Архимеда(\ref{Archemedian_principle}) \[ \exists N \in \N: N > \frac{1}{\epsilon} \thus N \in U_\epsilon( + \infty) \thus  \lim_{n \to \infty}n = + \infty \]
+\end{proof}
+
+\df{Сходящаяся последовательность}{последовательность, у которой существует конечный предел.}
+
+\begin{theorem}
+    Сходящаяся последовательность ограничена.
+    \label{limit_means_bounds}
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \limpinf a_n = b \in R \thus
+        \exists N \in \N: \forall n \ge N\ a_n \in U_1(b) \thus \\
+        \thus \sup(a_n) = \max(\{a_i\}_{i=1}^{N - 1}, \sup(\{a_i\}_{i=N}^{+\infty})) \le
+        \max(\{a_i\}_{i=1}^{N - 1}, b + 1) \ne +\infty
+    \end{multline*}
+    Аналогично для нижней грани.
+\end{proof}
+
+\df{Бесконечно большая последовательность}{последовательность, предел которой равен $\pm\infty$.}
+\begin{exercise}
+    $ \{a_n\} $ -- бесконечно большая $\thus$ $\{a_n\}$ -- неограниченна. 
+\end{exercise}
+\begin{proof}
+    TODO
+\end{proof}
