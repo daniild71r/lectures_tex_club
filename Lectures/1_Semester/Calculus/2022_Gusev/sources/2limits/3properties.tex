@@ -10,7 +10,13 @@
         \thus (\forall n \ge N\ b_n \in U_\epsilon(p)) \thus
         \lim_{n \to \infty} b_n = p
     \end{multline*}
-    \[ \forall \epsilon > 0 \ \exists N : (\forall n \ge N\ b_n \in U_\epsilon(a)) \thus (\forall n \ge N\ a_{n + m} \in U_\epsilon(a)) \thus (\forall n \ge N + m \ a_{n} \in U_\epsilon(a)) \]
+    \begin{multline*}
+        \limpinf b_n = p \thus
+        \forall \epsilon > 0 \ \exists N \in \N: (\forall n \ge N\ b_n \in U_\epsilon(p)) \thus \\
+        \thus (\forall n \ge N\ a_{n + m} \in U_\epsilon(p)) \thus
+        (\forall n \ge N + m \ a_{n} \in U_\epsilon(p)) \thus
+        \limpinf a_n = p
+    \end{multline*}
 \end{proof}
 
 \begin{theorem}
@@ -21,17 +27,24 @@
         \exists N \in \N\ \forall n > N\ a_n \le b_n \Rightarrow a \le b
     \end{gather*}
 \end{theorem}
-\begin{proof}
-    TODO for RR
-    \begin{multline*}
-        \begin{rcases}
-            \exists N_1 \in \N\ \forall n > N_1\ a_n < a + \frac{b - a}{2} \\
-            \exists N_2 \in \N\ \forall n > N_2\ b_n > b - \frac{b - a}{2}
-        \end{rcases} \thus \\
-        \thus \forall n > \max(N_1, N_2)\ \left(a_n < a + \frac{b - a}{2} = b - \frac{b - a}{2} < b_n \thus
-                a_n < b_n\right)
-    \end{multline*}
-    TODO prove second case by contradition
+\begin{proof}\phantom\\
+    \begin{itemize}
+        \item Пусть $\varepsilon \defeq \sep(a, b)$, тогда
+        \begin{multline*}
+            \begin{rcases}
+                \exists N_1 \in \N\ \forall n > N_1\ a_n \in U_\varepsilon(a) \\
+                \exists N_2 \in \N\ \forall n > N_2\ b_n \in U_\varepsilon(b)
+            \end{rcases} \thus \\
+            \begin{rcases}
+                \thus \forall n > \max(N_1, N_2)\ a_n \in U_\varepsilon(a), b_n \in U_\varepsilon(b) \\
+                \phantom{\thus{ }} U_\varepsilon(a) \cap U_\varepsilon(b) = \varnothing \text{ (по лемме \ref{SepUIntersect})}
+            \end{rcases} \thus \\
+            \thus \text{(по лемме \ref{URelationWhenNotIntersecting}) } (a_n < b_n) \Leftrightarrow (a < b) \thus
+            a_n < b_n
+        \end{multline*}
+        
+        \item От противного. Пусть $a > b$, тогда по первой части $\exists N \in \N\ \forall n > N\ b_n < a_n \thus$ на бесконечном суффиксе $b$ меньше $a$, но формулировка говорит о существовании бесконечного суффикса, где $a$ не больше $b$ -- противоречие.
+    \end{itemize}
 \end{proof}
 
 \begin{theorem}
@@ -71,7 +84,7 @@
 \begin{theorem}
     Если для последовательностей $a_n$ и $b_n$ $\limpinf a_n = a$, $\limpinf b_n = b$ и соответствующая операция для $a$ и $b$ определена,
     \[ \limpinf a_n \pm b_n = a \pm b, \limpinf a_n \cdot b_n = a \cdot b \]
-    \[ \forall n \in \N\ b_n \ne 0, b \ne 0 \thus \limpinf \frac{a_n}{b_n} = \frac{a}{b} \]
+    \[ \forall n \in \N\ b_n \ne 0 \thus \limpinf \frac{a_n}{b_n} = \frac{a}{b} \]
 \end{theorem}
 \begin{proof}
     \begin{multline*}
