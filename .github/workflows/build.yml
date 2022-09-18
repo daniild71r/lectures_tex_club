@@ -22,7 +22,7 @@ jobs:
           import json
           import os
           targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
-          print("::set-output name=matrix::[", ", ".join(repr(t) for t in targets), "]", sep="")
+          print("::set-output name=matrix::[", ", ".join(repr(t) for t in targets if not t.startswith("!")), "]", sep="")
           '
 
   build:
