@@ -60,9 +60,11 @@
 		\cos y + i\sin y = \row{n = 0}{\frac{(iy)^{2n}}{(2n)!}} + \row{n = 0}{\frac{(iy)^{2n + 1}}{(2n + 1)!}} = \row{n = 0}{\frac{(iy)^n}{n!}}
 	\]
 	Отсюда получаем $e^z$ через произведение по Коши:
-	\[
-		e^z = e^x(\cos y + i\sin y) = \row{n = 0}{\suml_{k = 0}^n \frac{x^k}{k!} \cdot \frac{(iy)^{n - k}}{(n - k)!}} = \row{n = 0}{\frac{1}{n!}\suml_{k = 0}^n C_n^k x^k (iy)^{n - k}} = \row{n = 0}{\frac{(x + iy)^n}{n!}} = \row{n = 0}{\frac{z^n}{n!}}
-	\]
+	\begin{multline*}
+		e^z = e^x(\cos y + i\sin y) = \row{n = 0}{\suml_{k = 0}^n \frac{x^k}{k!} \cdot \frac{(iy)^{n - k}}{(n - k)!}} = \row{n = 0}{\frac{1}{n!}\suml_{k = 0}^n C_n^k x^k (iy)^{n - k}} =
+		\\
+		\row{n = 0}{\frac{(x + iy)^n}{n!}} = \row{n = 0}{\frac{z^n}{n!}}
+	\end{multline*}
 	Для синуса и косинуса ряды уже по определению через доказанную экспоненту.
 \end{proof}
 
