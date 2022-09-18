@@ -1,0 +1,65 @@
+\subsection{Натуральные числа}
+
+Для произвольного семейства множеств $\mathcal{F}$
+\begin{gather}
+    \cap \mathcal{F} : = \{x \sconstr \forall A \in \mathcal{F}\ x \in A\} \\
+    \cup \mathcal{F} : = \{x \sconstr \exists A \in \mathcal{F}\ x \in A\}
+\end{gather}
+
+\df{Индуктивное подмножество $\R$}{подмножество $\R$ такое, что
+    \begin{enumerate}
+        \item $ 1 \in  X $ 
+        \item $ \forall  x \in X $ выполнено $ x + 1 \in X $
+    \end{enumerate}
+}
+
+ \begin{theorem}
+     \label{definition_inductive}
+    Пусть $ \mathcal{G} $ -- семейство подмножеств $ \R $ и $ \forall A \in \mathcal{G} \ A $ -- индуктивно, тогда
+    $ \cap \mathcal{G} $ тоже индуктивно.
+ \end{theorem}
+ \begin{proof} $ M : = \cap \mathcal{G}$
+    \begin{enumerate}
+        \item $ \forall A \in  \mathcal{G} \ 1 \in A \thus 1 \in M $
+        \item $x \in M \thus \forall A \in \mathcal{G} \; x \in A \thus \forall X \in \mathcal{G} \; (x + 1) \in A \thus (x + 1) \in M$
+    \end{enumerate}
+ \end{proof}
+
+ \begin{equation}
+     \begin{gathered}
+        \label{definition_F}
+        \mathcal{F} \defeq \{A \subset \R \sconstr A \text{ -- индуктивно}\} \\
+        \N \defeq \cup \mathcal{F}
+     \end{gathered}
+ \end{equation}
+
+\begin{theorem}
+    $\N$ -- индуктивное подмножество $\R$; $\nexists A \subsetneq \N : A \text{ -- индуктивно}$ 
+\end{theorem}
+\begin{proof}  
+    \phantom \\
+    \begin{enumerate}
+        \item $\N$ индуктивно по теореме \ref{definition_inductive}
+        \item По определению пересечения множеств, $\forall A \in \mathcal{F}\ \N \subseteq A$. Не существует такого множества, что одновременно выполнено $X \subsetneq Y$ и $Y \subseteq X$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Математическая индукция] \label{math_induction}
+    Если $ M \subset \N, 1 \in M $\! и $ \forall n \in M \; n + 1 $, то $ M = \N $
+\end{theorem} \begin{proof}
+    $ M $ удовлетворяет определению индуктивого подмножества $ \R $, значит $ N \sub M $, но $ M \sub N \thus M = \N$.
+\end{proof}
+\begin{theorem}
+    $ \forall x \in \N \; x \ge 1 $
+\end{theorem}
+\begin{proof}
+    Пусть $\exists x \in N : x < 1$. Выберем произвольный набор $A \in \mathcal{F}$ (из определения \ref{definition_F}) и построим $B \defeq \{b \sconstr b \in A, b > x\}$. $1 \in B$, потому что $1 \in A$ и $x < 1$, $\forall c \in B \; (1 + c) \in A$ и так как $(1 + c) > (1 + x) > x$, $(1 + c) \in B$ $\thus B \in \mathcal{F}$. $x \notin B \thus x \notin \cap \mathcal{F} \thus  x \notin \N$ -- противоречие.
+\end{proof}
+\begin{theorem}
+    $ \forall m, n \in \N \; m + n \in \N,\ m \cdot n \in \N$
+\end{theorem}
+\begin{proof}
+    Построим $M_1 \defeq \{x \sconstr x \in \N,\; (m + x) \in \N\}$. $M_1$ удовлетворяет критериям теоремы \ref{math_induction} $\thus M_1 = \N \thus n \in M_1 \thus m + n \in \N$.
+
+    Построим $M_2 \defeq \{x \sconstr x \in \N,\; m \cdot x \in \N\}$. Если $x \in M_2$, то $m \cdot (x + 1) = m \cdot x + m \in \N$ (по 1 части утвержения, так как $x \in M_2 \Rightarrow m \cdot x \in \N$, $m \in \N$). Поэтому, $M_2$ удовлетворяет критериям теоремы \ref{math_induction} $\thus M_2 = \N \thus n \in M_2 \thus m \cdot n \in \N$.
+\end{proof}
