@@ -1,0 +1,128 @@
+\subsection{Расширенная числовая прямая}
+\textbf{Внимание}: синтетический подраздел. Это означает, что если следовать хронологическому порядку изложения материала на лекциях, текст, написанный далее до конца подраздела, должен располагаться в другом месте, однако автор конспекта посчитал логичным расположить его именно тут.
+
+\df{Расширенная числовая прямая $\RR$}{множество вещественных чисел, дополненное двумя бесконечностями: $\pm\infty$. Для $\forall x \in \R$ доопределены следующие операции:
+    \begin{enumerate}
+        \item $- \infty < x < + \infty$
+        \item $ x + ( - \infty) = x - ( - \infty) = + \infty $
+        \item $ x - ( + \infty) = x + ( - \infty) = - \infty $
+        \item $ \dfrac{x}{ + \infty} = \dfrac{x}{ - \infty} = 0 $
+        \item $ x \cdot \pm \infty = \pm \infty,\ x > 0 $
+        \item $ x \cdot \pm \infty = \mp\, \infty,\ x < 0 $
+        \item $ + \infty + ( + \infty) = + \infty $
+        \item $ - \infty + ( - \infty) = - \infty $
+        \item $ + \infty \cdot ( + \infty) = - \infty \cdot ( - \infty) = + \infty $
+        \item $ + \infty \cdot ( - \infty) = - \infty \cdot ( + \infty) = - \infty $
+   \end{enumerate}
+}
+
+\begin{note}
+    Остаётся недопустимым выполнять
+    \begin{gather*}
+        + \infty - ( + \infty), \ - \infty - ( - \infty) \\
+        - \infty + ( + \infty), \  + \infty + ( - \infty)
+    \end{gather*}
+\end{note}
+
+\begin{equation}
+    \begin{gathered}
+        \forall a \in \R\ U_\epsilon(a) \defeq (a - \epsilon;\ a + \epsilon) \\
+        U_\epsilon( + \infty) \defeq \left(\frac{1}{\epsilon}; + \infty\right) \\
+        U_\epsilon( -\infty) = \left( - \infty; - \frac{1}{\epsilon}\right) \\
+        U_\epsilon(\infty) = U_\varepsilon(+\infty) \cup U_\varepsilon(-\infty)
+    \end{gathered}
+\end{equation}
+
+$U_\varepsilon(a)$ называют $\varepsilon$-окрестностью числа $a$.
+
+\textbf{Внимание}: материал далее является ``Original research'' в терминах Википедии. Будьте готовы явно ввести такое определение на экзамене. Политика данного конспекта -- иметь доказательства всех утверждений, данных на лекции в качестве упражнений. Доказательство некоторых из них заметно упрощается (в контексте разбора случаев), если, соответственно, ввести функцию $\sep$. Логика, по которой построено определение, следующая: пусть есть $a \ne b \in \RR$, тогда мы часто будем хотеть знать $\varepsilon$, при котором $\varepsilon$-окрестности точек $a$ и $b$ не пересекаются. В случае $a, b \in \R$ таким $\varepsilon$ является $\frac{\abs{a - b}}{2}$, однако такое значение не работает, если среди $a$ и $b$ есть бесконечности.
+
+\begin{equation}
+    \begin{gathered}
+        \forall a, b \in \R\ \sep(a, b) \defeq \frac{\abs{a - b}}{2} \\
+        \forall a \in \R\ \sep(\pm\infty, a) = \sep(a, \pm\infty) \defeq \frac{-\abs{a} + \sqrt{a^2+4}}{2} \\
+        \sep(\pm\infty, \mp\infty) \defeq 1
+    \end{gathered}
+\end{equation}
+
+\begin{lemma}
+    $ \forall a \in \RR, \varepsilon_1 \ge \varepsilon_2 > 0\ U_{\varepsilon_2}(a) \subseteq U_{\varepsilon_1}(a)$
+\end{lemma}
+\begin{proof}\phantom\\
+    \begin{itemize}
+        \item $\forall a \in \R$:
+        \begin{multline*}
+            \varepsilon_1 \ge \varepsilon_2 \thus
+            \begin{Bmatrix}
+                a - \varepsilon_1 \le a - \varepsilon_2 \\
+                a + \varepsilon_1 \ge a + \varepsilon_2
+            \end{Bmatrix} \thus 
+            (a - \varepsilon_2;\ a + \varepsilon_2) \subseteq (a - \varepsilon_1;\ a + \varepsilon_1) \thus \\
+            \thus U_{\varepsilon_2}(a) \subseteq U_{\varepsilon_1}(a)
+        \end{multline*}
+
+        \item $a = \pm\infty$:
+        \begin{multline*}
+            \varepsilon_1 \ge \varepsilon_2 \thus
+            \frac{1}{\varepsilon_1} \le \frac{1}{\varepsilon_2} \thus
+            \begin{Bmatrix}
+                (-\infty;\ \frac{1}{\varepsilon_2}) \subseteq (-\infty;\ \frac{1}{\varepsilon_1}) \\
+                (\frac{1}{\varepsilon_2};\ +\infty) \subseteq (\frac{1}{\varepsilon_1};\ +\infty)
+            \end{Bmatrix} \thus
+            \begin{cases}
+                U_{\varepsilon_2}(-\infty) \subseteq U_{\varepsilon_1}(-\infty) \\
+                U_{\varepsilon_2}(+\infty) \subseteq U_{\varepsilon_1}(+\infty)
+            \end{cases}
+        \end{multline*}
+    \end{itemize}
+\end{proof}
+
+\begin{lemma}
+    \label{SepUIntersect}
+    $ \forall a \ne b \in \RR\ U_{\sep(a, b)}(a) \cap U_{\sep(a, b)}(b) = \varnothing$
+\end{lemma}
+\begin{proof}
+    Заметим, что $\sep(a, b) = \sep(b, a)$. Поэтому, не теряя общности, будем считать, что $a < b$.
+    \begin{itemize}
+        \item $a, b \in \R$: $\sep(a, b) = \frac{\abs{a - b}}{2} = \frac{b - a}{2}$
+        \begin{multline*}
+            \forall x \in U_{\sep(a, b)}(a) < a + \frac{b - a}{2} = b - \frac{b - a}{2} < \forall y \in U_{\sep(a, b)}(b) \thus \\
+            \thus \forall x \in U_{\sep(a, b)}(a), y \in U_{\sep(a, b)}(b)\ (x < y \thus x \ne y) \thus \\
+            \thus U_{\sep(a, b)}(a) \cap U_{\sep(a, b)}(b) = \varnothing
+        \end{multline*}
+        
+        \item $a = -\infty, b = +\infty$: $\sep(a, b) = 1$
+        \begin{equation*}
+            \begin{rcases}
+                U_1(-\infty) = (-\infty;\ -1) \\
+                U_1(+\infty) = (1;\ +\infty)
+            \end{rcases} \thus U_{\sep(a, b)}(-\infty) \cap U_{\sep(a, b)}(+\infty) = \varnothing
+        \end{equation*}
+        
+        \item $a \in \R, b = +\infty$: $\sep(a, b) = \dfrac{-\abs{a} + \sqrt{a^2+4}}{2}$
+        \begin{align*}
+            \abs{a} + \sep(a, b) &\vee \frac{1}{\sep(a, b)} \\
+            \abs{a} + \frac{-\abs{a} + \sqrt{a^2 + 4}}{2} &\vee \frac{2}{-\abs{a} + \sqrt{a^2 + 4}} \\
+            \frac{\abs{a} + \sqrt{a^2 + 4}}{2} &\vee \frac{2\left(\abs{a} + \sqrt{a^2 + 4}\right)}{a^2 + 4 - a^2} \\
+            \frac{\abs{a} + \sqrt{a^2 + 4}}{2} &\vee \frac{\abs{a} + \sqrt{a^2 + 4}}{2} \\
+            \abs{a} + \sep(a, b) &= \frac{1}{\sep(a, b)}
+        \end{align*}
+        \begin{multline*}
+             \forall x \in U_{\sep(a, b)}(a) < a + \sep(a, b) \le \abs{a} + \sep(a, b) = \frac{1}{\sep(a, b)} < \forall y \in U_{\sep(a, b)}(b) \thus \\
+            \thus \forall x \in U_{\sep(a, b)}(a), y \in U_{\sep(a, b)}(b)\ (x < y \thus x \ne y) \thus \\
+            \thus U_{\sep(a, b)}(a) \cap U_{\sep(a, b)}(b) = \varnothing
+        \end{multline*}
+
+        \item $a = -\infty, b \in \R$ аналогично предыдущему случаю, достаточно заменить знаки.
+    \end{itemize}
+\end{proof}
+
+\begin{lemma}
+    \label{URelationWhenNotIntersecting}
+    $\forall a, b \in \RR\ U_\varepsilon(a) \cap U_\varepsilon(b) = \varnothing \thus (\forall x \in U_\varepsilon(a), y \in U_\varepsilon(b)\ (x < y) \Leftrightarrow (a < b))$
+\end{lemma}
+\begin{proof}
+    Человеческими словами: если $\varepsilon$-окрестности не пересекаются, то все элементы окрестности $a$ лежат левее всех элементов $b$ согда $a < b$ и аналогично для $a > b$.
+
+    Доказательство -- это очевидный разбор случаев (опять), но TODO
+\end{proof}
