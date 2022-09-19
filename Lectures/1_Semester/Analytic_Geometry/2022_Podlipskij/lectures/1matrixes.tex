@@ -13,7 +13,7 @@
 \df{Матрица-столбец}{матрица, состоящая из одного столбца.}
 \df{Квадратная матрица}{матрица, у которой количество столбцов равно количеству строк.}
 \df{Главная диагональ}{элементы квадратной матрицы, у которых $i = j$.}
-\df{Единичная матрица $\bm{e}$}{квадратная матрица, элементы главной диагонали которой равны 1, остальные -- 0.}
+\df{Единичная матрица $\bm{E}$}{квадратная матрица, элементы главной диагонали которой равны 1, остальные -- 0.}
 \df{Диагональная матрица}{квадратная матрица, элементы не на главной диагонали которой равны 0.}
 \df{Симметрическая/симметричная матрица}{квадратная матрица, у которой $\forall i, j \; a_{ij} = a_{ji}$.}
 \df{Кососимметрическая матрица}{\sloppy квадратная матрица, у которой ${\forall i, j \; a_{ij} = -a_{ji}}$.}
@@ -140,5 +140,54 @@
             x_1 = \frac{b_1 a_{22} - b_2 a_{12}}{a_{11} a_{22} - a_{21} a_{12}} = \frac{\Delta_1}{\Delta} \\
             x_2 = \frac{b_2 a_{11} - b_1 a_{21}}{a_{11} a_{22} - a_{21} a_{12}} = \frac{\Delta_2}{\Delta} \\
         \end{cases}
+    \]
+
+    Доказательство неединственности решения при $\Delta = 0$ с текущими знаниями сводится к перебору случаев. Доказательство в общем случае будет позднее.
+\end{proof}
+
+
+\subsection{Умножение матриц}
+\begin{equation}
+    \begin{pmatrix} a_1 & \ldots & a_n \end{pmatrix}
+    \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix} =
+    \begin{pmatrix} a_1 \cdot b_1 + \ldots + a_n \cdots b_n \end{pmatrix}
+\end{equation}
+
+Для матриц $\bm{A}_{n \times m}$ и $\bm{B}_{m \times k}$:
+\begin{equation}
+    \bm{C} = \bm{A} \cdot \bm{B} \defev \bm{C}_{ij} = \sum_{s=1}^{m} \bm{A}_{is} \cdot \bm{B}_{sj}
+\end{equation}
+
+\df{Перестановочные матрицы $\bm{A}$ и $\bm{B}$}{
+    матрицы, для которых выполняется
+    \begin{equation}
+        \bm{A} \cdot \bm{B} = \bm{B} \cdot \bm{A}
+    \end{equation}
+}
+
+\begin{gather}
+    \bm{AE} = \bm{EA} = \bm{A} \\
+    (\bm{A} + \bm{B}) \cdot \bm{C} = \bm{AC} + \bm{BC} \\
+    (\bm{AB})^T = \bm{B}^T \bm{A}^T
+\end{gather}
+
+\begin{theorem}
+    \[ (\bm{A} \bm{B}) \bm{C} = \bm{A} (\bm{B} \bm{C}) \]
+\end{theorem}
+
+\begin{proof}
+    $\exists (\bm{A}_{n \times m} \bm{B}_{m \times k}) \bm{C}_{k \times p} \thus \exists (\bm{B} \bm{C})_{m \times p} \thus \exists (\bm{A} (\bm{B} \bm{C}))_{n \times p}$.
+
+    \[ (\bm{AB})_{ij} = \sum_{x=1}^{m} \bm{A}_{ix} \bm{B}_{xj} \]
+    \[
+        ((\bm{AB})\bm{C})_{ij} =
+        \sum_{y=1}^{k} (\bm{AB})_{iy} \bm{C}_{yj} =
+        \sum_{y = 1}^k (\sum_{x=1}^m (\bm{A}_{ix} \bm{B}_{xy}) \bm{C}_{yj}) =
+        \sum_{y = 1}^k \sum_{x=1}^m (\bm{A}_{ix} \bm{B}_{xy} \bm{C}_{yj}) =
+    \]
+    \[ 
+        = \sum_{x = 1}^m \sum_{y=1}^k (\bm{A}_{ix} \bm{B}_{xy} \bm{C}_{yj}) =
+        \sum_{x = 1}^m \bm{A}_{ix} (\bm{BC})_{xj} =
+        (\bm{A}(\bm{BC}))_{ij}
     \]
 \end{proof}

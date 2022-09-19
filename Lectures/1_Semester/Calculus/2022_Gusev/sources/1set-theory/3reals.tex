@@ -1,0 +1,88 @@
+\subsection{Аксиомы вещественных чисел}
+\df{Вещественные числа}{
+    четвёрка из множества $\R$, операций $\fnis{+} \R^2 \mapsto \R$, $\fnis{\cdot} \R^2 \mapsto \R$ и отношения на этом множестве $\le \; \subseteq \R^2$ такая, что
+\begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $a + b \defev +(a, b)$; $a \cdot b \defev \cdot(a, b)$; $x < y \defev (x \le y) \land (x \ne y)$; \ldots
+    \item $\exists 0 \in \R : \forall x \in \R \; 0 + x = x + 0 = x$ 
+    \item $\forall x \in \R \; \exists (-x) \in \R : x + (-x) = (-x) + x = 0$ 
+    \item $\forall x, y, z \in \R \; x + (y + z) = (x + y) = z$ % ассоциативность 
+    \item $\forall x, y \in \R \; x + y = y + x$ % коммутативность 
+    \item $\exists 1 \in \R \setminus \{0\} : \forall x \in \R \; 1 \cdot x = x \cdot 1 = 1$
+    \item $\forall x \in \R \setminus \{0\} \; \exists x^{-1} \in \R : x \cdot x^{-1} = x^{-1} x = 1$
+    \item $\forall x, y, z \in \R \; x \cdot (y \cdot z) = (x \cdot y) \cdot z$
+    \item $\forall x, y \in \R \; x \cdot y = y \cdot x$
+    \item $\forall x, y, z \in \R \; (x + y) \cdot z = x \cdot z + y \cdot z$ % дистрибутивность
+    \item $\forall x \in \R \; x \le x$
+    \item $\forall x, y \in \R \; (x \le y) \land (y \le x) \Rightarrow (x = y)$
+    \item $\forall x, y, z \in \R \; (x \le y) \land (y \le z) \Rightarrow (x \le z)$
+    \item $\forall x, y \in \R \; (x \le y) \lor (y \le x)$
+    \item $\forall x, y, z \in \R \; (x \le y) \Rightarrow (x + z \le y + z)$
+    \item $\forall x, y \in \R \; (0 \le x) \land (0 \le y) \Rightarrow (0 \le x \cdot y)$
+    \item $\forall X, Y \subseteq \R : (\forall x \in X \; \forall y \in Y \; x \le y) \; \exists c \in \R : (\forall x \in X \; \forall y \in Y \; x \le c \le y)$
+\end{enumerate}
+}
+
+\begin{theorem}[Единственность нуля]
+    $\exists!0$.    
+\end{theorem}
+\begin{proof}
+    Пусть $ 0_1 $ и $ 0_2 $ -- нейтральные элементы, тогда
+    \begin{equation*}
+        \begin{rcases}
+            0_1 + 0_2 = 0_2, \text{ так как } 0_1 \text{ -- нейтральное } \\
+            0_1 + 0_2 = 0_1, \text{ так как } 0_2 \text{ -- нейтральное }
+        \end{rcases} \thus 0_1 = 0_2.
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}[Единственность противоположного элемента]
+    $\exists! (-x): x + (-x) = 0$.
+\end{theorem}
+\begin{proof}
+    Пусть $ a $ и $ b $ $ \in \R $ и являются противоположными к
+$ x \in \R $:
+\begin{gather*}
+    a + x =  x + a = 0 \\ b + x =  x + b = 0 \\
+   x + a =  x + b = 0 \\ a + x + a =  a + x + b \\ 0 + a =  0 + b \\
+   a = b
+\end{gather*}
+\end{proof}
+
+\begin{theorem}
+    $
+        \forall a, b \in \R\ \exists! x : a + x = b \text{, причём } x = (-a) + b
+    $
+\end{theorem}
+\begin{proof}
+    Предыдущие две теоремы задают достаточно много ограничений на множество вещественных чисел, что можно решить это уравнение с помощью материала 2-го класса.
+\end{proof}
+
+    \begin{theorem}
+        $ \forall x = \R \ 0 \cdot  x = 0 $ 
+    \end{theorem} \begin{proof}
+        \begin{gather*}
+            0 \cdot x = (0 + 0) \cdot x = 0 \cdot x + 0 \cdot x \\
+            ( -(0 \cdot x)) + 0 \cdot x = ( -(0 \cdot x) + 0 \cdot x) + 0 \cdot x \\
+            0 = 0 + 0 \cdot x \\
+            0 = 0 \cdot x
+        \end{gather*}
+    \end{proof} 
+
+    \begin{theorem}
+        $\forall x \in \R \; (-x) = (-1) \cdot x$
+    \end{theorem} \begin{proof}
+        \begin{gather*}
+            0 = 0 \\
+        x + (-x) = x \cdot 0 \\
+        x + (-x) = x \cdot (1 + (-1)) \\
+        x + (-x) = x + (-1) \cdot x \\
+        (-x) = (-1) \cdot x
+        \end{gather*}
+    \end{proof}
+    \begin{theorem}
+        $ 0 < 1 $
+    \end{theorem} \begin{proof}
+        Предположим $ 1 \leq 0 $, тогда из аксиомы 14 следует $ 1 + (-1) \leq 0 + (-1) $, то есть $ 0 \leq - 1 $.
+        Тогда $ 0 \leq ( - 1)^2 = 1 $, получили $ 0 \leq  1 $ --- противоречие.
+    \end{proof}
