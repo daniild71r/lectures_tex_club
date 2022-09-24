@@ -2,8 +2,8 @@
 
 Для произвольного семейства множеств $\mathcal{F}$
 \begin{gather}
-    \cap \mathcal{F} : = \{x \sconstr \forall A \in \mathcal{F}\ x \in A\} \\
-    \cup \mathcal{F} : = \{x \sconstr \exists A \in \mathcal{F}\ x \in A\}
+    \cap \mathcal{F} \defeq \{x \sconstr \forall A \in \mathcal{F}\ x \in A\} \\
+    \cup \mathcal{F} \defeq \{x \sconstr \exists A \in \mathcal{F}\ x \in A\}
 \end{gather}
 
 \df{Индуктивное подмножество $\R$}{подмножество $\R$ такое, что
@@ -18,7 +18,7 @@
     Пусть $ \mathcal{G} $ -- семейство подмножеств $ \R $ и $ \forall A \in \mathcal{G} \ A $ -- индуктивно, тогда
     $ \cap \mathcal{G} $ тоже индуктивно.
  \end{theorem}
- \begin{proof} $ M : = \cap \mathcal{G}$
+ \begin{proof} $ M \defeq \cap \mathcal{G}$
     \begin{enumerate}
         \item $ \forall A \in  \mathcal{G} \ 1 \in A \thus 1 \in M $
         \item $x \in M \thus \forall A \in \mathcal{G} \; x \in A \thus \forall X \in \mathcal{G} \; (x + 1) \in A \thus (x + 1) \in M$
