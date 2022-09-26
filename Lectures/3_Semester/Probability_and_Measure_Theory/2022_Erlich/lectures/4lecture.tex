@@ -1,0 +1,27 @@
+\begin{definition}
+	\textit{Дискретным распределением} называется $(x_k \colon p_k)_k$, где $p_k \ge 0$, $\sum_k p_k = 1$ и 
+\end{definition}
+
+Рассмотрим некоторые конкретные дискретные распределения:
+\begin{itemize}
+	\item Бернуллиевское распределение: $k \in \{0, 1\}$, $x_k = k$, $p_0 = 1 - p$, $p_1 = p \in (0; 1)$
+	
+	\item Биномиальное распределение: $k \in \{0, \ldots, n\}$, $x_k = k$, $p_k = C_n^k p^k (1 - p)^{n - k}$. Обозначается как $Bin(n; p)$
+	
+	\item Геометрическое распределение: $k \in \N$, $x_k = k$, $p_k = (1 - p)^{k - 1}p$. Обозначается как $Geom(p)$
+	
+	\item Пуассоновское распределение $k \in \N_0$, $x_k = k$, $p_k = \frac{\lambda^k}{k!}e^{-\lambda}$, где $\lambda > 0$ --- произвольная константа. Обозначается как $Poiss(\lambda)$.
+\end{itemize}
+
+\begin{theorem} (Пуассона)
+	Пусть есть случайная величина $\xi_n \sim Bin(n; p_n)$, $n \in \N$. При этом $n \cdot p_n \to \lambda > 0$ при $n \to \infty$. Утверждается, что в таком случае
+	\[
+		\forall k \in \N_0 \quad P(\{\xi_n = k\}) \xrightarrow[n \to \infty]{} \frac{\lambda^k}{k!}e^{-\lambda}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Вероятность, которая рассматривается в утверждении, на самом деле является $p_k = C_n^k p_n^k$
+\end{proof}
+
+\textcolor{red}{Дописать и ввести хорошие обозначения. У Эрлиха произошёл кринге с маленькими $p$}
