@@ -1,0 +1,118 @@
+\textbf{Теорема Бека.}
+
+$$
+\exists n_0 : \forall n > n_0 \ 
+m(n) \geqslant \frac{1}{2} \sqrt[3]{\frac{n}{\ln n}} \cdot 2^{n - 1}
+$$
+
+\textit{Доказательство.}
+
+Пусть $H = (V, E)$ -- $n$-однородный гиперграф с $|E| = x \cdot 2^{n - 1}$.
+Нужно доказать существование раскраски в два цвета.
+
+\underline{Этап 1.}
+
+Случайно красим вершины в красный и синий цвета (с вероятностью $\frac{1}{2}$).
+
+Пусть $\mathcal{D}$ -- множество вершин, принадлежащих одноцветным рёбрам
+(множество "плохих" вершин).
+
+\underline{Этап 2.}
+
+Зафиксируем $p \in [0, 1]$, которые мы выберем позднее.
+Для каждой вершины из $\mathcal{D}$ перекрашиваем в другой цвет с вероятностью $p$.
+
+Для ребра $e \in E$ введём три события (события для синего цвета симметричны):
+
+$A_e$: $e$ красное на 1 этапе и красное на 2 этапе
+
+$A_e'$: $e$ красное на 1 этапе и синее на 2 этапе
+
+$C_e$: $e$ неодноцветное на 1 этапе и красное на 2 этапе
+
+$$
+P(\text{найдётся одноцветное ребро после 2х этапов}) \leqslant
+2 \sum_{e \in E} \left( P(A_e) + P(A_e') + P(C_e) \right)
+$$
+
+$P(A_e) = 2^{-n} \cdot (1 - p)^n$
+
+$P(A_e') = 2^{-n} \cdot p^n$
+
+Событие $C_e$ могло произойти только если 
+$\exists f \in E : e \cap f \neq \varnothing$ и произошло событие $B_{ef}$. Событие $B_{ef}$
+заключается в том, что $f$ синее на 1 этапе и $e$ красное на 2 этапе. Значит, 
+$$
+P(C_e) \leqslant \sum_{f : e \cap f \neq \varnothing} P(B_{ef})
+$$.
+
+Оценим вероятность $B_{ef}$. Пусть $h := |e \cap f| \geqslant 1$. Посмотрим на вершины из
+$e \cap f$. На 1 этапе они были синие, на 2 этапе -- красные. Эта вероятность равна
+$2^{-h} \cdot p^h$. Теперь посмотрим на вершины из $f \setminus e$ -- про мы знаем только то, что на 1 этапе они синие. Эта вероятность равна $2^{h - n}$. Посмотрим на вершины из
+$e \setminus f$. Мы не знаем, было оно на 1 этапе синее или красное. Если оно было синее, 
+то на 2 этапе оно перекрасилось. Если же оно было красное, то непонятно, что произошло на
+2 этапе: там могут быть сложные пересечения с другими рёбрами. Поэтому вероятность для
+рёбер из $e \setminus f$ можно оценить сверху $\frac{1}{2} \cdot p + \frac{1}{2} \cdot 1$.
+В итоге получается, что
+
+$$
+P(B_{ef}) \leqslant 2^{-h} \cdot p^h \cdot 2^{h - n} 
+\cdot \left( \frac{1 + p}{2} \right)^{n - h} = 
+p^h \cdot 2^{h - 2n} \cdot (1 + p)^{n - h}
+$$
+
+Мы хотим получить равномерную оценку для $P(B_{ef})$, поэтому найдём максимум функции
+$f(h) = p^h \cdot 2^{h - 2n} \cdot (1 + p)^{n - h}$.
+
+$$
+\frac{f(h)}{f(h + 1)} = \frac{p^h \cdot 2^{h - 2n} \cdot (1 + p)^{n - h}}
+{p^{h + 1} \cdot 2^{h + 1 - 2n} \cdot (1 + p)^{n - h - 1}} = 
+\frac{1 + p}{2p} > 1 \text{ (так как } p < 1 \text{)}
+$$
+
+Функция убывает, а значит максимальное значение достигается в точке $h = 1$.
+Тогда равномерная оценка для $P(B_{ef})$:
+
+$$
+P(B_{ef}) \leqslant p 2^{1 - 2n} \cdot (1 + p)^{n - 1} \Rightarrow
+P(C_e) \leqslant \sum_{f : e \cap f \neq \varnothing} P(B_{ef}) \leqslant
+|E| \cdot p 2^{1 - 2n} \cdot (1 + p)^{n - 1}
+$$
+
+Теперь можно оценить нужную нам вероятность:
+
+\begin{multline*}
+P(\text{найдётся одноцветное ребро после 2х этапов}) \leqslant
+2 \sum_{e \in E} \left( P(A_e) + P(A_e') + P(C_e) \right) \leqslant \\
+\leqslant 2 |E| \cdot 2^{-n} (1 - p)^n + 2 |E| \cdot 2^{-n} p^n + 
+2 |E|^2 \cdot p \cdot 2^{1 - 2n} \cdot (1 + p)^{n - 1} \textcircled{$=$}
+\end{multline*}
+
+Подставим $|E| = x \cdot 2^{n - 1}$, 
+$x = \frac{1}{2} \left( \frac{n}{\ln n} \right)^{\frac{1}{3}}$ и возьмём 
+$p = \frac{1}{3} \frac{\ln \left( \frac{n}{\ln n} \right)}{n}$:
+
+\begin{multline*}
+\textcircled{$=$} x (1 - p)^n + x p^n + x^2 \cdot p \cdot (1 + p)^{n - 1} \leqslant
+\frac{1}{2} \left( \frac{n}{\ln n} \right)^{\frac{1}{3}} \cdot e^{-pn} + 
+\frac{1}{2} \left( \frac{n}{\ln n} \right)^{\frac{1}{3}} \cdot 
+\left( \frac{\ln n}{n} \right)^n + 
+\frac{1}{4} \left( \frac{n}{\ln n} \right)^{\frac{2}{3}} \cdot
+\frac{\ln n}{n} \cdot e^{pn} \leqslant \\
+\leqslant \frac{1}{2} \left( \frac{n}{\ln n} \right)^{\frac{1}{3}} 
+\cdot e^{-\frac{1}{3} \ln \left( \frac{n}{\ln n} \right)} + 
+\frac{1}{10} + 
+\frac{1}{12} \left( \frac{n}{\ln n} \right)^{\frac{2}{3}} \cdot
+\frac{\ln n}{n} \cdot e^{\frac{1}{3} \ln \left( \frac{n}{\ln n} \right)} = 
+\frac{1}{2} + \frac{1}{10} + \frac{1}{12} < 1
+\end{multline*}
+
+Теорема доказана.
+
+В оценке выше мы оценили
+$
+F(n) := \frac{1}{2} \left( \frac{n}{\ln n} \right)^{\frac{1}{3}} \cdot 
+\left( \frac{\ln n}{n} \right)^n
+$
+сверху с помощью $\frac{1}{10}$. Это действительно можно сделать, так как 
+$F(n) \to 0$. Просто мы подбираем $n_0$ так, чтобы $\forall n > n_0 \ F(n) < \frac{1}{10}$.

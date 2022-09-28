@@ -1,0 +1,60 @@
+\subsection{2. Детерминированные конечные автоматы (ДКА). Эквивалентность ДКА и НКА.}
+
+\Def НКА $M = \langle Q, \Sigma, \Delta, q_0, F \rangle$ называется детермированным (ДКА), если выполнено:
+
+\begin{enumerate}
+    \item $\forall \brackets{\langle q_1, w \rangle \rightarrow q_2} \in \Delta' : |w| = 1$ \newline\textit{(все переходы являются однобуквенными)};
+    \item $\forall a \in \Sigma$, $q \in Q$ $|\Delta \brackets{q, a}| \leqslant 1$ \newline\textit{(из одного состояния по одному символу можно перейти не более, чем в одно состояние)};
+\end{enumerate}
+
+\textbf{Теорема о эквивалентности ДКА и НКА} Для любого НКА $M = \langle Q, \Sigma, \Delta, q_0, F \rangle$ существует ДКА $M'$, такой что $L \brackets{M} = L \brackets{M'}$.
+
+\noindent \Proof Обозначим $\Delta \brackets{S, w} = \bigcup \limits_{q \in S} \Delta \brackets{q, w}$, где $w \in \Sigma^*$, $S \subset Q$. Построим ДКА $M' = \langle 2^Q, \Sigma, \Delta', \{ q_0 \}, F' \rangle$, где:
+\begin{enumerate}
+    \item $F' = \{ S \subset Q \,\,|\,\, S \cap F \neq \varnothing \}$;
+    \item $\Delta' = \{ \langle S, a \rangle \rightarrow \Delta \brackets{S, a} \}$.
+\end{enumerate}
+
+\noindent Чтобы понять, что из себя представляет новое множество переходов $\Delta'$, докажем следующую лемму:
+
+\Lemma $\Delta' \brackets{\{ q_0 \}, w} = \Delta \brackets{\{ q_0 \}, w}$, где слева -- вершина в $M'$, а справа -- подмножество в $M$.
+
+Докажем лемму индукцией по длине слова $w$.
+
+\textbf{База.} $w = \varepsilon$, тогда $\Delta \brackets{\{ q_0 \}, \varepsilon} = \{ q_0 \} = \Delta' \brackets{\{ q_0 \}, \varepsilon}$, так как все переходы в автомате $M'$ являются однобуквенными.
+
+\textbf{Переход.} $w = ua$, где $a \in \Sigma$, $u \in \Sigma^*$.
+
+Сначала покажем, что $\Delta \brackets{\{ q_0 \}, ua} = \Delta \brackets{\Delta (\{ q_0 \}, u), a}$:
+
+\begin{center}
+    $\Delta \brackets{\{ q_0 \}, ua} = \{ q \,\,|\,\, \langle q_0, ua \rangle \vdash \langle q, \varepsilon \rangle \}$ из опеределения $\Delta$
+    
+    По однобуквенности переходов и транзитивности:
+    
+    $\{ q \,\,|\,\, \langle q_0, ua \rangle \vdash \langle q, \varepsilon \rangle \} = \{ q \,\,|\,\, \exists q' : \langle q_0, ua \rangle \vdash \langle q', a \rangle \vdash \langle q, \varepsilon \rangle \} = \{ q \,\,|\,\, \exists q' \in \Delta (\{q_0\}, u) : \langle q', a \rangle \vdash \langle q, \varepsilon \rangle \} = \Delta \brackets{\Delta(\{ q_0 \}, u), a}$
+\end{center}
+По предположению индукции:
+\begin{center}
+    $\Delta \brackets{\Delta (\{ q_0 \}, u), a} = \Delta \brackets{\Delta' (\{ q_0 \}, u), a}$
+    
+    $S := \Delta' (\{ q_0 \}, u)$
+    
+    $\Delta \brackets{S, a} = \Delta' \brackets{S, a}$ (следует из определения переходов в ДКА)
+    
+    $\Delta' \brackets{\Delta' (\{ q_0 \}, u), a} = \Delta' \brackets{\{q_0 \}, ua}$
+\end{center}
+
+Лемма доказана.
+
+Теперь покажем, что $w \in L \brackets{M} \Longleftrightarrow w \in L \brackets{M'}$.
+
+\begin{center}
+    $w \in L \brackets{M} \Longleftrightarrow \exists q \in F : \langle q_0, w \rangle \vdash \langle q, \varepsilon \rangle \Longleftrightarrow \Delta \brackets{q_0, w} \cap F \neq \varnothing \Longleftrightarrow \Delta \brackets{\{ q_0 \}, w} \cap F \neq \varnothing \overset{lemma}{\Longleftrightarrow} \Delta' \brackets{\{ q_0 \}, w} \cap F \neq \varnothing$
+    
+    $T := \Delta' \brackets{\{ q_0 \}, w}$
+    
+    $T \cap F \neq \varnothing \Longleftrightarrow T \in F'$, $\Delta' \brackets{q_0', w} \in F'$, $q_0' = \{ q_0 \}$
+    
+    $T \in F' \Longleftrightarrow w \in L \brackets{M'}$ \qquad  \EndProof
+\end{center}

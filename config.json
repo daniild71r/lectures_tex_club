@@ -1,8 +1,24 @@
-{
+{ 
   "main": ["l/5/TFCV/2021_Bunakov"],
-  "daniild71r": ["l/5/Functional_Analysis/2021_Konovalov"],
-  "klishch_and_co":  [
+  "daniild71r": [
+    "l/5/Functional_Analysis/2021_Konovalov",
+    "!l/5/TFCV/2021_Bunakov"
+  ],
+  "klishch_and_co": [
     "l/1/Algorithms_and_Data_Structures/2022_Ruhovich",
     "l/1/Calculus/2022_Gusev"
+  ],
+  "candy_club_2021": [
+    "e/3/Algorithms_and_Data_Structures/2021_Stepanov",
+    "e/3/Probability_and_Measure_Theory/2021_Erlich_Volostnov",
+    "e/3/Formal_Languages/2021_Akhtyamov",
+    "e/4/Differential_Equations/2022_Dubinskaya",
+    "e/4/Discrete_Analysis/2022_Raigorodskiy"
+  ],
+  "DanMax03": [
+    "l/3/Calculus/2022_Lukashov",
+    "l/3/Group_Theory/2022_Bogdanov",
+    "l/3/Probability_and_Measure_Theory/2022_Erlich",
+    "l/3/Discrete_Analysis/2022_Raigorodsky"
   ]
 }

@@ -1,0 +1,94 @@
+Рассмотрим $\sigma$-конечное пространство $(X, M, \mu)$.
+
+\Def Функция $f(x)$ называется простой, если $f(x) = \sum_{k = 1}^{n} c_k\; I_{E_k(x)}$, причём $E_k \in M$, $E_k \bigcap E_i = \varnothing$. Отметим, что $c_k \neq 0 \Rightarrow \mu(E_k) < +\infty$. \\
+
+\Note \\
+1. принимает конечное множество значений.\\
+2. простая функция обязана быть измеримой, как сумма измеримых.\\
+3. из конечности меры понимаем, что носитель должен иметь конечную меру.\\
+
+\Note если $c_1< c_2< ... <c_n$ и $\sqcup  E_k = X$, то $f(x) = \sum_{k = 1}^{n} c_k\; I_{E_k(x)}$ назовём каноническим видом.
+
+\Def Интеграл лебега от простой функции
+$\int_{X}^{} f(x) d \mu(x) = \sum_{k = 1}^{n} c_k \mu(E_k)$ \\
+\Note $0\cdot\infty = 0$
+
+\Lemma Интеграл Лебега от простой функции не зависит от её представления.\\
+
+Свойства Интеграла Лебега от простой функции :\\
+1. $\forall a, b \in \R: af+bg$ ~--- простая, причём  $\int\limits_X a f(x) + b(g(x) d \mu = a  \int\limits_X  f(x) d \mu +b  \int\limits_X  g(x) d \mu $ \\
+2. $\forall x \; f(x) \geq 0 \Rightarrow \int\limits_x f(x) d \mu \geq 0$ \\
+3. $\forall x \; f(x) \geq g(x) \Rightarrow \int\limits_x f(x) d \mu \geq  \int\limits_x  g(x)  d \mu$ \\
+4. $|\int\limits_x f(x) d \mu| \leq \int\limits_x |f(x)| d \mu$\\
+5. Аддитивность по областям интегрирования\\
+\Proof
+1. Рассмотрим f и g как сумму индикаторов, тогда имеем, что $(af+bg)(x) = \sum_k \sum_j (ac_k+ bd_j) I_{E_k \cap D_j}$, тогда распишем по определению интеграла Лебега:
+\[\int (af+bg)(x) d\mu = \sum_k \sum_j (ac_k+ bd_j) \mu(E_k \cap D_j)\]
+И воспользуемся линейностью суммы.
+2. Слагаемые суммы неотрицательны
+3. Переходим к неотрицательной функции $(f-g)(x)$ и обращаемся к первым двум пунктам
+4. Неравенство треугольника
+5. Очевидно в силу измеримости подмножеств, по которым интегрируем.
+\EndProof 
+
+\Def Интеграл Лебега от неотрицательной функции 
+Пусть $f(x) \geq 0$ и эта функция измерима. Тогда рассмотрим множество $Q_f = \{ h(x): h - \text{простая и } \forall x \; 0 \leq h(x) \leq f(x) \}$
+\[\int_X f(x) d\mu = sup_{h \in Q_f }\int h(x) d \mu \geq 0\]Если супремум конечен, то будем называть такую функцию интегрируемой по Лебегу.
+\Def Пусть $f$ измерима, тогда она представима в виде разности $f = f^+ - f^-$, где $f^+ = \max(0, f(x)), \; f^- = \max(0, -f(x))$:
+\[\int_X f(x) d\mu = \int_X f^+(x) d\mu -  \int_X f^-(x) d\mu\]
+\textbf{Теорема.} Линейности интеграла Лебега для неотрицательной функции. $\forall a, b \in \R+$, f и g неотрицательные измеримые, тогда:
+\[\int\limits_X a f(x) + bg(x) d \mu = a  \int\limits_X  f(x) d \mu +b  \int\limits_X  g(x) d \mu\]
+\Proof
+По лемме о приближении функции простыми, строим $\{f_n\}$ и $\{g_n\}$, тогда $a f_n + b g_n\uparrow a f + b g$, причем левая часть это неотрицательная простая функция. Воспользуемся свойством предела:
+\[\int\limits_X a f(x) + bg(x) d \mu = a  \lim\limits_{n\rightarrow \infty} \int\limits_X f_n(x) d \mu +b  \lim\limits_{n\rightarrow \infty} \int\limits_X g_n(x) d \mu = a   \int\limits_X f(x) d \mu +b  \int\limits_X g(x) d \mu \]\EndProof
+
+
+\textbf{Теорема.} Аддитивность интеграла Лебега для неотрицательных функций.
+Пусть $f$ измерима и неотрицательна, $A, B, C \in M$ и $C = A \sqcup B\; (A\cap B = \varnothing)$, тогда
+\[\int\limits_C  f(x)  d \mu =   \int\limits_A  f(x) d \mu +  \int\limits_B  f(x)  d \mu\]
+\Proof
+Вспомним, что $\int\limits_E  f(x)  d \mu =   \int\limits_X  f(x) I_E d \mu$, тогда $f I_C = f I_A + f I_B$ и мы свели задачу к предыдущей теореме. \EndProof
+
+\textbf{Теорема.} Свойства, связанные с нулевой мерой.\\
+1. Если $\mu(x) = 0$, $f$ измерима, тогда функция всегда интегрируема и её интеграл по пространству равен нулю.\\
+2. Пусть $f$  и $g$ равны почти всюду, тогда их интегралы по $X$ равны.\\
+3.  Пусть $f$ интегрируема, тогда $\mu(\{x: f(x) = \pm \infty\}) = 0$.\\
+
+\textbf{Теорема.} Линейность интеграла Лебега в общем случае.
+Пусть $f, g \in I(x)$, тогда\\
+1.  $f+g \in I(x)$ \\
+2. $\int\limits_X a f(x) + bg(x) d \mu = a  \int\limits_X  f(x) d \mu +b  \int\limits_X  g(x) d \mu$
+
+\Proof
+Пусть $f$ неотрицательна и $g$ неположительна. Пусть $X = E_1 \sqcup E_2$, где  $E_1 = \{x: f(x) + g(x) \geq 0\}$ и $E_2 = \{x: f(x) + g(x) < 0\}$. Значит, $\int\limits_{E_1}  f(x)  d \mu =   \int\limits_{E_1}  f  + g \; d \mu +  \int\limits_{E_1}  (-g) d\mu$, значит $\int\limits_{E_1}  f +g \; d \mu =   \int\limits_{E_1}  f  d \mu +  \int\limits_{E_1} g(x) d\mu$. Аналогичное равенство запишем и для $E_2$. Сложив данные неравенства, получаем:
+ \[\int\limits_{E_1}  (f+g)  d \mu + \int\limits_{E_2}  (f+g)  d \mu =   \int\limits_{E_1}  f\; d \mu  + \int\limits_{E_1}  g \; d \mu+ \int\limits_{E_2}  f\; d \mu  + \int\limits_{E_2}  g \; d \mu =  \int\limits_{X}  f\; d \mu  + \int\limits_{X}  g \; d \mu \] \EndProof
+
+\textbf{Теорема.} Если функция интегрируема, то её модуль тоже интегрируем, а так же 
+\[|\int\limits_{X}  f(x)  d \mu| \leq   \int\limits_{X}  f  (x)\; d \mu\]
+\textbf{Теорема.} Монотонность интеграла Лебега. Если обе функции интегрируемы и $f \leq g  \Rightarrow \int\limits_{X}  f(x)  d \mu \leq   \int\limits_{X} g (x)\; d \mu $
+\Proof
+Воспользуемся тем, что  $h = g - f \geq 0$ и $|\int\limits_{X}  f(x)  d \mu| \leq  C\cdot \mu(X)$, если $f$ интегрируема и меньше некоего $C$.\EndProof
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

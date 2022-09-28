@@ -1,0 +1,26 @@
+\par \Def Обхватом графа называется длина его самого короткого цикла. Обозначение: $g(G)$.
+
+\par \textbf{Теорема (Эрдёш):} $$\forall k, l \: \exists G: \: g(G) > l, \: \chi(G) > k$$
+\par \Proof Рассмотрим $G(n,p), p = n^{\theta-1}, \theta=\frac{1}{2l}$. Введем величину $X_l=X_l(G)$ - количество простых циклов в $G$ длины $\leq l$.
+$$EX_l = \sum_{r=3}^l C_n^r \frac{(r-1)!}{2} p^r=*$$
+\par Объяснение: разбили на сумму индикаторов по каждому множеству из $\leq l$ вершин. $C_n^r$ фиксирует вершины, $\frac{(r-1)!}{2}$ упорядочивает их по циклу, $p^r$ - все нужные ребра присутствуют.
+$$* =\sum_{r=3}^l \frac{n!}{r!(n-r)!} \frac{(r-1)!}{2} p^r \leq \sum_{r=3}^l (np)^r < l(np)^l=ln^{\theta l}=l\sqrt{n}$$
+
+\par Первое неравенство: выкинули все что было в знаменателе. Второе неравенство: оценили каждое слагаемое сверху, последним слагаемым, так как $np=n^\theta>1$. 
+
+\par Применяя неравенство Маркова получаем
+
+$$P(X_l > \frac{n}{2}) \leq \frac{\mathbb{E}X_l}{n/2}< \frac{l\sqrt{n}}{n/2}=\frac{2l}{\sqrt{n}}\rightarrow 0 \Rightarrow P(X_l \leq \frac{n}{2}) \rightarrow 1$$
+
+\par Стремление к 0 имеет место, так как $l$ фиксировано, а $n\rightarrow\infty$. 
+\par \textbf{Промежуточный итог 1:} $$\exists n_1 \: \forall n \geq n_1 \: P(X_l \leq \frac{n}{2}) \geq \frac{1}{2}$$
+
+\par Пусть $x:=\lceil \frac{3\ln{n}}{p} \rceil$, где $p=n^{\theta-1}, x\rightarrow\infty$ и $Y_x=Y_x(G)$ - количество независимых множеств на $x$ вершинах.
+
+$$P(\alpha(G)< x)=P(Y_x=0)=1-P(Y_x \geq 1) \geq 1-\mathbb{E}Y_x$$
+
+\par В последнем переходе опять использовали неравенство Маркова. При этом $\mathbb{E}Y_x=\mathbb{E}(Y_{x,1}+\ldots+Y_{x, C_n^x})$, где $Y_{x, i}$ - индикатор того, что $i$-ое множество вершин мощности $x$ независимо. Тогда $$\mathbb{E}Y_x=C_n^x (1-p)^{C_x^2}=C_n^x e^{C_x^2\ln{(1-p)}}\leq n^x e^{-pC_x^2}=e^{x\ln{n}}e^{-p \frac{x^2}{2}(1+o(1))}$$
+
+\par Так как $px \sim 3\ln{n}$, то весь показатель $x(\ln{n}-\frac{px}{2}(1+o(1)))$ стремится к $-\infty$, а значит $\mathbb{E}Y_x \rightarrow 0$ и $P(\alpha(G)<x) \geq 1-\mathbb{E}Y_x \rightarrow 1$.
+\par \textbf{Промежуточный итог 2:} $$\exists n_2\: \forall n\geq n_2 \: P(\alpha(G)<x)>\frac{1}{2}$$
+\par Объединим два промежуточных итога: если $n=\max \{n_1, n_2 \}$, то $\exists G': \: X_l(G') \leq \frac{n}{2}$ и  $\alpha(G') < x$ (если вероятность каждого больше $\frac{1}{2}$, то вероятность пересечения больше 0). Удалим по одной вершине из каждого цикла длины $\leq l$. Получим $G$, такой что $|V(G)|\geq \frac{n}{2}, \: \alpha(G)<x, \: X_l(G)=0$. Это равносильно тому, что $$g(G)>l, \: \chi(G)>\frac{n/2}{x}\sim \frac{n}{2} \frac{n^{\theta-1}}{3\ln{n}}=\frac{n^\theta}{6\ln{n}}=\frac{n^{\frac{1}{2l}}}{6\ln{n}}\underset{n \geq n_3}{>}k \quad \blacksquare$$

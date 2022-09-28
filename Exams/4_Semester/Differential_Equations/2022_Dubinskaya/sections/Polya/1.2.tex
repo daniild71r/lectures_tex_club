@@ -1,0 +1,109 @@
+\subsection*{Уравнения в полных дифференциалах}
+Рассмотрим уравнение первого порядка, записанное в дифференциалах. Это уравнение
+\begin{equation}\label{eq7}
+    M(x, y) dx + N(x, y) dy = 0
+\end{equation}
+называется \textit{уравнением в полных дифференциалах}, если его левая часть является дифференциалом некоторой гладкой функции $F(x, y)$. 
+Тогда это уравнение
+можно переписать в виде $dF(x, y) = 0$, так что его решение будет иметь вид
+\begin{equation*}
+    F(x, y) = C
+\end{equation*}
+
+\Statement Если функции $M(x, y)$ и $N(x, y)$ определены и непрерывны в некоторой односвязной области $\Omega$ и имеют в ней \underline{непрерывные частные производные} по $x$ и по $y$, то уравнение (\ref{eq7}) будет уравнением в полных дифференциалах тогда и только тогда, когда выполняется тождество
+\begin{equation}\label{eq8}
+    \frac{\partial M(x,y)}{\partial y} \equiv \frac{\partial N(x,y)}{\partial x}
+\end{equation}
+
+Легко понять откуда берется это тождество: если $F$ — решение уравнения, то 
+\[
+M(x, y) = \frac{\partial F}{\partial x}, \;\; N(x, y) = \frac{\partial F}{\partial y}.
+\]
+Тогда 
+\[
+\frac{\partial M(x,y)}{\partial y} =  \frac{\partial^2 F}{\partial x \partial y} = \frac{\partial N(x,y)}{\partial x}.
+\]
+
+Если это условие выполнено, то криволинейный интеграл
+\begin{equation*}
+    \int\limits_{(x_0, y_0)}^{(x,y)}M dx + N dy
+\end{equation*}
+не зависит от выбора пути интегрирования, поэтому функцию $F(x, y)$ можно восстановить по любой из формул
+\begin{equation}\label{eq9}
+    F(x, y) = \int\limits_{x_0}^xM(x, y) dx + \int\limits_{y_0}^yN(x_0, y) dy \qquad \text{или} \qquad F(x, y) = \int\limits_{y_0}^yN(x, y) dx + \int\limits_{x_0}^xM(x, y_0) dy
+\end{equation}
+
+При этом нижние пределы $x_0$ и $y_0$ можно выбирать произвольно, лишь бы точка $(x_0, y_0)$ принадлежала области $D$ (области определения функций $M$
+и $N$). За счет правильного выбора чисел $x_0$ и $y_0$ иногда удается упростить
+вычисления интегралов (\ref{eq9}). Например, если функции $M$ и $N$ являются многочленами от $x$ и $y$, целесообразно выбирать $x_0 = y_0 = 0$.
+
+\subsection*{Интегрирующий множитель}
+Пусть дано уравнение~(\ref{eq7}), для которого не выполнено условие (\ref{eq8}).
+
+\Def Функция $\mu(x, y) \neq 0$ называется \textit{интегрирующим множителем} для уравнения (\ref{eq7}), если уравнение
+\begin{equation*}
+    \mu(x, y)\big(M(x, y) dx + N(x, y) dy\big) = 0,
+\end{equation*}
+является уравнением в полных дифференциалах. Отсюда следует, что функция $\mu$ удовлетворяет условию
+\begin{equation*}
+    \frac{\partial(\mu M)}{\partial y} \equiv \frac{\partial(\mu N)}{\partial x}
+\end{equation*}
+
+Это равенство дает уравнение в частных производных первого порядка для $\mu(x,y)$:
+\begin{equation*}
+    N\frac{\partial\mu}{\partial x} - M\frac{\partial\mu}{\partial y} = \Big(\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}\Big)\mu
+\end{equation*}
+Поделив обе части последнего уравнения на $\mu$, перепишем его в виде:
+\begin{equation*}
+    N\frac{\partial(ln\mu)}{\partial x} - M\frac{\partial(ln\mu)}{\partial y} = \frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}
+\end{equation*}
+
+Несмотря на то, что эти уравнения, как
+правило, имеют бесконечно много решений, задача их нахождения в общем случае ничуть не легче решения исходного уравнения.
+
+Рассмотрим два случая, когда уравнение (\ref{eq7}) имеет интегрирующий множитель, зависящий только от $x$ или только от $y$:
+\begin{enumerate}
+    \item $\mu = \mu(x)$. Тогда 
+    \begin{equation*}
+        \frac{d(ln\mu)}{d x} = \frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N}
+    \end{equation*}
+    и такой множитель существует, если правая часть зависит только от $x$ или
+является постоянной.
+    \item $\mu = \mu(y)$. Тогда 
+    \begin{equation*}
+        \frac{d(ln\mu)}{d y} = \frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{-M}
+    \end{equation*}
+    и правая часть должна зависеть только от $y$ или быть постоянной.
+\end{enumerate}
+
+\subsection*{Уравнение Бернулли}
+Нелинейное уравнение первого порядка вида
+\begin{equation*}
+    y' + a(x)y = b(x)y^m, \qquad m \neq 0, m \neq 1,\;\; a,b\in C(I)
+\end{equation*}
+называется \textit{уравнением Бернулли}. 
+\bigbreak
+Заметим, что $y=0$ -- решение
+уравнения Бернулли при $m > 0$. 
+
+Если $y \neq 0$, то, разделив уравнение на
+$y^m$ и вводя новую неизвестную функцию $z = y^{1-m}$, относительно функции $z$ получаем линейное уравнение:
+\begin{align*}
+    \frac{y'}{y^m}+a(x)\frac{1}{y^{m-1}}=b(x)\qquad \text{при этом \;} (y^{1-m})'=(1-m)y^{-m}y' \\ 
+    \text{Делаем замену: $z = y^{1-m}$} \quad \Rightarrow \qquad \frac{z'}{1-m}+a(x)z=b(x)
+\end{align*}
+
+\subsection*{Уравнение Риккати}
+Нелинейное уравнение первого порядка вида
+\begin{equation*}
+    y' = a(x)y^2 + b(x)y + c(x), \qquad a,b,c\in C(I)
+\end{equation*}
+называется \textit{уравнением Риккати}. 
+\bigbreak
+В отличие от всех уравнений, рассматривавшихся ранее, уравнение Риккати не всегда интегрируется в квадратурах.
+Чтобы решить его, необходимо знать хотя бы одно частное решение $y = y_1(x)$
+этого уравнения. Тогда замена $y = y_1 + z$ приводит это уравнение к уравнению Бернулли. Однако, проще сразу сделать замену:
+\begin{equation*}
+    z = \frac{1}{y-y_1} \quad \Rightarrow \quad y = y_1+\frac{1}{z} \quad y'_x = y'_{1x} - \frac{z'_x}{z^2}
+\end{equation*}
+которая сводит уравнение Риккати к линейному.

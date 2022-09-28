@@ -1,0 +1,87 @@
+\subsection{17. Совпадение классов КС-языков и языков, распознаваемых МП-автоматами: построение автомата по грамматике.}
+В вопросах 16 и 17 предлагается доказать в одну из сторон следующую теорему:
+
+\Th Язык $L$ является МП-автоматным тогда и только тогда, когда $L$ является контекстно-свободным.
+
+\textbf{Gram $\Longrightarrow$ Automaton}
+
+\noindent \Proof Идея: снимаем со стека левую часть правила, добавляем правую часть правила
+
+Рассмотрим контекстно-свободную грамматику $G = \langle N, \Sigma, P, S \rangle$. Автомат строим следующим образом: $q_0$ — стартовое (начальное) состояние, $q_1$ — единственное завершающее состояние, $Q = \{ q_0, q_1 \}$. Переходы из $q_1$ в $q_1$ имеют вид либо $\langle q_1, a, a \rangle \rightarrow \langle q_1, \varepsilon \rangle$, если $a$ — некоторый терминальный символ, либо $\langle q_1, \varepsilon, S \rangle \rightarrow \langle q_1, SbSa \rangle$, если существует правило вида $S \rightarrow aSbS$, где $S \in N$. \textit{Заметим, что при обработке правил, где левая часть — некоторый нетерминал, мы добавляем в стек \textbf{развёрнутую правую часть} правила.}
+
+Чтобы было видно, что происходит, приведём пример. Пусть правила КС-грамматики $G$ следующие: $\brackets{S \rightarrow \varepsilon}, \brackets{S \rightarrow aSbS}$. Тогда МП-автомат по КС-грамматике будет таким:
+
+\drawsomemedium{16_1.png}
+
+Докажем следующую лемму:
+
+\Lemma $A \vdash w \Longleftrightarrow \langle q_1, w, A \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$
+
+\noindent Докажем индукцией по длине дерева вывода (количеству рёбер в дереве). Считаем её равной $k$.
+
+\textbf{База.} $k = 1$, $A \vdash_1 w$. Пусть $w = w_1 w_2 \dots w_n$. Так как $A \rightarrow w_1 \dots w_n$, то $\langle q_1, \varepsilon, A \rangle \rightarrow \langle q_1, w^R \rangle$. Значит:
+
+\begin{center}
+    $\langle q_1, w, A \rangle \vdash \langle q_1, w, w_n w_{n - 1} \dots w_1 \rangle \vdash$
+    
+    $\vdash \langle q_1, w_2 \dots w_n, w_n w_{n - 1} \dots w_2 \rangle \vdash$
+    
+    $\vdash \langle q_1, w_3 \dots w_n, w_n \dots w_3 \rangle \vdash \dots$
+    
+    $\vdash \langle q_1, w_n, w_n \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$
+\end{center}
+
+\textbf{Переход.} Посмотрим на первое раскрытие: $A \vdash_1 \alpha \vdash w$. Здесь $\alpha = \alpha_1 \dots \alpha_n \vdash w_1 \dots w_n = w$, $\alpha_i \in N \cup \Sigma$. Тогда $\langle q_1, w, A \rangle \vdash \langle q_1, w, \alpha_n \dots \alpha_1 \rangle$.
+
+Если $\alpha_n \in N$, то тогда $\alpha_n \vdash w_n$, и по предположению индукции $\langle q_1, w_n, \alpha_n \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$.
+
+Если $\alpha_n \in \Sigma$, то $\alpha_n \vdash w_n$, $\alpha_n = w_n$, и тогда $\langle q_1, w_n, w_n \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$, так как это правило грамматики.
+
+В итоге:
+
+\begin{center}
+    $\langle q_1, w, A \rangle \vdash \langle q_1, w, \alpha_n \dots \alpha_1 \rangle \vdash \langle q_1, w_1 \dots w_n, \alpha_n \dots \alpha_1 \rangle \vdash \langle q_1, w_2 \dots w_n, \alpha_n \dots \alpha_2 \rangle \vdash \dots \vdash \langle q_1, w_n, \alpha_n \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$.
+\end{center}
+
+Теперь нужно показать в обратную сторону: если $\langle q_1, w, A \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$, то $A \vdash w$. Это сделаем с помощью индукции по количеству переходов.
+
+
+\textbf{База.} Пусть всего один переход, тогда $A \in \Sigma$, и $\langle q_1, w, A \rangle \vdash_1 \langle q_1, \varepsilon, \varepsilon \rangle$, откуда $w = A$, и $A \vdash w$, так как $\vdash$ обладает свойством рефлексивности.
+
+\textbf{Переход.} $\langle q_1, w, A \rangle \vdash_k \langle q_1, \varepsilon, \varepsilon \rangle$, где $k > 1$. Тогда $A \in N$, откуда если $A \rightarrow \alpha_1 \dots \alpha_n$, где $\alpha_m \in \brackets{N \cup \Sigma}$, то:
+
+\begin{center}
+    $\langle q_1, w, A \rangle \vdash_1 \langle q_1, w, \alpha_n \dots \alpha_1 \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$
+\end{center}
+
+\Note За один шаг мы снимаем ровно один элемент со стека:
+
+\begin{center}
+    $\alpha_1 \rightarrow \beta_1$
+    
+    $\alpha_2 \rightarrow \beta_2$
+    
+    $\vdots$
+    
+    $\alpha_n \rightarrow \beta_n$
+\end{center}
+
+Пусть $\alpha_1 \rightarrow \beta_1$, $\alpha_1 \in N$, $\langle q_1, w, \alpha_n \dots \alpha_1 \rangle \vdash_1 \langle q_1, w, \alpha_n \dots \alpha_2 \beta_1^R \rangle$. Дождёмся, пока на стеке останется $\alpha_n \dots \alpha_2$: так как в конце стек пустой и мы считаем ровно 1 символ. Тогда в этом моменте:
+
+\begin{center}
+    $\langle q_1, w, \alpha_n \dots \alpha_1 \rangle \vdash \langle q_1, w', \alpha_n \dots \alpha_2 \rangle \Longrightarrow \exists w_1 : w = w_1 w' : \langle q_1, w_1, \alpha_1 \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle \overset{hypothesis}{\Longrightarrow} \alpha_1 \vdash w_1$
+\end{center}
+
+По аналогии, $\alpha_m \vdash w_m$ для любого $m = \overline{1, n}$.
+
+Итого имеем, что $A \rightarrow \alpha_1 \dots \alpha_n$, $\alpha_m \vdash w_m$, $w_1 \dots w_n = w$. Из всего этого следует, что $A \vdash w_1 \dots w_n = w$. Переход доказан.
+
+\underline{Из доказанной леммы следует, что:}
+
+\begin{center}
+    $w \in L \brackets{G} \Longleftrightarrow S \vdash w \Longleftrightarrow \langle q_1, w, S \rangle \vdash \langle q_1, w, S \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$ (по лемме)
+    
+    $w \in L \brackets{M} \Longleftrightarrow \langle q_0, w, \varepsilon \rangle \vdash_1 \langle q_1, w, S \rangle \vdash \langle q_1, \varepsilon, \varepsilon \rangle$
+\end{center}
+
+\EndProof

@@ -1,0 +1,233 @@
+\subsection{Действие группы на множестве}
+
+\begin{note}
+	Многие группы оказываются группами преобразований над множествами. Примерами будут $S_n, D_n, \GL_n(\F), \mathcal{O}_n, \mathcal{U}_n$. Идея того, что любую группу можно \textit{интерпретировать} как группу преобразований, является одной из ключевых в теории групп.
+\end{note}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $\Omega$ "--- множество. Будем говорить, что определено \textit{действие группы $G$ на множестве $\Omega$}, если для каждого $g \in G$ и $\omega \in \Omega$ определен элемент $g\omega := g(\omega) \in \Omega$, причем выполнены следующие свойства:
+	\begin{enumerate}
+		\item $\forall g_1, g_2 \in G: \forall \omega \in \Omega \quad (g_1g_2)\omega = g_1(g_2\omega)$
+		\item $\forall \omega \in \Omega \quad e\omega = \omega$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $\Omega$ "--- множество. Определим группу $S(\Omega) := \{\sigma: \Omega \to \Omega: \sigma\text{ "--- биекция}\}$. Тогда \textit{действие группы $G$ на множестве $\Omega$} "--- это гомоморфизм $\phi: G \to S(\Omega)$.
+\end{definition}
+
+\begin{proposition}
+	Данные выше определения действия группы $G$ на множестве $\Omega$ эквивалентны.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item ($1 \ra 2$) $\forall g \in G$ определим $I_g \colon \Omega \to \Omega$ так, что
+		\[
+			\forall w \in \Omega \quad I_g(w) := gw
+		\]
+		Нужно проверить гомоморфность и биективность каждой $I_g$. Начнём с первого:
+		\[
+			(I_g \circ I_h)(w) = g(h(w)) = (gh)(w) = I_{gh}(w)
+		\]
+		Теперь проверим, что $I_g$ "--- это биекция. Действительно, $I_e = \id$, поэтому $\forall g \in G: I_g\circ I_{g^{-1}} = I_{g^{-1}}\circ I_g = \id$. Значит, $\phi(g) = I_g$ "--- гомоморфизм групп $G$ и $S(\Omega)$.
+		
+		\item($2 \ra 1$) Для каждого $g \in G$ определим $g\omega := \phi(g)(\omega)$. Тогда 
+		\begin{enumerate}
+			\item $(g_1g_2)\omega = \phi(g_1g_2)(\omega) \hm= \phi(g_1)(\phi(g_2)(\omega)) = g_1(g_2\omega)$
+			
+			\item $e\omega \hm= \phi(e)(\omega) = \id(\omega) = \omega$
+		\end{enumerate}
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Пусть группа $G$ действует на множество $\Omega$. \textit{Ядром действия} называется ядро соответствующего гомоморфизма $\phi: G \hm\to S(\Omega)$, то есть 
+	\[
+		\ke I = \{g \in G \such \forall \omega \in \Omega\ \ g\omega = \omega\}
+	\]
+\end{definition}
+
+\begin{note}
+	Ядро действия группы $G$ "--- это нормальная подгруппа в $G$, поскольку это ядро гомоморфизма.
+\end{note}
+
+\begin{definition}
+	Пусть группа $G$ действует на множество $\Omega$. Действие называется \textit{точным}, или \textit{эффективным}, если его ядро тривиально, то есть равно $\{e\}$.
+\end{definition}
+
+\begin{definition}
+	Действие называется \textit{свободным}, если $\forall g \in G, g\ne e: \forall \omega \in \Omega: g\omega \ne \omega$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров действий групп на соответствующих множествах:
+	\begin{enumerate}
+		\item $S_n$ действует на $X_n := \{1, \dotsc, n\}$ с гомоморфизмом $\id$, а если $\forall \sigma \in S_n$ и $\forall x, y \in X_n$ положить $\sigma(x, y) := (\sigma(x), \sigma(y))$, то результатом будет действие $S_n$ на $X_n^2$
+		\item $\GL_n(F)$ действует на $F^n$, $\forall A \in \GL_n(F): \forall v \in F^n: A(v) \hm= Av$, и, аналогично, $\GL_n(F)$ действует на любом линейном пространстве $V$ над полем $F$ таком, что $\dim{V} = n$, а также на множестве всех подпространств $V$
+		\item \textit{Группа диэдра} $D_n = \{\phi \in \mathcal{O}_2: \phi(\mathcal{P}_n) = \mathcal{P}_n\} \le \mathcal{O}_2$, где $\mathcal{P}_n$ "--- правильный $n$-угольник в $V_2$, действует на плоскости $V_2$ и на множестве вершин или ребер $\mathcal{P}_n$ (в последних двух случаях имеет место гомоморфизм $\mathcal{D}_n \to S_n$)
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть группа $G$ действует на множество $\Omega$. \textit{Орбитой} элемента $x \in \Omega$ называется $G(x) := \{g(x): g \hm\in G\}$. Элементы $x, y \in \Omega$ называются \textit{эквивалентными} относительно действия $G$, если $x \in G(y)$.
+\end{definition}
+
+\begin{proposition}
+	Эквивалентность относительно действия является отношением эквивалентности, причем класс эквивалентности элемента $x \in \Omega$ "--- это $G(x)$.
+\end{proposition}
+
+\begin{proof} Произведем непосредственную проверку:
+	\begin{itemize}
+		\item (Рефлексивность) $e(x) = x$, поэтому $x \in G(x)$
+		\item (Симметричность) Если $x \in G(y)$, то $x = g(y), g \in G$ и $g^{-1}(x) \hm= g^{-1}(g(y)) = e(y) = y$, поэтому $y \in G(x)$
+		\item (Транзитивность) Если $x = g(y), y = g'(z)$, то $x = (gg')(z)$ и $x \in G(z)$
+	\end{itemize}
+	
+	Значит, получено отношение эквивалентности. Остается заметить, что $y \sim x \Leftrightarrow y \hm\in G(x)$ по определению.
+\end{proof}
+
+\begin{example}
+	Рассмотрим действие $\mathcal{O}_n$ на $\R^n$, имеющее вид $A(x) = Ax$. Если на $\R^n$ введено стандартное скалярное произведение, то нетрудно показать, что $\mathcal{O}_n(x) = \{y \in \R^n: ||y|| \hm= ||x||\}$.
+\end{example}
+
+\begin{definition}
+	Пусть группа $G$ действует на множество $\Omega$. \textit{Стабилизатором}, или \textit{станционарной подгруппой} элемента $x \in \Omega$ называется $\St(x) := \{g \in G: gx = x\}$.
+\end{definition}
+
+\begin{note}
+	Очевидно, что $\St(x) \le G$.
+\end{note}
+
+\begin{proposition}
+	Пусть $x, y \in \Omega$, $y \in G(x)$, $y = g_0x, g_0 \in G$. Тогда $\{g \in G: gx = y\} \hm= g_0\St(x) = \St(y)g_0$.
+\end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item $gx = y \Leftrightarrow g^{-1}_0gx = g^{-1}_0y = x \Leftrightarrow g_0^{-1}g \in \St(x) \hm\Leftrightarrow g \in g_0\St(x)$
+		\item $gx \hm= y \Leftrightarrow gg_0^{-1}g_0x = y \Leftrightarrow (gg_0^{-1})y = y \Leftrightarrow gg_0^{-1} \in \St(y) \Leftrightarrow g \hm\in \St(y)g_0$
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Если $x, y \in \Omega$ эквивалентны относительно действия $G$, $y = g_0x, g_0 \in G$, то $\St(y) = g_0\St(x)g_0^{-1}$, то есть $\St(x)$ и $\St(y)$ сопряжены. Поскольку сопряжение "--- это автоморфизм, то, в частности, $|\St(x)| = |\St(y)|$ и $|G : \St(x)| = |G : \St(y)|$.
+\end{corollary}
+
+\begin{corollary}
+	$|G(x)| = |G : \St(x)|$. В частности, если группа $G$ конечна, то $|G(x)| = \frac{|G|}{|\St(x)|}$.
+\end{corollary}
+
+\begin{proof}
+	Построим биекцию $\phi: G(x) \to G / \St(x)$ следующим образом: $\forall y \hm\in G(x), y = g_0x, g_0 \in G: \phi(y) = \{g \in G: gx = y\} \hm= g_0\St(x)$. Согласно уже доказаному утверждению, отображение корректно. Инъективность $\phi$ очевидна, а сюръективность выполнена потому, что $\forall g_1\St(x) \in G / \St(x): \exists y = g_1x \in G: \phi(y) \hm= g_1\St(x)$.
+\end{proof}
+
+\begin{theorem}[Формула орбит]
+	Пусть группа $G$ действует на конечное множество $\Omega$, $\Omega_1, \dotsc, \Omega_k$ "--- орбиты действия, $x_i \in \Omega_i, i \hm\in \{1, \dotsc, k\}$ "--- представители орбит. Тогда:
+	\[|\Omega| = \sum\limits_{i = 1}^k|\Omega_i| = \sum\limits_{i = 1}^k|G : \St(x_i)|\]
+\end{theorem}
+
+\begin{proof}
+	Первое равенство тривиально, а второе справедливо в силу следствия из предыдущего утверждения.
+\end{proof}
+
+\begin{example}
+	Группа $G$ действует на себя \textit{левыми сдвигами}, $\forall g, x \in G: g(x) = gx$. Очевидно, это действие (а чтобы получить аналогичное действие \textit{правыми сдвигами}, следует задать его как $g(x) = xg^{-1}$). Данное действие точно, и, более того, свободно. Оно определяет гомоморфизм $\phi: G \to S(G)$, и, в силу точности, это мономорфизм, поэтому $G \cong \phi(G) \hm\le S(G)$ --- получена теорема Кэли.
+\end{example}
+
+\begin{note}
+	Пусть группа $G$ действует на множества $\Omega_1$ и $\Omega_2$. Эти два действия называются \textit{эквивалентными}, или \textit{изоморфными}, если существует биекция $\mu: \Omega_1 \to \Omega_2$ такая, что $\forall g \in G: \forall \omega \in \Omega_1: \mu(g(\omega)) = g(\mu(\omega))$. В этом смысле действия $G$ на себя левыми и правыми сдвигами изоморфны, и изоморфизм имеет вид $\mu(x) = x^{-1}$, $\forall g, x \in G: \mu(g(x)) = (gx)^{-1} = x^{-1}g^{-1} = g(\mu(x))$.
+\end{note}
+
+\begin{example}
+	Пусть $G$ "--- группа, $H \le G$. Тогда $G$ действует на $G / H$ левыми сдвигами: $\forall g \hm\in G: \forall xH \in G / H: g(xH) = gxH$. Найдем $\St(xH)$: $g \in \St(xH) \Leftrightarrow gxH = xH \Leftrightarrow x^{-1}gxH \hm= H \Leftrightarrow g \hm\in H^{x^{-1}}$. Значит, если обозначить гомоморфизм действия как $\phi$, то $\ke\phi \hm= \{g \hm\in G: \forall xH \in G / H: g(xH) = xH\} = \bigcap_{x \in G} xHx^{-1}$. Это наибольшая по включению подгруппа $K \le H$ такая, что $K \normal G$: $\forall L \le H, L \normal G: \forall x \in G: L^{x^{-1}} = L \le H^{x^{-1}} \ra L \hm\le \ke\phi = K$.
+\end{example}
+
+\begin{exercise}
+	Пусть $H \le G$, $|G : H| = n \in \N$. Докажите, что тогда $\exists K \le H: K \hm\normal G, |G : K| \le n!$.
+\end{exercise}
+
+\begin{solution}
+	В силу предыдущего примера, нам достаточно показать, что $|G : \ke\phi| \le n!$, где $\phi$ "--- гомоморфизм действия $G$ на $G / H$ левыми сдвигами. Действительно, по основной теореме о гомоморфизме, $G / \ke\phi \cong \im\phi \le S(G / H)$, причем $|S(G / H)| = n!$, поэтому $|G : \ke\phi| \le n!$.
+\end{solution}
+
+\begin{example}
+	Группа $G$ действует на себя сопряжениями: $\forall g, x \in G: g(x) = x^{g^{-1}} = gxg^{-1}$. Очевидно, это действие. Пусть $I_g: G \hm\to G$, $I_g(x) = gxg^{-1}$, тогда $\phi: G \to S(G)$, $\phi(g) = I_g$ "--- гомоморфизм. $\St(x) = \{g \in G: gxg^{-1} = x\} = \{g \in G: gx = xg\}$. Группа $\St(x)$ называется \textit{централизатором} $x$ и обозначается как $C_G(x)$. Ядро действия "--- это $\ke\phi \hm= \bigcap_{x \in G} C_G(x) \hm= \{g \in G: \forall x \in G: gx = xg\}$. $\ke\phi$ называется \textit{центром} группы $G$ и обозначается как $Z(G)$.
+\end{example}
+
+\begin{note}
+	Легко видеть, что $C_G(x)$ "--- это наибольшая по включению подгруппа $H \le G$ такая, что $x \in H$ и $x \in Z(H)$.
+\end{note}
+
+\begin{proposition}
+	Пусть $G$ "--- конечная группа, $a \in G$. Тогда $|a^G| \mid \frac{|G|}{\ord a}$.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $a^G$ "--- орбита $a$ относительно действия сопряжениями, $|a^G| \hm= |G : \St(a)| = |G : C_G(a)| = \frac{|G|}{|C_G(a)|}$. Заметим, что $a \in C_G(a)$, тогда $\langle a \rangle \le C_G(a)$ и $\ord{a} \hm= |\langle a \rangle| \mid |C_G(a)| = \frac{|G|}{|a^G|}$, поэтому $|a^G| \mid \frac{|G|}{\ord a}$.
+\end{proof}
+
+\begin{definition}
+	Все автоморфизмы группы $G$ образуют группу $\Aut G \le S(G)$. Автоморфизм $\psi \in \Aut G$ называется \textit{внутренним}, если $\psi = I_g$ для некоторого $g \in G$. Множество всех внутренних автоморфизмов обозначается как $\Inn G$.
+\end{definition}
+
+\begin{note}
+	Тогда если $\phi$ "--- гомоморфизм действия группы сопряжениями на себя, то $\im\phi \hm= \Inn G \le \Aut G$. Более того, поскольку $\im\phi = \Inn G$ и $\ke\phi = Z(G)$, то, по основной теореме о гомоморфизме, $\Inn G \cong G / Z(G)$.
+\end{note}
+
+\begin{example}
+	Рассотрим несколько примеров внутренних автоморфизмов:
+	\begin{enumerate}
+		\item Если группа $G$ "--- абелева, то $\Inn{G} = \{\id\}$
+		\item Если $G = S_n, n \ge 3$, то $Z(S_n) = \{e\}$ (поскольку каждая перестановка в $Z(S_n)$ должна коммутировать со всеми транспозициями), следовательно, $\Inn{G} \cong S_n$
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	Докажите, что $\Inn{G} \normal \Aut{G}$.
+\end{exercise}
+
+\begin{solution}
+	Пусть $\psi \in \Aut{G}$. Тогда $\forall I_g \in \Inn{G}: \forall x \hm\in G: \psi(I_g(x)) \hm= \psi(g^{-1}xg) \hm= \psi(g)^{-1}\psi(x)\psi(g)$, поэтому $\psi\circ\Inn{G} \subset \Inn{G}\circ\psi$. Тогда, в силу произвольности $\psi$, $\Inn{G} \hm\normal \Aut{G}$.
+\end{solution}
+
+\begin{definition}
+	Конечная группа $G$ называется \textit{$p$-группой}, если $|G| = p^n$, где $n \in \N$, $p$ "--- простое число.
+\end{definition}
+
+\begin{theorem}
+	Пусть $G$ "--- $p$-группа. Тогда $Z(G) \ne \{e\}$.
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим действие $G$ сопряжениями на себя и воспользуемся формулой орбит:
+	\[|\Omega| = |G| = \sum\limits_i |\Omega_i| = \sum\limits_i |x_i^G|\]
+	
+	Каждое слагаемое в последней сумме "--- это некоторая (возможно, нулевая) степень $p$. Поскольку левая часть кратна $p$, число слагаемых, равных единице, делится на $p$. Но $|x^G| = 1 \lra x \in Z(G)$ и $e \in Z(G)$, значит, $|Z(G)| \ge p$.
+\end{proof}
+
+\begin{example}
+	Не все $p$-группы являются абелевыми. Рассмотрим, например, $G = \{A = (a_{ij}) \hm\in \GL_3(\Z_p): \forall i \in \{1, 2, 3\}: a_{ii} = 1, \forall i, j \hm\in \{1, 2, 3\}, j < i: a_{ij} = 0\} \le \GL_3(\Z_p)$. Тогда $|G| = p^3$, и легко показать, что в $G$ есть некоммутирующие элементы.
+	
+	С другой стороны, если $G$ "--- такая конечная группа, что $|G| = p$, то $\forall g \in G \bs \{e\}: \ord{g} \hm= p$ по теореме Лагранжа, тогда $G$ "--- циклическая и потому абелева.
+\end{example}
+
+\begin{theorem}
+	Пусть $G$ "--- неабелева группа. Тогда $G / Z(G)$ не является циклической.
+\end{theorem}
+
+\begin{proof}
+	По условию, $Z(G) \ne G$, и, как уже было показано, $Z(G) \normal G$. Предположим, что $G / Z(G) = \gl aZ(G)\gr$ для некоторого $a \in G$. Пусть $g_1, g_2 \in G$, тогда $g_1Z(G) = a^{n_1}Z(G)$ и $g_2Z(G) \hm= a^{n_2}Z(G)$ в силу нормальности $Z(G)$, поэтому $g_1 = a^{n_1}z_1$ и $g_2 \hm= a^{n_2}z_2$, $z_1, z_2 \in Z(G)$. Тогда $g_1g_2 = a^{n_1}z_1a^{n_2}z_2 = a^{n_2}z_2a^{n_1}z_1 = g_2g_1$, и, в силу произвольности $g_1, g_2$, $G$ "--- абелева, но это неверно.
+\end{proof}
+
+\begin{corollary}
+	Пусть $G$ "--- такая конечная группа, что $|G|$ = $p^2$. Тогда $G$ "--- абелева.
+\end{corollary}
+
+\begin{proof}
+	Предположим, что $G$ не является абелевой, то есть $Z(G) \ne G$, тогда $|Z(G)| \hm= p$, поскольку центр нетривиален. Но тогда $|G / Z(G)| = p$ и группа $G / Z(G)$ "--- циклическая, следовательно, $G$ является абелевой --- противоречие.
+\end{proof}
+
+\begin{example}
+	Пусть $G$ "--- группа, $\Omega$ "--- множество всех подгрупп в $G$. Тогда $G$ действует на $\Omega$ сопряжениями: $\forall H \in \Omega: \forall g \in G: g(H) \hm= H^{g^{-1}} \hm= gHg^{-1}$. Орбита $H$ "--- это все подгруппы, сопряженные с $H$. $\St(H) \hm= \{g \in G: gHg^{-1} = H\}$. Группа $\St(H)$ называется \textit{нормализатором} $H$ и обозначается как $N(H)$. $N(H)$ "--- это наибольшая по включению подгруппа $N \le G$ такая, что $H \normal N$.
+\end{example}

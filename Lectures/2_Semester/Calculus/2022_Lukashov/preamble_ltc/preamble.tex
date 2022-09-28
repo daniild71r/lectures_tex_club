@@ -37,11 +37,12 @@
 \DeclareMathOperator{\cl}{cl}
 \DeclareMathOperator{\Deg}{deg}
 \DeclareMathOperator{\grad}{grad}
-\DeclareMathOperator{\upjm}{\mu^*_\mathfrak{j}}
-\DeclareMathOperator{\downjm}{\mu^\mathfrak{j}_*}
-\DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{j})}}
-\DeclareMathOperator{\downjlm}{\mu^{(\mathfrak{j})}_*}
-\DeclareMathOperator{\jlm}{\mu_{(\mathfrak{j})}}
+\DeclareMathOperator{\upjm}{\mu^*_\mathfrak{J}}
+\DeclareMathOperator{\downjm}{\mu^\mathfrak{J}_*}
+\DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{J})}}
+\DeclareMathOperator{\downjlm}{\mu^{(\mathfrak{J})}_*}
+\DeclareMathOperator{\jlm}{\mu_{(\mathfrak{J})}}
+\DeclareMathOperator{\jm}{\mu_\gJ}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -52,6 +53,7 @@
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\goth}{\mathfrak}
 \newcommand{\gj}{\goth{j}}
+\newcommand{\gJ}{\goth{J}}
 \newcommand{\mc}{\mathring}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\veps}{\epsilon}
@@ -64,7 +66,8 @@
 \newcommand{\prodl}{\prod\limits}
 \newcommand{\bcupl}{\bigcup\limits}
 \newcommand{\bcapl}{\bigcap\limits}
-\newcommand{\bsqcupl}{\bigsqcup\limits}
+\newcommand{\bscup}{\bigsqcup}
+\newcommand{\bscupl}{\bigsqcup\limits}
 \newcommand{\such}{\ \big|\ }
 \newcommand{\range}[1]{\{1, \ldots, #1\}}
 \newcommand{\row}[2]{\sum_{#1}^\infty #2}
@@ -84,8 +87,14 @@
 \newcommand{\trbr}[1]{
 	\left\langle#1\right\rangle
 }
-\newcommand{\pd}[2] {
+\newcommand{\pd}[2]{
 	\frac{\vdelta #1}{\vdelta #2}
+}
+\newcommand{\ps}[1]{
+	\left(#1\right)
+}
+\newcommand{\mo}[1]{
+	\left|#1\right|
 }
 
 \renewcommand\labelitemi{$\triangleright$}
@@ -99,6 +108,8 @@
 \let\La\Leftarrow
 \let\emb\hookrightarrow
 \let\tr\triangle
+\let\Lora\Longrightarrow
+\let\Lola\Longleftarrow
 
 \newcommand{\dse}{\displaystyle}
 
