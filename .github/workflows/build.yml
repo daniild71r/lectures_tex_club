@@ -29,6 +29,7 @@ jobs:
     needs: prepare
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         course: ${{ fromJson(needs.prepare.outputs.matrix) }}
     steps:
