@@ -59,62 +59,18 @@
     f(m, n)\defeq \dfrac{(m + n - 1)(m + n - 2)}{2} + m
 \end{gather}
 По построению $ f $ является биекцией.
-\begin{note}
-    \begin{gather}
-        \Z  \left\{m - n \sconstr m, n \in \N \right\} \\
-        \Q \defeq \left\{ \frac{m}{n} \sconstr m \in\, \Z, n \in \N \right\} \\
-        \I \defeq \R \backslash \Q
-    \end{gather}
-\end{note}
+
 \begin{proposition}
     Пусть $ f : X \to Y $ -- инъекция. Обозначим $ \Z\defeq \{f(x) | x \in X\}$. Тогда $ f: X \to \Z $ -- биекция
 \end{proposition}
+
 \begin{proposition}
-    \begin{enumerate}
-        \item $ \Q $ -- счётно.
-        \begin{proof}
-            \begin{gather}
-                \forall r \in \Q_+ \exists\, \text{ несократимая дробь } \frac{p}{q} \\ 
-                f: r \to (p, q) \text{ -- инъекция } \implies \Q_ + \text{ равномощно некоторому множеству  } \N^2, \\
-                Q_ + \text{ -- бесконечно } \Rightarrow \Q_ +  \text{счётно} \text{ (как бесконечное подмножество счётного множества) }
-            \end{gather}
-        \end{proof}
-    \end{enumerate}
-\end{proposition}
-\begin{proposition}
-    Множество $ \R $ несчетно.
-\end{proposition} \begin{proof}
-    От противного. Пусть $ \exists  $ биекция $ f: \N \to \R $
-    По теореме Кантора о вложенных отрезках \begin{gather}
-        \exists c \in \R: \ c \in \cap_{n = 1}^ \infty[a_n, b_n] \implies \exists\, k \in\, \N: c = f(k)
-    \end{gather}
-    Но $ f(k) \nexists [a_n, b_k] \implies c \ni \cap_{n  = 1}^ \infty [a_n, b_n] $
-    Пусть $ a_1 < b_1 $ и $ f(1) \ni [a_1, b_1] $
-    Пусть $ [a_1, b_1] > [a_2, b_2] > \dots > [a_n, b_n] $ и \[\begin{cases}
-        f(k) \ni [a_k, b_k] \\
-        a_k < b_k
-    \end{cases} \implies \exists a_{n + 1} \]
-\end{proof}
-\begin{definition}
-    Последовательность $ (x_k) $ называется подпоследовательности последовательности $ (y_n) $,
-    если $ \exists  $ строго возрастающая последовательность $ (n_k) $ натуральных чисел такой, что $ x_k = y_{n_k} $
-\end{definition}
-\begin{example}
-    $ y_n = \dfrac{( - 1)^ n}{n}, x_k = \frac{1}{2k} $ -- последовательность $ (y_n) $
-\end{example}
-\begin{proposition}
-    Если последовательность $ (x_n) $ имеет предел $ A \in  \overline{ \R} $, то $ \forall $ подпоследовательности $ (x_{n_k}) $ выполнено $ \lim_{k \to  \infty} x_{n_k} = A $.
+    $ \Q $ -- счётно.
 \end{proposition}
 \begin{proof}
-   TODO 
-\end{proof}
-\begin{theorem}[Больцано - Вейерштасса]
-    Если $ (x_n) $ ограничена, то $ \exists  $ подпоследовательность $ (x_{n_k}) $ имеется конечный предел.
-\end{theorem}
-\begin{proof}
-    \begin{gather}
-        b_k - a_k = 2^{ - k}(b - a)
-    \end{gather}
-    По теореме Кантора $ \exists ! c \in \cap_{n = 1}^\infty [a_n, b_n] $. Выберем $ n: x_{n_1}  \in [a_1, b_1], \dots , n_k : x_{n_k} \in [a_k, b_k]$, причём $ n_k < n_{k + 1} \forall k $.
-    Тогда $ \sconstr x_{n_k} - c \sconstr \leq  2^{ - k}(b - a) \to  0 \implies  x_{n_k} \to c $
+    \begin{gather*}
+        \forall r \in \Q_+ \exists\, \text{ несократимая дробь } \frac{p}{q} \\ 
+        f: r \to (p, q) \text{ -- инъекция } \implies \Q_ + \text{ равномощно некоторому множеству  } \N^2, \\
+        Q_ + \text{ -- бесконечно } \Rightarrow \Q_ +  \text{счётно} \text{ (как бесконечное подмножество счётного множества) }
+    \end{gather*}
 \end{proof}

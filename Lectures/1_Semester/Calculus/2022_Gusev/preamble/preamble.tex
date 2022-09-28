@@ -121,7 +121,7 @@
 %\setcounter{section}{-1}         % Нумерация секций с нуля
 \usepackage{multicol}			  % Для текста в нескольких колонках
 \usepackage{soulutf8}             % Модификаторы начертания
-\mathtoolsset{showonlyrefs=true} % показывать номера формул только у тех, у которых есть ссылки по eqref
+\mathtoolsset{showonlyrefs=false} % показывать номера формул только у тех, у которых есть ссылки по eqref
 %%% Содержаниие
 \usepackage{tocloft}
 \tocloftpagestyle{main}
@@ -206,3 +206,17 @@
 \newcommand{\limpinf}{\lim_{n\to+\infty}}
 
 \DeclareMathOperator{\sep}{sep}
+
+\newcommand{\iffproofR}[2]{\phantom{}
+	\begin{itemize}
+		\item[$\Rightarrow$] #1
+		\item[$\Leftarrow$] #2
+	\end{itemize}
+}
+
+\newcommand{\iffproofL}[2]{\phantom{}
+	\begin{itemize}
+		\item[$\Leftarrow$] #1
+		\item[$\Rightarrow$] #2
+	\end{itemize}
+}
