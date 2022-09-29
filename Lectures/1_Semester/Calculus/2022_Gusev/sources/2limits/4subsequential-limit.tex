@@ -101,3 +101,79 @@
 \begin{proof}
     Пусть $x \in \RR$. Рассуждение аналогичное 
 \end{proof}
+
+\begin{theorem}
+    $ \forall A \subseteq B\ \sup A \le \sup B$
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \forall b \in B\ b \le \sup B \thus
+        \forall b \in A\ b \le \sup B \thus \\
+        \thus \sup B \text{ -- верхняя грань множества } A \thus
+        \sup A \le \sup B
+    \end{multline*}
+\end{proof}
+
+\begin{theorem}
+    \begin{gather*}
+        \varliminf_{n \to +\infty} x_n = \limpinf \inf_{m \ge n} x_m \\
+        \varliminf_{n \to +\infty} x_n = \limpinf \sup_{m \ge n} x_m
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    $$
+    \begin{multline*}
+        A_{n + 1} \subsetneq A_n \thus
+        \sup A_{n + 1} \le \sup A_n \thus
+        \left(\sup_{m \ge n} x_m\right)_n \text{ монотонно убывает} \thus \\
+        \thus \exists a = \limpinf \sup_{m \ge n} x_m \in \RR \thus
+        \forall \varepsilon > 0\ \exists N\ \forall n > N\ \sup_{m \ge n} x_m \in U_\varepsilon(a) \thus \\
+        \thus \forall \varepsilon > 0\ \exists N\ \forall n > N\ \exists m \ge n\ x_m \in U_\varepsilon(a) \thus
+        \forall \varepsilon > 0\ \forall n\ \exists m \ge n\ x_m \in U_\varepsilon(a) \thus \\
+        \thus \forall \varepsilon > 0 \text{ в $U_\varepsilon(a)$ находится бесконечно много элементов $x_n$} \thus \\
+        \thus a \text{ -- частичный предел}
+    \end{multline*}
+    Пусть $b$ -- другой частичный предел $(x_n)$, тогда
+    \begin{multline*}
+        \exists (x_{n_k}) : \lim_{k \to +\infty} x_{n_k} = b \\
+        \limpinf
+        \begin{rcases}
+        \end{rcases} \thus b \le a \thus a = \sup(множества частичных пределов) \thus \varlimsup_{n\to\infty} x_n = a
+    \end{multline*}
+\end{proof}
+
+\df{Фундаментальная последовательность}{последовательность, для которой выполняется
+\[ \forall \varepsilon > 0\ \exists N \in \N\ \forall n, m > N\ \abs{x_n - x_m} < \varepsilon. \]
+}
+Эквивалетная формулировка:
+\[ \forall \varepsilon > 0\ \exists N \in \N\ \forall n > N, p > 0 \ \abs{x_n - x_{n + p}} < \varepsilon \]
+
+\begin{theorem}[Критерий Коши]
+    Последовательность сходится согда она фундаментальна.    
+\end{theorem}
+\begin{proof}\iffproofR{
+    \begin{multline*}
+        \limpinf x_n = a \thus \forall \varepsilon > 0\ \exists N\ \forall n > N\ \abs{x_n - a} < \frac{\varepsilon}{2} \thus \\
+        \thus \forall n, m \in \N\ \abs{x_n - x_m} = \abs{x_n - a - x_m + a} \ge \abs{x_n - a} + \abs{x_m - a} \ge \varepsilon
+    \end{multline*}
+}{
+    \begin{gather*}
+        \begin{multlined}
+            \exists N_1 \in \N\ \forall n, m \ge N\ \abs{x_n - x_m} < 1 \thus
+            \forall n > N_1\ \abs{x_N - x_n} < 1 \thus \\
+            \thus \forall n > N_1\ \abs{x_n} < \abs{1} + \abs{x_{N_1}} \thus
+            \forall n \abs{x_n} \le \max((x_k)_{k = 1}^{N_1 - 1}, \abs{1} + \abs{x_{N_1}}) \thus \\
+            \thus (x_n) \text{ -- ограничена} \thus
+            \text{(по \ref{ExistsLimitSubseq}) }\exists (x_{n_k}) : \lim_{k \to +\infty}(x_{n_k}) = a
+        \end{multlined}\\
+        \begin{multlined}
+            \begin{rcases}
+                \forall \varepsilon > 0\ \exists M : \forall k > M\ \abs{x_{n_k} - a} < \frac{\varepsilon}{2} \\
+                n_k \ge k \thus \forall \varepsilon > 0\ \exists N : \forall k > N\ \abs{x_k - x_{n_k}} < \frac{\varepsilon}{2}
+            \end{rcases} \thus \\
+            \thus \forall k > \max(M, N)\ \abs{x_n - a} = \abs{x_k - x_{n_k} + x_{n_k} - a} \le \abs{x_k - x_{n_k}} + \abs{x_{n_k} - a} < \varepsilon \thus \\
+            \thus \forall \varepsilon > 0\ \exists N' : \forall n > N'\ \abs{x_n - a} < \varepsilon \thus \limpinf x_n = a
+        \end{multlined}
+    \end{gather*}
+}
+\end{proof}
