@@ -1,0 +1,136 @@
+\begin{note}
+	До сего момента мы говорили лишь об уравнениях вида $F(\vv{x}, y) = 0$. Но что делать, если мы захотим разобраться в такой системе:
+	\[
+		\System{
+			&{F_1(\vv{x}, \vv{y}) = 0}
+			\\
+			&{\vdots}
+			\\
+			&{F_m(\vv{x}, \vv{y}) = 0}
+		};
+		\ \ \vv{x} \in \R^n,\ \vv{y} \in \R^m
+	\]
+\end{note}
+
+\begin{definition}
+	\textit{Якобианом отображения} $\vv{F} \colon D \to \R,\ D \subset \R^{n + m}$ по переменным $\vv{y} \in \R^m$ в точке $(\vv{x}_0, \vv{y}_0) \in D$ называется следующий определитель:
+	\[
+		\frac{D(F_1, \ldots, F_m)}{D(y_1, \ldots, y_m)} = \pd{(F_1, \ldots, F_m)}{(y_1, \ldots, y_m)} = \Det{
+			&{\pd{F_1}{y_1}} & &\cdots &{\pd{F_1}{y_m}}
+			\\
+			&{\vdots} & &\ddots &\vdots
+			\\
+			&{\pd{F_m}{y_1}} & &\cdots &{\pd{F_m}{y_m}} 
+		}
+	\]
+	где все производные существуют и взяты в точке $(\vv{x}_0, \vv{y}_0)$.
+\end{definition}
+
+\begin{note}
+	Так как определитель можно записать в виде многочлена, то якобианом также можно называть этот многочлен с частными производными.
+\end{note}
+
+\begin{theorem} (О неявных функциях, заданных системой уравнений)
+	Если выполнены следующие требования:
+	\begin{enumerate}
+		\item $\forall i \in \range{m}\ F_i \colon D \to \R,\ D \subset \R^{n + m}$ - дифференцируемые функции в некоторой окрестности точки $(\vv{x}_0, \vv{y}_0) \in \R^{n + m}$
+		
+		\item $\forall i, j \in \range{m}\ \pd{F_i}{y_j}$ - непрерывные частные производные в этой же окрестности
+		
+		\item $\forall i \in \range{m}\ F_i(\vv{x}_0, \vv{y}_0) = 0$
+		
+		\item $\pd{(F_1, \ldots, F_m)}{(y_1, \ldots, y_m)}(\vv{x}_0, \vv{y}_0) \neq 0$
+	\end{enumerate}
+	Тогда, для достаточно малых $\eps_1, \ldots, \eps_m > 0$ существует $\delta > 0$ такая, что в кубе $K_{\delta, \vv{x}_0}$ единственным образом найдутся дифференцируемые в $\vv{x}_0$ функции $y_i = \phi_i(\vv{x})$, удовлетворяющие следующему условию:
+	\begin{multline*}
+		\forall (\vv{x}, \vv{y}) \in K_{\delta, \vv{x}_0} \times \prod_{j = 1}^m (y_{j, 0} - \eps_j; y_{j, 0} + \eps_j)
+		\\
+		\big(\forall t \in \range{m}\ F_t(\vv{x}, \vv{y}) = 0\big) \lra \big(\forall t \in \range{m}\ y_t = \phi_t(\vv{x})\big)
+	\end{multline*}
+\end{theorem}
+
+\begin{proof}
+	Проведём индукцию по $m$:
+	\begin{itemize}
+		\item База $m = 1$: просто предыдущая теорема
+		
+		\item Переход $m > 1$: без ограничения общности, потребуем ненулевой главный минор порядка $m - 1$ ненулевым. Действительно, если что, то мы можем перенумеровать функции/аргументы в нужную сторону. Чтобы применить индукцию, введём функции $F'_t \colon \R^{(n + 1) + (m - 1)} \to \R$:
+		\[
+			\forall t \in \range{m - 1}\ \ F'_t(\vv{x}, y_m, y_1, \ldots, y_{m - 1}) = F_t(\vv{x}, y_1, \ldots, y_m)
+		\]
+		Ну а теперь запишем предположение индукции (оно работает, потому что мы просто переставили аргументы):
+		\begin{multline*}
+			\forall_{\text{д.м.}} \eps_1, \ldots, \eps_{m - 1} > 0\ \exists \delta_1 > 0 \such \forall t \in \range{m - 1}
+			\\
+			\exists! \psi_t(\vv{x}, y_m) \such \forall (\vv{x}, y_m, y_1, \ldots, y_{m - 1}) \in K_{\delta_1, (\vv{x}_0, y_{m, 0})} \times \prod_{j = 1}^{m - 1} (y_{j, 0} - \eps_j; y_{j, 0} + \eps_j)
+			\\
+			\big(\forall t \in \range{m - 1}\ \underbrace{F'_t(\vv{x}, y_m, y_1, \ldots, y_{m - 1})}_{F_t(\vv{x}, \vv{y})} = 0\big) \lra \big(\forall t \in \range{m - 1}\ y_t = \psi_t(\vv{x}, y_m)\big)
+		\end{multline*}
+		Рассмотрим функцию $\Phi(\vv{x}, y_m) = F_m(\vv{x}, \psi_1(\vv{x}, y_1), \ldots, \psi_{m - 1}(\vv{x}, y_{m - 1}), y_m)$. Покажем, что она удовлетворяет требованиям теоремы о неявной функции, заданной одним уравнением: уже из индукции и просто свойств дифференцирования мы имеем дифференцируемость $\Phi$, а также и непрерывность частной производной. Нужно проверить, что она не зануляется. Для этого, мы подставим $\psi_t$ в тождества с $F_t(\vv{x}, \vv{y})$ и продифференцируем их по $y_m$:
+		\[
+			\pd{F_t}{y_1} \cdot \pd{\psi_1}{y_m} + \ldots + \pd{F_t}{y_{m - 1}} \cdot \pd{\psi_{m - 1}}{y_m} + \pd{F_t}{y_m} = 0
+		\]
+		Обозначим $\Delta = \pd{(F_1, \ldots, F_m)}{y_1, \ldots, y_m}$, а $\forall i \in \range{m}\ \Delta_i$ --- это алгебраическое дополнение элемента из $m$-го столбца и $i$-й строки. Теперь, сложим все неравенства выше по $t \in \range{m - 1}$, предварительно домножив каждое на $\Delta_t$, и добавим $\Delta_m\pd{\Phi}{y_m}$ с каждой стороны. Это даст нам следующее:
+		\begin{multline*}
+			\Delta_m \pd{\Phi}{y_m} = \pd{\psi_1}{y_m}\underbrace{\ps{\Delta_m \pd{F_m}{y_1} + \sum_{j = 1}^{m - 1} \Delta_j \pd{F_j}{y_1}}}_0 + \ldots + \pd{\psi_{m - 1}}{y_m} \underbrace{\ps{\Delta_m \pd{F_m}{y_{m - 1}} + \sum_{j = 1}^{m - 1} \Delta_j \pd{F_j}{y_{m - 1}}}}_0 +
+			\\
+			\underbrace{\Delta_m \pd{F_m}{y_m} + \sum_{j = 1}^{m - 1} \Delta_j \pd{F_j}{y_m}}_{\Delta}
+		\end{multline*}
+		Выражения в скобках равны нулю, потому что в форме детерминанта будет 2 одинаковых столбца. Отсюда
+		\[
+			\pd{\Phi}{y_m} = \frac{\Delta}{\Delta_m} \neq 0
+		\]
+		Стало быть
+		\[
+			\forall_{\text{д.м.}} \eps_m > 0\ \exists \delta > 0, \exists! \psi_m(\vv{x}) \such \forall \vv{x} \in K_{\delta, \vv{x}_0}\ (\Phi(\vv{x}, y_m) = 0) \lra (y_m = \psi_m(\vv{x}))
+		\]
+		Наконец-то можно определить искомые $\phi_j$:
+		\[
+			\forall j \in \range{m - 1}\ \phi_j(\vv{x}) = \psi_j(\vv{x}, \psi_m(\vv{x}))
+		\]
+		Так как $F_t(\vv{x}, \vv{y}) = 0$ для $t \in \range{m - 1}$ верно при $y_t = \psi_t(\vv{x}, y_m)$, то $y_m$ можно варьировать. В частноти, вместо него можно подставить $\psi_m(\vv{x})$. Таким образом, последняя функция $\phi_m = \psi_m$ и равносильности верны. Осталось показать, почему есть единственность функций (дифференцируемость получается по теореме о сложной функции). Пойдём от противного:
+		\[
+			\forall j \in \range{m}\ \exists \hat{\phi}_j \such (\forall t \in \range{m}\ F_t(\vv{x}, \vv{y}) = 0) \lra (\forall t \in \range{m}\ y_t = \hat{\phi}_j(\vv{x}))
+		\]
+		Но тогда автоматически $y_j = \psi_j(\vv{x}, \hat{\phi}_m(\vv{x}))$. Отсюда и из равенства $\Phi(\vv{x}, y_m) = 0$ мы придём к тому, что $\hat{\phi}_m(\vv{x}) = \phi_m(\vv{x})$. Значит, имеет место единственность.
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Пусть имеются функции $\forall j \in \range{m}\ F_j \colon E \to \R,\ E \subset \R^{n + m}$. Они задают отображение $\vv{F} \colon E \to \R^m$, которое называется \textit{дифференцируемым в $E$}, если для каждого $F_j$ существуют частные производные в каждой точке $E$:
+	\[
+		\forall t \in \range{m}\ \forall (\vv{x}, \vv{y}) \in \R^{n + m}, i \in \range{n}, j \in \range{m}\ \ps{\exists \pd{F_t}{x_i}(\vv{x}, \vv{y}) \wedge \exists \pd{F_t}{y_j}(\vv{x}, \vv{y})}
+	\]
+\end{definition}
+
+\begin{definition}
+	Если к предыдущему определению добавить непрерывность частных производных, то $\vv{F}$ будет \textit{непрерывно дифференцируема}.
+\end{definition}
+
+\begin{theorem} (О локальной обратимости отображения)
+	Если $\vv{\phi} \colon D \to \R,\ D \subset \R^n$ --- непрерывно дифференцируемая функция в окрестности точки $\vv{x}_0 \in D$ и $\pd{(\phi_1, \ldots, \phi_n)}{x_1, \ldots, x_n} \neq 0$ в этой же точке, то в некоторой окрестности $\vv{y}_0 = \vv{\phi}(\vv{x}_0)$ существует обратное отображение $\vv{\psi} = \vv{\phi}^{-1}$, дифференцируемое в этой окрестности
+\end{theorem}
+
+\begin{proof}
+	Положим $F_j$ для предыдущей теоремы следующим образом:
+	\[
+		\forall j \in \range{n}\ F_j(\vv{x}, \vv{y}) = \phi_j(\vv{x}) - y
+	\]
+	Тогда автоматически $\pd{(F_1, \ldots, F_n)}{x_1, \ldots, x_n} = \pd{(\phi_1, \ldots, \phi_n)}{x_1, \ldots, x_n} \neq 0$. Значит, применима предыдущая теорема, и в какой-то окрестности
+	\begin{multline*}
+		\forall i \in \range{n}\ \exists! x_i = \psi_i(y_1, \ldots, y_n) \such (\forall j \in \range{n} F_j(\vv{x}, \vv{y}) = 0) \lra
+		\\
+		(\forall j \in \range{n}\ x_j = \psi_j(\vv{y}))
+	\end{multline*}
+	Что и устанавливает обратное отображение.
+\end{proof}
+
+\begin{note}
+	Для того, чтобы продифференцировать функции, построенные в предыдущих теоремах, достаточно продифференцировать тождества, получаемые при их подстановке в соответствующие равенства.
+	
+	Если $\vv{y} = \vv{\phi}(\vv{x})$ и $\vv{x} = \vv{\psi}(\vv{y})$, то $\vv{y} = \vv{\phi}(\vv{\psi}(\vv{y}))$. Если пристально посмотреть на частные производные каждой координаты, то заметим следующее равенство:
+	\[
+		E = \Matrix{\grad \phi_1 \\ \cdots \\ \grad \phi_n}^{\square} \cdot \Matrix{\grad \psi_1 \\ \cdots \\ \grad \psi_n}^{\square}
+	\]
+	где каждый градиент первой матрицы --- это строчка из всех частных производных соответствующей функции по $x_i$. У второй матрицы --- это частные производные по $y_j$. Ячейка $(i, j)$ в единичной матрице символизирует производную $y_i$ по $y_j$.
+\end{note}

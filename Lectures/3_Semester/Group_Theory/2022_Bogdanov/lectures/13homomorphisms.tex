@@ -150,7 +150,7 @@
 \begin{theorem}[Основная теорема о гомоморфизме]~
 	\begin{enumerate}
 		\item Пусть $G$ "--- группа, $K \normal G$. Тогда $\exists \pi: G \to G / K$ "--- эпиморфизм такой, что $\ke\pi \hm= K$.
-		\item Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $\im \phi \cong G / K$.
+		\item Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $\im \phi \cong G / \ke \phi$.
 	\end{enumerate}
 \end{theorem}
 
@@ -159,7 +159,7 @@
 	\[
 	\begin{tikzcd}[row sep = huge]
 		G \arrow{rr}{\phi} \arrow[swap]{dr}{\pi} && \im \phi \le H \arrow[dashrightarrow, swap, xshift = -4pt]{dl}{\psi}\\
-		& G / K \arrow[dashrightarrow, swap, xshift = 4pt]{ur}{\Theta} &
+		& G / \ke \phi \arrow[dashrightarrow, swap, xshift = 4pt]{ur}{\Theta} &
 	\end{tikzcd}
 	\]
 	\begin{enumerate}
@@ -172,20 +172,20 @@
 			\ke \pi = \{g \in G \colon \pi(g) = gK = K\} = K
 		\]
 		
-		\item Итак, нам нужно построить $\psi \colon \im \phi \to G / K$ - изоморфизм. Как его сделать, снова интуитивно понятно:
+		\item Обозначим $K_\phi := \ke \phi \normal G$. Тогда, нам нужно построить $\psi \colon \im \phi \to G / K_\phi$ - изоморфизм. Мы уже доказали, что такое прообраз элемента из образа $G$, а потому логично рассмотреть такую $\psi$:
 		\[
-			\forall g \in G \quad \psi(\ol{g}) = gK
+			\forall g \in G \quad \psi(\ol{g}) = gK_\phi
 		\]
 		Проверим, что полученная функция задаёт изоморфизм:
 		\begin{itemize}
 			\item (Гомоморфизм)
 			\[
-				\forall \ol{g_1}, \ol{g_2} \in \im \phi \quad \psi(\ol{g_1} \cdot \ol{g_2}) = \psi(\ol{g_1 g_2}) = g_1 g_2 K = (g_1 K)(g_2 K) = \psi(\ol{g_1}) \psi(\ol{g_2})
+				\forall \ol{g_1}, \ol{g_2} \in \im \phi \quad \psi(\ol{g_1} \cdot \ol{g_2}) = \psi(\ol{g_1 g_2}) = g_1 g_2 K_\phi = (g_1 K_\phi)(g_2 K_\phi) = \psi(\ol{g_1}) \psi(\ol{g_2})
 			\]
 			
 			\item (Сюръективность)
 			\[
-				\forall gK \in G / K \quad \psi(\ol{g}) = gK
+				\forall gK_\phi \in G / K_\phi \quad \psi(\ol{g}) = gK_\phi
 			\]
 			
 			\item (Инъективность) Как уже известно, достаточно проверить тривиальность ядра:
@@ -251,14 +251,18 @@
 		\[
 			\ol{H} = H / K \le G / K = \ol{G}
 		\]
-		При этом соответствие $H \mapsto \ol{H}$ - это биекция между между множством подгрупп $H$ и подгрупп в $\ol{G}$.
+		При этом соответствие $H \mapsto \ol{H}$ - это биекция между между множеством подгрупп со свойством как у $H$ и подгрупп в $\ol{G}$.
 		
 		\item При этом $H \normal G \lra \ol{H} \normal \ol{G}$, и в этом случае
 		\[
-			G / H \cong \ol{G} / \ol{H}
+			G / H \cong \ol{G} / \ol{H} = (G / K) / (H / K)
 		\]
 	\end{enumerate}
 \end{theorem}
+
+\begin{note}
+	Шуточно говоря, второе свойство утверждает возможность сократить дробь на $K$.
+\end{note}
 
 \begin{proof}~
 	\begin{enumerate}
