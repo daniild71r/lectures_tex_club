@@ -32,12 +32,14 @@
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\re}{Re}
 
+\newcommand{\UU}{\overset{\circ}{U}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\I}{\mathbb{I}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\imp}[2]{
 	(#1\,\,$\ra$\,\,#2)\,\,
@@ -120,7 +122,7 @@
 %\setcounter{section}{-1}         % Нумерация секций с нуля
 \usepackage{multicol}			  % Для текста в нескольких колонках
 \usepackage{soulutf8}             % Модификаторы начертания
-\mathtoolsset{showonlyrefs=true} % показывать номера формул только у тех, у которых есть ссылки по eqref
+\mathtoolsset{showonlyrefs=false} % показывать номера формул только у тех, у которых есть ссылки по eqref
 %%% Содержаниие
 \usepackage{tocloft}
 \tocloftpagestyle{main}
@@ -160,7 +162,6 @@
 \def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
 \makeatother                      % \eqref* без гиперссылки
 \numberwithin{equation}{subsection}  % Нумерация вида (номер_секции).(номер_уравнения)
-\mathtoolsset{showonlyrefs=false} % Номера только у формул с \eqref{} в тексте.
 
 %%% Графика
 \usepackage{tikz}        % Графический пакет tikz
@@ -206,3 +207,17 @@
 \newcommand{\limpinf}{\lim_{n\to+\infty}}
 
 \DeclareMathOperator{\sep}{sep}
+
+\newcommand{\iffproofR}[2]{\phantom{}
+	\begin{itemize}
+		\item[$\Rightarrow$] #1
+		\item[$\Leftarrow$] #2
+	\end{itemize}
+}
+
+\newcommand{\iffproofL}[2]{\phantom{}
+	\begin{itemize}
+		\item[$\Leftarrow$] #1
+		\item[$\Rightarrow$] #2
+	\end{itemize}
+}
