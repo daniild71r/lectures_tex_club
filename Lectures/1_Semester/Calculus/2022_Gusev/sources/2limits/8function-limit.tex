@@ -53,14 +53,12 @@
 	\end{gather}
 	 $ \Longleftarrow $ Пусть $ x_n \to x_0, n \to \infty $ -- последовательность Гейне.
 	 $ \dots  $ \begin{lemma}
-		
-	 
 	 \begin{gather}
 		\exists r > 0 \exists C > 0 \forall x \in \UU_r(x_0)\cap D |f(x)| \leq\, D
 	\end{gather}
 \end{lemma}
 	\begin{proof}
-		
+		TODO
 	\end{proof}
 	 $ x_n \to  x_0 \implies$ при достаточно больших $ n: x_n \in \UU_r(x_0) \cap D \implies  |f(x_n) \leq  C$
 	 По теореме Больцано-Вейерштрасса $ \exists  $ строго возрастающая последовательность $ n_k \in \N $ и $ \exists  A \in \R $ $ f(x_{n_k}) \to A $ при $ k \to \infty $.
@@ -76,6 +74,7 @@
 \begin{definition}
 	Пусть $ f: D \to \R $ и $ x_0 \in D $. Если $ \exists \lim_{x \to x_0} f(x) = f(x_0)$, то $ f $ называется непрерывной в точке $ x_0 $(по множеству $ D $). Если $ f(x) $ не непрерывна в точке $ x_0 $,  то говорят, что $ f $ разрывна d $ x_0 $( и называют $ x_0 $ точкой разрыва).
 	Если $ f $ непрерывна в $ x_0 \forall  x_0 \in  D $, то говорят, что $ f $ непрерывна на $ D $.
+	Если $ f: D \to \R $ разрывна и $ x_0 \in D$(или $ x_0 \notin D $) и $ \lim_{x \to x_0}f(x) \in \R $(конечный), то такой разрыв называется устранимым
 \end{definition}
 \begin{proposition}
 	 $ x \mapsto \sin x, x \mapsto \cos x, x \mapsto \exp x $ непрерывны.
@@ -86,4 +85,41 @@
 	 $ \forall t \in \R \ |\sin t| \leq  t $.
 \end{lemma} \begin{proof}
 	TODO
+\end{proof}
+\begin{proposition}[Арифметические операции с непрерывными функциями]
+	Пусть $ f, g : \R \to \R$ непрерывна, тогда $ f + g \text{ и } f - g f \circ g $ тоже непрерывна. Если $ g \neq  0 $ на $ \R g(x) \neq  0 \forall  x \in \R $, то $ \dfrac{f}{g}  $ непрерывна на $ \R $, где $ (f \circ g)(x) := f(g(x)) $ -- композиция $ f $ и $ g $.
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{note}
+	 $ f: D \to  \R $ непрерывна в $ x_0 $ $ \Longleftrightarrow  \forall x_n \in D x_n \to x_0$ выполнено $ f(x_n) \to f(x_0)$.
+\end{note}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{theorem}[Теорема Вейерштрасса]
+	Пусть $ f $ непрерывна на $ [a, b] $, тогда $ \exists x_0 \in [a, b]: f(x_0) = \sup f(x), x \in [a, b] $ ( $ \sup $ достигается в точке $ x_0 $)
+\end{theorem} \begin{proof}
+	По теореме о максимизирующей последовательности $ \exists \{y_n\} \in f([a, b]) $:
+	 $ y_n $ нестрого возрастает и $ y_n \to \sup f([a, b]) $ 
+	 \begin{gather}
+		\phantom \implies \forall\, n \exists x_n \in [a, b]: f(x_n) = y_n \\
+		 \implies\, x_n \text{ -- ограничена } \\
+		 \dots 
+	\end{gather}
+	
+\end{proof}
+\begin{note}
+	\begin{gather}
+		(\forall\,A \sub \R f(A): = \{f(x)|x \in A\} \text{ называется образом } A \text{ под действием  } f)
+	 \end{gather}
+\end{note}
+\begin{theorem}[Теорема о промежуточном значении непрерывной функции]
+	Пусть $ f $ непрерывна на $ [a, b] $ и $ f(a)f(b) < 0 $. Тогда $ \exists  x \in [a, b]: f(x) = 0 $.
+\end{theorem} \begin{proof}
+	Будем делить на каждом шаге отрезок пополам и брать отрезок на концах которого функция принимает значения разных знаков. \begin{gather}
+		\exists \text{ последовательность вложенных отрезков } [a_1, b_1] > [a_2, b_2] > \dots\,, \\ \text{такая что } f(a_n)f(b_n) < 0 \text{ и } b_n - a_n = \dfrac{b - a}{2^{n - 1}}\, 
+	\end{gather}
+	
 \end{proof}
