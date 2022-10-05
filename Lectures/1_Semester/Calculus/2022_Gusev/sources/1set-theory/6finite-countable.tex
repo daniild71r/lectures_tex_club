@@ -1,0 +1,76 @@
+\subsection{Конечные и счётные множества}
+\begin{proposition}
+   Отображение $ f: X \to Y $ является биекцией $ \Leftrightarrow f $ является одновременно инъекцией и сюрьекцией 
+\end{proposition}
+\begin{definition}
+    Множества $ X \text{ и } Y $ равномощны $ \Leftrightarrow \exists \text{ биекция } f: X \to Y $ 
+\end{definition}
+\begin{example}
+    $ \N \text{ и } \Z $ равномощны 
+\end{example} \begin{proof}
+    
+\end{proof}
+\begin{definition}
+    Множество $ X $ называется конечным, если $ \exists n \in \N\, X $ равномощно множеству $ \overline{1,n}\defeq \{1, 2, \dots , n\} $
+    В противном случае $ X $ называется бесконечным.
+\end{definition}
+\begin{proposition}
+    Пусть $ m, n \in \N $ тогда $ \overline{1,n} \text{ и } \overline{1,m} $ равномощны $ \Leftrightarrow  m = n$ (доказывается по индукции по $ \min(m, n) $) 
+\end{proposition}
+\begin{proposition}
+    Если $ X $ конечно, то $ \exists ! n \in \N$:
+    $ X $ равномощно $ \overline{1,n} $. Пишут $ |X| = n $
+\end{proposition}
+\begin{proposition}
+    Если $ X $ -- конечное множество и $ Y \sub X $, то $ Y $ -- тоже конечное множество (Достаточно доказать, что если $ Y \sub \overline{1,n} $, то $ Y $ конечно)
+\end{proposition}
+\begin{lemma}
+    Если $ A \sub \N $, то в $ A $ имеется минимальный элемент. Если $ A $ -- ограничено, то есть и максимальный элемент
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+\begin{definition}
+    Если $ X \text{ равномощно } \N $, то оно называется счётным.
+\end{definition}
+\begin{proposition}
+    Если $ X \sub \N $ бесконечно, то $ X $счётно.
+\end{proposition}\begin{proof}
+    Построим биекциию $ f: \N \to X $ \begin{gather}
+        f(1)\defeq \min\left(X\right) \\
+        f(2) \defeq \min\left(X\backslash f(1)\right) \\
+        \dots 
+    \end{gather}
+    Тогда $ f $ -- инъекция
+\end{proof}
+\begin{proposition}
+    Если $ n < m $, то $ f(n) \neq f(m) $, то $ f(m) $ по построению принадлежит множеству, в которое не входит $ f(n) $
+\end{proposition}
+Кроме того, $ f $ -- сюрьекция.
+Пусть $ a \in X $, $ \overline{1,a} $ -- конечно. $ X \cap \overline{1, a} $ -- тоже конечное в силу (утв. 7) TODO $ \implies \exists k \in  \N: |X \cap \overline{1, a}| = k \implies  f(k) = a $
+\begin{proposition}
+    $ \forall \text{ бесконечные подмножества счётного Множества счётны } $
+\end{proposition}
+\begin{proposition}
+    $ \N^2 $ счётно $ \N^2 = \{(m, n)|\ m, n \in \N\} $
+\end{proposition}
+Точка $ (m, n) $ находится на диагонали $ d = m + n - 1 $ \begin{gather}
+    1 + \dots\ + d - 1 = \dfrac{(1 + d - 1)(d - 1)}{2} = \dfrac{d(d - 1)}{2} \\
+    f(m, n)\defeq \dfrac{(m + n - 1)(m + n - 2)}{2} + m
+\end{gather}
+По построению $ f $ является биекцией.
+
+\begin{proposition}
+    Пусть $ f : X \to Y $ -- инъекция. Обозначим $ \Z\defeq \{f(x) | x \in X\}$. Тогда $ f: X \to \Z $ -- биекция
+\end{proposition}
+
+\begin{proposition}
+    $ \Q $ -- счётно.
+\end{proposition}
+\begin{proof}
+    \begin{gather*}
+        \forall r \in \Q_+ \exists\, \text{ несократимая дробь } \frac{p}{q} \\ 
+        f: r \to (p, q) \text{ -- инъекция } \implies \Q_ + \text{ равномощно некоторому множеству  } \N^2, \\
+        Q_ + \text{ -- бесконечно } \Rightarrow \Q_ +  \text{счётно} \text{ (как бесконечное подмножество счётного множества) }
+    \end{gather*}
+\end{proof}

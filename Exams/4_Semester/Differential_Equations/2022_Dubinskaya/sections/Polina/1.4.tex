@@ -1,0 +1,15 @@
+\begin{enumerate}
+    \item $F \brackets{x, y^{(k)}, ..., y^{(n+k)}} = 0$\\
+    \textit{Замена:} $z = y^{(k)}$, сводим к уравнению
+    $F \brackets{x, z, z', ..., z^{(n)}} = 0$
+    \item $F$ явно не зависит от x: $F \brackets{y, y', ..., y^{(n)}} = 0$\\
+    \textit{Замена:} $y$~--- новая независимая переменная, $y' = p = p(y)$ \\
+    $y''_{xx} = (p)' = p' \cdot y' = p'p$
+    \item Обобщенно-однородные уравнения
+    \\
+    Пусть $\exists \ m, k: \forall \ \lambda > 0 \ F \brackets{\lambda x, \lambda^{m}y, \lambda^{m-1} y', ..., \lambda^{m-n}y^{(n)}} = \lambda^k $ $F \brackets{x, y, y', ..., y^{(n)}}$\\
+     \textit{Замена:} $x = e^t, \ y = z(t)e^{mt}$ \\ $y'_{x} = (z' + mt)e^{(m-1)t} \\ y''_{xx} = (z'' + mz' + (m-1)z' + (m-1)mz)e^{(m-2)t} = (z'' + (2m - 1)z' + (m-1)mz)e^{(m-2)t}$
+    \item Однородные уравнения \\
+       Пусть $\exists \  k: \forall \ \lambda > 0 \ F \brackets{x, \lambda y, \lambda  y', ..., \lambda y^{(n)}} = \lambda^k $ $F \brackets{x, y, y', ..., y^{(n)}}$\\
+        \textit{Замена:} $y' = z(x)y, \ y'' = (z(x)y)' = z'y + zy' = z'y + z^2y = y(z+z^2)$
+\end{enumerate}

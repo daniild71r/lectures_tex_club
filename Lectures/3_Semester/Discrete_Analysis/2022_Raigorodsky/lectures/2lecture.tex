@@ -1,0 +1,139 @@
+\subsection{Асимптотика биномиальный коэффициентов}
+
+\begin{lemma}
+	Имеют место следующие 2 утверждения:
+	\begin{enumerate}
+		\item \(C_n^k \le \frac{n^k}{k!}\)
+		
+		\item \(C_n^k = \frac{n^k}{k!} \exp \ps{-\frac{k(k - 1)}{2n} + O(k^3 / n^2)}\)
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	Распишем биномиальный коэффициент, как мы это сделали в доказательстве теоремы:
+	\begin{multline*}
+		C_n^k = \frac{n!}{k! (n - k)!} = \frac{n(n - 1) \ldots (n - (k - 1))}{k!} = \frac{n^k}{k!} \prod_{t = 0}^{k - 1} \ps{1 - \frac{t}{n}} = \frac{n^k}{k!} \exp\ps{\sum_{t = 0}^{k - 1} \ln\ps{1 - \frac{t}{n}}} =
+	\end{multline*}
+	Отсюда уже следует первое неравенство, а для второго надо расписать натуральный логарифм через формулу Тейлора с О-большим:
+	\begin{multline*}
+		C_n^k = \frac{n^k}{k!} \exp\ps{\sum_{t = 0}^{k - 1} \ln\ps{1 - \frac{t}{n}}} = \frac{n^k}{k!} \exp\ps{\sum_{t = 0}^{k - 1} \ps{-\frac{t}{n} + O\ps{\frac{t^2}{n^2}}}} =
+		\\
+		\frac{n^k}{k!} \exp\ps{-\frac{k(k - 1)}{2n} + O\ps{\frac{k^3}{n^2}}}
+	\end{multline*}
+\end{proof}
+
+\begin{corollary}~
+	\begin{itemize}
+		\item Если $k = k(n) = o(\sqrt{n})$, то имеет место эквивалентность:
+		\[
+			C_n^k \sim \frac{n^k}{k!}
+		\]
+		
+		\item Если $k^3 = o(n^2)$, то имеет место другая эквивалентность:
+		\[
+			C_n^k \sim \frac{n^k}{k!} \cdot e^{-\frac{k(k - 1)}{2n}}
+		\]
+	\end{itemize}
+\end{corollary}
+
+\begin{note}
+	На практике очень полезно знать, как ведут себя биномиальные коэффициенты при $k \sim an,\ a \in (0; 1)$. Например, это играет важную роль в кодах, исправляющих ошибки.
+\end{note}
+
+\begin{theorem} (Формула Стирлинга, без доказательства)
+	Для факториала верна следующая эквивалентность:
+	\[
+		n! \sim \sqrt{2\pi n} \ps{\frac{n}{e}}^n
+	\]
+\end{theorem}
+
+\begin{theorem}
+	Если $k = \floor{an}$, где $a \in (0; 1)$, то для биномиальных коэффициентов справедлива следующая эквивалентность:
+	\[
+		C_n^{\floor{an}} \sim (a^{-a}(1 - a)^{-(1 - a)} + o(1))^n
+	\]
+\end{theorem}
+
+\begin{proof}
+	Начнём аккуратно расписывать биномиальный коэффициент через формулу Стирлинга:
+	\begin{multline*}
+		C_n^{\floor{an}} = \frac{n!}{\floor{an}! (n - \floor{an})!} \sim
+		\\
+		\sqrt{2\pi n} \ps{\frac{n}{e}}^n \cdot \frac{1}{\sqrt{2\pi \floor{an}}} \ps{\frac{e}{\floor{an}}}^{\floor{an}} \cdot \frac{1}{\sqrt{2\pi (n - \floor{an})}} \ps{\frac{e}{n - \floor{an}}}^{n - \floor{an}} =
+		\\
+		n^n \underbrace{\frac{\sqrt{2\pi n}}{\sqrt{2\pi \floor{an}} \cdot \sqrt{2\pi (n - \floor{an})}}}_{\Pi(n)} \cdot \frac{1}{(\floor{an})^{\floor{an}}} \cdot \frac{1}{(n - \floor{an})^{n - \floor{an}}}
+	\end{multline*}
+	Если бы могли как-то избавиться от округлений, то можно было бы сократить $n^n$. А что, идея хорошая: давайте распишем округление как $\floor{an} = an - \eps_n,\ \eps_n \in [0; 1)$. Тогда
+	\begin{multline*}
+		C_n^{\floor{an}} \sim n^n \Pi(n) \frac{1}{(an - \eps_n)^{an - \eps_n}} \cdot \frac{1}{(n - an + \eps_n)^{n - an + \eps_n}} =
+		\\
+		\Pi(n) \frac{n^n}{(an)^{an - \eps_n} \cdot (n - an)^{n - an + \eps_n}} \cdot \frac{1}{\ps{1 - \frac{\eps_n}{an}}^{an - \eps_n} \cdot \ps{1 + \frac{\eps_n}{n - an}}^{n - an + \eps_n}} =
+		\\
+		\Pi(n) Q(n) \cdot \frac{n^n}{(an)^{an} (n - an)^{n - an}} = \Pi(n) Q(n) \cdot \ps{a^{-a} (1 - a)^{-(1 - a)}}^n
+	\end{multline*}
+	Остаётся доказать, что 2 коэффициента спереди не вносят вклад в эквивалентность. Для этой цели, вернёмся к исходной формуле и покажем такую равносильность (для простоты записи обозначим $A = a^{-a}(1 - a)^{-(1 - a)}$):
+	\[
+		C_n^{\floor{an}} \sim (A + o(1))^n \Longleftrightarrow \ln C_n^{\floor{an}} \sim n\ln(A)
+	\]
+	\begin{itemize}
+		\item ($\Ra$) Обозначим $o(1) = \delta \to 0$. Тогда
+		\[
+			\ln C_n^{\floor{an}} = n\ln(A + \delta) = n\ln A + n\ln(1 + \delta/A)
+		\]
+		Из условия $\ln(1 + \delta/A)$ тоже стремится к нулю. Стало быть
+		\[
+			\lim_{n \to \infty} \frac{n\ln A + n\ln(1 + \delta / A)}{n \ln A} = 1
+		\]
+		
+		\item ($\La$) Условие означает, что
+		\[
+			\lim_{n \to \infty} \frac{\ln C_n^{\floor{an}}}{n\ln(A)} = 1 \Lra \ln C_n^{\floor{an}} = n\ln(A) + o(1)
+		\]
+		\textcolor{red}{Не придумал}
+	\end{itemize}
+	Значит, нужно проверить такую эквивалентность:
+	\[
+		\ln C_n^{\floor{an}} \sim \ln(\Pi(n)Q(n)A^n) \sim n\ln(A)	
+	\]
+	Действительно, $\ln(\Pi(n)Q(n)A^n) = \ln(\Pi(n)) + \ln(Q(n)) + n\ln(A)$
+	\begin{itemize}
+		\item То, что мы обозначили за $\Pi(n)$, является $O(n)$. Стало быть, $\ln(\Pi(n)) = O(\ln n) = o(n)$
+		
+		\item Аккуратно разберёмся с каждым сомножителем, входящим в $Q(n)$:
+		\[
+			\ln\ps{\frac{1}{(an)^{-\eps_n}}} = \eps_n \ln(an) = o(n); \quad \ln\ps{\frac{1}{(n - an)^{\eps_n}}} = -\eps_n \cdot \ln(n - an) = o(n)
+		\]
+		И другие 2:
+		\[
+			\ps{1 - \frac{\eps_n}{an}}^{\eps_n - an} \xrightarrow{} 1 \cdot e^{-\eps_n} = o(n); \quad \ps{1 - \frac{\eps_n}{n - an}}^{n - an + \eps_n} \xrightarrow{} e^{-\eps_n} \cdot 1 = o(n)
+		\]
+		
+		\item $\ln(A^n) = n\ln(A)$. Тут, думаю, пояснений не надо.
+	\end{itemize}
+	Таким образом
+	\[
+		\lim_{n \to \infty} \frac{\ln(\Pi(n)) + \ln(Q(n)) + n\ln(A)}{n\ln(A)} = 1
+	\]
+\end{proof}
+
+\begin{corollary}
+	Если проделать всё то же самое, но при этом положить $k = n$ и избежать этим округлений, то получится такая формула:
+	\[
+		C_{2n}^n \sim \frac{2^{2n}}{\sqrt{\pi n}}
+	\]
+\end{corollary}
+
+\begin{exercise}
+	Если $k = k(n) \sim an,\ a \in (0; 1)$, то
+	\[
+		C_n^k = (A + o(1))^n
+	\]
+	где $A = a^{-a}(1 - a)^{-(1 - a)}$
+\end{exercise}
+
+\begin{exercise}
+	Если $\sum_{i = 1}^n k_i = n$ и $\forall i \in \range{n}\ \ k_i \sim a_in$, то верна формула
+	\[
+		P(k_1, \ldots, k_s) = (a_1^{-a_1} \muldots a_s^{-a_s} + o(1))^n
+	\]
+\end{exercise}

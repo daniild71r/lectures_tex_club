@@ -1,0 +1,124 @@
+\Def \textit{Нормальной системой дифференциальных уравнений} называется система дифференциальных уравнений первого порядка, разрешённых относительно производной:
+\begin{equation*}
+ \begin{cases}
+   y_1' = f_1(x, y_1, ..., y_n) \\
+   \dots \\
+   y_n' = f_n(x, y_1, ..., y_n)
+ \end{cases}
+\end{equation*}
+где $x$ -- независимая переменная,\\
+$y_1(x), \dots, y_n(x)$ -- неизвестные функции
+
+
+\textbf{Построение фундаментальной системы решений}
+
+$$
+\Vec{x}(t) = \begin{pmatrix}
+x_{1}(t)\\
+\vdots\\
+x_{n}(t)
+\end{pmatrix},\ \ \ 
+A_{n\times n} = (a_{ij}),\ \ \ 
+\Vec{f} = \begin{pmatrix}
+f_{1}(t)\\
+\vdots\\
+f_{n}(t)
+\end{pmatrix} 
+$$
+\begin{equation}
+\dot{\Vec{x}} = A\Vec{x} + \Vec{f}(t)
+\end{equation}
+
+\begin{equation}\label{dotxax}
+\dot{\Vec{x}} = A\Vec{x}
+\end{equation}
+
+\Th Если $\Vec{h_1}, \dots,\Vec{h_n}$ - базис из собственных векторов матрицы $A$, то $\Vec{x_i} = e^{\lambda_it}\Vec{h_i}$ - ФСР для уравнения (\ref{dotxax})
+
+\Proof
+Заметим, что $A(e^{\lambda t}\Vec{h}) = e^{\lambda t} (A\vec{h}) = e^{\lambda t}\lambda \Vec{h} = (e^{\lambda t} \Vec{h})'$, значит собственный вектор является решением (\ref{dotxax}). Их линейная независимость следует из того, что их вронскиан в точке t=0 равен определителю из координатных столбцов этого базиса, а значит не равен нулю.
+\EndProof
+
+\textbf{Замечание.} Если $\lambda - $комплексное собственное значение матрицы $A$, то $\Vec{\lambda}$, и соответствующие им собственные векторы покомпонентно сопряжены. Это позволяет нам перейти в базис, содержащий только действительнозначные функции (экспонента, синус, косинус).
+
+\subsubsection*{Жорданова нормальная форма}
+
+\Def. Пусть $\overline{h_1}$ - собственный вектор матрицы $A$ для собственного значения $\lambda$:
+$$(A - \lambda E) \overline{h_1} = \overline{0}$$
+
+Последовательность $\{\overline{h_i}\}^k_{i=1}$, определяемая соотношением $(A - \lambda E) \overline{h_{i+1}} = \overline{h_i}$, причём
+уравнение $(A - \lambda E) \overline{h} = \overline{h_k}$ не имеет решений, называется \textit{жордановой цепочкой}, а её элементы (кроме $\overline{h_1}$) — \textit{присоединёнными (к $\overline{h_1}$) векторами}.
+
+Матрица следующего вида называется \textit{жордановой клеткой}:
+
+\begin{equation*}
+\begin{pmatrix}
+\lambda & 1 & 0 & \dots & 0\\
+0 & \lambda & 1 & \dots & 0\\
+0 & 0 & \lambda & \dots & 0\\
+\dots & \dots & \dots & \dots & \dots\\
+0 & 0 & 0 & \dots & \lambda
+\end{pmatrix}
+\end{equation*}
+
+Блочно-диагональная матрица, на диагонали которая стоят жордановы клетки, называется \textit{жордановой.}
+
+Пусть $S$ — (числовая) матрица перехода, переводящая $A$ в жорданову матрицу $J$. Соответствующий базис называется жордановым, а произведение $SJS^{-1}$ — \textit{жордановой нормальной формой}.
+
+\Lemma Пусть $S(t)$ — матрица-функция размера $n \times n$, $\overline{x}(t)$ — $n$-мерная вектор-функция,
+тогда
+$$\frac{d}{dt}(S(t) \overline{x}(t)) = \frac{dS}{dt} \overline{x} + S \dot{\overline{x}}$$
+
+\Proof 
+Посчитаем явно:
+\[(S(t) \overline{x}(t))'_i = \left( \sum_{k=1}^n s_{ik}(t) x_k(t) \right)' = \sum_{k=1}^n \dot{s}_{ik}(t) x_k(t) + \sum_{k=1}^n s_{ik}(t) \dot{x}_k(t).\]
+Это и есть требуемое
+\EndProof
+\\
+
+Общее решение однородной системы $\dot{\overline{x}} = A\overline{x}$: Введём $\overline{y}$ следующим образом: $\overline{x} = S\overline{y}$. Заметим, что $\dot{\overline{x}} = A\overline{x}$ можно преобразовать в $S \dot{\overline{y}} = AS\overline{y}$, а затем (в силу невырожденности $S$) в
+$$\dot{\overline{y}} = J\overline{y}$$
+
+(J - ЖНФ)
+
+Полученная система уравнений решается “поблочно”.
+
+Рассмотрим один блок системы уравнений:
+
+\begin{equation*}
+ \begin{cases}
+    \dot{y}_1 = \lambda y_1 + y_2\\
+    \dot{y}_2 = \lambda y_2 + y_3\\
+    \dots\\
+    \dot{y}_{k-1} = \lambda y_{k-1} + y_k\\
+    \dot{y}_k = \lambda y_k
+ \end{cases}
+\end{equation*}
+
+Выполним следующую замену: $y_i = e^{\lambda t} z_i$
+
+\begin{equation*}
+ \begin{cases}
+    \lambda e^{\lambda t} z_i + e^{\lambda t} \dot{z}_i = \lambda e^{\lambda t} z_i +  e^{\lambda t} z_{i+1}\\
+    \dots\\
+    \lambda e^{\lambda t} z_k + e^{\lambda t} \dot{z}_k = \lambda e^{\lambda t} z_k
+ \end{cases}
+\end{equation*}
+
+\begin{equation*}
+ \begin{cases}
+    \dot{z_i} = z_{i+1}\\
+    \dots\\
+    \dot{z_k} = 0
+ \end{cases}
+\end{equation*}
+
+Следовательно,
+$$z_i = \sum_{j=i}^k c_j \frac{t^{j-i}}{(j - i)!}$$
+$$y_i = e^{\lambda t} z_i = e^{\lambda t} \sum_{j=i}^k c_j \frac{t^{j-i}}{(j - i)!}$$
+
+Для векторов из одной жордановой цепочки константы $c_j$ одинаковые.
+
+Объединим все компоненты в вектор и перейдём в исходный базис. Получим общее решение однородной системы $\dot{\overline{x}} = A \overline{x}$:
+
+$$\overline{x} = \sum_{i=1}^n y_i \overline{h}_i$$

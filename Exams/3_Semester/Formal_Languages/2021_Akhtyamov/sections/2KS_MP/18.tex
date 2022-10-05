@@ -1,0 +1,104 @@
+\subsection{18. Совпадение классов КС-языков и языков, распознаваемых МП-автоматами: построение грамматики по автомату.}
+\textbf{Automaton $\Longrightarrow$ Gram}
+
+\Proof Пусть $w \in L \brackets{M}$, $M$ — МП-автомат, для которого выполнено соотношение:
+
+\begin{center}
+    $\forall \brackets{\langle q_1, u, \alpha \rangle \rightarrow \langle q_2, \beta \rangle} \in \Delta : |u| \leqslant 1, |\alpha| + |\beta| = 1$
+\end{center}
+
+Для вывода построим график «длина стека» от префикса $w$:
+
+\begin{center}
+    $\langle q_0, w, \varepsilon \rangle \vdash \langle q, u, \gamma \rangle$
+\end{center}
+
+На графике — точка $\brackets{|\gamma|, |w| - |u|}$.
+
+\drawsomebig{а4.PNG}
+
+Далее зададим грамматику $G = \langle N, \Sigma, P, S \rangle$, где:
+
+\begin{center}
+    $N = S \cup \{ A_{ij} | q_i, q_j \in Q \}$
+    \textit{Под $A_{ij}$ подразумевается то, что выводится на пути между $q_i$ и $q_j$ без изменения стека (нет pop()).}
+    $P$ — объединение следующих множеств:
+    \begin{enumerate}
+        \item $\{ A_{ii} \rightarrow \varepsilon | q_i \in Q \}$
+        \item $\{ S \rightarrow A_{0j} | q_j \in F \}$
+        \item $\{A_{ij} \rightarrow aA_{rs}bA_{tj}\ | \alpha \wedge \beta\}$, где:
+        \begin{enumerate}
+            \item $\alpha$: условие, что $\langle q_i, a, \varepsilon \rangle \rightarrow \langle q_r, A \rangle \in \Delta$;
+            \item $\beta$: условие, что $\langle q_s, b, A \rangle \rightarrow \langle q_t, \varepsilon \rangle \in \Delta$.
+        \end{enumerate}
+    \end{enumerate}
+\end{center}
+
+\drawsomebig{f5.PNG}
+
+Теперь нужно доказать следующую лемму:
+
+\Lemma $A_{ij} \vdash_G w \Longleftrightarrow \langle q_i, w, \varepsilon \rangle \vdash_M \langle q_j, \varepsilon, \varepsilon \rangle$
+
+$\Longrightarrow$ Докажем индукцией по длине вывода в грамматике.
+
+\textbf{База.} Вывод за один шаг. $A_{ij} \rightarrow \varepsilon$. Тогда $i = j$, $w = \varepsilon$, $\langle q_i, \varepsilon, \varepsilon \rangle \vdash \langle q_i, \varepsilon, \varepsilon \rangle$.
+
+\textbf{Переход.} Пусть $A_{ij} \vdash w$ за $k$ шагов. Тогда $A_{ij} \vdash aA_{rs}bA_{tj}$, при этом:
+
+\begin{center}
+    $\langle q_i, a, \varepsilon \rangle \rightarrow \langle a_r, A \rangle$ $\brackets{1}$
+    
+    $\langle q_s, b, A \rangle \rightarrow \langle q_t, \varepsilon \rangle$ $\brackets{3}$
+\end{center}
+
+Слово $w$ имеет вид $aubv$. Тогда, используя предположение индукции, можем получить:
+
+\begin{center}
+    $A_{rs} \vdash u \Longrightarrow \langle q_r, u, \varepsilon \rangle \overset{\brackets{2}}{\vdash} \langle q_s, \varepsilon, \varepsilon \rangle$
+    
+    $A_{tj} \vdash v \Longrightarrow \langle q_t, v, \varepsilon \rangle \overset{\brackets{4}}{\vdash} \langle q_j, \varepsilon, \varepsilon \rangle$
+\end{center}
+
+
+Тогда $\langle q_i, aubv, \varepsilon \rangle \overset{\brackets{1}}{\vdash} \langle q_r, ubv, A \rangle \overset{\brackets{2}}{\vdash} \langle q_s, bv, A \rangle \overset{\brackets{3}}{\vdash} \langle q_t, v, \varepsilon \rangle \overset{\brackets{4}}{\vdash} \langle q_j, \varepsilon, \varepsilon \rangle$.
+
+$\Longleftarrow$ Проведём индукцию по количеству переходов $k$, которые необходимы для того, чтобы $\langle q_i, w, \varepsilon \rangle \vdash \langle q_j, \varepsilon, \varepsilon \rangle$. 
+
+\textbf{База.} $k = 0$. Тогда $\langle q_i, w, \varepsilon \rangle \vdash_0 \langle q_j, \varepsilon, \varepsilon \rangle$, откуда $w = \varepsilon$ и $q_i = q_j$, $A_{ij} = A_{ii}$, так как есть правило $A_{ii} \rightarrow \varepsilon$, то $A_{ii} \vdash \varepsilon$.
+
+\textbf{Переход.} $\langle q_i, w, \varepsilon \rangle \vdash_k \langle q_j, \varepsilon, \varepsilon \rangle$. Так как стек пустой, то:
+
+\begin{center}
+    $\langle q_i, w, \varepsilon \rangle \vdash_1 \langle q_r, u, A \rangle$
+\end{center}
+
+$A$ существует, так как мы либо кладём, либо снимаем со стека. Пусть $q_s \rightarrow q_t$ — это момент, когда $A$ снят со стека. Тогда:
+
+\begin{center}
+    $\langle q_s, v, A \rangle \vdash_1 \langle q_t, x, \varepsilon \rangle \vdash \langle q_j, \varepsilon, \varepsilon \rangle$
+    
+    $\langle q_i, a, \varepsilon \rangle \rightarrow \langle q_r, A \rangle \in \Delta : w = au$
+    
+    $\exists u' : u = u'v$, $\langle q_r, u', \varepsilon \rangle \vdash \langle q_s. \varepsilon, \varepsilon \rangle$
+\end{center}
+
+Пользуясь предположением индукции, получаем:
+
+\begin{center}
+    $A_{rs} \vdash u'$
+    
+    $\langle q_s, b, A \rangle \vdash \langle q_t, \varepsilon \rangle \in \Delta : v = bx$
+    
+    $\langle q_t, x, \varepsilon \rangle \vdash \langle q_j, \varepsilon, \varepsilon \rangle \Longrightarrow A_{tj} \vdash x$
+\end{center}
+
+Так как правило $A_{ij} \rightarrow aA_{rs}bA_{tj} \in P$, то $A_{ij} \vdash aA_{rs}bA_{tj} \vdash au'bx = au'v = au = w$. Предположение доказано.
+
+\underline{Из леммы будет следовать теорема следующим образом:}
+
+\begin{center}
+    $w \in L \brackets{G} \Longleftrightarrow S \vdash w \Longleftrightarrow \exists A_{0j} \brackets{q_j \in F} : S \vdash_1 A_{0j} \vdash w \Longleftrightarrow \text{ (по лемме) } \newline \exists A_{0j} \brackets{q_j \in F} : \langle q_0, w, \varepsilon \rangle \vdash \langle q_j, \varepsilon, \varepsilon \rangle \Longleftrightarrow \exists q_j \in F : \langle q_0, w, \varepsilon \rangle \vdash \langle q_j, \varepsilon, \varepsilon \rangle \Longleftrightarrow w \in L \brackets{M}$
+\end{center}
+
+$\square$

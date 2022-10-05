@@ -1,0 +1,27 @@
+\Th Пусть $G(n, p)$ $-$ случайный граф, $p = c \frac{\ln n}{n}$. \\
+$1.$ Если $c > 1$, то а. п. н. G связен; \\
+$2.$ Если $c < 1$, то а. п. н. G несвязен.
+
+\underline{Доказательство пункта 2}: \\
+\Proof Пусть $X=X(G)$ $-$ количество изолированных вершин в графе G. Тогда
+$$\mathbb{P}(X \geqslant 1)=1 - \mathbb{P}(X \leqslant 0) = 1 - \mathbb{P}(-X \geqslant 0)=1-\mathbb{P}(\mathbb{E}X - X \geqslant \mathbb{E}X) \geqslant 1 - \mathbb{P}(|\mathbb{E} X - X| \geqslant \mathbb{E} X) \geqslant 1 - \frac{\mathbb{D} X}{(\mathbb{E}X)^2}$$
+
+Из линйености мат. ожидания $\mathbb{E} X = \mathbb{E} \sum^n_{i=1} X_i=n(1-p)^{n-1}$, где $X_i$ - изолирована ли i-я вершина. Далее найдём $\mathbb{E}X^2$:
+$$\mathbb{E}X^2 = \mathbb{E} \left( \sum^n_{i=1} X_i \right)^2 = \mathbb{E}X + \sum_{i \neq j}\mathbb{E}(X_i X_j) = \mathbb{E}X + n(n-1)(1-p)^{2n-3}$$
+
+Подставив вероятность, получим
+$$\mathbb{E} X = n(1-p)^{n-1} = n e^{(n-1)\ln(1-p)} = n e^{-(1 + \overline{\overline{o}}(1))n p} = n e^{-(1 + \overline{\overline{o}}(1))c \ln n} = n \frac{1}{n^{c(1 + \overline{\overline{o}}(1))}} \xrightarrow[n \rightarrow{\infty}] {}\infty$$
+
+Тогда можно записать следующее:
+$$\frac{\mathbb{D} X}{(\mathbb{E}X)^2} = \frac{\mathbb{E}X}{(\mathbb{E} X)^2} + \frac{n(n-1)(1-p)^{2n-3}}{(\mathbb{E} X)^2} - \frac{(\mathbb{E} X)^2}{(\mathbb{E} X)^2} \xrightarrow[n \rightarrow{\infty}]{} 0 + \left( \frac{n(n-1)(1-p)^{2n-3}}{n^2(1-p)^{2n-2}} \sim \frac{1}{1-p} \sim 1 \right) - 1 = 0$$
+
+Тогда, подставив это в первую формулу, получим, что а. п. н. в графе будет хотя бы одна изолированная вершина, значит, он будет несвязным. \EndProof
+
+
+\underline{Дополнительные оценки}: \\
+$1.$ Если $c=1$, то вероятность G быть связным равна $\frac{1}{e}$; \\
+$2.$ Если $p=\frac{\ln n + \gamma}{n}$, то вероятность G быть связным стремится к $e^{-e^{-\gamma}}$. 
+
+\textbf{Теорема(о гигантской компоненте):} Пусть $p=\frac{c}{n}$, $c > 0$. \\
+$1.$ Если $c < 1$, то $\exists \beta > 0$, такая что а. п. н. размер каждой компоненты связности  не превосходит $\beta \ln n$; \\
+$2.$ Если $c > 1$, то $\exists \beta > 0 \wedge \exists \gamma \in (0; 1)$, такие что а. п. н. ровно одна компонента связности имеет $\geqslant \gamma n$ вершин, а размер всех остальных не превосходит $\beta \ln n$.

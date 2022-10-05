@@ -1,0 +1,257 @@
+Пусть функции $F(x; y, p)$ и $G(x; y, p)$ дважды непрерывно
+дифференцируемы на $[a, b] \times \R^2$. Рассмотрим функционал
+
+\begin{equation}\label{J_func_isoper}
+J(y) = \int_a^b F(x; y, y') dx,
+\end{equation}
+
+определённый на множестве ($A, B, l$ -- фиксированные числа)
+$$
+M = \left\{ y \in C^1 [a, b] : y(a) = A, y(b) = B, 
+K(y) = \int_a^b G(x; y, y') dx = l \right\}
+$$
+
+Условие $K(y) = l$ называют \textit{условием связи}.
+
+\textbf{Определение.}
+
+Функция $\widehat{y}(x) \in M$ называется называется 
+\textit{слабым локальным минимумом (максимумом)} функционала 
+(\ref{J_func_isoper}), если 
+
+$$
+\exists \varepsilon > 0 : \forall y \in M : 
+\| y - \widehat{y} \|_{C^1 [a, b]} < \varepsilon \ \ 
+J(y) \geqslant J(\widehat{y}) 
+\left( J(y) \leqslant J(\widehat{y}) \right)
+$$
+
+\textbf{Определение.}
+
+\textit{Изопериметрической задачей} называется задача нахождения
+слабого локального экстремума функционала (\ref{J_func_isoper}).
+
+\textbf{Замечание.}
+
+Изопериметрическая задача похожа на задачу поиска
+условного экстремума числовых функций.
+
+Так же, как и для условного экстремума числовых функций,
+определим лагранжиан:
+
+$$
+L(x, y; \lambda) = F(x, y, y') + \lambda G(x, y, y'), \lambda \in \R
+$$
+
+$\lambda$ называется \textit{множителем Лагранжа}.
+
+Также при формулировке необходимого условия потребуем, чтобы 
+
+$$
+\delta K(y, \eta) = \int_a^b \left(
+\frac{\partial G}{\partial y} \eta(x) + 
+\frac{\partial G}{\partial y'} \eta'(x)
+\right) dx \ \ \forall \eta \in \mathring{C}^1 [a, b]
+$$
+\\
+не равнялась тождественному нулю, так как иначе 
+экстремум функционала может равняться $l$, а значит
+условию связи будет удовлетворять только одна функция, и 
+изопериметрическая задача будет несодержательной.
+
+\textbf{Теорема (необходимое условие).}
+
+Пусть дважды непрерывно дифференцируемая функция $\widehat{y}(x) \in M$
+является решением изопериметрической задачи и пусть
+$\delta K (\widehat{y}, \eta) \not \equiv 0$ для всех 
+$\eta \in \mathring{C}^1 [a, b]$.
+Тогда найдётся такое значение $\lambda \in \R$, что на $[a, b]$
+функция $\widehat{y}$ будет удовлетворять уравнению Эйлера
+
+\begin{equation}\label{euler_eq_isoper}
+\frac{\partial L}{\partial y} - \frac{d}{dx} \left(
+\frac{\partial L}{\partial y'} \right) = 0
+\end{equation}
+
+\underline{Доказательство.}
+
+Из условия теоремы следует, что $\exists \eta_0(x) \in \mathring{C}^1 [a, b]$
+такая, что $\delta K [ \widehat{y}, \eta_0(x) ] \neq 0$.
+
+Рассмотрим следующие функции:
+
+$$
+u = \varphi(\alpha, \beta) = 
+J [\widehat{y}(x) + \alpha \eta(x) + \beta \eta_0(x)],
+\alpha, \beta \in \R
+$$
+
+$$
+v = \psi(\alpha, \beta) = 
+K [\widehat{y}(x) + \alpha \eta(x) + \beta \eta_0(x)],
+\alpha, \beta \in \R
+$$
+
+Используя теоремы о непрерывности и дифференцируемости собственных
+интегралов, зависящих от параметра, получаем:
+
+$$
+\varphi(0, 0) = J(\widehat{y}), \ \ 
+\frac{\partial \varphi (0, 0)}{\partial \alpha} = 
+\delta J[ \widehat{y}(x), \eta(x)], \ \ 
+\frac{\partial \varphi (0, 0)}{\partial \beta} = 
+\delta J[ \widehat{y}(x), \eta_0(x)]
+$$
+
+$$
+\psi(0, 0) = K(\widehat{y}), \ \ 
+\frac{\partial \psi (0, 0)}{\partial \alpha} = 
+\delta K[ \widehat{y}(x), \eta(x)], \ \ 
+\frac{\partial \psi (0, 0)}{\partial \beta} = 
+\delta K[ \widehat{y}(x), \eta_0(x)]
+$$
+
+Далее можно расписать все первые вариации подобным образом:
+
+$$
+\delta J [\widehat{y}, \eta(x)] = 
+\int_a^b \left[ 
+\left. \frac{\partial F}{\partial y} \right|_{y = \widehat{y}(x)} \eta(x) +
+\left. \frac{\partial F}{\partial y'} \right|_{y = \widehat{y}(x)} \eta'(x)
+\right] dx
+$$
+
+Покажем, что якобиан
+
+$$
+\frac{\partial (\varphi, \psi)}{\partial (\alpha, \beta)} \equiv 0
+\ \ \forall \eta(x) \in \mathring{C}^1 [a, b]
+$$
+
+Предположим, что $\exists \eta_1(x) \in \mathring{C}^1 [a, b]$ такое, что
+$\frac{\partial (\varphi, \psi)}{\partial (\alpha, \beta)} \neq 0$.
+Это означает, что существует окрестность точки $(0, 0)$,
+в которой система
+
+\begin{equation*}
+\begin{cases}
+u = \varphi(\alpha, \beta) \\
+v = \psi(\alpha, \beta)
+\end{cases}
+\end{equation*}
+
+разрешима относительно $\alpha$ и $\beta$.
+
+Пусть, без ограничения общности, $\widehat{y}$ даёт минимум
+функционала (\ref{J_func_isoper}). Тогда рассмотрим такую систему:
+
+\begin{equation*}
+\begin{cases}
+\varphi(\alpha, \beta) = \varphi(0, 0) - \varepsilon,\  \varepsilon > 0 \\
+\psi(\alpha, \beta) = \psi(0, 0)
+\end{cases}
+\end{equation*}
+
+По доказанному, решение этой системы существует и единственно --
+обозначим его $(\widehat{\alpha}, \widehat{\beta})$. Тогда у нас выполнено
+
+$$
+\varphi(\widehat{\alpha}, \widehat{\beta}) = \varphi(0, 0) - \varepsilon = 
+J(\widehat{y}) - \varepsilon, \ \ 
+\psi(\widehat{\alpha}, \widehat{\beta}) = \psi(0, 0) = 
+K(\widehat{y}) = l
+$$
+
+Это значит, что существует функция 
+($\widehat{y}(x) + \widehat{\alpha} \eta_1(x) + \widehat{\beta} \eta_0(x)$)
+такая, что
+
+$$
+J(\widehat{y}(x) + \widehat{\alpha} \eta_1(x) + \widehat{\beta} \eta_0(x)) =
+J(\widehat{y}) - \varepsilon < J(\widehat{y}), \ \ 
+K(\widehat{y}(x) + \widehat{\alpha} \eta_1(x) + \widehat{\beta} \eta_0(x)) =
+l
+$$
+
+Это противоречит тому, что $\widehat{y}$ даёт слабый локальный минимум.
+Таким образом, мы доказали, что 
+
+$$
+\frac{\partial (\varphi, \psi)}{\partial (\alpha, \beta)} \equiv 0
+\ \ \forall \eta(x) \in \mathring{C}^1 [a, b]
+$$
+
+Распишем этот якобиан:
+
+$$
+\left. \frac{\partial (\varphi, \psi)}{\partial (\alpha, \beta)}
+\right|_{\alpha = \beta = 0} = 
+\begin{vmatrix}
+\delta J(\widehat{y}, \eta) & \delta K(\widehat{y}, \eta) \\
+\delta J(\widehat{y}, \eta_0) & \delta K(\widehat{y}, \eta_0)
+\end{vmatrix}
+\equiv 0 \ \ \forall \eta(x) \in \mathring{C}^1 [a, b]
+$$
+
+Положим $\lambda = -\frac{\delta J(\widehat{y}, \eta_0)}
+{\delta K(\widehat{y}, \eta_0)}$ (здесь мы пользуемся тем, что
+$\delta K(\widehat{y}, \eta_0) \neq 0$). Тогда мы получаем, что
+
+
+$$
+\delta J(\widehat{y}, \eta) + \lambda
+\delta K(\widehat{y}, \eta) \equiv 0\ \ 
+\forall \eta(x) \in \mathring{C}^1 [a, b]
+$$
+
+Расписав первые вариации, получаем:
+
+\begin{multline*}
+\delta J(\widehat{y}, \eta) + \lambda \delta K(\widehat{y}, \eta) = 
+\int_a^b \left. \left( \frac{\partial F}{\partial y} \eta + 
+\frac{\partial F}{\partial y'} \eta' \right) 
+\right|_{y = \widehat{y}} dx + \lambda
+\int_a^b \left. \left( \frac{\partial G}{\partial y} \eta + 
+\frac{\partial G}{\partial y'} \eta' \right) \right|_{y = \widehat{y}} dx =
+\\ =
+\int_a^b \left. \left[
+\left( 
+\frac{\partial F}{\partial y} + \lambda \frac{\partial G}{\partial y}
+\right) \eta(x) + 
+\left( 
+\frac{\partial F}{\partial y'} + \lambda \frac{\partial G}{\partial y'}
+\right) \eta'(x)
+\right] \right|_{y = \widehat{y}} dx = 0
+\end{multline*}
+
+Проинтегрируем слагаемое с $\eta'(x)$ по частям:
+
+$$
+\int_a^b \left( 
+\frac{\partial F}{\partial y'} + \lambda
+\frac{\partial G}{\partial y'}
+\right) d \eta = 
+\underbrace{\left. \left( \frac{\partial F}{\partial y'} + \lambda
+\frac{\partial G}{\partial y'} \right) \eta \right|_a^b}
+_{= 0, \text{ так как } \eta(a) = \eta(b) = 0} - 
+\int_a^b \frac{d}{dx} \left(
+\frac{\partial F}{\partial y'} + \lambda
+\frac{\partial G}{\partial y'}
+\right) \eta dx
+$$
+
+Воспользовавшись тем, что 
+$\frac{\partial L}{\partial y} = \frac{\partial F}{\partial y} + \lambda
+\frac{\partial G}{\partial y}$ и 
+$\frac{\partial L}{\partial y'} = \frac{\partial F}{\partial y'} + \lambda
+\frac{\partial G}{\partial y'}$, получаем:
+
+$$
+\int_a^b \left( \frac{\partial L}{\partial y} - \frac{d}{dx}
+\left( \frac{\partial L}{\partial y'} \right)
+\right) \eta(x) dx = 0 \ \ 
+\forall \eta(x) \in \mathring{C}^1 [a, b]
+$$
+
+Используя основную лемму вариационного исчисления, получаем
+уравнение (\ref{euler_eq_isoper}).

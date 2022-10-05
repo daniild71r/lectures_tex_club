@@ -1,0 +1,21 @@
+\Def $f_n$ сходится равномерно к $f$ ($f_n \rightrightarrows f$) -  $\forall \delta >0 \exists N: \forall n > N \forall x \in E_{\varepsilon} \abs{f_n(x) - f(x)} < \delta$.
+
+\Th \textbf{теорема Егорова}
+
+$\mu(X) < \infty, f_n \convae f$. Тогда $\forall \varepsilon > 0$ $\exists E_{\varepsilon}: \mu(X \backslash E_{\varepsilon}) < \varepsilon$ $f_n \rightrightarrows f$ на $E_{\varepsilon}$
+
+\Proof
+$f_n \convae f$ $\Leftrightarrow$ $\forall m > 0$ $\mu( \cup_{k=n}^{\infty}\{x \in X: |f_k(x) - f(x)| \geqslant \frac{1}{m}) \to 0, n \to \infty$
+
+$\varepsilon > 0$: $\exists n_m$ $\mu(G_m) < \frac{\varepsilon}{2^m}$ ($\varepsilon$ из условия теоремы)
+
+$G_m = \cup_{k=n_m}^{\infty}\{x \in X: |f_k(x) - f(x)| \geqslant \frac{1}{m}\}$; $E_{\varepsilon} = X \backslash (\cup_{m=1}^{\infty} G_m)$ (заметим, что множества не вложены)
+
+$\mu(\cup G_m) \leqslant \sum \mu(G_m) < \sum \frac{\epsilon}{2^m} = \varepsilon$; 1-ое условие выполнено.
+
+Докажем, что на $E_{\varepsilon}$ есть равномерная сходимость:
+
+$x \in \cup G_m$: $\exists m \exists k > n_m$ $\abs{f_k(x) - f(x)} \geqslant \frac{1}{m}$. Тогда отрицание:
+
+$x \in E_{\varepsilon}$ $\forall m \forall k > n_m$ $\abs{f_k(x) - f(x)} < \frac{1}{m}$; верно $\forall m \in \N$, значит, заменим на произвольное положительное число: $\forall \delta > 0 \exists n_m \forall k > n_m$ $\abs{f_k(x) - f(x)} < \delta$; причём заметим, что $n_m$ не зависит от точки х - это и есть равномерная сходимость на $E_{\varepsilon}$
+\EndProof

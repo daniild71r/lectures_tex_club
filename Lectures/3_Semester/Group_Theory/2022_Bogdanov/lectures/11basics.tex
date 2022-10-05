@@ -1,0 +1,207 @@
+\section{Основные понятия теории групп}
+
+\subsection{Повторение изученного}
+
+\begin{definition}
+	\textit{Группой} называется множество $G$ с определенной на нем бинарной операцией $\cdot: G^2 \to G$ такой, что:
+	\begin{enumerate}
+		\item (Ассоциативность) $\forall a, b, c \in G: a(bc) = (ab)c$
+		
+		\item (Существование нейтрального элемента) $\exists e \in G: \forall a \in G: ae = ea = a$
+		
+		\item (Существование обратного элемента) $\forall a \in G: \exists a^{-1} \in G: aa^{-1} = a^{-1}a = e$
+	\end{enumerate}
+\end{definition}
+
+\begin{reminder}
+	Нейтральный элемент в группе единственен, как и обратный элемент к каждому элементу группы.
+\end{reminder}
+
+\begin{definition}
+	\textit{Порядком группы} $G$ называется мощность множества $G$. Обозначение "--- $|G|$.
+\end{definition}
+
+\begin{definition}
+	\textit{Порядком элемента} $a \in G$ называется минимальное число $n \in \mathbb{N}$ такое, что $a^n = e$. Если такого числа не существует, порядок $a$ считается равным $\infty$. Обозначение "--- $\ord{a}$.
+\end{definition}
+
+\begin{definition}
+	Пусть $G$ "--- группа. \textit{Подгруппой} $G$ называется множество $H \subset G, H \hm\ne \emptyset$ такое, что:
+	\begin{enumerate}
+		\item $\forall a, b \in H: ab \in H$
+		
+		\item $\forall a \in H: a^{-1} \in H$
+	\end{enumerate}
+	
+	Иными словами, множество $H$ само является группой с той же операцией. Обозначение "--- $H \le G$.
+\end{definition}
+
+\begin{definition}
+	Группа $G$ называется \textit{абелевой}, если операция в ней коммутативна: $\forall a, b \in G: ab = ba$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров групп:
+	\begin{enumerate}
+		\item $(\Z, +)$, $(\Z_n, +)$
+		
+		\item $(R, +)$, $(R^*, \cdot)$, где $R$ "--- произвольное кольцо
+		
+		\item $(V, +)$, где $V$ "--- произвольное линейное пространство
+		
+		\item $(S_n, \circ)$ "--- \textit{группа перестановок}
+	\end{enumerate}
+	
+	Далее групповая операция в записи группы будет опускаться, если она восстанавливается из контекста.
+\end{example}
+
+\begin{reminder}
+	$\forall \sigma \in S_n:$ $\sigma$ раскладывается в произведение независимых циклов.
+\end{reminder}
+
+\begin{reminder}
+	\textit{Беспорядком} в перестановке $\sigma \in S_n$ называется пара $(i, j) \in \{1, \dotsc, n\}^2 $ такая, что $i < j$, но $\sigma(i) > \sigma(j)$. \textit{Знаком перестановки} $\sigma \in S_n$ называется число $(-1)^{N(\sigma)}$, где $N(\sigma)$ "--- количество беспорядков в $\sigma$. Обозначение "--- $\sgn{\sigma}$.
+\end{reminder}
+
+\begin{reminder}
+	$\forall \sigma, \tau \in S_n: \sgn{(\sigma\tau)} = \sgn{\sigma}\cdot\sgn{\tau}$.
+\end{reminder}
+
+\begin{definition}
+	\textit{Изоморфизмом групп} $G$ и $H$ называется биекция $\phi: G \to H$ такая, что $\forall a, b \in G: \phi(ab) = \phi(a)\phi(b)$. Группы $G$ и $H$ называются \textit{изоморфными}, если существует соответствующий изоморфизм. Обозначение "--- $G \cong H$.
+\end{definition}
+
+\begin{reminder}[Теорема Кэли]
+	$\forall G, |G| = n: \exists H \le S_n: G \cong H$.
+\end{reminder}
+
+\begin{example}
+	Рассмотрим несколько примеров групп и подгрупп в них:
+	\begin{enumerate}
+		\item $\GL_n(\F) = (M_n(\F))^* = \{A \in M_n(\F) \colon \det{A} \ne 0\}$, где $\F$ "--- произвольное поле. $\GL$ означает general linear
+		
+		\item $\SL_n(\F) = \{A \in M_n(\F) \colon \det A = 1\} \le \GL_n(\F)$, где $\F$ "--- произвольное поле. $\SL$ означает special linear
+		
+		\item $\mathcal{O}_n = \{A \in M_n(\R): A^TA = E\} \le \GL_n(\R)$ - группа ортогональных матриц
+		
+		\item $\mathcal{U}_n = \{A \in M_n(\Cm): A^T\ol{A} = E\} \le \GL_n(\Cm)$ - группа унитарных матриц
+		
+		\item $\mathbb{T} = \{z \in \Cm \colon |z| = 1\} \le \Cm^*$
+		
+		\item $\Cm_n = \{z \in \Cm: z^n = 1\} \le \mathbb{T} \le \Cm^*$ - группа комплексного корня $n$-й степени из единицы
+		
+		\item $A_n = \{\sigma \in S_n: \sgn\sigma = 1\} \le S_n$ - подгруппа чётных перестановок
+		
+		\item $\mathcal{O}_2$ символизирует все ортогональные преобразования на плоскости. Среди них есть те, что образуют особенные \textit{подгруппы Диэдра} $D_n \le \mathcal{O}_2$ - это группы самосовмещений правильного $n$-угольника, то есть $\forall \phi \in D_n\ \phi(P_n) = P_n$, если $P_n$ - это множество точек такого $n$-угольника.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $M \subset G$. \textit{Подгруппой, порожденной} $M$, называется наименьшая по включению подгруппа в $G$, содержащая $M$. Обозначение "--- $\gl M\gr$.
+\end{definition}
+
+\begin{reminder}
+	Если $G$ "--- группа, $M \subset G$, то $\langle M\rangle = \{m_1^{\epsilon_1}\dotsm m_k^{\epsilon_k}: m_1, \dotsc, m_k \hm\in M, \epsilon_1, \dotsc, \epsilon_k \in \{\pm1\}\}$
+\end{reminder}
+
+\begin{definition}
+	Группа $G$ называется \textit{циклической}, если $\exists a \hm\in G: \langle a\rangle = G$, то есть $G = \{a^n: n \in \Z\}$.
+\end{definition}
+
+\begin{reminder}
+	Если группа $G$ "--- циклическая, то либо $G \cong \Z$ (если $G$ бесконечна), либо $G \cong \Z_n$ (если $G$ конечна). Более того, если $H \le G$, то $H$ "--- тоже циклическая, причем либо $H \cong n\Z, n \in \N\cup\{0\}$, либо $H \cong k\Z_n, k \in \N, k\mid n$.
+\end{reminder}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $A, B \subset G$. Тогда, определим следующие операции на множествах:
+	\begin{enumerate}
+		\item $AB := \{ab: a \in A, b \in B\}$
+		
+		\item $A = \{a\} \ra aB := AB$
+		
+		\item $A^{-1} := \{a^{-1}: a \in A\}$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Введённые операции совершенно не означают, что мы сделали множество подмножеств само по себе группой. Тем не менее, верна ассоциативность:
+	\[
+		\forall A, B, C \subset G \quad (AB)C = A(BC) = \{abc \colon a \in A, b \in B, c \in C\}
+	\]
+\end{note}
+
+\begin{note}
+	Если $H \le G$, то $HH = H^{-1} = H$
+\end{note}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $H \le G$, $a \in G$. Тогда \textit{левым смежным классом $a$ по подгруппе $H$} называется $aH = \{ah: h \in H\}$, \textit{правым смежным классом $a$ по подгруппе $H$} --- $Ha$. Обозначение множества всех левых смежных классов по $H$ в $G$ "--- $G/H$, правых смежных классов --- $H\bs G$.
+\end{definition}
+
+\begin{proposition}
+	Пусть $G$ "--- группа, $H \le G$, $a, b \in G$. Тогда следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item $aH \cap bH \neq \emptyset$
+		
+		\item $b^{-1}a \in H$
+		
+		\item $aH = bH$
+		
+		\item $a \in bH$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item ($1 \Rightarrow 2$) По условию, $\exists h_1, h_2 \in H: ah_1 = bh_2$, откуда $b^{-1}a \hm= h_2h_1^{-1} \in H$
+		\item ($2 \Rightarrow 3$) Поскольку $H$ "--- группа и $b^{-1}a \in H$, то $(b^{-1}a)H = H$, и, следовательно, $aH = bH$
+		\item ($3 \Rightarrow 4$) Заметим, что $a = ae$, поэтому $a \in aH = bH$
+		\item ($4 \Rightarrow 1$) Поскольку $a = ae$ и $a \in bH$, то $a \in aH \cap bH$, следовательно, $aH \cap bH \ne \emptyset$
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Аналогичное утверждение для правых смежных классов будет верно, если заменить в формулировке второго пункта $b^{-1}a \in H$ на $ab^{-1} \in H$.
+\end{note}
+
+\begin{theorem}[Лагранжа]
+	Пусть $G$ "--- конечная группа, $H \le G$. Тогда верно равенство: 
+	\[
+		|G| = |H| \cdot |G / H| = |H| \cdot |H \bs G|
+	\]
+\end{theorem}
+
+\begin{proof}
+	Если смежные классы пересекаются хотя бы по одному элементу, то они совпадают. Тогда, поскольку $\forall a \in G: a \hm\in aH$, $G$ разбивается на непересекающиеся смежные классы порядка $|H|$, откуда и следует требуемое равенство.
+\end{proof}
+
+\begin{reminder}
+	Из теоремы выше, в частности, следует, что если $G$ "--- конечная группа, то имеет место 3 факта:
+	\begin{enumerate}
+		\item $\forall H \le G \quad |H| \div |G|$
+		
+		\item $\forall a \in G \quad \ord{a} \mid |G|$
+		
+		\item $\forall a \in G \quad a^{|G|} = e$
+	\end{enumerate}
+\end{reminder}
+
+\begin{proposition}
+	Пусть $G$ "--- группа. Тогда $\forall H \le G: |G / H| \hm= |H \bs G|$.
+\end{proposition}
+
+\begin{proof}
+	Сопоставление $aH \mapsto (aH)^{-1} = Ha^{-1}$ является биекцией, поскольку оно обратимо, из чего следует и сюръективность, и инъективность.
+\end{proof}
+
+\begin{definition}
+	Пусть $G$ "--- группа, $H \le G$. \textit{Индексом $H$ в $G$} называется величина $|G / H| = |H \bs G|$. Обозначение "--- $|G : H|$.
+\end{definition}
+
+\begin{exercise}
+	Если $K \le H \le G$, то имеет место равенство
+	\[
+		|G : K| = |G : H| \cdot |H : K|
+	\]
+	при условии, что $|G : H|$ и $|H : K|$ конечны (Оно верно и в общем случае, только надо говорить не о порядках, а о биекциях между множествами).
+\end{exercise}

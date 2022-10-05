@@ -1,0 +1,89 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{cmap}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{indentfirst}
+\usepackage{epigraph}
+\renewcommand{\epigraphsize}{\small}
+% \pagestyle{empty}
+
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\newcommand{\RomanNumeralCaps}[1] {\MakeUppercase{\romannumeral #1}}
+
+\newcommand{\mysection}[2]{\setcounter{section}{#1}\addtocounter{section}{-1}\section{#2}}
+
+% код
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+\, \vcenter{%
+\offinterlineskip
+\hbox{.}
+\vskip0.25\normalbaselineskip
+\hbox{.}
+\vskip0.25\normalbaselineskip
+\hbox{.}%
+}%
+\,
+}
+\usepackage{listings}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{xcolor}
+
+\definecolor{linkcolor}{HTML}{50006b} % цвет ссылок
+%\definecolor{urlcolor}{HTML}{107896} % цвет гиперссылок
+\definecolor{urlcolor}{HTML}{50006b} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{cmyk}{0,0,0,0.05}
+
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codegreen},
+keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2,
+texcl=true
+}
+
+\lstset{extendedchars=\true, style=mystyle}
+
+\usepackage[pages = some]{background}
+\backgroundsetup{
+	scale = 1,
+	angle = 0,
+	opacity = 1,
+	contents = {\includegraphics[height = \paperheight, keepaspectratio]{background.jpg}}}
+
+\newcommand{\Def}{\textbf{Опеределение:} }  % объявление новых макрокоманд
+\newcommand{\Statement}{\textbf{Утверждение:} }
+\newcommand{\Lemma}{\textbf{Лемма:} }
+\newcommand{\Th}{\textbf{Теорема:} }
+\newcommand{\Task}{\textbf{Задача:} }
+\newcommand{\Solution}{\textbf{Решение:} }
+\newcommand{\Example}{\textbf{Пример:} }
+\newcommand{\Note}{\textbf{Замечание:} } 
+\newcommand{\Vars}{\textbf{Введем обозначения:} } 
+\newcommand{\Proof}{$\blacktriangle$ }
+\newcommand{\EndProof}{$\blacksquare$ }
+
+

@@ -1,0 +1,66 @@
+\subsection{Основная информация об алгоритме Эрли}
+
+Пусть $w \in \Sigma^*$ — слово на входе. На вход подаётся контекстно-свободная грамматика $G = \langle N, \Sigma, P, S \rangle$.
+
+\Def Ситуация — объект вида $\brackets{A \rightarrow \alpha \cdot \beta, i}$, где правило $\brackets{A \rightarrow \alpha \beta} \in P$, $\cdot$ — вспомогательный символ, который не принадлежит ни $\Sigma$, ни $N$, $i \in [0; |w|]$.
+
+\Def $D_j$ — множество ситуаций вида $\brackets{A \rightarrow \alpha \cdot \beta, i}$ таких, что $\alpha \vdash w[i : j]$.
+
+\Note Вывод считаем левосторонним: пусть правило $\brackets{A \rightarrow \beta} \in P$, тогда:
+
+\begin{center}
+    $S \vdash \varphi A \psi \vdash_1 \varphi \beta \psi \Longrightarrow \varphi \in \Sigma^*$
+\end{center}
+
+\Note Ситуация $\brackets{A \rightarrow \alpha \cdot \beta, i} \in D_j$ означает, что:
+
+\begin{enumerate}
+    \item $S \vdash w [0 : i]$, где $S$ — стартовый нетерминальный символ;
+    \item $\brackets{A \rightarrow \alpha \beta} \in P$;
+    \item $\alpha \vdash w[i:j]$.
+\end{enumerate}
+
+\textit{Если вдруг с алгоритмом Эрли вы встречаетесь впервые, то представьте, что точка играет роль курсора, слева от которого то, что уже было введено, а справа находится то, что предстоит обработать.}
+
+\Note Для удобства вводится новый стартовый нетерминальный символ $S'$, а также в грамматику $G$ добавляется правило $\brackets{S' \rightarrow S}$. На выводимость слова это не влияет.
+
+\textbf{Операции}
+
+Всего в алгоритме Эрли поддерживаются три операции: \textbf{Scan}, \textbf{Predict}, \textbf{Complete}. \textit{Проще говоря, Scan отвечает за «прочтение» нового символа слова, то есть появляются ситуации, которые соответствуют тому, как префикс слова мог быть выведен, Predict отвечает за генерацию возможных ситуаций при прочтении следующего символа, который является нетерминальным, то есть как бы «предсказывает», по каким правилам слово может быть выведено дальше, Complete отвечает как бы за проверку того, было ли правильным «предсказание» со стороны операции Predict.} Теперь переходим к формальным определениям операций:
+
+\begin{center}
+    Scan: $\begin{cases} \brackets{A \rightarrow \alpha \cdot a \beta, i} \in D_j \\ w[j] = a \end{cases} \Longrightarrow \brackets{A \rightarrow \alpha a \cdot \beta, i} \in D_{j + 1}$
+    
+    Predict: $\begin{cases} \brackets{A \rightarrow \alpha \cdot B \beta, i} \in D_j \\ \brackets{B \rightarrow \gamma} \in P  \end{cases} \Longrightarrow \brackets{B \rightarrow \cdot \gamma, j} \in D_j$
+    
+    Complete: $\begin{cases} \brackets{B \rightarrow \gamma \cdot, k} \in D_j \\ \brackets{A \rightarrow \alpha \cdot B \beta , i} \in D_k \end{cases} \Longrightarrow \brackets{A \rightarrow \alpha B \cdot \beta, i} \in D_j$
+\end{center}
+
+Инициализация: $\brackets{S' \rightarrow \cdot S, 0} \in D_0$. Слово выводимо в грамматике $G$ тогда и только тогда, когда ситуация $\brackets{S' \rightarrow S \cdot, 0} \in D_{|w|}$.
+
+\begin{center}
+\includegraphics[width=0.75\linewidth]{formal18.JPG}
+\end{center}
+
+\newpage
+
+\input{sections/3Parser/22}
+\newpage{}
+
+\input{sections/3Parser/23}
+\newpage{}
+
+\input{sections/3Parser/24}
+\newpage{}
+
+\input{sections/3Parser/25}
+\newpage{}
+
+\input{sections/3Parser/26}
+\newpage{}
+
+\input{sections/3Parser/27}
+\newpage{}
+
+\input{sections/3Parser/28}
+\newpage{}

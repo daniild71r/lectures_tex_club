@@ -1,0 +1,36 @@
+\subsection{Предел и непрерывность множеств}
+
+% \begin{gather}
+	% \U_\varepsilon(a) \defeq U_\varepsilon(a) \setminus \{a\} \\
+	% \lim_{x \to x_0} f(x) = a \defev x_0 \in \RR, a \in \RR \forall \varepsilon > 0\ \exists \delta > 0 : \forall x \in \U_\varepsilon(x_0)\ f(x) \in U_\delta(a)
+% \end{gather}
+
+Определение предела функции по Коши
+
+Проколотая окрестность
++ Замечание
++ Про функцию
+Предел функции по множеству
+
+\df{Последовательность Гейне, сходящая к $x_0$}{последовательность, сходящаяся к $x_0$, элементы которой не равны $x_0$ и принадлежат $D(f)$ для некоторой функции $f$.}
+
+% \begin{theorem}[Определение предела функции по Гейне]
+% 	\[ \lim_{x \to x_0} f(x) = a \;\Leftrightarrow\; \forall (a_n) \text{ -- последовательность Гейне, сходящаяся к $x_0$ } \limpinf f(a_n) = a \]
+% \end{theorem}
+% \begin{proof}
+% \iffproofR{
+% 	Рассмотрим последовательность Гейне $(a_n)$, которая сходится к $x_0$.
+% 	Пусть $\varepsilon > 0$, тогда $\exists \delta > 0 : f(\U_\delta(x_0)) \subseteq U_\varepsilon(a)$. 
+% 	$\forall \delta > 0\ \exists N : \forall n > N a_n \in U_\delta(x_0) \thus f(a_n) \in U_\varepsilon(a) \thus \limpinf f(a_n) = a$.
+% }{
+% 	От противного. $\exists \varepsilon > 0\ \forall \delta > 0\ \exists x \in \U_\delta(x_0) \cap D\ f(x) \notin U_\varepsilon(a) \thus \forall n \in \N\ \exists x_n \in \U_\frac{1}{n}(x_0) \cap D\ f(x) \notin U_\varepsilon(a)$.
+% 	Последовательность $(x_n)$ -- последовательность Гейне, которая сходится к $x_0$, но $\limpinf x_n \ne a$.
+% }
+% \end{proof}
+
+
+\begin{theorem}
+	Если $\fnis{f, g, h} D \mapsto \R$, $x_0 \in \RR$, $\forall \delta > 0\ \UU_\delta(x_0) \cap D \ne \varnothing$, $f(x) \le h(x) \le g(x)$ и $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = a$, то $\lim_{x \to x_0} h(x) = a$.
+\end{theorem}
+
+Пусть $\lim_{y \to A} g(y) = B \in \RR$ и $\lim_{x \to x_0} f(x) = A$, 

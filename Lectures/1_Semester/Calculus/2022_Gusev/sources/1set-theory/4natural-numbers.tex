@@ -24,14 +24,15 @@
         \item $x \in M \thus \forall A \in \mathcal{G} \; x \in A \thus \forall X \in \mathcal{G} \; (x + 1) \in A \thus (x + 1) \in M$
     \end{enumerate}
  \end{proof}
-
- \begin{equation}
-     \begin{gathered}
-        \label{definition_F}
-        \mathcal{F} \defeq \{A \subset \R \sconstr A \text{ -- индуктивно}\} \\
-        \N \defeq \cup \mathcal{F}
-     \end{gathered}
- \end{equation}
+%
+ \begin{gather}
+    \mathcal{F} \defeq \{A \subset \R \sconstr A \text{ -- индуктивно}\}
+    \label{definition_F} \\
+    \N \defeq \cup \mathcal{F} \\
+    \Z \defeq \left\{m - n \sconstr m, n \in \N \right\} \\
+    \Q \defeq \left\{ \frac{m}{n} \sconstr m \in\, \Z, n \in \N \right\} \\
+    \I \defeq \R \setminus \Q
+ \end{gather}
 
 \begin{theorem}
     $\N$ -- индуктивное подмножество $\R$; $\nexists A \subsetneq \N : A \text{ -- индуктивно}$ 

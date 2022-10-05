@@ -1,0 +1,68 @@
+\textbf{Определение.}
+$$
+m(n, r, s) := max \{ k : \exists r \text{-однородный гиперграф на } n \text{ вершинах } :
+|E| = k \text{ и } \forall A, B \in E \ |A \cap B| \neq s \}
+$$
+
+Другая интерпретация:
+
+$m(n, r, s)$ -- максимальное число подмножеств $n$-элементного множества, в каждом из
+которых ровно $r$ элементов и среди которых любые два множества пересекаются не по $s$
+элементам.
+
+\textbf{Явная конструкция для $m(n, 3, 1)$}
+
+Рассмотрим граф $G(n) = (V, E)$, где 
+$V = \{ A \subset \{1, 2, \ldots, n\} : |A| = 3\}$ ($|V| = C_n^3$), а
+
+$E = \{ (A, B)\ :\ |A \cap B| = 1\}$.
+
+Тогда $m(n, 3, 1) = \alpha(G(n))$.
+
+Утверждается, что
+
+\begin{equation*}
+\alpha(G(n)) = 
+\begin{cases}
+n & \text{если } n \equiv 0 \pmod 4\\
+n - 1 & \text{если } n \equiv 1 \pmod 4\\
+n - 2 & \text{иначе}
+\end{cases}
+\end{equation*}
+
+Оставлено в качестве упражнения. 
+Доказательство можно провести индукцией по $n$ (если успею, допишу).
+
+\textbf{Линейно-алгебраическая оценка для $m(n, 3, 1)$}
+
+$$
+m(n, 3, 1) = \alpha(G(n)) \leq n
+$$
+
+\textit{Доказательство.}
+Пусть $W \subset V$ -- независимое множество вершин,
+$W = \{ A_1, \ldots, A_t \}$.
+
+$$
+\forall i\ |A_i| = 3; \forall i \neq j |A_i \cap A_j| \in \{0, 2\}
+$$
+
+Каждому $A_i$ сопоставим вектор $\overline{x_i} = (x^1, \ldots, x^n) \in \mathbb{Z}_2^n$,
+в котором $x^j = 1 \Leftrightarrow j \in A_i$.
+Тогда мощность пересечения $A_i$ и $A_j$ выражается как скалярное произведение $\overline{x_i}$ и $\overline{x_j}$:
+$|A_i \cap A_j| = (\overline{x_i}, \overline{x_j})$.
+
+Докажем, что $\overline{x_1}, \ldots, \overline{x_t}$ 
+линейно независимы над $\mathbb{Z}_2^n$.
+
+Пусть $c_1 \overline{x_1} + \ldots + c_t \overline{x_t} = \overline{0}$. Левую и правую часть равенство скалярно умножим на $x_1$ в $\mathbb{Z}_2^n$:
+
+$$
+    c_1 \underbrace{(\overline{x_1}, \overline{x_1})}_{\equiv 1} + 
+    c_2 \underbrace{(\overline{x_1}, \overline{x_2})}_{\equiv 0} + \ldots +
+    c_t \underbrace{(\overline{x_1}, \overline{x_t})}_{\equiv 0} = 0
+$$
+
+Получается, $c_1 = 0$. Аналогично $c_2 = c_3 = \ldots = c_t = 0$.
+
+Это означает, что $\overline{x_1}, \ldots, \overline{x_t}$ независимы в $\mathbb{Z}_2^n$, а значит $t \leqslant dim \mathbb{Z}_2^n = n$.

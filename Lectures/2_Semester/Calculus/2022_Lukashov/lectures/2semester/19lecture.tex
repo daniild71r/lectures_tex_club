@@ -1,0 +1,272 @@
+\begin{theorem} (Конечная аддитивность мер Лебега и Жордана)
+	Если $A_1, \ldots, A_N$ - измеримые по Лебегу (Жордану) непересекающиеся подмножества $K_I$, то 
+	\[
+		\jlm \left(\bscup_{i = 1}^N A_i\right) = \sum_{i = 1}^N \jlm(A_i)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Чтобы показать верность равенства, мы воспользуемся критерием измеримости и, следовательно, покрытиями $A_i$ через элементарные множества. Основная трудность состоит в том, что пересечения этих покрытий не внесут какого-то значимого вклада.
+	
+	Проведём индукцию по $N$:
+	\begin{itemize}
+		\item База $N = 2$: рассматриваем $A_1 \sqcup A_2$. По критерию измеримости
+		\[
+			\forall \eps > 0\ \exists M_{1, \eps}, M_{2, \eps} \such \jlm(A_1 \tr M_{1, \eps}) < \eps,\ \ \jlm(A_2 \tr M_{2, \eps}) < \eps
+		\]
+		Мы уже знаем, что $\jlm(A_1 \sqcup A_2) \le \jlm(A_1) + \jlm(A_2)$ по свойствам мер. Нужно доказать неравенство в другую сторону, этим мы и займёмся. Для начала, отметим следующие включения:
+		\begin{align*}
+			&{A_i \subset (A_i \tr M_{i, \eps}) \cup M_{i, \eps} \Lora \jlm(A_i) \le \jlm(A_i \tr M_{i, \eps}) + |M_{i, \eps}|}
+			\\
+			&{M_{i, \eps} \subset (M_{i, \eps} \tr A_i) \cup A_i \Lora |M_{i, \eps}| \le \jlm(A_i \tr M_{i, \eps}) + \jlm(A_i)}
+		\end{align*}
+		Отсюда приятное неравенство:
+		\[
+			\left|\jlm(A_i) - |M_{i, \eps}|\right| \le \jlm(A_i \tr M_{i, \eps}) < \eps
+		\]
+		Теперь, напишем цепочку включений для дизъюнктного объединения и его приближения:
+		\begin{align*}
+			&{A_1 \sqcup A_2 \subset (A_1 \tr M_{1, \eps}) \cup (A_2 \tr M_{2, \eps}) \cup (M_{1, \eps} \cup M_{2, \eps})}
+			\\
+			&{M_{1, \eps} \cup M_{2, \eps} \subset (A_1 \tr M_{1, \eps}) \cup (A_2 \tr M_{2, \eps}) \cup (A_1 \sqcup A_2)}
+		\end{align*}
+		Аналогичное следствие, как и из предыдущих вложений:
+		\[
+			\big|\jlm(A_1 \sqcup A_2) - |M_{1, \eps} \cup M_{2, \eps}|\big| < 2\eps
+		\]
+		Вернёмся к уже упомянутому неравенству выше и продолжим его (воспользовались первой оценкой на разность мер):
+		\[
+			\jlm(A_1 \sqcup A_2) \le \jlm(A_1) + \jlm(A_2) < |M_{1, \eps}| + |M_{2, \eps}| + 2\eps
+		\]
+		По свойствам мер мы знаем ещё это равенство:
+		\[
+			|M_{1, \eps} \cup M_{2, \eps}| + |M_{1, \eps} \cap M_{2, \eps}| = |M_{1, \eps}| + |M_{2, \eps}|
+		\]
+		Нужно оценить пересечение, потому что на объединение неравенство написано уже выше:
+		\begin{multline*}
+			M_{1, \eps} \cap M_{2, \eps} \subset \big((M_{1, \eps} \tr A_1) \cup A_1\big) \cap \big((M_{2, \eps} \tr A_2) \cup A_2\big) =
+			\\
+			\Big(\big((M_{1, \eps} \tr A_1) \cup A_1\big) \cap (M_{2, \eps} \tr A_2)\Big) \cup \Big(\big((M_{1, \eps} \tr A_1) \cup A_1\big) \cap A_2\Big) =
+			\\
+			\Big(\big((M_{1, \eps} \tr A_1) \cup A_1\big) \cap (M_{2, \eps} \tr A_2)\Big) \cup \big((M_{1, \eps} \tr A_1) \cap A_2\big) \subset
+			\\
+			(M_{1, \eps} \tr A_1) \cup (M_{2, \eps} \tr A_2) \Lora |M_{1, \eps} \cap M_{2, \eps}| \le \jlm(M_{1, \eps} \tr A_1) + \jlm(M_{2, \eps} \tr A_2) < 2\eps
+		\end{multline*}
+		Отсюда рождается ещё один переход в неравенстве:
+		\[
+			\jlm(A_1) + \jlm(A_2) < |M_{1, \eps} \cup M_{2, \eps}| + 4\eps
+		\]
+		Используя неравенство с $|M_{1, \eps} \cup M_{2, \eps}|$ выше, получаем требуемое:
+		\[
+			\forall \eps > 0 \quad \jlm(A_1) + \jlm(A_2) < \jlm(A_1 \sqcup A_2) + 6\eps
+		\]
+		
+		\item Переход $N > 2$: просто полагаем первые $N - 1$ множество за одно, применяем базу и раскрываем предположение индукции.
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Если $\{A_i\}_{i = 1}^\infty$ - измеримые по Лебегу подмножества $K_I$, то $\bigcup_{i = 1}^\infty A_i$ также измеримо по Лебегу
+\end{theorem}
+
+\begin{proof}
+	Сначала рассмотрим $\bscup_{i = 1}^\infty A_i$. Поскольку
+	\[
+		\forall m \in \N \quad \bscup_{i = 1}^m A_i \subset K_I \Ra \sum_{i = 1}^m \mu(A_i) \le 1
+	\]
+	то имеет место неравенство $0 \le \sum_{i = 1}^\infty \mu(A_i)\le 1$ и ряд сходится. Это даёт нам возможность оценить его конец:
+	\[
+		\forall \eps > 0\ \exists r \in \N \such \sum_{i = r + 1}^\infty \mu(A_i) < \frac{\eps}{2}
+	\]
+	Плюс отметим следующий факт, следующий из измеримости множеств по Лебегу:
+	\[
+		\forall i \in \N\ \forall \eps > 0\ \exists M_{i, \eps} \such \mu(A_i \tr M_{i, \eps}) < \frac{\eps}{2 \cdot r}
+	\]
+	Положим за $M = \bigcup_{i = 1}^r M_{i, \eps}$, которое по понятным причинам будет элементарным множеством. Это наш кандидат для критерия измеримости:
+	\begin{multline*}
+		\left(\bscup_{i = 1}^\infty A_i\right) \tr M \subset \left(\bscup_{i = 1}^r A_i \bs M\right) \cup \left(\bscup_{i = r + 1}^\infty A_i\right) \cup \left(M \bs \bscup_{i = 1}^r A_i\right) \subset
+		\\
+		\bscup_{i = 1}^r (A_i \bs M_{i, \eps}) \cup \left(\bscup_{i = r + 1}^\infty A_i\right) \subset \bigcup_{i = 1}^r (A_i \tr M_{i, \eps}) \cup \left(\bscup_{i = r + 1}^\infty A_i\right)
+	\end{multline*}
+	Отсюда вытаскиваем неравенство на меры:
+	\[
+		\mu^* \left(\left(\bscup_{i = 1}^\infty A_i\right) \tr M\right) \le \sum_{i = 1}^r \mu^* (A_i \tr M_{i, \eps}) + \sum_{i = r + 1}^\infty \mu^* (A_i) < \eps
+	\]
+	
+	Теперь скажем про общий случай. Он очень просто сводится к уже рассмотренному:
+	\[
+		\bigcup_{i = 1}^\infty A_i = \bscup_{i = 1}^\infty \wt{A}_i,\ \ \wt{A}_i = A_i \bs \bigcup_{j = 1}^{i - 1} \wt{A}_j
+	\]
+\end{proof}
+
+\begin{note}
+	Последняя теорема означает, что совокупность измеримых по Лебегу подмножеств $K_I$ образует \textit{$\sigma$-алгебру} множеств (то есть счётная алгебра).
+\end{note}
+
+\begin{theorem} ($\sigma$-аддитивность меры Лебега)
+	Если $\{A_i\}_{i = 1}^\infty$ - измеримые по Лебегу непересекающиеся подмножества $K_I$, то
+	\[
+		\mu\left(\bscup_{i = 1}^\infty A_i\right) = \sum_{i = 1}^\infty \mu(A_i)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Положим $A := \bscup_{i = 1}^\infty A_i$. Так как измеримость $A$ установлена предыдущей теоремой, то остаётся доказать равенство мер. Будем делать это через неравенства в две стороны:
+	\begin{itemize}
+		\item $\ge$
+		\[
+			\forall m \in \N \quad \bscup_{i = 1}^m A_i \subset A \Ra \mu\left(\bscup_{i = 1}^m A_i\right) = \sum_{i = 1}^m \mu(A_i) \le \mu(A) \Ra \sum_{i = 1}^\infty \mu(A_i) \le \mu(A)
+		\]
+		
+		\item $\le$
+		
+		\[
+			A \subset \bscup_{i = 1}^\infty A_i \Ra \mu^*(A) \le \sum_{i = 1}^\infty \mu^*(A_i) \Ra \mu(A) \le \sum_{i = 1}^\infty \mu(A_i)
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	$\{A_i\}_{i = 1}^\infty$ - последовательность множеств. Определим супремум и инфинум следующим образом:
+	\begin{align*}
+		&{\sup_i \{A_i\} := \bigcup_{i = 1}^\infty A_i}
+		\\
+		&{\inf_i \{A_i\} := \bigcap_{i = 1}^\infty A_i}
+	\end{align*}
+\end{definition}
+
+\begin{definition}
+	Пределы для множств введём следующим образом:
+	\begin{itemize}
+		\item Если $\forall i \in \N\ \ A_i \subset A_{i + 1}$, то
+		\[
+			\liml_{i \to \infty} A_i := \sup \{A_i\} = \bigcup_{i = 1}^\infty A_i
+		\]
+		
+		\item Если $\forall i \in \N\ \ A_i \supset A_{i + 1}$, то
+		\[
+			\liml_{i \to \infty} A_i := \inf \{A_i\} = \bigcap_{i = 1}^\infty A_i
+		\]
+		
+		\item Верхний предел определим через эквивалентное свойство:
+		\[
+			\varlimsup_{i \to \infty} A_i := \liml_{i \to \infty} \sup_{k \ge i} \{A_k\}
+		\]
+		
+		\item Аналогично с нижним пределом:
+		\[
+			\varliminf_{i \to \infty} A_i := \liml_{i \to \infty} \inf_{k \ge i} \{A_k\}
+		\]
+		
+		\item Отсюда можно дать определение предела в общем случае как общее значение нижнего и верхнего предела:
+		\[
+			\liml_{i \to \infty} A_i = \varliminf_{i \to \infty} A_i = \varlimsup_{i \to \infty} A_i
+		\]
+	\end{itemize}
+\end{definition}
+
+\begin{theorem} (Непрерывность меры Лебега) \label{4lemth}
+	Если последовательность $\{A_i\}_{i = 1}^\infty$ измеримых по Лебегу подмножеств $K_I$ имеет предел $A := \liml_{i \to \infty} A_i$, то $A$ тоже измеримо по Лебегу, причём
+	\[
+		\mu(A) = \liml_{i \to \infty} \mu(A_i)
+	\]
+\end{theorem}
+
+\begin{lemma}
+	Пусть последовательность $\{A_i\}_{i = 1}^\infty$ такова, что $\forall i \in \N\ \ A_i \subset A_{i + 1}$. При этом $A_i$ - измеримое по Лебегу подмножество $K_I$. Тогда
+	\[
+		\mu\left(\bigcup_{i = 1}^\infty A_i\right) = \liml_{i \to \infty} \mu(A_i)
+	\]
+\end{lemma}
+
+\begin{proof}
+	Отметим уже известный факт:
+	\[
+		\bigcup_{i = 1}^\infty A_i = \bscup_{i = 1}^\infty \wt{A}_i, \quad \wt{A}_i = A_i \bs \bigcup_{j = 1}^{i - 1} A_j
+	\]
+	Благодаря этому мы можем применить $\sigma$-аддитивность меры Лебега и записать следующую цепочку:
+	\[
+		\mu\left(\bigcup_{i = 1}^\infty A_i\right) = \sum_{i = 1}^\infty \mu(\wt{A}_i) = \liml_{N \to \infty} \sum_{i = 1}^N \mu(\wt{A}_i) = \liml_{N \to \infty} \mu\left(\bscup_{i = 1}^N \wt{A}_i\right) = \liml_{N \to \infty} \mu(A_N)
+	\]
+\end{proof}
+
+\begin{lemma} \label{justLemma}
+	Пусть последовательность $\{A_i\}_{i = 1}^\infty$ такова, что $\forall i \in \N\ \ A_i \supset A_{i + 1}$. При этом $A_i$ - измеримое по Лебегу подмножество $K_I$. Тогда
+	\[
+		\mu\left(\bigcap_{i = 1}^\infty A_i\right) = \liml_{i \to \infty} \mu(A_i)
+	\]
+\end{lemma}
+
+\begin{proof}
+	Введём последовательность $\{B_i\}_{i = 1}^\infty$ следующим образом:
+	\[
+		\forall i \in \N \quad B_i = A_1 \bs A_i
+	\]
+	Тогда $\forall i \in \N\ \ B_i \subset B_{i + 1}$, что позволяет применить к ней предыдущую лемму:
+	\[
+		\mu\left(\bigcup_{i = 1}^\infty B_i\right) = \liml_{i \to \infty} \mu(B_i) = \mu(A_1) - \liml_{i \to \infty} \mu(A_i)
+	\]
+	При этом верно равенство:
+	\[
+		\bigcup_{i = 1}^\infty B_i = \bigcup_{i = 1}^\infty (A_1 \bs A_i) = A_1 \bs \bigcap_{i = 1}^\infty A_i
+	\]
+	Отсюда получаем следующее:
+	\[
+		\mu\left(\bigcup_{i = 1}^\infty B_i\right) = \liml_{i \to \infty} \mu(B_i) = \mu(A_1) - \liml_{i \to \infty} \mu(A_i) = \mu(A_1) - \mu\left(\bigcap_{i = 1}^\infty A_i\right)
+	\]
+\end{proof}
+
+\begin{lemma} \ref{lem1}
+	Если последовательность $\{A_i\}_{i = 1}^\infty$ - это измеримые по Лебегу подмножества $K_I$, то
+	\[
+		\varlimsup_{i \to \infty} \mu(A_i) \le \mu(\varlimsup_{i \to \infty} A_i)
+	\]
+\end{lemma}
+
+\begin{proof}
+	Распишем меру справа в неравенстве:
+	\[
+		\mu(\varlimsup_{i \to \infty} A_i) = \mu(\liml_{i \to \infty} \sup_{k \ge i} \{A_k\})
+	\]
+	Супремумы образуют невозрастающую последовательность. Отсюда по предыдущей лемме
+	\[
+		\mu(\liml_{i \to \infty} \sup_{k \ge i} \{A_k\}) = \liml_{i \to \infty} \mu(\sup_{k \ge i} \{A_k\}) = \liml_{i \to \infty} \mu\left(\bigcup_{k = i}^\infty A_k\right) \ge \liml_{i \to \infty} \sup_{k \ge i} \mu(A_k)
+	\]
+\end{proof}
+
+\begin{lemma}
+	Если последовательность $\{A_i\}_{i = 1}^\infty$ - это измеримые по Лебегу подмножества $K_I$, то
+	\[
+		\varliminf_{i \to \infty} \mu(A_i) \ge \mu(\varliminf_{i \to \infty} A_i)
+	\]
+\end{lemma}
+
+\begin{proof}
+	Аналогично третьей лемме, только ссылаться будем ещё и на первую:
+	\[
+		\mu(\varliminf_{i \to \infty} A_i) = \mu(\liml_{i \to \infty} \inf_{k \ge i} \{A_k\}) = \liml_{i \to \infty} \mu(\inf_{k \ge i} \{A_k\}) = \liml_{i \to \infty} \mu\left(\bigcap_{k = 1}^\infty A_k\right) \le \liml_{i \to \infty} \inf_{k \ge i} \mu(A_k)
+	\]
+\end{proof}
+
+\begin{proof} (теоремы \ref{4lemth})
+	Запишем неубывающую цепочку:
+	\[
+		\varlimsup_{i \to \infty} \mu(A_i) \le \mu(\varlimsup_{i \to \infty} A_i) = \mu(\varliminf_{i \to \infty} A_i) \le \varliminf_{i \to \infty} \mu(A_i) \le \varlimsup_{i \to \infty} \mu(A_i)
+	\]
+\end{proof}
+
+\begin{note}
+	Всё это время мы жили внутри куба $K_I$. Однако, пришло время выйти за его рамки: замостим всё пространство параллельными сдвигами $K_I$. Тогда, для любого множества $A$ мы можем определить меры Лебега и Жордана следующим образом:
+	\[
+		\jlm(A) := \sum_{\vv{m} \in \Z^n} \jlm\big((\vv{m} + K_I) \cap A\big)
+	\]
+	где $\vv{m} + K_I$ нужно воспринимать как сумму Минковского (каждая точка $K_I$ - это вектор. Новые точки получаются прибавлением $\vv{m}$ к этим векторам).
+	
+	Стоит отметить, что с мерой Жордана не всё так просто. Для Лебега мы уже доказали, что если каждый кусочек внутри своего куба будет измерим, то и всё множество тоже будет измеримо. Однако, для Жордана это неверно. Либо ряд сойдётся, либо нет (при этом порядок суммирования неважен в силу положительности каждого слагаемого, была теорема о таких рядах). Поэтому, когда говорят о мере Жордана, то предпочитают рассматривать только ограниченные множества $A$.
+\end{note}
+
+\begin{note}
+	Отдельно отметим, что далеко не все свойства остаются верными для любых множеств из $\R^n$. В частности, ломается непрерывность:
+	
+	Рассмотрим $A_n = [n; +\infty)$. Для этой последовательности ломается лемма \ref{justLemma}, ибо мера $A_1$ - бесконечность.
+\end{note}
