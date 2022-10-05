@@ -30,7 +30,60 @@
 
 
 \begin{theorem}
-	Если $\fnis{f, g, h} D \mapsto \R$, $x_0 \in \RR$, $\forall \delta > 0\ \UU_\delta(x_0) \cap D \ne \varnothing$, $f(x) \le h(x) \le g(x)$ и $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = a$, то $\lim_{x \to x_0} h(x) = a$.
+	Если $\fnis{f, g, h} D \mapsto \R$, $x_0 \in \R$, $\forall \delta > 0\ \UU_\delta(x_0) \cap D \ne \varnothing$, $f(x) \le h(x) \le g(x)$ и $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = a$, то $\lim_{x \to x_0} h(x) = a$.
 \end{theorem}
 
-Пусть $\lim_{y \to A} g(y) = B \in \RR$ и $\lim_{x \to x_0} f(x) = A$, 
+Пусть $\lim_{y \to A} g(y) = B \in \R$ и $\lim_{x \to x_0} f(x) = A$, 
+
+
+\subsection{Пределы и непрерывность функций}
+\begin{theorem}[Критерий Коши $ \exists  $ конечного предела функции в точке]
+	Пусть $ D \sub \R, f:D\to \R $ и $ \forall r > 0\ \UU_r(x_0) \cap D \neq  \emptyset(x_0 \in \overline{ \R}) $
+	Тогда $ \exists \lim_{x\to x_0}f(x) = A \in \R \longleftrightarrow \forall  \epsilon > 0 \exists \delta > 0 \forall x', x'' \in \UU_\delta(x_0)\cap D $
+	 \begin{gather}
+		|f(x') - f(x'')| < \epsilon
+	\end{gather}
+\end{theorem}
+\begin{proof}
+	 $ \Longrightarrow $
+	Пусть $ \lim_{x \to  x_0}f(x) = A \in  \R $ Тогда \begin{gather}
+		\forall \epsilon > 0 \exists \delta > 0: \forall x \in \UU \\
+		|f(x) - A| < \dfrac{\epsilon}{2} \implies \forall x', x'' \in \UU_\delta (x_0)\cap D \\
+		|f(x') - f(x'')| \leq |f(x') - A| + |A - f(x'')| < \epsilon
+	\end{gather}
+	 $ \Longleftarrow $ Пусть $ x_n \to x_0, n \to \infty $ -- последовательность Гейне.
+	 $ \dots  $ \begin{lemma}
+		
+	 
+	 \begin{gather}
+		\exists r > 0 \exists C > 0 \forall x \in \UU_r(x_0)\cap D |f(x)| \leq\, D
+	\end{gather}
+\end{lemma}
+	\begin{proof}
+		
+	\end{proof}
+	 $ x_n \to  x_0 \implies$ при достаточно больших $ n: x_n \in \UU_r(x_0) \cap D \implies  |f(x_n) \leq  C$
+	 По теореме Больцано-Вейерштрасса $ \exists  $ строго возрастающая последовательность $ n_k \in \N $ и $ \exists  A \in \R $ $ f(x_{n_k}) \to A $ при $ k \to \infty $.
+	 $ x'' = x_{n_k} $
+	 \begin{gather}
+		 - \epsilon < f(x')\, - f(x'') < \epsilon
+	\end{gather}
+	По теореме о предельном переходе в неравенствах при $ k \to  \infty $: \begin{gather}
+		 -\, \epsilon \leq\, f(x') - A \leq \epsilon
+	\end{gather}
+	Вывод $ \forall \epsilon > 0 \exists \delta > 0: \forall x' \in \UU_\delta(x_0) \cap D $ выполнено $ \dots  $, по определению предела \[ \lim_{x \to  x_0}f(x) = A \] 
+\end{proof}
+\begin{definition}
+	Пусть $ f: D \to \R $ и $ x_0 \in D $. Если $ \exists \lim_{x \to x_0} f(x) = f(x_0)$, то $ f $ называется непрерывной в точке $ x_0 $(по множеству $ D $). Если $ f(x) $ не непрерывна в точке $ x_0 $,  то говорят, что $ f $ разрывна d $ x_0 $( и называют $ x_0 $ точкой разрыва).
+	Если $ f $ непрерывна в $ x_0 \forall  x_0 \in  D $, то говорят, что $ f $ непрерывна на $ D $.
+\end{definition}
+\begin{proposition}
+	 $ x \mapsto \sin x, x \mapsto \cos x, x \mapsto \exp x $ непрерывны.
+\end{proposition} \begin{proof}
+	TODO
+\end{proof}
+\begin{lemma}
+	 $ \forall t \in \R \ |\sin t| \leq  t $.
+\end{lemma} \begin{proof}
+	TODO
+\end{proof}

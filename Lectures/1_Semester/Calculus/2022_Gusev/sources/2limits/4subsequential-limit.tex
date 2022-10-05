@@ -121,25 +121,24 @@
     \end{gather*}
 \end{theorem}
 \begin{proof}
-    $$
-    \begin{multline*}
-        A_{n + 1} \subsetneq A_n \thus
-        \sup A_{n + 1} \le \sup A_n \thus
+    \begin{multline}
+        A_{n + 1} \subsetneq A_n \thus \\ 
+        \sup A_{n + 1} \le \sup A_n \thus \\
         \left(\sup_{m \ge n} x_m\right)_n \text{ монотонно убывает} \thus \\
         \thus \exists a = \limpinf \sup_{m \ge n} x_m \in \RR \thus
         \forall \varepsilon > 0\ \exists N\ \forall n > N\ \sup_{m \ge n} x_m \in U_\varepsilon(a) \thus \\
-        \thus \forall \varepsilon > 0\ \exists N\ \forall n > N\ \exists m \ge n\ x_m \in U_\varepsilon(a) \thus
+        \thus \forall \varepsilon > 0\ \exists N\ \forall n > N\ \exists m \ge n\ x_m \in U_\varepsilon(a) \thus \\
         \forall \varepsilon > 0\ \forall n\ \exists m \ge n\ x_m \in U_\varepsilon(a) \thus \\
         \thus \forall \varepsilon > 0 \text{ в $U_\varepsilon(a)$ находится бесконечно много элементов $x_n$} \thus \\
         \thus a \text{ -- частичный предел}
-    \end{multline*}
+    \end{multline}
     Пусть $b$ -- другой частичный предел $(x_n)$, тогда
-    \begin{multline*}
+    \begin{multline}
         \exists (x_{n_k}) : \lim_{k \to +\infty} x_{n_k} = b \\
         \limpinf
         \begin{rcases}
         \end{rcases} \thus b \le a \thus a = \sup(множества частичных пределов) \thus \varlimsup_{n\to\infty} x_n = a
-    \end{multline*}
+    \end{multline}
 \end{proof}
 
 \df{Фундаментальная последовательность}{последовательность, для которой выполняется
