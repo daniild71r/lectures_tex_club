@@ -1,4 +1,4 @@
-\subsection{Предел и непрерывность множеств}
+\subsection{Предел и непрерывность множеств и функций}
 
 % \begin{gather}
 	% \U_\varepsilon(a) \defeq U_\varepsilon(a) \setminus \{a\} \\
@@ -36,7 +36,6 @@
 Пусть $\lim_{y \to A} g(y) = B \in \R$ и $\lim_{x \to x_0} f(x) = A$, 
 
 
-\subsection{Пределы и непрерывность функций}
 \begin{theorem}[Критерий Коши $ \exists  $ конечного предела функции в точке]
 	Пусть $ D \sub \R, f:D\to \R $ и $ \forall r > 0\ \UU_r(x_0) \cap D \neq  \emptyset(x_0 \in \overline{ \R}) $
 	Тогда $ \exists \lim_{x\to x_0}f(x) = A \in \R \longleftrightarrow \forall  \epsilon > 0 \exists \delta > 0 \forall x', x'' \in \UU_\delta(x_0)\cap D $
@@ -115,11 +114,114 @@
 		(\forall\,A \sub \R f(A): = \{f(x)|x \in A\} \text{ называется образом } A \text{ под действием  } f)
 	 \end{gather}
 \end{note}
-\begin{theorem}[Теорема о промежуточном значении непрерывной функции]
-	Пусть $ f $ непрерывна на $ [a, b] $ и $ f(a)f(b) < 0 $. Тогда $ \exists  x \in [a, b]: f(x) = 0 $.
+\begin{theorem}[Теорема о промежуточном значении непрерывной функции] \label{przn1}
+	Пусть $ f $ непрерывна на $ [a, b] $ и $ f(a)f(b) \leq  0 $. Тогда $ \exists  x \in [a, b]: f(x) = 0 $.
 \end{theorem} \begin{proof}
 	Будем делить на каждом шаге отрезок пополам и брать отрезок на концах которого функция принимает значения разных знаков. \begin{gather}
-		\exists \text{ последовательность вложенных отрезков } [a_1, b_1] > [a_2, b_2] > \dots\,, \\ \text{такая что } f(a_n)f(b_n) < 0 \text{ и } b_n - a_n = \dfrac{b - a}{2^{n - 1}}\, 
+		\exists \text{ стягивающаяся последовательность вложенных отрезков } [a, b] = [a_1, b_1] \supset [a_2, b_2] \supset \dots\,, \\
+		 \text{такая что } f(a_n)f(b_n) < 0 \text{ и } b_n - a_n = \dfrac{b - a}{2^{n - 1}}\, \\
+		\text{по теореме Кантора} \exists! x \in \cap_{n = 1}^\infty[a_n, b_n] \text{ и } \lim_{n \to  \infty}a_n = \lim_{n \to \infty}b_n = x \\
+		(\text{так как } |x - a_n| \leq b_n - a_n \to 0) \\
+		f \text{ -- непрерывна в } x \implies \lim_{n \to \infty}f( a_n) = f( b_n) = f(x) \\
+		\left(f(x)\right)^2 \leq\, 0 \implies\, f(x) = 0
 	\end{gather}
-	
+\end{proof}
+
+	\begin{theorem}[О промежуточном значении v.2] \label{przn2}
+		Если функция $ f: I \to \R$ непрерывна на промежутке $ I \sub \R $, то $ f(I) $ -- промежуток.
+	\end{theorem}
+	\begin{proof}
+		Пусть $ u, v \in  f(I), u < v $. Тогда $ \forall w \in (u, v) \ w \overset{?}{\in }f(I)  $ \begin{gather}
+			\phantom \implies \exists x, y \in I: u = f(x), v = f(y)\, \\
+			\text{ Не уменьшая общности } x < y \\
+			\text{ Рассмотрим } g(t): = f(t) - w \\
+			g \text{ непрерывна на} I \implies \text{ на } [x, y] \\
+			g(x) = u - w < 0 \\
+			g(y) = v - w > 0 \\
+			\phantom \implies \text{ по теореме \ref{przn1} } \exists z \in [x, y]: g(z) = 0 \Longleftrightarrow f(z) = w
+		\end{gather}
+	\end{proof}
+\begin{note}
+	Обратное неверно: если $ I \in  \R $ -- промежуток и $ f: I \to \R $ и $ f(I) $ -- промежуток, то $ f $ не обязана быть непрерывной.
+\end{note}
+\begin{note}
+	Пусть $ I \in  \R $ -- промежуток, $ f: I \to \R $ и $ \forall  $ промежутка $ J \sub I $ $ f(J) $ -- тоже промежуток тоже неверно 
+\end{note} \begin{proof}
+	 \begin{gather}
+		I = \R \\
+		f(x): = \begin{cases} 0, x \leq\, 0 \\
+		\sin \dfrac{1}{x}, x > 0 \end{cases} \\
+		\text{ Ясно, что  } f \text{ разрывна в } 0 
+	\end{gather}
+	Пусть $ J \sub \R $ -- промежуток
+	\begin{enumerate}
+		\item $ J \sub (-\infty, 0) \to f(J) = \{0\} \text{ -- промежуток }$
+		\item $ J \sub (0, +\infty) \to f(J)$ -- промежуток по \ref{przn2}
+		\item $ J \neq \emptyset, J\nsubseteq(-\infty, 0), J\nsubseteq(0, +\infty) \to  \exists x < 0: x \in J$ и $ \exists  y > 0: y \in J \implies  (0, y) \sub J$
+		 $ \exists x', x'' \in (0, y): \sin \frac{1}{x'} = 1, \sin \frac{1}{x''} = -1$. Тогда функция $ g(x) = \sin \frac{1}{x} $ непрерывна на $ (0, +\infty) $.
+	\end{enumerate}
+	 \begin{gather}
+		\begin{cases} 
+		g(x') =  1 \\
+		f(x'') = - 1 \\
+		x', x'' \in (0, y)
+	\end{cases} \implies\, \text{ по теореме \ref{przn1}} [-1, 1] \sub g((0, y)) \implies [ - 1, 1]\sub f(J)
+	\end{gather}
+	Но $ f(J) \sub [-1, 1] \implies f(J) = [-1, 1] \text{ -- промежуток }$.
+\end{proof}
+\subsection{Односторонние пределы}
+\begin{definition}
+	Пусть $ D \sub \R $ и $ f: D \to  \R, x_0 \in \R $. Если у $ f\ \exists  $ предел при $ x \to x_0 $ по множеству $ (x_0, +\infty)\cap D $,
+	то такой предел называется правосторонним пределом при $ x \to x_0 + 0 $ и обозначается $ f(x_0 + 0) \equiv \lim_{x \to x_0 + 0} f(x)$
+\end{definition}
+\begin{definition}
+	Пусть $ D \sub \R $ и $ f: D \to  \R, x_0 \in \R $. Если у $ f\ \exists  $ предел при $ x \to x_0 $ по множеству $ (x_0, -\infty)\cap D $,
+	то такой предел называется правосторонним пределом при $ x \to x_0 - 0 $ и обозначается $ f(x_0 - 0) \equiv \lim_{x \to x_0 - 0} f(x)$
+\end{definition}
+\begin{proposition}
+	 $ A \in \RR \cup {\infty} $ является пределом $ f $ при $ x \to x_0 \Longleftrightarrow \exists  f(x_0 + 0) = f(x_0 - 0) = A$
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{theorem}
+	Если $ f $ монотонна на $ (a, b), a < b $, то $ x \in  (a, b) \exists \text{ конечные } f(x\pm 0)$, а также \begin{gather}
+		\begin{cases} \exists f(a + 0) \in \RR \\
+		\exists f(b - 0 ) \in \RR\end{cases} 
+	\end{gather}
+\end{theorem} \begin{proof}
+	Пусть $ x \in (a, b) $, $ f $ нестрого возрастает. Обозначим $ s:= \inf f((x, b)) $. \begin{gather}
+		\forall t > x \ f(t) \geq\, s \\ 
+		\forall \epsilon > 0 \ \exists y > x: f(y) < s + \epsilon \\
+		\delta : = y - x \\
+		x \leq\, t \leq y \to f(x) \leq f(t) \leq f(y) \implies \forall t \in (x, y)\hookrightarrow\,\begin{cases}   f(t) \leq\,f(y) < s + \epsilon \\
+		f(t) \geq\, s \end{cases} \implies \\
+		 \implies f(t) \in [s, s + \epsilon] \implies \forall \epsilon > 0 \exists \delta > 0 : \forall\, t \in (x, x + \delta)\, f(t) \in [s, s + \epsilon) \sub U_\epsilon(s) \implies\, \\ 
+		 \implies f(x + 0) = \inf_{t > x}f(t)
+	\end{gather}
+\end{proof}
+\begin{proposition}
+	Аналогично $ f(a +0) = \inf_{t \in (a, b)}f(t) $
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{definition}
+	 $ x_0 \in \R $ называется точкой разрыва функции $ f $ первого рода, если $ \exists  $ конечный $ f(x_0 \pm 0) $. Иначе $ x_0 $ называется точкой разрыва второго рода.
+\end{definition}
+\begin{corollary}
+	Если $ f $ монотонна на промежутке $ I \sub \R $ и $ x_0\in I $ разрыва $ f $, то $ x_0 $ -- точка разрыва первого рода.
+\end{corollary}
+\begin{theorem}[Критерий непрерывности монотонной функции]
+	Пусть $ I \sub \R $ -- промежуток и $ f: I \to  \R $ -- монотонна. Тогда $ f $ непрерывна на $ I \longleftrightarrow f(I)$ -- промежуток.
+\end{theorem} \begin{proof}
+	 $ \Leftarrow $ -- по теореме \ref{przn1}. 
+
+	 $ \Rightarrow $ Пусть $ x_0 \in I $ -- точка разрыва. Не уменьшая общности $ x_0 $ -- не правый конец $ I $ и $ f(x_0) = f(x_0 + 0) $. Пусть $ f $ нестрого возрастает на $ I $, тогда $ f(x_0) \leq f(x_0 + 0) \implies f(x_0) < f(x_0 + 0) =: s$. \begin{gather}
+		\forall t > x_0\, f(t) \geq\, s \\
+		\forall\, t \leq\, x_0\, f(t) \leq\, f(x_0) \\ 
+		\forall y \in (f(x_0), s)\, y \notin f(I) \\
+		\exists x > x_0: f(z) \geq s \implies \text{ если } f(I) \text{ -- промежуток, то } [f(x_0), s] \text{ должен лежать в  } f(I) \text{ -- противоречие }
+	 \end{gather}
+	 
 \end{proof}
