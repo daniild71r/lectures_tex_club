@@ -1,0 +1,237 @@
+\begin{definition}
+	Когда возникает ситуация, что $P\{\xi = x\} = 1$ и при этом $\xi \centernot\equiv x$, то говорят, что $\xi = x$ \textit{почти наверное}.
+\end{definition}
+
+\begin{note}
+	Верно ли, что если $\xi = 0$ почти наверное, то $\forall w \in \Omega\ \xi(w) = 0$ (то есть $\xi \equiv 0$)? Конечно нет. Примером без доказательства послужит ситуация, когда $\Omega \approx [0; 1]$ (потому что не совсем отрезок надо бы брать) и $\xi(w) = \mathbb{D}(w)$, где $\mathbb{D}$ --- функция Дирихле.
+\end{note}
+
+\begin{definition}
+	\textit{$k$-м моментом} называется случайной величины $\xi$ называется матожидание величины $\E\xi^k$
+\end{definition}
+
+\begin{note}
+	Определение вводится для любого вероятностного пространства, а потому $\exists \E\xi^k \Lra \exists \E|\xi^k|$
+\end{note}
+
+\begin{theorem} (Неравенство Ляпунова)
+	Имеет место следующая связь между моментами случайной величины:
+	\[
+		\forall 0 < s < t \quad (\E|\xi|^s)^{1/s} \le (\E|\xi|^t)^{1/t}
+	\]
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Возможно тут появится, а возможно нет.}
+\end{proof}
+
+\begin{corollary}
+	Если существует $k$-й момент, то будут существовать и все предыдущие.
+\end{corollary}
+
+\subsection{Дисперсия случайной величины}
+
+\begin{note}
+	Случайные величины с одинаковым матожиданием могут разительно отличаться. Например, положим $\Omega = \{w_1, w_2\}$, $P(w_i) = 1/2$ и рассмотрим случайные величины
+	\begin{align*}
+		&{\xi \colon \xi(w_1) = -1, \xi(w_2) = 1}
+		\\
+		&{\eta \colon \eta(w_1) = -100, \eta(w_2) = 100}
+	\end{align*}
+	Их матожидания, очевидно, равны нулю. При этом значения имеют совершенно разные порядки \textit{разброса} (у $\xi$ это 2, а у $\eta$ аж все 200). Отсюда возникает идея как-то отслеживать среднее отклонение случайной величины от своего \textit{среднего} (ну то есть матожидания).
+\end{note}
+
+\begin{definition}
+	\textit{Дисперсией} случайной величины $\xi$ называется величина $D\xi$, определяемая следующим образом:
+	\[
+		D\xi = \E(\xi - \E\xi)^2
+	\]
+\end{definition}
+
+\begin{note}
+	Иначе говоря, дисперсия --- это среднее значение квадрата отклонения случайной величины от её математического ожидания.
+\end{note}
+
+\begin{definition}
+	\textit{Среднеквадратическим отклонением} случайной величины $\xi$ называется корень из её дисперсии:
+	\[
+		\sigma = \sqrt{D\xi}
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Центральным $k$-м моментом} случайной величины $\xi$ называется следующее матожидание:
+	\[
+		\mu_k = \E(\xi - \E\xi)^k
+	\]
+\end{definition}
+
+\begin{theorem}
+	Пусть $(\Omega, F, P)$ --- дискретное вероятностное пространство. Тогда дисперсия случайной величины обладает следующими свойствами:
+	\begin{enumerate}
+		\item \(D\xi = \E\xi^2 - (\E\xi)^2\)
+		
+		\item \(D\xi \ge 0\)
+		
+		\item $D\xi = 0 \Lra \exists x \in \chi_\xi \such \xi = x$ почти наверное
+		
+		\item $D(a\xi + b) = a^2D\xi$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Распишем дисперсию по линейности матожидания:
+		\[
+			D\xi = \E(\xi - \E\xi)^2 = \E(\xi^2 - 2\xi\E\xi + (\E\xi)^2) = \E\xi^2 - (\E\xi)^2
+		\]
+		
+		\item Следует напрямую из того факта, что в определении дисперсии под внешним знаком матожидания стоит неотрицательная величина
+		
+		\item Придётся показывать верность в 2 стороны:
+		\begin{itemize}
+			\item $\Ra$ Аналогично доказательству неравенства Коши-Буняковского для математического ожидания, сразу возьмём факт $P\{\xi = \E\xi\} = 1$. При этом $\E\xi$ --- это корректно определенное какое-то число. Для него как раз и выполнено равенство почти наверное.
+			
+			\item $\La$ По условию $\xi = x$ почти наверное. Для матожидания это означает следующее:
+			\[
+				\E\xi = \sum_{w \in \Omega} P(w) \xi(w) = \sum_{w \colon f(w) = x} x \cdot P(w) = x
+			\]
+			Стало быть
+			\[
+				D\xi = \E(\xi - \E\xi)^2 = \E(\xi - x)^2 = \sum_{w \in \Omega} P(w)(\xi - x)^2 = 0
+			\]
+		\end{itemize}
+	
+		\item Снова распишем через математическое ожидание:
+		\[
+			D(a\xi + b) = \E(a\xi + b - a\E\xi - b)^2 = a^2\E(\xi - \E\xi)^2 = a^2D\xi
+		\]
+	\end{enumerate}
+\end{proof}
+
+\subsection{Ковариация случайных величин}
+
+\begin{definition}
+	\textit{Ковариацией} двух случайных величин $\xi$ и $\eta$ называется следующая величина:
+	\[
+		\cov(\xi, \eta) = \E\big((\xi - \E\xi)(\eta - \E\eta)\big)
+	\]
+\end{definition}
+
+\begin{theorem}
+	Пусть $(\Omega, F, P)$ --- дискретное вероятностное пространство. Тогда ковариация случайных величин обладает следующими свойствами:
+	\begin{enumerate}
+		\item \(\cov(\xi, \eta) = \E(\xi\eta) - (\E\xi) \cdot \E\eta\)
+		
+		\item Ковариация является билинейной симметричной формой на множестве случайных величин
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Распишем матожидание, как обычно:
+		\[
+			\cov(\xi, \eta) = \E\big(\xi\eta - \xi\E\eta - \eta\E\xi + (\E\xi)\E\eta\big) = \E(\xi\eta) - (\E\xi)\E\eta
+		\]
+		
+		\item Следует из первого свойства
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Дисперсия --- это квадратичная форма, полученная из ковариации.
+\end{corollary}
+
+\begin{proposition}
+	Между ковариацией и дисперсией есть следующее соотношение:
+	\[
+		D(\xi + \eta) = D\xi + D\eta + 2\cov(\xi, \eta)
+	\]
+\end{proposition}
+
+\begin{proof}
+	И снова нам надо расписать математическое ожидание:
+	\[
+		D(\xi + \eta) = \E\big(\xi + \eta - \E(\xi + \eta)\big)^2 = \E\big((\xi - \E\xi) + (\eta - \E\eta)\big)^2 = D\xi + D\eta + 2\cov(\xi, \eta)
+	\]
+\end{proof}
+
+\begin{corollary}
+	Если у нас не две, а $k$ случайных величин, то дисперсию суммы можно посчитать следующим образом:
+	\[
+		D\ps{\sum_{i = 1}^k \xi_i} = \sum_{i = 1}^k \sum_{j = 1}^k \E\big(\xi_i - \E\xi_i)(\xi_j - \E\xi_j)\big) = \sum_{i = 1}^k D(\xi_i) + 2\sum_{i = 1}^k \sum_{i < j \le k} \cov(\xi_i, \xi_j)
+	\]
+\end{corollary}
+
+
+\begin{proposition}
+	Если $\xi \indep \eta$, то $\cov(\xi, \eta) = 0$.
+\end{proposition}
+
+\begin{proof}
+	По свойству матожидания независимых случайных величин и формуле ковариации.
+\end{proof}
+
+\begin{note}
+	В обратную сторону последнее утверждение неверно.
+	\textcolor{red}{
+		Желательно бы найти дискретный пример, а не $\Omega = [0; 2\pi]$, $\xi(w) = \cos w$, $\eta(w) = \sin w$, для которых $\E\xi = \E\eta = \E(\xi\eta) = 0$
+	}
+\end{note}
+
+\begin{proposition}
+	Если $\xi \indep \eta$ и $\cov(\xi, \eta) = 0$, то тогда $D(\xi + \eta) = D\xi + D\eta$
+\end{proposition}
+
+\begin{proof}
+	Является следствием предыдущего утверждения.
+\end{proof}
+
+\subsection{Корреляция случайных величин}
+
+\begin{definition}
+	\textit{Корреляцией} двух случайных величин называется следующее значение (при условии, что $D\xi, D\eta \neq 0$):
+	\[
+		\corr(\xi, \eta) = \frac{\cov(\xi, \eta)}{\sqrt{D\xi} \cdot \sqrt{D\eta}}
+	\]
+\end{definition}
+
+\begin{definition}
+	$\xi$ и $\eta$ называются \textit{некоррелирующими}, если $\cov(\xi, \eta) = 0$.
+\end{definition}
+
+\begin{theorem}
+	Для корреляции случайных величин имеет место 3 свойства:
+	\begin{enumerate}
+		\item \(|\corr(\xi, \eta)| \le 1\)
+		
+		\item Если $\corr(\xi, \eta) = 1$, то $\exists a > 0, b \such \xi = a\eta + b$ почти наверное
+		
+		\item Если $\corr(\xi, \eta) = -1$, то $\exists a < 0, b \such \xi = a\eta + b$ почти наверное
+	\end{enumerate}
+\end{theorem}
+
+\begin{note}
+	Не стоит воспринимать корреляцию как меру зависимости случайных величин, это не так. Если корреляция близка к нулю, то ещё не факт, что случайные величины независимы. Максимум --- это \textit{повод задуматься}, что зависимость \textit{может быть/не быть}, и \textit{примерно} какой.
+\end{note}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Оно будет немного <<синтетическим>>: отцентрируем и отнормируем наши случайные величины:
+		\[
+			\xi' = \frac{\xi - \E\xi}{\sqrt{D\xi}};\ \ \eta' = \frac{\eta - \E\eta}{\sqrt{D\eta}}
+		\]
+		Посмотрим, например, матожидание и дисперсию $\xi'$:
+		\[
+			\E\xi' = \frac{1}{\sqrt{D\xi}}\E(\xi - \E\xi) = 0 = \E\eta';\ \ D\xi' = \frac{1}{D\xi} \cdot D\xi = 1 = D\eta'
+		\]
+		А теперь, посмотрим на значение $D(\xi' \pm \eta')$:
+		\[
+			0 \le D(\xi' \pm \eta') = D(\xi') + D(\eta') \pm 2\cov(\xi', \eta') = 2\ps{1 \pm \frac{\cov(\xi, \eta)}{\sqrt{D\xi} \cdot \sqrt{D\eta}}}
+		\]
+		
+		\item По условию $\corr(\xi, \eta) = 1$. Из предыдущего пункта с этим требованием получится $D(\xi' - \eta') = 0$. Это, в свою очередь, эквивалентно $\exists c \such \xi' - \eta' = c$ почти наверное. Расписывая $\xi'$ и $\eta'$, получим зависимость и сможем установить коэффициенты.
+		
+		\item Аналогично предыдущему пункту
+	\end{enumerate}
+\end{proof}
