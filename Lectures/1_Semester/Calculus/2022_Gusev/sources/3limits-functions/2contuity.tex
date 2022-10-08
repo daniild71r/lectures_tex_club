@@ -1,0 +1,21 @@
+\subsection{Непрерывность и точки разрыва функции}
+\begin{definition}
+	 $ x_0 \in \R $ называется точкой разрыва функции $ f $ первого рода, если $ \exists  $ конечный $ f(x_0 \pm 0) $. Иначе $ x_0 $ называется точкой разрыва второго рода.
+\end{definition}
+\begin{corollary}
+	Если $ f $ монотонна на промежутке $ I \sub \R $ и $ x_0\in I $ разрыва $ f $, то $ x_0 $ -- точка разрыва первого рода.
+\end{corollary}
+\begin{theorem}[Критерий непрерывности монотонной функции]
+	Пусть $ I \sub \R $ -- промежуток и $ f: I \to  \R $ -- монотонна. Тогда $ f $ непрерывна на $ I \longleftrightarrow f(I)$ -- промежуток.
+\end{theorem} \begin{proof}
+	 $ \Leftarrow $ -- по теореме \ref{IntermediateValueV1}. 
+
+	 $ \Rightarrow $ Пусть $ x_0 \in I $ -- точка разрыва. Не уменьшая общности $ x_0 $ -- не правый конец $ I $ и $ f(x_0) = f(x_0 + 0) $. Пусть $ f $ нестрого возрастает на $ I $, тогда $ f(x_0) \leq f(x_0 + 0) \implies f(x_0) < f(x_0 + 0) =: s$. \begin{gather}
+		\forall t > x_0\, f(t) \geq\, s \\
+		\forall\, t \leq\, x_0\, f(t) \leq\, f(x_0) \\ 
+		\forall y \in (f(x_0), s)\, y \notin f(I) \\
+		\exists x > x_0: f(z) \geq s \implies \text{ если } f(I) \text{ -- промежуток, то }\\
+		 [f(x_0), s] \text{ должен лежать в  } f(I) \text{ -- противоречие }
+	 \end{gather}
+	 
+\end{proof}

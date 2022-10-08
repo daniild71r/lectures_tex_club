@@ -1,0 +1,208 @@
+
+\subsection{Предел и непрерывность функций}
+% \begin{gather}
+	% \U_\varepsilon(a) \defeq U_\varepsilon(a) \setminus \{a\} \\
+	% \lim_{x \to x_0} f(x) = a \defev x_0 \in \RR, a \in \RR \forall \varepsilon > 0\ \exists \delta > 0 : \forall x \in \U_\varepsilon(x_0)\ f(x) \in U_\delta(a)
+% \end{gather}
+
+Определение предела функции по Коши
+
+Проколотая окрестность
++ Замечание
++ Про функцию
+Предел функции по множеству
+
+\df{Последовательность Гейне, сходящая к $x_0$}{последовательность, сходящаяся к $x_0$, элементы которой не равны $x_0$ и принадлежат $D(f)$ для некоторой функции $f$.}
+
+% \begin{theorem}[Определение предела функции по Гейне]
+% 	\[ \lim_{x \to x_0} f(x) = a \;\Leftrightarrow\; \forall (a_n) \text{ -- последовательность Гейне, сходящаяся к $x_0$ } \limpinf f(a_n) = a \]
+% \end{theorem}
+% \begin{proof}
+% \iffproofR{
+% 	Рассмотрим последовательность Гейне $(a_n)$, которая сходится к $x_0$.
+% 	Пусть $\varepsilon > 0$, тогда $\exists \delta > 0 : f(\U_\delta(x_0)) \subseteq U_\varepsilon(a)$. 
+% 	$\forall \delta > 0\ \exists N : \forall n > N a_n \in U_\delta(x_0) \thus f(a_n) \in U_\varepsilon(a) \thus \limpinf f(a_n) = a$.
+% }{
+% 	От противного. $\exists \varepsilon > 0\ \forall \delta > 0\ \exists x \in \U_\delta(x_0) \cap D\ f(x) \notin U_\varepsilon(a) \thus \forall n \in \N\ \exists x_n \in \U_\frac{1}{n}(x_0) \cap D\ f(x) \notin U_\varepsilon(a)$.
+% 	Последовательность $(x_n)$ -- последовательность Гейне, которая сходится к $x_0$, но $\limpinf x_n \ne a$.
+% }
+% \end{proof}
+
+
+\begin{theorem}
+	Если $\fnis{f, g, h} D \mapsto \R$, $x_0 \in \R$, $\forall \delta > 0\ \UU_\delta(x_0) \cap D \ne \varnothing$, $f(x) \le h(x) \le g(x)$ и $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = a$, то $\lim_{x \to x_0} h(x) = a$.
+\end{theorem}
+
+Пусть $\lim_{y \to A} g(y) = B \in \R$ и $\lim_{x \to x_0} f(x) = A$, 
+
+
+\begin{theorem}[Критерий Коши $ \exists  $ конечного предела функции в точке]
+	Пусть $ D \sub \R, f:D\to \R $ и $ \forall r > 0\ \UU_r(x_0) \cap D \neq  \emptyset(x_0 \in \overline{ \R}) $
+	Тогда $ \exists \lim_{x\to x_0}f(x) = A \in \R \longleftrightarrow \forall  \epsilon > 0 \exists \delta > 0 \forall x', x'' \in \UU_\delta(x_0)\cap D $
+	 \begin{gather}
+		|f(x') - f(x'')| < \epsilon
+	\end{gather}
+\end{theorem}
+\begin{proof}
+	 $ \Longrightarrow $
+	Пусть $ \lim_{x \to  x_0}f(x) = A \in  \R $ Тогда \begin{gather}
+		\forall \epsilon > 0 \exists \delta > 0: \forall x \in \UU \\
+		|f(x) - A| < \dfrac{\epsilon}{2} \implies \forall x', x'' \in \UU_\delta (x_0)\cap D \\
+		|f(x') - f(x'')| \leq |f(x') - A| + |A - f(x'')| < \epsilon
+	\end{gather}
+	 $ \Longleftarrow $ Пусть $ x_n \to x_0, n \to \infty $ -- последовательность Гейне.
+	 $ TODO $ \begin{lemma}
+	 \begin{gather}
+		\exists r > 0 \exists C > 0 \forall x \in \UU_r(x_0)\cap D |f(x)| \leq\, D
+	\end{gather}
+\end{lemma}
+	\begin{proof}
+		TODO
+	\end{proof}
+	 $ x_n \to  x_0 \implies$ при достаточно больших $ n: x_n \in \UU_r(x_0) \cap D \implies  |f(x_n) \leq  C$
+	 По теореме Больцано-Вейерштрасса $ \exists  $ строго возрастающая последовательность $ n_k \in \N $ и $ \exists  A \in \R $ $ f(x_{n_k}) \to A $ при $ k \to \infty $.
+	 $ x'' = x_{n_k} $
+	 \begin{gather}
+		 - \epsilon < f(x')\, - f(x'') < \epsilon
+	\end{gather}
+	По теореме о предельном переходе в неравенствах при $ k \to  \infty $: \begin{gather}
+		 -\, \epsilon \leq\, f(x') - A \leq \epsilon
+	\end{gather}
+	Вывод $ \forall \epsilon > 0 \exists \delta > 0: \forall x' \in \UU_\delta(x_0) \cap D $ выполнено $ TODO  $, по определению предела \[ \lim_{x \to  x_0}f(x) = A \] 
+\end{proof}
+\begin{definition}
+	Пусть $ f: D \to \R $ и $ x_0 \in D $. Если $ \exists \lim_{x \to x_0} f(x) = f(x_0)$, то $ f $ называется непрерывной в точке $ x_0 $(по множеству $ D $). Если $ f(x) $ не непрерывна в точке $ x_0 $,  то говорят, что $ f $ разрывна d $ x_0 $( и называют $ x_0 $ точкой разрыва).
+	Если $ f $ непрерывна в $ x_0 \forall  x_0 \in  D $, то говорят, что $ f $ непрерывна на $ D $.
+	Если $ f: D \to \R $ разрывна и $ x_0 \in D$(или $ x_0 \notin D $) и $ \lim_{x \to x_0}f(x) \in \R $(конечный), то такой разрыв называется устранимым
+\end{definition}
+\begin{proposition}
+	 $ x \mapsto \sin x, x \mapsto \cos x, x \mapsto \exp x $ непрерывны.
+\end{proposition} \begin{proof}
+	TODO
+\end{proof}
+\begin{lemma}
+	 $ \forall t \in \R \ |\sin t| \leq  t $.
+\end{lemma} \begin{proof}
+	TODO
+\end{proof}
+\begin{proposition}[Арифметические операции с непрерывными функциями]
+	Пусть $ f, g : \R \to \R$ непрерывна, тогда $ f + g \text{ и } f - g f \circ g $ тоже непрерывна. Если $ g \neq  0 $ на $ \R g(x) \neq  0 \forall  x \in \R $, то $ \dfrac{f}{g}  $ непрерывна на $ \R $, где $ (f \circ g)(x) := f(g(x)) $ -- композиция $ f $ и $ g $.
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{note}
+	 $ f: D \to  \R $ непрерывна в $ x_0 $ $ \Longleftrightarrow  \forall x_n \in D x_n \to x_0$ выполнено $ f(x_n) \to f(x_0)$.
+\end{note}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{theorem}[Теорема Вейерштрасса]
+	Пусть $ f $ непрерывна на $ [a, b] $, тогда $ \exists x_0 \in [a, b]: f(x_0) = \sup f(x), x \in [a, b] $ ( $ \sup $ достигается в точке $ x_0 $)
+\end{theorem} \begin{proof}
+	По теореме о максимизирующей последовательности $ \exists \{y_n\} \in f([a, b]) $:
+	 $ y_n $ нестрого возрастает и $ y_n \to \sup f([a, b]) $ 
+	 \begin{gather}
+		\phantom \implies \forall\, n \exists x_n \in [a, b]: f(x_n) = y_n \\
+		 \implies\, x_n \text{ -- ограничена } \\
+		 TODO 
+	\end{gather}
+	
+\end{proof}
+\begin{note}
+	\begin{gather}
+		(\forall\,A \sub \R f(A): = \{f(x)|x \in A\} \text{ называется образом } A \text{ под действием  } f)
+	 \end{gather}
+\end{note}
+\begin{theorem}[Теорема о промежуточном значении непрерывной функции] \label{IntermediateValueV1}
+	Пусть $ f $ непрерывна на $ [a, b] $ и $ f(a)f(b) \leq  0 $. Тогда $ \exists  x \in [a, b]: f(x) = 0 $.
+\end{theorem} \begin{proof}
+	Будем делить на каждом шаге отрезок пополам и брать отрезок на концах которого функция принимает значения разных знаков. \begin{gather}
+		\exists \text{ стягивающаяся последовательность вложенных отрезков } [a, b] = [a_1, b_1] \supset [a_2, b_2] \supset \dots\,, \\
+		 \text{такая что } f(a_n)f(b_n) < 0 \text{ и } b_n - a_n = \dfrac{b - a}{2^{n - 1}}\, \\
+		\text{по теореме Кантора} \exists! x \in \cap_{n = 1}^\infty[a_n, b_n] \text{ и } \lim_{n \to  \infty}a_n = \lim_{n \to \infty}b_n = x \\
+		(\text{так как } |x - a_n| \leq b_n - a_n \to 0) \\
+		f \text{ -- непрерывна в } x \implies \lim_{n \to \infty}f( a_n) = f( b_n) = f(x) \\
+		\left(f(x)\right)^2 \leq\, 0 \implies\, f(x) = 0
+	\end{gather}
+\end{proof}
+
+	\begin{theorem}[О промежуточном значении v.2] \label{IntermediateValueV2}
+		Если функция $ f: I \to \R$ непрерывна на промежутке $ I \sub \R $, то $ f(I) $ -- промежуток.
+	\end{theorem}
+	\begin{proof}
+		Пусть $ u, v \in  f(I), u < v $. Тогда $ \forall w \in (u, v) \ w \overset{?}{\in }f(I)  $ \begin{gather}
+			\phantom \implies \exists x, y \in I: u = f(x), v = f(y)\, \\
+			\text{ Не уменьшая общности } x < y \\
+			\text{ Рассмотрим } g(t): = f(t) - w \\
+			g \text{ непрерывна на} I \implies \text{ на } [x, y] \\
+			g(x) = u - w < 0 \\
+			g(y) = v - w > 0 \\
+			\phantom \implies \text{ по теореме \ref{IntermediateValueV1} } \exists z \in [x, y]: g(z) = 0 \Longleftrightarrow f(z) = w
+		\end{gather}
+	\end{proof}
+\begin{note}
+	Обратное неверно: если $ I \in  \R $ -- промежуток и $ f: I \to \R $ и $ f(I) $ -- промежуток, то $ f $ не обязана быть непрерывной.
+\end{note}
+\begin{note}
+	Пусть $ I \in  \R $ -- промежуток, $ f: I \to \R $ и $ \forall  $ промежутка $ J \sub I $ $ f(J) $ -- тоже промежуток тоже неверно 
+\end{note} \begin{proof}
+	 \begin{gather}
+		I = \R \\
+		f(x): = \begin{cases} 0, x \leq\, 0 \\
+		\sin \dfrac{1}{x}, x > 0 \end{cases} \\
+		\text{ Ясно, что  } f \text{ разрывна в } 0 
+	\end{gather}
+	Пусть $ J \sub \R $ -- промежуток
+	\begin{enumerate}
+		\item $ J \sub (-\infty, 0) \to f(J) = \{0\} \text{ -- промежуток }$
+		\item $ J \sub (0, +\infty) \to f(J)$ -- промежуток по \ref{IntermediateValueV2}
+		\item $ J \neq \emptyset, J\nsubseteq(-\infty, 0), J\nsubseteq(0, +\infty) \to  \exists x < 0: x \in J$ и $ \exists  y > 0: y \in J \implies  (0, y) \sub J$
+		 $ \exists x', x'' \in (0, y): \sin \frac{1}{x'} = 1, \sin \frac{1}{x''} = -1$. Тогда функция $ g(x) = \sin \frac{1}{x} $ непрерывна на $ (0, +\infty) $.
+	\end{enumerate}
+	 \begin{gather}
+		\begin{cases} 
+		g(x') =  1 \\
+		f(x'') = - 1 \\
+		x', x'' \in (0, y)
+	\end{cases} \implies\, \text{ по теореме \ref{IntermediateValueV1}} [-1, 1] \sub g((0, y)) \implies [ - 1, 1]\sub f(J)
+	\end{gather}
+	Но $ f(J) \sub [-1, 1] \implies f(J) = [-1, 1] \text{ -- промежуток }$.
+\end{proof}
+\subsection{Односторонние пределы}
+\begin{definition}
+	Пусть $ D \sub \R $ и $ f: D \to  \R, x_0 \in \R $. Если у $ f\ \exists  $ предел при $ x \to x_0 $ по множеству $ (x_0, +\infty)\cap D $,
+	то такой предел называется правосторонним пределом при $ x \to x_0 + 0 $ и обозначается $ f(x_0 + 0) \equiv \lim_{x \to x_0 + 0} f(x)$
+\end{definition}
+\begin{definition}
+	Пусть $ D \sub \R $ и $ f: D \to  \R, x_0 \in \R $. Если у $ f\ \exists  $ предел при $ x \to x_0 $ по множеству $ (x_0, -\infty)\cap D $,
+	то такой предел называется левосторонним пределом при $ x \to x_0 - 0 $ и обозначается $ f(x_0 - 0) \equiv \lim_{x \to x_0 - 0} f(x)$
+\end{definition}
+\begin{proposition}
+	 $ A \in \RR \cup \{\infty\} $ является пределом $ f $ при $ x \to x_0 \Longleftrightarrow \exists  f(x_0 + 0) = f(x_0 - 0) = A$
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{theorem}
+	Если $ f $ монотонна на $ (a, b), a < b $, то $ x \in  (a, b) \exists \text{ конечные } f(x\pm 0)$, а также \begin{gather}
+		\begin{cases} \exists f(a + 0) \in \RR \\
+		\exists f(b - 0 ) \in \RR\end{cases} 
+	\end{gather}
+\end{theorem} \begin{proof}
+	Пусть $ x \in (a, b) $, $ f $ нестрого возрастает. Обозначим $ s:= \inf f((x, b)) $. \begin{gather}
+		\forall t > x \ f(t) \geq\, s \\ 
+		\forall \epsilon > 0 \ \exists y > x: f(y) < s + \epsilon \\
+		\delta : = y - x \\
+		x \leq\, t \leq y \to f(x) \leq f(t) \leq f(y) \implies \forall t \in (x, y)\hookrightarrow\,\begin{cases}   f(t) \leq\,f(y) < s + \epsilon \\
+		f(t) \geq\, s \end{cases} \implies \\
+		 \implies f(t) \in [s, s + \epsilon] \implies \forall \epsilon > 0 \exists \delta > 0 : \forall\, t \in (x, x + \delta)\, f(t) \in [s, s + \epsilon) \sub U_\epsilon(s) \implies\, \\ 
+		 \implies f(x + 0) = \inf_{t > x}f(t)
+	\end{gather}
+\end{proof}
+\begin{proposition}
+	Аналогично $ f(a +0) = \inf_{t \in (a, b)}f(t) $
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}

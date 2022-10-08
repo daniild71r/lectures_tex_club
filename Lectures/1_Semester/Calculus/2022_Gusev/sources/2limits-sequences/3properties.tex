@@ -1,0 +1,136 @@
+\subsection{Свойства пределов}
+\begin{theorem}
+    Для числовых последовательностей $\{ a_n \}$ и $\{ b_n \}$ таких, что $ \exists m \in \N : b_n = a_{n + m}$
+    \[ \lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n \]
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \lim_{n \to \infty} a_n = p \thus
+        \forall \epsilon > 0 \ \exists N \in \N: (\forall n \ge N\ a_n \in U_\epsilon(p)) \thus \\
+        \thus (\forall n \ge N\ b_n \in U_\epsilon(p)) \thus
+        \lim_{n \to \infty} b_n = p
+    \end{multline*}
+    \begin{multline*}
+        \limpinf b_n = p \thus
+        \forall \epsilon > 0 \ \exists N \in \N: (\forall n \ge N\ b_n \in U_\epsilon(p)) \thus \\
+        \thus (\forall n \ge N\ a_{n + m} \in U_\epsilon(p)) \thus
+        (\forall n \ge N + m \ a_{n} \in U_\epsilon(p)) \thus
+        \limpinf a_n = p
+    \end{multline*}
+\end{proof}
+
+\begin{theorem}[Предельный переход в неравенствах]
+    \label{limit_change_ineq}
+    Пусть $\limpinf a_n = a$, $\limpinf b_n = b$, тогда
+    \begin{gather*}
+        a < b \Rightarrow \exists N \in \N\ \forall n > N\ a_n < b_n \\
+        \exists N \in \N\ \forall n > N\ a_n \le b_n \Rightarrow a \le b
+    \end{gather*}
+\end{theorem}
+\begin{proof}\phantom\\
+    \begin{itemize}
+        \item Пусть $\varepsilon \defeq \sep(a, b)$, тогда
+        \begin{multline*}
+            \begin{rcases}
+                \exists N_1 \in \N\ \forall n > N_1\ a_n \in U_\varepsilon(a) \\
+                \exists N_2 \in \N\ \forall n > N_2\ b_n \in U_\varepsilon(b)
+            \end{rcases} \thus \\
+            \begin{rcases}
+                \thus \forall n > \max(N_1, N_2)\ a_n \in U_\varepsilon(a), b_n \in U_\varepsilon(b) \\
+                \phantom{\thus{ }} U_\varepsilon(a) \cap U_\varepsilon(b) = \varnothing \text{ (по лемме \ref{SepUIntersect})}
+            \end{rcases} \thus \\
+            \thus \text{(по лемме \ref{URelationWhenNotIntersecting}) } (a_n < b_n) \Leftrightarrow (a < b) \thus
+            a_n < b_n
+        \end{multline*}
+        
+        \item От противного. Пусть $a > b$, тогда по первой части $\exists N \in \N\ \forall n > N\ b_n < a_n \thus$ на бесконечном суффиксе $b$ меньше $a$, но формулировка говорит о существовании бесконечного суффикса, где $a$ не больше $b$ -- противоречие.
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}
+    (Теорема о двух миллиционерах) Для последовательностей $a_n$, $b_n$, $c_n$
+    \[ \exists N \in \N: \forall n > N\ a_n \le c_n \le b_n, \limpinf a_n = \limpinf b_n = a \thus \limpinf c_n = a \]
+\end{theorem}
+\begin{proof}
+    TODO for RR
+    \begin{multline*}
+        \forall \varepsilon > 0\ 
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ a_n > a - \varepsilon \\
+            \exists N_2 \in \N\ \forall n > N_2\ b_n < a + \varepsilon
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2, n)\ a_n > a - \varepsilon, b_n < a + \varepsilon, a_n < c_n < b_n \thus \\
+        \thus c_n \in U_\varepsilon(a) \thus
+        \limpinf c_n = a
+    \end{multline*}
+\end{proof}
+
+\begin{theorem}
+    Для любой последовательности $c_n$ и бесконечно малой $\alpha_n$ 
+    \[ \exists N \in \N: \forall n > N\ \abs{c_n} \le \alpha_n \thus \limpinf c_n = 0 \]
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem}
+    $\forall q : \abs{q} \le 1 \thus \limpinf{q^n} = 0$
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+
+\begin{theorem}
+    Если для последовательностей $a_n$ и $b_n$ $\limpinf a_n = a$, $\limpinf b_n = b$ и соответствующая операция для $a$ и $b$ определена,
+    \[ \limpinf a_n \pm b_n = a \pm b, \limpinf a_n \cdot b_n = a \cdot b \]
+    \[ \forall n \in \N\ b_n \ne 0 \thus \limpinf \frac{a_n}{b_n} = \frac{a}{b} \]
+\end{theorem}
+\begin{proof}
+    \begin{multline*}
+        \forall \varepsilon > 0\ 
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ \abs{a_n - a} < \frac{\varepsilon}{2} \\
+            \exists N_2 \in \N\ \forall n > N_2\ \abs{b_n - b} < \frac{\varepsilon}{2}
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2)\ \abs{(a_n + b_n) - (a - b)} <
+        \abs{a_n - a} + \abs{b_n - b} < \varepsilon \thus \\
+        \thus \limpinf{a_n + b_n} = a + b
+    \end{multline*}
+    По теореме \ref{limit_means_bounds} $\exists C : \forall n\in\N\ \abs{a_n} < C, \abs{b_n} < C$.
+    \begin{multline*}
+        \forall \varepsilon > 0\ 
+        \begin{rcases}
+            \exists N_1 \in \N\ \forall n > N_1\ \abs{a_n - a} < \frac{\varepsilon}{2C} \\
+            \exists N_2 \in \N\ \forall n > N_2\ \abs{b_n - b} < \frac{\varepsilon}{2C}
+        \end{rcases} \thus \\
+        \thus \forall n > \max(N_1, N_2)\ \abs{a_n b_n - ab} = \abs{a_n b_n - a_n b + a_n b - ab} \le \\
+        \le \abs{a_n} \abs{b_n - b} + \abs{b} \abs{a_n - a} <
+        C \frac{\varepsilon}{2C} + C \frac{\varepsilon}{2C} = \varepsilon \thus
+        \limpinf{a_n b_n} = a b
+    \end{multline*}
+
+    TODO % Доказать, что модуль больше b/2 => расписываем формулу разности и всё сокращается
+    \begin{multline*}
+        \forall \varepsilon > 0 \exists N_1 \in \N\ \forall n > N_1\ \abs{b_n - b} < \frac{\varepsilon}{2C} \\
+    \end{multline*}
+     
+\end{proof}
+
+\begin{theorem}
+
+    бесконечно малая * ограниченная = бесконечно малая
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem}
+    Пусть $ a_n \leq  b_n \ \forall n \geq n_0$. Тогда \begin{enumerate}
+        \item $ \lim_{n \to  \infty} a_n = +\infty \implies \lim_{n \to \infty} b_n = + \infty $
+        \item $ \lim_{n \to  \infty} b_n = -\infty \implies  \lim_{n \to \infty}a_n = - \infty$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Очевидно следствие из свойства \ref{limit_change_ineq}.
+\end{proof}
