@@ -9,6 +9,18 @@
 \usepackage{indentfirst}            % красная строка в первом абзаце
 \frenchspacing                      % равные пробелы между словами и предложениями
 
+%%% Гиперссылки
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{
+	unicode=true,            % русские буквы в раздела PDF
+	colorlinks=true,       	 % Цветные ссылки вместо ссылок в рамках
+	linkcolor=black!15!blue, % Внутренние ссылки
+	citecolor=green,         % Ссылки на библиографию
+	filecolor=magenta,       % Ссылки на файлы
+	urlcolor=NavyBlue,       % Ссылки на URL
+}
+
 %%% Дополнительная работа с математикой
 \usepackage{bm}
 \let\hm\undefined
@@ -153,18 +165,6 @@
 \makeatother                      % \eqref* без гиперссылки
 \numberwithin{equation}{subsection}  % Нумерация вида (номер_секции).(номер_уравнения)
 \mathtoolsset{showonlyrefs=false} % Номера только у формул с \eqref{} в тексте.
-
-%%% Гиперссылки
-\usepackage{hyperref}
-\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
-\hypersetup{
-	unicode=true,            % русские буквы в раздела PDF
-	colorlinks=true,       	 % Цветные ссылки вместо ссылок в рамках
-	linkcolor=black!15!blue, % Внутренние ссылки
-	citecolor=green,         % Ссылки на библиографию
-	filecolor=magenta,       % Ссылки на файлы
-	urlcolor=NavyBlue,       % Ссылки на URL
-}
 
 %%% Графика
 \usepackage{tikz}        % Графический пакет tikz
