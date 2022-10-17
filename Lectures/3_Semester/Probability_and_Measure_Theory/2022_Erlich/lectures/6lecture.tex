@@ -1,0 +1,216 @@
+\subsection{Предельные теоремы}
+
+\begin{theorem} (Неравенство Маркова)
+	Если $\xi \ge 0$ --- случайная величина и существует её математическое ожидание, то
+	\[
+		\forall \eps > 0 \quad P\{\xi \ge \eps\} \le \frac{\E\xi}{\eps}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем $\eps > 0$ и распишем математическое ожидание:
+	\[
+		\E\xi = \sum_{w \in \Omega} P(w)\xi(w) = \sum_{w \colon \xi(w) \ge \eps} P(w)\xi(w) + \sum_{w \colon \xi(w) < \eps} P(w)\xi(w) \ge \sum_{w \colon \xi(w) \ge \eps} \xi(w)\eps = P\{\xi \ge \eps\} \cdot \eps
+	\]
+\end{proof}
+
+\begin{corollary} (Неравенство Чебышёва)
+	Пусть дана случайная величина $\xi$, для которой существует дисперсия $D\xi$. Тогда
+	\[
+		\forall \eps > 0 \quad P\{|\xi - \E\xi| \ge \eps\} \le \frac{D\xi}{\eps^2}
+	\]
+\end{corollary}
+
+\begin{proof}
+	Введём случайную величину $\eta = (\xi - \E\xi)^2 \ge 0$. Тогда $\E\eta = D\xi$ и, соответственно, существует. По неравенству Маркова
+	\[
+		\forall \eps > 0 \quad P\{\eta \ge \eps^2\} \le \frac{\E\eta}{\eps^2}
+	\]
+	При этом $\{\eta \ge \eps^2\} = \{|\xi - \E\xi| \ge \eps\}$, а $\E\eta / \eps^2 = D\xi / \eps^2$.
+\end{proof}
+
+\begin{theorem} (Закон Больших Чисел, сокращается как ЗБЧ)
+	Пусть $\xi_1, \ldots, \xi_n$ --- независимые одинаково распределенные случайные величины, а также $\exists D\xi_1,\ \E\xi_1 = a$ (этого достаточно, чтобы те же характеристики с теми же значениями существовали у остальных случайных величин, в силу одинакового распределения). Тогда
+	\[
+		\forall \eps > 0 \quad P\left\{\md{\frac{\xi_1 \plusdots \xi_n}{n} - a} \ge \eps\right\} \xrightarrow[n \to \infty]{} 0
+	\]
+\end{theorem}
+
+\begin{note}
+	Де-факто закон утверждает следующее: если мы проведём достаточно большую серию экспериментов, зная, что матожидание ошибки измеряемой величины равно нулю, то среднее от измеренных значений будет близко к истинному.
+\end{note}
+
+\begin{proof}
+	Уже должна быть ясна связь между матожиданиями:
+	\[
+		\E \frac{\xi_1 \plusdots \xi_n}{n} = \frac{\E\xi_1 \plusdots \E\xi_n}{n} = a
+	\]
+	Обозначим среднее случайных величин за $\eta$. Тогда, по неравенству Чебышёва:
+	\[
+		\forall \eps > 0 \quad P\left\{\md{\eta - a} \ge \eps\right\} \le \frac{D\eta}{\eps^2} = \frac{\sum_{i = 1}^n D\xi_i}{n^2 \eps^2} = \frac{n\sigma^2}{n^2 \eps^2} \xrightarrow[n \to \infty]{} 0
+	\]
+\end{proof}
+
+\begin{note}
+	Теорему можно ослабить по следующим пунктам:
+	\begin{enumerate}
+		\item Нам не нужна независимость, достаточно нулевой ковариации
+		
+		\item Вместо общего для всех $a$ можно писать среднее из математических ожиданий
+		
+		\item Для верности предела нам не нужны конкретные значения суммы дисперсий. Достаточно потребовать, что $\sum_{i = 1}^n D\xi_i = o(n^2)$. 
+	\end{enumerate}
+\end{note}
+
+\begin{theorem} (Центральная Предельная Теорема, обозначается как ЦПТ)
+	Пусть $\xi_1, \ldots, \xi_n$ --- независимые одинаково распределенные случайные величины, а также $\exists D\xi_1 \neq 0, \E\xi_1 = a$. Тогда, если обозначить $S_n = \xi_1 \plusdots \xi_n$, то
+	\[
+		P\left\{a \le \frac{S_n - \E S_n}{\sqrt{DS_n}} \le b\right\} \xrightarrow[n \to \infty]{} \int_a^b \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}dx
+	\]
+\end{theorem}
+
+\begin{note}
+	Забегая вперёд, справа написана вероятность $P\{a \le \eta \le b\}$, где $\eta \sim N(0, 1)$ --- случайная величина с \textit{нормальным распределением}. Теорема утверждает, что \textbf{вне зависимости от распределений} $\xi_i$, мы всегда сойдёмся к нормальному распределению.
+\end{note}
+
+\begin{proof}
+	\textcolor{red}{Будет в конце года, сейчас без доказательства.}
+\end{proof}
+
+\subsection{Системы множеств}
+
+\begin{definition}
+	\textit{Системой множеств} называется какой-то набор подмножеств другого множества.
+\end{definition}
+
+\begin{example}
+	$F = 2^\Omega$ или $F = \{\emptyset\}$
+\end{example}
+
+\begin{definition}
+	Система множеств $S$ называется \textit{полукольцом}, если выполнены следующие требования:
+	\begin{enumerate}
+		\item \(\emptyset \in S\)
+		
+		\item \(\forall A, B \in S \Ra A \cap B \in S\)
+		
+		\item Если $A_1, A \in S,\ A_1 \subseteq A$, то \(\exists A_2, \ldots, A_n \in S \such A = \bscup_{i = 1}^n A_i\)
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Рассмотрим систему полуинтервалов какого-то фиксированного интервала $[A; B)$:
+	\[
+		T = \{[a; b) \subseteq [A; B)\},\ \ A \le a \le b \le B
+	\]
+	Докажем, что $T$ является полукольцом:
+	\begin{enumerate}
+		\item $\emptyset = [A; A) \in T$
+		
+		\item Пересечение интервалов либо пусто, либо полуинтервал. Формально проверяется через разбор случаев
+		
+		\item Снова разбор случаев
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	\textit{Кольцом} называется система множеств $R$, обладающая следующими свойствами:
+	\begin{enumerate}
+		\item \(R \neq \emptyset\)
+		
+		\item \(\forall A, B \in R \quad A \cap B \in R,\ A \tr B \in R\)
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Если $R$ --- кольцо, то
+	\begin{enumerate}
+		\item $R$ --- полукольцо
+		
+		\item \(\forall A, B \in R \quad A \cup B \in R,\ A \bs B \in R\)
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Проверим все свойства полукольца:
+		\begin{enumerate}
+			\item $R \neq \emptyset \Ra \exists A \in R$. Тогда $\emptyset = A \tr A \in R$
+			
+			\item По определению кольца
+			
+			\item Если $A_1 \subseteq A$, то $A = A_1 \sqcup (A \bs A_1)$
+		\end{enumerate}
+	
+		\item $A \bs B = A \tr (A \cap B)$
+		
+		\item $A \cup B = (A \bs B) \tr B$
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	Пересечение любого количества колец --- кольцо.
+\end{proposition}
+
+\begin{note}
+	\textit{Любого} подразумевает абсолютно любую мощность множества индексов колец.
+\end{note}
+
+\begin{proof}
+	Пусть $\{R_\alpha\}_{\alpha \in \Delta}$ --- множество пересекаемых колец. Тогда
+	\[
+		R = \bigcap_{\alpha \in \Delta} R_\alpha
+	\]
+	Проверим свойства кольца:
+	\begin{enumerate}
+		\item $\forall \alpha \in \Delta\ \ \emptyset \in R_\alpha \Ra \emptyset \in R$
+		
+		\item $\forall A, B \in R \Ra \forall \alpha \in \Delta\ \ A, B \in R_\alpha$. Отсюда $A \cap B \in R_\alpha,\ A \tr B \in R_\alpha$. Стало быть, $A \cap B,\ A \tr B \in R$
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Система множеств $\cA$ называется \textit{алгеброй}, если
+	\begin{enumerate}
+		\item $\cA$ --- кольцо
+		
+		\item $\exists E \in \cA \colon\ \forall A \in \cA\ \ A \subseteq E$ --- наличие единицы
+	\end{enumerate}
+	Иначе говоря, алгебра --- это кольцо с единицей.
+\end{definition}
+
+\begin{proposition}
+	Пересечение любого числа алгебр с общей единицей является тоже алгеброй.
+\end{proposition}
+
+\begin{proof}
+	Единица уже будет в пересечении, а про то, что пересечение будет кольцом, мы уже знаем из утверждения выше.
+\end{proof}
+
+\begin{definition}
+	\textit{Минимальным кольцом, содержащим систему множеств $X$}, называется кольцо $R(X)$ со следующими свойствами:
+	\begin{enumerate}
+		\item $X \subseteq R(X)$
+		
+		\item $\forall R_1$ --- кольца такого, что $X \subseteq R_1$, то $R(X) \subseteq R_1$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Для любой системы множеств $X$ существует $R(X)$.
+\end{theorem}
+
+\begin{proof}
+	Положим за $\{R_\beta\}_{\beta \in \Gamma}$ --- множество всех колец, содержащих $X$. Что мы знаем про $R = \bigcap_{\beta \in \Gamma} R_\beta$?
+	\begin{enumerate}
+		\item $R$ --- кольцо
+		
+		\item $X \subseteq R$
+		
+		\item $\forall R' \colon X \subseteq R'$ и $R'$ --- кольцо, то $\exists \beta_1 \in \Gamma \colon R' = R_{\beta_1} \supseteq R$
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	В чём проблема теоремы? Она не даёт описания множества полученного кольца, только его существование.
+\end{note}

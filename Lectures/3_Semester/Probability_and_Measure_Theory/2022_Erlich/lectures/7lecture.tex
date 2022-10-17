@@ -1,0 +1,90 @@
+\begin{lemma}
+	Пусть $S$ --- полукольцо, $A, A_1, \ldots, A_k \in S$, причём $\bscup_{i = 1}^k A_i \subseteq A$, тогда
+	\[
+		\exists A_{k + 1}, \ldots, A_n \in S \colon \bscup_{i = 1}^n A_i = A
+	\]
+\end{lemma}
+
+\begin{proof}
+	Проведём индукцию по $k$:
+	\begin{itemize}
+		\item База $k = 1$: тривиально по определению полукольца
+		
+		\item Переход $k > 1$: по предположению индукции
+		\[
+			\bscup_{i = 1}^{k - 1} A_i \subseteq A \Lora \ps{\bscup_{i = 1}^{k - 1} A_i} \sqcup \ps{\bscup_{j = 1}^q B_j} = A
+		\]
+		где $B_j \in S$. Понятно, что в переходе $A_k \subseteq \bscup_{j = 1}^q B_j$. По свойству полукольца, $D_j = A_k \cap B_j \in S$. В таком случае
+		\[
+			B_j = D_j \sqcup \ps{\bscup_{l = 1}^{a_j} C_{j, l}},\ \ C_{j, l} \in S
+		\]
+		Собираем всё вместе и получаем требуемое:
+		\[
+			A = \ps{\bscup_{i = 1}^k A_i} \sqcup \ps{\bscup_{j = 1}^q \bscup_{l = 1}^{a_j} C_{j, l}}
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Пусть $S$ --- полукольцо, $R(S)$ --- минимальное кольцо, тогда
+	\[
+		R(S) = K(S) = \set{\bscup_{i = 1}^n A_i,\ A_i \in S}
+	\]
+\end{theorem}
+
+\begin{proof}
+	С самого начала можно заявить, что $R(S) \supseteq K(S)$. Это следует из того, что кольцо замкнуто относительно объединения. Другое вложение докажем тем фактом, что $K(S)$ --- тоже кольцо, содержащее $S$:
+	\begin{enumerate}
+		\item $\emptyset \in K(S)$, так как $\emptyset \in S$
+		
+		\item Проверим замкнутость пересечения. $\forall A, B \in K(S)$ верны следующие записи:
+		\[
+			A = \bscup_{i = 1}^n A_i; \quad B = \bscup_{j = 1}^k B_j
+		\]
+		где $A_i,\ B_j \in S$. Положив $C_{i, j} := A_i \cap B_j \in S$, имеем
+		\[
+			A \cap B = \bscup_{i = 1}^n \bscup_{j = 1}^k C_{i, j} \in K(S)
+		\]
+		Коль скоро мы записали пересечение через конечное дизъюнктное объединение.
+		
+		\item Осталось проверить замкнутость. Продолжая рассуждения предыдущего пункта, мы можем записать $A_i$ в следующем виде:
+		\[
+			A_i = \ps{\bscup_{j = 1}^k C_{i, j}} \sqcup \ps{\bscup_{s = 1}^{s_i} D_{i, s}},\ \ D_{i, s} \in S
+		\]
+		Аналогично с $B_j$:
+		\[
+			B_j = \ps{\bscup_{i = 1}^n C_{i, j}} \sqcup \ps{\bscup_{l = 1}^{l_j} E_{j, l}},\ \ E_{j, l} \in S
+		\]
+		С этим мы можем записать симметрическую разность так:
+		\[
+			A \tr B = \ps{\bscup_{i = 1}^n \bscup_{s = 1}^{s_i} D_{i, s}} \sqcup \ps{\bscup_{j = 1}^k \bscup_{l = 1}^{l_j} E_{j, l}} \in K(S)
+		\]
+	\end{enumerate}
+	Этими тремя пунктами мы обосновали, что $K(S)$ --- полукольцо. В силу его структуры, оно также является и кольцом, это проверяется просто. Стало быть, $R(S) \subseteq K(S)$.
+\end{proof}
+
+\begin{lemma}
+	Пусть $S$ --- полукольцо, а $A_1, \ldots, A_n \in S$ --- произвольный набор множеств. Тогда
+	\[
+		\exists B_1, \ldots, B_k \in S \such A_i = \bscup_{j \in \Delta_i} B_j
+	\]
+\end{lemma}
+
+\begin{proof}
+	Проведём индукцию по $n$:
+	\begin{itemize}
+		\item База $n = 1$: тогда $B_1 = A_1$ и всё, победа.
+		
+		\item Переход $n > 1$: для $A_1, \ldots, A_{n - 1}$ нашлись множества $B_1, \ldots, B_q \in S$. Возьмём $A_n$ и пересечём со всеми ними: $C_s = A_n \cap B_s \in S$. Тогда
+		\[
+			A_n = \ps{\bscup_{s = 1}^q C_s} \sqcup \ps{\bscup_{p = 1}^m D_p}
+		\]
+		В результате мы <<измельчили>> все $B_s$. Теперь они записываются следующим образом (по свойству полукольца):
+		\[
+			B_s = C_s \sqcup \ps{\bscup_{r = 1}^{r_s} B_{s, r}},\ \ B_{s, r} \in S
+		\]
+		Итого, чтобы записать набор $A_1, \ldots, A_n$, нам нужны $\{C_s\}_{i = 1}^q$, $\{B_{s, r}\}$ и $\{D_p\}_{p = 1}^m$, причём все они попарно непересекаются.
+	\end{itemize}
+\end{proof}
+
+\textcolor{red}{Я остановился техать на 29:37 7й лекции}
