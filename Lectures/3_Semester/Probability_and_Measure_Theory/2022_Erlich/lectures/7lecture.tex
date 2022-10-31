@@ -62,7 +62,7 @@
 	\end{enumerate}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma} \label{disruption_lemma}
 	Пусть $S$ --- полукольцо, а $A_1, \ldots, A_n \in S$ --- произвольный набор множеств. Тогда
 	\[
 		\exists B_1, \ldots, B_k \in S \such A_i = \bscup_{j \in \Delta_i} B_j
@@ -115,7 +115,7 @@
 \begin{proof}
 	Возьмём произвольный счётный набор множеств из $R$: $\{A_i\}_{i = 1}^\infty$. Довольно просто заметить следующее равенство:
 	\[
-		\bigcap_{i = 1}^\infty = A_1 \bs \bigcup_{i = 1}^\infty (A_1 \bs A_i) \in R
+		\bigcap_{i = 1}^\infty A_i = A_1 \bs \bigcup_{i = 1}^\infty (A_1 \bs A_i) \in R
 	\]
 \end{proof}
 
@@ -148,7 +148,7 @@
 \end{note}
 
 \begin{note}
-	Все утверждения, доказанные для минимальных колец, верны и для $\sigma$-алгебры, за исключением теоремы о представлении элемента.
+	Все утверждения, доказанные для минимальных колец, верны и для минимальной $\sigma$-алгебры, за исключением теоремы о представлении элемента.
 \end{note}
 
 \begin{definition}
