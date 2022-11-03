@@ -30,6 +30,16 @@
 \DeclareMathOperator{\ke}{Ker}
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\Deg}{deg}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\upjm}{\mu^*_\mathfrak{J}}
+\DeclareMathOperator{\downjm}{\mu^\mathfrak{J}_*}
+\DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{J})}}
+\DeclareMathOperator{\downjlm}{\mu^{(\mathfrak{J})}_*}
+\DeclareMathOperator{\jlm}{\mu_{(\mathfrak{J})}}
+\DeclareMathOperator{\jm}{\mu_\gJ}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -37,7 +47,21 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\Tau}{\mathcal{T}}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\goth}{\mathfrak}
+\newcommand{\gj}{\goth{j}}
+\newcommand{\gJ}{\goth{J}}
+\newcommand{\mc}{\mathring}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\veps}{\epsilon}
+\newcommand{\tr}{\triangle}
+\newcommand{\bscup}{\bigsqcup}
+\newcommand{\such}{\ \big|\ }
+\newcommand{\range}[1]{\{1, \ldots, #1\}}
+\newcommand{\ole}[1]{\overline{#1}}
+\newcommand{\ule}[1]{\underline{#1}}
+\newcommand{\comR}{{(R)}}
 
 \newcommand{\imp}[2]{
 	(#1\,\,$\ra$\,\,#2)\,\,
@@ -48,13 +72,40 @@
 \newcommand{\Root}[2]{
 	\left\{\!\sqrt[#1]{#2}\right\}
 }
+\newcommand{\ps}[1]{
+	\left(#1\right)
+}
+\newcommand{\sbr}[1]{
+	\left[#1\right]
+}
+\newcommand{\lsi}[1]{
+	\left[#1\right)
+}
+\newcommand{\rsi}[1]{
+	\left(#1\right]
+}
+\newcommand{\br}[1]{
+	\left\{#1\right\}
+}
+\newcommand{\tbr}[1]{
+	\left\langle#1\right\rangle
+}
+\newcommand{\mo}[1]{
+	\left|#1\right|
+}
 
 \renewcommand\labelitemi{$\triangleright$}
 
 \let\bs\backslash
-\let\lra\Leftrightarrow
-\let\ra\Rightarrow
-\let\la\Leftarrow
+\let\Lra\Leftrightarrow
+\let\Lolra\Longleftrightarrow
+\let\lra\leftrightarrow
+\let\Ra\Rightarrow
+\let\Lora\Longrightarrow
+\let\ra\rightarrow
+\let\La\Leftarrow
+\let\Lola\Longleftarrow
+\let\la\leftarrow
 \let\emb\hookrightarrow
 
 %%% Перенос знаков в формулах (по Львовскому)
@@ -81,8 +132,10 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Определение}[section]
+\newtheorem*{designation}{Обозначение}
 \newtheorem*{corollary}{Следствие}
 \newtheorem*{note}{Замечание}
+\newtheorem*{anote}{Замечание автора}
 \newtheorem*{reminder}{Напоминание}
 \newtheorem*{example}{Пример}
 
