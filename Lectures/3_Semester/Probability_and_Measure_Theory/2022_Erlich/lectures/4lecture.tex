@@ -1,27 +1,207 @@
 \begin{definition}
-	\textit{Дискретным распределением} называется $(x_k \colon p_k)_k$, где $p_k \ge 0$, $\sum_k p_k = 1$ и 
+	\textit{Дискретным распределением} называется соответствие $(x_k \colon P_k)_k$, где $P_k \ge 0$, $\sum_k P_k = 1$ и $x_k \in \R$
 \end{definition}
 
 Рассмотрим некоторые конкретные дискретные распределения:
 \begin{itemize}
-	\item Бернуллиевское распределение: $k \in \{0, 1\}$, $x_k = k$, $p_0 = 1 - p$, $p_1 = p \in (0; 1)$
+	\item Бернуллиевское распределение: $k \in \{0, 1\}$, $x_k = k$, $P_0 = 1 - p$, $P_1 = p \in (0; 1)$
 	
-	\item Биномиальное распределение: $k \in \{0, \ldots, n\}$, $x_k = k$, $p_k = C_n^k p^k (1 - p)^{n - k}$. Обозначается как $Bin(n; p)$
+	\item Биномиальное распределение: $k \in \{0, \ldots, n\}$, $x_k = k$, $P_k = C_n^k p^k (1 - p)^{n - k}$. Обозначается как $Bin(n; p)$
 	
-	\item Геометрическое распределение: $k \in \N$, $x_k = k$, $p_k = (1 - p)^{k - 1}p$. Обозначается как $Geom(p)$
+	\item Геометрическое распределение: $k \in \N$, $x_k = k$, $P_k = (1 - p)^{k - 1}p$. Обозначается как $Geom(p)$
 	
-	\item Пуассоновское распределение $k \in \N_0$, $x_k = k$, $p_k = \frac{\lambda^k}{k!}e^{-\lambda}$, где $\lambda > 0$ --- произвольная константа. Обозначается как $Poiss(\lambda)$.
+	\item Пуассоновское распределение $k \in \N_0$, $x_k = k$, $P_k = \frac{\lambda^k}{k!}e^{-\lambda}$, где $\lambda > 0$ --- произвольная константа. Обозначается как $Poiss(\lambda)$.
 \end{itemize}
+
+\begin{designation}
+	Если случайная величина $\xi \colon \Omega \to \R$ имеет распределение $\mathcal{D}$, то это обозначатся как $\xi \sim \mathcal{D}$.
+\end{designation}
 
 \begin{theorem} (Пуассона)
 	Пусть есть случайная величина $\xi_n \sim Bin(n; p_n)$, $n \in \N$. При этом $n \cdot p_n \to \lambda > 0$ при $n \to \infty$. Утверждается, что в таком случае
 	\[
-		\forall k \in \N_0 \quad P(\{\xi_n = k\}) \xrightarrow[n \to \infty]{} \frac{\lambda^k}{k!}e^{-\lambda}
+		\forall k \in \N_0 \quad P\{\xi_n = k\} \xrightarrow[n \to \infty]{} \frac{\lambda^k}{k!}e^{-\lambda}
 	\]
 \end{theorem}
 
 \begin{proof}
-	Вероятность, которая рассматривается в утверждении, на самом деле является $p_k = C_n^k p_n^k$
+	Распишем вероятность $P_k = P\{\xi_n = k\}$:
+	\begin{multline*}
+		P_k = C_n^k p_n^k (1 - p_n)^{n - k} = \frac{1}{k!} \cdot \frac{n \cdot (n - 1) \muldots (n - k + 1)}{n^k} \cdot (p_n n)^k \cdot \frac{(1 - p_n)^n}{(1 - p_n)^k} =
+		\\
+		\frac{1}{k!} \cdot 1 \cdot \ps{1 - \frac{1}{n}} \muldots \ps{1 - \frac{k - 1}{n}} \cdot (p_n n)^k \cdot \frac{1}{(1 - p_n)^k} \cdot \ps{1 - \frac{np_n}{n}}^{\frac{n}{np_n} \cdot np_n} \xrightarrow[n \to \infty]{} \frac{\lambda^k}{k!}e^{-\lambda}
+	\end{multline*}
 \end{proof}
 
-\textcolor{red}{Дописать и ввести хорошие обозначения. У Эрлиха произошёл кринге с маленькими $p$}
+\begin{note}
+	В чём ценность этой теоремы? Считать суммы для дискретных вероятностных пространств с биномиальным распределением распределением очень больно, а вот пуассоновские обычно сильно проще.
+\end{note}
+
+\begin{example}
+	Пусть есть какое-то производство изделий. С вероятностью $p = 1/200$ мы производим бракованное изделие. Какова вероятность, что в партии из 1000 изделий будет не более 3х бракованных изделий?
+	
+	Положим $\xi \colon \Omega \to \R$ --- случайная величина, равная числу бракованных изделий. Тогда $\xi \sim Bin(1000; 1/200)$. Нужная вероятность задаётся формулой:
+	\[
+		P\{\xi \le 3\} = \sum_{k = 0}^3 C_{1000}^k \ps{\frac{1}{200}}^k \ps{\frac{199}{200}}^{1000 - k}
+	\]
+	Как возводить $(199 / 200)$ в 1000ю степень, если у нас нет компьютера? Вот поэтому воспользуемся теоремой Пуассона и сделаем хотя бы оценку на вероятность. Имеем $\lambda = 1000 / 200 = 5$, степень экспоненты возьмём с нужной точностью по таблице Брадиса. Тогда:
+	\[
+		P\{\xi \le 3\} \approx \sum_{k = 0}^3 \frac{5^k}{k!} e^{-5}
+	\]
+	Приблизить вероятность через распределение Пуассона, конечно, замечательно, но какая у нас ошибка?
+\end{example}
+
+\begin{proposition} (Уточнение теоремы Пуассона)
+	Если $\xi \sim Bin(n; p)$, $\eta \sim Poiss(\lambda)$, причём $\lambda = np$, то в таком случае имеет место равенство:
+	\[
+		\sum_{k = 0}^\infty |P\{\xi = k\} - P\{\eta = k\}| \le \frac{2\lambda}{n} \min\{2, \lambda\}
+	\]
+\end{proposition}
+
+\begin{note}
+	Конкретно в последнем примере это даёт оценку $1 / 50$ на погрешность, что довольно хорошо.
+\end{note}
+
+\begin{note}
+	Естественно, пуассоновское распределение существует не только для приближения биномиального. Его истинная природа сокрыта в так называемом \textit{пуассоновском процессе}, который будет изучаться в курсе случайных процессов.
+\end{note}
+
+\subsection{Независимость случайных величин}
+
+\begin{note}
+	Снова мы говорим только о дискретном вероятностном пространстве.
+\end{note}
+
+\begin{definition}
+	Две случайные величины $\xi, \eta$ называются \textit{независимыми}, если выполнено условие:
+	\[
+		\forall x_k \in \chi_\xi\ \forall y_n \in \chi_\eta \quad \{\xi = x_k\} \indep \{\eta = y_n\}
+	\]
+	Обозначается такое отношение как $\xi \indep \eta$.
+\end{definition}
+
+\begin{proposition}
+	Если $\xi \sim Poiss(\lambda_1)$ и $\eta \sim Poiss(\lambda_2)$, причём $\xi \indep \eta$, то $\xi + \eta \sim Poiss(\lambda_1 + \lambda_2)$
+\end{proposition}
+
+\begin{proof}
+	Распишем вероятность суммы случайных величин:
+	\begin{multline*}
+		P\{\xi + \eta = k\} = \sum_{i = 0}^\infty P\{\xi + \eta = k | \xi = i\} \cdot P\{\xi = i\} = \sum_{i = 0}^k P\{\eta = k - i\} \cdot P\{\xi = i\} =
+		\\
+		\sum_{i = 0}^k \frac{\lambda_2^{k - i}}{(k - i)!} e^{-\lambda_2} \cdot \frac{\lambda_1^{i}}{i!} e^{-\lambda_1} = e^{-(\lambda_1 + \lambda_2)} \cdot \frac{1}{k!} (\lambda_1 + \lambda_2)^k
+	\end{multline*}
+\end{proof}
+
+\begin{note}
+	Может ли сработать подобная формула для $\xi + \xi$? Нет, просто потому, что $\xi + \xi = 2\xi$ --- случайная величина не принимает все значения, а только чётные.
+\end{note}
+
+\subsection{Математическое ожидание случайной величины}
+
+\begin{note}
+	Дадим определенную интуицию к понятию математического ожидания:
+	
+	Пусть задано дискретное вероятностное пространство $(\Omega, F, P)$, $\Omega = \{w_1, \ldots, w_n\}$ со случайной величиной $\xi$. Проведём $N \ge n$ экспериментов, в $i$-м из которых случайная величина принимает значение $\xi^i = \xi(w^i)$ ($w^i$ - это $i$-й по порядку исход, не путать с нумерацией внутри $\Omega$). Введём $a_i$ как число исходов среди этих $N$, которые оказались равными $w_i$. Тогда очевиден следующий факт:
+	\[
+		\sum_{i = 1}^n a_i = N
+	\]
+	Хотелось бы узнать, какое значение в среднем принимала случайная величина $\xi$ за эти эксперименты. Узнать это можно по простой формуле:
+	\[
+		\frac{\xi^1 \plusdots \xi^N}{N} = \frac{\sum_{i = 1}^n a_i \cdot \xi(w_i)}{N} = \sum_{i = 1}^n \frac{a_i}{N} \xi(w_i) = \sum_{i = 1}^n P(w_i) \xi(w_i)
+	\]
+\end{note}
+
+\begin{definition}
+	\textit{Математическим ожиданием случайной величины} $\xi$ называется величина $\E\xi$, определяемая следующей формулой (в дискретной модели):
+	\[
+		\E\xi = \sum_{w \in \Omega} P(\{w\}) \cdot \xi(w)
+	\]
+	Естественно, в случае $\Omega \cong \N$ данный ряд должен сходиться абсолютно.
+\end{definition}
+
+\begin{anote}
+	Математическое ожидание в дискретном случае ещё можно назвать \textit{средним взвешенным значений случайной величины $\xi$ с весами-вероятностями}.
+\end{anote}
+
+\begin{theorem}
+	Пусть $(\Omega, F, P)$ - дискретное вероятностое пространство. Тогда математическое ожидание случайной величины обладает следующими свойствами:
+	\begin{enumerate}
+		\item Если $\xi \sim (x_k \colon P_k)_k$, то
+		\[
+			\E\xi = \sum_k x_k \cdot P_k
+		\]
+		
+		\item Если $\xi \sim (x_k \colon P_k)_k$ и $\phi \colon \R \to \R$, то
+		\[
+			\E\phi(\xi) = \sum_k \phi(x_k) \cdot P_k
+		\]
+		
+		\item $\E$ --- это линейный оператор на множестве случайных величин. Иначе говоря, матожидание линейно:
+		\[
+			\forall \xi, \eta\ \forall a, b \in \R \quad \E(a\xi + b\eta) = a\E\xi + b\E\eta
+		\]
+		
+		\item Если $\xi \ge 0$, то $\E\xi \ge 0$
+		
+		\item Если $\eta$ --- тоже случайная величина, причём $\xi \ge \eta$, то $\E\xi \ge \E\eta$
+		
+		\item Если $\xi \indep \eta$, то $\E(\xi \cdot \eta) = \E\xi \cdot \E\eta$
+		
+		\item (Неравенство Коши-Буняковского) \(\forall \xi, \eta \quad (\E|\xi \cdot \eta|)^2 \le \E\xi^2 \cdot \E\eta^2\)
+	\end{enumerate}
+\end{theorem}
+
+\begin{note}
+	Из пятого свойства также следует, что $|\E\xi| \le \E|\xi|$
+\end{note}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Аккуратно распишем сумму:
+		\[
+			\E\xi = \sum_{w \in \Omega} P(w)\xi(w) = \sum_{x_k \in \chi_\xi} \sum_{w \colon \over \xi(w) = x_k} P(w) \cdot x_k = \sum_{x_k \in \chi_\xi} x_k \cdot P\{\xi = x_k\} = \sum_k x_k \cdot P_k
+		\]
+		
+		\item Аналогично предыдущему пункту
+		
+		\item Тривиально
+		
+		\item Следует из линейности
+		
+		\item Следует из предыдущего свойства и линейности, ибо $(\xi - \eta)$ --- тоже случайная величина
+		
+		\item Распишем матожидание произведения по определению:
+		\begin{multline*}
+			\E(\xi \cdot \eta) = \sum_{w \in \Omega} P(w) \xi(w) \eta(w) = \sum_i \sum_j \sum_{w \colon \over { \xi(w) = x_i \over \eta(w) = y_j}} P(w) x_i y_j =
+			\\
+			\sum_i \sum_j x_i y_j P\{\xi = x_i \wedge \eta = y_j\} = \sum_i x_i P\{\xi = x_i\} \cdot \sum_j y_j P\{\eta = y_j\} = \E\xi \cdot \E\eta
+		\end{multline*}
+		
+		\item Имеет место 2 случая:
+		\begin{itemize}
+			\item $\E\xi^2 \cdot \E\eta^2 \neq 0$. Тогда, отнормируем наши случайные величины следующим образом:
+			\[
+				\overline{\xi} = \frac{\xi}{\sqrt{\E\xi^2}};\ \ \overline{\eta} = \frac{\eta}{\sqrt{\E\eta^2}}
+			\]
+			По неравенству Коши $2|\overline{\xi} \cdot \overline{\eta}| \le \overline{\xi}^2 \cdot \overline{\eta}^2$. По уже доказанному свойству о переходе к матожиданиям, мы можем навесить его с двух сторон. Что есть матожидание случайной величины с чертой?
+			\[
+				\E\overline{\xi}^2 = \E\ps{\frac{\xi^2}{\E\xi^2}} = \E\xi^2 \cdot \frac{1}{\E\xi^2} = 1 = \E\overline{\eta}^2
+			\]
+			Таким образом, $\E|\overline{\xi} \cdot \overline{\eta}| \le 1$. Стало быть
+			\[
+				\E\left|\frac{\xi}{\sqrt{\E\xi^2}} \cdot \frac{\eta}{\sqrt{\E\eta^2}}\right| \le 1;\ \E|\xi \cdot \eta| \le \sqrt{\E\xi^2} \cdot \sqrt{\E\eta^2};\ (\E|\xi \cdot \eta|)^2 \le \E\xi^2 \cdot \E\eta^2
+			\]
+			
+			\item $\E\xi^2 \cdot \E\eta^2 = 0$. Не умаляя общности, выберем $\E\xi^2 = 0$. Распишем матожидание квадрата случайной величины по определению:
+			\[
+				\E\xi^2 = \sum_{w \in \Omega} \underbrace{P(w)}_{\ge 0} \underbrace{\xi^2(w)}_{\ge 0} = 0
+			\]
+			В сумме мы можем сократить все слагаемые, когда $\xi^2(w) = 0$. Из оставшейся части получим, что
+			\[
+				\forall x \in \chi_\xi \bs \{0\} \quad P\{\xi^2 = x\} = 0 \Lora P\{\xi^2 = 0\} = 1
+			\]
+			Ну и при этом, естественно, $\xi^2 = 0 \Lra \xi = 0$. Стало быть, $P\{\xi = 0\} = 1$. Уже из всего сказанного следует, что $\E |\xi \cdot \eta| = 0$.
+		\end{itemize}
+	\end{enumerate}
+\end{proof}

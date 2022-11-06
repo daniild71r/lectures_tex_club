@@ -42,13 +42,37 @@
 	Пусть $G$ "--- группа, $g \in G$. \textit{Классом сопряженности} элемента $g$ называется множество $g^G$, то есть класс эквивалентности по отношению сопряженности, содержащий $g$.
 \end{definition}
 
-\begin{exercise}
-	Пусть $G$ "--- группа, $H \le G$. Тогда $H \normal G \hm\Leftrightarrow H$ "--- объединение некоторого количества классов сопряженности в $G$.
-\end{exercise}
-
 \begin{definition}
 	Пусть $G$ "--- группа, $H \le G$. Подгруппа $H$ называется \textit{нормальной в $G$}, если $\forall g \in G\ gH = Hg$. Обозначение "--- $H \normal G$.
 \end{definition}
+
+\begin{proposition}
+	Определение выше имеет ряд эквивалентных формулировок:
+	\begin{enumerate}
+		\item $G / H = H \bs G$
+		
+		\item $\forall g \in G: H^g = H$
+		
+		\item $\forall g \in G: gH \subset Hg$
+		
+		\item $\forall g \in G: H^g \subset H$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item (опр. $\lra 1$) В сторону 1 очевидно, а в обратную предположим противное: $gH \neq Hg$. Но по условию это должно быть эквивалентно $gH \cap Hg = \emptyset$. Тем не менее, $gH \cap Hg \supset \{g\}$, а потому определение выполнено
+		
+		\item (опр. $\lra 2$) Очевидно
+		
+		\item (опр. $\lra 3$) Если выполнено условие 3, то тогда
+		\[
+		\forall g \in G\ g^{-1}H \subset Hg^{-1} \Longleftrightarrow \forall g \in G\ Hg \subset gH
+		\]
+		
+		\item ($3 \lra 4$) Очевидно
+	\end{itemize}
+\end{proof}
 
 \begin{example}
 	Рассмотрим несколько примеров нормальных подгрупп в соответствующих группах:
@@ -66,33 +90,9 @@
 	\]
 \end{example}
 
-\begin{proposition}
-	Определение выше имеет ряд эквивалентных формулировок:
-	\begin{enumerate}
-		\item $G / H = H \bs G$
-		
-		\item $\forall g \in G: H^g = H$
-		
-		\item $\forall g \in G: gH \subset Hg$
-		
-		\item $\forall g \in G: H^g \subset H$
-	\end{enumerate}
-\end{proposition}
-
-\begin{proof}~
-	 \begin{itemize}
-	 	\item (опр. $\lra 1$) В сторону 1 очевидно, а в обратную предположим противное: $gH \neq Hg$. Но по условию это должно быть эквивалентно $gH \cap Hg = \emptyset$. Тем не менее, $gH \cap Hg \supset \{g\}$, а потому определение выполнено
-	 	
-	 	\item (опр. $\lra 2$) Очевидно
-	 	
-	 	\item (опр. $\lra 3$) Если выполнено условие 3, то тогда
-	 	\[
-	 		\forall g \in G\ g^{-1}H \subset Hg^{-1} \Longleftrightarrow \forall g \in G\ Hg \subset gH
-	 	\]
-	 	
-	 	\item ($3 \lra 4$) Очевидно
-	 \end{itemize}
-\end{proof}
+\begin{exercise}
+	Пусть $G$ "--- группа, $H \le G$. Тогда $H \normal G \hm\Leftrightarrow H$ "--- объединение некоторого количества классов сопряженности в $G$.
+\end{exercise}
 
 \begin{proposition}
 	Пусть $G$ "--- группа, $H_1 \normal G$, $H_2 \normal G$. Тогда $H_1 \cap H_2 \hm\normal G$.

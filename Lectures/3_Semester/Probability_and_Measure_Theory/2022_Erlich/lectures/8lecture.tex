@@ -1,0 +1,215 @@
+\begin{lemma} (полуаддитивность меры)
+	Если $m$ --- мера на полукольце $S$ и $A, A_1, \ldots, A_n \in S$, причём $A \subseteq \bigcup_{i = 1}^n A_i$, то
+	\[
+		m(A) \le \sum_{i = 1}^n m(A_i)
+	\]
+\end{lemma}
+
+\begin{proof}
+	По лемме \ref{disruption_lemma}, $\exists B_1, \ldots, B_q \in S$ такие, что
+	\[
+		\forall i \in \range{n}\ \ A_i = \bscup_{j \in \Lambda_i} B_j; \quad \bigcup_{i = 1}^n A_i = \bscup_{j = 1}^q B_j
+	\]
+	Осталось увидеть связь между мерами:
+	\[
+		\sum_{i = 1}^n m(A_i) \ge \sum_{j = 1}^q m(B_j) \ge m(A)
+	\]
+\end{proof}
+
+\begin{theorem}
+	Пусть $m$ --- мера на полукольце $S$, тогда функция $\nu$, определенная на $R(S)$ как
+	\[
+		\nu(\cA) := \sum_{i = 1}^n m(A_i),\ \ \cA= \bscup_{i = 1}^n A_i,\ A_i \in S
+	\]
+	задаёт меру на $R(S)$
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Корректность. Почему на разных разбиениях значение останется одинаковым? $\cA = \bscup_{i = 1}^n A_i = \bscup_{k = 1}^p B_k$. Введём снова общее разбиение через $C_{i, k} = A_i \cap B_k \in S$, а тогда $A_i = \bscup_{k = 1}^p C_{i, k}$ и $B_k = \bscup_{i = 1}^n C_{i, k}$. Итого:
+		\[
+			\nu(\cA) = \sum_{i = 1}^n m(A_i) = \sum_{i = 1}^n \sum_{k = 1}^p m(C_{i, k}) = \sum_{k = 1}^p \sum_{i = 1}^n m(C_{i, k}) = \sum_{k = 1}^p m(B_k)
+		\]
+		
+		\item Неотрицательность меры очевидна
+		
+		\item Конечная аддитивность. Пусть $\cA = \bscup_{i = 1}^n \cA_i$, где $\cA_i = \bscup_{j = 1}^{p_i} A_{i, j}$, $A_{i, j} \in S$. Тогда
+		\[
+			\nu(\cA) = \sum_{i = 1}^n \sum_{j = 1}^{p_i} m(A_{i, j}) = \sum_{i = 1}^n m(\cA_i)
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Единственность $\nu$ очевидна. Действительно, каждый элемент $R(S)$ представим через элементы $S$, а тогда $\eta$ записывается через меру $m$, как и все другие потенциальные меры на $R(S)$, удовлетворяющие условию.
+\end{note}
+
+\begin{theorem}
+	Если $m$ --- $\sigma$-аддитивная мера на $S$, то $\nu$ --- тоже $\sigma$-аддитивная мера на $R(S)$
+\end{theorem}
+
+\begin{proof}
+	Пусть $\cA = \bscup_{i = 1}^\infty \cA_i$. Тогда, мы можем расписать каждый элемент через элементы $S$:
+	\begin{itemize}
+		\item \(\cA = \bscup_{j = 1}^n B_j\)
+		
+		\item \(\cA_i = \bscup_{l = 1}^{l_i} B_{i, l}\)
+	\end{itemize}
+	Введём общее разбиение через $C_{j, i, l} = B_j \cap B_{i, l} \in S$. Тогда
+	\begin{itemize}
+		\item \(B_j = \bscup_{i = 1}^\infty \bscup_{l = 1}^{l_i} C_{j, i, l}\)
+		
+		\item \(B_{i, l} = \bscup_{j = 1}^n C_{j, i, l}\)
+	\end{itemize}
+	Теперь, распишем $\nu(\cA)$ по определению:
+	\[
+		\nu(\cA) = \sum_{j = 1}^n m(B_j) = \sum_{j = 1}^n \sum_{i = 1}^\infty \sum_{l = 1}^{l_i} m(C_{j, i, l})
+	\]
+	Все члены ряда неотрицательны, при этом он сходится. Значит, он сходится абсолютно и можно менять порядок суммирования. Отсюда получаем это:
+	\[
+		\nu(\cA) = \sum_{i = 1}^\infty \sum_{l = 1}^{l_i} \sum_{j = 1}^n m(C_{j, i, l}) = \sum_{i = 1}^\infty \sum_{l = 1}^{l_i} m(B_{i, l}) = \sum_{i = 1}^\infty \nu(\cA_i)
+	\]
+\end{proof}
+
+\begin{theorem}
+	($\sigma$-полуаддитивность на кольце) Если $\nu$ --- это $\sigma$-аддитивная мера на кольце $R$, то для $\forall \cA \in R, \{\cA\}_{i = 1}^\infty \subseteq R$, $\cA \subseteq \bigcup_{i = 1}^\infty \cA_i$, верно следующее:
+	\[
+		\nu(\cA) \le \sum_{i = 1}^\infty \nu(\cA_i)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Воспользуемся классической техникой и запишем объединение $\bigcup_{i = 1}^\infty \cA_i$ как дизъюнктное объединение множеств $\bscup_{j = 1}^\infty B_j$. Для этого за $B_j$ надо положить следующее:
+	\[
+		B_1 = \cA_1 \in R; \quad B_i = \cA_i \bs \bigcup_{j = 1}^{i - 1} \cA_j \in R
+	\]
+	Благодаря этому, мы можем ввести дизъюнктное разбиение на $\cA$:
+	\[
+		C_j = \cA \cap B_j \in R; \quad \cA = \bscup_{j = 1}^\infty C_j
+	\]
+	Ну а дальше просто держим в уме, что $C_j \subseteq B_j \subseteq \cA_j$:
+	\[
+		\nu(\cA) = \sum_{j = 1}^\infty \nu(C_j) \le \sum_{j = 1}^\infty \nu(\cA_j)
+	\]
+\end{proof}
+
+\subsection{Внешняя мера Лебега}
+
+\begin{note}
+	То, что мы изучили в курсе математического анализа, называется \textit{классической мерой Лебега}. В более общем случае, мера Лебега может быть задана на произвольном полукольце с единицей.
+\end{note}
+
+\begin{note}
+	Далее и до конца параграфа, где не обговорено явно обратного, мы обозначаем полукольцо буквой $S$, а его единицу как $E$. Дополнительно считаем, что у нас есть $\sigma$-аддитивная мера $m$ на этом полукольце.
+\end{note}
+
+\begin{definition}
+	\textit{Внешней мерой Лебега} для $\forall A \subseteq E$ (\textbf{не обязательно $\in S$}) называется величина, определенная таким образом:
+	\[
+		\mu^*(A) = \inf_{A \subseteq \bigcup_{i = 1}^\infty A_i \over A_i \in S} \sum_{i = 1}^\infty m(A_i)
+	\]
+\end{definition}
+
+\begin{note}
+	Несмотря на то, что мы назвали эту величину \textit{мерой}, она ею не является. Контрпример такой:
+	\[
+		S = \{[0; 1], [0; 1/2), [1/2; 1], \emptyset\};\ \ m \text{ --- длина промежутка}
+	\]
+	Тогда должно быть верно, что $\mu^*([0; 1]) = \mu^*([0; 1/3)) + \mu^*([1/3; 1])$, но при этом $\mu^*([0; 1]) = \mu^*([1/2; 1]) = 1$ и $\mu^*([0; 1/3)) = 1/2$. Иначе говоря, \textit{внешняя мера Лебега} не обладает аддитивностью в общем случае.
+\end{note}
+
+\begin{proposition}
+	На $R(S)$ имеет место равенсво $\mu^* = \nu$, если $\nu$ --- это индуцирорванная $m$ мера.
+\end{proposition}
+
+\begin{proof}
+	Действительно, пусть $\cA \in R(S)$, $\cA = \bscup_{i = 1}^n \cA_i$, $\cA_i \in S$. Тогда
+	\[
+		\nu(\cA) = \sum_{i = 1}^n m(\cA_i)
+	\]
+	Тогда тривиальным образом $\nu(\cA) \ge \mu^*(\cA)$ в силу определения. С другой стороны, для любого счётного покрытия $\{\cA\}_{i = 1}^\infty$ мы знаем, что
+	\[
+		\nu(\cA) \le \sum_{i = 1}^\infty \nu(\cA_i)
+	\]
+	При этом, так как $\cA_i \in S$ для внешней меры Лебега, то $\nu(\cA_i) = m(\cA_i)$. При переходе к инфинуму это даёт необходимое неравенство в другую сторону.
+\end{proof}
+
+\begin{proposition}
+	Если определить внешнюю меру Лебега лишь с помощью покрытий непересекающихся множеств, то мы получим эквивалентное определение.
+\end{proposition}
+
+\begin{proof}
+	$\mu^*(A)$ --- обозначение изначальной внешней меры Лебега, $\mu'^*(A)$ --- внешняя мера Лебега по покрытиям из непересекающихся множеств. Сразу ясно, что $\mu^*(A) \le \mu'^*(A)$, и нужно доказать лишь в обратную сторону:
+	
+	Пусть $A \subseteq \bigcup_{i = 1}^\infty A_i$. Тогда мы знаем, что $\bigcup_{i = 1}^\infty A_i = \bscup_{i = 1}^\infty B_i$ в кольце $R(S)$. Раз каждое $B_i \in R(S)$, то $B_i = \bigcup_{j = 1}^{j_i} C_{i, j}$, $C_{i, j} \in S$. Теперь, посмотрим на меру дизъюнктного объединения всех $C_{i, j}$:
+	\[
+		\sum_{i = 1}^\infty \sum_{j = 1}^{j_i} m(C_{i, j}) = \sum_{i = 1}^\infty \nu(B_i) \le \sum_{i = 1}^\infty \nu(A_i) = \sum_{i = 1}^\infty m(A_i)
+	\]
+	Отсюда $\mu'^*(A) \le \mu^*(A)$, ибо для любого покрытия мы показали, что его дизъюннктная версия имеет меру не б\'{о}льшую.
+\end{proof}
+
+\begin{theorem}
+	$\mu^*$ обладает $\sigma$-полуаддитивностью на подмножествах единицы $E \in S$.
+\end{theorem}
+
+\begin{proof}
+	Для всех $B_i$ сразу распишем свойство инфинума:
+	\[
+		\forall \eps > 0\ \exists A_{i, j} \in S \such B_i \subseteq \bigcup_{j = 1}^\infty A_{i, j} \wedge \sum_{j = 1}^\infty m(A_{i, j}) < \mu^*(B_i) + \frac{\eps}{2^i}
+	\]
+	Тогда $B \subseteq \bigcup_{i = 1}^\infty \bigcup_{j = 1}^\infty A_{i, j}$. Коль скоро правая часть является покрытием множествами $S$, то можно сделать такую цепочку неравенств:
+	\[
+		\mu^*(B) \le \sum_{i = 1}^\infty \sum_{j = 1}^\infty m(A_{i, j}) < \sum_{i = 1}^\infty \ps{\mu^*(B_i) + \frac{\eps}{2^i}} = \sum_{i = 1}^\infty \mu^*(B_i) + \eps
+	\]
+	Устремляя $\eps$ к нулю, получим нужное неравенство.
+\end{proof}
+
+\begin{corollary}
+	Для $\forall A, B \subseteq E$ верно такое неравенство:
+	\[
+		|\mu^*(A) - \mu^*(B)| \le \mu^*(A \tr B)
+	\]
+\end{corollary}
+
+\begin{proof}
+	Совершенно понятны 2 включения:
+	\begin{align*}
+		&{A \subseteq B \cup (A \tr B) \Ra \mu^*(A) \le \mu^*(B) + \mu^*(A \tr B)}
+		\\
+		&{B \subseteq A \cup (A \tr B) \Ra \mu^*(B) \le \mu^*(A) + \mu^*(A \tr B)}
+	\end{align*}
+\end{proof}
+
+\begin{definition}
+	Множество $A \subseteq E$ называется \textit{измеримым по Лебегу}, если
+	\[
+		\forall \eps > 0\ \exists A_\eps \in R(S) \such \mu^*(A \tr A_\eps) < \eps
+	\]
+\end{definition}
+
+\begin{note}
+	Все множества из $R(S)$ измеримы, ибо $\mu^*(A \tr A) = 0$ для $A \in R(S)$.
+\end{note}
+
+\begin{note}
+	$M$ - это множество измеримых по Лебегу множеств. Такое обозначение мы будем использовать для него и дальше.
+\end{note}
+
+\begin{theorem}
+	$M$ является алгеброй.
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Единица $E \in M$, потому что $E \in R(S)$, и то же самое с $\emptyset \in R(S)$.
+		
+		\item Проверим замкнутость относительно операций кольца. Пусть $A, B \in M$, тогда для них найдутся $A_{\eps / 2}, B_{\eps / 2} \in R(S)$. Мы делаем ставку на то, что пересечение и симметрическая разность этих множеств подойдут для того же с $A, B$:
+		\begin{align*}
+			&{(A \cap B) \tr (A_{\eps / 2} \cap B_{\eps / 2}) \subseteq (A \tr A_{\eps / 2}) \cup (B \tr B_{\eps / 2})}
+			\\
+			&{(A \tr B) \tr (A_{\eps / 2} \tr B_{\eps / 2}) \subseteq (A \tr A_{\eps / 2}) \cup (B \tr B_{\eps / 2})}
+		\end{align*}
+		По полуаддитивности $\mu^*$ всё доказано.
+	\end{enumerate}
+\end{proof}
+

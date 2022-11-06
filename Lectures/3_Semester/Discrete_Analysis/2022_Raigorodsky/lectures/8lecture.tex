@@ -1,0 +1,109 @@
+\subsubsection{Случайные блуждания}
+
+\begin{theorem} (Неравенство большого уклонения)
+	Пусть $\xi_1, \ldots, \xi_n$ --- одинаковые независимые случайные величины, $P\{\xi_i = 1\} = \frac{1}{2} = P\{\xi_i = -1\}$. Тогда утверждается, что
+	\[
+		\forall a > 0 \quad P(\xi_1 + \ldots + \xi_n \ge a) \le e^{-\frac{a^2}{2n}}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $\lambda > 0$. Тогда имеют место следующие равенства:
+	\[
+		P(\xi_1 + \ldots + \xi_n \ge a) = P(\lambda(\xi_1 + \ldots + \xi_n) \ge \lambda a) = P(e^{\lambda (\xi_1 + \ldots + \xi_n)} \ge e^{\lambda a})
+	\]
+	По неравенству Маркова \textcolor{red}{почему можно применить?}
+	\begin{multline*}
+		P(e^{\lambda (\xi_1 + \ldots + \xi_n)} \ge e^{\lambda a}) \le e^{-\lambda a} \cdot \E(e^{\lambda(\xi_1 + \ldots + \xi_n)}) = e^{-\lambda a} \prod_{i = 1}^n \E(e^{\lambda \xi_i}) = e^{-\lambda a} \ps{\frac{e^\lambda + e^{-\lambda}}{2}}^n =
+		\\
+		e^{-\lambda a} \ps{\sum_{l = 0}^\infty \frac{\lambda^{2l}}{(2l)!}}^n \le e^{-\lambda a} \ps{\sum_{l = 0}^\infty \frac{\lambda^{2l}}{l! \cdot 2^l}}^n = \exp\ps{-\lambda a + \frac{\lambda^2}{2}n}
+	\end{multline*}
+	Лучшая оценка будет при $\lambda = \frac{a}{n}$. Если подставить, то
+	\[
+		P(\xi_1 + \ldots + \xi_n \ge a) \le \exp\ps{-\frac{a^2}{2n}}
+	\]
+\end{proof}
+
+\begin{definition}
+	Пусть дано вероятностное пространство $G(n, p)$. Случайная величина $f$ называется \textit{липшицевой по рёбрам}, если $|f(G) - f(G')| \le 1$, коль скоро графы $G$ и $G'$ отличаются на 1 ребро.
+\end{definition}
+
+\begin{definition}
+	Пусть дано вероятностное пространство $G(n, p)$. Случайная величина $f$ называется \textit{липшицевой по рёбрам}, если $|f(G) - f(G')| \le 1$, коль скоро графы $G$ и $G'$ отличаются в окрестности ровно одной вершины (то есть множества рёбер у какой-то вершины в графах $G$ и $G'$ различаются)
+\end{definition}
+
+\begin{note}
+	Число рёбер графа является липшицевым по рёбрам, а хроматическое число графа --- липшицево по рёбрам.
+\end{note}
+
+\begin{theorem} (Неравенство Азумы, без доказательства)
+	Пусть дано вероятностное пространство $G(n, p)$. Тогда:
+	\begin{itemize}
+		\item Если $f$ --- липшицева по рёбрам случайная величина, то \(P(f - \E f \ge a) \le \exp\ps{-\frac{a^2}{2C_n^2}}\)
+		
+		\item Если $f$ --- липшицева по вершинам случайная величина, то \(P(f - \E f \ge a) \le \exp\ps{-\frac{a^2}{2(n - 1)}}\)
+	\end{itemize}
+\end{theorem}
+
+\subsubsection*{Доказательство теоремы Боллобаша}
+
+\begin{note}
+	Далее и до конца доказательства мы живём в вероятностном пространстве $G(n, p)$, где $p = n^{-\alpha}$, $\alpha \in (5/6; 1)$
+\end{note}
+
+\begin{lemma}
+	Утверждается, что
+	\[
+		\exists n_0 \such \forall n \ge n_0 \quad P(\forall S \subset V \colon |S| \le \sqrt{n}\ln n,\ \chi(G|_S) \le 3) \ge 1 - \frac{1}{\ln n}
+	\]
+\end{lemma}
+
+\begin{proof}
+	Надо показать, что
+	\[
+		P(\exists S \subset V \colon |S| \le \sqrt{n}\ln n,\ \chi(G|_S) > 3) = \frac{1}{\ln n}
+	\]
+	Для этого мы усилим свойства нашего события (равенство ибо события тривиально эквивалентны), а затем воспользуемся неравенством для вероятности объединения: \textcolor{red}{Пояснить равенство подробнее}
+	\begin{multline*}
+		P(\exists S \subset V \colon |S| \le \sqrt{n}\ln n,\ \chi(G|_S) > 3) =
+		\\
+		P(\exists S \subset V \colon 4 \le |S| \le \sqrt{n}\ln n,\ \chi(G|_S) > 3,\ \forall x \in S\ \chi(G|_{S \bs \{x\}})) \le
+		\\
+		\sum_{s = 4}^{\sqrt{n}\ln n} \sum_{S \subset V \over |S| = s} P(\underbrace{\chi(G|_s) > 3 \wedge \forall x \in S\ \chi(G|_{S \bs \{x\}}) \le 3}_{\Ra |E(G|_S)| \ge 3s/2}) \le
+		\\
+		\sum_{s = 4}^{\sqrt{n}\ln n}\sum_{S \subset V \over |S| = s} C_{C_s^2}^{3s / 2} \cdot p^{3s / 2} = \sum_{s = 4}^{\sqrt{n}\ln n} C_n^s C_{C_s^2}^{3s / 2} p^{3s / 2} \le \sum_{s = 4}^{\sqrt{n}\ln n} \ps{\frac{ne}{s}}^s \ps{\frac{C_s^2 \cdot e}{3s / 2}}^{3s / 2} p^{3s / 2} <
+		\\
+		\sum_{s = 4}^{\sqrt{n}\ln n} \ps{\frac{ne}{s}}^s p^{3s / 2} s^{3s / 2} = \sum_{s = 4}^{\sqrt{n}\ln n} \ps{\frac{ne}{s} \cdot s^{3 / 2} p^{3 / 2}}^s \le \sum_{s = 4}^{\sqrt{n}\ln n} \ps{n^{5 / 4}\sqrt{\ln n} \cdot e \cdot n^{-3\alpha / 2}}^s
+	\end{multline*}
+	Настал час, когда выстрелит условие $p = n^{-\alpha},\ \alpha \in (5 / 6; 1)$. Действительно, при таких $\alpha$ мы можем сказать, что $n^{5 / 4 - 3\alpha 2} = n^{-\beta},\ \beta > 0$. Так как моном растёт быстрее корня из логарифма, то
+	\[
+		\exists n_0 \such \forall n \ge n_0 \quad \sum_{s = 4}^{\sqrt{n}\ln n} \ps{n^{5 / 4 - 3\alpha / 2}\sqrt{\ln n} \cdot e}^s \le \sum_{s = 4}^{\sqrt{n}\ln n} n^{-\beta / 2 \cdot s}
+	\]
+	\textcolor{red}{Дописать неравенство и вывод}
+\end{proof}
+
+\begin{proof} (теоремы Боллобаша)
+	Зафиксируем $\alpha \in (5/6; 1)$, по лемме найдём $n_0$ и рассмотрим $n \ge n_0$. Функцию $u(n, \alpha)$ надо взять таким образом:
+	\[
+		u := u(n, \alpha) = \min \left\{t \colon P(\chi(G) \le t) \ge 1 - \frac{1}{\ln n}\right\}
+	\]
+	Тогда имеет место 2 неравенства:
+	\begin{itemize}
+		\item \(P(\chi(G) \le u - 1) < \frac{1}{\ln n}\), ибо $u$ минимальное
+		
+		\item \(P(\chi(G) > u) > 1 - \frac{1}{\ln n}\) --- просто отрицание неравенства для $u$
+	\end{itemize}
+	Введём $Y(G)$ как минимальное число вершин, без которых граф $G$ правильно красится не более чем $u$ цветами:
+	\[
+		Y(G) = \min \{k \in \N \colon \exists S \subseteq V, |S| = k \wedge \chi(G|_{V \bs S}) \le u\}
+	\]
+	Если мы докажем, что $P\{Y \le \sqrt{n}\ln n\} = 1$, то мы получим теорему. Заметим, что $Y(G)$ является липшицевой по вершинам случайной величиной \textcolor{red}{пояснить}. Стало быть, мы можем воспользоваться неравенством Азумы: положим $a = \sqrt{2(n - 1)\ln\ln n}$. Предположим, что $\E Y \ge a$, но тогда
+	\[
+		\frac{1}{\ln n} \le P(\chi(G) \le u) = P(Y \le 0) \le \underbrace{P(Y \le \E Y - a)}_{P(Y - \E Y \le -a)} \le \exp\ps{-\frac{a^2}{2(n - 1)}} < \frac{1}{\ln n}
+	\]
+	получили противоречие. Значит $\E Y < a$. Тогда
+	\[
+		P(Y \ge 2a) \le P(Y \ge \E Y + a) < \frac{1}{\ln n}
+	\]
+	\textcolor{red}{Дописать}
+\end{proof}

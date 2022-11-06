@@ -1,0 +1,221 @@
+\begin{lemma}
+	Пусть $S$ --- полукольцо, $A, A_1, \ldots, A_k \in S$, причём $\bscup_{i = 1}^k A_i \subseteq A$, тогда
+	\[
+		\exists A_{k + 1}, \ldots, A_n \in S \colon \bscup_{i = 1}^n A_i = A
+	\]
+\end{lemma}
+
+\begin{proof}
+	Проведём индукцию по $k$:
+	\begin{itemize}
+		\item База $k = 1$: тривиально по определению полукольца
+		
+		\item Переход $k > 1$: по предположению индукции
+		\[
+			\bscup_{i = 1}^{k - 1} A_i \subseteq A \Lora \ps{\bscup_{i = 1}^{k - 1} A_i} \sqcup \ps{\bscup_{j = 1}^q B_j} = A
+		\]
+		где $B_j \in S$. Понятно, что в переходе $A_k \subseteq \bscup_{j = 1}^q B_j$. По свойству полукольца, $D_j = A_k \cap B_j \in S$. В таком случае
+		\[
+			B_j = D_j \sqcup \ps{\bscup_{l = 1}^{a_j} C_{j, l}},\ \ C_{j, l} \in S
+		\]
+		Собираем всё вместе и получаем требуемое:
+		\[
+			A = \ps{\bscup_{i = 1}^k A_i} \sqcup \ps{\bscup_{j = 1}^q \bscup_{l = 1}^{a_j} C_{j, l}}
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Пусть $S$ --- полукольцо, $R(S)$ --- минимальное кольцо, тогда
+	\[
+		R(S) = K(S) = \set{\bscup_{i = 1}^n A_i,\ A_i \in S}
+	\]
+\end{theorem}
+
+\begin{proof}
+	С самого начала можно заявить, что $R(S) \supseteq K(S)$. Это следует из того, что кольцо замкнуто относительно объединения. Другое вложение докажем тем фактом, что $K(S)$ --- тоже кольцо, содержащее $S$:
+	\begin{enumerate}
+		\item $\emptyset \in K(S)$, так как $\emptyset \in S$
+		
+		\item Проверим замкнутость пересечения. $\forall A, B \in K(S)$ верны следующие записи:
+		\[
+			A = \bscup_{i = 1}^n A_i; \quad B = \bscup_{j = 1}^k B_j
+		\]
+		где $A_i,\ B_j \in S$. Положив $C_{i, j} := A_i \cap B_j \in S$, имеем
+		\[
+			A \cap B = \bscup_{i = 1}^n \bscup_{j = 1}^k C_{i, j} \in K(S)
+		\]
+		Принадлежность к $K(S)$ верна, коль скоро мы записали пересечение через конечное дизъюнктное объединение.
+		
+		\item Осталось проверить замкнутость. Продолжая рассуждения предыдущего пункта, мы можем записать $A_i$ в следующем виде:
+		\[
+			A_i = \ps{\bscup_{j = 1}^k C_{i, j}} \sqcup \ps{\bscup_{s = 1}^{s_i} D_{i, s}},\ \ D_{i, s} \in S
+		\]
+		Аналогично с $B_j$:
+		\[
+			B_j = \ps{\bscup_{i = 1}^n C_{i, j}} \sqcup \ps{\bscup_{l = 1}^{l_j} E_{j, l}},\ \ E_{j, l} \in S
+		\]
+		С этим мы можем записать симметрическую разность так:
+		\[
+			A \tr B = \ps{\bscup_{i = 1}^n \bscup_{s = 1}^{s_i} D_{i, s}} \sqcup \ps{\bscup_{j = 1}^k \bscup_{l = 1}^{l_j} E_{j, l}} \in K(S)
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma} \label{disruption_lemma}
+	Пусть $S$ --- полукольцо, а $A_1, \ldots, A_n \in S$ --- произвольный набор множеств. Тогда
+	\[
+		\exists B_1, \ldots, B_k \in S \such A_i = \bscup_{j \in \Delta_i} B_j
+	\]
+\end{lemma}
+
+\begin{proof}
+	Проведём индукцию по $n$:
+	\begin{itemize}
+		\item База $n = 1$: тогда $B_1 = A_1$ и всё, победа.
+		
+		\item Переход $n > 1$: для $A_1, \ldots, A_{n - 1}$ нашлись множества $B_1, \ldots, B_q \in S$. Возьмём $A_n$ и пересечём со всеми ними: $C_s = A_n \cap B_s \in S$. Тогда
+		\[
+			A_n = \ps{\bscup_{s = 1}^q C_s} \sqcup \ps{\bscup_{p = 1}^m D_p}
+		\]
+		В результате мы <<измельчили>> все $B_s$. Теперь они записываются следующим образом (по свойству полукольца):
+		\[
+			B_s = C_s \sqcup \ps{\bscup_{r = 1}^{r_s} B_{s, r}},\ \ B_{s, r} \in S
+		\]
+		Итого, чтобы записать набор $A_1, \ldots, A_n$, нам нужны $\{C_s\}_{i = 1}^q$, $\{B_{s, r}\}$ и $\{D_p\}_{p = 1}^m$, причём все они попарно непересекаются.
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Система множеств $R$ называется \textit{$\sigma$-кольцом}, если выполнены следующие свойства:
+	\begin{enumerate}
+		\item $R$ --- кольцо
+		
+		\item $\forall \{A_i\}_{i = 1}^\infty$ (счётное число множеств) верно, что $\bigcup_{i = 1}^\infty A_i \in R$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Система множеств $R$ называется \textit{$\delta$-кольцом}, если выполнены следующие свойства:
+	\begin{enumerate}
+		\item $R$ --- кольцо
+		
+		\item $\forall \{A_i\}_{i = 1}^\infty$ (счётное число множеств) верно, что $\bigcap_{i = 1}^\infty A_i \in R$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	$\sigma$ и $\delta$-алгебры определяются аналогично
+\end{note}
+
+\begin{proposition}
+	Если $R$ --- $\sigma$-кольцо, то $R$ также является $\delta$-кольцом.
+\end{proposition}
+
+\begin{proof}
+	Возьмём произвольный счётный набор множеств из $R$: $\{A_i\}_{i = 1}^\infty$. Довольно просто заметить следующее равенство:
+	\[
+		\bigcap_{i = 1}^\infty A_i = A_1 \bs \bigcup_{i = 1}^\infty (A_1 \bs A_i) \in R
+	\]
+\end{proof}
+
+\begin{note}
+	Контрпримером служит множество ограниченных подмножеств $\R$. Если мы возьмём счётное объединение отрезков $[1; n]$, $n \in \N$, то получим луч, что не является элементом нашей системы.
+\end{note}
+
+\begin{proposition}
+	Система множеств $\cA$ является $\sigma$-алгеброй только и только тогда, когда является $\delta$-алгеброй.
+\end{proposition}
+
+\begin{proof}
+	Слева-направо мы уже всё доказали при помощи предудыщего утверждения. Теперь, у нас дана $\delta$-алгебра, и нам нужно как-то доказать, что счётное объединение $\{A_i\}_{i = 1}^\infty \subseteq R$ будет тоже лежать в $R$:
+	\[
+		\bigcup_{i = 1}^\infty A_i = E \bs \bigcap_{i = 1}^\infty (E \bs A_i)
+	\]
+\end{proof}
+
+\begin{definition}
+	\textit{Наименьшей $\sigma$-алгеброй}, содержащей систему множеств $X$, называется система множеств $\sigma(X)$, обладающая следующими свойствами:
+	\begin{enumerate}
+		\item $\sigma(X)$ является $\sigma$-алгеброй
+		
+		\item $\forall \cA \colon X \subseteq \cA$ --- $\sigma$-алгебры верно, что $\sigma(X) \subseteq \cA$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Когда мы говорим, что $\sigma(X) \subseteq \cA$, мы не требуем общей единицы.
+\end{note}
+
+\begin{note}
+	Все утверждения, доказанные для минимальных колец, верны и для минимальной $\sigma$-алгебры, за исключением теоремы о представлении элемента.
+\end{note}
+
+\begin{definition}
+	\textit{Борелевской $\sigma$-алгеброй на $\R^n$} называется наименьшая $\sigma$-алгебра для всех открытых множеств в $\R^n$.
+\end{definition}
+
+\subsection{Конечные меры на системах множеств}
+
+\begin{definition}
+	\textit{Мерой на полукольце $S$} называется функция $m \colon S \to [0; +\infty)$ такая, что она обладает конечной аддитивностью:
+	\[
+		\forall A, A_1, \ldots, A_n \in S \colon A = \bscup_{i = 1}^n A_i \Lora m(A) = \sum_{i = 1}^n m(A_i)
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{$\sigma$-аддитивной мерой на полукольце $S$} называется мера такая, что есть $\sigma$-аддитивность:
+	\[
+		\forall A \in S, \{A_i\}_{i = 1}^\infty \subseteq S \colon A = \bscup_{i = 1}^\infty A_i \Lora m(A) = \sum_{i = 1}^\infty m(A_i)
+	\]
+\end{definition}
+
+\begin{note}
+	Для промежутков (то есть полуинтервал, отрезок или интервал) мы будем использовать обозначение $\tbr{a; b}$.
+\end{note}
+
+\begin{lemma}
+	Пусть $m$ - мера на полукольце $S$ и $A, A_1, \ldots, A_n \in S$, причём $A \supseteq \bscup_{i = 1}^n A_i$. Тогда
+	\[
+		m(A) \ge \sum_{i = 1}^n m(A_i)
+	\]
+\end{lemma}
+
+\begin{proof}
+	По уже известному факту о полукольце:
+	\[
+		\exists A_{n + 1}, \ldots, A_q \in S \such A = \bscup_{i = 1}^q A_i
+	\]
+	Тогда уже $m(A) = \sum_{i = 1}^q A_i \ge \sum_{i = 1}^n A_i$
+\end{proof}
+
+\begin{corollary}
+	Если $m$ - мера на полукольце $S$, а для $A \in S, \{A_i\}_{i = 1}^\infty \subset S$ верно включение $\bscup_{i = 1}^\infty A_i \subseteq A$, то $m(A) \ge \sum_{i = 1}^\infty m(A_i)$.
+\end{corollary}
+
+\begin{proof}
+	Для любого $n \in \N$ верно, что $\bscup_{i = 1}^n A_i \subseteq A$, а стало быть $m(A) \ge \sum_{i = 1}^n m(A_i)$. Делая предельный переход, получим нужное утверждение.
+\end{proof}
+
+\begin{example}
+	Рассмотрим систему множеств $\set{\tbr{a; b} \colon A \le a \le b \le B}$. Она является полукольцом при $A \le B$. Положим меру $m(\tbr{a; b}) = b - a$ (очевидно, что заданная таким образом функция будет мерой). Покажем, что для этой меры есть $\sigma$-аддитивность:
+	
+	Пусть случилось так, что
+	\[
+		\tbr{a; b} = \bscup_{i = 1}^\infty \tbr{a_i; b_i}
+	\]
+	где $\tbr{a_i; b_i} \in S$. Тогда, зафиксируем $\eps > 0$ и возьмём следующий набор промежутков:
+	\begin{itemize}
+		\item $[\alpha; \beta] \subseteq \tbr{a; b} \such m([\alpha; \beta]) > m([a; b]) - \frac{\eps}{2}$
+		
+		\item $(\alpha_i; \beta_i) \supset \tbr{a_i; b_i} \such m((\alpha_i; \beta_i)) < m(\tbr{a_i; b_i}) + \frac{\eps}{2^{i + 1}}$
+	\end{itemize}
+	Тогда понятно, что $[\alpha; \beta] \subseteq \bigcup_{i = 1}^\infty (\alpha_i; \beta_i)$. В силу компактности отрезка, $\exists k \in \N \such [\alpha; \beta] \subseteq \bigcup_{i = 1}^k (\alpha_i; \beta_i)$. Вместе с леммой получаем такую цепочку неравенств:
+	\begin{multline*}
+		\forall \eps > 0\ \ m(\tbr{a; b}) < m([\alpha; \beta]) + \frac{\eps}{2} \le \sum_{i = 1}^k m((\alpha_i; \beta_i)) + \frac{\eps}{2} \le \sum_{i = 1}^\infty m((\alpha_i; \beta_i)) + \frac{\eps}{2} \le
+		\\
+		\sum_{i = 1}^\infty m(\tbr{a_i; b_i}) + \eps
+	\end{multline*}
+	Стало быть, $m(\tbr{a; b}) \le \sum_{i = 1}^\infty m(\tbr{a_i; b_i})$. В обратную же сторону просто по следствию из леммы.
+\end{example}

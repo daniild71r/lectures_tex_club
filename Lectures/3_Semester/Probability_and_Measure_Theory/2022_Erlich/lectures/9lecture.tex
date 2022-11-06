@@ -1,0 +1,137 @@
+\begin{theorem}
+	$\mu^*$ --- аддитивная мера на $M$.
+\end{theorem}
+
+\begin{proof}
+	Так как мы уже доказали, что $M$ является алгеброй, то нам достаточно показать следующий факт:
+	\[
+		\forall A, B, C \in M,\ A = B \sqcup C \Ra \mu^*(A) = \mu^*(B) + \mu^*(C)
+	\]
+	Аналогичное неравенство в одну сторону уже есть, остаётся в другую.
+	
+	Зафиксируем $\eps > 0$. Поскольку $B, C \in M$, то $\exists B_\eps, C_\eps \in R(S)$ - приближения по определению лебеговой измеримости. Увидим следующее включение:
+	\[
+		A \tr (B_\eps \cup C_\eps) \subseteq (B \tr B_\eps) \cup (C \tr C_\eps) \Ra \mu^*(A \tr (B_\eps \cup C_\eps)) \le 2\eps
+	\]
+	Дополнительно воспользуемся следствием из полуаддитивности для оценки снизу $\mu^*(A)$:
+	\[
+		\mu^*(A) \ge \mu^*(B_\eps \cup C_\eps) - \mu^*(A \tr (B_\eps \cup C_\eps)) \ge \mu^*(B_\eps \cup C_\eps) - 2\eps
+	\]
+	Тут заметим, что $B_\eps, C_\eps \in R(S)$, стало быть и $B_\eps \cup C_\eps \in R(S)$. Иначе говоря, для этих множеств $\mu^* = \nu$ --- индуцированная мера (реальная!). Значит, мы можем воспользоваться формулой включений и исключений:
+	\[
+		\mu^*(A) \ge \underbrace{\mu^*(B_\eps) + \mu^*(C_\eps) - \mu^*(B_\eps \cap C_\eps)}_{\mu^*(B_\eps \cup C_\eps)} - 2\eps
+	\]
+	Аналогичной оценкой через следствие полуаддитивности мы пользуемся для $\mu^*(B_\eps), \mu^*(C_\eps)$:
+	\begin{multline*}
+		\mu^*(A) \ge \mu^*(B) - \mu^*(B \tr B_\eps) + \mu^*(C) - \mu^*(C \tr C_\eps) - \mu^*(B_\eps \cap C_\eps) - 2\eps \ge
+		\\
+		\mu^*(B) + \mu^*(C) - \mu^*(B_\eps \cap C_\eps) - 4\eps
+	\end{multline*}
+	Осталось показать, что $\mu^*(B_\eps \cap C_\eps)$ достаточно малая величина. Для этого снова заметим вложение:
+	\[
+		B_\eps \cap C_\eps \subseteq (B_\eps \bs B) \cup (C_\eps \bs C) \subseteq (B \tr B_\eps) \cup (C \tr C_\eps) \Ra \mu^*(B_\eps \cap C_\eps) \le 2\eps
+	\]
+	Итого $\mu^*(A) \ge \mu^*(B) + \mu^*(C) - 6\eps$ для $\forall \eps > 0$, что и требовалось.
+\end{proof}
+
+\begin{definition}
+	$\mu^*$ на $M$ называется \textit{мерой Лебега} и обозначается $\mu$.
+\end{definition}
+
+\begin{theorem}
+	$M$ является $\sigma$-алгеброй.
+\end{theorem}
+
+\begin{proof}
+	Пусть $\{\cA_i\}_{i = 1}^\infty \subseteq M$ и $\cA := \bigcup_{i = 1}^\infty \cA_i$. В силу того, что $M$ уже алгебра, мы можем заменить $\cA_i$ на $B_i \in M$ так, что $\cA = \bscup_{i = 1}^\infty B_i$.
+	\begin{enumerate}
+		\item $\forall n \in \N\ \bscup_{i = 1}^n B_i \subseteq \cA$. Тогда между мерами есть соотношение следующего вида:
+		\[
+			\sum_{i = 1}^n \mu(B_i) = \mu\ps{\bscup_{i = 1}^n B_i} = \mu^*\ps{\bscup_{i = 1}^n B_i} \le \mu^*(A)
+		\]
+		Отсюда следует, что $\sum_{i = 1}^\infty \mu(B_i) \le \mu^*(A) < \infty$. Благодаря этому ряд сходится.
+		
+		\item В частности, нас интересует следующее свойство сходимости ряда:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \sum_{i = N + 1}^\infty \mu(B_i) < \frac{\eps}{2}
+		\]
+		Для основной части мы можем воспользоваться определением измеримости (ибо конечное дизъюнктное объединение тоже измеримо по Лебегу):
+		\[
+			\forall \eps > 0\ \exists C_{\eps / 2} \in M \such \mu\ps{C_{\eps / 2} \tr \bscup_{i = 1}^N B_i} < \eps / 2
+		\]
+		Дело остаётся за малым --- нашим кандидатом на приближение является $C_{\eps / 2}$, нужно проверить меру симметрической разности с $\cA$:
+		\begin{multline*}
+			\cA \tr C_{\eps / 2} \subseteq \ps{C_{\eps / 2} \tr \bscup_{i = 1}^N B_i} \cup \ps{\bscup_{i = N + 1}^\infty B_i} \Longrightarrow
+			\\
+			\mu^*(\cA \tr C_{\eps / 2}) \le \mu^*\ps{C_{\eps / 2} \tr \bscup_{i = 1}^N B_i} + \underbrace{\mu^*\ps{\bscup_{i = N + 1}^\infty B_i}}_{\le \sum_{i = N + 1}^\infty \mu^*(B_i)} < \frac{\eps}{2} + \frac{\eps}{2} = \eps
+		\end{multline*}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	$\mu$ --- $\sigma$-аддитивная мера на $M$.
+\end{theorem}
+
+\begin{proof}
+	Пусть $\cA \in M, \{\cA_i\}_{i = 1}^\infty \subseteq M$, причём $\cA = \bscup_{i = 1}^\infty \cA_i$. Тогда нам нужно доказать лишь $\mu(\cA) \ge \sum_{i = 1}^\infty \mu(\cA_i)$. Заметим такую вещь: так как $M$ теперь $\sigma$-алгебра, то
+	\[
+		\forall n \in \N \quad \cA = A_1 \sqcup \ldots \sqcup A_n \sqcup \ps{\bscup_{i = n + 1}^\infty A_i} \wedge \bscup_{i = n + 1}^\infty A_i \in M
+	\]
+	Отсюда по аддитивности:
+	\[
+		\forall n \in \N \quad \mu(\cA) = \sum_{i = 1}^n \mu(\cA_i) + \mu\ps{\bscup_{i = n + 1}^\infty A_i} \ge \sum_{i = 1}^n \mu(\cA_i)
+	\]
+	устремляя $n$ в бесконечность, получаем требуемое неравенство.
+\end{proof}
+
+\begin{note}
+	Подведём итоги проделанной работы:
+	\begin{align*}
+		&{\text{$S$ с единицей $E$} \to R(S) \to M \text{--- $\sigma$-алгебра}}
+		\\
+		&{\text{$m$ --- $\sigma$-аддитивная мера} \to \nu \to \mu \text{--- $\sigma$-аддитивная мера}}
+	\end{align*}
+	Мы смогли продолжить $m$ на $\sigma(S)$. Почему? Ну просто потому что $\sigma(S) \subseteq M$ по определению. Возникает вопрос: <<А единственна ли мера, определенная на $\sigma(S)$?>> Окажется, что да.
+\end{note}
+
+\begin{example} (мера Бореля)
+	Борелевской $\sigma$-алгеброй на отрезке $[a; b]$ будет наименьшая $\sigma$-алгебра, содержащая все открытые множества из $[a; b]$:
+	\[
+		\B_{[a; b]} = \sigma(\{A \subset [a;b] \such A \text{--- открытое}\}) = \sigma(\{\tbr{c; d} \such a \le c \le d \le b\})
+	\]
+	Мы уже показывали, что последняя система множеств являеся полукольцом с единицей $E = [a; b]$, $m(\tbr{c; d}) = d - c$ задаёт $\sigma$-аддитивную меру на этом полукольце, а потому построенная нами $\mu$ будет $\sigma$-аддитивной мерой на $\B_{[a; b]}$ --- \textit{мерой Бореля}.
+\end{example}
+
+\begin{example} (мера Лебега-Стильтеса)
+	Рассмотрим $\R = (-\infty; +\infty)$ и функцию $\phi(x)$, удовлетворяющую таким свойствам:
+	\begin{enumerate}
+		\item $\phi(x)$ неубывающая
+		
+		\item $\phi(x)$ непрерывна справа (в любой точке и в $+\infty$)
+		
+		\item $\phi(x)$ ограничена
+	\end{enumerate}
+	Положим за полукольцо $S$ следующую систему множеств (про которую, конечно же, читатель должен доказать свойства полукольца):
+	\[
+		S = \{0\} \cup \Big\{(a; b] \such a \in \R \cup \{-\infty\}, b \in \R\Big\} \cup \Big\{(a; +\infty) \such a \in \R \cup \{-\infty\}\Big\}
+	\]
+	Зададим меру на $S$ таким образом:
+	\begin{align*}
+		&{m(\{0\}) = 0}
+		\\
+		&{m((a; b]) = \phi(b) - \phi(a)}
+		\\
+		&{m((a; +\infty)) = \phi(+\infty) - \phi(a)}
+	\end{align*}
+	То, что этим задана хотя бы мера, должно быть очевидно (ну или домашнее задание читателю), а вот $\sigma$-аддитивность неясна. Для этого, мы отдельно разберём конечный и бесконечный случаи:
+	\begin{enumerate}
+		\item $(a; b] = \bscup_{i = 1}^\infty (a_i; b_i]$. Чтобы показать равенство мер, мы сведём ситуацию к компактности:
+		\begin{align*}
+			&{\forall \eps > 0\ \exists a < d \le b \such \phi(d) - \phi(a) < \frac{\eps}{2}}
+			\\
+			&{\forall i \in \N \forall \eps > 0\ \exists c_i > b_i \such \phi(c_i) - \phi(b_i) < \frac{\eps}{2^{i - 1}}}
+		\end{align*}
+		В силу этих определений и свойств, верно вложение $[d; b] \subseteq \bigcup_{i = 1}^\infty (a_i; c_i)$
+		\textcolor{red}{Концовка следует на 10й лекции}
+	\end{enumerate}
+\end{example}

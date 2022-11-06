@@ -107,16 +107,18 @@
 \end{note}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $K \normal G$. Определим операцию на $G / K$ следующим образом:
+	Пусть $G$ "--- группа, $K \normal G$. Тогда, мы можем ввести операцию умножения на $G / K$, совпадающую с умножением подмножеств группы:
 	\[
-		\forall g_1, g_2 \in G \quad g_1K\cdot g_2K \hm= g_1(Kg_2)K = g_1(g_2K)K = g_1g_2K
+		\forall g_1, g_2 \in G \quad (g_1 K) \cdot (g_2 K) = g_1 (K g_2) K = g_1 g_2 K K = g_1 g_2 K
 	\]
 \end{definition}
 
 \begin{note}
-	Определение опирается на конкретных представителей классов, а поэтому необходимо проверить его корректность, то есть независимость от выбора этих представителей. Пусть $g'_1 \in g_1 K$, $g'_2 \in g_2 K$, тогда нужно показать, что $g'_1 g'_2 K = g_1 g_2 K$. Действительно, $g'_1 = g_1 k_1$ и $g'_2 = g_2 k_2$. Стало быть
+	Несмотря на то, что мы смогли показать замкнутость умножения в $G / K$, надо ещё проверить корректность, то есть независимость от выбранного представителя класса смежности.
+	
+	Пусть $g'_1 = g_1k_1$, $g'_2 = g_2k_2$. Тогда:
 	\[
-		g'_1 g'_2 e = g_1 g_2 k_1 k_2 \in g'_1 g'_2 K \cap g_1 g_2 K \ra g'_1 g'_2 K = g_1 g_2 K
+		g'_1 g'_2 e = g_1 k_1 g_2 k_2 = g_1 g_2 k'_1 k_2 \ra g'_1 g'_2 K \cap g_1 g_2 K \neq \{e\} \ra g'_1 g'_2 K = g_1 g_2 K
 	\]
 \end{note}
 
@@ -264,13 +266,39 @@
 	Шуточно говоря, второе свойство утверждает возможность сократить дробь на $K$.
 \end{note}
 
+\begin{proposition}
+	Если $\phi \colon G_1 \to G_2$ - гомоморфизм, то есть 2 свойства:
+	\begin{itemize}
+		\item \(\forall H \le G_1 \ra \phi(H) \le G_2\)
+		
+		\item \(\forall D \le G_2 \ra \phi^{-1}(D) \le G_1\)
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Для доказательства достаточно показать замкнутость соответствующих множеств относительно операции своей группы:
+	\begin{itemize}
+		\item \begin{enumerate}
+			\item \(\forall a, b \in H \quad \phi(a) \cdot \phi(b) = \phi(ab)\), где $ab \in H$, то есть $\phi(ab) \in \phi(H)$
+			
+			\item \(\forall a \in H\ \phi(a) \cdot \phi(a^{-1}) = \phi(e) = e\), откуда $\phi(a)^{-1} = \phi(a^{-1}) \in \phi(H)$
+		\end{enumerate}
+		
+		\item \begin{enumerate}
+			\item \(\forall a, b \in \phi^{-1}(D)\) верно, что $\phi(a), \phi(b) \in D \ra \phi(a) \cdot \phi(b) = \phi(ab) \in D \ra ab \in \phi^{-1}(D)$
+			
+			\item \(\forall a \in \phi^{-1}(D) \ra \phi(a) \in D \ra \phi(a^{-1}) = \phi(a)^{-1} \in D \ra a^{-1} \in \phi^{-1}(D)\)
+		\end{enumerate}
+	\end{itemize}
+\end{proof}
+
 \begin{proof}~
 	\begin{enumerate}
 		\item Рассмотрим канонический эпиморфизм $\pi: G \to G / K = \ol{G}$. Тогда
 		\[
 			\forall K \le H \le G: \pi(H) =\ol{H} = H / K \le G / K
 		\]
-		С другой стороны, $\forall L \le \ol{G}\ \ \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
+		С другой стороны, обратное отображение $\forall L \le \ol{G}\ \ \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
 		
 		\item Если $H \normal G$, то $\forall g \in G: gH = Hg$, поэтому, применяя эпиморфизм $\pi$, получаем, что $\forall \ol{g} \in \ol{G}: \ol{g}\ol{H} = \ol{H}\ol{g}$, то есть $\ol{H} \normal \ol{G}$. Пусть теперь, наоборот, $\ol{H} \normal \ol{G}$. Рассмотрим канонический эпиморфизм $\pi': \ol{G} \to \ol{G} / \ol{H}$. Тогда $\phi := \pi'\circ\pi: G \hm\to \ol{G} \hm\to \ol{G} / \ol{H}$ "--- тоже эпиморфизм, причем $\ke \phi = \pi^{-1}(\pi'^{-1}(\ol{H})) \hm= \pi^{-1}(\ol{H}) = H$. Значит, $H \normal G$, и, по основной теореме о гомоморфизме, $\ol{G} / \ol{H} \cong G / H$.
 	\end{enumerate}

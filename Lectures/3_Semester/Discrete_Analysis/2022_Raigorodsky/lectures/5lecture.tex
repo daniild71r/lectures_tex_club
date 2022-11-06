@@ -1,0 +1,144 @@
+\subsection{Жадные алгоритмы для оценки характеристических чисел случайных графов}
+
+\begin{note}
+	Это, конечно, замечательно обсуждать абстрактную математику, но и приложения забывать нельзя. В частности, хотелось бы иметь алгоритмы для вычисления характеристических чисел произвольного графа $G$ (то есть его $\chi(G)$, $\alpha(G)$ и $\mu(G)$).
+	
+	Задачи о нахождении таких чисел лежат в классе NP-полных задач, то есть мы не можем сделать их за полиномиальное от числа вершин время. 
+\end{note}
+
+\subsubsection*{Жадный алгоритм для подсчёта хроматического числа}
+
+\begin{problem}
+	Пусть дан граф $G = (V, E)$, $V = \{1, \ldots, n\}$. Нас просят дать оценку на хроматическое число графа $\chi(G)$ за полиномиальное от $n$ время работы.
+\end{problem}
+
+\begin{solution}
+	Попробуем исполнить следующий алгоритм:
+	Идём по номерам $V$ от 1 по возрастанию. Для каждой следующей вершины будем находить цвет, в который её нужно покрасить, чтобы не испортить текущую раскраску. В качестве цвета текущей вершины положим минимальное натуральное число, которое не появится при перечислении цветов уже покрашенных вершин, соединённых с этой.
+\end{solution}
+
+\begin{note}
+	Оценку на хроматическое число графа, которую можно получить данным алгоритмом, обозначим за $\chi_g(G)$ (g - greedy).
+\end{note}
+
+\begin{corollary}
+	Описанный алгоритм можно также использовать для оценки $\alpha_g(G)$ и $w_g(G)$:
+	\begin{itemize}
+		\item Чтобы получить оценку на число независимости графа, просто возьмём максимальный остов одного цвета.
+		
+		\item $w_g(G) = \alpha_g(G')$, где $G'$ --- это инвертированный граф (рёбра, которых не было в $G$, добавили, а старые наоборот, убрали).
+	\end{itemize}
+\end{corollary}
+
+\begin{theorem}
+	Если ввести $(\Omega, F, P)$ --- вероятностное пространство случайных графов ($|\Omega| = 2^{C_n^2}$, $F = 2^\Omega$, $P$ --- равномерная вероятность), то для описанных жадных алгоритмов и их оценок имеют место следующие утверждения:
+	\begin{itemize}
+		\item \(\forall \eps > 0\ \ P\ps{G \colon \frac{\alpha(G)}{\alpha_g(G)} \le 2 + \eps} \xrightarrow[n \to \infty]{} 1\)
+		
+		\item \(\forall \eps > 0\ \ P\ps{G \colon \frac{\chi_g(G)}{\chi(G)} \le 2 + \eps} \xrightarrow[n \to \infty]{} 1\)
+		
+		\item \(\forall \eps > 0\ \ P\ps{G \colon \frac{w(G)}{w_g(G)} \le 2 + \eps} \xrightarrow[n \to \infty]{} 1\)
+	\end{itemize}
+\end{theorem}
+
+\begin{note}
+	Для жадных алгоритмов $\eps > 0$ из вероятности убрать нельзя. Однако, существуют и такие детерминированные алгоритмы, для которых это сделать возможно.
+\end{note}
+
+\begin{proof}
+	Проведём доказательство только для числа независимости. Мы уже знаем, что $\lim_{n \to \infty} P(\alpha(G) < 2\log_2 n) = 1$. Если мы как-то докажем, что
+	\[
+		\forall \eps > 0\ \ \lim_{n \to \infty} P(\alpha_g(G) \ge (1 - \eps)\log_2 n) = 1
+	\]
+	То этого будет достаточно. Действительно, обратим внимание на 2 факта:
+	\begin{enumerate}
+		\item Если $A_n \subseteq B_n$ и $\lim_{n \to \infty} P(A_n) = 1$, то $\lim_{n \to \infty} P(B_n) = 1$ --- просто из свойства $P(A_n) \le P(B_n) \le 1$
+		
+		\item Что из себя представляет пересечение свойств $\alpha(G) < 2\log_2 n$ и $\alpha_g(G) \ge (1 - \eps)\log_2 n$?
+		\[
+			\frac{\alpha(G)}{\alpha_g(G)} \le \frac{2\log_2 n}{(1 - \eps)\log_2 n} = \frac{2}{1 - \eps} = 2 + \eps'
+		\]
+		Понятно, что из предела к 1 при $\eps$ мы вполне законно говорим и о пределе для $\eps'$.
+	\end{enumerate}
+	Чтобы доказать достаточно неравенство, рассмотрим его дополнение:
+	\[
+		\forall \eps > 0\ \ \lim_{n \to \infty} P(\underbrace{\alpha_g(G) < (1 - \eps)\log_2 n}_{\mathcal{A}}) = 0
+	\]
+	Теперь покажем некоторое событие $\mathcal{B} \subseteq \mathcal{A}$, потому что из $\mathcal{A} \Ra \mathcal{B}$. Это позволит оценить вероятность $\mathcal{A}$ сверху:
+	\[
+		\mathcal{B} = \System{
+			&{\exists a_1, \ldots, a_m \in \N_0 \colon \forall i\ a_i < (1 - \eps)\log_2 n}
+			\\
+			&{\exists C_1, \ldots, C_m \subseteq V \colon \forall i\ |C_i| = a_i}
+			\\
+			&{\forall i \neq j\ \ C_i \cap C_j = \emptyset}
+			\\
+			&{\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y \in C_i \colon (x, y_i) \in E}
+		}
+	\]
+	Теперь объясним, что такое $\mathcal{B}$ и каково $m$. Что утверждает $\mathcal{A}$ в нашем алгоритме? А то, что он не смог найти одноцветное множество размера $\ge (1 - \eps)\log_2 n$. Значит, $\chi_g(G)$ лежит в полуинтервале $(n / (1 - \eps)\log_2 n; n]$. Положим $m = \floor{n / \big(2(1 - \eps)\log_2 n\big)}$ и выберем произвольные $m$ одноцветных множеств, найденных алгоритмом. Тогда, они удовлетворяют всем условиям выше, и, более того, верно следующее:
+	\[
+		\sum_{i = 1}^m |C_i| = \sum_{i = 1}^m a_i < m (1 - \eps)\log_2 n \le \frac{n}{2}
+	\]
+	Теперь, начнём восстанавливать вероятность $P(\mathcal{B})$ по цепочке снизу-вверх:
+	\begin{itemize}
+		\item Пусть $x \notin (C_1 \cup \ldots \cup C_m)$ и $i \in \range{m}$ уже зафиксированы, и мы хотим найти вероятность оставшегося:
+		\[
+			P(\exists y \in C_i \colon (x, y_i) \in E) = 1 - P(\forall y \in C_i\ (x, y_i) \notin E) = 1 - \frac{1}{2^{a_i}}
+		\]
+		
+		\item Теперь позволим $i$ быть произвольным. Так как $\forall i \neq j\ C_i \cap C_j = \emptyset$, то выбор рёбер с разными множествами вообще никак не влияет друг на друга (иначе говоря, события предыдущего пункта независимы):
+		\[
+			P(\forall i\ \exists y \in C_i \colon (x, y_i) \in E) = \prod_{i = 1}^m \ps{1 - \frac{1}{2^{a_i}}} < \ps{1 - \frac{1}{2^{(1 - \eps)\log_2 n}}}^m = \ps{1 - \frac{1}{n^{1 - \eps}}}^m
+		\]
+		
+		\item Теперь мы добавляем варьирование $x$. Вероятность тогда тоже будет считаться через произведение, ибо снова имеется независимость событий:
+		\begin{multline*}
+			P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y \in C_i \colon (x, y_i) \in E) \le \ps{1 - \frac{1}{n^{1 - \eps}}}^{m \cdot \frac{n}{2}} = e^{\frac{mn}{2} \cdot \ln \ps{1 - \frac{1}{n^{1 - \eps}}}} \le
+			\\
+			\exp\ps{-\frac{mn}{2} \cdot \frac{1}{n^{1 - \eps}}} = \exp\ps{-\frac{mn^\eps}{2}}
+		\end{multline*}
+		Для достаточно больших $n$ мы можем сделать оценку на $m$:
+		\[
+			m = \floor{\frac{n}{2(1 - \eps)\log_2 n}} \ge \frac{n}{2\log_2 n}
+		\]
+		Из этого следует последняя оценка на вероятность с $x$:
+		\[
+		P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y \in C_i \colon (x, y_i) \in E) \le \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}}
+		\]
+		
+		\item Теперь высвободим строчку с $\exists C_1, \ldots, C_m \subseteq V \ldots$ Вероятность будем считать через дробление на отдельно взятые $C_i$ (то есть для данного графа $G$ мы перебираем все возможные $C_i$ во вложенных суммах). Понятно, что вероятности всех <<плохих>> наборов подмножеств занулятся (ибо будет ложное утверждение в событии) и останутся только те, что подходят условиям на $C_i$. Итого:
+		\begin{multline*}
+			P(\exists C_1, \ldots, C_m \subseteq V \ldots) < \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \sum_{C_1, \ldots, C_m \subseteq V \colon \over {\forall i\ |C_i| = a_i \over \forall i \neq j\ C_i \cap C_j = \emptyset}} 1 =
+			\\
+			\exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \cdot C_n^{a_1} \cdot C_{n - a_1}^{a_2} \cdot \ldots \cdot  C_{n - a_1 - \ldots - a_{m - 1}}^{a_m} <
+			\\
+			\exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \cdot n^{a_1 + \ldots + a_m} \le \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}}
+		\end{multline*}
+		
+		\item Ну и наконец-то мы приступаем к оценке $P(\mathcal{B})$:
+		\begin{multline*}
+			P(\mathcal{B}) \le \sum_{a_1 = 1}^{(1 - \eps)\log_2 n} \cdots \sum_{a_m = 1}^{(1 - \eps)\ln n} \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}} <
+			\\
+			(\log_2 n)^m \cdot \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}} \le \exp\ps{\frac{n\ln(\log_2 n)}{2(1 - \eps)\log_2 n}-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}} \xrightarrow[n \to \infty]{} 0
+		\end{multline*}
+	\end{itemize}
+\end{proof}
+
+\begin{hypothesis}
+	Не существует полиномиального алгоритма $A$, для которого имеет место предел:
+	\[
+		P\ps{\frac{\alpha(G)}{\alpha_A(G)} < 2} \xrightarrow[n \to \infty]{} 1
+	\]
+\end{hypothesis}
+
+\begin{theorem} (Куч\'{е}ра, без доказательства)
+	$\forall \eps > 0\ \forall \delta > 0\ \exists \{G_n\}_{n = 1}^\infty \such |V_n| = n$ верно, что
+	\[
+		\frac{\# \text{перестановок множества вершин, при которых } \frac{\alpha(G_n)}{\alpha_g(G_n) \ge n^{1 - \eps}}}{n!} > 1 - \delta
+	\]
+\end{theorem}
+
+\begin{note}
+	Говоря человеческим языком, доля перестановок вершин, на которых жадный алгоритм ошибается с заданной наперёд точностью, стремится к единице. То есть предыдущая теорема, несмотря на покрытие \textit{почти всех} графов, оставляет за собой ещё очень много других, на которых жадный алгоритм будет работать плохо.
+\end{note}

@@ -24,11 +24,11 @@
 	\begin{itemize}
 		\item ($1 \ra 2$) $\forall g \in G$ определим $I_g \colon \Omega \to \Omega$ так, что
 		\[
-			\forall w \in \Omega \quad I_g(w) := gw
+			\forall w \in \Omega \quad I_g(\omega) := g\omega
 		\]
 		Нужно проверить гомоморфность и биективность каждой $I_g$. Начнём с первого:
 		\[
-			(I_g \circ I_h)(w) = g(h(w)) = (gh)(w) = I_{gh}(w)
+			(I_g \circ I_h)(\omega) = g(h(\omega)) = (gh)(\omega) = I_{gh}(\omega)
 		\]
 		Теперь проверим, что $I_g$ "--- это биекция. Действительно, $I_e = \id$, поэтому $\forall g \in G: I_g\circ I_{g^{-1}} = I_{g^{-1}}\circ I_g = \id$. Значит, $\phi(g) = I_g$ "--- гомоморфизм групп $G$ и $S(\Omega)$.
 		
@@ -44,7 +44,7 @@
 \begin{definition}
 	Пусть группа $G$ действует на множество $\Omega$. \textit{Ядром действия} называется ядро соответствующего гомоморфизма $\phi: G \hm\to S(\Omega)$, то есть 
 	\[
-		\ke I = \{g \in G \such \forall \omega \in \Omega\ \ g\omega = \omega\}
+		\ke \phi = \{g \in G \such \forall \omega \in \Omega\ \ \phi(g)\omega = g\omega = \omega\}
 	\]
 \end{definition}
 
@@ -93,7 +93,7 @@
 \end{proof}
 
 \begin{note}
-	Если $w_1$ и $w_2$ эквивалентны, то $G(w_1) = G(w_2)$ по уже доказанному утверждению. Говорят, что всё $\Omega$ разбивается на орбиты; множество классов обозначатеся через $\Omega \bs G$.
+	Если $\omega_1$ и $\omega_2$ эквивалентны, то $G(\omega_1) = G(\omega_2)$ по уже доказанному утверждению. Говорят, что всё $\Omega$ \textit{разбивается на орбиты}; множество классов обозначатеся через $\Omega /j G$.
 \end{note}
 
 \begin{example}
