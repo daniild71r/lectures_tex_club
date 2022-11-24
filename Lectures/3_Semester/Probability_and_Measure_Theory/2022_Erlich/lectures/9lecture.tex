@@ -102,7 +102,7 @@
 	Мы уже показывали, что последняя система множеств являеся полукольцом с единицей $E = [a; b]$, $m(\tbr{c; d}) = d - c$ задаёт $\sigma$-аддитивную меру на этом полукольце, а потому построенная нами $\mu$ будет $\sigma$-аддитивной мерой на $\B_{[a; b]}$ --- \textit{мерой Бореля}.
 \end{example}
 
-\begin{example} (мера Лебега-Стильтеса)
+\begin{example} (мера Лебега-Стилтьеса)
 	Рассмотрим $\R = (-\infty; +\infty)$ и функцию $\phi(x)$, удовлетворяющую таким свойствам:
 	\begin{enumerate}
 		\item $\phi(x)$ неубывающая
@@ -113,11 +113,11 @@
 	\end{enumerate}
 	Положим за полукольцо $S$ следующую систему множеств (про которую, конечно же, читатель должен доказать свойства полукольца):
 	\[
-		S = \{0\} \cup \Big\{(a; b] \such a \in \R \cup \{-\infty\}, b \in \R\Big\} \cup \Big\{(a; +\infty) \such a \in \R \cup \{-\infty\}\Big\}
+		S = \{\emptyset\} \cup \Big\{(a; b] \such a \in \R \cup \{-\infty\}, b \in \R\Big\} \cup \Big\{(a; +\infty) \such a \in \R \cup \{-\infty\}\Big\}
 	\]
 	Зададим меру на $S$ таким образом:
 	\begin{align*}
-		&{m(\{0\}) = 0}
+		&{m(\emptyset) = 0}
 		\\
 		&{m((a; b]) = \phi(b) - \phi(a)}
 		\\
@@ -125,13 +125,41 @@
 	\end{align*}
 	То, что этим задана хотя бы мера, должно быть очевидно (ну или домашнее задание читателю), а вот $\sigma$-аддитивность неясна. Для этого, мы отдельно разберём конечный и бесконечный случаи:
 	\begin{enumerate}
-		\item $(a; b] = \bscup_{i = 1}^\infty (a_i; b_i]$. Чтобы показать равенство мер, мы сведём ситуацию к компактности:
+		\item $(a; b] = \bscup_{i = 1}^\infty (a_i; b_i]$. У нас уже есть неравенство в одну сторону:
+		\[
+			m(\rsi{a; b}) \ge \sum_{i = 1}^\infty \rsi{a_i; b_i}
+		\]
+		Остаётся показать неравенство в обратную. Будем отталкиваться от желания воспользоваться компактностью --- надо взять некоторое замкнутое подмножество $\rsi{a; b}$ и найти его покрытие. Возьмём пока произвольные $a < d \le b$ и $c_i > b_i$. Это даст включение $[d; b] \subset \bigcup_{i = 1}^\infty (a_i; c_i)$. Чтобы выбрать уже конкретные значения, воспользуемся свойствами $\phi$:
 		\begin{align*}
 			&{\forall \eps > 0\ \exists a < d \le b \such \phi(d) - \phi(a) < \frac{\eps}{2}}
 			\\
-			&{\forall i \in \N \forall \eps > 0\ \exists c_i > b_i \such \phi(c_i) - \phi(b_i) < \frac{\eps}{2^{i - 1}}}
+			&{\forall i \in \N\ \forall \eps > 0\ \exists c_i > b_i \such \phi(c_i) - \phi(b_i) < \frac{\eps}{2^{i + 1}}}
 		\end{align*}
-		В силу этих определений и свойств, верно вложение $[d; b] \subseteq \bigcup_{i = 1}^\infty (a_i; c_i)$
-		\textcolor{red}{Концовка следует на 10й лекции}
+		В силу компактности отрезка, $\exists N \in \N \such [d; b] \subset \bigcup_{i = 1}^N \rsi{a_i; c_i}$. Однако, отрезок в нашей системе неизмерим, а поэтому выполним такой трюк:
+		\[
+			\rsi{d; b} \subset [d; b] \subset \bigcup_{i = 1}^N \rsi{a_i; c_i}
+		\]
+		А теперь будем писать цепочку неравенств:
+		\begin{multline*}
+			m(\rsi{a; b}) = \phi(b) - \phi(a) < \phi(b) - \phi(d) + \frac{\eps}{2} = m(\rsi{d; b}) + \frac{\eps}{2} \le \sum_{i = 1}^N m(\rsi{a_i; c_i}) + \frac{\eps}{2} <
+			\\
+			\sum_{i = 1}^\infty (\phi(c_i) - \phi(a_i)) + \frac{\eps}{2} < \sum_{i = 1}^\infty \ps{\phi(b_i) - \phi(a_i) + \frac{\eps}{2^{i + 1}}} + \frac{\eps}{2} = \sum_{i = 1}^\infty m(\rsi{a_i; b_i}) + \eps
+		\end{multline*}
+		Устремляя $\eps$ в ноль, получим требуемое неравенство.
+		
+		\item $(a; +\infty) = \bscup_{i = 1}^\infty A_i$, $A_i \in S$. Для начала, заметим такой факт:
+		\[
+			m((a; +\infty)) = \phi(+\infty) - \phi(a) = \lim_{n \to \infty} \phi(n) - \phi(a) = \lim_{n \to \infty} (\phi(n) - \phi(a)) = \lim_{n \to \infty} m(\rsi{a; n})
+		\]
+		Далее есть ещё один нереальный факт: $\rsi{a; n} = \bscup_{i = 1}^\infty \rsi{a; n} \cap A_i$. Так как у нас полукольцо, то эти пересечения тоже лежат в $S$, причём будут полуинтервалами. По первому пункту это даёт $\sigma$-аддитивность мер, ну а в частности $\sigma$-полуаддитивность:
+		\[
+			m(\rsi{a; n}) \le \sum_{i = 1}^\infty m(\rsi{a; n} \cap A_i)
+		\]
+		Коль скоро это работает при всех $n \ge a$, то верно и предельное неравенство. Значит
+		\[
+			m((a; +\infty)) = \lim_{n \to \infty} m(\rsi{a; n}) \le \lim_{n \to \infty} \sum_{i = 1}^\infty m(\rsi{a; n} \cap A_i) \le \sum_{i = 1}^\infty m(A_i)
+		\]
+		
+		\item $\rsi{-\infty; b} = \bscup_{i = 1}^\infty A_i$. Аналогично предыдущему, просто надо рассматривать полуинтервалы $\rsi{-n; b}$ для $n \in \N$.
 	\end{enumerate}
 \end{example}
