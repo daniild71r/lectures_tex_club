@@ -1,0 +1,221 @@
+\subsection{Измеримые функции}
+
+\begin{note}
+	Измеримые функции нужны нам для того, чтобы разрешить проблемы, возникающие со случайными величинами в теории вероятности.
+\end{note}
+
+\begin{definition}
+	Тройка $(X, M, \mu)$, где
+	\begin{itemize}
+		\item $X$ --- произвольное множество
+		
+		\item $M$ --- $\sigma$-алгебра на $X$
+		
+		\item $\mu$ --- $\sigma$-аддитивная мера на $M$
+	\end{itemize}
+	называется \textit{измеримым пространством}.
+\end{definition}
+
+\begin{note}
+	Стоит отметить, что некоторые свойства мы не гарантируем. Например, полноту - совсем необязательно любое подмножество множества нулевой меры будет тоже иметь меру 0 (или даже измеримо).
+\end{note}
+
+\begin{definition}
+	Пусть $(X, M, \mu)$ --- измеримое пространство, $A \in M$. Функция $f \colon A \to \overline{\R}$ называется \textit{измеримой}, когда выполняется условие:
+	\[
+		\forall c \in \R \quad f^{-1}(\rsi{c; +\infty}) \in M
+	\]
+\end{definition}
+
+\begin{lemma} (О прообразах измеримой функции)
+	Пусть $f$ --- измеримая функция на измеримом пространстве $(X, M, \mu)$. Тогда $f^{-1}(\tbr{a; b}) \in M$, в том числе $f^{-1}(\{\pm\infty\})$.
+\end{lemma}
+
+\begin{proof}
+	Идея состоит в том, чтобы выразить всё через уже имеющееся не более чем счётным числом операций:
+	\begin{itemize}
+		\item $\forall a < b \in \overline{\R} \quad f^{-1}(\rsi{a; b}) = f^{-1}(\rsi{a; +\infty}) \bs f^{-1}(\rsi{b; +\infty}) \in M$
+		
+		\item $\forall a < b, a \in \overline{R}, b \in \R \quad  f^{-1}((a; b)) = \bigcap_{n = 1}^\infty f^{-1}\ps{\rsi{a; b + \frac{1}{n}}} \in M$
+		
+		\item $\forall c \in \R \quad f^{-1}([-\infty; c]) \sqcup f^{-1}(\rsi{c; +\infty}) = X \in M \Lora f^{-1}([-\infty; c]) \in M$
+		
+		\item $\forall c \in \overline{\R} \quad f^{-1}(\lsi{-\infty; c}) = \bigcap_{n = 1}^\infty f^{-1}\ps{\sbr{-\infty; c + \frac{1}{n}}} \in M$
+		
+		\item $\forall a < b \in \overline{\R} \quad f^{-1}(\lsi{a; b}) = f^{-1}(\lsi{-\infty; b}) \bs f^{-1}(\lsi{-\infty; a}) \in M$
+		
+		\item \textcolor{red}{И так далее. Может быть допишу остальные случаи}
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Пусть $(X, M, \mu)$ --- измеримое пространство, а $f$ --- измеримая функция на нём. Тогда
+	\[
+		\forall B \in \B(\R) \quad f^{-1}(B) \in M
+	\]
+\end{theorem}
+
+\begin{note}
+	Обычно именно это свойство измеримой функции берут за определение, но мы взяли усиленное. Особенность в том, что старый способ доказательства измеримости не пройдёт --- мы просто не знаем, как устроены множества борелевской сигма-алгебры. Потребуется новая техника: \textit{принцип подходящих множеств}.
+\end{note}
+
+\begin{definition}
+	Зафиксируем измеримое пространство $(X, M, \mu)$ и какую-то функцию $f$ на нём. \textit{Системой подходящих множеств} $S$ называется следующее:
+	\[
+		S = \{A \subseteq \R \such f^{-1}(A) \in M\}
+	\]
+\end{definition}
+
+\begin{proposition}
+	Если задано измеримое пространство $(X, M, \mu)$ и измеримая функция $f$ на нём, то система подходящих множеств обладает следующими свойствами:
+	\begin{itemize}
+		\item $\R \in S$
+		
+		\item $S$ является $\sigma$-алгеброй
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item Уже доказано выше, ибо $(-\infty; +\infty) = \R$
+		
+		\item Верны следующие равенства:
+		\begin{align*}
+			&{f^{-1}\ps{\bigcap_{i = 1}^\infty A_i} = \bigcap_{i = 1}^\infty f^{-1}(A_i)}
+			\\
+			&{f^{-1}\ps{\bigtriangleup_{i = 1}^\infty A_i} = \bigtriangleup_{i = 1}^\infty f^{-1}(A_i)}
+		\end{align*}
+	\end{itemize}
+\end{proof}
+
+\begin{proof} (теоремы)
+	Что мы ещё можем сказать про $S$? Оно содержит по уже доказанному факту все интервалы из $\R$. То же самое делает $\B(\R)$, при этом борелевская $\sigma$-алгебра является минимальной. Стало быть, $\B(\R) \subseteq S$ и всё доказано автоматически.
+\end{proof}
+
+\begin{reminder}
+	Если $A \subseteq \R$, то $A = \bscup_i (a_i; b_i)$, $a_i < b_i \in \overline{\R}$.
+\end{reminder}
+
+\begin{reminder}
+	Если взять измеримое пространство $(\R, M_\lambda, \lambda)$, где $\lambda$ --- это классическая мера Лебега, то любая непрерывная функция $f \colon A \to \R$, определенная на открытом множестве $A \subseteq \R$ будет измеримой.
+\end{reminder}
+
+\begin{definition}
+	Функция $f \colon \R \to \R$ называется \textit{борелевской}, если выполнено следующее условие:
+	\[
+		\forall B \in \B(\R) \quad f^{-1}(B) \in \B(\R)
+	\]
+\end{definition}
+
+\begin{proposition}
+	Любая непрерывная функция $f \colon A \to \R$, определённая на открытом множестве $A \subseteq \R$, является борелевской
+\end{proposition}
+
+\begin{proof}
+	\textcolor{red}{Вроде очевидно, но может быть потом добавлю.}
+\end{proof}
+
+\begin{theorem}
+	Пусть $f \colon A \to \R$ --- это измеримая и конечная функция на измеримом пространстве $(X, M, \mu)$, $\Ran f \subseteq G \subseteq \R$, где $G$ --- открытое множество, и ещё есть $g$ --- борелевская функция, определённая на $G$. Тогда $g \circ f$ является измеримой функцией на $A$.
+\end{theorem}
+
+\begin{proof}
+	Достаточно зафиксировать произвольное $c \in \R$ и посмотреть прообраз $g \circ f$ на луче $(c; +\infty)$:
+	\[
+		(g \circ f)^{-1}(c; +\infty) = f^{-1}(\underbrace{g^{-1}(c; +\infty)}_{\in \B(\R)}) \in \B(\R)
+	\]
+\end{proof}
+
+\begin{theorem} (Арифметические свойства измеримых функций)
+	Если $f, g$ --- измеримые и конечные функции на измеримом пространстве $(X, M, \mu)$. Тогда имеют место следующие свойства:
+	\begin{itemize}
+		\item $\forall \alpha, \beta \in \R \quad \alpha \cdot f + \beta \cdot g$ --- измеримая и конечная функция
+		
+		\item $f \cdot g$ --- измеримая и конечная функция
+		
+		\item Если дополнительно $g(X) \centernot\ni 0$, то $f / g$ --- измеримая и конечная функция
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	\begin{itemize}
+		\item Проведём доказательство в несколько пунктов:
+		\begin{enumerate}
+			\item $\forall a, c \in \R \quad a \cdot f + c$ --- измеримая и конечная функция. Тривиально
+			
+			\item Множество $A = \{x \in X \such f(x) > g(x)\}$ измеримо. Действительно, его можно записать таким образом:
+			\[
+				A = \{x \in X \such f(x) > g(x)\} = \bigcup_{n = 1}^\infty \left(\{x \in X \such f(x) > r_n\} \cup \{x \in X \such g(x) < r_n\}\right) \in M
+			\]
+			где $r_n \in \Q$ и мы обходим все рациональные числа $\R$.
+			
+			\item Достаточно рассмотреть случай $\alpha = \beta = 1$ в силу первого пункта. Распишем $\forall c \in \R$ измеримость по определению:
+			\[
+				\{x \in X \such f(x) + g(x) > c\} = \{x \in X \such f(x) > \underbrace{c - g(x)}_{g'(x)}\} \in M
+			\]
+		\end{enumerate}
+	
+		\item Воспользуемся трюком:
+		\[
+			f \cdot g = \frac{(f + g)^2 - (f - g)^2}{4}
+		\]
+		Это измеримая функция, потому что композицию и сумму функций мы уже обосновали ($f - g = f + (-g)$).
+		
+		\item То же самое, что и в предыдущем пункте:
+		\[
+			f / g = f \cdot (1 / g)
+		\]
+		А функция $1 / g = (1 / x) \circ g$
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Пусть $\{f_n\}_{n = 1}^\infty$ --- измеримая последовательность функций (с возможно бесконечными значениями) на измеримом пространстве $(X, M, \mu)$. Утверждается, что обе функции
+	\begin{align*}
+		&{\phi(x) = \sup_{n \in \N} f_n(x)}
+		\\
+		&{\psi(x) = \varlimsup_{n \to \infty} f_n(x)}
+	\end{align*}
+	являются измеримыми.
+\end{theorem}
+
+\begin{note}
+	Естественно, то же самое верно для $\inf$ и $\varliminf$.
+\end{note}
+
+\begin{proof}
+	Для $\phi(x)$ можно записать прообраз луча таким образом:
+	\[
+		\forall c \in \R \quad \{x \in X \such \phi(x) > c\} = \bigcup_{n = 1}^\infty \{x \in X \such f_n(x) > c\} \in M
+	\]
+	Для $\psi(x)$ надо воспользоваться эквивалентным определением верхнего предела. Для этого введём $\psi_k(x) = \sup_{n \ge k} f_n(x)$. Тогда $\psi(x) = \lim_{k \to \infty} \psi_k(x)$ и можно записать прообраз луча так:
+	\[
+		\{x \in X \such \psi(x) > c\} = \bigcup_{r = 1}^\infty \bigcap_{k = 1}^\infty \set{x \in X \such \psi_k(x) > c + \frac{1}{r}}
+	\]
+\end{proof}
+
+\begin{corollary}
+	В рамках условий теоремы, $F = \lim_{n \to \infty} f_n(x)$ будет измеримой функцией на том множестве, на котором существует предел (необязательно конечный).
+\end{corollary}
+
+\begin{proof}
+	Мы уже доказали, что функции $\psi(x) = \varlimsup_{n \to \infty} f_n(x)$ и $\xi(x) = \varliminf_{n \to \infty} f_n(x)$ измеримы на $X$. Чтобы установить измеримость $F$, надо сначала показать измеримость множества её определения $A$, то есть
+	\[
+		A = \{x \in X \such \psi(x) = \xi(x)\} = X \bs \Big(\{x \in X \such \psi(x) > \xi(x)\} \sqcup \{x \in X \such \psi(x) < \xi(x)\}\Big) \in M
+	\]
+	Теперь заметим, что $(A, A \cap M, \mu)$ --- это тоже измеримое пространство, на котором $\psi$ и $\xi$ остаются измеримыми. Так как $F$ совпадает на $A$ с этими функциями, то она тоже измерима.
+\end{proof}
+
+\begin{reminder}
+	\textcolor{red}{Тут что-то перепутано, потом допишу.}
+	$G = \bscup_{i = 1}^\infty \bscup_{k = 1}^{2^{n - 1}} I_k^n$ --- дополнение \textit{канторова множества}, где $I_k^n$ --- это интервал $((2k - 1) / 3^n; 2k / 3^n)$. Множество $P = [0; 1] \bs G$ называется \textit{множеством Кантора}. Про эту пару известны следующие свойства:
+	\begin{enumerate}
+		\item $G$ --- открытое множество, $P$ --- замкнутое
+		
+		\item $P$ нигде не плотно (то есть для любого интервала найдётся подинтервал, не содержащий элементы $P$)
+		
+		\item $P$ континуально. Существует биекция в последовательности $\{0, 1\}^\infty$
+		
+		\item $\lambda(P) = 0$
+	\end{enumerate}
+\end{reminder}
