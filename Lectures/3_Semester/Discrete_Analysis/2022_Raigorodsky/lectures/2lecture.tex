@@ -11,10 +11,10 @@
 
 \begin{proof}
 	Распишем биномиальный коэффициент, как мы это сделали в доказательстве теоремы:
-	\begin{multline*}
-		C_n^k = \frac{n!}{k! (n - k)!} = \frac{n(n - 1) \ldots (n - (k - 1))}{k!} = \frac{n^k}{k!} \prod_{t = 0}^{k - 1} \ps{1 - \frac{t}{n}} = \frac{n^k}{k!} \exp\ps{\sum_{t = 0}^{k - 1} \ln\ps{1 - \frac{t}{n}}} =
-	\end{multline*}
-	Отсюда уже следует первое неравенство, а для второго надо расписать натуральный логарифм через формулу Тейлора с О-большим:
+	\[
+		C_n^k = \frac{n!}{k! (n - k)!} = \frac{n(n - 1) \ldots (n - (k - 1))}{k!} = \frac{n^k}{k!} \prod_{t = 0}^{k - 1} \ps{1 - \frac{t}{n}} \le \frac{n^k}{k!}
+	\]
+	Дрля второго надо расписать натуральный логарифм через формулу Тейлора с О-большим:
 	\begin{multline*}
 		C_n^k = \frac{n^k}{k!} \exp\ps{\sum_{t = 0}^{k - 1} \ln\ps{1 - \frac{t}{n}}} = \frac{n^k}{k!} \exp\ps{\sum_{t = 0}^{k - 1} \ps{-\frac{t}{n} + O\ps{\frac{t^2}{n^2}}}} =
 		\\

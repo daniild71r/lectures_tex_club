@@ -38,7 +38,7 @@
 	\[
 		P(\mathcal{A} \cup \mathcal{B}) \le P(\mathcal{A}) + P(\mathcal{B}) \to 0
 	\]
-	Значит, $P(\overline{\mathcal{A} \cap \mathcal{B}}) \to 1$, что в точности является нужным событием.
+	Значит, $P(\overline{\mathcal{A} \cup \mathcal{B}}) \to 1$, что в точности является нужным событием.
 \end{proof}
 
 \begin{example}
@@ -74,7 +74,7 @@
 	
 	Посмотрим такой граф, для которого будет достигнуто равенство. Разобьём $n$ вершин на $\alpha$ равновеликих клик. Тогда понятно, что $\alpha(G) = \alpha$, но при этом число рёбер
 	\[
-		|E| = \alpha \cdot C_{n / \alpha}^2 = \alpha^2 \cdot \frac{\frac{n}{\alpha} \ps{\frac{n}{\alpha} - 1}}{2} = \frac{n^2}{2\alpha} - \frac{n}{2}
+		|E| = \alpha \cdot C_{n / \alpha}^2 = \alpha \cdot \frac{\frac{n}{\alpha} \ps{\frac{n}{\alpha} - 1}}{2} = \frac{n^2}{2\alpha} - \frac{n}{2}
 	\]
 \end{example}
 
