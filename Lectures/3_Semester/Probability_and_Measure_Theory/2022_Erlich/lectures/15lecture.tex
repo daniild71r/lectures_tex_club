@@ -1,0 +1,328 @@
+\subsubsection*{Построение интеграла Лебега для измеримой функции}
+
+\begin{note}
+	Неотрицательность функции в этом контексте также подразумевает её измеримость.
+\end{note}
+
+\begin{definition}
+	Пусть $f \colon E \to \R$ --- неотрицательная функция на $E \in M$. Определим множество $Q_f$:
+	\[
+		Q_f = \{h \colon h(x) \le f(x) \text{ на } E \wedge h(x) \text{ --- простая функция}\}
+	\]
+	Тогда \textit{интегралом Лебега от неотрицательной функции на $E$} будет называться такое число:
+	\[
+		(L)\int_E f(x)d\mu = \sup_{h \in Q_f} (L)\int_E h(x)d\mu
+	\]
+\end{definition}
+
+\begin{definition}
+	Если для неотрицательной функции $(L)\int_E f(x)d\mu < +\infty$, то $f(x)$ называется \textit{интегрируемой по Лебегу на $E$} и это обозначают как $f \in L(E)$.
+\end{definition}
+
+\begin{proposition}
+	Любая измеримая функция представима в виде разности двух неотрицательных.
+\end{proposition}
+
+\begin{proof}
+	Пусть $f \colon E \to \R$ --- произвольная измеримая функция. Тогда определим такие неотрицательные функции:
+	\begin{align*}
+		&{f^+(x) = \max(f(x), 0)}
+		\\
+		&{f^-(x) = \max(-f(x), 0)}
+	\end{align*}
+	Тогда $f = f^+ - f^-$, что и требовалось.
+\end{proof}
+
+\begin{definition}
+	Произвольная измеримая функция $f \colon E \to \R$ называется \textit{интегрируемой по Лебегу}, если $f^+, f^- \in L(E)$. Интеграл Лебега в таком случае по определению равен следующему:
+	\[
+		(L)\int_E f(x)d\mu = (L)\int_E f^+(x)d\mu - (L)\int_E f^-(x)d\mu
+	\]
+\end{definition}
+
+\begin{proposition}
+	Если $\{g_n\}_{n = 1}^\infty$ --- последовательность неубывающих неотрицательных простых функций на $E$ и имеет место утверждение:
+	\[
+		\forall x \in E\ \ \lim_{n \to \infty} g_n(x) = g(x)
+	\]
+	Тогда $g \in L(E)$ и имеет место интегральный предел:
+	\[
+		\lim_{n \to \infty} \int_E g_n(x)d\mu = \int_E g(x)d\mu
+	\]
+\end{proposition}
+
+\begin{proof}
+	Нужно разобраться с двумя вещами:
+	\begin{enumerate}
+		\item Измеримость $g$. Это просто следствие теоремы \ref{limtheorema}. Более того, $g$ будет неотрицательной в силу наличия этого свойства у всех $g_n$.
+		
+		\item Интегральное равенство. Его нужно показать в 2 стороны:
+		\begin{enumerate}
+			\item По сути $\forall n \in \N\ g_n \in Q_g$, а потому у нас будет как минимум такое соотношение из определения:
+			\[
+				\lim_{n \to \infty} \int_E g_n(x)d\mu \le \int_E g(x)d\mu
+			\]
+			
+			\item Заметим такой несложный факт:
+			\[
+				\forall h \in Q_g\ \ g(x) = \lim_{n \to \infty} g_n(x) \ge h(x)
+			\]
+			Вместе с полученным неравенством мы удовлетворяем все требования последней теоремы про простые функции, откуда получаем неравенство:
+			\begin{multline*}
+				\forall h \in Q_g\ \ \lim_{n \to \infty} \int_E g_n(x)d\mu \ge \int_E h(x)d\mu \Lora
+				\\
+				\lim_{n \to \infty} \int_E g_n(x)d\mu \ge \sup_{h \in Q_g} \int_E h(x)d\mu = \int_E g(x)d\mu
+			\end{multline*}
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+	Пусть $f \colon E \to \R$ --- неотрицательная функция. Тогда существует неубывающая последовательность простых функций $\{f_m\}_{m = 1}^\infty$ такая, что $\forall x \in E\ \ \lim_{m \to \infty} f_m(x) = f(x)$
+\end{lemma}
+
+\begin{proof}
+	В силу $\sigma$-конечности пространства
+	\[
+		E = \bscup_{n = 1}^\infty E_n,\ \mu(E_n) < \infty
+	\]
+	Определим такую последовательность $f_m$:
+	\[
+		f_m(x) = \System{
+			&{0,\ x \notin \bscup_{n = 1}^m E_n}
+			\\
+			&{2^m,\ x \in \bscup_{n = 1}^m E_n \wedge f(x) \ge 2^m}
+			\\
+			&{\frac{k - 1}{2^m},\ f(x) \in \lsi{\frac{k - 1}{2^m}; \frac{k}{2^m}},\ x \in \bscup_{n = 1}^m E_n \wedge 0 \le f(x) < 2^m}
+		}
+	\]
+	Каждая $f_m$ проста, ибо мера носителя конечна и число значений равно $2^{2m}$ ($1 \le k \le 2^{2m}$ и ещё одно значение $2^m$). А сейчас мы будем очень грустно показывать неубывание этой последовательности $\forall x \in E$:
+	\begin{itemize}
+		\item Если $f_m(x) = 0$, то $f_{m + 1}(x) \ge 0$
+		
+		\item Если $f_m(x) = 2^m$, то $f(x) \ge 2^m$, а тогда либо $f_{m + 1}(x) \ge 2^m$, либо $f_{m + 1}(x) = 2^{m + 1} \ge 2^m$
+		
+		\item Если $f_m(x) = \frac{k}{2^m}$, то $f(x) \in \lsi{\frac{k}{2^m}; \frac{k + 1}{2^m}} = \lsi{\frac{2k}{2^{m + 1}}; \frac{2k + 2}{2^{m + 1}}}$. Следовательно, либо $f_{m + 1}(x) = \frac{2k}{2^{m + 1}}$, либо $f_{m + 1}(x) = \frac{2k + 1}{2^{m + 1}}$
+	\end{itemize}
+	Остаётся разобраться со сходимостью. Есть 2 варианта:
+	\begin{itemize}
+		\item $f(x) < +\infty$. В таком случае, $\exists m_0 \in \N \such x \in \bscup_{k = 1}^{m_0} E_k$, то есть $f_{m_0}(x) = k / 2^{m_0}$. Для $t > m_0$ имеет место неравенство:
+		\[
+			|f_t(x) - f(x)| < \frac{k}{2^t} - \frac{k - 1}{2^{t}} = \frac{1}{2^t} \xrightarrow[t \to \infty]{} 0
+		\]
+		
+		\item $f(x) = +\infty$. Тогда снова $\exists m_0 \in \N \such x \in \bscup_{k = 1}^{m_0} E_k$ и для $\forall t > m_0$ будет верно равенство
+		\[
+			f_t(x) = 2^t \xrightarrow[t \to \infty]{} +\infty
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Если $f, g \colon E \to \R$ --- неотрицательные функции, то есть 2 свойства:
+	\begin{enumerate}
+		\item (Линейность) \(\int_E (f + g)d\mu = \int_E fd\mu + \int_E gd\mu\)
+		
+		\item (Аддитивность) Если $E = A \sqcup B$, где $A, B \in M$, то \(\int_E fd\mu = \int_A fd\mu + \int_B fd\mu\)
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	По сути мы просто ссылаемся на определение, лемму и уже доказанные свойства для простых функций:
+	\begin{enumerate}
+		\item Возьмём по лемме последовательности $\{f_n\}_{n = 1}^\infty$ и $\{g_n\}_{n = 1}^\infty$ соответственно. Тогда последовательность $f_n + g_n$ будет обладать всеми общими свойствами исходных, но при этом поточечно сходится к $f + g$. По утверждению о пределе интегралов получаем нужное равенство:
+		\[
+			\int_E (f + g)d\mu = \lim_{n \to \infty} \int_E (f_n + g_n)d\mu = \lim_{n \to \infty} \int_E f_nd\mu + \lim_{n \to \infty} \int_E g_nd\mu = \int_E fd\mu + \int_E gd\mu
+		\]
+		
+		\item Аналогично первому пункту.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Абсолютная непрерывность интеграла Лебега, без доказательства)
+	Пусть есть некоторая $f \colon E \to \R$. Имеет место несколько утверждений:
+	\begin{enumerate}
+		\item Если $\mu(E) = 0$ и $f$ измерима на $E$, то $f \in L(E)$ и $\int_E fd\mu = 0$
+		
+		\item Если $\mu$ полна, $f \in L(E)$ и $g \sim f$, то $g \in L(E)$ и $\int_E fd\mu = \int_E gd\mu$
+		
+		\item Если $f \in L(E)$, то $\mu\{x \in E \colon f(x) = \pm \infty\} = 0$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Тривиально следует из определения.
+		
+		\item Положим $E_1 = \{x \in E \colon f(x) = g(x)\}$, тогда $\mu(E \bs E_1) = 0$. Без ограничения общности будем считать, что $f(x) \ge 0$ (иначе переходим к отдельному рассмотрению $f^+$ и $f^-$). Из этого факта уже
+		\[
+			\int_E fd\mu = \int_{E_1} fd\mu + \int_{E \bs E_1} fd\mu = \int_{E_1} gd\mu = \int_E gd\mu
+		\]
+		
+		\item Без ограничения общности $f(x) \ge 0$ на $E$. Предположим противное:
+		\[
+			\mu(A) = \mu\{x \in E \colon f(x) = +\infty\} > 0
+		\]
+		Возможно 2 ситуации:
+		\begin{enumerate}
+			\item $\mu(A) < \infty$. Тогда рассмотрим последовательность $h_n(x) = n \cdot \chi_A(x)$. Понятно, что это неубывающие простые неотрицательные функции, причём $h_n(x) \le f(x)$. Стало быть, $h_n \in Q_f$. Но тогда по определению интеграла Лебега от неотрицательной функции
+			\[
+				(L)\int_E fd\mu = +\infty
+			\]
+			что противоречит с интегрируемостью $f$.
+			
+			\item $\mu(A) = \infty$. Выделим в $A$ подмножество конечной меры и проведём для него рассуждения выше.
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Основные свойства интеграла Лебега)
+	Если $f, g \in L(E)$, то имеют место следующие утверждения:
+	\begin{enumerate}
+		\item Для $\forall \alpha, \beta \in \R$ будет верно, что $\alpha f + \beta g \in L(E)$ и, более того, есть равенство:
+		\[
+			\int_E (\alpha f + \beta g)d\mu = \alpha \int_E fd\mu + \beta \int_E gd\mu
+		\]
+		
+		\item $f \in L(E) \Lra |f| \in L(E)$
+		
+		\item \(\md{\int_E f(x)d\mu} \le \int_E |f(x)|d\mu\)
+		
+		\item Если $|g(x)| \le |f(x)|$ на $E$, то \(\int_E |g(x)|d\mu \le \int_E |f(x)|d\mu\)
+		
+		\item Если $f(x) \le g(x)$ на $E$, то \(\int_E fd\mu \le \int_E gd\mu\)
+		
+		\item Если $E = A \sqcup B$, то $\int_E fd\mu = \int_A fd\mu + \int_B fd\mu$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Идёт без доказательства
+		
+		\item В одну сторону очевидно, в обратную тривиально: если $f = f^+ - f^-$, то $|f| = f^+ + f^-$
+		
+		\item Воспользуемся разложением $f = f^+ - f^-$:
+		\begin{multline*}
+			\md{\int_E f(x)d\mu} = \md{\int_E f^+(x)d\mu - \int_E f^-(x)d\mu} \le \md{\int_E f^+(x)d\mu} + \md{\int_E f^-(x)d\mu} =
+			\\
+			\int_E f^+(x)d\mu + \int_E f^-(x)d\mu = \int_E |f(x)|d\mu
+		\end{multline*}
+		
+		\item \textcolor{red}{Пока не придумал}
+		
+		\item Заведём новую функцию $h(x) = g(x) - f(x)$. Тогда $h(x) = |h(x)|$ и $|h(x)| \ge 0$ на $E$. Следовательно
+		\[
+			\int_E 0d\mu = 0 \le \int_E |h(x)|d\mu = \int_E h(x)d\mu = \int_E g(x)d\mu - \int_E f(x)d\mu
+		\]
+		
+		\item Просто пользуемся уже доказанным для $f^+$ и $f^-$
+	\end{enumerate}
+\end{proof}
+
+\subsection{Сходимость интегралов Лебега}
+
+\begin{note}
+	Мы сохраняем условия на рассматриваемое пространство $(X, M, \mu)$ и функции в нём из предыдущей части.
+\end{note}
+
+\begin{note}
+	Основной вопрос, который нас волнует: <<Если мы знаем, что некоторая последовательность $f_n$ как-то сходится к $f$ на $E$, то можно ли что-то утверждать про сходимость интегралов Лебега>>?
+\end{note}
+
+\begin{example}
+	Рассмотрим $f_n = n^2 \chi_{\rsi{0; 1 / n}}$. Совершенно понятно, что и поточечно, и по мере эта последовательность сходится к нулю. Однако:
+	\[
+		\int_{[0; 1]} f_n(x)d\mu = n
+	\]
+	То есть сходимости интегралов какой-либо к нулю не наблюдается вообще.
+\end{example}
+
+\begin{theorem} (Беппо Леви)
+	Пусть есть последовательность $\{f_n\}_{n = 1}^\infty$ и $f$ такие, что они определены на $E$ и выполнены условия:
+	\begin{enumerate}
+		\item $E \in M$
+		
+		\item $f_n$ неотрицательны на $E$
+		
+		\item $f_n$ образуют неубывающую последовательность при любом $x \in E$
+		
+		\item $f = \lim_{n \to \infty} f_n(x)$
+	\end{enumerate}
+	Тогда имеет место интегральный предел:
+	\[
+		\int_E f(x)d\mu = \lim_{n \to \infty} \int_E f_n(x)d\mu
+	\]
+\end{theorem}
+
+\begin{proof}
+	Индуктивно построим последовательность неотрицательных функций $\{g_n\}_{n = 1}^\infty$:
+	\begin{align*}
+		&{g_1(x) = f_1(x)}
+		\\
+		&{g_n(x) = f_n(x) - f_{n - 1}(x)}
+	\end{align*}
+	Дополнительно для каждой $g_n$ найдём её последовательность подходящих снизу на $E$ простых функций, обозначим их соответственно $\psi_{m, n}$. Теперь, перейдём к такой последовательности простых функций:
+	\[
+		F_m(x) = \sum_{n = 1}^m \psi_{m, n}(x)
+	\]
+	Исследуем свойства данной последовательности:
+	\begin{enumerate}
+		\item $F_m$ неубывает. Действительно:
+		\[
+			F_{m + 1} - F_m = \sum_{n = 1}^m (\psi_{m + 1, n}(x) - \psi_{m, n}(x)) + \psi_{m + 1, m + 1}(x) \ge 0
+		\]
+		
+		\item $F_m$ мажорируется $f_m$. В самом деле:
+		\[
+			F_m(x) \le \sum_{n = 1}^m g_n(x) \le f_m(x) \le f(x)
+		\]
+		
+		\item В силу определения есть такое неравенство:
+		\[
+			\forall N \in \N\ \ \lim_{m \to \infty} F_m(x) \ge \sum_{n = 1}^N \psi_{m, n}(x) = \sum_{n = 1}^N g_n(x) = f_N(x)
+		\]
+	\end{enumerate}
+	Из последнего свойства также следует, что
+	\[
+		\lim_{m \to \infty} F_m(x) \ge f(x)
+	\]
+	Коль скоро это так, то $\lim_{m \to \infty} F_m(x) = f(x)$. Так как эта последовательность состоит из простых функций, то
+	\[
+		\int_E f(x)d\mu = \lim_{m \to \infty} \int_E F_m(x)d\mu
+	\]
+	При этом $0 \le F_m(x) \le f_m(x) \le f(x)$. Из монотонности интеграла Лебега получаем
+	\[
+		\int_E F_m(x)d\mu \le \int_E f_m(x)d\mu \le \int_E f(x)d\mu \Lora \lim_{m \to \infty} \int_E f_m(x)d\mu = \int_E f(x)d\mu
+	\]
+\end{proof}
+
+\begin{corollary}
+	Если имеется последовательность определённых на $E$ функций $\{f_n\}_{n = 1}^\infty$ и выполнены следующие свойства:
+	\begin{enumerate}
+		\item $E \in M$
+		
+		\item $\forall n \in \N\ f_n \in L(E)$
+		
+		\item $f_n$ обращуют неубывающую на $E$ последовательность
+		
+		\item $\exists c \in \R \such \sup_{n \in \N} \int_E f_n(x)d\mu \le c$
+	\end{enumerate}
+	Тогда $f = \lim_{n \to \infty} f_n \in L(E)$ и имеет место равенство:
+	\[
+		\int_E f(x)d\mu = \lim_{n \to \infty} \int_E f_n(x)d\mu
+	\]
+\end{corollary}
+
+\begin{proof}
+	Сведём следствие к уже доказанному. Рассмотрим последовательность $\psi_n(x) = f_n(x) - f_1(x) \ge 0$ на $E$. Тогда $\psi(x) = \lim_{n \to \infty} \psi_n(x) = f(x) - f_1(x)$ и эта последовательность удовлетворяет теореме Леви, отсюда
+	\[
+		\int_E \psi(x)d\mu = \lim_{n \to \infty} \int_E \psi_n(x)d\mu = \lim_{n \to \infty} \int_E f_n(x)d\mu - \int_E f_1(x)d\mu
+	\]
+	Коль скоро $\psi \in L(E)$ и $f_1 \in L(E)$, то и $f \in L(E)$. Так как мы обосновали существования интеграла от $f$, законно записать следующее разложение:
+	\[
+		\lim_{n \to \infty} \int_E f_n(x)d\mu - \int_E f_1(x)d\mu = \int_E \psi(x)d\mu = \int_E f(x)d\mu - \int_E f_1(x)d\mu
+	\]
+\end{proof}
+
+\textcolor{red}{Осталась лемма Фату и теорема Лебега. Я очень постараюсь их дописать завтра утром}
