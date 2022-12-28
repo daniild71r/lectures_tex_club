@@ -177,22 +177,22 @@
 \end{proof}
 
 \begin{theorem} (Основные свойства интеграла Лебега)
-	Если $f, g \in L(E)$, то имеют место следующие утверждения:
+	Имеют место следующие утверждения:
 	\begin{enumerate}
-		\item Для $\forall \alpha, \beta \in \R$ будет верно, что $\alpha f + \beta g \in L(E)$ и, более того, есть равенство:
+		\item Если $f, g \in L(E)$, то для $\forall \alpha, \beta \in \R$ будет верно, что $\alpha f + \beta g \in L(E)$ и, более того, есть равенство:
 		\[
 			\int_E (\alpha f + \beta g)d\mu = \alpha \int_E fd\mu + \beta \int_E gd\mu
 		\]
 		
 		\item $f \in L(E) \Lra |f| \in L(E)$
 		
-		\item \(\md{\int_E f(x)d\mu} \le \int_E |f(x)|d\mu\)
+		\item Если $f \in L(E)$, то \(\md{\int_E f(x)d\mu} \le \int_E |f(x)|d\mu\)
 		
-		\item Если $|g(x)| \le |f(x)|$ на $E$, то \(\int_E |g(x)|d\mu \le \int_E |f(x)|d\mu\)
+		\item Если $f \in L(E)$ и $|g(x)| \le |f(x)|$ на $E$, то $g \in L(E)$ и \(\int_E |g(x)|d\mu \le \int_E |f(x)|d\mu\)
 		
-		\item Если $f(x) \le g(x)$ на $E$, то \(\int_E fd\mu \le \int_E gd\mu\)
+		\item Если $f, g \in L(E)$ и $f(x) \le g(x)$ на $E$, то \(\int_E fd\mu \le \int_E gd\mu\)
 		
-		\item Если $E = A \sqcup B$, то $\int_E fd\mu = \int_A fd\mu + \int_B fd\mu$
+		\item Если $E = A \sqcup B$ и $f \in L(E)$, то $\int_E fd\mu = \int_A fd\mu + \int_B fd\mu$
 	\end{enumerate}
 \end{theorem}
 
@@ -209,7 +209,11 @@
 			\int_E f^+(x)d\mu + \int_E f^-(x)d\mu = \int_E |f(x)|d\mu
 		\end{multline*}
 		
-		\item \textcolor{red}{Пока не придумал}
+		\item Так как $|g|$ --- это неотрицательная функция, то существует последовательность $\{r_n\}_{n = 1}^\infty$ простых функций, подходящих к ней снизу. Отсюда моментально следует, что $Q_{|g|} \neq \emptyset$. Значит, можно говорить об интеграле неотрицательной функции:
+		\[
+			\int_E |g(x)|d\mu = \sup_{r \in Q_{|g|}} \int_E r(x)d\mu \le \sup_{h \in Q_f} \int_E f(x)d\mu \le \int_E f(x)d\mu < \infty
+		\]
+		Стало быть, $|g| \in L(E)$, что возможно по одному из предыдущих свойств лишь в том случае, когда $g \in L(E)$.
 		
 		\item Заведём новую функцию $h(x) = g(x) - f(x)$. Тогда $h(x) = |h(x)|$ и $|h(x)| \ge 0$ на $E$. Следовательно
 		\[

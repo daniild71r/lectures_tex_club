@@ -1,6 +1,94 @@
+\begin{theorem} (Фату)
+	Пусть $\mu$ --- полная мера, а $\{f_n\}_{n = 1}^\infty$ --- последовательность неотрицательных функций, сходящихся почти всюду на $E$ к $f$. Тогда имеет место неравенство:
+	\[
+		\int_E f(x)d\mu \le \varliminf_{n \to \infty} \int_E f_n(x)d\mu
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим функции инфинумов $\phi_n(x) = \inf_{k \ge n} f_k(x)$ на $E$. Тогда понятно, что эти функции неуывают в каждой точке на $E$ и более того:
+	\[
+		\lim_{n \to \infty} \phi_n(x) = \varliminf_{n \to \infty} f_n(x) = f(x)
+	\]
+	Обозначим $E_1$ --- множество точек, где последовательность сходится. Тогда $\mu(E \bs E_1) = 0$ и можно записать следующие равенства (равенство с пределом обусловлено теоремой Леви):
+	\[
+		\int_E f(x)d\mu = \int_{E_1} f(x)d\mu = \lim_{n \to \infty} \int_{E_1} \phi_n(x)d\mu = \varliminf_{n \to \infty} \int_E \phi_n(x)d\mu
+	\]
+	Остаётся заметить, что $\forall n \in \N\ \int_E \phi_n(x)d\mu \le \int_E f_n(x)d\mu$
+\end{proof}
+
+\begin{theorem} (Лебега)
+	Пусть $\mu$ --- полная мера, заданы $\{f_n\}_{n = 1}^\infty$ и $F \colon E \to \R$ на $E \in M$ со следующими свойствами:
+	\begin{enumerate}
+		\item $F \in L(E)$
+		
+		\item $F$ --- неотрицательная функция
+		
+		\item $\forall n \in \N\ \forall x \in E\ \ |f_n(x)| \le F(x)$
+		
+		\item $f_n \to f$ почти всюду на $E$
+	\end{enumerate}
+	Тогда имеет место равенство:
+	\[
+		\int_E f(x)d\mu = \lim_{n \to \infty} \int_E f_n(x)d\mu
+	\]
+\end{theorem}
+
+\begin{proof}
+	Коль скоро $|f_n(x)| \le F(x)$, причём последняя интегрируема по Лебегу, то и $f_n \in L(E)$. Более того, то же самое верно и про $f$ на множестве сходимости $E_1$. Так как мера полна и $\mu(E \bs E_1) = 0$ (то есть $f$, взятая на $E_1$ и дополненная какими-то значениями до $E$, будет эквивалентна $f$ на всей $E$). Пользуясь пунктом из теоремы об абсолютной непрерывности интеграла Лебега, устанавливаем, что $f \in L(E)$.
+	
+	Осталось установить равенство. Для этого рассмотрим такие последовательности функций:
+	\begin{align*}
+		&{\phi_n(x) = F(x) + f_n(x)}
+		\\
+		&{\psi_n(x) = F(x) - f_n(x)}
+	\end{align*}
+	Про них по условию мы уже можем сказать, что они неотрицательны и почти всюду есть пределы:
+	\begin{align*}
+		&{\lim_{n \to \infty} \phi_n(x) = F(x) + f(x)}
+		\\
+		&{\lim_{n \to \infty} \psi_n(x) = F(x) - f(x)}
+	\end{align*}
+	Применим к ним теорему Фату и получим оценки с двух сторон для равенства:
+	\begin{multline*}
+		\int_E F(x)d\mu + \int_E f(x)d\mu = \int_E (F(x) + f(x))d\mu \le
+		\\
+		\varliminf_{n \to \infty} \int_E (F(x) + f_n(x))d\mu = \int_E F(x)d\mu + \varliminf_{n \to \infty} \int_E f_n(x)d\mu
+	\end{multline*}
+	И второе аналогично:
+	\begin{multline*}
+		\int_E F(x)d\mu - \int_E f(x)d\mu = \int_E (F(x) - f(x))d\mu \le
+		\\
+		\varliminf_{n \to \infty} \int_E (F(x) - f_n(x))d\mu = \int_E F(x)d\mu - \varlimsup_{n \to \infty} \int_E f_n(x)d\mu
+	\end{multline*}
+	Итого:
+	\[
+		\varlimsup_{n \to \infty} \int_E f_n(x)d\mu \le \int_E f(x)d\mu \le \varliminf_{n \to \infty} \int_E f_n(x)d\mu
+	\]
+	Стало быть, предел существует и равенство выполнено.
+\end{proof}
+
+\begin{reminder}
+	Функциональная последовательность $\{f_n\}_{n = 1}^\infty$ \textit{сходится равномерно} к $f \colon E \to \R$ на $E$, если выполнено утверждение:
+	\[
+		\forall \eps > 0 \exists N \in \N \such \forall n > N, x \in E\ \ |f_n(x) - f(x)| < \eps
+	\]
+\end{reminder}
+
 \begin{theorem} (Егорова)
 	Если $\mu(E) < \infty$ и $f_n \to f$ почти всюду на $E$, то
 	\[
 		\forall \eps > 0\ \exists E_\eps \subseteq E \such E_\eps \in M \wedge \mu(X \bs E_\eps) < \eps \wedge f_n \text{ сходится равномерно на } E_\eps
 	\]
 \end{theorem}
+
+\begin{proof}
+	По критерию сходимости почти всюду:
+	\[
+		\forall m \in \N\ \ \lim_{n \to \infty} \ps{\bigcup_{k = n}^\infty \set{x \in X \colon |f_k(x) - f(x)| > \frac{1}{m}}} = 0
+	\]
+	Отсюда получим такое утверждение:
+	\begin{multline*}
+		\forall \eps > 0\ \forall m \in \N\ \exists n_m \in \N \such n_m > n_{m - 1} \wedge \mu\ps{\bigcup_{k = n_m}^\infty \set{x \in X \colon |f_k(x) - f(x)| > \frac{1}{m}}} < \frac{\eps}{2^m}
+	\end{multline*}
+\end{proof}

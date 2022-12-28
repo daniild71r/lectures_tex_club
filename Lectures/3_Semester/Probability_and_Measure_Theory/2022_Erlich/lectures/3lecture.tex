@@ -24,16 +24,16 @@
 \end{example}
 
 \begin{theorem} (Формула Байеса)
-	Утверждается, что постериорную вероятность $P(B_k | A)$ можно найти по следующей формуле:
+	Утверждается, что постериорную вероятность $P(B | A)$ можно найти по следующей формуле:
 	\[
-		P(B_k | A) = \frac{P(A | B_k) \cdot P(B_k)}{\sum_{k = 1}^{n(\infty)} P(A | B_k) \cdot P(B_k)}
+		P(B | A) = \frac{P(A | B) \cdot P(B)}{P(A)}
 	\]
 \end{theorem}
 
 \begin{proof}
 	Ну, тут даже комментировать не надо
 	\[
-		P(B_k | A) = \frac{P(A \cap B_k)}{P(A)} = \frac{P(A | B_k) \cdot P(B_k)}{\sum_{k = 1}^{n(\infty)} P(A | B_k) \cdot P(B_k)}
+		P(B | A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A | B) \cdot P(B)}{P(A)}
 	\]
 \end{proof}
 
