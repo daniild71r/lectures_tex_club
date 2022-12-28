@@ -72,7 +72,7 @@
 \end{proof}
 
 \begin{theorem}
-	($\sigma$-полуаддитивность на кольце) Если $\nu$ --- это $\sigma$-аддитивная мера на кольце $R$, то для $\forall \cA \in R, \{\cA\}_{i = 1}^\infty \subseteq R$, $\cA \subseteq \bigcup_{i = 1}^\infty \cA_i$, верно следующее:
+	($\sigma$-полуаддитивность на кольце) Если $\nu$ --- это $\sigma$-аддитивная мера на кольце $R$, то для $\forall \cA \in R, \{\cA_i\}_{i = 1}^\infty \subseteq R$, $\cA \subseteq \bigcup_{i = 1}^\infty \cA_i$, верно следующее:
 	\[
 		\nu(\cA) \le \sum_{i = 1}^\infty \nu(\cA_i)
 	\]
@@ -127,7 +127,7 @@
 	\[
 		\nu(\cA) = \sum_{i = 1}^n m(\cA_i)
 	\]
-	Тогда тривиальным образом $\nu(\cA) \ge \mu^*(\cA)$ в силу определения. С другой стороны, для любого счётного покрытия $\{\cA\}_{i = 1}^\infty$ мы знаем, что
+	Тогда тривиальным образом $\nu(\cA) \ge \mu^*(\cA)$ в силу определения. С другой стороны, для любого счётного покрытия $\{\cA\}_{i = 1}^\infty \subseteq S$ мы знаем, что
 	\[
 		\nu(\cA) \le \sum_{i = 1}^\infty \nu(\cA_i)
 	\]
@@ -155,7 +155,7 @@
 \begin{proof}
 	Для всех $B_i$ сразу распишем свойство инфинума:
 	\[
-		\forall \eps > 0\ \exists A_{i, j} \in S \such B_i \subseteq \bigcup_{j = 1}^\infty A_{i, j} \wedge \sum_{j = 1}^\infty m(A_{i, j}) < \mu^*(B_i) + \frac{\eps}{2^i}
+		\forall \eps > 0\ \exists \{A_{i, j}\}_{j = 1}^\infty \subseteq S \such B_i \subseteq \bigcup_{j = 1}^\infty A_{i, j} \wedge \sum_{j = 1}^\infty m(A_{i, j}) < \mu^*(B_i) + \frac{\eps}{2^i}
 	\]
 	Тогда $B \subseteq \bigcup_{i = 1}^\infty \bigcup_{j = 1}^\infty A_{i, j}$. Коль скоро правая часть является покрытием множествами $S$, то можно сделать такую цепочку неравенств:
 	\[

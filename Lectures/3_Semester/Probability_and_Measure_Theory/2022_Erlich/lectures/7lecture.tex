@@ -158,15 +158,11 @@
 \subsection{Конечные меры на системах множеств}
 
 \begin{definition}
-	\textit{Конечной мерой на полукольце $S$} называется функция $m \colon S \to [0; +\infty)$ такая, что она обладает конечной аддитивностью:
+	\textit{Мерой на полукольце $S$} называется функция $m \colon S \to [0; +\infty)$ такая, что она обладает конечной аддитивностью:
 	\[
 		\forall A, A_1, \ldots, A_n \in S \colon A = \bscup_{i = 1}^n A_i \Lora m(A) = \sum_{i = 1}^n m(A_i)
 	\]
 \end{definition}
-
-\begin{note}
-	В этом параграфе мы будем опускать слово <<конечная>>, ибо других тут и не возникнет.
-\end{note}
 
 \begin{definition}
 	\textit{$\sigma$-аддитивной мерой на полукольце $S$} называется мера такая, что есть $\sigma$-аддитивность:
@@ -191,7 +187,7 @@
 	\[
 		\exists A_{n + 1}, \ldots, A_q \in S \such A = \bscup_{i = 1}^q A_i
 	\]
-	Тогда уже $m(A) = \sum_{i = 1}^q A_i \ge \sum_{i = 1}^n A_i$
+	Тогда уже $m(A) = \sum_{i = 1}^q m(A_i) \ge \sum_{i = 1}^n m(A_i)$
 \end{proof}
 
 \begin{corollary}
@@ -211,7 +207,7 @@
 	\]
 	где $\tbr{a_i; b_i} \in S$. Тогда, зафиксируем $\eps > 0$ и возьмём следующий набор промежутков:
 	\begin{itemize}
-		\item $[\alpha; \beta] \subseteq \tbr{a; b} \such m([\alpha; \beta]) > m([a; b]) - \frac{\eps}{2}$
+		\item $[\alpha; \beta] \subseteq \tbr{a; b} \such m([\alpha; \beta]) > m(\tbr{a; b}) - \frac{\eps}{2}$
 		
 		\item $(\alpha_i; \beta_i) \supset \tbr{a_i; b_i} \such m((\alpha_i; \beta_i)) < m(\tbr{a_i; b_i}) + \frac{\eps}{2^{i + 1}}$
 	\end{itemize}
