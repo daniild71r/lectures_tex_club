@@ -6,7 +6,7 @@
 \end{theorem}
 
 \begin{proof}
-	Рассмотрим функции инфинумов $\phi_n(x) = \inf_{k \ge n} f_k(x)$ на $E$. Тогда понятно, что эти функции неуывают в каждой точке на $E$ и более того:
+	Рассмотрим функции инфинумов $\phi_n(x) = \inf_{k \ge n} f_k(x)$ на $E$. Тогда понятно, что эти функции неубывают в каждой точке на $E$ и более того:
 	\[
 		\lim_{n \to \infty} \phi_n(x) = \varliminf_{n \to \infty} f_n(x) = f(x)
 	\]
@@ -28,7 +28,7 @@
 		
 		\item $f_n \to f$ почти всюду на $E$
 	\end{enumerate}
-	Тогда имеет место равенство:
+	Тогда $f_n, f \in L(E)$ и имеет место равенство:
 	\[
 		\int_E f(x)d\mu = \lim_{n \to \infty} \int_E f_n(x)d\mu
 	\]
@@ -76,9 +76,9 @@
 \end{reminder}
 
 \begin{theorem} (Егорова)
-	Если $\mu(E) < \infty$ и $f_n \to f$ почти всюду на $E$, то
+	Если $\mu(X) < \infty$ и $f_n \to f$ почти всюду, то
 	\[
-		\forall \eps > 0\ \exists E_\eps \subseteq E \such E_\eps \in M \wedge \mu(X \bs E_\eps) < \eps \wedge f_n \text{ сходится равномерно на } E_\eps
+		\forall \eps > 0\ \exists E_\eps \subseteq X \such E_\eps \in M \wedge \mu(X \bs E_\eps) < \eps \wedge f_n \text{ сходится равномерно на } E_\eps
 	\]
 \end{theorem}
 
@@ -89,6 +89,18 @@
 	\]
 	Отсюда получим такое утверждение:
 	\begin{multline*}
-		\forall \eps > 0\ \forall m \in \N\ \exists n_m \in \N \such n_m > n_{m - 1} \wedge \mu\ps{\bigcup_{k = n_m}^\infty \set{x \in X \colon |f_k(x) - f(x)| > \frac{1}{m}}} < \frac{\eps}{2^m}
+		\forall \eps > 0\ \forall m \in \N\ \exists n_m \in \N \such n_m > n_{m - 1} \wedge \mu\ps{\underbrace{\bigcup_{k = n_m}^\infty \set{x \in X \colon |f_k(x) - f(x)| > \frac{1}{m}}}_{G_m}} < \frac{\eps}{2^m}
 	\end{multline*}
+	Кандидатом в $E_\eps$ будет вот такое множество:
+	\[
+		E_\eps = X \bs \bigcup_{m = 1}^\infty G_m
+	\]
+	Проверим соответствующую меру:
+	\[
+		\mu(X \bs E_\eps) \le \sum_{m = 1}^\infty \mu(G_m) \le \eps
+	\]
+	По сути мы уже установили равномерную сходимость на $E_\eps$. Действительно:
+	\[
+		\forall \delta > 0\ \exists m \in \N, \frac{1}{m} < \delta\ \exists N = n_m \such \forall n > n_m\ \forall x \in X\ |f_n(x) - f(x)| < \frac{1}{m} < \delta
+	\]
 \end{proof}
