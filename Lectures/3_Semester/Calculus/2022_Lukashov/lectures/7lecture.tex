@@ -43,7 +43,7 @@
 	\[
 		w_{i_1, \ldots, i_p}^{j_1, \ldots, j_q} := w(e_{i_1}, \ldots, e_{i_p}, e^{j_1}, \ldots, e^{j_q})
 	\]
-	где $i_k, j_t \in \range{n}$
+	где $i_k, j_t \in \range{1}{n}$
 \end{proposition}
 
 \begin{proof}
@@ -305,66 +305,3 @@
 \begin{note}
 	Сам оператор $\wedge$ обычно называют <<(внешней) скобкой>>.
 \end{note}
-
-\begin{theorem} (Свойства внешнего произведения форм)
-	Для любых $U \in \Lambda_p$, $V \in \Lambda_r$ и $W \in \Lambda_s$ верны следующие свойства:
-	\begin{enumerate}
-		\item $U \wedge 0 = 0 \wedge U = 0$
-		
-		\item $\forall \alpha, \beta \in \R\ \ (\alpha U + \beta V) \wedge W = \alpha(U \wedge W) + \beta(V \wedge W)$
-		
-		\item $(U \wedge V) \wedge W = U \wedge (V \wedge W)$
-		
-		\item $V \wedge U = (-1)^{pr} U \wedge V$
-	\end{enumerate}
-\end{theorem}
-
-\begin{proof}~
-	\begin{enumerate}
-		\item Тривиально
-		
-		\item Очевидно
-		
-		\item Обычно такое равенство означает наличие некоторой общей симметричной формы записи. Мы хотим добиться такого результата:
-		\[
-			(U \wedge V) \wedge W = U \wedge (V \wedge W) = \frac{(p + r + s)!}{p! \cdot r! \cdot s!} \asym(U \otimes V \otimes W)
-		\]
-		Теперь проделаем шаги для левых круглых скобок:
-		\begin{multline*}
-			(U \wedge V) \wedge W = \frac{(p + r + s)!}{(p + r)! \cdot s!} \asym((U \wedge V) \otimes W) =
-			\\
-			\frac{(p + r + s)!}{(p + r)! \cdot s!} \asym\ps{\frac{(p + r)!}{p! \cdot r!} \asym((U \otimes V) \otimes W)}
-		\end{multline*}
-		Остаётся сослаться на вышедоказанную лемму.
-		
-		\item Если исходить из определения внешнего произведения, то доказательство этого факта сводится к доказательству аналогичного про $\asym(V \otimes U)$. Вспомним, как выглядит этот объект:
-		\[
-			\asym(V \otimes U) = \frac{1}{p!} \sum_{\sigma \in S_{p + r}} \sgn(\sigma) \cdot \sigma (V \otimes U)
-		\]
-		Так как мы живём в множестве пространств $\Omega_l^0$, то тензорное произведение работает почти как произведение функций, а ассимметризация заставляет просмотреть всевозможные перестановки аргументов. Не умаляя общности, посмотрим на пару слагаемых из двух ассимметризаций, когда верно равенство:
-		\begin{multline*}
-			\sigma(V \otimes U)(x_1, \ldots, x_{p + r}) = (V \otimes U)(x_{p + 1}, \ldots, x_{p + r}, x_1, \ldots, x_p) =
-			\\
-			(U \otimes V)(x_1, \ldots, x_p, x_{p + 1}, \ldots, x_{p + r}) = \delta(U \otimes V)(x_1, \ldots, x_{p + r})
-		\end{multline*}
-		Что можно сказать про соотношение между знаками $\sigma$ и $\delta$? Чтобы из $\sigma$ получить $\delta$ перестановку, достаточно сделать циклический сдвиг $(1, \ldots, p + r)$ ровно $r$ раз. При этом его знак равен $(-1)^{p + r - 1}$, что в композиции с оставшимися циклами даст $(-1)^{pr + r^2 - r}$. Заметим, что часть после $pr$ всегда даёт единицу (или же ноль по модулю двух), а стало быть $\sgn(\sigma) = (-1)^{pr} \sgn(\delta)$. Это верно для любой перестановки $\sigma$ и соответствующей ей $\delta$, а поэтому исходное равенство доказано.
-	\end{enumerate}
-\end{proof}
-
-\begin{lemma}
-	Для любых линейных функционалов $f^1, \ldots, f^p$ и любых векторов $x_1, \ldots, x_p$ верно следующее:
-	\[
-		f^1 \wedge \ldots \wedge f^p(x_1, \ldots, x_p) = \det(f^i(x_j))
-	\]
-	Пояснение: в $i$-й строке записаны значения $f^i$ на каждом векторе.
-\end{lemma}
-
-\begin{proof}
-	Распишем скобки по определению:
-	\begin{multline*}
-		f^1 \wedge \ldots \wedge f^p(x_1, \ldots, x_p) = \asym(f^1 \otimes \ldots \otimes f^p)(x_1, \ldots, x_p) =
-		\\
-		\frac{1}{p!} \sum_{\sigma \in S_p} \sgn(\sigma) \sigma (f^1 \otimes \ldots \otimes f^p)(x_1, \ldots, x_p) = \frac{1}{p!} \sum_{\sigma \in S_p} \sgn(\sigma) f^1(x_{\sigma(1)}) \cdot \ldots \cdot f^p(x_{\sigma(p)})
-	\end{multline*}
-	Записанное выражение является ничем иным, кроме как детерминантом матрицы $(f^i(x_j))$
-\end{proof}

@@ -1,0 +1,541 @@
+\begin{theorem} (Свойства внешнего произведения форм)
+	Для любых $U \in \Lambda_p$, $V \in \Lambda_r$ и $W \in \Lambda_s$ верны следующие свойства:
+	\begin{enumerate}
+		\item $U \wedge 0 = 0 \wedge U = 0$
+		
+		\item $\forall \alpha, \beta \in \R\ \ (\alpha U + \beta V) \wedge W = \alpha(U \wedge W) + \beta(V \wedge W)$
+		
+		\item $(U \wedge V) \wedge W = U \wedge (V \wedge W)$
+		
+		\item $V \wedge U = (-1)^{pr} U \wedge V$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Тривиально
+		
+		\item Очевидно
+		
+		\item Обычно такое равенство означает наличие некоторой общей симметричной формы записи. Мы хотим добиться такого результата:
+		\[
+		(U \wedge V) \wedge W = U \wedge (V \wedge W) = \frac{(p + r + s)!}{p! \cdot r! \cdot s!} \asym(U \otimes V \otimes W)
+		\]
+		Теперь проделаем шаги для левых круглых скобок:
+		\begin{multline*}
+		(U \wedge V) \wedge W = \frac{(p + r + s)!}{(p + r)! \cdot s!} \asym((U \wedge V) \otimes W) =
+		\\
+		\frac{(p + r + s)!}{(p + r)! \cdot s!} \asym\ps{\frac{(p + r)!}{p! \cdot r!} \asym((U \otimes V) \otimes W)}
+		\end{multline*}
+		Остаётся сослаться на вышедоказанную лемму.
+		
+		\item Если исходить из определения внешнего произведения, то доказательство этого факта сводится к доказательству аналогичного про $\asym(V \otimes U)$. Вспомним, как выглядит этот объект:
+		\[
+		\asym(V \otimes U) = \frac{1}{p!} \sum_{\sigma \in S_{p + r}} \sgn(\sigma) \cdot \sigma (V \otimes U)
+		\]
+		Так как мы живём в множестве пространств $\Omega_l^0$, то тензорное произведение работает почти как произведение функций, а ассимметризация заставляет просмотреть всевозможные перестановки аргументов. Не умаляя общности, посмотрим на пару слагаемых из двух ассимметризаций, когда верно равенство:
+		\begin{multline*}
+		\sigma(V \otimes U)(x_1, \ldots, x_{p + r}) = (V \otimes U)(x_{p + 1}, \ldots, x_{p + r}, x_1, \ldots, x_p) =
+		\\
+		(U \otimes V)(x_1, \ldots, x_p, x_{p + 1}, \ldots, x_{p + r}) = \delta(U \otimes V)(x_1, \ldots, x_{p + r})
+		\end{multline*}
+		Что можно сказать про соотношение между знаками $\sigma$ и $\delta$? Чтобы из $\sigma$ получить $\delta$ перестановку, достаточно сделать циклический сдвиг $(1, \ldots, p + r)$ ровно $r$ раз. При этом его знак равен $(-1)^{p + r - 1}$, что в композиции с оставшимися циклами даст $(-1)^{pr + r^2 - r}$. Заметим, что часть после $pr$ всегда даёт единицу (или же ноль по модулю двух), а стало быть $\sgn(\sigma) = (-1)^{pr} \sgn(\delta)$. Это верно для любой перестановки $\sigma$ и соответствующей ей $\delta$, а поэтому исходное равенство доказано.
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Если $U \in \Lambda_p$ и $p$ не делится на $2$, то $U \wedge U = 0$
+\end{corollary}
+
+\begin{proof}
+	В самом деле, воспользуемся доказанным свойством:
+	\[
+		U \wedge U = (-1)^{p^2} U \wedge U = (-1) U \wedge U \Lora 2U \wedge U = 0
+	\]
+	Такое возможно только тогда, когда $U \wedge U = 0$.
+\end{proof}
+
+\begin{lemma}
+	Для любых линейных функционалов $f^1, \ldots, f^p$ и любых векторов $x_1, \ldots, x_p$ верно следующее:
+	\[
+	f^1 \wedge \ldots \wedge f^p(x_1, \ldots, x_p) = \det(f^i(x_j))
+	\]
+	Пояснение: в $i$-й строке записаны значения $f^i$ на каждом векторе.
+\end{lemma}
+
+\begin{proof}
+	Распишем скобки по определению:
+	\begin{multline*}
+	f^1 \wedge \ldots \wedge f^p(x_1, \ldots, x_p) = \asym(f^1 \otimes \ldots \otimes f^p)(x_1, \ldots, x_p) =
+	\\
+	\frac{1}{p!} \sum_{\sigma \in S_p} \sgn(\sigma) \sigma (f^1 \otimes \ldots \otimes f^p)(x_1, \ldots, x_p) = \frac{1}{p!} \sum_{\sigma \in S_p} \sgn(\sigma) f^1(x_{\sigma(1)}) \cdot \ldots \cdot f^p(x_{\sigma(p)})
+	\end{multline*}
+	Записанное выражение является ничем иным, кроме как детерминантом матрицы $(f^i(x_j))$
+\end{proof}
+
+\subsection{Дифференциальные формы, области и операции с ними}
+
+\begin{reminder}
+	Подмножество $U \subset \R^n$ называется \textit{областью}, если оно является открытым и связным
+\end{reminder}
+
+\begin{anote}
+	Остальные связанные определения можно посмотреть в конспекте 2го семестра в начале главы про дифференциальное исчисление функции многих переменных.
+\end{anote}
+
+\begin{note}
+	В этом параграфе мы фиксируем $U \subset \R^n$ как область.
+\end{note}
+
+\begin{note}
+	Ранее у нас было фиксировано $E = \R^n$, теперь это не так. Чтобы сказать, что мы рассматриваем кососимметричные формы в подпространстве $E \le \R^n$, мы будем использовать обозначение $\Lambda_p(E)$
+\end{note}
+
+\begin{definition}
+	Отображение $\Omega \colon U \to \Lambda_p(\R^n)$ называется \textit{дифференциальной формой на $U$}.
+\end{definition}
+
+\begin{note}
+	Зафиксируем $x \in U$ и посмотрим, как можно представить $\Omega(x) \in \Lambda_p(\R^n)$. Мы уже можем описать, как выглядит базисная форма в $\Omega_p^0$:
+	\[
+		w = e^{j_1} \otimes \ldots \otimes e^{j_p}
+	\]
+	Из доказанных свойств про внешнее произведение, аналогичный вид имеет базисная форма в $\Lambda_p(\R^n)$:
+	\[
+		w = e^{j_1} \wedge \ldots \wedge e^{j_p},\ \ 1 \le j_1 < \ldots < j_p \le n
+	\]
+	Причём, как это написано выше, мы рассматриваем лишь упорядоченные наборы индексов. Связано это со свойством, почти дающим коммутативность (с точностью до умножения на минус единицу). Пусть $e$ --- это ортонормированный базис в $\R^n$. Тогда дифференциальную форму в каждой точке можно разложить по базису $\Lambda_p(\R^n)$. Если перейти в форму записи, где видна зависимость от $x$, то получится следующее:
+	\[
+		\Omega(x) = \sum_{1 \le i_1 < \ldots < i_p \le n} w_{i_1, \ldots, i_p}(x) \cdot e^{i_1} \wedge \ldots \wedge e^{i_p}
+	\]
+\end{note}
+
+\begin{note}
+	Чтобы подчеркнуть валентность пространства, в которое отображает дифференциальная форма, её иногда ещё называют \textit{(дифференциальной) $p$-формой}.
+\end{note}
+
+\begin{note}
+	Пространство дифференциальных $p$-форм, действующих из $U$, обозначается как $\Lambda_p(U)$.
+\end{note}
+
+\begin{definition}
+	$p$-форма $\Omega \colon U \to \Lambda_p(\R^n)$ называется \textit{непрерывной, гладкой, измеримой и т.д. на $U$} тогда и только тогда, когда эти свойства верны для всех $w_{i_1, \ldots, i_p}$ в её разложении.
+\end{definition}
+
+\begin{note}
+	В силу того, что при конкретном $x \in U$ дифференциальная форма становится просто кососимметричной формой, мы можем естественным образом определить операции умножения $p$-формы на обычную функцию, внешнее произведение с другой дифформой и сложение $p$-форм.
+\end{note}
+
+\begin{proposition}
+	Для любых дифференциальных $p$-форм $\Omega_1, \Omega_2$, $q$-формы $\Pi$ и $r$-формы $\Xi$, заданных на $U$, а также функций $\alpha, \beta \colon U \to \R$ справедливы следующие свойства:
+	\begin{enumerate}
+		\item $(\alpha \Omega_1 + \beta \Omega_2) \wedge \Pi = \alpha(\Omega_1 \wedge \Pi) + \beta (\Omega_2 \wedge \Pi)$
+		
+		\item $(\Omega_1 \wedge \Pi) \wedge \Xi = \Omega_1 \wedge (\Pi \wedge \Xi)$
+		
+		\item $\Pi \wedge \Omega = (-1)^{pr} \Omega_1 \wedge \Pi$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Следует из определения операций над $p$-формами.
+\end{proof}
+
+\begin{reminder}
+	Если $E_1, E_2$ --- линейно нормированные пространства, а $f \colon E_1 \to E_2$, то мы определяли сильную производную как отображение $f' \colon E_1 \to L(E_1, E_2)$ с определёнными свойствами. Это поможет нам далее.
+\end{reminder}
+
+\begin{proposition} (не материал лектора)
+	Любое конечномерное линейное пространство над $\R$ можно сделать линейно нормированным.
+\end{proposition}
+
+\begin{proof}
+	Пусть $V$ --- это линейное пространство, $\dim V = n < \infty$. Тогда, мы можем найти его базис $e = (e_1, \ldots, e_n)$ и разложить по нему любой вектор. Наличие координатных столбцов позволяет определить стандартное скалярное произведение, чем получается евклидово пространство над $\R$, а про такие мы уже доказывали наличие нормы, заданной соотношением:
+	\[
+		\|x\| = \sqrt{\tbr{x, x}}
+	\]
+\end{proof}
+
+\begin{note}
+	Стало быть, мы можем рассмотреть у $p$-формы $\Omega \colon U \to \Lambda_p(\R^n)$ её сильную производную $\Omega' \colon U \to L(\R^n, \Lambda_p(\R^n))$. Наличие естественного изоморфизма $L(\R^n, \Omega_p^0) \cong \Omega_{p + 1}^0$ позволяет рассматривать $\Omega'(x)$ при фиксированном $x \in U$ как элемент $\Omega_{p + 1}^0$, у которого к тому же есть кососимметричность по последним $p$ аргументам.
+	
+	Можем ли мы явно указать производную? Вспомним, что $\Lambda_p(\R^n)$ как линейное пространство изоморфно $\R^{C_n^p}$ (мы можем занумеровать базисные формы и тогда получить координатные столбцы для функций). Это значит, что $\Omega$ изоморфна некоторой функции $f \colon U \to \R^{C_n^p}$. Производная этой функции будет $f' \colon U \to L(\R^n, \R^{C_n^p})$. Мы знаем явный вид матрицы линейного отображения $f'(x_0)$, это матрица Якоби:
+	\[
+		f'(x_0) = \mathfrak{I}(x_0) = \Matrix{
+			&{\pd{f_1}{x_1}(x_0)} & &\cdots & &{\pd{f_1}{x_n}(x_0)}
+			\\
+			&\vdots & &\ddots & &
+			\\
+			&{\pd{f_{C_n^p}}{x_1}(x_0)} & &\cdots & &{\pd{f_{C_n^p}}{x_n}(x_0)}
+		} \in M_{C_n^p \times n}(\R)
+	\]
+	Столбцы этой матрицы --- координатные столбцы образов базиса $\R^n$ (его мы взяли тривиальным). Получается, что $i$-й столбец в этой матрице будет также соответствовать кососимметричной форме $\Omega'(x_0)(e_i)$. Посмотрим, что можно сказать про общую ситуацию:
+	\begin{multline*}
+		\Omega'(x_0)(h) = \Omega'(x_0)(\alpha^j e_j) = \alpha^j\Omega'(x_0)(e_j) = \alpha^j \pd{f_{i_1, \ldots, i_p}}{x_j}(x_0) e^{i_1} \wedge \ldots \wedge e^{i_p} =
+		\\
+		\ps{\sum_{j = 1}^n \alpha^j \pd{f_{i_1, \ldots, i_p}}{x_j} (x_0)} e^{i_1} \wedge \ldots \wedge e^{i_p} = \tbr{\grad f_{i_1, \ldots, i_p}(x_0), h} e^{i_1} \wedge \ldots \wedge e^{i_p}
+	\end{multline*}
+	То скалярное произведение, что мы получили у каждого слагаемого, есть ничто иное как $f'_{i_1, \ldots, i_p}(x_0)(h)$. Стало быть, в конечном итоге производная $\Omega'$ имеет такой вид:
+	\[
+		\Omega'(x_0) = \sum_{1 \le i_1 < \ldots < i_p \le n} f'_{i_1, \ldots, i_p}(x_0) \otimes e^{i_1} \wedge \ldots \wedge e^{i_p}
+	\]
+\end{note}
+
+\begin{definition}
+	Пусть $\Omega \colon U \to \Lambda_p(\R^n)$ --- гладкая $p$-форма. Тогда \textit{внешним дифференциалом} $d\Omega$ называется функция, заданная следующим образом:
+	\[
+		d\Omega(x) = (p + 1)\asym(\Omega'(x))
+	\]
+\end{definition}
+
+\begin{note}
+	По определению и сказанному выше получается, что $d\Omega \colon U \to \Lambda_{p + 1}(\R^n)$ --- дифференциальная $(p + 1)$-форма. И да, мы будем использовать обозначение обычного дифференциала для внешнего, ибо к первому мы не будем прикасаться.
+\end{note}
+
+\begin{note}
+	Рассмотрим дифференциальную 0-форму $\Omega$. Тогда $\Omega$ действует из $U$ в $\Lambda_0(\R^n)$. По соглашению, полилинейная форма валентности $(0, 0)$ --- это просто скаляр. Стало быть, $\Omega$ --- это просто функция вещественного переменного. Среди таких дифформ, рассмотрим $x^j$ --- функция $j$-й координаты вектора, проектор. Производная $\Omega' \colon U \to L(\R^n, \R)$ будет выдавать одинаковую линейную функцию в каждой точке. При любом фиксированном $x$ получается, что $d(x^j) = e^j$. Теперь, мы всегда будем писать вместо $e^j$ такие дифференциальные ноль-формы, при этом мысленно опуская тот факт, что ей надо передать 2 аргумента, ибо первый по сути не имеет смысла:
+	\begin{multline*}
+		\Omega(x) = \sum_{1 \le i_1 < \ldots < i_p \le n} w_{i_1, \ldots, i_p}(x) \cdot e^{i_1} \wedge \ldots \wedge e^{i_p} =
+		\\
+		\sum_{1 \le i_1 < \ldots < i_p \le n} w_{i_1, \ldots, i_p}(x) \cdot d(x^{i_1})(x) \wedge \ldots \wedge d(x^{i_p})(x) =
+		\\
+		\sum_{1 \le i_1 < \ldots < i_p \le n} w_{i_1, \ldots, i_p}(x) \cdot dx^{i_1} \wedge \ldots \wedge dx^{i_p}
+	\end{multline*}
+\end{note}
+
+\begin{note}
+	Мы также получаем новую форму записи для производной дифформы:
+	\[
+		\Omega'(x) = \sum_{1 \le i_1 < \ldots < i_p \le n} w'_{i_1, \ldots, i_p}(x) \otimes dx^{i_1} \wedge \ldots \wedge dx^{i_p} = \sum_{1 \le i_1 < \ldots < i_p \le n} \pd{w_{i_1, \ldots, i_p}}{x_j}(x) dx^j \otimes dx^{i_1} \wedge \ldots \wedge dx^{i_p}
+	\]
+	Но это ещё и не всё. Благодаря различным леммам про ассиметризацию, мы можем получить формулу для дифференциала. Действительно (далее я опускаю знак суммы по соглашению Эйнштейна, пределы этой суммы уже должны были прочно засесть в голову):
+	\begin{multline*}
+		d\Omega(x) = (p + 1)\asym(\Omega'(x)) = (p + 1) \asym\ps{\pd{w_{i_1, \ldots, i_p}}{x_j}(x)dx^j \otimes dx^{i_1} \wedge \ldots \wedge dx^{i_p}} =
+		\\
+		(p + 1) \pd{w_{i_1, \ldots, i_p}}{x_j}(x) \asym(dx^j \otimes p!\asym(dx^{i_1} \otimes \ldots \otimes dx^{i_p})) =
+		\\
+		(p + 1)! \pd{w_{i_1, \ldots, i_p}}{x_j}(x) \asym(dx^{j} \otimes dx^{i_1} \ldots \otimes dx^{i_p}) =
+		\\
+		\pd{w_{i_1, \ldots, i_p}}{x_j}(x) dx^j \wedge dx^{i_1} \wedge \ldots \wedge dx^{i_p} = d(w_{i_1, \ldots, i_p})(x) \wedge dx^{i_1} \ldots \wedge dx^{i_p}
+	\end{multline*}
+	Последний переход --- мнемонический (ибо производные умножались на $dx^j$, а не реальные дифференциалы приращения аргумента $dx_j$). В реальности берётся обычный дифференциал от $w_{i_1, \ldots, i_p}$ в точке $x$, но теперь понимается как 1-форма (то есть $dx_j$ заменяются на $dx^jэ$).
+\end{note}
+
+\begin{note}
+	Если не делать мнемонический переход, то важно понимать, что часть слагаемых сокращается. Это происходит там, где $j \in \range{i_1, \ldots, i_p}$
+\end{note}
+
+\begin{theorem} (Основные свойства внешнего произведения)
+	\begin{enumerate}
+		\item Пусть $\Omega_1, \Omega_2$ --- дифференцируемые $p$-формы. Тогда
+		\[
+			\forall \alpha, \beta \in \R\ \ d(\alpha\Omega_1 + \beta\Omega) = \alpha d\Omega_1 + \beta d\Omega_2
+		\]
+		
+		\item Пусть $\Omega, \Pi$ --- дифференцируемые $p$- и $q$-форма соответсвенно. Тогда
+		\[
+			d(\Omega \wedge \Pi) = (d\Omega) \wedge \Pi + (-1)^p \Omega \wedge d\Pi
+		\]
+		
+		\item Пусть $\Omega$ --- дважды дифференцируемая дифформа. Тогда её второй внешний дифференциал всегда тривиален:
+		\[
+			d(d\Omega) = 0
+		\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{note}
+	Дифференцируемость дифформы понимается в том смысле, в котором это было сказано ранее про любую характеристику дифформы (непрерывность, гладкость и так далее)
+\end{note}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Очевидно по новой формуле внешнего дифференциала
+		
+		\item В силу линейности операторов достаточно проверить верность данного утверждения на базисных дифформах. Возьмём такие:
+		\begin{align*}
+			&{\Omega(x) = w(x)dx^{i_1} \wedge \ldots \wedge dx^{i_p}}
+			\\
+			&{\Pi(x) = \pi(x) dx^{j_1} \wedge \ldots \wedge dx^{j_q}}
+		\end{align*}
+		Распишем для начала саму скобку:
+		\[
+			(\Omega \wedge \Pi)(x) = w(x)\pi(x) dx^{i_1} \wedge \ldots \wedge dx^{i_p} \wedge dx^{j_1} \wedge \ldots \wedge dx^{j_q}
+		\]
+		Если у пары форм были одинаковые 1-формы $dx^k$, то их скобка автоматически обращается в ноль и утверждение очевидно. Иначе же распишем дифференциал:
+		\begin{multline*}
+			d(\Omega \wedge \Pi)(x) = (\pi(x)dw(x) + w(x)d\pi(x)) \wedge dx^{i_1} \wedge \ldots \wedge dx^{j_q} =
+			\\
+			\pi(x)dw(x) \wedge dx^{i_1} \wedge \ldots \wedge dx^{j_q} + w(x)d\pi(x) \wedge dx^{i_1} \wedge \ldots \wedge dx^{j_q} =
+			\\
+			d(w(x)dx^{i_1} \wedge \ldots \wedge dx^{i_p}) \wedge (\pi(x)dx^{j_1} \wedge \ldots \wedge dx^{j_q}) +
+			\\
+			(-1)^p (w(x)dx^{i_1} \wedge \ldots \wedge dx^{i_p}) \wedge d(\pi(x)dx^{j_1} \wedge \ldots \wedge dx^{j_q}) =
+			\\
+			d\Omega \wedge \Pi + (-1)^p \Omega \wedge d\Pi
+		\end{multline*}
+		
+		\item Аккуратно, подробно распишем дифференциал формы в точке $x \in U$:
+		\[
+			d\Omega(x) = \sum_{1 \le i_1 < \ldots < i_p \le n} \sum_{j \notin \range{i_1}{i_p}} \pd{w_{i_1, \ldots, i_p}}{x_j}(x) dx^j \wedge dx^{i_1} \wedge \ldots \wedge dx^{i_p}
+		\]
+		Повторим то же для второго внешнего дифференциала:
+		\[
+			d(d\Omega)(x) = \sum_{1 \le i_1 < \ldots < i_p \le n} \sum_{j \notin \range{i_1}{i_p}} \sum_{k \notin \range{i_1}{i_p}} \pd{^2 w_{i_1, \ldots, i_p}}{x_k \vdelta x_j}(x) dx^k \wedge dx^j \wedge dx^{i_1} \wedge \ldots \wedge dx^{i_p}
+		\]
+		Заметим, что теперь у нас встречаются пары с одинаковым набором значений для $j$ и $k$. Их можно собрать воедино и получить следующее:
+		\[
+			d(d\Omega)(x) = \sum_{1 \le i_1 < \ldots < i_p \le n} \sum_{j < k \over {j, k \notin \range{i_1}{i_p}}} \ps{\pd{^2 w_{i_1, \ldots, i_p}}{x_k \vdelta x_j} - \pd{^2 w_{i_1, \ldots, i_p}}{x_j \vdelta x_k}} dx^k \wedge dx^j \wedge dx^{i_1} \wedge \ldots \wedge dx^{i_p}
+		\]
+		Выражение, полученное в скобках, всегда равно нулю для дважды дифференцируемых функций (достаточный признак равенства смешанных производных).
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Пусть $e$ --- это ортонормированный базис в $\R^n$. Тогда \textit{звёздочкой Ходжа} называется линейное отображение $* \colon \Lambda_p(U) \to \Lambda_{n - p}(U)$ над дифформами $*$, задаваемый на базисных дифформах следующим образом:
+	\[
+		*(dx^{i_1} \wedge \ldots \wedge dx^{i_p}) = (-1)^{[i, j]} dx^{j_1} \wedge \ldots \wedge dx^{j_{n - p}}
+	\]
+	где $1 \le i_1 < \ldots < i_p \le n$ и то же самое верно про $j_t$, причём $\{i_1, \ldots, i_p\} \cap \{j_1, \ldots, j_{n - p}\} = \emptyset$, а $(-1)^{[i, j]}$ --- знак перестановки $\sigma$, которая может быть записана так:
+	\[
+		\sigma = \Matrix{
+			&1& &\cdots& &p& &p + 1& &\cdots& &n
+			\\
+			&i_1& &\cdots& &i_p& &j_1& &\cdots& &j_{n - p}
+		}
+	\]
+\end{definition}
+
+\begin{note}
+	Далее, если не обговорено обратного, мы всегда работаем с ортонормированным (правым) базисом.
+\end{note}
+
+\begin{anote}
+	Чтобы запись перестановки была короче и не путалась с циклом, я буду записывать её как цикл, но у правой скобки внизу ставить букву j (от слова just).
+\end{anote}
+
+\begin{proposition}
+	Для любой дифформы $\Omega \in \Lambda_p(U)$ справедливо равенство:
+	\[
+		*(*\Omega) = (-1)^{p(n - p)}\Omega
+	\]
+\end{proposition}
+
+\begin{proof}
+	В силу линейности, нам достаточно проверить одну базовую дифформу. Возьмём $\Omega = dx^{i_1} \wedge \ldots \wedge dx^{i_p}$, где, естественно, $1 \le i_1 < \ldots < i_p \le n$. Тогда
+	\begin{align*}
+		&{*\Omega = (-1)^{[i, j]} dx^{j_1} \wedge \ldots \wedge dx^{j_{n - p}}}
+		\\
+		&{*(*\Omega) = (-1)^{[i, j]} (-1)^{[j, i]} dx^{i_1} \wedge \ldots \wedge dx^{i_p}}
+	\end{align*}
+	Чтобы посчитать степени, мы просто рассмотрим соответствующие перестановки и поймём, как от одной прийти к другой:
+	\begin{align*}
+		&{(-1)^{[i, j]} = \sgn(\sigma),\ \sigma = (i_1, \ldots, i_p, j_1, \ldots, j_{n - p})_j}
+		\\
+		&{(-1)^{[j, i]} = \sgn(\tau),\ \tau = (j_1, \ldots, j_{n - p}, i_1, \ldots, i_p)_j}
+	\end{align*}
+	Чтобы из $\sigma$ получить $\tau$, нужно сделать циклический сдвиг $(i_1, \ldots, i_p, j_1, \ldots, j_{n - p})$ ровно $p$ раз. При этом знак такой перестановки (обозначим её $\zeta$) равен$\sgn \zeta = (-1)^{(n - 1)p}$. Как мы уже выясняли, $p^2 - p$ всегда даёт 0 по модулю 2, то есть можно написать $\sgn \zeta = (-1)^{(n - p)p}$. Остаётся пояснить мелочь:
+	\[
+		\zeta \circ \sigma = \tau \Lora \sgn(\zeta) \cdot \sgn(\sigma) = \sgn(\tau) \Lora \sgn(\zeta) = \sgn(\sigma) \cdot \sgn(\tau)
+	\]
+\end{proof}
+
+\begin{example}
+	Рассмотрим $\R^3$. Тогда $e^* = (dx^1, dx^2, dx^3) = (dx, dy, dz)$. Посчитаем звёздочки Ходжа:
+	\begin{align*}
+	&{*dx = dy \wedge dz}
+	\\
+	&{*dy = -dx \wedge dz = dz \wedge dx}
+	\\
+	&{*dz = dx \wedge dy}
+	\\
+	&{*(dx \wedge dy) = dz}
+	\\
+	&{*(dy \wedge dz) = dx}
+	\\
+	&{*(dz \wedge dx) = dy}
+	\\
+	&{*(dx \wedge dy \wedge dz) = 1}
+	\end{align*}
+	Очень важный факт состоит в том, что в случае $\R^3$ пространство 1-дифформ изоморфно пространству 2-дифформ. Действительно, размерности этих пространств равны $C_3^1 = C_3^2 = 3$ и звёздочка Ходжа осуществляет прямой изоморфизм.
+\end{example}
+
+\begin{definition}
+	\textit{Векторным полем} в $U$ называется отображение $\vv{F} \colon U \to \R^n$.
+\end{definition}
+
+\begin{definition}
+	\textit{Скалярным полем} в $U$ называется отображение $f \colon U \to \R$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим простраство $\R^3$ с базисом $e = (\vv{e}_1, \vv{e}_2, \vv{e}_3)$. Любое векторное поле в точке можно разложить по базису и записать таким образом:
+	\[
+		\vv{F} = a^1\vv{e}_1 + a^2\vv{e}_2 + a^3\vv{e}_3
+	\]
+	где $a^1, a^2, a^3 \colon U \to \R$ --- функции проекций векторного поля на базис в каждой точке $U$.
+	
+	Аналогично можно сделать в в общем случае.
+\end{example}
+
+\begin{note}
+	Благодаря тому, что по базису $e$ в $\R^n$ мы однозначно получаем базис $e^*$ в сопряжённом пространстве, мы можем однозначно сопоставить векторному полю дифференциальную 1-форму. Действительно:
+	\[
+		\vv{F} = a^i e_i \xrightleftharpoons[\flat]{\#} \Omega = a_i dx^i
+	\]
+	где $a^i = a_i$, ибо мы вынуждены сместить индекс вниз по соглашению Эйнштейна. В дальнейшем нам понадобятся операторы ${}^\#$ (диез) и ${}^\flat$ (бемоль), которые согласно формуле выше переводят один объект в другой.
+\end{note}
+
+\begin{definition}
+	Рассмотрим пространство $\R^3$. Следующие объекты имеют собственные названия:
+	\begin{enumerate}
+		\item Пусть $f \colon U \to \R$ --- дифференциальная 0-форма. Тогда следующее векторное поле называется \textit{градиентом}:
+		\[
+			(df)^\flat = \ps{\pd{f}{x}dx + \pd{f}{y}dy + \pd{f}{z}dz}^\flat = \grad f
+		\]
+		
+		\item Пусть $\vv{F} \colon U \to \R^3$ --- векторное поле. Тогда следующее векторное поле называется \textit{ротором}:
+		\[
+			\rot \vv{F} := (*d(\vv{F}^\#))^\flat
+		\]
+		
+		\item Пусть $\vv{F} \colon U \to \R^3$ --- векторное поле. Тогда следующее скалярное поле называется \textit{дивергенцией}:
+		\[
+			\Div \vv{F} := *d(*\vv{F}^\#)
+		\]
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Далее, если явно не обговорено обратного, мы живём в $\R^3$.
+\end{note}
+
+\begin{definition}
+	\textit{Оператором Гамильтона (набла)} называется функция $\nabla \colon \R^{U} \to (\R^3)^U$, определённая следующим образом:
+	\[
+		\nabla(f) = \ps{\pd{f}{x}, \pd{f}{y}, \pd{f}{z}}
+	\]
+\end{definition}
+
+\begin{note}
+	По сути $\nabla(f) = \grad f$. Большую часть времени мы будем опускать скобки рядом с наблой.
+\end{note}
+
+\begin{proposition}
+	Имеет место следующая формула:
+	\[
+		\rot \vv{F} = [\nabla, \vv{F}] = \Det{
+			&\vv{i}& &\vv{j}& &\vv{k}
+			\\
+			&\pd{}{x}& &\pd{}{y}& &\pd{}{z}
+			\\
+			&P& &Q& &R
+		}
+	\]
+	где базисные вектора обозначены как $e = (\vv{i}, \vv{j}, \vv{k})$, а поле разложено по ним как $\vv{F} = P\vv{i} + Q\vv{j} + R\vv{k}$
+\end{proposition}
+
+\begin{note}
+	В теории поля очень часто используются \textit{мнемонические обозначения}. Выше одно из них, ведь мы, вообще говоря, не можем подставлять объекты разной природы в векторное произведение. Однако, векторное произведение такой же мнемонической записью выражается при помощи определителя $3 \times 3$, а сам определитель уже можно записать как явную формулу.
+\end{note}
+
+\begin{proof}
+	Обозначим базис $e = (\vv{i}, \vv{j}, \vv{k})$, а векторное поле $\vv{F}$ запишем таким образом:
+	\[
+		\vv{F} = P\vv{i} + Q\vv{j} + R\vv{k}
+	\]
+	В силу изоморфизма, мы будем доказывать исходную формулу, применив к ротору оператор диеза:
+	\begin{multline*}
+		(\rot \vv{F})^\# = *d(\vv{F}^\#) = *d(Pdx + Qdy + Rdz) = *(dP \wedge dx + dQ \wedge dy + dR \wedge dz) =
+		\\
+		*\ps{\pd{P}{z} dz \wedge dx - \pd{P}{y} dx \wedge dy + \pd{Q}{x} dx \wedge dy - \pd{Q}{z} dy \wedge dz + \pd{R}{y} dy \wedge dz - \pd{R}{x} dz \wedge dx} =
+		\\
+		\pd{P}{z}dy - \pd{P}{y}dz + \pd{Q}{x}dz - \pd{Q}{z}dx + \pd{R}{y}dx - \pd{R}{x}dy
+	\end{multline*}
+	Теперь можно применить бемоль и получить вот такую замечательную формулу:
+	\[
+		\rot \vv{F} = \ps{\pd{R}{y} - \pd{Q}{z}}\vv{i} + \ps{\pd{P}{z} - \pd{R}{x}}\vv{j} + \ps{\pd{Q}{x} - \pd{P}{y}}\vv{k} = [\nabla, \vv{F}]
+	\]
+	Думаю, никто не будет спорить, что запомнить явный вид данной формулы очень и очень тяжело.
+\end{proof}
+
+\begin{proposition}
+	Имеет место следующая формула:
+	\[
+		\Div \vv{F} = (\nabla, \vv{F})
+	\]
+\end{proposition}
+
+\begin{proof}
+	Обозначим базисные вектора как $e = (\vv{i}, \vv{j}, \vv{k})$ и разложим по ним векторное поле $\vv{F}$:
+	\[
+		\vv{F} = P\vv{i} + Q\vv{j} + R\vv{k}
+	\]
+	Теперь мы можем приступить к расписыванию дивергенции:
+	\begin{multline*}
+		\Div \vv{F} = *d(*(Pdx + Qdy + Rdz)) = *d(Pdy \wedge dz + Qdz \wedge dx + Rdx \wedge dy) =
+		\\
+		*(dP \wedge dy \wedge dz + dQ \wedge dz \wedge dx + dR \wedge dx \wedge dy) =
+		\\
+		*\ps{\pd{P}{x} dx \wedge dy \wedge dz + \pd{Q}{y} dx \wedge dz \wedge dx + \pd{R}{z} dz \wedge dx \wedge dy} = \pd{P}{x} + \pd{Q}{y} + \pd{R}{z}
+	\end{multline*}
+\end{proof}
+
+\begin{proposition}
+	Если $\vv{F}^\#$ --- дважды дифференцируемая дифформа, то верно равенство:
+	\[
+		\rot(\grad \vv{F}^\#) = 0
+	\]
+\end{proposition}
+
+\begin{proof}
+	Аккуратно распишем по формулам:
+	\[
+		\rot(\grad \vv{F}^\#) = \rot((d\vv{F}^\#)^\flat) = (*d(((d\vv{F}^\#)^\flat)^\#))^\flat = (*d(dF^\#))^\flat = 0
+	\]
+\end{proof}
+
+\begin{note}
+	При тех же условиях аналогично доказывается, что $\Div(\rot \vv{F}) = 0$
+\end{note}
+
+\begin{proposition}
+	Пусть $\vv{a}, \vv{b}$ --- векторные поля. Тогда имеет место следующая формула:
+	\[
+		\Div[\vv{a}, \vv{b}] = (\rot\vv{a}, \vv{b}) - (\rot\vv{b}, \vv{a})
+	\]
+\end{proposition}
+
+\begin{proof}
+	Распишем дивергенцию как скалярное произведение:
+	\[
+		\Div[\vv{a}, \vv{b}] = (\nabla, [\vv{a}, \vv{b}])
+	\]
+	Что бы происходило в скалярном случае? Мы бы применяли частные производные к координатным функциям векторного произведения двух полей. Вообще говоря, для дивергенции, как и обычной производной, работает \textit{правило Лейбница}, а мнемоническая запись как выше позволяет рассматривать себя в качестве \textit{смешанного произведения} (можно циклически переставлять вектора). Воспользуемся этим (подчеркиванием я выделяю, к чему применяется набла. На письме же ставят стрелочку над соответствующим векторным полем):
+	\[
+		(\nabla, [\vv{a}, \vv{b}]) = (\nabla, [\ule{\vv{a}}, \vv{b}]) + (\nabla, [\vv{a}, \ule{\vv{b}}]) = (\vv{b}, [\nabla, \vv{a}]) + (\vv{a}, [\vv{b}, \nabla]) = (\vv{b}, \rot \vv{a}) - (\vv{a}, \rot \vv{b})
+	\]
+\end{proof}
+
+\begin{definition}
+	Пусть $V \subset \R^n$ --- область, а $\Omega \in \Lambda_p(V)$ --- дифформа. Пусть $\phi \colon U \to V$ --- диффеоморфизм из области $U \subset \R^n$ в $V$. \textit{Переносом формы $\Omega$ на область $U$ при помощи замены $\phi$} называется $p$-форма $\phi^*\Omega$ на области $U$, определяемая по следующей формуле:
+	\[
+		\phi^*\Omega(y)(b_1, \ldots, b_p) := \Omega(\phi(y))(\phi'(y)(b_1), \ldots, \phi'(y)(b_p))
+	\]
+\end{definition}
+
+\begin{example}
+	Пусть есть 1-форма $\Omega(x) = w_i(x)dx^i$. Тогда
+	\[
+		\phi^*\Omega(y)(b) = \Omega(\phi(y))(\phi'(y)(b)) = w_i(\phi(y)) dx^i(\phi'(y)(b))
+	\]
+	Дальше нужно немнго порассуждать. $\phi'(y)$ --- это линейный оператор, заданный матрицей Якоби. Значение $\phi'(y)(b)$ соответствует тому, что мы получаем при умножении этой матрицы справа на координатный столбец $b$. На этот результат ещё действует $dx^i$, забирая только $i$-ю координату. Итого:
+	\[
+		dx^i(\phi'(y))(b) = \pd{\phi^i}{x_j}(y) b^j = \pd{\phi^i}{x_j}(y) dx^j(b) = d\phi^i(y)(b)
+	\]
+	Таким образом, у нас есть довольно простая формула для переноса 1-форм:
+	\[
+		\phi^*\Omega(y) = w_i(\phi(y)) d\phi^i(y)
+	\]
+	Лишний раз отмечу, что $\phi^i$ --- это функция $i$-й координаты значения $\phi(y)$, а не степень или что-либо ещё.
+\end{example}

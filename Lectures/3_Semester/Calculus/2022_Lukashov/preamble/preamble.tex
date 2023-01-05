@@ -13,9 +13,10 @@
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % пакеты AMS
 \usepackage{icomma}                                    % "Умная" запятая
 
-%%% Свои символы и команды
-\usepackage{centernot} % центрированное зачеркивание символа
+%%% Свои символы и команды для математики
+\usepackage{centernot}  % центрированное зачеркивание символа
 \usepackage{stmaryrd}  % некоторые спецсимволы
+\usepackage[e]{esvect}  % Нормальные векторы по команде \vv
 
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
@@ -34,6 +35,8 @@
 \DeclareMathOperator{\cl}{cl}
 \DeclareMathOperator{\Deg}{deg}
 \DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\Div}{div}
 \DeclareMathOperator{\upjm}{\mu^*_\mathfrak{J}}
 \DeclareMathOperator{\downjm}{\mu^\mathfrak{J}_*}
 \DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{J})}}
@@ -58,10 +61,11 @@
 \newcommand{\mc}{\mathring}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\veps}{\epsilon}
+\newcommand{\vdelta}{\partial}
 \newcommand{\tr}{\triangle}
 \newcommand{\bscup}{\bigsqcup}
 \newcommand{\such}{\ \big|\ }
-\newcommand{\range}[1]{\{1, \ldots, #1\}}
+\newcommand{\range}[2]{\{#1, \ldots, #2\}}
 \newcommand{\ole}[1]{\overline{#1}}
 \newcommand{\ule}[1]{\underline{#1}}
 \newcommand{\comR}{{(R)}}
@@ -70,10 +74,31 @@
 	(#1\,\,$\ra$\,\,#2)\,\,
 }
 \newcommand{\System}[1]{
-	\left\{\begin{aligned}#1\end{aligned}\right.
+	\left\{
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right.
+}
+\newcommand{\Matrix}[1]{
+	\left(
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right)
+}
+\newcommand{\Det}[1]{
+	\left|
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right|
 }
 \newcommand{\Root}[2]{
 	\left\{\!\sqrt[#1]{#2}\right\}
+}
+\newcommand{\pd}[2]{
+	\frac{\vdelta #1}{\vdelta #2}
 }
 \newcommand{\ps}[1]{
 	\left(#1\right)
