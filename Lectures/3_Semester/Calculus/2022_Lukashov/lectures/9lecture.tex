@@ -299,3 +299,35 @@
 		\mu(\Pi) = \int_\Pi d\mu(y) = \int_{\Pi_0} |\det T| d\mu(x) = |\det T|
 	\]
 \end{proof}
+
+\begin{definition}
+	\textit{Формой ориентированного объёма} в соответствующей системе координат $(e_1, \ldots, e_n)$ назовём следующую $n$-форму:
+	\[
+		V(x) = dx^1 \wedge \ldots \wedge dx^n
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $\Omega$ --- дифференциальная $n$-форма, заданная на области $U \subset \R^n$ и имеющая вид $\Omega(x) = w(x)V(x)$, $w \colon U \to \R$. Тогда \textit{интегралом от дифференциальной формы $\Omega$} называется следующий интеграл:
+	\[
+		\int_U \Omega = \int_U w(x)V(x) = \int_U w(x)dx^1 \wedge \ldots \wedge dx^n := \int_U w(x)d\mu(x)
+	\]
+\end{definition}
+
+\begin{proposition} (Инвариантность модуля интеграла дифформы от переноса)
+	Если $V, U \subset \R^n$ --- диффеоморфные области, а $\Omega$ --- дифференциальная форма на $U$, то имеет место формула:
+	\[
+		\int_U \Omega = \pm\int_V \phi^*\Omega
+	\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\phi \colon U \to V$ --- соответствующий диффеоморфизм. Распишем по отдельности эти интегралы. С одной стороны:
+	\[
+		\int_V \phi^*\Omega = \int_V w(\phi(y))d\phi^1(y) \wedge \ldots \wedge d\phi^n(y) = \int_V w(\phi(y))(\det \phi'(y))d\mu(y)
+	\]
+	где запись $\det \phi'(y)$ нужно понимать как определитель матрицы Якоби, являющейся матрицей этой производной. С другой стороны:
+	\[
+		\int_U \Omega = \int_U w(x)d\mu(x) = \int_V w(\phi(y)) |\det \phi'(y)|d\mu(y) = \pm \int_V \phi^*\Omega
+	\]
+\end{proof}
