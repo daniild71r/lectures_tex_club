@@ -25,13 +25,13 @@
 		\begin{multline*}
 		(U \wedge V) \wedge W = \frac{(p + r + s)!}{(p + r)! \cdot s!} \asym((U \wedge V) \otimes W) =
 		\\
-		\frac{(p + r + s)!}{(p + r)! \cdot s!} \asym\ps{\frac{(p + r)!}{p! \cdot r!} \asym((U \otimes V) \otimes W)}
+		\frac{(p + r + s)!}{(p + r)! \cdot s!} \asym\ps{\frac{(p + r)!}{p! \cdot r!} \asym(U \otimes V) \otimes W}
 		\end{multline*}
 		Остаётся сослаться на вышедоказанную лемму.
 		
 		\item Если исходить из определения внешнего произведения, то доказательство этого факта сводится к доказательству аналогичного про $\asym(V \otimes U)$. Вспомним, как выглядит этот объект:
 		\[
-		\asym(V \otimes U) = \frac{1}{p!} \sum_{\sigma \in S_{p + r}} \sgn(\sigma) \cdot \sigma (V \otimes U)
+		\asym(V \otimes U) = \frac{1}{(p + r)!} \sum_{\sigma \in S_{p + r}} \sgn(\sigma) \cdot \sigma (V \otimes U)
 		\]
 		Так как мы живём в множестве пространств $\Omega_l^0$, то тензорное произведение работает почти как произведение функций, а ассимметризация заставляет просмотреть всевозможные перестановки аргументов. Не умаляя общности, посмотрим на пару слагаемых из двух ассимметризаций, когда верно равенство:
 		\begin{multline*}
