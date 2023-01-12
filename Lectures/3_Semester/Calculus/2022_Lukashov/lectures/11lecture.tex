@@ -334,7 +334,7 @@
 \begin{corollary} (из последнего утверждения)
 	Если нужно посчитать криволинейный интеграл второго рода для векторного поля, то
 	\[
-		\int_M Pdx + Qdy + Rdz = \int_M (P\cos(\vv{\tau}, \vv{i}) + Q\cos(\vv{\tau}, \vv{j}) + R\cos(\vv{\tau}, \vv{k})) = \int_M (\vv{A}, \vv{\tau})ds
+		\int_M Pdx + Qdy + Rdz = \int_M (P\cos(\vv{\tau}, \vv{i}) + Q\cos(\vv{\tau}, \vv{j}) + R\cos(\vv{\tau}, \vv{k})) = \int_M \ntbr{\vv{A}, \vv{\tau}}ds
 	\]
 	Последнее выражение очень важно в физике, ибо является \textit{работой силы $\vv{A}$ по кривой $M$}.
 \end{corollary}
@@ -342,7 +342,53 @@
 \begin{definition}
 	Если $\vv{A}(r)$ --- векторное поле, а $M$ --- замкнутая кривая, то криволинейный интеграл второго рода
 	\[
-		\int_M (\vv{A}, \vv{\tau})ds
+		\int_M \ntbr{\vv{A}, \vv{\tau}}ds
 	\]
 	называется \textit{циркуляцией $A$ вдоль $M$}.
 \end{definition}
+
+\begin{note}
+	Здесь мы снова возвращаемся к $m = 2$.
+\end{note}
+
+\begin{definition}
+	Пусть $\vv{A} = (P, Q, R)^T$ --- векторное поле на двумерной клетке $M$. \textit{Поверхностным интегралом 2-го рода} называется следующий интеграл:
+	\[
+	\iint_M Pdydz + Qdzdx + Rdxdy := \int_M *\vv{A}^\# = \int_M Pdy \wedge dz + Q dz \wedge dx + Rdx \wedge dy
+	\]
+\end{definition}
+
+\begin{corollary} (из предпоследнего утверждения)
+	Если нужно посчитать поверхностный интеграл второго рода, то это можно сделать так:
+	\begin{multline*}
+	\iint_M Pdydz + Qdzdx + Rdxdy =
+	\\
+	\iint_M (P\cos(\vv{n}, \vv{i}) + Q\cos(\vv{n}, \vv{j}) + R\cos(\vv{n}, \vv{k}))dS = \iint_M \ntbr{\vv{A}, \vv{n}}dS
+	\end{multline*}
+\end{corollary}
+
+\begin{definition}
+	Если $\vv{A}$ --- векторное поле, а $M$ --- двумерная клетка, то поверхностный интеграл второго рода
+	\[
+	\iint_M \ntbr{\vv{A}, \vv{n}}dS
+	\]
+	называется \textit{потоком поля $\vv{A}$ через $M$}
+\end{definition}
+
+\begin{anote}
+	Когда говорят об интегрировании на замкнутых объектах (замкнутая кривая, замкнутая поверхность), то используют значок $\oint$ и соответствующие с двумя/тремя интегралами.
+\end{anote}
+
+\begin{reminder}
+	Нормаль, о которой мы говорили в теореме Стокса-Пуанкаре для куба, является \textit{внешней}. В более общем случае, это просто единичная нормаль, выходящая \textit{из} какого-то трехмерного объекта.
+\end{reminder}
+
+\begin{note}
+	Отсюда $m = n = 3$.
+\end{note}
+
+\begin{lemma}
+	Если $M$ --- трёхмерная клетка, то положительная нормаль клетки совпадает с внешней нормалью.
+\end{lemma}
+
+\textcolor{red}{Тут снова должна быть картинка, в этот раз с кубок и какой-то желешкой.}
