@@ -21,7 +21,7 @@
 	\]
 	И интеграл $\int_1^{+\infty} \frac{1}{x^{2\alpha}}$ сходится при $\alpha > 1/2$. Значит, это же верно и для исходного интеграла. Теперь разберёмся с $0 < \alpha \le 1/2$: по признаку Харди:
 	\[
-		\int_1^{+\infty} \frac{\sin^2 x}{x^\alpha (x^\alpha + 1)} dx \text{ - сходится} \lra \int_1^{+\infty} \frac{dx}{x^\alpha (x^\alpha + 1)} \text{ - тоже сходится} \lra \alpha > \frac{1}{2}
+		\int_1^{+\infty} \frac{\sin^2 x}{x^\alpha (x^\alpha + 1)} dx \text{ - сходится} \Lra \int_1^{+\infty} \frac{dx}{x^\alpha (x^\alpha + 1)} \text{ - тоже сходится} \Lra \alpha > \frac{1}{2}
 	\]
 \end{example}
 
@@ -102,7 +102,7 @@
 	\[
 		\exists \liml_{n \to \infty} S_n = S \in [0; +\infty]
 	\]
-	Причём $S < +\infty \lra \{S_n\}$ - ограничена (по теореме Вейерштрасса).
+	Причём $S < +\infty \Lra \{S_n\}$ - ограничена (по теореме Вейерштрасса).
 \end{proof}
 
 \begin{theorem} (Признак сравнения числовых рядов)
@@ -148,7 +148,7 @@
 	\begin{itemize}
 		\item $\alpha \ge 0$
 		\[
-			\suml_{n = 1}^\infty \frac{1}{n^\alpha} \text{ - сходится} \lra \int_1^{+\infty} \frac{dx}{x^\alpha} \text{ - сходится} \lra \alpha > 1
+			\suml_{n = 1}^\infty \frac{1}{n^\alpha} \text{ - сходится} \Lra \int_1^{+\infty} \frac{dx}{x^\alpha} \text{ - сходится} \Lra \alpha > 1
 		\]
 		
 		\item $\alpha < 0$ - ряд расходится.

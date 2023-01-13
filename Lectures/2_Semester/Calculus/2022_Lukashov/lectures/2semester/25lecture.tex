@@ -45,7 +45,7 @@
 	\begin{multline*}
 		\forall (\vv{x}, \vv{y}) \in K_{\delta, \vv{x}_0} \times \prod_{j = 1}^m (y_{j, 0} - \eps_j; y_{j, 0} + \eps_j)
 		\\
-		\big(\forall t \in \range{m}\ F_t(\vv{x}, \vv{y}) = 0\big) \lra \big(\forall t \in \range{m}\ y_t = \phi_t(\vv{x})\big)
+		\big(\forall t \in \range{m}\ F_t(\vv{x}, \vv{y}) = 0\big) \Lra \big(\forall t \in \range{m}\ y_t = \phi_t(\vv{x})\big)
 	\end{multline*}
 \end{theorem}
 
@@ -64,7 +64,7 @@
 			\\
 			\exists! \psi_t(\vv{x}, y_m) \such \forall (\vv{x}, y_m, y_1, \ldots, y_{m - 1}) \in K_{\delta_1, (\vv{x}_0, y_{m, 0})} \times \prod_{j = 1}^{m - 1} (y_{j, 0} - \eps_j; y_{j, 0} + \eps_j)
 			\\
-			\big(\forall t \in \range{m - 1}\ \underbrace{F'_t(\vv{x}, y_m, y_1, \ldots, y_{m - 1})}_{F_t(\vv{x}, \vv{y})} = 0\big) \lra \big(\forall t \in \range{m - 1}\ y_t = \psi_t(\vv{x}, y_m)\big)
+			\big(\forall t \in \range{m - 1}\ \underbrace{F'_t(\vv{x}, y_m, y_1, \ldots, y_{m - 1})}_{F_t(\vv{x}, \vv{y})} = 0\big) \Lra \big(\forall t \in \range{m - 1}\ y_t = \psi_t(\vv{x}, y_m)\big)
 		\end{multline*}
 		Рассмотрим функцию $\Phi(\vv{x}, y_m) = F_m(\vv{x}, \psi_1(\vv{x}, y_1), \ldots, \psi_{m - 1}(\vv{x}, y_{m - 1}), y_m)$. Покажем, что она удовлетворяет требованиям теоремы о неявной функции, заданной одним уравнением: уже из индукции и просто свойств дифференцирования мы имеем дифференцируемость $\Phi$, а также и непрерывность частной производной. Нужно проверить, что она не зануляется. Для этого, мы подставим $\psi_t$ в тождества с $F_t(\vv{x}, \vv{y})$ и продифференцируем их по $y_m$:
 		\[
@@ -82,7 +82,7 @@
 		\]
 		Стало быть
 		\[
-			\forall_{\text{д.м.}} \eps_m > 0\ \exists \delta > 0, \exists! \psi_m(\vv{x}) \such \forall \vv{x} \in K_{\delta, \vv{x}_0}\ (\Phi(\vv{x}, y_m) = 0) \lra (y_m = \psi_m(\vv{x}))
+			\forall_{\text{д.м.}} \eps_m > 0\ \exists \delta > 0, \exists! \psi_m(\vv{x}) \such \forall \vv{x} \in K_{\delta, \vv{x}_0}\ (\Phi(\vv{x}, y_m) = 0) \Lra (y_m = \psi_m(\vv{x}))
 		\]
 		Наконец-то можно определить искомые $\phi_j$:
 		\[
@@ -90,7 +90,7 @@
 		\]
 		Так как $F_t(\vv{x}, \vv{y}) = 0$ для $t \in \range{m - 1}$ верно при $y_t = \psi_t(\vv{x}, y_m)$, то $y_m$ можно варьировать. В частноти, вместо него можно подставить $\psi_m(\vv{x})$. Таким образом, последняя функция $\phi_m = \psi_m$ и равносильности верны. Осталось показать, почему есть единственность функций (дифференцируемость получается по теореме о сложной функции). Пойдём от противного:
 		\[
-			\forall j \in \range{m}\ \exists \hat{\phi}_j \such (\forall t \in \range{m}\ F_t(\vv{x}, \vv{y}) = 0) \lra (\forall t \in \range{m}\ y_t = \hat{\phi}_j(\vv{x}))
+			\forall j \in \range{m}\ \exists \hat{\phi}_j \such (\forall t \in \range{m}\ F_t(\vv{x}, \vv{y}) = 0) \Lra (\forall t \in \range{m}\ y_t = \hat{\phi}_j(\vv{x}))
 		\]
 		Но тогда автоматически $y_j = \psi_j(\vv{x}, \hat{\phi}_m(\vv{x}))$. Отсюда и из равенства $\Phi(\vv{x}, y_m) = 0$ мы придём к тому, что $\hat{\phi}_m(\vv{x}) = \phi_m(\vv{x})$. Значит, имеет место единственность.
 	\end{itemize}
@@ -118,7 +118,7 @@
 	\]
 	Тогда автоматически $\pd{(F_1, \ldots, F_n)}{x_1, \ldots, x_n} = \pd{(\phi_1, \ldots, \phi_n)}{x_1, \ldots, x_n} \neq 0$. Значит, применима предыдущая теорема, и в какой-то окрестности
 	\begin{multline*}
-		\forall i \in \range{n}\ \exists! x_i = \psi_i(y_1, \ldots, y_n) \such (\forall j \in \range{n} F_j(\vv{x}, \vv{y}) = 0) \lra
+		\forall i \in \range{n}\ \exists! x_i = \psi_i(y_1, \ldots, y_n) \such (\forall j \in \range{n} F_j(\vv{x}, \vv{y}) = 0) \Lra
 		\\
 		(\forall j \in \range{n}\ x_j = \psi_j(\vv{y}))
 	\end{multline*}

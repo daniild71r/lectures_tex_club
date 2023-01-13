@@ -1,0 +1,228 @@
+\begin{definition} 
+    Отображение $F \colon G \to E_2$, где $G$ - открытое множество в $E_1, E_1, E_2$ - линейные нормированные пространства, называется \textit{дифференцируемым} в точке $x \in G$, если $\exists$ линейный ограниченный оператор $L_x \colon E_1 \to E_2$ такой, что 
+    \[
+        \forall \varepsilon > 0 \quad \exists \delta > 0 \quad \forall h\in E_1, \| h \|_{E_1} < \delta \quad \| F(x+h) - F(x) - L_x h \|_{E_2} \leq \varepsilon \|h\|_{E_1}
+    \]
+    или
+    \[
+        \|F(x+h)-F(x)-L_x h\|_{E_2}=o(\|h\|_{E_1}), h \to 0
+    \]
+    Выражение $L_x h$ называется \textit{сильным дифференциалом} (дифференциалом Фреше), а оператор $L_x$ называется \textit{сильной производной} (производной Фреше)
+\end{definition} 
+
+\begin{proposition}
+    Если $F$ дифференцируемо в $x$, то оно непрерывно в $x$.
+\end{proposition}
+\begin{proof}
+    Для доказательства нужно проверить, что величина 
+    \[
+        \|F(x+h)-F(x)\|_{E_2} \to 0
+    \]
+    Воспользуемся неравенством треугольника $\colon$ 
+    \[  
+        \|F(x+h)-F(x)\|_{E_2} = \|F(x+h)-F(x)-L_x h\|_{E_2} + \|L_x h\|_{E_2}
+    \]
+    Заметим, что 
+    \[
+        \|F(x+h)-F(x)-L_x h\|_{E_2} = o(\|h\|_{E_1}) \to 0 \\
+        \|L_x h\|_{E_2}\leq\|L_x\| \cdot \|h\|_{E_2} \to 0
+    \]
+\end{proof}
+
+\begin{proposition}
+    Производная Фреше отображения $F$ единственна.
+\end{proposition}
+\begin{proof}
+    Предположим, что $L^{(1)}_x, L^{(2)}_x$ - две производные Фреше отображения $F$. 
+    \begin{multline*}
+        \|L^{(1)}_x h - L^{(2)}_x h\|_{E_2} \leq \|F(x+h)-F(x)-L^{(2)}_x h\|_{E_2} +\\
+        \|F(x+h)-F(x)-L^{(1)}_x h\|_{E_2} = o(\|h\|_{E_1}),\quad h \to 0
+    \end{multline*}
+    Разделим на $\|h\|_{E_1} \colon$
+    \[
+        \frac{\|(L^{(1)}_x- L^{(2)}_x)h\|_{E_2}}{\|h\|_{E_1}} \to 0, \quad h \to 0 \Ra
+    \]
+    \[
+        \forall \varepsilon>0 \quad \exists \delta>0 \quad \forall h \in E_1, \quad 0<\|h\|_{E_1}<\delta \quad \frac{\|(L^{(1)}_x- L^{(2)}_x)h\|_{E_2}}{\|h\|_{E_1}} < \varepsilon
+    \]
+    Пусть$\colon$
+    \[  
+        e\colon = \frac{h}{\|h\|_{E_1}}\\
+        \forall e, \|e\|_{E_1}=1 \quad \|(L^{(1)}_x- L^{(2)}_x)e\|_{E_2} < \varepsilon \Ra 
+    \]
+    \[ 
+        \|L^{(1)}_x- L^{(2)}_x\|_{E_2} < \varepsilon \Ra \|L^{(1)}_x- L^{(2)}_x\|_{E_2} = 0 \Ra L^{(1)}_x= L^{(2)}_x
+    \]
+\end{proof}
+
+\begin{example}
+    $E_1 = R_n, E_2=R$\\
+    $f(x_1, \dots, x_n$ - дифференцируемая $\Lra f(\vv{x} + \vv{h} - f(\vv{x}) - (\grad f(\vv{x}), \vv{h}) = o(|\vv{h}|), \quad \vv{h} \to \vv{0}$.\\
+    В качестве линейного ограниченного оператора возьмем
+    \[
+        L_{\vv{x}} \vv{h} \colon = (\grad f(\vv{x}), \vv{h})
+    \]
+    Его линейность очевидна, а ограниченность следует из неравенства Коши-Буняковского-Шварца$\colon$
+    \[
+        |L_{\vv{x}} \vv{h}| \leq |\grad f(\vv{x})| \cdot |\vv{h}|
+    \]
+    \[
+        \vv{h} =  (d x_1, \dots, d x_n)\\
+        L_{\vv{x}} \vv{h} = d f
+    \]
+    Линейный оператор состоит в скалярном умножении на вектор градиента и этот оператор называется \textit{производной}$\colon$
+    \[
+         L_{\vv{x}} = (\grad f(\vv{x}), \cdot)
+    \]
+    Выше мы предположили что функция $f(x_1, \dots, x_n$ дифференцируема как функция многих переменных и получили что она дифференцируема как отображение одного линейного пространства в другое ($E_1 \to E_2$). Обратное тоже верно потому что 
+    \[
+        |f(\vv{x} + \vv{h} - f(\vv{x}) - L_{\vv{x}} \vv{h}|  = o(|\vv{h}|), \quad \vv{h} \to \vv{0}
+    \]
+     Из представления линейного оператора $L_{\vv{x}} \vv{h}$ мы получаем, что есть какой-то вектор (мы называем его $\grad f(\vv{x})$) такой, что $L_{\vv{x}} \vv{h} \colon = (\grad f(\vv{x}), \vv{h})$.
+     Новое определение (обобщенное на случай функции многих переменных) совпадает со старым определением дифференцируемости функции многих переменных.
+\end{example}
+
+\begin{theorem}Свойства сильной производной (примеры вычисления).\\
+Обозначение $L_x \colon = F^\prime (x)$
+\begin{enumerate}
+    \item Если $F$ - постоянное отображение, то его производная Фреше $=0$.
+    \begin{proof}
+        Так как отображение $F$ - постоянное, то
+        \[
+            \|F(x+h)-F(x)-0h\|_{E_2} = 0 = o(\|h\|_{E_1}), h \to 0
+        \]
+    \end{proof}
+    \item Если $F=A$ - линейный ограниченный оператор из $E_1$ в $E_2$, то $A^\prime=A$.
+    \begin{proof}
+        Так как $A$ - линейный ограниченный оператор, то
+        \[
+            \|A(x+h)-A(x)-A h\|_{E_2} = o(\|h\|_{E_1}), h \to 0
+        \]
+    \end{proof}
+    \item Производная композиции. Если $F\colon \Omega \to E_2, \Omega$ - открытое в $E_1$, дифференцируемо в $x \in \Omega$, $F(\Omega)$ - открытое, $G \colon F(\Omega) \to E_3$ - дифференцируема в $F(x)$, то $G \circ F$ дифференцируема в $x$, причём $(G \circ F)^\prime (x) = G^\prime(F^\prime (x)) \circ F^\prime (x)$.
+    \begin{proof}
+        \[
+            \mathcal{L} (h) \colon=F(x+h)-F(x)-F^\prime (x)h \\
+            y\colon=F(x)\\
+            \mathcal{B}(\eta) \colon=G(y+\eta)-G(y)-G^\prime(y)\eta
+        \]
+        Дифференцируемость означает, что$\colon$
+        \[
+            \mathcal{L} (h) = o(\|h\|_{E_1}), h \to 0\\
+            \mathcal{B}(\eta)= o(\|\eta\|_{E_2}), \eta \to 0
+        \]
+        Разумно подберем $\eta \colon= F(x+h)-F(x)=F^\prime (x) h + \mathcal{L}(h) $. Исходя из этих обозначений переформулируем то, что требуется доказать:
+        \[
+            \|G \circ F (x+h) - G\circ F (x)-G^\prime (y) F^\prime (x) h \|_{E_3}=o(\|h\|_{E_1}), h \to 0 
+        \]
+        Итак, мы хотим доказать$\colon$
+        \[
+            \forall \varepsilon>0 \quad \exists \delta>0 \quad \forall h, \|h\|_{E_1}<\delta
+        \]
+        \[
+            \|G \circ F (x+h) - G\circ F (x)-G^\prime (y) F^\prime (x) h \|_{E_3} < \varepsilon \|h\|_{E_1}
+        \] 
+        \[
+            \mathcal{B}(\eta)= o(\|\eta\|_{E_2}), \eta \to 0 \Ra \forall \varepsilon_1>0\quad \exists \delta>0 \quad \forall \eta, \|\eta\|_{E_2}<\delta \quad \|\mathcal{B}(\eta)\|_{E_3}<\frac{\varepsilon_1}{2}\|\eta\|_{E_2}
+        \]
+        \[
+            \exists \delta_2 \colon \quad \|\eta\|_{E_2} \leq \|F^\prime (x)\| \cdot \|h\|_{E_1}+\|\mathcal{L}(h)\|_{E_2} < \delta_1, \quad \|h\|_{E_1} < \delta_2
+        \]
+        Теперь мы можем оценить через ??? исходную норму$\colon$
+        \[
+            \|G \circ F (x+h) - G\circ F (x)-G^\prime (y) F^\prime (x) h \|_{E_3} = 
+        \]
+        \[
+            =\|G \circ (F (x)+\eta) - G\circ F (x)-G^\prime (y) F^\prime (x) h \|_{E_3} = 
+        \]
+        \[
+            =\|G \circ (y+\eta) - G(y)-G^\prime (y) F^\prime (x) h \|_{E_3} \leq
+        \]
+        \[
+            \leq \|G(y+\eta)-G(y)-G^\prime(y)(F^\prime(x)h+\mathcal{L}(h))\|_{E_3} + \|G^\prime (y) \mathcal{L}(h)\|_{E_3} <
+        \]
+        \[
+          < \frac{\varepsilon_1}{2}\|\eta\|_{E_2}+\|G^\prime(y)\| \cdot \|\mathcal{L}(h)\|_{E_2} \leq
+        \]
+        \[
+          \leq \frac{\varepsilon_1}{2}\|F^\prime(x)\| \cdot \|h\|_{E_1}+\frac{\varepsilon_1}{2}\|\mathcal{L}(h)\|_{E_2}+\|G^\prime(y)\| \cdot \|\mathcal{L}(h)\|_{E_2} <
+         \]
+         \[
+           < \varepsilon \|h\|_{E_1}, \|h\|_{E_1} < \delta
+        \]
+        Последнее неравенство в цепочке спаведливо потому что \[
+            \mathcal{L} (h) = o(\|h\|_{E_1})
+        \] 
+        т.е. слагаемое $\|G^\prime(y)\|\|\mathcal{L}(h)\|_{E_2}$ можно сделать сколь угодно маленьким, а слагаемые $\frac{\varepsilon_1}{2}\|F^\prime(x)\| \cdot \|h\|_{E_1}, \frac{\varepsilon_1}{2}\|\mathcal{L}(h)\|_{E_2}$ можно сделать сколь угодно малыми из-за выбираемого $\varepsilon_1$ (несмотря на то, что перед ним стоит квантор всеобщности, сейчас мы можем потребовать, чтобы например $\varepsilon_1 \colon = \frac{\varepsilon}{6 \|F^\prime (x)\|}$ было достаточно маленьким).
+    \end{proof}
+    \item Линейность производной как функции от отображения. Если $F_1, F_2$ дифференцируемы в $x, F_1+F_2$ и $\mathcal{L} F_1$, где $\forall \mathcal{L} \in R$, дифференцируемы в $x$, причем 
+    \[
+        (F_1+F_2)^\prime (x) = F^\prime_1 (x)+F^\prime_2 (x)\\
+        (\mathcal{L} F_1)^\prime (x) = \mathcal{L} F^\prime_1(x)
+    \]
+    \begin{proof}
+        По определению дифференцируемости$\colon$ 
+        \[
+            \|(F_1+F_2)(x+h) - (F_1+F_2)(x) - (F_1^\prime(x) h + F^\prime_2(x) h \|_{E_2} \leq
+        \]
+        \[
+            \leq \|F_1 (x+h) - F_1 (x) - F^\prime_1(x)h\|_{E_2} + \|F_2(x+h) - F_2(x) - F^\prime_2(x)h\|_{E_2} =
+        \]
+        \[
+            = 2\cdot o(\|h\|_{E_1}), h \to 0
+        \]
+        Для произведения на число доказательство аналогичное.
+    \end{proof}
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    Если существует $\liml_{t \to 0} \frac{F(x+th)-F(x)}{t}$ в пространстве $E_2$, то он называется \textit{слабым дифференциалом} (дифференциалом Гато) $\mathcal{D}F(x, h)$. Если $\mathcal{D}F(x, h)$ является линейным ограниченным оператором (как функция от $h$, т.е. $\mathcal{D}F(x, h) = F^\prime_c(x) h$, то $F^\prime_c(x)$ называется \textit{слабой производной} (производной Гато) отображения $F$ в точке $x$.
+\end{definition}
+
+\begin{example}
+    \begin{equation}
+         f(x, y) = 
+        \begin{cases}
+            \frac{x^3y}{x^4+y^2}, \quad x^2+y^2 \neq 0\\
+            0, \quad x^2+y^2=0
+        \end{cases}
+    \end{equation}
+    Докажем, что данная функция имеет слабую производную. \\
+    \[
+        \liml_{t \to 0} \frac{f(t h_1, t h_2) - f(0, 0)}{t} = \liml_{t \to 0} \frac{t^4 h_1^3 h_2}{(t^4 h_1^4+t^2 h_2^2)t}=\liml_{t \to 0} \frac{t h_1^3 h_2}{h_2^2+h_1^4 t^2} = 0
+    \] 
+    Это верно $\forall h_1, h_2$ (но только если не $h_1=h_2=0$.\\
+    $\mathcal{D}f((0, 0), (h_1, h_2))=0 =0(h_1, h_2)$ - нулевой оператор, а значит слабая производная существует и является нулевым оператором.\\
+    Но в то же время сильной производной нет$\colon$\\
+    рассмотрим вектор $(h, h^2), \quad |(h, h^2)| = \sqrt{h^2+h^4}=|h|\sqrt{1+h^2}$
+    \[
+        |f(h, h^2)-f(0, 0)-0(h, h^2)|=\left |\frac{h^5}{2 h^4} \right | =\left |\frac{h}{2}\right |  \neq o(|h|\sqrt{1+h^2})
+    \]
+    Сильная производная не равна нулю, а если слабая производная не нулевой оператор, то сильная производная тем более не может быть равна нулю.\\
+    Этот пример демонстрирует функцию, у которой есть слабая производная, но нет сильной.
+\end{example}
+
+\begin{proposition}
+    Если отображение $F$ дифференцируемо в точке $x$, то оно имеет в $x$ слабую производную, причем $F^\prime(x)=F^\prime_c (x)$ (если есть сильная производная, то она совпадает со слабой).
+\end{proposition}
+\begin{proof}
+    Пусть 
+    \[
+        \mathcal{L}\colon=\|F(x+h)-F(x)-F^\prime(x)h\|_{E_2}=o(\|h\|_{E_1}), h \to 0
+    \]
+    Теперь посчитаем предел
+    \[
+        \liml_{t \to 0} \frac{F(x+t h)-F(x)}{t} = \liml_{t \to 0} \frac{\mathcal{L} (t h) + F^\prime (x) \cdot t h}{t} = \liml_{t \to 0} \frac{\mathcal{L} (t h)}{t} + F^\prime(x) h =
+    \]
+    \[
+        =\liml_{t\to 0} o(\|th\|) + F^\prime(x) h = F^\prime(x) h 
+    \]
+    Получили, что слабая производная совпадает с сильной. Обратное, согласно примеру выше, неверно.
+\end{proof}
+
+\begin{definition}
+    Если отображение $F^\prime\colon G \to \mathcal{L} (E_1 \to E_2)$ дифференцируемо в точке $x$, то $F$ дважды дифференцируема в точке  $x$, причем $(F^\prime)^\prime$ называется (сильной) \textit{второй производной} отображения $F, F^{\prime\prime}_x$. $F^{\prime\prime}_x$-линейный ограниченный оператор $E_1 \to \mathcal{L} (E_1 \to E_2)$, т.е. $F^{\prime\prime}_x \in \mathcal{L}(E_1 \to \mathcal{L} (E_1 \to E_2))$
+\end{definition}
+
+

@@ -11,7 +11,7 @@
 \begin{definition}
 	\textit{(Предел функции по множеству $D$)} Если $\vv{x}_0$ - предельная точка множества $D$, то \textit{предел функции многих переменных} можно записать следующим образом:
 	\[
-		\liml_{\vv{x} \to \vv{x}_0 \over \vv{x} \in D} f(\vv{x}) = l
+		\liml_{\vv{x} \to \vv{x}_0 \over {\vv{x} \in D}} f(\vv{x}) = l
 	\]
 	Или же в другом виде:
 	\[
@@ -22,12 +22,12 @@
 	\begin{itemize}
 		\item По Коши:
 		\[
-			\liml_{\vv{x} \to \vv{x}_0 \over \vv{x} \in D} f(\vv{x}) = l \lra \forall \eps > 0\ \exists \delta > 0 \such \forall \vv{x} \in D,\ 0 < |\vv{x} - \vv{x}_0| < \delta\ \ |f(x) - l| < \eps
+			\liml_{\vv{x} \to \vv{x}_0 \over \vv{x} \in D} f(\vv{x}) = l \Lra \forall \eps > 0\ \exists \delta > 0 \such \forall \vv{x} \in D,\ 0 < |\vv{x} - \vv{x}_0| < \delta\ \ |f(x) - l| < \eps
 		\]
 		
 		\item По Гейне:
 		\[
-			\liml_{\vv{x} \to \vv{x}_0 \over \vv{x} \in D} f(\vv{x}) = l \lra \left(\forall \{\vv{x}_k\}_{k = 1}^\infty \subset D \bs \{\vv{x}_0\},\ \liml_{k \to \infty} \vv{x}_k = \vv{x}_0\right)\ \ \liml_{k \to \infty} f(\vv{x}_k) = l
+			\liml_{\vv{x} \to \vv{x}_0 \over \vv{x} \in D} f(\vv{x}) = l \Lra \left(\forall \{\vv{x}_k\}_{k = 1}^\infty \subset D \bs \{\vv{x}_0\},\ \liml_{k \to \infty} \vv{x}_k = \vv{x}_0\right)\ \ \liml_{k \to \infty} f(\vv{x}_k) = l
 		\]
 	\end{itemize}
 \end{definition}
@@ -150,7 +150,7 @@
 	\]
 	Если обозначить за $y_j^{(k)} := g_j(\vv{x}_k)$, то имеем:
 	\[
-		\vv{y}_k = (y_1^{(k)}, \ldots, y_m^{(k)}) \xrightarrow[k \to \infty]{} (y_1^{(0)}, \ldots, y_m^{(0)}) \lra \forall j \in \range{m}\ \liml_{k \to \infty} y_j^{(k)} = y_j^{(0)}
+		\vv{y}_k = (y_1^{(k)}, \ldots, y_m^{(k)}) \xrightarrow[k \to \infty]{} (y_1^{(0)}, \ldots, y_m^{(0)}) \Lra \forall j \in \range{m}\ \liml_{k \to \infty} y_j^{(k)} = y_j^{(0)}
 	\]
 	В итоге получили, что
 	\[
@@ -187,7 +187,7 @@
 	\]
 	Тогда 
 	\[
-		|\vv{x}_{2, m_k} - \vv{x}_0| \to 0 \lra \liml_{k \to \infty} \vv{x}_{2, m_k} = \vv{x}_0
+		|\vv{x}_{2, m_k} - \vv{x}_0| \to 0 \Lra \liml_{k \to \infty} \vv{x}_{2, m_k} = \vv{x}_0
 	\]
 	Но из непрерывности $f$ имеем:
 	\[
