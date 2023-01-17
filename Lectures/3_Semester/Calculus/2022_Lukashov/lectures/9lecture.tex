@@ -171,9 +171,9 @@
 		\\
 		\ps{\sum_{j = 1}^n \alpha^j \pd{f_{i_1, \ldots, i_p}}{x_j} (x_0)} e^{i_1} \wedge \ldots \wedge e^{i_p} = \tbr{\grad f_{i_1, \ldots, i_p}(x_0), h} e^{i_1} \wedge \ldots \wedge e^{i_p}
 	\end{multline*}
-	То скалярное произведение, что мы получили у каждого слагаемого, есть ничто иное как $f'_{i_1, \ldots, i_p}(x_0)(h)$. Стало быть, в конечном итоге производная $\Omega'$ имеет такой вид:
+	То скалярное произведение, что мы получили у каждого слагаемого, есть ничто иное как $f'_{i_1, \ldots, i_p}(x_0)(h)$. При этом координатные функции $f$ --- это те же функции $w$, поэтому финальный вид $\Omega'$ таков:
 	\[
-		\Omega'(x_0) = \sum_{1 \le i_1 < \ldots < i_p \le n} f'_{i_1, \ldots, i_p}(x_0) \otimes e^{i_1} \wedge \ldots \wedge e^{i_p}
+		\Omega'(x_0) = \sum_{1 \le i_1 < \ldots < i_p \le n} w'_{i_1, \ldots, i_p}(x_0) \otimes e^{i_1} \wedge \ldots \wedge e^{i_p}
 	\]
 \end{note}
 
@@ -228,7 +228,7 @@
 			\forall \alpha, \beta \in \R\ \ d(\alpha\Omega_1 + \beta\Omega) = \alpha d\Omega_1 + \beta d\Omega_2
 		\]
 		
-		\item Пусть $\Omega, \Pi$ --- дифференцируемые $p$- и $q$-форма соответсвенно. Тогда
+		\item Пусть $\Omega, \Pi$ --- дифференцируемые $p$- и $q$-форма соответственно. Тогда
 		\[
 			d(\Omega \wedge \Pi) = (d\Omega) \wedge \Pi + (-1)^p \Omega \wedge d\Pi
 		\]
@@ -521,7 +521,7 @@
 \end{definition}
 
 \begin{example}
-	Пусть есть 1-форма $\Omega(x) = w_i(x)dx^i$. Тогда
+	Пусть есть гладкая 1-форма $\Omega(x) = w_i(x)dx^i$. Тогда
 	\[
 		\phi^*\Omega(y)(b) = \Omega(\phi(y))(\phi'(y)(b)) = w_i(\phi(y)) dx^i(\phi'(y)(b))
 	\]

@@ -54,7 +54,7 @@
 			\int_X \mu_Y(A_Y(x))d\mu(x) = \int_{B} \prod_{j = m + 1}^n (b_j - a_j)d\mu_X = \prod_{j = 1}^n (b_j - a_j) = \mu(A)
 		\]
 		
-		\item $A = \bigcup_{i = 1}^N C_i$ --- элементарное множество, где $C_i = \prod_{j = 1}^n \tbr{a_{j, i}; b_{j, i}}$ --- брусья, причём $\forall i \neq j\ \Int C_i \cap \Int C_j = \emptyset$.
+		\item $A = \bigcup_{i = 1}^N C_i$ --- элементарное множество, где $C_i = \prod_{j = 1}^n \tbr{a_{i, j}; b_{i, j}}$ --- брусья, причём $\forall i \neq j\ \Int C_i \cap \Int C_j = \emptyset$.
 		
 		Установим индукцией по $m$, что $A = \bigcup_{j = 1}^Q P_j \times M_j$, где $P_j = \prod_{i = 1}^m \tbr{a_{i, j}; b_{i, j}}$, $M_j$ --- брусья и элементарные множества соответственно, причём все попарно непересекаются по внутренностям.
 		
@@ -156,7 +156,7 @@
 	\]
 \end{lemma}
 
-\begin{proof}
+\begin{proof}~
 	\begin{itemize}
 		\item Измеримость. Аккуратно разберём пару случаев:
 		\begin{enumerate}

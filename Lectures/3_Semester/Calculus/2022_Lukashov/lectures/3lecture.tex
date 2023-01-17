@@ -163,7 +163,7 @@
 		
 		\item $g_m(x) \le g_{m + 1}(x)$ для $\forall x \in E$, то есть последовательность неубывающая
 		
-		\item $\lim_{m \to \infty} g_m(x) = \lim_{m \to \infty} \int_{k \ge m} f_k(x) = \varliminf_{m \to \infty} f_m(x) = \lim_{m \to \infty} f_m(x) = f(x)$ --- почти всюду на $E$
+		\item $\lim_{m \to \infty} g_m(x) = \lim_{m \to \infty} \inf_{k \ge m} f_k(x) = \varliminf_{m \to \infty} f_m(x) = \lim_{m \to \infty} f_m(x) = f(x)$ --- почти всюду на $E$
 	\end{itemize}
 	Совокупность данных свойств позволяет применить теорему Леви, отсюда равенство:
 	\[
@@ -175,7 +175,7 @@
 	\]
 	Ну а раз так, то можно навесить предел:
 	\[
-		\int_E f(x)d\mu(x) = \lim_{m \to \infty} \int_E g_m(x)d\mu(x) \le \lim_{m \to \infty} \int_E f_k(x)d\mu(x) = \varliminf_{m \to \infty} \int_E f_m(x)d\mu(x)
+		\int_E f(x)d\mu(x) = \lim_{m \to \infty} \int_E g_m(x)d\mu(x) \le \lim_{m \to \infty} \inf_{k \ge m} \int_E f_k(x)d\mu(x) = \varliminf_{m \to \infty} \int_E f_m(x)d\mu(x)
 	\]
 \end{proof}
 
@@ -195,13 +195,13 @@
 	\[
 		E_m = \{x \in \R^n \such |x| < m\}
 	\]
-	где $|x|$ --- обычная евклидова длина. Теперь же, кандидатом для произвольного $E \subseteq \R^n$ будет последовательность $E'_m = A \cap E_m$. Она подходит по нескольким причинам:
+	где $|x|$ --- обычная евклидова длина. Теперь же, кандидатом для произвольного $E \subseteq \R^n$ будет последовательность $E'_m = E \cap E_m$. Она подходит по нескольким причинам:
 	\begin{enumerate}
 		\item $\forall m \in \N\ E'_m \subseteq E'_{m + 1}$ --- тривиально
 		
 		\item Пересечение измеримых множеств измеримо, при этом $\mu(E'_m) \le \mu(E_m) < +\infty$
 		
-		\item $\lim_{m \to \infty} E'_m = \lim_{m \to \infty} (E_m \cap A) = \R \cap E = E$
+		\item $\lim_{m \to \infty} E'_m = \lim_{m \to \infty} (E_m \cap E) = \R^n \cap E = E$
 	\end{enumerate}
 \end{proof}
 
