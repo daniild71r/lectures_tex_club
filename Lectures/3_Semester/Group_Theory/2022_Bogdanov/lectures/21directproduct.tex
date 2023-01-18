@@ -3,25 +3,34 @@
 \subsection{Прямое произведение групп}
 
 \begin{definition}
-	Пусть $A, B$ "--- группы. Тогда их \textit{(внешним) прямым произведением} называется группа $G = A \times B$ со следующей операцией: $\forall (a_1, b_1), (a_2, b_2) \in G: (a_1, b_1)(a_2, b_2) \hm= (a_1a_2, b_1b_2)$.
+	Пусть $A, B$ "--- группы. Тогда их \textit{(внешним) прямым произведением} называется группа $G = A \times B$ со следующей операцией: 
+	\[
+		\forall (a_1, b_1), (a_2, b_2) \in G\ \ (a_1, b_1)(a_2, b_2) = (a_1a_2, b_1b_2)
+	\]
 \end{definition}
 
 \begin{note}
-	Конечно, $G$ действительно является группой: ассоциативность очевидна, нейтральный элемент в $G$ "--- это $e = (e_A, e_B)$, и $\forall (a, b) \in G: (a, b)^{-1} = (a^{-1}, b^{-1})$.
+	Действительно, $G$ является группой: ассоциативность очевидна, нейтральный элемент в $G$ "--- это $e = (e_A, e_B)$, и $\forall (a, b) \in G\ \ (a, b)^{-1} = (a^{-1}, b^{-1})$.
 \end{note}
 
 \begin{proposition}
-	Пусть $A, B$ "--- группы, $G = A\times B$. Тогда:
+	Пусть $A, B$ --- группы, $G = A\times B$. Тогда:
 	\begin{enumerate}
 		\item $A \times \{e_B\} \normal G$, $\{e_A\} \times B \normal G$
-		\item $A \times B \cong B \times A$
-		\item Если $C$ "--- группа, то $(A \times B) \times C \cong A \times (B \times C)$
+		
+		\item $A \times B \simeq B \times A$
+		
+		\item Если $C$ --- группа, то $(A \times B) \times C \simeq A \times (B \times C)$
 	\end{enumerate}
 \end{proposition}
 
 \begin{proof}~
 	\begin{enumerate}
-		\item Очевидно, $A \times \{e_B\} \le G$, и, более того, $\forall (a, e_B) \in A \times \{e_B\}: \forall (a', b') \in G: (a', b')(a, e_B)(a'^{-1}, b'^{-1}) = (a^{a'^{-1}}, e_B) \in A \times \{e_B\}$, поэтому $A \times \{e_B\} \normal G$ (вторая часть утверждения доказывается аналогично)
+		\item Очевидно, $A \times \{e_B\} \le G$, и, более того:
+		\[
+			\forall (a, e_B) \in A \times \{e_B\}, (a', b') \in G \quad (a', b')(a, e_B)((a')^{-1}, (b')^{-1}) = (a^{(a')^{-1}}, e_B) \in A \times \{e_B\}
+		\]
+		Поэтому $A \times \{e_B\} \normal G$ (вторая часть утверждения доказывается аналогично)
 		\item Предъявим изоморфизм: $(a, b) \mapsto (b, a)$
 		\item Предъявим изоморфизм: $((a, b), c) \mapsto (a, (b, c))$
 	\end{enumerate}
@@ -29,7 +38,7 @@
 
 \begin{note}
 	В силу <<ассоциативности>> прямого произведения, мы будем опускать скобки в прямых произведениях трех и более групп, записывая их в следующем виде:
-	\[A_1 \times \dotsb \times A_k = \prod_{i = 1}^kA_i = \{(a_1, \dotsc, a_k): a_1 \in A_1, \dotsc, a_k \in A_k\}\]
+	\[A_1 \times \cdots \times A_k = \prod_{i = 1}^kA_i = \{(a_1, \ldots, a_k): a_1 \in A_1, \ldots, a_k \in A_k\}\]
 \end{note}
 
 \begin{proposition}
@@ -37,7 +46,7 @@
 \end{proposition}
 
 \begin{proof}
-	Пусть $\pi_A: A \to A/A_1$, $\pi_B: B \to B/B_1$ "--- канонические эпиморфизмы. Рассмотрим $\pi := \pi_A \times \pi_B: (A \times B) \hm\to (A / A_1) \times (B / B_1)$ "--- такое отображение, что $\forall (a, b) \hm\in A \times B: \pi((a, b)) = (\pi_A(a), \pi_B(b))$. Тогда $\pi$ "--- это гомоморфизм, причем сюръективный в силу сюръективности $\pi_A, \pi_B$. $\im\pi = (A / A_1) \times (B / B_1)$, $\ke\pi \hm= \ke\pi_A \times \ke\pi_B = A_1 \times B_1$, и, следовательно, $A_1 \times B_1 \hm\normal A \times B$. Наконец, по основной теореме о гомоморфизме, $(A \times B) / (A_1 \hm\times B_1) \hm\cong (A / A_1) \times (B / B_1)$, причем изоморфизм имеет следующий вид: $(a, b)(A_1 \times B_1) \hm\mapsto (aA_1, bB_1)$.
+	Пусть $\pi_A: A \to A/A_1$, $\pi_B: B \to B/B_1$ "--- канонические эпиморфизмы. Рассмотрим $\pi := \pi_A \times \pi_B: (A \times B) \to (A / A_1) \times (B / B_1)$ "--- такое отображение, что $\forall (a, b) \in A \times B: \pi((a, b)) = (\pi_A(a), \pi_B(b))$. Тогда $\pi$ "--- это гомоморфизм, причем сюръективный в силу сюръективности $\pi_A, \pi_B$. $\im\pi = (A / A_1) \times (B / B_1)$, $\ke\pi = \ke\pi_A \times \ke\pi_B = A_1 \times B_1$, и, следовательно, $A_1 \times B_1 \normal A \times B$. Наконец, по основной теореме о гомоморфизме, $(A \times B) / (A_1 \times B_1) \cong (A / A_1) \times (B / B_1)$, причем изоморфизм имеет следующий вид: $(a, b)(A_1 \times B_1) \mapsto (aA_1, bB_1)$.
 \end{proof}
 
 \begin{note}
@@ -54,26 +63,40 @@
 \end{theorem}
 
 \begin{proof}
-	Заметим сначала, что $\forall a \in A: \forall b \in B: ab = ba$, поскольку $aba^{-1}b^{-1} \hm= (aba^{-1})b^{-1} = a(ba^{-1}b^{-1}) \in A \cap B \ra ab(ba)^{-1} \hm= e \ra ab = ba$. Построим изоморфизм $\phi: A \times B \to G$ следующим образом: $\phi((a, b)) = ab$. Проверим свойства изоморфизма:
+	Сначала заметим, что есть коммутативность такого вида: $\forall a \in A, b \in B\ ab = ba$. Действительно, проверим это так:
+	\[
+		ab(ba)^{-1} = (aba^{-1})b^{-1} = a(ba^{-1}b^{-1}) \in A \cap B \ra ab(ba)^{-1} = e \ra ab = ba
+	\]
+	Построим изоморфизм $\phi \colon A \times B \to G$ следующим образом: $\phi((a, b)) = ab$. Проверим свойства изоморфизма:
 	\begin{itemize}
-		\item (Гомоморфизм) $\forall (a_1, b_1), (a_2, b_2) \in A \times B: \phi((a_1, b_1)(a_2, b_2)) \hm= (a_1a_2)(b_1b_2) \hm= (a_1b_1)(a_2b_2) = \phi((a_1, b_1))\phi((a_2, b_2))$
-		\item (Инъективность) $\ke\phi = \{(a, b) \in A \times B: ab = e\} = \{(a, b) \hm\in A \times B: a = b^{-1}\} \hm= \{(e, e)\}$
-		\item (Сюръективность) $\im\phi = AB = G$
+		\item Гомоморфизм:
+		\begin{multline*}
+			\forall (a_1, b_1), (a_2, b_2) \in A \times B \quad \phi((a_1, b_1)(a_2, b_2)) = (a_1a_2)(b_1b_2) = (a_1b_1)(a_2b_2) =
+			\\
+			\phi((a_1, b_1)) \cdot \phi((a_2, b_2))
+		\end{multline*}
+		
+		\item Инъективность:
+		\[
+			\ke\phi = \{(a, b) \in A \times B \colon ab = e\} = \{(a, b) \in A \times B \colon a = b^{-1}\} = \{(e, e)\}
+		\]
+		
+		\item Сюръективность: $\im\phi = AB = G$
 	\end{itemize}
 	
 	Значит, $\phi$ действительно является изоморфизмом $G$ и $A \times B$.
 \end{proof}
 
-\begin{note}
-	В ситуации выше группа $G$ называется \textit{внутренним прямым произведением} своих подгрупп $A$ и $B$.
-\end{note}
+\begin{definition}
+	Если $G$ --- группа, $A, B \normal G$, причём $A \cap B = \{e\}$ и $AB = G$, то $G$ называется \textit{внутренним прямым произведением} своих подгрупп $A$ и $B$.
+\end{definition}
 
 \begin{definition}
-	Пусть $G$ "--- группа, $A \normal G$, $B \le G$. Если $A \cap B \hm= \{e\}$ и $AB = G$, то $G$ называется \textit{полупрямым произведением} $A$ и $B$. Обозначение "--- $G = A \sd B$.
+	Пусть $G$ "--- группа, $A \normal G$, $B \le G$. Если $A \cap B = \{e\}$ и $AB = G$, то $G$ называется \textit{полупрямым произведением} $A$ и $B$. Обозначение "--- $G = A \sd B$.
 \end{definition}
 
 \begin{note}
-	Рассмотрим канонический эпиморфизм $\pi: G \to G/A$ (в обозначениях определения выше). Тогда, по первой теореме об изоморфизме, $G / A = AB/A \cong B / (A \cap B) \cong B$, как и в случае внутреннего прямого произведения.
+	Рассмотрим канонический эпиморфизм $\pi \colon G \to G/A$ (в обозначениях определения выше). Тогда, по первой теореме об изоморфизме, $G / A = AB/A \cong B / (A \cap B) \cong B$, как и в случае внутреннего прямого произведения.
 \end{note}
 
 \begin{example} Рассмотрим несколько полупрямых произведений:
@@ -84,27 +107,19 @@
 \end{example}
 
 \begin{note}
-	Пусть $G$ "--- группа, $A \normal G$, $B \le G$, и $G = A \sd B$. Рассмотрим действие $B$ на $A$ сопряжениями: $\forall b \in B: \forall a \in A: b(a) \hm= bab^{-1} \in A$, поскольку $A \normal G$. Данному действию соответствует гомоморфизм $\phi: B \to S(A)$. Более того, поскольку $\forall b \in B: bAb^{-1} = A$ и сопряжение с помощью $b^{-1}$ "--- это автоморфизм $G$, то это также автоморфизм $A$. Значит, на самом деле $\phi: B \to \Aut{A} \le S(A)$. Структура полупрямого произведения однозначно (точнее, не более чем однозначно) задается группами $A, B$ и гомоморфизмом $\phi$: $(a_1b_1)(a_2b_2) \hm= a_1b_1a_2b_2 = a_1b_1a_2b_1^{-1}b_1b_2 = a_1\phi_{b_1}(a_2)b_1b_2$.
+	Пусть $G$ "--- группа, $A \normal G$, $B \le G$, и $G = A \sd B$. Рассмотрим действие $B$ на $A$ сопряжениями: $\forall b \in B, a \in A\ b(a) = bab^{-1} \in A$, поскольку $A \normal G$. Данному действию соответствует гомоморфизм $\phi \colon B \to S(A)$. Более того, поскольку $\forall b \in B\ bAb^{-1} = A$ и сопряжение с помощью $b^{-1}$ --- это автоморфизм $G$, то это также автоморфизм $A$. Значит, на самом деле $\phi \colon B \to \Aut{A} \le S(A)$. Структура полупрямого произведения однозначно (точнее, не более чем однозначно) задается группами $A, B$ и гомоморфизмом $\phi$ (здесь, в отличие от внутреннего произведения, нет коммутативности между элементами из $A$ и $B$):
+	\[
+		(a_1b_1)(a_2b_2) = a_1b_1a_2b_2 = a_1(b_1a_2b_1^{-1})b_1b_2 = a_1 \phi_{b_1}(a_2)b_1b_2
+	\]
 \end{note}
 
 \begin{definition}
-	Пусть $A, B$ "--- группы, $\phi: B \to \Aut{A}$. Определим на $G = A \times B$ операцию следующим образом: $\forall (a_1, b_1), (a_2, b_2) \hm\in G: (a_1, b_1)(a_2, b_2) = (a_1\phi_{b_1}(a_2), b_1b_2)$. Полученная конструкция называется \textit{полупрямым произведением $A$ и $B$, заданным гомоморфизмом $\phi$}. Обозначение "--- $G = A \sd_\phi B$.
+	Пусть $A, B$ "--- группы, $\phi: B \to \Aut{A}$. Определим на $G = A \times B$ операцию следующим образом: $\forall (a_1, b_1), (a_2, b_2) \in G: (a_1, b_1)(a_2, b_2) = (a_1\phi_{b_1}(a_2), b_1b_2)$. Полученная конструкция называется \textit{полупрямым произведением $A$ и $B$, заданным гомоморфизмом $\phi$}. Обозначение "--- $G = A \sd_\phi B$.
 \end{definition}
 
 \begin{exercise}
-	Докажите, что $G = A \sd_\phi B$ является группой, причем $A \sd_\phi \{e_B\} \hm\cong A$, $\{e_A\} \sd_\phi B \cong B$ и $G = A \sd B$ (в смысле первого определения).
+	Докажите, что $G = A \sd_\phi B$ является группой, причем $A \sd_\phi \{e_B\} \cong A$, $\{e_A\} \sd_\phi B \cong B$ и $G = A \sd B$ (в смысле первого определения).
 \end{exercise}
-
-\begin{solution}
-	Проверим непосредственно, что $G$ "--- группа:
-	\begin{itemize}
-		\item (Ассоциативность) Достаточно проверить ассоциативность операции в первой координате: $\forall a_1, a_2, a_3 \in A: \forall b_1, b_2, b_3 \in B: a_1\phi_{b_1}(a_2\phi_{b_2}(a_3)) = a_1\phi_{b_1}(a_2)\phi_{b_1}(\phi_{b_2}(a_3)) \hm= a_1\phi_{b_1}(a_2)\phi_{b_1b_2}(a_3)$
-		\item (Нейтральный элемент) $\exists (e, e) \in G: \forall (a, b) \in G: (e, e)(a, b) \hm= (e\phi_e(a), eb) \hm= (a, b), (a, b)(e, e) = (a\phi_b(e), be) = (a, b)$
-		\item (Обратный элемент) $\forall (a, b) \in G: \exists (a, b)^{-1} = (\phi_{b^{-1}}(a^{-1}), b^{-1}) \hm\in G: (a, b)(a, b)^{-1} \hm= (a\phi_b(\phi_{b^{-1}}(a^{-1})), e) = (e, e), (a, b)^{-1}(a, b) \hm= (\phi_{b^{-1}}(a^{-1})\phi_{b^{-1}}(a), e) = (e, e)$
-	\end{itemize}
-	
-	Легко видеть, что $A' = A \sd_\phi \{e\} = \{(a, e): a \in A\} \cong A$ и $B' \hm= \{e\} \sd_\phi B \hm = \{(e, b): b \hm\in B\} \cong B$. Очевидно, $A' \cap B' = \{(e, e)\}$ и $A'B' = G$, значит, остается проверить, что $A' \normal G$. Действительно, если $(a', e) \in A'$ и $(a, b) \in G$, то вторая координата $(a, b)^{-1}(a', e)(a, b)$ равна $e$, то есть $(a, b)^{-1}(a', e)(a, b) \in A'$.
-\end{solution}
 
 \begin{note}
 	Если группа $G$ является полупрямым произведением $A \normal G$ и $B \le G$, и $\phi: B \to \Aut{A}$ "--- соответствующий действию $B$ на $A$ сопряжениями гомоморфизм, то, как и в случае прямого произведения, $A \sd_\phi B \cong G$, и изоморфизм имеет вид $(a, b) \mapsto ab$.

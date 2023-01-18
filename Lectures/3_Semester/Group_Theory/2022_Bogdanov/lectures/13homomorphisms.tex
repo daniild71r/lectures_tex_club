@@ -146,13 +146,13 @@
 \end{definition}
 
 \begin{definition}
-	\textit{Коммутативной диаграммой} называется рисунок, где отображены алгебраические структуры и функции, отображающие их друг в друга - морфизмы. Коммутативность диаграммы означает, что композиция морфизмов вдоль любого направленного пути зависит только от начал и конца пути (то есть композиции, полученные разными путями, должны давать равный результат).
+	\textit{Коммутативной диаграммой} называется рисунок, где отображены алгебраические структуры и функции, отображающие их друг в друга - морфизмы. Коммутативность диаграммы означает, что композиция морфизмов вдоль любого направленного пути зависит только от начала и конца пути (то есть композиции, полученные разными путями, должны давать равный результат).
 \end{definition}
 
 \begin{theorem}[Основная теорема о гомоморфизме]~
 	\begin{enumerate}
 		\item Пусть $G$ "--- группа, $K \normal G$. Тогда $\exists \pi: G \to G / K$ "--- эпиморфизм такой, что $\ke\pi \hm= K$.
-		\item Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $\im \phi \cong G / \ke \phi$.
+		\item Пусть $G, H$ "--- группы, $\phi: G \to H$ "--- гомоморфизм. Тогда $\im \phi \simeq G / \ke \phi$.
 	\end{enumerate}
 \end{theorem}
 
@@ -165,7 +165,7 @@
 	\end{tikzcd}
 	\]
 	\begin{enumerate}
-		\item Очевидным образом хочется определить $\pi \colon G \to G / K$ следующим образом:
+		\item Очевидно хмочется определить $\pi \colon G \to G / K$ следующим образом:
 		\[
 			\forall g \in G \quad \pi(g) = gK
 		\]
@@ -221,16 +221,16 @@
 \begin{example}
 	В группе перестановок у нас есть функция знака, которая тоже является гомоморфизмом (при $n \ge 2$):
 	\[
-		\sgn \colon S_n \to \Cm_2 = (\{\pm 1\}, \cdot) \cong \Z_2
+		\sgn \colon S_n \to \Cm_2 = (\{\pm 1\}, \cdot) \simeq \Z_2
 	\]
 	Верно 2 вещи: $\im \sgn = \Cm_2$ и $\ke \sgn = A_n \normal S_n$. Стало быть
 	\[
-		S_n / A_n \cong \Cm_2 \cong \Z_2и
+		S_n / A_n \simeq \Cm_2 \simeq \Z_2
 	\]
 \end{example}
 
 \begin{theorem}[Первая теорема об изоморфизме]
-	Пусть $G$ "--- группа, $K \normal G$, $H \le G$. Тогда $HK = KH \le G$, $K \cap H \normal H$ и $HK / K \cong H / (K \cap H)$.
+	Пусть $G$ "--- группа, $K \normal G$, $H \le G$. Тогда $HK = KH \le G$, $K \cap H \normal H$ и $HK / K \simeq H / (K \cap H)$.
 \end{theorem}
 
 \begin{proof}
@@ -242,22 +242,19 @@
 \begin{example}
 	Положим $G = S_4$, за $H = S_3$, а $K = V_4 = \{e, (1\ 2)(3\ 4), (1\ 3)(2\ 4), (1\ 4)(2\ 3)\}$ - четверная группа Клейна. Заметим, что $V_4 \normal S_4$ - это так, потому что $V_4$ состоит из двух классов сопряженности. Более того, $HK = S_3 V_4 = S_4$. Стало быть
 	\[
-		S_4 / V_4 = HK / K \cong H / (H \cap K) = S_3 / \{e\} \cong S_3
+		S_4 / V_4 = HK / K \simeq H / (H \cap K) = S_3 / \{e\} \simeq S_3
 	\]
 \end{example}
 
 \begin{theorem}[Вторая теорема об изоморфизме, или теорема о соответствии]
-	Пусть $G$ "--- группа, $K \normal G$. 
+	Пусть $G$ "--- группа, $K \normal G$, $K \le H \le G$
 	\begin{enumerate}
-		\item Для любой подгруппы $H$ такой, что $K \le H \le G$, можно поставить в соответствие другую, $\ol{H}$:
-		\[
-			\ol{H} = H / K \le G / K = \ol{G}
-		\]
+		\item Каждой такой подгруппе $H$ сопоставляется $\ol{H} = H / K \le G / K = \ol{G}$.
 		При этом соответствие $H \mapsto \ol{H}$ - это биекция между между множеством подгрупп со свойством как у $H$ и подгрупп в $\ol{G}$.
 		
-		\item При этом $H \normal G \lra \ol{H} \normal \ol{G}$, и в этом случае
+		\item Имеет место эквивалентность $H \normal G \Lra \ol{H} \normal \ol{G}$. Если нормальность присутствует, тогда верен изоморфизм:
 		\[
-			G / H \cong \ol{G} / \ol{H} = (G / K) / (H / K)
+			G / H \simeq \ol{G} / \ol{H} = (G / K) / (H / K)
 		\]
 	\end{enumerate}
 \end{theorem}
@@ -298,27 +295,27 @@
 		\[
 			\forall K \le H \le G: \pi(H) =\ol{H} = H / K \le G / K
 		\]
-		С другой стороны, обратное отображение $\forall L \le \ol{G}\ \ \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G$. Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\forall K \le H \le G: \pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, поскольку $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
+		С другой стороны, любой прообраз можно записать в следующем виде:
+		\[
+			\forall L \le \ol{G}\ \ \pi^{-1}(L) = \bigcup_{gK \in L}gK \hm\le G
+		\]
+		Проверим, что $\pi$ осуществляет требуемую биекцию. Действительно, $\pi^{-1}\circ\pi \hm= \id$, поскольку $\pi^{-1}(\pi(H)) = H$ ($H$ "--- объединение нескольких левых смежных классов по $K$), и $\pi\circ\pi^{-1} = \id$, ибо $\forall L \le \ol{G}: \pi(\pi^{-1}(L)) = L$.
 		
-		\item Если $H \normal G$, то $\forall g \in G: gH = Hg$, поэтому, применяя эпиморфизм $\pi$, получаем, что $\forall \ol{g} \in \ol{G}: \ol{g}\ol{H} = \ol{H}\ol{g}$, то есть $\ol{H} \normal \ol{G}$. Пусть теперь, наоборот, $\ol{H} \normal \ol{G}$. Рассмотрим канонический эпиморфизм $\pi': \ol{G} \to \ol{G} / \ol{H}$. Тогда $\phi := \pi'\circ\pi: G \hm\to \ol{G} \hm\to \ol{G} / \ol{H}$ "--- тоже эпиморфизм, причем $\ke \phi = \pi^{-1}(\pi'^{-1}(\ol{H})) \hm= \pi^{-1}(\ol{H}) = H$. Значит, $H \normal G$, и, по основной теореме о гомоморфизме, $\ol{G} / \ol{H} \cong G / H$.
+		\item Если $H \normal G$, то $\forall g \in G: gH = Hg$, поэтому, применяя эпиморфизм $\pi$, получаем, что $\forall \ol{g} \in \ol{G}: \ol{g}\ol{H} = \ol{H}\ol{g}$, то есть $\ol{H} \normal \ol{G}$. Пусть теперь, наоборот, $\ol{H} \normal \ol{G}$. Рассмотрим канонический эпиморфизм $\pi': \ol{G} \to \ol{G} / \ol{H}$. Тогда $\phi := \pi'\circ\pi: G \hm\to \ol{G} \hm\to \ol{G} / \ol{H}$ "--- тоже эпиморфизм, причем
+		\[
+			\ke \phi = \pi^{-1}((\pi')^{-1}(\ol{H})) = \pi^{-1}(\ol{H}) = H
+		\]
+		Значит, $H \normal G$, и, по основной теореме о гомоморфизме, $G / H \simeq \ol{G} / \ol{H}$.
 	\end{enumerate}
 \end{proof}
 
 \begin{example}
 	Рассмотрим $G = \Z$ и $G \ge n\Z \ge k\Z$, тогда $n \div k$, $\ol{H} = n\Z / k\Z = n \cdot \Z_k$. Вторая теорема утверждает, что
 	\[
-		\ol{G} / \ol{H} = \Z_k / n\Z_k \cong \Z_n
+		\ol{G} / \ol{H} = \Z_k / n\Z_k \simeq \Z_n
 	\]
 \end{example}
 
 \begin{exercise}
 	Укажите в явном виде изоморфизм $G / H \hm\to \ol{G} / \ol{H}$ из предыдущей теоремы.
 \end{exercise}
-
-\begin{proposition}
-	Пусть $G$ "--- конечная группа, $H, K \le G$. Тогда $|HK| = \frac{|H||K|}{|H\cap K|}$.
-\end{proposition}
-
-\begin{proof}
-	Рассмотрим отображение $\delta: H\times K \to G$ такое, что $\forall h \hm\in H: \forall k \in K: \delta(h, k) = hk$. Тогда $\delta(h_1, k_1) = \delta(h_2, k_2) \hm\Leftrightarrow h_1k_1 = h_2k_2 \hm\Leftrightarrow h_2^{-1}h_1 = k_2k_1^{-1} = x \in H \cap K$, то есть $h_1 = h_2x$, $k_1 = x^{-1}k_2$. Значит, $|HK||H \cap K| = |H \times K| = |H||K|$.
-\end{proof}

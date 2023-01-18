@@ -22,7 +22,7 @@
 \end{theorem}
 
 \begin{proof}[Доказательство 1 и 3]
-	Положим $\Omega := \{M  \subset G: |M| = p^k\}$ и рассмотрим действие $G$ на $\Omega$ левыми сдвигами: $\forall g \in G: \forall M \in \Omega: g(M) = gM$. Если для некоторого $M \hm\in \Omega$ его стабилизатор "--- это $H \le G$, то $M = HM \hm= \bigcup_{m \in M}Hm$, то есть $M$ разбивается на непересекающиеся классы. В частности, это означает, что $|H| \mid |M| = p^k$, то есть $|H| = p^l, l \le k$. Тогда $|H| = p^k \lra M = Hg, g \in G \lra |G(M)| \hm= |G : H| = s$. Если же $|H| = p^l, l < k$, то $|G(M)| = |G : H| \hm= p^{k-l}s \equiv_{ps} 0$. Обозначим через $\Omega_1, \dotsc, \Omega_r$ орбиты действия и воспользуемся формулой орбит:
+	Положим $\Omega := \{M  \subset G: |M| = p^k\}$ и рассмотрим действие $G$ на $\Omega$ левыми сдвигами: $\forall g \in G: \forall M \in \Omega: g(M) = gM$. Если для некоторого $M \hm\in \Omega$ его стабилизатор "--- это $H \le G$, то $M = HM \hm= \bigcup_{m \in M}Hm$, то есть $M$ разбивается на непересекающиеся классы. В частности, это означает, что $|H| \mid |M| = p^k$, то есть $|H| = p^l, l \le k$. Тогда $|H| = p^k \Lra M = Hg, g \in G \Lra |G(M)| \hm= |G : H| = s$. Если же $|H| = p^l, l < k$, то $|G(M)| = |G : H| \hm= p^{k-l}s \equiv_{ps} 0$. Обозначим через $\Omega_1, \dotsc, \Omega_r$ орбиты действия и воспользуемся формулой орбит:
 	\[\binom{n}{p^k} = |\Omega| = \sum\limits_{i = 1}^r|\Omega_i| = \sum\limits_{i = 1}^r|G : \St(M_i)| \equiv_{ps} N_ps\]
 	
 	Поскольку $\binom{n}{p^k} \equiv_{ps} N_ps$ выполнено в любой группе $G$ порядка $n$, мы можем рассмотреть конкретную группу $\Z_n$. Единственная силовская $p$-подгруппа в $\Z_n$ "--- это $s\Z_n$, поэтому в данном случае $N_p = 1$ и $\binom{n}{p^k} \equiv_{ps} s$. Возвращаясь к случаю произвольной группы, получаем, что $s \equiv_{ps} \binom{n}{p^k} \equiv_{ps} N_ps \ra ps\mid(N_p - 1)s \ra N_p \equiv_p 1$.
@@ -32,7 +32,7 @@
 	Пусть $P \le G$ "--- силовская $p$-подгруппа, а $Q$ "--- $p$-подгруппа в $G$. Рассмотрим действие $Q$ на $G / P$ левыми сдвигами: $\forall q \in Q: \forall gP \in G / P: q(gP) \hm= qgP$. Обозначим через $\Omega_1, \dotsc, \Omega_r$ орбиты действия и воспользуемся формулой орбит:
 	\[s = |G / P| = \sum\limits_{i = 1}^r |\Omega_i| = \sum\limits_{i = 1}^r |Q : \St(\omega_i)|\]
 	
-	Поскольку правая часть "--- это сумма выражений вида $p^l$, $l \in \Z$, и $p \nmid s$, то $\exists i \hm\in \{1, \dotsc, r\}: |Q: \St(\omega_i)| = 1 \lra \St(\omega_i) = Q$. Положим $\omega_i := gP$, тогда $QgP = gP \hm\ra QP^{g^{-1}} = P^{g^{-1}} \ra Q \le P^{g^{-1}}$, причем подгруппа $P^{g^{-1}}$ "--- силовская. Если же $Q$ "--- тоже силовская $p$-подгруппа в $G$, то $|Q| = |P|$, поэтому $Q = P^{g^{-1}}$.
+	Поскольку правая часть "--- это сумма выражений вида $p^l$, $l \in \Z$, и $p \nmid s$, то $\exists i \hm\in \{1, \dotsc, r\}: |Q: \St(\omega_i)| = 1 \Lra \St(\omega_i) = Q$. Положим $\omega_i := gP$, тогда $QgP = gP \hm\ra QP^{g^{-1}} = P^{g^{-1}} \ra Q \le P^{g^{-1}}$, причем подгруппа $P^{g^{-1}}$ "--- силовская. Если же $Q$ "--- тоже силовская $p$-подгруппа в $G$, то $|Q| = |P|$, поэтому $Q = P^{g^{-1}}$.
 \end{proof}
 
 \begin{proof}[Доказательство 3']
@@ -49,7 +49,7 @@
 
 \begin{theorem} Пусть $G$ "--- группа. Тогда:
 	\begin{enumerate}
-		\item Если $P$ "--- силовская $p$-подгруппа в $G$, то $P \normal G \hm\lra N_p = 1$
+		\item Если $P$ "--- силовская $p$-подгруппа в $G$, то $P \normal G \hm\Lra N_p = 1$
 		\item Если $|G| = \prod_{i = 1}^mp_i^{\alpha_i}$ и $\forall i \in \{1, \dotsc, m\}: P_i$ "--- силовская $p_i$-подгруппа в $G$, то $\forall i \hm\in \{1, \dotsc, m\}: P_i \normal G$ тогда и только тогда, когда $G = P_1 \times \dotsb \times P_m$
 	\end{enumerate}
 \end{theorem}
