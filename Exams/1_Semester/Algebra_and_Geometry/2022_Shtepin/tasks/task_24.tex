@@ -1,0 +1,127 @@
+\subsection{Полилинейные и кососимметрические функции. Определитель матрицы, задание определителя его свойствами, явное выражение определителя через элементы матрицы. Поведение определителя при элементарных преобразованиях. Определитель произведения матриц и транспонированной матрицы. Определитель с углом нулей.}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над $F$. Отображение $g: V^n \rightarrow F$ называется \textit{полилинейным}, если оно линейно по каждому из $n$ аргументов.
+    \end{definition}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над $F$. Отображение $g: V^n \rightarrow F$ называется \textit{кососимметричным}, если для любых позиций аргументов $i, j \in \nset{n}$, $i < j$, выполнены следующие условия:
+    	\begin{enumerate}
+    		\item $\forall \overline{v_i}, \overline{v_j} \in V: g(\dots, \underset{(i)}{\overline{v_i}}, \dots, \underset{(j)}{\overline{v_j}}, \dots) = -g(\dots, \underset{(i)}{\overline{v_j}}, \dots, \underset{(j)}{\overline{v_i}}, \dots)$;
+    		\item $\forall \overline{v} \in V: g(\dots, \underset{(i)}{\overline{v}}, \dots, \underset{(j)}{\overline{v}}, \dots) = 0$.
+    	\end{enumerate}
+    \end{definition}
+
+    \begin{theorem}
+	Пусть $V$ "--- линейное пространство над $F$, $e = (\overline{e_1}, \dots, \overline{e_n})$ "--- базис в $V$, $C \in F$. Тогда существует единственное полилинейное кососимметричное отображение $g: V^n \to F$ такое, что $g(\overline{e_1}, \dots, \overline{e_n}) = C$. Более того, если $(\overline{v_1}, \dots, \overline{v_n}) \hm{=} (\overline{e_1}, \dots, \overline{e_n})A$ для некоторой матрицы $A = (a_{ij}) \in M_n(F)$, то выполнено следующее равенство:
+	\[g(\overline{v_1}, \dots, \overline{v_n}) = C\sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}\]
+\end{theorem}
+
+\begin{proof}
+	Покажем сначала, что отображение задается не более, чем однозначно. Действительно, если $g$ удовлетворяет условиям теоремы, то для любого набора $(\overline{v_1}, \dots, \overline{v_n})$ такого, что $(\overline{v_1}, \dots, \overline{v_n}) = (\overline{e_1}, \dots, \overline{e_n})A$, $A = (a_{ij}) \in M_n(F)$, выполнены следующие равенства:
+	\begin{multline*}
+		g(\overline{v_1}, \dots, \overline{v_n}) = g\left(\sum_{i = 1}^{n}a_{i1}\overline{e_i}, \sum_{i = 1}^{n}a_{i2}\overline{e_i}, \dots, \sum_{i = 1}^{n}a_{in}\overline{e_i}\right) = \\
+		= \sum_{i_1, \dots, i_n \in \{1, \dots, n\}}a_{i_11}a_{i_22}\dots a_{i_nn}g(\overline{e_{i_1}}, \overline{e_{i_2}}, \dots, \overline{e_{i_n}})
+	\end{multline*}
+	
+	В силу кососимметричности, слагаемые, в которых у $g$ совпадают хотя бы два аргумента, обращаются в $0$, значит, остаются только слагаемые, где все $i_1, \dots, i_n$ различны. Каждому такому набору индексов соответствует перестановка $\sigma \in S_n$ такая, что $\sigma(i_j) = j$ для всех $j \in \nset{n}$, и это соответствие биективно. Тогда:
+	\begin{multline*}
+		g(\overline{v_1}, \dots, \overline{v_n}) = \sum_{\sigma \in S_n}a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}g(\overline{e_{\sigma^{-1}(1)}}, \overline{e_{\sigma^{-1}(2)}}, \dots, \overline{e_{\sigma^{-1}(1)}}) = \\
+		= \sum_{\sigma \in S_n}(-1)^{\sigma^{-1}}a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}g(\overline{e_1}, \dots, \overline{e_n})
+	\end{multline*}
+	
+	Итак, если искомое отображение $g$ существует, то обязано следующий вид:
+	\[g(\overline{v_1}, \dots, \overline{v_n}) = C\sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}\]
+		
+	Проверим, что полученное отображение удовлетворяет всем условиям:
+	\begin{itemize}
+		\item Проверим линейность $g$ только по первому аргументу, поскольку линейность по оста\-льным аргументам проверяется аналогично. Для этого заметим, что для любого набора $(\overline{v_1}, \dots, \overline{v_n})$ такого, что $(\overline{v_1}, \dots, \overline{v_n}) = (\overline{e_1}, \dots, \overline{e_n})A$, $A = (a_{ij}) \in M_n(F)$, выполнено следующее равенство: \[g(\overline{v_1}, \dots, \overline{v_n}) = \sum_{i = 1}^na_{i1}U_i\]
+		
+		Значения $U_1, \dotsc, U_n$ не зависит от первого столбца матрицы $A$, тогда, в силу линейности сопоставления координат, отображение $g$ линейно по первому столбцу $A$.
+		
+		\item Уже было доказано, что в случае, если $g$ полилинейно, достаточно проверять свойство $(2)$ из определения кососимметричности. Пусть в матрице $A$ совпадают столбцы $a_{*i}$ и $a_{*j}$, $i, j \in \{1, \dotsc, n\}$, $i \ne j$. Разобьем все перестановки в $S_n$ на пары $(\sigma, (i,j)\sigma)$ и заметим, что значения слагаемых, соответствующих таким перестановкам, равны по модулю и противоположны по знаку, поэтому их сумма равна нулю.
+		
+		\item Проверим, что $g(\overline{e_1}, \dotsc, \overline{e_n}) = C$. Поскольку $e = eE$, то, поэтому единственная перестановка, которой будет соответствовать ненулевое слагаемое в определении отображения $g$ "--- это $\id$, тогда:
+		\[g(\overline{e_1}, \dots, \overline{e_n}) = C\sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)} = C(-1)^{id}a_{11}a_{22}\dots a_{nn} = C\]
+	\end{itemize}
+	
+	Получено требуемое.
+\end{proof}
+    
+    \begin{definition}
+    	Пусть $A = (a_{ij}) \in M_n(F)$. \textit{Определителем}, или \textit{детерминантом}, матрицы $A$ называется следующая величина:
+    	\[\det{A} := \sum_{\sigma \in S_n}(-1)^\sigma a_{1 \sigma(1)}a_{2 \sigma(2)}\dots a_{n \sigma(n)}\]
+        Определителем матрицы $A$ называется сумма $n!$ слагаемых, каждое из которых представляет собой произведение элементов матрицы взятым по одному и ровно одному из каждой строки и каждого столбца. Знак перед слагаемым определяется в зависимости от чётности подстановки.
+    \end{definition}
+    
+    \begin{theorem}
+    	Для любой матрицы $A \in M_n(F)$ выполнено равенство $\det{A^T} = \det{A}$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Имеют место следующие равенства:
+    	\begin{gather*}
+    		\det{A} = \sum_{\sigma \in S_n}(-1)^\sigma a_{1\sigma(1)}a_{2\sigma(2)}\dots a_{n\sigma(n)}\\
+    		\det{A^T} = \sum_{\sigma \in S_n}(-1)^\sigma a_{\sigma(1)1}a_{\sigma(2)2}\dots a_{\sigma(n)n}
+    	\end{gather*}
+    	
+    	Заменим в выражении для $\det{A^T}$ переменную суммирования $\sigma$ на $\tau := \sigma^{-1}$, тогда:
+    	\[\det{A^T} = \sum_{\tau \in S_n}(-1)^{\tau^{-1}} a_{1\tau(1)}a_{2\tau(2)}\dots a_{n\tau(n)} = \sum_{\tau \in S_n}(-1)^{\tau} a_{1\tau(1)}a_{2\tau(2)}\dots a_{n\tau(n)} = \det A\qedhere\]
+    \end{proof}
+    
+    \begin{note}
+    	Определитель полилинеен и кососимметричен как функция столбцов матрицы.
+    \end{note}
+    
+    \begin{theorem}
+    	Для любых матриц $A, B \in M_n(F)$ выполнено следующее равенство:
+    	\[\det{AB} = \det{A}\det{B}\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Если хотя бы одна из матриц $A, B$ вырожденна, то ее определитель равен нулю, и, кроме того, $\rk{AB} \hm{<} n$, тогда $\det{AB} = 0 = \det{A}\det{B}$. Если же $A$ и $B$ невырожденны, то они представимы в виде произведений элементарных матриц. Пусть $A = U_1\dots U_k$, $B = S_1\dots S_l$, тогда:
+    	\[\det{AB} = \prod_{i = 1}^{k}\det{U_i}\prod_{i = 1}^{l}\det{S_i} = \det{A}\det{B}\qedhere\]
+    \end{proof}
+    
+    \begin{theorem}[об определителе с углом нулей]
+    	Пусть матрица $A \in M_n(F)$ имеет следующий вид:
+    	\[A = \left(\begin{array}{@{}c|c@{}}
+    		B & C\\
+    		\hline
+    		0 & D
+    	\end{array}\right),~B \in M_k(F),~D \in M_{n - k}(F)\]
+    	
+    	Тогда $\det{A} = \det{B}\det{D}$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Рассмотрим функцию $f : M_k(F) \rightarrow F$ такую, что для любой матрицы $X \in M_k(F)$ выполнено следующее равенство:
+    	\[f(X) := \left|\begin{array}{@{}c|c@{}}
+    	X & C\\
+    	\hline
+    	0 & D
+    	\end{array}\right|\]
+    	
+    	Заметим, что функция $f$ является полилинейной и кососимметричной функцией от столбцов матрицы $X$, тогда:
+    	\[f(X) = f(E)\det{X} = \left|\begin{array}{@{}c|c@{}}
+    	E & C\\
+    	\hline
+    	0 & D
+    	\end{array}\right|\det{X}\]
+    	
+    	Аналогично, рассмотрим функцию $g : M_{n - k}(F) \rightarrow F$ такую, что для любой матрицы $Y \in M_{n-k}(F)$ выполнено следующее равенство:
+    	\[g(Y) := \left|\begin{array}{@{}c|c@{}}
+    	E & C\\
+    	\hline
+    	0 & Y
+    	\end{array}\right|\]
+    	
+    	Заметим, что функция $g$ является полилинейной и кососимметричной функцией от строк матрицы $Y$, тогда:
+    	\[g(X) = g(E)\det{Y} = \left|\begin{array}{@{}c|c@{}}
+    	E & C\\
+    	\hline
+    	0 & E
+    	\end{array}\right|\det{Y} = \det{Y}\]
+    	
+    	Итак, $\det{A} = f(B) = \det{B}g(D) = \deg{B}\det{D}$.
+    \end{proof}

@@ -1,0 +1,111 @@
+    \begin{definition}
+        Функция $f: X \longrightarrow Y$ называется:
+        \begin{enumerate}[label={(\alph*)}]
+            \item Инъекцией, если $\forall x_{1},x_{2} \in X \ (f(x_{2}) = f(x_{1}) \Rightarrow x_{1} = x_{2})$;
+            \item Сюръекцией, если $f(X) = Y \ (\forall y \ f^{-1}(y) \neq \varnothing)$;
+            \item Биекцией, если $f$ является и инъекцией, и сюръекцией.
+        \end{enumerate}
+    \end{definition}
+    
+    Пусть $f: X \longrightarrow Y$ -- биекция. Тогда $\forall y \in Y \ \exists ! \ x \in X (y = f(x))$. Определим $f^{-1}: Y \longrightarrow X \ f^{-1}(y) = x \lra y = f(x)$ -- обратная функция.
+    \[f^{-1}_{o}f = id_{x} \text{,} \  f_{o}f^{-1} = id_{y}\]
+    
+    \textbf{Задача.} Докажите, что а) композиция инъекций(сюръекций, биекций) является инъекцией(сюръекцией, биекцией); б) обратная функция к биекции является биекцией.
+    
+    \[I_{n} = \{ k \in \mathds{N}: \ k \leq n\}, n \in \mathds{N}\]
+    
+\subsection{Принцип Дирихле}
+    
+    \begin{theorem}
+        Если $f: I_{n} \longrightarrow I_{m}$ -- инъекция, то $n \leq m$.
+    \end{theorem}
+    
+    \begin{proof}
+        Используем М.М.И. по $n$:
+        \begin{enumerate}
+            \item База: $n = 1$ -- верно.
+            \item Предположим, что утверждение верно для $n$ и пусть $f: I_{n+1} \longrightarrow I_{m}$ -- инъекция. Заметим, что $n + 1 \geq 2 \Rightarrow m \geq 2$. Определим функцию $\tau: I_{m} \longrightarrow I_{m}$
+            \[\tau (f(n + 1)) = m\]
+            \[\tau (m) = f(n + 1)\]
+            \[\tau (j) = j, \text{ при } j \neq m, \  f(n + 1)\]
+            Рассмотрим $\tau_{o}f: I_{n + 1} \longrightarrow I_{m}$. Функция $\tau_{o}f$ является инъекцией (как композиция инъекций) и отображает $I_{n}$ в $I_{m - 1}$ $\Rightarrow n \leq m - 1 \Rightarrow n + 1 \leq m$. 
+        \end{enumerate}
+    \end{proof}
+    
+    \begin{definition}
+        Множество $A$ называется \textit{конечным}, если $A$ -- пустое или существует $n \in \mathds{N}$ и $f: I_{n} \longrightarrow A$ -- биекция.
+    \end{definition}
+    
+    \textbf{Следствие.} Если такое $A$ существует, то существует единственное такое $n \in \mathds{N}$, что $\exists f: I_{n} \longrightarrow A$ -- биекция.
+    
+    \begin{proof}
+        Предположим, что $f: I_{n} \longrightarrow A$, $g: I_{m} \longrightarrow A$ -- биекция. Тогда $g^{-1}_{o}f: I_{n} \longrightarrow I_{m}$ -- инъекция $\Rightarrow n \leq m$. Рассмотрим $f^{-1}_{o}g: I_{m} \longrightarrow I_{n}$ -- инъекция $\Rightarrow m \leq n$
+        \\
+        $\Rightarrow n = m$.
+    \end{proof}
+    
+    \textbf{Задача.} Докажите, что $\mathds{N}$ является бесконечным.
+    
+    \begin{definition}
+        Пусть $A$ -- множество, элементами которого являются множества. Тогда определено множество:
+        \[\cup A = \{x| \ \exists B \in A \text{ и } x \in B\}\]
+    \end{definition}
+    
+    \begin{example}
+        \[A = \{\{1,2,3\}, \{2,3,4\}\} \Rightarrow \cup A = \{1,2,3,4\}\]
+    \end{example}
+    
+    \textbf{Следствие.} Пусть $\Lambda$ -- множество и $\forall \lambda \in \Lambda$ имеется множество $A_{\lambda}$ (семейство множеств $A_{\lambda}$ индексируется элементами $\Lambda$). Тогда 
+    \[\overset{}{\underset{\lambda \in \Lambda}{\cup}A_{\lambda}} = \{x| \  \exists \lambda \in \Lambda \ (x \in A_{\lambda})\}\]
+    \[\overset{}{\underset{\lambda \in \Lambda}{\cap}A_{\lambda}} = \{x| \  \forall \lambda \in \Lambda \ (x \in A_{\lambda})\}\]
+    
+\subsection{Закон Де Моргана (двойственности)}
+    
+    \begin{theorem}
+        Для любого множества $E$ справедливы равенства:
+        \begin{enumerate}[label={(\alph*)}]
+            \item $E \setminus \overset{}{\underset{\lambda \in \Lambda}{\cup}A_{\lambda}} = \overset{}{\underset{\lambda \in \Lambda}{\cap}}(E \setminus A_{\lambda})$ 
+            \item $E \setminus \overset{}{\underset{\lambda \in \Lambda}{\cap}A_{\lambda}} = \overset{}{\underset{\lambda \in \Lambda}{\cup}}(E \setminus A_{\lambda})$ 
+        \end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}
+        \[\text{(a) } x \in E \setminus \overset{}{\underset{\lambda \in \Lambda}{\cup}A_{\lambda}} \lra x \in E \text{ и } x \notin \overset{}{\underset{\lambda \in \Lambda}{\cup}A_{\lambda}} \lra x \in E \text{ и } \exists \lambda \in \Lambda \  (x \in A_{\lambda}) \lra \]
+        \[ \lra x \in E \text{ и } \forall \lambda \in \Lambda \  (x \notin A_{\lambda}) \lra \forall \lambda \in \Lambda \ (x \in E \text{ и } x \notin A_{\lambda}) \lra \]
+        \[ \lra \forall \lambda \in \Lambda \  (x \in E \setminus A_{\lambda}) \lra x \in \overset{}{\underset{\lambda \in \Lambda}{\cap}}(E \setminus A_{\lambda}) \Rightarrow \text{ множества равны.}\]
+    \end{proof}
+    
+    \begin{definition}
+        Если в ${a, b}$ известно, что $a$ -- первый, $b$ -- второй, то это упорядоченная пара $(a, b)$.
+    \end{definition}
+    
+    \begin{note}
+        Если $(a, b) = (c, d)$, то $a = c$, $b = d$.
+    \end{note}
+    
+\subsection{Декартово произведение}
+
+    \begin{definition}
+        Декартовым произведением множеств $A$ и $B$ называется $A \times B$ -- множество упорядоченных пар, т.ч.
+        \[A \times B = \{(a,b)| \  a \in A, b \in B\}\]
+    \end{definition}
+    
+    \begin{definition}
+        Пусть $f: X \longrightarrow Y$. Множество Г$_{f}$ = $\{(x, f(x))| \ x \in X\}$ называется \textit{графиком} функции $f$.
+    \end{definition}
+    
+    \begin{note}
+        Если $f, g: X \longrightarrow Y$ равны, то их графики совпадают. С другой стороны, пусть Г $\subset X \times Y$, т.ч. $\{y \in Y| \ (x,y) \in \text{ Г}\}$ одноэлементно для всех $x \in X$. Тогда существует единственная функция $f: X \longrightarrow Y$, для которой Г$_{f}$ = Г$((x, y) \in \text{ Г})$.
+    \end{note}
+    
+\subsection{Аксиома выбора}
+    
+    \begin{definition}
+        Для любого множества $A$ существует функция $c: \mathcal {P}(A) \setminus \{\varnothing\} \longrightarrow A$, $c(B) \in B \  \forall B \subset A (B \neq \varnothing)$.
+    \end{definition}
+    
+    \begin{note}
+        Например, $B \subset \mathds{N} (b \neq \varnothing)$, $c(B) = min(B)$
+    \end{note}
+    
+    Существует алгебраическая процедура получения множества $\mathds{Q}$ из множества $\mathds{N}$.

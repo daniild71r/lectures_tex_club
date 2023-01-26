@@ -1,0 +1,168 @@
+\subsection{Векторное произведение, его свойства, выражение в правом ортонормированном базисе. Критерии коллинеарности и компланарности векторов. Двойное векторное произведение.}
+    
+    \begin{definition}
+    	Пусть $\overline{a}, \overline{b} \in V_3$. \textit{векторным произведением} векторов $\overline{a}$ и $\overline{b}$ называется единственный вектор $\overline{c} := [\overline{a}, \overline{b}]$ такой, что выполнены следующие условия:
+    	\begin{enumerate}
+    		\item $\overline{c} \perp \overline{a}$, $\overline{c} \perp \overline{b}$
+    		\item $|\overline{c}| = |S(\overline{a}, \overline{b})|$
+    		\item $(\overline{a}, \overline{b}, \overline{c})$ "--- правая тройка
+    	\end{enumerate}
+    	
+    	Другое обозначение "--- $\overline{a} \times \overline{b}$.
+    \end{definition}
+    
+    \begin{theorem}
+    	Для любых $\overline a, \overline b, \overline c \in V_3$ выполнены равенства $(\overline{a}, \overline{b}, \overline{c}) = ([\overline{a}, \overline{b}], \overline{c}) = (\overline{a}, [\overline{b}, \overline{c}])$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Докажем первое равенство. Если $\overline{a} \parallel \overline{b}$, то $(\overline{a}, \overline{b}, \overline{c}) = ([\overline{a}, \overline{b}], \overline{c}) = 0$. Если же $\overline{a} \nparallel \overline{b}$, то выберем такой вектор $\overline{d}$, что $[\overline{a}, \overline{b}] = |S(\overline{a}, \overline{b})|\overline{d}$. Тогда, как уже доказывалось, $(\overline{a}, \overline{b}, \overline{c}) = |S(\overline{a}, \overline{b})|(\overline{c}, \overline{d})$, откуда:
+    	\[(\overline{a}, \overline{b}, \overline{c}) \hm{=} (|S(\overline{a}, \overline{b})|\overline{d}, \overline{c}) = ([\overline{a}, \overline{b}], \overline{c})\]
+    	
+    	Для доказательства второго равенства заметим следующее: \[(\overline{a}, [\overline{b}, \overline{c}]) = ([\overline{b}, \overline{c}], \overline{a}) = (\overline{b}, \overline{c}, \overline{a}) = (\overline{a}, \overline{b}, \overline{c})\]
+    	
+    	Получено требуемое.
+    \end{proof}
+
+    \begin{note}
+    	Выполнены следующие равносильности:
+        \begin{enumerate}
+            \item $\overline{a} \parallel \overline{b} \Leftrightarrow S(\overline{a}, \overline{b}) = 0 \Leftrightarrow |[\overline{a}, \overline{b}]| = 0 \Leftrightarrow [\overline{a}, \overline{b}] = \overline{0}$;
+            \item $(\overline{a}, \overline{b}, \overline{c}) = 0$ $\Leftrightarrow$ $V(\overline{a}, \overline{b}, \overline{c}) = 0$ $\Leftrightarrow$ $\overline{a}$, $\overline{b}$ и $\overline{c}$ компланарны.
+        \end{enumerate}
+    \end{note}
+    
+    \begin{theorem}
+    	Векторное произведение обладает следующими свойствами:
+    	\begin{enumerate}
+    		\item $\forall \overline a, \overline b \in V_3: [\overline{a}, \overline{b}] = -[\overline{b}, \overline{a}]$ (кососимметричность)
+    		\item $\forall \overline{a_1}, \overline{a_2}, \overline{b}, \overline{c} \in V_3: [\overline{a_1} + \overline{a_2}, \overline{b}] = [\overline{a_1}, \overline{b}] + [\overline{a_2}, \overline{b}]$
+    		
+    		$\forall \lambda \in \R: \forall \overline{a}, \overline{b}, \overline{c} \in V_3: [\lambda\overline{a}, \overline{b}] = \lambda[\overline{a}, \overline{b}]$ (линейность по первому аргументу)
+    	\end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item Это свойство следует из определения векторного произведения.
+    		\item Для доказательства первого равенства достаточно проверить, что для любого $\overline{c} \in V_3$ выполнено $([\overline{a_1} + \overline{a_2}, \overline{b}], \overline{c}) = ([\overline{a_1}, \overline{b}], \overline{c}) + ([\overline{a_2}, \overline{b}], \overline{c})$:
+    		\[
+    		([\overline{a_1} + \overline{a_2}, \overline{b}], \overline{c}) = (\overline{a_1} + \overline{a_2}, \overline{b}, \overline{c}) = (\overline{a_1}, \overline{b}, \overline{c}) + (\overline{a_2}, \overline{b}, \overline{c}) = ([\overline{a_1}, \overline{b}], \overline{c}) + ([\overline{a_2}, \overline{b}], \overline{c})
+    		\]
+    		
+    		Для доказательства второго равенства достаточно проверить, что для любого $\overline{c} \in V_3$ выполнено $([\lambda\overline{a}, \overline{b}], \overline{c}) = (\lambda[\overline{a}, \overline{b}], \overline{c})$:
+    		\[
+    		([\lambda\overline{a}, \overline{b}], \overline{c}) = (\lambda\overline{a}, \overline{b}, \overline{c}) = \lambda(\overline{a}, \overline{b}, \overline{c}) = \lambda([\overline{a}, \overline{b}], \overline{c}) = (\lambda[\overline{a}, \overline{b}], \overline{c})
+    		\qedhere
+    		\]
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{note}
+    	Линейность векторного произведения по второму аргументу также верна в силу кососимметричности.
+    \end{note}
+    
+    \begin{theorem}
+    	Пусть $e = (\overline{e_1}, \overline{e_2}, \overline{e_3})$ "--- базис в $V_3$, $\overline{a}, \overline{b} \hm{\in} V_3$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда верно следующее равенство:
+    	\[[\overline{a}, \overline{b}] =
+    	\begin{vmatrix}
+    	[\overline{e_2}, \overline{e_3}] & [\overline{e_3}, \overline{e_1}] & [\overline{e_1}, \overline{e_2}]\\
+    	\alpha_1 & \alpha_2 & \alpha_3\\
+    	\beta_1 & \beta_2 & \beta_3
+    	\end{vmatrix} = \begin{vmatrix}
+    	\alpha_2 & \alpha_3\\
+    	\beta_2 & \beta_3
+    	\end{vmatrix}[\overline{e_2}, \overline{e_3}] + 
+    	\begin{vmatrix}
+    	\alpha_3 & \alpha_1\\
+    	\beta_3 & \beta_1
+    	\end{vmatrix}[\overline{e_3}, \overline{e_1}] +
+    	\begin{vmatrix}
+    	\alpha_1 & \alpha_2\\
+    	\beta_1 & \beta_2
+    	\end{vmatrix}[\overline{e_1}, \overline{e_2}]
+    	\]
+    \end{theorem}
+    
+    \begin{proof}
+    	В силу линейности векторного произведения, имеем:	
+    	\[[\overline{a}, \overline{b}] =\left[\sum_{i = 1}^{3}\alpha_i\overline{e_i}, \sum_{j = 1}^{3}\beta_j\overline{e_j}\right] = \sum_{i = 1}^{3}\sum_{j = 1}^{3}\alpha_i\beta_j[\overline{e_i}, \overline{e_j}]\]
+    	
+    	Поскольку для любого $i \in \{1, 2, 3\}$ выполнено $[\overline{e_i}, \overline{e_i}] = \overline{0}$, то:
+    	\[[\overline{a}, \overline{b}]=
+    	\begin{vmatrix}
+    	\alpha_2 & \alpha_3\\
+    	\beta_2 & \beta_3
+    	\end{vmatrix}[\overline{e_2}, \overline{e_3}] + 
+    	\begin{vmatrix}
+    	\alpha_3 & \alpha_1\\
+    	\beta_3 & \beta_1
+    	\end{vmatrix}[\overline{e_3}, \overline{e_1}] +
+    	\begin{vmatrix}
+    	\alpha_1 & \alpha_2\\
+    	\beta_1 & \beta_2
+    	\end{vmatrix}[\overline{e_1}, \overline{e_2}]\]
+    
+    	Получено требуемое.
+    \end{proof}
+    
+    \begin{note}
+    	Если $e = (\overline{e_1}, \overline{e_2}, \overline{e_3})$ "--- правый ортонормированный базис в $V_3$, то выполнены равенства $[\overline{e_1}, \overline{e_2}] = \overline{e_3}$, $[\overline{e_2}, \overline{e_3}] = \overline{e_1}$, $[\overline{e_3}, \overline{e_1}] = \overline{e_2}$. Значит, в таком базисе для любых $\overline{a}, \overline{b} \hm{\in} V_3$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$, верно следующее равенство:
+    	\[[\overline{a}, \overline{b}] =
+    	\begin{vmatrix}
+    	\overline{e_1} & \overline{e_2} & \overline{e_3}\\
+    	\alpha_1 & \alpha_2 & \alpha_3\\
+    	\beta_1 & \beta_2 & \beta_3
+    	\end{vmatrix}\]
+    \end{note}
+    
+    \begin{theorem}
+    	Для любых $\overline a, \overline b, \overline c \in V_3$ верно следующее равенство:
+    	\[[\overline{a}, [\overline{b}, \overline{c}]] = \overline{b}(\overline{a}, \overline{c}) - \overline{c}(\overline{a}, \overline{b})\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Для упрощения проверки выберем такой правый ортонормированный базис $e = (\overline{e_1}, \overline{e_2}, \overline{e_3})$ в $V_3$, что $\overline{e_1} \parallel \overline{a}$, а векторы $\overline{b}$, $\overline{e_1}$ и $\overline{e_2}$ компланарны. Тогда координатные столбцы векторов $\overline{a}, \overline{b}, \overline{c}$ имеют вид $(\alpha, 0, 0)^T, (\beta_1, \beta_2, 0)^T, (\gamma_1, \gamma_2, \gamma_3)^T$. Найдем координатный столбец вектора $[\overline{b}, \overline{c}]$:
+    	\[[\overline{b}, \overline{c}] =
+    	\begin{vmatrix}
+    		\overline{e_1} & \overline{e_2} & \overline{e_3}\\
+    		\beta_1 & \beta_2 & 0\\
+    		\gamma_1 & \gamma_2 & \gamma_3
+    	\end{vmatrix} = (\beta_2\gamma_3)\overline{e_1} + (-\beta_1\gamma_3)\overline{e_2} + (\beta_1\gamma_2 - \beta_2\gamma_1)\overline{e_3} \leftrightarrow_{e}
+    	\begin{pmatrix}
+    		\beta_2\gamma_3\\-\beta_1\gamma_3\\\beta_1\gamma_2 - \beta_2\gamma_1
+    	\end{pmatrix}\]
+    	
+    	Положим $\delta_1 := \beta_2\gamma_3$, $\delta_2 := -\beta_1\gamma_3$, $\delta_3 := \beta_1\gamma_2 - \beta_2\gamma_1$, тогда:
+    	\[
+    	[\overline{a}, [\overline{b}, \overline{c}]] =
+    	\begin{vmatrix}
+    	\overline{e_1} & \overline{e_2} & \overline{e_3}\\
+    	\alpha & 0 & 0\\
+    	\delta_1 & \delta_2 & \delta_3
+    	\end{vmatrix} = 
+    	0\overline{e_1} + (-\alpha\delta_3)\overline{e_2} + (\alpha\delta_2)\overline{e_3} \leftrightarrow_{e}
+    	\begin{pmatrix}
+    	0\\-\alpha\delta_3\\\alpha\delta_2
+    	\end{pmatrix} = 
+    	\begin{pmatrix}
+    	0\\\alpha(\beta_2\gamma_1 - \beta_1\gamma_2)\\-\alpha\beta_1\gamma_3
+    	\end{pmatrix}
+    	\]
+    	
+    	С другой стороны:
+    	\[\overline{b}(\overline{a}, \overline{c}) - \overline{c}(\overline{a}, \overline{b}) \leftrightarrow_{e}
+    	\begin{pmatrix}
+    		\alpha\beta_1\gamma_1\\\alpha\beta_2\gamma_1\\0
+    	\end{pmatrix}
+    	-
+    	\begin{pmatrix}
+    		\alpha\beta_1\gamma_1\\\alpha\beta_1\gamma_2\\\alpha\beta_1\gamma_3
+    	\end{pmatrix}
+    	=
+    	\begin{pmatrix}
+    		0\\\alpha(\beta_2\gamma_1 - \beta_1\gamma_2)\\-\alpha\beta_1\gamma_3
+    	\end{pmatrix}\]
+    
+    	Таким образом, $[\overline{a}, [\overline{b}, \overline{c}]] = \overline{b}(\overline{a}, \overline{c}) - \overline{c}(\overline{a}, \overline{b})$. 
+    \end{proof}

@@ -1,0 +1,185 @@
+\subsection{Линейные функции (функционалы). Сопряжённое (двойственное) пространство, его размерность. Взаимный (биортогональный) базис, координаты в нём, замена координат при замене базиса. Канонический изоморфизм пространства и дважды сопряжённого к нему. Аннуляторные подпространства, их свойства.}
+
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над полем $F$. \textit{Линейной функцией} на $V$, или \textit{линейным функционалом} на $V$, называется отображение $f : V \rightarrow F$, обладающее свойством линейности:
+    	\begin{itemize}
+    		\item $\forall \overline{v_1}, \overline{v_2} \in V: f(\overline{v_1} + \overline{v_2}) = f(\overline{v_1}) + f(\overline{v_2})$
+    		\item $\forall \alpha \in F: \forall \overline{v} \in V: f(\alpha\overline{v}) = \alpha f(\overline{v})$
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над полем $F$. Множество линейных функционалов на $V$ называется \textit{пространством, сопряженным к $V$}. Обозначение "--- $V^*$. На определены операции сложения и умножения на скаляр:
+    	\begin{itemize}
+    		\item $\forall \overline{f_1}, \overline{f_2} \in V^*: \forall \overline{v} \in V: (f_1 + f_2)(\overline{v}) := f_1(\overline{v}) + f_2(\overline{v})$
+    		\item $\forall \alpha \in F: \forall \overline{f} \in V^*: \forall \overline{v} \in V:(\alpha f)(\overline{v}) = \alpha f(\overline{v})$
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство над полем $F$. Тогда сопряженное пространство $V^*$ тоже является линейным пространством над $F$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Покажем сначала, что $(V^*, +)$ "--- абелева группа:
+    	\begin{itemize}
+    		\item Ассоциативность и коммутативность следуют из соответствующих свойств в $(F, +)$
+    		\item Нейтральный элемент "--- нулевой функционал $0$ такой, что $\forall \overline{v} \in V: 0(\overline{v}) = \overline{0}$.
+    		\item Обратный к $f \in V^*$ элемент "--- это $(-1)f$.
+    	\end{itemize}
+    
+    	Свойства линейного пространства проверяются непосредственно.
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство, $e = (e_1, \dots, e_n)$ "--- базис в $V$. Тогда для каждого $i \in \{1, \dots, n\}$ определим $f_i \in V^*$ следующим образом: для любого $\overline{v} \in V$, $\overline{v} \leftrightarrow_{e} \alpha$, положим $f_i(\overline{v}) := \alpha_i$.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство, $e = (e_1, \dots, e_n)$ "--- базис в $V$. Тогда $(f_1, \dots, f_n)$ "--- базис в $V^*$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Сначала докажем, что система $(f_1, \dots, f_n)$ линейно независима. Действительно, если существует нетривиальная линейная комбинация $\lambda_1f_1 + \dots + \lambda_nf_n$, равная нулю, то, в частности, она принимает нулевое значение на базисных векторах $e$. Но для любых $i, j \in \{1, \dotsc, n\}$ выполнено следующее:
+    	\[f_i(\overline{e_j}) = \delta_{ij} = \begin{cases}
+    		1,&\text{ если }i = j
+    		\\
+    		0,&\text{ если }i \ne j
+    	\end{cases}\]
+    	
+    	Значит, $\lambda_1 = \dotsb = \lambda_n = 0$, поэтому система линейно независима. Теперь покажем, что $\langle f_1, \dots, f_n\rangle = V^*$. Выберем произвольный функционал $f \in V^*$ и вектор $\overline{v} \in V$, $\overline{v} \leftrightarrow_{e} \alpha$, тогда выполнены следующие равенства:
+    	\[f(\overline{v}) = f\left(\sum_{i = 1}^n\alpha_i\overline{e_i}\right) = \sum_{i = 1}^n\alpha_if(\overline{e_i}) =  \sum_{i = 1}^nf(\overline{e_i})f_i(\overline{v}) = \left(\sum_{i = 1}^nf(\overline{e_i})f_i\right)(\overline{v})\]
+    	
+    	Для каждого функционала $f$ значения $f(\overline{e_i})$ фиксированы, поэтому каждый функционал $f$ представим в виде линейной комбинации функционалов $f_1, \dotsc, f_n$. Таким образом, $(f_1, \dots, f_n)$ "--- базис в $V^*$.
+    \end{proof}
+    
+    \begin{corollary}
+    	Если $V$ "--- линейное пространство, то $\dim{V^*} = \dim{V}$.
+    \end{corollary}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство, $e = (\overline{e_1}, \dots, \overline{e_n})$ "--- базис в $V$. Базис $\FF  = (f_1, \dotsc, f_n)^T$ в $V^*$ называется \textit{взаимным}, или (\textit{биортогональным}), к базису $e$ в $V$.
+    \end{definition}
+    
+    \begin{note}
+    	Если в пространстве $V$ базисные векторы записываются в строку, а координаты "--- в столбец, то в пространстве $V^*$ удобнее делать это наоборот.
+    \end{note}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство над полем $F$, $e, e'$ "--- базисы в $V$, $\FF , \FF '$ "--- взаимные к ним базисы в $V^*$, и $e' = eS$, $S \in M_n(F)$. Тогда $\FF  = S\FF '$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Рассмотрим произвольный вектор $\overline{v} \in V$ с координатными столбцами $\alpha,\alpha'$ в базисах $e, e'$ соответственно, тогда $\overline{v} = e\alpha = e'\alpha'$, $\alpha = S\alpha'$. Тогда:
+    	\begin{gather*}
+    	\FF (\overline{v}) =
+    	(f_1(\overline{v}), \dots, f_n(\overline{v}))^T =
+    	(\alpha_1, \dots, \alpha_n)^T =
+    	\alpha
+    	\\
+    	(S\FF ')(\overline{v}) =
+    	S(f_1'(\overline{v}), \dots, f_n'(\overline{v}))^T =
+    	S(\alpha_1', \dots, \alpha_n')^T =
+    	S\alpha' = \alpha
+    	\end{gather*}
+    	
+    	Значения функционалов из $\FF $ и $S\FF '$ на любом векторе совпадают, поэтому выполнено равенство $\FF  = S\FF '$.
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над полем $F$. Пространством, \textit{дважды сопряженным} к $V$, называется пространство $V^{**} := (V^*)^*$.
+    \end{definition}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над полем $F$, $\overline{v} \in V$. Определим $v^{**} \in V^{**}$ следующим образом: для любого $f \in V^*$ положим $v^{**}(f) := f(\overline{v})$.
+    \end{definition}
+    
+    \begin{note}
+    	Определение выше корректно, поскольку $v^{**}$ действительно является линейным функционалом:
+    	\begin{itemize}
+    		\item $\forall f_1, f_2 \in V^*: v^{**}(f_1 + f_2) = (f_1 + f_2)(\overline{v}) = f_1(\overline{v}) + f_2(\overline{v}) = v^{**}(f_1) + v^{**}(f_2)$
+    		\item $\forall \alpha \in F: \forall f \in V^*: v^{**}(\alpha f) = (\alpha f)(\overline{v}) = \alpha f(\overline{v}) = \alpha v^{**}(f)$
+    	\end{itemize}
+    \end{note}
+    
+    \begin{theorem}
+    	Пусть $V$ "--- линейное пространство над полем $F$. Тогда отображение $\phi: V \rightarrow V^{**}$ такое, что $\phi(\overline{v}) := v^{**}$ для любого $\overline v \in V$, является изоморфизмом линейных пространств $V$ и $V^{**}$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Линейность отображения проверяется непосредственно. Докажем, что $\phi$ "--- биекция. Зафиксируем базис $e = (\overline{e_1}, \dots, \overline{e_n})$ в $V$ и проверим, что система $(e_1^{**}, \dots, e_n^{**})$ линейно независима. Если ее линейная комбинация с коэффициентами $\alpha_1, \dotsc, \alpha_n \in F$ равна нулю, то для любого $f \in V^*$ выполнены равенства:
+    	\[0 = \left(\sum_{i = 1}^{n}\alpha_ie_i^{**}\right)(f) = f\left(\sum_{i = 1}^n\alpha_i\overline{e_i}\right) = \sum_{i = 1}^n\alpha_if(\overline{e_i})\]
+    	
+    	Равенство должно выполняться, в частности, для функционалов из базиса $\FF $, взаимного к $e$, поэтому $\alpha_1 = \dots = \alpha_n = 0$, и система линейно независима. Но $\dim{V} = \dim{V^*} = \dim{(V^*)^*} = n$, поэтому $(e_1^{**}, \dots, e_n^{**})$ "--- базис в $V^{**}$. Наконец, $\phi$ отображает вектор $\overline{v} \in V$, $\overline{v} \leftrightarrow_{e} \alpha$ в вектор $v^{**} \in V^{**}$, $v^{**} \leftrightarrow_{e^{**}} \alpha$, поэтому $\phi$ "--- биекция.
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство. Изоморфизм $V$ и $V^{**}$ такой, что $\overline{v} \mapsto v^{**}$, называется \textit{каноническим изоморфизмом} пространств $V$ и $V^{**}$.
+    \end{definition}
+    
+    \begin{note}
+    	Изоморфизм $\phi$ называется каноническим потому, что он построен инвариантно, то есть не опирается на выбор базиса. Благодаря каноническому изоморфизму, можно отождествить вектор $\overline{v} \in V$ с вектором $v^{**} \in V^{**}$, тогда для любого $f \in V^*$ выполнены следующие равенства:
+    	\[f(\overline{v}) = v^{**}(f) = \overline{v}(f)\]
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над полем $F$.
+    	\begin{itemize}
+    		\item \textit{Аннулятором} подпространства $W \le V$ называется следующее множество:
+    		\[W^0 := \{f \in V^*: f(W) = \{0\}\}\]
+    		\item \textit{Аннулятором} подпространства $U \le V^*$ называется следующее множество:
+    		\[
+    		U^0 := \{v^{**} \in V^{**}: v^{**}(U) = \{0\}\}
+    		\hm{=}
+    		\{\overline{v} \in V: \forall f \in V^*: f(\overline{v}) = 0\}
+    		\]
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{note}
+    	Аннуляторы $W^0 \le V^*$ и $U^0 \le V$ являются подпространствами в соответствующих пространствах как пространства решений однородных систем линейных уравнений. Однако их замкнутость относительно сложения и умножения на скаляры можно проверить и непосредственно.
+    \end{note}
+    
+    \begin{theorem}
+    	Пусть $V$ "--- линейное пространство, $\dim{V} = n$, $W \le V$. Тогда выполнено следующее равенство:
+    	\[\dim{W} + \dim{W^0} = n\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Пусть $\dim{W} = k$, и $(\overline{e_1}, \dots, \overline{e_k})$ "--- базис в $W$. Дополним его до базиса $e = (\overline{e_1}, \dots, \overline{e_n})$ в $V$ и выберем взаимный к нему базис $\FF  = (f_1, \dots, f_n)$ в $V^*$. Пусть $f \in V^*$, $f \leftrightarrow_{\FF } \alpha$. Тогда:
+    	\[f \in W^0 \lra f(\overline{e_1}) = \dots = f(\overline{e_k}) = 0 \lra \alpha_1 \hm{=} \dots = \alpha_k = 0 \Leftrightarrow f \in \langle f_{k+1}, \dots, f_n\rangle\]
+    	
+    	Таким образом, $W^0 = \langle f_{k+1}, \dots, f_n \rangle$, причем система $(f_{k+1}, \dots, f_n)$ образует базис в $W^0$, тогда $\dim{W^0} = n - k$.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $V$ "--- линейное пространство, $W, W_1, W_2 \le V$. Тогда выполнены следующие свойства:
+    	\begin{enumerate}
+    		\item $(W^0)^0 = W$
+    		\item $W_1 \le W_2 \Leftrightarrow W_2^0 \le W_1^0$
+    		\item $(W_1 + W_2)^0 = W_1^0 \cap W_2^0$
+    		\item $(W_1 \cap W_2)^0 = W_1^0 + W_2^0$
+    	\end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item С одной стороны, если $\overline{v} \in W$, то для любого $f \in W^0$ выполнено $f(\overline{v}) = 0 \lra \overline{v}(f) = 0$, поэтому $\overline{v} \in (W^0)^0$. Значит, $W \subset (W^0)^0$. С другой стороны, выполнено следующее:
+    		\[\dim{W} + \dim{W^0} \hm{=} \dim{V} = \dim{V^*} = \dim{W^0} + \dim{(W^0)^0} \ra \dim{W} = \dim{(W^0)^0}\]
+    		Значит, имеет место равенство $W = (W^0)^0$.
+    		
+    		\item
+    		\begin{itemize}
+    			\item[$\ra$] Пусть $W_1 \le W_2$, тогда для любого $f \in W_2^0$ выполнено $f(W_1) \hm{\subset} f(W_2) = \{0\}$, откуда $f \in W_1^0$, то есть $W_2^0 \le W_1^0$
+    			\item[$\la$] Пусть $W_2^0 \le W_1^0$, тогда $W_1 = (W_1^0 )^0 \le (W_2^0)^0 = W_2$.
+    		\end{itemize}
+    	
+    		\item
+    		\begin{itemize}
+    			\item[$\le$] Поскольку $W_1 \le W_1 + W_2$, то, в силу пункта $(2)$, выполнено $(W_1 + W_2)^0 \le W_1^0$. Аналогично, $(W_1 + W_2)^0 \le W_2^0$, поэтому $(W_1 + W_2)^0 \le W_1^0 \cap W_2^0$
+    			\item[$\ge$] Если $f \in W_1^0 \cap W_2^0$, то для любых $\overline{w_1} \in W_1$, $\overline{w_2} \in W_2$ выполнены равенства $f(\overline{w_1}) = f(\overline{w_2}) = \overline{0}$, откуда $f(\overline{w_1} + \overline{w_2}) = 0$, тогда $f \in (W_1 + W_2)^0$. Следовательно, $W_1^0 \cap W_2^0 \le (W_1 + W_2)^0$.
+    		\end{itemize}
+    	
+    		\item Выполнены равенства $W_1^0 + W_2^0 = ((W_1^0 + W_2^0)^0)^0 = ((W_1^0)^0 \cap (W_2^0)^0)^0 = (W_1 \cap W_2)^0$.\qedhere
+    	\end{enumerate}
+    \end{proof}

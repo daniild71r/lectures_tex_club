@@ -1,0 +1,93 @@
+\subsection{Линейные отображения и линейные преобразования (операторы) линейного пространства. Их матрицы. Ядро и образ линейного отображения, их размерности. Критерий инъективности линейного отображения. Операции над линейными преобразованиями и их матрицами. Изменение матрицы линейного отображения и линейного преобразования при замене базисов.}
+    
+    \begin{definition}
+    	Пусть $U, V$ "--- линейные пространства над полем $F$. \textit{Линейным отображением}, или \textit{линейным оператором}, называется отображение $\phi: U \rightarrow V$, обладающее свойством линейности:
+    	\begin{itemize}
+    		\item $\forall \overline{u_1}, \overline{u_2} \in U: \phi(\overline{u_1} + \overline{u_2}) = \phi(\overline{u_1}) + \phi(\overline{u_2})$
+    		\item $\forall \alpha \in F: \forall \overline{u} \in U: \phi(\alpha\overline{u}) = \alpha\phi(\overline{u})$
+    	\end{itemize}
+    
+    	Линейное отображение $\phi: V \rightarrow V$ называется \textit{линейным преобразованием}.
+    \end{definition}
+    
+    \begin{definition}
+        Матрицу $A = (a_{1}, ..., a_{n})$, составленную из координатных столбцов векторов $f(e_{1}), ..., f(e_{n})$ в базисе $e = (e_{1}, ..., e_{n})$, называют \textit{матрицей линейного оператора} $f$ в базисе $e$.
+    \end{definition}
+    
+    \begin{note}
+    	Сопоставление линейным отображениям их матриц в фиксированной паре базисов взаимно однозначно: каждому отображению соответствует некоторая матрица, различным отображениям --- различные матрицы, и, более того, каждой матрице соответствует некоторое отображение.
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $\phi: U \rightarrow V$ "--- линейное отображение.
+    	\begin{itemize}
+    		\item \textit{Образом} отображения $\phi$ называется $\im{\phi} := \phi(U)$.
+    		\item \textit{Ядром} отображения $\phi$ называется $\ke{\phi} := \{\overline{u} \in U: \phi(\overline{u})  = \overline{0}\}$
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{theorem}
+    	Пусть $\phi: U \to V$ "--- линейное отображение. Тогда выполнено следующее равенство:
+    	\[\dim{\ke{\phi}} + \dim{\im{\phi}} = \dim{U}\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Выберем $W \le U$ такое, что $\ke{\phi} \oplus W = U$, тогда $W \cong \im{\phi}$. По свойству прямой суммы, $\dim{U} = \dim{\ke{\phi}} \hm{+} \dim{W} = \dim{\ke{\phi}} + \dim{\im{\phi}}$.
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $\phi: U \rightarrow V$ "--- линейное отображение. Тогда отображение $\phi$ инъективно $\Leftrightarrow$ $\ke{\phi} = \{\overline{0}\}$.
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{itemize}
+    		\item[$\Rightarrow$] Если $\phi$ инъективно, то существует единственный вектор $\overline{0} \in U$, для которого $\phi(\overline{u}) = \overline{0}$
+    		
+    		\item[$\Leftarrow$] Пусть для некоторых $\overline{u_1}, \overline{u_2} \in U$ выполнено $\phi(\overline{u_1}) = \phi(\overline{u_2})$, тогда $\phi(\overline{u_1} - \overline{u_2}) = \overline{0}$, откуда $\overline{u_1} - \overline{u_2} = \overline 0 \ra \overline{u_1} = \overline{u_2}$\qedhere
+    	\end{itemize}
+    \end{proof}
+    
+    \begin{theorem}[операции над линейными преобразованиями]
+        Пусть $V$ -- линейное пространство, $e$ -- базис и заданы линейные преобразования $\phi \leftrightarrow_{e} A$ и $\psi \leftrightarrow_{e} B$. Тогда
+        \begin{itemize}
+            \item $(\phi + \psi)\overline{v} = \phi\overline{v} + \psi\overline{v}$; 
+            \item $(\phi \psi)\overline{v} = \phi(\psi\overline{v})$
+            \item $(\psi \circ \phi) \leftrightarrow_{e} BA$.
+        \end{itemize}
+    \end{theorem}
+    
+    \begin{proof}
+        Доказательство первых двух пунктов по определению. Докажем третье утверждение. Линейность композиции очевидна. Поскольку $\phi(\text{e}) = \text{e}A$, $\psi(\text{e}) = \text{e}B$, выполнены следующие равенства:
+    	\[(\psi \circ \phi)(e) = \psi(\phi(e)) = \psi(\text{e}A) = \psi(\text{e})A = \text{e} BA.\qedhere\]
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $\phi: U \rightarrow V$ "--- линейное отображение, $W$ "--- прямое дополнение подпространства $\ke{\phi}$ в $U$. Тогда сужение $\phi|_W : W \rightarrow V$ осуществляет изоморфизм между $W$ и $\im{\phi}$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Отображение $\phi|_W$ линейно в силу линейности отображения $\phi$, проверим его биективность. Оно инъективно, поскольку $\ke{\phi|_W} = \ke{\phi} \cap W = \{\overline{0}\}$. Докажем, что оно также сюръективно. Пусть $\overline{v} \in \im{\phi}$, тогда для некоторого $\overline{u} \in U$ выполнено равенство $\phi(\overline{u}) = \overline{v}$, при этом вектор $\overline u$ можно представить в виде $\overline{u} = \overline{k} + \overline{w}$, где $\overline{k} \in \ke{\phi}$, $\overline{w} \in W$. Тогда $\phi(\overline{u}) = \phi(\overline{k}) + \phi(\overline{w}) = \phi(\overline{w})$, поэтому $\overline{v} = \phi(\overline{w})$, что и требовалось.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $\phi: U \rightarrow V$ "--- линейное отображение. Тогда существуют базисы $e$ в $U$ и $\FF $ в $V$ такие, что выполнено следующее:
+    	\[\phi \leftrightarrow_{e, \FFF} \left(\begin{array}{@{}c|c@{}}
+    	E & 0\\
+    	\hline
+    	0 & 0
+    	\end{array}\right)\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Рассмотрим $\ke{\phi} \le U$ и выберем $W$ "--- прямое дополнение подпространства $\ke{\phi}$ в $U$. Пусть $(\overline{e_1}, \dots, \overline{e_s})$ "--- базис в $W$, $(\overline{e_{s+1}}, \dots, \overline{e_k})$ "--- базис в $\ke{\phi}$, тогда $e = (\overline{e_1}, \dots, \overline{e_k})$ "--- базис в $U$. Уже было доказано, что $\phi|_W$ "--- изоморфизм между $W$ и $\im{\phi}$, тогда $(\phi(\overline{e_1}), \dots \phi(\overline{e_s})) = (\overline{f_1}, \dots, \overline{f_s})$ "--- базис в $\im{\phi}$. Дополним его до базиса $\FF  = (\overline{f_1}, \dots, \overline{f_n})$ в $V$. Тогда базисы $e$ и $\FF $ и являются искомыми.
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $U, V$ "--- линейные пространства над полем $F$, $e, e'$ "--- два базиса в $U$, $e' = eS$, $S \hm{\in} M_{k}(F)$, $\FF , \FF '$ "--- два базиса в $V$, $\FF ' = \FF T$, $T \in M_{n}(F)$. Пусть также $\phi: U \rightarrow V$ "--- линейное отображение, $\phi \leftrightarrow_{e, \FFF} A$, $\phi \leftrightarrow_{e', \FFF'}{} A'$. Тогда выполнено следующее равенство:
+    	\[A' = T^{-1}AS\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Уже известно, что $\phi(e) = \FF A$, $\phi(e') = \FF 'A'$. С другой стороны, в силу линейности выполнены равенства $\phi(e') = \phi(eS) = \phi(e)S$, тогда $\phi({e'}) = \FF AS = \mathcal{F'}T^{-1}AS$, значит, $A' = T^{-1}AS$.
+    \end{proof}
+    

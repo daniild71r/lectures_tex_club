@@ -1,0 +1,137 @@
+
+    \textbf{Следствие.} 
+    \[\exists \lim_{n \to \infty} a_{n} \text{ в } \overline{\mathds{R}} \lra \overline{\lim_{n \to \infty}} a_{n} = \underline{\lim_{n \to \infty}} a_{n} = a\]
+    
+    \begin{proof}
+        1) Пусть  $\lim_{n \to \infty} a_{n} = a \Rightarrow \text{ по лемме 2, } \overline{\lim_{n \to \infty}} a_{n} = a = \underline{\lim_{n \to \infty}} a_{n}$.
+        \\
+        2) Поскольку $m_{k} \leq a_{k} \leq M_{k} \ \forall k$, то, переходя к пределу, при $k \rightarrow \infty$, получим: $m \leq a_{k} \leq M$, тогда $a_{n_{k}} \rightarrow a$, где $a = m = M$.
+    \end{proof}
+    
+    \textbf{Задача.} Доказать теорему Больцано-Вейерштрасса используя теорему 11.
+    
+    \begin{definition}
+        Последовательность $a_{n}$ называется \textit{фундаментальной}, если
+        \[\forall \epsilon > 0 \ \exists N \in \mathds{N} \ \forall n, m \in \mathds{N} (n \geq N, m \geq N \Rightarrow |a_{n} - a_{m}| < \epsilon)\]
+    \end{definition}
+    
+    \begin{lemma}
+        Всякая фундаментальная последовательность ограничена.
+    \end{lemma}
+    
+    \begin{proof}
+        Пусть $\{a_{n}\}$ фундаментальна. Тогда
+        \[\exists N \ \forall n, m \geq N (|a_{n} - a_{m}| < 1)\]
+        В частности, $\forall n \geq N (a_{N} - 1 < a_{n} < a_{N} + 1)$.
+        Положим $\alpha = min\{a_{1}, ..., a_{N-1}, a_{N} - 1\}, \beta = max\{a_{1}, ..., a_{N-1}, a_{N} - 1\}$, тогда $\alpha \leq a_n \leq \beta \ \forall n \in \mathds{N}$.
+    \end{proof}
+    
+    \begin{theorem}{Критерий Коши.}
+    \\
+     Последовательность $a_{n}$ сходится тогда и только тогда, когда она фундаментальна.
+    \end{theorem}
+    
+    \begin{proof}
+        1) Пусть $a_{n} \rightarrow a \in \mathds{R}$. По определению предела $\exists N \  \forall n \geq N (|a_{n} - a| < \frac{\epsilon}{2})$. Тогда при $n, m \geq N$
+        \[|a_{n} - a_{m}| = |(a_{n} - a) + (a - a_{m})| \leq |a_{n} - a| + |a_{m} - a| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.\]
+        2) Пусть $a_{n}$ фундаментальна. По лемме 3 \{$a_{n}\}$ ограничена. Тогда по теореме Больцано-Вейерштрасса:
+        \[\exists \{a_{n_{k}}\}, a_{n_{k}} \rightarrow a\]
+        Покажем, что $a = \lim_{n \to \infty} a_{n}$. Зафиксируем $\epsilon > 0$. По определению фундаментальной последовательности $\exists N \ \forall n,m \geq N (|a_{n} - a_{m}| < \frac{\epsilon}{2})$. Покажем, что $N$ -- подходящий номер в определении предела $\{a_{n}\}$ для $\epsilon$. В силу сходимости $a_{n_{k}}$ $\exists K \ \forall k \geq K (|a_{n_{k}} - a| < \frac{\epsilon}{2})$. Положим $M = max\{N, K\}$. Тогда $n_{M} \geq M \geq N, n_{M} \geq M \geq K$ и, значит, при $n \geq M$:
+        \[|a_{n} - a| \leq |a_{n} - a_{n_{M}}| + |a_{n_{M}} - a| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.\]
+        Так как $\epsilon > 0$, то $a = \lim_{n \to \infty} a_{n}$.
+    \end{proof}
+    
+    \begin{note}
+        Устремляя $m$ к бесконечности в определении фундаментальности получим
+        \[\forall \epsilon > 0 \ \exists N \ \forall n \geq N (|a_{n} - a| \leq \epsilon)\]
+        То есть номер $N$ указывает скорость сходимости $a_{n}$ к пределу.
+    \end{note}
+    
+    \textbf{Задача.} Докажите, что из фундаментальности следует сходимость, используя следствие теоремы 11.
+    \\
+    \textbf{Задача*.} Пусть $F$ -- упорядоченное архимедово поле (т.е. выполняется аксиома Архимеда). Докажите, что если всякая фундаментальная последовательность элементов из $F$ сходится к некоторому элементу поля $F$, то поле $F$ -- полное.
+    
+\section{Топология $\mathbb{R}$}
+
+    \begin{definition}
+        Пусть $\epsilon > 0, a \in \mathds{R}$. Введем обозначения
+        \begin{enumerate}
+            \item $B_{\epsilon}(a) = (a - \epsilon , a + \epsilon)$ -- $\epsilon$--окрестность в точке $a$.
+            \item $B_{\epsilon}^{o}(a) = B_{\epsilon}(a) \setminus \{a\}$ -- проколотая $\epsilon$--окрестность в точке $a$ = $(a - \epsilon, a) \cup (a, a + \epsilon)$.
+        \end{enumerate}
+    \end{definition}
+    
+    Классифицируем точки по отношению к заданному множеству.
+    
+    \begin{definition}
+        Пусть $E \subset \mathds{R}$ и $x \in \mathds{R}$.
+        \begin{enumerate}
+            \item Точка $x$ называется \textit{внутренней} точкой множества $E$, если $\exists \epsilon > 0 \ (B_{\epsilon}(x) \subset E)$. Обозначение $int(E)$ - множество всех внутренних точек E.
+            \item Точка $x$ называется \textit{внешней} точкой множества $E$, если $\exists \epsilon > 0 \ (B_{\epsilon}(x) \subset \mathds{R} \setminus E)$. Обозначение $ext(E)$ - множество всех внешних точек E.
+            \item Точка $x$ называется \textit{граничной} точкой множества $E$, если $\forall \epsilon > 0 \ B_{\epsilon}(a) \cap E \neq \emptyset$, $B_{\epsilon}(a) \cap R \setminus E \neq \emptyset$. Обозначение $\delta(E)$ -- множество всех граничных точек E.
+        \end{enumerate}
+    \end{definition}
+    
+    \begin{note}
+        \[\mathds{R} = int(E) \cup ext(E) \cup \delta(E) \text{, и } int(E), ext(E), \delta(E) \text{ попарно не пересекаются.}\]
+    \end{note}
+    
+    \begin{example}
+        Пусть $E = (1, 2]$. Тогда
+        \begin{enumerate}
+            \item $int(E) = (1, 2)$
+            \\
+            $x \in (1, 2)$, $\epsilon = min\{x - 1, 2 - x\}$. Тогда $\epsilon > 0$, $x - \epsilon \geq 1$, $x + \epsilon \leq 2 \Rightarrow (x + \epsilon, x - \epsilon) \subset (1, 2]$
+            \item $ext(E) = (-\infty, 1) \cup (2, +\infty)$
+            \item $\delta(E) = \{1, 2\}$
+        \end{enumerate}
+    \end{example}
+    
+    \begin{definition}
+        Множество $G \subset \mathds{R}$ называется \textit{открытым}, если все его точки являются внутренними. То есть $G = int(G)$.
+        Множество $F \subset \mathds{R}$ называется \textit{замкнутым}, если $\mathds{R} \setminus F$ открыто.
+    \end{definition}
+    
+    \begin{example}
+        $(a,b)$ -- открытое множество.
+        $[a,b]$ -- замкнутое множество.
+    \end{example}
+    
+    \begin{lemma}
+        $\text{}$
+        \begin{enumerate}
+            \item Если $G_{\lambda}$ -- открытое $\forall \lambda \in \Lambda$, то $\underset{\lambda \in \Lambda}{\cup} G_{\lambda}$ -- открытое множество.
+            \item Если $G_{1}, G_{2}, ..., G_{m}$ -- открытые, то $\overset{m}{\underset{k = 1}{\cap}} G_{k}$ -- открытое множество.
+            \item $\mathds{R}, \emptyset$ -- открытые множества.
+        \end{enumerate}
+    \end{lemma}
+    
+    \begin{proof}
+        1) Пусть $G = \underset{\lambda \in \Lambda}{\cup} G_{\lambda}$. Пусть $x \in G \Rightarrow \exists \lambda_{0} \in \Lambda (x \in G_{\lambda_0})$.
+        \\
+        $G_{\lambda_0}$ -- открытое, $x \in G_{\lambda_0} \Rightarrow \exists B_{\epsilon}(x) \subset G_{\lambda_0} \subset G$, т. е. $x$ -- внутренняя точка $G$.
+        \\
+        2) Пусть $\overset{m}{\underset{k = 1}{\cap}} G_{k}$. Пусть $x \in G \Rightarrow \forall k = 1, .., m: (x \in G_{k})$, $G_k$ -- открытое $\Rightarrow \exists B_{\epsilon_{k}} (x) \subset G_{k}$.
+        \\
+        Положим $\epsilon = \underset{1 \leq k \leq m}{min}\{E_{k}\}$, тогда $\epsilon > 0$ и $B_{\epsilon}(x) \subset B_{\epsilon_{k}}(x) \subset G_{k}$ для $k = 1, .., m \Rightarrow B_{\epsilon}(x) \subset \overset{m}{\underset{k = 1}{\cap}} G_{k} = G$, т. е. $x$ -- внутренняя точка $G$.
+        \\
+        3) Вытекает из определения.
+    \end{proof}
+    
+    \begin{lemma}
+        $\text{}$
+        \begin{enumerate}
+            \item Если $F_{\lambda}$ -- замкнутое $\forall \lambda \in \Lambda$, то $\underset{\lambda \in \Lambda}{\cap} F_{\lambda}$ -- замкнутое.
+            \item Если $F_{1}, ..., F_{m}$ -- замкнуто, то $\overset{m}{\underset{k = 1}{\cup}} F_{k}$ -- замкнутое.
+            \item $\mathds{R}, \emptyset$ -- замкнутые.
+        \end{enumerate}
+    \end{lemma}
+    
+    \begin{proof}
+        1) $\mathds{R} \setminus \underset{\lambda \in \Lambda}{\cap} F_{\lambda} = \underset{\lambda \in \Lambda}{\cup} (\mathds{R} \setminus F_{\lambda})$.
+        \\
+        2) $\mathds{R} \setminus \overset{m}{\underset{k = 1}{\cup}} F_{\lambda} = \overset{m}{\underset{k = 1}{\cap}} (\mathds{R} \setminus F_{k})$, то утверждение следует из леммы 1 и законов Де Моргана.
+        \\
+        3) Оба множества замкнуты, т.к. мы доказалаи, что дополнения к ним открыты.
+    \end{proof}
+    

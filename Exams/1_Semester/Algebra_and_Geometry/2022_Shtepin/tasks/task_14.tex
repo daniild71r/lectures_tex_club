@@ -1,0 +1,120 @@
+\section{Линейные пространства. Матрицы и определители.}
+
+\subsection{Матрицы, операции с матрицами, их свойства.}
+
+    \begin{definition}
+    	\textit{Матрицей размера $n \times k$} называется таблица из $n$ строк и $k$ столбцов, заполненная числами (или другими элементами):
+    	\[A = 
+    	\begin{pmatrix}
+    	a_{11} & a_{12} & \dots & a_{1k} \\
+    	a_{21} & a_{22} & \dots & a_{2k} \\
+    	\vdots & \vdots & \ddots & \vdots \\
+    	a_{n1} & a_{n2} & \dots & a_{nk}
+    	\end{pmatrix}
+    	= (a_{ij})\]
+    	
+    	Обозначение множества числовых матриц данного размера "--- $M_{n \times k}$, множества квадратных числовых матриц размера $n \times n$ "--- $M_{n}$
+    \end{definition}
+    
+    \begin{definition}
+    	\textit{Подматрицей} матрицы $A \in M_{n \times k}$ называется матрица, полученная из $A$ удалением некоторых ее строк или столбцов.
+    \end{definition}
+    
+    \begin{definition}
+    	Ниже перечислены основные операции над матрицами:
+    	
+    	\begin{enumerate}
+    		\item Пусть $A = (a_{ij}), B = (b_{ij}) \in M_{n \times k}$. \textit{Суммой матриц $A$ и $B$} называется матрица $A+B \in M_{n \times k}$ следующего вида:
+    		\[A + B := (a_{ij} + b_{ij})\]
+    		
+    		\item Пусть $A = (a_{ij}) \in M_{n \times k}$, $A$, $\lambda \in \mathbb{R}$.  Матрицей, полученной из $A$ \textit{умножением на скаляр $\lambda$}, называется матрица $\lambda A \in M_{n \times k}$ следующего вида:
+    		\[\lambda A := (\lambda a_{ij})\]
+    		
+    		\item Пусть $A = (a_{ij}) \in M_{n \times k}$. Матрицей, полученной из $A$ \textit{транспонированием}, называется матрица $A^T \in M_{k \times n}$ следующего вида:
+    		\[A^T := 
+    		\begin{pmatrix}
+    		a_{11} & a_{21} & \dots & a_{n1} \\
+    		a_{12} & a_{22} & \dots & a_{n2} \\
+    		\vdots & \vdots & \ddots & \vdots \\
+    		a_{1k} & a_{2k} & \dots & a_{nk}
+    		\end{pmatrix}
+    		= (a_{ji})\]
+    		
+    		\item Пусть $a_{1*} \in M_{1 \times n}$ "--- строка длины $n$, $b_{*1} \in M_{n \times 1}$ "--- столбец высоты $n$. \textit{Произведением строки $A$ и столбца $B$} называется следующая величина:
+    		\[a_{1*}b_{*1} := \sum_{i = 1}^{n} a_{1i}b_{i1}\]
+    		
+    		Величину $AB$ можно считать как числом, так и матрицей размера $1 \times 1$.
+    		
+    		\item Пусть $A = (a_{ij}) \in M_{n \times k}$, $B = (b_{ij}) \in M_{k \times m}$. \textit{Произведением матриц $A$ и $B$} называется матрица $AB \in M_{n \times m}$ следующего вида:
+    		\[AB := (a_{i*}b_{*j}) = \left(\sum_{t = 1}^{k} a_{it}b_{tj}\right)\]
+    	\end{enumerate}
+    \end{definition}
+    
+    \begin{proposition}
+    	Сложение матриц обладают следующими свойствами:
+    	
+    	\begin{itemize}
+    		\item $\forall A, B \in M_{n \times k}: A + B = B + A$ (коммутативность)
+    		\item $\forall A, B, C \in M_{n \times k}: (A + B) + C = A + (B + C)$ (ассоциативность)
+    		\item $\exists 0 \in M_{n \times k}: \forall A \in M_{n \times k}: A+0 = A$ (существование нейтрального элемента)
+    		\item $\forall A \in M_{n \times k}: \exists (-A) \in M_{n \times k}: A+(-A) = 0$ (существование противоположного элеме-\\*нта)
+    	\end{itemize}
+    \end{proposition}
+    
+    \begin{proof}
+    	Доказательство производится непосредственной проверкой. Отметим только, что $0 \in M_{n \times k}$ "--- это матрица из нулей, а $(-A) \in M_{n \times k}$ --- матрица, каждый элемент которой является противоположным соответствующему элементу $A$.
+    \end{proof}
+    
+    \begin{proposition}
+    	Умножение матрицы на число обладает следующими свойствами:
+    	
+    	\begin{itemize}
+    		\item $\forall \lambda \in \R: \forall A, B \in M_{n \times k}: \lambda(A + B) = \lambda A + \lambda B$ (дистрибутивность умножения матрицы на число относительно сложения)
+    		\item $\forall \lambda, \mu \in \R: \forall A \in M_{n \times k}: (\lambda + \mu)A = \lambda A + \mu A$ (дистрибутивность умножения матриц относительно сложения)
+    		\item $\forall \lambda, \mu \in \R: \forall A \in M_{n \times k}: (\lambda \mu)A = \lambda (\mu A)$
+    		\item $\forall A \in M_{n \times k}: 1A = A$
+    	\end{itemize}
+    \end{proposition}
+    
+    \begin{proof}
+    	Доказательство производится непосредственной проверкой.
+    \end{proof}
+    
+    \begin{proposition}
+    	Транспонирование обладает следующими свойствами:
+    	\begin{itemize}
+    		\item $\forall A, B \in M_{n \times k}: (A + B)^T = A^T + B^T$ (дистрибутивность транспонирования относительно сложения матриц)
+    		\item $\forall \lambda \in \R: \forall A \in M_{n \times k}: (\lambda A)^T = \lambda A^T$
+    		\item $\forall A \in M_{n \times k}: (A^T)^T = A$
+    		\item $\forall A, B \in M_{n \times k}: (AB)^T = B^T A^T$
+    	\end{itemize}
+    \end{proposition}
+    
+    \begin{proof}
+    	Доказательство производится непосредственной проверкой.
+    \end{proof}
+    
+    \begin{proposition}
+    	Умножение матриц обладает следующими свойствами:
+    	
+    	\begin{itemize}
+    		\item $\forall A \in M_{n \times k}: \forall B \in M_{k \times m}: \forall C \in M_{m \times l}: (AB)C = A(BC)$ (ассоциативность)
+    		\item $\exists E_n \in  M_{n}: \exists E_k \in M_{k}: \forall A \in M_{n \times k} : E_nA = AE_k = A$ (существование нейтрального элемента)
+    		\item $\forall A, B \in M_{n \times k}: \forall C \in M_{k \times m}: \forall D \in M_{m \times n}: (A+B)C = AC + BC$ и $D(A+B) \hm= DA + DB$ (дистрибутивность относительно сложения матриц)
+    		\item $\forall \lambda \in \R: \forall A \in M_{n \times k}: \forall B \in M_{k \times m}: \lambda (AB) = (\lambda A)B = A(\lambda B)$
+    	\end{itemize}
+    \end{proposition}
+    
+    \begin{proof}
+    	Доказательство производится непосредственной проверкой. Отметим только, что матрица $E_m \in M_m$ имеет следующий вид:
+    	\[E_m := \begin{pmatrix}
+    	1 & 0 & \dots & 0\\
+    	0 & 1 & \dots & 0\\
+    	\vdots & \vdots & \ddots & \vdots\\
+    	0 & 0 & \dots & 1
+    	\end{pmatrix}\]
+    	
+    	Определенная таким образом единичная матрица произвольного размера удовлетворяет условию.
+        \pagebreak
+    \end{proof}
+    

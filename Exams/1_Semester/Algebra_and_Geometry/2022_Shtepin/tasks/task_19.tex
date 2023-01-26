@@ -1,0 +1,98 @@
+\subsection{Базис и размерность линейного пространства, их свойства. Теорема об изоморфизме. Дополнение линейно независимой системы векторов до базиса. Координаты вектора в базисе, запись операций над векторами через координаты. Изменение координат вектора при изменении базиса. Матрица перехода. Мощность конечного векторного пространства и конечного поля.}
+
+    \begin{definition}
+    	\textit{Базисом} в линейном пространстве $V$ называется такая линейно независимая система $(\overline{v_1}, \dots, \overline{v_n})$ векторов из $V$, что $\langle\overline{v_1}, \dots, \overline{v_n}\rangle = V$.
+    \end{definition}
+    
+    \begin{note}
+    	Пусть $e$ "--- базис в линейном пространстве $V$ над полем $F$. Аналогично случаю $V_n$, для любого вектора $\overline{v} \hm{\in} V$ определяется его координатный столбец в базисе $e$: если $\overline{v} = e\alpha$ для некоторого $\alpha \in F^n$, то $\overline{v} \leftrightarrow_{e} \alpha$. Координатный столбец каждого вектора существует и единственен, а сопоставление координат линейно.
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $V$ "--- конечнопорожденное линейное пространство. Его \textit{размерностью} называется количество векторов в любом его базисе. Обозначение "--- $\dim{V}$. Если линейное пространство имеет конечный базис, его размерность конечна и оно называется \textit{конечномерным}, в противном случае его размерность бесконечна, и пространство называется \textit{бесконечномерным}.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство, $\dim{V} \hm{=} n$. Тогда:
+    	\begin{enumerate}
+    		\item Если $V = \langle\overline{v_1}, \dots, \overline{v_n}\rangle$, то система $(\overline{v_1}, \dots, \overline{v_n})$ является базисом
+    		\item Если система $(\overline{v_1}, \dots, \overline{v_n})$ линейно независима, то она является базисом
+    	\end{enumerate}
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item Пусть $(\overline{v_1}, \dots, \overline{v_n})$ не является базисом. Тогда она линейно зависима, и без ограничения общности вектор $\overline{v_n}$ выражается через $(\overline{v_1}, \dots, \overline{v_{n - 1}})$. Значит, $V = \langle\overline{v_1}, \dots, \overline{v_{n - 1}}\rangle$, но тогда в $V$ нет линейно независимых систем из $n$ векторов --- противоречие с тем, что $\dim{V} \hm{=} n$.
+    		\item Предположим $(\overline{v_1}, \dots, \overline{v_n})$ не является базисом. Следовательно, она выражает не все векторы пространства $V$, то есть существует $\overline{v} \hm{\in} V$ такой, что $\overline{v} \not\in \langle\overline{v_1}, \dots, \overline{v_n}\rangle$. Но тогда система $(\overline{v_1},\dots,\overline{v_n},\overline{v})$ тоже линейно независима --- противоречие с тем, что $\dim{V} = n$.\qedhere
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- конечнопорожденное линейное пространство, $U \le V$. Тогда пространство $U$ "--- тоже конечнопорожденное, причем $\dim{U} \le \dim{V}$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Будем выбирать из $U$ векторы $\overline{u_1}, \overline{u_2}, \dots$ так, чтобы система $(\overline{u_1}, \overline{u_2}, \dots)$ оставалась линейно независимой. Процесс закончится не позднее, чем за $n := \dim{V}$ шагов, поскольку в $V$ нет линейно независимой системы из $n + 1$ вектора. Пусть полученная система "--- $(\overline{u_1}, \dots, \overline{u_k})$, $k \le n$. Она линейно независима по построению, и для любого $\overline{u} \in U$ система $(\overline{u_1}, \dots, \overline{u_k}, \overline{u})$ уже линейно зависима, откуда $U = \gl\overline{u_1}, \dots, \overline{u_k}\gr$. Значит, полученная система образует базис в $U$.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $U$ и $V$ "--- конечнопорожденные линейные пространства над полем $F$. Тогда $U \cong V \Leftrightarrow \dim{U} = \dim{V}$.
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{itemize}
+    		\item[$\ra$] Пусть $(\overline{e_1}, \dots, \overline{e_n})$ "--- базис в $U$. Рассмотрим изоморфизм $\phi : U \rightarrow V$ и покажем, что система $(\phi(\overline{e_1}), \dots, \phi(\overline{e_n}))$ образует базис в $V$. Проверим, что она линейно независима. Действительно, для любого $\gamma \in F^n$, $\gamma \ne \overline{0}$, выполнено следующее:
+    		\[(\phi(\overline{e_1}), \dots, \phi(\overline{e_n}))\gamma = \phi((\overline{e_1}, \dots, \overline{e_n})\gamma) \ne \phi(\overline{0}) = \overline{0}\]
+    		
+    		Кроме того, для любого вектора $\overline{v} \in V$ существует $\overline{u} \in U$ такой, что $\phi(\overline{u}) = \overline{v}$, и существуют $\alpha_1, \dotsc, \alpha_n \in F$ такие, что $\overline{u} = \sum_{i = 1}^{n}\alpha_i\overline{e_i}$, тогда:
+    		\[\overline{v} = \phi(\overline{u}) = \phi\left(\sum_{i - 1}^{n}\alpha_i\overline{e_i}\right) = \sum_{i = 1}^{n}\alpha_i\phi(\overline{e_i})\]
+    		
+    		Таким образом, $(\phi(\overline{e_1}), \dots, \phi(\overline{e_n}))$ "--- базис в $V$, поэтому $\dim{U} = \dim{V} = n$.
+    		
+    		\item[$\la$] Пусть $n := \dim{U} = \dim{V}$, тогда $U \cong F^n$ и $V \cong F^n$, откуда $U \cong V$.\qedhere
+    	\end{itemize}
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- конечнопорожденное линейное пространство размерности $n$, векторы $\overline{v_1}, \dots, \overline{v_k} \in V$, $k < n$, образуют линейно независимую систему. Тогда систему $(\overline{v_1}, \dots, \overline{v_k})$ можно дополнить до базиса в $V$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Выберем вектор $\overline{v_{k+1}} \in V$ такой, что $\overline{v_{k+1}} \not\in \langle\overline{v_1}, \dots, \overline{v_k}\rangle$, тогда система $(\overline{v_1}, \dots, \overline{v_{k+1}})$ остается линейно независимой. Затем аналогично выберем вектор $\overline{v_{k+2}} \in V$ такой, что $\overline{v_{k+2}} \not\in \langle\overline{v_1}, \dots, \overline{v_{k+1}}\rangle$, и так далее. Процесс будет продолжаться, пока не будет получена система $(\overline{v_1}, \dots, \overline{v_n})$, которая и является базисом. Он не может остановиться раньше, потому что пока в системе менее $n$ векторов, она не выражает все пространство $V$, и не может продолжиться дольше, потому что в $V$ нет линейно независимой системы из $n + 1$ вектора.
+    \end{proof}
+    
+    \begin{reminder}
+    	Пусть $e$ "--- базис в $V_n$, $\overline{v} = \alpha e \in V_n$. Столбец коэффициентов $\alpha$ называется \textit{координатным столбцом} вектора $\overline{v}$ в базисе $e$. Обозначение "--- $\overline{v} \leftrightarrow_e \alpha$. Пусть $\overline u, \overline v \in V_n$ такие, что $\overline u \leftrightarrow_e \alpha$, $\overline v \leftrightarrow_e \beta$. Тогда
+            \begin{enumerate}
+                \item $\overline u + \overline v \leftrightarrow_e \alpha + \beta$
+                \item $\forall \lambda \in \R: \lambda \overline u \leftrightarrow_e \lambda\alpha$
+            \end{enumerate}
+    \end{reminder}
+    
+    \begin{note}
+    	Аналогично случаю $V_n$, для базисов $e$ и $e'$ векторного пространства $V$ над полем $F$ определяется матрица перехода от $e$ к $e'$, то есть такая матрица $S \in M_n(F)$, что $e' = eS$. Если для некоторого вектора $\overline{v} \in V$ выполнено $\overline{v} \leftrightarrow_{e} \alpha$ и $\overline{v'} \leftrightarrow_{e'} \alpha'$, то $\alpha = S\alpha'$.
+    \end{note}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство над полем $F$, $e, e'$ "--- базисы в $V$. Тогда матрица перехода $S \in M_n(F)$ от $e$ к $e'$ обратима.
+    \end{proposition}
+    
+    \begin{proof}
+    	Поскольку возможен также обратный переход от $e'$ к $e$, то существует матрица $T \in M_n(F)$ такая, что $e = e'T = e(ST)$, откуда $ST = E$ в силу единственности координатных столбцов векторов из в базисе $e$. Аналогично, $e' = eS = e'(TS)$, откуда $ST = TS = E$.
+    \end{proof}
+
+    \begin{theorem}
+        Пусть $F$ -- конечное поле, $char F = p$, где $p$ -- простое число. Тогда существует $n \in \N$ такое, что $|F| = p^n$.
+    \end{theorem}
+
+    \begin{proof}
+        У поля $F$ есть простое подполе $D \cong \Z_p$. Всякое поле $F$ является линейным пространством над любым своим подполем $\Rightarrow \exists  \ e = (e_{1}, ..., e_{n})$ -- базис в $F$ $\Rightarrow F \cong D^n \Rightarrow |F| = p^n$. 
+    \end{proof}
+
+    \begin{corollary}
+        Пусть $V$ -- линейное пространство над $F$, $|F| = p^n$. Тогда $|V| = p^{nm}$, где $m = \dim V$.
+    \end{corollary}
+
+    \begin{proof}
+        $a \in V$, $a \leftrightarrow \alpha$. Тогда $|V| = |\alpha| = p^{nm}$.
+    \end{proof}

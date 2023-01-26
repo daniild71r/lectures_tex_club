@@ -1,0 +1,185 @@
+\subsection{Эллипс, гипербола, парабола, их канонические уравнения. Теоремы о фокусах и директрисах. Асимптоты гиперболы. Сопряжённые диаметры.}
+    
+    \begin{definition}
+    	Пусть $A, B, C, D, E, F \in \R$, $A^2 + B^2 + C^2 \ne 0$. \textit{Кривой второго порядка} называется алгебраическая кривая, которая в некоторой прямоугольной декартовой системе координат в $P_2$ задается следующим уравнением:
+    	\[Ax^2 + 2Bxy + Cy^2 + 2Dx + 2Ey + F = 0\]
+    \end{definition}
+    
+    \begin{definition}
+    	\textit{Эллипсом} называется кривая второго порядка, которая в канонической системе координат $(O, e)$ задается следующим уравнением:
+    	\[\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1,~a \ge b > 0\]
+    	
+    	\begin{itemize}
+    		\item \textit{Вершинами} эллипса называются точки с координатами $(\pm a, 0)^T$, $(0, \pm b)^T$ в системе $(O, e)$. Число $a$ называется \textit{длиной большой полуоси} эллипса, число $b$ --- \textit{длиной малой полуоси} эллипса.
+    		
+    		\item \textit{Фокусным расстоянием} эллипса называется величина $c := \sqrt{a^2 - b^2}$. \textit{Фокусами} эллипса называются точки $F_1, F_2 \in P_2$ такие, что $F_1 \leftrightarrow_{(O, e)} (c, 0)^T$, $F_2 \leftrightarrow_{(O, e)} (-c, 0)^T$.
+    		
+    		\item \textit{Эксцентриситетом} эллипса называется величина $\epsilon := \frac{c}{a} = \frac{\sqrt{a^2 - b^2}}{a}$.
+    		
+    		\item \textit{Директрисами} эллипса называются прямые $d_1, d_2$, задаваемые в системе $(O, e)$ уравнениями $x = \pm \frac{a}{\epsilon}$.
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{theorem}
+    	Пусть эллипс задан в канонической системе координат $(O, e)$, $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$. Тогда точка $A$ лежит на эллипсе $\Leftrightarrow$ $AF_1 \hm{=} |a - \epsilon  x|$ $\Leftrightarrow$ $AF_2 = |a + \epsilon x|$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Докажем, что $A$ лежит на эллипсе $\lra$ $AF_1 \hm{=} |a - \epsilon  x|$. Для этого заметим, что выполнены следующие равенства:
+    	\[AF_1^2 - |a - \epsilon x|^2 = (x - c)^2 + y^2 - |a - \epsilon x|^2 = b^2\left(\frac{x^2}{a^2}+\frac{y^2}{b^2} - 1\right)\]
+    	
+    	Значит, $AF_1 = |a - \epsilon x| \lra \frac{x^2}{a^2}+\frac{y^2}{b^2} = 1 \lra A$ лежит на эллипсе. Аналогично доказывается, что $AF_2 \hm{=} |a + \epsilon  x| \lra A$ лежит на эллипсе.
+    \end{proof}
+    
+    \begin{corollary}
+    	Пусть эллипс задан в канонической системе координат $(O, e)$. Тогда он является геометрическим местом точек $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$, таких, что выполнены следующие равенства:
+    	\[\frac{AF_1}{\rho(A, d_1)} = \frac{AF_2}{\rho(A, d_2)} = \epsilon\]
+    \end{corollary}
+    
+    \begin{proof}
+    	Заметим, что выполнены следующие равенства:
+    	\[\rho(A, d_1) = \left|x - \frac{a}{\epsilon}\right| = \frac{1}{\epsilon}|a - \epsilon x|\]
+    	
+    	Значит, $A$ лежит на эллипсе $\Leftrightarrow$ $|a - \epsilon x| = AF_1$ $\Leftrightarrow$ $\epsilon\rho(A, d_1) = AF_1$. Аналогично доказывается, что $A$ лежит на эллипсе $\Leftrightarrow$ $\epsilon\rho(A, d_2) = AF_2$.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть эллипс задан в канонической системе координат $(O, e)$. Тогда он является геометрическим местом точек $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$, таких, что выполнено равенство $AF_1 + AF_2 = 2a$.
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{itemize}
+    		\item[$\ra$] Пусть $A$ лежит на эллипсе, тогда $AF_1 = a - \epsilon x$ и $AF_2 = a + \epsilon x$, откуда $AF_1 + AF_2 = 2a$.
+    		\item[$\la$] Зафиксируем произвольное число $x_0 \in \R$ и заметим, что при движении точки $X \in P_2$, $X \leftrightarrow_{(O, e)} (x_0, 0)^T$ вдоль прямой $x = x_0$ вверх или вниз величина $XF_1 + XF_2$ строго возрастает. Рассмотрим возможные случаи:
+    		\begin{enumerate}
+    			\item Если $|x_0| < a$, то таких точек, что $XF_1 + XF_2 = 2a$, на прямой $x = x_0$ две.
+    			\item Если $|x_0| = a$, то такая точка, что $XF_1 + XF_2 = 2a$, на прямой $x = x_0$ одна.
+    			\item Если $|x_0| > a$, то таких точек, что $XF_1 + XF_2 = 2a$, на прямой $x = x_0$ нет.
+    		\end{enumerate}
+    	
+    	Полученное точек совпадает с множеством точек эллипса.\qedhere
+    	\end{itemize}
+    \end{proof}
+    
+    \begin{definition}
+    	\textit{Гиперболой} называется кривая второго порядка, которая в канонической системе координат $(O, e)$ задается следующим уравнением:
+    	\[\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1,~a, b > 0\]
+    	
+    	\begin{itemize}
+    		\item \textit{Вершинами} гиперболы называются точки с координатами $(\pm a, 0)^T$ в системе $(O, e)$. Число $a$ называется \textit{длиной действительной полуоси} гиперболы, число $b$ --- \textit{длиной мнимой полуоси} гиперболы.
+    		
+    		\item \textit{Фокусным расстоянием} гиперболы называется величина $c := \sqrt{a^2 + b^2}$. \textit{Фокусами} гиперболы называются точки $F_1, F_2 \in P_2$ такие, что $F_1 \leftrightarrow_{(O, e)} (c, 0)^T$, $F_2 \leftrightarrow_{(O, e)} (-c, 0)^T$.
+    		
+    		\item \textit{Эксцентриситетом} гиперболы называется величина $\epsilon := \frac{c}{a} = \frac{\sqrt{a^2 + b^2}}{a}$.
+    		
+    		\item \textit{Директрисами} гиперболы называются прямые $d_1, d_2$, задаваемые в системе $(O, e)$ уравнениями $x = \pm \frac{a}{\epsilon}$.
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{theorem}
+    	Пусть гипербола задана в канонической системе координат $(O, e)$, $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$. Тогда точка $A$ лежит на гиперболе $\Leftrightarrow$ $AF_1 \hm{=} |a - \epsilon  x|$ $\Leftrightarrow$ $AF_2 = |a + \epsilon x|$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Докажем, что $A$ лежит на гиперболе $\lra$ $AF_1 \hm{=} |a - \epsilon  x|$. Для этого заметим, что выполнены следующие равенства:
+    	\[AF_1^2 - |a - \epsilon x|^2 = (x - c)^2 + y^2 - |a - \epsilon x|^2 = b^2\left(\frac{x^2}{a^2}-\frac{y^2}{b^2} - 1\right)\]
+    	
+    	Значит, $AF_1 = |a - \epsilon x| \lra \frac{x^2}{a^2} - \frac{y^2}{b^2} = 1 \lra A$ лежит на гиперболе. Аналогично доказывается, что $AF_2 \hm{=} |a + \epsilon  x| \lra A$ лежит на гиперболе.
+    \end{proof}
+    
+    \begin{corollary}
+    	Пусть гипербола задана в канонической системе координат $(O, e)$. Тогда она является геометрическим местом точек $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$, таких, что выполнены следующие равенства:
+    	\[\frac{AF_1}{\rho(A, d_1)} = \frac{AF_2}{\rho(A, d_2)} = \epsilon\]
+    \end{corollary}
+    
+    \begin{proof}
+    	Заметим, что выполнены следующие равенства:
+    	\[\rho(A, d_1) = \left|x - \frac{a}{\epsilon}\right| = \frac{1}{\epsilon}|a - \epsilon x|\]
+    	
+    	Значит, $A$ лежит на гиперболе $\Leftrightarrow$ $|a - \epsilon x| = AF_1$ $\Leftrightarrow$ $\epsilon\rho(A, d_1) = AF_1$. Аналогично доказывается, что $A$ лежит на эллипсе $\Leftrightarrow$ $\epsilon\rho(A, d_2) = AF_2$.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть гипербола задана в канонической системе координат $(O, e)$. Тогда она является геометрическим местом точек $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$, таких, что выполнено равенство $|AF_1 - AF_2| = 2a$.
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{itemize}
+    		\item[$\ra$] Пусть $A$ лежит на гиперболе. Если без ограничения общности точка $A$ лежит на правой ее ветви, то тогда $AF_1 = \epsilon x - a$ и $AF_2 = a + \epsilon x$, тогда $|AF_1 - AF_2| = 2a$.
+    		
+    		\item[$\la$] Зафиксируем произвольное число $x_0 \in \R$ и заметим, что при движении точки $X \in P_2$, $X \leftrightarrow_{(O, e)} (x_0, 0)^T$ вдоль прямой $x = x_0$ вверх или вниз величина $|XF_1 - XF_2|$ строго убывает. Рассмотрим возможные случаи:
+    		\begin{enumerate}
+    			\item Если $|x_0| > a$, то таких точек, что $|XF_1 - XF_2| = 2a$, на прямой $x = x_0$ две.
+    			\item Если $|x_0| = a$, то такая точка, что $|XF_1 - XF_2| = 2a$, на прямой $x = x_0$ одна.
+    			\item Если $|x_0| < a$, то таких точек, что $|XF_1 - XF_2| = 2a$, на прямой $x = x_0$ нет.
+    		\end{enumerate}
+    		
+    		Полученное точек совпадает с множеством точек гиперболы.\qedhere
+    	\end{itemize}
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть гипербола задана в канонической системе координат $(O, e)$. \textit{Асимптотами} гиперболы называются прямые $l_1, l_2$, задаваемые в этой же системе уравнениями $\frac{x}{a} \pm \frac{y}{b} = 0$.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть гипербола задана в канонической системе координат $(O, e)$, $A \in P_2$ "--- точка на гиперболе. Тогда выполнено следующее равенство:
+    	\[\rho(A, l_1)\rho(A, l_2) = \frac{a^2b^2}{a^2 + b^2}\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Пусть $A \leftrightarrow_{(O, e)} (x, y)^T$. По формуле расстояния от точки до прямой в плоскости, имеем:
+    	\[\rho(A, l_1)\rho(A, l_2) = \frac{\left|\frac{x}{a}-\frac{y}{b}\right|}{\sqrt{\frac{1}{a^2} + \frac{1}{b^2}}} 
+    	\frac{\left|\frac{x}{a}+\frac{y}{b}\right|}{\sqrt{\frac{1}{a^2} + \frac{1}{b^2}}}
+    	= \frac{b^2x^2 - a^2y^2}{a^2 + b^2} = \frac{a^2b^2\left(\frac{x^2}{a^2} - \frac{y^2}{b^2}\right)}{a^2 + b^2} = \frac{a^2b^2}{a^2 + b^2}\]
+    	
+    	Получено требуемое.
+    \end{proof}
+    
+    \begin{definition}
+    	\textit{Параболой} называется кривая второго порядка, которая в канонической системе координат $(O, e)$ задается следующим уравнением:
+    	\[y^2 = 2px,~p > 0\]
+    	
+    	\begin{itemize}
+    		\item \textit{Вершиной} параболы называется точка с координатами $(0, 0)^T$ в системе $(O, e)$.
+    		
+    		\item \textit{Фокусом} параболы называется точка $F$ такая, что $F \leftrightarrow_{(O, e)} \big(\frac p2, 0\big)^T$.
+    		
+    		\item \textit{Эксцентриситетом} параболы называется величина $\epsilon := 1$.
+    		
+    		\item \textit{Директрисой} параболы называется прямая $d$, задаваемая в системе $(O, e)$ уравнением $x = -\frac{p}{2}$.
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{theorem}
+    	Пусть парабола задана в канонической системе координат $(O, e)$, $A \in P_2$, $A \leftrightarrow_{(O, e)} (x, y)^T$. Тогда точка $A$ лежит на параболе $\Leftrightarrow$ $AF \hm{=} \rho(A, d)$.
+    \end{theorem}
+    
+    \begin{proof}
+    	Заметим, что выполнены следующие равенства:
+    	\[AF^2 - \rho^2(A, d) = \left(x - \frac{p}{2}\right)^2 + y^2 - \left(x + \frac{p}{2}\right)^2 = y^2 - 2px\]
+    	
+    	Значит, $AF = \rho(A, d) = |x + \frac{p}{2}| \Leftrightarrow y^2 = 2px \lra A$ лежит на параболе.
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $C$ "--- эллипс, гипербола или парабола, $\overline{v} \in V_2$, $\overline{v} \ne \overline 0$ "--- вектор направления. \textit{Диаметром, сопряженным к направлению $\overline{v}$ относительно кривой $C$}, называется прямая, содержащая середины всех хорд $C$, параллельных вектору $\overline{v}$.
+    \end{definition}
+    
+    \begin{note}
+    	Пусть $C$ "--- эллипс, гипербола или парабола, $C$ задана в канонической системе координат $(O, e)$, $\overline{v} \in V_2$, $\overline{v} \ne \overline 0$ "--- вектор направления, $\overline{v} \leftrightarrow_{e} \alpha$. Тогда уравнения диаметров, сопряженных к направлению $\overline{v}$, имеют следующий вид:
+    	\begin{itemize}
+    		\item Если $C$ "--- эллипс, то прямая задается уравнением $\frac{\alpha_1 x}{a^2} + \frac{\alpha_2 y}{b^2} = 0$ и имеет направляющий вектор $\overline a \in V_2$, $\overline{a} \leftrightarrow_{e} (\frac{\alpha_2}{b^2}, -\frac{\alpha_1}{a^2})^T$
+    		\item Если $C$ "--- гипербола, то прямая задается уравнением $\frac{\alpha_1 x}{a^2} - \frac{\alpha_2 y}{b^2} = 0$ и имеет направляющий вектор $\overline a \in V_2$, $\overline{a} \leftrightarrow_{e} (\frac{\alpha_2}{b^2}, \frac{\alpha_1}{a^2})^T$
+    		\item Если $C$ "--- парабола, то прямая задается уравнением $\alpha_2 y = \alpha_1 p$ и имеет направляющий вектор $\overline a \in V_2$, $\overline{a} \leftrightarrow_{e} (1, 0)^T$
+    	\end{itemize}
+    \end{note}
+    
+    \begin{proposition}
+    	Пусть $C$ "--- эллипс или гипербола, $\overline{v} \in V_2$, $\overline{v} \ne \overline 0$ "--- вектор направления. Тогда если диаметр, сопряженный к $\overline{v}$, имеет направляющий вектор $\overline{u}$, то диаметр, сопряженный к $\overline{u}$, имеет направляющий вектор $\overline{v}$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Рассмотрим случай, когда $C$ "--- гипербола, поскольку в случае эллипса доказательство аналогично. Пусть $C$ задана в канонической системе координат $(O, e)$, и пусть $\overline{v} \leftrightarrow_{e} \alpha$. Диаметр, сопряженный к направлению $\overline{v}$, имеет направляющий вектор $\overline{u} \in V_2$, $\overline u \leftrightarrow_{e} (\frac{\alpha_2}{b^2}, \frac{\alpha_1}{a^2})^T$. Диаметр, сопряженный к направлению $\overline{u}$, имеет направляющий вектор $\overline w \in V_2$, $\overline{w} \leftrightarrow_{e} (\frac{\alpha_1}{a^2b^2}, \frac{\alpha_2}{a^2b^2})^T$. Остается заметить, что $\overline{w} \parallel \overline{v}$.
+    \end{proof}
+    

@@ -1,0 +1,148 @@
+\subsection{Скалярное произведение, его свойства, выражение в ортонормированном и произвольном базисе. Формулы для определения расстояния между точками и угла между векторами.}
+
+    \begin{definition}
+    	\textit{Скалярным произведением} ненулевых векторов $\overline{a}, \overline{b} \in V_n$ называется следующая величина:
+    	\[(\overline{a}, \overline{b}) := |\overline{a}||\overline{b}|\cos{\angle(\overline{a}, \overline{b})}\]
+    	
+    	Если один из векторов $\overline{a}, \overline{b}$ "--- нулевой, то скалярное произведение $(\overline{a}, \overline{b})$ считается равным $0$. Другое обозначение скалярного произведения "--- $\overline a \cdot \overline{b}$.
+    \end{definition}
+
+    \begin{definition}
+    	Пусть $\overline{a}, \overline{b} \in V_n$, $\overline{b} \ne \overline{0}$, от точки $O \in P_n$ отложены направленные отрезки $\overline{OA} = \overline{a}$ и $\overline{OB} = \overline{b}$. \textit{Проекцией вектора $\overline{a}$ на вектор $\overline{b}$} называется такой класс эквивалентности, представителем которого является вектор $\overline{OA'}$, где $A'$ "--- ортогональная проекция точки $A$ на прямую $OB$.
+    	
+    	\begin{center}
+    			\scalebox{1}{
+    			\begin{tikzpicture}
+    				\clip (-2.5, -1.8) rectangle (2.5, 1.8);
+    				
+    				\node[draw, circle, inner sep=1pt, fill, black, label={left : $O$}] at (-1.5, -1.2) {};
+    				\draw [->] (-1.5, -1.2) -- (0.8, 1.2) node [above, black] {$A$};
+    				\draw [->] (-1.5, -1.2) -- (1.5, -1.2) node [below, black] {$B$};
+    				\draw [->] (-1.5, -1.2) -- (0.8, -1.2) node [below, black] {$A'$};
+    				\draw [] (0.82, -1.2) -- (0.82, 1.2);
+    				
+    				\draw [] (0.62, -1.0) rectangle (0.82, -1.2);
+    				
+    				\node [] at (-0.5, 0.4) {$\overline{a}$};
+    				\node [] at (-0.2, -0.9) {$\pr_{\overline{b}}\overline{a}$};
+    				\node [] at (1.15, -0.9) {$\overline{b}$};
+    				
+    				\node[draw, circle, inner sep=1pt, fill, black] at (0.82, 1.22) {};
+    				\node[draw, circle, inner sep=1pt, fill, black] at (0.82, -1.2) {};
+    				\node[draw, circle, inner sep=1pt, fill, black] at (1.52, -1.2) {};
+    		\end{tikzpicture}}
+    	\end{center}
+    	
+    	Обозначение "--- $\pr_{\overline{b}}\overline{a}$.
+    \end{definition}
+
+    \begin{proposition}[линейность проекции]
+    	Для любых $\overline{a}, \overline{b} \in V_n$, $\overline{b} \ne \overline{0}$, выполнено следующее:
+    	\begin{enumerate}
+    		\item $\pr_{\overline{b}}(\overline{a_1} + \overline{a_2}) = \pr_{\overline{b}}\overline{a_1} + \pr_{\overline{b}}\overline{a_2}$
+    		\item $\forall \lambda \in \R: \pr_{\overline{b}}(\lambda \overline{a}) = \lambda \pr_{\overline{b}}\overline{a}$
+    	\end{enumerate}
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item Пусть $\overline{OA_1} = \overline{a_1}$, $\overline{A_1A_2} = \overline{a_2}$, $\overline{OB} = \overline{b}$. Проведем через $A_1$ прямую $l$, параллельную отрезку $OB$. Пусть $A_1'$ "--- ортогональная проекция точки $A_1$ на $OB$, $A_2'$ "--- ортогональная проекция точки $A_2$ на $l$, $A_2''$ "--- ортогональная проекция точки $A_2'$ на $OB$. Тогда $l \perp (A_2A_2'A_2'')$, и, следовательно, $OB \perp A_2A_2''$. Значит, $\overline{OA_2''} = \pr_{\overline{b}}(\overline{a_1} + \overline{a_2})$, при этом $\overline{OA_2''} = \overline{OA_1} + \overline{A_1A_2''} \hm= \overline{OA_1'} + \overline{A_1A_2'} = \pr_{\overline{b}}\overline{a_1} + \pr_{\overline{b}}\overline{a_2}$.
+    		
+    		\item Если $\lambda = 0$, то утверждение, очевидно, верно. Пусть теперь $\lambda \ne 0$, тогда рассмотрим направленные отрезки $\overline{OA_1} = \overline{a}$, $\overline{OA_2} = \lambda\overline{a}$, $\overline{OB} = \overline{b}$. Пусть $A_1'$ "--- ортогональная проекция точки $A_1$ на $OB$, $A_2'$ "--- ортогональная проекция точки $A_2$ на $OB$. По определению умножения вектора на скаляр, $\triangle A_1OA_1' \hm{\sim} \triangle A_2OA_2'$, причем коэффициент подобия равен $|\lambda|$, откуда $\overline{OA_2'} = \lambda \overline{OA_1'}$, то есть $\pr_{\overline{b}}(\lambda \overline{a}) \hm{=} \lambda \pr_{\overline{b}}\overline{a}$.\qedhere
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{theorem}
+    	Скалярное произведение обладает следующими свойствами:
+    	\begin{enumerate}
+    		\item $\forall \overline{a} \in V_n: \overline{a} \ne \overline{0} \Leftrightarrow (\overline{a}, \overline{a}) > 0$
+    		\item $\forall \overline{a}, \overline{b} \in V_n: (\overline{a}, \overline{b}) = (\overline{b}, \overline{a})$ (симметричность)
+    		\item $\forall \overline{a_1}, \overline{a_2}, \overline{b} \in V_n: (\overline{a_1} + \overline{a_2}, \overline{b}) = (\overline{a_1}, \overline{b}) + (\overline{a_2}, \overline{b})$
+    		
+    		$\forall \lambda \in \R: \forall \overline{a}, \overline{b} \in V_n: (\lambda\overline{a}, \overline{b}) = \lambda(\overline{a}, \overline{b})$ (линейность по первому аргументу)
+    	\end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item $\overline{a} \ne \overline{0} \Leftrightarrow |\overline{a}| > 0 \Leftrightarrow (\overline{a}, \overline{a}) = |\overline{a}|^2 > 0$
+    		\item $(\overline{a}, \overline{b}) = |\overline{a}||\overline{b}|\cos{\angle(\overline{a}, \overline{b})} = (\overline{b}, \overline{a})$
+    		\item Для случаев, когда $\overline{b} = \overline{0}$ или $\overline{a_1} \parallel \overline{a_2} \parallel \overline{b}$, утверждение, очевидно, верно. В других случаях воспользуемся следующими равенствами:
+    		\[(\overline{a_1} + \overline{a_2}, \overline{b}) = (\pr_{\overline{b}}(\overline{a_1} + \overline{a_2}), \overline{b}) = (\pr_{\overline{b}}\overline{a_1} + \pr_{\overline{b}}\overline{a_2}, \overline{b})\]
+    		
+    		Так как $\pr_{\overline{b}}\overline{a_1} \parallel \pr_{\overline{b}}\overline{a_2} \parallel \overline{b}$, то:
+    		\[(\pr_{\overline{b}}\overline{a_1} + \pr_{\overline{b}}\overline{a_2}, \overline{b}) = (\pr_{\overline{b}}\overline{a_1}, \overline{b}) + (\pr_{\overline{b}}\overline{a_2}, \overline{b}) = (\overline{a_1}, \overline{b}) + (\overline{a_2}, \overline{b})\]
+    		
+    		Доказательство второй части свойства аналогично.\qedhere
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{note}
+    	Линейность скалярного произведения относительно второго аргумента также верна в силу симметричности.
+    \end{note}
+    
+    \begin{proposition}
+    	Пусть $e$ "--- ортонормированный базис в $V_n$, $\overline{a}, \overline{b} \hm{\in} V_n$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда выполнены следующие равенства:
+    	\[(\overline{a}, \overline{b}) = \alpha^T\beta = \sum_{i = 1}^{n}\alpha_i\beta_i\]
+    \end{proposition}
+    
+    \begin{proof}
+    	\[(\overline{a}, \overline{b}) = \left(\sum_{i = 1}^{n}\alpha_i\overline{e_i}, \sum_{j = 1}^{n}\beta_j\overline{e_j}\right) = \sum_{i = 1}^{n}\sum_{j = 1}^{n}\alpha_i\beta_j(\overline{e_i}, \overline{e_j}) = \sum_{i = 1}^{n}\alpha_i\beta_i\]
+    	
+    	Получено требуемое.
+    \end{proof}
+
+    \begin{definition}
+    	Пусть $e = (\overline{e_1}, \dots, \overline{e_n})$ "--- базис в $V_n$. \textit{Матрицей Грама} называется следующая матрица:
+    	
+    	\[\Gamma := \left((\overline{e_i}, \overline{e_j})\right) =
+    	\begin{pmatrix}
+    	(\overline{e_1}, \overline{e_1}) & (\overline{e_1}, \overline{e_2}) & \dots & (\overline{e_1}, \overline{e_n}) \\
+    	(\overline{e_2}, \overline{e_1}) & (\overline{e_2}, \overline{e_2}) & \dots & (\overline{e_2}, \overline{e_n}) \\
+    	\vdots & \vdots & \ddots & \vdots \\
+    	(\overline{e_n}, \overline{e_1}) & (\overline{e_n}, \overline{e_2}) & \dots & (\overline{e_n}, \overline{e_n})
+    	\end{pmatrix}\]
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $e$ "--- базис в $V_n$, $\overline{a}, \overline{b} \hm{\in} V_n$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда выполнены следующие равенства:
+    	\[(\overline{a}, \overline{b}) = \alpha^T\Gamma\beta\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Выполнены следующие равенства:
+    	\[\alpha^T(\Gamma\beta) = \alpha^T\begin{pmatrix}
+    	\sum_{j = 1}^{n}\beta_j(\overline{e_1}, \overline{e_j}) \\
+    	\sum_{j = 1}^{n}\beta_j(\overline{e_2}, \overline{e_j}) \\
+    	\vdots\\
+    	\sum_{j = 1}^{n}\beta_j(\overline{e_n}, \overline{e_j})
+    	\end{pmatrix} =  \sum_{i = 1}^{n}\sum_{j = 1}^{n}\alpha_i\beta_j(\overline{e_i}, \overline{e_j}) = \left(\sum_{i = 1}^{n}\alpha_i\overline{e_i}, \sum_{j = 1}^{n}\beta_j\overline{e_j}\right) = (\overline{a}, \overline{b})\]
+    
+    	Получено требуемое.
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $e$ "--- ортонормированный базис в $V_n$, $\overline{a}, \overline{b} \hm{\in} V_n$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда выполнены следующие равенства:
+    	\begin{enumerate}
+    		\item $|\overline{a}| = \sqrt{\alpha^T\alpha}$
+    		\item Если $\overline{a}, \overline{b} \ne \overline{0}$, то $\cos\angle(\overline{a}, \overline{b}) = \frac{\alpha^T\beta}{|\overline{a}||\overline{b}|}$
+    	\end{enumerate}
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item $|\overline{a}|^2 = (\overline{a}, \overline{a}) \Rightarrow |\overline{a}| = \sqrt{(\overline{a},\overline{a})} = \sqrt{\alpha^T\alpha}$
+    		\item $(\overline{a}, \overline{b}) = |\overline{a}||\overline{b}|\cos\angle(\overline{a}, \overline{b}) \Rightarrow \cos\angle(\overline{a}, \overline{b}) = \frac{(\overline{a}, \overline{b})}{|\overline{a}||\overline{b}|} = \frac{\alpha^T\beta}{|\overline{a}||\overline{b}|}$\qedhere
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $(O, e)$ "--- прямоугольная декартова система координат в $P_n$, $A, B \hm{\in} P_n$, $A \leftrightarrow_{(O, e)} \alpha$, $B \leftrightarrow_{(O, e)} \beta$. Тогда:
+    	\[AB = \sqrt{(\beta - \alpha)^T(\beta - \alpha)}\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Заметим, что $\overline{AB} \leftrightarrow_{e} \beta - \alpha$, тогда:
+    	\[AB = \sqrt{(\overline{AB}, \overline{AB})} = \sqrt{(\beta - \alpha)^T(\beta - \alpha)}\qedhere\]
+    \end{proof}
+    

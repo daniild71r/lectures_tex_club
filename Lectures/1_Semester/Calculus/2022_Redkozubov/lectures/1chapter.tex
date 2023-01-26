@@ -1,0 +1,103 @@
+\section{Действительные числа}
+
+Если $A$ -- множество, $x$ -- объект, то верно: либо $x \in A$, либо $x \notin A$.
+
+\subsection{Множества и функции}
+    
+    \begin{enumerate}
+        \item Два множества равны, если они состоят из одних и тех же элементов.
+        \item Пусть $A$ -- множество, а $Q(x)$ -- корректная формула. Тогда однозначно определено множество $B$ тех элементов $A$, для которых $Q(x)$ -- верно. 
+        \[\varnothing = \{x \in A| \ x \neq x\} \text{ -- пустое множество}\]
+        \[x \in A \cup B \  \lra \  x \in A \  \text{или} \  x \in B\]
+        \[x \in A \cap B \  \lra \  x \in A \  \text{и} \  x \in B\]
+        \[x \in A \setminus B \  \lra \  x \in A \  \text{и} \  x \notin B\]
+        \[A \cap B = \{x \in A| \ x \in B\}\]
+        \[A \setminus B = \{x \in A| \ x \notin B\}\]
+        \item Для объектов $a$ и $b$ существует множество $\{a, b\}$, называемое \textit{"парой"}, т.ч. 
+        \[x \in \{a, b\} \  \lra \ 
+        \left[
+        \begin{array}{ccc}
+            x = a 
+            \\
+            x = b
+        \end{array}
+        \right.
+        \]
+        Если $a = b$, то $\{a,b\}$ записывается как $\{a\}$.
+        \[\{a,b\} = \{b,a\} = \{a\} \cup \{b\}\]
+        \item \[A \subset B \lra \forall x \  \{x \in A \Rightarrow x \in B\}\]
+        \begin{definition}
+            $\displaystyle {\mathcal {P}}(A)$ -- множество всех подмножеств $A$.
+        \end{definition}
+        \begin{example}
+            \[A = \{a,b\}; \  \displaystyle {\mathcal {P}}(A) = \{\varnothing, \{a\}, \{b\}, \{a,b\}\}\]
+        \end{example}
+        \item Существует множество $\mathds{N}$, удовлетворяющее следующим аксиомам:
+        \begin{itemize}
+            \item Для каждого $n \in \mathds{N}$ $\exists !$ элемент из $\mathds{N}$, называемый следующим и обозначаемый $n + 1$.
+            \item $\exists !$ $1 \in \mathds{N}$, который не является следующим ни для какого элемента $\mathds{N}$.
+            \item Если $n, m \in \mathds{N}$ и $n \neq m$, то $n + 1 \neq m + 1$.
+            \item \textbf{Аксиома индукции}: Если $M \subset \mathds{N}$, т.ч. $1 \in M$ и $\forall n \ \{n \in M \Rightarrow \ n + 1 \in M\}$, то $M = \mathds{N}$.
+        \end{itemize}
+        Такое множество называется \textit{множеством натуральных чисел}.
+    \end{enumerate}
+    
+\subsection{Метод математической индукции}
+
+    Пусть имеются утверждения $P(n), n \in \mathds{N}$. Если $P(1)$ истинно и $(P(n) \Rightarrow P(n + 1))$ -- верно, то все $P(n)$ -- истинны.
+    \begin{proof}
+        $M = \{n \in \mathds{N}| \  P(n) \text{ -- истинно}\}$, тогда $1 \in M$, $(n \in M \Rightarrow n + 1 \in M) \Rightarrow M = \mathds{N}$.
+    \end{proof}
+    
+    На $\mathds{N}$ определены следующие операции:
+    \begin{itemize}
+        \item $x \in \mathds{N} \Rightarrow x + 1 \in \mathds{N}$ (уже определено)
+        \item Если определено $x+n$, то $x + (n + 1) = (x + n) + 1$ -- следующий элемент для $x + n$
+        \item $nx$
+        \item $(n+1)x = nx + x$
+    \end{itemize}
+    
+    Порядок элементов:
+    
+    \begin{enumerate}
+        \item $x < y \lra \exists n \in \mathds{N}: y = x + n$
+        \item $x \leq y \lra x < y \text{ или } x = y$
+    \end{enumerate}
+    
+    \begin{theorem}
+        Если $A \subset \mathds{N} \text{ (непустое)}$, то в $A$ существует минимальный элемент, т.е. такое $m \in A$, что $m \leq n \  \forall n \in A$.
+    \end{theorem}
+    
+    \begin{proof}
+        Предположим, что в $A$ нет минимального элемента. Тогда определим $M = \{n \in \mathds{N}| \ \forall k \leq n \Rightarrow k \notin A\}$. Тогда $1 \in M$ (иначе 1 -- минимум), и если $n \in M$, то $n + 1 \notin A$ (иначе $n + 1$ -- минимум). Значит, $n + 1 \in M$. По аксиоме индукции, $M = \mathds{N}$, противоречие.
+    \end{proof}
+    
+    \begin{definition}
+        Пусть $X, Y$ -- множества. Говорят, что задана функция $f: X \longrightarrow Y$, если задана формула $P(x, y)$ т.ч. $\forall x \in X \ \exists ! \ y \in Y$, что $P(x, y)$ -- истинно. $y = f(x)$.
+    \end{definition}
+    
+    \begin{definition}
+        Функиции $f \text{ и } g: X \longrightarrow Y$ называются равными, если 
+        \[f(x) = g(x) \  \forall x \in X\]
+    \end{definition}
+    
+    \subsubsection*{Терминология:}
+    
+    Пусть $f: X \longrightarrow Y$.
+    \begin{enumerate}
+        \item $X$ -- область определения;
+        \item $f(A) = \{f(x)| \  x \in A\}$ -- образ множества $A \subset X$ при $f$;
+        \item $f(x)$ -- множество значений;
+        \item $f^{-1}(B) = \{x \in X| \  f(x) \in B\}$ -- прообраз $B \subset Y$ при $f$;
+        \item $id_{x}: X \longrightarrow X$; $id_{x} = x$ -- тождественная функция;
+        \item Пусть $f: X \longrightarrow Y$, $g: Y \longrightarrow Z$. Тогда функция $g_{o}f: X \longrightarrow Z$ называется композицией функций $f \text{ и } g$.
+    \end{enumerate}
+    
+    \begin{example}
+        $f: \mathds{N} \longrightarrow \mathds{N}$, $f(n) = n^2$ \ | \  $g: \mathds{N} \longrightarrow \mathds{N}$, $g(n) = n + 1$
+        \\
+        $f_{o}g: \mathds{N} \longrightarrow \mathds{N}, \  f_{o}g(n) = (n + 1)^2$
+        \\
+        $g_{o}f: \mathds{N} \longrightarrow \mathds{N}, \  g_{o}f(n) = n^2 + 1$
+    \end{example}
+    

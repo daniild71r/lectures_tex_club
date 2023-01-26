@@ -1,0 +1,154 @@
+
+    \begin{definition}
+        Последовательность $\{a_{n}\}$ называется \textit{бесконечно малой} (б.м.), если $\lim_{n \to \infty} a_{n} = 0$.
+    \end{definition}
+    
+    \begin{example}
+        Пусть $\{a_{n}\}$ -- б.м, $\{b_{n}\}$ -- ограничено. Покажем, что $\{a_{n} b_{n}\}$ -- б.м. 
+    \end{example}
+    
+    \begin{proof}
+        $\{b_{n}\}$ -- ограничено $\Rightarrow \exists C > 0 \ \forall n \in \mathds{N} \ (|b_{n}| < C)$ . Зафиксируем $\epsilon > 0$. $\{a_{n}\} \rightarrow 0 \Rightarrow \exists n_{0} \ \forall n \geq n_{0} \ (|a_{n}| < \frac{\epsilon}{C})$. Тогда при $n \geq n_{0} \ (|a_{n} \cdot b_{n}| < \frac{\epsilon}{C}C = \epsilon)$
+        \\
+        Значит, $\{a_{n} \cdot b_{n}\} \rightarrow 0$.
+    \end{proof}
+    
+\subsection{Бесконечные пределы}
+    
+    \begin{definition}
+        1) Говорят, что $\{a_{n}\}$ \textit{стремится} к $+ \infty$, если 
+        \[\forall \epsilon > 0 \  \exists n_{0} \in \mathds{N} \ \forall n \in \mathds{N} \ (n \geq n_{0} \Rightarrow a_{n} > \frac{1}{\epsilon})\]
+        Пишут $\lim_{n \to \infty} a_{n} = + \infty$ или $ a_{n} \rightarrow + \infty$.
+        \\
+        2) Говорят, что $\{a_{n}\}$ \textit{стремится} к $- \infty$, если 
+        \[\forall \epsilon > 0 \  \exists n_{0} \in \mathds{N} \ \forall n \in \mathds{N} \ (n \geq n_{0} \Rightarrow a_{n} < \frac{-1}{\epsilon})\]
+        Пишут $\lim_{n \to \infty} a_{n} = - \infty$ или $ a_{n} \rightarrow - \infty$.
+        \\
+        3) Последовательность $a_{n}$ называется бесконечно большой (б.б.), если $\lim_{n \to \infty} a_{n} = \infty$
+    \end{definition}
+    
+    \textbf{Задача.} Доказать, что если $\{a_{n}\}$ -- б.б., тогда $\{a_{n}\}$ -- неограниченная.
+    
+    \textbf{Замечание.} Если последовательность имеет предел в $\overline{\mathds{R}}$, то он единственный.
+    
+    \begin{theorem}
+        Пусть $a_{n} \leq b_{n}$ для всех $n \geq n_{0}$. Тогда 
+        \begin{enumerate}
+            \item если $\lim_{n \to \infty} a_{n} = + \infty$, то $\lim_{n \to \infty} b_{n} = + \infty$
+            \item если $\lim_{n \to \infty} b_{n} = - \infty$, то $\lim_{n \to \infty} a_{n} = - \infty$
+        \end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}
+        1) Зафиксируем $\epsilon > 0$. По условию $\exists N^{'} \ \forall n \geq N^{'} (a_{n} > \frac{1}{\epsilon})$. Положим $N = max(N^{'}, n_{0})$. Тогда при $n \geq N \  b_{n} \geq a_{n} > \frac{1}{\epsilon}$. Следовательно, $b_{n} \rightarrow + \infty$.
+        \\
+        2) Следует из пункта 1):
+        \[\{b_{n}\} \rightarrow - \infty \Rightarrow \{-b_{n}\} \rightarrow + \infty\]
+        \[\forall n \geq n_{0}: \ -b_{n} \leq -a_{n}\]
+        $\Rightarrow -a_{n} \rightarrow  \infty \Rightarrow a_{n} \rightarrow - \infty$.
+    \end{proof}
+    
+    \textbf{Задача.} Доказать, что теорема верна для $a,b \in \overline{\mathds{R}}$ (с допустимыми операциями).
+    
+    \begin{example}
+        Пусть $\lim_{n \to \infty} a_{n} = x > 0$, $\lim_{n \to \infty} b_{n} = - \infty$. Покажем, что $\lim_{n \to \infty} (a_{n} \cdot b_{n}) = - \infty$.
+    \end{example}
+    
+    \begin{proof}
+        Зафиксируем $\epsilon > 0$. По условию, $\exists N_{1} \  \forall n \geq N_{1} (a_{n} > \frac{x}{2})$, $\exists N_{2} \  \forall n \geq N_{2} (b_{n} < \frac{-1}{\epsilon \frac{x}{2}})$. Положим $N = max(N_{1}, N_{2})$. Тогда при $n \geq N$:
+        \[a_{n} \cdot b_{n} < - \frac{a_{n}}{\epsilon \frac{x}{2}} < - \frac{1}{\epsilon}\]
+    \end{proof}
+    
+\subsection{Монотонные последовательности.}
+
+    \begin{definition}
+        1) Последовательность $\{a_{n}\}$ называется \textit{нестрого(строго)} возрастающей, если $a_{n} \leq a_{n+1}$ ($a_{n} < a_{n+1}$) для всех $n \in \mathds{N}$.
+        \\
+        2) Последовательность $\{a_{n}\}$ называется \textit{нестрого(строго)} убывающей, если $a_{n} \geq a_{n+1}$ ($a_{n} > a_{n+1}$) для всех $n \in \mathds{N}$.
+        \\
+        3) Нестрого возрастающие и нестрого убывающие последовательности называются \textit{монотонными}.
+    \end{definition}
+    
+    \begin{note}
+        \[\forall n \in \mathds{N} (a_{n} \leq a_{n+1}) \Rightarrow \forall m,n \in \mathds{N} (m > n \Rightarrow a_{n} \leq a_{m})\]
+    \end{note}
+    
+    \begin{theorem}{О пределе монотонной последовательности}
+        \\
+        1) Если последовательность $\{a_{n}\}$ нестрого возрастает, то существует $\lim_{n \to \infty} a_{n} = sup\{a_{n}\}$. Если к тому же $\{a_{n}\}$ ограничена сверху, то $\{a_{n}\}$ -- сходящаяся.
+        \\
+        2) Если последовательность $\{a_{n}\}$ нестрого убывает, то существует $\lim_{n \to \infty} a_{n} = inf\{a_{n}\}$. Если к тому же $\{a_{n}\}$ ограничена снизу, то $\{a_{n}\}$ -- сходящаяся.
+    \end{theorem}
+    
+    \begin{proof}
+        1) Пусть $\{a_{n}\}$ ограничена сверху. Тогда $c = sup\{a_{n}\} \in \mathds{R}$. Зафиксируем $\epsilon > 0$. По определению супремума выполнено:
+        $\begin{cases}
+            \forall n \in \mathds{N} (a_{n} \leq c)
+            \\
+            \exists n_{0} \in \mathds{N} (a_{n_{0}} > c - \epsilon)
+        \end{cases}$
+        \\
+        В силу возрастания при $n > n_{0}$
+        \[c - \epsilon < a_{n_{0}} \leq a_{n} \leq c < c + \epsilon\]
+        Значит, $|a_{n} - c| < \epsilon$. Т.к. $\epsilon > 0$ -- любое, то $c = \lim_{n \to \infty} a_{n}$.
+        \\
+        Пусть $\{a_{n}\}$ не огранична сверху, $sup\{a_{n}\} = + \infty$. Зафиксируем $\epsilon > 0$. Тогда $\exists n_{0} \in \mathds{N} (a_{n_{0}} > \frac{1}{\epsilon})$ и в силу возрастания $a_{n} \geq a_{n_{0}} > \frac{1}{\epsilon} \ \forall n \geq n_{0} \Rightarrow \lim_{n \to \infty} a_{n} = + \infty$.
+        \\
+        2) Аналогично пункту 1)
+    \end{proof}
+    
+    \begin{lemma}{Неравенство Бернулли}
+        \\
+        Если $n \in \mathds{N}$ и $x > -1$, то
+        \[(1 + x)^{n} \geq 1 + nx\]
+    \end{lemma}
+    
+    \begin{proof}
+        Докажем М.М.И. по $n$. База: $n = 1$: $1 + x \geq 1 + 1x$ -- верно.
+        \\
+        Пусть неравенство верно для $n$. Тогда
+        \[(1+x)^{n+1} = (1+x)^{n}(1+x) \geq (1+nx)(1+x) \geq 1 + (n+1)x\]
+    \end{proof}
+    
+    \begin{theorem}
+        Для любого $x \in \mathds{R}$ существует конечный $\lim_{n \to \infty} (1 + \frac{x}{n})^{n} = exp (x)$. Кроме того, $exp(x + y) = exp(x) \cdot exp(y)$ для всех $x, y \in \mathds{R}$. 
+    \end{theorem}
+    
+    \begin{proof}
+        1) Докажем сходимость последовательности $a_{n} (x) = (1 + \frac{x}{n})^n$. Зафиксируем $m > |x|$. Тогда при $n \geq m$ верно $a_{n} (x) > 0$.
+        \[\frac{a_{n+1}(x)}{a_{n}(x)} = \frac{\left(1 + \frac{x}{n+1}\right)^{n+1}}{\left(1 + \frac{x}{n}\right)^{n}} = \left(1 + \frac{x}{n}\right)\left(\frac{(1 + \frac{x}{n+1})}{(1 + \frac{x}{n})}\right)^{n+1} = \left(1 + \frac{x}{n}\right)\left(1 - \frac{\frac{x}{n(n+1)}}{1 + \frac{x}{n}}\right)^{n+1}\]
+        \\
+        Выражение
+        \[- \frac{\frac{x}{n(n+1)}}{(1 + \frac{x}{n})} > 0 \text{ при $x < 0$, и $> -1$ при $x \geq 0$}\]
+        \\
+        $\left(1 + \frac{x}{n}\right)\left(1 - \frac{\frac{x}{n}}{1 + \frac{x}{n}}\right) = 1$, следовательно $\{a_{n}(x)\}$ нестрого возрастает при $n \geq m$.
+        \\
+        Т.к. $\{a_{n}(-x)\} \geq \{a_{m}(-x)\} \ \forall n \geq m$, то
+        \[a_{n}(x) \cdot a_{n}(-x) = \left(1 + \frac{x}{n}\right)^{n}\left(1 - \frac{x}{n}\right)^{n} = \left(1 - \frac{x^{2}}{n^{2}}\right)^{n} \leq 1\]
+        \\
+        Следовательно, $a_{n}(x) \leq \frac{1}{a_{n}(-x)} \leq \frac{1}{a_{m}(x)} \ \forall n \geq m$.
+        \\
+        Поэтому, последовательность $\{a_{n}(x)\}$ -- сходится.
+        \\
+        2) При $n > |x + y|$: 
+        \[\left(1 + \frac{x}{n}\right)^{n} \left(1 + \frac{y}{n}\right)^{n} = \left(1 + \frac{x + y}{n} + \frac{xy}{n^{2}}\right)^{n} = \left(1 + \frac{x+y}{n}\right)^{n}\left(1 + \frac{\frac{xy}{n^{2}}}{1 + \frac{x + y}{n}}\right)^{n}\]
+        Положим $\alpha_{n} = \frac{xy}{n + x + y}$.
+        \\
+        Для завершения доказательства достаточно показать, что $\lim_{n \to \infty} \left(1 + \frac{\alpha_{n}}{n}\right)^{n} = 1$.
+        \\
+        Выберем $N$ так, что $|\alpha_{n}| < 1$ при $n \geq N$.
+        \\
+        Поскольку $\left(1 + \frac{\alpha_{n}}{n}\right)^{n}\left(1 - \frac{\alpha_{n}}{n}\right)^{n} = \left(1 - \frac{\alpha_{n}^{2}}{n^{2}}\right)^{n} \leq 1$, по н-ву Бернулли:
+        \[1 + \alpha_{n} \leq \left(1 + \frac{\alpha_{n}}{n}\right)^{n} \leq \frac{1}{\left(1 - \frac{\alpha_{n}}{n}\right)^{n}} \leq \frac{1}{1 - \alpha_{n}}\]
+        $\Rightarrow \text{по теореме о зажатой последовательности } \lim_{n \to \infty} \left(1 + \frac{\alpha_{n}}{n}\right)^{n} = 1$.
+    \end{proof}
+    
+    \begin{note}
+    \[a_{n}(x) \geq a_{m}(x) > 0 \Rightarrow exp(x) > 0\]
+    \end{note}
+    
+    \begin{definition}
+        $e = exp(1)$ -- число "$e$".
+    \end{definition}
+    
+    

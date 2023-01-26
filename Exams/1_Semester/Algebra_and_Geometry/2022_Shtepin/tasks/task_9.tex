@@ -1,0 +1,92 @@
+\subsection{Прямая в пространстве, различные способы задания, их эквивалентность. Формулы для расстояния от точки до плоскости и расстояния между скрещивающимися прямыми в прямоугольной системе координат.}
+    
+    \begin{definition}
+    	Пусть $l \subset P_3$ "--- прямая с направляющим вектором $\overline{a} \in V_3$, $M \in l$, и в декартовой системе координат $(O, e)$ в $P_3$ выполнены соотношения $\overline{a} \leftrightarrow_{e} \alpha$, $M \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$, $\overline{r_0} := \overline{OM}$.
+    	\begin{itemize}
+    		\item \textit{Векторно-параметрическим уравнением прямой} называется следующее семейство уравнений:
+    		\[\overline{r} = \overline{r_0} + t\overline{a},~t \in \mathbb{R}\]
+    		
+    		\item \textit{Параметрическим уравнением прямой} называется следующее семейство систем:
+    		\[\left\{
+    		\begin{aligned}
+    			x = x_0 + t\alpha_1\\
+    			y = y_0 + t\alpha_2\\
+    			z = z_0 + t\alpha_3
+    		\end{aligned}
+    		\right.,~t \in \R
+    		\]
+    		\item \textit{Каноническим уравнением прямой} называется следующая система уравнений:
+    		\[\frac{x - x_0}{\alpha_1} = \frac{y - y_0}{\alpha_2} = \frac{z - z_0}{\alpha_3}\]
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{note}
+    	Множество точек $X \in P_3$ таких, что $X \leftrightarrow_{(O, e)} (x, y, z)^T$, $\overline{r} := \overline{OX}$, являющихся решениями любого из уравнений прямой выше, совпадает с прямой $l$. Действительно, $X \in l \lra MX \parallel l \lra \overline{MX} \parallel \overline{a}$.
+    \end{note}
+    
+    \begin{note}
+    	Для канонического уравнения прямой имеют место следующие соглашения:
+    	\begin{itemize}
+    		\item Если без ограничения общности $\alpha_1 = 0$ и $\alpha_2, \alpha_3 \ne 0$, то следует считать, что исходное уравнение эквивалентно системе уравнений $x = x_0$ и $\frac{y - y_0}{\alpha_2} = \frac{z - z_0}{\alpha_3}$.
+    		
+    		\item Если без ограничения общности $\alpha_1 = \alpha_2 = 0$, то тогда $\alpha_3 \ne 0$, и следует считать, что исходное уравнение эквивалентно системе уравнений $x = x_0$ и $y = y_0$.
+    	\end{itemize}
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $l \subset P_3$ "--- прямая с направляющим вектором $\overline{a}$, и пусть $M \in l$, $\overline{r_0} := \overline{OM}$. \textit{Векторным уравнением прямой} называется следующее уравнение:
+    	\[[\overline{r} - \overline{r_0}, \overline{a}] = \overline{0}\]
+    \end{definition}
+    
+    \begin{note}
+    	Множество точек $X \in P_3$, $\overline{r} := \overline{OX}$, являющихся решениями векторного уравнения прямой, совпадает с прямой $l$. Кроме того, это уравнение можно переписать в следующем виде при $\overline{b} := [\overline{r_0}, \overline{a}]$:
+    	\[[\overline{r}, \overline{a}]= \overline b\]
+    	
+    	Отметим также, что в пространстве прямую также можно задать как пересечение двух плоскостей.
+    \end{note}
+
+    \begin{note}
+    	Уравнения различного типа, задающие прямую, эквивалентны: из каждого из них можно получить любое другое.
+    \end{note}
+    
+    \begin{note}
+    	Рассмотренные способы задания прямой и плоскости позволяют определить \textit{взаимное расположение прямой и плоскости в пространстве}. Пусть в декартовой системе координат $(O, e)$ в $P_3$ плоскость $\nu$ задана общим уравнением $Ax + By + Cz + D = 0$, и пусть прямая $l$ задана векторно-параметрическим уравнением $\overline{r} \hm{=} \overline{r_0} + t\overline{a}$, $\overline{r_0} \leftrightarrow_{e} (x_0, y_0, z_0)^T$, $\overline{a} \leftrightarrow_{e} \alpha$. Тогда:
+    	\begin{itemize}
+    		\item $l \cap \nu \ne \emptyset \text{ и }  l \not\subset \nu \Leftrightarrow \overline{a} \nparallel \nu \Leftrightarrow A\alpha_1 + B\alpha_2 + C\alpha_3 \ne 0$
+    		\item $l \parallel \nu \text{ и } l \not\subset \nu \Leftrightarrow
+    		\left\{\begin{aligned}
+    		&A\alpha_1 + B\alpha_2 + C\alpha_3 = 0\\
+    		&Ax_0 + By_0 + Cz_0 + D \ne 0
+    		\end{aligned}\right.$
+    		\item $l \subset \nu \Leftrightarrow
+    		\left\{\begin{aligned}
+    		&A\alpha_1 + B\alpha_2 + C\alpha_3 = 0\\
+    		&Ax_0 + By_0 + Cz_0 + D = 0
+    		\end{aligned}\right.$
+    	\end{itemize}
+    \end{note}
+    
+    \begin{proposition}
+    	Пусть в прямоугольной декартовой системе координат $(O, e)$ в $P_3$ плоскость $\nu$ задана уравнением $Ax\hm{+}By+Cz+D=0$, $M \in P_3$, $M \leftrightarrow_{(O, e)} (x_0, y_0, z_0)^T$. Тогда расстояние $\rho$ от точки $M$ до плоскости $\nu$ равно следующей величине:
+    	\[\rho = \frac{|Ax_0 + By_0 + Cz_0+D|}{\sqrt{A^2 + B^2 + C^2}}\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Пусть $\overline{n} \in V_3$, $\overline n \leftrightarrow_{e} (A, B, C)^T$ "--- вектор нормали плоскости $\nu$, $\overline{r_0} := \overline{OM}$, и пусть $X \in \nu$, $\overline{r} := \overline{OX}$. Тогда:
+    	\[\rho = |\pr_{\overline{n}}(\overline{r_0} - \overline{r})|
+    	=
+    	\left|\frac{(\overline{r_0} - \overline{r}, \overline{n})}{|\overline{n}|^2}\overline{n}\right|
+    	= 
+    	\frac{|(\overline{r_0} - \overline{r}, \overline{n})|}{|\overline{n}|}
+    	=
+    	\frac{|Ax_0 + By_0 + Cz_0+D|}{\sqrt{A^2 + B^2+C^2}}\qedhere\]
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть скрещивающиеся прямые $l_1, l_2 \subset P_3$ заданы уравнениями $\overline{r} = \overline{r_1} \hm{+} \overline{a_1}t$, $\overline{r} = \overline{r_2} + \overline{a_2}t$. Тогда расстояние $\rho$ между ними равно следующей величине:
+    	\[\rho = \frac{|(\overline{a_1}, \overline{a_2}, \overline{r_1} - \overline{r_2})|}{|[\overline{a_1}, \overline{a_2}]|}\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Искомое расстояние $\rho$ является длиной высоты параллелепипеда, построенного на векторах $\overline{a_1}$, $\overline{a_2}$ и $\overline{r_1} - \overline{r_2}$, проведенной к грани, образованной векторами $\overline{a_1}$, $\overline{a_2}$ и имеющей площадь $|\overline{a_1}||\overline{a_2}|\sin\angle(\overline{a_1}, \overline{a_2}) = |[\overline{a_1}, \overline{a_2}]|$, из чего и следует требуемое.
+    \end{proof}

@@ -1,0 +1,33 @@
+\subsection{Общая декартова система координат, прямоугольная система координат. Связь между координатами направленного отрезка и координатами его конца и начала, задание отрезка и прямой в декартовой системе координат. Замена декартовой системы координат, формулы перехода.}
+
+    \begin{definition}
+    	\textit{Декартовой системой координат} в $P_n$ называется набор $(O, e)$, где $O \in P_n$ "--- \textit{начало системы координат}, $e$ "--- базис в $V_n$. Точка $A \in P_n$ имеет координатный столбец $\alpha$ в данной системе координат, если $\overline{OA} \leftrightarrow_e \alpha$. Обозначение "--- $A \leftrightarrow_{(O, e)} \alpha$. Декартова система координат называется \textit{прямоугольной}, если базис $e$ "--- ортонормированный.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $A \leftrightarrow_{(O, e)} \alpha$, $B \leftrightarrow_{(O, e)} \beta$.  Тогда:
+    	\[\overline{AB} \leftrightarrow_e \beta - \alpha\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Выполнены равенства $\overline{AB} = \overline{OB} - \overline{OA} = e\beta - e\alpha = e(\beta - \alpha)$.
+    \end{proof}
+    
+    \begin{proposition}
+    	Пусть $A \leftrightarrow_{(O, e)} \alpha$, $B \leftrightarrow_{(O, e)} \beta$, и $C \in AB$ "--- такая точка на отрезке $AB$, что $AC : BC = \lambda : (1 - \lambda)$ для некоторого $\lambda \in (0, 1)$. Тогда:
+    	\[C \leftrightarrow_{(O, e)} (1 - \lambda) \alpha + \lambda \beta\]
+    \end{proposition}
+    
+    \begin{proof}
+    	По условию, $\overline{AC} = \lambda \overline{AB}$, тогда:
+    	\[\overline{OC} = \overline{OA} + \overline{AC} = \overline{OA} + \lambda \overline{AB} = e\alpha + \lambda e(\beta - \alpha) = e((1 - \lambda) \alpha + \lambda \beta)\qedhere\]
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $(O, e)$, $(O', e')$ "--- декартовы системы координат в $P_n$ такие, что $e' = eS$ и $O' \leftrightarrow_{(O, e)} \gamma$. Тогда, если $A \leftrightarrow_{(O, e)} \alpha$ и $A \leftrightarrow_{(O', e')} \alpha'$, то:
+    	\[\alpha = S\alpha' + \gamma\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Выполнены равенства $\overline{OA} = e\alpha = \overline{OO'} + \overline{O'A} = e\gamma + e'\alpha' = e\gamma + eS\alpha'$. Тогда, в силу единственности координатного столбца вектора $\overline{OA}$ в базисе $e$, получим, что $\alpha =  S\alpha' + \gamma$.
+    \end{proof}
