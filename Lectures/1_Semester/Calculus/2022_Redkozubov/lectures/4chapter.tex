@@ -1,0 +1,136 @@
+    \begin{definition}
+        Пусть $E \subset \mathds{R}$, $E \neq \varnothing$.  Наименьшая из верхних граней $E$ называется точной верхней гранью(супремумом $sup(E)$). Наибольшая из нижних граней $E$ называется точной нижней гранью (инфинум $inf(E)$). 
+    \end{definition}
+    
+    \[c = sup(E) \lra
+    \begin{cases}
+        \forall x \in E (x \leq c)
+        \\
+        \forall c^{'} < c \  \exists x \in E (x > c^{'})
+    \end{cases}\]
+    
+    \[c = inf(E) \lra
+    \begin{cases}
+        \forall x \in E (x \geq c)
+        \\
+        \forall c^{'} > c \  \exists x \in E (x < c^{'})
+    \end{cases}\]
+    
+    \begin{note}
+        Не всякое $E \neq \varnothing$ имеет точную верхнюю (нижнюю) грань. Необходимым условием их существования является ограниченность сверху/снизу.
+    \end{note}
+    
+    \begin{theorem}
+        \textbf{Принцип полноты Вейерштрасса}
+        \\
+        Всякое непустое ограниченое сверху (снизу) множество имеет точную верхнюю (нижнюю) грань.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $A \subset \mathds{R}, \ A \neq \varnothing$ и $A$ -- ограничено сверху. Рассмотрим $B = \{b \in \mathds{R}| \ \forall a \in A \  (a \leq b)\}$ -- множество верхних граней $A$. $\Rightarrow B \neq \varnothing$ и $A$ лежит левее $B$. Тогда, по аксиоме непрерывности, 
+        \[\exists c \in \mathds{R}: \forall a \in A \ \forall b \in B \ (a \leq c \leq b)\]
+        Имеем, что $c = sup(A)$ (т.к. $a \leq c$). Пусть $\exists c^{'} < c$. Т.к. $c \leq b$, то $c^{'} < b \Rightarrow c^{'} \notin B \Rightarrow c^{'}$ -- не является верхней гранью. Тогда $c = sup(A)$.
+    \end{proof}
+    
+    \begin{theorem}
+        \textbf{Аксиома Архимеда}
+        \[\forall a \in \mathds{R} \ \exists n \in \mathds{N} (n > a)\]
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $\mathds{N}$ ограничено сверху. Тогда, по теореме 4, $\exists k = sup(\mathds{N}) \ \Rightarrow \ k-1$ верхней гранью не является $\Rightarrow \exists n \in \mathds{N}: \ n > k - 1 \ \Rightarrow n + 1 > k$ (!!!) ($k$ -- верхняя грань $\mathds{N}$).
+    \end{proof}
+    $\Rightarrow \mathds{N}$ -- неограничено. 
+    
+    \textbf{Следствие. (целая часть)} $\forall x \in \mathds{R} \  \exists ! \ m \in \mathds{Z} \ (m \leq x < m + 1)$
+    
+    \begin{proof}
+        (1). Пусть $x \geq 0$. Рассмотрим $S = \{n \in \mathds{N}| \ n > x\}$. По аксиоме Архимеда $S \neq \varnothing$ и, значит, $S$ имеет минимальный элемент $p$. Положим $m = p - 1$. Тогда по определению $p$ имеем  $m + 1 > x$ и $m \leq x$ (!!!)
+        \\
+        (2). Пусть $x < 0$. $\exists m^{'} \in \mathds{Z} \ (m^{'} \leq -x < m^{'} + 1) \lra (-m^{'} - 1 < x \leq -m^{'})$. \[m =
+        \begin{cases}
+            -m^{'} \text{, если }x = -m^{'}
+            \\
+            -m^{'} - 1 \text{, иначе}
+        \end{cases}\]
+        Тогда $m \leq x < m + 1$
+        \\
+        (3). Пусть $m_{1} \leq x < m_{1} + 1$, $m_{2} \leq x < m_{2} + 1$. Тогда 
+        \[-1 \leq x - m_{1} < 1, \ -1 \leq x - m_{2} < 1 \Rightarrow\]
+        \[\Rightarrow -1 < m_{1} - m_{2} < 1 \Rightarrow m_{1} - m_{2} = 0 \lra m_{1} = m_{2}\]
+    \end{proof}
+    
+    \textbf{Следствие 1.} $\forall x \in \mathds{R} \  \exists ! \ m \in \mathds{Z} \ (m \leq x < m + 1)$. ($[x]$ -- \textit{целая часть} $x$).
+    
+    \textbf{Следствие 2.} $\forall a, b \in \mathds{R}, \  a < b, \ \exists r \in \mathds{Q} \ (a < r < b)$.
+    
+    \begin{proof}
+        По аксиоме Архимеда $\exists n > \frac{1}{b - a}$, т.е. $\frac{1}{n} < b - a$.
+        \\
+        $r = \frac{[na] + 1}{n}: r \in \mathds{Q} \text{ и } r > \frac{na - 1 + 1}{n} = a \text{ и } r \leq \frac{na + 1}{n} = a + \frac{1}{n} < b$.
+        \\
+        $\Rightarrow \mathds{Q}$ всюду в $\mathds{R}$.
+    \end{proof}
+    
+    \begin{definition}
+        Пусть $a$ -- вещественное число. Положим $a^{1} = a, \ a^{n+1} = a^{n}a$
+    \end{definition}
+    
+    \textbf{Задача.} Докажите, что $(a + b)^{n} = \sum\limits_{k=0}^n C^{k}_{n}a^{k}b^{n - k}$, где $C^{k}_{n} = \frac{n!}{k!(n - k)!}$
+    
+    \begin{definition}
+        $\overline{\mathds{R}} = \mathds{R} \cup \{-\infty;+\infty\}$ -- расширенная числовая прямая.
+        \\
+        При этом $\forall x \in \mathds{R} (-\infty < x < +\infty)$.
+        \\
+        Допустимые операции для любого $x \in \mathds{R}$:
+        
+        \begin{enumerate}
+            \item $x + (+\infty) = x - (-\infty) = +\infty$
+            \item $x + (-\infty) = x - (+\infty) = -\infty$
+            \item $\frac{x}{+\infty} = \frac{x}{-\infty} = 0$
+            \item $x \cdot \pm \infty = \pm \infty$ при $x > 0$, $\mp \infty$ при $x < 0$
+            \item $+\infty \pm (\pm \infty) = +\infty$
+            \\
+            $-\infty \mp (\pm \infty) = -\infty$
+            \\
+            $\pm \infty \cdot (\pm \infty) = \pm \infty$
+            \\
+            $\pm \infty \cdot (\mp \infty) = \- \infty$
+        \end{enumerate}
+        
+        Недопустимые операции:
+        
+        \begin{enumerate}
+            \item $+ \infty - (+ \infty)$
+            \item $0 \cdot (\pm \infty)$
+            \item $+ \infty + (- \infty)$
+            \item $- \infty + (+ \infty)$
+            \item $\frac{\pm \infty}{\pm \infty}$
+        \end{enumerate}
+    \end{definition}
+    
+    \textbf{Соглашение.} Пусть $E \subset \mathds{R}$. Если $E$ неограничено сверху, то будем писать $sup(E) = + \infty$. Если $E$ неограничено снизу, то будем писать $inf(E) = - \infty$.
+    
+    \begin{definition}
+        Пусть $I \subset \mathds{R}$. $I$ называется промежутком, если $\forall a,b \in I \  \forall x \in \mathds{R} \  (a \leq x \leq b \Rightarrow x \in I)$.
+    \end{definition}
+    
+    \begin{lemma}
+        Любой промежуток -- одно из следующих множеств:
+        \[\varnothing, \ \mathds{R}, \text{ луч}, \text{ прямая}, \text{ отрезок}, \text{ интервал}, \text{ полуинтервал}\]
+    \end{lemma}
+    
+    \begin{proof}
+        Пусть $I$ -- промежуток, $I \neq \varnothing$. Положим $a = inf(I), \ b = sup(I)$, где $\{a,b\} \subset \overline{\mathds{R}}$. Если $a = b$, то $I = \{a\}$ (вырожденный отрезок). Пусть $a < b$. Если $a < x < b$, то по определению точных граней
+        \[\exists x^{''}, x^{'} \in I \  (x ^{'} < x < x^{''}) \Rightarrow x \in I\]
+        Следовательно, $(a,b) \subset I \subset [a, b]$ (в $\overline{\mathds{R}}$).
+    \end{proof}
+
+\section{Предел последовательности}
+
+    Если задана функция $a: \mathds{N} \longrightarrow A$, то говорят, что задана последовательность элементов множества $A$.
+    
+    \begin{definition}
+        Пара $(n, a(n))$ -- $n$-ый член последовательности $a$ (обозначается $a_{n}$). Сама последовательность обозначается $\{a_{n}\}$, или $\{a_{n}\}^{+ \infty}_{n = 1}$, или $a_{n}$, $n \in \mathds{N}$. Если $A = \mathds{R}$, то $\{a_{n}\}$ называется числовой.
+    \end{definition}

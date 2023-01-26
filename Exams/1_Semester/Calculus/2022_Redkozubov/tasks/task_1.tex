@@ -1,0 +1,125 @@
+\section{1. Множество действительный чисел $\R$ как полное упорядоченное поле. Точные грани числовых множеств. Принцип полноты Вейерштрасса. Аксиома Архимеда.}
+
+    \begin{definition}
+        Непустое множество $F$ называется \textit{полем}, если на нём заданы операции сложения $"+": F \times F \to F$, произведения $"\cdot": F \times F \to F$, удовлетворяющее следующим аксиомам:
+        \begin{enumerate}
+            \item $\forall a, b \in F: a+b = b+a, \  a \cdot b = b \cdot a$ (коммутативность).
+            \item $\forall a, b, c \in F: (a + b) + c = a + (b + c), \ (a \cdot b) \cdot c = a \cdot (b \cdot c)$ (ассоциативность).
+            \item $\exists 0_{f} \in F: \forall a \in F \ \  a + 0_{f} = 0_{f} + a = a$ (существование нуля).
+            \item $\forall a \in F: \exists -a \in F \ \  a + (-a) = 0_{f}$ (существование противоположного).
+            \item $\exists 1_{f} \in F \setminus \{0_{f}\}: \forall a \in F \ \  a \cdot 1_{f} = a$ (существование единицы).
+            \item $\forall a \in F \setminus \{0_{f}\}: \exists a^{-1} \in F \ \ a \cdot a^{-1} = 1_{f}$ (существование обратного).
+            \item $\forall a, b, c \in F: (a + b) \cdot c = a \cdot c + b \cdot c$ (дистрибутивность).
+        \end{enumerate}
+    \end{definition}
+
+    \begin{definition}
+        Поле $F$ называется \textit{упорядоченным}, если на нём выполняется \textbf{аксиома порядка}.
+    \end{definition}
+
+    \begin{theorem}{\textbf{Аксиома порядка}}\\
+        Существует ненулевое $P \subset F$:
+        \begin{enumerate}
+            \item $\forall a,b \in P \ (a+b \in P \text{ и } ab \in P)$.
+            \item $\forall a \in F$ верно ровно одно: либо $a \in P$, либо $-a \in P$, либо $a = 0_{f}$.
+        \end{enumerate}
+    \end{theorem}
+
+    Будем писать, $a < b \ (b > a)$, если $b - a \in P$. Будем писать, $a \leq b \ (b \geq a)$, если $a < b$ или $a = b$.
+
+    \begin{note}
+        $\forall a,b \in F$ либо $a < b$, либо $a > b$, либо $a = b$.
+    \end{note}
+
+    \begin{definition}
+        Пусть $A, B$ -- подмножества упорядоченного поля. Будем говорить, что $A$ лежит левее $B$, если $\forall a \in A$, $\forall b \in B$: $a \leq b$. Будем говорить, что элемент $c$ разделяет $A$ и $B$, если $A$ лежит левее $\{c\}$, и $\{c\}$ лежит левее $B$, т.е. $\forall a \in A \ \forall b \in B (a \leq c \leq b)$. 
+    \end{definition}
+    
+    \begin{definition}
+        Упорядоченное поле $F$ называется \textit{полным}, если на нем выполняется \textbf{аксиома непрерывности}.
+    \end{definition}
+
+    \begin{theorem}{\textbf{Аксиома непрерывности}}\\
+        Пусть $A, B \subset F (A \neq \varnothing, B \neq \varnothing)$, причём $A$ лежит левее $B$. Тогда $\exists c \in F$, разделяющий $A$ и $B$.
+    \end{theorem}
+
+    \begin{definition}
+        Полное упорядоченное поле, содержащее множество рациональных чисел, называется полем действительных чисел и обозначается $\R$. Элементы поля $\R$ -- действительные числа.
+    \end{definition}
+    
+    \begin{definition}
+        Пусть $E \subset \R$. Множество $E$ называется \textit{ограниченным} сверху, если $\exists m \in \R \  \forall x \in E \ (x \leq m)$. m -- верхняя грань.
+        Множество $E$ называется \textit{ограниченным} снизу, если $\exists m \in \R \  \forall x \in E \ (x \geq m)$.
+        Множество $E$ называется \textit{ограниченным}, если $E$ ограниченно и сверху, и снизу.
+    \end{definition}
+    
+    \begin{definition}
+        Пусть $E \subset \R$, $E \neq \varnothing$.  Наименьшая из верхних граней $E$ называется точной верхней гранью (супремумом $sup(E)$). Наибольшая из нижних граней $E$ называется точной нижней гранью (инфимум $inf(E)$). 
+    \end{definition}
+    
+    \[c = sup(E) \lra
+    \begin{cases}
+        \forall x \in E (x \leq c)
+        \\
+        \forall c^{'} < c \  \exists x \in E (x > c^{'})
+    \end{cases}\]
+    
+    \[c = inf(E) \lra
+    \begin{cases}
+        \forall x \in E (x \geq c)
+        \\
+        \forall c^{'} > c \  \exists x \in E (x < c^{'})
+    \end{cases}\]
+    
+    \begin{note}
+        Не всякое $E \neq \varnothing$ имеет точную верхнюю (нижнюю) грань. Необходимым (и достаточным) условием их существования является ограниченность сверху/снизу.
+    \end{note}
+
+    \begin{theorem}{\textbf{Принцип полноты Вейерштрасса}}\\
+        Всякое непустое ограниченое сверху (снизу) множество имеет точную верхнюю (нижнюю) грань.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $A \subset \R, \ A \neq \varnothing$ и $A$ -- ограничено сверху. Рассмотрим $B = \{b \in \R| \ \forall a \in A \  (a \leq b)\}$ -- множество верхних граней $A$. $\Rightarrow B \neq \varnothing$ и $A$ лежит левее $B$. Тогда, по аксиоме непрерывности, 
+        \[\exists c \in \R \ \forall a \in A \ \forall b \in B \ (a \leq c \leq b)\]
+        Имеем, что $a \leq c \ \forall a \in A$. Пусть $\exists c^{'} < c$. Т.к. $c \leq b$, то $c^{'} < b \Rightarrow c^{'} \notin B \Rightarrow c^{'}$ -- не является верхней гранью. Тогда $c = sup(A)$.
+        \\
+        Существование инфимума у непустого ограниченного снизу множества устанавливается аналогично.
+    \end{proof}
+
+    \begin{theorem}{\textbf{Аксиома Архимеда}}\\
+        \[\forall a \in \R \ \exists n \in \N (n > a)\]
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $\N$ ограничено сверху. Тогда, по теореме Вейерштрасса, $\exists k = sup(\N) \ \Rightarrow \ k-1$ верхней гранью не является $\Rightarrow \exists n \in \N: \ n > k - 1 \ \Rightarrow n + 1 > k$ -- противоречие.
+    \end{proof}
+    $\Rightarrow \N$ -- неограничено. 
+
+    \textbf{Следствие. (целая часть)} $\forall x \in \R \  \exists ! \ m \in \Z \ (m \leq x < m + 1)$.
+    
+    \begin{proof}
+        (1). Пусть $x \geq 0$. Рассмотрим $S = \{n \in \N| \ n > x\}$. По аксиоме Архимеда $S \neq \varnothing$ и, значит, $S$ имеет минимальный элемент $p$. Положим $m = p - 1$. Тогда по определению $p$ имеем  $m + 1 > x$ и $m \leq x$.
+        \\
+        (2). Пусть $x < 0$. $\exists m^{'} \in \Z \ (m^{'} \leq -x < m^{'} + 1) \lra (-m^{'} - 1 < x \leq -m^{'})$. \[m =
+        \begin{cases}
+            -m^{'} \text{, если }x = -m^{'}
+            \\
+            -m^{'} - 1 \text{, иначе}
+        \end{cases}\]
+        Тогда $m \leq x < m + 1$.
+        \\
+        (3). Пусть $m_{1} \leq x < m_{1} + 1$, $m_{2} \leq x < m_{2} + 1$. Тогда 
+        \[0 \leq x - m_{1} < 1, \ 0 \leq x - m_{2} < 1 \Rightarrow\]
+        \[\Rightarrow -1 < m_{1} - m_{2} < 1 \Rightarrow m_{1} - m_{2} = 0 \lra m_{1} = m_{2}\]
+    \end{proof}
+    
+    \textbf{Следствие 2.} $\forall a, b \in \R, \  a < b, \ \exists r \in \Q \ (a < r < b)$.
+    
+    \begin{proof}
+        По аксиоме Архимеда $\exists n > \frac{1}{b - a}$, т.е. $\frac{1}{n} < b - a$.
+        \\
+        $r = \frac{[na] + 1}{n}: r \in \Q \text{ и } r > \frac{na - 1 + 1}{n} = a \text{ и } r \leq \frac{na + 1}{n} = a + \frac{1}{n} < b$.
+        \\
+        $\Rightarrow \Q$ всюду в $\R$.
+    \end{proof}

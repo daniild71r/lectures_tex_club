@@ -1,0 +1,196 @@
+\section{8. Локальные экстремумы. Необходимое условие экстремума дифференцируемой функции. Теорема Ролля. Теоремы Лагранжа и Коши о среднем значении. Теорема Дарбу о промежуточных значениях производной. Условия монотонности и постоянства дифференцируемой функции. Достаточное условие экстремума функции в терминах первой производной. Правило Лопиталя для раскрытия неопределенностей вида $\frac{0}{0}$. Правило Лопиталя для раскрытия неопределенностей вида $\frac{\infty}{\infty}$.}
+
+    \begin{definition}
+        Пусть $f$ определена на интервале, содержащем точку $a$.\\
+        Точка $a$ называется \textit{точкой локального максимума (строгого)}, если 
+        \[\exists \delta > 0 \ \ \forall x \in \mathring{B}_{\delta}(a) \ (f(x) \underset{(<)}{\leq} f(a))\]
+        Аналогично определяются \textit{точки локального минимума (строгого)}. Точки локального максимума или минимума называются \textit{точками локального экстремума}.
+    \end{definition}
+    
+    \begin{theorem}{Ферма. (необходимое условие экстремума дифференцируемой функции)}\\
+        Пусть $f$ определена на интервале содержащем точку $a$.\\
+        Если $a$ -- точка локального экстремума $f$ и $\exists f'(a)$, то $f'(a) = 0$.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть для определенности $a$ -- точка локального максимума. По определению:
+        \[\exists \delta > 0 \ \ \forall x \in \mathring{B}_{\delta}(a) (f(x) \leq f(a)\]
+        Тогда $\frac{f(x) - f(a)}{x - a} \leq 0$ на $(a, a + \delta) \Rightarrow f'(a) = f'_{+}(a) = \lim_{x \to a + 0}\frac{f(x) - f(a)}{x - a} \leq 0 \Rightarrow f'(a) \leq 0$.\\
+        $\frac{f(x) - f(a)}{x - a} \geq 0$ на $(a - \delta, a) \Rightarrow f'(a) = f'_{-}(a) = \lim_{x \to a - 0}\frac{f(x) - f(a)}{x - a} \geq 0 \Rightarrow f'(a) \geq 0$.
+        \\
+        $\Rightarrow f'(a) = 0$
+    \end{proof}
+    
+    \begin{note}{Геометрический смысл.}\\
+        Если в точке экстремума существует касательная, то она горизонтальна.
+    \end{note}
+    
+    \begin{theorem}{Ролль.}
+        \begin{enumerate}
+            \item $f$ -- непрерывна на $[a, b]$;
+            \item $f$ -- дифференцируема на $(a,b)$;
+            \item $f(a) = f(b)$;
+        \end{enumerate}
+        $\Rightarrow \exists c \in (a,b) \ (f'(c) = 0)$.
+    \end{theorem}
+    
+    \begin{proof}
+        По теореме Вейерштрасса $\exists x_{1}, x_{2} \in [a, b] \ (f(x_{1}) \leq f(x) \leq f(x_{2})) \ \ \forall x \in [a, b]$.
+        Если $x_{1}, x_{2} \in \{a,b\}$ (концевые точки), то $f(x_{1})=f(x_{2}) \Rightarrow f$ постоянна на $[a, b]$. В качестве $c$ можно взять любую точку из $(a,b)$.
+        \\
+        Если $x_{1}, x_{2} \notin \{a,b\}$, то $\exists x_{i} \in (a,b)$. Тогда по теореме Ферма $f'(x_{i}) = 0$ и $c = x_{i}$.
+    \end{proof}
+    
+    \begin{theorem}{Лагранж.}
+        \begin{enumerate}
+            \item $f$ -- непрерывна на $[a, b]$;
+            \item $f$ -- дифференцируема на $(a,b)$;
+        \end{enumerate}
+        $\Rightarrow \exists c \in (a,b) \ (f(b) - f(a) = f'(c)(b-a))$
+    \end{theorem}
+    
+    \begin{proof}
+        Рассмотрим $h(x) = f(x) - \frac{f(b) - f(a)}{b - a}(x - a) - f(a)$. Тогда $h$ -- непрерывна на $[a, b]$, $h$ -- дифференцируема на $(a,b)$ и $h(a) = 0 = h(b)$.\\
+        Следовательно, по теореме Ролля, $\exists c \in (a,b) \ h'(c) = 0 \lra f'(c) - \frac{f(b) - f(a)}{b - a} = 0$.
+    \end{proof}
+    
+    \begin{note}{Геометрический смысл.}\\
+        $f'(c) = \frac{f(b) - f(a)}{b - a}$.
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[->] (-0.1,0) -- (3,0) node[below] {$x$};
+                \draw[->] (0,0) -- (0,3) node[left] {$y$};
+                \draw[very thick] (0.5,0.5) to [out=80, in=190] (2.5,2.5);
+                \draw[very thick, ->] (0.5,0.5) to [out=45, in=225] (2.5,2.5);
+                \draw[very thick] (0.5,1.2) to [out=45, in=225] (2.5,3.2);
+                \draw[very thick, dashed] (0.5,0) -- (0.5,0.5);
+                \draw[very thick, dashed] (2.5,0) -- (2.5, 2.5);
+                \draw[very thick, dashed] (1.18,0) -- (1.2,1.9);
+                \node at (3,3.2) {\color{black} $l_{\text{кас}}$};
+                \node at (0.5,-0.2) {\color{black} $a$};
+                \node at (2.5,-0.2) {\color{black} $b$};
+                \node at (1.18,-0.2) {\color{black} $c$};
+            \end{tikzpicture}
+        \end{center}
+        Найдется точка $c$ в которой касательная параллельна хорде.
+    \end{note}
+    
+    \begin{theorem}{Коши.}
+        \begin{enumerate}
+            \item $f, g$ -- непрерывны на $[a, b]$;
+            \item $f, g$ -- дифференцируемы на $(a,b)$;
+            \item $g' \neq 0$ на $(a,b)$;
+        \end{enumerate}
+        $\Rightarrow \exists c \in (a,b) \ (\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)})$.
+    \end{theorem}
+    
+    \begin{proof}
+        Отметим, что $g(b) \neq g(a)$, иначе, по теореме Ролля, $\exists \xi \in (a,b) \ (g'(\xi) = 0)$. Рассмотрим $h(x)=f(x) - \frac{f(b) - f(a)}{g(b) - g(a)}(g(x) - g(a))$. Тогда $h$ -- непрерывна на $[a, b]$ и дифференцируема на $(a,b)$ и $h(a) = h(b) = f(a)$. По теореме Ролля:
+        \[\exists c \in (a,b) \ h'(c) = 0 \ \lra \ f'(c) = \frac{f(b) - f(a)}{g(b) - g(a)}g'(c) = 0.\]
+        Так как $g'(c) \neq 0$, то $\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)}$.
+    \end{proof}
+    
+    \begin{theorem}{Дарбу.}\\
+        Если $f$ дифференцируема на $[a, b]$ и число $s$ лежит между $f'(a)$ и $f'(b)$,
+        то найдется точка $c \in [a, b]$, такая что $f'(c) = s$.
+    \end{theorem}
+    
+    \begin{proof}
+        Если $s$ совпадает с $f'(a)$ или $f'(b)$, то условие очевидно.
+        Пусть для определенности $f'(a) < s < f'(b)$.
+        Рассмотрим $\phi(x) = f(x) - s \cdot x$, тогда $\phi$ дифференцируема на $[a, b]$
+        и $\phi'(a) = f'(a) - s < 0 < f'(b) - s = \phi'(b)$.
+        По теореме Вейерштрасса $\exists c \in [a, b] : \phi(c) = inf_{[a, b]}\phi(x)$. Если $c = a$, то
+        $\frac{\phi(x)-\phi(a)}{x-a} \geq 0$ на $(a, b] \Rightarrow \phi'(a) \geq 0$ -- пришли к противоречию с $\phi'(a) < 0$.
+        Следовательно, $c \neq a$. Аналогично, $c \neq b$. Поэтому $c \in (a, b)$ по теореме Ферма $\phi'(c) = 0 \lra f'(c) = s$.
+    \end{proof}
+    
+    \begin{theorem}{Условия монотонности и постоянства.}\\
+        Пусть $f$ непрерывна на промежутке $I$ и дифференцируема на $int(I)$, тогда
+        \begin{enumerate}
+            \item Функция нестрого возрастает (убывает) на $I$ $\lra f'(x) \geq 0 \ \ \forall x \in int(I)$.
+            \item Если $f'(x) > 0 \ \ \forall x \in int(I)$, то $f(x)$ строго возрастает на I.
+            \item $f$ постоянна на $I$ $\lra f'(x) = 0 \ \ \forall x \in int(I)$.
+        \end{enumerate}
+    \end{theorem}
+    
+    \begin{proof} \ \\
+        (1.$\Rightarrow$) Пусть $f$ нестрого возрастает на $I$, $x \in int(I)$.
+        Тогда $f(y) \geq f(x) \ \ \forall y \in (x, sup(I))$, и значит, $f'(x) = \lim_{y \to x+0} \frac{f(y)-f(x)}{y-x} \geq 0$.\\
+        (1.$\Leftarrow$) Пусть $x, y \in I$, x < y. Тогда по теореме Лагранжа $f(y)-f(x) = f'(c)(y-x)$ для некоторой точки $c \in (x, y)$.
+        Так как $c \in int(I)$, то $f'(c) \geq 0$, и значит, $f(y) \geq f(x)$, то есть $f$ нестрого возрастает на $I$.
+        Доказательство для нестрого убывающей аналогично или может быть сведено к рассмотрению замены $f$ на $-f$.\\
+        (2) Если $f'(x) > 0 \ \ \forall x \in int(I)$, то $f(y) > f(x)$ и $f$ строго возрастает на $I$.\\
+        (3) Пункт вытекает из пункта (1).\\
+        Обратное утверждение пункта (2) неверно. $f(x) = x^3$ строго возрастает на $\R$, но $f'(0) = 0$.
+    \end{proof}
+    
+    \begin{corollary}{Достаточное условие экстремума.}\\
+        Пусть $f$ определена на $(\alpha, \beta)$ и $a \in (\alpha, \beta)$.
+        Пусть $f$ дифференцируема на $(\alpha, \beta) \setminus \{a\}$ и непрерывна в точке $a$.
+        \begin{enumerate}
+            \item Если $f' \geq 0$ на $(\alpha, a)$ и $f' \leq 0$ на $(a, \beta)$, то $a$ -- точка локального максимума функции $f$.
+            (строгого, если неравенство строгое).
+            \item Если $f' \leq 0$ на $(\alpha, a)$ и $f' \geq 0$ на $(a, \beta)$, то $a$ -- точка локального минимума функции $f$.
+            (строгого, если неравенство строгое).
+        \end{enumerate}
+    \end{corollary}
+    
+    \begin{proof}
+        По теореме об условии монотонности $f$ нестрого возрастает на $(\alpha, a)$ и нестрого убывает на $(a, \beta)$. Следовательно, $f(x) \leq f(a) \ \ \forall x \in (\alpha, \beta)$, то есть $a$ - точка локального максимума.
+        Если неравенства строгие, то возрастаение (убывание) строгое, и значит, $f(x) < f(a) \ \ \forall x \in (\alpha, \beta) \setminus \{a\}$.
+    \end{proof}
+    
+    \begin{theorem}{Правило Лопиталя о неопределенности $\frac{0}{0}$.}\\
+        Пусть $-\infty < a < b \leq +\infty$. Если
+        \begin{enumerate}
+            \item $f, g$ дифференцируемы на $(a, b)$.
+            \item $\lim_{x \to a+0} f(x) = \lim_{x \to a+0} g(x) = 0$
+            \item $g'(x) \neq 0$ на $(a, b)$
+            \item $\exists \lim_{x \to a+0} \frac{f'(x)}{g'(x)} \in \overline{\R}$
+        \end{enumerate}
+        Тогда $\exists \lim_{x \to a+0} \frac{f(x)}{g(x)} = \lim_{x \to a+0} \frac{f'(x)}{g'(x)}$.
+    \end{theorem}
+    
+    \begin{proof}
+        Доопределим функции $f, g$ в точке $a$, положив $f(a) = g(a) = 0$,
+        тогда доопределенные функции будут непрервны на $[a, b)$ и по теореме Коши о среднем
+        для каждого $x \in (a, b)$ существует $c \in (a, x)$, такое что \[\frac{f(x)}{g(x)} = \frac{f(x)-f(a)}{g(x)-g(a)} = \frac{f'(c)}{g'(c)}\]
+        Поскольку существует $\lim_{x \to a + 0} \frac{f'(x)}{g'(x)} = \lim_{x \to a + 0} \frac{f'(c)}{g'(c)}$, то существует и $\lim_{x \to a + 0} \frac{f(x)}{g(x)} = \lim_{x \to a + 0} \frac{f'(x)}{g'(x)}$.
+    \end{proof}
+    
+    \begin{theorem}{Правило Лопиталя о неопределенности $\frac{\infty}{\infty}$.}\\
+        Пусть $-\infty < a < b \leq +\infty$. Если
+        \begin{enumerate}
+            \item $f, g$ дифференцируемы на $(a, b)$.
+            \item $\lim_{x \to a+0} g(x) = \pm \infty$
+            \item $g'(x) \neq 0$ на $(a, b)$
+            \item $\exists \lim_{x \to a+0} \frac{f'(x)}{g'(x)} = A \in \overline{\R}$
+        \end{enumerate}
+        Тогда $\exists \lim_{x \to a+0} \frac{f(x)}{g(x)} = \lim_{x \to a+0} \frac{f'(x)}{g'(x)}$.
+    \end{theorem}
+    
+    \begin{proof} \ \\
+        I) A = 0.\\
+        Рассмотрим произвольную $\{x_n\} \subset (a, b), \ x_n \to a$.
+        Покажем, что $\frac{f(x_n)}{g(x_n)} \to 0$. Зафиксируем $\epsilon > 0$.
+        По условию $\exists y \in (a, b): \ \ \forall c \in (a, y) \ (g(c) \neq 0$ и $|\frac{f'(c)}{g'(c)}| < \epsilon)$.
+        Без ограничения общности можно считать, что все $x_n \in (a, y)$.
+        Тогда по теореме Коши о среднем $\ \forall n \in \N \ \exists c_n \in (a, x_n)$
+        \[\frac{f(x_n)}{g(x_n)} = \frac{f(x_n)-f(y)}{g(x_n)-g(y)} \cdot \frac{g(x_n)-g(y)}{g(x_n)} + \frac{f(y)}{g(x_n)} =\] 
+        \[= \frac{f'(c_n)}{g'(c_n)}(1-\frac{g(y)}{g(x_n)}) + \frac{f(y)}{g(x_n)} \Rightarrow\]
+        \[\Rightarrow \lvert\frac{f(x_n)}{g(x_n)}\rvert \leq \epsilon + \epsilon \cdot \lvert\frac{g(y)}{g(x_{n})}\rvert + \lvert \frac{f(y)}{g(x_{n})} \rvert\]
+        Следовательно, $\overline{\lim_{n \to \infty}} \lvert\frac{f(x_n)}{g(x_n)}\rvert \leq \epsilon$.
+        Так как $\epsilon > 0$ -- любое, то $\overline{\lim_{n \to \infty}} |\frac{f(x_n)}{g(x_n)}| = 0$,
+        тогда $\underline{\lim_{n \to \infty}} |\frac{f(x_n)}{g(x_n)}| \leq \overline{\lim_{n \to \infty}} |\frac{f(x_n)}{g(x_n)}| = 0$,
+        и значит, $\exists \lim_{n \to \infty} \frac{f(x_n)}{g(x_n)} = 0$.\\
+        II) Пусть $A \in \R$ -- произвольное число. Рассмотрим $h = f - Ag$.
+        Тогда \[\lim_{x \to a+0} \frac{h'(x)}{g'(x)} = \lim_{x \to a+0} (\frac{f'(x)}{g'(x)} - A) = 0\]
+        Поэтому по пункту (I) $\exists \lim_{x\to a+0} \frac{h(x)}{g(x)} = 0$, то есть $\lim_{x\to a+0} \frac{f(x)}{g(x)} = A$.\\
+        III) $A = +\infty$. Аналогично пункту I зафиксируем $M > 0$, что $\frac{f'(c)}{g'(c)} > M$.
+        Тогда \[\frac{f(x_n)}{g(x_n)} = \frac{f'(c_n)}{g'(c_n)}(1-\frac{g(y)}{g(x_n)}) + \frac{f(y)}{g(x_n)}\]
+        Пусть $(1-\frac{g(y)}{g(x_n)}) > 0$ при $n \geq n_0$.
+        \[\frac{f(x_n)}{g(x_n)} \geq M(1-\frac{g(y)}{g(x_n)}) + \frac{f(y)}{g(x_n)} \to M\]
+        Следовательно, $\underline{\lim_{n \to \infty}} |\frac{f(x_n)}{g(x_n)}| \geq M$.
+        Так как $M > 0$ -- любое, то \[\underline{\lim_{n \to \infty}} \frac{f(x_n)}{g(x_n)} = +\infty\ \Rightarrow \lim_{n \to \infty} \frac{f(x_n)}{g(x_n)} = +\infty\]
+    \end{proof}

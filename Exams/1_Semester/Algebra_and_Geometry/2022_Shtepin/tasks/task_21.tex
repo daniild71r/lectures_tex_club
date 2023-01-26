@@ -1,0 +1,98 @@
+\subsection{Подпространства в линейном пространстве. Сумма и пересечение подпространств. Прямая сумма подпространств, её характеризации. Прямое дополнение подпространства. Связь размерностей суммы и пересечения подпространств.}
+
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство, $U_1, U_2 \le V$. Тогда $U_1 \cap U_2 \le V$.
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{itemize}
+    		\item $U_1 \cap U_2 \ne \emptyset$, поскольку $\overline{0} \in U_1 \cap U_2$
+    		\item Если $\overline{u}, \overline{v} \in U_1 \cap U_2$, то $\overline{u} \in U_1, U_2$ и $\overline{v} \in U_1, U_2$, откуда $\overline{u} + \overline{v} \in U_1, U_2$
+    		\item Если $\overline{u} \in U_1 \cap U_2$, то $\overline{u} \in U_1, U_2$, откуда $\forall \alpha \in F: \alpha\overline{u} \in U_1, U_2$\qedhere
+    	\end{itemize}
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство, $U_1, U_2 \le V$. \textit{Суммой} подпространств $U_1, U_2$ называется следующее множество:
+    	\[U_1 + U_2 := \{\overline{u_1} + \overline{u_2}: \overline{u_1} \hm{\in} U_1, \overline{u_2} \in U_2\}\]
+    	
+    	Аналогично определяется сумма $k$ подпространств $U_1, \dotsc, U_k \le V$.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство над полем $F$, $U_1, \dots, U_k \le V$. Тогда $U_1 + \dots + U_k \le V$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Сначала докажем справедливость утверждения для $U_1 + U_2$:
+    	\begin{itemize}
+    		\item $U_1 + U_2 \ne \emptyset$, поскольку $\overline{0} \in U_1 + U_2$
+    		\item Если $\overline{u_1} + \overline{u_2}, \overline{v_1} + \overline{v_2} \hm{\in} U_1 + U_2$, то $\overline{u_1} + \overline{u_2} + \overline{v_1} + \overline{v_2} = (\overline{u_1} + \overline{v_1}) \hm{+} (\overline{u_2} + \overline{v_2}) \in U_1 + U_2$
+    		\item Если $\overline{u_1} + \overline{u_2} \in U_1 + U_2$, то $\forall \alpha \in F: \alpha(\overline{u_1} + \overline{u_2}) = \alpha\overline{u_1} + \alpha\overline{u_2} \in U_1 + U_2$
+    	\end{itemize}
+    	
+    	Чтобы обобщить утверждение на $U_1, \dots, U_k \le V$, заметим, что сложение подпространств ассоциативно в силу ассоциативности сложения в $V$. Тогда, по индукции, сумма любого числа подпространств образует подпространство в $V$.
+    \end{proof}
+    
+    \begin{note}
+    	Определить сумму $U_1 + \dots + U_k$ можно и другим эквивалентным способом:
+    	\[U_1 + \dots + U_k = \langle U_1\cup\dotsb\cup U_k\rangle\]
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство, $U_1, \dots, U_k \le V$. Сумма подпространств $U := U_1 + \dots + U_k$ называется \textit{прямой}, если для любого вектора $\overline{u} \in U$ существует единственный набор векторов $\overline{u_1} \in U_1, \dots, \overline{u_k} \in U_k$ такой, что $\overline{u} \hm{=} \overline{u_1} + \dots + \overline{u_k}$. Обозначение "--- $U = U_1 \oplus \dots \oplus U_k$.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство, $U_1, \dots, U_k \le V$. Тогда сумма $U_1 + \dots + U_k$ "--- прямая $\Leftrightarrow$ существует единственный набор векторов $\overline{u_1} \in U_1, \dots, \overline{u_k} \hm{\in} U_k$ такой, что $\overline{u_1} + \dots + \overline{u_k} = \overline{0}$.
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{itemize}
+    		\item[$\ra$]По определению прямой суммы, вектор $\overline{0}$ имеет единственное представление в виде суммы векторов из $U_1, \dotsc, U_k$, и оно имеет вид $\overline{0} = \overline{0} + \dotsb + \overline{0}$.
+    		
+    		\item[$\la$]Пусть для вектора $\overline{u} \in U$ и наборов $\overline{u_1} \in U_1, \dots, \overline{u_k} \hm{\in} U_k$ и $\overline{w_1} \in U_1, \dots, \overline{w_k} \hm{\in} U_k$ выполнены следующие равенства:
+    		\[\overline{u} = \overline{u_1} + \dots + \overline{u_k} = \overline{w_1} + \dots + \overline{w_k}\]
+    		
+    		Вычитая третью часть равенства из выше из второй, получим:
+    		\[\overline{0} = (\overline{u_1} - \overline{w_1}) \hm{+} \dots + (\overline{u_k} - \overline{w_k})\]
+    		
+    		Но вектор $\overline{0}$ имеет единственное представление в виде суммы векторов из $U_1, \dotsc, U_k$, поэтому $\overline{u_1} = \overline{w_1}, \dots, \overline{u_k} \hm{=} \overline{w_k}$.\qedhere
+    	\end{itemize}
+    \end{proof}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над полем $F$, $U \le V$. Подпространство $W \le V$ называется \textit{прямым дополнением} подпространства $U$ в пространстве $V$, если сумма $U + W$ "--- прямая и $U \oplus W = V$.
+    \end{definition}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство, $U \le V$. Тогда существует прямое дополнение подпространства $U$ в пространстве $V$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Выберем базис $(\overline{e_1}, \dots, \overline{e_k})$ "--- базис в $U$. Линейно независимую систему $e$ можно дополнить до базиса в $V$. Обозначим через $\overline{e_{k+1}}, \dots, \overline{e_n} \in V$ векторы, дополняющие $e$ до базиса, и рассмотрим $W := \langle \overline{e_{k+1}}, \dots, \overline{e_n}\rangle$. Тогда $U + W = V$, и объединение базисов $U$ и $W$ является базисом в $V$, поэтому сумма $U \oplus W$ "--- прямая.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $U_1, U_2 \le V$. Тогда выполнено следующее равенство:
+    	\[\dim{(U_1 + U_2)} = \dim{U_1} \hm{+} \dim{U_2} - \dim{(U_1 \cap U_2)}\]
+    \end{theorem}
+    
+    \begin{proof}
+    	Пусть $U := U_1 \cap U_2 \le U_1, U_2$. Выберем $W_1, W_2$ "--- прямые дополнения подпространства $U$ в $U_1, U_2$ соответственно, тогда выполнены следующие равенства:
+    	\begin{gather*}
+    		\dim{U} + \dim{W_1} = \dim{U_1}
+    		\\
+    		\dim{U} + \dim{W_2} = \dim{U_2}
+    	\end{gather*}
+    	
+    	Докажем, что $U_1 + U_2 = U \oplus W_1 \oplus W_2$. Равенство $U_1 + U_2 = U + W_1 + W_2$ очевидно, поэтому достаточно проверить, что эта сумма "--- прямая. Пусть $\overline{0} = \overline{u} + \overline{w_1} + \overline{w_2}$ для некоторых $\overline{w_1} \in W_1, \overline{w_2} \in W_2, \overline{u} \in U$, тогда:
+    	\begin{gather*}
+    		-\overline{w_1} = \overline{u} + \overline{w_2} \ra \overline{w_1} \in W_1 \cap U_2 = W_1 \cap U \ra \overline{w_1} = \overline{0}
+    		\\
+    		-\overline{w_2} = \overline{u} + \overline{w_1} \ra \overline{w_2} \in W_2 \cap U_1 = W_2 \cap U \ra \overline{w_2} = \overline{0}
+    	\end{gather*}
+    
+    	Значит, и $\overline{u} = \overline{0}$, поэтому сумма $U + W_1 + W_2$ "--- прямая. Тогда:
+    	\[\dim{(U_1 + U_2)} = \dim{U} + \dim{W_1} + \dim{W_2} = \dim{U_1} \hm{+} \dim{U_2} - \dim{(U_1 \cap U_2)}\qedhere\]
+    \end{proof}

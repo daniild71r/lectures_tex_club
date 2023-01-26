@@ -1,0 +1,153 @@
+\subsection{Сходящиеся последовательности}
+
+    \begin{definition}
+        Число $a$ называется пределом последовательности $\{a_{n}\}$, если\\ $\forall \epsilon > 0$ $ \exists N \in \mathds{N}$ $\forall n \in \mathds{N}$ $(n \geq N \Rightarrow |a_{n}-a| < \epsilon)$.
+        \\
+        Пишут $\lim_{n \to \infty} a_{n} = a$, или $a_{n} \to a$ при $n \to \infty$, или $a_{n} \to a$.
+    \end{definition}
+    
+    \begin{note}
+    Геометрический смысл. Так как $|a_{n}-a| < \epsilon \iff a-\epsilon < a_{n} < a + \epsilon$, 
+    то запись $\lim_{n \to \infty} = a$ означает, что
+    $M_{\epsilon} = \{n \in \mathds{N} : a_{n} \notin (a-\epsilon; a+\epsilon)\}$
+    - конечное множество $\forall \epsilon > 0$.
+    \end{note}
+
+    \begin{example}
+        $\lim_{n \to \infty} \frac{1}{n} = 0$\\
+        $|\frac{1}{n} - a| < \epsilon \iff n > \frac{1}{\epsilon}$\\
+        $\exists N = [\frac{1}{\epsilon}] + 1 \Rightarrow \forall n \in \mathds{N} (n \geq N \Rightarrow |\frac{1}{n}-0| < \epsilon)$
+    \end{example}
+
+    \begin{theorem}{Теорема о единственности.}
+        \\
+        Если $\lim_{n \to \infty} a_{n} = a$ и $\lim_{n \to \infty} a_{n} = b$, то $a = b$.\\
+    \end{theorem}
+
+    \begin{proof}
+        Пусть $a \neq b$, тогда $|a-b| > 0$. Положим, $\epsilon = \frac{|a-b|}{2}$, тогда:\\
+        $\exists N_1 : \forall n \geq N (|a_{n} - a| < \epsilon)$\\
+        $\exists N_2 : \forall n \geq N (|a_{n} - b| < \epsilon)$\\
+        Положим, $N = max\{N_1, N_2\}$. Тогда $|a-b| = |a-a_{N}+a_{N}-b| \leq |a_{N}-a| + |a_{N}-b| < \epsilon + \epsilon = |a-b|$!!!
+    \end{proof}
+
+    \begin{note}
+        Пусть ${a_{n}}$, ${b_{n}}$ - последовательности, причем существует $m \in \mathds{N}$, что $b_{n} = a_{n+m} \forall n \in \mathds{N}$.
+        Тогда пределы ${a_{n}}$ и  ${b_{n}}$ существуют одновременно, и если существуют, то равны.
+        \begin{proof}
+            Зафиксируем $\epsilon > 0$\\
+            $(\forall n \geq N_{a} : (|a_{n}-a| < \epsilon)) \Rightarrow (\forall n \geq N_{a} : (|b_{n}-a| < \epsilon))$\\
+            $(\forall n \geq N_{b} : (|b_{n}-a| < \epsilon)) \Rightarrow (\forall n \geq N_{b}+m : (|a_{n}-a| < \epsilon))$
+        \end{proof}
+    \end{note}
+
+    \begin{definition}
+        Числовая последовательность, имеющая некоторое число своим пределом, называется сходящейся, иначе - расходящейся.
+    \end{definition}
+
+    \begin{example}
+        Покажем, что $\{(-1)^{n}\}$ - расходящаяся.\\
+        Предположим, что $(-1)^{n} \rightarrow a \in \mathds{R}$:\\
+        По определению предела $(\epsilon = 1)$:\\
+        $\exists N : \forall n \geq N (a-1 < (-1)^{n} < a+1)$\\
+        При $n = 2k$: $1 < a+1 \Rightarrow a > 0$\\
+        При $n = 2k-1$: $a-1 < -1 \Rightarrow a < 0$!!!
+    \end{example}
+
+    \begin{definition}
+        Последовательность $\{a_{n}\}$ называется ограниченной сверху/снизу, если множество её значений $\{a_{n} : n \in \mathds{N}\}$ ограничено сверху/снизу.
+    \end{definition}
+
+    \begin{theorem}
+        Об ограниченности.\\
+        Если последовательность $\{a_{n}\}$ сходится, то она ограничена.
+    \end{theorem}
+
+    \begin{proof}
+        Пусть $a_{n} \rightarrow a \in \mathds{R}$.\\
+        По определению предела $(\epsilon = 1)$.\\
+        $\exists N \in \mathds{N} : \forall n \geq N(a-1 < a_{n} < a+1)$.\\
+        Положим, $m = min\{a-1, a_{1}, ..., a_{N-1}\}$, $M = max\{a+1, a_{1}, ..., a_{N-1}\}$.\\
+        Тогда $\forall n \in \mathds{N} (m < a_{n} < M)$.
+    \end{proof}
+
+    \begin{theorem}
+        О пределе в неравенствах.\\
+        Пусть $\lim_{n \to \infty} a_{n} = a$, $\lim_{n \to \infty} b_{n} = b$. Тогда:\\
+        1) $a < b \Rightarrow \exists N \in \mathds{N} : \forall n > N (a_{n} < b_{n})$\\
+        2) $\exists n_0 \in \mathds{N} : \forall n \geq n_0 (a_{n} \leq b_{n}) \Rightarrow a \leq b$
+    \end{theorem}
+
+    \begin{proof} \ \\
+        1) Положим $\epsilon = \frac{b-a}{2}$.\\
+        Тогда $\epsilon > 0$ и по определению предела:\\
+        $\exists N_1 \in \mathds{N} : \forall n \geq N (a_{n} < a+\epsilon)$\\
+        $\exists N_2 \in \mathds{N} : \forall n \geq N (b_{n} > b-\epsilon)$\\
+        Положим $N = max\{N_1, N_2\}$.\\
+        Тогда при $n \geq N$ имеем $a_{n} < a+\epsilon = \frac{a+b}{2} = b-\epsilon  < b_{n}$.\\
+        2) 2 пунт является контрпозицией 1 пункта.
+        \begin{note}
+            Предельный переход не обязан сохранять строгие неравенства:\\
+            Пример: $a_{n} = 0, b_{n} = \frac{1}{n} \Rightarrow \forall n \in \mathds{N} (0 < \frac{1}{n})$, но $\lim_{n \to \infty} a_{n} = \lim_{n \to \infty} b_{n} = 0$.
+        \end{note}
+    \end{proof}
+
+    \begin{theorem}
+        О зажатой последовательности.\\
+        Пусть $a_{n} \leq c_{n} \leq b_{n}$ для всех $n \geq n_0$, и $\lim_{n \to \infty} a_{n} = a$, $\lim_{n \to \infty} b_{n} = a$, тогда существует $\lim_{n \to \infty} c_{n} = a$.
+    \end{theorem}
+
+    \begin{proof}
+        Зафиксируем $\epsilon > 0$. По определению предела:\\
+        $\exists N_1 \in \mathds{N} : \forall n \geq N_1 (a-\epsilon < a_{n})$\\
+        $\exists N_2 \in \mathds{N} : \forall n \geq N_2 (b_{n} < a+\epsilon)$.\\
+        Положим $N = max\{N_1, N_2\}$, тогда при $n > N$ имеем:\\
+        $a-\epsilon < a_{n} \leq c_{n} \leq b_{n} < a+\epsilon \Rightarrow |c_{n} - a| < \epsilon \Rightarrow \lim_{n \to \infty} c_{n} = a$.
+    \end{proof}
+
+    \begin{note}
+        $\alpha_{n} \to 0, \forall n \geq n_{0} (|c_{n}| < \alpha_{n}) \Rightarrow c_{n} \to 0$.
+    \end{note}
+
+    \begin{problem}
+        Пусть $|q| < 1$. Покажите, что $\lim_{n \to \infty} q^{n} = 0$. 
+    \end{problem}
+
+    \begin{theorem}
+        Об арифметических операциях с пределами.\\
+        Пусть $\lim_{n \to \infty} a_{n} = a$, $\lim_{n \to \infty} b_{n} = b$, тогда:
+        \begin{enumerate}
+            \item $\lim_{n \to \infty}(a_{n} + b_{n}) = a+b$
+            \item $\lim_{n \to \infty}(a_{n} * b_{n}) = a*b$
+            \item $b \neq 0, \forall n \in \mathds{N} (b_{n} \neq 0) \Rightarrow \lim_{n \to \infty}(\frac{a_{n}}{b_{n}}) = \frac{a}{b}$
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof} \
+        \begin{enumerate}
+        \item Зафиксируем $\epsilon > 0$. По определению предела:\\
+            $\exists N_1 \in \mathds{N} : n \geq N_1 (|a_{n}-a| < \frac{\epsilon}{2})$\\
+            $\exists N_2 \in \mathds{N} : n \geq N_2 (|b_{n}-b| < \frac{\epsilon}{2})$\\
+            Положим $N = max\{N_1, N_2\}$, тогда\\
+            $\forall n \geq N$ $|(a_{n} + b_{n}) - (a + b)| \leq |a_{n} - a| + |b_{n} - b| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$
+        
+        \item Так как $\{a_{n}\}$ -- сходящаяся, то (по теореме 2) $\{a_{n}\}$ -- ограниченная, то есть $\exists C > 0$, что $\forall n \in \mathds{N}(|a_{n}| \leq C)$. Увеличивая $C$, если необходимо, можно считать, что $|b| \leq C$.\\
+            Зафиксируем $\epsilon > 0$. По определению предела\\
+            $\exists N_1, \forall n \geq N_1(|a_{n} - a| \leq \frac{\epsilon}{2C})$\\
+            $\exists N_1, \forall n \geq N_1(|b_{n} - b| \leq \frac{\epsilon}{2C})$\\
+            Положим $N = max\{N_1, N_2\}$, тогда при $n \geq N$ имеем:\\
+            $|a_{n}b_{n} - ab| = |a_{n}b_{n} - a_{n}b + a{n}b - ab| \leq |a_{n}||b_{n} - b| + |b||a_{n} - a| < C\frac{\epsilon}{2C} + C\frac{\epsilon}{2C} = \epsilon$
+   
+        \item Так как $\frac{a_{n}}{b_{n}} = a_{n} * \frac{1}{b_{n}}$, тогда по пункту 2 достаточно показать, что $\lim_{n \to \infty} \frac{1}{b_{n}} = \frac{1}{b}$.\\
+            Поскольку $|b| \neq 0$, то по определению предела:\\
+            $\exists N_1 \in \mathds{N} : \forall n \geq N_1 (|b_{n} - b| < \frac{|b|}{2})$. Тогда $n \geq N_1 \Rightarrow |b_{n}| = |b + b_{n} - b| \geq |b| - |b - b_{n}| \geq \frac{|b|}{2}$\\
+            Зафиксируем $\epsilon > 0$. По определению предела:\\
+            $\exists N_2 \in \mathds{N} : \forall n \geq N_2 (|b_{n} - b| < \frac{\epsilon|b|^2}{2})$\\
+            Положим $N = max\{N_1, N_2\}$. Тогда при $n \geq N$ имеем $|\frac{1}{b_{n}} - \frac{1}{b}| = \frac{|b_{n} - b|}{|b||b_{n}|} < \frac{2}{|b|^2} * \epsilon * \frac{|b|^2}{2} = \epsilon$
+        \end{enumerate}
+    \end{proof}
+
+    \begin{note}
+        Обратные утверждения теоремы 5 неверны.\\
+        Пример: $a_{n} = (-1)^{n}, b_{n} = -a_{n}$, тогда $a_{n}, b_{n}$ - расходятся, но $a_{n} + b_{n} = 0$, $a_{n} * b_{n} = -1$, $\frac{a_{n}}{b_{n}} = -1$ - статические последовательности.
+    \end{note}

@@ -1,0 +1,139 @@
+\subsection{Ориентация на плоскости и в пространстве. Ориентированные площадь и объем (смешанное произведение). Свойства ориентированных площади и объема. Выражение ориентированных площади и объема в произвольном базисе.}
+    
+    \begin{definition}
+    	Пусть плоскость $P_2$ вложена в пространство $P_3$, и выделено одно из полупространств в $P_3$ относительно этой плоскости. Базис $(\overline{a}, \overline{b})$ в $V_2$ называется \textit{положительно ориентированным}, если поворот на кратчайший угол, который переводит вектор $\overline{a}$ в вектор $\overline{a'} \parallel \overline{b}$, происходит против часовой стрелки при взгляде из выделенного полупространства. В противном случае базис называется \textit{отрицательно ориентированным}.
+    \end{definition}
+    
+    \begin{note}
+    	Базисы $(\overline{a}, \overline{b})$ и $(\overline{b}, \overline{a})$ всегда ориентированы по-разному.
+    \end{note}
+    
+    \begin{definition}
+    	Базис $(\overline{a}, \overline{b}, \overline{c})$ в $V_3$ называется \textit{правой тройкой}, если базис $(\overline{a}, \overline{b})$ в плоскости $V_2$, содержащей эти два вектора, ориентирован положительно относительно полупространства, содержащего вектор $\overline{c}$, отложенный от точки в $P_2$. В противном случае базис называется \textit{левой тройкой}.
+    \end{definition}
+    
+    \begin{proposition}~
+    	\begin{enumerate}
+    		\item Базисы $(\overline{a}, \overline{b}, \overline{c})$ и $(\overline{b}, \overline{a}, \overline{c})$ в $V_3$ всегда ориентированы по-разному.
+    		\item Базисы $(\overline{a}, \overline{b}, \overline{c})$ и $(\overline{a}, \overline{c}, \overline{b})$ в $V_3$ всегда ориентированы по-разному.
+    	\end{enumerate}
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item Так как базисы $(\overline{a}, \overline{b})$ и $(\overline{b}, \overline{a})$ ориентированы по-разному, то базисы $(\overline{a}, \overline{b}, \overline{c})$ и $(\overline{b}, \overline{a}, \overline{c})$ тоже ориентированы по-разному.
+    		\item Пусть $\overline{OA} = \overline{a}$, $\overline{OB} = \overline{b}$, $\overline{OC} = \overline{c}$. Будем поворачивать направленный отрезок $\overline{OC}$ в плоскости $(BOC)$, пока он не перейдет в такой направленный отрезок $\overline{OC'}$, что $C$ и $C'$ лежат по разные стороны от $OB$. Ориентация базиса $(\overline{a}, \overline{b}, \overline{c'})$ противоположна ориентации $(\overline{a}, \overline{b}, \overline{c})$, но совпадает с ориентацией $(\overline{a}, \overline{c}, \overline{b})$.\qedhere
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{note}
+    	В силу утверждения выше, всевозможные перестановки базиса $(\overline{a}, \overline{b}, \overline{c})$ делятся на два класса противоположной ориентации:
+    	\begin{itemize}
+    		\item $(\overline{a}, \overline{b}, \overline{c})$, $(\overline{c}, \overline{a}, \overline{b})$ и $(\overline{b}, \overline{c}, \overline{a})$
+    		\item $(\overline{b}, \overline{a}, \overline{c})$, $(\overline{c}, \overline{b}, \overline{a})$ и $(\overline{a}, \overline{c}, \overline{b})$
+    	\end{itemize}
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $\overline{a}, \overline{b} \in V_2$, и в плоскости $V_2$ задана ориентация. \textit{Ориентированной площадью} $S(\overline{a}, \overline{b})$ называется площадь параллелограмма, построенного на этих векторах, взятая со знаком, соответствующим ориентации $(\overline{a}, \overline{b})$.
+    \end{definition}
+    
+    \begin{definition}
+    	Пусть $\overline{a}, \overline{b}, \overline{c} \in V_3$. \textit{Ориентированным объемом} $V(\overline{a}, \overline{b}, \overline{c})$ называется объем параллелепипеда, построенного на этих векторах, взятая со знаком, соответствующим ориентации $(\overline{a}, \overline{b}, \overline{c})$. Эта величина также называется \textit{смешанным произведением} векторов $\overline{a}, \overline{b}, \overline{c}$ и обозначается через $(\overline{a}, \overline{b}, \overline{c})$.
+    \end{definition}
+    
+    \begin{note}
+    	Определения выше корректны, поскольку в них не требуется определять ориентацию набора векторов, не являющегося базисом:
+    	\begin{enumerate}
+    		\item $S(\overline{a}, \overline{b}) = 0$ $\Leftrightarrow$ $\overline{a}$ и $\overline{b}$ коллинеарны.
+    		\item $V(\overline{a}, \overline{b}, \overline{c}) = 0$ $\Leftrightarrow$ $\overline{a}$, $\overline{b}$ и $\overline{c}$ компланарны.
+    	\end{enumerate}
+    \end{note}
+    
+    \begin{proposition}~
+    	\begin{enumerate}
+    		\item Если базис $e = (\overline{e_1}, \overline{e_2})$ в $V_2$ "--- ортонормированный, то $S(\overline{e_1}, \overline{e_2}) = \pm 1$.
+    		\item Если базис $e = (\overline{e_1}, \overline{e_2}, \overline{e_3})$ в $V_3$ "--- ортонормированный, то $V(\overline{e_1}, \overline{e_2}, \overline{e_3}) = \pm 1$.
+    	\end{enumerate}
+    \end{proposition}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item Параллелограмм, образованный векторами $\overline{e_1}$ и $\overline{e_2}$, "--- это квадрат со стороной $1$, поэтому $|S(\overline{e_1}, \overline{e_2})| = 1$.
+    		\item Параллелепипед, образованный векторами $\overline{e_1}$, $\overline{e_2}$ и $\overline{e_3}$, "--- это куб со стороной $1$, поэтому $|V(\overline{e_1}, \overline{e_2}, \overline{e_3})| = 1$.\qedhere
+    	\end{enumerate}
+    \end{proof}
+
+    \begin{theorem}
+    	Ориентированный объем обладает следующими свойствами:
+    	\begin{enumerate}
+    		\item $\forall \overline{a}, \overline{b}, \overline{c} \in V_n: V(\overline{a}, \overline{b}, \overline{c}) = -V(\overline{b}, \overline{a}, \overline{c}) = -V(\overline{a}, \overline{c}, \overline{b})$ (кососимметричность)
+    		\item $\forall \overline{a_1}, \overline{a_2}, \overline{b}, \overline{c} \in V_n: V(\overline{a}, \overline{b}, \overline{c_1} + \overline{c_2}) = V(\overline{a}, \overline{b}, \overline{c_1}) + V(\overline{a}, \overline{b}, \overline{c_2})$
+    		
+    		$\forall \lambda \in \R: \forall \overline a, \overline b, \overline c \nolinebreak\in\nolinebreak V_n \nolinebreak: \nolinebreak V(\overline{a}, \overline{b}, \lambda\overline{c}) \hm= \lambda V(\overline{a}, \overline{b}, \overline{c})$ (линейность по третьему аргументу)
+    	\end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}~
+    	\begin{enumerate}
+    		\item Если $\overline{a}$, $\overline{b}$ и $\overline{c}$ компланарны, то утверждение очевидно. Иначе --- объем параллепипеда при перестановке векторов базиса не меняется по модулю, но меняет знак при смене ориентации.
+    		\item Если $\overline{a}$ и $\overline{b}$ коллинеарны, то утверждение очевидно. Пусть теперь это не так, тогда рассмотрим направленные отрезки $\overline{OA} = \overline{a}$, $\overline{OB} = \overline{b}$, $\overline{OC} = \overline{c}$. Обозначим через $\overline d$ вектор такой, что $|\overline{d}| = 1$, $\overline{d} \perp (AOB)$ и $(\overline{a}, \overline{b}, \overline{d})$ "--- правая тройка, и пусть $\overline{OD} = \overline{d}$.
+    		
+    		Заметим теперь, что $\forall \overline{c} \in V_n: V(\overline{a}, \overline{b}, \overline{c}) = |S(\overline{a}, \overline{b})|(\overline{c}, \overline{d})$, поскольку выполнены равенства $(\overline{c}, \overline{d}) = (\pr_{\overline{d}}\overline{c}, \overline{d}) \hm{=} \pm |\pr_{\overline{d}}\overline{c}| = \pm h$, где $h$ "--- высота параллелепипеда, а знак соответствует ориентации базиса $(\overline{a}, \overline{b}, \overline{c})$. Тогда линейность ориентированного объема следует из линейности скалярного произведения.\qedhere
+    	\end{enumerate}
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $e = (\overline{e_1}, \overline{e_2})$ "--- базис в $V_2$, $\overline{a}, \overline{b} \hm{\in} V_2$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$. Тогда верно следующее равенство:
+    	\[S(\overline{a}, \overline{b}) = \begin{vmatrix}
+    	\alpha_1 & \beta_1\\
+    	\alpha_2 & \beta_2
+    	\end{vmatrix}S(\overline{e_1}, \overline{e_2})\]
+    \end{theorem}
+    
+    \begin{proof}
+    	В силу линейности ориентированной площади, имеем:
+    	\[S(\overline{a}, \overline{b}) = S\left(\sum_{i = 1}^{2} \alpha_i\overline{e_i}, \sum_{j = 1}^{2} \beta_j\overline{e_j}\right) = \sum_{i = 1}^{2} \sum_{j = 1}^{2}\alpha_i\beta_jS(\overline{e_i}, \overline{e_j})\]
+    	
+    	Поскольку для любого $i \in \{1, 2\}$ выполнено $S(\overline{e_i}, \overline{e_i}) = 0$, то:
+    	\[S(\overline{a}, \overline{b}) = \begin{vmatrix}
+    	\alpha_1 & \beta_1\\
+    	\alpha_2 & \beta_2
+    	\end{vmatrix}S(\overline{e_1}, \overline{e_2})\]
+    	
+    	Получено требуемое.
+    \end{proof}
+    
+    \begin{theorem}
+    	Пусть $e = (\overline{e_1}, \overline{e_2}, \overline{e_3})$ "--- базис в $V_3$, $\overline{a}, \overline{b}, \overline{c} \hm{\in} V_3$, $\overline{a} \leftrightarrow_{e} \alpha$, $\overline{b} \leftrightarrow_{e} \beta$, $\overline{c} \leftrightarrow_{e} \gamma$. Тогда верно следующее равенство:
+    	\[V(\overline{a}, \overline{b}, \overline{c}) = \begin{vmatrix}
+    	\alpha_1 & \beta_1 & \gamma_1\\
+    	\alpha_2 & \beta_2 & \gamma_2\\
+    	\alpha_3 & \beta_3 & \gamma_3
+    	\end{vmatrix}V(\overline{e_1}, \overline{e_2}, \overline{e_3})\]
+    \end{theorem}
+    
+    \begin{proof}
+    	В силу линейности ориентированного объема, имеем:
+    	\[V(\overline{a}, \overline{b}, \overline{c}) = V\left(\sum_{i = 1}^{3} \alpha_i\overline{e_i}, \sum_{j = 1}^{3} \beta_j\overline{e_j},  \sum_{k = 1}^{3} \gamma_k\overline{e_k}\right) = \sum_{i = 1}^{3} \sum_{j = 1}^{3}\sum_{k = 1}^{3}\alpha_i\beta_j\gamma_kV(\overline{e_i}, \overline{e_j}, \overline{e_k})\]
+    	
+    	Поскольку для любых $i, j, k \in \{1, 2, 3\}$ таких, что $i = j$, $i = k$ или $j = k$, выполнено $V(\overline{e_i}, \overline{e_j}, \overline{e_k}) = 0$, то:
+    	\[V(\overline{a}, \overline{b}, \overline{c}) = \begin{vmatrix}
+    	\alpha_1 & \beta_1 & \gamma_1\\
+    	\alpha_2 & \beta_2 & \gamma_2\\
+    	\alpha_3 & \beta_3 & \gamma_3
+    	\end{vmatrix}V(\overline{e_1}, \overline{e_2}, \overline{e_3})\]
+    
+    	Получено требуемое.
+    \end{proof}
+    
+    \begin{note}
+    	Из теорем выше следуют, в частности, такие свойства:
+    	\begin{itemize}
+    		\item Если $e$ "--- положительно ориентированный ортонормированный базис в $V_2$, то для любых $\overline a, \overline b \in V_2$ таких, что $\overline a \leftrightarrow_e \alpha$ и $\overline b \leftrightarrow_e \beta$, верно равенство $S(\overline{a}, \overline{b}) = |\alpha\beta|$.
+    		\item Если $e$ "--- правый ортонормированный базис в $V_3$, то для любых $\overline a, \overline b, \overline c \in V_3$ таких, что $\overline a \leftrightarrow_e \alpha$, $\overline b \leftrightarrow_e \beta$ и $\overline c \leftrightarrow_e \gamma$, верно равенство $V(\overline{a}, \overline{b}, \overline{c}) \hm{=} |\alpha\beta\gamma|$.
+    		\item Если $e$ "--- базис в $V_2$, $\overline a, \overline b \in V_2$, $\overline a \leftrightarrow_e \alpha$, $\overline b \leftrightarrow_e \beta$, то векторы $\overline{a}$ и $\overline{b}$ коллинеарны $\Leftrightarrow$ $|\alpha\beta| = 0$.
+    		\item Если $e$ "--- базис в $V_3$, $\overline a, \overline b, \overline c \in V_3$, $\overline a \leftrightarrow_e \alpha$, $\overline b \leftrightarrow_e \beta$, $\overline c \leftrightarrow_e \gamma$, то векторы $\overline{a}$, $\overline{b}$ и $\overline{c}$ компланарны $\Leftrightarrow$ $|\alpha\beta\gamma| = 0$.
+    	\end{itemize}
+    \end{note}
+    
