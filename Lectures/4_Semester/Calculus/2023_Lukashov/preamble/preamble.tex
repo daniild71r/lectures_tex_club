@@ -1,0 +1,257 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{indentfirst}            % красная строка в первом абзаце
+\frenchspacing                      % равные пробелы между словами и предложениями
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % пакеты AMS
+\usepackage{icomma}                                    % "Умная" запятая
+
+%%% Свои символы и команды для математики
+\usepackage{centernot}  % центрированное зачеркивание символа
+\usepackage{stmaryrd}  % некоторые спецсимволы
+\usepackage[e]{esvect}  % Нормальные векторы по команде \vv
+
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\ensuremath{\varnothing}}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ke}{Ker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\Deg}{deg}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\upjm}{\mu^*_\mathfrak{J}}
+\DeclareMathOperator{\downjm}{\mu^\mathfrak{J}_*}
+\DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{J})}}
+\DeclareMathOperator{\downjlm}{\mu^{(\mathfrak{J})}_*}
+\DeclareMathOperator{\jlm}{\mu_{(\mathfrak{J})}}
+\DeclareMathOperator{\jm}{\mu_\gJ}
+\DeclareMathOperator{\sym}{sym}
+\DeclareMathOperator{\asym}{asym}
+\DeclareMathOperator{\vol}{vol}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\sxR}{\ole{\R}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Tau}{\mathcal{T}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\goth}{\mathfrak}
+\newcommand{\gj}{\goth{j}}
+\newcommand{\gJ}{\goth{J}}
+\newcommand{\mc}{\mathring}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\veps}{\epsilon}
+\newcommand{\vdelta}{\partial}
+\newcommand{\tr}{\triangle}
+\newcommand{\bscup}{\bigsqcup}
+\newcommand{\such}{\ \big|\ }
+\newcommand{\range}[2]{\{#1, \ldots, #2\}}
+\newcommand{\ole}[1]{\overline{#1}}
+\newcommand{\ule}[1]{\underline{#1}}
+\newcommand{\comR}{{(R)}}
+
+\newcommand{\imp}[2]{
+	(#1\,\,$\ra$\,\,#2)\,\,
+}
+\newcommand{\System}[1]{
+	\left\{
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right.
+}
+\newcommand{\Matrix}[1]{
+	\left(
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right)
+}
+\newcommand{\Det}[1]{
+	\left|
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right|
+}
+\newcommand{\Root}[2]{
+	\left\{\!\sqrt[#1]{#2}\right\}
+}
+\newcommand{\pd}[2]{
+	\frac{\vdelta #1}{\vdelta #2}
+}
+\newcommand{\ps}[1]{
+	\left(#1\right)
+}
+\newcommand{\md}[1]{
+	\left|#1\right|
+}
+\newcommand{\set}[1]{
+	\left\{#1\right\}
+}
+\newcommand{\sbr}[1]{
+	\left[#1\right]
+}
+\newcommand{\lsi}[1]{
+	\left[#1\right)
+}
+\newcommand{\rsi}[1]{
+	\left(#1\right]
+}
+\newcommand{\br}[1]{
+	\left\{#1\right\}
+}
+\newcommand{\tbr}[1]{
+	\left\langle#1\right\rangle
+}
+\newcommand{\ntbr}[1]{
+	\langle#1\rangle
+}
+\newcommand{\mo}[1]{
+	\left|#1\right|
+}
+
+\renewcommand\labelitemi{$\triangleright$}
+
+\let\bs\backslash
+\let\Lra\Leftrightarrow
+\let\Lolra\Longleftrightarrow
+\let\lra\leftrightarrow
+\let\Ra\Rightarrow
+\let\Lora\Longrightarrow
+\let\ra\rightarrow
+\let\La\Leftarrow
+\let\Lola\Longleftarrow
+\let\la\leftarrow
+\let\rra\rightrightarrows
+\let\emb\hookrightarrow
+
+%%% Перенос знаков в формулах (по Львовскому)
+\newcommand{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}    % Для вставки рисунков
+\setlength\fboxsep{3pt}  % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig}     % Обтекание рисунков текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}                        % Длинные таблицы
+\usepackage{multirow}                         % Слияние строк в таблице
+
+%%% Теоремы
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{proposition}{Утверждение}[section]
+\newtheorem*{exercise}{Упражнение}
+\newtheorem*{problem}{Задача}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem*{designation}{Обозначение}
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{note}{Замечание}
+\newtheorem*{anote}{Замечание автора}
+\newtheorem*{reminder}{Напоминание}
+\newtheorem*{example}{Пример}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Решение}
+
+%%% Оформление страницы
+\usepackage{extsizes}     % Возможность сделать 14-й шрифт
+\usepackage{geometry}     % Простой способ задавать поля
+\usepackage{setspace}     % Интерлиньяж
+\usepackage{enumitem}     % Настройка окружений itemize и enumerate
+\setlist{leftmargin=25pt} % Отступы в itemize и enumerate
+
+\geometry{top=25mm}    % Поля сверху страницы
+\geometry{bottom=30mm} % Поля снизу страницы
+\geometry{left=20mm}   % Поля слева страницы
+\geometry{right=20mm}  % Поля справа страницы
+
+\setlength\parindent{15pt}        % Устанавливает длину красной строки 15pt
+\linespread{1.3}                  % Коэффициент межстрочного интервала
+%\setlength{\parskip}{0.5em}      % Вертикальный интервал между абзацами
+%\setcounter{secnumdepth}{0}      % Отключение нумерации разделов
+%\setcounter{section}{-1}         % Нумерация секций с нуля
+\usepackage{multicol}			  % Для текста в нескольких колонках
+\usepackage{soulutf8}             % Модификаторы начертания
+
+%%% Содержаниие
+\usepackage{tocloft}
+\tocloftpagestyle{main}
+%\setlength{\cftsecnumwidth}{2.3em}
+%\renewcommand{\cftsecdotsep}{1}
+%\renewcommand{\cftsecpresnum}{\hfill}
+%\renewcommand{\cftsecaftersnum}{\quad}
+
+%%% Шаблонная информация для титульного листа
+\newcommand{\CourseName}{Гармонический анализ}
+\newcommand{\FullCourseNameFirstPart}{\so{ГАРМОНИЧЕСКИЙ АНАЛИЗ}}
+\newcommand{\SemesterNumber}{IV}
+\newcommand{\LecturerInitials}{Алексей Леонидович Лукашов}
+\newcommand{\CourseDate}{весна 2023}
+\newcommand{\VKLink}{https://vk.com/id1}
+\newcommand{\GithubLink}{https://github.com/daniild71r/lectures_tex_club}
+
+%%% Колонтитулы
+\usepackage{titleps}
+\newpagestyle{main}{
+	\setheadrule{0.4pt}
+	\sethead{\CourseName}{}{\hyperlink{intro}{\;Назад к содержанию}}
+	\setfootrule{0.4pt}                       
+	\setfoot{ФПМИ МФТИ, \CourseDate}{}{\thepage} 
+}
+\pagestyle{main}  
+
+%%% Нумерация уравнений
+\makeatletter
+\def\eqref{\@ifstar\@eqref\@@eqref}
+\def\@eqref#1{\textup{\tagform@{\ref*{#1}}}}
+\def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
+\makeatother                      % \eqref* без гиперссылки
+\numberwithin{equation}{section}  % Нумерация вида (номер_секции).(номер_уравнения)
+\mathtoolsset{showonlyrefs=false} % Номера только у формул с \eqref{} в тексте.
+
+%%% Гиперссылки
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{
+	unicode=true,            % русские буквы в раздела PDF
+	colorlinks=true,       	 % Цветные ссылки вместо ссылок в рамках
+	linkcolor=black!15!blue, % Внутренние ссылки
+	citecolor=green,         % Ссылки на библиографию
+	filecolor=magenta,       % Ссылки на файлы
+	urlcolor=NavyBlue,       % Ссылки на URL
+}
+
+%%% Графика
+\usepackage{tikz}        % Графический пакет tikz
+\usepackage{tikz-cd}     % Коммутативные диаграммы
+\usepackage{tkz-euclide} % Геометрия
+\usepackage{stackengine} % Многострочные тексты в картинках
+\usetikzlibrary{angles, babel, quotes}

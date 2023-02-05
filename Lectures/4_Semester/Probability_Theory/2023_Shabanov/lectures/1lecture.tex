@@ -1,0 +1,173 @@
+\begin{note}
+	Теория вероятностей по своему смыслу является \textit{математическим анализом случайных явлений}.
+\end{note}
+
+\begin{reminder}
+	Закон природы, позволяющий нам вообще думать о теории вероятностей, является \textit{принципом устойчивости частот}:
+	
+	\textit{При проведении серии одинаковых экспериментов частота появления события $A$ стремится к числу $p(A)$}:
+	\[
+		\frac{\nu_n(A)}{n} \xrightarrow[n \to \infty]{} p(A)
+	\]
+	где $\nu_n(A)$ --- количество экспериментов, где исходом подходил под событие $A$.
+\end{reminder}
+
+\begin{definition}
+	\textit{Вероятностным пространством (тройкой Колмогорова)} называется кортеж $(\Omega, F, P)$, где
+	\begin{itemize}
+		\item $\Omega$ --- произвольное множество, называемое \textit{множеством (пространством) элементарных исходов}
+		
+		\item $F$ --- множество событий. Его элементы называются \textit{событиями}. Мы требуем, что множество является непустой $\sigma$-алгеброй подмножеств $\Omega$.
+		
+		\item $P \colon F \to [0; 1]$ --- \textit{вероятностная мера на измеримом пространстве} $(\Omega, F)$. От этой функции мы требуем двух вещей:
+		\begin{itemize}
+			\item $P$ --- $\sigma$-аддитивная мера на $F$
+			
+			\item $P(\Omega) = 1$
+		\end{itemize}
+	\end{itemize}
+\end{definition}
+
+\begin{theorem} (Непрерывность вероятностной меры)
+	Пусть $\cA$ --- алгебра или $\sigma$-алгебра подмножеств $\Omega$. Пусть $P \colon \cA \to [0; 1]$, удовлетворяющая двум свойствам:
+	\begin{itemize}
+		\item $P$ обладает конечной аддитивностью
+		
+		\item $P(\Omega) = 1$
+	\end{itemize}
+	Тогда следующие условия эквивалентны:
+	\begin{enumerate}
+		\item $P$ --- $\sigma$-аддитивная функция на $\cA$.
+		
+		\item $P$ непрерывна в нуле, то есть
+		\[
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \supset A_{n + 1} \wedge \bigcap_{n = 1}^\infty A_n = \emptyset \Ra \lim_{n \to \infty} P(A_n) = 0 = P(\emptyset)
+		\]
+		
+		\item $P$ непрерывна сверху:
+		\[
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ \lim_{n \to \infty} A_n = A \in \cA \wedge A_n \supseteq A \Ra \lim_{n \to \infty} P(A_n) = P(A)
+		\]
+		
+		\item $P$ непрерывна снизу:
+		\[
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ \lim_{n \to \infty} A_n = A \in \cA \wedge A_n \subseteq A \Ra \lim_{n \to \infty} P(A_n) = P(A)
+		\]
+	\end{enumerate}
+\end{theorem}
+
+\subsubsection*{Примеры вероятностных пространств}
+
+\begin{enumerate}
+	\item Дискретное вероятностное пространство:
+	\begin{itemize}
+		\item $\Omega$ --- не более чем счётное множество
+		
+		\item $F = 2^\Omega$
+		
+		\item $P \colon F \to [0; 1]$ с условием нормировки:
+		\[
+			\sum_{w \in \Omega} P(\{w\}) = 1
+		\]
+	\end{itemize}
+
+	\item Геометрическое вероятностное пространство:
+	\begin{itemize}
+		\item $\Omega = [a; b]$
+		
+		\item $F = \B([a; b])$
+		
+		\item $P(A) = \frac{\mu(A)}{b - a}$, где $\mu$ --- мера Лебега на $\R$.
+	\end{itemize}
+\end{enumerate}
+
+\section{Системы множеств}
+
+\begin{note}
+	Мы фиксируем произвольное множество $\Omega$.
+\end{note}
+
+\begin{definition}
+	Система $\cM$ подмножеств $\Omega$ называется \textit{$\pi$-системой}, если верно свойство:
+	\[
+		\forall A, B \in \cM\ \ A \cap B \in \cM
+	\]
+\end{definition}
+
+\begin{example}
+	$\cM = \{\rsi{a; b} \such a, b \in \R, a < b\} \cup \{\emptyset\}$
+\end{example}
+
+\begin{definition}
+	Система $\cL$ подмножеств $\Omega$ называется \textit{$\lambda$-системой}, если выполнено несколько условий:
+	\begin{enumerate}
+		\item $\Omega \in \cL$
+		
+		\item $\forall A, B \in \cL, A \subseteq B \Ra B \bs A \in \cL$
+		
+		\item $\forall \{A_n\}_{n = 1}^\infty \subseteq \cL, A_n \subseteq A_{n + 1} \Ra A := \bigcup_{n = 1}^\infty A_n \in \cL$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem} (Первая теорема о $\pi-\lambda$-системах)
+	Система $\F$ подмножеств $\Omega$ явлется $\sigma$-алгеброй тогда и только тогда, когда $F$ является одновременно $\pi$- и $\lambda$-системой.
+\end{theorem}
+
+\begin{proof}
+	Проведём доказательство в две стороны:
+	\begin{itemize}
+		\item $\Ra$ Очевидно
+		
+		\item $\La$ Проверим для начала, что $\F$ --- это алгебра. \textcolor{red}{Дописать}
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть $\cM$ --- система подмножеств $\Omega$. Тогда существует минимальная (по включению) $\sigma$-алгебра (алгебра, $\pi$-система, $\lambda$-система), обозначаемая как $\sigma(\cM)$ ($\cA(\cM), \pi(\cM), \lambda(\cM)$) и содержащая $\cM$.
+\end{proposition}
+
+\begin{example}~
+	\begin{enumerate}
+		\item $\Omega = \R$, то борелевскую $\sigma$-алгебру $\R$ можно породить как $\sigma$-алгебру. содержащую все интервалы:
+		\[
+			\B(\R) = \sigma(\{(a; b), a < b\})
+		\]
+		
+		\item $\Omega = \R^n$, $n > 1$. Тогда борелевскую $\sigma$-алгебру в $\R^n$ можно породить так:
+		\[
+			\B(\R^n) = \sigma(\{B_1 \times \ldots \times B_n,\ B_i \in \B(\R)\})
+		\]
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	Проверить, что $\B(\R^n)$ можно задать следующими способами:
+	\begin{itemize}
+		\item $\sigma(\{(a_1, b_1) \times \ldots \times (a_n, b_n), a_i < b_i\})$
+		
+		\item $\sigma(\{\rsi{-\infty; x_1} \times \ldots \times \rsi{-\infty; x_n}, x_i \in \R\})$
+		
+		\item $\sigma(\{A \subseteq \R^n \text{ --- открытые множества}\})$
+	\end{itemize}
+\end{exercise}
+
+\begin{example}
+	\begin{enumerate}
+		\item $\Omega = \R^\infty$ (более правильно писать $\R^\N$). Иначе говоря:
+		\[
+			\Omega = \{(x_1, x_2, \ldots) \such x_i \in \R\}
+		\]
+	\end{enumerate}
+\end{example}
+
+\begin{theorem} (Вторая теорема о $\pi$- и $\lambda$-системах)
+	Если $\cM$ --- это $\pi$-система подмножеств $\Omega$, то $\sigma(\cM) = \lambda(\cM)$.
+\end{theorem}
+
+\begin{proof}
+	Заметим, что $\sigma(\cM)$ --- это $\lambda$-система, содержащая $\cM$. Другими словами, $\lambda(\cM) \subseteq \sigma(\cM)$.
+	
+	Теперь надо показать, что $\lambda(\cM)$ --- это тоже $\sigma$-алгебра. Из того, что это уже $\lambda$-система, по первой теореме нам нужно проверить лишь замкнутость относительно пересечения. Рассмотрим систему приближающих множеств $\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}$. Она непустая, коль скоро $\cM \subset \cM_1$. Если бы покажем, что это $\lambda$-система, то она автоматически по минимальности совпадает с $\lambda(M)$ и к тому же является $\sigma$-алгеброй, что и требуется:
+	\begin{enumerate}
+	\end{enumerate}
+\end{proof}
