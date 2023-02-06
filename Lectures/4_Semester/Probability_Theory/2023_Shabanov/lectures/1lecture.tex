@@ -9,19 +9,19 @@
 	\[
 		\frac{\nu_n(A)}{n} \xrightarrow[n \to \infty]{} p(A)
 	\]
-	где $\nu_n(A)$ --- количество экспериментов, где исходом подходил под событие $A$.
+	где $\nu_n(A)$ --- количество экспериментов, где исход подходил под событие $A$.
 \end{reminder}
 
 \begin{definition}
-	\textit{Вероятностным пространством (тройкой Колмогорова)} называется кортеж $(\Omega, F, P)$, где
+	\textit{Вероятностным пространством (тройкой Колмогорова)} называется кортеж $(\Omega, \F, P)$, где
 	\begin{itemize}
 		\item $\Omega$ --- произвольное множество, называемое \textit{множеством (пространством) элементарных исходов}
 		
-		\item $F$ --- множество событий. Его элементы называются \textit{событиями}. Мы требуем, что множество является непустой $\sigma$-алгеброй подмножеств $\Omega$.
+		\item $\F$ --- \textit{множество событий}. Его элементы называются \textit{событиями}. Мы требуем, что множество является непустой $\sigma$-алгеброй подмножеств $\Omega$ (В частности, $\Omega \in \F$).
 		
-		\item $P \colon F \to [0; 1]$ --- \textit{вероятностная мера на измеримом пространстве} $(\Omega, F)$. От этой функции мы требуем двух вещей:
+		\item $P \colon \F \to [0; 1]$ --- \textit{вероятностная мера на измеримом пространстве} $(\Omega, \F)$. От этой функции мы требуем двух вещей:
 		\begin{itemize}
-			\item $P$ --- $\sigma$-аддитивная мера на $F$
+			\item $P$ --- $\sigma$-аддитивная мера на $\F$
 			
 			\item $P(\Omega) = 1$
 		\end{itemize}
@@ -29,7 +29,7 @@
 \end{definition}
 
 \begin{theorem} (Непрерывность вероятностной меры)
-	Пусть $\cA$ --- алгебра или $\sigma$-алгебра подмножеств $\Omega$. Пусть $P \colon \cA \to [0; 1]$, удовлетворяющая двум свойствам:
+	Пусть $\cA$ --- алгебра или $\sigma$-алгебра подмножеств $\Omega$. Пусть $P \colon \cA \to [0; 1]$ --- функция, удовлетворяющая двум свойствам:
 	\begin{itemize}
 		\item $P$ обладает конечной аддитивностью
 		
@@ -41,7 +41,7 @@
 		
 		\item $P$ непрерывна в нуле, то есть
 		\[
-			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \supset A_{n + 1} \wedge \bigcap_{n = 1}^\infty A_n = \emptyset \Ra \lim_{n \to \infty} P(A_n) = 0 = P(\emptyset)
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \supseteq A_{n + 1} \wedge \bigcap_{n = 1}^\infty A_n = \emptyset \Ra \lim_{n \to \infty} P(A_n) = 0 = P(\emptyset)
 		\]
 		
 		\item $P$ непрерывна сверху:
@@ -63,19 +63,19 @@
 	\begin{itemize}
 		\item $\Omega$ --- не более чем счётное множество
 		
-		\item $F = 2^\Omega$
+		\item $\F = 2^\Omega$
 		
-		\item $P \colon F \to [0; 1]$ с условием нормировки:
+		\item $P \colon \F \to [0; 1]$ с условием нормировки:
 		\[
 			\sum_{w \in \Omega} P(\{w\}) = 1
 		\]
 	\end{itemize}
 
-	\item Геометрическое вероятностное пространство:
+	\item Геометрическое вероятностное пространство (одномерный случай):
 	\begin{itemize}
 		\item $\Omega = [a; b]$
 		
-		\item $F = \B([a; b])$
+		\item $\F = \B([a; b])$
 		
 		\item $P(A) = \frac{\mu(A)}{b - a}$, где $\mu$ --- мера Лебега на $\R$.
 	\end{itemize}
@@ -109,21 +109,58 @@
 	\end{enumerate}
 \end{definition}
 
+\begin{proposition}
+	Система $\cL$ подмножеств $\Omega$ является $\lambda$-системой тогда и только тогда, когда выполнены следующие три свойства:
+	\begin{enumerate}
+		\item $\Omega \in \cL$
+		
+		\item Если $A \in \cL$, то $\ol{A} = \Omega \bs A \in \cL$
+		
+		\item Если $\{A_n\}_{n = 1}^\infty \subseteq \cL$, причём $\forall n \neq m\ A_n \cap A_m = \emptyset$, то $\bscup_{n = 1}^\infty A_n \in \cL$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Первое свойство можно не обсуждать, а для остальных проведём доказательство в 2 стороны:
+	\begin{itemize}
+		\item[$\Ra$] Так как любое множество в $A \in \cL$ является подмножеством $\Omega$,то очевидно $\ol{A} \in \cL$ по второму свойству. Для третьего надо построить неубывающую последовательность:
+		\[
+			B_n := \bscup_{m = 1}^n A_m;\ \ \bscup_{m = 1}^\infty A_m = \bigcup_{n = 1}^\infty B_n \in \cL
+		\]
+		
+		\item[$\La$] Имеет место равенство $B \bs A = B \cap \ol{A}$, поэтому нужно показать, что в нашей системе есть замкнутое пересечение. Действительно: $A \cap B = \ol{\ol{A} \cup \ol{B}}$, а потому всё хорошо. Осталось разобраться с последним свойством: возьмём любую последовательность $\{A_n\}_{n = 1}^\infty \subseteq \cL,\ A_n \subseteq A_{n + 1}$. Тогда построим по ней такую последовательность:
+		\[
+			B_1 = A_1,\ B_n = A_n \bs B_{n - 1};\ \ \bigcup_{n = 1}^\infty A_n = \bscup_{n = 1}^\infty B_n \in \cL
+		\]
+	\end{itemize}
+\end{proof}
+
 \begin{theorem} (Первая теорема о $\pi-\lambda$-системах)
-	Система $\F$ подмножеств $\Omega$ явлется $\sigma$-алгеброй тогда и только тогда, когда $F$ является одновременно $\pi$- и $\lambda$-системой.
+	Система $\F$ подмножеств $\Omega$ явлется $\sigma$-алгеброй тогда и только тогда, когда $\F$ является одновременно $\pi$- и $\lambda$-системой подмножеств $\Omega$.
 \end{theorem}
 
 \begin{proof}
 	Проведём доказательство в две стороны:
 	\begin{itemize}
-		\item $\Ra$ Очевидно
+		\item[$\Ra$] Очевидно
 		
-		\item $\La$ Проверим для начала, что $\F$ --- это алгебра. \textcolor{red}{Дописать}
+		\item[$\La$] Просто проверим свойства:
+		\begin{enumerate}
+			\item $\Omega \in \F$ --- выполнено по требованию $\lambda$-системы
+			
+			\item $\forall \{A_n\}_{n = 1}^\infty \subseteq \F$, $A_n \subseteq A_{n + 1} \Ra \bigcup_{n = 1}^\infty A_n \in \F$ --- выполнено по требованию $\lambda$-системы.
+			
+			\item Остаётся проверить, что у нас есть замкнутость операций кольца, то есть симметрической разности:
+			\[
+				A \tr B = (A \bs (A \cap B)) \cup (A \cap B) \cup (B \bs (A \cap B))
+			\]
+			Пересечение и объединение есть по условию, а разность для вложенных множеств есть по требованию $\lambda$-системы.
+		\end{enumerate}
 	\end{itemize}
 \end{proof}
 
 \begin{proposition}
-	Пусть $\cM$ --- система подмножеств $\Omega$. Тогда существует минимальная (по включению) $\sigma$-алгебра (алгебра, $\pi$-система, $\lambda$-система), обозначаемая как $\sigma(\cM)$ ($\cA(\cM), \pi(\cM), \lambda(\cM)$) и содержащая $\cM$.
+	Пусть $\cM$ --- система подмножеств $\Omega$. Тогда существует минимальная по включению $\sigma$-алгебра (алгебра, $\pi$-система, $\lambda$-система), обозначаемая как $\sigma(\cM)$ ($\cA(\cM), \pi(\cM), \lambda(\cM)$) и содержащая $\cM$.
 \end{proposition}
 
 \begin{example}~
@@ -151,12 +188,13 @@
 	\end{itemize}
 \end{exercise}
 
-\begin{example}
+\begin{example}~
 	\begin{enumerate}
-		\item $\Omega = \R^\infty$ (более правильно писать $\R^\N$). Иначе говоря:
+		\item[3.] $\Omega = \R^\infty$ (более правильно писать $\R^\N$). Иначе говоря:
 		\[
-			\Omega = \{(x_1, x_2, \ldots) \such x_i \in \R\}
+			\Omega = \{(x_1, x_2, \ldots) \such x_i \in \R\} \text{ --- последовательности вещественных чисел}
 		\]
+		Можно определить понятие <<цилиндра>> \textcolor{red}{Пока не понял сути примера. Дописать}
 	\end{enumerate}
 \end{example}
 
@@ -165,9 +203,26 @@
 \end{theorem}
 
 \begin{proof}
-	Заметим, что $\sigma(\cM)$ --- это $\lambda$-система, содержащая $\cM$. Другими словами, $\lambda(\cM) \subseteq \sigma(\cM)$.
+	Заметим, что $\sigma(\cM)$ --- это $\lambda$-система, содержащая $\cM$. Значит, уже $\lambda(\cM) \subseteq \sigma(\cM)$.
 	
-	Теперь надо показать, что $\lambda(\cM)$ --- это тоже $\sigma$-алгебра. Из того, что это уже $\lambda$-система, по первой теореме нам нужно проверить лишь замкнутость относительно пересечения. Рассмотрим систему приближающих множеств $\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}$. Она непустая, коль скоро $\cM \subset \cM_1$. Если бы покажем, что это $\lambda$-система, то она автоматически по минимальности совпадает с $\lambda(M)$ и к тому же является $\sigma$-алгеброй, что и требуется:
+	Теперь надо показать, что $\lambda(\cM)$ --- это тоже $\sigma$-алгебра. Из того, что это уже $\lambda$-система, по первой теореме нам нужно проверить лишь замкнутость относительно пересечения. Рассмотрим систему подходящих множеств $\cM_1$:
+	\[
+		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}
+	\]
+	Она непустая, коль скоро $\cM \subset \cM_1$. Если бы покажем, что это $\lambda$-система, то она автоматически по минимальности совпадает с $\lambda(M)$ и к тому же является $\sigma$-алгеброй, что и требуется:
 	\begin{enumerate}
+		\item $\Omega \in \cM_1$ --- тривиально
+		
+		\item Пусть $B, C \in \cM_1$, $C \subseteq B$. Тогда $B \bs C \in \lambda(\cM)$ и надо показать, что также $B \bs C \in \cM_1$. Заметим следующий факт:
+		\[
+			\forall A \in \lambda(M)\ \ (B \bs C) \cap A = (B \cap A) \bs (C \cap A)
+		\]
+		Коль скоро $B, C \in \cM_1$, то $(B \cap A), (C \cap A) \in \lambda(\cM)$. Более того, $(B \cap A) \supseteq (C \cap A)$, то есть их разность тоже в $\lambda(\cM)$.
+		
+		\item Возьмём любую последовательность $\{B_n\}_{n = 1}^\infty \subseteq \cM_1,\ B_n \subseteq B_{n + 1}$. Обозначим $B := \bigcup_{n = 1}^\infty B_n \in \lambda(M)$ и рассмотрим его пересечение с произвольным $A \in \lambda(M)$:
+		\[
+			B \cap A = \ps{\bigcup_{n = 1}^\infty B_n} \cap A = \bigcup_{n = 1}^\infty (B_n \cap A) \in \lambda(M)
+		\]
+		В конечном факте о принадлежиности мы пользуемся тем, что $(B_n \cap A) \in \lambda(M)$ и они образуют неубывающую последовательность.
 	\end{enumerate}
 \end{proof}
