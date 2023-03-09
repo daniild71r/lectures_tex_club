@@ -1,0 +1,214 @@
+ё\begin{corollary}
+	Пусть $\cM$ --- это $\pi$-система подмножеств $\Omega$, а $\cL$ --- это $\lambda$-система подмножеств $\Omega$ и $\cM \subseteq \cL$. Тогда $\sigma(\cM) \subseteq \cL$
+\end{corollary}
+
+\subsection{Независимость}
+
+\begin{note}
+	В этой части мы используем кортеж $(\Omega, \F, P)$ только для обозначения вероятностного пространства, если не оговорено иного.
+\end{note}
+
+\begin{definition}
+	События $A, B \in \F$ называются \textit{независимыми}, если выполнено равенство:
+	\[
+		P(A \cap B) = P(A) \cdot P(B)
+	\]
+\end{definition}
+
+\begin{definition}
+	События $A_1, \ldots, A_n \in \F$ называются \textit{независимыми в совокупности}, если выполнено утверждение:
+	\[
+		\forall k \le n\ \forall\ 1 \le i_1 < \ldots < i_k \le n\ \ P(A_{i_1} \cap \ldots \cap A_{i_k}) = P(A_{i_1}) \cdot \ldots \cdot P(A_{i_k})
+	\]
+\end{definition}
+
+\begin{proposition}
+	Из независимости событий в совокупности следует попарная независимость этих событий.
+\end{proposition}
+
+\begin{proof}
+	Тривиально из определения.
+\end{proof}
+
+\begin{exercise}
+	Привести пример $n$ событий таких, что любые $n - 1$ из них независимы в совокупности, но все $n$ зависимы.
+\end{exercise}
+
+\begin{definition}
+	Системы событий $\cM_1, \ldots, \cM_n$ на $(\Omega, \F, P)$ называются \textit{независимыми в совокупности}, если верно следующее:
+	\[
+		\forall A_1 \in \cM_1, \ldots, A_n \in \cM_n\ \ \text{события $A_1, \ldots, A_n$ независимы в совокупности}
+	\]
+\end{definition}
+
+\begin{lemma} (Критерий независимости $\sigma$-алгебр)
+	Пусть $\cM_1, \ldots, \cM_n$ --- это $\pi$-системы событий на $(\Omega, \F, P)$. Тогда они независимы в совокупности тогда и только тогда, когда $\sigma(\cM_1), \ldots, \sigma(\cM_n)$ --- тоже независимы в совокупности.
+\end{lemma}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\La$] Очевидно, так как $\cM_i \subseteq \sigma(\cM_i)$
+		
+		\item[$\Ra$] Докажем только для $n = 2$, так как при $n > 2$ всё происходит аналогично.
+		
+		Идея состоит в том, чтобы пошагово заменить исходные системы на их сигма-алгебры. Рассмотрим $\cL_1$ --- система подходящих множеств, устроенная следующим образом:
+		\[
+			\cL_1 = \{A \in \sigma(\cM_2) \colon A \text{ независимо с $\cM_1$ как система из одного множества}\}
+		\]
+		Проверим, что $\cL_1$ --- это $\lambda$-система:
+		\begin{enumerate}
+			\item $\Omega \in \cL_1$, ибо $\forall B \in \cM_1\ P(\Omega \cap B) = P(B) = P(B) \cdot P(\Omega)$
+			
+			\item Пусть $A, B \in \cL_1$, $A \subseteq B$. Сразу отметим, что $B \bs A \in \sigma(\cM_2)$, ибо живём в сигма-алгебре. Чтобы показать, что $B \bs A \in \cL_1$, возьмём любое $C \in \cM_1$ и проверим независимость:
+			\[
+				P((B \bs A) \cap C) = P((B \cap C) \bs (A \cap C)) = P(B \cap C) - P(A \cap C)
+			\]
+			В силу независимости $A, B$ с $C$ мы имеем право записать следующее:
+			\[
+				P((B \bs A) \cap C) = P(B \cap C) - P(A \cap C) = (P(B) - P(A)) \cdot P(C) = P(B \bs A) \cdot P(C)
+			\]
+			
+			\item Пусть $\{A_n\}_{n = 1}^\infty \subseteq \cL_1$, $A_n \subseteq A_{n + 1}$ и $A := \bigcup_{n = 1}^\infty A_n \in \sigma(\cM_2)$ (принадлежность следует из определения сигма-алгебры). Пусть $C \in \cM_1$. Тогда мы можем записать вероятность события $A \cap C$ через предел, в силу непрерывности меры (и воспользоваться независимостью $A_n$ с $C$):
+			\[
+				P(A \cap C) = P(\lim_{n \to \infty} A_n \cap C) = \lim_{n \to \infty} P(A_n \cap C) = \lim_{n \to \infty} P(A_n) \cdot P(C) = P(A) \cdot P(C)
+			\]
+			Стало быть, $A \in \cL_1$.
+		\end{enumerate}
+		Коль скоро мы показали, что $\cL_1$ является $\lambda$-системой и $\cM_2 \subseteq \cL_1$ по определению, то по второй теореме о $\pi$- и $\lambda$-системах есть вложение $\sigma(\cM_2) \subseteq \cL_1$. Стало быть, $\sigma(\cM_2)$ независимо с $\cM_1$. Теперь, рассмотрим $\cL_2$ следующего вида:
+		\[
+			\cL_2 = \{A \in \sigma(\cM_1) \colon A \text{ независимо с } \sigma(\cM_2) \text{ как система из одного множества}\}
+		\]
+		Точно так же доказывается, что это $\lambda$-система и $\cM_1 \subseteq \cL_2 \Ra \sigma(\cM_1) \subseteq \cL_2$. Стало быть, $\sigma(\cM_1)$ независимо с $\sigma(\cM_2)$.
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Пусть $\{\cM_\alpha, \alpha \in \gA\}$ --- набор систем событий. Он называется \textit{независимым в совокупности}, если любой конечный поднабор тоже независим.
+\end{definition}
+
+\begin{note}
+	$\gA$ --- это абсолютно произвольное множество индексов. Не важно, ни что в нём находится, ни какой мощностью оно обладает.
+\end{note}
+
+\section{Вероятностные меры на $(\R, \B(\R))$}
+
+\subsection{Связь вероятностной меры с функцией распределения}
+
+\begin{note}
+	Далее мы будем использовать букву $P$ для обозначения вероятностной меры на $(\R, \B(\R))$.
+\end{note}
+
+\begin{definition}
+	\textit{Функцией распределения вероятностной меры} $P$ на $\R$ называется $F$, определяемая таким образом:
+	\[
+		\forall x \in \R\ \ F(x) = P(\rsi{-\infty; x})
+	\]
+\end{definition}
+
+\begin{lemma} (Свойства функции распределения)
+	Для функции распределения $F$ вероятностной меры $P$ верны следующие свойства:
+	\begin{enumerate}
+		\item $F$ неубывает на $\R$
+		
+		\item $\lim_{x \to +\infty} F(x) = 1$
+		
+		\item $\lim_{x \to -\infty} F(x) = 0$
+		
+		\item $F$ непрерывна справа
+	\end{enumerate}
+\end{lemma}
+
+\begin{note}
+	Если не включать $x$ в определении $F$, то $F$ будет непрерывна слева.
+\end{note}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Пусть $x < y$. Тогда $\rsi{-\infty; x} \subset \rsi{-\infty; y}$, отсюда
+		\[
+			F(x) = P(\rsi{-\infty; x}) \le P(\rsi{-\infty; y}) = F(y)
+		\]
+		
+		\item Для любой последовательности $\{x_n\}_{n = 1}^\infty$, $\lim_{n \to \infty} x_n = +\infty$ следует, что $\lim_{n \to \infty} \rsi{-\infty; x_n} = \R$. В силу непрерывности вероятностной меры:
+		\[
+			F(x_n) = P(\rsi{-\infty; x_n}) \Lora P(\R) = 1 = \lim_{n \to \infty} F(x_n)
+		\]
+		
+		\item Для любой последовательности $\{x_n\}_{n = 1}^\infty$, $\lim_{n \to \infty} x_n = -\infty$ следует, что $\lim_{n \to \infty} \rsi{-\infty; x_n} = \emptyset$. В силу непрерывности вероятностной меры:
+		\[
+			F(x_n) = P(\rsi{-\infty; x_n}) \Lora P(\emptyset) = 0 = \lim_{n \to \infty} F(x_n)
+		\]
+		
+		\item Зафиксируем $x \in \R$ и рассмотрим любую последовательность $\{x_n\}_{n = 1}^\infty, \lim_{n \to \infty} x_n = x$, причём $x_n \le x$. Коль скоро $F$ неубывает, то мы имеем право рассматривать лишь монотонные последовательности. Тогда
+		\[
+			\lim_{n \to \infty} F(x_n) = \lim_{n \to \infty} P(\rsi{-\infty; x_n}) = P(\lim_{n \to \infty} \rsi{-\infty; x_n}) = P(\rsi{-\infty; x}) = F(x)
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Функция $F \colon \R \to \R$, удовлетворяющая следующим свойствам:
+	\begin{itemize}
+		\item $F$ неубывает на $\R$
+		
+		\item $\lim_{x \to +\infty} F(x) = 1$
+		
+		\item $\lim_{x \to -\infty} F(x) = 0$
+		
+		\item $F$ непрерывна справа
+	\end{itemize}
+	называется \textit{функцией распределения на $\R$}.
+\end{definition}
+
+\begin{theorem} (Биекция между функциями распределения и вероятностными мерами)
+	Пусть $F$ --- это функция распределения на $\R$. Тогда существует единственная вероятностная мера на $(\R, \B(\R))$, для которой $F$ является функцией распределения, то есть верно равенство:
+	\[
+		\forall x \in \R\ \ F(x) = P(\rsi{-\infty; x})
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим на $\R$ алгебру $\cA$, состоящую из конечных объединений непересекающихся полуинтервалов. Любой элемент $A \in \cA$ обладает \textit{каноническим видом}:
+	\[
+		A = \bscup_{k = 1}^n \rsi{a_k; b_k},\ \ -\infty \le a_1 < b_1 < a_2 < b_2 < \ldots < a_n < b_n \le +\infty
+	\]
+	Далее мы работаем только с канонически разложением элементов. Зададим на $\cA$ меру $P_0$ посредством $F$ таким образом:
+	\[
+		P_0(A) = \sum_{k = 1}^n (F(b_k) - F(a_k))
+	\]
+	причём $F(-\infty) = 0$, $F(+\infty) = 1$. По построению $P_0(\R) = 1$ и $P_0$ будет как минимум конечно аддитивна на $\cA$. Если мы проверим, что $P_0$ счётно аддитивна на $\cA$, то по теореме Каратеодори будет существовать единственное продолжение $P$ меры $P_0$ на $\sigma(\cA) = \B(\R)$. Это и есть искомая мера $P$, коль скоро
+	\[
+		\forall x \in \R\ \ P(\rsi{-\infty; x}) = P_0(\rsi{-\infty; x}) = F(x)
+	\]
+	Итак, по теореме о непрерывности вероятностной меры достаточно проверить, что $P_0$ непрерывна в нуле. Для начала отметим, что мы умеем хорошо приближать любое множество $A \in \cA$:
+	\[
+		\forall A \in \cA\ \forall \eps > 0\ \exists B \in \cA \such \cl B \subseteq A \wedge P_0(A \bs B) \le \eps
+	\]
+	Действительно, для любого интервала $\rsi{a; b}$ и фиксированного $\eps > 0$ можно подобрать такое $a' > a$, что верно неравенство:
+	\[
+		P_0(\rsi{a; b} \bs \rsi{a'; b}) = P_0(\rsi{a; a'}) = F(a') - F(a) \le \eps
+	\]
+	Теперь уже рассмотрим $\forall \{A_n\}_{n = 1}^\infty, A_n \supseteq A_{n + 1}$ и $\lim_{n \to \infty} A_n = \bigcap_{n = 1}^\infty A_n = \emptyset$. При фиксированном $\eps > 0$ этой последовательности получаем $\{B_n\}_{n = 1}^\infty$, по утверждению выше, с требованием $P_0(A_n \bs B_n) \le \eps / 2^n$. Разберём 2 ситуации:
+	\begin{enumerate}
+		\item Существует такое $N \in \N$, что $\forall n \in \N\ A_n \subseteq [-N; N]$. Так как $\cl B_n \subseteq A_n$, то тривиальным образом $\lim_{n \to \infty} \cl B_n = \emptyset \Ra \lim_{n \to \infty} \R \bs \cl B_n = \R$. Коль скоро эта последовательность образует открытое счётное покрытие $[-N; N]$, то
+		\[
+			\exists n_0 \in \N \such [-N; N] \subseteq \bigcup_{n = 1}^{n_0} \R \bs \cl B_n 
+		\]
+		Так как каждое $\cl B_n \subseteq [-N; N]$, то из утверждения выше также получается, что $\bigcap_{n = 1}^{n_0} B_n = \emptyset$. Покажем, что имеет место оценка $P_0(A_{n_0}) \le \eps$:
+		\begin{multline*}
+			P_0(A_{n_0}) = P_0\ps{A_{n_0} \bs \bigcap_{n = 1}^{n_0} B_n} \le P_0\ps{\bigcup_{n = 1}^{n_0} (A_{n_0} \bs B_n)} \le P_0\ps{\bigcup_{n = 1}^{n_0} (A_n \bs B_n)} \le
+			\\
+			\sum_{n = 1}^{n_0} P_0(A_n \bs B_n) \le \sum_{n = 1}^{n_0} \frac{\eps}{2^n} \le \eps
+		\end{multline*}
+		
+		\item Если же последовательность нельзя ограничить, то найдём такое $N$:
+		\[
+			\exists N \in \N \such P_0(\R \bs \rsi{-N; N}) \le \frac{\eps}{2}
+		\]
+		И рассмотрим по предыдущему пункту уже $A'_n = A_n \cap \rsi{-N; N}$, для которой докажется предел $\lim_{n \to \infty} P(A'_n) = 0$. При помощи этого отсечения мы можем оценить меру $A_n$ следующим образом:
+		\[
+			P_0(A_n) \le P(A'_n) + P_0(\R \bs \rsi{-N; N}) \le \frac{\eps}{2} + \frac{\eps}{2} \le \eps
+		\]
+	\end{enumerate}
+	Из непрерывности $P_0$ следует её $\sigma$-аддитивность, а продолжение $P$ наследует это свойство.
+\end{proof}

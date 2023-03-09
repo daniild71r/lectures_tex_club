@@ -1,3 +1,5 @@
+\section{Аксиоматика Колмогорова}
+
 \begin{note}
 	Теория вероятностей по своему смыслу является \textit{математическим анализом случайных явлений}.
 \end{note}
@@ -82,6 +84,8 @@
 \end{enumerate}
 
 \section{Системы множеств}
+
+\subsection{$\pi$- и $\lambda$-системы}
 
 \begin{note}
 	Мы фиксируем произвольное множество $\Omega$.
@@ -209,13 +213,13 @@
 	\[
 		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}
 	\]
-	Она непустая, коль скоро $\cM \subset \cM_1$. Если бы покажем, что это $\lambda$-система, то она автоматически по минимальности совпадает с $\lambda(M)$ и к тому же является $\sigma$-алгеброй, что и требуется:
+	Она непустая, коль скоро $\cM \subset \cM_1$. Если мы покажем, что это $\lambda$-система, то она автоматически по вложению $\cM_1 \subseteq \lambda(\cM)$ совпадает с $\lambda(\cM)$ и к тому же является $\sigma$-алгеброй, что и требуется:
 	\begin{enumerate}
 		\item $\Omega \in \cM_1$ --- тривиально
 		
 		\item Пусть $B, C \in \cM_1$, $C \subseteq B$. Тогда $B \bs C \in \lambda(\cM)$ и надо показать, что также $B \bs C \in \cM_1$. Заметим следующий факт:
 		\[
-			\forall A \in \lambda(M)\ \ (B \bs C) \cap A = (B \cap A) \bs (C \cap A)
+			\forall A \in \lambda(\cM)\ \ (B \bs C) \cap A = (B \cap A) \bs (C \cap A)
 		\]
 		Коль скоро $B, C \in \cM_1$, то $(B \cap A), (C \cap A) \in \lambda(\cM)$. Более того, $(B \cap A) \supseteq (C \cap A)$, то есть их разность тоже в $\lambda(\cM)$.
 		
@@ -223,6 +227,6 @@
 		\[
 			B \cap A = \ps{\bigcup_{n = 1}^\infty B_n} \cap A = \bigcup_{n = 1}^\infty (B_n \cap A) \in \lambda(M)
 		\]
-		В конечном факте о принадлежиности мы пользуемся тем, что $(B_n \cap A) \in \lambda(M)$ и они образуют неубывающую последовательность.
+		В конечном факте о принадлежности мы пользуемся тем, что $(B_n \cap A) \in \lambda(M)$ и они образуют неубывающую последовательность.
 	\end{enumerate}
 \end{proof}
