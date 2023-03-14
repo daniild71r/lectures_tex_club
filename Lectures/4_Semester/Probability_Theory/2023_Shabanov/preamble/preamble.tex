@@ -16,6 +16,7 @@
 %%% Свои символы и команды
 \usepackage{centernot} % центрированное зачеркивание символа
 \usepackage{stmaryrd}  % некоторые спецсимволы
+\usepackage[e]{esvect}  % Нормальные векторы по команде \vv
 
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
@@ -50,10 +51,13 @@
 \newcommand{\cL}{\mathcal{L}}
 \newcommand{\cM}{\mathcal{M}}
 \newcommand{\B}{\mathfrak{B}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cD}{\mathcal{D}}
 \newcommand{\ol}{\overline}
 \newcommand{\such}{\ \big|\ }
 \newcommand{\tr}{\triangle}
 \newcommand{\eps}{\epsilon}
+\newcommand{\vdelta}{\partial}
 \newcommand{\indep}{\perp\mkern-9.5mu\perp}
 \newcommand{\muldots}{\cdot \ldots \cdot}
 \newcommand{\plusdots}{+ \ldots +}
@@ -67,6 +71,9 @@
 }
 \newcommand{\Root}[2]{
 	\left\{\!\sqrt[#1]{#2}\right\}
+}
+\newcommand{\pd}[2]{
+	\frac{\vdelta #1}{\vdelta #2}
 }
 \newcommand{\ps}[1]{
 	\left(#1\right)
@@ -105,6 +112,8 @@
 \let\Lora\Longrightarrow
 \let\Lola\Longleftarrow
 \let\rras\rightrightarrows
+\let\sda\shortdownarrow
+\let\sua\shortuparrow
 \let\emb\hookrightarrow
 \let\bscup\bigsqcup
 \let\bscap\bigsqcap

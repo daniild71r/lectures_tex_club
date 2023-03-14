@@ -1,0 +1,250 @@
+\section{Вероятностные меры на $(\R^n, \B(\R^n))$}
+
+\begin{note}
+	Мы будем рассматривать только $n \ge 2$ и зафиксируем за $P$ обозначение вероятностной меры на $(\R^n, \B(\R^n))$.
+\end{note}
+
+\begin{definition}
+	\textit{Функцией распределения вероятностной меры} $P$ называется функция $F(x_1, \ldots, x_n) \colon \R^n \to \R$, определяемая следующим соотношением:
+	\[
+		\forall x_i \in \R\ \ F(x_1, \ldots, x_n) = P(\rsi{-\infty; x_1} \times \ldots \times \rsi{-\infty; x_n})
+	\]
+\end{definition}
+
+\begin{designation}
+	Мы условимся использовать следующий синтаксис:
+	\begin{enumerate}
+		\item \(\vv{x} = (x_1, \ldots, x_n)\)
+		
+		\item \(\vv{x} \ge \vv{y} \Lra \forall i \in \range{1}{n}\ \ x_i \ge y_i\)
+		
+		\item \(\rsi{-\infty; \vv{x}} = \rsi{-\infty; x_1} \times \ldots \times \rsi{-\infty; x_n}\)
+		
+		\item \(\{\vv{x}^{(k)}\}_{k = 1}^\infty\) --- последовательность векторов
+		
+		\item \(\vv{x}^{(k)} \sda \vv{x}\), если
+		\begin{enumerate}
+			\item[$1)$] \(\forall k \in \N\ \ \vv{x}^{(k)} \ge \vv{x}^{(k + 1)}\)
+			
+			\item[$2)$] \(\vv{x} = \lim_{k \to \infty} \vv{x}^{(k)}\)
+		\end{enumerate}
+	\end{enumerate}
+\end{designation}
+
+\begin{lemma} (Свойства многомерной функции распределения)
+	Пусть $F(\vv{x})$ --- функция распределения вероятностной меры $P$. Тогда
+	\begin{enumerate}
+		\item (Непрерывность справа по любой координате) Если $\vv{x}^{(k)} \sda \vv{x}$, то \(\lim_{k \to \infty} F(\vv{x}^{(k)}) = F(\vv{x})\)
+		
+		\item \(\lim_{x_i \to +\infty} F(\vv{x}) = 1\)
+		
+		\item \(\lim_{x_i \to -\infty} F(\vv{x}) = 0\)
+		
+		\item Определим оператор над функцией распределения:
+		\[
+			\Delta_{a_i, b_i}^i F(x_1, \ldots, x_n) := F(x_1, \ldots, b_i, x_{i + 1}, \ldots, x_n) - F(x_1, \ldots, a_i, x_{i + 1}, \ldots, x_N)
+		\]
+		Тогда должно быть выполнено следующее свойство:
+		\[
+			\forall a_i < b_i\ \ \Delta_{a_1, b_1}^1 \circ \ldots \circ \Delta_{a_n, b_n}^n F(x_1, \ldots, x_n) \ge 0
+		\]
+	\end{enumerate}
+\end{lemma}
+
+\begin{note}
+	Последнее свойство не эквивалентно неубыванию по любой координате. Как контрпример можно привести следующую функцию:
+	\[
+		F(x, y) = \System{
+			&{1,\ x + y \ge 0}
+			\\
+			&{0,\ \text{иначе}}
+		}
+	\]
+	Она удовлетворяет всем свойствам, но не последнему из леммы. Если посчитать вероятность для квадрата со стороной 2 и центром в нуле, то получится -1.
+\end{note}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Если $\vv{x}^{(k)} \sda \vv{x}$, то $\rsi{-\infty; \vv{x}^{(k)}} \sda \rsi{-\infty; \vv{x}}$. По непрерывности вероятностной меры:
+		\[
+			F(\vv{x}^{(k)}) = P\rsi{-\infty; \vv{x}^{(k)}} \to P\rsi{-\infty; \vv{x}} = F(\vv{x}),\ k \to \infty
+		\]
+		
+		\item Если $\vv{x}^{(k)} \sua (+\infty, \ldots, +\infty)$, то $\rsi{-\infty; \vv{x}^{(k)}} \sua \R^n$. В силу непрерывности вероятностной меры:
+		\[
+			F(\vv{x}^{(k)}) = P\rsi{-\infty; \vv{x}^{(k)}} \to P(\R^n) = 1,\ k \to \infty
+		\]
+		
+		\item Если $\vv{x}^{(k)} \sda (-\infty, \ldots, -\infty)$, то $\rsi{-\infty; \vv{x}^{(k)}} \sda \emptyset$. По непрерывности вероятностной меры:
+		\[
+			F(\vv{x}^{(k)}) = P\rsi{-\infty; \vv{x}^{(k)}} \to P(\emptyset)  = 0
+		\]
+		
+		\item Нужно проверить на самом деле такой факт:
+		\[
+			\Delta_{a_1, b_1}^1 \circ \ldots \circ \Delta_{a_n, b_n}^n F(x_1, \ldots, x_n) = P(\rsi{a_1; b_1} \times \ldots \times \rsi{a_n; b_n})
+		\]
+		Сделаем это для $n = 2$:
+		\begin{multline*}
+			\Delta_{a_1, b_1}^1 \circ \delta_{a_2, b_2}^2 F(x_1, x_2) = \Delta_{a_1, b_1}^1 (F(x_1, b_2) - F(x_1, a_2)) =
+			\\
+			F(b_1, b_2) - F(a_1, b_2) - (F(b_1, a_2) - F(a_1, a_2)) = P(\rsi{a_1; b_1} \times \rsi{a_2; b_2})
+		\end{multline*}
+		Последнее равество проверяется геометрически. Для общего случя достаточно заметить, что
+		\[
+			\Delta_{a_i, b_i}^i P(B_1 \times \ldots \times \rsi{-\infty; x_i} \times B_{i + 1} \times \ldots \times B_n) = P(B_1 \times \ldots \times \rsi{a_i; b_i} \times B_{i + 1} \times \ldots \times B_n)
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Биекция функций распределений и вероятностных мер в $\R^n$)
+	Пусть функция $F(x_1, \ldots, x_n)$ удовлетворяет всем свойствам из леммы выше. Тогда существует и единственна вероятностная мера $P$ на $(\R^n, \B(\R^n))$, для которой $F$ является функцией распределения.
+\end{theorem}
+
+\subsubsection*{Примеры задания многомерн}
+\begin{enumerate}
+	\item Если $F_1, \ldots, F_n$ --- функции распределения на $\R$, то такая $F$ будет многомерной функцией распределения:
+	\[
+		F(x_1, \ldots, x_n) = F_1(x_1) \cdot \ldots \cdot F_n(x_n)
+	\]
+	Все свойства до последнего про $F$ очевидны. Проверим последнее:
+	\[
+		\Delta_{a_1, b_1}^1 \circ \ldots \circ \Delta_{a_n, b_n}^n \prod_{k = 1}^n F_k(x_k) = \prod_{k = 1}^n (F(b_k) - F(a_k)) \ge 0
+	\]
+	
+	\begin{example}
+		Пусть $\forall k \in \range{1}{n}\ \ F_k(x)$ определена таким образом (равномерное распределение):
+		\[
+			F_k(x) = \System{
+				&{1,\ x \ge 1}
+				\\
+				&{x,\ x \in (0; 1)}
+				\\
+				&{0,\ x \le 0}
+			}
+		\]
+		Тогда $F(x_1, \ldots, x_n)$, определённая по предыдущему примеру, будет явно выписываться следующим образом:
+		\[
+			F(x_1, \ldots, x_n) = \System{
+				&{1,\ x_k \ge 1}
+				\\
+				&{\text{случай сечения единичного гиперкуба}}
+				\\
+				&{x_1 \cdot \ldots \cdot x_k,\ x_k \in [0; 1]}
+				\\
+				&{0,\ \exists k \colon x_k < 0}
+			}
+		\]
+		Этой функции соответствует $P$ --- мера Лебега на $[0; 1]^n$.
+	\end{example}
+
+	\item Если функция распределения $F(\vv{x})$ представима в таком виде:
+	\[
+		F(\vv{x}) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p(t_1, \ldots, t_n)dt_1 \cdot \ldots \cdot dt_n
+	\]
+	где $p(t_1, \ldots, t_n) \ge 0$ с соответствующим условием нормировки, то $p$ называется \textit{плотностью функции распределения $F$ (и соответствующей ей вероятностной меры $P$)}. При этом почти всюду по мере Лебега верна формула:
+	\[
+		p(x_1, \ldots, x_n) = \pd{^n F}{x_1 \ldots \vdelta x_n} (x_1, \ldots, x_n)
+	\]
+\end{enumerate}
+
+\section{Вероятностные меры в $\R^\infty$}
+
+\begin{proposition}
+	Пусть $P$ --- вероятностная мера на $(\R^\infty, \B(\R^\infty))$ и для $\forall n \in \N$ рассмотрим следующие объекты:
+	\begin{align*}
+		&{F_n(B) = \{\vv{x} = (x_1, x_2, \ldots) \colon (x_1, \ldots, x_n) \in B\}} \text{ --- цилиндр с основанием } B
+		\\
+		&{\forall B \in \B(\R^n)\ \ P_n(B) = P(F_n(B))}
+	\end{align*}
+	Тогда $P_n$ --- вероятностная мера в $\R^n$. Кроме того,
+	\[
+		\forall n \in \N, B \in \B(\R^n)\ \ P_n(B) = P_{n + 1}(B \times \R) \text{ --- свойство согласованности}
+	\]
+\end{proposition}
+
+\begin{theorem} (Колмогорова о мерах в $\R^\infty$)
+	Пусть $P_1, \ldots, P_n, \ldots$ --- последовательность вероятностных мер в $\R, \ldots, \R^n, \ldots$ соответственно, обладающих свойством согласованности. Тогда существует и единственна вероятностная мера $P$ на $(\R^\infty, \B(\R^\infty))$ такая, что
+	\[
+		\forall n \in \N, B \in \B(\R^n)\ \ P_n(B) = P(F_n(B))
+	\]
+\end{theorem}
+
+\section{Случайные элементы, величины и векторы}
+
+\begin{note}
+	Мы зафиксируем обозначения $(\Omega, \F, P)$ --- вероятностное пространство, а $(E, \cE)$ --- измеримое пространство.
+\end{note}
+
+\begin{definition}
+	Отображение $X \colon \Omega \to \cE$ называется \textit{случайным элеметом}, если оно измеримо, то есть
+	\[
+		\forall B \in \cE\ \ X^{-1}(B) \in \F
+	\]
+\end{definition}
+
+\begin{definition}
+	Если $(E, \cE) = (\R, \B(\R))$, то случайный элемент называется \textit{случайной величиной}.
+\end{definition}
+
+\begin{definition}
+	Если $(E, \cE) = (\R^n, \B(\R^n))$, то случайный элемент называется \textit{случайным вектором}.
+\end{definition}
+
+\begin{note}
+	Будем сокращать случайную величину как с.в., а случайный вектор --- с.вектор.
+\end{note}
+
+\begin{lemma} (Критерий измеримости отображения)
+	Пусть $\cM \subseteq \cE$ такое, что $\sigma(\cM) = \cE$, то отображение $X \colon \Omega \to \cE$ измеримо тогда и только тогда, когда
+	\[
+		\forall B \in \cM\ \ X^{-1}(B) \in \F
+	\]
+\end{lemma}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] Очевидно
+		
+		\item[$\La$] Воспользуемся техникой подходящих множеств. Рассмотрим $\cD = \{B \in \cE \colon X^{-1}(B) \in \F\}$. Тогда $\cD$ --- это $\sigma$-алгебра, ибо $\cE$ исходно $\sigma$-алгебра, а прообраз сохраняет нужные теоретико-множественные операции. По условию $\cM \subseteq \cD$, поэтому $\sigma(\cM) = \cE \subseteq \cD$ в силу минимальности.
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}~
+	\begin{enumerate}
+		\item Три свойства эквивалентны:
+		\begin{itemize}
+			\item $X \colon \Omega \to \R$ --- случайная величина
+			
+			\item $\forall x \in \R\ \ \{\omega \in \Omega \colon X(\omega) < x\} \in \F$
+			
+			\item $\forall x \in \R\ \ \{\omega \in \Omega \colon X(\omega) \le x\} \in \F$
+		\end{itemize}
+		
+		\item Ещё два свойства эквивалентны:
+		\begin{itemize}
+			\item $X \colon \Omega \to \R^n$ --- случайный вектор
+			
+			\item $X = (X_1, \ldots, X_n)$, где $X_i$ --- случайная величина
+		\end{itemize}
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Применяем критерий измеримости отображения для таких систем: $\cM_1 = \{(-\infty; x),\ x \in \R\}$ и $\cM_2 = \{\rsi{-\infty; x},\ x \in \R\}$. В обоих случаях $\sigma(\cM_i) = \B(\R)$
+		
+		\item Проведём доказательство в 2 стороны:
+		\begin{itemize}
+			\item[$\Ra$] Пусть $B \in \B(\R)$. Тогда
+			\[
+				X_i^{-1}(B) = X^{-1}(\R \times \ldots \times B \times \R \times \ldots \times \R) \in \F \text{ --- замена на $i$-й позиции}
+			\]
+			
+			\item[$\La$] Рассмотрим систему из таких прямоугольников: $\cM = \{B_1 \times \ldots \times B_n \colon B_i \in \B(\R)\}$. Тогда $\sigma(\cM) = \B(\R^n)$ и проверим условие леммы:
+			\[
+				X^{-1}(B_1 \times \ldots \times B_n) = \underbrace{X_1^{-1}(B_1)}_{\in \F} \cap \ldots \cap \underbrace{X_n^{-1}(B_n)}_{\in \F} \in \F
+			\]
+		\end{itemize}
+	\end{enumerate}
+\end{proof}
