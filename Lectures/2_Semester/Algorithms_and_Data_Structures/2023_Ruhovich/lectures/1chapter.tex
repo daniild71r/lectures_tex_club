@@ -2,7 +2,7 @@
 
 
 
-Хотим завести некоторую структуру данных, в которой можно хранить элементы типа $T$ с компаратором $cmp$ и поддержкой таких операций, как $insert(x)$, $erase(x)$, $exists(x)$ (как, например, в set). Такое можно сделать через хэш-таблицы или через vector за $O(n)$ на операцию, но мы сделаем по-другому. 
+Пусть мы хотим завести некоторую структуру данных, в которой можно хранить элементы типа $T$ с компаратором $cmp$ и поддержкой таких операций, как $insert(x)$, $erase(x)$, $exists(x)$ (как, например, в set). Такое можно сделать через хэш-таблицы или через vector за $O(n)$ на операцию, но мы сделаем по-другому. 
 Давайте сделаем двоичное дерево, где в каждой вершине будет написано какое-то из добавленных значений, и где для каждого поддерева будет выполнено следующее условие: значения всех элементов из левого поддерева меньше, чем в корне, а из правого больше. \\ 
 
 \begin{center} 
@@ -108,37 +108,37 @@
 \begin{enumerate}
     \item Обход по принципу "сначала я, потом дети":
     \begin{lstlisting}
-        void preOrder(Node* node) {
-            if (!node) {
-                return;
-            }
-            print(node->key);
-            preOrder(node->left);
-            preOrder(node->right);
+    void preOrder(Node* node) {
+        if (!node) {
+            return;
         }
+        print(node->key);
+        preOrder(node->left);
+        preOrder(node->right);
+    }
     \end{lstlisting}
     \item Обход по принципу "сначала дети, потом я":
     \begin{lstlisting}
-        void postOrder(Node* node) {
-            if (!node) {
-                return;
-            }
-            postOrder(node->left);
-            postOrder(node->right);
-            print(node->key);
+    void postOrder(Node* node) {
+        if (!node) {
+            return;
         }
+        postOrder(node->left);
+        postOrder(node->right);
+        print(node->key);
+    }
     \end{lstlisting}
     $Pre$- и $PostOrder$ могут быть использованы в любых деревьях, не только в ДДП. Еще можно заметить, что в таком выводе поддерево будет являться каким-то подотрезком выходного массива.
     \item "Эксклюзивный" обход, который можно использовать только в ДДП, по принципу "ни туда, ни сюда":
     \begin{lstlisting}
-        void inOrder(Node* node) {
-            if (!node) {
-                return;
-            }
-            inOrder(node->left);
-            print(node->key);
-            inOrder(node->right);
+    void inOrder(Node* node) {
+        if (!node) {
+            return;
         }
+        inOrder(node->left);
+        print(node->key);
+        inOrder(node->right);
+    }
     \end{lstlisting}
 \end{enumerate}
 
@@ -220,28 +220,9 @@
                         child {node {$x$}
                             child {node {$C$}}
                             child {node {$D$}
-                                child {node {$E$}}
-                                child {node {$F$}}
-                            }
-                        };
-                \end{tikzpicture}
-            &
-                \begin{tikzpicture}[
-                        thick,
-                        every node/.style = {draw, circle, minimum size=10mm},
-                        level 1/.style = {sibling distance=20mm},
-                        level 2/.style = {sibling distance=20mm}, 
-                        level 3/.style = {sibling distance=15mm}, 
-                        level distance = 15mm
-                    ]
-                    \node {$A$}
-                        child {node {$B$}}
-                        child {node {$E$}
-                            child[missing]
-                            child {node {$D$}
-                                child {node {$x$}
-                                    child {node {$C$}}
+                                child {node {$E$}
                                     child[missing]
+                                    child {node {$G$}}
                                 }
                                 child {node {$F$}}
                             }
@@ -259,9 +240,31 @@
                     \node {$A$}
                         child {node {$B$}}
                         child {node {$E$}
-                            child[missing]
+                            child {node {$C$}}
                             child {node {$D$}
-                                child {node {$C$}}
+                                child {node {$x$}
+                                    child[missing]
+                                    child {node {$G$}}
+                                }
+                                child {node {$F$}}
+                            }
+                        };
+                \end{tikzpicture}
+            &
+                \begin{tikzpicture}[
+                        thick,
+                        every node/.style = {draw, circle, minimum size=10mm},
+                        level 1/.style = {sibling distance=20mm},
+                        level 2/.style = {sibling distance=20mm}, 
+                        level 3/.style = {sibling distance=15mm}, 
+                        level distance = 15mm
+                    ]
+                    \node {$A$}
+                        child {node {$B$}}
+                        child {node {$E$}
+                            child {node {$C$}}
+                            child {node {$D$}
+                                child {node {$G$}}
                                 child {node {$F$}}
                             }
                         };
@@ -498,9 +501,9 @@
 
 \subsubsection{Операция insert(x)}
 
-Если мы хотим вставить новую вершинку $Z$, то сделаем вставку из обычного ДДП и покрасим новую вершинку в красный цвет. Если предок новой вершинки черный -- то все хорошо, а если красный, то вызовем некоторую функцию $RB\_Insert\_Fixup(x)$, которая все исправит, делая некоторые повороты и перекраски. \\
+Если мы хотим вставить новую вершинку $Z$, то сделаем вставку из обычного ДДП и покрасим новую вершинку в красный цвет. Если предок новой вершинки черный -- то все хорошо, а если красный, то вызовем некоторую функцию $RB\_Insert\_Fixup(x)$, которая все исправит, делая некоторые повороты и перекраски. \pagebreak
 
-Примерный код тупой вставки:
+Примерный код тупой вставки: \\
 
 \begin{lstlisting}
     void RB_Insert(T, z) {
@@ -532,7 +535,7 @@
 \end{lstlisting}
 
 Где $T.nil$ -- тот самый сжатый нулевой лист, $T$ -- дерево, $z$ -- готовая вершина, которую надо вставить. \\
-При такой вставке может нарушиться инвариант $3.1$ (если вставили в пустое дерево) или $3.2$. В первом случае просто заифаем и покрасим вершинку в черный, а для второго разберем функцию $RB\_Insert\_Fixup(x)$. \\
+При такой вставке может нарушиться инвариант $3.1$ (если вставили в пустое дерево) или $3.2$. В первом случае просто заифаем и покрасим вершинку в черный, а для второго разберем функцию $RB\_Insert\_Fixup(x)$. 
 
 Пусть у $x$ родитель $p$ (оба они красного цвета), у $p$ родитель $g$ (он обязательно черный), а $u$ -- второй сын $g$ (брат $p$, или же дядя $x$). \\
 Если $u$ красного цвета, то перекрасим $p$ и $u$ в черный, а $g$ в красный. Если нарушился инвариант $3.1$, то тогда $g$ -- корень, и его можно просто покрасить в черный. Если же нарушился инвариант $3.2$, то тогда отец $g$ -- тоже красный, и мы можем запустить эту функцию еще раз рекурсивно выше. Легко доказать, что если так делать, то никогда не нарушится инвариант $3.3$ \\ 
@@ -560,4 +563,4 @@
     Поменяем цвета у $P$ и $B$ и сделаем малый поворот по ребру между $P$ и $B$, а еще покрасим дальнего племянника к $X$ в черный цвет.
 \end{enumerate}
 
-Таким образом мы умеем делать все операции за $O(log_2(n))$ перекрашиваний и $O(1)$ поворотов, что часто неасимптотически быстрее, чем AVL-дерево.
+Таким образом мы умеем делать все операции за $O(log_2(n))$ перекрашиваний и $O(1)$ поворотов, что часто неасимптотически быстрее, чем AVL-дерево. \pagebreak
