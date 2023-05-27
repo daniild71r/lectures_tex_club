@@ -50,23 +50,32 @@
 	\[
 		\forall \eps > 0\ \ \lim_{n \to \infty} P(\alpha_g(G) \ge (1 - \eps)\log_2 n) = 1
 	\]
-	То этого будет достаточно. Действительно, обратим внимание на 2 факта:
+	то этого будет достаточно. Действительно, обратим внимание на 2 факта:
 	\begin{enumerate}
 		\item Если $A_n \subseteq B_n$ и $\lim_{n \to \infty} P(A_n) = 1$, то $\lim_{n \to \infty} P(B_n) = 1$ --- просто из свойства $P(A_n) \le P(B_n) \le 1$
 		
-		\item Что из себя представляет пересечение свойств $\alpha(G) < 2\log_2 n$ и $\alpha_g(G) \ge (1 - \eps)\log_2 n$?
+		\item Что следует из того, что $\alpha(G) < 2\log_2 n$ и $\alpha_g(G) \ge (1 - \eps)\log_2 n$?
 		\[
 			\frac{\alpha(G)}{\alpha_g(G)} \le \frac{2\log_2 n}{(1 - \eps)\log_2 n} = \frac{2}{1 - \eps} = 2 + \eps'
 		\]
-		Понятно, что из предела к 1 при $\eps$ мы вполне законно говорим и о пределе для $\eps'$.
 	\end{enumerate}
-	Чтобы доказать достаточно неравенство, рассмотрим его дополнение:
+	Складывая эти соображения, мы говорим, что нужные $A_n$ --- это пересечение  $\{\alpha(G) < 2\log_2 n \wedge \alpha_g(G) \ge (1 - \eps)\log_2 n\}$. Тогда $B_n$ --- это  то, что фигурирует в вероятности в теореме. Осталось доказать уже обозначенный предел. Это мы сделаем при помощи доказательства предела для обратного события:
 	\[
-		\forall \eps > 0\ \ \lim_{n \to \infty} P(\underbrace{\alpha_g(G) < (1 - \eps)\log_2 n}_{\mathcal{A}}) = 0
+		\forall \eps > 0\ \ \lim_{n \to \infty} P(\underbrace{\alpha_g(G) < (1 - \eps)\log_2 n}_{\cA_n}) = 0
 	\]
-	Теперь покажем некоторое событие $\mathcal{B} \subseteq \mathcal{A}$, потому что из $\mathcal{A} \Ra \mathcal{B}$. Это позволит оценить вероятность $\mathcal{A}$ сверху:
+	Снова найдём такое $\cB_n$, что $\cA_n \Ra \cB_n$ (ведь это равносильно тому, что $\cA_n \subseteq \cB_n$). Что утверждает $\cA_n$ про наш алгоритм? А то, что он не смог набрать одноцветное множество размера $\ge (1 - \eps)\log_2 n$. Значит, $\chi_g(G)$ лежит в полуинтервале $(n / ((1 - \eps)\log_2 n); n]$. Положим $m = \floor{n / (2(1 - \eps)\log_2 n)}$ и посмотрим на первые $m$ одноцветных подмножеств, найденных алгоритмом. Тогда, если обозначить их через $C_i \subseteq V$ и их размеры через $a_i \in \N_0$, то верны следующие утверждения:
+	\begin{enumerate}
+		\item $\forall i \in \range{m}\ |C_i| = a_i$ --- это просто по определению, но подчеркнём
+		
+		\item $\forall i \in \range{m}\ a_i < (1 - \eps)\log_2 n$
+		
+		\item $\forall i \neq j\ \ C_i \cap C_j = \emptyset$ --- иначе и быть не может, они же разных цветов
+		
+		\item $\forall x \notin (C_1 \cup \ldots \cup C_m)\ \ \forall i \in \range{m}\ \ \exists y \in C_i \colon (x, y_i) \in E$ --- если бы это было не так, то мы должны были бы забрать эту вершину в соответствующее множество в жадном алгоритме.
+	\end{enumerate}
+	Собственно, положим наличие таких $C_i$ за событие $\cB_n$:
 	\[
-		\mathcal{B} = \System{
+		\cB_n = \System{
 			&{\exists a_1, \ldots, a_m \in \N_0 \colon \forall i\ a_i < (1 - \eps)\log_2 n}
 			\\
 			&{\exists C_1, \ldots, C_m \subseteq V \colon \forall i\ |C_i| = a_i}
@@ -76,53 +85,73 @@
 			&{\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y \in C_i \colon (x, y_i) \in E}
 		}
 	\]
-	Теперь объясним, что такое $\mathcal{B}$ и каково $m$. Что утверждает $\mathcal{A}$ в нашем алгоритме? А то, что он не смог найти одноцветное множество размера $\ge (1 - \eps)\log_2 n$. Значит, $\chi_g(G)$ лежит в полуинтервале $(n / (1 - \eps)\log_2 n; n]$. Положим $m = \floor{n / \big(2(1 - \eps)\log_2 n\big)}$ и выберем произвольные $m$ одноцветных множеств, найденных алгоритмом. Тогда, они удовлетворяют всем условиям выше, и, более того, верно следующее:
+	Отметим дополнительно оценку на мощность объединения этих одноцветных множеств:
 	\[
-		\sum_{i = 1}^m |C_i| = \sum_{i = 1}^m a_i < m (1 - \eps)\log_2 n \le \frac{n}{2}
+		|C_1 \cup \ldots \cup C_m| \le \sum_{i = 1}^m |C_i| = \sum_{i = 1}^m a_i < m (1 - \eps)\log_2 n \le \frac{n}{2}
 	\]
-	Теперь, начнём восстанавливать вероятность $P(\mathcal{B})$ по цепочке снизу-вверх:
-	\begin{itemize}
-		\item Пусть $x \notin (C_1 \cup \ldots \cup C_m)$ и $i \in \range{m}$ уже зафиксированы, и мы хотим найти вероятность оставшегося:
-		\[
-			P(\exists y \in C_i \colon (x, y_i) \in E) = 1 - P(\forall y \in C_i\ (x, y_i) \notin E) = 1 - \frac{1}{2^{a_i}}
-		\]
+	Теперь, мы начнём производить оценку $P(\cB)$. Наш общий план такой:
+	\begin{enumerate}
+		\item $P(\cB_n) \le \sum_{a_1 = 1}^{(1 - \eps)\log_2 n} \cdots \sum_{a_m = 1}^{(1 - \eps)\log_2 n} P(\exists C_1, \ldots, C_m \subseteq V \ldots)$ --- оценили $P(\cB_n)$ сверху, сказав, что это объединение по всем подходящим наборам $a_1, \ldots, a_m$
 		
-		\item Теперь позволим $i$ быть произвольным. Так как $\forall i \neq j\ C_i \cap C_j = \emptyset$, то выбор рёбер с разными множествами вообще никак не влияет друг на друга (иначе говоря, события предыдущего пункта независимы):
-		\[
-			P(\forall i\ \exists y \in C_i \colon (x, y_i) \in E) = \prod_{i = 1}^m \ps{1 - \frac{1}{2^{a_i}}} < \ps{1 - \frac{1}{2^{(1 - \eps)\log_2 n}}}^m = \ps{1 - \frac{1}{n^{1 - \eps}}}^m
-		\]
+		\item $P(\exists C_1, \ldots, C_m \subseteq V \ldots) \le \sum_{C_1, \ldots, C_m \subseteq V \colon \forall i\ |C_i| = a_i \atop {\forall i \neq j\ C_i \cap C_j = \emptyset}} P(\forall x \notin (C_1 \cup \ldots \cup C_m) \ldots)$ --- аналогичная предыдущему пункту оценка сверху
 		
-		\item Теперь мы добавляем варьирование $x$. Вероятность тогда тоже будет считаться через произведение, ибо снова имеется независимость событий:
+		\item Квантор всеобщности означает исполнение предиката для всех возможных значений. Стало быть, просто распишем вероятность так:
 		\begin{multline*}
-			P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y \in C_i \colon (x, y_i) \in E) \le \ps{1 - \frac{1}{n^{1 - \eps}}}^{m \cdot \frac{n}{2}} = e^{\frac{mn}{2} \cdot \ln \ps{1 - \frac{1}{n^{1 - \eps}}}} \le
+			P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y_i \in C_i \colon (x, y_i) \in E) =
 			\\
-			\exp\ps{-\frac{mn}{2} \cdot \frac{1}{n^{1 - \eps}}} = \exp\ps{-\frac{mn^\eps}{2}}
+			\prod_{j = 1}^{n - |C_1 \cup \ldots \cup C_m|} P(\forall i\ \exists y_i \in C_i \colon (x, y_i) \in E)
 		\end{multline*}
-		Для достаточно больших $n$ мы можем сделать оценку на $m$:
+		
+		\item Снимаем квантор <<для любого $i$>> точно так же, через произведение
+		
+		\item Оставшуюся вероятность можно посчитать явно
+	\end{enumerate}
+	
+	Теперь план можно реализовать. Делать мы это будем сверху вниз:
+	\begin{enumerate}
+		\item Нам нужна вероятность $P(\exists y_i \in C_i \colon (x, y_i) \in E)$ при условии, что всё остальное уже зафиксировано. Тогда
+		\[
+			P(\exists y_i \in C_i \colon (x, y_i) \in E) = 1 - P(\forall y \in C_i\ (x, y_i \notin E)) = 1 - \frac{1}{2^{a_i}}
+		\]
+		
+		\item Помимо просто подстановки предыдущего результата, мы также подставим оценку на $a_i$ и немного преобразуем выражение:
+		\[
+			P(\forall i\ \exists y_i \in C_i \colon (x, y_i) \in E) = \prod_{i = 1}^m \ps{1 - \frac{1}{2^{a_i}}} < \ps{1 - \frac{1}{2^{(1 - \eps)\log_2 n}}}^m = \ps{1 - \frac{1}{n^{1 - \eps}}}^m
+		\]
+		
+		\item Здесь мы пользуемся уже известной оценкой на объединение всех $C_i$ и приводим выражение к экспоненциальной оценке:
+		\begin{multline*}
+			P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y_i \in C_i \colon (x, y_i) \in E) \le \ps{1 - \frac{1}{n^{1 - \eps}}}^{m \cdot \frac{n}{2}} =
+			\\
+			\exp\ps{\frac{mn}{2} \cdot \ln\ps{1 - \frac{1}{n^{1 - \eps}}}} \le \exp\ps{-\frac{mn}{2} \cdot \frac{1}{n^{1 - \eps}}} = \exp\ps{-\frac{mn^\eps}{2}}
+		\end{multline*}
+		Вышло красиво, но осталось $m$. Чтобы от него избавиться, заметим такую оценку при больших $n$:
 		\[
 			m = \floor{\frac{n}{2(1 - \eps)\log_2 n}} \ge \frac{n}{2\log_2 n}
 		\]
-		Из этого следует последняя оценка на вероятность с $x$:
+		Отсюда получаем:
 		\[
-		P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y \in C_i \colon (x, y_i) \in E) \le \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}}
+			P(\forall x \notin (C_1 \cup \ldots \cup C_m)\ \forall i\ \exists y_i \in C_i \colon (x, y_i) \in E) < \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}}
 		\]
 		
-		\item Теперь высвободим строчку с $\exists C_1, \ldots, C_m \subseteq V \ldots$ Вероятность будем считать через дробление на отдельно взятые $C_i$ (то есть для данного графа $G$ мы перебираем все возможные $C_i$ во вложенных суммах). Понятно, что вероятности всех <<плохих>> наборов подмножеств занулятся (ибо будет ложное утверждение в событии) и останутся только те, что подходят условиям на $C_i$. Итого:
+		\item Далее ничего сложного не происходит. Просто сумму по всем наборам непересекающихся $C_i$ придётся расписать через биномиальные коэффициенты:
 		\begin{multline*}
-			P(\exists C_1, \ldots, C_m \subseteq V \ldots) < \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \sum_{C_1, \ldots, C_m \subseteq V \colon \over {\forall i\ |C_i| = a_i \over \forall i \neq j\ C_i \cap C_j = \emptyset}} 1 =
+			P(\exists C_1, \ldots, C_m \subseteq V \ldots) < \sum_{C_1, \ldots, C_m \subseteq V \colon \forall i\ |C_i| = a_i \atop {\forall i \neq j\ C_i \cap C_j = \emptyset}} \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} =
 			\\
-			\exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \cdot C_n^{a_1} \cdot C_{n - a_1}^{a_2} \cdot \ldots \cdot  C_{n - a_1 - \ldots - a_{m - 1}}^{a_m} <
+			\exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \cdot C_n^{a_1} \cdot C_{n - a_1}^{a_2} \cdot \ldots \cdot C_{n - a_1 - \ldots - a_{m - 1}}^{a_m} <
 			\\
-			\exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \cdot n^{a_1 + \ldots + a_m} \le \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}}
+			\exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n}} \cdot n^{a_1 + \ldots + a_m} \le \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n\ln n}{2}}
 		\end{multline*}
 		
-		\item Ну и наконец-то мы приступаем к оценке $P(\mathcal{B})$:
+		\item Осталась добить суммы по всем $a_i$:
 		\begin{multline*}
-			P(\mathcal{B}) \le \sum_{a_1 = 1}^{(1 - \eps)\log_2 n} \cdots \sum_{a_m = 1}^{(1 - \eps)\ln n} \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}} <
+			P(\cB_n) \le \sum_{a_1 = 1}^{(1 - \eps)\log_2 n} \cdots \sum_{a_m = 1}^{(1 - \eps)\log_2 n} \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n\ln n}{2}} <
 			\\
-			(\log_2 n)^m \cdot \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}} \le \exp\ps{\frac{n\ln(\log_2 n)}{2(1 - \eps)\log_2 n}-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n \ln n}{2}} \xrightarrow[n \to \infty]{} 0
+			(\log_2 n)^m \cdot \exp\ps{-\frac{n^{1 + \eps}}{4\log_2 n} + \frac{n\ln n}{2}} \le
+			\\
+			\exp\ps{\frac{n\ln(\log_2 n)}{2(1 - \eps)\log_2 n} - \frac{n^{1 + \eps}}{4\log_2 n} + \frac{n\ln n}{2}} \xrightarrow[n \to \infty]{} 0
 		\end{multline*}
-	\end{itemize}
+	\end{enumerate}
 \end{proof}
 
 \begin{hypothesis}
@@ -135,10 +164,10 @@
 \begin{theorem} (Куч\'{е}ра, без доказательства)
 	$\forall \eps > 0\ \forall \delta > 0\ \exists \{G_n\}_{n = 1}^\infty \such |V_n| = n$ верно, что
 	\[
-		\frac{\# \text{перестановок множества вершин, при которых } \frac{\alpha(G_n)}{\alpha_g(G_n) \ge n^{1 - \eps}}}{n!} > 1 - \delta
+		\frac{\# \text{перестановок множества вершин, при которых } \frac{\alpha(G_n)}{\alpha_g(G_n)} \ge n^{1 - \eps}}{n!} > 1 - \delta
 	\]
 \end{theorem}
 
 \begin{note}
-	Говоря человеческим языком, доля перестановок вершин, на которых жадный алгоритм ошибается с заданной наперёд точностью, стремится к единице. То есть предыдущая теорема, несмотря на покрытие \textit{почти всех} графов, оставляет за собой ещё очень много других, на которых жадный алгоритм будет работать плохо.
+	Говоря человеческим языком, доля перестановок вершин, на которых жадный алгоритм ошибается с заданной наперёд точностью, стремится к единице. То есть предыдущая теорема, несмотря на покрытие \textit{почти всех} графов при фиксированной последовательности раскрашивания вершин, оставляет за собой ещё очень много других вариантов, на которых жадный алгоритм будет работать плохо.
 \end{note}

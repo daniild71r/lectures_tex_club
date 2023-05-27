@@ -12,6 +12,7 @@
 %%% Дополнительная работа с математикой
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % пакеты AMS
 \usepackage{icomma}                                    % "Умная" запятая
+\usepackage[e]{esvect}  % Нормальные векторы по команде \vv
 
 %%% Свои символы и команды
 \usepackage{centernot} % центрированное зачеркивание символа
@@ -36,9 +37,12 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Cm}{\mathbb{C}}
+\newcommand{\bP}{\mathbb{P}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\plusdots}{+ \ldots +}
@@ -61,6 +65,9 @@
 }
 \newcommand{\range}[1]{
 	\{1, \ldots, #1\}
+}
+\newcommand{\trb}[1]{ % trb = triangle brackets
+	\left\langle#1\right\rangle
 }
 
 \renewcommand\labelitemi{$\triangleright$}
