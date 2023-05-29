@@ -88,9 +88,9 @@
 	\begin{enumerate}
 		\item Вершина $w$ не смежная к $v$, ибо иначе нам не нужна вершина $p$.
 		
-		\item Пусть $w',\ v'$ - вершины, смежные с $w,\ v$ соответственно. Тогда $v'$ не может следовать за $w'$ в нашем цикле, иначе исходный цикл
+		\item Пусть $w',\ v'$ - вершины, смежные с $w,\ v$ соответственно. Тогда между $v'$ и $w'$ не может быть ребра, иначе можно обойтись без $p$ (не умаляя общности, рассмотрим такой порядок):
 		\[
-			v \mapsto p \mapsto w \mapsto \ldots \mapsto v' \mapsto w' \mapsto \ldots \mapsto v
+			v \mapsto p \mapsto w \mapsto \ldots \mapsto v' \mapsto \ldots \mapsto w' \mapsto \ldots \mapsto v
 		\]
 		можно заменить на следующий:
 		\[
