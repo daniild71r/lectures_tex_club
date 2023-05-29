@@ -1,0 +1,117 @@
+\subsection{Системы общих представителей}
+
+\begin{note}
+	В этом параграфе мы, если не оговорено другого, всегда говорим о $k$-однородном гиперграфе $H = (\cR_n, \cM)$, где $\cR_n = \range{n}$, а $\cM = \{M_1, \ldots, M_s\}$
+\end{note}
+
+\begin{definition}
+	$S \subseteq \cR_n$ называется \textit{системой общих представителей (СОП)} или \textit{вершинным покрытием рёбер $H$}, если $\forall i \in \range{s}\ S \cap M_i \neq \emptyset$
+\end{definition}
+
+\begin{definition}
+	\textit{Мощность самой маленькой системы представителей} имеет своё почётное обозначение $\tau(\cM)$
+\end{definition}
+
+\begin{proposition}
+	$\forall n, k, s \in \N\ \forall \cM\ \ \tau(\cM) \le \min\{n, s\}$
+\end{proposition}
+
+\begin{proof}
+	Всегда можно взять либо все вершины, либо столько, сколько есть рёбер.
+\end{proof}
+
+\begin{proposition}
+	$\forall n, k, s \in \N\ \forall \cM\ \ \tau(\cM) \le n - k + 1$
+\end{proposition}
+
+\begin{proof}
+	Если взять столько вершин, сколько написано в правой части, то ни одно ребро не может быть полностью в оставшихся $k - 1$ вершинах.
+\end{proof}
+
+\begin{proposition}
+	$\forall n, k, s \in \N\ \exists \cM\ \ \tau(\cM) \ge \min\{\floor{n / k}, s\}$
+\end{proposition}
+
+\begin{proof}
+	Просто жадно укладываем $k$-элементные рёбра без пересечений.
+\end{proof}
+
+\begin{theorem}
+	$\forall n, k, s \in \N\ \forall \cM\ \ \tau(\cM) \le \max\set{\ceil{(n / k)\ln(sk / n)}, 0} + n / k + 1$
+\end{theorem}
+
+\begin{note}
+	Максимум с нулём --- это просто украшение. Ведь если первая величина меньше нуля, то $sk / n < 1 \Lra s < n / k$, а в такой ситуации у нас по предыдущему утверждению есть точный ответ.
+\end{note}
+
+\begin{proof}
+	Разберём случаи, чтобы ограничиться от тривиальных ситуаций:
+	\begin{enumerate}
+		\item Если $sk / n \le 1$, то оценка $\tau(\cM) \le n / k + 1$ корректна
+		
+		\item Если $(n / k)\ln(sk / n) \ge n$, то $\tau(\cM) \le n \le (n / k)\ln(sk / n)$
+		
+		\item $sk / n \ge 1$, $(n / k)\ln(sk / n) < n$. Выберём любую вершину $\nu_1 \in \cR_n$, в которой степень $\rho_1$ вершины максимальна. Сделаем оценку на этот максимум при помощи подсчёта разными способами суммарного числа вершин в рёбрах с учётом повторений:
+		\[
+			sk = \sum_{i = 1}^s \sum_{\nu \in \cR_n} I(\nu \in M_i) = \sum_{\nu \in \cR_n} \sum_{i = 1}^s I(\nu \in M_i) \le n\rho_1 \Ra \rho_1 \ge \frac{sk}{n}
+		\]
+		Выкинем все затронутые $M_i$, и рассмотрим $\cM_1$ --- множество оставшихся рёбер. Если обозначить $s_1 = |\cM_1|$, то для $\rho_2$ уже верно неравенство $\rho_2 \ge s_1k / n$. Сделаем $N := \floor{(n / k)\ln(sk / n)} + 1$ таких итераций (мы это можем за счёт условий нашего случая). Сколько могло остаться незатронутых рёбер? Это число точно равно $s_N$, но мы можем оценить его через предыдущие:
+		\begin{multline*}
+			s_N = s_{N - 1} - \rho_N \le s_{N - 1} - \frac{s_{N - 1}k}{n} = s_{N - 1}\ps{1 - \frac{k}{n}} \le \ldots \le s\ps{1 - \frac{k}{n}}^N \le
+			\\
+			s\ps{1 - \frac{k}{n}}^{(n / k)\ln(sk / n)} \le s\exp\ps{-\frac{k}{n} \cdot \frac{n}{k}\ln\ps{\frac{sk}{n}}} = \frac{n}{k}
+		\end{multline*}
+		Иначе говоря, мы получили оценку $\tau(\cM) \le N + n / k$, что и требовалось доказать.
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Ранее мы долго исследовали жадные алгоритмы, при помощи которых искали экстремальные числа обычных графов. Что можно сказать про точность результата того алгоритма, которым мы воспользовались?
+\end{note}
+
+\begin{theorem}
+	$\forall n \ge 4\ \forall k \le (n / 4)\ \forall s \colon 2 \le \ln(sk / n) \le k\ \exists \cM \colon \tau(\cM) \ge (1 / 32)(n / k)\ln(sk / n)$
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Эта конструктивная оценка тоже является билетом на отл...}
+\end{proof}
+
+\begin{theorem}
+	Пусть $s = s(n)$, $k = k(n)$ и наложены следующие ограничения:
+	\begin{itemize}
+		\item $\lim_{n \to \infty} s(n) = +\infty = \lim_{n \to \infty} k(n)$
+		
+		\item $\lim_{n \to \infty} \frac{sk}{n} = +\infty$
+		
+		\item $\ln \ln k = o\ps{\ln\frac{sk}{n}}$
+	\end{itemize}
+	Тогда, существует последовательность $\cM_n$ такая, что верна оценка:
+	\[
+		\tau(\cM_n) \ge \frac{n}{k}\ln\frac{sk}{n} - \frac{n}{k}\ln\ln\frac{sk}{n} - \frac{n}{k}\ln\ln k - \frac{3n}{k} = (1 + o(1))\frac{n}{k}\ln\frac{sk}{n}
+	\]
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Эта теорема является следствием следующей, но мне её знать к сессии не надо}
+\end{proof}
+
+\begin{theorem}
+	Пусть $n, s, k, l$ таковы, что
+	\[
+		C_n^l \cdot \frac{C_{C_n^k - C_{n - l}^k}^s}{C_{C_n^k}^s} < 1
+	\]
+	Тогда, существует $\cM \colon \tau(\cM) > l$
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим вероятностное пространство $(\Omega, \cF, P)$, где $\omega \in \Omega$ --- это набор случайно равномерно выбранных рёбер $\cM = \{M_1, \ldots, M_s\}$. Тогда $|\Omega| = |C_{C_n^k}^s|$. Зафиксируем произвольное множество $L \subseteq \cR_n$ такое, что $|L| = l$ и оценим вероятность, что оно является СОПом для $\cM$:
+	\[
+		P(\underbrace{L \text{ --- СОП для } \cM}_{A_L}) = \frac{C_{C_n^k - C_{n - l}^k}^s}{C_{C_n^k}^s}
+	\]
+	Величина сверху --- это число всех таких $\cM$, что в них нету рёбер $C_i$, не содержащих ни одной вершины из $L$. Тогда наличие СОПа для фиксированного $\cM$ можно выразить как объединение всех событий $A_L$:
+	\[
+		P\ps{\bigcup_L A_L} \le \sum_L P(A_L) = C_n^l \cdot \frac{C_{C_n^k - C_{n - l}^k}^s}{C_{C_n^k}^s} < 1
+	\]
+\end{proof}
+
