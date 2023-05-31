@@ -1,0 +1,185 @@
+\begin{proof} (второе доказательство теоремы)
+	Заметим, что $F(x) - \frac{a_0}{2}x$ абсолютна непрерывна на любом периоде. Разложим её в ряд:
+	\[
+		F(x) - \frac{a_0}{2}x = \frac{A_0}{2} + \sum_{n = 1}^\infty (A_n\cos(nx) + B_n\sin(nx))
+	\]
+	Теперь применим теорему о почленном дифференцировании:
+	\[
+		f(x) - \frac{a_0}{2} = \ps{F(x) - \frac{a_0}{2}x}' \sim \sum_{n = 1}^\infty (-A_n\sin(nx) + B_n\cos(nx))
+	\]
+	Отсюда получим искомый ряд:
+	\[
+		f(x) \sim \frac{a_0}{2} + \sum_{n = 1}^\infty (-A_n\sin(nx) + B_n\cos(nx))
+	\]
+\end{proof}
+
+\begin{corollary}
+	Тригонометрический ряд Фурье $f \in L_{2\pi}$ можно почленно интегрировать на любом отрезке.
+\end{corollary}
+
+\begin{corollary}
+	Если $f \in L_{2\pi}$, $f \sim \frac{a_0}{2} + \sum_{n = 1}^\infty (a_n\cos(nx) + b_n\sin(nx))$ --- тригонометрический ряд Фурье этой функции, то ряд $\sum_{n = 1}^\infty (b_n / n)$ сходится (ибо это значение исходного ряда в $x = 0$).
+\end{corollary}
+
+\begin{example}
+	$\sum_{n = 1}^\infty \frac{\cos(nx)}{\ln n}$ не является тригнометрическим рядом Фурье. Действительно, если \textcolor{red}{спросить, дописать}
+\end{example}
+
+\begin{note}~
+	\begin{enumerate}
+		\item А.Н. Колмогоров (1926г.) Существует $f \in L_{2\pi}$ такая, что её тригонометрический ряд Фурье расходится всюду
+		
+		\item Л. Карлесон (1966г.) Для любой функции $f \in L_{2\pi}^2$ (сходимость со своим квадратом) тригонометрический ряд Фурье сходится к $f$ почти всюду
+		
+		\item Хант (...) Для любой функции $f \in L_{2\pi}^p,\ p > 1$ тригонометрический ряд Фурье сходится к $f$ почти всюду
+		
+		\item Н.К. Бари (1952г.) Для любой измеримой и конечной почти всюду функции $f$ найдётся $F \in C[-\pi; \pi]$ такая, что $F' = f$ почти всюду, а продифференцированный тригонометрический ряд Фурье функции $F$ сходится к $f$ почти всюду
+		
+		\item С.Б. Стечкин (1951г.) Для любого множества $E \subset [-\pi; \pi],\ \mu(E) = 0$ найдётся такая функция $f \in L_{2\pi}^2$ такая, что тригонометрический ряд Фурье расходится всюду на $E$
+	\end{enumerate}
+\end{note}
+
+\section{Приближение непрерывных функций полиномами}
+
+\begin{definition}
+	Оператор $L \colon C[a; b] \to C[a; b]$ (или $C_{[2\pi]} \to C_{[2\pi]}$) называется \textit{линейным положительным}, если
+	
+	\textcolor{red}{Обозначение $L(f, x) = L(f)(x)$}
+	\begin{enumerate}
+		\item \(\forall f_1, f_2 \in C[a; b] (C_{2\pi})\ \forall \alpha_1, \alpha_2 \in \R\ \ L(\alpha_1f_1 + \alpha_2f_2)(x) = \alpha_1L(f_1)(x) + \alpha_2L(f_2)(x)\)
+		
+		\item \(\forall f \in C[a; b] (C_{2\pi})\ (\forall x \in [a; b] (\R)\ \ f(x) \ge 0) \to (\forall x \in [a; b] (\R)\ \ L(f, x) \ge 0)\)
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem} (Коровкин)
+	Если $\{L_n\}_{n = 1}^\infty$ --- последовательность линейно положительных операторов $C[a; b] \to C[a; b]$ такая, что
+	\[
+		\forall i \in \{0, 1, 2\}\ \forall x \in [a; b]\ \ L_n(e_i, x) \rra e_i,\ \ n \to \infty
+	\]
+	где $e_i(x) = x^i$ (степень), то $\forall f \in C[a; b]\ \ L_n(f_i) \rra f,\ n \to \infty$
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим $\forall f \in C[a; b]$. По теореме Вейерштрасса найдём ограничивающую константу:
+	\[
+		\exists M > 0 \such \forall x \in [a; b]\ \ -M \le f(x) \le M
+	\]
+	С другой стороны, по теореме Кантора:
+	\[
+		\forall \eps > 0\ \exists \delta > 0 \such \forall x, t \in [a; b],\ |x - t| < \delta\ \ -\eps < f(x) - f(t) < \eps
+	\]
+	А теперь посмотрим на следующую функцию: $\psi(t) = (t - x)^2$. Имеет место следующее неравенство:
+	\[
+		-\eps - \frac{2M}{\delta^2}\psi(t) \le f(x) - f(t) \le \eps + \frac{2M}{\delta^2}\psi(t)
+	\]
+	Чтобы его доказать, разберём 2 случая:
+	\begin{enumerate}
+		\item $|t - x| < \delta$ --- всё очевидно из уже имеющегося неравенства по теореме Кантора
+		
+		\item $|t - x| \ge \delta$. Тогда $\psi(t) / \delta^2 \ge 1$, и этого достаточно
+	\end{enumerate}
+	Применим к доказанному оператор $L_n$ при фиксированном $x$:
+	\[
+		-\eps L_n(e_0, x) - \frac{2M}{\delta^2}L_n(\psi, x) \le f(x)L_n(e_0, x) - L_n(f, x) \le \eps L_n(e_0, x) + \frac{2M}{\delta^2}L_n(\psi, x)
+	\]
+	Теперь посмотрим, куда сходится $L_n(\psi, x)$:
+	\begin{multline*}
+		L_n(\psi, x) = L_n(e_2(t) - 2e_1(t)x + x^2e_0(t), x) =
+		\\
+		L_n(e_2, x) - 2xL_n(e_1, x) + x^2 L_n(e_0, x) \rra
+		\\
+		e_2(x) - 2xe_1(x) +x^2e_0(x) = 0,\ n \to \infty
+	\end{multline*}
+	\textcolor{red}{Дописать}
+\end{proof}
+
+\begin{theorem} (Вейерштрасса о приближении алгебраическими многочленами)
+	Любая функция $f \in C[a; b]$ может быть представлена пределом равномерно сходящейся на $[a; b]$ последовательности многочленов.
+\end{theorem}
+
+\begin{note}
+	Иными словами, простраство алгебраических многочленов всюду плотно в пространстве непрерывных функций.
+\end{note}
+
+\begin{proof}
+	Без ограничения общности, рассмотрим $[a; b] = [0; 1]$ (линейная замена переводит многочлен в многочлен). Рассмотрим последовательность объектов, называемых \textit{многочленами Бернштейна}:
+	\[
+		B_n(f, x) = \sum_{k = 0}^n f\ps{\frac{k}{n}} C_n^k x^k(1 - x)^{n - k}
+	\]
+	Прежде всего заметим, что $B_n$ является линейно положительным оператором. Стало быть, мы можем пользоваться теоремой Коровкина. Проверим последовательность на $e_i$:
+	\begin{itemize}
+		\item \(B_n(e_0, x) = \sum_{k = 0}^n C_n^k x^k(1 - x)^{n - k} = (x + (1 - x))^n = 1 = e_0(x)\)
+		
+		\item \(B_n(e_1, x) = \sum_{k = 0}^n \frac{k}{n} C_n^k x^k(1 - x)^{n - k}\). Чтобы показать сходимость этой последовательности, рассмотрим функцию $(tx + (1 - x))^n$ и её производную по $t$:
+		\[
+			nx(tx + (1 - x))^{n - 1} = \sum_{k = 1}^n kC_n^k t^{k - 1}x^k(1 - x)^{n - k} = \sum_{k = 0}^n kC_n^k t^{k - 1}x^k(1 - x)^{n - k}
+		\]
+		Подстановкой $t = 1$ получим требуемое:
+		\[
+			nx = \sum_{k = 0}^n kC_n^kx^k(1 - x)^{n - k}
+		\]
+		
+		\item \(B_n(e_2, x) = \sum_{k = 0}^n \frac{k^2}{n^2} C_n^k x^k(1 - x)^{n - k}\). Дважды продифференцируем функцию из предыдущего пункта:
+		\[
+			n(n - 1)x^2(tx + (1 - x))^{n - 2} = \sum_{k = 0}^n k(k - 1)C_n^k x^k(1 - x)^{n - k}
+		\]
+		Снова подставим $t = 1$ (дополнительно воспользуемся уже доказанными тождествами):
+		\begin{multline*}
+			(n^2 - n)x^2 = \sum_{k = 0}^n (k^2 - k)C_n^k x^k(1 - x)^{n - k} =
+			\\
+			\sum_{k = 0}^n k^2C_n^k x^k(1 - x)^{n - k} - nx
+		\end{multline*}
+		\textcolor{red}{Дописать}
+	\end{itemize}
+\end{proof}
+
+\begin{theorem} (Коровкин)
+	Если $\{L_n\}_{n = 1}^\infty$ --- последовательность линейно положительных операторов $C_{2\pi} \to C_{2\pi}$ такая, что
+	\[
+		\forall x \in \R\ \ \forall i \in \{0, 1, 2\}\ \ L_n(e_i, x) \rra e_i(x),\ n \to \infty
+	\]
+	где $e_0(x) = 1$, $e_1(x) = \cos(x)$, $e_2(x) = \sin(x)$, то $\forall f \in C_{2\pi}\ \ L_n(f_i) \rra f,\ n \to \infty$
+\end{theorem}
+
+\begin{proof}
+	Ход доказательства повторяет первую теорему Коровкина. Однако:
+	\begin{enumerate}
+		\item $\exists M > 0 \such \forall x \in \R\ \ -M \le f(x) \le M$
+		
+		\item $\psi(t) = \sin^2 \frac{(x - t)}{2}$
+		
+		\item Неравенство стало иметь такой вид:
+		\[
+			-\eps - \frac{2M}{\sin^2 \frac{\delta}{2}} \psi(t) \le f(x) - f(t) \le \eps + \frac{2M}{\sin^2 \frac{\delta}{2}} \psi(t)
+		\]
+		Без ограничения общности, $t \in \rsi{x; x + 2\pi}$. Тогда разбор случаев имеет вид:
+		\begin{enumerate}
+			\item $t \in (x; x + \delta)$ или $t \in \rsi{x + 2\pi - \delta; x + 2\pi}$ --- тривиально
+			
+			\item $t \in [x + \delta; x + 2\pi - \delta]$. Тогда $\frac{t - x}{2} \in [\delta / 2; \pi - \delta / 2]$, а значит $\sin^2((t - x) / 2) \ge \sin^2(\delta / 2)$
+			
+			\item \(L_n(\psi, x) = L_n(\sin^2((t - x) / 2), x) = L_n(\frac{1}{2}L_n(1 - \cos(t - x)), x) = \frac{1}{2}L_n(e_0, x) - \frac{1}{2}\cos(x)L_n(e_1, x) - \frac{1}{2}\sin(x)L_n(e_2, x) \rra \frac{1}{2}e_0(x) - \frac{1}{2}\cos(x)e_1(x) - \frac{1}{2}\sin(x)e_2(x),\ n \to \infty\)
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Фейера)
+	Для любой функции $f \in C_{2\pi}$ среднее арифметическое частичных сумм её тригонометрического ряда Фурье $\sigma_n(f, x)$ равномерно сходится к $f$ на $\R$
+	\[
+		\sigma_n(f, x) = \frac{S_0(f, x) + \ldots + S_n(f, x)}{n + 1} \rra f,\ n \to \infty
+	\]
+\end{theorem}
+
+\begin{proof}
+	Докажем, что $\sigma_n$ удовлетворяет условиям теореме Коровкина:
+	\begin{enumerate}
+		\item $\sigma_n(e_0, x) = e_0(x)$
+		
+		\item $S_n(e_1, x) = e_1(x),\ n \ge 1$
+		
+		\item $S_n(e_2, x) = e_2(x)$
+		
+		\item $\forall i \in \{0, 1\}\ \ \sigma_n(e_i, x) = \frac{n}{n + 1}e_i(x) \rra e_i(x)$
+	\end{enumerate}
+\end{proof}
