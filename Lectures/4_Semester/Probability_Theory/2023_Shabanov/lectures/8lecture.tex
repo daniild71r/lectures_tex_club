@@ -1,0 +1,184 @@
+\begin{lemma} (Свойства дисперсии и ковариации)
+	\begin{enumerate}
+		\item Ковариация является билинейной симметричной формой
+		
+		\item Дисперсия является квадратичной формой ковариации, $D\xi = \cov(\xi, \xi)$
+		
+		\item Имеет место формула для ковариации:
+		\[
+			\cov(\xi, \eta) = \E\xi\eta - (\E\xi)\E\eta
+		\]
+		
+		\item Имеет место формула для дисперсии:
+		\[
+			D\xi = \E\xi^2 - (\E\xi)^2
+		\]
+		
+		\item Справедливо неравенство Коши-Буняковского:
+		\[
+			|\E\xi\eta| \le \sqrt{\E\xi^2 \cdot \E\eta^2}
+		\]
+		Причём равенство достигается тогда и только тогда, когда $\xi$ и $\eta$ линейно зависимы почти всюду.
+		
+		\item $|\corr(\xi, \eta)| \le 1$, причём равенство достигается тогда и только тогда, когда случайные величины $\xi - \E\xi$ и $\eta - \E\eta$ линейно независимы почти всюду
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\textcolor{red}{Смотри и повторяй по конспекту теории мер}
+\end{proof}
+
+\begin{corollary}
+	Если $\{\xi_k\}_{k = 1}^n$ --- попарно некоррелирующие (или независимые) случайные величины с конечными дисперсиями, то верна формула для дисперсии суммы случайных величин:
+	\[
+		D(\xi_1 + \ldots + \xi_n) = \sum_{k = 1}^n D\xi_k
+	\]
+\end{corollary}
+
+\begin{proof}
+	Распишем дисперсию через ковариацию (из независимости следует некорреляция):
+	\[
+		D(\xi_1 + \ldots + \xi_n) = \cov(\xi_1 + \ldots + \xi_n, \xi_1 + \ldots + \xi_n) = \sum_{i = 1}^n \sum_{j = 1}^n \cov(\xi_i, \xi_j) = \sum_{t = 1}^n \cov(\xi_t, \xi_t)
+	\]
+\end{proof}
+
+\subsection{Для случайных векторов}
+
+\textcolor{red}{Мб переместить в часть про матожидание?}
+
+\begin{definition}
+	Пусть $\xi = (\xi_1, \ldots, \xi_n)$ --- случайный вектор. Тогда \textit{матожиданием случайного вектора $\xi$} называется вектор, состоящий из математических ожиданий компонент:
+	\[
+		\E\xi = (\E\xi_1, \ldots, \E\xi_n)
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Дисперсией (матрицей ковариаций) случайного вектора $\xi$} называется матрица $D\xi$, определённая следующим образом:
+	\[
+		D\xi = (\cov(\xi_i, \xi_j))
+	\]
+\end{definition}
+
+\begin{proposition}
+	Матрица ковариаций $D\xi$ является симметричной и неотрицательно определённой.
+\end{proposition}
+
+\begin{proof}
+	Прямое следствие того, что ковариация является симметричной и неотрицательно определённой формой.
+\end{proof}
+
+\begin{proposition} (Неравенство Маркова)
+	Если случайная величина $\xi \ge 0$ и $a > 0$, то имеет место следующее неравенство:
+	\[
+		P(\xi > a) \le \frac{\E\xi}{a}
+	\]
+\end{proposition}
+
+\begin{proof}
+	\textcolor{red}{Дописать}
+\end{proof}
+
+\begin{proposition} (Неравенство Чебышёва)
+	Если дисперсия $D\xi$ случайной величины $\xi$ конечна, то верно неравенство для отклонения этой величины от матожидания:
+	\[
+		\forall \eps > 0\ \ P(|\xi - \E\xi| \ge \eps) \le \frac{D\xi}{\eps^2}
+	\]
+\end{proposition}
+
+\begin{proof}
+	\textcolor{red}{Дописать}
+\end{proof}
+
+\begin{proposition} (Неравенство Йенсена)
+	Пусть $g(x)$ --- выпуклая вниз функция и $\E\xi$ конечно, то верно неравенство
+	\[
+		\E g(\xi) \ge g(\E\xi)
+	\]
+\end{proposition}
+
+\begin{proof}
+	Если $g(x)$ выпуклая вниз, то в каждой точке $g$ есть касательная, проходящая ниже этой функции:
+	\[
+		\forall x_0 \in \R\ \ \exists \lambda(x_0) \such \forall x \in \R\ \ g(x) \ge g(x_0) + \lambda(x_0)(x - x_0)
+	\]
+	Теперь подставим $x_0 = \E\xi$ и $x = \xi$:
+	\[
+		\exists \lambda \such g(\xi) \ge g(\E\xi) + \lambda \cdot (\xi - \E\xi)
+	\]
+	Если применить к обеим частям математическое ожидание, то получим требуемое.
+\end{proof}
+
+\section{Сходимости случайных величин}
+
+\begin{definition}
+	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ с вероятностью 1} (или говорят \textit{почти наверное}), если выполнено равенство:
+	\[
+		P(\{\omega \in \Omega \colon \lim_{n \to \infty} \xi_n(\omega) = \xi(\omega)\}) = 1
+	\]
+	Обозначается как $\xi_n \to^{\text{P п.н.}} \xi$
+\end{definition}
+
+\begin{definition}
+	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ по вероятности}, если
+	\[
+		\forall \eps > 0\ \ P(|\xi_i - \xi| \ge \eps) \xrightharpoondown[n \to \infty]{} 0
+	\]
+	Обозначается как $\xi_n \to^P \xi$
+\end{definition}
+
+\begin{definition}
+	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ в среднем порядка $p > 0$}, если имеет место сходимость в пространстве $L_p$:
+	\[
+		\E|\xi_n - \xi|^p \xrightarrow[n \to \infty]{} 0
+	\]
+	Обозначается как $\xi_n \to^{L_p} \xi$
+\end{definition}
+
+\begin{definition}
+	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ по распределению}, если $\forall f \colon \R \to \R$ --- непрерывной, ограниченной функции выполнено следующее:
+	\[
+		\E f(\xi_n) \xrightarrow[n \to \infty]{
+		} \E f(\xi)
+	\]
+	Обозначается как $\xi_n \to^d \xi$ (где $d$ от слова $distribution$).
+\end{definition}
+
+\begin{theorem} (Критерий сходимости почти наверное)
+	Последовательность случайных величин $\{x_n\}_{n = 1}^\infty$ сходится к $\xi$ почти наверное тогда и только тогда, когда выполнено утверждение:
+	\[
+		\forall \eps > 0\ \ P(\sup_{k \ge n} |\xi_k - \xi| > \eps) \xrightarrow[n \to \infty]{} 0
+	\]
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Придумать повествование. Дописать}
+\end{proof}
+
+\begin{theorem} (Взаимоотношение видом сходимости)
+	\begin{enumerate}
+		\item $\xi_n \to^{\text{P п.н.}} \xi \Ra \xi_n \to^P \xi$
+		
+		\item $\xi_n \to^{L_p} \xi \Ra \xi_n \to^P \xi$
+		
+		\item $\xi_n \to^P \xi \Ra \xi_n \to^d \xi$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Дописать}
+\end{proof}
+
+\begin{note}
+	\textcolor{red}{Сюда надо картинку со сходимостями}
+\end{note}
+
+\begin{lemma} (Достаточные условия сходимости почти наверное)
+	Если для последовательности случайных величин $\{\xi_n\}_{n = 1}^\infty$ и $\xi$ выполнено утверждение
+	\[
+		\forall \eps > 0\ \ \sum_{n = 1}^\infty P(|\xi_n - \xi| \ge \eps) < +\infty \text{ --- ряд сходится}
+	\]
+	Тогда $\xi_n \to^{P \text{ п.н.}} \xi$
+\end{lemma}
+
+\textcolor{red}{Дописать}

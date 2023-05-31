@@ -1,0 +1,257 @@
+\subsection{Предельные теоремы интеграла Лебега}
+
+\begin{theorem} (Леви о монотонной сходимости)
+	Пусть $\xi$, $\{\xi\}_{n = 1}^\infty$ --- случайные величины и выполнены следующие свойства:
+	\begin{enumerate}
+		\item $\xi_n \to \xi$ почти всюду по мере Лебега
+		
+		\item $\exists \eta$ --- случайная величина такая, что $\E\eta \neq \infty$ и $|\xi_n| \le \eta$
+	\end{enumerate}
+	Тогда $\E\xi = \lim_{n \to \infty} \E\xi_n$.
+\end{theorem}
+
+\begin{theorem} (лемма Фату)
+	Пусть $\{\xi_n\}_{n = 1}^\infty$, $\eta$ --- случайные величины. Тогда
+	\begin{enumerate}
+		\item Если $\forall n \in \N\ \ \eta \le \xi_n$ и $\E\eta > -\infty$. Тогда
+		\[
+			\varlimsup_{n \to \infty} \E\xi_n \le \E \varlimsup_{n \to \infty} \xi_n
+		\]
+		
+		\item Пусть $\forall n \in \N \xi_n \le \eta$ и $\E\eta < +\infty$. Тогда
+		\[
+			\varliminf_{n \to \infty} \E\xi_n \ge \E \varliminf_{n \to \infty} \xi_n
+		\]
+		
+		\item \textcolor{red}{Дописать}
+	\end{enumerate}
+\end{theorem}
+
+\textcolor{red}{Дописать}
+
+\subsection{Формулы вычисления математического ожидания}
+
+\begin{theorem}
+	Пусть случайный вектор $\xi \in \R^m$ имеет распределение $P_\xi$ с обобщённой плотностью $p(t)$ по $\sigma$-конечной мере $\mu$ на $(\R^m, \B(\R^m))$. Тогда для любой борелевской функции $g \colon \R^m \to \R$ выполнено следующее:
+	\[
+		\E g(\xi) = \int_{\R^m} g(x)P_\xi(dx) = \int_{\R^m} g(x)p(x)\mu(dx)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Снова произведём доказательство по пути определения интеграла Лебега:
+	\begin{enumerate}
+		\item $g(x) =\chi_A(x)$, где $A \in \B(\R^m)$. Тогда
+		\[
+			\E g(\xi) = P(\xi \in A) = P_\xi(A) = \int_A p(x)\mu(dx) = \int_{\R^m} \chi_A(x)p(x)\mu(dx) = \int_{\R^m} g(x)p(x)\mu(dx)
+		\]
+		
+		\item $g$ --- простая функция. Тогда заметим, что обе части доказываемого равенства линейны по $g$, то есть всё автоматически доказано по первому пункту.
+		
+		\item Если $g \ge 0$, то рассмотрим последовательность неотрицательных простых функций $\{g_n\}_{n = 1}^\infty$, подходящих к $g$. По определению математического ожидания:
+		\[
+			\E g(\xi) = \lim_{n \to \infty} \E g_n(\xi) = \lim_{n \to \infty} \int_{\R^m} g_n(x)p(x)\mu(dx) = \int_{\R^m} g(x)p(x)\mu(dx)
+		\]
+		Последний переход возможен по теореме Леви.
+		
+		\item $g$ --- произвольная функция. Тогда пользуемся разложением $g = g^+ - g^-$, линейностью интеграла Лебега и определениями.
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Пусть $\xi$ --- дискретная случайная величина, сосредоточенная на $X$. Тогда математическое ожидание $g(\xi)$ можно посчитать следующим образом:
+	\[
+		\E g(\xi) = \sum_{x \in X} g(x)P(\xi = x)
+	\]
+\end{corollary}
+
+\begin{proof}
+	Воспользуемся $\mu$ --- считающей мерой на $X$. Тогда плотность распределения имеет следующий вид:
+	\[
+		p(x) = P_\xi(\{x\}) = P(\xi = x)
+	\]
+	Остаётся лишь воспользоваться доказанными результатами:
+	\[
+		\E g(\xi) = \int_\R g(x)p(x)\mu(dx) = \sum_{x \in X} g(x)P(\xi = x)
+	\]
+\end{proof}
+
+\begin{corollary}
+	Пусть $\xi$ --- абсолютно непрерывная случайная величина с плотностью $p(x)$. Тогда верна формула:
+	\[
+		\E g(\xi) = \int_\R g(x)p(x)dx
+	\]
+\end{corollary}
+
+\begin{corollary}
+	Пусть $\xi$ --- случайный вектор из $\R^m$ с плотностью $p(\vv{x})$. Тогда верна формула:
+	\[
+		\E g(\xi) = \int_{\R^m} g(\vv{x})p(\vv{x})d\vv{x}
+	\]
+	где $d\vv{x}$ обозначает обычную меру Лебега в $\R^m$.
+\end{corollary}
+
+\begin{note}
+	В частности, для $\forall B \in \B(\R^m)$ есть формула:
+	\[
+		P(\xi \in B) = \int_B p(\vv{x})d\vv{x}
+	\]
+\end{note}
+
+\textcolor{red}{Стоит ли заменить обозначения приращений на классические, с матана?}
+
+\begin{definition}
+	Есть $F$ --- функция распределения вероятностной меры $P$, то обозначим $dF(x) := P(dx)$. Если имеется плотность $p(x)$, то $dF(x) = p(x)dx$
+\end{definition}
+
+\begin{note}
+	Если $F$ --- функция распределения меры $P$, то интеграл по борелевской функции $g$ можно посчитать так, если вспомнить про теорему о разложении:
+	\[
+		\int_\R g(x)P(dx) = \int_\R g(x)dF(x) = \sum_{i = 1}^3 \alpha_i \int_\R g(x)dF_i(x)
+	\]
+\end{note}
+
+\begin{example}
+	Пусть случайная величина $\xi$ имеет функцию распределения следующего вида (экспоненциальное распределение):
+	\[
+		F(x) = \System{
+			&{0,\ x < 0}
+			\\
+			&{1 - e^{-x},\ x \in \lsi{0; 1}}
+			\\
+			&{1,\ x \ge 1}
+		}
+	\]
+	Найдём $\E\xi$:
+	\[
+		\E\xi = \int_0^1 xP_\xi(dx) + 1 \cdot P(\xi = 1) = \int_0^1 xF'(x)dx + (1 - (1 - e^{-1})) = (-xe^{-x} - e^{-x})|_0^1 + \frac{1}{e} = 1 - \frac{1}{e}
+	\]
+\end{example}
+
+\section{Прямое произведение вероятностных пространств}
+
+\begin{definition}
+	Пусть $(\Omega_1, \F_1, P_1)$ и $(\Omega_2, \F_2, P_2)$ --- вероятностные пространства. Их \textit{прямым произведением} называется вероятностное пространство $(\Omega, \F, P)$, где объекты заданы следующим образом:
+	\begin{enumerate}
+		\item $\Omega = \Omega_1 \times \Omega_2$
+		
+		\item $\F = \F_1 \otimes \F_2 = \sigma(B_1 \times B_2 \colon B_i \in \F_i)$ --- $\sigma$-алгебра, порождённая прямоугольниками
+		
+		\item $P = P_1 \times P_2$ --- вероятностная мера на $(\Omega, \F)$ такая, что
+		\[
+			P(B_1 \times B_2) = P_1(B_1) \cdot P_2(B_2)
+		\]
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	Мера $P$ из определения прямого произведения существует, действительно является вероятностной мерой и единственна.
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим $\cA$ --- система множеств, состоящая из конечного объединения непересекающихся прямоугольников $B_1 \times B_2$. Тогда $\cA$ тривиально является алгеброй, причём $\sigma(\cA) = \F$.
+	
+	Определим $P$ на $\cA$ по конечной аддитивности. Для того, чтобы продлить построенную меру на $\sigma(\cA) = \F$, остаётся проверить счётную аддитивность этой меры на $\cA$. Пусть $C = \bscup_{i = 1}^\infty C_i$, $C_i, C \in \cA$. Нужно показать такое равенство:
+	\[
+		P(C) = \sum_{i = 1}^\infty P(C_i)
+	\]
+	Так как любой элемент $\cA$ есть объединение конечного числа непересекающихся прямоугольников, то достаточно проверить лишь этот случай (то есть когда все вышеупомянутые множества являются просто прямоугольниками). Итак, $C = A \times B$, $C_i = A_i \times B_i$. Чтобы добится результата, мы будем интегрировать индикаторы:
+	\[
+		\chi_{A \times B}(\omega_1, \omega_2) = \sum_{i = 1}^\infty \chi_{A_i \times B_i}(\omega_1, \omega_2) \Lra \chi_A(\omega_1)\chi_B(\omega_2) = \sum_{i = 1}^\infty \chi_{A_i}(\omega_1)\chi_{B_i}(\omega_2)
+	\]
+	Зафиксируем $\omega_1 \in \Omega_1$ и возьмём математическое ожидание от обеих частей равенства в пространстве $(\Omega_2, \F_2, P_2)$ (ибо при фиксации мы как раз получаем случайные величины из этого пространства):
+	\[
+		\chi_A(\omega_1) \cdot P_2(B) = \sum_{i = 1}^\infty \chi_{A_i}(\omega_1) \cdot P_2(B_i)
+	\]
+	Аналогично проделываем в пространстве $(\Omega_1, \F, P)$, чем и завершаем доказательство.
+\end{proof}
+
+\begin{theorem} (Фубини)
+	Пусть $(\Omega, \F, P) = (\Omega_1, \F_1, P_1) \otimes (\Omega_2, \F_2, P_2)$ и есть случайная величина $\xi \colon \Omega \to \R$ такая, что $\int_\Omega \xi dP$ конечен. Тогда $\forall i \in \{1, 2\}$ интеграл $\int_{\Omega_i} \xi(\omega_1, \omega_2) P_i(d\omega_i)$ конечен почти всюду по мере $P_{3 - i}$, является $\F_{3 - i}$-измеримой функцией и, кроме того, имеют место равенства:
+	\begin{multline*}
+		\int_\Omega \xi(\omega_1, \omega_2) P(d\omega_1, d\omega_2) =
+		\\
+		\int_{\Omega_1} \ps{\int_{\Omega_2} \xi(\omega_1, \omega_2)P_2(d\omega_2)} P_1(d\omega_1) =
+		\\
+		\int_{\Omega_2} \ps{\int_{\Omega_1} \xi(\omega_1, \omega_2)P_1(d\omega_1)} P_1(d\omega_2)
+	\end{multline*}
+\end{theorem}
+
+\begin{proposition}
+	Если $\xi, \eta$ --- независимые случайные величины, то $P_{(\xi, \eta)} = P_\xi \times P_\eta$.
+\end{proposition}
+
+\begin{proof}
+	\[
+		P_{(\xi, \eta)}(B_1 \times B_2) = P((\xi, \eta) \in B_1 \times B_2) = P(\xi \in B_1 \wedge \eta \in B_2) = P_\xi(B_1) \times P_\eta(B_2)
+	\]
+\end{proof}
+
+\begin{note}
+	То же самое верно и для случайных векторов.
+\end{note}
+
+\begin{lemma} (о свёртке)
+	Пусть $\xi, \eta$ --- это независимые случайные величины с соответствующими функциями распределения $F_\xi, F_\eta$. Тогда, случайная величина $\xi + \eta$ имеет следующую функцию распределения $F_{\xi + \eta}$:
+	\[
+		F_{\xi + \eta}(z) = \int_\R F_\xi(z - x)dF_\eta(x) = \int_\R F_\eta(z - x)dF_\xi(x)
+	\]
+\end{lemma}
+
+\begin{proof}
+	Воспользуемся формулой о замене переменной и теоремой Фубини:
+	\begin{multline*}
+		F_{\xi + \eta}(z) = P(\xi + \eta \le z) = \int_{\R^2} \chi\{x + y \le z\} P_{(\xi, \eta)}(dx, dy) =
+		\\
+		\int_\R \underbrace{\ps{\int_\R \chi\{x + y \le z\} P_\xi(dx)}}_{P(\xi \le z - y) = F_\xi(z - y)} P_\eta(dy)
+	\end{multline*}
+\end{proof}
+
+\begin{corollary} (Формула свёртки)
+	Пусть $\xi, \eta$ --- независимые случайные величины с плотностями $p_\xi, p_\eta$ соответственно. Тогда $\xi + \eta$ тоже имеет плотность $p_{\xi + \eta}$, вычисляемую по следующей формуле:
+	\[
+		P_{\xi + \eta}(z) = \int_\R p_\xi(z - x)p_\eta(x)dx = \int_\R p_\eta(z - x)p_\xi(x)dx
+	\]
+\end{corollary}
+
+\begin{proof}
+	Нужно воспользоваться леммой о свёртке и расписать функцию распределения:
+	\begin{multline*}
+		F_{\xi + \eta}(z) = \int_\R F_\xi(z - x)dF_\eta(x) =
+		\\
+		\int_\R \ps{\int_{-\infty}^{z - x} p_\xi(y)dy} p_\eta(x)dx = \int_\R \ps{\int_{-\infty}^z p_\xi(y' - x)dy'}p_\eta(x)dx =
+		\\
+		\int_{-\infty}^z \underbrace{\ps{\int_\R p_\xi(y' - x)p_\eta(x)dx}}_{p_{\xi + \eta}(y')}dy'
+	\end{multline*}
+\end{proof}
+
+\section{Дисперсия и ковариация}
+
+\begin{definition}
+	\textit{Дисперсией случайной величины} $\xi$, $\E\xi < \infty$ называется следующая величина:
+	\[
+		D\xi = \E(\xi - E\xi)^2
+	\]
+\end{definition}
+
+\begin{note}
+	Смысл дисперсии состоит в том, что это среднее квадратичное отклонение от среднего значения, степень разброса случайной величины. Поэтому при $c > 0$ вероятность $\xi$ попасть в отрезок $[\E\xi - c\sqrt{D\xi}; \E\xi + c\sqrt{D\xi}]$ всегда большая.
+\end{note}
+
+\begin{definition}
+	\textit{Ковариацией случайных величин $\xi$ и $\eta$}, $\E\xi, \E\eta < \infty$ называется следующее значение:
+	\[
+		\cov(\xi, \eta) = \E(\xi - \E\xi)(\eta - \E\eta)
+	\]
+\end{definition}
+
+\begin{definition}
+	Случайные величины $\xi, \eta$ называются \textit{некоррелирующими}, если $\cov(\xi, \eta) = 0$.
+\end{definition}
+
+\begin{definition}
+	\textit{Коэффициентом корреляции случайных величин} $\xi$ и $\eta$, $0 < D\xi, D\eta < +\infty$, называется следующая величина:
+	\[
+		\corr(\xi, \eta) = \rho(\xi, \eta) = \frac{\cov(\xi, \eta)}{\sqrt{D\xi \cdot D\eta}}
+	\]
+\end{definition}
