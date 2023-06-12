@@ -153,7 +153,7 @@
 \section{Сходимости случайных величин}
 
 \begin{definition}
-	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ с вероятностью 1} (или говорят \textit{почти наверное}), если выполнено равенство:
+	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ с вероятностью 1} (или говорят $P$\textit{-почти наверное}), если выполнено равенство:
 	\[
 		P(\{\omega \in \Omega \colon \lim_{n \to \infty} \xi_n(\omega) = \xi(\omega)\}) = 1
 	\]
@@ -163,7 +163,7 @@
 \begin{definition}
 	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ по вероятности}, если
 	\[
-		\forall \eps > 0\ \ P(|\xi_n - \xi| \ge \eps) \xrightharpoondown[n \to \infty]{} 0
+		\forall \eps > 0\ \ P(|\xi_n - \xi| \ge \eps) \xrightarrow[n \to \infty]{} 0
 	\]
 	Обозначается как $\xi_n \to^P \xi$
 \end{definition}
@@ -186,17 +186,35 @@
 \end{definition}
 
 \begin{theorem} (Критерий сходимости почти наверное)
-	Последовательность случайных величин $\{x_n\}_{n = 1}^\infty$ сходится к $\xi$ почти наверное тогда и только тогда, когда выполнено утверждение:
+	Последовательность случайных величин $\{x_n\}_{n = 1}^\infty$ сходится к $\xi$ $P$-почти наверное тогда и только тогда, когда выполнено утверждение:
 	\[
 		\forall \eps > 0\ \ P(\sup_{k \ge n} |\xi_k - \xi| > \eps) \xrightarrow[n \to \infty]{} 0
 	\]
 \end{theorem}
 
 \begin{proof}
-	\textcolor{red}{Придумать повествование. Дописать}
+	Будем доказывать эквивалентность исходя из того, что $P(\xi_n \centernot\to \xi) = 0$ эквивалентно $P$-почти всюду сходимости. Итак, введём события $A_n^\eps$ и выразим через них вероятность несходимости:
+	\[
+		A_n^\eps = \bigcup_{k \ge n} \{\omega \in \Omega \colon |\xi_k - \xi| > \eps\}
+	\]
+	Тогда:
+	\[
+		\{\xi_n \centernot\to \xi\} = \bigcup_{m = 1}^\infty \bigcap_{n = 1}^\infty A_n^{1 / m}
+	\]
+	Остаётся лишь увидеть эквивалентные утверждения:
+	\begin{multline*}
+		P(\xi_n \centernot\to \xi) = P\ps{\bigcup_{m = 1}^\infty \bigcap_{n = 1}^\infty A_n^{1 / m}} \Lra
+		\\
+		\forall m \in \N\  P\ps{\bigcap_{n = 1}^\infty A_n^{1 / m}} = 0 \Lra
+		\\
+		\forall m \in \N\ P(\lim_{n \to \infty} A_n^{1 / m}) = 0 = \lim_{n \to \infty} P(A_n^{1 / m}) \Lra
+		\\
+		\forall \eps > 0\ \ \lim_{n \to \infty} P(A_n^\eps) = 0
+	\end{multline*}
+	Последнее равенство эквивалентно условию напрямую, можно легко показать равенство событий в скобках.
 \end{proof}
 
-\begin{theorem} (Взаимоотношение видом сходимости)
+\begin{theorem} (Взаимоотношение видов сходимости)
 	\begin{enumerate}
 		\item $\xi_n \to^{\text{P п.н.}} \xi \Ra \xi_n \to^P \xi$
 		
@@ -206,8 +224,55 @@
 	\end{enumerate}
 \end{theorem}
 
-\begin{proof}
-	\textcolor{red}{Дописать}
+\begin{proof}~
+	\begin{enumerate}
+		\item Зафиксируем $\eps > 0$. Покажем нужный предел за счёт оценки сверху:
+		\[
+			P(|\xi_n - \xi| > \eps) \le P(|\xi_n - \xi| \ge \eps / 2) \le P(\sup_{k \ge n} |\xi_k - \xi| \ge \eps / 2) \xrightarrow[n \to \infty]{} 0
+		\]
+		
+		\item Снова зафиксируем $\eps > 0$. Тогда для любого $p > 0$ верна оценка:
+		\[
+			P(|\xi_n - \xi| > \eps) = P(|\xi_n - \xi|^p \ge \eps^p) \le \frac{\E |\xi_n - \xi|^p}{\eps^p} \xrightarrow[n \to \infty]{} 0
+		\]
+		
+		\item Пусть $f$ --- произвольная ограниченная непрерывная функция. Тогда $\exists M > 0 \colon \forall x \in \R\ |f(x)| \le M$. Тогда нужно доказать следующий факт:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N\ |\E f(\xi_n) - \E f(\xi)| = |\E(f(\xi_n) - f(\xi))| < \eps
+		\]
+		Итак, зафиксируем $\eps > 0$. Разобьём $\Omega$ на такие множества, что мы можем хорошо оценить величину $|\E(f(\xi_n) - f(\xi))| \le \E|f(\xi_n) - f(\xi)|$. Для начала, потребуем $\exists N \in \N \colon P(|\xi| \ge N) \le \eps / (8M)$ (такое $N$ существует, коль скоро $P(|\xi| \ge N) = P(\xi \in [-N; N]) = F_\xi(N) - F_\xi(-N)$, а пределы этих слагаемых равны 1 и 0 соответственно). При этом $f$ непрерывна на любом отрезке, то есть равномерно непрерывна на нём. Тогда, ещё потребуем на $[-N; N]$ следующего:
+		\[
+			\exists \delta > 0 \such \forall x, y \in [-N; N],\ |x - y| < \delta\ \ |f(x) - f(y)| \le \frac{\eps}{2}
+		\]
+		Итак, разобьём $\Omega$ на три части:
+		\begin{align*}
+			&{A_1 = \{\omega \in \Omega \colon |\xi_n - \xi| \le \delta \wedge |\xi| \le N\}}
+			\\
+			&{A_2 = \{\omega \in \Omega \colon |\xi_n - \xi| \le \delta \wedge |\xi| > N\}}
+			\\
+			&{A_3 = \{\omega \in \Omega \colon |\xi_n - \xi| > \delta\}}
+		\end{align*}
+		Разложим нашу оценку матожидания:
+		\[
+			|\E (f(\xi_n) - f(\xi))| \le \E|f(\xi_n) - f(\xi)| = \sum_{i = 1}^3 \E(|f(\xi_n) - f(\xi)| \cdot \chi_{A_i})
+		\]
+		А теперь разберёмся с каждым слагаемым по отдельности:
+		\begin{itemize}
+			\item На $A_1$ всё просто: $|f(\xi_n) - f(\xi)| \le \eps / 2$, поэтому
+			\[
+				\E(|f(\xi_n) - f(\xi)| \cdot \chi_{A_1}) \le \eps / 2 \cdot P(A_i) \le \frac{\eps}{2}
+			\]
+			
+			\item Для $A_{2, 3}$ мы уже не можем воспользоваться неравенством со значениями, поэтому сделаем консервативную оценку $\forall x, y \in \R\ \ |f(x) - f(y)| \le 2M$. Итак:
+			\[
+				\sum_{i = 2}^3 \E(|f(\xi_n) - f(\xi)| \cdot \chi_{A_i}) \le 2M(P(A_2) + P(A_3)) \le 2M(P(|\xi| > N) + P(|\xi_n - \xi| > \delta))
+			\]
+			У первого слагаемого в скобках оценка уже дана --- это $\eps / (4M)$. А второе уходит за счёт основного условия: наличие сходимости по мере. Стало быть
+			\[
+				\forall \eps > 0\ \exists T \in \N \such \forall n > T\ \ |\E f(\xi_n) - \E f(\xi)| < \frac{\eps}{2} + \frac{\eps}{4} + \frac{\eps}{4} = \eps
+			\]
+		\end{itemize}
+	\end{enumerate}
 \end{proof}
 
 \begin{note}
@@ -222,4 +287,64 @@
 	Тогда $\xi_n \to^{P \text{ п.н.}} \xi$
 \end{lemma}
 
-\textcolor{red}{Дописать}
+\begin{proof}
+	Воспользуемся критерием сходимости почти наверное. Зафиксируем $\eps > 0$ и оценим вероятность для супремума:
+	\[
+		P(\sup_{k \ge n} |\xi_k - \xi| > \eps) = P\ps{\bigcup_{k = n}^\infty \{|\xi_k - \xi| > \eps\}} \le \sum_{k = n}^\infty P(|\xi_k - \xi| > \eps) \le \sum_{k = n}^\infty P(|\xi_k - \xi| \ge \eps) \xrightarrow[n \to \infty]{} 0
+	\]
+	Последний предел верен, коль скоро мы вышли на остаток сходящегося ряда из условия.
+\end{proof}
+
+\begin{corollary}
+	Если $\xi_n \to^P \xi$, то существует подпоследовательность $\{\xi_{n_k}\}_{k = 1}^\infty$ такая, что она сходится $P$-почти наверное к $\xi$.
+\end{corollary}
+
+\begin{proof}
+	Всё интуитивно: достаточно взять такую подпоследовательность $\{n_k\}_{k = 1}^\infty$, чтобы нужный ряд всегда оценивался сходящимся рядом, скажем, $\{2^{-k}\}_{k = 1}^\infty$. Итак, за счёт сходимости по мере возьмём такую подпоследовательность:
+	\[
+		\forall k \in \N\ \exists n_k \such n_k > n_{k - 1} \wedge P\ps{|\xi_{n_k} - \xi| \ge \frac{1}{k}} \le 2^{-k}
+	\]
+	Тогда понятно, что для любого $\eps > 0$ найдётся $K \in \N$ такое, что $1 / K \le \eps$, благодаря чему исходный ряд распадётся на конечную <<голову>> и бесконечный хвост, который спокойно оценивается по построению рядом $\sum_{k = 1}^\infty 2^{-k}$. Следовательно, все достаточные условия сходимости почти всюду выполнены.
+\end{proof}
+
+\subsection{Закон Больших Чисел}
+
+\begin{theorem} (Закон Больших Чисел в форме Чебышёва)
+	Пусть $\{\xi_n\}_{n = 1}^\infty$ --- случайные величины, на которые наложены следующие ограничения:
+	\begin{enumerate}
+		\item $\xi_n$ попарно некоррелируют
+		
+		\item Существует константа $C > 0$ такая, что $\forall n \in \N\ \ D\xi_n \le C$
+	\end{enumerate}
+	Тогда, если принять обозначение $S_n = \xi_1 \plusdots \xi_n$, верен предел:
+	\[
+		\frac{S_n - \E S_n}{n} \xrightarrow[n \to \infty]{P} 0
+	\]
+\end{theorem}
+
+\begin{note}
+	В чём смысл ЗБЧ? Это теоретическое обоснование принципа устойчивых частот. Если положить за $\xi_i$ индикатор того, что в $i$-м эксперименте произошло событие $A$, то
+	\[
+		\nu_n(A) = \frac{\xi_1 + \ldots + \xi_n}{n} \xrightarrow[n \to \infty]{P \text{п.н.}} \E\xi_1 = P(A)
+	\]
+	где $\nu_n(A)$ --- это частота появления $A$.
+	
+	Несложно заметить, как произошёл лёгкий обман. В теореме мы показываем сходимость по мере, которая не эквивалентна ожидаемой сходимости почти всюду. Это исправляет усиленная версия теоремы ниже.
+\end{note}
+
+\begin{theorem} (Усиленный Закон Больших Чисел в форме Кантелли)
+	Пусть $\{\xi_n\}_{n = 1}^\infty$ --- случайные величины, на которые наложены следующие ограничения:
+	\begin{enumerate}
+		\item $\xi_n$ попарно независимы
+		
+		\item $\exists C > 0 \such \forall n \in \N\ \ \E(\xi - \E\xi)^4 \le C$
+	\end{enumerate}
+	Тогда, если принять обозначение $S_n = \xi_1 \plusdots \xi_n$, верен предел:
+	\[
+		\frac{S_n - \E S_n}{n} \xrightarrow[n \to \infty]{P \text{ п.н.}} 0
+	\]
+\end{theorem}
+
+\begin{note}
+	Можно ли отказаться от условия на наличие четвёртого момента? Оказывается, можно, но для этого необходимо развить целый аппарат.
+\end{note}
