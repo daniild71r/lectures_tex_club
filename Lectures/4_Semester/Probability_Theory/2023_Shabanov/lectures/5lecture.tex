@@ -70,7 +70,7 @@
 \end{exercise}
 
 \begin{definition}
-	\textit{Функцией распределения} случайной величины $\xi$ называется функция распределени $F_\xi$, соответствующая $P_\xi$:
+	\textit{Функцией распределения} случайной величины $\xi$ называется функция распределения $F_\xi$, соответствующая $P_\xi$:
 	\[
 		F_\xi(x) = P(\xi \le x) = P_\xi\rsi{-\infty; x}
 	\]
@@ -296,16 +296,16 @@
 		\begin{enumerate}
 			\item $\R \in \cD_i$. Действительно, $\{\xi_i \in \R\} = \Omega \in \sigma(\cM_i)$
 			
-			\item Пусть $B_1, B_2 \in \cD$. Тогда $\{\xi_i \in B_1 \cap B_2\} = \{\xi_i \in B_1\} \cap \{\xi_i \in B_2\} \in \sigma(\cM_i)$. Из этого следует, что $B_1 \in \cD$
+			\item Пусть $B_1, B_2 \in \cD_i$. Тогда $\{\xi_i \in B_1 \cap B_2\} = \{\xi_i \in B_1\} \cap \{\xi_i \in B_2\} \in \sigma(\cM_i)$. Из этого следует, что $B_1 \cap B_2 \in \cD_i$
 			
-			\item Пусть $B \in \cD$. Тогда же $B \in \sigma(\cM_i) \Ra \ol{B} \in \sigma(\cM_i)$. Более того, $\{\xi_i \in \ol{B}\} = \{\xi_i \in \R \bs B\} = \{\xi_i \in \R\} \bs \{\xi_i \in B\} \in \sigma(\cM_i)$, ну и конечно же $\ol{B} \in \B(\R)$. Отсюда снова получаем $\ol{B} \in \cD$
+			\item Пусть $B \in \cD_i$. Тогда же $\{\xi_i \in B\} \in \sigma(\cM_i) \Ra \{\xi_i \in \ol{B}\} \in \sigma(\cM_i)$. Более того, $\{\xi_i \in \ol{B}\} = \{\xi_i \in \R \bs B\} = \{\xi_i \in \R\} \bs \{\xi_i \in B\} \in \sigma(\cM_i)$, ну и конечно же $\ol{B} \in \B(\R)$. Отсюда снова получаем $\ol{B} \in \cD_i$
 			
-			\item Пусть $\{B_n\}_{n = 1}^\infty \subseteq \cD$. Обозначим $B = \bigcup_{n = 1}^\infty B_n$ и воспользуемся всё тем же подходом:
+			\item Пусть $\{B_n\}_{n = 1}^\infty \subseteq \cD_i$. Обозначим $B = \bigcup_{n = 1}^\infty B_n$ и воспользуемся всё тем же подходом:
 			\[
 				\{\xi_i \in B\} = \set{\xi_i \in \bigcup_{n = 1}^\infty B_n} = \bigcup_{n = 1}^\infty \{\xi_i \in B_n\} \in \sigma(\cM_i)
 			\]
-			Стало быть, $B \in \cD$.
+			Стало быть, $B \in \cD_i$.
 		\end{enumerate}
-		По построению, $\forall x \in \R\ \ \rsi{-\infty; x} \in \cD$, а это автоматически значит, что $\B(\R) = \cD$, то есть $\F_{\xi_i} \subseteq \sigma(\cM_i)$, что и требовалось. Осталось сказать, что независимость $\cM_i$ в совокупности эквивалентна формуле из условия, ибо любой элемент $\cM_i$ задаётся просто действительным числом.
+		По построению, $\forall x \in \R\ \ \rsi{-\infty; x} \in \cD_i$, а это автоматически значит, что $\B(\R) = \cD_i$, то есть $\F_{\xi_i} \subseteq \sigma(\cM_i)$, что и требовалось. Осталось сказать, что независимость $\cM_i$ в совокупности эквивалентна формуле из условия, ибо любой элемент $\cM_i$ задаётся просто действительным числом.
 	\end{itemize}
 \end{proof}

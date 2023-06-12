@@ -24,8 +24,44 @@
 	\end{enumerate}
 \end{lemma}
 
-\begin{proof}
-	\textcolor{red}{Смотри и повторяй по конспекту теории мер}
+\begin{proof}~
+	\begin{enumerate}
+		\item Очевидно
+		
+		\item Тривиально
+		
+		\item Распишем скобки ковариации:
+		\[
+			\cov(\xi, \eta) = \E(\xi - \E\xi)(\eta - \E\eta) = \E(\xi\eta - 2\E\xi\eta + (\E\xi)\E\eta) = \E\xi\eta - (\E\xi)\E\eta
+		\]
+		
+		\item Очевидно из предыдущего свойства
+		
+		\item Возможно 2 случая:
+		\begin{itemize}
+			\item $\E\xi^2 \cdot \E\eta^2 \neq 0$. Тогда, произведём нормировку случайных величин:
+			\[
+				\ol{\xi} = \frac{\xi}{\sqrt{\E\xi^2}};\ \ \ol{\eta} = \frac{\eta}{\sqrt{\E\eta^2}}
+			\]
+			По классическому неравенству КБШ, \(|\ol{\xi} \cdot \ol{\eta}|^2 \le \ol{\xi}^2 \cdot \ol{\eta}^2\). По определению можно проверить, что $\E\ol{\xi} = \E\ol{\eta} = 1$. Если применить матожидание на неравенство, то получим $\E|\ol{\xi} \cdot \ol{\eta}| \le 1$. Отсюда уже явной подстановкой $\ol{\xi}, \ol{\eta}$ и свойством $|E\xi\eta| \le \E|\xi\eta|$ получаем требуемое.
+			
+			\item $\E\xi^2 \cdot \E\eta^2 = 0$. Не умаляя общности, пусть $\E\xi^2 = 0$. Распишем математическое ожидание по определению:
+			\[
+				\E\xi^2 = \int_\Omega \xi^2(w)dP(w) = 0
+			\]
+			Такое возможно тогда и только тогда, когда $\xi^2$ является $P$-почти всюду нулём, то есть $P(\xi^2 = 0) = P(\xi = 0) = 1$. Тогда $|\E\xi\eta| = 0$ и утверждение тривиально
+		\end{itemize}
+	
+		\item Отцентрируем и отнормируем наши исходные величины так, что их матожидание ноль, а дисперсия --- единица:
+		\[
+			\xi' = \frac{\xi - \E\xi}{\sqrt{D\xi}};\ \ \eta' = \frac{\eta - \E\eta}{\sqrt{D\eta}}
+		\]
+		Остаётся посмотреть на значение дисперсии $\xi' \pm \eta'$:
+		\[
+			0 \le D(\xi' \pm \eta') = D\xi' + D\eta' \pm 2\cov(\xi', \eta') = 2\ps{1 \pm \frac{\cov(\xi, \eta)}{\sqrt{D\xi} \cdot \sqrt{D\eta}}}
+		\]
+		Отсюда уже очевидно требуемое
+	\end{enumerate}
 \end{proof}
 
 \begin{corollary}
@@ -43,8 +79,6 @@
 \end{proof}
 
 \subsection{Для случайных векторов}
-
-\textcolor{red}{Мб переместить в часть про матожидание?}
 
 \begin{definition}
 	Пусть $\xi = (\xi_1, \ldots, \xi_n)$ --- случайный вектор. Тогда \textit{матожиданием случайного вектора $\xi$} называется вектор, состоящий из математических ожиданий компонент:
@@ -76,7 +110,14 @@
 \end{proposition}
 
 \begin{proof}
-	\textcolor{red}{Дописать}
+	Распишем матожидание $\xi$ и сделаем оценку снизу:
+	\[
+		\E\xi = \int_{\Omega} \xi(\omega)dP(\omega) = \int_{\Omega_1} \xi(\omega)dP(\omega) + \int_{\Omega \bs \Omega_1} \xi(\omega)dP(\omega)
+	\]
+	где $\Omega_1 = \{\omega \in \Omega \colon \xi(w) > a\}$. Тогда:
+	\[
+		\E\xi \ge \int_{\Omega_1} \xi(\omega)dP(\omega) \ge a \cdot P(\Omega_1) = a \cdot P(\xi > a)
+	\]
 \end{proof}
 
 \begin{proposition} (Неравенство Чебышёва)
@@ -87,7 +128,7 @@
 \end{proposition}
 
 \begin{proof}
-	\textcolor{red}{Дописать}
+	Достаточно свести к неравеству Маркова. Введём $\eta = (\xi - \E\xi)^2$. Тогда $\E\eta = D\xi$, а поэтому применение неравенства Маркова для $\eta$ и $\eps^2$ делает всё очевидным.
 \end{proof}
 
 \begin{proposition} (Неравенство Йенсена)
@@ -122,7 +163,7 @@
 \begin{definition}
 	Последовательность случайных величин $\{\xi_n\}_{n = 1}^\infty$ \textit{сходится к случайной величине $\xi$ по вероятности}, если
 	\[
-		\forall \eps > 0\ \ P(|\xi_i - \xi| \ge \eps) \xrightharpoondown[n \to \infty]{} 0
+		\forall \eps > 0\ \ P(|\xi_n - \xi| \ge \eps) \xrightharpoondown[n \to \infty]{} 0
 	\]
 	Обозначается как $\xi_n \to^P \xi$
 \end{definition}

@@ -43,13 +43,13 @@
 	\begin{enumerate}
 		\item (Непрерывность справа по любой координате) Если $\vv{x}^{(k)} \sda \vv{x}$, то \(\lim_{k \to \infty} F(\vv{x}^{(k)}) = F(\vv{x})\)
 		
-		\item \(\lim_{x_i \to +\infty} F(\vv{x}) = 1\)
+		\item \(\lim_{\vv{x} \to +\infty} F(\vv{x}) = 1\)
 		
-		\item \(\lim_{x_i \to -\infty} F(\vv{x}) = 0\)
+		\item \(\lim_{\vv{x} \to -\infty} F(\vv{x}) = 0\)
 		
 		\item Определим оператор над функцией распределения:
 		\[
-			\Delta_{a_i, b_i}^i F(x_1, \ldots, x_n) := F(x_1, \ldots, b_i, x_{i + 1}, \ldots, x_n) - F(x_1, \ldots, a_i, x_{i + 1}, \ldots, x_N)
+			\Delta_{a_i, b_i}^i F(x_1, \ldots, x_n) := F(x_1, \ldots, b_i, x_{i + 1}, \ldots, x_n) - F(x_1, \ldots, a_i, x_{i + 1}, \ldots, x_n)
 		\]
 		Тогда должно быть выполнено следующее свойство:
 		\[
@@ -93,7 +93,7 @@
 		
 		\item Если $\vv{x}^{(k)} \sda (-\infty, \ldots, -\infty)$, то $\rsi{-\infty; \vv{x}^{(k)}} \sda \emptyset$. По непрерывности вероятностной меры:
 		\[
-			F(\vv{x}^{(k)}) = P\rsi{-\infty; \vv{x}^{(k)}} \to P(\emptyset)  = 0
+			F(\vv{x}^{(k)}) = P\rsi{-\infty; \vv{x}^{(k)}} \to P(\emptyset) = 0, k \to \infty
 		\]
 		
 		\item Нужно проверить на самом деле такой факт:
@@ -102,18 +102,18 @@
 		\]
 		Сделаем это для $n = 2$:
 		\begin{multline*}
-			\Delta_{a_1, b_1}^1 \circ \delta_{a_2, b_2}^2 F(x_1, x_2) = \Delta_{a_1, b_1}^1 (F(x_1, b_2) - F(x_1, a_2)) =
+			\Delta_{a_1, b_1}^1 \circ \Delta_{a_2, b_2}^2 F(x_1, x_2) = \Delta_{a_1, b_1}^1 (F(x_1, b_2) - F(x_1, a_2)) =
 			\\
 			F(b_1, b_2) - F(a_1, b_2) - (F(b_1, a_2) - F(a_1, a_2)) = P(\rsi{a_1; b_1} \times \rsi{a_2; b_2})
 		\end{multline*}
-		Последнее равество проверяется геометрически. Для общего случя достаточно заметить, что
+		Последнее равество проверяется геометрически. Для общего случая достаточно заметить, что
 		\[
 			\Delta_{a_i, b_i}^i P(B_1 \times \ldots \times \rsi{-\infty; x_i} \times B_{i + 1} \times \ldots \times B_n) = P(B_1 \times \ldots \times \rsi{a_i; b_i} \times B_{i + 1} \times \ldots \times B_n)
 		\]
 	\end{enumerate}
 \end{proof}
 
-\begin{theorem} (Биекция функций распределений и вероятностных мер в $\R^n$)
+\begin{theorem} (Биекция функций распределений и вероятностных мер в $\R^n$, без доказательства)
 	Пусть функция $F(x_1, \ldots, x_n)$ удовлетворяет всем свойствам из леммы выше. Тогда существует и единственна вероятностная мера $P$ на $(\R^n, \B(\R^n))$, для которой $F$ является функцией распределения.
 \end{theorem}
 
@@ -179,8 +179,8 @@
 	\]
 \end{proposition}
 
-\begin{theorem} (Колмогорова о мерах в $\R^\infty$)
-	Пусть $P_1, \ldots, P_n, \ldots$ --- последовательность вероятностных мер в $\R, \ldots, \R^n, \ldots$ соответственно, обладающих свойством согласованности. Тогда существует и единственна вероятностная мера $P$ на $(\R^\infty, \B(\R^\infty))$ такая, что
+\begin{theorem} (Колмогорова о мерах в $\R^\infty$, без доказательства)
+	Пусть $\{P_i\}_{i = 1}^\infty$ --- последовательность вероятностных мер в $\R^i$ соответственно, обладающих свойством согласованности. Тогда существует и единственна вероятностная мера $P$ на $(\R^\infty, \B(\R^\infty))$ такая, что
 	\[
 		\forall n \in \N, B \in \B(\R^n)\ \ P_n(B) = P(F_n(B))
 	\]
@@ -193,7 +193,7 @@
 \end{note}
 
 \begin{definition}
-	Отображение $X \colon \Omega \to \cE$ называется \textit{случайным элеметом}, если оно измеримо, то есть
+	Отображение $X \colon \Omega \to E$ называется \textit{случайным элементом}, если оно измеримо, то есть
 	\[
 		\forall B \in \cE\ \ X^{-1}(B) \in \F
 	\]
@@ -205,11 +205,7 @@
 
 \begin{definition}
 	Если $(E, \cE) = (\R^n, \B(\R^n))$, то случайный элемент называется \textit{случайным вектором}.
-\end{definition}
-
-\begin{note}
-	Будем сокращать случайную величину как с.в., а случайный вектор --- с.вектор.
-\end{note}
+\end{definition}о
 
 \begin{lemma} (Критерий измеримости отображения)
 	Пусть $\cM \subseteq \cE$ такое, что $\sigma(\cM) = \cE$, то отображение $X \colon \Omega \to \cE$ измеримо тогда и только тогда, когда
