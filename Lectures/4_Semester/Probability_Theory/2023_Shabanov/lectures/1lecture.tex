@@ -152,13 +152,13 @@
 		\begin{enumerate}
 			\item $\Omega \in \F$ --- выполнено по требованию $\lambda$-системы
 			
-			\item Пусть $\forall \{A_n\}_{n = 1}^\infty \subseteq \F$. Тогда построим $B_m \colon B_1 = A_1,\ B_m = A_m \bs \bigcup_{n = 1}^{m - 1} A_n$. Тогда $\bigcup_{n = }1^\infty A_n = \bscup_{m = 1}^\infty B_m \in \F$
+			\item Пусть $\forall \{A_n\}_{n = 1}^\infty \subseteq \F$. Тогда построим $B_m \colon B_1 = A_1,\ B_m = A_m \bs \bigcup_{n = 1}^{m - 1} A_n$. Тогда $\bigcup_{n = 1}^\infty A_n = \bscup_{m = 1}^\infty B_m \in \F$
 			
 			\item Остаётся проверить, что у нас есть замкнутость операций кольца, то есть симметрической разности:
 			\[
-				A \tr B = (A \bs (A \cap B)) \cup (A \cap B) \cup (B \bs (A \cap B))
+				A \tr B = (A \bs (A \cap B)) \sqcup (A \cap B) \sqcup (B \bs (A \cap B))
 			\]
-			Пересечение и объединение есть по условию, а разность для вложенных множеств есть по требованию $\lambda$-системы.
+			Пересечение и дизъюнктное объединение есть по условию, а также разность для вложенных множеств есть по требованию $\lambda$-системы.
 		\end{enumerate}
 	\end{itemize}
 \end{proof}
@@ -211,7 +211,7 @@
 	
 	Теперь надо показать, что $\lambda(\cM)$ --- это тоже $\sigma$-алгебра. Из того, что это уже $\lambda$-система, по первой теореме нам нужно проверить лишь замкнутость относительно пересечения. Рассмотрим систему подходящих множеств $\cM_1$:
 	\[
-		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}
+		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \lambda(\cM)\ A \cap B \in \lambda(\cM)\}
 	\]
 	Она непустая, коль скоро $\cM \subset \cM_1$. Если мы покажем, что это $\lambda$-система, то она автоматически по вложению $\cM_1 \subseteq \lambda(\cM)$ совпадает с $\lambda(\cM)$ и к тому же является $\sigma$-алгеброй, что и требуется:
 	\begin{enumerate}
