@@ -1,0 +1,25 @@
+\begin{lemma} (Свойства характеристических функций)
+	\begin{enumerate}
+		\item Если $\phi(t)$ --- характеристическая функция случайной величины, то \(\forall t \in \R\ \ |\phi(t)| \le \phi(0) = 1\)
+		
+		\item Если $\phi_\xi(t)$ --- характеристическая функция случайной величины $\xi$, а $\eta = a\xi + b$ для некоторых $a, b \in \R$, то верно равенство \(\phi_\eta(t) = e^{itb}\phi_\xi(at)\)
+		
+		\item Если $\phi$ --- характеристическая функция случайной величины $\xi$, то $\phi$ равномерно непрерывна на $\R$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\begin{enumerate}
+		\item В тупую оценим модуль:
+		\[
+			|\phi(t)| = |\E e^{it\xi}| \le \E|e^{it\xi}| = \E 1 = 1 = \phi(0)
+		\]
+		
+		\item Просто пользуемся определением:
+		\[
+			\phi_\eta(t) = \E e^{it\eta} = \E e^{it(a\xi + b)} = \E e^{it(a\xi)} \cdot e^{itb} = e^{itb} \cdot \phi_\xi(at)
+		\]
+		
+		\item Рассмотрим разность $\phi$ в точке $t$ при приращении $h$.
+	\end{enumerate}
+\end{proof}

@@ -141,7 +141,7 @@
 		\\
 		\int_{\Omega_1} \ps{\int_{\Omega_2} \xi(\omega_1, \omega_2)P_2(d\omega_2)} P_1(d\omega_1) =
 		\\
-		\int_{\Omega_2} \ps{\int_{\Omega_1} \xi(\omega_1, \omega_2)P_1(d\omega_1)} P_1(d\omega_2)
+		\int_{\Omega_2} \ps{\int_{\Omega_1} \xi(\omega_1, \omega_2)P_1(d\omega_1)} P_2(d\omega_2)
 	\end{multline*}
 \end{theorem}
 
@@ -191,9 +191,9 @@
 	\begin{multline*}
 		F_{\xi + \eta}(z) = \int_\R F_\xi(z - x)dF_\eta(x) =
 		\\
-		\int_\R \ps{\int_{-\infty}^{z - x} p_\xi(y)dy} p_\eta(x)dx = \int_\R \ps{\int_{-\infty}^z p_\xi(y' - x)dy'}p_\eta(x)dx =
+		\int_\R \ps{\int_{-\infty}^{z - x} p_\xi(y)dy} p_\eta(x)dx = \int_\R \ps{\int_{-\infty}^z p_\xi(t - x)dt}p_\eta(x)dx =
 		\\
-		\int_{-\infty}^z \underbrace{\ps{\int_\R p_\xi(y' - x)p_\eta(x)dx}}_{p_{\xi + \eta}(y')}dy'
+		\int_{-\infty}^z \underbrace{\ps{\int_\R p_\xi(t - x)p_\eta(x)dx}}_{p_{\xi + \eta}(t)}dt
 	\end{multline*}
 \end{proof}
 
