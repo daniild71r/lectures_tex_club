@@ -5,10 +5,28 @@
 		\item Если $\phi_\xi(t)$ --- характеристическая функция случайной величины $\xi$, а $\eta = a\xi + b$ для некоторых $a, b \in \R$, то верно равенство \(\phi_\eta(t) = e^{itb}\phi_\xi(at)\)
 		
 		\item Если $\phi$ --- характеристическая функция случайной величины $\xi$, то $\phi$ равномерно непрерывна на $\R$
+		
+		\item Пусть $\phi$ --- характеристическая функция случайной величины $\xi$. Тогда \(\forall t \in \R\ \ \phi(t) = \ol{\phi(-t)}\)
+		
+		\item (Основное свойство харфункции) Пусть $\xi$ и $\eta$ --- произвольные случайные величины. Тогда верна эквивалентность:
+		\[
+			\phi_\xi(t) = \phi_\eta(t) \Lra \xi =^d \eta\ \ (\text{такое равенство означает одинаковую распределенность})
+		\]
+		
+		\item Пусть $\phi(t)$ --- характеристическая фукция случайной величины $\xi$. Тогда верна эквивалентность:
+		\[
+			(\forall t \in \R\ \ \phi(t) \in \R) \Lra (\xi =^d -\xi)
+		\]
+		Иначе говоря, распределение $\xi$ симметрично ($\forall B \in \B(\R)\ P(\xi \in B) = P(\xi \in -B)$)
+		
+		\item Пусть $\{\xi_k\}_{k = 1}^n$ --- независимые случайные величины. Тогда верна формула:
+		\[
+			\phi_{\xi_1 \plusdots \xi_n}(t) = \prod_{k = 1}^n \phi_{\xi_k}(t)
+		\]
 	\end{enumerate}
 \end{lemma}
 
-\begin{proof}
+\begin{proof}~
 	\begin{enumerate}
 		\item В тупую оценим модуль:
 		\[
@@ -20,6 +38,205 @@
 			\phi_\eta(t) = \E e^{it\eta} = \E e^{it(a\xi + b)} = \E e^{it(a\xi)} \cdot e^{itb} = e^{itb} \cdot \phi_\xi(at)
 		\]
 		
-		\item Рассмотрим разность $\phi$ в точке $t$ при приращении $h$.
+		\item Зафиксируем $\eps > 0$ и рассмотрим модуль разности $\phi$ в точке $t$ при приращении $h$:
+		\[
+			|\phi(t + h) - \phi(t)| = |\E e^{i(t + h)\xi} - \E e^{it\xi}| = |\E e^{it\xi}(e^{ih\xi} - 1)| \le \E |\underbrace{e^{it\xi}}_{|e^{it\xi}| = 1} (e^{ih\xi} - 1)| = \E|e^{ih\xi} - 1|
+		\]
+		К последней оценке мы применим теорему Лебега о мажорируемой сходимости, чтобы показать, что при $h \to 0$ матожидание тоже стремится к нулю:
+		\begin{enumerate}
+			\item $\lim_{h \to 0} |e^{ih\xi} - 1| = 0$
+			
+			\item $|e^{ih\xi} - 1| \le 2$
+			
+			\item $\E 2 = 2 \neq \infty$
+		\end{enumerate}
+		Стало быть, $\lim_{h \to 0} \E |e^{ih\xi} - 1| = \E 0 = 0$, то есть для данного $\eps$ мы найдём такое $\delta > 0$, что при любом $0 < |h| < \delta$ будет выполнено $|\phi(t + h) - \phi(t)| < \eps$, что и требует равномерная непрерывность.
+		
+		\item Снова распишем определение:
+		\[
+			\phi(t) = \E e^{it\xi} = \E\cos(t\xi) + i\E\sin(t\xi) = \E\cos(-t\xi) - i\E\sin(-t\xi) = \ol{\phi(-t)}
+		\]
+		
+		\item \textcolor{red}{Идёт отдельной теоремой далее}
+		
+		\item Доказываем в 2 стороны, пользуемся предыдущим свойством:
+		\begin{itemize}
+			\item[$\Ra$] \(\phi_{-\xi}(t) = \phi_\xi(-t)\) по второму свойству, а за счёт четвёртого $\phi_\xi(-t) = \ol{\phi_\xi(t)} = \phi_\xi(t)$
+			
+			\item[$\La$] Коль скоро $\xi =^d -\xi$, то $\phi_\xi(t) = \phi_{-\xi}(t) = \ol{\phi_\xi(t)}$. Такое возможно только тогда, когда значения функции действительные
+		\end{itemize}
+	
+		\item Просто пользуемся свойствами независимых величин и определением характеристической функции:
+		\[
+			\phi_{\xi_1 \plusdots \xi_n}(t) = \E e^{it(\xi_1 \plusdots \xi_n)} = \E \prod_{k = 1}^n e^{it\xi_k} = \prod_{k = 1}^n \E e^{it\xi_k} = \prod_{k = 1}^n \phi_{\xi_k}(t)
+		\]
 	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (о производных)
+	Пусть $\xi$ --- случайная величина, причём $\E |\xi|^n < \infty$ для некоторого $n \in \N$. Тогда для любого $s \le n$ выполнены 3 утверждения:
+	\begin{enumerate}
+		\item $\phi_\xi^{(s)}(t) = \E\big((i\xi)^s e^{it\xi}\big)$
+		
+		\item $\E\xi^s = \dfrac{\phi_\xi^{(s)}(0)}{i^s}$
+		
+		\item $\phi_\xi(t)$ раскладывается <<по формуле Тейлора>>:
+		\[
+			\phi_\xi(t) = \sum_{k = 0}^n \frac{(it)^k}{k!} \E\xi^k + \frac{(it)^n}{n!} \eps_n(t)
+		\]
+		где $|\eps_n(t)| \le 3\E |\xi|^n$ и $\lim_{t \to 0} \eps_n(t) = 0$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Докажем случай $s = 1$, ибо для $s > 1$ мы делаем то же самое, просто подставляем вместо $\phi$ производную $\phi^{(s - 1)}$. Распишем подпредельное выражение производной по определению:
+		\[
+			\frac{\phi(t + h) - \phi(t)}{h} = \frac{1}{h}\ps{\E e^{i(t + h)\xi} - \E e^{it\xi}} = \E\ps{e^{it\xi} \ps{\frac{e^{ih\xi} - 1}{h}}}
+		\]
+		Осталось выяснить предел правого выражения при $h \to 0$. Это можно сделать классическим способом через теорему Лебега о мажорирующей последовательности:
+		\begin{enumerate}
+			\item $e^{it\xi}\ps{\dfrac{e^{ih\xi} - 1}{h}} \xrightarrow[h \to 0]{} (i\xi)e^{it\xi}$ (можно, например, разложить экспоненту по формуле Маклорена с двумя слагаемыми)
+			
+			\item $\md{e^{it\xi}\ps{\dfrac{e^{ih\xi} - 1}{h}}} = \md{\dfrac{e^{ih\xi} - 1}{h}} \le 2|\xi|$ (ибо $e^{ih\xi} - 1 = \cos(h\xi) - 1 + i(\sin(h\xi) - 0)$, а эти разности можно оценить через теорему Лагранжа)
+			
+			\item $\E |\xi|^n < \infty \Ra \E|\xi| < \infty$
+		\end{enumerate}
+		Итак:
+		\[
+			\phi'(t) = \lim_{h \to 0} \frac{\phi(t + h) - \phi(t)}{h} = \lim_{h \to 0} \E\ps{e^{it\xi}\ps{\frac{e^{ih\xi} - 1}{h}}} = \E\big((i\xi)e^{it\xi}\big)
+		\]
+		
+		\item В первый результат надо подставить $t = 0$
+		
+		\item Разложим характеристическую функцию по формуле Маклорена с остаточным членом в форме Лагранжа:
+		\[
+			\phi_\xi(t) = \sum_{k = 0}^{n - 1} \frac{\phi_\xi^{(k)}(0)}{k!} t^k + \frac{t^n}{n!}\phi_\xi^{(n)}(\Theta t) = \sum_{k = 0}^{n - 1} \frac{(it)^k}{k!} \E\xi^k + \frac{(it)^n}{n!} \E\big(\xi^n e^{i\Theta t\xi}\big),\ 0 < \Theta < 1
+		\]
+		Теперь мы в шаге от нужного вида. Нужно добавить $n$-е слагаемое в сумму и вычесть его из остатка. Тогда
+		\[
+			\eps_n(t) := \E(\xi^n (\cos(\Theta t\xi) - 1 + i\sin(\Theta t\xi)))
+		\]
+		Из явного вида несложно увидеть, что $|\eps_n(t)| \le 3\E|\xi|^n$. Стремление к нулю будем показывать снова через теорему Лебега:
+		\begin{enumerate}
+			\item $\forall \omega \in \Omega\ \ (\cos(\Theta t\xi) - 1 + i\sin(\Theta t\xi)) \to 0,\ t \to 0$
+			
+			\item $|\xi^n (\cos(\Theta t\xi) - 1 + i\sin(\Theta t\xi))| \le 3|\xi|^n$
+			
+			\item $\E |\xi|^n < \infty$
+		\end{enumerate}
+		Стало быть, $\lim_{t \to 0} \eps_n(t) = 0$
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Если $\phi(t)$ --- характеристическая функция случайной величины $\xi$ и $\E|\xi|^2 < \infty$, то удобно использовать разложение:
+	\[
+		\phi(t) = 1 + (it)\E\xi - \frac{t^2}{2}\E\xi^2 + o(t^2)
+	\]
+\end{corollary}
+
+\begin{theorem} (о единственности)
+	Пусть $\xi, \eta$ --- произвольные случайные величины. Тогда верна эквивалентность:
+	\[
+		\phi_\xi(t) = \phi_\eta(t) \Lra \xi =^d \eta
+	\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\La$] Всё тривиально из формул вычисления математического ожидания:
+		\[
+			\phi_\xi(t) = \E e^{it\xi} = \int_\R e^{it}dP_\xi(x) = \int_\R e^{itx}dP_\eta(x) = \phi_\eta(t)
+		\]
+		
+		\item[$\Ra$] Нужно показать, что $\forall x \in \R\ F_\xi(x) = F_\eta(x)$. Делать мы это будем более хитрым образом, ведь это эквивалентно тому, что
+		\[
+			\forall a < b \quad F_\xi(b) - F_\xi(a) = \E\chi\{\xi \in \rsi{a; b}\} = \E\chi\{\eta \in \rsi{a; b}\} = F_\eta(b) - F_\eta(a)
+		\]
+		Для фиксированных $a < b$ введём $f_\eps(x)$, представляющую собой тривиальное непрерывное приближение индикатора $\rsi{a; b}$:
+		\[
+			f_\eps(x) = \System{
+				&{0, x \le a \wedge b + \eps \le x}
+				\\
+				&{\text{линейная согласованная зависимость}, x \in (a; a + \eps) \cup (b; b + \eps)}
+				\\
+				&{1, x \in [a + \eps; b]}
+			}
+		\]
+		Осталось сделать 2 вещи: показать, что $\forall \eps > 0\ \E f_\eps(\xi) = \E f_\eps(\eta)$ и то, что предел при $\eps \to 0$ приведёт нас к нужным индикаторам. Итак:
+		\begin{enumerate}
+			\item Возьмём такое $n \in \N$, что $[a; b + \eps] \subseteq [-n; n]$. Тогда, по теореме Вейештрасса \textcolor{red}{какой-то мистической} существует функция $f_{\eps, n}(x)$ на $[-n; n]$, представимая в следующем виде:
+			\[
+				f_{\eps, n}(x) = \sum_{k \in K} c_k \cdot e^{i\frac{\pi k}{n}x}
+			\]
+			и верно, что $\forall x \in [-n; n]\ |f_{\eps, n}(x) - f_\eps(x)| \le 1 / n$. Коль скоро найденная функция является $2n$-периодической и образована комбинацией экспонент, то её можно естественным образом продлить до $\R$. Более того, мы можем утверждать, что эта функция ограничена на $\R$. Действительно, на периоде $[-n; n]$ мы имеем $|f_\eps(x)| \le 1$, тогда простым неравенством треугольника можно получить $|f_{\eps, n}(x)| \le 2$. Раз это оценка на периоде, то это оценка на всём $\R$. Осталось посмотреть на модуль разности матожиданий:
+			\[
+				|\E f_\eps(\xi) - \E f_\eps(\eta)| \le |\E f_\eps(\xi) - \E f_{\eps, n}(\xi)| + \underbrace{|\E f_{\eps, n}(\xi) - \E f_{\eps, n}(\eta)|}_{0,\ \phi_\xi = \phi_\eta} + |\E f_\eps(\eta) - \E f_{\eps, n}(\eta)|
+			\]
+			Оставшиеся слагаемые идентичны, поэтому достаточно посмотреть на одно из них:
+			\begin{multline*}
+				|\E f_\eps(\xi) - \E f_{\eps, n}(\xi)| = |\E(f_\eps(\xi) - f_{\eps, n}(\xi))| \le
+				\\
+				\E\big(|f_\eps(\xi) - f_{\eps, n}(\xi)|\chi\{|\xi| \le n\}\big) + \E\big(|f_\eps(\xi) - f_{\eps, n}(\xi)|\chi\{|\xi| > n\}\big) \le
+				\\
+				\frac{1}{n}P(|\xi| \le n) + 2P(|\xi| > n) \le \frac{1}{n} + 2P(|\xi| > n)
+			\end{multline*}
+			Итого: \(|\E f_\eps(\xi) - \E f_\eps(\eta)| \le 2 / n + 2P(|\xi| > n) + 2P(|\eta| > n) \to 0,\ n \to \infty\). Стало быть, в предельном переходе $\E f_\eps(\xi) = \E f_\eps(\eta)$
+			
+			\item Проверим условия теоремы Лебега о мажорирующей сходимости:
+			\begin{enumerate}
+				\item $f_\eps(\xi) \xrightarrow[\eps \to 0]{} \chi\{\xi \in \rsi{a; b}\}$
+				
+				\item $|f_\eps(\xi)| \le 1$
+			\end{enumerate}
+			Стало быть, $\E f_\eps(\xi) \to \E \chi\{\xi \in \rsi{a; b}\},\ \eps \to 0$. Предельный переход при $\eps \to 0$ приводит нас к нужному равенству для индикаторов с $\xi, \eta$.
+		\end{enumerate}
+	\end{itemize}
+\end{proof}
+
+\begin{example}
+	Пусть $\xi_1, \xi_2$ --- независимые случайные величины, причём $\xi_i \sim N(a_i, \sigma_i^2)$. Тогда найдём распределение $\xi_1 + \xi_2$ при помощи характеристических функций:
+	\begin{enumerate}
+		\item Заметим, что $\frac{1}{\sigma_j}(\xi_j - a_j) \sim N(0, 1)$. Если $\eta \sim N(0, 1)$, то
+		\[
+			\phi_{\xi_j}(t) = \phi_\eta(\sigma_j t) \cdot e^{ita_j} = \exp\ps{ia_jt - \frac{\sigma_j^2 t^2}{2}}
+		\]
+		
+		\item В силу независимости случайных величин, имеем право расписать $\phi_{\xi_1 + \xi_2}(t)$:
+		\[
+			\phi_{\xi_1 + \xi_2}(t) = \phi_{\xi_1}(t) \cdot \phi_{\xi_2}(t) = \exp\ps{i(a_1 + a_2)t - \frac{(\sigma_1^2 + \sigma_2^2)t^2}{2}}
+		\]
+		Что по основному свойству означает, что $\xi_1 + \xi_2 \sim N(a_1 + a_2, \sigma_1^2 + \sigma_2^2)$
+	\end{enumerate}
+\end{example}
+
+\begin{note}
+	Теорема о единственности верна и для случайных векторов. Но для доказательства нужна многомерная теорема Вейерштрасса, посему мы опускаем доказательство этого факта.
+\end{note}
+
+\begin{theorem} (Критерий независимости в терминах характеристических функций)
+	Пусть $\{\xi_k\}_{k = 1}^n$ --- случайные величины. Тогда они независимы в совокупности тогда и только тогда, когда характеристическая функция их вектора $\xi = (\xi_1, \ldots, \xi_n)$ распадается на составляющие:
+	\[
+		\phi_\xi(t_1, \ldots, t_n) = \prod_{k = 1}^n \phi_{\xi_k}(t_k)
+	\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] Здесь просто пишем по определению:
+		\[
+			\phi_\xi(t_1, \ldots, t_n) = \E e^{i\tbr{\xi, t}} = \E\exp\ps{i \sum_{k = 1}^n \xi_k t_k} = \E\ps{\prod_{k = 1}^n e^{i\xi_k t_k}} = \prod_{k = 1}^n \E e^{i\xi_k t_k} = \prod_{k = 1}^n \phi_{\xi_k}(t_k)
+		\]
+		
+		\item[$\La$] Рассмотрим $\{F_k\}_{k = 1}^n$ --- функцию распределения случайных величин. Тогда, рассмотрим индуцированную ими функцию распределения $G$:
+		\[
+			G(x_1, \ldots, x_n) = \prod_{k = 1}^n F_k(x_k)
+		\]
+		Пусть $F_\eta = G$, где $\eta = (\eta_1, \ldots, \eta_n)$. Тогда $\eta_j$ имеет функцию распределения $F_j$, причём $\eta_1, \ldots, \eta_n$ --- независимые случайные величины. Пользуясь теоремой о единственности, получаем равенство распределений векторов:
+		\[
+			\Big(\phi_\eta(t_1, \ldots, t_n) = \prod_{k = 1}^n \phi_{\eta_k}(t_k) = \prod_{k = 1}^n \phi_{\xi_k}(t_k) = \phi_\xi(t_1, \ldots, t_n)\Big) \Lra \eta =^d \xi
+		\]
+		Отсюда, с учётом критерия независимости случайных величин в терминах функции распределения, получаем требуемое
+	\end{itemize}
 \end{proof}
