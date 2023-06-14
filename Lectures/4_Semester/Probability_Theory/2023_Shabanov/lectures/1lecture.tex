@@ -214,7 +214,7 @@
 	
 	Теперь надо показать, что $\lambda(\cM)$ --- это тоже $\sigma$-алгебра. Из того, что это уже $\lambda$-система, по первой теореме нам нужно проверить лишь замкнутость относительно пересечения. Рассмотрим систему подходящих множеств $\cM_1$:
 	\[
-		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \lambda(\cM)\ A \cap B \in \lambda(\cM)\}
+		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}
 	\]
 	Она непустая, коль скоро $\cM \subset \cM_1$. Если мы покажем, что это $\lambda$-система, то она автоматически по вложению $\cM_1 \subseteq \lambda(\cM)$ совпадает с $\lambda(\cM)$ и к тому же является $\sigma$-алгеброй, что и требуется:
 	\begin{enumerate}
@@ -222,14 +222,14 @@
 		
 		\item Пусть $B, C \in \cM_1$, $C \subseteq B$. Тогда $B \bs C \in \lambda(\cM)$ и надо показать, что также $B \bs C \in \cM_1$. Заметим следующий факт:
 		\[
-			\forall A \in \lambda(\cM)\ \ (B \bs C) \cap A = (B \cap A) \bs (C \cap A)
+			\forall A \in \cM\ \ (B \bs C) \cap A = (B \cap A) \bs (C \cap A)
 		\]
 		Коль скоро $B, C \in \cM_1$, то $(B \cap A), (C \cap A) \in \lambda(\cM)$. Более того, $(B \cap A) \supseteq (C \cap A)$, то есть их разность тоже в $\lambda(\cM)$.
 		
-		\item Возьмём любую последовательность $\{B_n\}_{n = 1}^\infty \subseteq \cM_1,\ B_n \subseteq B_{n + 1}$. Обозначим $B := \bigcup_{n = 1}^\infty B_n \in \lambda(M)$ и рассмотрим его пересечение с произвольным $A \in \lambda(M)$:
+		\item Возьмём любую последовательность $\{B_n\}_{n = 1}^\infty \subseteq \cM_1,\ B_n \subseteq B_{n + 1}$. Обозначим $B := \bigcup_{n = 1}^\infty B_n \in \lambda(\cM)$ и рассмотрим его пересечение с произвольным $A \in \cM$:
 		\[
 			B \cap A = \ps{\bigcup_{n = 1}^\infty B_n} \cap A = \bigcup_{n = 1}^\infty (B_n \cap A) \in \lambda(M)
 		\]
-		В конечном факте о принадлежности мы пользуемся тем, что $(B_n \cap A) \in \lambda(M)$ и они образуют неубывающую последовательность.
+		В конечном факте о принадлежности мы пользуемся тем, что $(B_n \cap A) \in \lambda(\cM)$ и они образуют неубывающую последовательность.
 	\end{enumerate}
 \end{proof}
