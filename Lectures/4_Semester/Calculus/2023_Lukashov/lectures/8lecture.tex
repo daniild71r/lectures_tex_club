@@ -1,0 +1,170 @@
+\begin{proposition}
+	Рассмотрим $L_2[-\pi; \pi]$ --- гильбертово пространство. Тогда система $\{\frac{1}{2}, \cos(kx), \sin(kx)\}_{k = 1}^\infty$ полна в нём
+\end{proposition}
+
+\begin{proof}
+	Мы уже знаем, что указанная система $\{e_n\}_{n = 1}^\infty$ является ортогональной системой. Если мы покажем, что мы можем приблизить любую функцию из $L_2[-\pi; \pi]$, то за счёт эквивалентного свойства всё доказано.
+	
+	Итак, вспомним, что множество непрерывных функций всюду плотно в $L_2[-\pi; \pi]$. Стало быть, всюду плотно и множество $2\pi$-периодических непрерывных функций. Тогда по теореме Фейера получаем требуемое.
+\end{proof}
+
+\begin{corollary}
+	Имеет смысл уточнить некоторые свойства и показать новые:
+	\begin{itemize}
+		\item Верно равенство Парсеваля:
+		\[
+			\forall f \in L_2[-\pi; \pi]\ \ \|f\|^2 = \sum_{k = 1}^\infty f_k^2\|e_k\|^2 \Lra \frac{1}{\pi} \int_{[-\pi; \pi]} |f(t)|^2d\mu(t) = \frac{a_0^2}{2} + \sum_{n = 1}^\infty (a_n^2 + b_n^2)
+		\]
+		
+		\item Для любой $f \in L_2[-\pi; \pi]$ её тригонометрический ряд Фурье сходится к ней в смысле $L_2[-\pi; \pi]$ (то есть по норме этого пространства)
+		
+		\item Из теоремы Рисса-Фишера следует, что для любого сходящегося ряда $\frac{a_0^2}{2} + \sum_{n = 1}^\infty (a_n^2 + b_n^2)$ найдётся функция $f \in L_2[-\pi; \pi]$ такая, что элементы этого ряда будут коэффициентами тригонометрического ряда Фурье для $f$
+	\end{itemize}
+\end{corollary}
+
+\begin{theorem} (Хаусдорфа-Юнга, без доказательства)
+	Верны следующие утверждения:
+	\begin{enumerate}
+		\item Если $1 < p \le 2$, то для любой $f \in L_p[-\pi; \pi]$ её ряд коэффициентов Фурье $\sum_{n = 1}^\infty (|a_n|^q + |b_n|^q)$ сходится (где $1 / p + 1 / q = 1$)
+		
+		\item Если $1 < p \le 2$ и ряд $\frac{a_0^p}{2} + \sum_{n = 1}^\infty (|a_n|^p + |b_n|^p)$, то найдётся функция $f \in L_q[-\pi; \pi]$ (снова $1 / p + 1 / q = 1$) такая, что для неё эти элементы последовательности будут коэффициентами Фурье 
+	\end{enumerate}
+\end{theorem}
+
+\section{Интегралы, зависящие от параметров}
+
+\subsection{Собственные интегралы, зависящие от параметра}
+
+\begin{theorem} (о непрерывности собственного интеграла по параметру)
+	Пусть $A \subseteq \R^n$, $E \subseteq \R^m$ --- измеримое множество и задана функция $f \colon E \times A \to \R$. Если наложены следующие условия:
+	\begin{enumerate}
+		\item Для любого $\alpha \in A$ функция $f(x, \alpha)$ измерима на $E$
+		
+		\item Почти всюду на $E$ выполнено $|f(x, \alpha)| \le \phi(x)$, где $\phi \in L_1(E)$
+		
+		\item Почти всюду на $E$ имеет место сходимость $f(x, \alpha) \to f(x, \alpha_0)$ при $\alpha \to \alpha_0$, $\alpha \in A$
+	\end{enumerate}
+	Тогда интеграл $\int_E f(x, \alpha)d\mu(x)$ непрерывен в точке $\alpha_0$, то есть имеется предел:
+	\[
+		\lim_{\alpha \to \alpha_0} \int_E f(x, \alpha)d\mu(x) = \int_E f(x, \alpha_0)d\mu(x)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим произвольную последовательность Гейне $\{\alpha_n\}_{n = 1}^\infty \subseteq A$, \\ $\lim_{n \to \infty} \alpha_n = \alpha_0$. Тогда последовательность функций $f(x, \alpha_n)$ удовлетворяет теорема Лебега о мажорирующей сходимости, то есть имеется предел:
+	\[
+		\lim_{n \to \infty} \int_E f(x, \alpha_n)d\mu(x) = \int_E f(x, \alpha_0)d\mu(x)
+	\]
+\end{proof}
+
+\begin{corollary}
+	Если $f(x, y) \colon \R^2 \to \R$ непрерывна на прямоугольнике $[a; b] \times [c; d]$, то функция $I(y) = \int_a^b f(x, y)dx$ непрерывна на $[c; d]$
+\end{corollary}
+
+\begin{theorem} (о дифференцируемости собственного интеграла по параметру)
+	Пусть даны $f \colon E \times (c; d) \to \R$, где $E \subseteq \R^m$ --- измеримое множество. Если выполнены следующие условия :
+	\begin{enumerate}
+		\item Для любого $\alpha \in (c; d)$ функция $f(x, \alpha)$ суммируема на $E$
+		
+		\item Для любого $\alpha \in (c; d)$ почти всюду на $E$ верно неравенство $\md{\pd{f}{\alpha}(x, \alpha)} \le \phi(x)$, где $\phi \in L_1(E)$
+	\end{enumerate}
+	Тогда взятие производной по параметру коммутирует с интегралом по $E$ (ну или можно сказать, что оператор производной вносится под знак интеграла):
+	\[
+		\forall \alpha \in (c; d)\ \ \pd{}{\alpha} \ps{\int_E f(x, \alpha)d\mu(x)} = \int_E \pd{}{\alpha}f(x, \alpha)d\mu(x)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $\alpha_0 \in (c; d)$. Рассмотрим последовательность Гейне $\{\alpha_n\}_{n = 1}^\infty \subset \mc{U}(\alpha_0)$, $\lim_{n \to \infty} \alpha_n = \alpha_0$. Тогда почти всюду на $E$ у нас есть производная по параметру. Стало быть, почти всюду для $f$ применима теорема Лагранжа относительно $\alpha$:
+	\[
+		\frac{f(x, \alpha_n) - f(x, \alpha_0)}{\alpha_n - \alpha_0} = \pd{f}{\alpha}(x, \xi_n(x)) =: \psi_n(x)
+	\]
+	где $\xi_n(x)$ --- соответствующая точка между $\alpha_n$ и $\alpha_0$. Осталось заметить, что последовательность функций $\psi_n$ удовлетворяет условиям теоремы Лебега о мажорирующей сходимости:
+	\begin{enumerate}
+		\item $\psi_n \to \pd{f}{\alpha}(x, \alpha_0)$ почти всюду на $E$
+		
+		\item $|\psi_n(x)| \le \phi(x)$ почти всюду на $E$
+		
+		\item $\phi \in L_1(E)$
+	\end{enumerate}
+	Стало быть, есть следующее равенство:
+	\[
+		\int_E \pd{f}{\alpha}(x, \alpha_0) = \int_E \lim_{n \to \infty} \pd{f}{\alpha}(x, \xi_n(x))d\mu(x) = \lim_{n \to \infty} \int_E \pd{f}{\alpha}(x, \xi_n(x))d\mu(x)
+	\]
+	При этом последний интеграл переписывается так:
+	\begin{multline*}
+		\lim_{n \to \infty} \int_E \pd{f}{\alpha}(x, \xi_n(x))d\mu(x) = \lim_{n \to \infty} \int_E \frac{f(x, \alpha_n) - f(x, \alpha_0)}{\alpha_n - \alpha_0}d\mu(x) =
+		\\
+		\lim_{n \to \infty} \frac{\int_E f(x, \alpha_n)d\mu(x) - \int_E f(x, \alpha_0)d\mu(x)}{\alpha_n - \alpha_0} = \pd{}{\alpha} \ps{\int_E f(x, \alpha)d\mu(x)}
+	\end{multline*}
+\end{proof}
+
+\begin{corollary}
+	Если $f(x, y)$ и $\pd{f}{y}(x, y)$ непрерывны  на прямоугольнике $[a; b] \times [c; d]$, то справедливо правило Лейбница:
+	\[
+		\forall y \in (c; d)\ \ \pd{}{y}\ps{\int_a^b f(x, y)dx} = \int_a^b \pd{f}{y}(x, y)dx
+	\]
+\end{corollary}
+
+\begin{corollary} (из предыдущего следствия)
+	Если добавить к условиям предыдущего следствия функции $\phi(y), \psi(y)$, которые дифференцируемы на $[c; d]$ и в любой этой точке удовлетворяют неравенству $a \le \phi(y) \le \psi(y) \le b$, то формула Лейбница принимает следующий вид:
+	\[
+		\pd{}{y}\ps{\int_{\phi(y)}^{\psi(y)} f(x, y)dx} = f(\psi(y), y) \cdot \psi'(y) - f(\phi(y), y) \cdot \phi'(y) + \int_{\phi(y)}^{\psi(y)} \pd{f}{y}(x, y)dx
+	\]
+\end{corollary}
+
+\begin{proof}
+	\textcolor{red}{Возможно появится подробное доказательство, но нужно воспользоваться уже известной формулой производной интеграла по параметру и не забыть формулу дифференцирования сложной функции}
+\end{proof}
+
+\subsection{Несобственные интегралы Римана, зависящие от параметра}
+
+\begin{definition} 
+	Пусть задана функция $f \colon \R \times Y$, причём для любых $y \in Y$ и $\tilde{b} \in \lsi{a; b}$ верно, что $f(x, y) \in R[a; \tilde{b}]$. Тогда \textit{несобственным интегралом Римана, зависящим от параметра} называется следующий предел, если он существует:
+	\[
+		\int_a^b f(x, y)dx := \lim_{\tilde{b} \to b-0} \int_a^{\tilde{b}} f(x, y)dx
+	\]
+\end{definition}
+
+\begin{definition}
+	Если для $f \colon \R \times Y \to \R$ несобственный интеграл Римана конечен, то говорят, что он \textit{сходится (поточечно)}.
+\end{definition}
+
+\begin{note}
+	Поточечную сходимость несобственного интеграла Римана с параметром можно формально записать так (по определению предела Коши):
+	\[
+		\forall y \in Y\ \forall \eps > 0\ \exists \delta > 0 \such \forall \tilde{b} \in \mc{U}_\delta(b)\ \ \md{\int_a^{\tilde{b}} f(x, y)dx - \int_a^b f(x, y)dx} = \md{\int_{\tilde{b}}^b f(x, y)dx} < \eps
+	\]
+\end{note}
+
+\begin{definition}
+	Пусть $f \colon \R \times Y$ такова, что $\forall y \in Y\ \forall \tilde{b} \in \lsi{a; b}\ f(x, y) \in R[a; \tilde{b}]$. Тогда говорят, что \textit{несобственный интеграл Римана от $f$ сходится равномерно на $Y$}, если выполнено условие:
+	\[
+		\forall \eps > 0\ \exists \delta > 0 \such \forall y \in Y\ \forall \tilde{b} \in \mc{U}_\delta(b)\ \ \md{\int_{\tilde{b}}^b f(x, y)dx} < \eps
+	\]
+\end{definition}
+
+\begin{theorem} (Критерий Коши равномерной сходимости несобственного интеграла Римана, зависящего от параметра)
+	Несобственный интеграл Римана от $f$ сходится равномерно по $Y$ тогда и только тогда, когда выполнено условие:
+	\[
+		\forall \eps > 0\ \exists B \in \lsi{a; b} \such \forall y \in Y\ \forall b > B_2 > B_1 > B\ \ \md{\int_{B_1}^{B_2} f(x, y)dx} < \eps
+	\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] Определение равномерной сходимости эквивалентно такой записи:
+		\[
+			\forall \eps > 0\ \exists B \in \lsi{a; b} \such \forall y \in Y\ \forall b > B_1 > B\ \ \md{\int_{B_1}^B f(x, y)dx} < \eps
+		\]
+		Стало быть, если найти $B$ так, чтобы оценка была $< \eps / 2$, то $\forall b > B_2 > B_1 > B$ тривиально выполняется нужная оценка:
+		\[
+			\md{\int_{B_1}^{B_2} f(x, y)dx} = \md{\int_{B_1}^B f(x, y)dx - \int_{B_2}^B f(x, y)dx} < \frac{\eps}{2} + \frac{\eps}{2} = \eps
+		\]
+		
+		\item[$\La$] Если выполнено условие Коши, то при любом $y \in Y$ выполнен критерий Коши о равномерной сходимости просто несобственного интеграла Римана. Стало быть, мы можем устремить $B_2$ к $b$, получим тем самым эквивалентное требуемому условие:
+		\[
+			\forall \eps > 0\ \exists B \in \lsi{a; b} \such \forall y \in Y\ \forall b > B_1 > B\ \ \md{\int_{B_1}^b f(x, y)dx} \le \eps
+		\]
+	\end{itemize}
+\end{proof}
