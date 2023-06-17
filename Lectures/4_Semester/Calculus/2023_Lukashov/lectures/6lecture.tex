@@ -1,28 +1,13 @@
-\begin{proof} (второе доказательство теоремы)
-	Заметим, что $F(x) - \frac{a_0}{2}x$ абсолютна непрерывна на любом периоде. Разложим её в ряд:
-	\[
-		F(x) - \frac{a_0}{2}x = \frac{A_0}{2} + \sum_{n = 1}^\infty (A_n\cos(nx) + B_n\sin(nx))
-	\]
-	Теперь применим теорему о почленном дифференцировании:
-	\[
-		f(x) - \frac{a_0}{2} = \ps{F(x) - \frac{a_0}{2}x}' \sim \sum_{n = 1}^\infty (-A_n\sin(nx) + B_n\cos(nx))
-	\]
-	Отсюда получим искомый ряд:
-	\[
-		f(x) \sim \frac{a_0}{2} + \sum_{n = 1}^\infty (-A_n\sin(nx) + B_n\cos(nx))
-	\]
-\end{proof}
-
 \begin{corollary}
 	Тригонометрический ряд Фурье $f \in L_{2\pi}$ можно почленно интегрировать на любом отрезке.
 \end{corollary}
 
 \begin{corollary}
-	Если $f \in L_{2\pi}$, $f \sim \frac{a_0}{2} + \sum_{n = 1}^\infty (a_n\cos(nx) + b_n\sin(nx))$ --- тригонометрический ряд Фурье этой функции, то ряд $\sum_{n = 1}^\infty (b_n / n)$ сходится (ибо это значение исходного ряда в $x = 0$).
+	Если $f \in L_{2\pi}$, $f \sim \frac{a_0}{2} + \sum_{n = 1}^\infty (a_n\cos(nx) + b_n\sin(nx))$ --- тригонометрический ряд Фурье этой функции, то ряд $\sum_{n = 1}^\infty (b_n / n)$ сходится (ибо это значение ряда-разложения интеграла в $x = 0$).
 \end{corollary}
 
 \begin{example}
-	$\sum_{n = 1}^\infty \frac{\cos(nx)}{\ln n}$ не является тригнометрическим рядом Фурье. Действительно, если \textcolor{red}{спросить, дописать}
+	$\sum_{n = 1}^\infty \frac{\sin(nx)}{\ln n}$ не является тригнометрическим рядом Фурье. Действительно, если это всё же ряд, то должен сходится ряд $\sum_{n = 1}^\infty \frac{1}{(n\ln n)}$, чего не происходит. Забавно, но ряд $\sum_{n = 1}^\infty \frac{\cos(nx)}{\ln n}$ сходится.
 \end{example}
 
 \begin{note}~
@@ -41,21 +26,48 @@
 
 \section{Приближение непрерывных функций полиномами}
 
+\begin{reminder}
+	В функциональном анализе приняты следующие обозначения, если $L$ --- это оператор над функцией $f$, принимающей аргумент $x$:
+	\[
+		L(f, x) = L(f)(x) = L(f)x
+	\]
+\end{reminder}
+
+\begin{reminder}
+	$C[a; b]$ --- линейно нормированное пространство непрерывных на $[a; b]$ функций, норма которого определена так:
+	\[
+		\forall f \in C[a; b]\ \ \|f\|_{C[a; b]} := \sup_{x \in [a; b]} |f(x)| = \max_{x \in [a; b]} |f(x)|
+	\]
+\end{reminder}
+
+\begin{designation}
+	$C_{2\pi}$ --- линейно нормированное пространство непрерывных $2\pi$-периодических функций (то есть необходимо и достаточно, что они периодичны и непрерывны на любом $2\pi$ отрезке). Норма этого пространства индуцирована нормой $C[a; a + 2\pi]$
+\end{designation}
+
 \begin{definition}
-	Оператор $L \colon C[a; b] \to C[a; b]$ (или $C_{[2\pi]} \to C_{[2\pi]}$) называется \textit{линейным положительным}, если
-	
-	\textcolor{red}{Обозначение $L(f, x) = L(f)(x)$}
+	Оператор $L \colon C[a; b] \to C[a; b]$ (или $C_{2\pi} \to C_{2\pi}$) называется \textit{линейным положительным}, если
 	\begin{enumerate}
-		\item \(\forall f_1, f_2 \in C[a; b] (C_{2\pi})\ \forall \alpha_1, \alpha_2 \in \R\ \ L(\alpha_1f_1 + \alpha_2f_2)(x) = \alpha_1L(f_1)(x) + \alpha_2L(f_2)(x)\)
+		\item \(\forall f_1, f_2 \in C[a; b] (\text{или }C_{2\pi})\ \forall \alpha_1, \alpha_2 \in \R\ \ L(\alpha_1f_1 + \alpha_2f_2)(x) = \alpha_1L(f_1)(x) + \alpha_2L(f_2)(x)\)
 		
-		\item \(\forall f \in C[a; b] (C_{2\pi})\ (\forall x \in [a; b] (\R)\ \ f(x) \ge 0) \to (\forall x \in [a; b] (\R)\ \ L(f, x) \ge 0)\)
+		\item \(\forall f \in C[a; b] (\text{или }C_{2\pi})\ (\forall x \in [a; b] (\text{или }\R)\ \ f(x) \ge 0) \to (\forall x \in [a; b] (\text{или }\R)\ \ L(f, x) \ge 0)\)
 	\end{enumerate}
 \end{definition}
 
-\begin{theorem} (Коровкин)
+\begin{proposition}
+	Если $L$ --- линейный положительный оператор, то он сохраняет неравенство:
+	\[
+		\forall f_1, f_2\ \ f_1 \le f_2 \Ra L(f_1) \le L(f_2)
+	\]
+\end{proposition}
+
+\begin{proof}
+	Возьмём произвольные функции $f_1 \le f_2$. Тогда $f_2 - f_1 \ge 0$, что по свойству положительности даёт $L(f_2 - f_1) = L(f_2) - L(f_1) \ge 0$.
+\end{proof}
+
+\begin{theorem} (Коровкина для полиномов)
 	Если $\{L_n\}_{n = 1}^\infty$ --- последовательность линейно положительных операторов $C[a; b] \to C[a; b]$ такая, что
 	\[
-		\forall i \in \{0, 1, 2\}\ \forall x \in [a; b]\ \ L_n(e_i, x) \rra e_i,\ \ n \to \infty
+		\forall i \in \{0, 1, 2\}\ \forall x \in [a; b]\ \ L_n(e_i, x) \rra e_i(x),\ \ n \to \infty
 	\]
 	где $e_i(x) = x^i$ (степень), то $\forall f \in C[a; b]\ \ L_n(f_i) \rra f,\ n \to \infty$
 \end{theorem}
@@ -69,17 +81,17 @@
 	\[
 		\forall \eps > 0\ \exists \delta > 0 \such \forall x, t \in [a; b],\ |x - t| < \delta\ \ -\eps < f(x) - f(t) < \eps
 	\]
-	А теперь посмотрим на следующую функцию: $\psi(t) = (t - x)^2$. Имеет место следующее неравенство:
+	Зафиксируем $\eps > 0$ и построим неравенство, которое оценит разность $f(x) - f(t)$ для любых $x, t \in [a; b]$. Для этого заметим, что в нашей ситуации хорошо подойдёт парабола $\psi(t) = (t - x)^2$ для увеличения зазора значений, когда $|x - t| \ge \delta$:
 	\[
-		-\eps - \frac{2M}{\delta^2}\psi(t) \le f(x) - f(t) \le \eps + \frac{2M}{\delta^2}\psi(t)
+		\forall x \in [a; b]\ \ -\eps - \frac{2M}{\delta^2} \psi(t) \le f(x) - f(t) \le \eps + \frac{2M}{\delta^2}\psi(t)
 	\]
-	Чтобы его доказать, разберём 2 случая:
-	\begin{enumerate}
-		\item $|t - x| < \delta$ --- всё очевидно из уже имеющегося неравенства по теореме Кантора
+	Поясним, почему оно формально верно:
+	\begin{itemize}
+		\item Если $|x - t| < \delta$, то просто пользуемся теоремой Кантора (мы увеличили зазор заведомо неотрицательной величиной)
 		
-		\item $|t - x| \ge \delta$. Тогда $\psi(t) / \delta^2 \ge 1$, и этого достаточно
-	\end{enumerate}
-	Применим к доказанному оператор $L_n$ при фиксированном $x$:
+		\item Если $|x - t| \ge \delta$, то $\psi(t) \ge \delta^2$, то есть $\frac{2M}{\delta^2}\psi(t) \ge 2M$, что с запасом (из-за $\eps$) даёт действительно верное неравенство
+	\end{itemize}
+	Применим к полученному неравенству оператор $L_n$ при фиксированном $x$ (то есть оператор воздействует только на функции, зависящие от переменной $t$. При этом $1 = `e_0(t)$):
 	\[
 		-\eps L_n(e_0, x) - \frac{2M}{\delta^2}L_n(\psi, x) \le f(x)L_n(e_0, x) - L_n(f, x) \le \eps L_n(e_0, x) + \frac{2M}{\delta^2}L_n(\psi, x)
 	\]
@@ -91,7 +103,29 @@
 		\\
 		e_2(x) - 2xe_1(x) +x^2e_0(x) = 0,\ n \to \infty
 	\end{multline*}
-	\textcolor{red}{Дописать}
+	Осталось выбрать номер в последовательности так, чтобы у нас снова появился $\eps$ с краёв неравенства. Итак:
+	\begin{itemize}
+		\item $\exists N_1 \in \N \such \forall n > N_1\ \forall x \in [a; b]\ L_n(\psi, x) \le \frac{\eps\delta^2}{4M}$
+		
+		\item $\exists N_2 \in \N \such \forall n > N_2\ \forall x \in [a; b]\ L_n(e_0, x) \le \frac{3}{2}$
+	\end{itemize}
+	Посмотрим на неравенство при $n > \max\{N_1, N_2\}$:
+	\[
+		-2\eps = -\frac{3\eps}{2} - \frac{\eps}{2} \le f(x)L_n(e_0, x) - L_n(f, x) \le \frac{3\eps}{2} + \frac{\eps}{2} = 2\eps \Lolra |f(x)L_n(e_0, x) - L_n(f, x)| \le 2\eps
+	\]
+	Осталось дело за малым подобрать $N_3$, чтобы $f(x)L_n(e_0, x)$ оказалось близко к $f(x)$:
+	\[
+		\exists N_3 \in \N \such \forall n > N_3\ \forall x \in [a; b]\ |L_n(e_0, x) - 1| \le \frac{\eps}{M}
+	\]
+	Тогда, при $n > N := \max\{N_1, N_2, N_3\}$ имеем:
+	\begin{multline*}
+		|f(x) - L_n(f, x)| \le
+		\\
+		|f(x) - f(x)L_n(e_0, x)| - |f(x)L_n(e_0, x) - L_n(f, x)| \le
+		\\
+		|f(x)| \cdot |L_n(e_0, x) - 1| + 2\eps \le 3\eps
+	\end{multline*}
+	Стало быть, сходимость $L_n(f, x) \rra f(x)$ при $n \to \infty$ установлена.
 \end{proof}
 
 \begin{theorem} (Вейерштрасса о приближении алгебраическими многочленами)
@@ -105,36 +139,37 @@
 \begin{proof}
 	Без ограничения общности, рассмотрим $[a; b] = [0; 1]$ (линейная замена переводит многочлен в многочлен). Рассмотрим последовательность объектов, называемых \textit{многочленами Бернштейна}:
 	\[
-		B_n(f, x) = \sum_{k = 0}^n f\ps{\frac{k}{n}} C_n^k x^k(1 - x)^{n - k}
+		B_n(f, x) = \sum_{k = 0}^n f(k / n) C_n^k x^k(1 - x)^{n - k}
 	\]
 	Прежде всего заметим, что $B_n$ является линейно положительным оператором. Стало быть, мы можем пользоваться теоремой Коровкина. Проверим последовательность на $e_i$:
 	\begin{itemize}
 		\item \(B_n(e_0, x) = \sum_{k = 0}^n C_n^k x^k(1 - x)^{n - k} = (x + (1 - x))^n = 1 = e_0(x)\)
 		
 		\item \(B_n(e_1, x) = \sum_{k = 0}^n \frac{k}{n} C_n^k x^k(1 - x)^{n - k}\). Чтобы показать сходимость этой последовательности, рассмотрим функцию $(tx + (1 - x))^n$ и её производную по $t$:
-		\[
-			nx(tx + (1 - x))^{n - 1} = \sum_{k = 1}^n kC_n^k t^{k - 1}x^k(1 - x)^{n - k} = \sum_{k = 0}^n kC_n^k t^{k - 1}x^k(1 - x)^{n - k}
-		\]
+		\begin{multline*}
+			nx(tx + (1 - x))^{n - 1} = \big((tx + (1 - x))^n\big)'_t =
+			\\
+			\ps{\sum_{k = 0}^n C_n^k t^k x^k (1 - x)^{n - k}}'_t = \sum_{k = 1}^n kC_n^k t^{k - 1}x^k(1 - x)^{n - k} = \sum_{k = 0}^n kC_n^k t^{k - 1}x^k(1 - x)^{n - k}
+		\end{multline*}
 		Подстановкой $t = 1$ получим требуемое:
 		\[
-			nx = \sum_{k = 0}^n kC_n^kx^k(1 - x)^{n - k}
+			nx = \sum_{k = 0}^n kC_n^kx^k(1 - x)^{n - k} \Lora x = \sum_{k = 0}^n \frac{k}{n} C_n^k x^k(1 - x)^{n - k} = B_n(e_1, x)
 		\]
 		
 		\item \(B_n(e_2, x) = \sum_{k = 0}^n \frac{k^2}{n^2} C_n^k x^k(1 - x)^{n - k}\). Дважды продифференцируем функцию из предыдущего пункта:
 		\[
-			n(n - 1)x^2(tx + (1 - x))^{n - 2} = \sum_{k = 0}^n k(k - 1)C_n^k x^k(1 - x)^{n - k}
+			n(n - 1)x^2(tx + (1 - x))^{n - 2} = \sum_{k = 0}^n k(k - 1)C_n^k t^{k - 2} x^k(1 - x)^{n - k}
 		\]
 		Снова подставим $t = 1$ (дополнительно воспользуемся уже доказанными тождествами):
-		\begin{multline*}
-			(n^2 - n)x^2 = \sum_{k = 0}^n (k^2 - k)C_n^k x^k(1 - x)^{n - k} =
-			\\
-			\sum_{k = 0}^n k^2C_n^k x^k(1 - x)^{n - k} - nx
-		\end{multline*}
-		\textcolor{red}{Дописать}
+		\[
+			(n^2 - n)x^2 = \sum_{k = 0}^n (k^2 - k)C_n^k x^k(1 - x)^{n - k} = \sum_{k = 0}^n k^2C_n^k x^k(1 - x)^{n - k} - nx
+		\]
+		Стало быть, $B_2(e_2, x) = \frac{x}{n} + \ps{1 - \frac{1}{n}}x^2 \rra x^2 = e_2(x)$ при $n \to \infty$
 	\end{itemize}
+	Заключаем, что $\forall f \in C[0; 1]\ \ B_n(f, x) \rra f(x)$, что и требовалось.
 \end{proof}
 
-\begin{theorem} (Коровкин)
+\begin{theorem} (Коровкина для тригонометрических функций)
 	Если $\{L_n\}_{n = 1}^\infty$ --- последовательность линейно положительных операторов $C_{2\pi} \to C_{2\pi}$ такая, что
 	\[
 		\forall x \in \R\ \ \forall i \in \{0, 1, 2\}\ \ L_n(e_i, x) \rra e_i(x),\ n \to \infty
@@ -149,19 +184,31 @@
 		
 		\item $\psi(t) = \sin^2 \frac{(x - t)}{2}$
 		
-		\item Неравенство стало иметь такой вид:
+		\item Требуем $\delta > 0$ из равномерной сходимости, причём потребуем $\delta < \pi$
+		
+		\item Неравенство для $x, t \in \R$ принимает такой вид:
 		\[
 			-\eps - \frac{2M}{\sin^2 \frac{\delta}{2}} \psi(t) \le f(x) - f(t) \le \eps + \frac{2M}{\sin^2 \frac{\delta}{2}} \psi(t)
 		\]
 		Без ограничения общности, $t \in \rsi{x; x + 2\pi}$. Тогда разбор случаев имеет вид:
 		\begin{enumerate}
-			\item $t \in (x; x + \delta)$ или $t \in \rsi{x + 2\pi - \delta; x + 2\pi}$ --- тривиально
+			\item $t \in (x; x + \delta)$ или $t \in \rsi{x + 2\pi - \delta; x + 2\pi}$ --- тривиально по равномерной непрерывности (во втором случае мы руководствуемся фактом, что $f(x) = f(x + 2\pi)$)
 			
-			\item $t \in [x + \delta; x + 2\pi - \delta]$. Тогда $\frac{t - x}{2} \in [\delta / 2; \pi - \delta / 2]$, а значит $\sin^2((t - x) / 2) \ge \sin^2(\delta / 2)$
-			
-			\item \(L_n(\psi, x) = L_n(\sin^2((t - x) / 2), x) = L_n(\frac{1}{2}L_n(1 - \cos(t - x)), x) = \frac{1}{2}L_n(e_0, x) - \frac{1}{2}\cos(x)L_n(e_1, x) - \frac{1}{2}\sin(x)L_n(e_2, x) \rra \frac{1}{2}e_0(x) - \frac{1}{2}\cos(x)e_1(x) - \frac{1}{2}\sin(x)e_2(x),\ n \to \infty\)
+			\item $t \in [x + \delta; x + 2\pi - \delta]$. Тогда $\frac{t - x}{2} \in [\delta / 2; \pi - \delta / 2]$ (для $\sin^2(x)$ это симметричная часть с максимумом), а значит $\sin^2((t - x) / 2) \ge \sin^2(\delta / 2)$
 		\end{enumerate}
+		
+		\item Снова нужно выяснить сходимость $L_n(\psi, x)$:
+		\begin{multline*}
+			L_n(\psi, x) = L_n\ps{\sin^2\ps{\frac{t - x}{2}}, x} = L_n\ps{\frac{1 - \cos(t - x)}{2}, x} =
+			\\
+			L_n\ps{\frac{1}{2} - \frac{1}{2}(\cos(t)\cos(x) + \sin(t)\sin(x)), x} =
+			\\
+			\frac{1}{2}L_n(e_0, x) - \frac{1}{2}\cos(x)L_n(e_1, x) - \frac{1}{2}\sin(x)L_n(e_2, x) \rra
+			\\
+			\frac{1}{2}e_0(x) - \frac{1}{2}\cos(x)e_1(x) - \frac{1}{2}\sin(x)e_2(x) = 0,\ n \to \infty
+		\end{multline*}
 	\end{enumerate}
+	Дальнейшие действия повторяют предыдущую теорему Коровкина
 \end{proof}
 
 \begin{theorem} (Фейера)
@@ -176,10 +223,9 @@
 	\begin{enumerate}
 		\item $\sigma_n(e_0, x) = e_0(x)$
 		
-		\item $S_n(e_1, x) = e_1(x),\ n \ge 1$
+		\item Заметим, что $S_n(e_1, x) = e_1(x),\ n \ge 1$. При $n = 0$ это будет просто ноль, поэтому $\sigma(e_1, x) = \frac{n}{n + 1}e_1(x) \rra e_1(x),\ n \to \infty$
 		
-		\item $S_n(e_2, x) = e_2(x)$
-		
-		\item $\forall i \in \{0, 1\}\ \ \sigma_n(e_i, x) = \frac{n}{n + 1}e_i(x) \rra e_i(x)$
+		\item Тут ещё проще: $S_n(e_2, x) = e_2(x)$, поэтому $\sigma(e_2, x) = e_2(x)$
 	\end{enumerate}
+	Коль скоро условия выполнены, $\forall f \in C_{2\pi}\ \sigma_n(f, x) \rra f,\ n \to \infty$
 \end{proof}
