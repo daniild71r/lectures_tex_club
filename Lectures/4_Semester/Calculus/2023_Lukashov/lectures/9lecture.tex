@@ -1,0 +1,177 @@
+\begin{theorem} (Признак сравнения)
+	Если $f, g \in NR_{[a; b]}^G$, причём выполнены следующие условия:
+	\begin{enumerate}
+		\item $\forall x \in \lsi{a; b}\ \forall y \in G\ \ |f(x, y)| \le g(x, y)$
+		
+		\item $\int_a^b g(x, y)dx$ сходится равномерно на $G$
+	\end{enumerate}
+	Тогда и $\int_a^b f(x, y)dx$ сходится равномерно на $G$.
+\end{theorem}
+
+\begin{proof}
+	Заметим, что в силу условия $g$ будет неотрицательной. В силу уже доказанного критерия Коши можно записать следующее:
+	\[
+		\forall \eps > 0\ \exists B \in (a; b) \such \forall b > B_2 > B_1 > B\ \forall y \in G\ \ \int_{B_1}^{B_2} g(x, y)dx < \eps
+	\]
+	Собственно, осталось заметить неравенство:
+	\[
+		\md{\int_{B_1}^{B_2} f(x, y)dx} \le \int_{B_1}^{B_2} |f(x, y)|dx \le \int_{B_1}^{B_2} g(x, y)dx < \eps
+	\]
+\end{proof}
+
+\begin{corollary} (Признак Вейерштрасса)
+	Если $f \in NR_{[a; b]}^Y$ и $g \in NR_{[a; b]}$, причём выполнены условия:
+	\begin{enumerate}
+		\item $\forall x \in \lsi{a; b}\ \forall y \in G\ \ |f(x, y)| \le g(x)$
+		
+		\item $\int_a^b g(x)dx$ сходится
+	\end{enumerate}
+	Тогда $\int_a^b f(x, y)dx$ сходится равномерно на $G$
+\end{corollary}
+
+\begin{theorem} (Признак Дирихле для равномерно сходящегося несобственного интеграла Римана, зависящего от параметра)
+	Пусть $f \in NR_{[a; b]}^G$ и $g \colon [a; b) \times G \to \R$. Если выполнены условия:
+	\begin{enumerate}
+		\item Первообразная $F(x, y)$ для $f(x, y)$ равномерно ограничена по $Y$, то есть:
+		\[
+			\exists C > 0 \such \forall x \in \lsi{a; b}\ \forall y \in G\ \ |F(x, y)| \le C
+		\]
+	
+		\item $g(x, y)$ монотонна для любого $y \in G$
+		
+		\item $\lim_{x \to b-0} g(x, y) = 0$ --- сходится к нулю равномерно на $G$
+	\end{enumerate}
+	Тогда $\int_a^b f(x, y)g(x, y)dx$ сходится равномерно на $G$.
+\end{theorem}
+
+\begin{proof}
+	Воспользуемся критерием Коши равномерной сходимости. Нам нужно как-то оценить следующий интеграл (он расписан по формуле Бонне):
+	\[
+		\int_{B_1}^{B_2} f(x, y)g(x, y)dx = g(B_1, y) \int_{B_1}^{\xi(y)} f(x, y)dx + g(B_2, y) \int_{\xi(y)}^{B_2} f(x, y)dx
+	\]
+	Оценим первый интеграл в сумме (второй аналогично):
+	\[
+		\md{\int_{B_1}^{\xi(y)} f(x, y)dx} = |F(\xi(y), y) - F(B_1, y)| \le 2C
+	\]
+	А в силу равномерной сходимости $g$ можно написать такую оценку:
+	\[
+		\forall \eps > 0\ \exists B \in (a; b) \such \forall b > B_1 > B\ \forall y \in G\ \ |g(B_1, y)| < \frac{\eps}{4C}
+	\]
+	Стало быть, верно утверждение:
+	\[
+		\forall \eps > 0\ \exists B \in (a; b) \such \forall b > B_2 > B_1 > B\ \forall y \in G\ \ \md{\int_{B_1}^{B_2} f(x, y)g(x, y)dx} \le \frac{\eps}{4C} \cdot 2C + \frac{\eps}{4C} \cdot 2C = \eps
+	\]
+\end{proof}
+
+\begin{theorem} (Признак Абеля)
+	Пусть $f \in NR_{[a; b]}^G$ и $g \colon \R \times G \to \R$ и выполнены условия:
+	\begin{enumerate}
+		\item $\int_a^b f(x, y)dx$ сходится равномерно по $G$
+		
+		\item $g(x, y)$ монотонна при любом $y \in G$
+		
+		\item $g(x, y)$ равномерно ограничена, то есть
+		\[
+			\exists C > 0 \such \forall x \in \lsi{a; b}\ \forall y \in G\ \ |g(x, y)| \le C
+		\]
+	\end{enumerate}
+	Тогда $\int_a^b f(x, y)g(x, y)dx$ сходится равномерно на $G$.
+\end{theorem}
+
+\begin{proof}
+	Доказательство аналогично признаку Дирихле
+\end{proof}
+
+\begin{theorem} (Предельный переход в равномерно сходящемся несобственном интеграле Римана, зависящим от параметра)
+	Пусть $f \in NR_{[a; b]}^Y$, где $Y \subseteq X$ --- подмножество произвольного метрического пространства, и $y_0$ --- предельная точка $Y$. Если выполнены условия:
+	\begin{enumerate}
+		\item $\int_a^b f(x, y)dx$ сходится равномерно на множестве $Y$
+		
+		\item $\forall x \in \lsi{a; b}\ \ \lim_{y \to y_0 \atop {y \in Y}} f(x, y) = \phi(x) \in \R$ --- сходится равномерно на отрезке $[a; \tilde{b}]$ для любого $\tilde{b} \in \lsi{a; b}$
+	\end{enumerate}
+	Тогда имеет место предел $\lim_{y \to y_0 \atop {y \in Y}} \int_a^b f(x, y)dx = \int_a^b \phi(x)dx$, причём интеграл в правой части сходится.
+\end{theorem}
+
+\begin{proof}
+	Разумно доказать доказательство двумя частями:
+	\begin{enumerate}
+		\item Покажем, что $\int_a^b \phi(x)dx$ сходится. Рассмотрим последовательность Гейне $\{y_n\}_{n = 1}^\infty \subseteq Y \bs \{y_0\}$, $\lim_{n \to \infty} y_n = y_0$. Тогда по условию $\lim_{n \to \infty} f(x, y_n) = \phi(x)$ --- этот предел сходится равномерно на $[a; \tilde{b}],\ \tilde{b} \in \lsi{a; b}$. В силу равномерной сходимости и того факта, что $f(x, y_n) \in R[a; \tilde{b}]$, следует $\phi(x) \in R[a; \tilde{b}]$, то есть $\phi \in NR_{[a; b]}$. Осталось показать, что для $\phi$ выполнен критерий Коши равномерной сходимости. В самом деле, он ведь выполнен для $f(x, y)$:
+		\[
+			\forall \eps > 0\ \exists B \in (a; b) \such \forall b > B_2 > B_1 > B\ \forall y \in Y\ \ \md{\int_{B_1}^{B_2} f(x, y)dx} < \eps \Ra \md{\int_{B_1}^{B_2} \phi(x)dx} \le \eps
+		\]
+		
+		\item Приступим к доказательству равенства из теоремы. Идея состоит в том, чтобы в конечном итоге воспользоваться предельным переходом для функциональных последовательностей. Осталось их ввести: пусть $\{b_n\}_{n = 1}^\infty$ --- подходящая снизу к $b$ предельная последовательность ($b_n < b$). Введём соответствующую последовательность интегралов с параметром:
+		\[
+			I_n(y) := \int_a^{b_n} f(x, y)dx
+		\]
+		За счёт условия равномерной сходимости интеграла от $f(x, y)$ мы можем торжественно заявить, что $\lim_{n \to \infty} I_n(y) = I(y) = \int_a^b f(x, y)dx$ --- сходится равномерно по $Y$. Тогда мы удовлетворили условиям теоремы о предельном переходе в функциональных последовательностях, то есть верно следующее:
+		\[
+			\lim_{y \to y_0 \atop {y \in Y}} \int_a^b f(x, y)dx = \lim_{y \to y_0 \atop {y \in Y}} I(y) = \lim_{n \to \infty} \ps{\lim_{y \to y_0 \atop {y \in Y}} I_n(y)} = \lim_{n \to \infty} \int_a^{b_n} \phi(x)dx = \int_a^b \phi(x)dx
+		\]
+		Пояснение ко второму переходу: тут внутри интегралы уже собственные, для которых мы доказали непрерывность
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Собственная интегрируемость несобственного интеграла Римана, зависящего от параметра)
+	Если $f \in C\big(\! \lsi{a; b} \times [c; d]\big)$, причём интеграл $\int_a^b f(x, y)dx$ сходится равномерно на $[c; d]$, то верно равенство:
+	\[
+		\int_c^d \ps{\int_a^b f(x, y)dx}dy = \int_a^b \ps{\int_c^d f(x, y)dy}dx
+	\]
+	причём несобственный интеграл в правой части сходится.
+\end{theorem}
+
+\begin{proof}
+	Доказательство сводится к применению аналогичной теоремы функциональных последовательностей. Рассмотрим $\{b_n\}_{n = 1}^\infty$ --- подходящая снизу к $b$ предельная последовательность. Введём старую функционалньую последовательность $I_n(y) = \int_a^{b_n} f(x, y)dx$. В силу условия, $f$ является равномерно непрерывной по $y$ на $[a; b_n] \times [c; d]$, то есть $I_n(y)$ тоже является непрерывной функцией \textcolor{red}{не очень понял, на что ссылаемся. Дописать}. Из равномерной сходимости $I(y) = \int_a^b f(x, y)dx$ естественно получаем, что $I_n(y) \rra I(y)$, то есть выполнены все условия предельного перехода функциональных последовательностей:
+	\[
+		\lim_{n \to \infty} \int_c^d I_n(y)dy = \int_c^d \lim_{n \to \infty} I_n(y)dy = \int_c^d \ps{\int_a^b f(x, y)dx}dy
+	\]
+	Осталось понять, что исходный предел --- это правая часть равенства из теоремы \textcolor{red}{надо бы пояснить, почему для непрерывной функции можно переставить интегралы. Что-то про теорему Фубини}:
+	\[
+		\lim_{n \to \infty} \int_c^d \int_a^{b_n} f(x, y)dxdy = \lim_{n \to \infty} \int_a^{b_n} \int_c^d f(x, y)dydx = \int_a^b \ps{\int_c^d f(x, y)dy}dx
+	\]
+\end{proof}
+
+\begin{theorem} (Несобственная интегрируемость интеграла Римана, зависящего от параметра)
+	Пусть $f \in C(\lsi{a; b} \times \lsi{c; d})$. Тогда из сходимости хотя бы одного из следующих повторных интегралов
+	\[
+		\int_a^b \ps{\int_c^d |f(x, y)|dy}dx,\ \ \int_c^d \ps{\int_a^b |f(x, y)|dx}dy
+	\]
+	следует суммируемость $f$ на $\lsi{a; b} \times \lsi{c; d}$ и следующее равенство:
+	\[
+		\int_{\lsi{a; b}} \ps{\int_c^d f(x, y)dy}d\mu(x) = \int_{\lsi{c; d}} \ps{\int_a^b f(x, y)dx}d\mu(y)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Не умаляя общности, пусть $\int_a^b \ps{\int_c^d |f(x, y)|dy}dx$ сходится. Это означает выполнение следующего предела:
+	\[
+		\exists \lim_{\tilde{b} \to b-0} \int_a^{\tilde{b}} \ps{\lim_{\tilde{d} \to d-0} \int_c^{\tilde{d}} |f(x, y)|dy}dx =: I \in \R
+	\]
+	Стало быть, верно неравенство:
+	\[
+		\forall \tilde{b} \in \lsi{a; b}\ \forall \tilde{d} \in \lsi{c; d}\ \ \md{\int_{[a; \tilde{b}] \times [c; \tilde{d}]} f(x, y)d\mu(x, y)} \le I
+	\]
+	Отсюда автоматически следует, что $f \in L_1\big(\!\lsi{a; b} \times \lsi{c; d}\!\big)$. А значит, можно воспользоваться свойством абсолютной непрерывности интеграла Лебега:
+	\[
+		\int_{\lsi{c; d}} f(x, y)d\mu(y) = \lim_{\tilde{d} \to d-0} \int_{\lsi{c; \tilde{d}}} f(x, y)d\mu(y) = \lim_{\tilde{d} \to d-0} \int_c^{\tilde{d}} f(x, y)dy = \int_c^d f(x, y)dy
+	\]
+	Теперь равенство в теореме --- результат применения теоремы Фубини с учётом показанного равенства
+\end{proof}
+
+\begin{example} (Интеграл Эйлера-Пуассона)
+	Докажем следующее равенство:
+	\[
+		\int_0^{+\infty} e^{-x^2}dx = \frac{\sqrt{\pi}}{2}
+	\]
+	Для этого рассмотрим $f(x, y) = ye^{-(1 + x^2)y^2}$. Применим к этой функции последнюю теорему, то есть посчитаем двойной интеграл:
+	\begin{multline*}
+		\int_0^{+\infty} \ps{\int_0^{+\infty} ye^{-(1 + x^2)y^2}dy}dx = \{t(y) = (1 + x^2)y^2\} =
+		\\
+		\int_0^{+\infty} \frac{1}{2(1 + x^2)} \ps{\int_0^{+\infty} e^{-t}dt}dx = \int_0^{+\infty} \frac{dx}{2(1 + x^2)} = \frac{\pi}{4}
+	\end{multline*}
+	Стало быть, $\int_0^{+\infty} ye^{-y^2}(\int_0^{+\infty} e^{-x^2y^2}dx)dy = \pi / 4$. Замена $z(x) = xy$ приводит к следующему равенству:
+	\[
+		\ps{\int_0^{+\infty} e^{-t^2}dt}^2 = \frac{\pi}{4} \Lora \int_0^{+\infty} e^{-t^2}dt = \frac{\sqrt{\pi}}{2}
+	\]
+	Что и требовалось доказать.
+\end{example}

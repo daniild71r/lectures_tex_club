@@ -119,15 +119,23 @@
 
 \subsection{Несобственные интегралы Римана, зависящие от параметра}
 
+\begin{note}
+	Обозначим $NR_{[a; b]}^Y$ класс функций $f \colon \R \times Y \to \R$ таких, что для любых $y \in Y$ и $\tilde{b} \in \lsi{a; b}$ верно, что $f(\cdot, y) \in R[a; \tilde{b}]$.
+\end{note}
+
+\begin{note}
+	Аналогично введём класс $NR_{[a; b]}$ функций $f \colon \R \to \R$ таких, что для любого $\tilde{b}$ верно $f \in R[a; \tilde{b}]$
+\end{note}
+
 \begin{definition} 
-	Пусть задана функция $f \colon \R \times Y$, причём для любых $y \in Y$ и $\tilde{b} \in \lsi{a; b}$ верно, что $f(x, y) \in R[a; \tilde{b}]$. Тогда \textit{несобственным интегралом Римана, зависящим от параметра} называется следующий предел, если он существует:
+	Пусть задана функция $f \in NR_{[a; b]}^Y$. Тогда \textit{несобственным интегралом Римана, зависящим от параметра} называется следующий предел, если он существует:
 	\[
 		\int_a^b f(x, y)dx := \lim_{\tilde{b} \to b-0} \int_a^{\tilde{b}} f(x, y)dx
 	\]
 \end{definition}
 
 \begin{definition}
-	Если для $f \colon \R \times Y \to \R$ несобственный интеграл Римана конечен, то говорят, что он \textit{сходится (поточечно)}.
+	Если для $f \in NR_{[a; b]}^Y$ несобственный интеграл Римана конечен, то говорят, что он \textit{сходится (поточечно)}.
 \end{definition}
 
 \begin{note}
@@ -138,14 +146,14 @@
 \end{note}
 
 \begin{definition}
-	Пусть $f \colon \R \times Y$ такова, что $\forall y \in Y\ \forall \tilde{b} \in \lsi{a; b}\ f(x, y) \in R[a; \tilde{b}]$. Тогда говорят, что \textit{несобственный интеграл Римана от $f$ сходится равномерно на $Y$}, если выполнено условие:
+	Пусть $f \colon \R \times Y$ такова, что $\forall y \in Y\ \forall \tilde{b} \in \lsi{a; b}\ f(x, y) \in R[a; \tilde{b}]$. Тогда говорят, что \textit{несобственный интеграл Римана от $f \in NR_{[a; b]}^Y$ сходится равномерно на $Y$}, если выполнено условие:
 	\[
 		\forall \eps > 0\ \exists \delta > 0 \such \forall y \in Y\ \forall \tilde{b} \in \mc{U}_\delta(b)\ \ \md{\int_{\tilde{b}}^b f(x, y)dx} < \eps
 	\]
 \end{definition}
 
 \begin{theorem} (Критерий Коши равномерной сходимости несобственного интеграла Римана, зависящего от параметра)
-	Несобственный интеграл Римана от $f$ сходится равномерно по $Y$ тогда и только тогда, когда выполнено условие:
+	Несобственный интеграл Римана от $f \in NR_{[a; b]}^Y$ сходится равномерно по $Y$ тогда и только тогда, когда выполнено условие:
 	\[
 		\forall \eps > 0\ \exists B \in \lsi{a; b} \such \forall y \in Y\ \forall b > B_2 > B_1 > B\ \ \md{\int_{B_1}^{B_2} f(x, y)dx} < \eps
 	\]
