@@ -1,6 +1,229 @@
 \begin{note}
 	Далее мы будем использовать обозначение $I_A(f, x)$ для собственного интеграла Фурье:
 	\[
-		I_A(f, x) := \int_0^A a(\lambda)\cos(\lambda x) + b(\lambda)\sin(\lambda x)d\lambda
+		I_A(f, x) := \int_0^A a(\lambda)\cos(\lambda x) + b(\lambda)\sin(\lambda x)d\lambda = \frac{1}{\pi} \int_0^A \int_\R f(t)\cos(\lambda(t - x))d\mu(t)d\lambda
+	\]
+	Заменой $t - x = u$ этот функционал ещё можно записать так:
+	\[
+		I_A(f, x) = \frac{1}{\pi} \int_0^A \int_\R f(x + u)\cos(\lambda u)d\mu(u)d\lambda = \frac{1}{\pi} \int_0^A \int_{\lsi{0; +\infty}} (f(x + u) + f(x - u))\cos(\lambda u)d\mu(u)d\lambda
 	\]
 \end{note}
+
+\begin{lemma}
+	Имеет место эквивалентное утверждение сходимости интеграла Фурье:
+	\[
+		\lim_{A \to +\infty} I_A(f, x) = S \Lra \lim_{n \to \infty} I_n(f, x) = S
+	\]
+\end{lemma}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] Тривиально
+		
+		\item[$\La$] Всё, что нужно сделать --- оценить расстояние от $I_A$ до $I_{[A]}$, где $[A]$ --- целая часть:
+		\begin{multline*}
+			|I_A(f, x) - I_{[A]}(f, x)| = \frac{1}{\pi} \md{\int_{[A]}^A \int_\R f(x + u)\cos(\lambda u)d\mu(u)d\lambda} \le
+			\\
+			\frac{1}{\pi} \sup_{\lambda \ge [A]} \md{\int_\R f(x + u)\cos(\lambda u)d\mu(u)}
+		\end{multline*}
+		Последний модуль стремится к нулю при $\lambda \to \infty$ по теорему Римана об осцилляции
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}
+	Имеет место следующая эквивалентность:
+	\[
+		\lim_{n \to \infty} I_n(f, x) = S \Lra \ps{\exists \delta > 0 \such \lim_{n \to \infty} \int_{[0; \delta]} \phi_x(t, S)\sin(nt)d\mu(t) = 0}
+	\]
+	где $\phi_x(t, S)$ определена старым способом:
+	\[
+		\phi_x(t, S) := \frac{f(x + t) + f(x - t) - 2S}{t}
+	\]
+\end{lemma}
+
+\begin{proof}
+	Сначала приведём $I_n(f, x)$ к более приятному виду по теореме Фубини:
+	\begin{multline*}
+		I_n(f, x) = \frac{1}{\pi} \int_0^n \int_{\lsi{0; +\infty}} (f(x + u) + f(x - u))\cos(\lambda u)d\mu(u)d\lambda =
+		\\
+		\frac{1}{\pi} \int_{\lsi{0; +\infty}} (f(x + u) + f(x - u)) \frac{\sin(nu)}{u}d\mu(u)
+	\end{multline*}
+	Далее понимаем, что исходный предел в теореме эквивалентен $\lim_{n \to \infty} I_n(f, x) - S = 0$, то есть мы снова (как и в сходимости рядов Фурье) будем расписывать разность $I_n(f, x) - S$ в интеграл. Для этого в прошлый раз мы находили значения интеграла с ядром Дирихле, здесь же --- просто интеграл от интегрального синуса:
+	\[
+		\int_0^{+\infty} \frac{\sin(nu)}{u}du = \frac{\pi}{2}
+	\]
+	Стало быть, разность записывается так (для любого $\delta > 0$):
+	\begin{multline*}
+		I_n(f, x) - S = \frac{1}{\pi} \lim_{B \to +\infty} \int_{[0; B]} \frac{f(x + u) + f(x - u) - 2S}{u}\sin(nu)d\mu(u) =
+		\\
+		\frac{1}{\pi} \int_{[0; \delta]} \phi_x(u, S)\sin(nu)d\mu(u) +
+		\\
+		\frac{1}{\pi} \lim_{B \to +\infty} \int_{[\delta; B]} \frac{f(x + u) + f(x - u)}{u}\sin(nu)d\mu(u) +
+		\\
+		\frac{2S}{\pi} \lim_{B \to +\infty} \int_\delta^B \frac{\sin(nu)}{u}du
+	\end{multline*}
+	Осталось понять, что последние 2 интеграла сходятся, то есть предел разности сходится тогда и только тогда, когда сходится первый интеграл в сумме:
+	\begin{enumerate}
+		\item[2.] Здесь нужно просто сказать, что мы по факту смотрим на интеграл \\ $\int_{\lsi{\delta; +\infty}} \frac{f(x + u) + f(x - u)}{u} \sin(nu)d\mu(u)$, где функция до синуса принадлежит к $L_1\lsi{\delta; +\infty}$, то есть работает теорема Римана об осциляции.
+		
+		\item[3.] Для этого интеграла сделаем замену переменной $nu = t$:
+		\[
+			\lim_{B \to +\infty} \int_{\delta}^B \frac{\sin(nu)}{u}du = \lim_{B \to +\infty} \int_{n\delta}^{nB} \frac{\sin t}{t}dt = \int_{n\delta}^{+\infty} \frac{\sin t}{t}dt \xrightarrow[n \to \infty]{} 0
+		\]
+		Коль скоро последний интеграл сходится.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Пусть $f_1 \in L_1(\R)$ и $f_2 \in L_{2\pi}$ совпадают в некоторой окрестности точки $x_0$. Тогда интеграл Фурье $f_1$ равен $S$ в точке $x_0$ тогда и только тогда, когад тригонометрический ряд Фурье функции $f_2$ в точке $x_0$ сходится к $S$
+\end{theorem}
+
+\begin{proof}
+	Поймём, что последней леммой мы доказали эквивалентность тому же условию, что и в основе признака Дини. Дальше комментарии излишни
+\end{proof}
+
+\begin{example}
+	В силу доказанной теоремы, мы можем посчитать интеграл Фурье для $e^{-ax}, a > 0, x \ge 0$, которую продлим чётным образом на $\R$: $f(x) = e^{-a|x|}$ Тогда (первое равенство как раз в силу теоремы):
+	\[
+		f(x) = \int_0^{+\infty} a(\lambda)\cos(\lambda x)d\lambda;\ \ a(\lambda) = \frac{2}{\pi} \int_0^{+\infty} e^{-at}\cos(\lambda t)dt = \frac{2a}{\pi(a^2 + \lambda^2)}
+	\]
+	Таким образом, $e^{-a|x|} = \frac{2}{\pi} \int_0^{+\infty} \frac{a\cos(\lambda x)}{a^2 + \lambda^2}d\lambda$
+	
+	Аналогично можно продолжить нечётным образом, $g(x) = e^{-a|x|} \cdot \sgn(x)$. Тогда получим равенство $e^{-a|x|} \sgn(x) = \frac{2}{\pi} \int_0^{+\infty} \frac{\lambda \sin(\lambda x)}{a^2 + \lambda^2}d\lambda$
+\end{example}
+
+\section{Интегральные преобразования и обобщённые функции}
+
+\subsection{Преобразование Фурье}
+
+\begin{note}
+	Без доказательства мы будем принимать следующий факт:
+	\[
+		\forall K \subset \R\ \int_K (u(x) + iv(x))d\mu(x) = \int_K u(x)d\mu(x) + i\int_K v(x)d\mu(x)
+	\]
+\end{note}
+
+\begin{note} (Мотивация)
+	Произведём некое издевательство над интегралом Фурье, а именно добавим в него комплексную экспоненту:
+	\begin{multline*}
+		I(f, x) = \lim_{A \to +\infty} \frac{1}{\pi} \int_0^A \int_\R f(t)\cos(\lambda(t - x))d\mu(t)dx =
+		\\
+		\lim_{A \to +\infty} \frac{1}{2\pi} \ps{\int_0^A \int_\R f(t)e^{i\lambda(t - x)}d\mu(t)d\lambda + \int_0^A \int_\R e^{-i\lambda(t - x)}d\mu(t)d\lambda} =
+		\\
+		\lim_{A \to +\infty} \frac{1}{2\pi} \int_{-A}^A e^{i\lambda x} \int_\R f(t)e^{-i\lambda t}d\mu(t)d\lambda =
+		\\
+		\frac{1}{2\pi} v.p. \int_{-\infty}^{+\infty} e^{i\lambda x}\ps{\int_\R f(t)e^{-i\lambda t}d\mu(t)}d\lambda
+	\end{multline*}
+	Последний интеграл вполне законный, коль скоро есть оценка $|f(t)e^{-i\lambda t}| \le |f(t)|$, то есть внутренний интеграл непрерывен по $\lambda$
+\end{note}
+
+\begin{definition}
+	\textit{Преобразованием Фурье функции $f \in L_1(\R)$} называется функция $\hat{f}(\lambda)$, полученная следующим образом:
+	\[
+		F[f](\lambda) := \hat{f}(\lambda) = \frac{1}{\sqrt{2\pi}} \int_\R f(t)e^{-i\lambda t}d\mu(t)
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Обратным преобразованием Фурье функции $F$} называется функция $\wdt{F}(x)$, определённая следующим образом:
+	\[
+		F^{-1}[F](x) := \widetilde{F}(x) = \frac{1}{\sqrt{2\pi}} v.p. \int_{-\infty}^{+\infty} e^{i\lambda x}F(\lambda)d\lambda
+	\]
+\end{definition}
+
+\begin{note}
+	Преобразование Фурье можно привести к аналогичной форме:
+	\[
+		\frac{1}{\sqrt{2\pi}} \int_\R f(t)e^{-i\lambda t}d\mu(t) = \frac{1}{\sqrt{2\pi}} v.p. \int_{-\infty}^{+\infty} f(t)e^{-i\lambda t}dt
+	\]
+\end{note}
+
+\begin{proposition} (без доказательства)
+	Если $f \in L_1(\R)$ и удовлетворяет условию Липшица (или является непрерывной функцией ограниченной вариации) в окрестности точки $x_0$, то имеет место \textit{формула обращения}:
+	\[
+		\wdt{\wdh{f}}(x_0) = F^{-1}[F[f]](x_0) = F[F^{-1}[f]](x_0) = \wdh{\wdt{f}}(x_0) = f(x_0)
+	\]
+\end{proposition}
+
+\begin{definition}
+	Если $f \in L_1\lsi{0; +\infty}$, то можно говорить о \textit{косинус-преобразовании Фурье}:
+	\[
+		f_c(\lambda) = \sqrt{\frac{2}{\pi}} \int_{\lsi{0; +\infty}} f(t)\cos(\lambda t)d\mu(t)
+	\]
+	и о \textit{синус-преобразовании Фурье}:
+	\[
+		f_s(\lambda) = \sqrt{\frac{2}{\pi}} \int_{\lsi{0; +\infty}} f(x)\sin(\lambda t)d\mu(t)
+	\]
+\end{definition}
+
+\begin{proposition} (без доказательства)
+	Если $f \in L_1\lsi{0; +\infty}$ является в окрестности точки $x_0$ непрерывной функцией ограниченной вариации, то тогда верно равенство:
+	\[
+		(f_c)_c(x_0) = (f_s)_s(x_0)
+	\]
+\end{proposition}
+
+\begin{theorem} (Основные свойства преобразования Фурье)
+	Преобразование Фурье обладает следующими свойствами:
+	\begin{enumerate}
+		\item (Линейность) $\forall \alpha, \beta \in \R\ \forall f_1, f_2 \in L_1(\R)\ \ F[\alpha f_1 + \beta f_2] = \alpha F[f_1] + \beta F[f_2]$
+		
+		\item Если $f \in L_1(\R)$, то $F[f]$ непрерывна, причём $\lim_{\lambda \to \infty} F[f](\lambda) = 0$
+		
+		\item $\forall f \in L_1(\R), \alpha > 0, \phi(x) := f(\alpha x)\ \ \wdh{\phi}(\lambda) = \frac{1}{\alpha}\wdh{f}\ps{\frac{\lambda}{\alpha}}$
+		
+		\item $\forall f \in L_1(\R), a \in \R, \psi(x) := f(x + a)\ \ \wdh{\psi}(\lambda) = e^{i\lambda a}\wdh{f}(\lambda)$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Тривиально по свойствам интеграла Лебега
+		
+		\item Имеет место оценка $|f(t)e^{-i\lambda t}| \le |f(t)|$, поэтому $F[f]$ будет непрерывна. Также мы пользуемся теоремой Римана об осцилляции, по которой и получается нужный предел
+		
+		\item Распишем по определению $\wdh{\phi}(\lambda)$:
+		\begin{multline*}
+			\wdh{\phi}(\lambda) = \frac{1}{\sqrt{2\pi}} \int_\R \phi(t)e^{-i\lambda t}d\mu(t) = \frac{1}{\sqrt{2\pi}} \int_\R f(\alpha t) e^{-i\lambda t}d\mu(t) = \{\alpha t = u\} =
+			\\
+			\frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\alpha} \cdot \int_\R f(u)e^{-i \frac{\lambda}{\alpha}u}d\mu(u) = \frac{1}{\alpha} \wdh{f}\ps{\frac{\lambda}{a}}
+		\end{multline*}
+		
+		\item Аналогично расписываем по определению и делаем замену $t + a = u$
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Преобразование Фурье для производной)
+	Пусть $\forall [a; b]\ \ f \in AC[a; b]$ и $f, f' \in L_1(\R)$. Тогда имеет место равенство $\wdh{f'}(\lambda) = i\lambda \cdot \wdh{f}(\lambda)$ и верна оценка $\wdh{f}(\lambda) = O(1 / |\lambda|),\ \lambda \to \infty$
+\end{theorem}
+
+\begin{proof}
+	Распишем преобразование Фурье производной по определению и возьмём по частям:
+	\begin{multline*}
+		\wdh{f'}(\lambda) = \frac{1}{\sqrt{2\pi}} \int_\R f'(t)e^{-i\lambda t}d\mu(t) = \frac{1}{\sqrt{2\pi}} \lim_{A \to -\infty \atop {B \to +\infty}} \int_{[A; B]} f'(t)e^{-\lambda t}d\mu(t) =
+		\\
+		\frac{1}{\sqrt{2\pi}} \lim_{A \to -\infty \atop {B \to +\infty}} \ps{f(t)e^{-i\lambda t}\Big|_A^B + i\lambda \int_{[A; B]} f(t)e^{-i\lambda t}d\mu(t)}
+	\end{multline*}
+	Теперь надо обосновать, почему первое слагаемое обнуляется в пределе. Тут есть 2 факта:
+	\begin{enumerate}
+		\item Как известно, $f \in AC[a; b]$ тогда и только тогда, когда $f$ является неопределённым интегралом Лебега, то есть верны формулы:
+		\[
+			f(x) = \System{
+				&{f(0) + \int_{[0; x]} f'(t)d\mu(t),\ x > 0}
+				\\
+				&{f(0) - \int_{[x; 0]} f'(t)d\mu(t),\ x < 0}
+			}
+		\]
+		
+		\item Также мы знаем по условию, что $f' \in L_1(\R)$. Стало быть, $\exists \lim_{x \to \pm \infty} f(x) \in \R$. Так как ещё и $f \in L_1(\R)$, то заключаем $f = o(1),\ x \to \infty$
+	\end{enumerate}
+	Таким образом, первое слагаемое точно ноль в пределе. Получили следующее:
+	\[
+		\wdh{f'}(\lambda) = \frac{i\lambda}{\sqrt{2\pi}} \int_\R f(t)e^{-i\lambda t}d\mu(t) = i\lambda\wdh{f}(\lambda)
+	\]
+	По свойству преобразования Фурье мы знаем, что $\wdh{f'}(\lambda) = o(1),\ \lambda \to +\infty$. Стало быть, $\wdh{f}(\lambda) = o(1 / |\lambda|),\ \lambda \to \infty$
+\end{proof}
+
+\begin{corollary}
+	Если $\forall [a; b]\ f^{(n - 1)} \in AC[a; b]$ и $\forall k \le n\ \ f^{(k)} \in L_1(\R)$, то верно равенство $\wdh{f^{(n)}}(\lambda) = (i\lambda)^n\wdh{f}(\lambda)$ и оценка $\wdh{f}(\lambda) = o(1 / |\lambda|^n),\ \lambda \to \infty$
+\end{corollary}

@@ -1,0 +1,129 @@
+\begin{theorem} (Дифференцирование преобразования Фурье)
+	Если $f(x)$ и $xf(x)$ лежат в классе $L_1(\R)$, то $\wdh{f}(\lambda)$ будет дифференцируема всюду на $\R$, причём верны равенства:
+	\[
+		(\wdh{f})'(\lambda) = \wdh{(-ixf(x))}(\lambda);\ \ \lim_{\lambda \to \infty} |\wdh{f}'(\lambda)| = 0
+	\]
+\end{theorem}
+
+\begin{proof}
+	Мы имеем дело с несобственным интегралом:
+	\[
+		\wdh{f}(\lambda) = \frac{1}{\sqrt{2\pi}} \int_\R f(x)e^{-\lambda x}d\mu(x)
+	\]
+	Поэтому формально происходит следующее: интеграл по $\R$ расписывается как предел, дальше мы получаем собственные интегралы, где подыинтегральная функция суммируема и есть оценка на производную:
+	\[
+		\md{\pd{}{\lambda}\ps{f(x)e^{-\lambda x}}} = |f(x)(-ix)e^{-\lambda x}| \le |xf(x)|,\ |xf(x)| \in L_1(\R)
+	\]
+	Стало быть, просто используем теорему о дифференцируемости собственного интеграла по параметру под пределом и возвращаем предел в форму интеграла:
+	\[
+		(\wdh{f})'(\lambda) = \frac{1}{\sqrt{2\pi}} \int_\R (-ix)f(x)e^{-i\lambda x}d\mu(x) = (\wdh{-ixf(x)})(\lambda)
+	\]
+	По свойству преобразования Фурье мы также заключаем, что $\lim_{\lambda \to \infty} |(\wdh{f})'(\lambda)| = 0$.
+\end{proof}
+
+\begin{definition}
+	\textit{Свёрткой функций} $f, g \in L_1(\R)$ называется функция $f * g$, определяемая поточечно следующим образом:
+	\[
+		(f * g)(x) = \int_\R f(t)g(x - t)d\mu(t)
+	\]
+\end{definition}
+
+\begin{proposition}
+	Если $f, g \in L_1(\R)$, то и $f * g \in L_1(\R)$
+\end{proposition}
+
+\begin{proof}
+	Воспользуемся хитрым фактом: $f(t) \cdot g(y) \in L_1(\R^2)$. Стало быть, применима теорема Фубини:
+	\begin{multline*}
+		\int_{\R^2} f(t)g(y)d\mu(t, y) = \int_\R f(t)d\mu(t) \cdot \int_\R g(y)d\mu(y) = \{y = x - t\} =
+		\\
+		\int_\R f(t) \int_\R g(x - t)d\mu(x)d\mu(t) = \int_\R d\mu(x) \int_\R f(t)g(x - t)d\mu(t) \Lora f * g \in L_1(\R)
+	\end{multline*}
+\end{proof}
+
+\begin{theorem} (Преобразование Фурье для свёртки)
+	Если $f, g \in L_1(\R)$, то имеет место равенство:
+	\[
+		\wdh{f * g}(\lambda) = \sqrt{2\pi}\wdh{f}(\lambda) \cdot \wdh{g}(\lambda)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Подставим определение свёртки в определение преобразования Фурье, разделим интегралы:
+	\begin{multline*}
+		\wdh{f * g}(\lambda) = \frac{1}{\sqrt{2\pi}} \int_\R (f * g)(x)e^{-i\lambda x}d\mu(x) = \frac{1}{\sqrt{2\pi}} \int_\R \int_\R f(t)g(x - t)d\mu(t)e^{-i\lambda x}d\mu(x) =
+		\\
+		\frac{1}{\sqrt{2\pi}} \int_\R f(t) \int_\R g(x - t)e^{-i\lambda x}d\mu(x)d\mu(t) =
+		\\
+		\sqrt{2\pi} \cdot \frac{1}{\sqrt{2\pi}} \cdot \int_\R f(x)e^{-i\lambda t}d\mu(t) \cdot \frac{1}{\sqrt{2\pi}} \int_\R g(y)e^{-i\lambda y}d\mu(y) = \sqrt{2\pi} \wdh{f}(\lambda) \wdh{g}(\lambda)
+	\end{multline*}
+\end{proof}
+
+\begin{example}
+	Пусть $f(x) = e^{-\alpha x^2},\ \alpha > 0$. Найдём $\wdh{f}$:
+	\textcolor{red}{Дописать}
+\end{example}
+
+\begin{note}
+	Преобразование Фурье имеет различные применения. Рассмотрим 2 частых:
+	\begin{enumerate}
+		\item Решение уравнения теплопроводности: $\pd{u}{t} = a^2 \pd{^2u}{x^2},\ u(x, 0) = f(x),\ a > 0$. Применим к обеим частям преобразование Фурье:
+		\[
+			\pd{\wdh{u}}{t} = a^2 (-\lambda^2) \wdh{u}(\lambda, t)
+		\]
+		отсюда $\wdh{u}(\lambda, t) = C(\lambda) e^{-a^2\lambda^2 t}$. После преобразования Фурье начальное условие принимает вид $\wdh{u}(\lambda, 0) = \wdh{f}(\lambda)$, то есть
+		\begin{multline*}
+			\wdh{u}(\lambda, t) = \wdh{f}(\lambda) e^{-a^2\lambda^2 t} \Ra
+			\\
+			u(x, t) = F^{-1}[\wdh{f}(\lambda) e^{-a^2\lambda^2 t}](x, t) = \frac{1}{\sqrt{2\pi}} f * \wdt{e^{-a^2\lambda^2 t}} = \frac{1}{\sqrt{2\pi}} f * \ps{\frac{1}{\sqrt{2ta^2}} \cdot e^{-x^2 / (4a^2 t)}}
+		\end{multline*}
+		
+		\item Теорема Котельникова (Найквиста-Шеннона, теорема отсчётов): для восстановления сигнала $f(x)$ с финитным спектром, сосредоточенным в полосе частот $|\omega| \le a$, достаточно передать его значения в точках $k\Delta$, где $k \in \Z$ и $\Delta = \pi / a$, причём верно равенство:
+		\[
+			f(x) = \sum_{k = -\infty}^{+\infty} f\ps{k\frac{\pi}{a}} \frac{\sin\ps{x - \frac{k\pi}{a}}}{a\ps{x - \frac{k\pi}{a}}}
+		\]
+		\textcolor{red}{Вряд ли кто-то в здравом уме спросит ФИВТа доказательство матфиз теоремы, ибо никто нам пока не рассказывал ни финитный спектр, ни понятие полосы частот. Пока что отложено}
+	\end{enumerate}
+\end{note}
+
+\subsection{Пространство Шварца $S$}
+
+\begin{definition}
+	Будем называть функцию $f \colon \R \to \R$ \textit{быстро убывающей}, если выполнено утверждение:
+	\[
+		\forall k, n \in \N_0\ \ \exists C_{k, n} \such \forall x \in \R\ (1 + |x|^k)f^{(n)}(x) \le C_{k, n}
+	\]
+\end{definition}
+
+\begin{anote}
+	Иначе гворя, любая производная быстро убывающей функции убывает быстрее любого полинома.
+\end{anote}
+
+\begin{definition}
+	Множество быстро убывающих функций $S$ называется \textit{пространством Шварца}.
+\end{definition}
+
+\begin{theorem}
+	Преобразование Фурье является биекцией на $S$
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Нужно больше формализма}
+\end{proof}
+
+\begin{theorem} (Формулы Парсеваля)
+	Если $f_1, f_2 \in S$, то имеют место следующие формулы:
+	\begin{enumerate}
+		\item \(\int_{-\infty}^\infty \wdh{f}_1(x)f_2(x)dx = \int_{-\infty}^{+\infty} f_1(x)\wdh{f}_2(x)dx\)
+		
+		\item \(\int_{-\infty}^{+\infty} f_1(x)\overline{f_2(x)}dx = \int_{-\infty}^{+\infty} \wdh{f}_1(\lambda)\overline{\wdh{f}_2(\lambda)}d\lambda\)
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Нужно просто раскрыть преобразования Фурье в равенстве справа и слева и удостоверится, что полученное новое равенство действительно выполено. \textcolor{red}{Расписать подробнее}
+		
+		\item Сведём всё к первому равенству, введя такую $h(x)$, то $\wdh{h}(x) = \overline{f_2(x)}$
+	\end{enumerate}
+\end{proof}
