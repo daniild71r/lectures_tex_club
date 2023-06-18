@@ -1,0 +1,255 @@
+\subsection{Обобщённые функции}
+
+\begin{note}
+	Далее мы используем букву $D$ для обозначения класса $C_0^\infty$ --- множество бесконечно дифференцируемых финитных функций $\R \to \R$.
+\end{note}
+
+\begin{note}
+	Если $K \subseteq \R$ --- компактное множество, то $D_K$ --- это подмножество функций из $D$ таких, что $\supp \phi \subseteq K$.
+\end{note}
+
+\begin{note}
+	Несложно проверить, что $D$ и $D_K$ всегда являются линейными пространствами.
+\end{note}
+
+\begin{definition}
+	Пусть $E$ --- линейное пространство. Тогда \textit{(конечной) полунормой на $E$} называется такая функция $p \colon E \to \R$, которая удовлетворяет следующим условиям:
+	\begin{enumerate}
+		\item $\forall x \in E\ \forall \lambda \in \R\ \ p(\lambda x) = |\lambda| \cdot p(x)$
+		
+		\item $\forall x, y \in E\ \ p(x + y) \le p(x) + p(y)$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Стало быть, отличие полунормы от просто нормы заключается в том, что не только нулевой элемент может иметь значение 0.
+\end{note}
+
+\begin{reminder}
+	\textit{Топологией} $\Tau$ на пространстве $X$ называется система подмножеств $X$, удовлетворяющая следующим требованиям:
+	\begin{enumerate}
+		\item $\emptyset \in \Tau$, $X \in \Tau$
+		
+		\item $\forall G_1, G_2 \in \Tau \Ra G_1 \cap G_2 \in \Tau$
+		
+		\item $\forall \{G_\alpha\}_{\alpha \in \goth{A}} \subseteq \Tau \Ra \bigcup_{\alpha \in \goth{A}} G_\alpha \in \Tau$
+	\end{enumerate}
+\end{reminder}
+
+\begin{proposition}
+	Если в линейном пространстве $E$ задана совокупность полунорм $\{p_\alpha\}_{\alpha \in \goth{A}}$, то топология на $E$ может быть задана как совокупность объединений множеств следующего вида:
+	\[
+		W_{\alpha_1, \ldots, \alpha_m, a, \eps} = \{x \in E \colon \forall i \le m\ \ p_{\alpha_i}(x - a) < \eps\}
+	\]
+\end{proposition}
+
+\begin{proposition}
+	На линейном пространстве $D_{[-N; N]}$ можно задать счётное семейство норм:
+	\[
+		p_m(\phi) = \sup_{\forall k \in \range{0}{m} \atop {t \in [-N; N]}} |\phi^{(k)}(t)|
+	\]
+\end{proposition}
+
+\begin{proposition}
+	На пространстве $D$ топология задаётся несчётным семейстров полунорм $\{p_\alpha\}_{\alpha \in \goth{A}}$, где $\goth{A} = \{N_m\}_{m = 1}^\infty$, $N_m \in \N_0$:
+	\[
+		p_{\alpha}(\phi) = \sum_{m = 1}^\infty \sup_{\forall k \in \range{0}{N_m} \atop {t \in [-m; m] \bs (-m + 1; m - 1)}} |\phi^{(k)}(t)|
+	\]
+\end{proposition}
+
+\begin{definition}
+	Будем говорить, что \textit{последовательность функций $\{\phi_n\}_{n = 1}^\infty \subset D$ сходится к $\phi \in D$ в $D$}, если выполнены условия:
+	\begin{enumerate}
+		\item $\exists [a; b] \such \forall n \in \N\ \ \supp \phi_n \subseteq [a; b]$
+		
+		\item $\forall k \in \N_0\ \ \phi_n^{(k)} \rra \phi^{(k)}$ на $\R$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Можно доказать, что это определение эквивалентно определению сходимости последовательности в $D$ в смысле ранее введённой топологии
+\end{note}
+
+\begin{note}
+	Пространство $D$ также называют \textit{пространством основных (пробных) функций}.
+\end{note}
+
+\begin{definition}
+	\textit{Обобщённой функцией} называется линейный непрерывный функционал, заданный на $D$. Множество обобщённых функций обозначают через $D'$.
+\end{definition}
+
+\begin{note}
+	Стало быть, сразу из определений можно записать такую эквивалентность:
+	\[
+		f \in D' \Lolra \Bigg((\forall \{\phi_n\}_{n = 1}^\infty, \phi_n \to \phi \text{ в } D)\ f(\phi_n) \xrightarrow[n \to \infty]{} f(\phi)\Bigg) \wedge f \text{ --- линейный функционал}
+	\]
+\end{note}
+
+\begin{note}
+	Для обобщённых функций принята стандартная запись $(f, \phi) := f(\phi)$
+\end{note}
+
+\begin{note}
+	$D'$ также является линейным топологическим пространством.
+\end{note}
+
+\begin{definition}
+	Пусть $\{f_n\}_{n = 1}^\infty \subseteq D', f \in D'$. Тогда говорят, что \textit{$f_n$ сходятся к $f$ в $D'$}, если выполнено условие:
+	\[
+		\forall \phi \in D\ \ (f_n, \phi) \xrightarrow[n \to \infty]{} (f, \phi)
+	\]
+\end{definition}
+
+\begin{definition}
+	Введём класс $L_{loc}$ --- \textit{множество локально суммируемых на $\R$ функций}, то есть они суммируемы на любом отрезке $[a; b] \subset \R$
+\end{definition}
+
+\begin{proposition}
+	Для каждой функции $f \in L_{loc}$ можно сопоставить обобщённую функцию $f \in D'$ по следующему правилу:
+	\[
+		\forall \phi \in D\ \ (f, \phi) := \int_\R f(x)\phi(x)d\mu(x)
+	\]
+\end{proposition}
+
+\begin{proof}
+	Рассмотрим произвольную последовательность $\phi_n \to \phi$ --- сходится в $D$. Тогда, пусть $[a; b]$ --- отрезок, ограничивающий носители $\phi_n$. Стало быть, верно 2 вещи:
+	\begin{enumerate}
+		\item $\int_\R f(x)\phi(x)d\mu(x) = \int_{[a; b]} f(x)\phi(x)d\mu(x)$
+		
+		\item $\phi_n \rra \phi$ на $[a; b]$
+	\end{enumerate}
+	Коль скоро $\phi_n, \phi$ --- непрерывные функции, то в совокупности мы получаем факт, что $\phi_n$ равномерно ограничены на $[a; b]$:
+	\[
+		\exists C > 0 \such \forall n \in \N\ \forall x \in [a; b]\ \ |\phi_n(x)| \le C
+	\]
+	Отсюда же получаем оценку $|f(x)\phi_n(x)| \le C|f(x)|$, то есть по теореме Лебега о мажорирующей сходимости получаем предел:
+	\[
+		(f, \phi) = \int_\R f(x)\phi(x)d\mu(x) = \lim_{n \to \infty} \int_\R f(x)\phi_n(x)d\mu(x) = \lim_{n \to \infty} (f, \phi_n)
+	\]
+	что и требовалось показать.
+\end{proof}
+
+\begin{example}
+	В будущем нам пригодится следующее семейство бесконечно дифференцируемых финитных функций:
+	\[
+		\forall a \in \R, \eps > 0\ \ \phi_{\eps, a}(x) := \exp\ps{-\frac{\eps^2}{\eps^2 - (x - a)^2}} \cdot \chi\{|x - a| < \eps\}
+	\]
+\end{example}
+
+\begin{definition}
+	Обобщённые функции, которые можно ассоциировать с $f \in L_{loc}$, называются \textit{регулярными}. Остальные --- \textit{сингулярными}.
+\end{definition}
+
+\begin{definition}
+	\textit{Дельта-функцией} называется элемент пространства $\delta \in D'$, заданный следующим соотношением:
+	\[
+		\forall \phi \in D\ \ (\delta, \phi) := \phi(0)
+	\]
+	Аналогично рассматривается $\delta(x - a)$:
+	\[
+		\forall \phi \in D\ \ (\delta(x - a), \phi) := \phi(a)
+	\]
+\end{definition}
+
+\begin{proposition}
+	Дельта-функция является сингулярной обобщённой функцией
+\end{proposition}
+
+\begin{proof}
+	Предположим противное: пусть существует ассоциированная $f \in L_{loc}$. Тогда должно быть выполнено равенство:
+	\[
+		\int_\R f(x)\phi(x)d\mu(x) = (f, \phi) = (\delta, \phi) = \phi(0)
+	\]
+	Посмотрим, в частности, на $(f, \phi_{\eps, 0})$:
+	\begin{itemize}
+		\item С одной стороны, мы можем воспользоваться свойством дельта-функции:
+		\[
+			(f, \phi_{\eps, 0}) = (\delta, \phi_{\eps, 0}) = \phi_{\eps, 0}(0) = e^{-1}
+		\]
+		
+		\item С другой стороны, мы можем теперь оценить интеграл:
+		\begin{multline*}
+			e^{-1} = \int_{[-\eps; \eps]} f(x)e^{-\eps^2 / (\eps^2 - x^2)}d\mu(x) =
+			\\
+			\md{\int_{[-\eps; \eps]} f(x)e^{-\eps^2 / (\eps^2 - x^2)}d\mu(x)} \le
+			\\
+			\int_{[-\eps; \eps]} |f(x)|d\mu(x) \cdot e^{-1} \Lora \int_{[-\eps; \eps]} |f|d\mu \ge 1
+		\end{multline*}
+	\end{itemize}
+	Последнее неравенство оказалось выполнено для любого $\eps > 0$. Получили противоречие с абсолютной непрерывностью интеграла Лебега.
+\end{proof}
+
+\begin{definition}
+	Пусть $\lambda \in C^{\infty}$ --- бесконечно дифференцируемая функция на $\R$. Тогда $\forall f \in D'$ \textit{определено произведение} $\lambda \cdot f \in D'$ по следующему правилу:
+	\[
+		\forall \phi \in D\ \ (\lambda \cdot f, \phi) := (f, \lambda \cdot \phi)
+	\]
+\end{definition}
+
+\begin{proposition}
+	Введённое произведение корректно.
+\end{proposition}
+
+\begin{proof}
+	Действительно, если $\phi_n \to \phi$ в $D$, то и $\lambda\phi_n \to \lambda\phi$ в $D$
+\end{proof}
+
+\begin{note}
+	Если $f, f' \in L_{loc}$, то верно следующее равенство:
+	\[
+		\forall \phi \in D\ \ (f', \phi) = \int_\R f'(x)\phi(x)d\mu(x) = -\int_\R f(x)\phi'(x)d\mu(x) = -(f, \phi')
+	\]
+\end{note}
+
+\begin{definition}
+	Для $f \in D'$ \textit{определена производная} $f' \in D'$, заданная следующим правилом:
+	\[
+		\forall \phi \in D\ \ (f', \phi) = -(f, \phi')
+	\]
+\end{definition}
+
+\begin{theorem} (Свойства операций с обобщёнными функциями)
+	\begin{enumerate}
+		\item $\forall \alpha, \beta \in \R\ \forall f, g \in D'\ \ (\alpha f + \beta g)' = \alpha f' + \beta g'$
+		
+		\item Если $f_n \to f$ в $D'$, то $f'_n \to f'$ в $D'$
+		
+		\item $\forall \lambda \in C^{\infty}\ \ (\lambda f)' = \lambda' f + \lambda f'$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Рассмотрим действие обобщённой функции справа на любую пробную функцию $\phi \in D$:
+		\[
+			((\alpha f + \beta g)', \phi) = -(\alpha f + \beta g, \phi') = -\alpha(f, \phi') - \beta(g, \phi') = \alpha(f', \phi) + \beta(g', \phi) = (\alpha f' + \beta g', \phi)
+		\]
+		Раз действие обобщённых функций на любой пробник совпадают, то и функции тоже
+		
+		\item Пусть $f_n \to f$ в $D'$. Распишем этот факт по определению:
+		\[
+			\forall \phi \in D\ \ (f_n, \phi) \xrightarrow[n \to \infty]{} (f, \phi)
+		\]
+		Коль скоро это так, то по определению производной:
+		\[
+			\forall \phi \in D\ \ (f'_n, \phi) = -(f_n, \phi') \xrightarrow[n \to \infty]{} -(f, \phi') = (f', \phi)
+		\]
+		что и требовалось
+		
+		\item Снова пользуемся определениями:
+		\begin{multline*}
+			\forall \phi \in D\ \ ((\lambda f)', \phi) = -(\lambda f, \phi') = -(f, \lambda \phi') =
+			\\
+			-(f, (\lambda \phi)' - \lambda' \phi) = -(f, (\lambda \phi)') + (f, \lambda' \phi) = (f', \lambda \phi) + (\lambda' f, \phi) = (\lambda f' + \lambda' f, \phi)
+		\end{multline*}
+		В переходе на вторую строчку мы воспользовались уже свойством обычной производной от обычной функции
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	$\Theta(x) := \chi\{x \ge 0\}$ называется \textit{функцией Хевисайда}. Несложно понять, что $\Theta \in L_{loc} \Ra \Theta \in D'$. Посмотрим, чем является производная обобщённой функции $\Theta'$:
+	\[
+		\forall \phi \in D\ \ (\Theta', \phi) = -(\Theta, \phi') = -\int_{-\infty}^{+\infty} \Theta(x)\phi'(x)dx = -\int_0^{+\infty} \phi'(x)dx = \phi(0) = (\delta, \phi)
+	\]
+	Стало быть, $\Theta' = \delta$
+\end{example}
