@@ -1,0 +1,147 @@
+\begin{theorem} (Формула Валлиса)
+	Имеет место следующая формула:
+	\[
+		\forall x \in \R, |x| < 1 \quad \frac{\sin(\pi x)}{\pi x} = \prod_{n = 1}^\infty \ps{1 - \frac{x^2}{n^2}}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим функцию $\cos(\alpha x)$ при $|\alpha| < 1$ на отрезке $[-\pi; \pi]$. В силу её чётности, для ряда Фурье нужно посчитать только коэффииенты при косинусах:
+	\begin{multline*}
+		a_n = \frac{2}{\pi} \int_0^\pi \cos(\alpha x)\cos(nx)dx = \frac{1}{\pi} \int_0^\pi (\cos((\alpha + n)x) + \cos((\alpha - n)x))dx =
+		\\
+		\frac{1}{\pi}\ps{\frac{\sin((\alpha + n)x)}{\alpha + n}\Big|_0^\pi + \frac{\sin((\alpha - n)x)}{\alpha - n}\Big|_0^\pi} = \frac{(-1)^n}{\pi} \sin(\alpha \pi) \ps{\frac{1}{\alpha + n} + \frac{1}{\alpha - n}} =
+		\\
+		\frac{(-1)^n}{\pi} \sin(\pi\alpha) \cdot \frac{2\alpha}{\alpha^2 - n^2}
+	\end{multline*}
+	Так как $L_2[-\pi; \pi]$ --- гильбертово простраство, а мы раскладываем косинус по ортогональной системе, то сразу верно равенство:
+	\[
+		\cos(\alpha x) = \frac{\sin(\alpha \pi)}{\alpha \pi} + \sum_{n = 1}^\infty \frac{2\alpha \cdot (-1)^n \cdot \sin(\pi\alpha)}{\pi(\alpha^2 - n^2)} \cdot \cos(nx),\ x \in [-\pi; \pi]
+	\]
+	Подставим $x = \pi$. Тогда получим такой факт:
+	\[
+		\cos(\pi\alpha) = \frac{\sin(\pi\alpha)}{\pi\alpha} + \sum_{n = 1}^\infty \frac{2\alpha \cdot \sin(\pi\alpha)}{\pi(\alpha^2 - n^2)}
+	\]
+	Полученный ряд сходится равномерно на $[-\alpha_0; \alpha_0]$ для любого $\alpha_0 \in (0; 1)$. Теперь сделаем замену $t = \pi\alpha$ (тогда ряд будет равномерно сходиться при $[-\pi\alpha_0; \pi\alpha_0]$ для любого $\alpha_0 \in (0; 1)$):
+	\[
+		\ctg(t) - \frac{1}{t} = \sum_{n = 1}^\infty \frac{2t}{t^2 - \pi^2n^2}
+	\]
+	В силу равномерной сходимости, мы можем позволить себе почленное интегрирование этого равенства от 0 до $x$, $|x| < \pi$:
+	\[
+		\int_0^x \ps{\ctg(t) - \frac{1}{t}}dt = \sum_{n = 1}^\infty \int_0^x \frac{2tdt}{t^2 - \pi^2n^2}
+	\]\[
+		(\ln \sin t - \ln t)\Big|_0^x  = \sum_{n = 1}^\infty \ln |t^2 - \pi^2n^2|\Big|_0^x
+	\]\[
+		\ln \frac{\sin x}{x} = \sum_{n = 1}^\infty (\ln|x^2 - \pi^2n^2| - \ln(\pi^2n^2)) = \sum_{n = 1}^\infty \ln\ps{1 - \frac{x^2}{\pi^2n^2}}
+	\]\[
+		\frac{\sin x}{x} = \prod_{n = 1}^\infty \ps{1 - \frac{x^2}{\pi^2n^2}}
+	\]
+	Замена $x = \pi t$ даёт требумую формулу.
+\end{proof}
+
+\begin{theorem} (Формула дополнения)
+	Имеет место следующая формула:
+	\[
+		\forall \alpha \in (0; 1)\ \ \Gamma(\alpha)\Gamma(1 - \alpha) = \frac{\pi}{\sin(\pi \alpha)}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Просто подставим вместо значений гамма-функции формулы Гаусса-Эйлера:
+	\begin{multline*}
+		\Gamma(\alpha)\Gamma(1 - \alpha) =
+		\\
+		\lim_{n \to \infty} n^\alpha \frac{(n - 1)!}{\alpha(\alpha + 1) \cdot \ldots \cdot (\alpha + n - 1)} \cdot n^{1 - \alpha} \frac{(n - 1)!}{(1 - \alpha)(2 - \alpha) \cdot \ldots \cdot (n - \alpha)} =
+		\\
+		\lim_{n \to \infty} \frac{n((n - 1)!)^2}{\alpha(1 - \alpha^2)(2^2 - \alpha^2) \cdot \ldots \cdot ((n - 1)^2 - \alpha^2)(n - \alpha)} =
+		\\
+		\lim_{n \to \infty} \frac{1}{\alpha(1 - \alpha^2)(1 - \alpha^2 / 2^2) \cdot \ldots \cdot (1 - \alpha^2 / (n - 1)^2)(1 - \alpha / n)}
+	\end{multline*}
+	Осталось заметить, что внизу у нас написано частичное произведение из формулы Валлиса между первым и последним множителем, поэтому весь предел можно переписать так:
+	\[
+		\Gamma(\alpha)\Gamma(1 - \alpha) = \frac{1}{\alpha \cdot \frac{\sin(\pi\alpha)}{\pi\alpha}} = \frac{\pi}{\sin(\pi\alpha)}
+	\]
+\end{proof}
+
+\begin{example}
+	Мы дошли до такого состояния просветвления, что теперь можем выразить объём $n$-мерного шара краткой формулой через гамма-функцию. Для начала вспомним определение:
+	\[
+		V_n(r) := \mu\{x \in \R^n \colon |x| < r\}
+	\]
+	Несложно понять, что формула этого объёма должна иметь вид $V_n(r) = c_n \cdot r^n$. Например, $V_1(r) = 2r$, поэтому $c_1 = 2$. Однако, мы ещё знаем рекурсивное соотношение между объёмами:
+	\begin{multline*}
+		V_n(r) = \int_{-r}^r V_{n - 1(\sqrt{r^2 - x^2})}dx =
+		\\
+		c_{n - 1} \cdot 2\int_0^r (r^2 - t^2)^{(n - 1) / 2}dt = \{u = t^3 / r^2\} =
+		\\
+		c_{n - 1} r^n \int_0^1 (1 - u)^{(n - 1) / 2} u^{-1 / 2}du = c_{n - 1} r^n B(1 / 2, (n + 1) / 2)
+	\end{multline*}
+	Итого:
+	\begin{multline*}
+		c_n = c_{n - 1} \cdot \frac{\Gamma(1 / 2)\Gamma((n + 1) / 2)}{\Gamma(n / 2 + 1)} =
+		\\
+		2 \cdot \frac{\Gamma(1 / 2)\Gamma(3 / 2)}{\Gamma(2)} \cdot \ldots \cdot \frac{\Gamma(1 / 2)\Gamma((n + 1) / 2)}{\Gamma(n / 2 + 1)} =
+		\\
+		2 \cdot \frac{(\Gamma(1 / 2))^{n - 1}\Gamma(3 / 2)}{\Gamma(n / 2 + 1)} = \frac{\pi^{n / 2}}{\frac{n}{2} \cdot \Gamma(n / 2)}
+	\end{multline*}
+	Конечная формула: $V_n(r) = \frac{\pi^{n / 2}}{\frac{n}{2}\Gamma(n / 2)} \cdot r^n$
+\end{example}
+
+\subsection{Интеграл Фурье}
+
+\begin{note} (Мотивация к интегралу Фурье)
+	Мы уже достаточно хорошо изучили $L_1[-l; l]$. В этом пространстве каждой функции ещё в самом начале мы сопоставили ряд Фурье:
+	\[
+		f(x) \sim \frac{a_0}{2} + \sum_{n = 1}^\infty a_n \cos\ps{\frac{n\pi x}{l}} + b_n\sin\ps{\frac{n\pi x}{l}} = s(x)
+	\]
+	где коэффициенты задаются следующим образом:
+	\[
+		a_n = \frac{1}{l}\int_{[-l; l]} f(t)\cos\ps{\frac{n\pi t}{l}}d\mu(t); \quad b_n = \frac{1}{l}\int_{[-l; l]} f(t)\sin\ps{\frac{n\pi t}{l}}d\mu(t)
+	\]
+	Если мы подставим всё это в $s(x)$, то можно заметить, что все интегралы можно собрать под знак одной суммы (если сейчас в ряде разрешить все целые $n$ кроме нуля, тогда надо просто поделить коэффициенты ещё напополам):
+	\[
+		s(x) = \frac{1}{2l} \sum_{n = -\infty}^{+\infty} \int_{[-l; l]} f(t)\cos\ps{\frac{n\pi(t - x)}{l}}d\mu(t)
+	\]
+	Аргументы косинуса соответствуют сетке $z_n = n\pi / l$, причём шаг у этой сетки $\Delta z_n = \pi / l$. Если посмотреть с этой стороны, то можно заметить формулу, напоминающую интеграл:
+	\[
+		s(x) = \frac{1}{2\pi} \sum_{n = -\infty}^{+\infty} F(z_n)\Delta z_n, \quad F(z_n) = \int_{[-l; l]} f(t)\cos(z_n(t - x))d\mu(t)
+	\]
+	То есть мы могли бы сопоставить этому ряду соответствующий интеграл:
+	\begin{multline*}
+		s(x) \sim \frac{1}{2\pi} \int_{-\infty}^{+\infty} F(z)dz =
+		\\
+		\frac{1}{2\pi} v.p. \int_{-\infty}^{+\infty} \int_\R f(t)\cos(z(t - x))d\mu(t)dz =
+		\\
+		\frac{1}{\pi} \int_0^{+\infty} \int_\R f(t)\cos(z(t - x))d\mu(t)dz =
+		\\
+		\frac{1}{\pi} \int_0^{+\infty} \ps{\ps{\int_\R f(t)\cos(zt)d\mu(t)}\cos(zx) + \ps{\int_\R f(t)\sin(zt)d\mu(t)}\sin(zx)}dz
+	\end{multline*}
+\end{note}
+
+\begin{definition}
+	Если $f \in L_1(\R)$, то \textit{интеграл Фурье от $f$} определяется как
+	\[
+		I = \int_0^{+\infty} a(\lambda)\cos(\lambda x) + b(\lambda)\sin(\lambda x)d\lambda
+	\]
+	где $a(\lambda), b(\lambda)$ --- это соответственно \textit{косинус- и синус-преобразования Фурье} для $f$:
+	\[
+		a(\lambda) = \frac{1}{\pi} \int_\R f(t)\cos(\lambda t)d\mu(t); \quad b(\lambda) = \frac{1}{\pi} \int_\R f(t)\sin(\lambda t)d\mu(t)
+	\]
+\end{definition}
+
+\begin{note}
+	Коль скоро верна оценка $|f(t)\cos(\lambda t)| \le |f(t)|$, то $a(\lambda)$ и $b(\lambda)$ являются непрерывными функциями. Поэтому интеграл Фурье можно понимать как несобственный интеграл Римана
+\end{note}
+
+\begin{proposition}
+	Про интеграл Фурье для $f \in L_1(\R)$ можно сказать пару вещей:
+	\begin{itemize}
+		\item Если $f$ --- чётная, то интеграл  Фурье имеет вид $\int_0^{+\infty} a(\lambda)\cos(\lambda x)d\lambda$, где $a(\lambda) = \frac{2}{\pi} \int_{\lsi{0; +\infty}} f(t)\cos(\lambda t)d\mu(t)$
+		
+		\item Если $f$ --- нечётная, то интеграл Фурье имеет вид $\int_0^{+\infty} b(\lambda)\sin(\lambda x)d\lambda$, где $b(\lambda) = \frac{2}{\pi} \int_{\lsi{0; +\infty}} f(t)\sin(\lambda t)d\mu(t)$
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Тривиально
+\end{proof}
