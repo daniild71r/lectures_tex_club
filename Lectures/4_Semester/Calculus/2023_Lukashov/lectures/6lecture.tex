@@ -7,7 +7,7 @@
 \end{corollary}
 
 \begin{example}
-	$\sum_{n = 1}^\infty \frac{\sin(nx)}{\ln n}$ не является тригнометрическим рядом Фурье. Действительно, если это всё же ряд, то должен сходится ряд $\sum_{n = 1}^\infty \frac{1}{(n\ln n)}$, чего не происходит. Забавно, но ряд $\sum_{n = 1}^\infty \frac{\cos(nx)}{\ln n}$ сходится.
+	$\sum_{n = 1}^\infty \frac{\sin(nx)}{\ln n}$ не является тригонометрическим рядом Фурье. Действительно, если это всё же ряд, то должен сходится ряд $\sum_{n = 1}^\infty \frac{1}{(n\ln n)}$, чего не происходит. Забавно, но ряд $\sum_{n = 1}^\infty \frac{\cos(nx)}{\ln n}$ сходится.
 \end{example}
 
 \begin{note}~
@@ -113,7 +113,7 @@
 	\[
 		-2\eps = -\frac{3\eps}{2} - \frac{\eps}{2} \le f(x)L_n(e_0, x) - L_n(f, x) \le \frac{3\eps}{2} + \frac{\eps}{2} = 2\eps \Lolra |f(x)L_n(e_0, x) - L_n(f, x)| \le 2\eps
 	\]
-	Осталось дело за малым подобрать $N_3$, чтобы $f(x)L_n(e_0, x)$ оказалось близко к $f(x)$:
+	Осталось дело за малым: подобрать $N_3$, чтобы $f(x)L_n(e_0, x)$ оказалось близко к $f(x)$:
 	\[
 		\exists N_3 \in \N \such \forall n > N_3\ \forall x \in [a; b]\ |L_n(e_0, x) - 1| \le \frac{\eps}{M}
 	\]
@@ -121,7 +121,7 @@
 	\begin{multline*}
 		|f(x) - L_n(f, x)| \le
 		\\
-		|f(x) - f(x)L_n(e_0, x)| - |f(x)L_n(e_0, x) - L_n(f, x)| \le
+		|f(x) - f(x)L_n(e_0, x)| + |f(x)L_n(e_0, x) - L_n(f, x)| \le
 		\\
 		|f(x)| \cdot |L_n(e_0, x) - 1| + 2\eps \le 3\eps
 	\end{multline*}

@@ -89,7 +89,7 @@
 	\end{enumerate}
 	Стало быть, есть следующее равенство:
 	\[
-		\int_E \pd{f}{\alpha}(x, \alpha_0) = \int_E \lim_{n \to \infty} \pd{f}{\alpha}(x, \xi_n(x))d\mu(x) = \lim_{n \to \infty} \int_E \pd{f}{\alpha}(x, \xi_n(x))d\mu(x)
+		\int_E \pd{f}{\alpha}(x, \alpha_0)d\mu(x) = \int_E \lim_{n \to \infty} \pd{f}{\alpha}(x, \xi_n(x))d\mu(x) = \lim_{n \to \infty} \int_E \pd{f}{\alpha}(x, \xi_n(x))d\mu(x)
 	\]
 	При этом последний интеграл переписывается так:
 	\begin{multline*}
@@ -146,7 +146,7 @@
 \end{note}
 
 \begin{definition}
-	Пусть $f \colon \R \times Y$ такова, что $\forall y \in Y\ \forall \tilde{b} \in \lsi{a; b}\ f(x, y) \in R[a; \tilde{b}]$. Тогда говорят, что \textit{несобственный интеграл Римана от $f \in NR_{[a; b]}^Y$ сходится равномерно на $Y$}, если выполнено условие:
+	Пусть $f \in NR_{[a; b]}^Y$. Тогда говорят, что \textit{несобственный интеграл Римана от $f$ сходится равномерно на $Y$}, если выполнено условие:
 	\[
 		\forall \eps > 0\ \exists \delta > 0 \such \forall y \in Y\ \forall \tilde{b} \in \mc{U}_\delta(b)\ \ \md{\int_{\tilde{b}}^b f(x, y)dx} < \eps
 	\]
