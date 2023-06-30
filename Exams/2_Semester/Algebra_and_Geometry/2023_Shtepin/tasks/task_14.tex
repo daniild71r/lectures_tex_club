@@ -1,0 +1,108 @@
+\section{14. Билинейные функции. Координатная запись билинейной функции. Матрица билинейной функции и ее изменение при замене базиса. Ортогональное дополнение к подпространству относительно симметричной (кососимметричной) билинейной функции и его свойства.}
+
+\begin{definition}
+    Пусть $V$ -- линейное пространство над $F$. Функция $f: V \times V \to F$ называется \textit{билинейной}, если выполняются следующие условия:
+    \begin{enumerate}
+        \item Аддитивность по первому аргументу $f(x_1 + x_2, y) = f(x_1, y) + f(x_2, y)$.
+        \item Линейность по первому аргументу $f(\lambda x, y) = \lambda f(x, y)$.
+        \item Аддитивность по второму аргументу.
+        \item Линейность по второму аргументу.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Если $x, y \in F^n$, то выражение $\displaystyle\sum_{i=1}^{n} \displaystyle\sum_{j=1}^{m} a_{ij} x_i y_j$ называется \textit{билинейной формой} от координатных столбцов $x$ и $y$. Билинейная форма сама является билинейной функцией: $F^n \times F^n \to F$.
+\end{definition}
+
+\begin{proposition}
+    Если $f(x, y)$ -- билинейная функция $V \times V \to F$, то она может быть записана в виде билинейной формы от координат $x$ и $y$ при добавлении коэффициентов $a_{ij} = f(e_i, e_j)$ - значения функции $f$ на базисных векторах. 
+\end{proposition}
+
+\begin{proof}
+    Пусть $f(x, y)$ - билинейная функция, $e = (e_1, \dots e_n)$ - базис в $V$. Запишем разложения векторов $x$ и $y$ по базису:
+    \begin{align*}
+        x = \sum_{i=1}^{n} x_i e_i && y = \sum_{j=1}^{n} y_j e_j
+    \end{align*}
+    Тогда верно следующее:
+    \begin{gather*}
+        f(x, y) = f(\sum_{i=1}^{n} x_i e_i, \sum_{j=1}^{n} y_j e_j) = \sum_{i=1}^{n} \sum_{j=1}^{n} x_i y_j f(e_i, e_j) = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij} x_i y_j
+    \end{gather*}
+\end{proof}
+
+\begin{proposition}
+    Пусть $f(x, y)$ -- билинейная функция в $V$. $e$, $e'$ -- базисы в $V$. $A$, $A'$ -- матрицы билинейной формы $f$ в этих базисах. Тогда $A' = S^T A S$, где $S$ -- матрица перехода между $e$ и $e'$. 
+\end{proposition}
+
+\begin{proof}
+    Пусть $x$ и $y$ имеют в $e$ координаты $\alpha$ и $\beta$ соответственно.\\ Было доказано, что $\alpha = S \alpha'$, $\alpha` = s^{-1} \alpha$, $\beta = S \beta'$. Тогда:
+    $$f(x, y) = x^T A y = \alpha^T A \beta = (S \alpha')^T A (S \beta) = (\alpha')^T S^T A S \beta' = (\alpha')^T A' \beta'.$$ Из последнего равенства сразу следует, что $S^T A S = A'$.
+\end{proof}
+
+\begin{definition}
+    Билинейная функция $f(x, y)$ называется \textit{симметричной} если для всех $x, y \in V$ верно 
+    $f(x, y) = f(y, x)$.
+\end{definition}
+
+\begin{definition}
+    Билинейная функция $f(x, y)$ называется \textit{кососимметричной}, если для всех $x, y \in V$ верно:
+    \begin{enumerate}
+        \item $f(x, y) = -f(y, x)$,
+        \item $f(x, x) = 0$.
+    \end{enumerate}
+\end{definition}
+
+\begin{agreement}
+    Многие утверждения, доказываемые в этом разделе верны и для симметричных и для кососимметричных 
+    функций. Чтобы показать, что функция $f$ лежит в $B^+$ или в $B^-$ будем использовать 
+    обозначение $f \in B^{\pm}$.
+\end{agreement}
+
+\begin{definition}
+    \label{def8.5}
+    Пусть $f \in B^{\pm}(V)$. Тогда ядром $f$ является: 
+    $$\ker f = \{x \in V \vert \, \forall y \in V \hookrightarrow f(x, y) = 0\} = 
+    \{y \in V \vert \, \forall x \in V \hookrightarrow f(x, y) = 0\},$$ 
+    где сначала выписано левое ядро, а затем правое ядро, и они равны.
+\end{definition}
+
+\begin{definition}
+    Пусть $U \leq V$. \textit{Ортогональным дополнением} к $U$ относительно функции $f \in B^{\pm}(V)$ 
+    называется подпространство $U^{\perp} = \{y \in V \,\vert \, \forall x \in U \hookrightarrow 
+    f(x, y) = 0\}$.
+\end{definition}
+
+\begin{definition}
+    Подпространство $U \leq V$ назовем невырожденным относительно функции $f \in B^{\pm}(V)$, если 
+    сужение $f$ на $U$ невырожденно.
+\end{definition}
+
+\begin{theorem}
+    \label{th8.1}
+    Пусть $U \leq V$, $f \in B^{\pm}(V)$. Тогда $U$ невырожденно относительно $f$ тогда и только 
+    тогда когда $V$ раскладывается в прямую сумму подпространств: $V = U \oplus U^{\perp}$.
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $f \vert_{U}$ невырождено. Покажем, что тогда 
+        $\ker f \vert_{U} = \{0\}$.
+        \begin{multline*}
+            \ker f \vert_{U} = \{y \in U \vert \, \forall x \in U \hookrightarrow f(x, y) = 0\} = \\
+            = \{y \in V \vert \, \forall x \in U \hookrightarrow f(x, y) = 0\} \cap U 
+            = U^{\perp} \cap U = \{0\},
+        \end{multline*}
+        где первое равенство получено по определению ядра $f$ над $U$, а третье по определению 
+        ортогонального дополнения. Из соображений размерностей подпространств получим:
+        \begin{multline*}
+            dim (U + U^{\perp}) = \dim U + \dim U^{\perp} - \dim (U \cap U^{\perp}) = \\ =
+            \dim U + \dim U^{\perp} \geq \dim U + \dim V - \dim U = \dim V.
+        \end{multline*} 
+        Так как $U + U^{\perp} \leq V$, получаем равенство размерностей $\dim (U + U^{\perp}) = \dim V$, 
+        а значит и равенство подпространств: $U + U^{\perp} = V$. 
+        
+        По теореме о характеристике прямой суммы получаем $V = U \oplus U^{\perp}$.
+
+        \item Пусть $V = U \oplus U^{\perp}$. Но $\ker (f \vert_{U}) = U \cap U^{\perp} = \{0\}$, 
+        а значит $f$ невырождена на $U$.
+    \end{enumerate}
+\end{proof}

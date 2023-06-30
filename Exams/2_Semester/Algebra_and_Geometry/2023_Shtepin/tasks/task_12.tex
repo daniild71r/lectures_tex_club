@@ -1,0 +1,118 @@
+\section{12. Норма в линейном пространстве. Норма линейного оператора. Вычисление многочлена и аналитической функции от линейного оператора.}
+
+\begin{definition}
+    Функция называется \textit{аналитической}, если она представляется сходящимся степенным рядом.
+\end{definition}
+
+\begin{definition}
+    Функция $||\cdot||: V \to \R$ называется \textit{нормой} если 
+    \begin{enumerate}
+        \item $||x|| > 0$, если $x \neq 0$,
+        \item $|| \lambda x|| = |\lambda| \cdot ||x||$,
+        \item $||x + y|| \leq ||x|| + ||y||$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Последовательность векторов $\{x^m\}$ сходится по норме к $x_0$, 
+    если $||x^m - x_0|| \to 0$ при $m \to +\infty$.
+\end{definition}
+
+\begin{definition}
+    Ряд $\displaystyle\sum_{m=1}^{+\infty} x^m$ называется \textit{сходящимся}, если он сходится по норме 
+    $S^n = \displaystyle\sum_{m=1}^{n}x^m$.
+\end{definition}
+
+\begin{definition}
+    Ряд $\displaystyle\sum_{m=1}^{+\infty} x^m$ называется \textit{абсолютно сходящимся}, если сходится ряд 
+    $\displaystyle\sum_{m=1}^{+\infty} ||x^m||$.
+\end{definition}
+
+\begin{proposition}
+    Если ряд $\displaystyle\sum_{m=1}^{+\infty} a_m x^m$ сходится абсолютно, то он сходится, 
+    и для сумм верно:
+    $$||\displaystyle\sum_{m=1}^{+\infty} x^m|| \leq \displaystyle\sum_{m=1}^{+\infty} ||x^m||.$$
+\end{proposition}
+
+\begin{proposition}
+    Если ряд $\displaystyle\sum_{m=1}^{+\infty} a_m x^m$ сходится абсолютно и $\phi: \N \to \N$, то 
+    ряд $\displaystyle\sum_{m=1}^{+\infty} a_{\phi(m)} x^{\phi(m)}$ сходится и для этих двух рядов 
+    верно: $$||\displaystyle\sum_{m=1}^{+\infty} a_{\phi(m)} x^{\phi(m)}|| = 
+    ||\displaystyle\sum_{m=1}^{+\infty} a_m x^m||$$
+\end{proposition}
+
+\begin{definition}
+    \label{def6.8}
+    Пусть $\phi: V \to V$, $V$ конечномерно над $\R$ или $\Cm$. Тогда:
+    $$||\phi|| \overset{\text{def}}{=} \underset{x \neq 0}{\max} \frac{||\phi(x)||}{||x||} = 
+    \underset{||x|| = 1}{\max} \frac{||\phi(x)||}{||x||} = \underset{||x|| = 1}{\max} ||\phi(x)||.$$
+\end{definition}
+
+\begin{note}
+    Если $\lambda$ -- собственное значение оператора $\phi$, то $||\phi|| \geq \lambda$.
+\end{note}
+
+\begin{proposition}[о свойствах нормы оператора]~
+    \begin{enumerate}
+        \item Определение \ref{def6.8} опеределяет норму в $\mathcal{L}(V)$.
+        \item $||\phi(x)|| \leq ||\phi|| \cdot ||x||$.
+        \item $||\phi \cdot \psi|| \leq ||\phi|| \cdot ||\psi||$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Докажем неравенство треугольника для нормы:
+        \begin{multline*}
+            ||\phi + \psi|| \overset{\text{def}}{=} \underset{x \neq 0}{\max} 
+            \frac{||(\phi + \psi)(x)||}{||x||} \leq \underset{x \neq 0}{\max} 
+            \frac{||\phi(x)|| + ||\psi(x)||}{||x||} \leq \\ \leq \underset{x \neq 0}{\max} 
+            \frac{||\phi(x)||}{||x||} + \underset{x \neq 0}{\max} 
+            \frac{||\psi(x)||}{||x||} = ||\phi|| + ||\psi||
+        \end{multline*} 
+
+        \item Докажем непосредственной проверкой:
+        \begin{eqnarray*}
+            ||\phi(x)|| = \frac{||\phi(x)||}{||x||} ||x|| \leq  \underset{x \neq 0}{\max} 
+            \frac{||\phi(x)||}{||x||} ||x|| = ||\phi|| \cdot ||x||
+        \end{eqnarray*}
+        \item Докажем непосредственной проверкой:
+        \begin{multline*}
+            ||\phi \cdot \psi|| = \underset{x \neq 0}{\max} \frac{||\phi \cdot \psi(x)||}{||x||} = 
+            \underset{\psi(x) \neq 0}{\max} \frac{||\phi(x)||}{||x||} =
+            \underset{\psi(x) \neq 0}{\max} \frac{||\phi \cdot \psi(x)||}{||\psi(x)||} \cdot 
+            \frac{||\psi(x)||}{||x||} \leq \\ \leq \underset{\psi(x) \neq 0}{\max} 
+            \frac{||\phi \cdot \psi(x)||}{||\psi(x)||} \cdot \underset{\psi(x) \neq 0}{\max} 
+            \frac{||\psi(x)||}{||x||} \leq ||\phi|| \cdot ||\psi||
+        \end{multline*}
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Пусть ряд $f(t) = \displaystyle\sum_{m=1}^{+\infty} a_m t^m$ сходится при $|t| < R$.
+    Тогда ряд $\displaystyle\sum_{m=1}^{+\infty} a_m \phi^m$ сходится абсолютно для любого оператора 
+    $\phi: ||\phi|| = R_0 < R$. Более того, $f(\phi) = \displaystyle\sum_{m=1}^{+\infty} a_m \phi^m$ 
+    - задает линейный оператор в $V$.
+\end{theorem}
+
+\begin{proof}
+    $\forall x \in V$ докажем, что ряд $\displaystyle\sum_{m=1}^{+\infty} a_m \phi^m(x)$ 
+    сходится абсолютно:
+    \begin{multline*}
+        \displaystyle\sum_{m} |a_m| \cdot ||\phi^m(x)|| \leq \displaystyle\sum_{m} |a_m| \cdot 
+        ||\phi^m|| \cdot ||x|| \leq \\ \leq ||x|| \displaystyle\sum_{m} |a_m| \cdot ||\phi^m|| = 
+        ||x|| \displaystyle\sum_{m} |a_m| R_0^m \text{\: -- \, сходится при } R_0 < R.   
+    \end{multline*}
+    Ряд $f(t) = \displaystyle\sum_{m} a_m t^m$ сходится при $|t| < R$, 
+    а значит $\displaystyle\sum_{m} |a_m| |t|^m$ сходится при $|t| < R$ по теореме Абеля.
+\end{proof}
+
+\begin{note}
+    \begin{gather*}
+        exp(\phi) = \epsilon + \frac{\phi}{1!} + \dots + \frac{\phi^n}{n!} + \dots, \, R = +\infty \\
+        sin(\phi) = \phi - \frac{\phi^3}{3!} + \dots + (-1)^n \frac{\phi^{2n+1}}{(2n+1)!} + \dots, 
+        \, R = +\infty \\
+        cos(\phi) = \epsilon - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} - \dots + 
+        (-1)^n \frac{\phi^{2n}}{(2n)!} + \dots, \, R = +\infty
+    \end{gather*}
+\end{note}

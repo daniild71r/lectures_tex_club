@@ -1,0 +1,81 @@
+\section{19. Евклидово и эрмитово пространство. Выражение скалярного произведения в координатах. Матрица Грама системы векторов и ее свойства. Неравенства Коши-Буняковского и треугольника.}
+
+\begin{definition}
+    Пусть $V$ - линейное пространство над полем действительных чисел. $V$ называется Евклидовым, если 
+    на нем определена положительно определенная билинейная симметрическая функция $f(x, y)$. По 
+    определению $f(x, y)$ назвается скалярным произведением и обозначается $(x, y)$.
+\end{definition}
+
+\begin{definition}
+    Пусть $V$ - линейное пространство над $\Cm$. $V$ называется эрмитовым, если на $V$ определена 
+    положительно определенная эрмитова полуторалинейная функция $f(x, y)$. Аналогично с евклидовыми 
+    пространствами $f(x, y)$ называется скалярным произведением и обозначается $(x, y)$.
+\end{definition}
+
+\begin{definition}
+    Матрицей Грама системы $a_1, a_2, \dots a_k$ называется матрица 
+    \begin{gather*}
+        \Gamma(a_1, \dots a_n) = \begin{pmatrix}
+        (a_1, a_1)      & (a_1, a_2)      & \dots  & (a_1, a_n)       \\
+        (a_2, a_1)      & (a_2, a_2)      & \dots  & (a_2, a_n)       \\
+        \vdots & \vdots & \ddots & \vdots   \\
+        (a_n, a_1)      & (a_n, a_2)      & \dots  & (a_n, a_n)
+        \end{pmatrix}
+    \end{gather*}
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item
+        Пусть $e_1, e_2, \dots e_n$ - базис в $V$, $\Gamma = \Gamma(e)$. Тогда $\forall x, y \in V$ верно 
+        $(x, y) = x^T \Gamma \tilde{y}$
+        \item Пусть $a_1, a_2, \dots a_k$ - произвольная система векторов в $V$. Тогда $|\Gamma(a_1, \dots a_n)| \geq 0$, 
+        прричем равенство достигается тогда и только тогда, когда система линейно зависима.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $f(x, y) = x^T A \tilde{y} = x^T \Gamma \tilde{y}$.
+        \item Пусть система линейно независима. Тогда $U = \langle a_1, a_2, \dots a_k \rangle$, 
+        $f \vert_{U}$ - положительно определена, а значит по критерию Сильвестра $|\Gamma(a_1, \dots a_n)| > 0$.
+
+        Пусть теперь система линейно зависима и без ограничения общности $a_k = \lambda_1 a_1 + \dots + \lambda_{k-1} a_{k-1}$.
+        Тогда нижняя строка будет состоять из нулей в силу того, что $(a_k, a_i) = (\lambda_1 a_1 + \dots + \lambda_{k-1} a_{k-1}, a_i)$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Неравенство Коши-Буняковского]
+    Пусть $V$ - пространство со скалярным произведением, и пусть $x, y \in V$. Тогда 
+    \begin{gather*}
+        |(x, y)|^2 \leq (x, x) \cdot (y, y)
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $x$ или $y$ - нулевой вектор, тогда $0 = 0$.
+        \item Пусть $x, y \neq 0$ и коллинеарны, то есть $y = \lambda x$. Тогда 
+        \begin{gather*}
+            |(x, \lambda x)|^2 = |\lambda|^2 |(x, x)|^2 = \lambda \tilde{\lambda} |(x, x)|^2 = 
+            (x, x) (y, y)
+        \end{gather*}
+        \item Пусть $x, y \neq 0$ и неколлинеарны. Тогда система из $x$ и $y$ линейно независима, а значит 
+        по теореме 1:
+        \begin{gather*}
+            0 < |\Gamma(x, y)| = (x, x)(y, y) - (x, y)(y, x) = (x, x)(y, y) - |(x, y)|^2.
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}[Неравенство треугольника]
+    Для всех $x, y \in V$ верно:
+    \begin{gather*}
+        |x + y| \leq |x| + |y|
+    \end{gather*}
+\end{corollary}
+
+\begin{proof}
+    Неравенство треугольника эквивалентно неравенству $(x +y, x+y) \leq (x, x) + 2\sqrt{(x, x)(y, y)} + (y, y)$.
+    $(x, x) + (y, y) + 2 \Re (x, y)$
+\end{proof}

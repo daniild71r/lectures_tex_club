@@ -1,0 +1,211 @@
+%23.03.23
+
+\begin{example}
+    $X = \R^n, \ x = (x_1, \ldots, x_n)^T, \ y = (y_1, \ldots, y_n)^T$.
+
+    \begin{enumerate}
+        \item $|x| = \sqrt{\sum_{i = 1}^n |x_i|^2}$, $\rho_2(x, y) = \sqrt{\sum_{i = 1}^n |x_i - y_i|^2}$.
+        \item $\|x\|_p = \left(\sum_{i = 1}^n |x_i|^p\right)^{\frac{1}{p}}$, $\rho_p(x, y) = \left(\sum_{i = 1}^n |x_i - y_i|^p\right)^{\frac{1}{p}}$, $p \ge 1$.
+        \item $\|x\|_\infty = \max_{1 \le i \le n} |x_i|$, $\rho_\infty(x, y) = \max_{1 \le i \le n} |x_i - y_i|$.
+    \end{enumerate}
+
+\end{example}
+
+\begin{proof}
+    Покажем, что $\|\cdot\|_p$ --- норма на $\R^n$.
+    
+    Проверим сначала, что если $\|x\|_p \le 1, \|y\|_p \le 1, \alpha + \beta = 1, \alpha \ge 0, \beta \ge 0$, то $\|\alpha x + \beta y\|_p \le 1$.
+    
+    Функция $\phi(s) = s^p$ --- выпуклая на $[0, +\infty)$, следовательно $|\alpha x_i + \beta y_i|^p \le \alpha |x_i|^p + \beta |x_i|^p$.
+    
+    Просуммируем по $i = 1, \ldots, n$.
+    $\|\alpha x + \beta y \|^p_p \le \alpha \|x\|^p_p + \beta \|y\|^p_p \le \alpha + \beta = 1$.
+    
+    Пусть $x, y$ произвольны. Если $x = 0$ или $y = 0$, то неравенство выполняется. Будем предполагать, что $x \neq 0$ и $y \neq 0$. Покажем, что $\|x + y\|_p \le \|x\|_p + \|y\|_p$ (индекс $p$ будем опускать)
+    
+    Введём обозначения $\alpha = \frac{\|x\|}{\|x\| + \|y\|}, \beta = \frac{\|y\|}{\|x\| + \|y\|}, \hat{x} = \frac{x}{\|x\|}, \hat{y} = \frac{y}{\|y\|}$. Тогда, учитывая, что $\|\alpha \hat{x} + \beta \hat{y}\| \le 1$, имеем
+    \[
+        \|x + y\| = \left(\|x\| + \|y\|\right) \left\|\frac{x}{\|x\| + \|y\|} + \frac{y}{\|x\| + \|y\|}\right\| = \left(\|x\| + \|y\|\right)\|\alpha \hat{x} + \beta \hat{y}\| \le \|x\| + \|y\|.
+    \]
+
+    Проверка, что $\|\cdot\|_{\infty}$ является нормой, легко следует из свойств модуля числа.
+\end{proof}
+
+\begin{definition}
+    Пусть $(X, \rho)$ --- метрическое пространство, $x \in X$.
+
+    Множество $B_r(x) = \{y \in X \ | \ \rho(y, x) < r\}, r > 0$ называется \emph{открытым шаром} с центром в точке $x$ и радиуса $r$.
+
+    Множество $\overline{B}_r(x) = \{y \in X \ | \ \rho(y, x) \le r\}$ называется \emph{замкнутым шаром} с центром в точке $x$ и радиуса $r$.
+\end{definition}
+
+\begin{definition}
+    Пусть $E \subset X$. Множество $E$ называется \emph{ограниченным}, если
+    \[
+        \exists a \in X \, \exists r > 0 \ (E \subset B_r(a)).
+    \]
+\end{definition}
+
+\begin{definition}
+    Пусть $\{x_n\} : n \mapsto x_n \in X$.
+
+    Последовательность $\{x_n\}$ \emph{сходится} к $a$ (в $X$), если $\rho(x_n, a) \rightarrow 0$ при $n \rightarrow \infty$.
+
+    Пишут $x_n \rightarrow a$ или $\lim_{n \rightarrow \infty} x_n = a$.
+\end{definition}
+
+\begin{note}
+    \[
+        x_n \rightarrow a \Leftrightarrow \forall \epsilon > 0 \, \exists N \, \forall n \ge N \ (x_{n} \in B_\epsilon(a)).
+    \]
+\end{note}
+
+\begin{property}
+    Если $x_n \rightarrow a$, $x_n \rightarrow b$, то $a = b$.
+    \begin{proof}
+        $0 \le \rho(a, b) \le \rho(a, x_n) + \rho(x_n, b) \rightarrow 0$.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    Если $x_n \rightarrow a$, то $\{x_n\}$ ограничена.
+
+    \begin{proof}
+        $\rho(x_n, a) \rightarrow 0$, следовательно $\{\rho(x_n, a)\}$ ограничена. Тогда существует $R > \sup\{\rho(x_{n}, a)\}$, значит $x_n \in B_R(a)$.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    Пусть $\{x_n\}$, $\{y_n\}$ --- последовательности в нормированном пространстве $(V, \|\cdot\|)$, $\{\alpha_n\} \subset \R$. Тогда, если $x_n \rightarrow a$, $y_n \rightarrow b$ и $\alpha_n \rightarrow \alpha \in \R$, то $x_n + y_n \rightarrow a + b$, $\alpha_n x_n \rightarrow \alpha a$.
+
+    \begin{proof}
+        Вытекает из неравенств
+        
+        \[\|(x_n + y_n) - (a + b)\| \le \|x_n - a\| + \|y_n - b\| \rightarrow 0.\]
+
+        \[\|\alpha_n x_n - \alpha a\| = \|\alpha_{n}x_{n} - \alpha x_{n} + \alpha x_{n} - \alpha a\| \le \underbrace{|\alpha_{n} - \alpha|}_{\text{б.м.}}\underbrace{\|x_{n}\|}_{\text{огр.}} + \underbrace{|\alpha|}_{\text{огр.}}\underbrace{\|x_{n} - a\|}_{\text{б.м.}} \to 0.\]
+    \end{proof}
+\end{property}
+
+\subsection{Топология метрических пространств}
+
+\begin{definition}
+    Пусть $(X, \rho)$ --- метрическое пространство, $E \subset X$ и $x \in X$.
+
+    \begin{enumerate}
+        \item Точка $x$ называется \emph{внутренней точкой} множества $E$, если $\exists \epsilon > 0 \ (B_\epsilon(x) \subset E)$.
+        \item Точка $x$ называется \emph{внешней точкой} множества $E$, если $\exists \epsilon > 0 \ (B_\epsilon(x) \subset X \setminus E)$.
+
+            Обозначим $\operatorname{ext} E$ --- множество внешних точек $E$. Очевидно, $\operatorname{ext} E = \operatorname{int} (X \setminus E)$.
+
+        \item Точка $x$ называется \emph{граничной точкой} множества $E$, если
+            \[
+                \forall \epsilon > 0 \ \left\{\begin{array}{l}B_\epsilon (x) \cap E \neq \emptyset \\ B_\epsilon (x) \cap (X \setminus E) \neq \emptyset\end{array}\right.
+            \]
+
+            Обозначим $\partial E$ --- множество граничных точек $E$.
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    $X = \operatorname{int} E \cup \operatorname{ext} E \cup \partial E$, причём $\operatorname{int} E, \operatorname{ext} E, \partial E$ попарно не пересекаются.
+\end{note}
+
+\begin{definition}
+    Множество $G \subset X$ называется \emph{открытым}, если все точки $G$ являются внутренними (то есть $G = \operatorname{int} G$).
+
+    Множество $F \subset X$ называется \emph{замкнутым}, если $X \setminus F$ открыто.
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item Открытый шар --- открытое множество.
+            \begin{proof}
+                Пусть $x \in B_r(a)$. Положим $\epsilon = r - \rho(x, a)$. Покажем, что $B_\epsilon(x) \subset B_r(a)$.
+
+                Пусть $y \in B_\epsilon(x)$. Тогда $\rho(y, a) \le \rho(y, x) + \rho(x, a) < \epsilon + \rho(x, a) = r$.
+            \end{proof}
+
+        \item Замкнутый шар --- замкнутое множество.
+            \begin{proof}
+                Пусть $x \in X \setminus \overline{B}_r(a)$. Положим $\epsilon = \rho(x, a) - r$. Аналогично устанавливается, что $B_\epsilon (x) \subset X \setminus \overline{B}_r (a)$. Следовательно, $X \setminus \overline{B}_r(a)$ открыто.
+            \end{proof}
+
+        \item $\operatorname{int} E$ --- открытое множество.
+            \begin{proof}
+                Из $x \in \operatorname{int} E$ следует, что $\exists \underbrace{B_\epsilon(x)}_{\text{откр.}} \subset E$, следовательно, каждая точка $y \in B_\epsilon(x)$ является внутренней для $B_\epsilon(x)$, а, значит, и для $E$, то есть $\exists B_\delta(y) \subset E$. Следовательно, $B_\epsilon(x) \subset \operatorname{int} E$.
+            \end{proof}
+    \end{enumerate}
+\end{example}
+
+Аналогично случаю $X = \R$ доказывается следующая лемма.
+\begin{lemma}
+    Объединение произвольного семейства открытых множеств и пересечение \emph{конечного} семейства открытых множеств являются открытыми множествами.
+
+    Объединение \emph{конечного} семейства замкнутых множеств и пересечение произвольного семейства замкнутых множеств являются замкнутыми множествами.
+\end{lemma}
+
+Проверять замкнутость множеств <<по определению>> не всегда удобно. Получим критерий замкнутости.
+\begin{definition}
+    Точка $x$ называется \emph{предельной точкой} множества $E$, если $\forall \epsilon > 0 \ (\mathring{B}_\epsilon(x) \cap E \neq \emptyset)$. Здесь и далее $\mathring{B}_\epsilon(x) = B_\epsilon(x) \setminus \{x\}$.
+\end{definition}
+
+\begin{definition}
+    Точка $x$ называется \emph{изолированной точкой} множества $E$, если $x \in E$ и $x$ не предельная.
+\end{definition}
+
+\begin{theorem}
+    Следующие утверждения эквивалентны:
+    \begin{enumerate}
+        \item $E$ замкнуто;
+        \item $E$ содержит все свои граничные точки;
+        \item $E$ содержит все свои предельные точки;
+    \end{enumerate}
+
+    \begin{proof}~
+    
+        \emph{(1 $\Rightarrow$ 2)} $x \in \underbrace{X \setminus E}_{\text{откр.}} \Rightarrow \exists B_\epsilon(x) \subset X \setminus E \Rightarrow x \neq \partial E \Rightarrow \partial E \subset E$.
+
+        \emph{(2 $\Rightarrow$ 3)} Любая предельная точка является внутренней или граничной, значит $E$ содержит все предельные точки.
+
+        \emph{(3 $\Rightarrow$ 1)} Пусть $x \in X \setminus E$. Точка $x$ не является предельной для $E$, т.е. $\exists \epsilon > 0 \ (\mathring{B}_\epsilon(x) \cap E = \emptyset) \Rightarrow B_\epsilon(x) \subset X \setminus E$. Значит, $X \setminus E$ открыто.
+
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    $\overline{E} = E \cup \partial E$ --- \emph{замыкание} $E$.
+\end{definition}
+
+\begin{lemma}
+    Множество $\overline{E}$ замкнуто. В частности, $E$ замкнуто $\lra$ $E = \overline{E}$.
+
+    \begin{proof}
+        Отметим, что поскольку $\operatorname{int} E \subset E \subset \operatorname{int} E \cup \partial E$, то $\overline{E} = \operatorname{int} E \cup \partial E$.
+
+        Пусть $x \in X \setminus \overline{E}$. Точка $x$ является внешней для $E$, т.е. $\exists B_{\epsilon}(x) \subset X \setminus E$. Шар $B_{\epsilon}(x)$ не содержит граничных точек (иначе $B_{\epsilon}(x) \cap E \neq \emptyset$), поэтому $B_{\epsilon}(x) \subset X \setminus \overline{E}$. Значит, $X \setminus \overline{E}$ открыто.
+
+        По критерию замкнутости, $E$ замкнуто $\lra$ $E = \overline{E}$.
+    \end{proof}
+\end{lemma}
+
+\begin{note}
+    $x \in \overline{E} \lra \exists \{x_{n}\} \subset E \ \left(x_{n} \to x\right)$.
+\end{note}
+
+\begin{proof}
+    Если $x \in E \cup \partial E$, то $\forall \epsilon > 0 \ (B_{\epsilon}(x) \cap E \neq \emptyset)$. Выберем точку $x_{n} \in B_{\frac{1}{n}}(x) \cap E$. Так как $\rho(x_{n}, x) < \frac{1}{n}$, то $x_{n} \to x$.
+
+    Обратно, если $x \in X \setminus \overline{E}$, то $x$ -- внешнаяя точка $E$ и, значит, $x$ не может быть пределом последовательности точек из $E$.
+\end{proof}
+
+\begin{corollary}
+    Множество $E$ замкнуто $\lra$ $\forall \{x_{n}\}, \ x_{n} \in E \ \left(x_{n} \to x \Rightarrow x \in E\right)$.
+\end{corollary}
+
+\begin{problem}
+    \begin{enumerate}
+        \item Докажите, что $\overline{E} = \bigcap \, \{F \ | \ F \text{ замкнуто}, F \supset E\}$;
+        \item Докажите, что $\operatorname{int} E = \bigcup \, \{G \ | \ G \text{ открыто}, G \subset E\}$.
+    \end{enumerate}
+\end{problem}

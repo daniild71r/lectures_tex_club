@@ -1,0 +1,42 @@
+\section{22. Преобразование, сопряженное данному. Существование и единственность такого преобразования, его свойства. Теорема Фредгольма.}
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$. Для всех $\overline{u}, \overline{v} \in V$ положим $f_\phi(\overline{u}, \overline{v}) := (\phi(\overline{u}), \overline{v})$.
+\end{definition}
+
+\begin{definition}
+	Пусть $\phi \in \mathcal{L}(V)$. Оператором, \textit{сопряженным к $\phi$}, называется оператор $\phi^* \in \mathcal{L}(V)$ такой, что $f_\phi = g_{\phi^*}$, то есть $\forall \overline{u}, \overline{v} \in V: (\phi(\overline{u}), \overline{v}) \hm{=} (\overline{u}, \phi^*(\overline{v}))$.
+\end{definition}
+
+\begin{note}
+	Поскольку сопоставления $\phi \mapsto f_\phi = g_{\phi^*} \hm{\mapsto} \phi^*$ биективны, то сопряженный оператор $\phi^*$ существует и единственен.
+\end{note}
+
+\begin{note}
+    $(\phi(\overline{u}), \overline{v}) \hm{=} (\overline{u}, \phi^*(\overline{v})) \lra A_{\phi^*} = \Gamma^{-1}A_{\phi}^{T}\Gamma$.
+\end{note}
+
+\begin{proposition} Сопряженные операторы обладают следующими свойствами:
+	\begin{enumerate}
+		\item $\forall \phi, \psi \in \mathcal{L}(V): (\phi + \psi)^* = \phi^* + \psi^*$
+		\item $\forall \phi, \psi \in \mathcal{L}(V): (\phi\psi)^* = \psi^*\phi^*$
+		\item $\forall \phi \in \mathcal{L}(V): \phi^{**} = \phi$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Доказательство вытекает из свойств матриц соответсвующих операторов.
+\end{proof}
+
+\begin{theorem}[Фредгольма]
+	Пусть $\phi \in \mathcal{L}(V)$. Тогда $\ke{\phi^*} \hm{=} (\im{\phi})^\perp$.
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\subset$] Пусть $\overline{v} \in \ke{\phi^*}$, тогда $\phi^*(\overline{v}) = \overline{0}$, и $\forall \overline{u} \in V: (\phi(\overline{u}), \overline{v}) \hm{=} (\overline{u}, \phi^*(\overline{v})) = 0 \ra \overline{v} \in (\im{\phi})^\perp$.
+		
+		\item[$\supset$] Заметим, что $\rk{\phi} = \rk{\phi^*} = \dim{\im{\phi}} = \dim{\im{\phi^*}}$, тогда $\dim{\ke{\phi^*}} = \dim{(\im{\phi})^\perp}$, из чего следует требуемое в силу обратного включения.\qedhere
+	\end{itemize}
+\end{proof}
+

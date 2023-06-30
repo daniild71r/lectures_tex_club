@@ -1,0 +1,151 @@
+%22.02.23
+
+\subsection{Произведение числовых рядов}
+
+\begin{theorem}[Коши]
+    Пусть ряды $\sum_{n = 1}^{+\infty} a_n$ и $\sum_{n = 1}^{+\infty} b_n$ сходятся абсолютно к $A$ и $B$ соответственно. Тогда ряд $\sum_{n = 1}^{+\infty} a_{i_n} b_{j_n}$ из всевозможных попарных произведений, занумерованных в произвольном порядке (то есть, с $\phi : \N \rightarrow \N^2$, $\phi(n) = (i_n, j_n)$ -- биекция) сходится абсолютно к $AB$.
+
+    \begin{proof}
+        Покажем абсолютную сходимость ряда из произведений:
+        \begin{gather*}
+            \sum_{n = 1}^N |a_{i_n} b_{j_n}| \le \sum_{i = 1}^{\max_{1 \le k \le N} i_k} \sum_{j = 1}^{\max_{1 \le k \le N} j_k} |a_i| \cdot |b_j| = \left(\sum_{i = 1}^{\max_{1 \le k \le N} i_k} |a_i|\right)\left(\sum_{j = 1}^{\max_{1 \le k \le N} j_k} |b_j|\right) \le\\\le \left(\sum_{i = 1}^{+\infty} |a_i|\right)\left(\sum_{j = 1}^{+\infty} |b_j|\right).
+        \end{gather*}
+
+        По теореме (\ref{convergence-9}) любая перестановка ряда из произведений сходится к той же сумме. Рассмотрим перестановку <<по квадратам>> и её частичную сумму $S_{N^2} = \sum_{i = 1}^N \sum_{j = 1}^N a_i b_j$. Так как $S_{N^2} = \left(\sum_{i = 1}^N a_i\right)\left(\sum_{j = 1}^N b_j\right) \rightarrow AB$ и если последовательность сходится, то и любая подпоследовательность сходится к тому же пределу, то заключаем, что перестановка <<по квадратам>>, а значит, и $\sum_{n = 1}^{+\infty} a_{i_n} b_{j_n}$, имеет сумму $AB$.
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    Ряд $\sum_{n = 1}^{+\infty} c_n$, где $c_n = \sum_{k = 1}^n a_k b_{n + 1 - k}$, называется \emph{произведением по Коши} рядов $\sum_{n = 1}^{+\infty} a_n$ и $\sum_{n = 1}^{+\infty} b_n$.
+\end{definition}
+
+\begin{note}
+    В развёрнутом виде
+    \[
+        (a_1 + a_2 + a_3 + \ldots) \cdot (b_1 + b_2 + b_3 + \ldots) = a_1 b_1 + (a_1 b_2 + a_2 b_1) + (a_1 b_3 + a_2 b_2 + a_3 b_1) + \ldots
+    \]
+
+    Следовательно, произведение по Коши соответствует перестановке по диагонали с последующей группировкой элементов, стоящих на одной диагонали.
+\end{note}
+
+\begin{corollary}
+    Если ряды $\sum_{n = 1}^{+\infty} a_n$ и $\sum_{n = 1}^{+\infty} b_n$ сходятся абсолютно, то их произведение по Коши сходится абсолютно к произведению сумм рядов.
+\end{corollary}
+
+\begin{example}
+    Доказать, что $\sum_{n = 1}^{+\infty} \frac{(-1)^{n - 1}}{\sqrt{n}}$ сходится условно.
+\end{example}
+
+\begin{solution}
+    Рассмотрим произведение по Коши этого ряда на себя:
+    \[
+        c_n = \sum_{k = 1}^n \frac{(-1)^{k - 1}}{\sqrt{k}} \frac{(-1)^{n - k}}{\sqrt{n + 1 - k}} = (-1)^{n - 1} \sum_{k = 1}^n \frac{1}{\sqrt{k(n + 1 - k)}}.
+    \]
+
+    Так как $|c_n| = \sum_{k = 1}^n \frac{1}{\sqrt{k(n + 1 - k)}} \ge \sum_{k = 1}^n \frac{1}{\sqrt{nn}} = 1$. Следовательно, $\sum_{n = 1}^{+\infty} c_n$ расходится.
+\end{solution}
+
+\subsection{Неупорядоченные ряды}
+
+Пусть $\{a_j\}_{j \in J}$ -- семейство действительных чисел, индексированное элементами множества $J$ (возможно, несчётного).
+
+Обозначим через $\mathcal{F}(J)$ множество всех конечных подмножеств $J$.
+
+\begin{definition}
+    Говорят, что неупорядоченный ряд $\sum_{j \in J} a_j$ \emph{сходится и его сумма равна $s$}, если
+    \[
+        \forall \epsilon > 0 \  \exists F_0 \in \mathcal{F}(J) \  \forall F \in \mathcal{F}(J), F \supset F_0 \left(\left|\sum_{j \in F} a_j - s\right| < \epsilon\right).
+    \]
+
+    Говорят, что неупорядоченный ряд $\sum_{j \in J} a_j$ \emph{расходится к  $+\infty$}, если
+    \[
+        \forall M > 0 \ \exists F_0 \in \mathcal{F}(J) \ \forall F \in \mathcal{F}(J), F \supset F_0 \left(\sum_{j \in F} a_j > M\right).
+    \]
+\end{definition}
+
+\begin{property}[линейность]
+    Если $\sum_{j \in J} a_j$ и $\sum_{j \in J} b_j$ сходятся и $\alpha, \beta \in \R$, то сходится $\sum_{j \in J} (\alpha a_j + \beta b_j)$, причём
+    \[
+        \sum_{j \in J} (\alpha a_j + \beta b_j) = \alpha \sum_{j \in J} a_j + \beta \sum_{j \in J} b_j.
+    \]
+\end{property}
+
+\begin{proof}
+    Достаточно взять $F_{0} = F_{a} \cup F_{b}$ из определений сходимости $\sum_{j \in \mathcal{J}} a_{j}$ и $\sum_{j \in \mathcal{J}} b_{j}$.
+\end{proof}
+
+\begin{property}
+    Если $\forall j \in J \ a_j \ge 0$, то $\sum_{j \in J} a_j$ либо сходится, либо расходится к $+\infty$, и
+    \[
+        \sum_{j \in J} a_j = \sup_{F \in \mathcal{F}(J)} \sum_{j \in F} a_j s, \ s \in \R.
+    \]
+
+    \begin{proof}
+        Зафиксируем $\varepsilon > 0$.
+        Пусть $s \in R$. По определению супремума $\exists F_0 \in \mathcal{F}(J) \ \left(\sum_{j \in F_0} a_j > s - \epsilon\right)$.  Тогда
+        \[
+            \forall F \in \mathcal{F}(J), F \supset F_0 \ \left(s - \epsilon < \sum_{j \in F_0} a_j \le \sum_{j \in F} a_j \le s\right).
+        \]
+
+        Случай $s = +\infty$ рассматривается аналогично.
+    \end{proof}
+\end{property}
+
+\begin{example}
+    Исследовать на сходимость ряд $\sum_{(m, n) \in \N \times \N} \frac{1}{(m + n)^p}$.
+\end{example}
+
+\begin{solution}
+    Пусть $T = \left\{(m, n) \,|\, 1 \le m + n \le N\right\}$.
+    \[
+        \sum_T \frac{1}{(m + n)^p} = \sum_{k = 2}^N \sum_{n = 1}^{k - 1} \frac{1}{k^p} = \sum_{k = 2}^N \frac{k - 1}{k^p}.
+    \]
+
+    Если $p \le 2$, то $\sum_{(m, n)} \frac{1}{(m + n)^p}$ расходится.
+
+    Пусть $p > 2$. Рассмотрим конечное $F \subset \N \times \N$. Тогда $\exists T \supset F$ и, значит,
+    \[
+        \sum_F \frac{1}{(m + n)^p} \le \sum_T \frac{1}{(m + n)^p} = \sum_{k = 2}^N \frac{k - 1}{k^p} < \underbrace{\sum_{k = 2}^{+\infty} \frac{k - 1}{k^p}}_{\text{сход.}}.
+    \]
+\end{solution}
+
+\begin{definition}
+    $\forall x \in \R$ обозначим $x^+ = \max\{x, 0\}$, $x^- = \max\{-x, 0\}$.
+\end{definition}
+
+\begin{theorem}
+    Неупорядоченный ряд $\sum_{j \in J} a_j$ сходится тогда и только тогда, когда сходится $\sum_{j \in J} |a_j|$.
+
+    \begin{proof}~
+    
+        $(\Leftarrow)$ $\forall x \in \R \ (x^{\pm} \le |x|)$, тогда сходимость ряда $\sum_{j \in J} |a_j|$ влечёт сходимость рядов $\sum_{j \in J} a_j^+$ и $\sum_{j \in J} a_j^-$. По свойству линейности и равенства $x = x^+ - x^-$ следует сходимость $\sum_{j \in J} a_j$.
+
+        $(\Rightarrow)$  Пусть $\sum_{j \in J} a_j$ сходится. Тогда $\exists F_0 \in \mathcal{F}(J) \ \forall F \in \mathcal{F}(J), F \supset F_0 \ \left(\left|\sum_{j \in F} a_j - s\right| < 1\right)$ и, значит,
+        \[
+            \left|\sum_{j \in F} a_j\right| < 1 + |s|.
+        \]
+
+        Пусть $E \subset J$ конечно. Тогда
+        \[
+            \sum_{j \in E} a_j = \sum_{j \in E \cup F_0} a_j - \sum_{j \in F_0 \setminus E} a_j \le 1 + |s| + \sum_{j \in F_0} a_j^-,
+        \]
+        так как $\forall x \in \R \ -x \le x^-$.
+
+        Положим $P = \{j \in J \,|\, a_j \ge 0\}$. Тогда
+        \[
+            \sum_{j \in E} a_j^+ = \sum_{j \in E \cap P} a_j \le 1 + |s| + \sum_{j \in F_0} a_j^-.
+        \]
+
+        Следовательно, $\sum_{j \in J} a_j^+$ сходится. Аналогично $\sum_{j \in J} a_j^-$ сходится. По линейности ввиду равенства $|x| = x^+ + x^-$ следует сходимость $\sum_{j \in J} |a_j|$.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Пусть $\sum_{j \in J} a_j$ сходится. Тогда $S = \{j \in J \,|\, a_j \neq 0\}$ не более чем счётно.
+
+    \begin{proof}
+        Если $\sum_{j \in J} a_j$ сходится, то $\sum_{j \in J} |a_j| =: M < {+\infty}$.
+
+        Рассмотрим $S_n = \left\{j \in J \,|\, |a_j| > \frac{1}{n}\right\}$, следовательно, $S_n$ конечно ($|S_n| \le nM$). Следовательно, $S = \bigcup_{n = 1}^{+\infty} S_n$ не более чем счётно.
+    \end{proof}
+\end{corollary}

@@ -1,0 +1,176 @@
+% 01.02.23
+
+\subsection{Преобразование Абеля}
+\begin{definition}
+    Пусть $\{a_n\}$, $\{b_n\}$ --- (комлексные) последовательности, $m \in \N$, и пусть $A_n = \sum_{k=1}^n a_k$ для всех $n \in \N$. Тогда $a_k = A_k - A_{k-1}$ ($A_0 = 0$), и, значит,
+    \[
+        \sum_{k=m}^{n} a_k b_k = \sum_{k=m}^n (A_k - A_{k - 1})b_k = \sum_{k=m}^n A_k b_k - \sum_{k = m - 1}^{n - 1} A_k b_{k + 1}.
+    \]
+
+    Справедливо \emph{преобразование Абеля}:
+    \[
+        \sum_{k=m}^n a_k b_k = A_n b_n - A_{m - 1} b_m - \sum_{k = m}^{n - 1} A_k (b_{k + 1} - b_k).
+    \]
+\end{definition}
+
+\begin{lemma}[Абель]
+    Пусть $\{a_n\}$ --- (комплексная) последовательность, $\{b_n\}$ --- монотонная последовательность, и пусть $\forall k \ |A_k| \le M$. Тогда:
+    \[
+        \left|\sum_{k=m}^n a_k b_k \right| \le 2M(|b_m| + |b_n|).
+    \]
+
+    \begin{proof}
+        По монотонности $\{b_n\}$ знаки $b_{k + 1} - b_k$ сохраняются, поэтому:
+        \footnote{Сумма телескопируется.}
+        \[
+            \left| \sum_{k=m}^n a_k b_k \right| \le M \left(|b_n| + |b_m| + \left| \sum_{k = m}^{n - 1} (b_{k+1} - b_k) \right| \right) = M \left(|b_n| + |b_m| + |b_n - b_m| \right).
+        \]
+    \end{proof}
+\end{lemma}
+
+\begin{note}
+    Пусть $\{b_n\}$ нестрого убывает и неотрицательна, $\widetilde{M} \le A_k \le M$, тогда при $m = 1$ неравенство можно усилить:
+    \[
+        \widetilde{M} b_1 \le \sum_{k=1}^n a_k b_k \le M b_1.
+    \]
+\end{note}
+
+\label{abel-lemma}
+\begin{lemma}[Абель]
+    Пусть $f \in \mathcal{R}[a, b]$, $g$ монотонна на $[a, b]$, и пусть $\forall x \in [a, b] \ \left|\int_a^x f(t) dt\right| \le M$. Тогда:
+    \[
+        \left|\int_a^b f(x) g(x) dx\right| \le 2M(|g(a)| + |g(b)|).
+    \]
+
+    \begin{proof}
+        Зафиксируем $\varepsilon > 0$. Положим $I = \int_a^b f(x) dx$. Тогда $\exists \delta > 0 \ \forall (T, \xi) \ (|T| < \delta \rightarrow |\sigma_T (f, \xi) - I| < \frac{\varepsilon}{2})$.
+
+        Выберем одно такое разбиение $T = \{x_i\}_{i=0}^{n}$.
+
+        Пусть $T_k = \{x_i\}_{i=0}^k$ --- соответствующее разбиение $[x_0, x_k], k = 1, \ldots, n$. Числа $\sigma_{T_k} (f, \xi_k)$ и $\int_{x_0}^{x_k} f(x) dx$ лежат\footnote{По критерию Дарбу.} на отрезке $[s_{T_k}(f), S_{T_k}(f)]$, и верно $S_{T_k}(f) - s_{T_k}(f) \le S_T(f) - s_T(f)$.
+
+        \[
+            I - \frac{\varepsilon}{2} < \sigma_T (f, \xi) < I + \frac{\varepsilon}{2} ,
+        \]
+
+        \[
+            I - \frac{\varepsilon}{2} \le s_T(f) \le S_T(f) \le I + \frac{\varepsilon}{2},
+        \]
+
+        \[
+            \left|\sigma_{T_k} (f, \xi_k) - \int_{x_0}^{x_k} f(x) dx\right| \le \varepsilon.
+        \]
+
+        Положим $A_k = \sum_{i = 1}^k f(c_i) \Delta x_i.$ Тогда $A_k = \sigma_{T_k}(f, \xi_k)$ и, значит, из последнего неравенства $|A_k| \le M + \varepsilon$.
+        Применим лемму \ref{abel-lemma} для $a_k = f(c_k) \Delta x_k, b_k = g(c_k)$, получим
+        \[
+            \left|\sum_{k=1}^n f(c_k) g(c_k) \Delta x_k\right| \le 2(M + \varepsilon)(|g(c_1)| + |g(c_n)|).
+        \]
+
+        Неравенство верно для любого набора отмеченных точек, в том числе и $c_1 = a$, $c_n = b$.
+    \end{proof}
+\end{lemma}
+
+\begin{note}
+    Предельным переходом по мелкости разбиения в случае $c_1 = a, c_n = b$ получим оценку:
+
+    \[
+        \left|\int_a^b f(x) g(x) dx\right| \le 2(M + \varepsilon)\left(|g(a)| + |g(b)|\right).
+    \]
+
+    Перейдём к $\varepsilon \rightarrow 0$:
+    \[
+        \left|\int_a^b f(x) g(x) dx\right| \le 2M\left(|g(a)| + |g(b)|\right).
+    \]
+\end{note}
+
+
+\begin{problem}[формула Бонне]
+    Пусть $f \in R[a, b]$, $g$ нестрого убывает и неотрицательна на $[a, b]$. Доказать, что $\exists c \in [a, b]$, такое, что выполняется
+
+    \[
+        \int_a^b f(x) g(x) dx = g(a) \int_a^c f(x) dx.
+    \]
+\end{problem}
+
+Выбором $a$ из формулы Бонне можно получить \emph{вторую интегральную теорему о среднем}.
+
+\section{Несобственный интеграл Римана}
+\subsection{Основные понятия}
+
+\begin{definition}
+    Функция $f$ называется \emph{локально интегрируемой по Риману на промежутке $I$}, если $\forall [a, c] \subset I \hookrightarrow f \in \mathcal{R}[a, c]$.
+
+    \example{Всякая непрерывная на промежутке функция локально интегрируема на этом промежутке.}
+\end{definition}
+
+\begin{definition}
+    Пусть $-\infty < a < b \le +\infty$, и $f$ локально интегрируема на $[a, b)$. Предел
+    \[
+        \int_a^b f(x) dx \coloneqq \lim_{c \rightarrow b-0} \int_a^c f(x) dx
+    \]
+    называется \emph{несобственным интегралом (Римана) от $f$ на $[a, b)$}.
+
+    Если предел существует и конечен, то интеграл $\int_a^b f(x) dx$ называется \emph{сходящимся}, иначе --- \emph{расходящимся}.
+\end{definition}
+
+\begin{note}
+    Пусть $b \in \R$, функция $f$ локально интегрируема и \emph{ограничена} на $[a, b)$. Тогда по свойствам определённого интеграла $f \in \mathcal{R}[a, b]$ (при любом доопределении в точке $b$). В силу непрерывности интеграла с переменным верхним пределом:
+    \[
+        \lim_{c \rightarrow b - 0} \int_a^c f(x) dx = \int_a^b f(x) dx.
+    \]
+
+    Следовательно, несобственный интеграл совпадает с определённым интегралом.
+
+    Поэтому новая ситуация может возникать лишь если:
+    \begin{itemize}
+        \item $b = +\infty$,
+        \item $b \in \R$, $f$ неограничена на $[a, b)$.
+    \end{itemize}
+
+    Аналогично определяется несобственный интеграл от $f$ по $(a, b]$, $-\infty \le a < b < +\infty$.
+\end{note}
+
+Некоторые свойства переносятся предельным переходом из аналогичных свойств определённого интеграла:
+
+\begin{property}[принцип локализации]
+    Пусть $f$ локально интегрируема на $[a, b)$, $a^* \in (a, b)$. Тогда интегралы $\int_{a^*}^b f(x) dx$ и $\int_a^b f(x) dx$ сходятся или расходятся одновременно, и если сходятся, то
+    \label{eqn-2-1}
+    \begin{equation}
+        \int_a^b f(x) dx = \int_a^{a^*} f(x) dx + \int_{a^*}^b f(x) dx
+    \end{equation}
+
+    \begin{proof}
+        Если $c \in (a, b)$, то по свойству аддитивности определённого интеграла верно:
+        \[
+            \int_a^c f(x) dx = \int_a^{a^*} f(x) dx + \int_{a^*}^c f(x) dx.
+        \]
+
+        Поэтому пределы $\lim_{c \rightarrow b - 0} \int_{a^*}^{c} f(x) dx = \int_{a^*}^b f(x) dx$ и $\lim_{c \rightarrow b - 0} \int_a^c f(x) dx = \int_a^b f(x) dx$ существуют (конечны) одновременно. Равенство \ref{eqn-2-1} получается из равенства для определённых интегралов переходом к пределу $c \rightarrow b - 0$.
+    \end{proof}
+\end{property}
+
+Следующие три свойства доказываются аналогично.
+
+\begin{property}[линейность] 
+    Пусть несобственные интегралы $\int_a^b f(x) dx$ и $\int_a^b g(x) dx$ сходятся, и $\alpha, \beta \in \R$. Тогда сходится интеграл $\int_a^b \left(\alpha f(x) + \beta g(x)\right) dx$ и
+    \[
+        \int_a^b \left(\alpha f(x) + \beta g(x)\right) dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx.
+    \]
+\end{property}
+
+\begin{property}[формула Ньютона-Лейбница]
+    Пусть $f$ локально интегрируема на $[a, b)$ и $F$ --- первообразная $f$ на $[a, b)$. Тогда
+    \[
+        \int_a^b f(x) dx = F(b - 0) - F(a) = F \vert_a^{b - 0}.
+    \]
+\end{property}
+
+\begin{property}[интегрирование по частям]
+    Пусть $F, G$ дифференцируемы, а их производные $f, g$ локально интегрируемы на $[a, b)$. Тогда
+    \[
+        \int^b_a F(x) g(x) dx = F(x)G(x)\vert^{b - 0}_a - \int_a^b G(x) f(x) dx.
+    \]
+
+    Существование двух из трёх конечных пределов влечёт существование третьего и выполнение равенства.
+\end{property}

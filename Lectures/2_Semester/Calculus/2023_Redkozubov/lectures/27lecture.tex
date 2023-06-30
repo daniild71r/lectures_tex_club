@@ -1,0 +1,125 @@
+%03.05.23
+
+\begin{definition}
+    Счетное пересечение открытых множеств называется множествами типа $G_{\delta}$.
+
+    Счетное объединение замкнутых множеств называется множествами типа $F_{\sigma}$.
+\end{definition}
+
+\begin{note}
+    Множества типа $G_{\delta}$ и $F_{\sigma}$ являются борелевскими.
+\end{note}
+
+\begin{theorem}[критерий измеримости]
+    Множество $E$ измеримо $\lra$ существует множество $\Omega$ типа $G_{\delta}$, что $E \subset \Omega$ и $\mu(\Omega \setminus E) = 0$.
+\end{theorem}
+
+\begin{proof}
+    Докажем первое утверждение.
+
+    $(\Rightarrow)$ Для каждого $k \in \N$ найдется такое открытое $G_{k} \supset E$ с $\mu(G_{k} \setminus E) \leq \frac{1}{k}$. Положим $\Omega = \bigcap_{k=1}^{\infty}G_{k}$, тогда $E \subset \Omega$, и $\mu(\Omega \setminus E) \leq \mu(G_{k} \setminus E) \leq \frac{1}{k}$, откуда $\mu(\Omega \setminus E) = 0$.
+
+    $(\Leftarrow)$ Поскольку $E = \Omega \setminus (\Omega \setminus E)$ есть разность двух измеримых множеств, то $E$ измеримо.
+\end{proof}
+
+\begin{note}
+    Множество $E$ измеримо $\lra$ существует множество $\Delta$ типа $F_{\sigma}$, что $\Delta \subset E$ и $\mu(E \setminus \Delta) = 0$.
+\end{note}
+
+\begin{theorem}[критерий измеримости]
+    Пусть $\mu^{*}(E) < \infty$. Множество $E$ измеримо $\lra$ существуют брусы $B_{1}, \ldots, B_{N}$, такие что $\forall \epsilon > 0 \ \mu^{*}(E \triangle \bigcup_{k = 1}^{N} B_{k}) < \epsilon$.
+\end{theorem}
+
+\begin{proof}
+
+    $(\Rightarrow)$ Зафиксируем $\epsilon > 0$. Если $E$ измеримо, то $\exists \underbrace{\{B_{k}\}_{k = 1}^{\infty}}_{\text{брусы}}$, такие что $E \subset \bigcup_{k = 1}^{\infty}B_{k}$ и $\sum_{k = 1}^{+\infty}|B_{k}| < \mu^{*}(E) + \frac{\epsilon}{2}$. Так как ряд $\sum_{k = 1}^{+\infty}|B_{k}|$ сходится, то $\exists N \left(\sum_{k = N + 1}^{+\infty}|B_{k}| < \frac{\epsilon}{2}\right)$.
+
+    Положим $C = \bigcup_{k = 1}^{N} B_{k}$. Тогда:
+    \[\mu^{*}(E \triangle C) \leq \mu^{*}(E \setminus C) + \mu^{*}(C \setminus E) \leq \mu^{*}\left(\bigcup_{k = N + 1}^{+\infty}B_{k}\right) + \mu^{*}\left(\bigcup_{k = 1}^{+\infty}B_{k} \setminus E\right) \leq\]
+    \[\leq \sum_{k = N + 1}^{+\infty}|B_{k}| + \sum_{k = 1}^{+\infty}|B_{k}| - \mu^{*}(E) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.\]
+
+    $(\Leftarrow)$ Пусть $\mu^{*}(E \triangle C) < \epsilon$. Тогда тем более $\mu^{*}(E \setminus C) < \epsilon$ и $\mu^{*}(C \setminus E) < \epsilon$. Поскольку $E \subset C \cup (E \setminus C)$ и $E^{c} \subset C^{c} \cup (C \setminus E)$, то для любого $A \subset \R^{n}$ имеем
+    \[\mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c}) \leq \mu^{*}(A \cap C) + \mu^{*}(A \cap (E \setminus C)) + \mu^{*}(A \cap C^{c}) + \mu^{*}(A \cap (C \setminus E)) \leq\]
+    \[\leq \mu^{*}(A \cap C) + \mu^{*}(A \cap C^{c}) + \mu^{*}(E \setminus C) + \mu^{*}(C \setminus E) < \mu^{*}(A) + 2\epsilon.\]
+
+    Следовательно, $\mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c}) \leq \mu^{*}(A)$. Значит, $E$ измеримо.
+\end{proof}
+
+\section{Интеграл Лебега}
+
+\subsection{Измеримые функции}
+
+Пусть $E$ измеримо и $f: E \to \overline{\R}$.
+\begin{definition}
+    Функция $f$ называется \textit{измеримой} (по Лебегу), если $\{x \in E: f(x) < a\} = f^{-1}([-\infty, a))$ измеримо для всех $a \in \R$.
+\end{definition}
+
+\begin{lemma}
+    Пусть $f: E \to \R$. Тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $f$ измеримо;
+        \item $f^{-1}(U)$ измеримо для любого открытого $U$ в $\overline{\R}$;
+        \item $f^{-1}(\Omega)$ для любого борелевского $\Omega$ в $\overline{\R}$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Рассмотрим $\mathcal{A} = \{A \in B(\overline{\R}): f^{-1}(A) \text{ измеримо}\}$. Так как $\emptyset \in \mathcal{A}$, $E \setminus f^{-1}(A) = f^{-1}(\overline{\R} \setminus A) \Rightarrow (A \in \mathcal{A} \Rightarrow \overline{\R} \setminus A \in \mathcal{A})$ и $f^{-1}(\bigcup_{i = 1}^{\infty}A_{i}) = \bigcup_{i = 1}^{\infty}f^{-1}(A_{i}) \Rightarrow \bigcup_{i = 1}^{\infty}A_{i} \in \mathcal{A}$, то $\mathcal{A}$ образует $\sigma$-алгебру. $\mathcal{A}$ содержит все лучи $[-\infty, a)$. Следовательно, $B(\overline{\R}) = \mathcal{A}$, то есть $(1 \Rightarrow 3)$.
+
+    Импликации $(3 \Rightarrow 2 \Rightarrow 1)$ очевидны.
+\end{proof}
+
+\begin{note}
+    В определении измеримой функции $<$ можно заменить на $\leq, >, \geq$. Это следует из следующих равенств:
+
+    \[\{x: f(x) \leq a\} = \bigcap_{k = 1}^{\infty}\{x: f(x) < a + \frac{1}{k}\},\]
+    \[\{x: f(x) \geq a\} = \bigcap_{k = 1}^{\infty}\{x: f(x) > a - \frac{1}{k}\},\]
+    \[\{x: f(x) > a\} = E \setminus \{x: f(x) \leq a\},\]
+    \[\{x: f(x) < a\} = E \setminus \{x: f(x) \geq a\}.\]
+\end{note}
+
+\begin{example}
+    \begin{enumerate}
+        \item Пусть $A \subset \R^{n}$, Определим \textit{индикатор (характеристическую функцию)} $A$:
+        \[\I_{A}: \R^{n} \to \R^{n}, \ \I_{A}(x) = \begin{cases}
+            1, \ x \in A;\\
+            0, \ x \not\in A.
+        \end{cases}\]
+        Поскольку $\{x: \I_{A}(x) < a\}$ пусто при $a \leq 0$, совпадает с $A^{c}$ при $a \in (0, 1]$ и совпадает с $\R^{n}$ при $a > 1$, то функция $\I_{A}$ является измеримой $\lra$ $A$ измеримо.
+        \item Пусть $f: E \to \R$ непрерывна и измерима на $E$. По критерию непрерывности $f^{-1}(-\infty, a)$ открыто в $E$, то есть $\exists \underbrace{G}_{\text{откр. в } \R^{n}}: f^{-1}(-\infty, a) = E \cap G$. Следовательно, $f^{-1}(-\infty, a)$ измеримо как пересечение измеримых множеств.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    Если $f, g: E \to \R$ измеримые и $\lambda \in \R$, то $f + g, \lambda f, |f|, fg$ также измеримы.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Докажем измеримость суммы. Поскольку $\alpha < \beta \lra \exists r \in \Q (\alpha < r < \beta)$, $\Q = \{r_{k}\}_{k = 1}^{\infty}$, то 
+        \[\{x \in E: f(x) + g(x) < a\} = \{x \in E: f(x) < a - g(x)\} = \bigcup_{k = 1}^{\infty}\{x \in E: f(x) < r_{k} < a - g(x)\} = \]
+        \[= \bigcup_{k = 1}^{\infty}\{x \in E: f(x) < r_{r}\} \cap \{x \in E: g(x) < a - r_{k}\}.\]
+    
+        Следовательно, $\{x \in E: f(x) + g(x) < a\}$ измеримо.
+
+        \item Пусть $\lambda > 0$, тогда $\{x \in E: \lambda f(x) < a\} = \{x \in E: f(x) < \frac{a}{\lambda}\}$ измеримо.
+    
+        Если $\lambda = 0$, то тривиально. Если $\lambda < 0$, то аналогично.
+
+        \item Так как $\{x \in E: f^{2}(x) < a\} = \{x \in E: f(x) < \sqrt{a}\} \cap \{x \in E: f(x) > -\sqrt{a}\}$ измеримо $\forall a > 0$.
+    
+        Если $a \leq 0$, то $\{x \in E: f^{2}(x) < a\} = \emptyset$ -- измеримо.
+    
+        Следовательно, $f^{2}$ -- измеримая функция. Аналогично для $|f|$.
+    
+        Так как $fg = \frac{1}{2}\left((f + g)^{2} - f^{2} - g^{2}\right)$, то $fg$ измерима.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    Пусть $g: E \to \R$ измерима, $g \neq 0$ на $E$. Докажите, что $\frac{f}{g}$ измерима.
+\end{problem}
+
+\begin{note}
+    Теорема остается справедливой для функций со значениями в $\overline{\R}$, если операции допустимы. Например, для $f + g$ необходимо $f^{-1}(-\infty) \cap g^{-1}(+\infty) = \emptyset$ и $f^{-1}(+\infty) \cap g^{-1}(-\infty) = \emptyset$.
+\end{note}

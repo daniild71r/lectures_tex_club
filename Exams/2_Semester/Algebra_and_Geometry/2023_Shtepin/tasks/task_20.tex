@@ -1,0 +1,84 @@
+\section{20. Ортонормированные базисы и ортогональные (унитарные) матрицы. Существование ортонормированного базиса в пространстве со скалярным произведением. Изоморфизм евклидовых и эрмитовых пространств. Канонический изоморфизм евклидова пространства и сопряженного к нему.}
+
+\begin{definition}
+    Система векторов $x_1, x_2, \dots x_k$ называется ортогональной тогда и только тогда, когда 
+    $(x_i, x_j) = 0$ для всех $i \neq j$.
+\end{definition}
+
+\begin{definition}
+    Система векторов $x_1, x_2, \dots x_k$ называется ортонормированной тогда и только тогда, когда 
+    она ортогональна и нормирована. Нормированность означает, что $(x_i, x_i) = 1$ для всех $i$.
+\end{definition}
+
+\begin{definition}
+    Система подпространств $U_1$, $U_2, \dots$, $U_k$ называется ортогональной тогда и только тогда,
+    когда для любой системы векторов $u_1 \in U_1$, $u_2 \in U_2$, $\dots u_k \in U_k$ верно, 
+    что она ортогональна.
+\end{definition}
+
+\begin{definition}
+    Матрица $A \in M_n(\R)$ называется ортогональной, если $A^T A = E$, откуда так же $A A^T = E$.
+\end{definition}
+
+\begin{definition}
+    Матрица $A \in M_n(\Cm)$ называется унитарной, если $\tilde{A^T} A = E = A \tilde{A^T}$.
+\end{definition}
+ 
+\begin{proposition}
+    Пусть $V$ - пространство со скалярным произведением, $e$ - ортонормированный базис в $V$, 
+    $f$ - произвольный базис в $V$. Тогда матрица перехода $S = S_{e \to f}$ является 
+    ортонональной тогда и только тогда, когда $f$ - ортонормированный базис.
+\end{proposition}
+
+\begin{proof}
+    Пусть $f(x, y)$ имеет матрицу $\Gamma$. Тогда так как $e$ - ортонормированный базис, $\Gamma(e) = E$.
+    Тогда $\Gamma(f) = S^T \Gamma(e) \tilde{S} = S^T \tilde{S}$.
+\end{proof}
+
+\begin{proposition}
+    Пусть $V$ - пространство со скалярным произведением. Тогда в нём существует ортонормированный базис.
+\end{proposition}
+
+\begin{proof}
+    Пусть $f(x, y) = (x, y)$, тогда для неё существует канонический базис, в котором $f$ имеет 
+    матрицу $E$. $f(e_i, e_j) = (e_i, e_j) = \delta_{ij}$, откуда этот базис - ортонормированный.
+\end{proof}
+
+\begin{definition}
+	Пусть $V_1$ и $V_2$ "--- евклидовы (эрмитовы) пространства. Отображение $\phi: V_1 \rightarrow V_2$ называется \textit{изоморфизмом евклидовых (эрмитовых) пространств}, если:
+	\begin{enumerate}
+		\item $\phi$ "--- изоморфизм линейных пространств $V_1$ и $V_2$
+		\item $\forall \overline{u}, \overline{v} \in V_1: (\overline{u}, \overline{v}) = (\phi(\overline{u}), \phi(\overline{v}))$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Пусть $V_1$ и $V_2$ "--- евклидовы (эрмитовы) пространства. Тогда $V_1 \cong V_2 \hm\lra \dim{V_1} = \dim{V_2}$.
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Leftarrow$]Пусть $e_1$, $e_2$ "--- ортонормированные базисы в $V_1$ и $V_2$, $\phi$ "--- линейное отображение такое, что $\phi(e_1) = e_2$. Тогда $\phi$ "--- изоморфизм линейных пространств, причем для любых $\overline{u}, \overline{v} \in V_1$, $\overline{u} \leftrightarrow_{e_1} x, \overline{v} \leftrightarrow_{e_1} y$, выполнено $(\overline{u}, \overline{v}) = x^TE\overline{y} \hm{=} x^T\overline{y} = (\phi(\overline{u}), \phi(\overline{v}))$.
+		\item[$\Rightarrow$]Поскольку $V_1 \cong V_2$, то они в частности изоморфны как линейные пространства, откуда $\dim{V_1} = \dim{V_2}$.\qedhere
+	\end{itemize}
+\end{proof}
+
+Рассмотрим $V$ "--- евклидово пространство.
+
+\begin{definition}
+	\textit{Сопряженным к V пространством} называется пространство линейных функционалов на $V$. Обозначение "--- $V^*$.
+\end{definition}
+
+\begin{theorem}
+	Для каждого $\overline{v} \in V$ положим $f_{\overline{v}}(\overline{u}) := (\overline{v}, \overline{u})$. Тогда сопоставление $\overline{v} \mapsto f_{\overline{v}}$ осуществляет изоморфизм между $V$ и $V^*$.
+\end{theorem}
+
+\begin{proof}
+	Проверим, что заданное сопоставление линейно:
+	\begin{gather*}
+		f_{\overline{v_1} + \overline{v_2}}(\overline{u}) = (\overline{v_1} + \overline{v_2}, \overline{u}) = (\overline{v_1}, \overline{u}) + (\overline{v_2}, \overline{u}) = f_{\overline{v_1}}(\overline{u}) + f_{\overline{v_2}}(\overline{u})\\
+		f_{\alpha\overline{v}}(\overline{u}) = (\alpha\overline{v}, \overline{u}) = \alpha(\overline{v}, \overline{u}) = \alpha f_{\overline{v}}(\overline{u})
+	\end{gather*}
+	
+	Поскольку $\dim{V} = \dim{V^*}$ и отображение линейно, то нам достаточно проверить его инъективность, что эквивалентно условию $\forall \overline{v} \in V, \overline{v} \ne \overline{0}: f_{\overline{v}} \ne 0$. Но это условие выполнено в силу положительной определенности скалярного произведения: $\forall \overline{v} \in V, \overline{v} \ne \overline{0}: f_{\overline{v}}(\overline{v}) \hm= (\overline{v}, \overline{v}) > 0$.
+\end{proof}

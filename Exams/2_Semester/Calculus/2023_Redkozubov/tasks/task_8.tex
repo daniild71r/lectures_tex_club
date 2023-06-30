@@ -1,0 +1,312 @@
+\section{8. Брусы в $\R^n$ и их объем. Представление открытого множества в виде объединения кубов. Алгебры и $\sigma$-алгебры, борелевская $\sigma$-алгебра. Внешняя мера Лебега и ее свойства. Измеримые множества, измеримость множеств внешней меры нуль и полупространств. Теорема Каратеодори: $\sigma$-алгебра измеримых множеств, мера Лебега и ее счетная аддитивность. Непрерывность меры Лебега. Измеримость брусов, борелевских имножеств. Критерии измеримости множества: приближение борелевскими, приближение брусами. Пример неизмеримого множества.}
+
+\begin{definition}
+    \textit{Брусом} в $\R^{n}$ называется множество вида $B = I_{1} \times \ldots \times I_{n}$, где $I_{k}$ -- ограниченный промежуток. Если $a_{k} \leq b_{k}$ -- концы $I_{k}$, то $|B| = (b_{1} - a_{1})\cdot \ldots \cdot(b_{n} - a_{n})$ называется \textit{объемом} бруса $B$.
+
+    Если хотя бы один из промежутков $I_k$ вырожденный, то брус $B$ называется \emph{вырожденным}, в частности, $\emptyset$ --- вырожденный брус. Объём вырожденного бруса равен 0.
+
+    Если все $I_{k}$ -- отрезки, то брус называется \textit{замкнутым}.
+    
+    Если все $I_{k}$ -- интервалы, то брус называется \textit{открытым}.
+
+\end{definition}
+
+\begin{property}
+    \label{brus-prop1}
+    Если $B, B_1, \ldots, B_m$ --- брусы и $B \subset \bigcup_{i = 1}^m B_i$, то $|B| \le \sum_{i = 1}^m |B_i|$.
+
+    \begin{proof}
+        Если $I \subset \R$ --- ограниченный промежуток, то
+        \begin{gather*}
+            |I| - 1 \le \#(I \cap \Z) \le |I| + 1,\\
+            N|I| - 1 \le \#(NI \cap \Z) \le N|I| + 1,\\
+            |I| - \frac{1}{N} \le \frac{1}{N}\#\left(I \cap \frac{1}{N}\Z\right) \le |I| + \frac{1}{N},\\
+            |I| = \lim_{N \rightarrow \infty} \frac{1}{N}\#\left(I \cap \frac{1}{N}\Z\right).
+        \end{gather*}
+
+        Пусть $B = I_1 \times \ldots \times I_n$, тогда
+        \[
+            |B| = \lim_{N \rightarrow \infty} \bigsqcap_{j = 1}^n \frac{1}{N} \#\left(I_j \cap \frac{1}{N}\Z\right) = \lim_{N \rightarrow \infty} \frac{1}{N^n} \#\left(B \cap \frac{1}{N}\Z^n\right).
+        \]
+
+        Если $B \subset \bigcup_{i = 1}^m B_i$, то
+        \[
+            \frac{1}{N^n} \#\left(B \cap \frac{1}{N}\Z^n\right) \le \frac{1}{N^n} \sum_{i = 1}^n \#\left(B_{i} \cap \frac{1}{N}\Z^n\right).
+        \]
+
+        Предельный переход $N \rightarrow \infty$ завершает доказательство.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    \label{brus-prop2}
+    Для любого бруса $B$ и $\epsilon > 0$ найдутся замкнутый брус $B'$ и открытый брус $B^o$, так что $B' \subset B \subset B^o$ и $|B'| > |B| - \epsilon$, $|B^o| < |B| + \epsilon$.
+
+    \begin{proof}
+        Пусть $B = I_1 \times \ldots \times I_n$, где $I_k$ --- ограниченный промежуток с концами $a_k \le b_k$.
+
+        Если $|B| > 0$, то положим
+        \begin{gather*}
+            B'_\delta = [a_1 + \delta, b_1 - \delta] \times \ldots \times [a_n + \delta, b_n - \delta]\\
+            B_\delta^o = (a_1 - \delta, b_1 + \delta) \times \ldots \times (a_n - \delta, b_n + \delta)
+        \end{gather*}
+
+        Так как $|B_{\delta}'|$, $|B_{\delta}^{o}| \to |B|$ при $\delta \to +0$, то искомые брусы существуют и определяются выбором $\delta$. Если же $B$ -- вырожденный брус, то положим $B' = \emptyset$, $B_{\delta}^{o}$ как выше.
+    \end{proof}
+\end{property}
+
+\begin{lemma}
+    \label{lebeg-lem1}
+    Каждое непустое открытое множество $U$ в $\R^{n}$ представимо в виде счетного объединения непересекающихся кубов (брусов, у которых длины ребер равны).
+\end{lemma}
+
+\begin{proof}
+    Куб $\left[\frac{k_{1}}{2^{m}};\frac{k_{1} + 1}{2^{m}}\right) \times \ldots \times \left[\frac{k_{n}}{2^{m}};\frac{k_{n} + 1}{2^{m}}\right)$, где $k_{i} \in \Z$, $m \geq 0$, будем называть двоичным $m$-го ранга.
+
+    Обозначим через $A_{0}$ множество всех кубов ранга 0, содержащихся в $U$. Если множества $A_{0}, \ldots, A_{m - 1}$ уже определены, то обозначим через $A_{m}$ множество всех кубов ранга $m$, содержащихся в $U$ и не лежащих ни в одном кубе из $A_{0}, \ldots, A_{m - 1}$. Положим $A = \bigcup_{m = 0}^{\infty}A_{m}$. Тогда $A$ -- счетное множество непересекающихся кубов. Покажем, что $U = \bigcup_{Q \in A}Q$. Пусть $x \in U$. Ввиду открытости $U$ существует шар $\overline{B_{r}}(x) \subset U$. Если $m$ таково, что $\frac{\sqrt{n}}{2^{m}} \leq r$, то содержащий точку $x$ куб $Q_{m}(x)$ ранга $m$ удовлетворяет включению $Q_{m}(x) \subset \overline{B_{r}}(x)$ и, значит, множество $\{m \in \N_{0}: Q_{m}(x) \subset U\}$ непусто. Обозначим через $m_{0}$ его минимум. Тогда $Q_{m}(x) \not\subset U$ при $m < m_{0}$, а $Q_{m_{0}}(x) \subset U$. Следовательно, $Q_{m_{0}}(x) \in A_{m_{0}}$ и поэтому $x \in \bigcup_{Q \in A}Q$. Учитывая, что обратное включение очевидно, равенство установлено.
+\end{proof}
+
+\begin{definition}
+    Семейство $\mathcal{A} \subset \mathcal{P}(\R^{n})$ называется \textit{алгеброй}, если 
+
+    \begin{enumerate}
+        \item $\emptyset \in \mathcal{A}$;
+        \item если $E \in \mathcal{A}$, то $E^{c} = \R^{n} \setminus E \in \mathcal{A}$;
+        \item если $E, F \in \mathcal{A}$, то $E \cup F \in \mathcal{A}$.
+    \end{enumerate}
+
+    Алгебра $\mathcal{A}$ называется \textit{$\sigma$-алгеброй}, если выполнено условие
+    
+    \begin{enumerate}
+        \item[3'.] если $E_{k} \in \mathcal{A}$, $k \in \N$, то $\bigcup_{k = 1}^{\infty}E_{k} \in \mathcal{A}$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}~
+
+    \begin{enumerate}
+        \item $\sigma$-алгебра, содержащая все одноэлементные множества, также содержит все не более чем счетные множества и множества, дополнение к которым не более чем счетно.
+        \item $\mathcal{B}(\R^{n})$ -- минимальная по включению $\sigma$-алгебра, содержащая все открытые множества (\textit{борелевская} $\sigma$-\textit{алгебра}). Чтобы установить существование $\mathcal{B}(\R^{n})$, необходимо рассмотреть пересечение всех $\sigma$-алгебр, содержащие открытые множества.
+    \end{enumerate}
+\end{example}
+
+
+\begin{definition}
+    \textit{Внешней мерой Лебега} множества $E \subset \R^{n}$ называется величина
+    \[\mu^{*}(E) = \inf\left\{\sum_{i = 1}^{\infty}|B_{i}|: E \subset \bigcup_{i = 1}^{\infty}B_{i}\right\},\]
+    где инфимум берется по всем счетным наборам $\{B_{i}\}$, покрывающих $E$.
+
+    Очевидно, $0 \leq \mu^{*}(E) \leq +\infty$.
+\end{definition}
+
+\begin{theorem}
+    Внешняя мера обладает следующими свойствами
+    \begin{enumerate}
+        \item если $E \subset F$, то $\mu^{*}(E) \leq \mu^{*}(F)$ (монотонность);
+        \item если $E = \bigcup_{k = 1}^{\infty} E_{k}$, то $\mu^{*}(E) \leq \sum_{k = 1}^{\infty}\mu^{*}(E_{k})$ (счетная полуаддитивность);
+        \item $\mu^{*}(R) = |R|$ для любого бруса $R$ (нормировка).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Докажем пункт 2. Будем предполагать, что $\mu^{*}(E) < +\infty$, иначе утверждение очевидно. Зафиксируем $\epsilon > 0$ и рассмотрим семейство брусов $\{B_{i, k}\}_{i = 1}^{\infty}$, образующее покрытие $E_{k}$, такие что
+    \[\sum_{i = 1}^{\infty}|B_{i, k}| < \mu^{*}(E_{k}) + \frac{\epsilon}{2^{k}}.\]
+
+    Семейство $\{B_{i, k}\}_{i, k = 1}^{\infty}$ образуют покрытие $E = \bigcup_{k = 1}^{\infty}E_{k}$ и 
+    \[\mu^{*}(E) \leq \sum_{k = 1}^{+\infty}\sum_{i = 1}^{+\infty}|B_{i, k}| \leq \sum_{k = 1}^{+\infty}\left(\mu^{*}(E_{k}) + \frac{\epsilon}{2^{k}}\right) = \sum_{k = 1}^{+\infty} \mu^{*}(E_{k}) + \epsilon.\]
+    Так как $\epsilon > 0$ -- любое, то пункт 2 установлен.
+
+    Докажем пункт 3. Так как $\{R\}$ -- покрытие $R$ брусом, то $\mu^{*}(R) \leq |R|$. Покажем, что $\mu^{*}(R) \geq |R|$.
+    
+    Сначала для случая, когда $R$ -- замкнуто. Нам достаточно показать, что $|R| \leq \sum_{i = 1}^{\infty}|B_{i}|$ для всякого покрытия $R$ брусами $B_{i}$. Зафиксируем $\epsilon > 0$. Тогда по свойству брусов (\ref{brus-prop2}) $\exists \underbrace{B_{i}^{o}}_{\text{отк. брус}} \supset B_{i}$ и $|B_{i}^{o}| < |B_{i}| + \frac{\epsilon}{2^{i}}$. Так как $R \subset \bigcup_{i = 1}^{\infty}B_{k}^{o}$ и $R$ -- компакт, то по свойству брусов (\ref{brus-prop1})
+    \[R \subset \bigcup_{i = 1}^{N}B_{i}^{o} \Rightarrow |R| \leq \sum_{i = 1}^{N}|B_{i}^{o}| \Rightarrow |R| \leq \sum_{i = 1}^{\infty}\left(|B_{i}| + \frac{\epsilon}{2^{i}}\right) = \sum_{i = 1}^{\infty}|B_{i}| + \epsilon.\]
+    Так как $\epsilon > 0$ -- любое, то $|R| \leq \sum_{i = 1}^{\infty}|B_{i}|$.
+
+    Пусть $R$ -- произвольный брус. Тогда для $\epsilon > 0$ по свойству (\ref{brus-prop2}) $\exists \underbrace{R'}_{\text{замк. брус}} \subset R \ (|R'| > |R| - \epsilon)$. Тогда 
+    \[\mu^{*}(R) \geq \mu^{*}(R') = |R'| > |R| - \epsilon.\]
+    Так как $\epsilon > 0$ -- любое, то $\mu^{*}(R) \geq |R|$.
+\end{proof}
+
+\begin{definition}
+    Множество $E \subset \R^{n}$ называется \textit{измеримым (по Лебегу)}, если для любого $A \subset \R^{n}: \mu^{*}(A) = \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c})$. 
+\end{definition}
+
+\begin{example}
+    Если $\mu^{*}(E) = 0$, то $E$ измеримо. 
+
+    Действительно, $\mu^{*}(A \cap E) \leq \mu^{*}(E) = 0$, $\mu^{*}(A \cap E) \leq \mu^{*}(A)$ из монотонности $\mu^{*}$. Тогда $\mu^{*}(A) \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c})$.
+\end{example}
+
+\begin{example}
+    \label{lebeg-ex2}
+    Для всякого $a \in \R$ и $k \in \{1, \ldots, n\}$ полупространство $H = H_{a, k} = \{x = (x_{1}, \ldots, x_{n})^{T}: x_{k} < a\}$ измеримо.
+
+    Рассмотрим $A \subset \R^{n}$ и произвольное покрытие $\{B_{i}\}_{i = 1}^{\infty}$. Брусами определим
+    \[B_{i}^{1} = B_{i} \cap H, \ B_{i}^{2} = B_{i} \cap H^{c}.\]
+    Тогда $B_{i}^{1}, B_{i}^{2}$ -- брусы. $\{B_{i}^{1} \cap H\}_{i = 1}^{\infty}$ -- покрытие $A \cap H$. $\{B_{i}^{2} \cap H^{c}\}_{i = 1}^{\infty}$ -- покрытие $A \cap H^{c}$.
+
+    \[\sum_{i = 1}^{\infty}|B_{i}| = \sum_{i = 1}^{\infty}|B_{i}^{1}| + \sum_{i = 1}^{\infty}|B_{i}^{2}| \geq \mu^{*}(A \cap H) + \mu^{*}(A \cap H^{c}).\]
+
+    Следовательно, переходя к $\inf$, $\mu^{*}(A) \geq \mu^{*}(A \cap H) + \mu^{*}(A \cap H^{c})$.
+
+    Аналогичное утверждение верно и для других неравенств между $x_{k}$ и $a$.
+\end{example}
+
+\begin{theorem}[Каратеодори]
+    Совокупность $\mathcal{M}$ всех измеримых множеств в $\R^{n}$ образует $\sigma$-алгебру. Сужение $\mu^{*}\lvert_{\mathcal{M}}$ счетно аддитивно.
+\end{theorem}
+
+\begin{proof}
+    $\emptyset \in \mathcal{M}$, $E \in \mathcal{M} \Rightarrow E^{c} \in \mathcal{M}$.
+
+    \begin{enumerate}
+        \item Пусть $E, F \in \mathcal{M}$. Покажем, что $E \cup F \in \mathcal{M}$.
+
+        Пусть $A \subset \R^{n}$, тогда
+        \[\mu^{*}(A \cap (E \cup F)) + \mu^{*}(A \cap (E \cup F)^{c}) = \mu^{*}(A \cap (E \cup F) \cap E) + \mu^{*}(A \cap (E \cup F) \cap E^{c}) + \mu^{*}(A \cap (E \cup F)^{c}) =\] \[= \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c} \cap F) + \mu^{*}(A \cap E^{c} \cap F^{c}) = \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c}) = \mu^{*}(A).\]
+
+        \item Пусть $\{E_{k}\} \subset \mathcal{M}$, причем $E_{i} \cap E_{j} = \emptyset$ при $i \neq j$. Покажем, что $F = \bigcup_{k = 1}^{\infty} E_{k} \in \mathcal{M}$.
+
+        Положим $F_{n} = \bigcup_{k = 1}^{n}E_{k}$. Если $A \subset \R^n$, то
+        \[\mu^{*}(A \cap F_{n}) = \mu^{*}(A \cap F_{n} \cap E_{n}) + \mu^{*}(A \cap F_{n} \cap E_{n}^{c}) = \mu^{*}(A \cap E_{n}) + \mu^{*}(A \cap F_{n - 1}).\]
+        Продолжая процесс, получим $\mu^{*}(A \cap F_{n}) = \sum_{k = 1}^{n}\mu^{*}(A \cap E_{k})$.
+
+        Поскольку $F_{n} \in \mathcal{M}$, то
+        \[\mu^{*}(A) = \mu^{*}(A \cap F_{n}) + \mu^{*}(A \cap F_{n}^{c}) \geq \sum_{k = 1}^{n} \mu^{*}(A \cap E_{k}) + \mu^{*}(A \cap F^{c}).\]
+        Переходя к пределу при $n \to \infty$, получим $\mu^{*}(A) \geq \sum_{k = 1}^{\infty}\mu^{*}(A \cap E_{k}) + \mu^{*}(A \cap F^{c})$. Откуда по свойству счетной полуаддитивности
+        \[\mu^{*}(A) \geq \sum_{k = 1}^{\infty}\mu^{*}(A \cap E_{k}) + \mu^{*}(A \cap F_{c}) \geq \mu^{*}(A \cap F) + \mu^{*}(A \cap F^{c}) \geq \mu^{*}(A).\]
+        Это доказывает, что $F \in \mathcal{M}$. Если еще положить $A = F$, то $\mu^{*}(F) = \sum_{k = 1}^{\infty}\mu^{*}(E_{k})$.
+
+        \item Пусть $\{A_{k}\} \subset \mathcal{M}$. Покажем, что $A = \bigcup_{k = 1}^{\infty}A_{k} \in \mathcal{M}$.
+
+        Положим $E_{1} = A_{1}$, $E_{k} = A_{k} \setminus \bigcup_{i < k} E_{i}$. Тогда $E_{k}$ попарно не пересекаются, и $A = \bigcup_{k = 1}^{\infty}E_{k} \in \mathcal{M}$ по предыдущему пункту.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    $\mu = \mu^{*}\lvert_{\mathcal{M}}$ -- мера Лебега.
+\end{definition}
+
+\begin{theorem}[непрерывность меры]
+    \begin{enumerate}
+        \item $A_{i} \in \mathcal{M}$, $A_{1} \subset A_{2} \subset \ldots$, $A = \bigcup_{i = 1}^{\infty} A_{i}$. Тогда $\mu(A) = \lim_{i \to \infty}\mu(A_{i})$ (непрерывность снизу).
+        \item $A_{i} \in \mathcal{M}$, $A_{1} \supset A_{2} \supset \ldots$, $A = \bigcap_{i = 1}^{\infty}A_{i}$, $\mu(A_{1}) < \infty$. Тогда $\mu(A) = \lim_{i \to \infty}\mu(A_{i})$ (непрерывность сверху).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Положим $B_{1} = A_{1}$, $B_{i} = A_{i} \setminus A_{i - 1}$. Тогда $B_{i} \in \mathcal{M}$, $B_{i} \cap B_{j} = \emptyset$ при $i \neq j$, и $\bigcup_{i = 1}^{m}B_{i} = \bigcup_{i = 1}^{m}A_{i}$ для всех $m \in \N \cup \infty$. Поэтому
+        \[\mu(A) = \mu\left(\bigcup_{i = 1}^{\infty}B_{i}\right) = \sum_{i = 1}^{\infty}\mu(B_{i}) = \lim_{m \to \infty}\sum_{i = 1}^{m} \mu(B_{i}) = \lim_{m \to \infty}\mu(A_{m}).\]
+        \item Рассмотрим $A_{1} \setminus A_{i}$. Применим прошлый пункт к этим множествам. Тогда $\bigcup_{i = 1}^{\infty}(A \setminus A_{i}) = A_{1} \setminus A$ и 
+        \[\mu(A_{1}) - \mu(A) = \mu(A_{1} \setminus A) = \lim_{m \to \infty}\mu(A_{1} \setminus A_{m}) = \mu(A_{1}) - \lim_{m \to \infty}\mu(A_{m}).\]
+        Осталось из обоих частей вычесть $\mu(A_{1})$ и изменить знак.
+    \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+    $\mathcal{B}(\R^{n}) \subset \mathcal{M}$.
+\end{lemma}
+
+\begin{proof}
+    Брус измерим, так как его можно записать в виде пересечения конечного числа полупространств (измеримы по примеру \ref{lebeg-ex2}). По лемме \ref{lebeg-lem1} тогда всякое открытое множество измеримо.
+\end{proof}
+
+\begin{lemma}[регулярность меры]
+    Если $E \in \mathcal{M}$, то $\forall \epsilon > 0 \ \exists \underbrace{G}_{\text{откр.}} \supset E \left(\mu(G \setminus E) < \epsilon\right)$.
+\end{lemma}
+
+\begin{proof}
+    Рассмотрим случай, когда $E$ ограничено, а значит, $\mu^{*}(E) < \infty$. Для $\epsilon > 0$ рассмотрим покрытие $E$ счетным семейством брусов $\{B_{k}\}$ с $\sum_{i = 1}^{\infty}|B_{i}| < \mu(E) + \frac{\epsilon}{2}$. По свойству брусов $\exists \underbrace{B_{i}^{o}}_{\text{откр.}} \supset B_{i}\left(|B_{i}^{o}| < |B_{i}| + \frac{\epsilon}{2^{i + 1}}\right)$. Определим $G = \bigcup_{i = 1}^{\infty} B_{i}^{o}$. Тогда $G$ -- открытое, $G \supset E$ и 
+    \[\mu(G \setminus E) = \mu(G) - \mu(E) \leq \sum_{i = 1}^{\infty}|B_{i}^{0}| - \mu(E) < \epsilon.\]
+
+    Перейдем к общему случаю. Поскольку $\R^{n} = \bigcup_{k = 1}^{\infty}A_{k}$, где $A_{k} = \{x \in \R^{n}: k - 1 \leq |x| < k\}$, то $E$ есть счетное объединение непересекающихся играниченных измеримых множеств $E_{k} = E \cap A_{k}$. По доказанному существует такое открытое множество $G_{k} \supset E_{k}$, что $\mu(G_{k} \setminus E_{k}) \leq \frac{\epsilon}{2^{k}}$. Тогда множество $G = \bigcup_{k = 1}^{\infty}G_{k}$ открыто, содержит $E$ и 
+    \[\mu(G \setminus E) = \mu\left(\bigcup_{k = 1}^{\infty} G_{k} \setminus E\right) \leq \sum_{k = 1}^{\infty}\mu(G_{k} - E_{k}) < \epsilon.\]
+\end{proof}
+
+\begin{definition}
+    Счетное пересечение открытых множеств называется множествами типа $G_{\delta}$.
+
+    Счетное объединение замкнутых множеств называется множествами типа $F_{\sigma}$.
+\end{definition}
+
+\begin{note}
+    Множества типа $G_{\delta}$ и $F_{\sigma}$ являются борелевскими.
+\end{note}
+
+\begin{theorem}[критерий измеримости]
+    Множество $E$ измеримо $\lra$ существует множество $\Omega$ типа $G_{\delta}$, что $E \subset \Omega$ и $\mu(\Omega \setminus E) = 0$.
+\end{theorem}
+
+\begin{proof}
+    Докажем первое утверждение.
+
+    $(\Rightarrow)$ Из регулярности меры следует, что для каждого $k \in \N$ найдется такое открытое $G_{k} \supset E$ с $\mu(G_{k} \setminus E) \leq \frac{1}{k}$. Положим $\Omega = \bigcap_{k=1}^{\infty}G_{k}$, тогда $E \subset \Omega$, и $\mu(\Omega \setminus E) \leq \mu(G_{k} \setminus E) \leq \frac{1}{k}$, откуда $\mu(\Omega \setminus E) = 0$.
+
+    $(\Leftarrow)$ Поскольку $E = \Omega \setminus (\Omega \setminus E)$ есть разность двух измеримых множеств, то $E$ измеримо.
+\end{proof}
+
+\begin{note}
+    Множество $E$ измеримо $\lra$ существует множество $\Delta$ типа $F_{\sigma}$, что $\Delta \subset E$ и $\mu(E \setminus \Delta) = 0$.
+\end{note}
+
+\begin{theorem}[критерий измеримости]
+    Пусть $\mu^{*}(E) < \infty$. Множество $E$ измеримо $\lra$ существуют брусы $B_{1}, \ldots, B_{N}$, такие что $\forall \epsilon > 0 \ \mu^{*}(E \triangle \bigcup_{k = 1}^{N} B_{k}) < \epsilon$.
+\end{theorem}
+
+\begin{proof}
+
+    $(\Rightarrow)$ Зафиксируем $\epsilon > 0$. Если $E$ измеримо, то $\exists \underbrace{\{B_{k}\}_{k = 1}^{\infty}}_{\text{брусы}}$, такие что $E \subset \bigcup_{k = 1}^{\infty}B_{k}$ и $\sum_{k = 1}^{+\infty}|B_{k}| < \mu^{*}(E) + \frac{\epsilon}{2}$. Так как ряд $\sum_{k = 1}^{+\infty}|B_{k}|$ сходится, то $\exists N \left(\sum_{k = N + 1}^{+\infty}|B_{k}| < \frac{\epsilon}{2}\right)$.
+
+    Положим $C = \bigcup_{k = 1}^{N} B_{k}$. Тогда:
+    \[\mu^{*}(E \triangle C) \leq \mu^{*}(E \setminus C) + \mu^{*}(C \setminus E) \leq \mu^{*}\left(\bigcup_{k = N + 1}^{+\infty}B_{k}\right) + \mu^{*}\left(\bigcup_{k = 1}^{+\infty}B_{k} \setminus E\right) \leq\]
+    \[\leq \sum_{k = N + 1}^{+\infty}|B_{k}| + \sum_{k = 1}^{+\infty}|B_{k}| - \mu^{*}(E) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.\]
+
+    $(\Leftarrow)$ Пусть $\mu^{*}(E \triangle C) < \epsilon$. Тогда тем более $\mu^{*}(E \setminus C) < \epsilon$ и $\mu^{*}(C \setminus E) < \epsilon$. Поскольку $E \subset C \cup (E \setminus C)$ и $E^{c} \subset C^{c} \cup (C \setminus E)$, то для любого $A \subset \R^{n}$ имеем
+    \[\mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c}) \leq \mu^{*}(A \cap C) + \mu^{*}(A \cap (E \setminus C)) + \mu^{*}(A \cap C^{c}) + \mu^{*}(A \cap (C \setminus E)) \leq\]
+    \[\leq \mu^{*}(A \cap C) + \mu^{*}(A \cap C^{c}) + \mu^{*}(E \setminus C) + \mu^{*}(C \setminus E) < \mu^{*}(A) + 2\epsilon.\]
+
+    Следовательно, $\mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c}) \leq \mu^{*}(A)$. Значит, $E$ измеримо.
+\end{proof}
+
+Построим пример неизмеримого множества.
+
+\begin{example}[множество Витали]
+    На $[0, 1]$ введём отношение эквивалентности $x \sim y \lra x - y \in \Q \Rightarrow [0, 1] = \bigsqcup_{\alpha}H_{\alpha}$, $H_{\alpha}$ -- классы эквивалетности.
+
+    $V$ -- множество, содержащее ровно один элемент из каждого $H_{\alpha}$ и только такие элементы (такое множество существует по аксиоме выбора).
+
+    %Пусть $\{r_{n}\}_{n = 0}^{+\infty}$ -- некоторая нумерация $\Q \cap [-1, 1]$, $r_{0} = 0$. Рассмотрим $V_{n} = V + r_{n}$ (сдвигаем $V$ счетное количество раз на все рациональные точки).
+    %\begin{enumerate}
+        %\item <<Сдвинутые копии>> множества $V$ (то есть $V_{n}$) попарно не пересекаются, так как
+        %\[x \in V_{i} \cap V_{j} \Rightarrow x_{i} + r_{i} = x_{j} + r_{j} \Rightarrow x_{j} - x_{i} \in \Q.\]
+        
+        %\item $[0, 1] \subset \bigsqcup_{n = 0}^{\infty}V_{n} \subset [-1, 2]$.
+        
+        %(левое включение: $y \in [0, 1] \Rightarrow y \in H_{\alpha} \Rightarrow y = x_{\alpha} + r$, $r = y - x_{\alpha \in [-1, 1]} \Rightarrow \exists n (r - r_{n})$)
+
+        %(правое включение: $V \subset [0, 1]$ и $r_{n} \in [-1, 1]$)
+        
+        %\item Пусть $\underbrace{A_{n}}_{\text{изм.}} \subset V_{n} \Rightarrow \mu(A_{n}) = 0$.
+
+        %($A_{m} = A_{n} - r_{n} + r_{m} \subset V_{m}$, $\mu(A_{m}) = \mu(A_{n}) = 0$, $\mu(\bigsqcup_{n = 0}^{\infty}A_{n}) = \sum_{n = 0}^{\infty}\mu(A_{n}) = \sum_{n = 0}^{\infty}a \leq \mu([-1, 2]) = 3 \Rightarrow a = 0$)
+    %\end{enumerate}
+    Пусть $R$ означает множество всех рациональных чисел, принадлежащих отрезку $[-1, 1]$. Для каждого $r \in R$ положим $V_{r} = V + r = \{v + r : v \in V\}$. 
+
+    Во-первых, <<сдвинутые копии>> множества $V$ (то есть $V_{n}$) попарно не пересекаются, так как
+    \[v \in V_{i} \cap V_{j} \Rightarrow v_{i} + r_{i} = v_{j} + r_{j} \Rightarrow v_{j} - v_{i} \in \Q.\]
+
+    Во-вторых, имеют место включения
+    \[[0, 1] \subset \bigsqcup_{r \in R}^{\infty}V_{r} \subset [-1, 2].\]
+
+    Значит, 
+    \[1 \leq \sum_{r \in R}\mu(V_{r}) \leq 3.\]
+
+    В силу инвариативности меры относительно сдвигов, $\mu(V) = \mu(V_r)$. Тогда рассмотрим два случая:
+    \begin{enumerate}
+        \item $\mu(V) = 0$. Тогда мера отрезка $[0, 1]$ тоже равна нулю, противоречие.
+        \item $\mu(V) > 0$. Тогда мера отрезка $[-1, 2]$ будет бесконечной в силу счетной аддитивности меры, противоречие.
+    \end{enumerate}
+
+    Значит, $V$ -- пример неизмеримого множества.
+\end{example}

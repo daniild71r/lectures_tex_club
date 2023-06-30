@@ -1,0 +1,36 @@
+\section{25. Полярное разложение линейного преобразования в евклидовом пространстве. Единственность полярного разложения для невырожденного оператора.}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$. Тогда существуют $\psi, \Theta \in \mathcal{L}(V)$ такие, что $\psi$ "--- самосопряженный с неотрицательными собственными значениями, $\Theta$ "--- ортогональный (унитарный), и $\phi = \psi\Theta$.
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим оператор $\eta := \phi^*\phi$, тогда $\eta^* = \phi^*\phi \hm{=} \eta$, то есть $\eta$ "--- самосопряженный. Более того, если $\overline{v} \in V \backslash \{\overline{0}\}$ "--- собственный вектор оператора $\eta$ с собственным значением $\lambda \in \R$, то $\eta(\overline{v}) = \lambda\overline{v}$, тогда $0 \le (\phi(\overline{v}), \phi(\overline{v})) = (\overline{v}, \eta(\overline{v})) = \lambda(\overline{v}, \overline{v}) \Rightarrow \lambda \ge 0$.
+	
+	Пусть $(\overline{e_1}, \dots, \overline{e_n})$ "--- ортонормированный базис в $V$ из собственных векторов оператора $\eta$ с собственными значениями $\lambda_1, \dotsc, \lambda_n \ge 0$. Положим $\overline{f_i} := \phi(\overline{e_i})$, $i \in \{1, \dotsc, n\}$. Тогда для любых $i, j \in \{1, \dots, n\}$ выполнено $(\overline{f_i}, \overline{f_j}) = (\phi(\overline{e_i}), \phi(\overline{e_j})) = (\overline{e_i}, \eta(\overline{e_j})) = \lambda_j(\overline{e_i}, \overline{e_j})$. Значит, система $(\overline{f_1}, \dots, \overline{f_n})$ ортогональна, и, более того, для любого $i \in \{1, \dotsc, n\}$ выполнено $||\overline{f_i}||^2 = \lambda_i||\overline{e_i}||^2 = \lambda_i$.
+	
+	Будем без ограничения общности считать, что $\lambda_1, \dots, \lambda_k > 0$ и $\lambda_{k + 1} = \dots = \lambda_n = 0$. Положим $\overline{g_i} := \frac{1}{\sqrt{\lambda_i}}\overline{f_i}$, $i \in \{1, \dots, k\}$, и дополним $(\overline{g_1}, \dots, \overline{g_k})$ до ортонормированного базиса $(\overline{g_1}, \dots, \overline{g_n})$. Тогда оператор $\phi$ имеет следующий вид:
+	$\overline{e_i} \mapsto \overline{g_i} \mapsto \sqrt{\lambda_{i}}\overline{g_i} = \overline{f_i}$. Зададим $\psi, \Theta \in \mathcal{L}(V)$ на базисах $(\overline{e_1}, \dots, \overline{e_n})$ и $(\overline{g_1}, \dots, \overline{g_n})$ следующим образом:
+	\begin{align*}
+		\Theta&: \overline{e_i} \mapsto \overline{g_i}\\
+		\psi&: \overline{g_i} \mapsto \sqrt{\lambda_{i}}\overline{g_i} = \overline{f_i}
+	\end{align*}
+	
+	Таким образом, $\psi\Theta = \phi$. Наконец, $\Theta$ переводит ортонормированный базис $(\overline{e_1}, \dots, \overline{e_n})$ в ортонормированный базис $(\overline{g_1}, \dots, \overline{g_n})$, поэтому $\Theta$ "--- ортогональный (унитарный), а $\psi$ имеет в ортонормированном базисе $(\overline{g_1}, \dots, \overline{g_n})$ диагональный вид, поэтому $\psi$ "--- самосопряженный.
+\end{proof}
+
+\begin{note}
+	Порядок операторов в композиции несущественен: если $\phi = \psi\Theta$, то $\phi^* \hm= \Theta^*\psi^* = \Theta^{-1}\psi$ "--- теперь ортогональный (унитарный) оператор $\Theta^{-1}$ идет перед самосопряженным оператором $\psi$.
+\end{note}
+
+\begin{definition}
+	Представление $\phi \in \mathcal{L}(V)$ в виде $\psi\Theta$ (или в виде $\Theta'\psi'$) с соответствующими требованиями из теоремы выше называется \textit{полярным разложением} $\phi$, а базисы $(\overline{e_1}, \dots, \overline{e_n})$ и $(\overline{g_1}, \dots, \overline{g_n})$ из доказательства теоремы "--- \textit{сингулярными базисами} $\phi$, причем эти базисы одинаковы в случаях $\psi\Theta$ и $\Theta'\psi'$.
+\end{definition}
+
+\begin{note}
+	Геометрический смысл полярного разложения "--- представление оператора $\phi$ в виде композиции движения $\Theta$ и растяжения $\psi$ (с неотрицательными коэффициентами) вдоль нескольких взаимно ортогональных осей.
+\end{note}
+
+\begin{note}
+	Можно показать, что если оператор $\phi \in \mathcal{L}(V)$ "--- невырожденный, то полярное разложение $\phi$ единственно.
+\end{note}

@@ -1,0 +1,31 @@
+\section{27. Унитарные преобразования, их свойства. Канонический вид унитарного преобразования.}
+
+\begin{definition}
+	Оператор $\phi \in \mathcal{L}(V)$ называется \textit{ортогональным} (\textit{унитарным}), если $\forall \overline{u}, \overline{v} \in V: (\phi(\overline{u}), \phi(\overline{v})) = (\overline{u}, \overline{v})$.
+\end{definition}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$. Тогда оператор $\phi$ ортогонален (унитарен) $\hm\Leftrightarrow$ $\phi$ обратим и $\phi^{-1} = \phi^{*}$.
+\end{theorem}
+
+\begin{proof}
+	По определению, $\phi$ ортогональнен (унитарен) $\hm{\Leftrightarrow}$ для любых векторов $\overline{u}, \overline{v} \in V$ выполнено $(\overline{u}, \overline{v}) = (\phi(\overline{u}), \phi(\overline{v})) = (\overline{u}, (\phi^*\phi)(\overline{v}))$. В силу единственности сопряженного оператора, это равносильно равенству $\phi^*\phi = \id^* = \id$. Это, в свою очередь, равносильно тому, что $\phi$ обратим и $\phi^{-1} \hm{=} \phi^{*}$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $\phi\in \mathcal{L}(V)$ "--- ортогональный (унитарный), $U \le V$. Тогда $U$ инвариантно относительно $\phi$ $\Leftrightarrow$ $U^\perp$ инвариантно относительно $\phi$.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $(U^\perp)^\perp = U$, то достаточно доказать импликацию $\ra$. Так как $U$ инвариантно относительно $\phi$, то $U^\perp$ инвариантно относительно $\phi^* = \phi^{-1}$, то есть $\phi^{-1}(U^\perp) \le U^\perp$. Но оператор $\phi$ биективен, поэтому $\phi^{-1}(U^\perp) = U^\perp$ и $\phi(U^\perp) = U^\perp$, откуда $U^\perp$ инвариантно относительно $\phi$.
+\end{proof}
+
+\begin{theorem}
+	Пусть $V$ "--- эрмитово пространство, $\phi \in \mathcal{L}(V)$ "--- унитарный. Тогда в $V$ существует ортонормированный базис $e$, в котором матрица оператора $\phi$ диагональна с числами модуля $1$ на главной диагонали.
+\end{theorem}
+
+\begin{proof}
+	Докажем диагонализуемость оператора $\phi$ в ортонормированном базисе индукцией по $n = \dim{V}$. База, $n = 1$, тривиальна. Пусть теперь $n > 1$. Поскольку у $\chi_\phi$ есть корень над $\Cm$, то у $\phi$ есть собственный вектор $\overline{e_0}$ длины $1$. Тогда $U := \langle\overline{e_0}\rangle^\perp$ инвариантно относительно $\phi$, поэтому можно расмотреть оператор $\phi|_{U} \in \mathcal{L}(V)$, который также является унитарным. По предположению индукции, в $U$ есть ортонормированный базис из собственных векторов, тогда объединение с $\overline{e_0}$ дает искомый базис в $V$.
+	
+	Покажем теперь, что все собственные значения оператора $\phi$ имеют модуль $1$. Действительно, если $\overline{v} \in V$, $\overline{v} \ne 0$ "--- собственный вектор со значением $\lambda$, то $(\overline{v}, \overline{v}) = (\phi(\overline{v}), \phi(\overline{v})) \hm= |\lambda|^2(\overline{v}, \overline{v}) \Rightarrow |\lambda| = 1$.
+\end{proof}

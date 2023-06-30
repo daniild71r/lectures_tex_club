@@ -1,0 +1,295 @@
+\section{2. Числовые ряды и их свойства. Группировка ряда. Критерий Коши. Абсолютная и условная сходимости рядов. Связь сходимости ряда и интеграла от ступенчатой функции. Ряды с неотрицательными членами. Признак сравнения, интегральный признак. Признаки Коши, Даламбера, Гаусса (б/д). Знакопеременные ряды. Признак Лейбница. Признаки Дирихле (б/д) и Абеля (б/д). Перестановка членов абсолютно сходящегося ряда. Теорема Римана о перестановке (б/д). Произведение абсолютно сходящихся рядов.}
+
+\begin{definition}
+    Пусть $\{a_{n}\}$ -- последовательность действительных (комплексных) чисел. Выражение
+    \[\sum_{n = 1}^{+\infty}a_{n} = a_1 + a_2 + \ldots \ \label{ser}\]
+    называется \textit{числовым рядом} с $n$-ым членом $a_{n}$.
+    
+    Число 
+    \[S_{N} = \sum_{n = 1}^{N} a_{n} = a_1 + \ldots + a_{N}\]
+    называется \textit{N-ой частичной суммой ряда \ref{ser}}.
+    
+    Предел
+    \[\sum_{n = 1}^{+\infty} a_{n} = \lim_{N \to +\infty} S_{N}\]
+    называется \textit{суммой ряда \ref{ser}}. Если предел конечен, то ряд называется \textit{сходящимся}, иначе -- \textit{расходящимся}.
+\end{definition}
+
+\begin{lemma}[Принцип локализации]
+    Для каждого $m \in \N$ ряды $\sum_{n = 1}^{+\infty}a_{n}$ и $\sum_{n = m + 1}^{+\infty}a_{n}$ сходятся или расходятся одновременно, и если сходятся, то
+    \[\sum_{n = 1}^{+\infty}a_{n} = \sum_{n = 1}^{m}a_{n} + \sum_{n = m + 1}^{+\infty}a_{n}.\]
+\end{lemma}
+
+\begin{proof}
+    Если $N > m$, то $\sum_{n = 1}^{N}a_{n} = \sum_{n = 1}^{m}a_{n} + \sum_{n = m + 1}^{N}a_{n}$. Поэтому пределы последовательностей $\sum_{n = 1}^{m}a_{n}$ и $\sum_{n = m + 1}^{N}a_{n}$ при $N \to +\infty$ существуют (конечны) одновременно.
+\end{proof}
+
+\begin{note}
+    Ряд $r_{N} = \sum_{n = N + 1}^{+\infty} a_{n}$ называется \textit{$N$-ым остатком} ряда \ref{ser}.
+\end{note}
+
+Принцип локализации можно переформулировать так: если ряд сходится, то сходится и любой его остаток. И если сходится некоторый остаток ряда, то и весь ряд сходится.
+
+\begin{lemma}[Линейность]
+    Пусть ряды $\sum_{n = 1}^{+\infty}a_{n}$ и $\sum_{n = 1}^{+\infty}b_{n}$ сходятся, и $\alpha, \beta \in \R$ (или $\Cm$), то сходится и ряд $\sum_{n = 1}^{+\infty}(\alpha a_{n} + \beta b_{n})$, причем верно равенство
+    \[\sum_{n = 1}^{+\infty}(\alpha a_n + \beta b_{n}) = \alpha \sum_{n = 1}^{+\infty}a_{n} + \beta \sum_{n = 1}^{+\infty}b_{n}.\]
+\end{lemma}
+
+\begin{proof}
+    Вытекает из линейности предела последовательности.
+\end{proof}
+
+\begin{lemma}[Необходимое условие сходимости ряда]
+    Если $\sum_{n = 1}^{+\infty}a_{n}$ сходится, то $a_{n} \to 0$.
+\end{lemma}
+
+\begin{proof}
+    Пусть $S = \sum_{n = 1}^{+\infty}a_{n}$. Так как $a_{n} = S_n - S_{n - 1}$ (считаем, что $S_{0} = 0$), то $a_{n} \to (S - S) = 0$.
+\end{proof}
+
+\begin{definition}
+    Пусть дана строго возрастающая последовательность целых чисел $0 = n_0 < n_1 < n_2 < \ldots$
+    
+    Ряд $\sum_{k = 1}^{+\infty}b_{k}$, где $b_k = a_{n_{k-1} + 1} + \ldots + a_{n_{k}}$ называется \textit{группировкой} ряда $\sum_{n = 1}^{+\infty}a_{n}$.
+\end{definition}
+
+\begin{lemma}
+    \begin{enumerate}
+        \item Если ряд сходится, то сходится и любая его группировка, причем к той же сумме.
+        \item Пусть $\exists L \ \forall k \ (n_k - n_{k - 1} \leq L)$. Если $a_n \to 0$ и группировка $\sum_{k = 1}^{+\infty}b_{k}$, где $b_k = \sum_{j = n_{k - 1} + 1}^{n_k}a_{j}$, сходится, то сходится и ряд $\sum_{n = 1}^{+\infty}a_{n}$, причем к той же сумме.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Пусть $S_N$ обозначает $N$-ую частичную сумму \ref{ser}, $S_{N}^{*}$ -- $N$-ую частичную сумму группировки.
+    \begin{enumerate}
+        \item Пусть $S_{N} \to S$. Так как $S_{N}^{*} = S_{n_{N}}$, то $S_{N}^{*} \to S$ как подпоследовательность.
+        
+        \item Пусть $\epsilon > 0$. Выберем такие $K, M \in \N$, что $\forall k \geq K \hookrightarrow \left| S_{k}^{*} - S \right| < \frac{\epsilon}{2}$ и $\forall m \geq M \hookrightarrow |a_{m}| < \frac{\epsilon}{2L}$. Положим $N = \max\{n_{K}, M + L\}$. Если $n \geq N$, то $n_k \leq n < n_{k+1}$, где $k \geq K$. Значит, 
+        \[\left|S_{n} - S\right| = \left| S_{n_{k}} + a_{n_{k}+1} + \dots + a_{n} - S \right| \leq \left|S_{k}^{*} - S\right| + |a_{n_{k} + 1}| + \dots + |a_{n}| < \frac{\epsilon}{2} + L\frac{\epsilon}{2L} = \epsilon.\]
+    \end{enumerate}
+\end{proof}
+
+Применяя критерий Коши для последовательности частичных сумм получаем критерий Коши сходимости числового ряда.
+
+\begin{theorem}
+    Для сходимости ряда $\sum_{n = 1}^{+\infty}a_{n}$ необходимо и достаточно выполнения условия Коши
+    \[\forall \epsilon > 0 \ \exists N \in \N \ \forall n, m \in \N, \ N \leq m \leq n \left( \left| \sum_{k = m}^{n}a_{k} \right| < \epsilon \right).\]
+\end{theorem}
+
+\begin{definition}
+    Ряд $\sum_{n = 1}^{+\infty}a_{n}$ называется \textit{абсолютно сходящимся}, если сходится ряд $\sum_{n = 1}^{+\infty}|a_{n}|$.
+
+    Если ряд $\sum_{n = 1}^{+\infty}a_{n}$ сходится, но не сходится абсолютно, то он называется \textit{условно сходящимся}. 
+\end{definition}
+
+\begin{corollary}
+    Абсолютно сходящийся ряд сходится.
+\end{corollary}
+
+\begin{proof}
+    Для любых $m, n \in \N, m \leq n$,
+    \[\left|\sum_{k = m}^{n} a_{k}\right| \leq \sum_{k = m}^{n}|a_{k}|.\]
+    Поэтому, если ряд $\sum_{n = 1}^{+\infty} |a_{n}|$ удовлетворяет условию Коши, то условию Коши удовлетворяет ряд $\sum_{n = 1}^{+\infty}a_{n}$. 
+\end{proof}
+
+\begin{note}
+    Если ряд $\sum_{n = 1}^{+\infty}a_{n}$ сходится абсолютно, то
+    \[\left|\sum_{k = 1}^{+\infty} a_{k}\right| \leq \sum_{k = 1}^{+\infty}|a_{k}|.\]
+\end{note}
+
+\begin{lemma}
+    \begin{enumerate}
+        \item Если $\sum_{n = 1}^{+\infty} b_{n}$ сходится, то $\sum_{n = 1}^{+\infty} (a_{n} + b_{n})$ и $\sum_{n = 1}^{+\infty} a_{n}$ сходятся или расходятся одновременно.
+        \item Если $\sum_{n = 1}^{+\infty} b_{n}$ абсолютно сходится, то $\sum_{n = 1}^{+\infty} (a_{n} + b_{n})$ и $\sum_{n = 1}^{+\infty} a_{n}$ либо одновременно расходятся, либо одновременно сходятся условно, либо одновременно сходятся абсолютно.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}~
+
+    \begin{enumerate}
+        \item Следует из свойства линейности. Для всех $n \in \N$ верно
+        \[|a_{n} + b_{n}| \leq |a_{n}| + |b_{n}|, \ |a_{n}| \leq |a_{n} + b_{n}| + |b_{n}|.\]
+        Следовательно, по признаку сравнения ряды $\sum_{n = 1}^{+\infty} (a_{n} + b_{n})$ и $\sum_{n = 1}^{+\infty} a_{n}$ одновременно абсолютно сходятся.
+        
+        \item Вытекает из пункта 1.
+    \end{enumerate}
+    
+\end{proof}
+
+\begin{definition}
+    С действительным рядом \ref{ser} свяжем функцию $f_{a}: [1, +\infty) \to \R$, $f_{a}(x) = a_{[x]}$.
+\end{definition}
+
+\begin{lemma}
+    \label{lem2.5}
+    Ряд $\sum_{n = 1}^{+\infty}a_{n}$ и $\int_{1}^{+\infty}f_{a}(x)dx$ сходятся или расходтся одновременно, и если сходятся, то к одному значению.
+\end{lemma}
+
+\begin{proof}
+    Пусть $S_{n} = \sum_{k = 1}^{n} a_{k}$. Так как $S_{n} = \int_{1}^{n + 1}f_{a}(x) dx$, то сходимость интеграла влечет сходимость ряда. Обратное утверждение следует из оценки 
+    \[\left| S_{n} - \int_{1}^{x} f_{a}(x) dx \right| \leq |a_{n}| \to 0, \ n = [x],\]
+    и необходимого условия сходимости ряда.
+\end{proof}
+
+\begin{lemma}
+    Пусть $a_n \ge 0$ для всех $n \in \N$. Тогда сходимость ряда $\sum_{n = 1}^{\infty} a_n$ равносильна ограниченности последовательности частичных сумм $\{S_n\}$.
+
+    \begin{proof}
+        Все $S_n \ge 0$ и нестрого возрастают, так как $S_{n + 1} - S_n = a_{n + 1} \ge 0$. Следовательно, $\exists \lim_{n \rightarrow \infty} S_n = \sup S_n.$
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[признак сравнения]
+    Пусть $0 \le a_n \le b_n$ для всех $n \in \N$.
+    \begin{enumerate}
+        \item Если ряд $\sum_{n = 1}^\infty b_n$ сходится, то сходится и ряд $\sum_{n = 1}^\infty a_n$;
+        \item Если ряд $\sum_{n = 1}^\infty a_n$ расходится, то расходится и ряд $\sum_{n = 1}^\infty b_n$.
+    \end{enumerate}
+
+    \begin{proof}
+        Вытекает из леммы (\ref{lem2.5}) и признака сравнения несобственных интегралов.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[интегральный признак сходимости]
+    \label{integral-test}
+    Пусть функция $f$ нестрого убывает и неотрицательна на $[1, +\infty)$. Тогда ряд $\sum_{n = 1}^\infty f(n)$ и интеграл $\int_1^{+\infty} f(x)\, dx$ сходятся или расходятся одновременно.
+
+    \begin{proof}
+        Положим $u, v: [1, +\infty) \rightarrow \R$, $u\rvert_{[n, n + 1)} = f(n)$, $v\rvert_{[n, n + 1)} = f(n + 1)$.
+
+        Так как $f$ нестрого убывает, то $v \le f \le u$ на $[1, +\infty)$.
+
+        Пусть $\sum_{n = 1}^\infty f(n)$ сходится, тогда по лемме (\ref{lem2.5}) сходится $\int_1^{+\infty} u(x)\, dx$. Следовательно, по признаку сравнения для интегралов $\int_1^{+\infty} f(x)\, dx$ также сходится.
+
+        Пусть $\int_1^{+\infty} f(x)\, dx$ сходится, тогда по признаку сравнения сходится $\int_1^{+\infty} v(x)\, dx$. Следовательно, по лемме (\ref{lem2.5}) сходится ряд $\sum_{n = 1}^\infty f(n + 1)$.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[признак Коши]
+    \label{cauchy-test}
+    Пусть $a_n \ge 0$ для всех $n \in \N$ и $q = \overline{\lim_{n \rightarrow \infty}} \sqrt[n]{a_n}$.
+
+    \begin{enumerate}
+        \item Если $q < 1$, то ряд $\sum_{n = 1}^\infty a_n$ сходится;
+        \item Если $q > 1$, то $a_n \not\rightarrow 0$ и ряд $\sum_{n = 1}^\infty a_n$ расходится.
+    \end{enumerate}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Пусть $q_0 \in (q, 1)$. Выберем $N$ так, что $\sup_{n \ge N} \sqrt[n]{a_n} < q_0$ при всех $n \ge N$ и, значит, $a_n < q_0^n$. Следовательно, ряд сходится по признаку сравнения с геометрическим рядом.
+
+            \item Так как $q$ --- частичный предел, то $\exists \{n_k\} \ \sqrt[n_k]{a_{n_k}} \rightarrow q$. Поэтому $\exists k_0 \, \forall k \ge k_0 \ (a_{n_k} > 1)$, следовательно, $a_n \not\rightarrow 0$ и ряд расходится.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[признак Даламбера]
+    \label{dalambert-test}
+    Пусть $a_n > 0$ для всех $n \in \N$.
+
+    \begin{enumerate}
+        \item Если $\overline{r} = \overline{\lim}_{n \rightarrow \infty} \frac{a_{n + 1}}{a_n} < 1$, то ряд $\sum_{n = 1}^\infty a_n$ сходится;
+        \item Если $\underline{r} = \underline{\lim}_{n \rightarrow \infty} \frac{a_{n + 1}}{a_n} > 1$, то $a_n \not\rightarrow 0$ и ряд $\sum_{n = 1}^\infty a_n$ расходится.
+    \end{enumerate}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Пусть  $r \in (\overline{r}, 1)$. Выберем $N$ так, что $\sup_{n \ge N} \frac{a_{n + 1}}{a_n} < r$ при всех $n \ge N$, и, значит,
+                \[
+                    \forall n > N \ a_{n + 1} < ra_n < \ldots < r^{n + 1 - N} a_{N} = r^{1 - N} a_N r^n,
+                \]
+                и, значит, ряд сходится по признаку сравнения с геометрическим рядом $\sum_{n = 1}^\infty r^n$.
+
+            \item Пусть $\underline{r} > 1$. Тогда $\exists N \ \left(\inf_{n \ge N} \frac{a_{n + 1}}{a_n} > 1\right)$ и, значит, $a_{n + 1} > a_n > \ldots > a_N > 0$ для всех $n > N$. Следовательно, $a_n \not\rightarrow 0$ и ряд расходится.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[признак Гаусса]
+    Пусть $a_{n} > 0$ для всех $n \in \N$ и существуют такие $s > 1$ и ограниченная последовательность $\{\alpha_{n}\}$, что для всех $n$ выполнено
+    \[\frac{a_{n+1}}{a_{n}} = 1 - \frac{A}{n} + \frac{\alpha_{n}}{n^{s}}.\]
+    Тогда ряд $\sum_{n = 1}^{+\infty} a_{n}$ сходится при $A > 1$ и расходится иначе. 
+\end{theorem}
+
+\begin{theorem}[признак Лейбница]
+    Пусть последовательность $\{\alpha_{n}\}$ монотонна и $\alpha_{n} \to 0$. Тогда ряд $\sum_{n = 1}^{+\infty} (-1)^{n - 1} \alpha_{n}$ сходится, причем
+    \[|S - S_{n}| \leq |\alpha_{n + 1}|.\]
+\end{theorem}
+
+\begin{proof}
+    Сходимость вытекает из признака Дирихле. Докажем ее прямо. Пусть для определенности $\{\alpha_{n}\}$ нестрого убывает, и, значит, все $\{\alpha_{n}\} \geq 0$.
+    
+    $S_{2n + 2} - S_{2n} = \alpha_{2n + 1} - \alpha_{2n + 2} \geq 0 \Rightarrow \{S_{2n}\}$ нестрого возрастает.
+    
+    $S_{2n + 1} - S_{2n - 1} = -\alpha_{2n} + \alpha_{2n + 1} \leq 0 \Rightarrow \{S_{2n - 1}\}$ нестрого убывает.
+    
+    Кроме того, $S_{2n} - S_{2n - 1} = - \alpha_{2n} \leq 0$. Поэтому для любых $m, n \in \N$ имеем
+    \[S_{2n} \leq S_{2k} \leq S_{2k - 1} \leq S_{2m - 1},\]
+    
+    где $k = \max\{m, n\}$. Следовательно, последовательности $\{S_{2n}\}$ и $\{S_{2n - 1}\}$ сходятся, $S_{2n} \to S'$, $S_{2n - 1} \to S''$, и, в частности,
+    \[S_{2n} \leq S' \leq S'' \leq S_{2n - 1}.\]
+    
+    Поскольку $S_{2n} - S_{2n - 1} = -\alpha_{2n} \to 0$, то $S' = S'' = S$.
+\end{proof}
+
+\begin{theorem}[признак Дирихле]
+    Пусть $\{a_{n}\}$ -- комплексная последовательность, $\{b_{n}\}$ -- действительная последовательность, причем
+    \begin{enumerate}
+        \item Последовательность $A_{N} = \sum_{n = 1}^{N} a_{n}$ ограничена,
+        \item $\{b_{n}\}$ монотонна,
+        \item $\lim_{n \to +\infty} b_{n} = 0$.
+    \end{enumerate}
+    Тогда ряд $\sum_{n = 1}^{+\infty} a_{n}b_{n}$ сходится.
+\end{theorem}
+
+\begin{theorem}[признак Абеля]
+    Пусть $\{a_{n}\}$ -- комплексная последовательность, $\{b_{n}\}$ -- действительная последовательность, причем
+    \begin{enumerate}
+        \item Ряд $\sum_{n = 1}^{+\infty} a_{n}$ сходится,
+        \item $\{b_{n}\}$ монотонна,
+        \item $\{b_{n}\}$ ограничена.
+    \end{enumerate}
+    Тогда ряд $\sum_{n = 1}^{+\infty} a_{n}b_{n}$ сходится.
+\end{theorem}
+
+\begin{definition}
+    Пусть дан ряд $\sum_{n = 1}^{+\infty} a_{n}$ и биекция $\phi: \N \to \N$. Тогда $\sum_{n = 1}^{+\infty}a_{\phi(n)}$ называется \textit{перестановкой} ряда $\sum_{n = 1}^{+\infty} a_{n}$.
+\end{definition}
+
+\begin{theorem}
+    \label{convergence-9}
+    Если ряд $\sum_{n = 1}^{+\infty} a_{n}$ сходится абсолютно, то любая его перестановка $\sum_{n = 1}^{+\infty} a_{\phi(n)}$ сходится абсолютно, причем к той же сумме.
+\end{theorem}
+
+\begin{proof}
+    Абсолютная сходимость перестановки следует из оценки
+    \[\sum_{n = 1}^{N}|a_{\phi(n)}| \leq \sum_{n = 1}^{\underset{1 \leq k \leq N}{\max\{\phi(k)\}}} |a_{n}| \leq \sum_{n = 1}^{+\infty}|a_{n}| < +\infty.\]
+    Пусть $\epsilon > 0$. Выберем номер $m$ так, что $\sum_{n = m + 1}^{+\infty}|a_{n}| < \epsilon$. Выберем $M$ так, что $\{1, \ldots, m\} \subset \{\phi(1), \ldots, \phi(M)\}$ (достаточно положить $M = \max_{1 \leq j \leq m}\phi^{-1}(j)$). Тогда для любого $N \geq M$ имеем $\{1, \ldots, m\} \subset \{\phi(1), \ldots, \phi(N)\}$ и $\left|\sum_{n = 1}^{+\infty}a_{n} - \sum_{n = 1}^{N} a_{\phi(n)}\right| \leq \sum_{n = m + 1}^{+\infty}|a_{n}| < \epsilon$.
+    Таким образом, частичные суммы перестановки сходятся у сумме исходного ряда.
+\end{proof}
+
+\begin{theorem}[Риман]
+    Если ряд с действительными членами $\sum_{n = 1}^{+\infty} a_{n}$ сходится условно, то для любого $L \in \overline{\R}$ существует такая перестановка $\sum_{n = 1}^{+\infty} a_{\phi(n)}$, что её сумма равна $L$.
+\end{theorem}
+
+\begin{theorem}[Коши]
+    Пусть ряды $\sum_{n = 1}^{+\infty} a_n$ и $\sum_{n = 1}^{+\infty} b_n$ сходятся абсолютно к $A$ и $B$ соответственно. Тогда ряд $\sum_{n = 1}^{+\infty} a_{i_n} b_{j_n}$ из всевозможных попарных произведений, занумерованных в произвольном порядке (то есть, с $\phi : \N \rightarrow \N^2$, $\phi(n) = (i_n, j_n)$ -- биекция) сходится абсолютно к $AB$.
+
+    \begin{proof}
+        Покажем абсолютную сходимость ряда из произведений:
+        \begin{gather*}
+            \sum_{n = 1}^N |a_{i_n} b_{j_n}| \le \sum_{i = 1}^{\max_{1 \le k \le N} i_k} \sum_{j = 1}^{\max_{1 \le k \le N} j_k} |a_i| \cdot |b_j| = \left(\sum_{i = 1}^{\max_{1 \le k \le N} i_k} |a_i|\right)\left(\sum_{j = 1}^{\max_{1 \le k \le N} j_k} |b_j|\right) \le\\\le \left(\sum_{i = 1}^{+\infty} |a_i|\right)\left(\sum_{j = 1}^{+\infty} |b_j|\right).
+        \end{gather*}
+
+        По теореме (\ref{convergence-9}) любая перестановка ряда из произведений сходится к той же сумме. Рассмотрим перестановку <<по квадратам>> и её частичную сумму $S_{N^2} = \sum_{i = 1}^N \sum_{j = 1}^N a_i b_j$. Так как $S_{N^2} = \left(\sum_{i = 1}^N a_i\right)\left(\sum_{j = 1}^N b_j\right) \rightarrow AB$ и если последовательность сходится, то и любая подпоследовательность сходится к тому же пределу, то заключаем, что перестановка <<по квадратам>>, а значит, и $\sum_{n = 1}^{+\infty} a_{i_n} b_{j_n}$, имеет сумму $AB$.
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    Ряд $\sum_{n = 1}^{+\infty} c_n$, где $c_n = \sum_{k = 1}^n a_k b_{n + 1 - k}$, называется \emph{произведением по Коши} рядов $\sum_{n = 1}^{+\infty} a_n$ и $\sum_{n = 1}^{+\infty} b_n$.
+\end{definition}
+
+\begin{note}
+    Если ряды $\sum_{n = 1}^{+\infty} a_n$ и $\sum_{n = 1}^{+\infty} b_n$ сходятся абсолютно, то их произведение по Коши сходится абсолютно к произведению сумм рядов.
+\end{note}

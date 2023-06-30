@@ -1,0 +1,139 @@
+%26.04.23
+
+\begin{corollary}
+    Функция $f$ дифференцируема $k$ раз в точке $a$, тогда и только тогда, когда все частные производные до порядка $k - 2$ дифференцируемы в некоторой окрестности точки $a$, а все частные производные порядка $k - 1$ дифференцируемы в точке $a$.
+\end{corollary}
+
+\begin{theorem}[формула Тейлора с остаточным членом в форме Лагранжа]
+    \label{taylor-lagrange}
+    Пусть $f: \underbrace{U}_{\text{откр.}} \to \R$ дифференцируема $(p + 1)$ раз на $U$. Если $a \in U$, $h \in \R^{n}$, такие что $[a, a+h] \subset U$, то $\exists \Theta \in (0, 1)$, что
+
+    \[f(a + h) = f(a) + \sum_{k = 1}^{p}\frac{1}{k!}d^{k}f_{a}(h) + \frac{1}{(p+1)!}d^{p+1}f_{a + \Theta h}(h).\]
+\end{theorem}
+
+\begin{proof}
+    $[a, a + h] = \{a + th \ | \ t \in [0, 1]\}$ --- отрезок с концами $a$ и $a + h$.
+
+    Рассмотрим функцию $g(t) = f(a + th)$, определённую на интервале, содержащем $[0, 1]$. Так как $t \mapsto \underbrace{a}_{\text{пост.}} + \underbrace{th}_{\text{линейн.}} \Rightarrow \forall \tau \in \R \ d(a + th)_t(\tau) = \tau h$. Тогда по теореме о дифференцировании композиции
+    \[
+        dg_t(\tau) = df_{a + th}(\tau h).
+    \]
+    По индукции
+    \[
+        d^kg_t(\tau) = d^kf_{a + th}(\tau h) \quad k = 1, \ldots, p + 1.
+    \]
+    Имеем $d^kg_t(\tau) = g^{(k)}(t)\tau^k \overset{\tau = 1}{\Rightarrow} g^{(k)}(t) = d^k f_{a + th}(h), \quad k = 1, \ldots, p + 1$.
+
+    По формуле Тейлора с остаточным членом в форме Лагранжа
+    \[
+        g(t) = g(0) + \sum_{k = 1}^p \frac{g^{(k)}(0)}{k!}t^k + \frac{g^{(p + 1)}(\theta_t)}{(p + 1)!}t^{p + 1}.
+    \]
+    При $t = 1$ и $\theta = \theta_1$ получаем искомую формулу.
+\end{proof}
+
+\begin{lemma}
+    \label{peano_lem}
+    Пусть $\phi: \R^{n}\times \ldots \times \R^{n} \to \R$ -- $k$-линейное симметрическое отображение, и $\Phi: \R^{n} \to \R$, $\Phi(x) = \phi(x, \ldots, x)$. Тогда функция $\Phi$ дифференцируема и $d\Phi_{x}(h) = k\phi(x^{k - 1}, h)$.
+\end{lemma}
+
+\begin{proof}
+    Имеем $\Phi(x + h) - \Phi(x) = \phi(x + h, \ldots, x + h) - \phi(x, \ldots, x) = k\phi(x, \ldots, x, h) + $ слагаемые $\phi(x^{p}, h^{q})$, где $p + q = k$, $q \geq 2$. 
+
+    Покажем, что найдется такое $C \geq 0$, что $|\phi(x^{p}, h^{q})| \leq C|x|^{p}|h|^{q}$. Если оба $x$, $h$ ненулевые, то $|\phi(x^{p}, h^{q})| = \left|\phi\left((\frac{x}{|x|})^{p}, (\frac{h}{|h|})^{q}\right)\right||x|^{p}|h|^{q} \leq C|x|^{p}|h|^{q}$ для $C = \max_{|x| = 1}|\phi(x^{k})|$. Оценка очевидно выполняется, когда хотя бы один из векторов нулевой.
+
+    Так как $q \geq 2$, то из полученной оценки следует, что $\phi(x^{p}, h^{q}) = o(|h|)$ при $h \to 0$, что доказывает утверждение.
+\end{proof}
+
+\begin{theorem}[остаточный член в форме Пеано]~
+    Если функция $f: \underbrace{U}_{\text{откр.}} \to \R$ дифференцируема $p$ раз в точке $a$, то 
+
+    \[f(a + x) = f(a) + \sum_{k = 1}^{p}\frac{1}{k!}d^{k}f_{a}(h) + o(|h|^{p}), \ h \to 0.\]
+\end{theorem}
+
+\begin{proof}
+    Индукция по $p$. При $p = 1$ равенство верно по определению дифференцируемости. Предположим, утверждение верно при $p - 1$.
+
+    Рассмотрим функцию $g(x) = f(a + x) - f(a) - df_{a}(x) - \ldots - \frac{1}{p!}d^{p}f_{a}(x)$. Зафиксируем $v \in \R^{n}$. Тогда по лемме \ref{peano_lem} имеем
+    \[d(d^{k}f_{a}(x))(v) = kd^{k}f_{a}(x)(v)\]
+    и, значит, 
+    \[d g_{x}(v) = df_{a + x}(v) - df_{a}(v) - \ldots - \frac{1}{(p - 1)!}d^{p}f_{a}(x, \ldots, x, v).\]
+
+    Применим предположение индукции к $y \mapsto df_{y}(v)$:
+    \[df_{a + x}(v) = df_{a}(v) + d^{2}f_{a}(x, v) + \ldots + \frac{1}{(p - 1)!}d^{p}f_{a}(x, \ldots, x, v) + o(|x|^{p - 1}).\]
+    Заключаем, что $|dg_{x}(v)| = o(|x|^{p - 1})$ при $x \to 0$.
+
+    Зафиксируем $\epsilon > 0$. Найдем такое $\delta > 0$, что $\|dg_{h}\| \leq \epsilon|h|^{p - 1}$ при всех $h \in \R$ с $|h| < \delta$. В шаре $B_{\delta}(0)$ применим теорему \ref{taylor-lagrange} (для  $p = 1$), получим
+    \[|g(h)| = |g(h) - g(o)| \leq \epsilon|h|^{p - 1}|h|,\]
+    то есть $g(h) = o(|h|^{p})$, $h \to 0$.
+\end{proof}
+
+\begin{definition}
+    Будем говорить, что $f$ $k$ раз непрерывно дифференцируема на $U$ и писать $f \in C^{k}(U)$, если $d^{k - 1}f_{x} \in C^{1}(U)$.
+\end{definition}
+
+\begin{note}
+    Пусть $\phi: \R^{n} \times \ldots \times \R^{n} \to \R$ -- $k$-линейное отображение. Тогда $\|\phi\|=\underset{|v_{1}| = 1, \ldots, |v_{k}| = 1}{\max}|\phi(v_{1}, \ldots, v_{k})|$ -- норма на пространстве $k$-линейных отображений. Тогда из леммы \ref{dif-lem1} $f \in C^{k}(U) \lra $ все частные производные до $k$-го порядка непрерывны на $U$.
+\end{note}
+
+\section{Мера Лебега}
+
+\subsection{Объем бруса}
+
+\begin{definition}
+    \textit{Брусом} в $\R^{n}$ называется множество вида $B = I_{1} \times \ldots \times I_{n}$, где $I_{k}$ -- ограниченный промежуток. Если $a_{k} \leq b_{k}$ -- концы $I_{k}$, то $|B| = (b_{1} - a_{1})\cdot \ldots \cdot(b_{n} - a_{n})$ называется \textit{объемом} бруса $B$.
+
+    Если хотя бы один из промежутков $I_k$ вырожденный, то брус $B$ называется \emph{вырожденным}, в частности, $\emptyset$ --- вырожденный брус. Объём вырожденного бруса равен 0.
+
+    Если все $I_{k}$ -- отрезки, то брус называется \textit{замкнутым}.
+    
+    Если все $I_{k}$ -- интервалы, то брус называется \textit{открытым}.
+
+\end{definition}
+
+\begin{problem}
+    Докажите, что пересечение двух брусов --- брус, а разность двух брусов --- объединение не более чем $2n$ брусов.
+\end{problem}
+
+\begin{property}
+    \label{brus-prop1}
+    Если $B, B_1, \ldots, B_m$ --- брусы и $B \subset \bigcup_{i = 1}^m B_i$, то $|B| \le \sum_{i = 1}^m |B_i|$.
+
+    \begin{proof}
+        Если $I \subset \R$ --- ограниченный промежуток, то
+        \begin{gather*}
+            |I| - 1 \le \#(I \cap \Z) \le |I| + 1,\\
+            N|I| - 1 \le \#(NI \cap \Z) \le N|I| + 1,\\
+            |I| - \frac{1}{N} \le \frac{1}{N}\#\left(I \cap \frac{1}{N}\Z\right) \le |I| + \frac{1}{N},\\
+            |I| = \lim_{N \rightarrow \infty} \frac{1}{N}\#\left(I \cap \frac{1}{N}\Z\right).
+        \end{gather*}
+
+        Пусть $B = I_1 \times \ldots \times I_n$, тогда
+        \[
+            |B| = \lim_{N \rightarrow \infty} \bigsqcap_{j = 1}^n \frac{1}{N} \#\left(I_j \cap \frac{1}{N}\Z\right) = \lim_{N \rightarrow \infty} \frac{1}{N^n} \#\left(B \cap \frac{1}{N}\Z^n\right).
+        \]
+
+        Если $B \subset \bigcup_{i = 1}^m B_i$, то
+        \[
+            \frac{1}{N^n} \#\left(B \cap \frac{1}{N}\Z^n\right) \le \frac{1}{N^n} \sum_{i = 1}^n \#\left(B_{i} \cap \frac{1}{N}\Z^n\right).
+        \]
+
+        Предельный переход $N \rightarrow \infty$ завершает доказательство.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    \label{brus-prop2}
+    Для любого бруса $B$ и $\epsilon > 0$ найдутся замкнутый брус $B'$ и открытый брус $B^o$, так что $B' \subset B \subset B^o$ и $|B'| > |B| - \epsilon$, $|B^o| < |B| + \epsilon$.
+
+    \begin{proof}
+        Пусть $B = I_1 \times \ldots \times I_n$, где $I_k$ --- ограниченный промежуток с концами $a_k \le b_k$.
+
+        Если $|B| > 0$, то положим
+        \begin{gather*}
+            B'_\delta = [a_1 + \delta, b_1 - \delta] \times \ldots \times [a_n + \delta, b_n - \delta]\\
+            B_\delta^o = (a_1 - \delta, b_1 + \delta) \times \ldots \times (a_n - \delta, b_n + \delta)
+        \end{gather*}
+
+        Так как $|B_{\delta}'|$, $|B_{\delta}^{o}| \to |B|$ при $\delta \to +0$, то искомые брусы существуют и определяются выбором $\delta$. Если же $B$ -- вырожденный брус, то положим $B' = \emptyset$, $B_{\delta}^{o}$ как выше.
+    \end{proof}
+\end{property}

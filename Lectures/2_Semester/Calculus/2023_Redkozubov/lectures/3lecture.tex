@@ -1,0 +1,159 @@
+%08.02.23
+
+\begin{example}
+    Исследовать на сходимость и абсолютную сходимость
+    \[
+        I(\alpha) = \int_1^{+\infty} \frac{\sin kx}{x^\alpha}\,\, dx, \alpha \in \R. \quad (k \neq 0)
+    \]
+
+    \begin{solution}
+        Можно считать, что \emph{$k = 1$} (иначе сделаем замену). Рассмотрим различные значения $\alpha$:
+        \begin{itemize}
+            \item \emph{$\alpha > 1$}. Поскольку $\forall x \ge 1 \hookrightarrow \frac{|\sin x|}{x^{\alpha}} \le \frac{1}{x^\alpha}$ и интеграл $\frac{1}{x^\alpha}$ сходится, то по признаку сравнения интеграл от $\frac{|\sin x|}{x^\alpha}$ также сходится, следовательно, $I(\alpha)$ сходится абсолютно.
+
+            \item \emph{$\alpha \le 0$}. Интеграл $I(\alpha)$ расходится, так как удовлетворяет отрицанию условия Коши:
+                \begin{gather*}
+                    \exists \epsilon > 0 \ \forall \Delta \ge 1 \ \exists \xi, \eta > \Delta,
+                    \begin{array}{l}
+                        \xi = 2\pi n, \\
+                        \eta = \pi + 2\pi n
+                    \end{array}, n \in \N, \\
+                    \left|\int_\xi^\eta \frac{\sin x}{x^\alpha}\, dx\right| = \int_\xi^\eta x^{-\alpha} \sin x\, dx > \underbrace{(2\pi n)^{-\alpha}}_{\ge 1} \underbrace{\int_{2\pi n}^{\pi + 2\pi n} \sin x\, dx}_{=2} \ge 2.
+                \end{gather*}
+
+                По критерию Коши $I(\alpha)$ расходится.
+
+            \item \emph{$0 < \alpha \le 1$}. $I(\alpha)$ сходится, так как
+                \[
+                    \int_1^{+\infty} \frac{\sin x}{x^\alpha}\, dx = \underbrace{\left.\frac{-\cos x}{x^\alpha}\right|_{1}^{+\infty}}_{=\cos 1} - \alpha \cdot \underbrace{\int_1^{+\infty} \frac{\cos x}{x^{\alpha + 1}}\, dx}_{\text{сходится абсолютно}}.
+                \]
+
+                Однако
+                \[
+                    \int_{\pi n}^{2\pi n} \frac{|\sin x|}{x^\alpha}\, dx \ge \int_{\pi n}^{2\pi n} \frac{|\sin x|}{x}\, dx \ge \frac{1}{2\pi n} \int_{\pi n}^{2\pi n} |\sin x|\, dx = \frac{n}{2\pi n} \int_0^\pi |\sin x|\, dx = \frac{1}{\pi}.
+                \]
+
+                По критерию Коши этот интеграл расходится. Следовательно, $I(\alpha)$ сходится условно.
+        \end{itemize}
+
+        \emph{Ответ:} $\begin{array}{l} I(\alpha)\ \text{сходится} \Leftrightarrow \alpha > 0, \\ I(\alpha) \ \text{сходится абсолютно} \Leftrightarrow \alpha > 1.\end{array}$
+    \end{solution}
+\end{example}
+
+\begin{theorem}[признак Дирихле]
+    \label{dirichlet-criterion}
+
+    Пусть $f, g$ локально интегрируемы на $[a, b)$, причём
+    \begin{enumerate}
+        \item $F(x) = \int_\alpha^x f(t)\, dt$ ограничена на $[a, b)$;
+        \item $g$ монотонна на $[a, b)$;
+        \item $\displaystyle \lim_{x \rightarrow b - 0} g(x) = 0$.
+    \end{enumerate}
+
+    Тогда несобственный интеграл $\int_a^b f(x)g(x)\, dx$ сходится.
+
+    \begin{proof}
+        Покажем, что интеграл $\int_a^b f(x)g(x)\, dx$ удовлетворяет условию Коши.
+
+        Пусть $|F| < M$ на $[a, b)$, тогда для любого $\xi \in [a, b)$ выполнено:
+        \[
+            \left|\int_\xi^x f(t)\, dt\right| = \left|F(x) - F(\xi)\right| < 2M.
+        \]
+
+        Зафиксируем $\varepsilon > 0$. Тогда, по определению предела для $g(x)$, $\exists b' \in [a, b) \, \forall x \in (b', b) \ \left(|g(x)| < \frac{\varepsilon}{8M}\right)$. Тогда по лемме Абеля (\ref{abel-lemma}) для любого $[\xi, \eta] \subset (b', b)$:
+        \[
+            \left|\int_\xi^\eta f(t)g(t)\, dt \right| \le 2 \cdot 2M\left(|g(\xi)| + |g(\eta)|\right) < 4M\left(\frac{\varepsilon}{8M} + \frac{\varepsilon}{8M}\right) = \varepsilon.
+        \]
+
+        По критерию Коши интеграл $\int_a^b f(x)g(x)\, dx$ сходится.
+    \end{proof}
+
+    \begin{note}
+        Условия последней теоремы выполнены, если $f$ непрерывна и имеет ограниченную первообразную на $[a, b)$, $g$ дифференцируема, $g'$ сохраняет знак на $[a, b)$, $g(x) \to 0$ при $x \rightarrow b - 0$.
+    \end{note}
+\end{theorem}
+
+\begin{theorem}[признак Абеля]
+    \label{abel-criterion}
+
+    Пусть $f, g$ локально интегрируемы на $[a, b)$, причём
+    \begin{enumerate}
+        \item $\int_a^b f(x)\, dx$ сходится;
+        \item $g$ монотонна на $[a, b)$;
+        \item $g$ ограничена на $[a, b)$.
+    \end{enumerate}
+
+    Тогда несобственный интеграл $\int_a^b f(x)g(x)\, dx$ сходится.
+
+    \begin{proof}
+        Так как $g$ монотонна и ограничена на $[a, b)$, то $\displaystyle \exists \lim_{x \rightarrow b - 0} g(x) = c \in \R$.
+        
+        Функции $f$ и $g - c$ удовлетворяют условиям признака Дирихле (\ref{dirichlet-criterion}), поэтому $\int_a^b f(x)\left(g(x) - c\right)\, dx$ сходится. Тогда $\int_a^b f(x)g(x)\, dx = \int_a^b f(x)(g(x) - c)\, dx + c \int_a^b f(x)\, dx$ сходится как сумма сходящихся интегралов.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Пусть $f$ локально интегрируема на $[a, b)$, $g$ монотонна на $[a, b)$ и $\displaystyle \lim_{x \rightarrow b - 0} g(x) = c \in \R \setminus \{0\}$.
+
+    Тогда интеграл $\int_a^b f(x)g(x)\, dx$ и $\int_a^b f(x)\, dx$ либо одновременно расходятся, либо одновременно сходятся условно, либо одновременно сходятся абсолютно.
+
+    \begin{proof}
+        Покажем, что интегралы сходятся одновременно. Действительно, если $\int_a^b f(x)\, dx$ сходится, то сходится и $\int_a^b f(x)g(x)\, dx$ по признаку Абеля (\ref{abel-criterion}).
+
+        Так как $c \neq 0$, то $\exists a^* \in [a, b)$, такое что $g$ сохраняет знак на $[a^*, b)$. Следовательно, на $[a^*, b)$ определена $h = \frac{1}{g}$, которая является монотонной на нём.
+
+    Поскольку $\forall x \in [a^*, b) \hookrightarrow f(x) = f(x)g(x)h(x)$, то по признаку Абеля сходимость $\int_{a^*}^b f(x)g(x)\, dx$ влечёт сходимость $\int_{a^*}^b f(x)\, dx$, и, значит, сходимость $\int_a^b f(x)\, dx$.
+
+    Так как $g$ и $h$ имеют конечные пределы при $x \rightarrow b - 0$, то $|f \cdot g| \underset{x \rightarrow b - 0}{=} O\left(|f|\right), |f| \underset{x \rightarrow b - 0}{=} O(|f \cdot g|)$.
+
+    По признаку сравнения $\int_a^b |f(x)g(x)|\, dx$ и $\int_a^b |f(x)|\, dx$ сходятся одновременно и, значит, $\int_a^b f(x)g(x)\, dx$ и $\int_a^b f(x)\, dx$ одновременно сходятся абсолютно.
+    \end{proof}
+\end{corollary}
+
+\begin{example}
+    \[
+        I(\alpha) = \int_1^{+\infty} \arctg^\alpha \frac{1}{x} \sin \sqrt{x}\, dx, \ \alpha \in \R.
+    \]
+    
+    \begin{solution}
+        Функция под интегралом знакопеременна в любой окрестности бесконечности.
+        \[
+            I(\alpha) = 2\int_1^{+\infty} \sqrt{x} \arctg^\alpha \frac{1}{x} \sin \sqrt{x} \frac{1}{2\sqrt{x}}\, dx \overset{t = \sqrt{x}}{=} 2\int_a^{+\infty} t \arctg^\alpha \frac{1}{t^2} \cdot \sin t\, dt = 2 J(\alpha).
+        \]
+
+        Перемишем подынтегральную функцию в виде
+        \[
+            \frac{\sin t}{t^{2\alpha - 1}}g(t), \ g(t) = \left(t^2 \arctg \frac{1}{t^2}\right)^\alpha.
+        \]
+
+        Пусть $h(u) = u \arctg \frac{1}{u}, h'(u) = \arctg \frac{1}{u} + \frac{u}{1 + \frac{1}{u^2}} \cdot \left(-\frac{1}{u^2}\right) = \frac{1}{u} - \frac{1}{3u^3} + o\left(\frac{1}{u^3}\right) - \frac{1}{u}\left(1 - \frac{1}{u^2} + o\left(\frac{1}{u^2}\right)\right) = \frac{1}{u^3}\left(\frac{2}{3} + o(1)\right), \ u \to \infty$.
+
+        Следовательно, $g(t) = \left(h(t^2)\right)^\alpha$ монотонна на $[t_0, +\infty)$, $g(t) \rightarrow 1$ при $t \rightarrow +\infty$.
+
+        По следствию из признака Абеля (\ref{abel-criterion}) $J(\alpha)$ имеет тот же тип сходимости, что и $\int_1^{+\infty} \frac{\sin t}{t^{2\alpha - 1}}\, dt$.
+
+        \emph{Ответ:} $\begin{array}{l}I(\alpha) \ \text{сходится} \Leftrightarrow 2\alpha - 1 > 0 \Leftrightarrow \alpha > \frac{1}{2}, \\ I(\alpha) \ \text{сходится абсолютно} \Leftrightarrow 2\alpha - 1 > 1 \Leftrightarrow \alpha > 1.\end{array}$
+    \end{solution}
+\end{example}
+
+\begin{definition}
+    Пусть $a, b \in \overline{\R}$, $a < b$ и функция $f$ определена на $(a, b)$, кроме, быть может, конечного множества точек.
+
+    Точка $c \in (a, b)$ называется \emph{особенностью $f$}, если $f \not\in \mathcal{R}[\alpha, \beta]$ для любого $[\alpha, \beta] \subset (a, b)$, $\alpha < c < \beta$.
+
+    Точка $b$ называется \emph{особенностью $f$}, если $b = +\infty$, или $b \in \R$ и $f \not\in \mathcal{R}[\alpha, \beta]$, для любого $[\alpha, \beta]$.
+
+    Аналогично вводится особенность $a$.
+\end{definition}
+
+\begin{note}
+    Если на $(c, d)$ нет особенностей функции $f$, то $f$ локально интегрируема на $(c, d)$.
+
+    \begin{proof}
+        Пусть $[u, v] \subset (c, d)$. По условию $\forall x \in (u_x, v_x)$ и $f \in \mathcal{R}[u_x, v_x]$.
+
+        Тогда $\{(u_x, v_x)\}_{x \in [u, v]}$ образуют открытое покрытие $[u, v]$. По лемме Гейне-Бореля из открытого покрытия можно выделить конечное подпокрытие.
+
+        Объединяя элементы этого подпокрытия и пользуясь аддитивностью интеграла, заключаем, что $f$ интегрируема на отрезке, содержащем $[u, v]$, и, значит, $f$ локально интегрируема на $(c, d)$, так как $[u, v]$ выбирался произвольным.
+    \end{proof}
+\end{note}
