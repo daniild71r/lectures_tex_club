@@ -1,0 +1,187 @@
+\section{№10 Конечные поля}
+
+Пусть есть конечно поле $F$.
+
+\begin{definition}
+  Характеристика $F$: $p = \ord_{+} \langle 1 \rangle$, где $p$~--- простое число.
+\end{definition}
+
+\begin{corollary}
+  $\FF_p[x] \subset F[x]$. Точка $\{a \in F \quad f \in F_p[x]\}$.
+\end{corollary}
+
+\begin{definition}
+  Отображение оценки: 
+  \[\eva: \FF_p[x] \ra F\]
+\end{definition}
+
+Свойства:
+\begin{gather}
+  \eva (f) = f(a) \\
+  \eva(f + g) = f(a) + g(a) = \eva(f) + \eva(g) = (f + g)(a) \\
+  \eva(fg) = fg(a) = f(g)(g(a)) = \eva(f)\eva(g)
+\end{gather}
+
+\subsection{Гомоморфизм колец}
+
+\begin{definition}
+  Гомоморфизм $\phi: R_1 \ra R_2$
+  \begin{gather}
+    \phi(x + y) = \phi(x) + \phi(y) \\
+    \phi(xy) = \phi(x) \phi(y)
+  \end{gather}
+\end{definition}
+
+\begin{definition}
+  Биективный Гомоморфизм~--- изоморфизм.
+\end{definition}
+
+\begin{example}
+  \[\ZZ \ra \ZZ/n\ZZ\]
+\end{example}
+
+\begin{theorem}
+  Конечное поле~--- гомоморфизм образа $\FF_p[x]$.
+\end{theorem}
+
+\begin{proof}
+  \begin{gather}
+    \langle \alpha \rangle = F^{*} \\
+    \eva : \FF_p[x] \ra F \text{~--- сюръекция} \\
+    \eva(0) = 0 \\
+    \eva(x^n) = \alpha^n, \forall x \neq \exists n, x = \alpha^n
+  \end{gather}
+\end{proof}
+
+\begin{definition}
+  Ядро гомоморфизма $\phi: R_1 \ra R_2$.
+  \[\re \phi = \{ x \in R_1: \phi(x) = 0 \}\]
+\end{definition}
+
+\subsection{Подгруппа аддитивной группы}
+\begin{proposition}
+  Подгруппа аддитивной группы.
+  \begin{gather}
+    \forall r_1 \in R_1, \quad \forall k \in \ke \phi \quad (r_1 k \in \ke \phi \lor k r_1 \in \ke \phi) \\
+    \phi(r_1 k) = \phi(r_1) \phi(k) = \phi (r_1) \cd 0 = 0 \\
+    \phi(k r_1) = \phi(k) \phi(r_1) = 0 \cd \phi (r_1) = 0
+  \end{gather}    
+\end{proposition}
+
+\subsection{Идеал}
+
+\begin{definition}
+  Идеал $I \subset R$:
+  \begin{enumerate}
+    \item Подгруппа аддитивной группы
+    \item $\forall r \in R \quad \forall i \in I \Ra ri \in I$~--- Левый идеал
+    \item[2'] $\forall r \in R \quad \forall i \in I \Ra ir \in I$~--- Правый идеал
+  \end{enumerate}
+  Двухсторонний идеал: левый и правый идеал одновременно.
+\end{definition}
+
+\subsection{Кольцо вычетов $R/I$}
+
+\begin{definition}
+  Пусть $R$~--- кольцо, а $I$~--- двухсторонний идеал $R$. Пусть $x \in R$:
+  \begin{itemize}
+    \item $x + I = [x]$
+    \item $[x] + [y] = [x + y]$
+    \item $[x][y] = [xy]$ (Так как $x \equiv y \mod I \Lra (x - y) \in I$)
+  \end{itemize}
+\end{definition}
+
+\begin{proof}
+  Корректность:
+  \begin{gather}
+    x' = x + i' \\
+    y' = y + i'' \\
+    x'y' - xy = xy + \underbrace{i'y}_{\in I} + \underbrace{xi''}_{\in I}  + \underbrace{i'i''}_{\in I} - xy \in I \\
+    c: R \ra R/I \quad c: x \ra [x]
+  \end{gather}
+\end{proof}
+
+\begin{theorem}[О Гомоморфизмах]
+  $\phi: R_1 \ra R_2$~--- гомоморфизм, то $\im \phi \cong R_1 / \ke \phi$.
+\end{theorem}
+
+\begin{proof}~
+  \begin{itemize}
+    \item $\psi([x]) = \phi(x), \quad R_1/\ke \phi \ra \im \phi$
+    \item $\psi([x][y]) = \psi([xy]) = \phi(xy) = \phi(x) + \phi(y) = \psi[x] \psi[y]$
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}[О максимальном идеале]
+  $R$~--- коммутирует с 1, и $R/I$~--- поле $\Lra$ $I$~--- максимальный идеал.
+\end{theorem}
+
+\begin{proof}
+  $I$~--- максимальный $\equiv$ $I \subset R \  \forall J (I \subseteq J) \Ra (J = I), \quad (J = R)$
+\end{proof}
+
+\begin{proposition}
+  В полях идеалов нет.
+\end{proposition}
+
+\begin{definition}
+  Главный идеал: $(a) = \{ra: r \in R\}$.
+\end{definition}
+
+\begin{example}
+  \begin{gather}
+    (1) = R \Ra (J \subset R \Ra 1 \notin J) \\
+    R/I \text{~--- поле}, \quad [a][b] = [1], a \notin I \\
+    I \subset J \subset R, a \in J/I \\
+    \underbrace{ab}_{\in J} = \underbrace{1 + i}_{\in J}, i \in I
+  \end{gather}
+\end{example}
+
+\begin{example}
+  $I$~--- максимальный идеал $a \notin I$ 
+  \begin{gather}
+    I \subset \underbrace{(a, I)}_{=R} = \{ra + i : r \in R, i \in I\}
+    1 = ra + i \\
+    [a] \neq 0, [r][a] = [1]
+  \end{gather}
+\end{example}
+
+\subsection{Евклидова кольца}
+
+\begin{definition}
+  Евклидово кольцо:
+  \begin{itemize}
+    \item[$(E_1)$] $R$~--- коммутирует с единицей, без делителей нуля.
+    \item[$(E_2)$] Деление с остатком:
+    \begin{gather}
+      \forall a, b \in R, b \neq 0 \\
+      \exists q, r: a = qb + r,(r = 0 \lor N(r) < N(b)) 
+    \end{gather}
+    \item[$(E_3)$] $N(ab) \geq \max {(N(a), N(b))}$
+  \end{itemize}
+\end{definition}
+
+\begin{example}[(?)Гауссовы целые]
+  \begin{gather}  
+    \ZZ[i] = \{ a + bi, a, b \in \ZZ \} \\
+    N(x) = |x| \\
+    \exists N: R \setminus \{ 0\} \ra \NN \\
+    i = i (1 + i) + 1 \\
+    i = 1 (1 + i) - i
+  \end{gather}
+\end{example}
+
+\begin{theorem}
+  Евклидово кольцо~--- кольцо главных идеалов.
+\end{theorem}
+
+\begin{proof}
+  Пусть $I \subseteq R$:
+  \begin{gather}
+    I \neq \{0\} = (0) \\
+    a \in I \ N(a) \text{с наименьшей нормой} \\
+    N(a) = \min (R: \exists r \in R, N(r) = k) \\
+    x \in I, x = qa + r, (r = 0 \lor N(r) < (n(a)))
+  \end{gather}
+  Тогда имеем: $r = 0, \quad r = x - qa \in I$. То есть $I = (a)$.
+\end{proof}

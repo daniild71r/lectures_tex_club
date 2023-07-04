@@ -1,0 +1,217 @@
+\iffalse
+
+Оставь надежду, всяк сюда входящий...
+Человек, который возможно захочет что-то сюда добавить, или потехать Вялого... просто удачи, я почти на лекции не ходил и поэтому делал по чужим конспектам, поэтому возможно все будет выглядеть сумбурно, но все же... я пытався...
+
+\fi
+
+
+\section{№1 Арифметика}
+
+\begin{definition}
+  $\ZZ$ --- множество целых чисел, на котором можно ввести операции:
+  \begin{itemize}
+    \item Сложение $(+)$
+    \item Умножение $(\cdot)$
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}
+  Свойства операций:
+  \begin{itemize}
+    \item $a + b = b + a, \quad ab = ba \quad \text{(Коммутативность)}$
+    \item $a + (b + c) = (a + b) + c, \quad a(bc) = (ab)c \quad \text{(Ассоциативность)}$
+    \item $a(b + c) = ab + ac \quad \text{(Дистрибутивность)}$
+    \item $0 + a = a, \quad 1 \cdot a = a \quad \text{(Существование нейтрального элемента)}$
+    \item $(-a) + a = 0, \quad \frac{1}{a} \cdot a = 1 \quad \text{(Существование противоположного)}$
+  \end{itemize}
+\end{lemma}
+
+\begin{proposition}
+  Вычитание --- производная операция, такая что:
+  \[b - a \defeq b + (-a) \]
+\end{proposition}
+
+\begin{example}
+  \[2x = 1\]
+  Не имеет решений в $\ZZ$, деление определено не всегда.
+\end{example}
+
+\begin{definition}
+  \[a \mid b \Lra b = q \cdot a, \quad q \in \ZZ \Lra \underline{b \  \vdots \ a} \]
+  где $a$ --- делитель, $b$ --- кратное.
+\end{definition}
+
+\begin{lemma}
+  Некоторый свойства:  
+  \begin{enumerate}
+    \item $a \mid a$
+    \item $a \mid b \land  b \mid a \Lra \pm a = b$
+    \begin{proof}
+      $b = q_1 a, \quad a = q_2 b \Ra b = q_1 q_2 b \Ra q_1 q_2 = 1 \Ra q_1 = q_2 = \pm 1$
+    \end{proof}
+    \item $a \mid b, \quad b \mid c \Ra a \mid c \quad  \text{(Транзитивность)}$
+    \item $a \mid b, \quad  a \mid c \Ra a \mid (b + c)$
+    
+  \end{enumerate}
+
+\end{lemma}
+
+\subsection{Деление с остатком}
+
+\begin{example}
+  \[a = qb + r, \quad b \neq 0, \quad r < b\]
+  \[a = q(-b) + r = -qb + r\]
+\end{example}
+
+\begin{definition}
+  Арифметика остатков по модулю n:
+
+  $0, 1, \dots, n-1$ --- остатки
+\end{definition}
+
+\begin{lemma}
+  Свойства:
+  \begin{enumerate}
+    \item $a +_n b = (a + b) \mod (n)$
+    \item $a \cdot_n b = (a \cdot b) \mod (n)$
+  \end{enumerate}
+\end{lemma}
+
+\begin{example}
+  \begin{itemize}~
+    \item $3 +_{11} 9 = (12) \mod (11) = 1$
+    \item $3 \cdot_{11} 9 = 5$
+  \end{itemize}
+\end{example}
+
+\begin{example}
+  \[a \equiv b \mod n \Lra a - b = qn, \quad n \mid a - b\]
+  \[a = q_1 n + r_1, \ b = q_2 n + r_2 \land r_1 = r_2\]
+\end{example}
+
+\begin{definition}
+  Взятие по модулю образует классы эквивалентности(вычеты).
+\end{definition}
+
+\begin{proof}~
+  \begin{enumerate}
+    \item $a \equiv a (\mod n) \quad \text{(Рефлексивность)}$
+    \item $a \underset{n}{\equiv} b \Lra b \underset{n}{\equiv} a \quad \text{(Симметричность)}$
+    \item $a \underset{n}{\equiv} b \land b \underset{n}{\equiv} c \Lra a \underset{n}{\equiv} c \quad \text{(Транзитивность)}$
+  \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+  $\underset{n}{\equiv} 0, \ \underset{n}{\equiv} 1, \  \dots, \ \underset{n}{\equiv} n -1 $ --- $n$ классов.
+\end{corollary}
+
+\begin{definition}
+  $[a]_n$ --- \underline{класс вычетов} по модулю $n$, в который входит $a$.
+\end{definition}
+
+\begin{lemma}
+  Свойства
+  \begin{itemize}
+    \item $[a]_n + [b]_n = [a + b]_n$
+    \item $[a]_n \cdot [b]_n = [a \cdot b]_n$
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}~
+  \begin{align*}
+    x_2 &= x_1 + q_1 n \\
+    y_2 &= y_1 + q_2 n \\ \\
+    x_2 + y_2 &= y_1 + x_1 + (q_1 + q_2) n \\
+    x_2 \cdot y_2 &= (x_1 + q_1 n) (y_1 + q_2 n) = x_1 y_1 + n(x_1 q_2 + y_1 q_1 + q_1 q_2 n)
+  \end{align*}
+\end{proof}
+
+\begin{example}
+  $6^{97} \mod 7 \equiv {-1}^{97} \mod 7 \equiv -1 \mod 7 = [6]_7$
+\end{example}
+
+\begin{example}~
+  \begin{align*}
+  2x &= 1 \mod 7 : \quad [2]_7 \cdot [4]_7 = [8]_7 = [1]_7 \\
+  2x &= 1 \mod 8 : \quad \text{Решений нет}
+  \end{align*}
+\end{example}
+
+\begin{definition}
+  $[a]_n$ --- обратимыйы вычет, когда $ax = 1 (\mod n)$ имеет решение.
+\end{definition}
+
+\begin{reminder}
+  $a, b$ --- взаимно просты, если единсветнный положительный общий делителель $a$ и $b$ -- 1.
+\end{reminder}
+
+\begin{theorem}
+  Вычет $a$ по модулю $b$ обратим, когда $a$ и $b$ взамино просты.
+\end{theorem}
+
+\begin{proof}~
+  \begin{itemize}
+    \item[\text{$\Ra$}] $a \cdot x = 1 + qn$ \\
+    Пусть $a$ и $n$ имеют общий делитель d:
+    \[a = a'd, \quad n = n'd\] 
+    \[a'x d = 1 + qn'd\]
+    \[d(a'x - qn') = 1 \Ra d > 0 \Lra d = 1\]
+    \item[\text{$\La$}] $[ba]_n = [1]_n$ \\
+    \[\ZZ(a, n) = xa + yn, \quad x,y \in \ZZ\]
+    \[[d = \min (\ZZ > 0 \land \ZZ \in \ZZ(a, n))] \Ra \ZZ(a, n) = \ZZ_d\]
+    \[[d = \tilde a a + \tilde n n]\]
+    \[Kd = (K \tilde a) a + (K \tilde n) n \Ra \ZZ_d \subset \ZZ_(a, n)\]
+    \[(\ZZ_d = \{xd, \quad x \in \ZZ\})\]
+    В то же время $\ZZ(a, n) \subset \ZZ_d$, т.к.
+    \[z = qd + n, \quad xa + yn = qd + r\]
+    \[r = (x - \tilde a)a + (y - q \tilde n)n \in \ZZ(a, n) \land 0 \leq r < d \Ra r = 0\]
+    \[\Ra \ZZ(a, n) = \ZZ_d\]
+  \end{itemize}
+\end{proof}
+
+\begin{corollary}
+  $d$ --- общий делитель $a$ и $n$.
+\end{corollary}
+
+\begin{example}
+  \[K_1 d = 1 \cdot a + 0 \cdot n \in \ZZ(a, n)\]
+  \[K_2 d = 0 \cdot a + 1 \cdot n \in \ZZ(a, n)\]
+\end{example}
+
+\begin{corollary}
+  $d$ --- $\gcdru(a, n)$ (положительный).
+\end{corollary}
+
+\begin{example}
+  \[d' \mid a, \quad d' \mid n \Ra d = \tilde \times d' + \tilde b y d' = (\dots) d'\]
+  \[d = 1 \Ra [1]_n = [\tilde a]_n [a]_n\]
+\end{example}
+
+\subsection{Множества с одной бинарной операцией ($X$)}
+
+\begin{definition}
+  Бинарная операция $\equiv (X \cdot X \ra X)$
+\end{definition}
+
+\begin{definition}
+  Группа: $(G, \cdot)$ (то есть множество и операция на нём).
+\end{definition}
+
+\begin{lemma}
+  Аксиомы групп
+  \begin{enumerate}
+    \item $a \cdot (b \cdot c) = (a \cdot b) \cdot c$
+    \item $\exists e \in G: \forall g : \quad g \cdot e = e \cdot g = g$
+    \item $\forall x \in G: \exists x^{-1}: \quad x \cdot x^{-1} = x^{-1} \cdot x = e $
+  \end{enumerate}
+\end{lemma}
+
+\begin{example}~\\
+  Бесконечные : $(\ZZ, +), \  (\QQ, +), \ (\RR, +), \ (\Cm, +), \ (\QQ \slash {0, \cdot}), \ (\RR \slash {0}, \cdot), \ (\Cm \slash {0}, \cdot)$ \\
+  Конечные : $(\ZZ_n, +), \ (\ZZ_n^*, \cdot)$ --- обратимые вычеты.
+\end{example}
+
+\begin{proposition}
+  Если $ab = ba$, то $G$ --- абелва (коммутативная) группа.
+\end{proposition}

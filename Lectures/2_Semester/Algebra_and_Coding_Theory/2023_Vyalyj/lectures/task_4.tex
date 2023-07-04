@@ -1,0 +1,179 @@
+\section{№4 Гомоморфизм}
+
+\begin{proposition}
+  Гомоморфизм $G \ra H$:
+    \[\forall x, y \in G \hra \phi (x \cdot y) = \phi (x) \cdot \phi (y)\]
+\end{proposition}
+
+\begin{example}
+  ~
+  \begin{enumerate}
+    \item $\ZZ \ra \ZZ_n \quad [x]_n + [y]_n = [x + y]_n$
+    \item $\ZZ \ra \ZZ_n^{*} \quad \gcdru(a, n) = 1, \quad \exp_a(x) = [a^x]_n$
+    \item Возведение в степень. Пусть $A$ --- абелева группа, тогда:
+    \begin{gather}
+      p_k: A \ra A, \quad p_k: x \raone x^k \\
+      p_k(xy) = (xy)^k = \underbrace{xyxyxy \dots xy}_k = x^k y^k = p_k(x) \cdot p_k(y)
+    \end{gather}
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  Ядро: $\ke(\phi) = \{ g \in G: \ \phi(g) = e_h \}$
+\end{definition}
+
+\begin{definition}
+  Образ: $\im(\phi) = \{ h \in H : \ \exists g \in G \  \phi(g) = h\}$
+\end{definition}
+
+\begin{proposition}
+  $\ke(\phi) < G$
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    e_G \in \ke(\phi) \\
+    \phi(e_G) = e' \\
+    \phi(e_G \cdot e_G) = \phi(e_G) \cdot \phi(e_g) \Ra e' = e_H \\
+  \end{gather}
+  \begin{itemize}
+    \item $y, x \in \ke(\phi) \Ra \phi(x y) = \phi(x) \cdot \phi(y) = e_H \cdot e_H = e_H$
+    \item $\phi(x^{-1}) = \phi(x)^{-1}$ \\
+    $\phi(x^{-1}) \cdot \phi(x) = \phi(x \cdot x^{-1}) = \phi(e_G) = e_H$ \\
+    $\phi(x) = e_H, \ \phi(x^{-1}) = \phi(x)^{-1} = e_H$
+  \end{itemize}
+\end{proof}
+
+\begin{proposition}
+  $\im(\phi) < H$
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    \phi(e_G) = e_H \\
+    a = \phi(x), \ b = \phi(y) \\
+    a = \phi(x) \hra a^{-1} = \phi(x^{-1}) \\
+  \end{gather}
+\end{proof}
+
+\begin{example}
+  \begin{gather}
+    p_k : \ZZ_n \ra Z_n, \ p_k(x) = kx \\
+    \ke (p_k) = \{ [x] : [kx] = [0]\} = \{ [x] : \ord([x]) \mid k \}
+  \end{gather}
+\end{example}
+
+\begin{example}
+  \begin{gather}
+    \im (p_k) = \{ [y] : [y] = [kx], \ x \in \ZZ \} = \{ [id], \  0 \leq i < n / d\} \\
+  \end{gather}
+  \[| \im(p_k) | = \frac{n}{\gcdru(k, n)} = \frac{n}{d}\]
+\end{example}
+
+\begin{theorem}
+  $|G| = |\im |(\phi)| \cdot |\ke (\phi)|$
+\end{theorem}
+
+\begin{lemma}
+  $b \in \im (\phi) \hra \phi^{-1}(b) = a \cdot \ke (\phi) = \ke (\phi) \cdot a$
+\end{lemma}
+
+\begin{proof}~
+  \begin{itemize}
+    \item
+    $\phi^{-1} (b) \supseteq a \cdot \ke (\phi)$ \\
+    $x = ak, \ \phi(k) = e_H$ \\
+    $\phi (x) = \phi(ak) = \phi(a) \phi(k) = b \cdot e_H = b \Ra$ \\
+    $x \in \phi ^{-1} (b)$
+    \item 
+    $\phi^{-1} (b) \supseteq a \cdot \ke(\phi)$ \\
+    $ x = ka$ \\
+    Далее аналогично предыдущему пункту
+    \item 
+    $\phi^{-1} \subseteq a \cdot \ke (\phi)$ \\
+    $\phi(x) = b, \ x = a(a^{-1} x)$ \\
+    $\phi(a^{-1} x) = \phi(a^{-1}) \cdot \phi(x) = b^{-1} \cdot b = e_H$ \\
+    $a^{-1} \cdot x \in \ke (\phi)$
+    \item
+    $\phi^{-1}(b) \subseteq \ke (\phi) \cdot a$ \\
+    $\phi(x) = b$ \\
+    $\phi(x a^{-1}) = \phi(x) \phi(a^{-1}) = b \cdot b^{-1} = e_H$ \\
+    $x = (x a^{-1}) a = x(a^{-1}a)$
+  \end{itemize}
+\end{proof}
+
+\begin{corollary}
+  $|\im(\phi)| = (G : H)$ --- количество смженых классов \\
+  $|G| = |H| \cdot (G : H), \quad |G| = |\ke (\phi)| \cdot (G : \ke (\phi))$
+\end{corollary}
+
+\begin{corollary}
+  Для любого элемента группы образа, полный прообраз --- смежный класс, и это биекция.
+\end{corollary}
+
+\begin{proposition}
+  $p$ --- простое, $a \not \equiv 0 \mod (p)$ , $a$ --- квадратичный вычет, тогда \\
+  \[x^2 \equiv a \mod (p)\]
+  является его решением.
+\end{proposition}
+
+\begin{lemma}[Необходимое условие]
+  $a$ --- квадратичный вычет по модулю $p$ : \\
+  \[a^{(p-1)/2} \equiv \mod (p).\]
+\end{lemma}
+
+\begin{definition}
+  $K \vartriangleleft  G \Lra \forall g, \quad gk = gk$, где $K$ --- нормальная подгруппа группы $G$.
+\end{definition}
+
+\begin{corollary}
+  $\ke (\phi) $ --- нормальная подгруппа.
+\end{corollary}
+
+\begin{example}
+  \begin{gather}
+    H < S_3, \quad H = \langle (12) \rangle = \{ (), (12) \} \\
+    (13)H = \{ (13), (13) \circ (12) = (123) \} \\
+    H(13) = \{ (13), (12) \circ (13) = (132) \}
+  % $\Ra \ke (\phi) \vartriangleleft G$
+  \end{gather}
+\end{example}
+
+\begin{proposition}
+  $\forall K \vartriangleleft G $ --- ядро некоторого гомоморфизма.
+\end{proposition}
+
+\begin{definition}
+  $K \vartriangleleft G, \quad G/R$ --- фактор-группа.
+\end{definition}
+
+\begin{proof}
+  \begin{gather}
+    \{ gK: g \in G \} \\
+    g K = [g]_K = [g] \\
+    [g_1] [g_2] = [g_1 g_2] \\
+    K = [e] \text{--- класс вычетов из нейтрального элемента} \\
+    [g]^{-1} = [g^{-1}] \\
+  \end{gather}
+\end{proof}
+
+% дальше какая-то страшилка, см избранные в вк, я в ахуе если честно
+
+\subsection*{Основная теорема о гомоморфизме}
+\begin{theorem}[Основная теорема о гомоморфизме]
+  $\im (\phi) \cong G / \ke (\phi) $, где 
+  \[\phi: G \ra H \text{--- гомоморфизм}\]
+  \[\Psi: G/ \ke (\phi) \ra \im (\phi) \text{--- изоморфизм}\]
+  \[\Psi: [g] \raone \phi(g)\]
+
+  Корректность: $g' = g \cdot k, \quad k \in \ke \phi$:
+  \[\phi(g') = \phi(gk) = \phi(g) \phi(k) = \phi(g) \cdot e_H = \phi(g)\]
+
+  Сохранение операции:
+  \begin{gather}
+    \Psi ([g_1][g_2]) = \Psi([g_1 g_2]) \\
+    \phi (g_1 g_2) = \phi(g_1) \cdot \phi (g_2) = \Psi ([g_1]) \cdot \Psi([g_2]) \\
+    \Psi : [g] \ra e_H = \phi(g) \Ra g \in \ke (\phi) \\
+    [g] = \ke (\phi)
+  \end{gather}
+\end{theorem}

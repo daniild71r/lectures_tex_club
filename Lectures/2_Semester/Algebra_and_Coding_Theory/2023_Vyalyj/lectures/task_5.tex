@@ -1,0 +1,258 @@
+\section{№5 Гомоморфизм абелевых групп}
+
+\begin{reminder}
+  \[\phi : G \ra H \quad \im \phi \cong G / \ke \phi\]
+\end{reminder}
+
+\begin{example}
+  А --- абелева группа конечно порожденная
+  \[A = \langle g_1, \dots , g_2 \rangle \quad A = \{g_1^{x_1} \ra g_n^{x_n}; x \in \ZZ\}\]
+\end{example}
+
+\begin{proposition}
+  \[\phi : \ZZ^n \ra A \quad \phi: (x_1, \dots, x_n) \raone g_1^{x_1}, \dots g_n^{x_n}\]
+\end{proposition}
+
+\begin{theorem}
+  \[A \cong \ZZ^n / \ke \phi\]
+  где $\ZZ^n = \{(x_1, \dots, x_n) \mid x_i \in \ZZ\}, \quad (x + y)_i = x_i + y_i$
+\end{theorem}
+
+\begin{theorem}
+  $G < \ZZ^n$, то $F \cong \ZZ^m, \quad 0 \leq m \leq n$
+\end{theorem}
+
+\begin{example}
+  % \[u_1 = (u_1, u_2, \dots u_n)\] -- сбоку
+  \[
+  \begin{matrix}
+
+  \begin{matrix}
+    u_1 \\
+    u_2 \\
+    \vdots \\
+    u_m
+  \end{matrix}
+  &
+  \begin{pmatrix}
+    u_{11} & u_{12} & \dots & u_{1n} \\
+    u_{21} & u_{22} & \dots & u_{2n} \\
+    \vdots \\
+    u_{m1} & u_{m2} & \dots & u_{mn} \\
+  \end{pmatrix}
+  = M
+  \end{matrix}
+  \]
+\end{example}
+
+\begin{example}
+  A = $\langle a, b \rangle \  ab^5 = a^5 b = e$
+  \[M = 
+  \begin{pmatrix}
+    1 & 5 \\
+    5 & 1
+  \end{pmatrix}
+  \]
+  Тогда, $\ZZ^2 / R(M) \cong C_{24}$
+\end{example}
+
+\begin{proposition}
+  \[M = 
+  \begin{pmatrix}
+    d_1 & 0 & 0 & \dots & 0 \\
+    0 & d_2 & 0 & \dots & 0 \\
+    \vdots \\
+    0 & 0 & d_m & \dots & 0 \\
+  \end{pmatrix}
+  \]
+
+\end{proposition}
+Тогда, $R(M) = (d_1 y_1, d_2 y_2, \dots d_m y_m, 0 \dots 0), \quad y_i \in \ZZ$.
+А именно, $\ZZ^n / R(M) \cong Z_{d_1} \times Z_{d_2} \times \dots \times Z_{d_i} \times Z^{n - m} = G$
+\begin{example}
+  Тогда рассмотрим гомоморфизм:
+  \[\phi : \ZZ^n \ra G \quad \ke \phi = R(M)\]
+  \[(x_1, \dots, x_n) \raone (x_1 \mod d_1, \dots, x_i \mod d_i, x_{m+i}, \dots, x_n)\]
+
+\end{example}
+
+\begin{theorem}
+  Конечная порожденная абелева группа изморофна прямому произведению изоморфизмов (?\footnote{Здесь и далее знаки вопроса в скобках означают, что я не уверен в каком-либо утверждении на все сто, поэтому его стоит проверить.})
+\end{theorem}
+
+\begin{corollary}
+  Элементарные проебразования строк и столбцов 
+  \begin{itemize}
+    \item перестановка строк (или столбцов)
+    \item умножение строки на $-1$ 
+    \item сложение строки и целового кратного дургой строки (аналогично со столбцом)
+    \item отбрасывание первой строки
+  \end{itemize}
+\end{corollary}
+
+\begin{lemma}
+  Элементарные проебразования сохраняют факторгруппу: $\ZZ^n / R(M)$
+\end{lemma}
+
+\begin{example}
+  \[
+  \begin{pmatrix}
+    1 & 5 \\
+    5 & 1
+  \end{pmatrix}
+  \sim
+  \begin{pmatrix}
+    1 & 5 \\
+    0 & -24
+  \end{pmatrix}
+  \sim
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & +24
+  \end{pmatrix}
+  \]
+  Тогда: $A \cong \ZZ_1 \times \ZZ_{24} \cong \ZZ_{24}$
+\end{example}
+
+\begin{theorem}[Нормальная форма Смита]
+  \[
+  M \sim
+  \begin{pmatrix}
+    d_1 & 0 & 0 \\
+    \vdots & \ddots \\
+    0 & d_n & 0
+
+  \end{pmatrix}
+  \quad
+  d_i \mid \d{i + 1}
+  \]
+\end{theorem}
+
+\begin{example}
+  Рассмотрим группу $Z_8 \times Z_{16}: (Тут сделать две строчки) \quad a = \langle 2, 0 \rangle \quad \ord a = 4$
+
+  $\langle a  \rangle \cong \langle b \rangle, \quad a = \langle 4, 4 \rangle \quad \ord a = 4$ 
+
+  $Z_8 \times Z_{16} / \langle a \rangle \not \cong Z_8 \times Z_{16} / \langle b \rangle$
+
+  % \[
+  %   M_1 = 
+  %   \begin{pmatrix}
+  %     8 & 0  \\
+  %     0 & 16 \\
+  %     2 & 0
+  %   \end{pmatrix}
+    
+  %   \quad 
+  %   M_2 = 
+  %   \begin{pmatrix}
+  %   8 & 0  \\
+  %   0 & 16 \\
+  %   4 & 4
+  %   \end{pmatrix}
+
+  % \]
+
+  % \[
+
+  \[
+  M_1 = 
+  \begin{pmatrix}
+    8 & 0 \\
+    0 & 16 \\
+    2 & 0
+  \end{pmatrix}
+  \quad
+  M_2 = 
+  \begin{pmatrix}
+    8 & 0 \\
+    0 & 16 \\
+    4 & 4
+  \end{pmatrix}
+  \]
+
+  \[\ZZ^2 / R(M_1) \cong G_1 \cong Z_2 \times Z_{16} \quad \ZZ^2/R(M) \cong G_2 \cong Z_4 \times Z_8\]
+
+\end{example}
+
+\subsection{Гомоморфизм не абелевых групп}
+
+\begin{example}[Не абелва группа]
+  \[\phi: S_m \ra Z_2\]
+  Где $s(\pi)$ = \# циклов в $\pi$.
+  \[\phi: \pi \raone (n + s(\pi)) \mod 2\]
+
+  То есть четные перестановки $A_n = \ke \phi$
+\end{example}
+
+\begin{reminder}
+  $(ij)$ --- транспозиция.
+\end{reminder}
+
+\begin{lemma}
+  Каждая перестановка равна произведению транспозиций.
+\end{lemma}
+
+\begin{example}
+  \[(a_1, \dots, a_l) = (a_1, a_l) (a_1, a_{l-1}, \dots, (a_1, a_2))\]
+  \[a_i \raone \ra a_i \ra a_1 \ra a_{i+1} \ra \dots \ra a_{i +1}\]
+\end{example}
+
+\begin{lemma}
+  Умножение на транпосзицию изменяет коливчество циклов на $\pm$ 1.
+\end{lemma}
+
+\begin{proposition}
+  Элемент называется сорпяженном к $g \in G$, если выполнено:
+  \[x ^ g \defeq g ^{-1} x g\]
+  \[x \raone x^g\], то есть изоморфизм $G \ra G$ (автоморфизм)
+  
+\end{proposition}
+
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item Биективность: $y = g ^ {-1} x g, \quad x = g(g ^ {-1} x g) g^{-1} = x$
+    \item Сохранение операции: $g ^{-1} (xy) g = \underbrace{(g ^{-1} xg) (g^{-1} y g)}_{l}$
+  \end{itemize}
+\end{proof}
+
+\begin{proposition}
+  \[x \sim y \Lra \exists g \in G \ y = g^{-1} x g\]
+\end{proposition}
+
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $x \sim x \Ra x = e ^{-1} x e$
+    \item $x \sim y \Ra y \sim x$
+    \item $x \sim y, y \sim z \Ra x \sim z$ 
+  \end{itemize}
+  То есть, образуется класс эквивалентности.
+\end{proof}
+
+\subsection{Критерий сопряжения перестановок}
+
+\begin{example}
+  \[\sigma^{\prime} = \pi^{\prime} \sigma \pi\]
+  Цикловой тип $l(\pi) = (l_1 \geq l_2 \geq \dots \geq l_5)$
+  
+  $S_3: \pi = (12) \dots$
+  % тут я очень много не успел написать
+\end{example}
+\begin{center}
+  \texttt{тут началась какая-то жесть, я потерялся...}
+\end{center}
+\begin{theorem}
+  $\sigma^{\prime} \sim \sigma \Lra l(\sigma^{\prime}) = l(\sigma)$
+\end{theorem}
+
+\begin{proof}
+  \[l(\sigma^{\prime}) = l(\sigma)\]
+  \[\sigma = (a_1^1, \dots, a_{l_1}^1)(a_1^{2}, \dots a_{l_2}^2)\]
+  \[\pi: \sigma^{\prime}  = (b_1^{1}, \dots , b_{l_1}^1)(b_1^2, \dots, b_{l_2}^2 )\]
+
+  \[\pi: \raone a_j^i \xmapsto{\sigma} a_{j + 1}^i 
+  \xmapsto{\pi} b_{j+1}^{i}\]
+\end{proof}
+

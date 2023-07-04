@@ -1,0 +1,191 @@
+\section{№14 Приложения теории конечных полей}
+
+\subsection{Теория кодирования конечных машин}
+
+\begin{problem}
+  Необходимо передать сообщение с минимальными потерями связи.
+\end{problem}
+
+\begin{solution}
+  Будем передавать дискретный сигнал
+\end{solution}
+
+\begin{example}
+  Пусть есть битовый код:
+  \begin{gather}
+     \{0, 1\} ^k \ra \{0, 1\} ^n \\
+     \overset{\{0, 1\}^k}{\ra} |\text{Кодер}| \overset{\{0, 1\}^n}{\ra} | \text{Канал} | \overset{y}{\ra} | \text{Декодер} | \overset{D(y)}{\ra}
+  \end{gather}
+  Хотим: $D(y) = x$.
+  % \[\overset{asv}{123}\]
+\end{example}
+
+\begin{definition}
+  Код: $C \subseteq  \{0, 1\}^n$, где $n$~--- длина кода.
+\end{definition}
+
+\begin{definition}
+  Размерность $C$: $k = \log_2 |C|$. 
+\end{definition}
+
+\begin{definition}
+  Кодовое расстояние: $n, k, d$.
+\end{definition}
+
+Модель ошибки: инвертируем не более $r$ битов.
+\subsection{Расстояние Хэмминга}
+
+\begin{definition}
+  Расстояние Хэмминга:
+  \[d = \min_{x \neq y \quad x, y \in C}(\rho(x, y))\]
+  \[\rho(x, y) = \# (i: x_i \neq y_i)\]
+\end{definition}
+
+\begin{lemma}
+  Для расстояния Хэмминга:
+  \[\rho(x,z) \leq \rho(x, y) + \rho(y, z)\]
+\end{lemma}
+
+\begin{proof}
+  Пусть: 
+  \begin{gather}
+    A = \{i: x_i \neq y_i\} \\
+    B = \{j: x_j \neq y_j\} \\
+    C = \{l: x_l \neq y_l\}
+  \end{gather}
+  Тогда:
+  \[\rho(x,z) \leq \rho(x, y) + \rho(y, z) \Lra C \subseteq A \cup B\]
+\end{proof}
+
+\begin{note}
+  Также это расстояние можно рассмотреть как расстояние кратчайшего пути из двух вершин в булевом кубе. 
+\end{note}
+
+\begin{proposition}
+  $d \geq 2 r + 1 \Ra $ код исправляет $\leq r$ ошибок, где код $C$ -- $(n, k, d)$.
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    x \ra x' \in B_r(x) = \{z: \rho(x, z) \leq r \}
+  \end{gather}
+  Тогда:
+  \[\rho(x, y) \leq \rho(x, y) - \rho(x, x) \leq 2r + 1 - r = r + 1\]
+\end{proof}
+
+\begin{example}~
+  \begin{itemize}
+    \item Код повторения: $\{0^n, 1^n\}, \quad k = 1, d = n$. (Очень медленный)
+    \item Тривиальный код: $\{0, 1\}^n, \quad k = n, d = 1$.
+    \item Код проверки на чётность: $\{x: \sum x_i \equiv 0 \mod 2\}, \quad k = n - 1, d = 2$. (Не исправляем ни одной ошшбки)
+  \end{itemize}
+\end{example}
+
+\begin{example}[?]
+  $n = 5, \quad k = 4$. Тогда: 
+  \[1011 \ra 10111\]
+\end{example}
+
+\begin{definition}
+  Метрика Хэммингового шара:
+  \[B_{n, r} = \sum_{i = 0}^{r} \binom{n}{i} = |B_r(o^n)|\]
+\end{definition}
+
+\begin{definition}
+  Граница Хэмминга. Если $C$ -- $(n, k, 2r + 1)$~--- код, то
+  \[2^n = |C| \leq \frac{2^n}{B_{n, r}}\]
+\end{definition}
+
+\begin{definition}
+  Граница Варшамова - Гилберта, $\exists (n, k, 2d + 1)$~--- код:
+  \[2^k = |C| \geq \frac{2^n}{B_{n, 2r}}\]
+\end{definition}
+
+\begin{proof}
+  Будем выбирать точки на шарах, так что:
+  \[x_{i + 1} \in \{0, 1\}^n \setminus V_i \cd B(x_i, 2V) \]
+  \[k \cd B_{n, 2r} < 2^n\]
+\end{proof}
+
+\subsection{Явная конструкция кода}
+
+Построим двоичные сообщения $\{ 0, 1\}^n \lra \FF_x^n$
+
+\begin{definition}
+  Линейный код $C$~--- подпространство $\FF_2^n$.
+\end{definition}
+
+Тога кодовое расстояние $d = \min_{x \neq 0, \quad x \in C}(||xn||)$. Учтя, что $||x|| = x(i: \quad  x_i = 1)$, получаем:
+\[\rho(x, y)=  ||x - y|| \]
+% Учтя, что: $$
+\subsection{Код исправляющий ошибку}
+
+\begin{example}~
+  \begin{itemize}
+    \item Проверочная матрица: $C = \{ x: \quad Hx = 0\}$
+    \item Порождающая матрица: $C = \{x \quad : yG = x\}$
+  \end{itemize}
+\end{example}
+
+\begin{example}
+  $d = 3, n = 2^5 - 1, k = 2^s - s - 1$~--- код Хэмминга.
+
+  \[Gk 
+  \begin{pmatrix}
+    1 & 0 & 0 & \dots \\
+  0 & 1 & 0 & \dots \\
+  0 & 0 & 1 & \dots \\
+  \end{pmatrix}
+  \]
+
+  % n = k + s. Строка $y \in {0, 1}^5$, $||y|| \leq 2$.
+  % \begin{align*}
+  %   &p=1, \quad q \leq 2, $\quad (p + q)$ \leq 3 \\
+  %   &p=2, \quad q \leq 1, $\quad (p + q)$ \leq 3 \\
+  %   &p \leq 3, $\quad (p + q)$ \leq 3
+  % \end{align*}
+\end{example}
+
+\begin{definition}
+  Совершенный код~---
+\end{definition}
+
+\subsection{Коды с одной ошибкой}
+Пусть $\{0, 1\}^n \lra \FF_2^n \lra \RR_n = \FF_2[x] / (x^n-1)$
+
+% \begin(definition)
+%   Циклический код~---
+% \end(definition)
+
+\begin{definition}  
+  Оператор циклического свдига:
+  \[S: [x^i] \ra [x^{i + 1} \mod n]\]
+\end{definition}
+
+\begin{lemma}
+  $I$ -- индексы числе в $b_n \Lra SI = I$
+\end{lemma}
+
+\begin{proof}~
+  \begin{itemize}
+    \item[$\Ra$] 
+    \begin{gather}
+      I - \text{индекс} \\
+      S[f] = [xf(x)] \in I, \quad SI \subseteq I \\
+      [f] = [\sum \alpha_i x^i ] = \sum \alpha_i [x^i] \Ra \\
+      S^{-1} = S^{n-1} 
+    \end{gather}
+    \item[$\La$]
+    \begin{gather}    
+      [f] = [\sum \alpha_i x^i] = \sum \alpha _i [x^i] \\
+      [g] = \sum \beta_i [x^i] \\
+      [fg] = \sum \beta_i [x^i f] \in I 
+  \end{gather}
+\end{itemize}
+\end{proof}
+
+\begin{example}
+  Зададим код: $(1100100000000000)$. Возьмём все циклические суммы и всевозможные суммы. На самом деле это задаёт код Хэмминга.
+\end{example}
+
+% \[\emptyset\]
