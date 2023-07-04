@@ -1,0 +1,116 @@
+%30.03.23
+
+Опишем компакты в Евклидовом пространстве $\R^{n}$.
+
+\begin{example}
+    Замкнутый брус $R = [a_{1}, b_{1}] \times \ldots \times [a_{n}, b_{n}]$ является компактом в $\R^{n}$.
+\end{example}
+
+\begin{proof}
+    Метод математической индукции по $n$.
+
+    \begin{itemize}
+        \item База: $n = 1$ -- компакт по лемме Гейне--Бореля.
+        \item Предположение: Пусть верно для $n$.
+        \item Переход: $R = \underbrace{[a_{1}, b_{1}] \times \ldots \times [a_{n}, b_{n}]}_{R'} \times [a_{n+1}, b_{n+1}]$ в $\R^{n+1}$.
+
+        Пусть $\{x_{k}\} \subset R$, $x_{k} = (\underbrace{x_{1, k}, \ldots, x_{n, k}}_{y_{k}}, x_{n+1, k})^{T}$. Тогда $\{y_{k}\} \subset R'$ и $R'$ -- компакт $\Rightarrow$ $\exists \{y_{k_{i}}\}: \ y_{k_{i}} \to y_{0} \in R'$. Рассмотрим последовательность $\{x_{n+1, k_{i}}\} \subset [a_{n+1}, b_{n+1}]$ -- компакт $\Rightarrow$ $\exists \{x_{n+1}, k_{i_{j}}\}: \ x_{n+1, k_{i_{j}}} \to x_{n+1, 0} \in [a_{n+1}, b_{n+1}]$. 
+    
+        Тогда $y_{k_{i_{j}}} \to y_{0} = \left(x_{1,0}, \ldots, x_{n, 0}\right)^{T}$ как подпоследовательность сходящейся последовательности. Пусть $a = \left(x_{1,0}, \ldots, x_{n, 0}, x_{n+1, 0}\right)^{T} \in R$. Тогда $x_{k_{i_{j}}} \to a$ и, значит, $R$ компакт по теореме ($\ref{compact-criterion}$).
+    \end{itemize}
+\end{proof}
+
+\begin{corollary}
+    \label{criterion-compact-corollary}
+    Множество $K$ является компактом в $\R^{n}$ $\lra$ $K$ ограничено и замкнуто
+\end{corollary}
+
+\begin{proof}
+    $\Rightarrow$ лемма (\ref{lem_lim_closed}).
+
+    $\Leftarrow$ Если $K$ ограничено, то $K \subset B_{r}(x)$ для некоторой точки $x = (x_{1}, \ldots, x_{n})^{T}$ и $r > 0$. Рассмотрим замкнутый брус $[x_{1} - r, x_{1} + r] \times \ldots \times [x_{n} - r, x_{n} + r]$. Этот брус содержит $B_{r}(x)$, а значит, и $K$.
+
+    Тогда $K$ -- компакт по лемме (\ref{lem_comp_subset}).
+\end{proof}
+
+\begin{corollary}[теорема Больцано--Вейерштрасса]
+    Из любой ограниченной последовательности в $\R^{n}$ можно выделить сходящуюся подпоследовательность.
+\end{corollary}
+
+\begin{proof}
+    Если последовательность ограничена, то она лежит в некотором замкнутом шаре. Этот шар -- компакт по следствию (\ref{criterion-compact-corollary}). Осталось применить теорему (\ref{compact-criterion}).
+\end{proof}
+
+\begin{note}
+    В общих метрических пространствах из ограниченности и замкнутости не следует компактность.
+\end{note}
+
+\begin{example}
+    $X = \R$ с дискретной метрикой, $K = [0, 1]$ -- ограничено, замкнуто. Рассмотрим $\underset{x \in K}{\cup} B_{\frac{1}{2}}(x) = K$. Из этого покрытия нельзя выделить конечное подпокрытие.
+\end{example}
+
+\subsection{Полные метрические пространства}
+
+Пусть $(X, \rho)$ -- метрическое пространство.
+
+\begin{definition}
+    Последовательность $\{x_{n}\}$ в $X$ называется \textit{фундаментальной}, если 
+    \[\forall \epsilon > 0 \ \exists N \ \forall n, m \geq N \ (\rho(x_{n}, x_{m}) < \epsilon).\]
+\end{definition}
+
+\begin{lemma}
+    Всякая сходящаяся последовательность фундаментальна.
+\end{lemma}
+
+\begin{proof}
+    $x_{n} \in X$, $x_{n} \to a$. Пусть $\epsilon > 0$, тогда $\exists N \ \forall n \geq N \ (\rho(x_{n}, a) < \frac{\epsilon}{2})$. Следовательно, $\forall n, m \geq N$:
+    \[\rho (x_{n}, x_{m}) \leq \rho(x_{n}, a) + \rho(x_{m}, a) < \epsilon.\]
+\end{proof}
+
+Обратное утверждение неверно.
+
+\begin{example}
+    $X = (0, 1)$, $\rho(x, y) = |x - y|$. $\left\{\frac{1}{n}\right\}$ -- фундаментальна, однако не имеет предела в $X$.
+\end{example}
+
+\begin{definition}
+    Метрическое пространство называется \textit{полным}, если всякая фундаментальная последовательность в нем сходится.
+\end{definition}
+
+\begin{theorem}
+    Евклидово пространство $\R^{n}$ -- полное.
+\end{theorem}
+
+\begin{proof}~
+
+    Пусть $\{x_{k}\}$ -- фундаментальная последовательность в $\R^{n}$, $x_{k} = (x_{1, k}, \ldots, x_{n, k})^{T}$. Так как $|x_{i, k} - x_{i, m}| \leq \rho_{2}(x_{k}, x_{m})$, то из фундаментальности $\{x_{k}\}$ следует фундаментальность $\{x_{i, k}\}$ в $\R$ для $i = 1, \ldots , n$. По критерию Коши для числовых последовательностей $x_{i, k} \to a_{k} \in \R$. Рассмотрим $a = (a_{1}, \ldots, a_{n})^{T}$. $\rho_{2}(x_{k}, a) = \sqrt{\sum_{i = 1}^{n}(x_{k, i} - a_{i})^{2}} \to 0$ при $k \to \infty$. Значит, $x_{k} \to a \Rightarrow$ $\R^{n}$ -- полное метрическое пространство.
+\end{proof}
+
+\begin{example}
+    $B(E)$ -- линейное пространство всех \textit{ограниченных} функций $f: E \to \R$.
+
+    $B(E)$ является нормированным пространством относительно $\|f\| = \sup_{x \in E}|f(x)|$. Имеем $\sup|f(x) + g(x)| \leq \sup|f(x)| + \sup|g(x)|$. Имеем $f_{n} \to f$ в $B(E) \lra \|f_{n} - f\| \to 0 \lra \sup_{x \in E}|f_{n}(x) - f(x)| \to 0 \lra f_{n} \rightrightarrows f$ на $E$.
+\end{example}
+
+\begin{theorem}
+    $B(E)$ -- полное.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\{f_{n}\}$ фундаментальна в $B(E)$, $\epsilon > 0$. Тогда 
+    \[\exists N \ \forall n, m \geq N \ (\sup_{x \in E} |f_{n}(x) - f_{m}(x)| \leq \epsilon).\]
+
+    По критерию Коши равномерной сходимости $\exists f: f_{n} \rightrightarrows f$ на $E$. Осталось доказать, что равномерный предел ограниченных функций -- ограниченная функция. Для $\epsilon = 1$ $\exists N: |f_{N}(x) - f(x)| \leq 1 \ \forall x \in E \Rightarrow |f(x)| \leq |f_{N}(x)| + 1 \Rightarrow f \in B(E) \Rightarrow B(E)$ -- полное.
+\end{proof}
+
+\begin{corollary}
+    $C([a, b])$ -- линейное пространство всех непрерывных $f: [a, b] \to \R$ -- полное.
+\end{corollary}
+
+\begin{proof}
+    $C([a, b]) \subset B(E)$ (теорема Вейерштрасса). $C([a, b])$ -- полное как замкнутое подпространство (подмножество) полного пространства $B(E)$.
+\end{proof}
+
+\begin{problem}
+    Покажите, что $\overline{B_{1}}(\Theta)$ в $C([0, 1])$ не является компактом ($\Theta$ -- нулевая функция). 
+\end{problem}

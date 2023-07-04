@@ -1,0 +1,117 @@
+\section{18. Полуторалинейные формы в комплексном линейном пространстве. Эрмитовы полуторалинейные и квадратичные формы, связь мужду ними. Приведение их к каноническому виду. Закон инерции для эрмитовых квадратичных форм. Критерий Сильвестра.}
+
+\begin{definition}
+    Если рассматривать $V$ над $\Cm$, то в $V$ не бывает положительных функций в привычном нам виде.
+    Для сравнения функции с $0$ на комплексных значениях будем считать, что если  $q(x) > 0$, то 
+    $q(ix) = f(ix, ix) = -f(x,x) = -q(x) < 0$.
+\end{definition}
+
+\begin{definition}
+    \textit{Полуторалинейными функциями} будем называть такие $f: V \times V \to \Cm$, для которых верны: 
+    \begin{enumerate}
+        \item Аддитивность по первому аргументу: $f(x_1 + x_2, y) = f(x_1, y) + f(x_2, y)$,
+        \item Однородность по первому аргументу: $f(\lambda x, y) = \lambda f(x, y)$ для всех $\lambda \in \Cm$,
+        \item Аддитивность по второму аргументу: $f(x, y_1 + y_2) = f(x, y_1) + f(x, y_2)$.
+        \item $f(x, \lambda y) = \overline{\lambda} f(x, y)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Пусть $f$ -- полуторалинейная функция на $V$, $e$ -- базис в $V$, и векторы $x, y \in V$ имеют 
+    координаты $x \leftrightarrow (x_1, x_2, \dots x_n)^T$, $y \leftrightarrow (y_1, y_2, \dots y_n)$.
+    \textit{Полуторалинейной формой} от $x$, $y$ называют:
+    \begin{gather*}
+        f(x, y) = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij} x_i \overline{y_j} = x^T A \overline{y}.
+    \end{gather*} 
+\end{definition}
+
+\begin{proposition}
+    Пусть $f$ -- полуторалинейная функция в $V$, $e$, $f$ -- базисы в $V$, $S$ -- матрица перехода 
+    $S = S_{e \to f}$ и функция $f$ представляется в базисах $V$ матрицами
+    $f \underset{e}{\leftrightarrow} A$, $f  \underset{f}{\leftrightarrow} B$, то $B = S^T A \overline{S}$.
+\end{proposition}
+
+\begin{proof}
+    В базисе $e$ функция $f$ выражается как $f(x, y) = x^T A \overline{y}$. При переходе к базису 
+    $f$ получим $x = S x'$, $y =  S y'$. Тогда:
+    $$f(x, y) = (Sx')^T A \overline{(Sy')} = (x')^T S^TA \overline{S} \overline{y'} = (x')^TB\overline{y'},$$
+    откуда $B = S^TA\overline{S}$.
+\end{proof}
+
+\begin{definition}
+    Полуторалинейная функция $f(x, y)$ называется \textit{эрмитовой} (или \textit{эрмитово-симметричной}) если для всех 
+    $x, y \in V$ верно $f(x, y) = \overline{f(y, x)}$. Матрица называется эрмитово-симметричной если 
+    $A = \overline{A^T}$. 
+\end{definition}
+
+\begin{note}
+    Комплексное сопряжение $\overline{A}$ к матрице $A$ стоит воспринимать как замену всех её элементов 
+    на комплексно-сопряженные к ним.
+\end{note}
+
+\begin{proposition}
+    Полуторалинейная функция $f$ эрмитова тогда и только тогда, когда в произвольном базисе $e$ её 
+    матрица эрмитова.
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $f$ эрмитова. Тогда верно: \begin{gather*}
+            a_{ij} = f(e_i, e_j) = \overline{f(e_j, e_i)} = \overline{a_{ji}}.
+        \end{gather*} Отсюда следует $A = \overline{A^T}$.
+        \item Достаточность. Пусть $A = \overline{A^T}$, откуда $A^T = \overline{A}$.
+        Тогда: 
+        \begin{gather*}
+            f(x, y) = (x^T A \overline{y}) = (x^T A \overline{y})^T = \overline{y^T} A^T x = 
+            \overline{y^T} A^T \overline{\overline{x}} = \overline{y^T A \overline{x}} = \overline{f(y, x)}.
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Пусть $\Delta = \{(x, x) \vert x \in V\}$ -- диагональ декартового квадрата. Тогда функция $q: V \to \Cm$ 
+    назвается эрмитовой квадратичной функцией $q(x) = f(x, x) = f \vert_{\Delta}$, где $f$ -- эрмитова 
+    симметричная функция.
+\end{definition}
+
+\begin{theorem}[О существовании канонического базиса]~
+
+    Пусть $q$ -- эрмитова квадратичная функция (или соответствующая ей эрмитова симметричная функция $f$).
+    Тогда в $V$ существует базис $e$, в котором матрица $q(f)$ диагональна, причем на главной диагонали 
+    стоят числа $\pm 1$ и $0$.
+\end{theorem}
+
+\begin{idea}
+    Пусть $q \neq 0$. Тогда в $V$ существует такой ненулевой вектор $e_1$, что $q(e_1) \neq 0$.
+    Без ограничения общности можно перейти к $q(e_1) = \pm 1$. \\ Тогда можно рассмотреть пространство 
+    $U = \langle e_1 \rangle$ и ортогональное дополнение к нему, образующие прямую сумму.
+\end{idea}
+
+\begin{proposition}[Закон инерции для квадратичных эрмитовых функций]
+    Пусть $e$ - произвольный канонический базис для $q(x)$ и пусть $p, q$ - положительнй и отрицательный
+    индексы инерции относительно $e$. Тогда:
+    \begin{enumerate}
+        \item $p = \max \{\dim U | U \leq V: q \vert_{U} \text{ -- положительно опеределена}\}$.
+        \item $q = \max \{\dim U | U \leq V: q \vert_{U} \text{ -- отрицательно опеределена}\}$.
+        \item $p$ и $q$ не зависят от выбора канонического базиса.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Доказательство аналогично билинейному случаю.
+\end{proof}
+
+\begin{proposition}[Аналог критерия Сильвестра]
+    Пусть $q(x) \in H(V)$ -- эрмитова квадратичная функция, $A$ -- её матрица в произвольном базисе, где 
+    выполняется условие эрмитовости $\tilde{A^T} = A$. Тогда:
+    \begin{enumerate}
+        \item $q(x)$ положительно определена тогда и только тогда, когда $\Delta_1 > 0$, $\Delta_2 > 0$, $\dots$, 
+        $\Delta_n > 0$.
+        \item $q(x)$ отрицательно определена тогда и только тогда, когда $\Delta_1 < 0$, $\Delta_2 > 0$, $\dots$, 
+        $\sgn (\Delta_n) = (-1)^n$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Доказательство аналогично билинейному случаю.
+\end{proof}

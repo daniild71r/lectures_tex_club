@@ -1,0 +1,178 @@
+%01.03.23
+
+\section{Непрерывные функции}
+
+\subsection{Предел функции в точке}
+
+Пусть $(X, \rho_{x}), (Y, \rho_{y})$ -- метрические пространства, $a$ -- предельная точка $X$, и задана функция $f: X \setminus \{a\} \to Y$.
+
+\begin{definition}[Коши]
+    Точка $b \in Y$ называется \textit{пределом} функции $f$ в точке $a$, если
+    
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X (0 < \rho_{X}(x, a) < \delta \Rightarrow \rho_{Y}(f(x), b) < \epsilon)\]
+    
+    или, что эквивалентно,
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X (x \in \mathring{B}_{\delta}(a) \Rightarrow f(x) \in B_{\epsilon}(b).\]
+\end{definition}
+
+\begin{definition}[Гейне]
+    Точка $b \in Y$ называется \textit{пределом} функции $f$ в точке $a$, если
+    
+    \[\forall \{x_{n}\}, x_{n} \in X \setminus \{a\} (x_{n} \to a \Rightarrow f(x_{n}) \to b).\]
+    
+\end{definition}
+
+Как и в случае числовых функций, доказывается равносильность определений по Коши и по Гейне, поэтому в обоих случаях пишут $\lim_{x \to a}f(x) = b$, или $f(x) \to b$ при $x \to a$.
+
+\begin{property}[единственность]
+    Если $\lim_{x \to a}f(x) = b$ и $\lim_{x \to a}f(x) = c$, то $b = c$.
+\end{property}
+
+\begin{proof}
+    Пусть $x_{n} \to a$ и $x_{n} \neq a$. По определению Гейне $f(x_{n}) \to b$ и $f(x_{n}) \to c$. Так как последовательность в метрическом пространстве имеет не более одного предела, то $b = c$.
+\end{proof}
+
+\begin{note}
+    Пусть $E \subset \R^{n}$, $a$ -- предельная точка $E$, функция $f: E \to \R^{m}$. Если $x \in E$, то $f(x) = (y_{1}, \ldots, y_{m})$, и значит, для каждого $i = 1, \ldots, m$ определена \textit{$i$-я координатная функция} $f_{i}: E \to \R$, $f_{i}(x) = y_{i}$. Пишут $f = (f_{1}, \ldots, f_{m})$.
+\end{note}
+
+\begin{lemma}[о покоординатной сходимости]
+    $\lim_{x \to a}f(x) = b \lra \lim_{x \to a} f_{i}(x) = b_{i}$.
+\end{lemma}
+
+\begin{proof}
+    Следует из неравенств $|x_{i} - b_{i}| \leq \rho_{2}(x, b) \leq \sqrt{m}\max_{1 \leq i \leq m}|x_{i} - b_{i}|$.
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item $f(x, y) = \frac{x^{3} + y^{3}}{x^{2} + y^{2}}$.
+
+        $|f(x, y) - 0| = \frac{|x^{3} + y^{3}|}{x^{2} + y^{2}} \leq \frac{|x^3| + |y^3|}{x^2 + y^2} \leq 2\cdot \frac{\left(\sqrt{x^2 + y^2}\right)^{3}}{x^2 + y^2} = 2\sqrt{x^2 + y^2} < \epsilon \Rightarrow \rho_{2}((x, y), (0, 0)) < \frac{\epsilon}{2}$. $(\delta = \frac{\epsilon}{2})$.
+
+        \item $f(x, y) = \frac{xy + y^2}{x^2 + y^2}$.
+
+        $f(x, 0) = 0$, $f(0, y) = 1 \Rightarrow$ предела в $(0, 0)$ нет.
+    \end{enumerate}
+\end{example}
+
+\begin{property}
+    $f, g: X \setminus \{a\} \to \R$ и $\lim_{x \to a} f(x) = b$, $\lim_{x \to a} g(x) = c$. Тогда $\lim_{x \to a} (f(x) + g(x)) = b + c$, $\lim_{x \to a} f(x)g(x) = bc$.
+\end{property}
+
+\begin{proof}
+    $x_{n} \in X \setminus \{a\}$, $x_{n} \to a \Rightarrow f(x_{n}) \to b$, $g(x_{n}) \to c \Rightarrow f(x_{n}) + g(x_{n}) \to b + c$, $f(x_{n})g(x_{n}) \to bc$. Утверждение следует по определению Гейне.
+\end{proof}
+
+В дальнейшем, говоря о <<пределе по подможеству>>, всегда будем иметь в виду подпространство с индуцированной метрикой.
+
+\begin{property}[предел по подмножеству]
+    \label{proper3}
+    Пусть $E \subset X$, $a$ -- предельная точка множества $E$. Если $\lim_{x \to a} f(x) = b$, то $\lim_{x \to a} (f|_{E})(x) = b$.
+\end{property}
+
+\begin{proof}
+    Пусть $x_{n} \subset E$, $x_{n} \to a$ и $x_{n} \neq a$. Тогда $(f|_{E})(x_{n}) = f(x_{n}) \to b$. По определению Гейне $\lim_{x \to a}(f|_{E})(x) = b$.
+\end{proof}
+
+Пусть $f: D \to \R$, $D \subset \R^{n}$, $a, u \in \R^{n}$ и $|u| = 1$.
+$\{a + tu: 0 < t < \Delta\} \subset D$ для некоторого $\Delta > 0$.
+Тогда $\lim_{t \to +0}f(a + tu)$ называется \textit{пределом $f$ в точке $a$ по направлению $u$}. По свойству (\ref{proper3}) $\lim_{t \to +0}f(a) = b \Rightarrow \lim_{t \to +0} f(a + tu) = b$. Обратное утверждение неверно.
+
+\begin{example}
+    $f(x, y) = \begin{cases}
+    1, y = x^2, x \geq 0. \\
+    0, \text{иначе}.
+    \end{cases}$
+    Рассмотрим $f(\frac{1}{n}, \frac{1}{n^{2}}) = 1$, $f(\frac{1}{n}, 0) = 0 \Rightarrow$ нет предела.
+\end{example}
+
+\begin{property}[локальная ограниченность]
+    Если существует $\lim_{x \to a} f(x)$, то $\exists \delta > 0: f(\mathring{B}_{\delta}(a))$ ограничено.
+\end{property}
+
+\begin{proof}
+    Достаточно положить в определении Коши $\epsilon = 1$.
+\end{proof}
+
+\begin{problem}
+    Пусть $X, Y$ -- метрические пространства, причем $Y$ полное, $a$ -- предельная точка $X$, и $f: X \setminus \{a\} \to Y$. Покажите, что $\lim_{x \to a} f(x)$ существует тогда и только тогда, когда
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x, x' \in X (x, x' \in \mathring{B}_{\delta}(a) \Rightarrow \rho_{Y}(f(x), f(x')) < \epsilon).\]
+\end{problem}
+
+Положим $a = (x_{0}, y_{0}), f: \mathring{B}_{\Delta}(x_{0}, y_{0}) \to \R$.
+\begin{definition}
+    Пусть $\exists \sigma > 0 \ \forall x \in (x_{0} - \sigma, x_{0} + \sigma) \setminus \{x_{0}\}$ существует $\lim_{y \to y_{0}} f(x, y) = \phi(x)$. Предел функции $\phi$ в точке $x_{0}$ называется \textit{повторным пределом}:
+    \[\lim_{x \to x_{0}} \phi(x) = \lim_{x \to x_{0}}\lim_{y \to y_{0}}f(x, y).\]
+\end{definition}
+
+\begin{lemma}
+    Пусть $f: \mathring{B}_{\Delta}(x_{0}, y_{0}) \to \R$, такая что
+    \begin{enumerate}
+        \item $\underset{y \to y_{0}}{\underset{x \to x_{0}}{\lim}} f(x, y) = b$; 
+        \item $\exists \sigma > 0 \ \forall x \in (x_{0} - \sigma, x_{0} + \sigma) \setminus \{x_{0}\}$ существует $\lim_{y \to y_{0}} f(x, y) = \phi(x)$ (конечный).
+    \end{enumerate}
+    Тогда $\lim_{x \to x_{0}}\lim_{y \to y_{0}}f(x, y) = b$.
+\end{lemma}
+
+\begin{proof}
+    Положим $\delta_{0} = \min\{\Delta, \sigma\}$. Зафиксируем $\epsilon > 0$. Тогда
+    \[\exists \delta \in (0, \delta_{0}) \ \forall (x, y) \ \mathring{B}_{\delta}(x_{0}, y_{0})\left(|f(x, y) - b| < \frac{\epsilon}{2}\right).\]
+
+    $\forall x \in (x_{0} - \delta, x_{0} + \delta) \setminus \{x_{0}\}$ существует $\phi(x)$. Перейдем к пределу при $y \to y_{0}$:
+    \[|\phi(x) - b| \leq \frac{\epsilon}{2} < \epsilon.\]
+
+    Это доказывает, что $\lim_{x \to x_{0}}\phi(x) = b$, что и требовалось доказать.
+\end{proof}
+
+\subsection{Непрерывные функции}
+
+Пусть $(X, \rho_{X})$ и $(Y, \rho_{Y})$ -- метрические пространства и задана функция $f: X \to Y$.
+
+\begin{definition}
+    Функция $f$ \textit{непрерывна в точке} $a \in X$, если
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X \left(\rho_{X}(x, a) < \delta \Rightarrow \rho_{Y}(f(x), f(a)) < \epsilon\right)\]
+    или, что эквивалентно,
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X \left(x \in B_{\delta}(a) \Rightarrow f(x) \in B_{\epsilon}(f(a))\right).\]
+\end{definition}
+
+\begin{example}
+    Координатная функция $p_{i}: \R^{n} \to \R$, $p_{i}(x_{1}, \ldots, x_{n}) = x_{i}$, непрерывна в каждой точке $\R^{n}$. Это следует из неравенства $|x_{i} - a_{i}| \leq \rho_{2}(x, a)$.
+\end{example}
+
+\begin{lemma}
+    Пусть $f: X \to Y$, $a \in X$. Следующие условия эквивалентны:
+    \begin{enumerate}
+        \item функция $f$ непрерывна в точке $a$;
+        \item $\forall \{x_{n}\}$, $x_{n} \in X \left(x_{n} \to a \Rightarrow f(x_{n}) \to f(a)\right)$;
+        \item $a$ -- изолированная точка множества $X$ или $a$ -- предельная точка $X$ и $\lim_{x \to a} f(x) = f(a)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    $(1) \Rightarrow (2)$ Выберем $\epsilon > 0$ и соответствующее $\delta > 0$ из определения непрерывности. Если $x_{n} \to a$ (в $X$), то существует такой номер $N$, что $\rho_{X}(x_{n}, a) < \delta$ при всех $n \geq N$, но тогда $\rho_{Y}(f(x_{n}), f(a)) < \epsilon$ при $n \geq N$. Это означает, что $f(x_{n}) \to f(a)$.
+
+    $(2) \Rightarrow (3)$ Если $a$ -- предельная точка $X$, то из условия $\lim_{x \to a} f(x) = f(a)$ по определению Гейне.
+
+    $(3) \Rightarrow (1)$ Если $a$ изолирована, то $B_{\delta_{0}}(a) \cap X = \{a\}$ для некоторого $\delta_{0} > 0$. Тогда для любого $\epsilon > 0$ определение непрерывности в точке $a$ выполняется при $\delta = \delta_{0}$. Пусть $a$ предельная для $X$. По определению предела по Коши $\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in E \left(0 < \rho_{X}(x, a) < \delta \Rightarrow \rho_{Y}(f(x), f(a)) < \epsilon\right)$. Но последняя импликация верна и для $x = a$. Значит, функция $f$ непрерывна в точке $a$.
+\end{proof}
+
+\begin{theorem}[о непрерывности композиции]
+    Пусть $(X, \rho_{X})$, $(Y, \rho_{Y})$ и $(Z, \rho_{Z})$ -- метрические пространства. Если функция $f: X \to Y$ непрерывна в точке $a \in X$, и функция $g: Y \to Z$ непрерывна в точке $f(a) \in Y$, то их композиция $g \circ f: X \to Z$ непрерывна в точке $a$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $x_{n} \to a$, тогда $f(x_{n}) \to f(a)$ и, значит, $g(f(x_{n})) \to g(f(a))$.
+\end{proof}
+
+\begin{corollary}
+    Если функции $f, g: X \to \R$ непрерывны в точке $a$, то в этой точке также непрерывны функции $f + g$, $fg: X \to \R$.
+\end{corollary}
+
+\begin{definition}
+    Функция $f \: X \to Y$ \textit{непрерывна} (на $X$), если $f$ непрерывна в каждой точке $X$.
+\end{definition}
+
+\begin{example}
+    \textit{Многочленом} называется функция $P: \R^{n} \to \R$, $P(x) = \sum_{(k_{1}, \ldots, k_{n})}a_{k_{1}\ldots k_{n}}x_{1}^{k_{1}}\ldots x_{n}^{k_{n}}$, где суммирование ведется по конечному множеству наборов $(k_{1}, \ldots, k_{n})$ целых неотрицательных чисел. Многочлен $P$ непрерывен как линейная комбинация непрерывных функций $p_{1}^{i_{1}}\ldots p_{n}^{i_{n}}$, где $p_{i}(x) = x_{i}$.
+\end{example}

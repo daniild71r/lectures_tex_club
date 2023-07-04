@@ -1,0 +1,74 @@
+\section{5. Инвариантные подпространства. Собственные векторы и собственные значения. Характеристический многочлен и его свойства. Инвариантность следа и определителя матрицы оператора.}
+
+\begin{definition}
+    Пусть $V$ -- линейное пространство, $\phi: V \to V$. Подпространство $U \leq V$ называется 
+    \textit{инвариантным}, если выполняется $\forall x \in U \; \phi(x) \in U$. Другими словами, действие 
+    оператора $\phi$ на вектор из $U$ не выводит его за пределы $U$, а значит 
+    $\phi(U) \subset U \Leftrightarrow \phi(U) \leq U$.
+\end{definition}
+
+\begin{proposition}
+    Пусть $\phi: V \to V$ -- линейный оператор, $U$ -- инвариантное подпространство. Тогда в базисе, 
+    согласованном с $U$, оператор $\phi$ имеет матрицу с левым нижним углом нулей:
+    \[\phi(A) = \left(\begin{array}{@{}c|c@{}}
+		A & B\\
+		\hline
+		0 & C
+	\end{array}\right)\]
+    Здесь $A \in M_k(F)$, $k = \dim U$.
+\end{proposition}
+
+\begin{proof}
+    $U$ инвариантно относительно $\phi$, а значит $\phi(e_1), \phi(e_2), \dots \phi(e_k) \in U$.
+    Тогда для базисного вектора из $U$ ненулевыми могут быть только первые $k$ элементов 
+    соответствующего ему столбца.
+\end{proof}
+
+\begin{note}
+    Блок нулей в левом нижнем углу означает, что $\phi(e_1), \phi(e_2), \dots \phi(e_k) \in U$, 
+    а значит подпространство $U$ является инвариантным относительно $\phi$.
+\end{note}
+
+\begin{definition}
+    Пусть $\phi: V \to V$. Ненулевой вектор
+    $x \in V: \phi(x) = \lambda x$ называется \textit{собственным вектором} оператора $\phi$, 
+    отвечающим собственному значению $\lambda$.
+\end{definition}
+
+\begin{definition}
+    Число $\lambda \in F$ называется \textit{собственным значением} оператора $\phi$, если 
+    $\exists x \in V: x \neq 0,\; \phi(x) = \lambda x$,
+    то есть если некоторое $x$ отвечает $\lambda$.
+\end{definition}
+
+\begin{definition}
+    \textit{Характеристическим многочленом} оператора $\phi: V \to V$ называется определитель $|A - \lambda E| = \chi_A(\lambda)$, где $A$ -- матрица $\phi$ в произвольном базисе.
+\end{definition}
+
+\begin{theorem}
+    Верны следующие свойства характеристического многочлена:
+    \begin{enumerate}
+        \item Корни $\chi(\lambda)$ принадлежащие полю $F$ и только они являются собственными 
+        значениями $\phi$.
+        \item Многочлен $\chi(\lambda)$ не зависит от выбора базиса.
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $\lambda_0$ -- корень $\chi_{\phi}(\lambda) \lra \chi_{\phi}(\lambda_0) = 0 \lra \det(A - \lambda_{0}E) = 0 \lra $ система $A - \lambda_{0}E$ имеет ненулевое решение при $x_0 \neq 0$ $\lra \phi x_{0} = \lambda_0 x_0 \lra \lambda_0$ -- собственное значение $\phi$. В силу равносильных переходов, обратное утверждение тоже верно. 
+        \item Наряду с $e$ выберем базис $f$, обозначим за $S$ матрицу перехода между ними: 
+        $S = S_{e \to f}$. Тогда $\phi \xleftrightarrow[e]{} A$, $\phi \xleftrightarrow[f]{} B$, 
+        $B = S^{-1}AS$. Верна следующая цепочка равенств:
+        \begin{eqnarray}
+            \chi_b(\lambda) = |B - \lambda E| = |S^{-1}AS - \lambda E| 
+            = |S^{-1}AS - S^{-1} \lambda E S| = \\ = |S^{-1}(A - \lambda E)S| 
+            = |S^{-1}| \cdot |A - \lambda E| \cdot |S| = |A - \lambda E| = \chi_a(\lambda).
+        \end{eqnarray}
+        Таким образом, характеристический многочлен одинаков для всех базисов.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    От выбора базиса не зависят так же коэффициенты характеристического многочлена, в частности $det A$ и $tr A$, поэтому часто пишут $det \phi$ и $tr \phi$ соответственно.
+\end{corollary}

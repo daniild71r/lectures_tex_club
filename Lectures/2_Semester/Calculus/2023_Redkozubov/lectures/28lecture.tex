@@ -1,0 +1,146 @@
+%04.05.23
+
+\begin{definition}
+    Функции $f^{+} = \max\{f, 0\}$ и $f^{-} = \max\{-f, 0\}$ называются \textit{положительной} и \textit{отрицательной} частями $f$ соответственно.
+\end{definition}
+
+\begin{note}
+    Из определения следует, что $f = f^{+} - f^{-}$, $|f| = f^{+} + f^{-}$ и $0 \leq f^{\pm} \leq |f|$.
+\end{note}
+
+\begin{corollary}
+    Измеримость $f$ равносильна одновременной измеримости $f^{+}$ и $f^{-}$.
+\end{corollary}
+
+\begin{proof}
+    Пусть $f$ измерима, тогда $f^{\pm} = \frac{1}{2}(|f| \pm f)$ -- измеримы. Если $f^{\pm}$ измеримы, то $f = f^{+} - f^{-}$ измерима.
+\end{proof}
+
+\begin{theorem}
+    Если $f_{k}: E \to \overline{\R}$ -- измеримы, то $\underset{k}{\sup}f_{k}$, $\underset{k}{\inf}f_{k}$, $\overline{\lim}_{k \to +\infty}f_{k}$, $\underline{\lim}_{k \to +\infty}f_{k}$ также измеримы на $E$.
+\end{theorem}
+
+\begin{proof}
+    Измеримость $g = \underset{k}{\sup}f_{k}$ следует из равенства:
+    \[\{x \in E: g(x) \leq a\} = \bigcap_{k = 1}^{+\infty}\{x \in E: f_{k}(x) \leq a\}\]
+
+    Измеримость $h = \underset{k}{\inf}f_{k}$ следует из $\underset{k}{\inf}f_{k} = -\underset{k}{\sup}(-f_{k})$.
+
+    Далее, поскольку $\overline{\lim}_{k \to +\infty}f_{k} = \underset{k}{\inf}\underset{m \geq k}{\sup}f_{m}$, $\underline{\lim}_{k \to +\infty}f_{k} = \underset{k}{\sup}\underset{m \geq k}{\inf}f_{m}$, то оба предела измеримы.
+\end{proof}
+
+\begin{corollary}
+    Если $f_{k}: E \to \overline{\R}$ измеримы, и $f(x) = \lim_{k \to +\infty}f_{k}(x)$ для всех $x \in E$, то $f$ измерима на $E$.
+\end{corollary}
+
+\begin{proof}
+    Вытекает из предыдущей теоремы, но докажем непосредственно.
+
+    Имеем $f(x) < a \lra \exists j \in \N \ \exists N \ \forall k \geq N \ (f_{k}(x) < a - \frac{1}{j})$.
+
+    $\{x: f(x) < a\} = \bigcup_{j = 1}^{+\infty}\bigcup_{N = 1}^{+\infty}\bigcap_{k = N}^{+\infty} \{x: f_{k}(x) < a - \frac{1}{j}\}$ -- измеримо как операции над измеримыми множествами.
+\end{proof}
+
+\begin{definition}
+    Пусть $E \subset \R^{n}$, $Q$ -- формула на $E$.
+
+    Говорят, что $Q$ верна \textit{почти везде на $E$}, если $\mu(x \in E: Q(x) \text{ ложно}) = 0$.
+\end{definition}
+
+\begin{lemma}
+    Пусть $f, g: E \to \R$. Если $f = g$ почти везде и $f$ измерима, то $g$ измерима.
+\end{lemma}
+
+\begin{proof}
+    По условию, $Z = \{x \in E: f(x) \neq g(x)\}$ имеет меру нуль. Тогда для любого $a \in \R$ имеем $\{x \in E: g(x) < a\} = (\{x \in E : f(x) < a\} \cap Z^{c})\cup(\{x \in E: g(x) < a\}\cap Z)$ -- измеримо.
+\end{proof}
+
+\begin{corollary}
+    Если $f_{k}: E \to \overline{\R}$ измеримы и $f_{k} \to f$ почти везде на $E$, где $f: E \to \overline{\R}$, то $f$ измерима.
+\end{corollary}
+
+\begin{proof}
+    $g = \overline{\lim}_{k \to +\infty}f_{k}$ измерима на $E$, $f = g$ почти везде на $E$, значит $f$ измерима (по лемме).
+\end{proof}
+
+\begin{definition}
+    Функция $\phi: \R^{n} \to \R$ называется \textit{простой}, если $\phi$ измерима и множество её значений конечно.
+\end{definition}
+
+\begin{note}
+    Любая линейная комбинация индикаторов измеримых множеств является простой функцией.
+
+    С другой стороны, для любой простой функции $\phi$ существует разбиение $\R^{n}$ конечным числом измеримых множеств, на которых $\phi$ постоянна (допустимое разбиение для $\phi$). Такое разбиение можно построить следующим образом: пусть $\phi(\R^{n}) = \{a_{1}, \ldots, a_{m}\}$, где $a_{i}$ попарно различны, определим $A_{i} = \phi^{-1}(a_{i})$. Тогда $\phi = \sum_{i = 1}^{m}a_{i} \I_{A_{i}}$ и $\{A_{i}\}$ -- допустимое разбиение.
+\end{note}
+
+Рассмотрим вопрос о приближении измеримых функций простыми.
+
+\begin{theorem}
+    Если $f: E \to [0, +\infty]$ -- неотрицательная измеримая функция, то существует последовательность $\{\phi_{k}\}$ неотрицательных простых функций, таких что $\forall x \in E$ выполняется
+    \begin{enumerate}
+        \item $0 \leq \phi_{1}(x) \leq \phi_{2}(x) \leq \ldots$
+        \item $\lim_{k \to +\infty}\phi_{k}(x) = f(x)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Для $k \in \N$ определим множества:
+    \[E_{k, j} = \left\{x \in E: \frac{j - 1}{2^{k}} \leq f(x) < \frac{j}{2^{k}}\right\}, \ j = 1, \ldots, k\cdot2^{k},\]
+    \[F_{k} = \{x \in E: f(x) \geq k\}.\]
+    Множества $E_{k, j}$ и $F_{k}$ измеримы и в объединении дают $E$.
+
+    Определим $\phi_{k} = \sum_{j = 1}^{k\cdot2^{k}}\frac{j - 1}{2^{k}}\I_{E_{k, j}} + k\cdot\I_{F_{k}}$. Пусть $x \in E$. Покажем, что $\{\phi_{k}(x)\}$, возрастая, стремится к $f(x)$.
+
+    Если $f(x) = +\infty$, то $\phi_{k}(x) = k$ для всех $k$ и утверждение верно.
+
+    Пусть $f(x) \in \R$ и $k \in \N$. Если $f(x) \geq k + 1$, то $\phi_{k + 1}(x) = k + 1 > k = \phi_{k}(x)$. Если $k \leq f(x) < k + 1$, то $\phi_{k + 1}(x) \geq k = \phi_{k}(x)$.
+
+    Пусть $f(x) < k$, тогда $\frac{j - 1}{2^{k}} \leq f(x) < \frac{j}{2^{k}}$ для некоторого $j$, $1 \leq j \leq k\cdot2^{k}$. Возможны два варианта: $\frac{2j - 2}{2^{k + 1}} \leq f(x) < \frac{2j - 1}{2^{k + 1}}$ или $\frac{2j - 1}{2^{k + 1}} \leq f(x) < \frac{2j}{2^{k + 1}}$. В обоих случаях $\phi_{k + 1}(x) \geq \frac{2j - 2}{2^{k+1}} = \frac{j - 1}{2^{k}} = \phi_{k}(x)$ и возрастание установлено. Кроме того, $0 \leq f(x) - \phi_{k}(x) < 2^{-k}$ при всех $k \geq [f(x)] + 1$, откуда следует, что $\phi_{k}(x) \to f(x)$. 
+\end{proof}
+
+\begin{note}
+    Если $f$ ограничена, то $\phi_{k} \rightrightarrows f$ на $E$.
+\end{note}
+
+\begin{definition}
+    Пусть $\phi$ -- простая функция, $\phi = \sum_{i = 1}^{m}a_{i} \I_{A_{i}}$, где $\{A_{i}\}_{i = 1}^{m}$ -- допустимое разложение.
+
+    Интегралом от $\phi$ по измеримому множеству $E$ называется
+    \[\int_{E}\phi d\mu = \sum_{i = 1}^{m}a_{i}\mu(E \cap A_{i}).\]
+\end{definition}
+
+\begin{lemma}
+    Пусть $\phi, \psi$ -- простые функции. Тогда:
+    \begin{enumerate}
+        \item Если $\phi \leq \psi$ на $E$, то $\int_{E}\phi d\mu \leq \int_{E}\psi d\mu$ (монотонность).
+        \item Если $\alpha \in [0, +\infty)$, то $\int_{E}\alpha\phi d\mu = \alpha \int_{E}\phi d\mu$ (положительная однородность).
+        \item $\int_{E}(\phi + \psi) d\mu = \int_{E}\phi d\mu + \int_{E}\psi d\mu$ (аддитивность по функциям).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Пусть $\{A_{i}\}_{i = 1}^{m}$, $\{B_{j}\}_{j = 1}^{k}$ -- допустимые разбиения $\phi$ и $\psi$ соответственно $(\phi|_{A_{i}} = a_{i}, \ \phi|_{B_{j}} = b_{j})$. Положим $C_{ij} = A_{i} \cap B_{j}$.
+
+    Тогда $\{C_{ij}\}$ -- общее допустимое разбиение для $\phi$ и $\psi$. Поскольку $A_{i} = A_{i} \cap \R^{n} = A_{i} \cap (\bigcup_{j = 1}^{k}B_{j}) = \bigcup_{j = 1}^{k}C_{ij}$, то по свойству аддитивности меры $\int_{E}\phi d\mu = \sum_{i = 1}^{m}a_{i} \mu(E \cap A_{i}) = \sum_{i = 1}^{m}a_{i}\mu(\bigcup_{j = 1}^{k}(E \cap C_{ij})) = \sum_{i = 1}^{m}\sum_{j = 1}^{k}a_{i}\mu(E \cap C_{ij})$.
+
+    Аналогично, $\int_{E} \psi d\mu = \sum_{j = 1}^{k}\sum_{i = 1}^{m}b_{j}\mu(E \cap C_{ij})$. Если $E \cap C_{ij} \neq \emptyset$, то для любого $x \in E \cap C_{ij}$ имеем $a_{i} = \phi(x) \leq \psi(x) = b_{j}$, что завершает доказательство.
+
+    Доказательство пункта 2 очевидно.
+
+    Доказательство пункта 3 аналогично пункту 1.
+\end{proof}
+
+\begin{note}
+    Попутно про доказательстве монотонности доказана корректность определения интеграла (то есть независимость от выбора допустимого разбиения).
+\end{note}
+
+\begin{definition}
+    Пусть $f: E \to [0, +\infty]$ -- неотрицательная измеримая функция. Тогда:
+    \[\int_{E} f d\mu = \sup\left\{\int_{E}\phi d\mu, \ 0 \leq \phi \leq f, \ \phi \text{ -- простая}\right\}.\]
+\end{definition}
+
+\begin{note}
+    Покажем, что определение согласуется с интегралом от простой функции. Чтобы их различить, перед знаком введенного ранее интеграла поставим $(s)$.
+
+    Пусть $f$ -- простая неотрицательная функция. Если $0 \leq \phi \leq f$ и $\phi$ -- простая, то по свойству монотонности $(s)\int_{E} \phi d\mu \leq (s) \int_{E} f d\mu$. Переходя к супремуму по $\phi$, получим $\int_{E} \phi d\mu \leq (s) \int_{E} f d\mu$. Противоположное неравенство очевидно, так как $f$ сама является простой функцией.
+\end{note}

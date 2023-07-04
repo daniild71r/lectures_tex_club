@@ -1,0 +1,131 @@
+%15.03.23
+
+\begin{problem}
+    Исследовать равномерную сходимость $\sum_{n = 1}^\infty \frac{e^{|x - n|}}{n}$ на $E = \R$.
+\end{problem}
+
+\begin{theorem}[признак Абеля]
+    \label{abel-func-series}
+    Пусть $a_n : E \rightarrow \R$ (или $\mathbb{C}$), $b_n : E \rightarrow \R$, такие, что
+    \begin{enumerate}
+        \item $\sum_{n = 1}^\infty a_n$ равномерно сходится на $E$;
+        \item $\{b_n(x)\}$ монотонна при любом $x \in E$;
+        \item $\{b_n\}$ равномерно ограничена на $E$ $(\exists C > 0 \, \forall n \, \forall x \in E \ \left(|b_n(x)| \le C\right))$.
+    \end{enumerate}
+
+    Тогда $\sum_{n = 1}^\infty a_n b_n$ равномерно сходится на $E$.
+
+    \begin{proof}
+        Из равномерной сходимости ряда 
+        \[\exists N \, \forall n, m \, (n \ge m \ge N) \, \forall x \in E \ \left(\left|\sum_{k = m}^n a_k(x)\right| < \frac{\epsilon}{4C}\right).\]
+        Тогда при всех $x \in E$ и $n \ge m \ge N$ по лемме Абеля
+        \[
+            \left|\sum_{k = m}^n a_k(x) b_k(x)\right| \le 2 \cdot \frac{\epsilon}{4C} \left(|b_m(x)| + |b_n(x)|\right) \le 2 \cdot \frac{\epsilon}{4C}(C + C) = \epsilon.
+        \]
+
+        Доказательство завершается ссылкой на критерий Коши (\ref{cauchy-convergence}).
+    \end{proof}
+\end{theorem}
+
+\begin{note}
+    Характер монотонности $\{b_n(x)\}$ в теоремах (\ref{dirichlet-func-series}) и (\ref{abel-func-series}) может быть различным в разных точках $x$.
+\end{note}
+
+\begin{theorem}[признак Дини]
+    Пусть $f_n \rightarrow f$ на $[a, b]$, $f$ и все функции $f_n$ непрерывны на $[a, b]$ и $\{|f_n(x) - f(x)|\}$ нестрого убывает для всякого $x \in [a, b]$.
+
+    Тогда $f_n \rightrightarrows f$ на $[a, b]$.
+
+    \begin{proof}
+        Достаточно доказать, что $g_n \coloneqq |f_n - f| \rightrightarrows 0$ на $[a, b]$.
+
+        Зафиксируем $\epsilon > 0$. Тогда для всякого $x_0 \in [a, b]$ найдётся $N = N(x_0)$, такая, что $0 \le g_N(x_0) < \epsilon$. Так как $g_N$ непрерывна, то $\exists \delta = \delta(x_0) \, \forall x \in B_\delta (x_0) \cap [a, b] \ (0 \le g_N(x) < \epsilon)$.
+
+        В силу монотонности $0 \le g_n(x) < \epsilon$ для всех $x \in B_\delta(x_0) \cap [a, b]$ и $n \ge N$.
+
+        Семейство $\{B_{\delta(x)}(x)\}_{x \in [a, b]}$ образует открытое покрытие $[a, b]$. По теореме Гейне-Бореля $\exists x_1, \ldots, x_m \in [a, b] \ ([a, b] \subset B_{\delta(x_1)} \cup \ldots \cup B_{\delta(x_m)})$.
+
+        Положим $N^* = \max_{1 \le i \le m} N(x_i)$. Тогда $a \le g_n(x) < \epsilon$ для всех $x \in [a, b]$ и $n \ge N^*$, что завершает доказательство.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Пусть $\sum_{n = 1}^\infty f_n$ поточечно сходится к $S$ на $[a, b]$, функция $S$ и все $f_n$ непрерывны на $[a, b]$ и пусть $f_n \ge 0$ на $[a, b]$.
+
+    Тогда ряд $\sum_{n = 1}^\infty f_n$ равномерно сходится на $[a, b]$.
+\end{corollary}
+
+Равномерная сходимость может использоваться для построения функций с нужными свойствами:
+\begin{example}[ван-дер-Варден]
+    Существует $f : \R \rightarrow \R$, непрерывная на $\R$, но не дифференцируемая ни в одной точке.
+
+    \begin{proof}
+        Пусть $\phi: \R \rightarrow \R, \phi(x \pm 2) = \phi(x), \phi|_{[-1, 1]}(x) = |x|$. Отметим, что если $(x, y) \cap \Z = \emptyset$, то $\phi$ кусочно-линейная с угловым коэффициентом $\pm 1$, поэтому
+        \begin{equation}
+            \label{vdw-eqn1}
+            |\phi(x) - \phi(y)| = |x - y|.
+        \end{equation}
+
+        Положим $f(x) = \sum_{n = 1}^\infty f_n(x), f_n(x) = \frac{1}{4^n} \phi(4^n x)$. Функция $f$ непрерывна как сумма равномерно сходящегося ряда (по признаку Вейерштрасса) из непрерывных функций.
+
+        Пусть $a \in \R$. Покажем $\{h_k\}, 0 < h_k \rightarrow 0$, что $\frac{f(a + h_k) - f(a)}{h_k}$ не имеет конечного предела. Если $\left(4^k a, 4^k a + \frac{1}{2}\right) \cap \Z \neq \emptyset \Rightarrow \left(4^k a - \frac{1}{2}, 4^k a\right) \cap \Z \neq \emptyset$ и наоборот. Поэтому $\exists h_k = \pm \frac{1}{2} 4^{-k}$, что на интервале с концами $4^k a$ и $4^k (a + h_k)$ нет целых чисел. Кроме того, на интервале с концами $4^n a$ и $4^n (a + h_k)$ при $n > k$, также нет целых точек (иначе, домножив соответствующее неравенство на $4^{k - n}$, получаем целую точку между $4^k a$ и $4^k (a + h_k)$).
+
+        Следовательно, по (\ref{vdw-eqn1}) $|\phi(4^n (a + h_k)) - \phi(4^n a)| = 4^n |h_k|, 1 \le n \le k$, и, в силу $2$-периодичности $\phi$ $|\phi(4^n (a + h_k)) - \phi(4^n a)| = 0$ при $n > k$.
+
+        Поэтому $|f_n(a + h_k) - f_n(a)| = \left\{\begin{array}{lc} |h_k|, & 1 \le n \le k \\ 0, & n > k\end{array}\right.$, и, значит, разностное отношение
+        \[
+            \frac{f(a + h_k) - f(a)}{h_k} = \sum_{n = 1}^k \pm 1 \ \text{(чётность совпадает с чётностью $k$)}
+        \]
+
+        Следовательно, разностное отношение не имеет конечного предела при $k \rightarrow \infty$.
+    \end{proof}
+\end{example}
+
+\section{Степенные ряды}
+\subsection{Свойства степенных рядов}
+
+\begin{definition}
+    \emph{Степенным рядом} называется функциональный ряд вида
+    \begin{equation}
+        \label{power-series}
+        \sum_{n = 0}^\infty a_n (x - x_0)^n,
+    \end{equation}
+    где $a_n, x_0 \in \R$ и $x$ --- действительная переменная, или $a_n, x_0 \in \mathbb{C}$ и $x$ --- комплексная переменная \emph{(комплексный степенной ряд)}.
+\end{definition}
+
+
+\begin{theorem}[формула Коши-Адамара]
+    \label{cauchy-hadamard}
+    Пусть $R = \frac{1}{\overline{\lim}_{n \rightarrow \infty} \sqrt[n]{|a_n|}}$.
+
+    Тогда:
+    \begin{enumerate}
+        \item при $|x - x_0| < R$ ряд (\ref{power-series}) сходится, причём абсолютно;
+        \item при $|x - x_0| > R$ ряд (\ref{power-series}) расходится;
+        \item если $r \in (0, R)$, то ряд (\ref{power-series}) равномерно сходится на $\overline{B_r}(x_0) = \{x | |x - x_0| \le r\}$.
+    \end{enumerate}
+
+    \begin{proof}
+        Пусть $x \neq x_0$, тогда
+        \[
+            q \coloneqq \overline{\lim_{n \rightarrow \infty}} \sqrt[n]{|a_n (x - x_0)^n|} = |x - x_0| \overline{\lim_{n \rightarrow \infty}} \sqrt[n]{|a_n|} = \frac{|x - x_0|}{R}.
+        \]
+
+        Если $|x - x_0| < R$, то $q < 1$ и, значит, по признаку Коши $\sum_{n = 0}^\infty |a_n (x - x_0)^n|$ сходится, то есть, ряд (\ref{power-series}) сходится абсолютно.
+
+        Если $|x - x_0| > R$, то $q > 1$ и, значит, по признаку Коши $n$-й член ряда не стремится к нулю, ряд (\ref{power-series}) расходится и \emph{абсолютно расходится} (то есть, расходится ряд из модулей членов).
+
+        Пусть $r \in (0, R)$. По доказанному ряд (\ref{power-series}) абсолютно сходится в точке $x = x_0 + r$, то есть сходится ряд $\sum_{n = 0}^\infty |a_n|r^n$. Если $|x - x_0| \le r$, то $|a_n (x - x_0)^n| \le |a_n| r^n$. Тогда по признаку Вейерштрасса ряд (\ref{power-series}) равномерно сходится на $B_r(x_0)$.
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    Величина $R$ из теоремы (\ref{cauchy-hadamard}) называется \emph{радиусом сходимости} ряда (\ref{power-series}).
+
+    $B_R(x_0) = \{x \ | \ |x - x_0| < R\}$ называется \emph{интервалом сходимости} (\emph{кругом сходимости} в комлексной плоскости).
+\end{definition}
+
+Из теоремы (\ref{cauchy-hadamard}) получаем:
+\begin{corollary}
+    Пусть для $R \in [0, +\infty]$ выполнено следующее: при $|x - x_0| < R$ ряд абсолютно сходится и при $|x - x_0| > R$ ряд абсолютно расходится, то $R$ --- радиус сходимости. 
+\end{corollary}

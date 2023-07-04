@@ -1,0 +1,309 @@
+\section{1. Преобразование Абеля. Леммы Абеля для последовательностей и интегралов. Несобственные интегралы Римана и их свойства. Критерий Коши. Абсолютная и условная сходимости несобственных интегралов. Интегралы от неотрицательных функций. Признак сравнения и его следствия. Интегралы от знакопеременных функций. Признаки Дирихле и Абеля. Несобственные интегралы с несколькими особенностями.}
+
+\begin{definition}
+    Пусть $\{a_n\}$, $\{b_n\}$ --- (комлексные) последовательности, $m \in \N$, и пусть $A_n = \sum_{k=1}^n a_k$ для всех $n \in \N$. Тогда $a_k = A_k - A_{k-1}$ ($A_0 = 0$), и, значит,
+    \[
+        \sum_{k=m}^{n} a_k b_k = \sum_{k=m}^n (A_k - A_{k - 1})b_k = \sum_{k=m}^n A_k b_k - \sum_{k = m - 1}^{n - 1} A_k b_{k + 1}.
+    \]
+
+    Справедливо \emph{преобразование Абеля}:
+    \[
+        \sum_{k=m}^n a_k b_k = A_n b_n - A_{m - 1} b_m - \sum_{k = m}^{n - 1} A_k (b_{k + 1} - b_k).
+    \]
+\end{definition}
+
+\begin{lemma}[Абель]
+\label{abel-lemma}
+    Пусть $\{a_n\}$ --- (комплексная) последовательность, $\{b_n\}$ --- монотонная последовательность, и пусть $\forall k \ |A_k| \le M$. Тогда:
+    \[
+        \left|\sum_{k=m}^n a_k b_k \right| \le 2M(|b_m| + |b_n|).
+    \]
+
+    \begin{proof}
+        По монотонности $\{b_n\}$ знаки $b_{k + 1} - b_k$ сохраняются, поэтому:
+        \[
+            \left| \sum_{k=m}^n a_k b_k \right| \le M \left(|b_n| + |b_m| + \left| \sum_{k = m}^{n - 1} (b_{k+1} - b_k) \right| \right) = M \left(|b_n| + |b_m| + |b_n - b_m| \right).
+        \]
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}[Абель]
+    Пусть $f \in \mathcal{R}[a, b]$, $g$ монотонна на $[a, b]$, и пусть $\forall x \in [a, b] \ \left|\int_a^x f(t) dt\right| \le M$. Тогда:
+    \[
+        \left|\int_a^b f(x) g(x) dx\right| \le 2M(|g(a)| + |g(b)|).
+    \]
+
+    \begin{proof}
+        Зафиксируем $\varepsilon > 0$. Положим $I = \int_a^b f(x) dx$. Тогда $\exists \delta > 0 \ \forall (T, \xi) \ (|T| < \delta \rightarrow |\sigma_T (f, \xi) - I| < \frac{\varepsilon}{2})$.
+
+        Выберем одно такое разбиение $T = \{x_i\}_{i=0}^{n}$.
+
+        Пусть $T_k = \{x_i\}_{i=0}^k$ --- соответствующее разбиение $[x_0, x_k], k = 1, \ldots, n$. По критерию Дарбу числа $\sigma_{T_k} (f, \xi_k)$ и $\int_{x_0}^{x_k} f(x) dx$ лежат на отрезке $[s_{T_k}(f), S_{T_k}(f)]$, и верно $S_{T_k}(f) - s_{T_k}(f) \le S_T(f) - s_T(f)$.
+
+        \[
+            I - \frac{\varepsilon}{2} < \sigma_T (f, \xi) < I + \frac{\varepsilon}{2} ,
+        \]
+
+        \[
+            I - \frac{\varepsilon}{2} \le s_T(f) \le S_T(f) \le I + \frac{\varepsilon}{2},
+        \]
+
+        \[
+            \left|\sigma_{T_k} (f, \xi_k) - \int_{x_0}^{x_k} f(x) dx\right| \le \varepsilon.
+        \]
+
+        Положим $A_k = \sum_{i = 1}^k f(c_i) \Delta x_i.$ Тогда $A_k = \sigma_{T_k}(f, \xi_k)$ и, значит, из последнего неравенства $|A_k| \le M + \varepsilon$.
+        Применим лемму \ref{abel-lemma} для $a_k = f(c_k) \Delta x_k, b_k = g(c_k)$, получим
+        \[
+            \left|\sum_{k=1}^n f(c_k) g(c_k) \Delta x_k\right| \le 2(M + \varepsilon)(|g(c_1)| + |g(c_n)|).
+        \]
+
+        Неравенство верно для любого набора отмеченных точек, в том числе и $c_1 = a$, $c_n = b$. Предельным переходом по мелкости разбиения в случае $c_1 = a, c_n = b$ получим искомое неравенство.
+    \end{proof}
+\end{lemma}
+
+\begin{definition}
+    Функция $f$ называется \emph{локально интегрируемой по Риману на промежутке $I$}, если $\forall [a, c] \subset I \hookrightarrow f \in \mathcal{R}[a, c]$.
+\end{definition}
+
+\begin{definition}
+    Пусть $-\infty < a < b \le +\infty$, и $f$ локально интегрируема на $[a, b)$. Предел
+    \[
+        \int_a^b f(x) dx \coloneqq \lim_{c \rightarrow b-0} \int_a^c f(x) dx
+    \]
+    называется \emph{несобственным интегралом (Римана) от $f$ на $[a, b)$}.
+
+    Если предел существует и конечен, то интеграл $\int_a^b f(x) dx$ называется \emph{сходящимся}, иначе --- \emph{расходящимся}.
+\end{definition}
+
+\begin{property}[принцип локализации]
+    Пусть $f$ локально интегрируема на $[a, b)$, $a^* \in (a, b)$. Тогда интегралы $\int_{a^*}^b f(x) dx$ и $\int_a^b f(x) dx$ сходятся или расходятся одновременно, и если сходятся, то
+    \label{eqn-2-1}
+    \begin{equation}
+        \int_a^b f(x) dx = \int_a^{a^*} f(x) dx + \int_{a^*}^b f(x) dx
+    \end{equation}
+
+    \begin{proof}
+        Если $c \in (a, b)$, то по свойству аддитивности определённого интеграла верно:
+        \[
+            \int_a^c f(x) dx = \int_a^{a^*} f(x) dx + \int_{a^*}^c f(x) dx.
+        \]
+
+        Поэтому пределы $\lim_{c \rightarrow b - 0} \int_{a^*}^{c} f(x) dx = \int_{a^*}^b f(x) dx$ и $\lim_{c \rightarrow b - 0} \int_a^c f(x) dx = \int_a^b f(x) dx$ существуют (конечны) одновременно. Равенство \ref{eqn-2-1} получается из равенства для определённых интегралов переходом к пределу $c \rightarrow b - 0$.
+    \end{proof}
+\end{property}
+
+Следующие три свойства доказываются аналогично.
+
+\begin{property}[линейность] 
+    Пусть несобственные интегралы $\int_a^b f(x) dx$ и $\int_a^b g(x) dx$ сходятся, и $\alpha, \beta \in \R$. Тогда сходится интеграл $\int_a^b \left(\alpha f(x) + \beta g(x)\right) dx$ и
+    \[
+        \int_a^b \left(\alpha f(x) + \beta g(x)\right) dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx.
+    \]
+\end{property}
+
+\begin{property}[формула Ньютона-Лейбница]
+    Пусть $f$ локально интегрируема на $[a, b)$ и $F$ --- первообразная $f$ на $[a, b)$. Тогда
+    \[
+        \int_a^b f(x) dx = F(b - 0) - F(a) = F \vert_a^{b - 0}.
+    \]
+\end{property}
+
+\begin{property}[интегрирование по частям]
+    Пусть $F, G$ дифференцируемы, а их производные $f, g$ локально интегрируемы на $[a, b)$. Тогда
+    \[
+        \int^b_a F(x) g(x) dx = F(x)G(x)\vert^{b - 0}_a - \int_a^b G(x) f(x) dx.
+    \]
+
+    Существование двух из трёх конечных пределов влечёт существование третьего и выполнение равенства.
+\end{property}
+
+\begin{property}[замена переменной]
+    Пусть $f$ непрерывна на $[a, b)$, $\phi$ дифференцируема и строго монотонна на $[\alpha, \beta)$, причем $\phi'$ локально интегрируема на $[\alpha, \beta)$, $\phi(\alpha) = a$, \\
+    $\underset{t \to \beta - 0}{\lim}\phi(t)= b$. Тогда
+    \[
+        \int_{a}^{b} f(x) dx = \int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) dt.
+    \]
+    Если существует один из интегралов, то существует и другой, и равенство выполняется.
+\end{property}
+
+\begin{proof}
+    Рассмотрим частичный интеграл $F(c) = \int_{a}^{c} f(x) dx$ на $[a, b)$, $\Phi(\gamma) = \int_{\alpha}^{\gamma} f(\phi(t)) \phi'(t) dt$. По свойству замены переменной в определенном интеграле $F(\phi(\gamma)) = \Phi(\gamma) \ \forall \gamma \in [\alpha, \beta)$. Пусть (в $\overline{\R}$) определен интеграл $I = \int_{a}^{b} f(x) dx$. По свойству предела композиции существует $\lim_{\gamma \to \beta - 0} \Phi(\gamma) = \lim_{c \to b - 0} F(c) = I$. Следовательно, определен $\int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) dt = I$.
+    
+    Из условия следует, что существует обратная функция $\phi^{-1}$ и $\gamma = \phi^{-1}(c) \to \beta$ при $c \to b - 0$. Делая соответствующую замену переменной, получим, что $\lim_{\gamma \to \beta - 0} \Phi(\gamma)$ влечет существование равного $\lim_{c \to b - 0} F(c)$, то есть интеграл в правой части влечет существование интеграла в левой и их равенство.
+\end{proof}
+
+\begin{theorem}[критерий Коши]
+    Пусть $f$ локально интегрируема на $[a, b)$. Для сходимости интеграла $\int_{a}^{b} f(x) dx$ необходимо и достаточно выполнения условия Коши:
+    \[
+        \forall \epsilon > 0 \ \exists b_{\epsilon} \in [a, b) \ \forall \xi, \eta \in (b_{\epsilon}, b) \ \left(\left|\int_{\xi}^{\eta} f(x) dx \right| < \epsilon\right).
+    \]
+\end{theorem}
+
+\begin{proof}
+    Положим $F(x) = \int_{a}^{x} f(t) dt$, $x \in [a, b)$. Поскольку $\int_{\xi}^{\eta} f(x) dx = F(\eta) - F(\xi)$, то доказательство утверждения является переформулировкой критерия Коши существования предела $F$ при $x \to b - 0$.
+\end{proof}
+
+\begin{definition}
+    Пусть $f$ локально интегрируема на $[a, b)$. Несобственный интеграл $\int_{a}^{b} f(x) dx$ называется \textit{абсолютно сходящимся}, если сходится интеграл $\int_{a}^{b} |f(x)| dx$. Если интеграл $\int_{a}^{b} f(x) dx$ сходится, но не сходится абсолютно, то он называется \textit{условно сходящимся}.
+\end{definition}
+
+\begin{corollary}
+    Абсолютно сходящийся интеграл сходится.
+\end{corollary}
+
+\begin{proof}
+    Зафиксируем $\epsilon > 0$. Так как $\int_{a}^{b} |f(x)| dx$ сходится, то по критерию Коши $\exists b_{\epsilon} \in [a, b) \ \forall [\xi, \eta] \subset (b_{\epsilon}, b) \ \left(\int_{\xi}^{\eta} |f(x)| dx < \epsilon\right)$. Но тогда тем более $\left|\int_{\xi}^{\eta} f(x) dx \right| \leq \int_{\xi}^{\eta} |f(x)| dx < \epsilon$. Следовательно, по критерию Коши, интеграл сходится.
+\end{proof}
+
+\begin{lemma}
+    \label{lem1}
+    Пусть $f$ локально интегрируема и неотрицательна на $[a, b)$. Тогда сходимость интеграла $\int_{a}^{b} f(x) dx$ равносильна ограниченности функции $F(x) = \int_{a}^{x} f(t) dt$ на $[a, b)$.
+\end{lemma}
+
+\begin{proof}
+    Функция $F$ нестрого возрастает на $[a, b)$, так как
+    
+    \[
+        x_{1} < x_{2} \Rightarrow F(x_{2}) - F(x_{1}) = \int_{x_{1}}^{x_{2}} f(t) dt \geq 0.
+    \]
+    
+    По теореме о пределах монотонной функции существует $\lim_{x \to b - 0} F(x) = \sup_{[a, b)} F(x)$. Отсюда, учитывая неотрицательность, заключаем, что ограниченность $F$ равносильна наличию конечного предела, то есть сходимости интеграла.
+\end{proof}
+
+\begin{theorem}[признак сравнения]
+    \label{compar_feat}
+    Пусть функции $f, g$ локально интегрируемы на $[a, b)$, и $0 \leq f \leq g$ на $[a, b)$.
+    \begin{enumerate}
+        \item Если $\int_{a}^{b} g(x) dx$ сходится, то $\int_{a}^{b} f(x) dx$ сходится.
+        \item Если $\int_{a}^{b} f(x) dx$ расходится, то $\int_{a}^{b} g(x) dx$ расходится.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+     Для любого $x \in [a, b)$ выполнено $0 \leq \int_{a}^{x} f(t) dt \leq \int_{a}^{x} g(t) dt$. Если $\int_{a}^{b} g(x) dx$ сходится, то по лемме \ref{lem1} функция $\int_{a}^{x} g(t) dt$ ограничена на $[a, b)$. Но тогда на $[a, b)$ ограничена и функция $\int_{a}^{x} f(t) dt$ и, значит, по лемме \ref{lem1} интеграл $\int_{a}^{b} f(x) dx$ сходится.
+
+     Второе доказываемое утверждение является контрапозицией первого.
+\end{proof}
+
+\begin{corollary}
+    \label{cor1}
+    Пусть $f, g$ локально интегрируемы и неотрицательны на $[a, b)$. Если $f(x) = O(g(x))$, то справедливо заключение теоремы \ref{compar_feat}.
+\end{corollary}
+
+\begin{proof}
+    По определению и неотрицательности функции
+    \[
+        \exists C > 0 \ \exists a^{*} \in [a, b) \ \forall x \in [a^{*}, b) \left(f(x) \leq C g(x)\right).
+    \]
+    Если $\int_{a}^{b} g(x) dx$ сходится, то сходится интеграл $\int_{a^{*}}^{b} C g(x) dx$. Тогда по признаку сравнения сходится интеграл $\int_{a^{*}}^{b} f(x) dx$ и, значит, сходится интергал $\int_{a}^{b} f(x) dx$. \\
+\end{proof}
+
+\begin{corollary}
+    \label{compar_feat_cor2}
+    Пусть $f, g$ локально интегрируемы и положительны на $[a, b)$.
+    
+    Если существует $\lim_{x \to b - 0} \frac{f(x)}{g(x)} \in (0, +\infty)$, то интегралы $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} g(x) dx$ сходятся или расходятся одновременно.
+\end{corollary}
+
+\begin{proof}
+    По условию также существует $\lim_{x \to b - 0} \frac{g(x)}{f(x)} \in (0, +\infty)$. Поскольку существование конечного предела влечёт ограниченность функции в некоторой окрестности предельной точки, то утверждение вытекает из следствия \ref{cor1}.
+\end{proof}
+
+\begin{lemma}[метод выделения главной части]
+    Пусть функции $f, g$ локально интегрируемы на $[a, b)$.
+    \begin{enumerate}
+        \item Если $\int_{a}^{b} g(x) dx$ сходится, то интегралы $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} (f(x) + g(x)) dx$ сходятся или расходятся одновременно.
+        \item Если $\int_{a}^{b} g(x) dx$ абсолютно сходится, то интегралы $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} (f(x) + g(x)) dx$ либо одновременно расходятся, либо одновременно сходятся условно, либо одновременно сходятся абсолютно.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Первый пункт вытекает из линейности несобственных интегралов. Одновременная расходимость вытекает из первого пункта по неравенствам $|f + g| \leq |f| + |g|$, $|f| \leq |f + g| + |g|$ и признаку сравнения.
+\end{proof}
+
+\begin{theorem}[признак Дирихле]
+    \label{dirichlet-criterion}
+
+    Пусть $f, g$ локально интегрируемы на $[a, b)$, причём
+    \begin{enumerate}
+        \item $F(x) = \int_{a}^{x} f(t)\, dt$ ограничена на $[a, b)$;
+        \item $g$ монотонна на $[a, b)$;
+        \item $\displaystyle \lim_{x \rightarrow b - 0} g(x) = 0$.
+    \end{enumerate}
+
+    Тогда несобственный интеграл $\int_a^b f(x)g(x)\, dx$ сходится.
+
+    \begin{proof}
+        Покажем, что интеграл $\int_a^b f(x)g(x)\, dx$ удовлетворяет условию Коши.
+
+        Пусть $|F| < M$ на $[a, b)$, тогда для любого $\xi \in [a, b)$ выполнено:
+        \[
+            \left|\int_\xi^x f(t)\, dt\right| = \left|F(x) - F(\xi)\right| < 2M.
+        \]
+
+        Зафиксируем $\varepsilon > 0$. Тогда, по определению предела для $g(x)$, $\exists b' \in [a, b) \, \forall x \in (b', b) \ \left(|g(x)| < \frac{\varepsilon}{8M}\right)$. Тогда по лемме Абеля (\ref{abel-lemma}) для любого $[\xi, \eta] \subset (b', b)$:
+        \[
+            \left|\int_\xi^\eta f(t)g(t)\, dt \right| \le 2 \cdot 2M\left(|g(\xi)| + |g(\eta)|\right) < 4M\left(\frac{\varepsilon}{8M} + \frac{\varepsilon}{8M}\right) = \varepsilon.
+        \]
+
+        По критерию Коши интеграл $\int_a^b f(x)g(x)\, dx$ сходится.
+    \end{proof}
+
+    \begin{note}
+        Условия последней теоремы выполнены, если $f$ непрерывна и имеет ограниченную первообразную на $[a, b)$, $g$ дифференцируема, $g'$ сохраняет знак на $[a, b)$, $g(x) \to 0$ при $x \rightarrow b - 0$.
+    \end{note}
+\end{theorem}
+
+\begin{theorem}[признак Абеля]
+    \label{abel-criterion}
+
+    Пусть $f, g$ локально интегрируемы на $[a, b)$, причём
+    \begin{enumerate}
+        \item $\int_a^b f(x)\, dx$ сходится;
+        \item $g$ монотонна на $[a, b)$;
+        \item $g$ ограничена на $[a, b)$.
+    \end{enumerate}
+
+    Тогда несобственный интеграл $\int_a^b f(x)g(x)\, dx$ сходится.
+
+    \begin{proof}
+        Так как $g$ монотонна и ограничена на $[a, b)$, то $\displaystyle \exists \lim_{x \rightarrow b - 0} g(x) = c \in \R$.
+        
+        Функции $f$ и $g - c$ удовлетворяют условиям признака Дирихле (\ref{dirichlet-criterion}), поэтому $\int_a^b f(x)\left(g(x) - c\right)\, dx$ сходится. Тогда $\int_a^b f(x)g(x)\, dx = \int_a^b f(x)(g(x) - c)\, dx + c \int_a^b f(x)\, dx$ сходится как сумма сходящихся интегралов.
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    Пусть $a, b \in \overline{\R}$, $a < b$ и функция $f$ определена на $(a, b)$, кроме, быть может, конечного множества точек.
+
+    Точка $c \in (a, b)$ называется \emph{особенностью $f$}, если $f \not\in \mathcal{R}[\alpha, \beta]$ для любого $[\alpha, \beta] \subset (a, b)$, $\alpha < c < \beta$.
+
+    Точка $b$ называется \emph{особенностью $f$}, если $b = +\infty$, или $b \in \R$ и $f \not\in \mathcal{R}[\alpha, b]$, для любого $[\alpha, b]$.
+
+    Аналогично вводится особенность $a$.
+\end{definition}
+
+\begin{note}
+    Если на $(c, d)$ нет особенностей функции $f$, то $f$ локально интегрируема на $(c, d)$.
+
+    \begin{proof}
+        Пусть $[u, v] \subset (c, d)$. По условию $\forall x \in (u_x, v_x)$ и $f \in \mathcal{R}[u_x, v_x]$.
+
+        Тогда $\{(u_x, v_x)\}_{x \in [u, v]}$ образуют открытое покрытие $[u, v]$. По лемме Гейне-Бореля из открытого покрытия можно выделить конечное подпокрытие.
+
+        Объединяя элементы этого подпокрытия и пользуясь аддитивностью интеграла, заключаем, что $f$ интегрируема на отрезке, содержащем $[u, v]$, и, значит, $f$ локально интегрируема на $(c, d)$, так как $[u, v]$ выбирался произвольным.
+    \end{proof}
+\end{note}
+
+\begin{definition}
+    Пусть $c_{1} < c_{2} < \ldots < c_{N-1}$ -- все особенности функции $f$ на $(a, b)$, $c_{0} = a$, $c_{N} = b$. Пусть $\xi_{k} \in (c_{k-1}, c_{k})$, $k = 1, \ldots , N$. \textit{Несобственным интегралом функции $f$ по $(a, b)$} называется
+    \[\int_{a}^{b}f(x)dx = \sum_{k = 1}^{N}\left( \int_{c_{k-1}}^{\xi_{k}}f(x)dx + \int_{\xi_{k}}^{c_{k}}f(x)dx \right),\]
+    если все интегралы в правой части (понимаются как несобственные) и их сумма имеет смысл в $\R$.
+    
+    При этом $\int_{a}^{b}f(x)dx$ называется \textit{сходящимся}, если все интегралы в правой части сходятся, иначе -- \textit{расходящимся}.
+\end{definition}
+
+\begin{note}
+    Корректность (независимость от выбора $\xi_{k}$) следует из принципа локализации.
+\end{note}

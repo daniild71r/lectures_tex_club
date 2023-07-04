@@ -1,0 +1,167 @@
+% 02.02.23
+
+\begin{property}[замена переменной]
+    Пусть $f$ непрерывна на $[a, b)$, $\phi$ дифференцируема и строго монотонна на $[\alpha, \beta)$, причем $\phi'$ локально интегрируема на $[\alpha, \beta)$, $\phi(\alpha) = a$, \\
+    $\underset{t \to \beta - 0}{\lim}\phi(t)= b$. Тогда
+    \[
+        \int_{a}^{b} f(x) dx = \int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) dt.
+    \]
+    Если существует один из интегралов, то существует и другой, и равенство выполняется.
+\end{property}
+
+\begin{proof}
+    Рассмотрим частичный интеграл $F(c) = \int_{a}^{c} f(x) dx$ на $[a, b)$, $\Phi(\gamma) = \int_{\alpha}^{\gamma} f(\phi(t)) \phi'(t) dt$. По свойству замены переменной в определенном интеграле $F(\phi(\gamma)) = \Phi(\gamma) \ \forall \gamma \in [\alpha, \beta)$. Пусть (в $\overline{\R}$) определен интеграл $I = \int_{a}^{b} f(x) dx$. По свойству предела композиции существует $\lim_{\gamma \to \beta - 0} \Phi(\gamma) = \lim_{c \to b - 0} F(c) = I$. Следовательно, определен $\int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) dt = I$.
+    
+    Из условия следует, что существует обратная функция $\phi^{-1}$ и $\gamma = \phi^{-1}(c) \to \beta$ при $c \to b - 0$. Делая соответствующую замену переменной, получим, что $\lim_{\gamma \to \beta - 0} \Phi(\gamma)$ влечет существование равного $\lim_{c \to b - 0} F(c)$, то есть интеграл в правой части влечет существование интеграла в левой и их равенство.
+\end{proof}
+
+\begin{example}
+    Исследовать на сходимость $\int_{1}^{+\infty} \frac{dx}{x^{\alpha}} \ \forall \alpha \in \R$.
+\end{example}
+
+\begin{solution}
+    \begin{enumerate}
+        \item $\alpha \neq 1$:
+        \[
+            \int_{1}^{+\infty} \frac{dx}{x^{\alpha}} = \left.\frac{x^{-\alpha + 1}}{-\alpha + 1}\right|_{1}^{+\infty} = \begin{cases}
+                \frac{1}{\alpha - 1}, \ \alpha > 1; \\
+                +\infty, \ \alpha < 1.
+            \end{cases}
+        \]
+        \item $\alpha = 1$:
+        \[
+            \int_{1}^{+\infty}\frac{dx}{x} = \left.\ln x \right|_{1}^{+\infty} = +\infty.
+        \]
+    \end{enumerate}
+    Следовательно, интеграл сходится тогда и только тогда, когда $\alpha > 1$ и равен $\frac{1}{\alpha - 1}$.
+\end{solution}
+
+\begin{example}
+    Исследовать на сходимость $\int_{0}^{1} \frac{dx}{x^{\alpha}}$ $\forall \alpha \in \R$.
+\end{example}
+
+\begin{solution}
+    Интеграл рассмотрим как несобственный на $(0, 1]$. Сделав замену $x = \frac{1}{t}$, получим
+    \[
+        \int_{0}^{1} \frac{dx}{x^{\alpha}} = \int_{1}^{+\infty} \frac{dt}{t^{2 - \alpha}} \text{ сходится } \lra 2-\alpha > 1 \lra \alpha < 1.
+    \]
+    Следовательно, интеграл сходится тогда и только тогда, когда $\alpha < 1$.
+\end{solution}
+
+\begin{theorem}[критерий Коши]
+    Пусть $f$ локально интегрируема на $[a, b)$. Для сходимости интеграла $\int_{a}^{b} f(x) dx$ необходимо и достаточно выполнения условия Коши:
+    \[
+        \forall \epsilon > 0 \ \exists b_{\epsilon} \in [a, b) \ \forall \xi, \eta \in (b_{\epsilon}, b) \ \left(\left|\int_{\xi}^{\eta} f(x) dx \right| < \epsilon\right).
+    \]
+\end{theorem}
+
+\begin{proof}
+    Положим $F(x) = \int_{a}^{x} f(t) dt$, $x \in [a, b)$. Поскольку $\int_{\xi}^{\eta} f(x) dx = F(\eta) - F(\xi)$, то доказательство утверждения является переформулировкой критерия Коши существования предела $F$ при $x \to b - 0$.
+\end{proof}
+
+\begin{definition}
+    Пусть $f$ локально интегрируе ма на $[a, b)$. Несобственный интеграл $\int_{a}^{b} f(x) dx$ называется \textit{абсолютно сходящимся}, если сходится интеграл $\int_{a}^{b} |f(x)| dx$. Если интеграл $\int_{a}^{b} f(x) dx$ сходится, но не сходится абсолютно, то он называется \textit{условно сходящимся}.
+\end{definition}
+
+\begin{corollary}
+    Абсолютно сходящийся интеграл сходится.
+\end{corollary}
+
+\begin{proof}
+    Зафиксируем $\epsilon > 0$. Так как $\int_{a}^{b} |f(x)| dx$ сходится, то по критерию Коши $\exists b_{\epsilon} \in [a, b) \ \forall [\xi, \eta] \subset (b_{\epsilon}, b) \ \left(\int_{\xi}^{\eta} |f(x)| dx < \epsilon\right)$. Но тогда тем более $\left|\int_{\xi}^{\eta} f(x) dx \right| \leq \int_{\xi}^{\eta} |f(x)| dx < \epsilon$. Следовательно, по критерию Коши, интеграл сходится.
+\end{proof}
+
+\begin{note}
+    Из последнего неравенства следует, что если $\int_{a}^{b} f(x) dx$ абсолютно сходится, то 
+    \[
+        \left|\int_{a}^{b} f(x) dx \right| \leq \int_{a}^{b} |f(x)| dx.
+    \]
+\end{note}
+
+\subsection{Несобственные интегралы от неотрицательных функций}
+
+\begin{lemma}
+    \label{lem1}
+    Пусть $f$ локально интегрируема и неотрицательна на $[a, b)$. Тогда сходимость интеграла $\int_{a}^{b} f(x) dx$ равносильна ограниченности функции $F(x) = \int_{a}^{x} f(t) dt$ на $[a, b)$.
+\end{lemma}
+
+\begin{proof}
+    Функция $F$ нестрого возрастает на $[a, b)$, так как
+    
+    \[
+        x_{1} < x_{2} \Rightarrow F(x_{2}) - F(x_{1}) = \int_{x_{1}}^{x_{2}} f(t) dt \geq 0.
+    \]
+    
+    По теореме о пределах монотонной функции существует $\lim_{x \to b - 0} F(x) = \sup_{[a, b)} F(x)$. Отсюда, учитывая неотрицательность, заключаем, что ограниченность $F$ равносильна наличию конечного предела, то есть сходимости интеграла.
+\end{proof}
+
+\begin{note}
+    Несобственный интеграл от неотрицательной функции либо сходится, либо расходится к $+\infty$.
+\end{note}
+
+\begin{theorem}[признак сравнения]
+    \label{compar_feat}
+    Пусть функции $f, g$ локально интегрируемы на $[a, b)$, и $0 \leq f \leq g$ на $[a, b)$.
+    \begin{enumerate}
+        \item Если $\int_{a}^{b} g(x) dx$ сходится, то $\int_{a}^{b} f(x) dx$ сходится.
+        \item Если $\int_{a}^{b} f(x) dx$ расходится, то $\int_{a}^{b} g(x) dx$ расходится.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+     Для любого $x \in [a, b)$ выполнено $0 \leq \int_{a}^{x} f(t) dt \leq \int_{a}^{x} g(t) dt$. Если $\int_{a}^{b} g(x) dx$ сходится, то по лемме \ref{lem1} функция $\int_{a}^{x} g(t) dt$ ограничена на $[a, b)$. Но тогда на $[a, b)$ ограничена и функция $\int_{a}^{x} f(t) dt$ и, значит, по лемме \ref{lem1} интеграл $\int_{a}^{b} f(x) dx$ сходится.
+
+     Второе доказываемое утверждение является контрапозицией первого.
+\end{proof}
+
+\begin{corollary}
+    \label{cor1}
+    Пусть $f, g$ локально интегрируемы и неотрицательны на $[a, b)$. Если $f(x) = O(g(x))$, то справедливо заключение теоремы \ref{compar_feat}.
+\end{corollary}
+
+\begin{proof}
+    По определению и неотрицательности функции
+    \[
+        \exists C > 0 \ \exists a^{*} \in [a, b) \ \forall x \in [a^{*}, b) \left(f(x) \leq C g(x)\right).
+    \]
+    Если $\int_{a}^{b} g(x) dx$ сходится, то сходится интеграл $\int_{a^{*}}^{b} C g(x) dx$. Тогда по признаку сравнения сходится интеграл $\int_{a^{*}}^{b} f(x) dx$ и, значит, сходится интергал $\int_{a}^{b} f(x) dx$. \\
+\end{proof}
+
+\begin{corollary}
+    \label{compar_feat_cor2}
+    Пусть $f, g$ локально интегрируемы и положительны на $[a, b)$. Если существует $\lim_{x \to b - 0} \frac{f(x)}{g(x)} \in (0, +\infty)$, то интегралы $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} g(x) dx$ сходятся или расходятся одновременно.
+\end{corollary}
+
+\begin{proof}
+    По условию также существует $\lim_{x \to b - 0} \frac{g(x)}{f(x)} \in (0, +\infty)$. Поскольку существование конечного предела влечёт ограниченность функции в некоторой окрестности предельной точки, то утверждение вытекает из следствия \ref{cor1}.
+\end{proof}
+
+\begin{example}
+    Исследовать на сходимость
+    \begin{enumerate}
+        \item $\int_{1}^{+\infty} x^{2023} e^{-x} dx$;
+        \item $\int_{0}^{1} \frac{dx}{\arctg(x)}$.
+    \end{enumerate}
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}
+        \item По правилу Лопиталя $\lim_{x \to +\infty} \frac{x^{2025}}{e^{x}} = 0$, то есть $x^{2025} = o(e^x)$ или $x^{2023}e^{-x} = o\left(\frac{1}{x^{2}}\right)$ при $x \to +\infty$. Так как $\int_{1}^{+\infty} \frac{dx}{x^2}$ сходится, то $\int_{1}^{+\infty} x^{2023}e^{-x} dx$ сходится по признаку сравнения.
+        
+        \item Так как $\arctg(x) \sim x$ при $x \to +0$, и $\int_{0}^{1}\frac{dx}{x}$ расходится, то по следствию \ref{compar_feat_cor2} расходится $\int_{0}^{1} \frac{dx}{\arctg(x)}$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Несобственные интегралы от знакопеременных функций}
+
+\begin{lemma}[метод выделения главной части]
+    Пусть функции $f, g$ локально интегрируемы на $[a, b)$.
+    \begin{enumerate}
+        \item Если $\int_{a}^{b} g(x) dx$ сходится, то интегралы $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} (f(x) + g(x)) dx$ сходятся или расходятся одновременно.
+        \item Если $\int_{a}^{b} g(x) dx$ абсолютно сходится, то интегралы $\int_{a}^{b} f(x) dx$ и $\int_{a}^{b} (f(x) + g(x)) dx$ либо одновременно расходятся, либо одновременно сходятся условно, либо одновременно сходятся абсолютно.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Первый пункт вытекает из линейности несобственных интегралов. Одновременная расходимость вытекает из первого пункта по неравенствам $|f + g| \leq |f| + |g|$, $|f| \leq |f + g| + |g|$ и признаку сравнения.
+\end{proof}

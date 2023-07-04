@@ -1,0 +1,137 @@
+%19.04.23
+
+\subsection{Правила дифференцирования}
+
+\begin{property}[линейность]
+    Пусть $\underbrace{U}_{\text{откр.}} \subset \R^n$.
+
+    Если $f, g : U \rightarrow \R^m$ дифференцируемы в точке $a$, $\lambda, \mu \in \R$, то $\lambda f + \mu g : U \rightarrow \R^m$ дифференцируема в точке $a$ и $d(\lambda f + \mu g)_a = \lambda df_a + \mu dg_a$.
+
+    \begin{proof}
+        По определению
+        \begin{gather*}
+            f(a + h) = f(a) + df_a(h) + \alpha(h)|h|, h \rightarrow 0 \Rightarrow \alpha(h) \rightarrow 0, \\
+            g(a + h) = g(a) + dg_a(h) + \beta(h)|h|, h \rightarrow 0 \Rightarrow \beta(h) \rightarrow 0, \\
+            (f + g)(a + h) = (f + g)(a) + (df_a + dg_a)(h) + \underbrace{(\alpha(h) + \beta(h))}_{\rightarrow 0}|h|.
+        \end{gather*}
+
+        Следовательно, $f + g$ дифференцируема в точке $a$ и $d(f + g)_a = df_a + dg_a$, $\lambda f$ дифференцируема в точке $a$ и $d(\lambda f)_a = \lambda df_a$.
+    \end{proof}
+\end{property}
+
+\begin{theorem}[дифференцирование композиции]
+    Пусть $\underbrace{U}_{\text{откр.}} \subset \R^n, \underbrace{V}_{\text{откр.}} \subset \R^m$.
+
+    Если $f : U \rightarrow \R^m$ дифференцируема в точке $a$, $g : V \rightarrow \R^k$ дифференцируема в точке $f(a)$, $f(U) \subset V$, то композиция $g \circ f : U \rightarrow \R^k$ дифференцируема в точке $a$ и
+    \[
+        d(g \circ f)_a = dg_{f(a)} \circ df_a.
+    \]
+
+
+    \begin{proof}
+        Положим $b = f(a)$. По определению
+        \begin{gather*}
+            f(a + h) = f(a) + df_a(h) + \alpha(h)|h|, h \rightarrow 0 \Rightarrow \alpha(h) \rightarrow 0, \\
+            g(b + u) = g(b) + dg_b(u) + \beta(u)|u|, u \rightarrow 0 \Rightarrow \beta(u) \rightarrow 0, \\
+        \end{gather*}
+
+        Подставим вместо $u$ во второе равенство выражение $\kappa(h) = df_a(h) + \alpha(h)|h|$.
+        \begin{gather*}
+            g(f(a + h)) = g(b + \kappa(h)) = g(b) + dg_b(df_a(h) + \alpha(h)|h|) + \beta(\kappa(h)) |\kappa(h)| =\\= g(b) + dg_b(df_a(h)) + dg_b(\alpha(h)) \cdot |h| + \beta(\kappa(h)) \cdot |\kappa(h)| =\\= g(b) + dg_b(df_a(h)) + \gamma(h)|h|, \gamma(h) = dg_b(\alpha(h)) + \beta(\kappa(h))\frac{|\kappa(h)|}{|h|}.
+        \end{gather*}
+
+        По теореме о непрерывности композиции $dg_b(\alpha(h))$ и $\beta(\kappa(h))$ непрерывны при $h = 0$ со значением $0$.
+
+        По определению нормы $\exists C \ge 0 \ \left(|df_a(h)| \le C|h|\right)$.
+
+        Следовательно, $\frac{|\kappa(h)|}{|h|}$ ограничена в некоторой проколотой окрестности $h = 0$ и, значит, $\gamma(h)$ --- бесконечно малая при $h \rightarrow 0$ (как сумма двух бесконечно малых).
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Пусть $f, g : \underbrace{U}_{\text{откр. в $\R^n$}} \rightarrow \R$ дифференцируема в точке $a$.
+
+    Тогда:
+    \begin{enumerate}
+        \item $f \cdot g : U \rightarrow \R$ дифференцируема в точке $a$ и
+            \[
+                d(f \cdot g)_a = g(a)df_a + f(a)dg_a;
+            \]
+        \item При условии $f \neq 0$ на $U$: $\frac{1}{f} : U \rightarrow \R$ дифференцируема в точке $a$ и $d\left(\frac{1}{f}\right)_a = -\frac{1}{f^2(a)}df_a$.
+    \end{enumerate}
+
+    \begin{proof}
+        $F = (f, g)^T$ дифференцируема в точке $a$ и $dF_a = (df_a, dg_a)^T$.
+
+        $\phi : \R^2 \rightarrow \R, \phi(x, y) = xy$ дифференцируема в каждой точке из $\R^2$ и $d\phi = y dx + x dy$. Тогда $\phi \circ F$ дифференцируема в точке $a$ и $d(\phi \circ F)_a = d\phi_{F(a)} \circ dF_a$, то есть $d(f \cdot g)_a = g(a)df_a + f(a)dg_a$.
+
+        Второй пункт доказывается аналогично.
+    \end{proof}
+\end{corollary}
+
+\begin{equation*}
+    \begin{pmatrix}
+        \frac{\partial (g \circ f)}{\partial x_1}(a) & \ldots & \frac{\partial(g \circ f)}{\partial x_n}(a)
+        \end{pmatrix} = \begin{pmatrix}
+    \frac{\partial g}{\partial y_1}(b) & \ldots & \frac{dg}{dy_m}(b)
+    \end{pmatrix} \cdot \begin{pmatrix}
+    \frac{\partial f_1}{\partial x_1}(a) & \ldots & \frac{\partial f_1}{\partial x_n}(a) \\
+    \vdots & \ddots & \vdots \\
+    \frac{\partial f_m}{\partial x_1}(a) & \ldots & \frac{\partial f_m}{\partial x_n}(a)
+\end{pmatrix}
+\end{equation*}
+
+Откуда $\frac{\partial (g \circ f)}{\partial x_j}(a) = \sum_{i = 1}^n \frac{\partial g}{\partial y_i}(b) \frac{\partial f_i}{\partial x_j}(a)$ и, следовательно,
+\begin{gather*}
+    d(g \circ f)_a = \frac{\partial (g \circ f)}{\partial x_1}(a) dx_1 + \ldots + \frac{\partial(g \circ f)}{\partial x_n}(a) dx_n =\\= \sum_{i = 1}^n \frac{\partial g}{\partial y_i}(b) \left(\sum_{j = 1}^n \frac{\partial f_i}{\partial x_j}(a) dx_j\right) = \sum_{i = 1}^m \frac{\partial g}{\partial y_i}(b) dy_i, dy_i = d(f_i)_a.
+\end{gather*}
+
+\begin{definition}
+    Пусть $\underbrace{U}_{\text{откр.}} \subset \R^n, f : U \rightarrow \R^m, f = (f_1, \ldots, f_m)^T$.
+
+    Функция $f$ называется \emph{непрерывно дифференцируемой} на $U$, если все частные производные $\frac{\partial f_i}{\partial x_j}$ определены и непрерывны на $U$.
+
+    Множество всех таких функций обозначают $C^1(U, \R^m)$.
+\end{definition}
+
+\begin{lemma}
+    Функция $f$ непрерывно дифференцируема на $U$ тогда и только тогда, когда $f$ дифференцируема на $U$ и $df : U \rightarrow \mathcal{L}(\R^n, \R^m)$ непрерывен.
+
+    \begin{proof}
+        Пусть $f$ дифференцируема в каждой точке из $U$. Тогда на $M_{n \times m}(\R)$ $\|A\| = \sup_{h \neq 0} \frac{|Ah|}{|h|}$. Так как $\forall x \in U \, \forall h \in \R^h \ df_x(h) = Df(x)h \Rightarrow \|df_x\| = \|Df(x)\|$.
+
+        На $M_{m \times n}(\R) \|A\|_\infty = \max |a_{ij}|, \|\cdot\| \sim \|\cdot\|_\infty$.
+
+        $\lim_{x \rightarrow a} \|df_x - df_a\| = 0 \Leftrightarrow \lim_{x \rightarrow a} \|Df_x - Df_a\|_\infty  = 0 \Leftrightarrow \forall i, j \ \frac{\partial f_i}{\partial x_j}(x) \rightarrow \frac{\partial f_i}{\partial x_j}(a) \text{ при } x \rightarrow a$.
+    \end{proof}
+\end{lemma}
+
+\begin{corollary}
+    Если $f, g \in C^1(U, \ldots)$, то $\lambda f + \mu g \in C^1(U)$, $g \circ f \in C^1(U)$.
+
+    (Аналогично для $f \cdot g$)
+\end{corollary}
+
+\subsection{Частные производные и дифференциалы высших порядков}
+
+Пусть $\underbrace{U}_{\text{откр.}} \subset \R^n, f : U \rightarrow \R, k \in \N$.
+
+\begin{definition}
+    Частной производной нулевого порядка в точке $a$ называют $f(a)$.
+
+    Если частная производная $\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_1}}$ $k - 1$-го порядка определена в некоторой окрестности точки $a$ и меет в точке $a$ частную производную по $x_{i_k}$, то
+    \[
+        \frac{\partial^k f}{\partial x_{i_k}\partial x_{i_{k - 1}} \ldots \partial x_{i_1}} \coloneqq \frac{\partial}{\partial x_{i_k}} \left.\left(\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_1}}\right)\right|_{x = a}
+    \]
+
+    называется \emph{частной производной $k$-го порядка функции $f$ в точке $a$}.
+\end{definition}
+
+
+\begin{theorem}[Юнг]
+\label{jung_th}
+Пусть $\underbrace{U}_{\text{откр.}} \subset \R^2, f : U \rightarrow \R$. Если частные производные $\frac{\partial f}{\partial x}$ и $\frac{\partial f}{\partial y}$ определены в некоторой окрестности точки $(a, b)$ и дифференцируемы в точке $(a, b)$, то
+\[
+    \frac{\partial^2 f}{\partial y \partial x}(a, b) = \frac{\partial^2 f}{\partial x \partial y}(a, b).
+\]
+\end{theorem}

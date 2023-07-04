@@ -1,0 +1,124 @@
+%05.04.23
+
+\begin{example}
+    Пусть $A \subset X$, $A \neq \emptyset$. Функция $d_{A}: X \to \R$, $d_{A}(x) = \underset{a \in A}{\inf} \rho_{X}(x, a)$ непрерывна (на $X$).
+\end{example}
+
+\begin{proof}
+    Покажем, что $d_{A}$ непрерывна в точке $y \in X$. Для $x \in X$, $a \in A$ по неравенству треугольника имеем $\rho_{X}(y, a) \geq \rho_{X}(x, a) - \rho_{X}(x, y) \geq d_{A}(x) - \rho_{X}(x, y)$. Переходя к инфимуму по всем $a \in A$, получим $d_{A}(y) \geq d_{A}(x) - \rho_{X}(x, y)$ или $d_{A}(x) - d_{A}(y) \leq \rho_{X}(x, y)$. Неравенство симметрично относительно $x, y$, поэтому $|d_{A}(x) - d_{A}(y)| \leq \rho_{X}(x, y)$.
+\end{proof}
+
+\begin{theorem}[критерий непрерывности]
+    Функция $f: X \to Y$ непрерывна $\lra$ для любого открытого $V \subset Y$ множество $f^{-1}(V)$ открыто в $X$.
+\end{theorem}
+
+\begin{proof}
+    $(\Rightarrow)$ Пусть $V$ открыто в $Y$. Если $x \in f^{-1}(V)$, то $f(x) \in V$ и, значит, существует такое $\epsilon > 0$, что $B_{\epsilon}(f(x)) \subset V$. Функция $f$ непрерывна в точке $x$, поэтому найдется такое $\delta > 0$, что $f(B_{\delta}(x)) \subset B_{\epsilon}(f(x))$. Отсюда следует, что $B_{\delta}(x) \subset f^{-1}(V) \Rightarrow f^{-1}(V)$ открыто в $X$.
+
+    $(\Leftarrow)$ Пусть $x \in X$, и $\epsilon > 0$. Шар $B_{\epsilon}(f(x))$ открыт в $Y$, поэтому множество $f^{-1}(B_{\epsilon}(f(x)))$ открыто в $X$ и, значит, существует $\delta > 0$, что $B_{\delta}(x) \subset f^{-1}(B_{\epsilon}(f(x)))$, или $f(B_{\delta}(x)) \subset B_{\epsilon}(f(x))$. Так как $\epsilon > 0$ -- любое, то $f$ непрерывна в точке $x$.
+\end{proof}
+
+\begin{corollary}
+    Функция $f: X \to Y$ непрерывна на $X$ $\lra$ для каждого замкнутого множества $F \subset Y$ множество $f^{-1}(F)$ замкнуто в $X$.
+\end{corollary}
+
+\begin{proof}
+    Следует из теоремы в силу равенства $X \setminus f^{-1}(F) = f^{-1}(Y \setminus F)$, верного для любого $F \subset Y$.
+\end{proof}
+
+\begin{problem}
+    Приведите пример разрывной функции $f: X \to Y$, такой что $F(U)$ открыто для любого открытого $U \subset X$.
+\end{problem}
+
+\subsection{Непрерывные функции на компактах}
+
+\begin{theorem}
+    Если функция $f: K \to Y$ непрерывна, и $K$ компакт, то $f(K)$ -- компакт в $Y$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $f(K)$. Если $x \in K$, то существует такое $\lambda_{0} \in \Lambda$, что $f(x) \in G_{\lambda_{0}}$ и, значит, $x \in f^{-1}(G_{\lambda_{0}})$. Следовательно, семейство $\{f^{-1}(G_{\lambda})\}_{\lambda \in \Lambda}$ образует открытое покрытие $K$. Это покрытие открыто по критерию непрерывности. Поскольку $K$ компакт, то $K \subset f^{-1}(G_{\lambda_{1}}) \cup \ldots \cup f^{-1}(G_{\lambda_{m}})$.
+
+    Покажем, что $f(K) \subset G_{\lambda_{1}} \cup \ldots \cup G_{\lambda_{m}}$. Действительно, если $y \in f(K)$, то $y = f(x)$ для некоторого $x \in K$. Найдем такое $k$, что $x \in f^{-1}(G_{\lambda_{k}})$, тогда, в свою очередь, $y = f(x) \in G_{\lambda_{k}}$. Следовательно, $f(K)$ -- компакт.
+\end{proof}
+
+\begin{corollary}[теорема Вейерштрасса]
+    \label{weierstrass-compacts}
+    Если функция $f: K \to \R$ непрерывна, и $K$ компакт, то существуют точки $x_{m}, x_{M} \in K$, такие что $f(x_{M}) = \underset{x \in K}{\sup}f(x)$ и $f(x_{m}) = \underset{x \in K}{\inf} f(x)$.
+\end{corollary}
+
+\begin{proof}
+    $f(K)$ --- компакт в $\R$, следовательно, $f(K)$ замкнуто и ограничено.
+
+    Так как $f(K)$ ограничено, то $M = \sup_K f(x) \in \R$. $M$ --- граничная точка $f(K)$, следовательно, $M \in f(K)$ и, значит, $\exists x_M \in K \ f(x) = M$.
+
+    Доказательство для $\inf_K f$ аналогично.
+\end{proof}
+
+\begin{definition}
+    Пусть $V$ -- линейное пространство, $\|\cdot\|$, $\|\cdot\|^{*}$ нормы на $V$. Нормы $\|\cdot\|$ и $\|\cdot\|^{*}$ называются \textit{эквивалентными}, если существуют такие $\alpha > 0$ и $\beta > 0$, что
+    \[\forall x \in V \ \left(\alpha\|x\| \leq \|x\|^{*} \leq \beta \|x\|\right).\]
+\end{definition}
+
+\begin{corollary}
+    На конечномерном пространстве $V$ все нормы эквивалентны.
+\end{corollary}
+
+\begin{proof}
+    Покажем сначала, что все нормы на $\R^n$ эквивалентны. Достаточно показать, что любая норма $\|\cdot\|$ эквивалентна евклидовой $\|\cdot\|_2$.
+
+    Пусть $x = x_1 e_1 + \ldots + x_n e_n$ --- разложение по стандартному базису. Тогда по неравенствам треугольника и Коши-Буняковского-Шварца
+    \[
+        \|x\| \le \sum_{i = 1}^n |x_i| \cdot \|e_i\| \le \left(\sum_{i = 1}^n \|e_i\|^2\right)^{\frac{1}{2}}\left(\sum_{i = 1}^n |x_i|^2\right)^{\frac{1}{2}} =: \beta \cdot \|x\|_2.
+    \]
+
+    В частности, $\|\cdot\|$ непрерывна на $(\R, \|\cdot\|_2)$. Рассмотрим $S = \{x \in \R^n \ | \ \|x\|_2 = 1\}$ --- компакт в $\R^n$. Тогда по (\ref{weierstrass-compacts}) функция $\|\cdot\|$ достигает $\alpha > 0$ --- инфимума значений.
+
+    Пусть $x \neq 0 \Rightarrow \left\|\frac{x}{\|x\|_2}\right\| \ge \alpha$ и, значит, $\|x\| \ge \alpha \|x\|_2$ (очевидно и для $x = 0$). Тогда $\|\cdot\|$ эквивалентны $\|\cdot\|_{2}$.
+
+    $V$ --- конечномерное линейное пространство и $(v_i)_{i = 1}^n$ --- базис $V$, $x = \sum_{i = 1}^n x_i v_i$ --- разложение. Отображение $\phi(x) = (x_1, \ldots, x_n)^T$ задаёт изоморфизм между $V$ и $\R^n$. Пусть $\|\cdot\|_V$ и $\|\cdot\|^*_V$ --- нормы на $V$.
+
+    Определим $\|y\| = \|\phi^{-1}(y)\|_V, \ \|y\|^* = \|\phi^{-1}(y)\|_V^*$ --- нормы на $\R^n$. Так как на $\R^{n}$ они эквивалентны, то $\|\cdot\|_V$ и $\|\cdot\|_V^*$ также эквивалентны.
+\end{proof}
+
+\begin{definition}
+    Функция $f: X \to Y$ называется \textit{равномерно непрерывной} (на $X$), если
+
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x, x' \in X \ (\rho_{X}(x, x') < \delta \Rightarrow \rho_{Y}(f(x), f(x')) < \epsilon).\]
+\end{definition}
+
+\begin{theorem}[Кантор]
+    Если функция $f: K \to Y$ непрерывна, и $K$ компакт, то $f$ равномерно непрерывна.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\epsilon > 0$. По определению непрерывности
+    \[
+        \forall a \in K \ \exists \delta_a > 0 \ \forall x \in X \ \left(\rho_X(x, a) < \delta_a \Rightarrow \rho_Y(f(x), f(a)) < \frac{\epsilon}{2}\right),
+    \]
+
+    Семейство $\{B_{\frac{\delta_a}{2}}\}_{a \in K}$ --- открытое покрытие $K$. Так как $K$ --- компакт, то $K \subset B_{\frac{\delta_{a_1}}{2}}(a_1) \cup \ldots \cup B_{\frac{\delta_{a_m}}{2}}(a_m)$.
+
+    Положим $\delta = \min_{1 \le i \le m} \left\{\frac{\delta_{a_i}}{2}\right\}$. Покажем, что $\delta$ будет удовлетворять определению равномерной непрерывности для $\epsilon$.
+
+    Пусть $\rho_K(x, x') < \delta_i$. Найдётся $i, 1 \le i \le m$, что $x \in B_{\frac{\delta_{a_i}}{2}}(a_i)$. Тогда
+    \[
+        \rho_K(x', a_i) \le \rho_K(x', x) + \rho_K(x, a_i) < \frac{\delta_{a_i}}{2} + \frac{\delta_{a_i}}{2} = \delta_{a_i},
+    \]
+    и, значит, $x, x' \in B_{\delta_{a_i}}(a_i)$. Поэтому
+    \[
+        \rho_Y(f(x), f(x')) \le \rho_Y(f(x), f(a_i)) + \rho_Y(f(a_i), f(x')) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+    \]
+\end{proof}
+
+\begin{definition}
+    Пусть $X, Y$ -- метрические пространства. Функция $f: X \to Y$ называется \textit{гомеоморфизмом}, если $f$ биекция и функции $f$ и $f^{-1}$ непрерывны.
+\end{definition}
+
+\begin{theorem}
+    Если $f: K \to Y$ непрерывная биекция, и $K$ компакт, то $f$ -- гомеоморфизм.
+\end{theorem}
+
+\begin{proof}
+    Покажем, что функция $f^{-1}: Y \to K$ непрерывна. Достаточно показать, что множество $(f^{-1})^{-1}(F)$ замкнуто для всякого замкнутого $F \subset K$. Это так, поскольку $(f^{-1})^{-1}(F) = f(F)$ -- компакт, как непрерывный образ компакта.
+\end{proof}

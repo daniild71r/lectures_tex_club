@@ -1,0 +1,155 @@
+%15.02.23
+
+\subsection{Ряды с неотрицательными членами}
+
+\begin{lemma}
+    Пусть $a_n \ge 0$ для всех $n \in \N$. Тогда сходимость ряда $\sum_{n = 1}^{\infty} a_n$ равносильна ограниченности последовательности частичных сумм $\{S_n\}$.
+
+    \begin{proof}
+        Все $S_n \ge 0$ и нестрого возрастают, так как $S_{n + 1} - S_n = a_{n + 1} \ge 0$. Следовательно, $\exists \lim_{n \rightarrow \infty} S_n = \sup S_n.$
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[признак сравнения]
+    Пусть $0 \le a_n \le b_n$ для всех $n \in \N$.
+    \begin{enumerate}
+        \item Если ряд $\sum_{n = 1}^\infty b_n$ сходится, то сходится и ряд $\sum_{n = 1}^\infty a_n$;
+        \item Если ряд $\sum_{n = 1}^\infty a_n$ расходится, то расходится и ряд $\sum_{n = 1}^\infty b_n$.
+    \end{enumerate}
+
+    \begin{proof}
+        Вытекает из леммы (\ref{lem2.5}) и признака сравнения несобственных интегралов.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Пусть $a_n, b_n \ge 0$ для всех $n \in \N$ и $a_n = O(b_n)$ при $n \rightarrow \infty$. Тогда справедливо заключение предыдущей теоремы.
+\end{corollary}
+
+\begin{corollary}
+    Пусть $a_n, b_n > 0$ для всех $n \in \N$ и существует $\lim_{n \rightarrow \infty} \frac{a_n}{b_n} \in (0, +\infty)$. Тогда ряды $\sum_{n = 1}^\infty a_n$ и $\sum_{n = 1}^\infty b_n$ сходятся или расходятся одновременно.
+\end{corollary}
+
+\begin{theorem}[интегральный признак сходимости]
+    \label{integral-test}
+    Пусть функция $f$ нестрого убывает и неотрицательна на $[1, +\infty)$. Тогда ряд $\sum_{n = 1}^\infty f(n)$ и интеграл $\int_1^{+\infty} f(x)\, dx$ сходятся или расходятся одновременно.
+
+    \begin{proof}
+        Положим $u, v: [1, +\infty) \rightarrow \R$, $u\rvert_{[n, n + 1)} = f(n)$, $v\rvert_{[n, n + 1)} = f(n + 1)$.
+
+        Так как $f$ нестрого убывает, то $v \le f \le u$ на $[1, +\infty)$.
+
+        Пусть $\sum_{n = 1}^\infty f(n)$ сходится, тогда по лемме (\ref{lem2.5}) сходится $\int_1^{+\infty} u(x)\, dx$. Следовательно, по признаку сравнения для интегралов $\int_1^{+\infty} f(x)\, dx$ также сходится.
+
+        Пусть $\int_1^{+\infty} f(x)\, dx$ сходится, тогда по признаку сравнения сходится $\int_1^{+\infty} v(x)\, dx$. Следовательно, по лемме (\ref{lem2.5}) сходится ряд $\sum_{n = 1}^\infty f(n + 1)$.
+    \end{proof}
+\end{theorem}
+
+\begin{example}
+    \[
+        \sum_{n = 1}^\infty \frac{1}{n^\alpha}, \alpha \in \R.
+    \]
+
+    \begin{proof}
+        Если $\alpha \le 0$, то $\frac{1}{n^\alpha} \not\rightarrow 0$ и ряд расходится по необходимому условию.
+
+        Если $\alpha > 0$, то функция $f(x) = \frac{1}{x^\alpha}$ строго убывает и положительна на $[1, +\infty)$. Тогда $\sum_{n = 1}^\infty \frac{1}{n^\alpha}$ и $\int_1^{+\infty} \frac{dx}{x^\alpha}$ сходятся или расходятся одновременно по интегральному признаку.
+
+        Интеграл $\int_1^{+\infty} \frac{dx}{x^\alpha}$ сходится, что равносильно $\alpha > 1$.
+    \end{proof}
+\end{example}
+
+\begin{note}
+    В условиях теоремы (\ref{integral-test}) последовательность $\alpha_n \coloneqq \sum_{k = 1}^n f(k) - \int_1^{n + 1} f(x)\, dx$ сходится.
+
+    \begin{proof}
+        Так как $\alpha_n = \sum_{k = 1}^n f(k) - \sum_{k = 1}^n \int_k^{k + 1} f(x)\, dx = \sum_{k = 1}^{n} \int_k^{k + 1} \underbrace{\left(f(k) - f(x)\right)}_{\ge 0}\, dx$, то $\alpha_n \ge 0$ и $\{\alpha_n\}$ нестрого возрастает.
+
+        Далее,
+        \[
+            \alpha_n \le \sum_{k = 1}^n \left(f(k) - f(k - 1)\right) = f(1) - f(n + 1) \le f(1).
+        \]
+
+        По теореме о пределе монотонной последовательности $\{\alpha_n\}$ сходится.
+    \end{proof}
+\end{note}
+
+\begin{example}
+    По замечанию существует
+    \[
+        \gamma \coloneqq \lim_{n \rightarrow \infty} \left(\sum_{k = 1}^n \frac{1}{k} - \ln(n + 1)\right),
+    \]
+    (\emph{константа Эйлера-Маскерони}, $\gamma = 0{,}5772\ldots$).
+
+    Следовательно, $H_n = \ln n + \gamma + o(1), n \rightarrow \infty$.
+\end{example}
+
+Следующие теоремы основаны на сравнении с геометрическим рядом.
+
+\begin{theorem}[признак Коши]
+    \label{cauchy-test}
+    Пусть $a_n \ge 0$ для всех $n \in \N$ и $q = \overline{\lim_{n \rightarrow \infty}} \sqrt[n]{a_n}$.
+
+    \begin{enumerate}
+        \item Если $q < 1$, то ряд $\sum_{n = 1}^\infty a_n$ сходится;
+        \item Если $q > 1$, то $a_n \not\rightarrow 0$ и ряд $\sum_{n = 1}^\infty a_n$ расходится.
+    \end{enumerate}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Пусть $q_0 \in (q, 1)$. Выберем $N$ так, что $\sup_{n \ge N} \sqrt[n]{a_n} < q_0$ при всех $n \ge N$ и, значит, $a_n < q_0^n$. Следовательно, ряд сходится по признаку сравнения с геометрическим рядом.
+
+            \item Так как $q$ --- частичный предел, то $\exists \{n_k\} \ \sqrt[n_k]{a_{n_k}} \rightarrow q$. Поэтому $\exists k_0 \, \forall k \ge k_0 \ (a_{n_k} > 1)$, следовательно, $a_n \not\rightarrow 0$ и ряд расходится.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[признак Даламбера]
+    \label{dalambert-test}
+    Пусть $a_n > 0$ для всех $n \in \N$.
+
+    \begin{enumerate}
+        \item Если $\overline{r} = \overline{\lim}_{n \rightarrow \infty} \frac{a_{n + 1}}{a_n} < 1$, то ряд $\sum_{n = 1}^\infty a_n$ сходится;
+        \item Если $\underline{r} = \underline{\lim}_{n \rightarrow \infty} \frac{a_{n + 1}}{a_n} > 1$, то $a_n \not\rightarrow 0$ и ряд $\sum_{n = 1}^\infty a_n$ расходится.
+    \end{enumerate}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Пусть  $r \in (\overline{r}, 1)$. Выберем $N$ так, что $\sup_{n \ge N} \frac{a_{n + 1}}{a_n} < r$ при всех $n \ge N$, и, значит,
+                \[
+                    \forall n > N \ a_{n + 1} < ra_n < \ldots < r^{n + 1 - N} a_{N} = r^{1 - N} a_N r^n,
+                \]
+                и, значит, ряд сходится по признаку сравнения с геометрическим рядом $\sum_{n = 1}^\infty r^n$.
+
+            \item Пусть $\underline{r} > 1$. Тогда $\exists N \ \left(\inf_{n \ge N} \frac{a_{n + 1}}{a_n} > 1\right)$ и, значит, $a_{n + 1} > a_n > \ldots > a_N > 0$ для всех $n > N$. Следовательно, $a_n \not\rightarrow 0$ и ряд расходится.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\begin{note}
+    Если в теореме (\ref{cauchy-test}) $q = 1$ или в теореме (\ref{dalambert-test}) $\overline{r} \ge 1$, $\underline{r} \le 1$, то в общем случае о сходимости ряда $\sum_{n = 1}^\infty a_n$ ничего нельзя сказать.
+
+\begin{example}
+    Пусть $a_n = 1$, $b_n = \frac{1}{n^2}$. Для рядов $q = \overline{r} = \underline{r} = 1$. Однако $\sum_{n = 1}^\infty a_n$ расходится, а $\sum_{n = 1}^\infty b_n$ сходится.
+\end{example}
+\end{note}
+
+\begin{problem}
+    Пусть $\forall n \in \N \ a_n > 0$. Покажите, что
+    \[
+        \underline{\lim}_{n \rightarrow \infty} \frac{a_{n + 1}}{a_n} \le \underline{\lim}_{n \rightarrow \infty} \sqrt[n]{a_n} \le \overline{\lim}_{n \rightarrow \infty} \sqrt[n]{a_n} \le \overline{\lim}_{n \rightarrow \infty} \frac{a_{n + 1}}{a_n}.
+    \]
+\end{problem}
+
+\begin{note}
+    Из последней цепочки неравенств следует, что если к ряду применим признак Даламбера, то к нему применим признак Коши, но обратное неверно.
+
+    \begin{example}
+        $\sum_{n = 1}^\infty a_n$, где $a_n = 2^{-n + (-1)^n}$. Так как $\lim_{n \rightarrow \infty} \sqrt[n]{a_n} = \frac{1}{2}$, то ряд сходится по признаку Коши.
+
+        Однако $\forall k \in \N \ \frac{a_{2k + 1}}{a_{2k}} = \frac{2^{-2k - 2}}{2^{-2k + 1}} = \frac{1}{8}, \frac{a_{2k + 2}}{a_{2k + 1}} = \frac{2^{-2k - 1}}{2^{-2k - 2}} = 2$.
+
+        Следовательно, $\overline{r} \ge 2, \underline{r} \le \frac{1}{8}$, к ряду неприменим признак Даламбера.
+    \end{example}
+\end{note}
+

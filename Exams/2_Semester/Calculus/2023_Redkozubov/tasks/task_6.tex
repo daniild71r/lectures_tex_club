@@ -1,0 +1,279 @@
+\section{6. Предел функции, отображающей метрическое пространство в метрическое пространство, его свойства. Предел по подмножествам. Равносильные условия непрерывности. Непрерывность композиции. Критерий непрерывности через прообразы. Непрерывные функции на компактах. Теорема Вейерштрасса. Эквивалентность норм в конечномерных пространствах (б/д). Теорема Кантора о равномерной непрерывности. Связные множества в метрических пространствах. Теорема о промежуточном значении. Линейно связные множества. Линейные отображения из $\R^n$ в $\R^m$, операторная норма.}
+
+Пусть $(X, \rho_{x}), (Y, \rho_{y})$ -- метрические пространства, $a$ -- предельная точка $X$, и задана функция $f: X \setminus \{a\} \to Y$.
+
+\begin{definition}[Коши]
+    Точка $b \in Y$ называется \textit{пределом} функции $f$ в точке $a$, если
+    
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X (0 < \rho_{X}(x, a) < \delta \Rightarrow \rho_{Y}(f(x), b) < \epsilon)\]
+    
+    или, что эквивалентно,
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X (x \in \mathring{B}_{\delta}(a) \Rightarrow f(x) \in B_{\epsilon}(b).\]
+\end{definition}
+
+\begin{definition}[Гейне]
+    Точка $b \in Y$ называется \textit{пределом} функции $f$ в точке $a$, если
+    
+    \[\forall \{x_{n}\}, x_{n} \in X \setminus \{a\} (x_{n} \to a \Rightarrow f(x_{n}) \to b).\]
+    
+\end{definition}
+
+Как и в случае числовых функций, доказывается равносильность определений по Коши и по Гейне, поэтому в обоих случаях пишут $\lim_{x \to a}f(x) = b$, или $f(x) \to b$ при $x \to a$.
+
+\begin{property}[единственность]
+    Если $\lim_{x \to a}f(x) = b$ и $\lim_{x \to a}f(x) = c$, то $b = c$.
+\end{property}
+
+\begin{proof}
+    Пусть $x_{n} \to a$ и $x_{n} \neq a$. По определению Гейне $f(x_{n}) \to b$ и $f(x_{n}) \to c$. Так как последовательность в метрическом пространстве имеет не более одного предела, то $b = c$.
+\end{proof}
+
+\begin{property}
+    $f, g: X \setminus \{a\} \to \R$ и $\lim_{x \to a} f(x) = b$, $\lim_{x \to a} g(x) = c$. Тогда $\lim_{x \to a} (f(x) + g(x)) = b + c$, $\lim_{x \to a} f(x)g(x) = bc$.
+\end{property}
+
+\begin{proof}
+    $x_{n} \in X \setminus \{a\}$, $x_{n} \to a \Rightarrow f(x_{n}) \to b$, $g(x_{n}) \to c \Rightarrow f(x_{n}) + g(x_{n}) \to b + c$, $f(x_{n})g(x_{n}) \to bc$. Утверждение следует по определению Гейне.
+\end{proof}
+
+В дальнейшем, говоря о <<пределе по подможеству>>, всегда будем иметь в виду подпространство с индуцированной метрикой.
+
+\begin{property}[предел по подмножеству]
+    \label{proper3}
+    Пусть $E \subset X$, $a$ -- предельная точка множества $E$. Если $\lim_{x \to a} f(x) = b$, то $\lim_{x \to a} (f|_{E})(x) = b$.
+\end{property}
+
+\begin{proof}
+    Пусть $x_{n} \subset E$, $x_{n} \to a$ и $x_{n} \neq a$. Тогда $(f|_{E})(x_{n}) = f(x_{n}) \to b$. По определению Гейне $\lim_{x \to a}(f|_{E})(x) = b$.
+\end{proof}
+
+\begin{property}[локальная ограниченность]
+    Если существует $\lim_{x \to a} f(x)$, то $\exists \delta > 0: f(\mathring{B}_{\delta}(a))$ ограничено.
+\end{property}
+
+\begin{proof}
+    Достаточно положить в определении Коши $\epsilon = 1$.
+\end{proof}
+
+\begin{definition}
+    Функция $f$ \textit{непрерывна в точке} $a \in X$, если
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X \left(\rho_{X}(x, a) < \delta \Rightarrow \rho_{Y}(f(x), f(a)) < \epsilon\right)\]
+    или, что эквивалентно,
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in X \left(x \in B_{\delta}(a) \Rightarrow f(x) \in B_{\epsilon}(f(a))\right).\]
+\end{definition}
+
+\begin{lemma}
+    Пусть $f: X \to Y$, $a \in X$. Следующие условия эквивалентны:
+    \begin{enumerate}
+        \item функция $f$ непрерывна в точке $a$;
+        \item $\forall \{x_{n}\}$, $x_{n} \in X \left(x_{n} \to a \Rightarrow f(x_{n}) \to f(a)\right)$;
+        \item $a$ -- изолированная точка множества $X$ или $a$ -- предельная точка $X$ и $\lim_{x \to a} f(x) = f(a)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    $(1) \Rightarrow (2)$ Выберем $\epsilon > 0$ и соответствующее $\delta > 0$ из определения непрерывности. Если $x_{n} \to a$ (в $X$), то существует такой номер $N$, что $\rho_{X}(x_{n}, a) < \delta$ при всех $n \geq N$, но тогда $\rho_{Y}(f(x_{n}), f(a)) < \epsilon$ при $n \geq N$. Это означает, что $f(x_{n}) \to f(a)$.
+
+    $(2) \Rightarrow (3)$ Если $a$ -- предельная точка $X$, то из условия $\lim_{x \to a} f(x) = f(a)$ по определению Гейне.
+
+    $(3) \Rightarrow (1)$ Если $a$ изолирована, то $B_{\delta_{0}}(a) \cap X = \{a\}$ для некоторого $\delta_{0} > 0$. Тогда для любого $\epsilon > 0$ определение непрерывности в точке $a$ выполняется при $\delta = \delta_{0}$. Пусть $a$ предельная для $X$. По определению предела по Коши $\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in E \left(0 < \rho_{X}(x, a) < \delta \Rightarrow \rho_{Y}(f(x), f(a)) < \epsilon\right)$. Но последняя импликация верна и для $x = a$. Значит, функция $f$ непрерывна в точке $a$.
+\end{proof}
+
+\begin{theorem}[о непрерывности композиции]
+    Пусть $(X, \rho_{X})$, $(Y, \rho_{Y})$ и $(Z, \rho_{Z})$ -- метрические пространства. Если функция $f: X \to Y$ непрерывна в точке $a \in X$, и функция $g: Y \to Z$ непрерывна в точке $f(a) \in Y$, то их композиция $g \circ f: X \to Z$ непрерывна в точке $a$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $x_{n} \to a$, тогда $f(x_{n}) \to f(a)$ и, значит, $g(f(x_{n})) \to g(f(a))$.
+\end{proof}
+
+\begin{theorem}[критерий непрерывности]
+    Функция $f: X \to Y$ непрерывна $\lra$ для любого открытого $V \subset Y$ множество $f^{-1}(V)$ открыто в $X$.
+\end{theorem}
+
+\begin{proof}
+    $(\Rightarrow)$ Пусть $V$ открыто в $Y$. Если $x \in f^{-1}(V)$, то $f(x) \in V$ и, значит, существует такое $\epsilon > 0$, что $B_{\epsilon}(f(x)) \subset V$. Функция $f$ непрерывна в точке $x$, поэтому найдется такое $\delta > 0$, что $f(B_{\delta}(x)) \subset B_{\epsilon}(f(x))$. Отсюда следует, что $B_{\delta}(x) \subset f^{-1}(V) \Rightarrow f^{-1}(V)$ открыто в $X$.
+
+    $(\Leftarrow)$ Пусть $x \in X$, и $\epsilon > 0$. Шар $B_{\epsilon}(f(x))$ открыт в $Y$, поэтому множество $f^{-1}(B_{\epsilon}(f(x)))$ открыто в $X$ и, значит, существует $\delta > 0$, что $B_{\delta}(x) \subset f^{-1}(B_{\epsilon}(f(x)))$, или $f(B_{\delta}(x)) \subset B_{\epsilon}(f(x))$. Так как $\epsilon > 0$ -- любое, то $f$ непрерывна в точке $x$.
+\end{proof}
+
+\begin{corollary}
+    Функция $f: X \to Y$ непрерывна на $X$ $\lra$ для каждого замкнутого множества $F \subset Y$ множество $f^{-1}(F)$ замкнуто в $X$.
+\end{corollary}
+
+\begin{proof}
+    Следует из теоремы в силу равенства $X \setminus f^{-1}(F) = f^{-1}(Y \setminus F)$, верного для любого $F \subset Y$.
+\end{proof}
+
+\begin{theorem}
+    Если функция $f: K \to Y$ непрерывна, и $K$ компакт, то $f(K)$ -- компакт в $Y$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $f(K)$. Если $x \in K$, то существует такое $\lambda_{0} \in \Lambda$, что $f(x) \in G_{\lambda_{0}}$ и, значит, $x \in f^{-1}(G_{\lambda_{0}})$. Следовательно, семейство $\{f^{-1}(G_{\lambda})\}_{\lambda \in \Lambda}$ образует открытое покрытие $K$. Это покрытие открыто по критерию непрерывности. Поскольку $K$ компакт, то $K \subset f^{-1}(G_{\lambda_{1}}) \cup \ldots \cup f^{-1}(G_{\lambda_{m}})$.
+
+    Покажем, что $f(K) \subset G_{\lambda_{1}} \cup \ldots \cup G_{\lambda_{m}}$. Действительно, если $y \in f(K)$, то $y = f(x)$ для некоторого $x \in K$. Найдем такое $k$, что $x \in f^{-1}(G_{\lambda_{k}})$, тогда, в свою очередь, $y = f(x) \in G_{\lambda_{k}}$. Следовательно, $f(K)$ -- компакт.
+\end{proof}
+
+\begin{corollary}[теорема Вейерштрасса]
+    \label{weierstrass-compacts}
+    Если функция $f: K \to \R$ непрерывна, и $K$ компакт, то существуют точки $x_{m}, x_{M} \in K$, такие что $f(x_{M}) = \underset{x \in K}{\sup}f(x)$ и $f(x_{m}) = \underset{x \in K}{\inf} f(x)$.
+\end{corollary}
+
+\begin{proof}
+    $f(K)$ --- компакт в $\R$, следовательно, $f(K)$ замкнуто и ограничено.
+
+    Так как $f(K)$ ограничено, то $M = \sup_K f(x) \in \R$. $M$ --- граничная точка $f(K)$, следовательно, $M \in f(K)$ и, значит, $\exists x_M \in K \ f(x) = M$.
+
+    Доказательство для $\inf_K f$ аналогично.
+\end{proof}
+
+\begin{definition}
+    Пусть $V$ -- линейное пространство, $\|\cdot\|$, $\|\cdot\|^{*}$ нормы на $V$. Нормы $\|\cdot\|$ и $\|\cdot\|^{*}$ называются \textit{эквивалентными}, если существуют такие $\alpha > 0$ и $\beta > 0$, что
+    \[\forall x \in V \ \left(\alpha\|x\| \leq \|x\|^{*} \leq \beta \|x\|\right).\]
+\end{definition}
+
+\begin{corollary}
+    На конечномерном пространстве $V$ все нормы эквивалентны.
+\end{corollary}
+
+\begin{definition}
+    Функция $f: X \to Y$ называется \textit{равномерно непрерывной} (на $X$), если
+
+    \[\forall \epsilon > 0 \ \exists \delta > 0 \ \forall x, x' \in X \ (\rho_{X}(x, x') < \delta \Rightarrow \rho_{Y}(f(x), f(x')) < \epsilon).\]
+\end{definition}
+
+\begin{theorem}[Кантор]
+    Если функция $f: K \to Y$ непрерывна, и $K$ компакт, то $f$ равномерно непрерывна.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\epsilon > 0$. По определению непрерывности
+    \[
+        \forall a \in K \ \exists \delta_a > 0 \ \forall x \in X \ \left(\rho_X(x, a) < \delta_a \Rightarrow \rho_Y(f(x), f(a)) < \frac{\epsilon}{2}\right),
+    \]
+
+    Семейство $\{B_{\frac{\delta_a}{2}}\}_{a \in K}$ --- открытое покрытие $K$. Так как $K$ --- компакт, то $K \subset B_{\frac{\delta_{a_1}}{2}}(a_1) \cup \ldots \cup B_{\frac{\delta_{a_m}}{2}}(a_m)$.
+
+    Положим $\delta = \min_{1 \le i \le m} \left\{\frac{\delta_{a_i}}{2}\right\}$. Покажем, что $\delta$ будет удовлетворять определению равномерной непрерывности для $\epsilon$.
+
+    Пусть $\rho_K(x, x') < \delta$. Найдётся $i, 1 \le i \le m$, что $x \in B_{\frac{\delta_{a_i}}{2}}(a_i)$. Тогда
+    \[
+        \rho_K(x', a_i) \le \rho_K(x', x) + \rho_K(x, a_i) < \frac{\delta_{a_i}}{2} + \frac{\delta_{a_i}}{2} = \delta_{a_i},
+    \]
+    и, значит, $x, x' \in B_{\delta_{a_i}}(a_i)$. Поэтому
+    \[
+        \rho_Y(f(x), f(x')) \le \rho_Y(f(x), f(a_i)) + \rho_Y(f(a_i), f(x')) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+    \]
+\end{proof}
+
+\begin{definition}
+    Метрическое пространство $X$ называется \textit{несвязным}, если существуют непустые открытые $U, V \subset X$, что $X = U \cup V$ и $U \cap V = \emptyset$.
+
+    Метрическое пространство $X$ называется \textit{связным}, если оно не является несвязным.
+
+    Множество $E \subset X$ называется \textit{несвязным (связным)}, если оно несвязно (связно) как подпространство $X$.
+\end{definition}
+
+\begin{note}
+    Согласно устройству открытых множеств подпространства получаем, что $E \subset X$ несвязно, если существуют открытые $U, V \subset X$, такие что $E \subset U \cup V$ и $E \cap U \neq \emptyset$, $E \cap V \neq \emptyset$, $U \cap V \cap E = \emptyset$.
+\end{note}
+
+Покажем, что $U$ и $V$ можно всегда выбрать непересекающимися.
+
+\begin{lemma}
+    Множество $E \subset X$ несвязно $\lra$ существуют открытые $U, V \subset X$, такие что $E \subset U \cup V$ и $E \cap U \neq \emptyset$, $E \cap V \neq \emptyset$, $U \cap V = \emptyset$.
+\end{lemma}
+
+\begin{proof}
+    Достаточность очевидна. Для доказательства необходимости предположим, что множество $E$ несвязно. Тогда существуют непустые открытые $U_{E}, V_{E} \subset E$, такие что $E = U_{E} \cup V_{E}$, $U_{E} \cap V_{E} = \emptyset$.
+
+    Для каждого $x \in U_{E}$ найдется такое $\delta_{x} > 0$, что $B_{\delta_{x}}(x) \cap E \subset U_{E}$ и, значит, $B_{\delta_{x}}(x) \cap V_{E} = \emptyset$. Аналогично, для каждого $y \in V_{E}$ найдется такое $\delta_{y} > 0$, что $B_{\delta_{y}}(y) \cap E \subset V_{E}$ и $B_{\delta_{y}}(y) \cap U_{E} = \emptyset$.
+
+    Положим $U = \underset{x \in U_{E}}{\bigcup} B_{\frac{\delta_{x}}{2}}(x), V = \underset{y \in V_{E}}{\bigcup} B_{\frac{\delta_{y}}{2}}(y)$. Если существует $z \in U \cap V$, то $z \in B_{\frac{\delta_{x}}{2}}(x)$ и $z \in B_{\frac{\delta_{y}}{2}}(y)$ для некоторых $x \in U_{E}$ и $y \in V_{E}$, тогда 
+
+    \[\rho(x, y) \leq \rho(x, z) + \rho(z, y) < \frac{\delta_{x} + \delta_{y}}{2} \leq max\{\delta_{x}, \delta_{y}\}.\]
+
+    Если $max\{\delta_{x}, \delta_{y}\} = \delta_{x}$, то $y \in B_{\delta_{x}}(x)$; если же $max\{\delta_{x}, \delta_{y}\} = \delta_{y}$, то $x \in B_{\delta_{y}}(y)$. Обе эти ситуации невозможны. Следовательно, $U \cap V = \emptyset$.
+\end{proof}
+
+\begin{theorem}
+    \label{th_coher_spac}
+    Множество $I \subset \R$ связно $\lra$ $I$ -- промежуток.
+\end{theorem}
+
+\begin{proof}
+    $(\Rightarrow)$ Если $I$ не является промежутком, то существуют $x, y \in I$ и $z \in \R$, такие что $x < z < y$ и $z \not\in I$. Рассмотрим $(-\infty, z) \cap I$ и $(z, +\infty) \cap I$. Это непустые (содержат соответственно точки $x, y$), непересекающиеся, открытые в $I$ множества, объединение которых совпадает с $I$. Значит, множество $I$ несвязно.
+    
+    $(\Leftarrow)$ Предположим, что промежуток $I$ не является связным множеством. Тогда найдутся открытые (в $\R$) множества $U$ и $V$, такие что $I \subset U \cup V$, $I \cap U \neq \emptyset$, $I \cap V \neq \emptyset$ и $U \cap V \cap I = \emptyset$. Пусть $x \in I \cap U$ и $y \in I \cap V$. Без ограничения общности можно считать, что $x < y$ (тогда $[x,y] \subset I$).
+
+    Положим $S = \{z \in [x, y]: z \in U\}$. Так как $S$ не пусто и ограничено, то существует $c = \sup S$. В силу замкнутости отрезка $c \in [x, y]$. Отрезок $[x, y] \subset I \subset U \cup V$, поэтому $c \in U$ или $c \in V$.
+
+    Если $c \in U$, то $c \neq y$, и значит, найдется $\epsilon > 0$, что полуинтервал $[c, c+\epsilon)$ лежит одновременно в $U$ и $[x, y]$. Но тогда $[c, c + \epsilon) \subset S$, что противоречит $c = \sup S$.
+
+    Если $c \in V$, то $c \neq x$, и значит, найдется $\epsilon > 0$, что полуинтервал $(c - \epsilon, c]$ лежит одновременно в $V$ и $[x, y]$. В частности, отрезок $[c - \frac{\epsilon}{2}, c]$ не пересекается с $S$, что противоречит $c = \sup S$.
+
+    Значит, $I$ связно.
+\end{proof}
+
+\begin{theorem}
+    \label{th_contin_coher}
+    Если функция $f: S \to Y$ непрерывна, и множество $S$ связно, то множество $f(S)$ связно в $Y$.
+\end{theorem}
+
+\begin{proof}
+    Предположим, что $f(S)$ несвязно, тогда существют открытые в $Y$ множества $U$ и $V$, такие что $f(S) \subset U \cup V$, $f(S) \cap U \neq \emptyset$, $f(S) \cap V \neq \emptyset$ и $f(S) \cap U \cap V = \emptyset$. Множества $f^{-1}(U)$ и $f^{-1}(V)$ не пусты, не пересекаются, открыты в $S$ (по критерию непрерывности) и $S = f^{-1}(U) \cup f^{-1}(V)$ (так как $U, V$ образуют покрытие $f(S)$). Это противоречит связности $S$.
+\end{proof}
+
+\begin{corollary}[Теорема о промежуточных значениях]
+    Если функция $f: S \to \R$ непрерывна, и множество $S$ связно, то $f$ принимает все промежуточные значения (то есть если $u, v \in f(S)$ и $u < v$, то $[u, v] \subset f(S)$).
+\end{corollary}
+
+\begin{proof}
+    По теореме (\ref{th_contin_coher}) множество $f(S)$ связно в $\R$ и, значит, по теореме (\ref{th_coher_spac}) является промежутком.
+\end{proof}
+
+\begin{definition}
+    Открытое связное множество в метрическом пространстве называется \textit{областью}.
+\end{definition}
+
+Выделим класс множеств, для которых проверка связности осуществляется несколько проще.
+
+\begin{definition}
+    Метрическое пространство $X$ называется \textit{линейно связным}, если для любых точек $x, y \in X$ существует такая непрерывная функция $\gamma: [0, 1] \to X$, что $\gamma(0) = x$, $\gamma(1) = y$.
+\end{definition}
+
+\begin{theorem}
+    Всякое линейно связное метрическое пространство связно.
+\end{theorem}
+
+\begin{proof}
+    Предположим, что линейно связное пространство $X$ несвязно. Тогда найдутся непустые открытые множества $U$ и $V$, такие что $X = U \cup V$ и $U \cap V = \emptyset$. Пусть $x \in U$ и $y \in V$. Так как $X$ линейно связно, то существует непрерывная функция $\gamma: [0, 1] \to X$, такая что $\gamma(0) = x$ и $\gamma(1) = y$. Тогда $\gamma^{-1}(U)$ и $\gamma^{-1}(V)$ не пусты, не пересекаются, открыты в $[0, 1]$, и $[0, 1] = \gamma^{-1}(U) \cup \gamma^{-1}(V)$, что невозможно, так как отрезок $[0, 1]$ связен.
+\end{proof}
+
+\begin{lemma}
+    Связное открытое множество $E$ в нормированном пространстве линейно связно.
+\end{lemma}
+
+\begin{proof}
+    Пусть $x \in E$. Рассмотрим множество $U$ тех точек $y$, которые можно соединить с $x$ кривой, то есть существует непрерывная функция $\gamma: [0, 1] \to E$, что $\gamma(0) = x$, $\gamma(1) = y$. Покажем, что $U$ открыто. Для $y \in U$ в силу открытости $E$ найдется такое $\epsilon > 0$, что $B_{\epsilon}(y) \subset E$. Любая пара точек в шаре может быть соединена открезком: для $z \in B_{\epsilon}(y)$ рассмотрим $\sigma: [0, 1] \to B_{\epsilon}(y)$, $\sigma(t) = (1 - t)y + tz$. Тогда кривая
+    \[\gamma \circ \sigma(t) = \begin{cases}
+        \gamma(2t), \ 0 \leq t \leq \frac{1}{2}, \\
+        \sigma(2t - 1), \ \frac{1}{2} \leq t \leq 1,
+    \end{cases}\]
+    соединяет $x$ и $z$, поэтому $B_{\epsilon}(y) \subset U$. Аналогично устанавливается, что $E \setminus U$ открыто. В силу связности $E \setminus U$ пусто, то есть $E = U$.
+\end{proof}
+
+\begin{definition}
+    Отображение $L$ называется \textit{линейным}, если $\forall x_{1}, x_{2} \in X$ и $\forall \alpha_{1}, \alpha_{2} \in \R$ выполнено $L(\alpha_{1}x_{1} + \alpha_{2}x_{2}) = \alpha_{1}L(x_{1}) + \alpha_{2}L(x_{2})$.
+\end{definition}
+
+\begin{definition}
+    Для $L \in \mathcal{L}(X, Y)$ определим $\|L\| = \underset{x \neq 0}{\sup}\frac{|L(x)|}{|x|}$.
+\end{definition}
+
+\begin{note}
+    $\|L\| \in \R$. По определению супремума $|L(x)| \leq \|L\|\|x\|$ для всех $x \in X$, и для всякого $\epsilon > 0$ найдется такое $x_{\epsilon} \in X$, что $|L(x)| > (\|L\| - \epsilon)|x_{\epsilon}|$. Это означает, что $\|L\|$ -- наименьшее из чисел $C > 0$, таких что $|L(x)| \leq C|x|$ для всех $x \in X$.
+
+    Нетрудно проверить, что $(\mathcal{L}(X, Y), \|\cdot\|)$ является нормированным пространством, причем $\|L_{2}L_{1}\| \leq \|L_{2}\|\|L_{1}\|$.
+\end{note}

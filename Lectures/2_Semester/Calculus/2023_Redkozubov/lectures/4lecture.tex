@@ -1,0 +1,148 @@
+%09.02.23
+
+\begin{definition}
+    Пусть $c_{1} < c_{2} < \ldots < c_{N-1}$ -- все особенности функции $f$ на $(a, b)$, $c_{0} = a$, $c_{N} = b$. Пусть $\xi_{k} \in (c_{k-1}, c_{k})$, $k = 1, \ldots , N$. \textit{Несобственным интегралом функции $f$ по $(a, b)$} называется
+    \[\int_{a}^{b}f(x)dx = \sum_{k = 1}^{N}\left( \int_{c_{k-1}}^{\xi_{k}}f(x)dx + \int_{\xi_{k}}^{c_{k}}f(x)dx \right),\]
+    если все интегралы в правой части (понимаются как несобственные) и их сумма имеет смысл в $\R$.
+    
+    При этом $\int_{a}^{b}f(x)dx$ называется \textit{сходящимся}, если все интегралы в правой части сходятся, иначе -- \textit{расходящимся}.
+\end{definition}
+
+\begin{note}
+    Корректность (независимость от выбора $\xi_{k}$) следует из принципа локализации.
+\end{note}
+
+\begin{problem}
+    Пусть $f: [1; +\infty) \to \R$ непрерывна и неотрицательна. Известно, что $\int_{1}^{+\infty} f(x)dx$ сходится. Верно ли, что $\lim_{x \to +\infty} f(x) = 0$? А при дополнительном условии, что $f$ равномерно непрерывна на $[1, +\infty)$?
+\end{problem}
+
+\section{Числовые ряды}
+
+\subsection{Сумма числового ряда}
+
+\begin{definition}
+    Пусть $\{a_{n}\}$ -- последовательность действительных (комплексных) чисел. Выражение
+    \[\sum_{n = 1}^{+\infty}a_{n} = a_1 + a_2 + \ldots \ \label{ser}\]
+    называется \textit{числовым рядом} с $n$-ым членом $a_{n}$.
+    
+    Число 
+    \[S_{N} = \sum_{n = 1}^{N} a_{n} = a_1 + \ldots + a_{N}\]
+    называется \textit{N-ой частичной суммой ряда \ref{ser}}.
+    
+    Предел
+    \[\sum_{n = 1}^{+\infty} a_{n} = \lim_{N \to +\infty} S_{N}\]
+    называется \textit{суммой ряда \ref{ser}}. Если предел конечен, то ряд называется \textit{сходящимся}, иначе -- \textit{расходящимся}.
+\end{definition}
+
+\begin{note}[Телескопический ряд]
+    С каждой последовательностью $\{s_{n}\}$ связан ряд, для которого $s_{n}$ является $n$-ой частичной суммой. Достаточно положить $a_1 = s_1$, $a_n = s_{n} - s_{n - 1}$, $n > 1$.
+\end{note}
+
+Отметим, что нумерация членов ряда может начинаться с любого $m \in \Z$.
+
+\begin{example}
+    Исследуем сходимость
+    \begin{enumerate}
+        \item $\sum_{n = 0}^{+\infty} z^{n}$, $z \in \Cm$ (геометрический ряд). 
+        \item $\sum_{n = 1}^{+\infty} \frac{1}{n(n+1)}$.
+    \end{enumerate}
+\end{example}
+
+\begin{solution}
+    \begin{enumerate}
+        \item $S_{N}$ = $\begin{cases}
+        \frac{1 - z^{N+1}}{1 - z}, \ z \neq 1 \\
+        N+1, \ z = 1 \\
+    \end{cases}$. Пусть $|z| < 1$. Тогда $z^{N} \to 0$ и, значит, $S_N \to \frac{1}{1 - z}$, ряд сходится и его сумма равна $\frac{1}{1 - z}$. Пусть $|z| < 1$. Тогда $S_{N}$ не имеет конечного предела, иначе $z^{N} = S_{N} - S_{N-1} \to 0$. Так, $\sum_{n = 0}^{+\infty} z^{n}$ сходится $\lra |z| < 1$. 
+        \item $S_{N} = \sum_{n = 1}^{N} \frac{1}{n(n+1)} = \sum_{n = 1}^{N}\left(\frac{1}{n} - \frac{1}{n + 1}\right) = 1 - \frac{1}{N+1}$. Следовательно, ряд сходится и его сумма равна 1.
+    \end{enumerate}
+\end{solution}
+
+\begin{lemma}[Принцип локализации]
+    Для каждого $m \in \N$ ряды $\sum_{n = 1}^{+\infty}a_{n}$ и $\sum_{n = m + 1}^{+\infty}a_{n}$ сходятся или расходятся одновременно, и если сходятся, то
+    \[\sum_{n = 1}^{+\infty}a_{n} = \sum_{n = 1}^{m}a_{n} + \sum_{n = m + 1}^{+\infty}a_{n}.\]
+\end{lemma}
+
+\begin{proof}
+    Если $N > m$, то $\sum_{n = 1}^{N}a_{n} = \sum_{n = 1}^{m}a_{n} + \sum_{n = m + 1}^{N}a_{n}$. Поэтому пределы последовательностей $\sum_{n = 1}^{m}a_{n}$ и $\sum_{n = m + 1}^{N}a_{n}$ при $N \to +\infty$ существуют (конечны) одновременно.
+\end{proof}
+
+\begin{note}
+    Ряд $r_{N} = \sum_{n = N + 1}^{+\infty} a_{n}$ называется \textit{$N$-ым остатком} ряда \ref{ser}.
+\end{note}
+
+Принцип локализации можно переформулировать так: если ряд сходится, то сходится и любой его остаток. И если сходится некоторый остаток ряда, то и весь ряд сходится.
+
+\begin{lemma}[Линейность]
+    Пусть ряды $\sum_{n = 1}^{+\infty}a_{n}$ и $\sum_{n = 1}^{+\infty}b_{n}$ сходятся, и $\alpha, \beta \in \R$ (или $\Cm$), то сходится и ряд $\sum_{n = 1}^{+\infty}(\alpha a_{n} + \beta b_{n})$, причем верно равенство
+    \[\sum_{n = 1}^{+\infty}(\alpha a_n + \beta b_{n}) = \alpha \sum_{n = 1}^{+\infty}a_{n} + \beta \sum_{n = 1}^{+\infty}b_{n}.\]
+\end{lemma}
+
+\begin{proof}
+    Вытекает из линейности предела последовательности.
+\end{proof}
+
+\begin{lemma}[Необходимое условие сходимости ряда]
+    Если $\sum_{n = 1}^{+\infty}a_{n}$ сходится, то $a_{n} \to 0$.
+\end{lemma}
+
+\begin{proof}
+    Пусть $S = \sum_{n = 1}^{+\infty}a_{n}$. Так как $a_{n} = S_n - S_{n - 1}$ (считаем, что $S_{0} = 0$), то $a_{n} \to (S - S) = 0$.
+\end{proof}
+
+Сходимость $n$-го члена к нулю не является достаточным условием сходимости ряда.
+
+\begin{example}
+    \textit{Гармонический ряд} $\sum_{n = 1}^{+\infty} \frac{1}{n}$ расходится.
+\end{example}
+
+\begin{solution}
+    Пусть $H_{n} = \sum_{k = 1}^{n} \frac{1}{k}$, тогда $H_{2n} - H_{n} = \sum_{k = n + 1}^{2n} \frac{1}{k} \geq \frac{1}{2} \not\to 0$, однако $\frac{1}{n} \to 0$.
+\end{solution}
+
+\begin{definition}
+    Пусть дана строго возрастающая последовательность целых чисел $0 = n_0 < n_1 < n_2 < \ldots$
+    
+    Ряд $\sum_{k = 1}^{+\infty}b_{k}$, где $b_k = a_{n_{k-1} + 1} + \ldots + a_{n_{k}}$ называется \textit{группировкой} ряда $\sum_{n = 1}^{+\infty}a_{n}$.
+\end{definition}
+
+\begin{lemma}
+    \begin{enumerate}
+        \item Если ряд сходится, то сходится и любая его группировка, причем к той же сумме.
+        \item Пусть $\exists L \ \forall k \ (n_k - n_{k - 1} \leq L)$. Если $a_n \to 0$ и группировка $\sum_{k = 1}^{+\infty}b_{k}$, где $b_k = \sum_{j = n_{k - 1} + 1}^{n_k}a_{j}$, сходится, то сходится и ряд $\sum_{n = 1}^{+\infty}a_{n}$, причем к той же сумме.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Пусть $S_N$ обозначает $N$-ую частичную сумму \ref{ser}, $S_{N}^{*}$ -- $N$-ую частичную сумму группировки.
+    \begin{enumerate}
+        \item Пусть $S_{N} \to S$. Так как $S_{N}^{*} = S_{n_{N}}$, то $S_{N}^{*} \to S$ как подпоследовательность.
+        
+        \item Пусть $\epsilon > 0$. Выберем такие $K, M \in \N$, что $\forall k \geq K \hookrightarrow \left| S_{k}^{*} - S \right| < \frac{\epsilon}{2}$ и $\forall m \geq M \hookrightarrow |a_{m}| < \frac{\epsilon}{2L}$. Положим $N = \max\{n_{K}, M + L\}$. Если $n \geq N$, то $n_k \leq n < n_{k+1}$, где $k \geq K$. Значит, 
+        \[\left|S_{n} - S\right| = \left| S_{n_{k}} + a_{n_{k}+1} + \dots + a_{n} - S \right| \leq \left|S_{k}^{*} - S\right| + |a_{n_{k} + 1}| + \dots + |a_{n}| < \frac{\epsilon}{2} + L\frac{\epsilon}{2L} = \epsilon.\]
+    \end{enumerate}
+\end{proof}
+
+Применяя критерий Коши для последовательности частичных сумм получаем критерий Коши сходимости числового ряда.
+
+\begin{theorem}
+    Для сходимости ряда $\sum_{n = 1}^{+\infty}a_{n}$ необходимо и достаточно выполнения условия Коши
+    \[\forall \epsilon > 0 \ \exists N \in \N \ \forall n, m \in \N, \ N \leq m \leq n \left( \left| \sum_{k = m}^{n}a_{k} \right| < \epsilon \right).\]
+\end{theorem}
+
+Установим утверждение, связывающее несобственные интегралы и числовые ряды.
+
+\begin{definition}
+    С действительным рядом \ref{ser} свяжем функцию $f_{a}: [1, +\infty) \to \R$, $f_{a}(x) = a_{[x]}$.
+\end{definition}
+
+\begin{lemma}
+    \label{lem2.5}
+    Ряд $\sum_{n = 1}^{+\infty}a_{n}$ и $\int_{1}^{+\infty}f_{a}(x)dx$ сходятся или расходтся одновременно, и если сходятся, то к одному значению.
+\end{lemma}
+
+\begin{proof}
+    Пусть $S_{n} = \sum_{k = 1}^{n} a_{k}$. Так как $S_{n} = \int_{1}^{n + 1}f_{a}(x) dx$, то сходимость интеграла влечет сходимость ряда. Обратное утверждение следует из оценки 
+    \[\left| S_{n} - \int_{1}^{x} f_{a}(x) dx \right| \leq |a_{n}| \to 0\]
+    и необходимого условия сходимости ряда.
+\end{proof}

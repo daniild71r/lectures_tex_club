@@ -1,0 +1,189 @@
+\section{13. Линейные рекурренты. Общий вид линейной рекурренты над произвольным полем (случай, когда характеристический многочлен раскладывается на линейные множители).}
+
+\begin{definition}
+    Будем рассматривать последовательности $(a_0, a_1, \dots)$, $a_i \in F$. Множество всех таких 
+    последовательностей будем обозначать $F^{\infty}$.
+\end{definition}
+
+\begin{definition}
+    \label{def7.1}
+    Зафиксируем многочлен $p(x) \in F[x]$ степени $S$, 
+    $p(x) = x^s + p_{s-1} x^{s-1} + \ldots + p_1 x + p_0$.
+    Линейным рекуррентным соотношением с характеристическим многочленом $p(x)$ 
+    называется последовательность $a_n$ такая что $\forall n \in \N \cap \{0\}$ верно:
+    \begin{eqnarray*}
+        a_{n+s} + p_{s-1} a_{n + s - 1} + \ldots + p_1 a_{n+1} + p_0 a_n = 0, \: p_0 \neq 0.
+    \end{eqnarray*}
+    Рекуррентное соотношение выражает $a_{n + s}$ через $s$ предыдущих членов.
+    $V_p$ -- множество всех последовательностей, удовлетворяющих рекуррентному соттношению выше.
+\end{definition}
+
+\begin{proposition}
+    $V_p$ -- линейное пространство над $F$ и $\dim V_p = s$.
+\end{proposition}
+
+\begin{proof}
+    Если $\{a_n\}$ и $\{ b_n \}$ удовлетворяют условию определения \ref{def7.1}, 
+    то и $\{a_n + b_n\}$ удовлетворяют этому условию.
+    Базис в $V_p$:
+    \begin{gather*}
+        e_0 = (\underbrace{1,\, 0,\, 0,\, \dots,\, 0,}_{S}\, -p_0,\, \dots) \\
+        e_1 = (\underbrace{0,\, 1,\, 0,\, \dots,\, 0,}_{S}\, -p_1, \dots) \\
+        \dots \\
+        e_{s-1} = (\underbrace{0,\, 0,\, 0,\, \dots,\, 1,}_{S}\, -p_{s-1}, \dots)
+    \end{gather*}
+\end{proof}
+
+\begin{proposition}
+    \label{pr7.2}
+    Рассмотрим оператор $\phi: F^{\infty} \to F^{\infty}$, такой что 
+    $\phi(a_0, a_1, \dots, a_n, \dots) = (a_1, a_2, \dots, a_{n-1}, \dots)$. 
+    Тогда $V_p = \ker p(\phi)$.
+\end{proposition}
+
+\begin{proof}
+    По определению ядра отображения последовательность $\{b_n\}$ лежит в $\ker p(\phi)$ тогда 
+    и только тогда, когда верно $p(\phi) (b_n) = (0) \in F^{+\infty}$. При этом имеет место 
+    следующая равносильность:
+    \begin{eqnarray*}
+        (\phi^s + p_{s-1} \phi^{s-1} + \dots p_1 \phi + p_0 \epsilon) (b_n) = (0) \Leftrightarrow
+        b_{n+s} + p_{s-1} b_{n+s-1} + \dots p_1 b_{n+1} + p_0 b_n = (0)
+    \end{eqnarray*}
+    Второе равенство эквивалентно тому, что $\{b_n\}$ лежит в $V_p$, а значит верно вложение $V_p$ и 
+    $\ker p(\phi)$ друг в друга в обе стороны.
+\end{proof}
+
+\begin{note}
+    Оператор $\phi$ называется оператором левого сдвига. $V_p$ инварианто относительно $\phi$.
+\end{note}
+
+\begin{corollary}
+    Пусть $\psi_p = \phi \vert_{V_p}$. Тогда $p(\psi_p) = 0$.
+\end{corollary}
+
+\begin{proof}
+    $p(\phi) \vert_{V_p} = 0$ так как $V_p = \ker p(\phi)$.
+\end{proof}
+
+\begin{proposition}
+    $\mu_{\psi_p} (x) = p(x)$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $a_n \in V_p$, тогда $p(\phi) (a_n) = (0)$. По следствию из утверждения \ref{pr7.2} 
+    для сужения $\psi_p = p(\phi) \vert_{V_p}$ так же верно $\psi_p (a_n) = (0)$, а
+    значит $p(\psi_p) (a_n) = 0$. Таким образом $p$ - аннулирующий многочлен для $\psi_p$ и по 
+    теореме \ref{th4.5} $\mu \vert p$, где $\mu = \mu_{\psi_p}$.
+    По определению минимального многочлена $\mu(\psi_p) = 0$, тогда и $\mu(\phi) \vert_{V_p} = 0$.
+
+    Отсюда следует, что $V_p$ вложено в $\ker \mu(\phi) = V_{\mu}$ (равенство верно по утверждению 
+    \ref{pr7.2}). Из вложенности $V_p \subseteq V_{\mu}$ и кратности $\mu \vert p$ получаем 
+    равенство степеней многочленов $\deg p = \deg \mu$, откуда следует их ассоциированность.
+\end{proof}
+
+\begin{definition}
+    Пусть $p(x) = x^s + p_{s-1} x^{s-1} + \dots + p_1 x + p_0 \in F[x]$, $p_0 \neq 0$.\\
+    Сопутствующей матрицей для многочлена $p(x)$ называется матрица размера $s \times s$ вида:
+    \begin{gather*}
+        \begin{pmatrix}
+        0      & 1      & 0      & \dots  & 0        & 0          \\
+        0      & 0      & 1      & \dots  & 0        & 0          \\
+        0      & 0      & 0      & \dots  & 0        & 0          \\
+        \vdots & \vdots & \vdots & \ddots & \vdots   & \vdots     \\
+        0      & 0      & 0      & \dots  & 0        & 1          \\
+        -p_0   & -p_1   & -p_2   & \dots  & -p_{s-2} & -p_{s-1}
+        \end{pmatrix}
+    \end{gather*}
+\end{definition}
+
+\begin{proposition}
+    \label{pr7.4}
+    Пусть $\psi_p = \phi_p \vert_{V_p}$. В базисе $(e_0, e_1, \dots, e_{s-1})$ из стандартных 
+    последовательностей оператор $\psi_p$ имеет в точности сопутвующую матрицу $A_p$.
+\end{proposition}
+
+\begin{proof}
+    \begin{flalign*}
+        &\psi_p(e_0) = (0, 0, \dots, 0, 0,\, -p_0, \dots) = -p_0 e_{s-1} \\
+        &\psi_p(e_1) = (1, 0, \dots, 1, 0,\, -p_1, \dots) = e_0 - p_1 e_{s-1} \\
+        &\dots \\
+        &\psi_p(e_i) = (0, 0, \dots 1, 0, \dots, 0,\, -p_i, \dots) = e_{i-1} - p_i e_{s-1}
+    \end{flalign*}
+    При этом для $e_i$ единица стоит на $i-1$ позиции, $-p_i$ всегда стоит на $s$-й позиции.
+\end{proof}
+
+\begin{proposition}
+    $\chi_{\psi_p} (x) = \chi_{A_p}(x) = (-1)^s p(x)$.
+\end{proposition}
+
+\begin{proof}
+    Из утверждения \ref{pr7.4} следует $\chi_{\phi_p}(x) = \chi_{A_p}(x) = (-1)^s p(x)$.
+    Докажем наше утверждение по индукции:
+    \begin{enumerate}
+        \item База $s = 2$:
+        \begin{gather*}
+            \begin{vmatrix}
+                -x   & 1    \\
+                -p_0 & x - p_1
+            \end{vmatrix} = x^2 + p_1 x + p_0 \text{ -- верно.}
+        \end{gather*} 
+        \item Пусть $M_{2, 3, \dots , s}^{2, 3, \dots , s} = (-1)^{s - 1} (x^{s - 2} + p_{s - 1} x^{s - 2} + \dots + p_2 x + p_1)$, тогда:
+        \begin{gather*}   
+        \chi_{A_p} = -x \cdot (-1)^{s - 1} (x^{s - 1} + p_{s - 1} x^{s - 2} + \dots + p_2 x + p_1 + (-p_0)(-1)^{s - 1} \cdot M = \\ = (-1)^s(x^s + p_{s - 1} x^{s - 1} + \dots + p_0 x) + (-1)^s p_0 = (-1)^s(x^s + p_{s - 1} x^{s - 1} + \dots + p_1 x + p_0) = (-1)^s p(x),
+        \end{gather*}
+        где матрица $M$ имеет следующий вид:
+        \begin{gather*}
+        M = \begin{pmatrix}
+            1 & 0  & \dots  & 0 \\
+            -x         & 1            & \dots & \vdots \\
+            \vdots         &  \vdots                   & \ddots           & \vdots\\
+            0    & \dots               & \dots               & 1 \\
+        \end{pmatrix}
+    \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Основная теорема о линейных рекуррентах]
+    Пусть $V_p$ -- пространство линейных рекуррент, относящихся к $p(x)$ и пусть $p(x)$ 
+    раскладывается на линейные множители: $p(x) = \displaystyle\prod_{i=1}^{k}(x -\lambda_i)^{l_i}$,
+    $\lambda_i \in F$ - попарно различные.
+    Тогда для любой $\{a_n\}_{n=0}^{\infty} \in V_p$ справедливо представление:
+    \begin{gather*}
+        a_n = \sum_{i=1}^{k}\sum_{s=1}^{l_i} c_{is} \cdot C_n^{s - 1} \lambda_i^{n + 1 - s}
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}
+    Ранее было доказано, что $\mu_{\psi_p} \sim \chi_{\psi_p}$. Теперь наша цель разложить пространство 
+    в прямую сумму корневых подпространств и найти для каждого циклическое подпространство 
+    $\langle b_1^{(i)}, \dots b_{l_i}^{(i)} \rangle$ такое, что:
+    \begin{gather*}
+        (\phi - \lambda_i \epsilon)b_1^{(i)} = 0, \\
+        (\phi - \lambda_i \epsilon) b_{s}^{(i)} = b_{s-1}^{(i)}.
+    \end{gather*}
+    Заметим, что если $b_s^{(i)}$ построены, то они дают Жорданов базис в $V_p$. 
+    При этом $l_1 + l_2 +\dots l_k = s = \dim V_p$. Получаем:
+    \begin{gather*}
+        \prod_{i=1}^{k}(\phi - \lambda_i \epsilon)^{l_i} (b_s^{(i)}) = 0 \Leftrightarrow p(\phi) (b_s^{(i)}) = 0 \Leftrightarrow b_s^{(i)} \in V_p
+    \end{gather*}
+
+    Для упрощения вычислений отбросим индекс $i$, считая, что мы всё время работаем с одним и тем же собственным значением.
+
+    \begin{gather*}
+        b_1 = (1, \lambda, \lambda^2, \dots, \lambda^n, \dots) \\
+        (\phi - \lambda \epsilon)b_1 = (\lambda, \lambda^2, \dots, \lambda^{n + 1}, \dots) - (\lambda, \lambda^2, \dots, \lambda^{n + 1}, \dots) = 0
+    \end{gather*}
+
+    Таким образом мы доказали, что $b_1 = \{\lambda^n\}_{n=0}^{\infty}$ - собственный вектор.
+    Пусть вектор высоты $s-1$ построен. Тогда $b_{s-1} = f_{s-1}(n) \lambda^n, b_s = f_s(n) \lambda^n$. Заметим, что: $$f_s(n+1) \lambda^{n+1} - f_s(n) \lambda^{n+1} - f_{s-1}(n) \lambda^{n} \vdots \lambda^{n + 1}.$$ Разделим на $\lambda^{n + 1}$: $$f_s(n+1) - f_s(n) = \frac{f_{s-1}(n)}{\lambda}.$$
+    При $\lambda = 1$ решением этого уравнения является $f_s(n) = C_n^{s-1}$, что можно доказать 
+    самостоятельно в качестве упражнения (на самом деле это следует из формулы $C_n^{s - 1} + C_n^s = C_{n + 1}^s$). В общем случае будем искать решение в виде квазимногочлена:
+    $f_s(n) = C_n^{s-1} \cdot \lambda^{\alpha(s)}$. Подставим это решение в полученное выше уравнение:
+    $$C_{n+1}^{s-1} \lambda^{\alpha(s)} + C_n^{s-1} \lambda^{\alpha(s)} 
+    = C_n^{s-2} \lambda^{\alpha(s-1) - 1}.$$ В силу того, что $C_{n+1}^{s-1} = C_n^{s-1} + C_n^{s-2}$,
+    получаем $\alpha(s) = \alpha(s-1) - 1$. В силу того, что при $s = 1$ мы должны получить собственный 
+    вектор $b_1$, полученный ранее, верно $f_1(n) = 1$, а значит $\alpha(1) = 0$. 
+    Тогда $\alpha(2) = \alpha(1) - 1 = -1$, и $\alpha(s) = 1 - s$. 
+    Отсюда следует, что $f_s(n) = C_{n}^{s-1} \lambda^{1-s}$, а значит $b_s = C_{n}^{s-1} \lambda^{n+1-s}$.
+    Таким образом, мы получили Жорданов базис, отвечающий $\lambda$: $b_1, b_2, \dots, b_l$.
+\end{proof}

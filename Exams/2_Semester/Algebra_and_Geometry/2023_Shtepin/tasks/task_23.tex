@@ -1,0 +1,45 @@
+\section{23. Самосопряженное линейное преобразование. Свойства самосопряженных преобразований. Основная теорема о самосопряженных операторах (существование ортонормированного базиса из собственных векторов).}
+
+\begin{definition}
+	Оператор $\phi \in \mathcal{L}(V)$ называется \textit{самосопряженным}, если $\phi^* = \phi$, то есть $\forall \overline{u}, \overline{v} \in V: (\phi(\overline{u}), \overline{v}) = (\overline{u}, \phi(\overline{v}))$.
+\end{definition}
+
+\begin{note}
+	Если самосопряженный оператор $\phi \in \mathcal{L}(V)$ в ортонормированном базисе имеет матрицу $A$, то $A \leftrightarrow_e \phi = \phi^* \leftrightarrow_e A^*$, то есть $A = A^*$ --- симметрична в евклидовом случае и эрмитова в эрмитовом случае.
+\end{note}
+
+\begin{proposition}
+	Пусть $\phi \in \mathcal{L}(V)$, и подпространство $U \le V$ инвариантно относительно $\phi$. Тогда $U^\perp$ тоже инвариантно относительно $\phi^*$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{v} \in U^\perp$. Тогда $\forall \overline{u} \in U: (\overline{u}, \phi^*(\overline{v})) = (\phi(\overline{u}), \overline{v}) = (\phi(\overline{u}), \overline{v}) = 0$ в силу инвариантности $U$. Значит, $\phi^*(\overline{v}) \in U^\perp$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $\phi \in \mathcal{L}(V)$ "--- самосопряженный. Тогда его характеристический многочлен $\chi_\phi$ раскладывается на линейные сомножители над $\mathbb{R}$.
+\end{proposition}
+
+\begin{proof}
+	Пусть сначала $V$ "--- эрмитово пространство, $\lambda \in \Cm$ "--- корень $\chi_\phi$. Тогда $\lambda$ является собственным значением оператора $\phi$ с собственным вектором $\overline{v} \in V$, $\overline{v} \ne \overline{0}$, откуда $\lambda||\overline{v}||^2 = (\phi(\overline{v}), \overline{v}) = (\overline{v}, \phi(\overline{v})) = \overline{\lambda}||\overline{v}||^2$. Значит, $\lambda = \overline\lambda \ra \lambda \in \R$.
+	
+	Пусть теперь $V$ "--- евклидово пространство с ортонормированным базисом $e$, тогда $\phi \leftrightarrow_e A \in M_n(\mathbb{R})$, $A = A^T$. Рассмотрим $U$ "--- эрмитово пространство той же размерности с ортонормированным базиом $\mathcal{F}$ и оператор $\psi \in \mathcal{L}(U)$, $\psi \leftrightarrow_{\mathcal{F}} A$. Тогда $\psi$ "--- тоже самосопряженный, поэтому для $\chi_\psi$ утверждение выполнено. Остается заметить, что $\chi_\psi \hm{=} \chi_A = \chi_\phi$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $\phi \in \mathcal{L}(V)$ "--- самосопряженный, $\lambda_1, \lambda_2 \hm{\in} \mathbb{R}$ "--- два различных собственных значения $\phi$. Тогда $V_{\lambda_1} \perp V_{\lambda_2}$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\overline{v_1} \in V_{\lambda_1}, \overline{v_2} \in V_{\lambda_2}$. Тогда:
+	\[\lambda_1(\overline{v_1}, \overline{v_2}) = (\phi(\overline{v_1}), \overline{v_2}) = (\overline{v_1}, \phi(\overline{v_2})) = \lambda_2(\overline{v_1}, \overline{v_2}) \Rightarrow (\overline{v_1}, \overline{v_2}) = 0\qedhere\]
+\end{proof}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$ "--- самосопряженный. Тогда в $V$ существует ортонормированный базис $e$, в котором матрица оператора $\phi$ диагональна.
+\end{theorem}
+
+\begin{proof}
+	Проведем индукцию по $n := \dim{V}$. База, $n = 1$, тривиальна. Пусть теперь $n > 1$. Поскольку корни $\chi_\phi$ вещественны, то у $\phi$ есть собственное значение $\lambda_0 \in \mathbb{R}$. Пусть $\overline{e_0} \in V$ "--- соответствующий ему собственный вектор длины $1$. Тогда подпространство $U \hm{:=} \langle\overline{e_0}\rangle^\perp$ инвариантно относительно $\phi$, поэтому можно рассмотреть оператор $\phi|_{U} \in \mathcal{L}(U)$, который также является самосопряженным. По предположению индукции, в $U$ есть ортонормированный базис из собственных векторов, тогда его объединение с $\overline{e_0}$ дает искомый базис в $V$.
+\end{proof}
+

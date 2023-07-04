@@ -1,0 +1,79 @@
+\section{29. Алгебраические операции над тензорами (перестановка индексов, свертка). Симметричные и кососимметричные тензоры. Операторы симметрирования и альтернирования и их свойства.}
+
+\begin{definition}
+	\textit{Сверткой} тензора $t \in \mathbb{T}^p_q$ по индексам $i_p, j_q$ называется тензор $t' \in \mathbb T^{p-1}_{q-1}$ с координатами следующего вида:
+	\[\widetilde t^{i_1, \dots, i_{p-1}}_{j_1, \dots, j_{q-1}} = t^{i_1, \dots, i_{p - 1}, i}_{j_1, \dots, j_{q-1}, i}\]
+	
+	Свертка по другим парам из верхнего и нижнего индексов определяется аналогично.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров свертки:
+	\begin{enumerate}
+		\item Пусть $\overline{v} \in V$, $u \in V^*$. Тогда свертка тензора $u \otimes \overline{v}$ "--- это скаляр $u(\overline{v})$.
+		\item Пусть $b \in \mathcal{B}(V)$ "--- тензор с координатами $b_{ij}$, $\overline{u}, \overline{v} \in V$. Тогда скаляр $b(\overline{u}, \overline{v}) = u^ib_{ij}v^j$ получается как \textit{двойная}, или \textit{полная}, свертка тензора $\overline{u} \otimes b \otimes \overline{v}$.
+		\item Пусть $\phi \in \mathcal{L}(V)$ "--- тензор с координатами $\phi^i_j$, $\overline{v} \in V$. Тогда вектор $\phi(\overline{v})$ имеет координаты $\phi^i_jv^j$.
+		\item Пусть $\phi, \psi \in \mathcal{L}(V)$ "--- тензоры с координатами $\phi^i_j, \psi^k_l$. Тогда тензор $\phi \circ \psi$ имеет координаты $\phi^i_j\psi^j_k$.
+		\item Пусть $V$ "--- евклидово пространство, в нем введено скалярное произведение, или \textit{метрический тензор}, с координатами $g_{ij}$. Тогда канонический изоморфизм между $V$ и $V^*$ осуществляется сопоставлением $v^i \mapsto v^ig_{ij}$, называемым \textit{опусканием индекса}. На $V^*$ тоже можно задать скалярное произведение как тензор с координатами $g^{ij}$, тоже называемый метрическим тензором, позволяющий, наоборот, поднимать индексы. Можно также показать, что $g_{ij}g^{ik} = \delta^k_j$.
+		\item Пусть $\phi \in \mathcal{L}(V)$ "--- тензор с координатами $\phi^i_j$. Если в пространстве $V$ задано скалярное произведение с координатами $g_{ij}$, то сопоставление $\phi^i_j \mapsto \phi^i_jg_{ik}$ осуществляет это изоморфизм между $\mathcal{L}(V)$ и $\mathcal{B}(V)$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $t \in \mathbb{T}^p_q$. Тензор $t$ называется \textit{симметричным по первым двум координатам}, если для любых функционалов $f_1, \dots, f_p \in V^*$ и векторов $\overline{v_1}, \dots, \overline{v_q} \in V$ выполнено $t(f_1, f_2, \dots, f_p, \overline{v_1}, \dots, \overline{v_q}) = t(f_2, f_1, \dots, f_p, \overline{v_1}, \dots, \overline{v_q})$.
+\end{definition}
+
+\begin{note}
+	Легко видеть, что $t$ симметричен по первым двум верхним индексам $\lra$ его координаты симметричны по первым двум верхним индексам. Симметричность по другим наборам координат одного типа определяется аналогично.
+\end{note}
+
+\begin{definition}
+	Пусть $t \in \mathbb{T}^p_0$, $\sigma \in S_p$. Будем обозначать через $g_\sigma(t)$ такой тензор $g \in \mathbb{T}^p_0$, что $\forall f_1, \dotsc, f_p \in V^*: g(f_1, \dots, f_p) = t(f_{\sigma(1)}, \dots, f_{\sigma(p)})$.
+\end{definition}
+
+\begin{note}
+	Пусть $e$ "--- базис в $V$. Если $t$ имеет в базисе $e$ координаты $t^{i_1, \dots, i_p}$, то $g_\sigma(t)$ в этом же базисе имеет координаты $t^{i_{\sigma(1)}, \dots, i_{\sigma(p)}}$.
+\end{note}
+
+\begin{definition}
+	Тензор $t \in \mathbb{T}^p_0$ называется \textit{симметричным}, если $\forall \sigma \in S_p: g_\sigma(t) = t$. Такие тензоры образуют подпространство в $\mathbb{T}^p_0$, обозначаемое через $\mathbb{ST}^p$.
+\end{definition}
+
+\begin{definition}
+	\textit{Симметризацией} тензора $t \in \mathbb{T}^p_0$ называется следующий тензор:
+	\[s(t) := \frac1{p!}\sum_{\sigma \in S_p}g_\sigma(t) \in \mathbb{T}^p_0\]
+	
+	Симметризация определена, если $\cha{F} \nmid p$.
+\end{definition}
+
+\begin{proposition} Симметризация обладает следующими свойствами:
+	\begin{enumerate}
+		\item Для любого тензора $t \in \mathbb{T}^p_0$ выполнено $s(t) \in \mathbb{ST}^p$.
+		\item Если $t \in \mathbb{ST}^p$, то $s(t) = t$.
+		\item $\im{s} = \mathbb{ST}^p$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+	Тензор $t \in \mathbb{T}^p_0$ называется \textit{кососимметричным}, если $\forall \sigma \in S_p: g_\sigma(t) \hm= \sgn\sigma\cdot t$. Такие тензоры образуют подпространство в $\mathbb{T}^p_0$, обозначаемое через $\Lambda^p$.
+\end{definition}
+
+\begin{definition}
+	\textit{Альтернированием} тензора $t \in \mathbb{T}^p_0$ называется следующий тензор:
+	\[a(t) := \frac1{p!}\sum_{\sigma \in S_p}\sgn\sigma\cdot g_\sigma(t) \in \mathbb{T}^p_0\]
+	
+	Альтернирование определено, если $\cha{F} \nmid p$.
+\end{definition}
+
+\begin{proposition} 
+	Альтернирование обладает следующими свойствами:
+	\begin{enumerate}
+		\item Для любого тензора $t \in \mathbb{T}^p_0$ выполнено $a(t) \in \Lambda^p$.
+		\item Если $t \in \Lambda^p$, то $a(t) = t$.
+		\item $\im{a} = \Lambda^p$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Доказательство аналогично симметричному случаю.
+\end{proof}
