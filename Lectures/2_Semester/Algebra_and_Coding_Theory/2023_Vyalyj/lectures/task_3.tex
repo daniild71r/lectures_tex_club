@@ -1,0 +1,188 @@
+\section{№3 Изоморфизм группы}
+
+\begin{reminder}
+  наименьшее k --- порядок группы, если $g ^ k = e$.
+\end{reminder}
+
+\begin{note}
+  $(Z_n, +) \quad \ord a = \frac{n}{\gcdru(a, n)}$
+  \[S_n \ord \Pi = \gcdru(\text{\#len}).\] Где \#len --- длинна циклов.
+\end{note}
+
+\subsection{Порядки перестановки}
+
+\begin{reminder}
+  $\Pi: (a_0, a_1, \dots, a_{l - 1})$. Если $\Pi ^ {s} = \id \Ra \Pi ^{s} (a_0) = a_0 \Ra l \mid s$
+  \[\ord \Pi = l.\]
+\end{reminder}
+
+\begin{example}
+  $\pi = \underbrace{(\dots)}_{l_1}\underbrace{(\dots)}_{l_2}\underbrace{(\dots)}_{l_3} \dots \underbrace{(\dots)}_{l_s}$. Тогда имеем $\ord \pi = \gcdru(l_1, \dots, l_s).$
+\end{example}
+
+\begin{example}
+  $\mid G \mid = n, \ d = 80, \ \mid S_{12} \mid = 12!$
+  \[\gcdru(l_1, \dots, l_s) = 80, \]
+  \[l_1 + \dots + l_s = 12.\]
+  То есть невозможно.
+\end{example}
+
+\subsection{Основная теорема арифметики}
+\begin{theorem}[Основная теорема арифметики]
+  Для любого n > 1 --- \ul{однозачно} представялется произведением простых множителей (с точностью до пересестановки множителей).
+\end{theorem}
+
+\begin{example}
+  $80 = 2 ^ 4 \cdot 5 = 2 ^ 2 \cdot 5 \cdot 2 ^ 2$.
+\end{example}
+
+\begin{proof}
+  По индукции. $n = 2$ --- база. Пусть < n --- существует.
+  \begin{enumerate}
+    \item[(1)] n --- простое,
+    \item[(2)] $n = ab, \ 1 < a, b < n$.
+  \end{enumerate}
+  Пусть $x \not \equiv 0 \mod p \Ra x^{-1} \cdot x \equiv 1 \mod p \Ra y \equiv 0 \mod (p)$.
+\end{proof}
+
+\begin{lemma}
+  p --- простое, то есть $xy \equiv 0 \mod (p) \Ra$
+  \[x \equiv 0 \mod (p) \vee y \equiv 0 \mod (p).\]
+\end{lemma}
+
+\begin{proof}
+  $\underbrace{p_1 \dots p_k}_{\text{Делится на } p_1} = q_1 \dots q_s$, где $p_i, q_j$ --- простое. Тогда утверждается, что $p_i \not = q_i$ --- в силу закона сокращения.
+  \[\Ra p_1 \mid q_k \Ra p_1 = q_k.\] В силу того, что левая часть делится на $p_1$.
+\end{proof}
+
+\begin{proposition}
+  $n = p_1^{a_1} \dots p_t^{a_t} \dots, \quad p_1 < p_2 < p_3 < \dots < p_t < \dots$
+  \[p_k \nmid n \Ra a_k = 0.\]
+\end{proposition}
+
+\begin{example}
+  \[x = p_1^{a_1} \dots p_t^{a_t} \dots ,\]
+  \[y = p_1^{b_1} \dots p_t^{b_t} \dots ,\]
+  \[x \mid y \Lra a_i \leq b_i,\]
+  \[\gcdru(x, y) = p_1^{\min (a_1, b_1)} \cdot \ldots \cdot p_t^{\min (a_t, b_t) },\]
+  \[\lcm(x, y) = p_1^{\max (a_1, b_1)} \cdot \ldots \cdot p_t^{\max (a_t, b_t) }.\]
+\end{example}
+
+\subsection{Класс групп}
+\begin{definition}
+  Группа G --- циклическая, если:
+  \[G = \langle g \rangle.\]
+  Обозначение: $C_n$ --- циклическая.
+\end{definition}
+
+\begin{corollary}
+  Любая циклическая группа --- абелева. То есть, для любого элемента выполнено: $g^{i + j} = g^i \cdot g^j$.
+\end{corollary}
+
+\begin{example}
+  $| (Z_{\delta}^{\text{*}}, \cdot) | = 4, \quad 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \mod \delta$.
+\end{example}
+
+\begin{theorem}
+  Если, $G = \{ g^i, i \in \ZZ \} = \langle g \rangle$, то изоморфны и $(\ZZ, +)$ и $(Z_n, +)$.
+\end{theorem}
+
+\begin{example}
+  $|G| = \infty$ --- все степени различны.
+  \[g^i = g ^ j \Lra g^{j - i} = e,\]
+  \[k \raone g^k,\]
+  \[(\ZZ, +) \ra G,\]
+  \[g^{n + qn} = g^i \cdot g^{qn} = g^i \cdot (g^n)^q.\]
+\end{example}
+
+\begin{theorem}
+  Подгруппа циклической группы --- циклическая.
+\end{theorem}
+
+\begin{example}
+  Пусть $G < (\ZZ, +)$, тогда 
+  \[\quad d = \min (x: x > 0 \quad x \in G), \]
+  \[g \in G \quad g = qd + r, \ 0 \leq d, \]
+  \[t = g - qd \in G \Ra r = 0.\]
+  Если $G < (Z_n, +)$, тогда
+  \[d  = \min (x: 0 < x < n \quad [x] \in G),\]
+  \[d \mid n \quad n = qd + r \Ra r \in G \Ra r = 0.\]
+\end{example}
+
+\subsection{Изоморфизм групп}
+\begin{example}[1]
+  $(Z_6, +)$. Нейтальный --- $0$. Кратные элементы --- $ka$.
+\end{example}
+
+\begin{example}[2]
+  $g = \langle(12)(345)\rangle, \quad \ord g = 6$
+\end{example}
+
+\begin{definition}
+  Изоморфизм групп, это отображение, такое что:
+  \[\phi : G_1 \ra G_2\]
+  \begin{enumerate}
+    \item[(1)] $\phi$ --- биекция,
+    \item[(2)] $\phi(xy) = \phi(x) \ \phi(y)$. Для любых $x, y \in G$.
+  \end{enumerate}
+  Обозначение: $G_1 \cong G_2$.
+\end{definition}
+
+\begin{note}
+  Тогда имеем, что примеры (1) и (2) --- изоморфны.  
+\end{note}
+
+\subsection{Прямое произведение групп}
+\begin{definition}
+  Пусть G, H --- группы. Тогда, $G \times H = \{(g, h): g \in G, h \in H\}$. Тогда имеем несколько свойств: 
+  
+  \begin{enumerate}
+    \item $(g_1, h_1) \cdot (g_2, h_2) = (g_1 \cdot g_2, h_1 \cdot h_2)$,
+    \item $\ord (g, h) = \lcm(\ord g, \ord h)$,
+    \item $(g, h)^k = (g^k, h^k) = (e, e)$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  $\gcdru(p, q ) = 1$, тогда имеем: $C_p \times C_q \cong C_{pq}$.
+\end{proposition}
+
+\begin{proof}
+  $\ord(1, 1) = \gcdru(p, q) = \frac{pq}{1} = pq = |C_p \times C_q|$.
+\end{proof}
+
+\begin{corollary}
+  $C_p \times C_q \text{--- циклическая} \cong C_{pq}$.
+\end{corollary}
+
+\subsection{Мультипликативность функции Эйлера}
+
+\begin{proposition}
+  % $\gcdru(p, q) = 1 \Ra \underbrace{\phi(pq)}_{\text{Число порождающих в } C_{pq}} = \underbrace{\phi(p) \phi (q)}_{\text{Число порождающих в } C_p \times C_q}$
+  Если $\gcdru(p, q) = 1$, то выполено равенство:
+  \[\phi(pq) = \phi(p) \phi (q).\]
+
+  % $\phi(n) = |(Z_n^{\text{*}}, \cdot)|$
+\end{proposition}
+
+\begin{proof}
+  Равенство верное, в силу того, что левая часть --- число порождающих в $C_{pq}$, а справа --- число порождающих в $C_p \times C_q$.
+\end{proof}
+
+\begin{proposition}
+  Количество пораждающих в $C_n$ равно $\phi(n)$.
+\end{proposition}
+
+\begin{proof}
+  \[(x, y) \in C_p \times C_q, \]
+  \[\ord (x, y) = \gcdru(\ord x, \ord y) = pq \Ra \ord x = p, \quad \ord y = q.\]    
+\end{proof}
+
+\begin{example}
+  Пусть $n = p_1^{q_1} \dots p_t^{a_t}, \quad a_i > 0$, тогда
+
+  \[\phi (p^n) = p^n - p^{n - 1}.\]В силу того, что $x \not \equiv 0 \mod (p^n) \Lra x \equiv 0 \mod (p)$.
+
+  \[\phi(n) = (p_t^{a_t} - p_t^{a_t - 1}) = n (1 - \frac{1}{p_1}) (1 - \frac{1}{p_2}) \dots (1 - \frac{1}{p_t}).\]
+\end{example}
+

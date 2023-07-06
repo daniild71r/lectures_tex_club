@@ -1,0 +1,128 @@
+\section{№9 Поля}
+
+\begin{definition}
+  Поле: $(F, \cd, +)$
+  \begin{itemize}
+    \item Коммутирующее кольцо с единицей.
+    \item $0 \neq 1$.
+    \item $F^{*} = \FF \setminus \{0\}$~--- образует группу по умножению.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}
+  $\FF_p$~--- вычеты по модулю простого $p$.
+  \[\ZZ \ra \ZZ/p\ZZ\]
+\end{definition}
+
+\subsection{Кольцо многочленов}
+
+\begin{definition}
+  Если $R$~--- коммутирующее кольцо, то $R[x]$~--- кольцо многочленов.
+  \[f \in R[x] \Ra (f_0, f_1, \dots, ), \quad f_i \in R\]
+  \[\exists n_0 \forall k > n_0 f_k = 0\]
+\end{definition}
+
+\subsection{Операции}
+
+\begin{itemize}
+  \item $\displaystyle (f + g)_n = f_n + g_n$ \\
+  \item $\displaystyle (f g)_n = \sum_{i + j = n} f_i g_j$ \\
+  \item~ \begin{multline} ((fg)h)_n = \sum_{i + j = n}(fg)_i h_j = \sum_{i + j = n} (\sum_{s + k = i}f_s g_k)h_j = \\ = \sum_{s + k + j = n} f_s g_k h_j = \sum_{t + s = n} f_s \sum_{k + j = t}g_k h_j = \sum_{t + s = n}f_s(gh)_t = (f(gh))_n \end{multline}
+  \item $(fg)(x) = f(x)g(x)$
+  \item $\displaystyle \sum_{i}(fg)_i x^i = \sum_{i} \sum_{j + k = i} f_i x^i g_k x^k = \sum_{j} \sum_{k} f_i x^i g_k x^k = (\sum_j f_j x^j)(\sum_{k}g_k x^k)$
+\end{itemize}
+
+\begin{definition}
+  \begin{gather}
+    f: R \ra R \\
+    f(x) = \sum_{i = 0} f_i x^i \\
+    \deg f = max(k: \quad f_k \neq 0) \\
+    |R^R| < \infty, \quad |R[x]| = \infty, f \neq 0
+  \end{gather}
+\end{definition}
+
+\begin{lemma}
+  $R$~--- без делителей нуля, $f \neq 0, g \neq 0$, тогда $\deg(fg) = \deg f + \deg g$.
+\end{lemma}
+
+\begin{example}
+  \begin{gather}
+    \deg f = s, \deg g = t \\
+    (fg)_n = \sum f_i g_i = 0 \\
+    (fg)_{s + t} = \sum f_s g _t \neq 0, \quad n > s + t
+  \end{gather}
+\end{example}
+
+\begin{corollary}
+  $R[x]$~--- без делителей нуля.
+\end{corollary}
+
+\subsection{Кольцо многочленов. Деление с остатком}
+
+\begin{gather}
+  f, g, g \neq 0 \\
+  f(x) - \frac{f_n}{f_d}x^{n - d} \cd g(x) \\
+  f(x) = f_n x^n + \dots \\
+  g(x) = g_d x^d + \dots
+\end{gather}
+
+\begin{proposition}
+  Корень многочлена $Q \in R, \quad f(Q) = 0$.
+\end{proposition}
+
+\begin{lemma}
+  Пусть дано $F[x], \quad F$~--- поле и $f \neq 0$, тогда \#корней $(f) \leq \deg f$.
+\end{lemma}
+
+\begin{proof}~
+  \begin{itemize}
+    \item[\text{База: }] $\deg f = 0$.
+    \item[\text{Шаг: }] Лемма о корнях для $\deg f < n$:
+    \begin{gather}
+      \deg f = n, \quad f(a) = 0 \\
+      f(x) = q(x)(x - a) r, (\deg < 1 \lor r = 0) \\
+      f(x) = h(x)(x - a), \deg g < n \\
+      0 = f(a) = g(a)(a - a) + r \Ra r = 0 \\
+      f(b) = 0 \\
+      \underbrace{h(b)}_{b \text{~--- корень}} \underbrace{(b - a)}_{b = a} = f(b) = 0
+    \end{gather}
+  \end{itemize}
+\end{proof}
+
+\begin{proposition}
+  $p$~--- простое и $a$~--- квадратичный вычет $\defev x^2 \equiv a \mod p$~--- имеет решение.
+\end{proposition}
+
+\begin{proposition}[Необходимое условие квадратичного вычета]
+  \[a^{(p-1)/2} \equiv 1 \mod p\]  
+\end{proposition}
+
+\begin{corollary}
+  $F[x]$, $F$~--- поле, и $fg \neq 0$, $\deg f \leq d$ и $\deg g \leq d$, тогда графики многочленов имеют $\leq d$ общих точек. 
+\end{corollary}
+
+\begin{proof}
+  \begin{gather}
+    x^{(p - 1)/2} = 1 \in \FF_p[x] \\
+    x \raone x^2 \\
+  \end{gather}
+  Тогда, корень $\leq \frac{p - 1}{2}$, по лемме о корнях.
+  \[x^{(p - 1)/2} = \prod_{a \in \QQ_p}(x - a)\]
+\end{proof}
+
+\begin{theorem}[?]~
+  $|F| = a < \infty$. Тогда:
+  \begin{itemize}
+    \item $F^{*}$~--- циклическая 
+    \item $a \in F^{*}, \ord a = 0$
+  \end{itemize}
+  Где $a^d = 1$ и $x^d = 1$, где $a$~--- корень.
+  \[1, a, a^2, \dots, a^{d - 1}\]
+  Различные корни уравнения вида: $x^d - 1$.
+\end{theorem}
+
+% \begin{lemma}[?]
+%   $\displaystyle n = \sum_{d \mid n} \phi(d)$
+% \end{lemma}
+
+% Тут должна быть лемма, но к сожалению 

@@ -1,0 +1,157 @@
+\section{№15 Продолжение приложения теории конечных полей}
+
+\begin{definition}
+  Циклический код~--- $J$ (идеал $\subset \RR$ и $\cong \underbrace{\FF_2[x]/(x^n-1)}_{{\{0, 1\}}^n}$)
+\end{definition}
+Базис: $[1], [x], \dots, [x^{n-1} - 1]$
+
+\begin{lemma}[1]
+  Циклический код $\Lra$ $SJ = J$, то есть инвариантен относительно сдвига.
+  \[S: [x^i] \ra [x^{i + 1}]\]
+\end{lemma}
+
+\begin{lemma}[2]
+  $\RR_n$~--- кольцо главных идеалов.
+  \[\FF_2[x] \ra \RR_n \supseteq J\]
+\end{lemma}
+Сюръективный образ кольца главных идеалов~--- кольцо главных идеалов.
+
+\begin{corollary}
+  $C^{-1}(J)$~--- идеал. $[f], [g] \in J$.
+\end{corollary}
+\begin{proof}
+  \begin{gather}
+    [f + g] = [f + g] \in J \\
+    [fg] = [f] \cd [g] \in J \\
+    J = ([f])
+  \end{gather}
+  $([f])$~--- ``порождён классом вычетов'', $[f] \in J$, где $f \in C^{-1}(J)$.
+  \begin{gather}
+    [g] \in J \Ra g \in C^{-1}(J) \Ra g = hf \\
+    [g] = [h][f] \in ([f]) = J
+  \end{gather}
+\end{proof}
+
+\begin{theorem}
+  $([f]) \subset \RR_n$.
+\end{theorem}
+\begin{proof}
+  \begin{gather}
+    \tilde{f} = \gcdru{(f, x^n - 1)} \\
+    x^n - 1 = \tilde{f} \tilde{g} \\
+    f = \tilde f \tilde h \\
+    u(x) \cd \tilde h(x) + v(x) \cd (x^n - 1) = 1 \\
+    [u(x)] \cd [\tilde h(x)] + [v(x)] \cd \underbrace{[x^n - 1]}_{0} = [1]
+  \end{gather}
+  Из этого следует, что $[f]$ обратим в кольце.
+  \[\left.
+    \begin{matrix}
+      [f] = [\tilde f] [\tilde h] \\
+      [\tilde f] = [f] [u]
+    \end{matrix} 
+  \right \} \Ra ([f]) = ([\tilde f])\]
+\end{proof}
+
+\begin{theorem}
+  $J = [g(x)], \ g(x) \mid x^n - 1$.
+\end{theorem}
+
+\begin{proof}
+  Тогда $\dim J = n - \deg (g(x)) = \deg gh = d$
+  \begin{gather}
+    x^n - 1 = gh, \quad [g \cd h_1] = [g \cd h_2] \\
+    \deg h_1, \deg h_2 < d \\
+    [g(h_1 - h_2)] = [0] \\
+    \deg (g(h_1 - h_2)) < \deg g + d = n \\
+    g(h_1 - h_2) = u(x^n - 1) \\
+    \dim J \geq d
+  \end{gather}
+\end{proof}
+
+\begin{proposition} (возможно это продолжение доказательства\dots)
+  \begin{gather}
+    f = q \cd h + n \\
+    J \ni [fg] = [qhg + ng] = [ng] \\
+    \deg r < \deg h, \ gh = x^n - 1
+    dg m_\alpha (x) = S, \ \FF_{2^S} \Ra \langle \alpha \rangle = \FF^*_{2^S}, n = 2^S - 1 \\
+    m_\alpha (x) \mid x^n - 1 \\
+    \alpha^n - 1 = 0
+  \end{gather}
+\end{proposition}
+
+\subsection{Код Хэмминга}
+\begin{definition}
+  Код Хэмминга $H$~--- класс вычетов ($[m_\alpha(x)]$).
+\end{definition}
+\begin{proof}
+  \begin{gather}
+    [x^k] \in J \Ra [x^k] = [h(x)] \cd [m_\alpha(x)] \\
+    x^k = h(x) \cd m_\alpha(x) + q(x) \cd (x^n - 1) \\
+    0 \neq \alpha^k = h(\alpha) \underbrace{m_\alpha(\alpha)}_{0} + q(\alpha) \cd \underbrace{(\alpha^n - 1)}_{0}
+  \end{gather}
+  Противоречие, так как нет делителей нуля.
+  \begin{gather}
+    [x^i + x^j] \in J \Ra \alpha^i + \alpha^j = 0 \\
+    \alpha^i = \alpha^j \Ra n \mid j - i \Ra j - i = 0
+  \end{gather}
+  \[\Ra [x^i \cd m_\alpha(x)] = [x^{j + s}] + \underbrace{[x^j \tilde m(x)]}_{[r]}, \ \deg r < S\]
+\end{proof}
+
+\subsection{Код Боуза-Чоудхури-Хоквингема (БЧХ)}
+Исправляем $r$ ошибок.
+\begin{gather}
+  n = 2^S - 1, \langle \alpha \rangle = \FF_2^* \\
+  f(\alpha) = f(\alpha^2) = f(\alpha^3) = \dots = f(\alpha^{2r}) = 0 \\
+  f = m_\alpha \cd m_{\alpha^3} \cd \dots \cd m_{\alpha^{2r - 1}} \\
+  \alpha ^{2r} = 0 = 2^{2^k \cd (2^k + 1)}
+\end{gather}
+
+\section{Автоморфизм Фробениуса}
+\begin{gather}
+  f \in \FF_2[x] \\
+  \deg m_{\alpha^S} \leq S \\
+  \deg f \leq S \cd r \\
+  B = ([f]) \\
+  \dim B \geq n - S \cd r \\
+\end{gather} 
+
+\begin{theorem}
+  $d(B) \geq 2r + 1$.
+\end{theorem}
+\begin{proof}
+  \begin{gather}
+    [x^{a_1} + \dots + x^{a_l}] \in B, \ l \leq 2r
+  \end{gather}
+  \[
+  \begin{matrix}
+  \begin{matrix}
+    \alpha^{a_1} + \dots + \alpha^{a_l} = 0 \\
+    (\alpha^2)^{a_1} + \dots + (\alpha^2)^{a_l} = 0 \\
+    \dots \\
+    (\alpha^l)^{a_1} + \dots + (\alpha^l)^{a_l} = 0
+  \end{matrix}
+  &
+  \left\lvert
+  \begin{matrix}
+    \lambda_0 \\
+    \lambda_1 \\
+    \dots \\
+    \lambda_{l - 1} 
+  \end{matrix}
+  \right.
+  \end{matrix}
+  \]
+  \[\lambda_i \in \FF_{2^S}\]
+  Возьмём столбец $j \in [1, l]$.
+  \begin{gather}
+    \sum_{i = 0}^{l - 1}a_i(\alpha^{i + 1})^{a_j} = 0 \\
+    0 \neq \alpha^{a_j} \sum \lambda_i (\alpha^{a_j})^i = 0 \\
+    g(\alpha^{a_1}) = 0, \ g(\alpha^{a_2}) = 0, \  \dots, \  g(\alpha^{a_l}) = 0
+  \end{gather}
+  Получили $l$ корней многочлена степени $\leq l - 1 \Ra$ противоречие.
+\end{proof}
+
+\begin{gather}
+  \frac{2^n}{2^{S^r}} \leq |B| \leq \frac{2^n}{B_{n, r}}, \ \frac{2^{S^r}}{B_{n, r}} = \frac{(n + 1)^{2r}}{B_{n, r}}, \quad n \ra \infty, r = 0 \\
+  B_{n, r} \sim \frac{n^r}{n}, \ (r!)\left(1 + \frac{1}{n}\right)^r \sim \frac{(n + 1)^r}{B_{n, r}}
+\end{gather}

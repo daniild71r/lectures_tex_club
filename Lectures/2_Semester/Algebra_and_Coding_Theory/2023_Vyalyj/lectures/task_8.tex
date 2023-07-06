@@ -1,0 +1,117 @@
+\section{№8 Кольца}
+
+\subsection{Лемма Бернсайда}
+
+\begin{lemma}
+  Число орбит равно средней мощности стабилизатора элементов группы $G$.
+  \[|X/G| = \frac{1}{G} \sum_{g \in G} |\stab g|\]
+\end{lemma}
+
+\begin{definition}
+  Кольцо~--- множество с \underline{двумя} операциями: $(R, \cdot, +)$, такое что:
+  \begin{enumerate}
+    \item Является абелевой группой по сложению (0~--- нейтральный).
+    \item Является ассоциативной по умножению (1~--- нейтральный).
+    \item Двусторонняя дистрибутивность: 
+    \begin{gather}
+      a \cd (b + c) = a\cd + a \cd c \\
+      (b + c) \cd a = b \cd a + c \cd a
+    \end{gather}
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  $\ZZ$, $\QQ$, $\RR$, $\Cm$.
+
+
+  $2 \ZZ$~--- кольцо без $1$.
+
+  % $M_n(\RR)$
+  $\ZZ / n \ZZ$~--- вычеты по модулю $n$.
+\end{example}
+
+\begin{proposition}
+  $a(b - c) = ab - ac, \quad (b-c)a = ba - ca$
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    a(b - c) + ac = a(b - c + c) = ab \\
+    \Ra a(b - c) = ab - ac
+  \end{gather}
+\end{proof}
+
+\begin{proposition}
+  $0 \cd a = a \cd 0 = 0$.
+\end{proposition}
+
+\begin{proof}
+  \[0 \cd a = (x - x) \cd a = xa - xa = 0\]
+\end{proof}
+
+\begin{proposition}
+  Если в $\RR$ есть $1$, то $(-1) \cd (-1) = 1$.
+\end{proposition}
+
+\begin{proof}
+  \[0 = (1 + (- 1)) \cd (-1) = 1 \cd (-1) + (-1) (-1) = (-1) + (-1) (-1)\]
+  \[\Ra 1 = (-1) \cd (-1)\]
+\end{proof}
+
+\begin{note}
+  Если по умножению группа, то:
+  \[ 0 = 0^{-1} \cd 0 = 1 \Ra 0 = 1\]
+  , то есть получаем, что: 
+  \[\forall a: \ a = a \cd 1 = a \cd 0 = 0 \Ra |R| = 1\]  
+\end{note}
+В итоге, в кольце нельзя делить на ноль, тогда и только тогда, когда кольцо состоит из одного элемента (нуля). 
+
+\begin{definition}
+  Поле~--- множество вида: $(F, \cd, +)$, такое что:
+  \begin{itemize}
+    \item[$F1$]: Коммутативное кольцо с $1$ ($a \cd b = b \cd a$).
+    \item[$F2$]: $0 \neq 1$.
+    \item[$F3$]: $F^{*} = F \setminus  \{ 0 \}$~--- группа по умножению
+  \end{itemize}
+\end{definition}
+
+\begin{example}
+  $\FF = \ZZ / p \ZZ$~--- $p$ простое.
+\end{example}
+
+\begin{proposition}
+  Если $n$~--- состовное, то $\ZZ / n \ZZ$~--- не поле.
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    [a]_n \cd [b]_n = [0]_n \\
+    [a^{-1}]_n [a]_n [b]_n = [b]_n = [0]_n \\
+    a^{-1} \cd a b = 0 \Ra b = 0
+  \end{gather}
+\end{proof}
+
+\begin{definition}
+  Делитель нуля:
+  \[a \neq 0, \ b \neq 0, \ ab = 0 \]
+\end{definition}
+
+\begin{corollary}
+  В кольцах есть делителя нуля, в полях нет.
+\end{corollary}
+
+\begin{example}
+  Простые поля~--- $\FF_p, \ \QQ$.
+\end{example}
+
+\begin{lemma}
+  В каждом поле есть простое подполе.
+\end{lemma}
+
+\begin{proof}
+  Пусть $\{ n \cd 1 \} \subset F$~--- циклическая группа по сложению с образующей 1. 
+  \[\{n, 1\} < \infty \Ra \deg F = p\]
+  где $p$~--- простое. Тогда, кратные 1 - поле, то есть $\FF_p$.
+
+  (Если $\{n \cd 1\} = + \infty$, то $\FF_p = \QQ$).
+\end{proof}

@@ -1,0 +1,226 @@
+\section{№11 Теорема о максимальном идеале и евклидовы кольца}
+
+\begin{reminder}
+  $\FF_p \subset F, \quad |F| < \inf, \quad p = \charf F = \langle 1 \rangle _{+}$
+\end{reminder}
+
+\begin{reminder}
+  $\phi: \FF_p[x] \ra F, \quad \im \phi = F, \quad \ke \phi = I$
+\end{reminder}
+
+\begin{reminder}
+  $F \cong \FF_p[x]/I$ --- Все идеалы главные
+\end{reminder}
+
+\begin{theorem}[Теорема о максимальном идеале]
+  $R/I$ --- полный $\Lra$ $I$ --- максимальный по включению.
+  \[I = (a) = \{ qa : q \in R \}\]
+\end{theorem}
+
+\begin{proof}
+  \begin{gather}
+    (a) \subseteq (b), \quad q', q'' \in \RR^{*} \text{обратимые} \\
+    a = qb \Lra b \mid a, \quad \RR^{*} \text{--- группа по умножению} \\
+    a \neq 0, \quad (a) = (b) \\
+    a = q'b, \quad a = q' q'' q \\
+    b = q''a, \quad a(1 - q'q'') = 0 \\
+    a \neq 0, \quad 1 = q' q''
+  \end{gather}
+\end{proof}
+
+\begin{definition}
+  $a \sim b \Lra a = \epsilon b, \  \epsilon \in \RR^{*}$
+\end{definition}
+
+\begin{corollary}
+  $(a)$ --- максимальный $\Lra$ $a$ --- неразложим, $a \notin \RR^{*}$. То есть:
+  \[a = bc \Ra b \in \RR^{*} \lor c \in \RR^{*}\]
+\end{corollary}
+
+\begin{proposition}~ \\
+  $a$ --- неразложим $\Ra$ простые в $\ZZ$ \\
+  $a$ --- неразложим $\Ra$ неприводим в $\FF[x]$
+\end{proposition}
+
+\begin{example}
+  $a = \epsilon (\epsilon ^{-1} a)$
+\end{example}
+
+\subsection{Основная теорема арифметики для евклидовых колец}
+
+\begin{proposition}
+  Пусть $\RR$ --- евклидово кольцо. Тогда $\forall a \neq 0, \quad a = \epsilon p_1 \dots p_n = \delta q_1 \dots q_s$. Тогда отсюда следует:
+  \begin{enumerate}
+    \item Существует $a = q_1 \dots q_t, \quad q_i \text{ --- неразличимые}$
+    \item Единственность
+    \[s = n, \quad \exists \pi: [n] \ra [n]\]
+    \[q_i = \epsilon_i p_{\pi(j)}\]
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  $15 = (-3) \cdot (-5) = 5 \cdot 3$
+\end{example}
+
+\begin{lemma}[1]
+  $a = bc, \quad b, c \notin \RR^{*} \cup \{0\}$
+\end{lemma}
+
+\begin{proof}
+  \begin{gather}
+    N(a) > N(b), \quad N(a) > N(c) \\
+    b = qa + r  = qbc + r \\
+    b(1 - qc) = r \Ra r \neq 0 \\
+    N(b) \leq N(r) < N(a)
+  \end{gather}
+\end{proof}
+
+\begin{proof}[Доказательство существования]  
+  База индукции: $n_0 = \min N(x), \quad x \in \RR \setminus 0$.
+  \[N(a) = n_0 \Ra a \in \RR^{*}\]
+  \[1 = qa + r \Ra r = 0\]
+  \[r \neq 0 \Ra N(r) < N(a)\]
+  Шаг индукции. Пусть доказано для $N(a) < m \Ra N(a) = m$.
+  \begin{enumerate}
+    \item $a$ --- неразложим
+    \item $a = bc, \quad b, c \notin \RR^{*}$
+    \[N(b) < N(a)\]
+    \[N(c) < N(a)\]
+
+    \[b = \epsilon p_1 \dots p_n, \quad c = \delta q_1 \dots q_s\]
+    \[a = (\epsilon \delta) p_1 \dots p_n q_1 \dots q_s\]
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}[2]
+  $a$ --- неразложим: 
+\end{lemma}
+
+\begin{proof}
+  \begin{gather}
+    a = xy \Ra a \mid x \lor a \mid y \\
+    R / (a) \text{ --- поле} \\
+    [0] = [a] = [x] \cdot [y] \Ra [x] = [0] \Ra x = q'a \lor [y] = [0] \Ra y = q''a
+  \end{gather}
+\end{proof}
+
+\begin{proof}[Доказательство единственности]
+  \begin{gather}
+    a = \epsilon p_1 \dots p_n = \delta q_1 \dots q_s \\
+    R/(a), \quad [0] = [\delta] [q_1] \dots [q_s], \quad \delta \neq 0 \\
+    \exists i: \quad  q_i = u \cdot p_1
+  \end{gather}
+\end{proof}
+
+\subsection{Наибольший общий делитель в евклидовом кольце}
+
+\begin{proposition}
+  \[(d) = (a, b) = \{ xa + yb: \quad x,y \in R\}\]
+  Но этот идеал является главным, то есть:
+  \[d \defev \gcdru(a, b)\]
+\end{proposition}
+
+\begin{corollary}
+  Наибольший общий делитель является линейной комбинацией: 
+  \[ d = \tilde a a + \tilde b b\]
+\end{corollary}
+
+\begin{corollary}
+  $b, c$ --- взаимно простые $\defev$ $(b, c) = (1)$
+\end{corollary}
+
+\subsection{Китайская теорема об остатках для евклидовых колец}
+
+\begin{definition}
+  $a = bc, \quad (b, c) = (1)$. Тогда: 
+  \[R/(a) \cong R/(b) \oplus  R/(c)\]
+\end{definition}
+
+\begin{definition}
+  Покоординатная операция.
+  \[R_1 \oplus  R_2 = \{ (r_1, r_2): \quad r_1 \in R_1, \ r_2 \in R_2 \}\]
+\end{definition}
+
+\begin{proof}
+  \begin{note}[Спойлер на доказательство]
+    \begin{gather}
+      \ke \phi = (bc) = (a) \\
+      \im \phi = R/ (b) \oplus R/(c) \\
+      \text{ТМС: } \ R/\ke \phi \cong \im \phi
+    \end{gather}
+  \end{note}
+
+  \begin{gather}
+    \phi: R \ra R/(a) \oplus R/(c) \\
+    r \raone ({[r]}_b, {[r]}_c)
+  \end{gather}
+
+  Сюръективность:
+  \[v + q_2 c = w = u + q_1 b\]
+  \[u - v = -q_1 b + q_2 c\]
+  \[1 = \tilde b b + \tilde c c \Ra\]
+  \[q_1 = -(u - v) \tilde b\]
+  \[q_2 = (u - v) \tilde c\]
+
+  Пусть $k \in \ke \phi$. Тогда $k \equiv 0 \mod b$ и $k \equiv 0 \mod c$. То есть $k \in (bc)$.
+  \[k = q_1 b = q_2 c\]
+  \[q_1 (b \tilde b) = q_2 c \tilde b\]
+  \[q_1 (1 - \tilde c c) = q_2 c \tilde b\] 
+  \[q_1 = c(q_1 \tilde c + q_2 \tilde b)\]
+\end{proof}
+
+\subsection{Алгоритм Евклида}
+
+\begin{note}
+  Кольцо в котором работает алгоритм Евклида --- евклидово кольцо.
+\end{note}
+
+\begin{proposition}
+  $(a, b) = (a, b + qa)$
+\end{proposition}
+
+\begin{proof}
+  $b = (b + qa) - qa$
+\end{proof}
+
+\begin{example}[Линейное диафантово уравнение]
+  $xa + yb = d$
+\end{example}
+
+\begin{solution}
+  \begin{gather}
+    a_i, q_i, x_i, y_i \\
+    a_0 = 1 \cdot a = 0 \cdot b \quad x_0 = 1, y_0 = 0 \\
+    a_1 = 0 \cdot a + 1 \cdot b \quad x_1 = 0, y_1 = 1 \\
+  \end{gather}
+  То есть делим с остатком:
+  \begin{gather}
+    a_i = q_{i + 1} a_{i + 1} + a_{i + 2} \\
+    a_{i + 2} = q_i - q_{i + 1}a_{i + 1} \\
+    x_{i + 2} = x_i - q_{i + 1} x_{i + 1} \\
+    y_{i + 2} = y_i - q_{i + 1} y_{i + 1}
+  \end{gather}
+
+  \[a_{t + 1} = 0\]
+  \[a_{t - 1} = q_t a_t\]
+  \[a_t = \gcdru(a, b)\]
+
+  То есть в итоге мы имеем:
+  \[(a, b) = (a_0, a_1) = (a_1, a_2) = \dots = (q_t a_t, a_t)\]
+\end{solution}
+
+\begin{proposition}
+  Инвариант:
+  \[\forall i: \quad a_i = x_i a + y_i b\]
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    a_i = x_i a + y_i b \\
+    a_{i + 1} = x_{i + 1}a + y_{i + 1} b \\\
+  \end{gather}
+  \begin{multline}
+    a _{i + 2} = a_i - q_{i + 1} a_{i + 1} = x_i a + y_i b - q_{i + 1}(x_{i + 1} a + y_{i + 1}b) =\\
+    = (x_i - q_{i + 1}x_{i + 1})a + (y_i - q_{i + 1}y_{i + 1})b = x_{i +  2}a + y_{i + 2}b
+  \end{multline}
+\end{proof}

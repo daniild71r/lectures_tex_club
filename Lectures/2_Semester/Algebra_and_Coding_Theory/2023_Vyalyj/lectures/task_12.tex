@@ -1,0 +1,194 @@
+\section{№12 Важнейшие теоремы о полях}
+
+\begin{reminder}
+  $F$~--- поле, $|F| < \infty$.
+\end{reminder}
+
+\begin{theorem}[1]
+  $|F| = p ^ n$, $p$~--- простое, $n \geq 1$~--- целое.
+\end{theorem}
+
+\begin{proof}
+  \begin{gather}
+    F \cong \FF_p[x]/(f(x)), \quad \deg f = d \\
+    f(x) = a_0 + a_1 x + \dots + a_d x^d \\
+    g + (f) = [g], \quad \exists! \ r \in [g] : \deg r < d \lor r = 0 \\
+    g  = q \cd f + r, \quad r = 0 \lor \deg r < \deg f = d \\
+    r = g - q \cd f \in [g] \\
+    [r_1] = [r_2] \\
+    [r_1 - r_2] = [0] = (f) \\
+    r_1 - r_2 = q f \\
+    [g] \lra \underbrace{(r_0, r_1, \dots r_{d-1})}_{p^d \text{ вариантов}}; \  r_i \in \FF_p
+  \end{gather}  
+\end{proof}
+
+\begin{example}
+  \begin{multline}
+    [u_0 + u_1x + \dots + u_{d-1} x ^{d-1}] + [v_0 + v_1 x + \dots + v_{d-1}x^{d-1}] = \\
+    = [(u_0 + v_0) + (u_1 + v_1)x + \dots + (u_{d-1} + v_{d-1}) x ^{d-1}]
+  \end{multline}
+\end{example}
+
+\begin{example}
+  $|\FF_3[x]/(x^2-1)| = |\FF_3[x]/(x^2-1)| = 9 = 3^2$
+\end{example}
+
+\begin{theorem}[2]
+  Если $p$~--- простое, то существует поле $F, \quad |F| = p^n$. 
+\end{theorem}
+
+\subsection{Векторное пространство над полем $F$}
+
+\begin{definition}
+  $(V, +, \cd)$
+  \begin{itemize}
+    \item[$+$] : $V \times V \ra V$ 
+    \item[$\cd$] : $F \times V \ra V$ 
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}
+  Свойства:
+  \begin{enumerate}
+    \item[$V_1$] $(V, +)$~--- абелева группа.
+    \item[$V_2$] Дистрибутивность. $\alpha_1, \alpha_2 \in F, \quad V_1, V_2 \in V$
+    \begin{gather}
+      (\alpha_1 + \alpha_2) V_1 = \alpha_1 \cd V_1 + \alpha_2 \cd V_1 \\
+      \alpha_1 \cd (V_1 + V_2) = \alpha_1 \cd V_1 + \alpha_1 \cd V_2
+    \end{gather}
+    \item[$V_3$] Ассоциативность.
+    \[(\alpha_1 \alpha_2) V_1 = \alpha_1 \cd (\alpha_2 \cd V_1)\]
+    \item[$V_4$] $1 \cd V = V$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+  Координатное пространство: $(\alpha_1, \dots, \alpha_d), \quad \alpha_i \in F$.
+  \[|F| = q, \quad V = F^d, \quad |V| = q^d, \quad |K| < \infty \land |F| < \infty, \quad |K| = |F|^d\]
+\end{definition}
+
+\begin{definition}
+  Приводимый многочлен.
+  \begin{gather}
+    f = g \cd h, \quad \deg f = \deg g + \deg h \\
+    \deg g, \deg h > 0
+  \end{gather}
+\end{definition}
+
+\begin{proof}
+  \begin{gather}
+    \deg f = 1 \Ra f \text{~--- не приводим} \\
+    \deg f = 2 , \  f \text{~--- приводим} \\
+    f(x) = (x-a) g(x) \Ra f(a) = 0
+  \end{gather}
+\end{proof}
+
+\begin{theorem}
+  $f \in F[x] \deg f \leq 3$, $f$~--- неприводим, тогда и только тогда, когда $f$ не имеет корней в $F$.
+\end{theorem}
+
+\begin{example}
+  \[\RR[x] : \  (x^2 + 1)(x^2 + 9) \text{~--- неприводим}\]  
+\end{example}
+
+\begin{example}
+  \begin{gather}
+    \RR[x]/(x^2 + 1) \cong \Cm \\
+    F[x] / (f(x)) \\
+    f = a_0 + a_1 x + \dots + a_d x^d \\
+    f([x]) = a_0 + a_1[x] + \dots + a_d [x]^d = [a_0 + a_1 x + \dots + a_d x^d] = [0]
+  \end{gather}
+\end{example}
+
+\begin{example}
+  \[(x - \sqrt 2)(x + \sqrt 2) = x^2 - 2 \in \RR[x]\]
+  \begin{align*}
+    x^2 &- 2 \in \FF_5[x] \\
+    x:& \ 0, \  \pm 1,\  \pm 2 \\
+    x^2:& \ 0,\  1, \  4 = -1
+  \end{align*}
+\end{example}
+
+\begin{example}
+  \[x^3 + x + 1 \in \FF_2[x]\]
+  \[\FF_2[x] / (x^3 + x + 1) \text{~--- поле из 8 элементов}\]
+\end{example}
+
+\begin{definition}
+  $K$~--- поле разложения $f$, если $f = \prod_{a_i \in K} (x-a_i)$. \\
+  $f \in F[x], \quad F[x] \subset K[x], \quad F \subset K$.
+\end{definition}
+
+\begin{theorem}
+  $\forall F \  \forall f \in F[x]$, то существует поле разложения.
+\end{theorem}
+
+\begin{proof}
+  Построим цепочку расширений $F = F_0 \subset F_1 \subset \dots \subset F_t = K$.
+  \begin{gather}
+    f \in F[x] \\
+    f = \prod_j (g_j)^{(i)} \in F_i, \ \text{$g_j$~--- неприводим} \\
+    \deg g_1^{(1)} > 1 \\
+    F_{i + 1} = F_i [x] / (g_1^{(i)}), \quad g_1^{(i)}([x]) = 0
+  \end{gather}
+\end{proof}
+
+Обозначим $q = p^n$, где $p$~--- простое.
+
+\begin{proof}[Начало доказательство Теоремы 2]
+  \[f(x) = x^q  - x \in \FF_p[x], \quad \FF_p \subset K \text{~--- поле разложения $f$}\]
+  \[f(x) = \prod_{a_i \in K} (x-a_i)\]
+\end{proof}
+
+\begin{lemma}
+  $\{ a_i \} = A$~--- поле.
+\end{lemma}
+
+\begin{proof}
+  \begin{gather}
+    x, y \in A \Ra xy \in A \\
+    x^q = x, \ y^q = y \Ra {(xy)}^q = x^q \cd y^q = xy \\
+    (x^{-1})^q = x^{-q} = (x^q)^{-1} = x^{-1} \\ 
+    {(x + y)}^q = (x + y) \textbf{ смотри утверждение ниже} \\
+    {(x + y)}^{p \cd p^{n - 1}} = {(x^p + y^p)}^{p^{n-1}} = {(x^{p^2} + y^{p^2})}^{p^{n-2}} = x^{p^n} + y^{p^n}
+  \end{gather}
+\end{proof}
+
+\begin{proposition}
+  $\dim F = p$:
+  \[{(x+y)}^p = x^p + y^p\]
+  \[x^p + \underbrace{\binom{P}{1}x^{(p - 1)} y + \dots + \binom{p}{p - 1} x y^{p - 1}}_{0} + y^p \]
+  \[\binom{p}{k} \equiv 0 \mod p, \quad k \neq 0, \ 0 < k < p, \ k \neq p\]
+\end{proposition}
+
+\begin{definition}
+  $f = F[x], f = a_0 + a_1 x + \dots + a_d x^d$
+  \[Df =a_1 + 2 a_2 x + \dots + d a_{d-1}x^{d-1}, \quad \deg f = 0, Df = 0\]
+  \[D(x^n) = nx^{n-1}\]
+  \[D(af + bg) = aD(f) + bD(g), \quad a, b \in F\]
+\end{definition}
+
+\begin{lemma}[Тождество Лейбница]
+  $D(fg) = D(f)g + f D(g)$.  
+\end{lemma}
+
+\begin{proof}
+  \begin{gather}
+    D(x^n \cd x^k) = D(x^n) \cd x^k + x^n \cd D(x^k) \\
+    (n + k) \cd x^{n + k - 1} = n \cd x^{n-1} \cd x^k + x^n \cd k \cd x^{k - 1}
+  \end{gather}
+\end{proof}
+
+\begin{theorem}
+  $f = \prod (x - a_i)$. $f$~--- имеет кратные корни, тогда и только тогда, когда $(f_1 Df) \neq (1)$
+\end{theorem}
+
+\begin{proof}
+  \begin{gather}
+    f = {(x - a)}^2 \cd g \\
+    Df  = 2(x- a) g + {(x-  a)}^2 D(g) \\
+    Df = \sum_{i} \prod_{j \neq i} (x - a_j), \quad (x - a_i) \mid D(f) \\
+    (Df_i f) \neq (1), \quad (x - a_j) \mid \prod_{{j \neq i}} (x - a_j) \\
+  \end{gather}
+    Тогда получим: $a_j = a_i, \ i = j$.
+\end{proof}
