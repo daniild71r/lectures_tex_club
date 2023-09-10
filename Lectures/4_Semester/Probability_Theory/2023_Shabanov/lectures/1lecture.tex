@@ -43,20 +43,58 @@
 		
 		\item $P$ непрерывна в нуле, то есть
 		\[
-			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \supseteq A_{n + 1} \wedge \bigcap_{n = 1}^\infty A_n = \emptyset \Ra \lim_{n \to \infty} P(A_n) = 0 = P(\emptyset)
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \supseteq A_{n + 1} \wedge \lim_{n \to \infty} A_n = \emptyset \Ra \lim_{n \to \infty} P(A_n) = 0 = P(\emptyset)
 		\]
 		
 		\item $P$ непрерывна сверху:
 		\[
-			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ \lim_{n \to \infty} A_n = A \in \cA \wedge A_n \supseteq A \Ra \lim_{n \to \infty} P(A_n) = P(A)
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \supseteq A_{n + 1} \wedge \lim_{n \to \infty} A_n = A \Ra \lim_{n \to \infty} P(A_n) = P(A)
 		\]
 		
 		\item $P$ непрерывна снизу:
 		\[
-			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ \lim_{n \to \infty} A_n = A \in \cA \wedge A_n \subseteq A \Ra \lim_{n \to \infty} P(A_n) = P(A)
+			\forall \{A_n\}_{n = 1}^\infty \subseteq \cA,\ A_n \subseteq A_{n + 1} \wedge \lim_{n \to \infty} A_n = A \Ra \lim_{n \to \infty} P(A_n) = P(A)
 		\]
 	\end{enumerate}
 \end{theorem}
+
+\begin{note}
+	Для последовательностей вложенных множеств предел $\lim_{n \to \infty} A_n = A$ понимается как либо $\bigcup_{n = 1}^\infty A_n$, либо $\bigcap_{n = 1}^\infty A_n$. Каждый в своём случае.
+\end{note}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$1 \Ra 3$] Перепишем последовательность из условия в дизъюнктном виде, то есть скажем, что $B_n = A_n \bs A_{n + 1}$. Тогда по условию верно следующее равенство:
+		\[
+			P(A_1) = P\ps{\bigcup_{n = 1}^\infty A_n} = P\ps{A \sqcup \bscup_{n = 1}^\infty B_n} = P(A) + \sum_{n = 1}^\infty P(B_n)
+		\]
+		При этом $P(A_1) \in [0; 1]$, то есть ряд сходится (и даже абсолютно, ибо все слагаемые неотрицательные). Стало быть, хвост ряда стремится к нулю:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n > N\ \sum_{m = n}^\infty P(B_m) = P(A_n) - P(A) < \eps
+		\]
+		То есть $\lim_{n \to \infty} P(A_n) = P(A)$
+		
+		\item[$3 \Ra 4$] Рассмотрим противоположную последовательность к той, что дана в условии: $C_n = \Omega \bs A_n$. Тогда $C_n \supseteq C_{n + 1}$, причём $\lim_{n \to \infty} C_n = C := \Omega \bs A$. Следовательно, по уже доказанному $\lim_{n \to \infty} P(C_n) = P(C)$, а это в свою очередь расписывается просто:
+		\[
+			\lim_{n \to \infty} (1 - P(A_n)) = 1 - P(A) \Lora \lim_{n \to \infty} P(A_n) = P(A)
+		\]
+		
+		\item[$4 \Ra 2$] Тривиально, ибо любая последовательность снизу к $\emptyset$ состоит из таких же пустых множеств
+		
+		\item[$2 \Ra 1$] Пусть $A = \bscup_{n = 1}^\infty A_n$, $A, A_n \in \cA$. Тогда, мы можем рассмотреть следующие $B_n$:
+		\[
+			B_n = A \bs \bscup_{m = 1}^{n - 1} A_m
+		\]
+		Совершенно понятно, что тогда $B_1 = A$, а также $B_n \supseteq B_{n + 1}$ и $\lim_{n \to \infty} B_n = \emptyset$. Стало быть, по условию получаем следующее:
+		\[
+			\lim_{n \to \infty} P(B_n) = 0; \quad \lim_{n \to \infty} P\ps{A \bs \bscup_{m = 1}^{n - 1} A_m} = \lim_{n \to \infty} \ps{P(A) - \sum_{m = 1}^{n - 1} P(A_m)} = 0
+		\]
+		Если вынесем вероятность $A$ из под предела, то получится как раз требуемое:
+		\[
+			P(A) - \lim_{n \to \infty} \sum_{m = 1}^{n - 1} P(A_m) = 0; \quad P(A) = \sum_{m = 1}^\infty P(A_m)
+		\]
+	\end{itemize}
+\end{proof}
 
 \subsubsection*{Примеры вероятностных пространств}
 
@@ -134,7 +172,7 @@
 		
 		\item[$\La$] Имеет место равенство $B \bs A = B \cap \ol{A} = \ol{\ol{B} \cup A}$, причём $\ol{B} \cap A = \emptyset$, поэтому всё работает. Осталось разобраться с последним свойством: возьмём любую последовательность $\{A_n\}_{n = 1}^\infty \subseteq \cL,\ A_n \subseteq A_{n + 1}$. Тогда построим по ней такую последовательность:
 		\[
-			B_1 = A_1,\ B_n = A_n \bs B_{n - 1};\ \ \bigcup_{n = 1}^\infty A_n = \bscup_{n = 1}^\infty B_n \in \cL
+			B_1 = A_1,\ B_n = A_n \bs A_{n - 1};\ \ \bigcup_{n = 1}^\infty A_n = \bscup_{n = 1}^\infty B_n \in \cL
 		\]
 	\end{itemize}
 \end{proof}
@@ -169,7 +207,7 @@
 
 \begin{example}~
 	\begin{enumerate}
-		\item $\Omega = \R$, то борелевскую $\sigma$-алгебру $\R$ можно породить как $\sigma$-алгебру. содержащую все интервалы:
+		\item $\Omega = \R$, то борелевскую $\sigma$-алгебру $\B(\R)$ можно породить как $\sigma$-алгебру. содержащую все интервалы:
 		\[
 			\B(\R) = \sigma(\{(a; b), a < b\})
 		\]
@@ -216,7 +254,7 @@
 	\[
 		\cM_1 = \{B \in \lambda(\cM) \colon \forall A \in \cM\ A \cap B \in \lambda(\cM)\}
 	\]
-	Она непустая, коль скоро $\cM \subset \cM_1$. Если мы покажем, что это $\lambda$-система, то она автоматически по вложению $\cM_1 \subseteq \lambda(\cM)$ совпадает с $\lambda(\cM)$ и к тому же является $\sigma$-алгеброй, что и требуется:
+	Она непустая, коль скоро $\cM \subseteq \cM_1$. Если мы покажем, что это $\lambda$-система, то она автоматически по вложению $\cM_1 \subseteq \lambda(\cM)$ совпадает с $\lambda(\cM)$. Однако, она ещё не будет являться $\sigma$-алгеброй, ибо мы не потребовали в $\cM_1$ попарного пересечения любых множеств:
 	\begin{enumerate}
 		\item $\Omega \in \cM_1$ --- тривиально
 		
@@ -232,4 +270,9 @@
 		\]
 		В конечном факте о принадлежности мы пользуемся тем, что $(B_n \cap A) \in \lambda(\cM)$ и они образуют неубывающую последовательность.
 	\end{enumerate}
+	Теперь же мы добьёмся своего, положим $\cM_2$ как надо:
+	\[
+		\cM_2 = \{B \in \lambda(\cM) \colon \forall A \in \lambda(\cM)\ A \cap B \in \lambda(\cM)\}
+	\]
+	Благодаря тому, что $\cM_1 = \lambda(\cM)$, мы можем заявить факт: $\cM \subseteq \cM_2$. Остаётся проверить, что $\cM_2$ тоже является $\lambda$-системой, но это делается точно так же, как и выше. Таким образом, $\lambda(\cM) \supseteq \sigma(\cM)$
 \end{proof}

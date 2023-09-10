@@ -1,0 +1,25 @@
+\begin{definition}
+	Множество $X$ называется \textit{топологическим пространством}, если ему сопоставлена система множеств $\tau \subseteq 2^X$ --- \textit{топология}, обладающая следующими свойствами:
+	\begin{enumerate}
+		\item $\emptyset, X \in \Tau$
+		
+		\item $\forall \goth{A}\ \forall \{G_\alpha\}_{\alpha \in \goth{A}} \subseteq \Tau\ \ \bigcup_{\alpha \in \goth{A}} G_\alpha \in \Tau$
+		
+		\item $\forall \goth{A}\ \forall \{G_\alpha\}_{\alpha \in \goth{A}} \subseteq \Tau\ \ \bigcap_{\alpha \in \goth{A}} G_\alpha \in \Tau$
+	\end{enumerate}
+\end{definition}
+
+\begin{example} (Положительный терминатор, строитель)
+	Пусть задана система дифференциальных уравнений:
+	$$
+		\System{
+			&{\dot{x} = f(t, x)}
+			\\
+			&{x(t_0) = x_0}
+		}
+	$$
+	Решением этой системы будет функция (при выполнении теоремы Коши), которую можно записать так:
+	$$
+		x(t) = x_0 + \int_0^t f(s, x(s))ds
+	$$
+\end{example}

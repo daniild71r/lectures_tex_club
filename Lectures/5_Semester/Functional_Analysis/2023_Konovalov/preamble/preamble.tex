@@ -13,8 +13,8 @@
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % пакеты AMS
 \usepackage{icomma}                                    % "Умная" запятая
 
-%%% Свои символы и команды
-\usepackage{centernot} % центрированное зачеркивание символа
+%%% Свои символы и команды для математики
+\usepackage{centernot}  % центрированное зачеркивание символа
 \usepackage{stmaryrd}  % некоторые спецсимволы
 \usepackage[e]{esvect}  % Нормальные векторы по команде \vv
 
@@ -31,48 +31,71 @@
 \DeclareMathOperator{\ke}{Ker}
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\cov}{cov}
-\DeclareMathOperator{\corr}{corr}
-\DeclareMathOperator{\Ran}{Ran}
-\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Int}{int}
 \DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\Deg}{deg}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\upjm}{\mu^*_\mathfrak{J}}
+\DeclareMathOperator{\downjm}{\mu^\mathfrak{J}_*}
+\DeclareMathOperator{\upjlm}{\mu^*_{(\mathfrak{J})}}
+\DeclareMathOperator{\downjlm}{\mu^{(\mathfrak{J})}_*}
+\DeclareMathOperator{\jlm}{\mu_{(\mathfrak{J})}}
+\DeclareMathOperator{\jm}{\mu_\gJ}
+\DeclareMathOperator{\sym}{sym}
+\DeclareMathOperator{\asym}{asym}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\supp}{supp}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\sxR}{\ole{\R}}
 \newcommand{\Cm}{\mathbb{C}}
-\newcommand{\F}{\mathcal{F}}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\I}{\mathfrak{I}}
-\newcommand{\id}{\mathrm{id}}
-\newcommand{\cA}{\mathcal{A}}
-\newcommand{\gA}{\mathfrak{A}}
+\newcommand{\F}{\mathbb{F}}
 \newcommand{\cL}{\mathcal{L}}
-\newcommand{\cM}{\mathcal{M}}
-\newcommand{\B}{\mathfrak{B}}
-\newcommand{\cE}{\mathcal{E}}
-\newcommand{\cD}{\mathcal{D}}
-\newcommand{\ol}{\overline}
-\newcommand{\such}{\ \big|\ }
-\newcommand{\tr}{\triangle}
-\newcommand{\eps}{\epsilon}
+\newcommand{\Tau}{\mathcal{T}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\goth}{\mathfrak}
+\newcommand{\gj}{\goth{j}}
+\newcommand{\gJ}{\goth{J}}
+\newcommand{\mc}{\mathring}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\veps}{\epsilon}
 \newcommand{\vdelta}{\partial}
-\newcommand{\indep}{\perp\mkern-9.5mu\perp}
-\newcommand{\muldots}{\cdot \ldots \cdot}
-\newcommand{\plusdots}{+ \ldots +}
-
+\newcommand{\tr}{\triangle}
+\newcommand{\bscup}{\bigsqcup}
+\newcommand{\such}{\ \big|\ }
+\newcommand{\range}[2]{\{#1, \ldots, #2\}}
+\newcommand{\ole}[1]{\overline{#1}}
+\newcommand{\ule}[1]{\underline{#1}}
+\newcommand{\comR}{{(R)}}
 
 \newcommand{\imp}[2]{
 	(#1\,\,$\ra$\,\,#2)\,\,
 }
-\newcommand{\Matrix}[1]{
-	\begin{pmatrix}
-		#1
-	\end{pmatrix}
-}
 \newcommand{\System}[1]{
-	\left\{\begin{aligned}#1\end{aligned}\right.
+	\left\{
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right.
+}
+\newcommand{\Matrix}[1]{
+	\left(
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right)
+}
+\newcommand{\Det}[1]{
+	\left|
+	\begin{aligned}
+		#1
+	\end{aligned}
+	\right|
 }
 \newcommand{\Root}[2]{
 	\left\{\!\sqrt[#1]{#2}\right\}
@@ -89,9 +112,6 @@
 \newcommand{\set}[1]{
 	\left\{#1\right\}
 }
-\newcommand{\tbr}[1]{
-	\left\langle#1\right\rangle
-}
 \newcommand{\sbr}[1]{
 	\left[#1\right]
 }
@@ -101,27 +121,35 @@
 \newcommand{\rsi}[1]{
 	\left(#1\right]
 }
-\newcommand{\range}[2]{
-	\{#1, \ldots, #2\}
+\newcommand{\br}[1]{
+	\left\{#1\right\}
+}
+\newcommand{\tbr}[1]{
+	\left\langle#1\right\rangle
+}
+\newcommand{\ntbr}[1]{
+	\langle#1\rangle
+}
+\newcommand{\no}[1]{
+	\left\|#1\right\|
 }
 
 \renewcommand\labelitemi{$\triangleright$}
 
 \let\bs\backslash
 \let\Lra\Leftrightarrow
+\let\Lolra\Longleftrightarrow
 \let\lra\leftrightarrow
 \let\Ra\Rightarrow
+\let\Lora\Longrightarrow
 \let\ra\rightarrow
 \let\La\Leftarrow
-\let\la\leftarrow
-\let\Lora\Longrightarrow
 \let\Lola\Longleftarrow
-\let\rras\rightrightarrows
-\let\sda\shortdownarrow
-\let\sua\shortuparrow
+\let\la\leftarrow
+\let\rra\rightrightarrows
 \let\emb\hookrightarrow
-\let\bscup\bigsqcup
-\let\bscap\bigsqcap
+\let\wdt\widetilde
+\let\wdh\widehat
 
 %%% Перенос знаков в формулах (по Львовскому)
 \newcommand{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
@@ -147,11 +175,10 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Определение}[section]
+\newtheorem*{designation}{Обозначение}
 \newtheorem*{corollary}{Следствие}
 \newtheorem*{note}{Замечание}
 \newtheorem*{anote}{Замечание автора}
-\newtheorem*{agreement}{Соглашение}
-\newtheorem*{designation}{Обозначение}
 \newtheorem*{reminder}{Напоминание}
 \newtheorem*{example}{Пример}
 
@@ -187,11 +214,13 @@
 %\renewcommand{\cftsecaftersnum}{\quad}
 
 %%% Шаблонная информация для титульного листа
-\newcommand{\CourseName}{Теория вероятности}
-\newcommand{\FullCourseNameFirstPart}{\so{ТЕОРИЯ ВЕРОЯТНОСТИ}}
+\newcommand{\CourseName}{Функциональный анализ}
+\newcommand{\FullCourseNameFirstPart}{\so{ФУНКЦИОНАЛЬНЫЙ АНАЛИЗ}}
 \newcommand{\SemesterNumber}{IV}
-\newcommand{\LecturerInitials}{Дмитрий Александрович Шабанов}
-\newcommand{\CourseDate}{весна 2023}
+\newcommand{\LecturerInitials}{Сергей Петрович Коновалов}
+\newcommand{\CourseDate}{осень 2023}
+\newcommand{\VKLink}{https://vk.com/id1}
+\newcommand{\TelegramLink}{https://t.me/wolfawi}
 \newcommand{\GithubLink}{https://github.com/daniild71r/lectures_tex_club}
 
 %%% Колонтитулы
