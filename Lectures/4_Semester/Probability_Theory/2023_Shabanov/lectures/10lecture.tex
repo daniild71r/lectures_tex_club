@@ -93,7 +93,7 @@
 		\begin{multline*}
 			\varliminf_{n \to \infty} P_n(G) = \varliminf_{n \to \infty} \sum_{k = 1}^\infty P_n(a_k; b_k) \ge
 			\\
-			\varliminf_{n \to \infty} \sum_{k = 1}^N P_N(a_k; b_k) \ge \sum_{k = 1}^N \varliminf_{n \to \infty} P_n(a_k; b_k) \ge
+			\varliminf_{n \to \infty} \sum_{k = 1}^N P_n(a_k; b_k) \ge \sum_{k = 1}^N \varliminf_{n \to \infty} P_n(a_k; b_k) \ge
 			\\
 			\sum_{k = 1}^N \varliminf_{n \to \infty} P_n\rsi{a'_k; b'_k} = \sum_{k = 1}^N \varliminf_{n \to \infty} (F_n(b'_k) - F_n(a'_k)) =
 			\\
@@ -169,7 +169,7 @@
 \end{enumerate}
 
 \begin{definition}
-	Пусть $P$ --- вероятностная мера на $(\R^m, \B(\R^m))$. Тогда \textit{характеристической функцией меры $P$} называется $\phi_P \colon \R^m \to \R$, определённая следующим образом:
+	Пусть $P$ --- вероятностная мера на $(\R^m, \B(\R^m))$. Тогда \textit{характеристической функцией меры $P$} называется $\phi_P \colon \R^m \to \Cm$, определённая следующим образом:
 	\[
 		\forall t \in \R^m\ \ \phi_P(t) := \int_{\R^m} e^{i\tbr{t, x}}dP(x)
 	\]
@@ -178,6 +178,6 @@
 \begin{note}
 	Несложно заметить, что определения характеристических функций для меры и случайных векторов согласованы, а именно (в случае случайных величин):
 	\[
-		\text{Хар-ая функция $\xi$} = \E e^{it\xi} = \int_\R e^{itx} dP_\xi(x) = \text{ хар-ая функция распределения $\xi$}
+		\text{Хар. функция $\xi$} = \E e^{it\xi} = \int_\R e^{itx} dP_\xi(x) = \text{ хар. функция распределения $\xi$}
 	\]
 \end{note}

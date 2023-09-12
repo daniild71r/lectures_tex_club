@@ -1,7 +1,7 @@
 \begin{corollary}
-    В условиях ЦПТ
+    В условиях ЦПТ верна ещё такая сходимость:
     \[
-        \forall x \in \R \ \ F_n(x) = P \left( \frac{S_n - \E S_n}{\sqrt{DS_n}} \leqslant x \right) \xrightarrow[n \to \infty]{} \text{Ф}(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}} e^{-y^2/2} dy
+        \forall x \in \R \ \ F_n(x) := P \ps{\frac{S_n - \E S_n}{\sqrt{DS_n}} \le x} \xrightarrow[n \to \infty]{} \Phi(x) := \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}} e^{-y^2/2} dy
     \]
     Иными словами, можем записать сходимость в виде сходимости функций распределения.
 \end{corollary}
@@ -11,124 +11,55 @@
     \[
         \frac{S_n - \E S_n}{\sqrt{DS_n}} \xrightarrow{d} N(0, 1)
     \]
-
-    $F_n(x)$ -- функции распределения случайных величин $\frac{S_n - \E S_n}{\sqrt{DS_n}}$.
-    
-    $\text{Ф}(x)$ -- функция распределения стандартного нормального распределения $N(0, 1)$.
-    
-    Ф имеет плотность $\Ra$ Ф абсолютно непрерывна $\Ra$ Ф непрерывна. \\
-
-    Тогда по теореме об эквивалентности сходимостей:
-    \begin{align*}
-        & \frac{S_n - \E S_n}{\sqrt{DS_n}} \xrightarrow{d} N(0, 1)
-        \\
-        & \Updownarrow
-        \\
-        & F_n(x) \xrightarrow[n \to \infty]{} \text{Ф}(x) \ \ \forall x \text{ -- точки непрерывности Ф}
-        \\
-        & \Updownarrow
-        \\
-        & F_n(x) \xrightarrow[n \to \infty]{} \text{Ф}(x) \ \ \forall x \in \R
-    \end{align*}
+    $\Phi$ --- это функция распределения $N(0, 1)$. Из определения, у $\Phi$ есть плотность, то есть $\Phi$ абсолютно непрерывна (и просто непрерывна, в частности). Тогда, по теореме об эквивалентности сходимостей:
+    \[
+    	\frac{S_n - \E S_n}{\sqrt{DS_n}} \xrightarrow{d} N(0, 1) \Lra \Big(\forall x \in C(\Phi)\ \lim_{n \to \infty} F_n(x) = \Phi(x)\Big)
+    \]
+    В силу вышесказанного, $C(\Phi) = \R$, то есть мы показали требуемое.
 \end{proof}
 
 \begin{corollary}
     В условиях ЦПТ
     \[
-        \sqrt{n} \left( \frac{S_n}{n} - a \right) \xrightarrow{d} N(0, \sigma^2)
+        \sqrt{n} \ps{\frac{S_n}{n} - a} \xrightarrow{d} N(0, \sigma^2)
     \]
 \end{corollary}
 
 \begin{proof}
-    Вспомним, что
-    \begin{align*}
-        & \eta_n \xrightarrow{d} \eta
-        \\
-        & \Updownarrow
-        \\
-        & \E f(\eta_n) \xrightarrow[n \to \infty]{} \E f(\eta) \ \ \forall f \colon \R \to \R \text{ -- непрерывная, ограниченная}
-    \end{align*}
-
-    Так как непрерывные ограниченные функции от $\eta_n$ и непрерывные ограниченные функции от $c \eta_n,\ c \in \R$ есть одно и то же, то
-    \begin{align*}
-        & \eta_n \xrightarrow{d} \eta
-        \\
-        & \Updownarrow
-        \\
-        & c \eta_n \xrightarrow{d} c \eta \ \ \forall c \in \R
-    \end{align*}
-
-    С учётом этого и Центральной Предельной Теоремы имеем:
-    \[
-        \sqrt{n} \left( \frac{S_n}{n} - a \right) = \frac{S_n - na}{\sqrt{n}} = \frac{S_n - an}{\sigma \sqrt{n}} \sigma \xrightarrow{d} \sigma N(0, 1) = N(0, \sigma^2)
-    \]
+	Будем использовать то же обозначение $\eta_n = (\xi_n - a) / \sigma$. Тогда мы знаем, что сходимость по распределнию устроена так:
+	\[
+		\eta_n \xrightarrow{d} \eta \Lra \forall f \colon \R \to \R \text{ --- непрерывная ограниченная }\E f(\eta_n) \xrightarrow[n \to \infty]{} \E f(\eta)
+	\]
+	Так как для $\eta_n$ и $c\eta_n, c \in \R$ множества композиций с непрерывными ограниченными функциями одинаковы, то мы можем модифицировать сходимость из ЦПТ на любую наперёд заданную константу:
+	\[
+		\sqrt{n}\ps{\frac{S_n}{n} - a} = \frac{S_n - na}{\sqrt{n}} = \frac{S_n - an}{\sigma\sqrt{n}}\sigma \xrightarrow{d} \sigma N(0, 1) = N(0, \sigma^2)
+	\]
 \end{proof}
 
 \begin{note}
-    Такая формулировка осмыслена и при $\sigma = 0$: действительно, тогда $\xi_n$ -- константы, и в сходимости 
+    Такая формулировка осмыслена и при $\sigma = 0$: действительно, тогда $\xi_n$ --- константы, и в сходимости 
     \[
-        \sqrt{n} \left( \frac{S_n}{n} - a \right) \xrightarrow{d} N(0, \sigma^2)
+        \sqrt{n} \ps{\frac{S_n}{n} - a} \xrightarrow{d} N(0, \sigma^2)
     \]
     слева и справа стоят тождественные нули.
     
-    Это будет полезно при обобщении на многомерный случай: в многомерной ЦПТ в роли $\sigma$ будет выступать матрица, которая может быть вырожденной и при этом не обязательно нулевой, тогда обратить её ("делить на неё") мы не сможем, но сможем использовать в такой форме записи.
+    Это будет полезно при обобщении на многомерный случай: в такой ЦПТ в роли $\sigma$ будет выступать матрица, которая может быть вырожденной и при этом не обязательно нулевой, тогда обратить её (<<делить на неё>>) мы не сможем, но сможем использовать в такой форме записи.
 \end{note}
 
 \begin{note}
-    Смысл ЦПТ: оцениваем скорость сходимости в УЗБЧ.
-
-    УЗБЧ в форме Колмогорова:
-    \begin{align*}
-        & \xi_n \text{ -- н.о.р.с.в.}
-        \\
-        & \E\xi_1(=\E\xi_2=...)=a \text{ -- конечно}
-        \\
-        & \Downarrow
-        \\
-        & \frac{S_n}{n} \xrightarrow{\text{п.н.}} a
-    \end{align*}
-
-    Центральная Предельная Теорема:
-    \begin{align*}
-        & \xi_n \text{ -- н.о.р.с.в.}
-        \\
-        & \E\xi_1(=\E\xi_2=...)=a \text{ -- конечно}
-        \\
-        & D\xi_1 (=D\xi_2=...) = \sigma^2 \text{ -- конечна}
-        \\
-        & \Downarrow
-        \\
-        & \sqrt{n} \left( \frac{S_n}{n} - a \right) \xrightarrow{d} N(0, \sigma^2)
-    \end{align*}
-
-    Можем переписать ЦПТ в терминах сходимости функций распределения:
+    ЦПТ позволяет в определённом смысле оценить скорость сходимости УЗБЧ. Так, для УЗБЧ в форме Колмогорова нам были нужны независимые одинаково распределённые случайные величины, у которых конечное матожидание, а в ЦПТ к этому добавляется конечность дисперсии. Перепишем ЦПТ в терминах сходимости функции распределения:
     \[
-        \forall x \in \R \ \ P \left( \sqrt{n} \left( \frac{S_n}{n}-a \right) \leqslant x \right) \xrightarrow[n \to \infty]{} P(\xi \leqslant x),\ \xi \sim N(0, \sigma^2)
+    	\forall x \in \R\ \ P\ps{\sqrt{n}\ps{\frac{S_n}{n} - a} \le x} \xrightarrow[n \to \infty]{} P(\xi \le x),\ \xi \sim N(0, \sigma^2)
     \]
-
-    Так как нормальное распределение абсолютно непрерывно, то можем выбрать $u > 0$ так, что:
-    \begin{align*}
-        & P(|\xi| \leqslant u) = 0,99
-        \\
-        & \Downarrow
-        \\
-        & P \left( \left| \frac{S_n}{n}-a \right| \leqslant \frac{u}{\sqrt{n}} \right) \xrightarrow[n \to \infty]{} 0,99
-    \end{align*}
-
-    Более того, можем выбрать $u, u' > 0$ так, что:
-    \begin{align*}
-        & P(u' \leqslant |\xi| \leqslant u) = 0,99
-        \\
-        & \Downarrow
-        \\
-        & P \left( \frac{u'}{\sqrt{n}} \leqslant \left| \frac{S_n}{n}-a \right| \leqslant \frac{u}{\sqrt{n}} \right) \xrightarrow[n \to \infty]{} 0,99
-    \end{align*}
-
-    Иными словами, в типичной ситуации (с вероятностью 0,99) выполнено:
+    Так как нормальное распределение абсолютно непрерывно, то можем выбрать такие $u' \le u$, что $P(u' \le |\xi| \le u) = 0.99$. Если применить эти числа в ЦПТ, то получится такой факт:
     \[
-        \left| \frac{S_n}{n}-a \right| = O \left( \frac{1}{\sqrt{n}} \right)
+    	P\ps{\frac{u'}{\sqrt{n}} \le \md{\frac{S_n}{n} - a} \le \frac{u}{\sqrt{n}}} \xrightarrow[n \to \infty]{} 0.99
     \]
-    и улучшить эту оценку нельзя.
+    Иными словами, есть такой номер $N_0 \in \N$, что, начиная с него, с огромной вероятностью будет выполнена оценка:
+    \[
+    	\md{\frac{S_n}{n} - a} = O\ps{\frac{1}{\sqrt{n}}}
+    \]
+    При этом данная оценка неулучшаема.
 \end{note}
 
 \begin{note}
@@ -136,31 +67,19 @@
 \end{note}
 
 \begin{theorem} (Берри-Эссеена, без доказательства)
-    Пусть $\{\xi_n,\ n \in \N\}$ -- н.о.р.с.в., пусть $\E|\xi_1-\E\xi_1|^3 < +\infty$ (тогда конечны будут также и $\E\xi_1$, и $D\xi_1 = \E|\xi_1-\E\xi_1|^2$). Пусть $D\xi_1 \neq 0$. Обозначим
-    \begin{align*}
-        & S_n = \xi_1 + ... + \xi_n
-        \\
-        & T_n = \frac{S_n - \E S_n}{\sqrt{DS_n}}
-    \end{align*}
-
-    Пусть $F_n$ -- функции распределения $T_n$, Ф -- функция распределения $N(0, 1)$. Тогда
+    Пусть $\{\xi_n\}_{n = 1}^\infty$ --- независимые одинаково распределённые случайные величины, причём $\E|\xi_1-\E\xi_1|^3 < +\infty$ и пусть $D\xi_1 \neq 0$. Обозначим $S_n = \xi_1 \plusdots \xi_n$ и $T_n = \frac{S_n - \E S_n}{\sqrt{DS_n}}$, $F_n$ --- функция распределения $T_n$, $\Phi$ --- функция распределения $N(0, 1)$. Тогда, имеет место следующее неравенство:
     \[
-        \sup_{x \in \R} |F_n(x)-\text{Ф}(x)| \leqslant \frac{c \ \E|\xi_1-\E\xi_1|^3}{\sigma^3 \sqrt{n}}
+        \sup_{x \in \R} |F_n(x)-\Phi(x)| \le \frac{c \ \E|\xi_1-\E\xi_1|^3}{\sigma^3 \sqrt{n}}
     \]
-
-    Здесь $c > 0$ -- ни от чего не зависящая константа.
+    где $c > 0$ --- абсолютная константа
 \end{theorem}
 
 \begin{note}
-    То есть здесь тоже оценка скорости сходимости $O \left( \frac{1}{\sqrt{n}} \right)$.
-\end{note}
-
-\begin{note}
-    Про константу $c$ можно сказать следующее:
+    Здесь уже абсолютно явная оценка сходимости $O(1 / \sqrt{n})$. Про константу $c$ можно сказать следующее:
     \begin{align*}
-        & c \leqslant 0,478... < \frac{1}{2}
-        \\
-        & c \geqslant \frac{1}{\sqrt{2\pi}} = 0,309...
+    & c \le 0,478\ldots < \frac{1}{2}
+    \\
+    & c \ge \frac{1}{\sqrt{2\pi}} = 0,309\ldots
     \end{align*}
 \end{note}
 
@@ -168,122 +87,126 @@
     Складываются $10^4$ чисел, каждое из которых было вычислено с точностью $10^{-6}$. В каких пределах с вероятностью $0,98$ лежит суммарная ошибка, если считать ошибки независимыми?
 \end{example}
 
+\begin{anote}
+	Хоть это нигде и не оговаривалось, но техника, которую мы развивали все эти страницы, теперь позволяет получить ответ на эту задачу для абсолютно любого вероятностного пространства $(\Omega, \F, P)$, которое способно реализовать всё условие задачи.
+\end{anote}
+
 \begin{solution}
-    Пусть $\xi_1, ..., \xi_n \sim U[-10^{-6}, 10^{-6}]$, $n = 10^4$ -- независимые случайные величины.
-    Посчитаем моменты различных порядков:
+    Пусть $\xi_1, \ldots, \xi_n \sim U[-10^{-6}, 10^{-6}]$, $n = 10^4$ --- независимые случайные величины. Посчитаем моменты различных порядков:
     \begin{align*}
-        & \E\xi_1(=\E\xi_2=...)=0
+        &{\E\xi_1 = \ldots = \E\xi_n = 0}
         \\
-        & D\xi_1(=D\xi_2=...)=\E|\xi_1-\E\xi_1|^2=\E\xi_1^2=\int_{\R} x^2 I[-10^{-6}, 10^{-6}] \frac{10^6}{2} dx = \frac{10^{-12}}{3}
+        &{D\xi_1 = \ldots = D\xi_n = \E|\xi_1 - \E\xi_1|^2 = \E\xi_1^2 = \int_{\R} x^2 \chi[-10^{-6}, 10^{-6}] \frac{1}{2 \cdot 10^{-6}}dx = \frac{10^{-12}}{3}}
         \\
-        & \E|\xi_1-\E\xi_1|^3=\E|\xi_1|^3=\int_{\R} |x|^3 I[-10^{-6}, 10^{-6}] \frac{10^6}{2} dx = \frac{10^{-18}}{4}
+        &{\E|\xi_1 - \E\xi_1|^3=\E|\xi_1|^3 =  \int_{\R} |x|^3 \chi[-10^{-6}, 10^{-6}] \frac{1}{2 \cdot 10^{-6}} dx = \frac{10^{-18}}{4}}
     \end{align*}
 
-    Обозначим $S_n = \xi_1 + ... + \xi_n$, Ф -- функция распределения $N(0, 1)$.
-    
-    Выполнены условия теоремы Берри-Эссеена, тогда:
+    Обозначим $S_n = \xi_1 \plusdots \xi_n$, Ф --- функция распределения $\xi \sim N(0, 1)$. Выполнены условия теоремы Берри-Эссеена, тогда:
     \[
-        \forall x \in \R \ \ \left| P \left( \frac{S_n-\E S_n}{\sqrt{DS_n}} \leqslant x \right) - \text{Ф}(x) \right| \leqslant \frac{c \ \E|\xi_1-\E\xi_1|^3}{(D\xi_1)^{3/2} \sqrt{n}}
+        \forall x \in \R \ \ \md{P \ps{\frac{S_n-\E S_n}{\sqrt{DS_n}} \le x} - \Phi(x)} \le \frac{c \ \E|\xi_1-\E\xi_1|^3}{(D\xi_1)^{3/2} \sqrt{n}}
     \]
 
-    Подставляя и оценивая значения, и обозначив $\sigma=D\xi_1$:
+    Обозначим $\sigma = D\xi_1$ и оценим модуль отклонения вероятности из ЦПТ с вероятностью по нормальному распределению:
     \[
-        \forall x \in \R \ \ \left| P \left( \frac{S_n}{\sigma \sqrt{n}} \leqslant x \right) - \text{Ф}(x) \right| \leqslant \frac{\frac{1}{2} \ \frac{10^{-18}}{4}}{(\frac{10^{-12}}{3})^{3/2} \sqrt{10^4}} = \frac{\frac{1}{2} \ \frac{10^{-18}}{4}}{\frac{10^{-18}}{3 \sqrt{3}} \sqrt{10^4}} = \frac{3\sqrt{3}}{8 \cdot 100}
+        \forall x \in \R\ \ \md{P\ps{\frac{S_n}{\sigma \sqrt{n}} \le x} - \Phi(x)} \le \frac{\frac{1}{2} \cdot \frac{10^{-18}}{4}}{(\frac{10^{-12}}{3})^{3/2}\sqrt{10^4}} = \frac{\frac{1}{2} \cdot \frac{10^{-18}}{4}}{\frac{10^{-18}}{3 \sqrt{3}}\sqrt{10^4}} = \frac{3\sqrt{3}}{8 \cdot 100}
     \]
 
-    Тогда получим, обозначив $\xi \sim N(0, 1)$:
+    Теперь мы можем дать оценку на просто вероятность среднего оказаться в отрезке $[-x; x]$:
     \begin{multline*}
-        P \left( \left| \frac{S_n}{\sigma \sqrt{n}} \right| \leqslant x \right) = \left| P \left( \left| \frac{S_n}{\sigma \sqrt{n}} \right| \leqslant x \right) \right| = \left| P \left( \frac{S_n}{\sigma \sqrt{n}} \leqslant x \right) - P \left( \frac{S_n}{\sigma \sqrt{n}} < -x \right)\right| =
+        P\ps{\md{\frac{S_n}{\sigma \sqrt{n}}} \le x} = \md{P\ps{\md{\frac{S_n}{\sigma \sqrt{n}}} \le x}} = \md{P\ps{\frac{S_n}{\sigma \sqrt{n}} \le x} - P\ps{\frac{S_n}{\sigma \sqrt{n}} < -x}} =
         \\
-        = \left| P \left( \frac{S_n}{\sigma \sqrt{n}} \leqslant x \right) - P \left( \frac{S_n}{\sigma \sqrt{n}} < -x \right) + \text{Ф}(x) - \text{Ф}(x) + P(\xi < -x) - \text{Ф}(-x) \right| =
+        = \md{P \ps{\frac{S_n}{\sigma \sqrt{n}} \le x} - P \ps{\frac{S_n}{\sigma \sqrt{n}} < -x} + \Phi(x) - \Phi(x) + P(\xi < -x) - \Phi(-x)} =
         \\
-        = \left| \text{Ф}(x) - \text{Ф}(-x) + P \left( \frac{S_n}{\sigma \sqrt{n}} \leqslant x \right) - \text{Ф}(x) - P \left( \frac{S_n}{\sigma \sqrt{n}} < -x \right) + P(\xi < -x) \right| \geqslant
+        = \md{\Phi(x) - \Phi(-x) + P\ps{\frac{S_n}{\sigma \sqrt{n}} \le x} - \Phi(x) - P\ps{\frac{S_n}{\sigma \sqrt{n}} < -x} + P(\xi < -x)} \ge
         \\
-        \geqslant | \text{Ф}(x) - \text{Ф}(-x) | - \left| P \left( \frac{S_n}{\sigma \sqrt{n}} \leqslant x \right) - \text{Ф}(x) \right| - \left| P \left( \frac{S_n}{\sigma \sqrt{n}} < -x \right) - P(\xi < -x) \right| \geqslant
+        |\Phi(x) - \Phi(-x)| - \md{P\ps{\frac{S_n}{\sigma \sqrt{n}} \le x} - \Phi(x)} - \md{P\ps{\frac{S_n}{\sigma \sqrt{n}} < -x} - P(\xi < -x)} \ge
         \\
-        \geqslant | \text{Ф}(x) - \text{Ф}(-x) | - \frac{3\sqrt{3}}{8 \cdot 100} - \frac{3\sqrt{3}}{8 \cdot 100} = \text{Ф}(x) - \text{Ф}(-x) - \frac{3\sqrt{3}}{4 \cdot 100}
+        |\Phi(x) - \Phi(-x)| - \frac{3\sqrt{3}}{8 \cdot 100} - \frac{3\sqrt{3}}{8 \cdot 100} = \Phi(x) - \Phi(-x) - \frac{3\sqrt{3}}{4 \cdot 100}
     \end{multline*}
 
     Для функции распределения стандартного нормального распределения можем подобрать параметры:
     \[
-        x = 2,807,\ \ \text{Ф}(x) - \text{Ф}(-x) \geqslant 0,995
+        x = 2,807,\ \ \Phi(x) - \Phi(-x) \ge 0,995
     \]
 
     С учётом этого получим:
     \begin{align*}
-        & P \left( \left| \frac{S_n}{\sigma \sqrt{n}} \right| \leqslant 2,807 \right) \geqslant 0,995 - \frac{3\sqrt{3}}{4 \cdot 100}
+        & P \ps{\md{\frac{S_n}{\sigma \sqrt{n}}} \le 2,807} \ge 0,995 - \frac{3\sqrt{3}}{4 \cdot 100}
         \\
-        & P \left( |S_n| \leqslant \sqrt{\frac{10^{-12}}{3}} \sqrt{10^4} \cdot 2,807 \right) \geqslant 0,98
+        & P \ps{|S_n| \le \sqrt{\frac{10^{-12}}{3}} \sqrt{10^4} \cdot 2,807} \ge 0,98
         \\
-        & P(|S_n| \leqslant 1,7 \cdot 10^{-4}) \geqslant 0,98
+        & P(|S_n| \le 1,7 \cdot 10^{-4}) \ge 0,98
     \end{align*}
 \end{solution}
 
 \section{Сходимости случайных векторов}
 
+\begin{note}
+	Далее мы резервируем обозначение $(\Omega, \F, P)$ под вероятностное пространство.
+\end{note}
+
 \begin{definition}
-    Пусть $(\xi_n,\ n \in \N)$, $\xi$ -- случайные векторы из $R^m$ на вероятностном пространстве $(\Omega, \F, P)$. Последовательность $(\xi_n,\ n \in \N)$ сходится к $\xi$:
-    \begin{enumerate}
-        \item с вероятностью 1 (почти наверное), если
-        \[
-            P \left( \lim_n \xi_n = \xi \right) = 1
-        \]
-        Обозначение: $\xi_n \xrightarrow{\text{п.н.}} \xi$.
-
-        \item по вероятности, если
-        \[
-		\forall \eps > 0 \ \ P(||\xi_n - \xi||_2 \ge \eps) \xrightarrow[n \to \infty]{} 0
-            \text{, где } ||x||_2 = \sqrt{x_1^2 + ... + x_m^2}
+	Пусть $\{\xi_n\}_{n = 1}^\infty$, $\xi$ --- случайные векторы из $\R^m$. Тогда \textit{$\xi_n$ сходится к $\xi$ с вероятностью 1 ($P$-почти наверное)}, если выполнено равенство:
+	\[
+		P\ps{\lim_{n \to \infty} \xi_n = \xi} = 1
 	\]
-        Обозначение: $\xi_n \xrightarrow{P} \xi$.
+	Обозначается как $\xi_n \xrightarrow{P \text{ п.н.}} \xi$
+\end{definition}
 
-        \item по распределению, если
-        \[
-            \forall f \colon \R^m \to \R \text{ -- ограниченная непрерывная} \ \ \E f(\xi_n) \xrightarrow[n \to \infty]{} \E f(\xi)
-        \]
-        Обозначение: $\xi_n \xrightarrow{d} \xi$.
-    \end{enumerate}
+\begin{definition}
+	Пусть $\{\xi_n\}_{n = 1}^\infty$, $\xi$ --- случайные векторы из $\R^m$. Тогда \textit{$\xi_n$ сходится к $\xi$ по вероятности}, если выполнено утверждение:
+	\[
+		\forall \eps > 0\ \ P(\|\xi_n - \xi\|_2 \ge \eps) \xrightarrow[n \to \infty]{} 0, \text{ где } \|x\|_2 = \sqrt{x_1^2 + \ldots + x_m^2}
+	\]
+	Обозначается как $\xi_n \xrightarrow{P \text{ п.н.}} \xi$
+\end{definition}
+
+\begin{definition}
+	Пусть $\{\xi_n\}_{n = 1}^\infty$, $\xi$ --- случайные векторы из $\R^m$. Тогда \textit{$\xi_n$ сходится к $\xi$ по распределению}, если выполнено утверждение:
+	\[
+		\forall f \colon \R^m \to \R \text{ --- непрерывная ограниченная }\ \E f(\xi_n) \xrightarrow[n \to \infty]{} \E f(\xi)
+	\]
+	Обозначается как $\xi_n \xrightarrow{d} \xi$
 \end{definition}
 
 \begin{exercise}
-    Пусть $\xi_n = (\xi_n^{(1)}, ..., \xi_n^{(m)}),\ n \in \N,\ \ \xi = (\xi^{(1)}, ..., \xi^{(m)})$ -- случайные векторы. Тогда
+    Пусть $\xi_n = (\xi_{1, n}, \ldots, \xi_{m, n}),\ n \in \N,\ \ \xi = (\xi_1, \ldots, \xi_m)$ --- случайные векторы. Тогда
     \begin{enumerate}
-        \item $\xi_n \xrightarrow{\text{п.н.}} \xi \Longleftrightarrow \xi_n^{(i)} \xrightarrow{\text{п.н.}} \xi^{(i)} \ \ \forall i = 1, ..., m$
+        \item $\xi_n \xrightarrow{P\text{ п.н.}} \xi \Lolra \Big(\forall i \in \range{1}{m}\ \xi_{i, n} \xrightarrow{P\text{ п.н.}} \xi_i\Big)$
 
-        \item $\xi_n \xrightarrow{\text{P}} \xi \Longleftrightarrow \xi_n^{(i)} \xrightarrow{\text{P}} \xi^{(i)} \ \ \forall i = 1, ..., m$
+        \item $\xi_n \xrightarrow{P} \xi \Lolra \Big(\forall i \in \range{1}{m}\ \xi_{i, n} \xrightarrow{P} \xi_i\Big)$
 
-        \item $\xi_n \xrightarrow{\text{d}} \xi \Longrightarrow \xi_n^{(i)} \xrightarrow{\text{d}} \xi^{(i)} \ \ \forall i = 1, ..., m$
+        \item $\xi_n \xrightarrow{d} \xi \Lolra \Big(\forall i \in \range{1}{m}\ \xi_{i, n} \xrightarrow{d} \xi_i\Big)$
     \end{enumerate}
 \end{exercise}
 
-\begin{note}
-    Просто по определению и по теореме о замене переменной в интеграле Лебега
-    \[
-        \xi_n \xrightarrow{d} \xi \Leftrightarrow P_{\xi_n} \xrightarrow{w} P_{\xi},
-    \]
-    где справа стоят соответствующие распределения случайных векторов.
-
-    По теореме Александрова
-    \[
-        P_{\xi_n} \xrightarrow{w} P_{\xi} \Leftrightarrow P_{\xi_n} \Ra P_{\xi}.
-    \]
-    
-    Это начало доказательства следующей теоремы.
-\end{note}
-
 \begin{theorem} (без доказательства)
-    Пусть $(\xi_n,\ n \in \N)$, $\xi$ -- случайные векторы в $\R^m$. Тогда эквивалентны следующие утверждения:
+    Пусть ${\xi_n}_{n = 1}^\infty$, $\xi$ --- случайные векторы в $\R^m$. Тогда эквивалентны следующие утверждения:
     \begin{enumerate}
         \item $\xi_n \xrightarrow{d} \xi$
-        \item $F_{\xi_n}(x) \xrightarrow[n \to \infty]{} F_{\xi}(x) \ \ \forall x \text{ -- т. непр-сти } F_{\xi}$
+        
+        \item $\forall x \in C(F_\xi)\ F_{\xi_n}(x) \xrightarrow[n \to \infty]{} F_{\xi}(x)$
     \end{enumerate}
 \end{theorem}
 
-\begin{lemma} (о взаимоотношении видов сходимостей)
-    Пусть $(\xi_n,\ n \in \N)$, $\xi$ -- случайные векторы в $\R^m$. Тогда:
+\begin{note}
+	Просто по определению и по теореме о замене переменной в интеграле Лебега
+	\[
+		\xi_n \xrightarrow{d} \xi \Leftrightarrow P_{\xi_n} \xrightarrow{w} P_{\xi},
+	\]
+	где справа стоят соответствующие распределения случайных векторов. По теореме Александрова
+	\[
+		P_{\xi_n} \xrightarrow{w} P_{\xi} \Leftrightarrow P_{\xi_n} \Ra P_{\xi}.
+	\]
+	Это начало доказательства теоремы выше.
+\end{note}
+
+\begin{lemma} (О взаимоотношении видов сходимостей)
+    Пусть $\{\xi_n\}_{n = 1}^\infty$, $\xi$ --- случайные векторы в $\R^m$. Тогда:
     \begin{enumerate}
-        \item $\xi_n \xrightarrow{\text{п.н.}} \xi \Ra \xi_n \xrightarrow{\text{P}} \xi$
-        \item $\xi_n \xrightarrow{\text{P}} \xi \Ra \xi_n \xrightarrow{\text{d}} \xi$
+        \item $\xi_n \xrightarrow{P\text{ п.н.}} \xi \Ra \xi_n \xrightarrow{P} \xi$
+        
+        \item $\xi_n \xrightarrow{P} \xi \Ra \xi_n \xrightarrow{d} \xi$
     \end{enumerate}
 \end{lemma}
 
@@ -294,10 +217,10 @@
     \end{enumerate}
 \end{proof}
 
-\begin{theorem} (о наследовании сходимости)
-    Пусть $(\xi_n,\ n \in \N)$, $\xi$ -- случайные векторы в $\R^m$. Пусть $h \colon \R^m \to \R^k$ -- непрерывна почти всюду относительно распределения случайного вектора $\xi$, то есть $\exists B \in \B(\R^m)$ т.ч. $h$ непрерывна на $B$ и $P(\xi \in B) = 1$. Тогда:
+\begin{theorem} (О наследовании сходимости)
+    Пусть $\{\xi_n\}_{n = 1}^\infty$, $\xi$ --- случайные векторы в $\R^m$. Пусть $h \colon \R^m \to \R^k$ --- непрерывна почти всюду относительно распределения случайного вектора $\xi$ (то есть $\exists B \in \B(\R^m) \colon P_\xi(B) = 1 \wedge h$ непрерывна на $B$). Тогда:
     \begin{enumerate}
-        \item $\xi_n \xrightarrow{\text{п.н.}} \xi \Ra h(\xi_n) \xrightarrow{\text{п.н.}} h(\xi)$
+        \item $\xi_n \xrightarrow{P\text{ п.н.}} \xi \Ra h(\xi_n) \xrightarrow{P\text{ п.н.}} h(\xi)$
         \item $\xi_n \xrightarrow{P} \xi \Ra h(\xi_n) \xrightarrow{P} h(\xi)$
         \item $\xi_n \xrightarrow{d} \xi \Ra h(\xi_n) \xrightarrow{d} h(\xi)$
     \end{enumerate}
@@ -307,97 +230,70 @@
     \begin{enumerate}
         \item Заметим, что так как $h$ непрерывна на $B$, то:
         \[
-            \xi_n(\omega) \to \xi(\omega),\ \xi(\omega) \in B \Ra h(\xi_n(\omega)) \to h(\xi(\omega))
+            \xi_n(\omega) \to \xi(\omega) \wedge \xi(\omega) \in B \Ra h(\xi_n(\omega)) \to h(\xi(\omega))
         \]
         Отсюда получаем:
         \[
-            P(h(\xi_n) \to h(\xi)) \geqslant P(\xi_n \to \xi,\ \xi \in B) = 1
+            P(h(\xi_n) \to h(\xi)) \ge P(\xi_n \to \xi \wedge \xi \in B) = 1
         \]
-        Последнее верно, ибо:
-        \[
-            P(\xi_n \to \xi) = 1,\ \ P(\xi \in B) = 1
-        \]
+        Последнее верно, ибо $P(\xi_n \to \xi) = P(\xi \in B) = 1$, а мы знаем формулу $P(A \cup B) + P(A \cap B) = P(A) + P(B)$, для любых событий $A, B$.
 
         \item Хотим доказать, что $h(\xi_n) \xrightarrow{P} h(\xi)$, то есть:
         \[
             \forall \eps > 0 \ \ P(||h(\xi_n) - h(\xi)||_2 \ge \eps) \xrightarrow[n \to \infty]{} 0
         \]
-        Предположим, что $h(\xi_n) \nrightarrow^{P} h(\xi)$, то есть:
+        Предположим противное. Тогда
         \[
-            \exists \eps > 0 \ \ \exists \delta > 0 \ \ \exists \{n_k\}_{k \in \N} \subset \N \ \
-            \forall k \in \N \ \ P(||h(\xi_{n_k}) - h(\xi)||_2 \geqslant \eps) \geqslant \delta
+            \exists \eps > 0 \ \ \exists \delta > 0 \ \ \exists \{n_k\}_{k = 1}^\infty \subseteq \N \such \forall k \in \N \ \ P(||h(\xi_{n_k}) - h(\xi)||_2 \ge \eps) \ge \delta
         \]
         Но по одному из результатов главы про сходимость случайных величин:
         \[
-            \xi_{n_k} \xrightarrow{P} \xi \Ra \exists \{n_{k_l}\}_{l \in \N} \subset \{n_k\}_{k \in \N} \ \
-            \xi_{n_{k_l}} \xrightarrow{\text{п.н.}} \xi
+            \xi_{n_k} \xrightarrow{P} \xi \Ra \exists \{n_{k_l}\}_{l = 1}^\infty \subseteq \{n_k\}_{k = 1}^\infty \ \ \xi_{n_{k_l}} \xrightarrow{P\text{ п.н.}} \xi
         \]
-        Отметим, что там результат был доказан для одномерного случая. Но так как сходимости почти наверное и по вероятности эквивалентны таким же покоординатным сходимостям, мы можем постепенно выбирать подпоследовательность: сначала сходящуюся почти наверное по первой координате, затем из неё сходящуюся почти наверное по первой и второй координате, и так далее.
-
-        Согласно пункту 1 и лемме о взаимоотношении видов сходимостей:
+        Отметим, что там результат был доказан для одномерного случая. Но так как сходимости почти наверное и по вероятности эквивалентны таким же покоординатным сходимостям, мы можем постепенно выбирать подпоследовательность: сначала сходящуюся почти наверное по первой координате, затем из неё сходящуюся почти наверное по первой и второй координате, и так далее. Теперь, согласно первому пункту и лемме о взаимоотношении видов сходимостей:
         \[
-            \xi_{n_{k_l}} \xrightarrow{\text{п.н.}} \xi \Ra h(\xi_{n_{k_l}}) \xrightarrow{\text{п.н.}} h(\xi) \Ra h(\xi_{n_{k_l}}) \xrightarrow{P} h(\xi)
+            \xi_{n_{k_l}} \xrightarrow{P\text{ п.н.}} \xi \Ra h(\xi_{n_{k_l}}) \xrightarrow{P\text{ п.н.}} h(\xi) \Ra h(\xi_{n_{k_l}}) \xrightarrow{P} h(\xi)
         \]
         Тогда получаем, что:
         \[
-            0 < \delta \leqslant P(||h(\xi_{n_{k_l}}) - h(\xi)||_2 \geqslant \eps) \xrightarrow[l \to \infty]{} 0 \text{ -- противоречие}
+            0 < \delta \le P(||h(\xi_{n_{k_l}}) - h(\xi)||_2 \ge \eps) \xrightarrow[l \to \infty]{} 0 \text{ --- противоречие}
         \]
 
-        \item Обозначим $Q_n$ -- распределение случайного вектора $h(\xi_n)$, $Q$ -- распределение случайного вектора $h(\xi)$. Хотим доказать, что $h(\xi_n) \xrightarrow{d} h(\xi)$, как поняли в одном из замечаний выше, для этого нам достаточно доказать, что $Q_n \xrightarrow{w} Q$.
-
-        По теореме Александрова для этого достаточно проверить, что:
+        \item Обозначим $Q_n$ --- распределение случайного вектора $h(\xi_n)$, $Q$ --- распределение случайного вектора $h(\xi)$. Хотим доказать, что $h(\xi_n) \xrightarrow{d} h(\xi)$. Как поняли в одном из замечаний выше, для этого нам достаточно доказать, что $Q_n \xrightarrow{w} Q$. По теореме Александрова достаточно проверить, что:
+        $\varlimsup_{n \to \infty} Q_n(F) \le Q(F)$ для любого замкнутого $F \subseteq \R^m$. Также обозначим $P_n$ --- распределение случайного вектора $\xi_n$, $P_{\xi}$ --- распределение случайного вектора $\xi$. Знаем, что $\xi_n \xrightarrow{d} \xi$, по тому же замечанию и по теореме Александрова из этого следует, что:
         \[
-            \varlimsup_{n \to \infty} Q_n(F) \leqslant Q(F) \ \ \forall F \text{ -- замкнутое из } \R^m
+            \forall F \subseteq \R^m \text{ --- замкнутое }\ \varlimsup_{n \to \infty} P_n(F) \le P_{\xi}(F)
         \]
-
-        Также обозначим $P_n$ -- распределение случайного вектора $\xi_n$, $P_{\xi}$ -- распределение случайного вектора $\xi$. Знаем, что $\xi_n \xrightarrow{d} \xi$, по тому же замечанию и по теореме Александрова из этого следует, что:
-        \[
-            \varlimsup_{n \to \infty} P_n(F) \leqslant P_{\xi}(F) \ \ \forall F \text{ -- замкнутое из } \R^m
-        \]
-
-        Далее будем обозначать $[A]$ -- замыкание множества $A$. Тогда получим:
+        Далее будем обозначать $[A]$ --- замыкание множества $A$. Тогда получим:
         \begin{multline*}
-            \varlimsup_n Q_n(F) = \varlimsup_n P(h(\xi_n) \in F) = \varlimsup_n P(\xi_n \in h^{-1}(F)) = \varlimsup_n P_n(h^{-1}(F)) \leqslant
+            \varlimsup_{n \to \infty} Q_n(F) = \varlimsup_{n \to \infty} P(h(\xi_n) \in F) = \varlimsup_{n \to \infty} P(\xi_n \in h^{-1}(F)) =
             \\
-            \leqslant \varlimsup_n P_n([h^{-1}(F)]) \leqslant P_{\xi}([h^{-1}(F)]) = P(\xi \in [h^{-1}(F)])
+            \varlimsup_{n \to \infty} P_n(h^{-1}(F)) \le \varlimsup_{n \to \infty} P_n([h^{-1}(F)]) \le P_{\xi}([h^{-1}(F)]) = P(\xi \in [h^{-1}(F)])
         \end{multline*}
-            
-        Теперь утверждается, что $[h^{-1}(F)] \subset h^{-1}(F) \cup (\R^m \setminus B)$ для того самого множества $B$ из условия теоремы. Действительно:
-        \begin{align*}
-            & x \in [h^{-1}(F)]
-            \\
-            & \Downarrow
-            \\
-            & \exists \{x_n\}_{n=1}^{\infty} \subset h^{-1}(F) \ \ x = \lim_{n \to \infty} x_n
-        \end{align*}
-        Далее либо $x \in \R^m \setminus B$, либо $x \in B$. Если $x \in B$, то:
-        \begin{align*}
-            & h \text{ непрерывна на } B \Ra h(x) = \lim_{n \to \infty} h(x_n)
-            \\
-            & \forall n \in \N \ \ x_n \in h^{-1}(F) \Ra \forall n \in \N \ \ h(x_n) \in F
-            \\
-            & F \text{ замкнуто } \Ra h(x) = \lim_{n \to \infty} h(x_n) \in F
-        \end{align*}
-        То есть действительно вывели:
+        Теперь утверждается, что $[h^{-1}(F)] \subseteq h^{-1}(F) \cup (\R^m \setminus B)$ для того самого множества $B$ из условия теоремы. Действительно:
         \[
-            x \in [h^{-1}(F)] \Ra x \in \R^m \setminus B \text{ или } h(x) \in F
+        	x \in [h^{-1}(F)] \Lra \exists \{x_n\}_{n = 1}^\infty \subseteq h^{-1}(F) \colon x = \lim_{n \to \infty} x_n
         \]
-
-        Тогда получаем:
-        \begin{align*}
-            & \varlimsup_n Q_n(F) \leqslant P(\xi \in [h^{-1}(F)]),\ [h^{-1}(F)] \subset h^{-1}(F) \cup (\R^m \setminus B)
-            \\
-            & \Downarrow
-            \\
-            & \varlimsup_n Q_n(F) \leqslant P(\xi \in h^{-1}(F)) + P(\xi \in \R^m \setminus B) = P(h(\xi) \in F) + 0 = Q(F)
-        \end{align*}
-
+        Остаётся 2 варианта: либо $x \in \R^m \bs B$, либо $x \in B$. Во втором случае следующие 3 факта полностью обосновывают принадлежность к $h^{-1}(F)$:
+        \begin{enumerate}
+        	\item $h$ непрерывна на $B$, то есть $h(x) = \lim_{n \to \infty} h(x_n)$
+        	
+        	\item $\forall n \in \N\ x_n \in h^{-1}(F) \Lora \forall n \in \N\ h(x_n) \in F$
+        	
+        	\item $F$ --- замкнутое множество. Соединяя вышенаписанные факты, получаем требуемое: $h(x) = \lim_{n \to \infty} h(x_n) \in F$
+        \end{enumerate}
+		Значит, мы можем продолжить цепочку неравенств с верхним пределом так:
+		\begin{multline*}
+			\varlimsup_{n \to \infty} Q_n(F) \le P(\xi \in [h^{-1}(F)]) \le
+			\\
+			P(\xi \in h^{-1}(F)) + P(\xi \in \R^m \bs B) = P(h(\xi) \in F) + 0 = Q(F)
+		\end{multline*}
         Это ровно то, что нам нужно было проверить.
     \end{enumerate}
 \end{proof}
 
 \begin{lemma}
-    Пусть $\xi_n$ -- случайные величины, $c = const$, $c \in \R$. Тогда следующие утверждения эквивалентны:
+    Пусть $\xi_n$ --- случайные величины, $c = const$, $c \in \R$. Тогда следующие утверждения эквивалентны:
     \begin{enumerate}
         \item $\xi_n \xrightarrow{P} c$
         \item $\xi_n \xrightarrow{d} c$
@@ -410,42 +306,36 @@
 
         \item[$2 \Ra 1$] Запишем сходимость по распределению в терминах функций распределения:
         \[
-            \xi_n \xrightarrow{d} c \Leftrightarrow \lim_{n \to \infty} F_{\xi_n}(x) = F_c(x) \ \ \forall x \text{ -- точка непрерывности } F_c
+            \xi_n \xrightarrow{d} c \Lra \Big(\forall x \in C(F_c)\ \lim_{n \to \infty} F_{\xi_n}(x) = F_c(x)\Big)
         \]
-
-        Учитывая, что
+		С учётом определения $F_c$ для константы
         \[
             F_c(x) = \System{
-                        & 1,\ x \geqslant c,
+                        & 1,\ x \ge c,
                         \\
                         & 0,\ x < c
                     }
         \]
-        Получим, что
+        Заключаем, что $C(F_c) = \R \bs \{c\}$. А показать нам надо следующее:
         \[
-            \xi_n \xrightarrow{d} c \Leftrightarrow \lim_{n \to \infty} F_{\xi_n}(x) = F_c(x) \ \ \forall x \neq c
+            \xi_n \xrightarrow{P} c \Lra \Big(\forall \eps > 0\ \ P(|\xi_n - c| \ge \eps) \xrightarrow[n \to \infty]{} 0\Big)
         \]
-
-        Хотим доказать:
-        \[
-            \xi_n \xrightarrow{P} c \Leftrightarrow \forall \eps > 0\ \ P(|\xi_n - c| \ge \eps) \xrightarrow[n \to \infty]{} 0
-        \]
-
-        Запишем серию равенств и неравенств:
+		Зафикируем $\eps > 0$ и выразим вероятность выше через функции распределения:
         \begin{multline*}
-            P(|\xi_n - c| \ge \eps) = P(\xi_n - c \ge \eps) + P(\xi_n - c \le -\eps) = 1 - P(\xi_n < c + \epsilon) + P(\xi_n \leqslant c - \epsilon) \leqslant
+            P(|\xi_n - c| \ge \eps) = P(\xi_n - c \ge \eps) + P(\xi_n - c \le -\eps) =
             \\
-            \leqslant 1 - P \left( \xi_n \leqslant c + \frac{\epsilon}{2} \right) + P(\xi_n \leqslant c - \epsilon) = 1 - F_{\xi_n} \left( c + \frac{\epsilon}{2} \right) + F_{\xi_n}(c - \epsilon) \xrightarrow[n \to \infty]{}
+            1 - P(\xi_n < c + \eps) + P(\xi_n \le c - \eps) \le 1 - P \ps{\xi_n \le c + \frac{\eps}{2}} + P(\xi_n \le c - \eps) =
             \\
-            \xrightarrow[n \to \infty]{} 1 - F_c \left( c + \frac{\epsilon}{2} \right) + F_c(c - \epsilon) = 1 - 1 + 0 = 0
+            1 - F_{\xi_n} \ps{c + \frac{\eps}{2}} + F_{\xi_n}(c - \eps) \xrightarrow[n \to \infty]{} 1 - F_c \ps{c + \frac{\eps}{2}} + F_c(c - \eps) = 1 - 1 + 0 = 0
         \end{multline*}
     \end{itemize}
 \end{proof}
 
 \begin{theorem} (Лемма Слуцкого)
-    Пусть $\xi_n \xrightarrow{d} \xi,\ \eta_n \xrightarrow{d} c = const$ -- случайные величины. Тогда
+    Пусть $\xi_n \xrightarrow{d} \xi$, $\eta_n \xrightarrow{d} c = const$ --- случайные величины. Тогда
     \begin{enumerate}
         \item $\xi_n + \eta_n \xrightarrow{d} \xi + c$
+        
         \item $\xi_n \cdot \eta_n \xrightarrow{d} \xi \cdot c$
     \end{enumerate}
 \end{theorem}
@@ -458,140 +348,120 @@
     \begin{enumerate}
         \item Необходимо и достаточно доказать сходимость функций распределения:
         \[
-        \lim_{n \to \infty} F_{\xi_n + \eta_n}(x) = F_{\xi + c}(x) \ \ \forall x \text{ -- точка непрерывности } F_{\xi + c}
+        	\forall x \in C(F_{\xi + c})\ \ \lim_{n \to \infty} F_{\xi_n + \eta_n}(x) = F_{\xi + c}(x)
         \]
 
-        Пусть $x$ -- точка непрерывности $F_{\xi+c}$. Тогда просто по определению $x-c$ -- точка непрерывности $F_{\xi}$.
+		Основная идея доказательства состоит в том, чтобы хорошо оценить верхние и нижние пределы для $F_{\xi_n + \eta_n}(x)$ (не без помощи леммы выше). Пусть $x \in C(F_{\xi + c})$. Тогда просто по определению $x - c$ --- точка непрерывности $F_{\xi}$:
+		\[
+			F_{\xi + c}(x) = P(\xi + c \le x) = P(\xi \le x - c) = F_\xi(x - c)
+		\]
+		В силу той же непрерывности, мы можем выбрать сколь угодно малое $\eps > 0$, так, что $x - c \pm \eps$ --- точки непрерывности функции $F_\xi$. Действительно, можем так сделать, так как $F_\xi$ монотонна, имеет не более, чем счётное множество точек разрыва. А если бы не могли так выбрать, получили бы, что в какой-то окрестности точки $x - c$ из любой пары точек $x - c \pm \eps$ хотя бы одна является точкой разрыва, то есть в этой окрестности мощность множества точек разрыва не меньше мощности множества точек непрерывности, то есть множество точек разрыва континуально. Итак, зафиксируем нужное $\eps > 0$.
+		\begin{itemize}
+			\item[$\varlimsup$] Сделаем оценку сверху на $F_{\xi_n + \eta_n}(x)$ следующим образом:
+			\begin{multline*}
+				F_{\xi_n + \eta_n}(x) = P(\xi_n + \eta_n \le x) =
+				\\
+				P(\xi_n + \eta_n \le x \wedge c - \eta_n \ge \eps) + P(\xi_n + \eta_n \le x \wedge c - \eta_n < \eps) \le
+				\\
+				P(c - \eta_n \ge \eps) + P(\xi_n + c < x + \eps) \le
+				\\
+				P(|c - \eta_n| \ge \eps) + P(\xi_n \le x - c + \eps)
+			\end{multline*}
+			По доказанной лемме, $\eta_n \xrightarrow{d} c \Ra \eta_n \xrightarrow{P} c$. Это даёт следующий предел:
+			\[
+				\forall \eps > 0\ \ P(|c - \eta_n| \ge \eps) = P(|\eta_n - c| \ge \eps) \xrightarrow[n \to \infty]{} 0
+			\]
+			Также вспомним, что $x - c + \eps \in C(F_\xi)$ и $\xi_n \xrightarrow{d} \xi$ по условию:
+			\[
+				\lim_{n \to \infty} P(\xi_n \le x - c + \eps) = \lim_{n \to \infty} F_{\xi_n}(x - c + \eps) = F_\xi(x - c + \eps)
+			\]
+			Теперь мы можем навесить верхний предел на исходное неравенство и получить желаемую оценку:
+			\begin{multline*}
+				\varlimsup_{n \to \infty} F_{\xi_n + \eta_n}(x) \le \varlimsup_{n \to \infty} P(|c - \eta_n| \ge \eps) + \varlimsup_{n \to \infty} P(\xi_n \le x - c + \eps) =
+				\\
+				\lim_{n \to \infty} P(|c - \eta_n| \ge \eps) + \lim_{n \to \infty} P(\xi_n \le x - c + \eps) = F_\xi(x - c + \eps)
+			\end{multline*}
+			
+			\item[$\varliminf$] Чтобы получить оценку снизу на $F_{\xi_n + \eta_n}(x)$, получим оценку сверху на $1 - F_{\xi_n + \eta_n}(x)$:
+			\begin{multline*}
+				1 - F_{\xi_n + \eta_n}(x) = P(\xi_n + \eta_n > x) =
+				\\
+				P(\xi_n + \eta_n > x \wedge c - \eta_n \le -\eps) + P(\xi_n + \eta_n > x \wedge c - \eta_n > -\eps) \le
+				\\
+				P(c - \eta_n \le -\eps) + P(\xi_n + c > x - \eps) \le P(|c - \eta_n| \ge \eps) + P(\xi_n > x - c - \eps)
+			\end{multline*}
+			Из этого получаем неравенство для только $F_{\xi_n + \eta_n}(x)$:
+			\[
+				F_{\xi_n + \eta_n}(x) \ge 1 - P(|c - \eta_n| \ge \eps) - P(\xi_n > x - c - \eps) = P(\xi_n \le x - c - \eps) - P(|c - \eta_n| \ge \eps)
+			\]
+			Теперь нужно воспользоваться всё тем же фактом $\eta_n \xrightarrow{d} c \Ra \eta_n \xrightarrow{P} c$ и непрерывностью $F_\xi$ в точке $x - c - \eps$:
+			\[
+				\lim_{n \to \infty} P(\xi_n \le x - c - \eps) = \lim_{n \to \infty} F_\xi(x - c - \eps) = F_\xi(x - c - \eps)
+			\]
+			Навешиваем нижние пределы и получаем последнюю оценку:
+			\begin{multline*}
+				\varliminf_{n \to \infty} F_{\xi_n + \eta_n}(x) \le \varliminf_{n \to \infty} P(\xi_n \le x - c - \eps) - \varliminf_{n \to \infty} P(|c - \eta_n| \ge \eps) =
+				\\
+				\lim_{n \to \infty} P(\xi_n \le x - c - \eps) - \lim_{n \to \infty} P(|c - \eta_n| \ge \eps) = F_\xi(x - c - \eps)
+			\end{multline*}
+		\end{itemize}
+		В итоге мы получили такое утверждение:
+		\[
+			\forall \eps > 0\ \ F_\xi(x - c - \eps) \le \varliminf_{n \to \infty} F_{\xi_n + \eta_n}(x) \le \varlimsup_{n \to \infty} F_{\xi_n + \eta_n}(x) \le F_\xi(x - c + \eps)
+		\]
+		Так как $x - c \in C(F_\xi)$, то можем устремить $\eps$ к нулю и получить равенство. Стало быть:
+		\[
+			\lim_{n \to \infty} F_{\xi_n + \eta_n}(x) = F_\xi(x - c) = F_{\xi + c}(x)
+		\]
 
-        Можем выбрать сколь угодно малое $\epsilon > 0$, так, что $x-c+\epsilon,\ x-c-\epsilon$ -- точки непрерывности функции $F_\xi$. Действительно, можем так сделать, так как $F_\xi$ монотонна, следовательно, имеет не более, чем счётное множество точек разрыва, а если бы не могли так выбрать, получили бы, что в какой-то окрестности точки $x-c$ из любой пары точек $x-c+\epsilon,\ x-c-\epsilon$ хотя бы одна является точкой разрыва, то есть в этой окрестности мощность множества точек разрыва не меньше мощности множества точек непрерывности, то есть множество точек разрыва континуально.
-        
-        В общем выберем малое $\epsilon > 0$ так, что $x-c+\epsilon,\ x-c-\epsilon$ -- точки непрерывности функции $F_\xi$.
-
-        Запишем серию равенств и неравенств:
-        \begin{multline*}
-            F_{\xi_n + \eta_n}(x) = P(\xi_n + \eta_n \leqslant x) = P(\xi_n + \eta_n \leqslant x,\ c - \eta_n \geqslant \epsilon) + P(\xi_n + \eta_n \leqslant x,\ c - \eta_n < \epsilon) \leqslant
-            \\
-            \leqslant P(c - \eta_n \geqslant \epsilon) + P(\xi_n + c < x + \epsilon) \leqslant P(|c - \eta_n| \geqslant \epsilon) + P(\xi_n \leqslant x - c + \epsilon)
-        \end{multline*}
-
-        В силу последней леммы $\eta_n \xrightarrow{d} c \Ra \eta_n \xrightarrow{P} c$, тогда:
-        \[
-            \forall \epsilon > 0 \ \ P(|c - \eta_n| \geqslant \epsilon) = P(|\eta_n - c| \geqslant \epsilon) \xrightarrow[n \to \infty]{} 0
-        \]
-
-        Так как $x-c+\epsilon$ -- точка непрерывности функции $F_\xi$ и $\xi_n \xrightarrow{d} \xi$, то:
-        \[
-            \lim_n P(\xi_n \leqslant x - c + \epsilon) = \lim_n F_{\xi_n}(x - c + \epsilon) = F_\xi(x - c + \epsilon)
-        \]
-
-        Отсюда получаем:
-        \begin{multline*}
-            \varlimsup_n F_{\xi_n + \eta_n}(x) \leqslant \varlimsup_n P(|c - \eta_n| \geqslant \epsilon) + \varlimsup_n P(\xi_n \leqslant x - c + \epsilon) =
-            \\
-            = \lim_n P(|c - \eta_n| \geqslant \epsilon) + \lim_n P(\xi_n \leqslant x - c + \epsilon) = F_\xi(x - c + \epsilon)
-        \end{multline*}
-
-        Аналогично запишем ещё одну серию равенств и неравенств:
-        \begin{multline*}
-            1 - F_{\xi_n + \eta_n}(x) = P(\xi_n + \eta_n > x) = P(\xi_n + \eta_n > x,\ c - \eta_n \leqslant -\epsilon) + P(\xi_n + \eta_n > x,\ c - \eta_n > -\epsilon) \leqslant
-            \\
-            \leqslant P(c - \eta_n \leqslant -\epsilon) + P(\xi_n + c > x - \epsilon) \leqslant P(|c - \eta_n| \geqslant \epsilon) + P(\xi_n > x - c - \epsilon)
-        \end{multline*}
-
-        Отсюда следует, что:
-        \[
-            F_{\xi_n + \eta_n}(x) \geqslant 1 - P(|c - \eta_n| \geqslant \epsilon) - P(\xi_n > x - c - \epsilon) = P(\xi_n \leqslant x - c - \epsilon) - P(|c - \eta_n| \geqslant \epsilon)
-        \]
-
-        Опять, так как $x-c-\epsilon$ -- точка непрерывности функции $F_\xi$ и $\xi_n \xrightarrow{d} \xi$, то:
-        \[
-            \lim_n P(\xi_n \leqslant x - c - \epsilon) = \lim_n F_{\xi_n}(x - c - \epsilon) = F_\xi(x - c - \epsilon)
-        \]
-
-        Отсюда получаем:
-        \begin{multline*}
-            \varliminf_n F_{\xi_n + \eta_n}(x) \geqslant \varliminf_n P(\xi_n \leqslant x - c - \epsilon) - \varliminf_n P(|c - \eta_n| \geqslant \epsilon) =
-            \\
-            = \lim_n P(\xi_n \leqslant x - c - \epsilon) - \lim_n P(|c - \eta_n| \geqslant \epsilon) = F_\xi(x - c - \epsilon)
-        \end{multline*}
-
-        В результате получаем:
-        \[
-            F_\xi(x - c - \epsilon) \leqslant \varliminf_n F_{\xi_n + \eta_n}(x) \leqslant \varlimsup_n F_{\xi_n + \eta_n}(x) \leqslant F_\xi(x - c + \epsilon)
-        \]
-
-        Устремим $\epsilon \to 0$ и вспомним, что $x-c$ -- точка непрерывности функции $F_{\xi}$:
-        \[
-            F_\xi(x - c) \leqslant \varliminf_n F_{\xi_n + \eta_n}(x) \leqslant \varlimsup_n F_{\xi_n + \eta_n}(x) \leqslant F_\xi(x - c)
-        \]
-
-        Отсюда следует, что:
-        \[
-            \exists \lim_n F_{\xi_n + \eta_n}(x) = F_\xi(x - c) = F_{\xi+c}(x)
-        \]
-        $x$ изначально была выбрана как произвольная точка непрерывности функции $F_{\xi+c}$, поэтому это ровно то, что нам нужно.
-
-        \item Доказательство второй части теоремы очень похоже на доказательство первой части. Вместо $x-c$ возникнет $x/c$, сложение заменится на умножение. Нужно только аккуратно разобрать случаи, где возникает деление на ноль. Тем не менее, эту часть оставляем без доказательства.
+        \item Доказательство второй части теоремы очень похоже на доказательство первой части. Вместо $x - c$ возникнет $x/c$, сложение заменится на умножение. Нужно только аккуратно разобрать случаи, где возникает деление на ноль. Тем не менее, эту часть оставляем без доказательства.
     \end{enumerate}
 \end{proof}
 
 \begin{theorem} (Обобщение леммы Слуцкого, без доказательства)
-    Пусть $\xi_n \xrightarrow{d} \xi,\ \eta_n \xrightarrow{d} c = const$ -- случайные величины. Тогда $(\xi_n, \eta_n) \xrightarrow{d} (\xi, c)$.
+    Пусть $\xi_n \xrightarrow{d} \xi,\ \eta_n \xrightarrow{d} c = const$ --- случайные величины. Тогда $(\xi_n, \eta_n) \xrightarrow{d} (\xi, c)$.
 \end{theorem}
 
 \begin{example}
-    Пусть $X_1, ..., X_n$ -- н.о.р.с.в., $X_1, ..., X_n \sim Bin(1, p)=Bern(p)$. Хотим оценить $p$. Имеется в виду, что с большой вероятностью можно оценить значение $p$ через значения случайных величин $X_1, ..., X_n$.
-
-    Обозначим
+    Пусть известно, что $X_1, \ldots, X_n$ --- независимые одинаково распределённые случайные величины, причём $X_1 \sim Bin(1, p) = Bern(p)$, но мы не знаем $p$. Хотим как раз оценить $p$. Покажем, как это можно организовать, если мы знаем просто значения $X_1, \ldots, X_n$ на каких-то хороших исходах. Обозначим среднее арифметическое $n$ величин за $\ol{X}$ 
     \[
-        \overline{X} = \frac{X_1 + ... + X_n}{n}
+        \ol{X} := \frac{X_1 + \ldots + X_n}{n}
     \]
-    
-    Выполнено
+    За счёт известного распределения, мы знаем матожидание и дисперсию: $\E X_1 = p$, $DX_1 = p(1 - p)$. Применим ЦПТ:
     \[
-        \E X_1 = p,\ \ D X_1 = p(1-p)
+        \frac{n\ol{X}-np}{\sqrt{np(1 - p)}} = \frac{\sqrt{n}(\ol{X} - p)}{\sqrt{p(1 - p)}} \xrightarrow[n \to \infty]{d} N(0, 1)
     \]
-
-    По Центральной Предельной Теореме
+    Хочется заменить знаменатель последней дроби на что-то, зависящее от $X_1, \ldots, X_n$, чтобы сходимость при этом сохранилась (тогда мы можем перейти к вероятностям и выразить границы оценки $p$). Итак, по УЗБЧ в форме Колмогорова:
     \[
-        \frac{n\overline{X}-np}{\sqrt{np(1-p)}} = \frac{\sqrt{n}(\overline{X}-p)}{\sqrt{p(1-p)}} \xrightarrow{d} N(0, 1)
+        \ol{X} \xrightarrow{P\text{ п.н.}} p
     \]
-
-    Хочется заменить знаменатель последней дроби на что-то, зависящее от $X_1, ..., X_n$, чтобы сходимость при этом сохранилась.
-
-    По УЗБЧ в форме Колмогорова:
-    \[
-        \overline{X} \xrightarrow{\text{п.н.}} p
-    \]
-
     По теореме о наследовании сходимости:
     \[
-        \sqrt{\overline{X}(1-\overline{X})} \xrightarrow{\text{п.н.}} \sqrt{p(1-p)}
+        \sqrt{\ol{X}(1 - \ol{X})} \xrightarrow{P\text{ п.н.}} \sqrt{p(1 - p)}
     \]
-    
     По этой же теореме, так как $p=const$:
     \[
-        \frac{\sqrt{p(1-p)}}{\sqrt{\overline{X}(1-\overline{X})}} \xrightarrow{\text{п.н.}} 1
+        \frac{\sqrt{p(1 - p)}}{\sqrt{\ol{X}(1 - \ol{X})}} \xrightarrow{P\text{ п.н.}} 1
     \]
 
-    Сходимость почти наверное влечёт сходимость по распределению, поэтому, применяя лемму Слуцкого для произведения:
+    Сходимость почти наверное влечёт сходимость по распределению, поэтому, применяя лемму Слуцкого для произведения, имеем уже такую сходимость:
     \[
-        \frac{\sqrt{n}(\overline{X}-p)}{\sqrt{\overline{X}(1-\overline{X})}} = \frac{\sqrt{n}(\overline{X}-p)}{\sqrt{p(1-p)}} \frac{\sqrt{p(1-p)}}{\sqrt{\overline{X}(1-\overline{X})}} \xrightarrow{d} N(0, 1) \cdot 1 = N(0, 1)
+        \frac{\sqrt{n}(\ol{X} - p)}{\sqrt{\ol{X}(1 - \ol{X})}} = \frac{\sqrt{n}(\ol{X} - p)}{\sqrt{p(1 - p)}} \frac{\sqrt{p(1 - p)}}{\sqrt{\ol{X}(1 - \ol{X})}} \xrightarrow{d} N(0, 1) \cdot 1 = N(0, 1)
     \]
 
     Нормальное распределение абсолютно непрерывно, поэтому, в терминах функций распределения:
     \[
-        P \left( \frac{\sqrt{n}(\overline{X}-p)}{\sqrt{\overline{X}(1-\overline{X})}} \leqslant u \right) \xrightarrow[n \to \infty]{} \text{Ф}(u) \ \ \forall u \in \R
+        \forall u \in \R\ \ P \ps{\frac{\sqrt{n}(\ol{X} - p)}{\sqrt{\ol{X}(1 - \ol{X})}} \le u} \xrightarrow[n \to \infty]{} \Phi(u)
     \]
-    Здесь Ф -- функция распределения стандартного нормального распределения.
+    Здесь $\Phi$ --- функция распределения стандартного нормального распределения.
 
     Далее, применяя оценку из примера к теореме Берри-Эссеена, получим:
     \[
-        P \left( \left| \frac{\sqrt{n}(\overline{X}-p)}{\sqrt{\overline{X}(1-\overline{X})}} \right| \leqslant 2,807 \right) \xrightarrow[n \to \infty]{} \text{Ф}(2,807) -  \text{Ф}(-2,807) \geqslant 0,995
+        P \ps{\md{\frac{\sqrt{n}(\ol{X} - p)}{\sqrt{\ol{X}(1 - \ol{X})}}} \le 2,807} \xrightarrow[n \to \infty]{} \Phi(2,807) -  \Phi(-2,807) \ge 0,995
     \]
 
-    Таким образом, с вероятностью, стремящейся к чему-то большему, чем 0,995:
+    Таким образом, с вероятностью, стремящейся к чему-то большему, чем $0,995$:
     \[
-        \overline{X} - \frac{2.807}{\sqrt{n}} \sqrt{\overline{X}(1-\overline{X})} \leqslant p \leqslant \overline{X} + \frac{2.807}{\sqrt{n}} \sqrt{\overline{X}(1-\overline{X})}
+        \ol{X} - \frac{2.807}{\sqrt{n}} \sqrt{\ol{X}(1 - \ol{X})} \le p \le \ol{X} + \frac{2.807}{\sqrt{n}} \sqrt{\ol{X}(1 - \ol{X})}
     \]
 \end{example}

@@ -25,7 +25,7 @@
     Функция $f: \R \to \Cm$ называется \textit{неотрицательно определённой}, если выполнено неравенство:
     \[
         \forall n \in \N \ \ \forall t_1, \ldots, t_n \in \R \ \ \forall z_1, \ldots, z_n \in \Cm \ \
-        \sum_{i, j = 1}^n f(t_i - t_j) z_i \ol{z_j} \geqslant 0
+        \sum_{i, j = 1}^n f(t_i - t_j) z_i \ol{z_j} \ge 0
     \]
     Это утверждение можно записать более просто на языке алгебры:
     \[
@@ -60,7 +60,7 @@
             \int_\R \ps{\sum_{k, l = 1}^n e^{it_kx} z_k \ol{e^{it_lx} z_l}} dP(x) =
             \int_\R \ps{\sum_{k=1}^n e^{it_kx}z_k} \ol{ \ps{\sum_{l=1}^n e^{it_lx}z_l}} dP(x) =
             \\
-            \int_\R \md{\sum_{k=1}^n e^{it_kx}z_k}^2 dP(x) \geqslant 0
+            \int_\R \md{\sum_{k=1}^n e^{it_kx}z_k}^2 dP(x) \ge 0
         \end{multline*}
         
         \item[$2 \Ra 1$] Без доказательства.
@@ -70,7 +70,7 @@
 \section{Метод характеристических функций}
 
 \begin{note}
-    Один из способов применения характеристических функций -- теорема о единственности -- о том, что характеристическая функция однозначно определяет распределение. Оказывается, что зависимость характеристических функций и распределений не только биективна, но и в некотором смысле непрерывна: организуя сходимость характеристических функций, получаем сходимость распределений.
+    Один из способов применения характеристических функций --- теорема о единственности --- о том, что характеристическая функция однозначно определяет распределение. Оказывается, что зависимость характеристических функций и распределений не только биективна, но и в некотором смысле непрерывна: организуя сходимость характеристических функций, получаем сходимость распределений.
 \end{note}
 
 \subsection{Теорема Прохорова}
@@ -88,7 +88,7 @@
     Пусть $\{P_\alpha\}_{\alpha \in \gA}$ -- семейство распределений на $(\R^m, \B(\R^m))$.
     Семейство $\{P_\alpha\}_{\alpha \in \gA}$ называется \textit{плотным}, если выполнено условие:
     \[
-        \forall \eps > 0 \ \ \exists K \subseteq \R^m \text{ - компакт} \such \sup_{\alpha \in \gA} P_\alpha(\R^m \setminus K) \leqslant \eps
+        \forall \eps > 0 \ \ \exists K \subseteq \R^m \text{ - компакт} \such \sup_{\alpha \in \gA} P_\alpha(\R^m \setminus K) \le \eps
     \]
 \end{definition}
 
@@ -218,42 +218,33 @@
     \end{itemize}
 \end{proof}
 
-\subsection{Теорема о непрерывности. ЦПТ}
+\subsection{Теорема о непрерывности. Центральная предельная теорема}
 
 \begin{lemma} (Первая лемма)
-    Пусть $\{P_n,\ n \in \N\}$ -- последовательность распределений в $\R^m$. Если она плотная и любая её слабосходящаяся подпоследовательность слабо сходится к одной и той же вероятностной мере $Q$, то $P_n \xrightarrow{w} Q$.
+    Пусть $\{P_n\}_{n = 1}^\infty$ -- последовательность распределений в $\R^m$. Если она плотная и любая её слабосходящаяся подпоследовательность слабо сходится к одной и той же вероятностной мере $Q$, то $P_n \xrightarrow{w} Q$.
 \end{lemma}
 
 \begin{proof}
-    Семейство $\{P_n\}$ -- плотное $\Ra$ по теореме Прохорова оно относительно компактное $\Ra$ из любой его последовательности можно выделить слабо сходящуюся подпоследовательность. \\
-
-    Напомним определение слабой сходимости: $P_n \xrightarrow{w} P$, $P_n,\ P$ -- вероятностные меры в $\R^{m}$, если
-    \[
-        \forall f \colon \R^m \to \R \text{ --- непрерывная ограниченная}\ \ \int_{\R^m} f(x)dP_n(x) \xrightarrow[n \to \infty]{} \int_{\R^m} f(x)dP(x)
-    \] \\
-    
-    Предположим, что $P_n \nrightarrow^w Q$, то есть:
+    Семейство $\{P_n\}_{n = 1}^\infty$ --- плотное, а значит по теореме Прохорова оно относительно компактное. Следовательно, из любой его последовательности можно выделить слабо сходящуюся подпоследовательность. Предположим, что $P_n \centernot{\xrightarrow{w}} Q$. Если записать это утверждение через определение, то получится следующее:
     \begin{multline*}
-        \exists f \colon \R^m \to \R \text{ -- непрерывная ограниченная }
+        \exists f \colon \R^m \to \R \text{ --- непрерывная ограниченная }
         \\
         \exists \eps > 0 \ \
-        \exists \{n_k\}_{k \in \N} \subset \N \ \
-        | \int_{\R^m} f(x) dP_{n_k}(x) - \int_{\R^m} f(x) dP(x) | \geqslant \eps
+        \exists \{n_k\}_{k = 1}^\infty \subseteq \N\ \ \md{\int_{\R^m} f(x) dP_{n_k}(x) - \int_{\R^m} f(x) dP(x)} \ge \eps
     \end{multline*}
 
-    В силу относительной компактности выберем из $\{n_k\}_{k \in \N}$ слабо сходящуюся подпоследовательность $\{n_{k_l}\}_{l \in \N}$. Из условия $P_{n_{k_l}} \xrightarrow{w} Q$. В частности, для функции $f$:
+    В силу относительной компактности выберем из $\{n_k\}_{k = 1}^\infty$ слабо сходящуюся подпоследовательность $\{n_{k_l}\}_{l \in \N}$. Это означает, что $P_{n_{k_l}} \xrightarrow{w} Q$. В частности, для функции $f$:
     \[
         \lim_{l \to \infty} \int_{\R^m} f(x) dP_{n_{k_l}}(x) = \int_{\R^m} f(x) dP(x)
     \]
-
     В итоге получаем противоречие:
     \[
-        0 < \eps \leqslant | \lim_{l \to \infty} \int_{\R^m} f(x) dP_{n_{k_l}}(x) - \int_{\R^m} f(x) dP(x) | = 0
+        0 < \eps \le \md{\int_{\R^m} f(x) dP_{n_{k_l}}(x) - \int_{\R^m} f(x) dP(x)} \xrightarrow[l \to \infty]{} 0
     \]
 \end{proof}
 
 \begin{lemma} (Вторая лемма)
-    Пусть $\{P_n\}$ -- последовательность распределений на $\R$, $\{\phi_n\}$ -- соответствующая последовательность характеристических функций. Если $\{P_n\}$ -- плотная, то
+    Пусть $\{P_n\}_{n = 1}^\infty$ --- последовательность распределений на $\R$, $\{\phi_n\}_{n = 1}^\infty$ --- соответствующая последовательность характеристических функций. Если $\{P_n\}_{n = 1}^\infty$ --- плотная, то верна эквивалентность:
     \[
         P_n \text{ слабо сходится} \Leftrightarrow \forall t \in \R \ \ \exists \lim_n \phi_n(t)
     \]
@@ -261,236 +252,174 @@
 
 \begin{proof}~
     \begin{itemize}
-        \item[$\Ra$] $P_n \xrightarrow{w} Q$, $Q$ -- вероятностная мера на $\R$. То есть:
+        \item[$\Ra$] $P_n \xrightarrow{w} Q$, где $Q$ --- вероятностная мера на $\R$. То есть:
         \[
-            \forall f \colon \R \to \R \text{ -- непрерывная ограниченная } \int_\R f(x) dP_n(x) \xrightarrow[n \to \infty]{} \int_\R f(x) dQ(x)
+            \forall f \colon \R \to \R \text{ -- непрерывная ограниченная } \int_\R f(x) dP_n(x) \xrightarrow[n \to \infty]{} \int_\R f(x)dQ(x)
         \]
-
         Возьмём в качестве $f(x)$ функции $\cos(tx)$, $\sin(tx)$ при фиксированном $t \in \R$. Получим:
-        \begin{align*}
-            & \int_\R \cos(tx) dP_n(x) \xrightarrow[n \to \infty]{} \int_\R \cos(tx) dQ(x)
-            \\
-            & \int_\R \sin(tx) dP_n(x) \xrightarrow[n \to \infty]{} \int_\R \sin(tx) dQ(x)
-            \\
-            & \Downarrow
-            \\
-            & \int_\R e^{itx} dP_n(x) \xrightarrow[n \to \infty]{} \int_\R e^{itx} dQ(x)
-        \end{align*}
-
-        Последнее в точности означает, что
         \[
-            \phi_n(t) \xrightarrow[n \to \infty]{} \phi(t) \ \ \forall t \in R
+        	\System{
+        		&{\int_\R \cos(tx) dP_n(x) \xrightarrow[n \to \infty]{} \int_\R \cos(tx)dQ(x)}
+        		\\
+        		&{\int_\R \sin(tx) dP_n(x) \xrightarrow[n \to \infty]{} \int_\R \sin(tx)dQ(x)}
+        	}
+        	\Ra
+        	\int_\R e^{itx} dP_n(x) \xrightarrow[n \to \infty]{} \int_\R e^{itx}dQ(x)
         \]
-        Здесь $\phi(t)$ -- характеристическая функция вероятностной меры $Q$.
-
-        \item[$\La$] Обозначим
+		Последнее в точности означает сходимость характеристических функций:
         \[
-            \phi(t) = \lim_{n \to \infty} \phi_n(t)
+            \forall t \in \R\ \ \phi_n(t) \xrightarrow[n \to \infty]{} \phi(t)
         \]
+        где $\phi(t)$ -- характеристическая функция вероятностной меры $Q$.
 
-        Рассмотрим в $\{P_n\}$ произвольную слабо сходящуюся подпоследовательность $\{P_{n_k}\}$
+        \item[$\La$] Обозначим $\phi(t) := \lim_{n \to \infty} \phi_n(t)$. Рассмотрим в $\{P_n\}_{n = 1}^\infty$ произвольную слабо сходящуюся подпоследовательность $\{P_{n_k}\}_{k = 1}^\infty$, $P_{n_k} \xrightarrow{w} Q$. В силу уже доказанной части, верно следующее утверждение:
         \[
-            P_{n_k} \xrightarrow{w} Q,\ Q \text{ -- вероятностная мера в } \R
+            \phi(t) = \lim_{k \to \infty} \phi_{n_k}(t) = \psi(t), \text{ где } \psi \text{ --- характеристическая функция } Q
         \]
 
-        В силу предыдущей части доказательства (следствие слева направо):
-        \[
-            \phi(t) = \lim_{k \to \infty} \phi_{n_k}(t) = \psi(t),\ \psi \text{ -- характеристическая функция } Q
-        \]
-
-        Значит, $\phi$ -- характеристическая функция $Q$, тогда в силу теоремы о единственности для характеристических функций, все слабо сходящиеся подпоследовательности последовательности $\{P_n\}$ имеют один и тот же предел $Q$. Тогда выполнены условия первой леммы, следовательно
-        \[
-            P_n \xrightarrow{w} Q
-        \]
+        Значит, $\phi$ --- характеристическая функция $Q$. Тогда, в силу теоремы о единственности для характеристических функций, все слабо сходящиеся подпоследовательности последовательности $\{P_n\}_{n = 1}^\infty$ имеют один и тот же предел $Q$. Тогда выполнены условия первой леммы, следовательно $P_n \xrightarrow{w} Q$.
     \end{itemize}
 \end{proof}
 
 \begin{note}
-    В частности, доказали, что если в условиях теоремы $P_n \xrightarrow{w} Q$, $\phi(t) = \lim_{n \to \infty} \phi_n(t)$, то $\phi$ -- характеристическая функция вероятностной меры $Q$.
+    В частности, мы доказали, что если в условиях теоремы $P_n \xrightarrow{w} Q$, $\phi(t) = \lim_{n \to \infty} \phi_n(t)$, то $\phi$ -- характеристическая функция вероятностной меры $Q$.
 \end{note}
 
 \begin{note}
-    В первых двух леммах активно пользовались плотностью семейства распределений. Пора научиться её проверять.
+    В первых двух леммах активно пользовались плотностью семейства распределений. Пора научиться проверять, что у семейства она есть.
 \end{note}
 
 \begin{lemma} (Третья лемма)
     Пусть $\phi(t)$ -- характеристическая функция вероятностной меры $P$ на $\R$. Тогда
     \[
-        P \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) \leqslant \frac{7}{a} \int_0^a (1-Re\phi(t)) dt \ \ \forall a > 0
+        \forall a > 0\ \ P\ps{\R \setminus \sbr{-\frac{1}{a}, \frac{1}{a}}} \le \frac{7}{a} \int_0^a (1 - \re\phi(t))dt
     \]
 \end{lemma}
 
 \begin{proof}
-    Сначала скажем, что $\phi$ -- характеристическая функция -- непрерывна $\Ra$ $1-Re\phi(t)$ непрерывна $\Ra$ на $[0, a]$ интегрируема как по Риману, так и по Лебегу.
-
-    Распишем интеграл в правой части:
+    Сначала отметим, что $\phi$ непрерывна. Стало быть, $1 - \re\phi(t)$ тоже непрерывна, то есть на отрезке $[0, a]$ интегрируема как по Риману, так и по Лебегу. Вся идея состоит в том, чтобы просто оценить интеграл нужной вероятностью снизу:
     \begin{multline*}
-        \frac{1}{a} \int_0^a (1-Re\phi(t)) dt = \frac{1}{a} \int_0^a (1-Re \int_\R e^{ixt} dP(x)) dt = \frac{1}{a} \int_0^a (1 - \int_\R \cos(xt) dP(x)) dt =
+        \frac{1}{a} \int_0^a (1 - \re\phi(t))dt = \frac{1}{a} \int_0^a \ps{1 - \re \int_\R e^{ixt}dP(x)}dt =
         \\
-        = \text{[т.к. вероятностная мера]} = \frac{1}{a} \int_0^a \int_\R (1-\cos(xt)) dP(x) dt = \text{[теор. Фубини]} =
+        \frac{1}{a} \int_0^a \ps{1 - \int_\R \cos(xt)dP(x)}dt = [1] = \frac{1}{a} \int_0^a \int_\R (1 - \cos(xt)) dP(x) dt = [2] =
         \\
-        = \frac{1}{a} \int_\R \int_0^a (1-\cos(xt)) dt dP(x) 
-        \geqslant \text{[т.к. $1-\cos(xt) \geqslant 0$]} \geqslant
-        \frac{1}{a} \int_{\R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right]} \int_0^a (1-\cos(xt)) dt dP(x) =
+        \frac{1}{a} \int_\R \int_0^a (1 - \cos(xt))dt dP(x) = [3] \ge 
+        \frac{1}{a} \int_{\R \bs \sbr{ -\frac{1}{a}, \frac{1}{a}}} \int_0^a (1 - \cos(xt))dt dP(x) =
         \\
-        = \frac{1}{a} \int_{\R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right]} \left( a - \frac{sin(xt)}{x} \bigg|_0^a \right) dP(x) = \int_{\R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right]} \left( 1 - \frac{sin(ax)}{ax} \right) dP(x)
+        \frac{1}{a} \int_{\R \bs \sbr{  -\frac{1}{a}, \frac{1}{a}}} \ps{a - \frac{\sin(xt)}{x} \bigg|_0^a}dP(x) = \int_{\R \bs \sbr{-\frac{1}{a}, \frac{1}{a}}} \ps{1 - \frac{\sin(ax)}{ax}}dP(x)
     \end{multline*}
-
-    Замечание автора конспекта: На самом деле переход с теоремой Фубини надо обосновать подробнее. Сама теорема Фубини всё выводит из существования конечного интеграла по произведению мер, а здесь у нас есть только повторный интеграл. Можно сослаться на теорему Тонелли (формулировка и доказательство есть, например, в книге Богачев В.И., Смолянов О.Г. Действительный и функциональный анализ): действительно, $1-\cos(xt)$ -- неотрицательная и измеримая относительно произведения вероятностной меры и меры Лебега функция, так как обе рассматриваются на борелевской $\sigma$-алгебре в $\R$, повторный интеграл конечен $\Ra$ существует и конечен интеграл по произведению мер, после чего применима теорема Фубини. И ещё здесь есть неявные переходы от интеграла Римана к интегралу Лебега и обратно. \\
-
-    Как известно из курса математического анализа:
+    Обоснуем все отмеченные переходы:
+    \begin{enumerate}
+    	\item Просто воспользовались свойством меры $\int_\R dP(x) = P(\R) = 1$
+    	
+    	\item Если коротко, то пользуемся теоремой Фубини. Если формально, то нужно знать, что теорема всё выводит из существования конечного интеграла по произведению мер, а здесь просто повторный интеграл. Поэтому нужно сослаться на теорему Тонелли (формулировка и доказательство есть, например, в книге Богачёв В.И., Смолянов О.Г. <<Действительный и функциональный анализ>>). Действительно, $1 - \cos(xt)$ --- неотрицательная измеримая относительно произведения вероятностной меры и меры Лебега функция, так как обе рассматриваются на борелевской $\sigma$-алгебре в $\R$. Повторный интеграл конечен, стало быть существует и конечен интеграл по произведению мер, и только после этого применяется теорема Фубини. Ну и ещё стоит отметить, что мы сделали несколько неявных переходов от интеграла Римана к интегралу Лебега и обратно.
+    	
+    	\item Косинус --- чётная функция, а максимальное по модулю значение, которое он принимает под интегралами на отрезке $\sbr{-\frac{1}{a}; \frac{1}{a}}$, равно $\cos(1) < 1$, то есть это будет заведомо положительная часть интеграла, которую мы можем выкинуть
+    \end{enumerate}
+    Из курса математического анализа мы теперь возьмём три факта:
     \begin{align*}
-        & \frac{\sin x}{x} \leqslant 1 \ \ \forall x \in \R
+        &{\forall x \in \R\ \ \frac{\sin x}{x} \le 1}
         \\
-        & \frac{\sin x}{x} \leqslant \frac{\sin 1}{1} = \sin 1 \ \ \forall x \in \R,\ |x| \geqslant 1
+        &{\forall x \in \R, |x| \ge 1\ \ \frac{\sin x}{x} \le \frac{\sin 1}{1} = \sin 1}
         \\
-        & 1 - \sin 1 \geqslant \frac{1}{7}
+        &{1 - \sin 1 \ge \frac{1}{7}}
     \end{align*}
-
     С учётом этого можно продолжить цепочку неравенств:
     \begin{multline*}
-        \frac{1}{a} \int_0^a (1-Re\phi(t)) dt \geqslant \int_{\R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right]} \left( 1 - \frac{\sin(ax)}{ax} \right) dP(x) \geqslant
+        \frac{1}{a} \int_0^a (1 - \re\phi(t))dt \ge \int_{\R \bs \sbr{-\frac{1}{a}, \frac{1}{a}}} \ps{1 - \frac{\sin(ax)}{ax}} dP(x) \ge
         \\
-        \geqslant \inf_{|x| \geqslant \frac{1}{a}} \left( 1 - \frac{\sin(ax)}{ax} \right) P \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) = \inf_{|x| \geqslant 1} \left( 1 - \frac{\sin x}{x} \right) P \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) =
+        \inf_{|x| \ge \frac{1}{a}} \ps{1 - \frac{\sin(ax)}{ax}} P\ps{\R \bs \sbr{-\frac{1}{a}; \frac{1}{a}}} = \inf_{|x| \ge 1} \ps{1 - \frac{\sin x}{x}} P\ps{\R \bs \sbr{-\frac{1}{a}; \frac{1}{a}}} =
         \\
-        = (1 - \sin 1) P \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) \geqslant \frac{1}{7} P \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right)
+        = (1 - \sin 1) P\ps{\R \bs \sbr{-\frac{1}{a}; \frac{1}{a}}} \ge \frac{1}{7} P\ps{\R \bs \sbr{-\frac{1}{a}; \frac{1}{a}}}
     \end{multline*}
 \end{proof}
 
 \begin{theorem} (Непрерывности для характеристических функций)
-    Пусть $\{P_n,\ n \in \N\}$ -- последовательность распределений на $\R$, $\{\phi_n,\ n \in \N\}$ -- соответствующая последовательность характеристических функций.
+    Пусть $\{P_n\}_{n = 1}^\infty$ --- последовательность распределений на $\R$, $\{\phi_n\}_{n = 1}^\infty$ --- соответствующая последовательность характеристических функций. Имеют место следующие утверждения:
     \begin{enumerate}
-        \item Если $P_n \xrightarrow{w} P$, то $\forall t \in \R \ \ \exists \lim_n \phi_n(t) = \phi(t)$ --характеристическая функция меры $P$
-        \item Пусть $\forall t \in \R \ \ \exists \lim_n \phi_n(t) = \phi(t)$, где $\phi(t)$ непрерывна в нуле. Тогда $\phi(t)$ является характеристической функцией некоторой меры $P$ и $P_n \xrightarrow{w} P$
+        \item Если $P_n \xrightarrow{w} P$, то $\forall t \in \R\ \exists \lim_{n \to \infty} \phi_n(t) = \phi(t)$, причём $\phi$ --- характеристическая функция меры $P$
+        \item Пусть $\forall t \in \R\ \exists \lim_{n \to \infty} \phi_n(t) = \phi(t)$, где $\phi(t)$ непрерывна в нуле. Тогда $\phi(t)$ является характеристической функцией некоторой меры $P$, причём $P_n \xrightarrow{w} P$
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}~
     \begin{enumerate}
         \item В точности повторяет доказательство следствия слева направо из второй леммы.
-        \item Если докажем, что $\{P_n\}$ -- плотная последовательность распределений, то вторая лемма и замечание к ней полностью завершат доказательство этого пункта.
-
-        Применим третью лемму для характеристических функций $\phi_n$ вероятностных мер $P_n$. Получим:
+        \item Если докажем, что $\{P_n\}_{n = 1}^\infty$ -- плотная последовательность распределений, то вторая лемма и замечание к ней полностью завершат доказательство этого пункта. Итак, применим третью лемму для характеристических функций $\phi_n$ вероятностных мер $P_n$. Получим:
         \[
-            P_n \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) \leqslant \frac{7}{a} \int_0^a (1-Re\phi_n(t)) dt \ \ \forall a > 0
+            \forall a > 0\ \ P_n \ps{\R \bs \sbr{-\frac{1}{a}, \frac{1}{a}}} \le \frac{7}{a} \int_0^a (1 - \re\phi_n(t)) dt
         \]
-
-        $\phi_n \to \phi$ $\Ra$ $1-Re\phi_n \to 1-Re\phi$, причём все функции мажорируются константой $2$ из оценки значений характеристической функции. Тогда можно применить теорему Лебега:
+        Коль скоро $\phi_n \to \phi$, то и $(1 - \re\phi_n) \to (1 - \re\phi)$, причём все функции мажорируются константой 2 из оценки значений характеристической функции. Тогда можно применить теорему Лебега:
         \[
-            \frac{7}{a} \int_0^a (1-Re\phi_n(t)) dt \xrightarrow[n \to \infty]{} \frac{7}{a} \int_0^a (1-Re\phi(t))
+            \frac{7}{a} \int_0^a (1 - \re\phi_n(t)) dt \xrightarrow[n \to \infty]{} \frac{7}{a} \int_0^a (1 - \re\phi(t))dt
         \]
-
         В серии неравенств выше перейдем к пределу:
         \[
-            P_n \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) \leqslant \frac{7}{a} \int_0^a (1-Re\phi(t)) dt \ \ \forall a > 0 \ \ \forall n \in \N
+            \forall a > 0\ \forall n \in \N\ \ P_n \ps{\R \bs \sbr{-\frac{1}{a}, \frac{1}{a}}} \le \frac{7}{a} \int_0^a (1 - \re\phi(t))dt
         \]
-
-        Заметим, что:
-        \begin{align*}
-            & \phi(0) = \lim_n \phi_n(0) = \lim_n 1 = 1 \text{ (т.к. $\phi_n$ -- характеристические функции)}
-            \\
-            & \Downarrow
-            \\
-            & \lim_{t \to 0} Re \phi(t) = 1 \text{ (из непрерывности в нуле)}
-            \\
-            & \Downarrow
-            \\
-            & \forall \eps > 0 \ \ \exists a > 0 \ \ \forall t,\ |t| \leqslant a \ \ 1 - Re \phi(t) = |1 - Re \phi(t)| \leqslant \frac{\eps}{7}
-            \\
-            & \Downarrow
-            \\
-            & \forall \eps > 0 \ \ \exists a > 0 \ \ \frac{7}{a} \int_0^a (1-Re\phi(t)) dt = \frac{7}{a} \int_0^a |1-Re\phi(t)| dt \leqslant \frac{7}{a} a \frac{\eps}{7} = \eps
-        \end{align*}
-
-        То есть получили, что:
+        Покажем, что интеграл на самом деле можно оценить произвольным $\eps$ при подходящем $a$:
+        \begin{enumerate}
+        	\item $\phi(0) = \lim_{n \to \infty} \phi_n(0) = \lim_{n \to \infty} 1 = 1$, коль скоро $\phi_n$ уже характеристические функции по условию
+        	
+        	\item $\lim_{t \to 0} \re\phi(t) = 1$, опять же за счёт непрерывности в нуле функции $\phi$ по условию. По определению это означает следующее:
+        	\[
+        		\forall \eps > 0\ \exists a > 0 \such \forall t, |t| \le a\ \ 1 - \re\phi(t) = |1 - \re\phi(t)| \le \frac{\eps}{7}
+        	\]
+        	
+        	\item За счёт утверждения последнего пункта, мы можем дать оценку на интеграл:
+        	\[
+        		\forall \eps > 0\ \exists a > 0 \such \frac{7}{a} \int_0^a (1 - \re\phi(t))dt = \frac{7}{a} \int_0^a |1 - \re\phi(t)|dt \le \frac{7}{a} \cdot a \cdot \frac{\eps}{7} = \eps
+        	\]
+        \end{enumerate}
+        Таким образом, мы получили следующий факт:
         \[
-            \forall \eps > 0 \ \ \exists a > 0 \ \ \forall n \in \N \ \ P_n \left( \R \setminus \left[ -\frac{1}{a}, \frac{1}{a} \right] \right) \leqslant \eps
+            \forall \eps > 0\ \exists a > 0\ \forall n \in \N \ \ P_n\ps{\R \bs \sbr{-\frac{1}{a}, \frac{1}{a}}} \le \eps
         \]
-        Заметим, что это в точности и есть определение плотности последовательности распределений $\{P_n\}$.
+        Это в точности и есть определение плотности последовательности распределений $\{P_n\}_{n = 1}^\infty$.
     \end{enumerate}
 \end{proof}
 
 \begin{theorem} (Центральная Предельная Теорема)
-    Пусть $\{\xi_n,\ n \in \N\}$ -- н.о.р.с.в. (независимые одинаково распределённые случайные величины), пусть
-    \begin{align*}
-        -\infty < \E\xi_1 (=\E\xi_2=\ldots) = a < +\infty
-        \\
-        0 < D\xi_1 (=D\xi_2=\ldots) = \sigma^2 < +\infty
-    \end{align*}
-    Обозначим
+    Пусть $\{\xi_n\}_{n = 1}^\infty$ независимые одинаково распределённые случайные величины, а также $\E\xi_1 \neq \infty$ и $0 < D\xi_1 < \infty$. Тогда, если обозначить $S_n = \xi_1 \plusdots \xi_n$, имеет место сходимость:
     \[
-        S_n = \xi_1 + \ldots + \xi_n
+    	\frac{S_n - \E S_n}{\sqrt{DS_n}} \xrightarrow[n \to \infty]{d} N(0, 1)
     \]
-    Тогда
+    Если обозначить за $a = \E\xi_1$ и $\sigma^2 = D\xi_1$, то это утверждение можно записать таким образом:
     \[
-        \frac{S_n - \E S_n}{\sqrt{DS_n}} \xrightarrow{d} N(0, 1)
-    \]
-    Или, что то же самое,
-    \[
-        \frac{S_n - an}{\sigma \sqrt{n}} \xrightarrow{d} N(0, 1)
+    	\frac{S_n - an}{\sigma\sqrt{n}} \xrightarrow[n \to \infty]{d} N(0, 1)
     \]
 \end{theorem}
 
-\begin{proof}~
-    \begin{itemize}
-        \item Обозначим
-        \[
-            T_n = \frac{S_n - \E S_n}{\sqrt{DS_n}} = \frac{S_n - an}{\sigma \sqrt{n}}
-        \]
-
-        \item Для последовательности случайных величин верна эквивалентность:
-        \[
-            T_n \xrightarrow{d} T \Lra F_{T_n} \xrightarrow{w} F_T \Lra P_{T_n}\xrightarrow{w} P_T
-        \]
-
-        \item Пусть $\phi_{T_n}$ -- характеристические функции случайных величин $T_n$. Знаем, что $e^{-t^2/2}$ -- характеристическая функция $N(0, 1)$. Тогда по теореме о непрерывности для характеристических функций достаточно доказать:
-        \[
-            \forall t \in \R \ \ \exists \lim_n \phi_{T_n}(t) = e^{-t^2/2}
-        \]
-        Действительно, тогда:
-        \begin{align*}
-            & P_{T_n}\xrightarrow{w} P_T,\ T \sim N(0, 1)
-            \\
-            & \Downarrow
-            \\
-            & T_n \xrightarrow{d} N(0, 1)
-        \end{align*}
-
-        \item Обозначим
-        \[
-            \eta_j = \frac{\xi_j - a}{\sigma}
-        \]
-        Тогда, т.к. линейное преобразование является борелевской функцией, $\eta_j$ тоже независимы. Более того, $\eta_j$ -- н.о.р.с.в. Также $\E \eta_j = 0,\ D \eta_j = 1 \ \ \forall j \in \N$.
-
-        \item Тогда получаем:
-        \[
-            T_n = \frac{S_n - an}{\sigma \sqrt{n}} = \frac{\eta_1 + \ldots + \eta_n}{\sqrt{n}}
-        \]
-        
-        \item Отсюда их характеристические функции:
-        \large
-        \begin{multline*}
-            \phi_{T_n}(t) = \E e^{iT_nt} = \E e^{i \frac{t}{\sqrt{n}} (\eta_1 + \ldots + \eta_n)} = \text{[из независимости]} = \prod_{k = 1}^n \E e^{i \frac{t}{\sqrt{n}} \eta_k} =
-            \\
-            = \text{[из одинаковой распределённости]} = \left( \E e^{i \frac{t}{\sqrt{n}} \eta_1} \right)^n = \left( \phi_{\eta_1} \left( \frac{t}{\sqrt{n}} \right) \right)^n
-        \end{multline*}
-        \normalsize
-
-        \item По следствию теоремы о производных для характеристических функций:
-        \begin{multline*}
-            \phi_{T_n}(t) = \left( \phi_{\eta_1} \left( \frac{t}{\sqrt{n}} \right) \right)^n = \left( 1 + \left( i \frac{t}{\sqrt{n}} \right) \E \eta_1 - \frac{t^2}{2n} \E(\eta_1)^2 + o \left( \frac{t^2}{n} \right) \right)^n =
-            \\
-            = \left( 1 + \left( i \frac{t}{\sqrt{n}} \right) 0 - \frac{t^2}{2n} 1 + o \left( \frac{t^2}{n} \right) \right)^n = \left( 1 - \frac{t^2}{2n} + o \left( \frac{t^2}{n} \right) \right)^n
-        \end{multline*}
-
-        \item При фиксированном $t \in \R$:
-        \[
-            \phi_{T_n}(t) = \left( 1 - \frac{t^2}{2n} + o \left( \frac{1}{n} \right) \right)^n = e^{n \ln{\left( 1 - \frac{t^2}{2n} + o \left( \frac{1}{n} \right) \right)}} = e^{n \left( - \frac{t^2}{2n} + o \left( \frac{1}{n} \right) \right) } = e^{-\frac{t^2}{2} + o(1)}
-        \]
-
-        \item Получили, что:
-        \[
-            \lim_n \phi_{T_n}(t) = e^{-\frac{t^2}{2}}
-        \]
-    \end{itemize}
+\begin{proof}
+	Обозначим за $T_n$ элемент последовательности, для которой доказываем сходимость:
+	\[
+		T_n = \frac{S_n - \E S_n}{\sqrt{DS_n}} = \frac{S_n - an}{\sigma \sqrt{n}}
+	\]
+	Вспомним, что есть тривиальная эквивалентность сходимостей:
+	\[
+		T_n \xrightarrow{d} T \Lra F_{T_n} \xrightarrow{w} F_T \Lra P_{T_n} \xrightarrow{w} P_T
+	\]
+	Характеристическая функция для $N(0, 1)$ известна, это $e^{-x^2 / 2}$. По теореме о непрерывности харфункций достаточно доказать, что выполнено утверждение:
+	\[
+		\forall t \in \R\ \ \exists \lim_{n \to \infty} \phi_{T_n}(t) = e^{-t^2 / 2}
+	\]
+	Итак, отнормируем наши $\xi$, чтобы их матожидание было в нуле, а дисперсия равнялась единице: $\eta_j = (\xi_j - a) / \sigma$. Так как $a$, $\sigma$ одинаковы при всех $j$, а также преобразование $\xi_j$ является борелевской функцией, то $\eta_j$ тоже независимые одинаково распределённые случайные величины. Тогда $T_n$ выражается следующим образом:
+	\[
+		T_n = \frac{S_n - an}{\sigma\sqrt{n}} = \frac{\eta_1 \plusdots \eta_n}{\sqrt{n}}
+	\]
+	С новыми случайными величинами намного проще посчитать работать с видом харфункции $T_n$. Дальше вся идея состоит в том, чтобы воспользоваться определённой одинаковостью всех случайных величин и вспомнить следствие из теоремы о производных для характеристических функций (про разложение с о-малым):
+	\begin{multline*}
+		\phi_{T_n}(t) = \E e^{iT_n t} = \E \exp\ps{i\frac{t}{\sqrt{n}}(\eta_1 \plusdots \eta_n)} = [\text{с учётом независимости}] =
+		\\
+		\prod_{k = 1}^n \E e^{i\frac{t}{\sqrt{n}}\eta_k} = [\text{распределения одинаковы}] = \ps{\E e^{i\frac{t}{\sqrt{n}}\eta_1}}^n = \ps{\phi_{\eta_1}\ps{\frac{t}{\sqrt{n}}}}^n
+	\end{multline*}
+	Осталось применить уже упомянутое следствие:
+	\begin{multline*}
+		\forall t \in \R\ \ \phi_{T_n}(t) = \ps{1 - \frac{t^2}{2n} + o(1 / n)}^n =
+		\\
+		\exp\ps{n \ln\ps{1 - \frac{t^2}{2n} + o(1 / n)}} =
+		\\
+		\exp{n \cdot \ps{-\frac{t^2}{2n} + o(1 / n)}} = e^{-t^2 / 2 + o(1)}, n \to \infty
+	\end{multline*}
+	Это и означает, что $\lim_{n \to \infty} \phi_{T_n}(t) = e^{-t^2 / 2}$. Требуемое доказано.
 \end{proof}
