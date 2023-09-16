@@ -1,25 +1,270 @@
+\begin{anote}
+	Пожалуй, самым важным знанием, которое может пригодиться в будущем да и сейчас, является то, что само по себе слово <<пространство>> тождественно слову <<множество>>.
+\end{anote}
+
+\section{Топологические и метрические пространства}
+
+\subsection{Основные определения}
+
 \begin{definition}
-	Множество $X$ называется \textit{топологическим пространством}, если ему сопоставлена система множеств $\tau \subseteq 2^X$ --- \textit{топология}, обладающая следующими свойствами:
+	Кортеж $(X, \Tau)$ называется \textit{топологическим пространством}, если $\Tau \subseteq 2^X$ --- это система множеств, называемая \textit{топологией} и обладающая следующими свойствами:
 	\begin{enumerate}
 		\item $\emptyset, X \in \Tau$
 		
-		\item $\forall \goth{A}\ \forall \{G_\alpha\}_{\alpha \in \goth{A}} \subseteq \Tau\ \ \bigcup_{\alpha \in \goth{A}} G_\alpha \in \Tau$
+		\item $\forall \gA\ \forall \{G_\alpha\}_{\alpha \in \gA} \subseteq \Tau\ \ \bigcup_{\alpha \in \gA} G_\alpha \in \Tau$
 		
-		\item $\forall \goth{A}\ \forall \{G_\alpha\}_{\alpha \in \goth{A}} \subseteq \Tau\ \ \bigcap_{\alpha \in \goth{A}} G_\alpha \in \Tau$
+		\item $\forall \gM, |\gM| < \infty\ \ \forall \{G_\beta\}_{\beta \in \gM} \subseteq \Tau\ \ \bigcap_{\beta \in \gM} G_\beta \in \Tau$
 	\end{enumerate}
 \end{definition}
 
-\begin{example} (Положительный терминатор, строитель)
-	Пусть задана система дифференциальных уравнений:
-	$$
-		\System{
-			&{\dot{x} = f(t, x)}
-			\\
-			&{x(t_0) = x_0}
-		}
-	$$
-	Решением этой системы будет функция (при выполнении теоремы Коши), которую можно записать так:
-	$$
-		x(t) = x_0 + \int_0^t f(s, x(s))ds
-	$$
-\end{example}
+\begin{definition}
+	Кортеж $(X, \rho)$ называется \textit{метрическим пространством}, где
+	\begin{itemize}
+		\item $X$ --- произвольное множество
+		
+		\item $\rho \colon X \times X \to \R_{\ge 0}$ --- \textit{метрическая функция (метрика)}. Она по определению удовлетворяет следующим свойствам:
+		\begin{enumerate}
+			\item (Неотрицательность и аксиома тождества) $\forall x, y \in X\ \ \rho(x, y) \ge 0 \wedge \rho(x, y) = 0 \Lra x = y$
+			
+			\item (Симметричность) $\forall x, y \in X\ \ \rho(x, y) = \rho(y, x)$
+			
+			\item (Неравенство треугольника) $\forall x, y, z \in X\ \ \rho(x, z) \le \rho(x, y) + \rho(y, z)$
+		\end{enumerate}
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Если отказаться от аксиомы тождества, но потребовать $\rho(x, x) = 0$, то такую функцию называют \textit{полуметрикой}. Такие метрики естественным образом возникают на факторпространствах, когда $x \sim y \Lra \rho(x, y) = 0$.
+\end{note}
+
+\begin{note}
+	Довольно часто вместо кортежа пишут только множество, над которым определяется указанная структура. Тогда топологию, например, можно тривиально обозначить как $\Tau_X$, а метрику --- $\rho_X$.
+\end{note}
+
+\begin{anote}
+	Далее даются базовые определения, связанные с топологическими и метрическими пространствами. Они в большинстве своём <<общие>> (то есть называются одинаково), но, для удобства конспекта, вместо таблицы они приведены двумя отдельными списками.
+\end{anote}
+
+\subsubsection*{Определения для метрических пространств}
+
+\begin{note}
+	Далее подразумевается, что $(X, \rho)$ --- метрическое пространство.
+\end{note}
+
+\begin{definition}
+	$(Y, \rho)$ называется \textit{подпространством метрического пространства $X$}, если $Y \subseteq X$, а метрика $\rho$ естественно индуцирована из $(X, \rho)$.
+\end{definition}
+
+\begin{definition}
+	Подпространство $Y \subseteq X$ называется \textit{ограниченным}, если существует $K \ge 0$ такое, что оно ограничивает расстояние между любыми двумя точками в $Y$:
+	\[
+		\exists K \ge 0 \such \forall x, y \in K\ \ \rho(x, y) \le K
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $A, B \subseteq X$. Тогда расстоянием $\rho(A, B)$ назовём минимальное расстояние между точками этих подмножеств:
+	\[
+		\rho(A, B) := \inf_{a \in A, b \in B} \rho(a, b)
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Открытым шаром (или просто шаром)} $B(x, r)$, где $r > 0$, называется следующее множество в $X$:
+	\[
+		B(x, r) := \{y \in X \colon \rho(x, y) < r\}
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Замкнутым шаром} $\ole{B}(x, r)$, где $r > 0$, называется следующее множество в $X$:
+	\[
+		\ole{B}(x, r) := \{y \in X \colon \rho(x, y) \le r\}
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Элемент $x \in M$ называется \textit{точкой прикосновения множества $M$}, если пересечение любого шара с центром в $x$ и $M$ непусто:
+	\[
+		\forall r > 0\ \ B(x, r) \cap M \neq \emptyset
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Множество всех точек прикосновения $M$ называется \textit{замыканием множества $M$}. Обозначается разными способами:
+	\[
+		\cl M = [M] = \ole{M} := \{x \in X \colon \forall r > 0\ B(x, r) \cap M \neq \emptyset\}
+	\]
+\end{definition}
+
+\begin{definition}
+	Подмножество $M \subseteq X$ называется \textit{замкнутым}, если $\cl M = M$.
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Тогда $x \in M$ называется \textit{внутренней точкой $M$}, если существует шар $B(x, r)$, вложенный в $M$:
+	\[
+		\exists r > 0 \such B(x, r) \subseteq M
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Тогда \textit{внутренностью множества $M$} называется множество всех внутренних точек $M$. Обозначается разными способами:
+	\[
+		\Int M = \mc{M} = \{x \in M \colon \exists r > 0\ B(x, r) \subseteq M\}
+	\]
+\end{definition}
+
+\begin{definition}
+	Множество $M \subseteq X$ называется \textit{открытым}, если $\Int M = M$
+\end{definition}
+
+\begin{definition}
+	Пусть $\{x_n\}_{n = 1}^\infty \subseteq X$, $x \in X$. Тогда мы будем говорить, что \textit{$x_n$ сходится к $x$}, то есть имеется предел $\lim_{n \to \infty} x_n = x$, если расстояние между элементами последовательности и пределом стремится к нулю:
+	\[
+		\lim_{n \to \infty} x_n = x \Lolra \lim_{n \to \infty} \rho(x_n, x) = 0
+	\]
+\end{definition}
+
+\subsubsection*{Определения для топологических пространств}
+
+\begin{note}
+	Далее $(X, \Tau_X)$ --- топологическое пространство
+\end{note}
+
+\begin{definition}
+	$(Y, \Tau_Y)$ называется \textit{подпространством топологического пространства $X$}, если $Y \subseteq X$ и элементы $\Tau_Y$ заданы следующим образом:
+	\[
+		\forall H \in \Tau_Y\ \exists G \in \Tau_X \such H = G \cap Y
+	\]
+\end{definition}
+
+\begin{definition}
+	Любой элемент топологии называется \textit{открытым} множеством.
+\end{definition}
+
+\begin{definition}
+	Любое подмножество $M \subseteq X$, которое является дополнением к открытому множеству, называется \textit{замкнутым}:
+	\[
+		\exists G \in \Tau_X \such M = X \bs G
+	\]
+\end{definition}
+
+\begin{definition}
+	Элемент топологии $G$ называется \textit{окрестностью точки $x \in X$}, если $G$ --- открытое множество и $x \in G$. Иногда обозначается как $G(x)$.
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Тогда $x \in X$ называется \textit{точкой прикосновения $M$}, если любая окрестность $G(x)$ пересекается с $M$:
+	\[
+		\forall G(x) \in \Tau_X\ G(x) \cap M \neq \emptyset
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Множество всех точек прикосновения $M$ называется \textit{замыканием множества $M$}. Обозначается как $\cl M = [M] = \ole{M}$
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Тогда $x \in M$ называется \textit{внутренней точкой $M$}, если существует окрестность $G(x)$, лежащая в $M$:
+	\[
+		\exists G(x) \in \Tau_X \such G(x) \subseteq M
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $M \subseteq X$. Множество всех внутренних точек $M$ называется \textit{внутренностью множества $M$}. Обозначается как $\Int M = \mc{M}$
+\end{definition}
+
+\begin{note}
+	С данными определениями действительно имеются 2 эквивалентности:
+	\begin{itemize}
+		\item \(M \text{ --- открытое } \Lra \Int M = M\)
+		
+		\item \(M \text{ --- замкнутое } \Lra \cl M = M\)
+	\end{itemize}
+	Мы докажем их явно, но в следующем параграфе.
+\end{note}
+
+%\begin{proposition}
+%	Пусть $M \subseteq X$. Имеет место эквивалентность:
+%	\[
+%		M \text{ --- открытое } \Lra \Int M = M
+%	\]
+%\end{proposition}
+
+%\begin{proof}
+%	Проведём доказательство в две стороны:
+%	\begin{itemize}
+%		\item[$\Ra$] Очевидно вложение $\Int M \subseteq M$. Однако и другое тривиально, ведь для каждого $x \in M$ есть просто $M \subseteq M$ как открытое множество
+%		
+%		\item[$\La$] По свойству топологии, любое объединение открытых множеств остаётся открытым. Стало быть, достаточно увидеть равенство $\bigcup_{x \in M} G(x) = M$, где $G(x) \subseteq M$ --- окрестность точки $x$, полученная из условия
+%	\end{itemize}
+%\end{proof}
+
+%\begin{proposition}
+%	Пусть $M \subseteq X$. Имеет место эквивалентность:
+%	\[
+%		M \text{ --- замкнутое } \Lra \cl M = M
+%	\]
+%\end{proposition}
+%
+%\begin{proof}
+%	
+%\end{proof}
+
+\begin{definition}
+	Пусть $\{x_n\}_{n = 1}^\infty \subseteq X$, $x \in X$. Тогда \textit{$x_n$ сходится к $x$}, если выполнено следующее условие:
+	\[
+		\forall G(x) \in \Tau_X\ \exists N \in \N \such \forall n > N\ \ x_n \in G(x)
+	\]
+\end{definition}
+
+\begin{definition}
+	Топологическое пространство $X$ называется \textit{несвязным}, если $X = G_1 \sqcup G_2$, где $G_i \neq \emptyset$ --- непустые открытые множества.
+\end{definition}
+
+\begin{definition}
+	Топологическое пространство $X$ называется \textit{связным}, если оно не несвязное, то есть
+	\[
+		\forall G_1, G_2 \in \Tau_X,\ G_1 \cap G_2 = \emptyset, G_i \neq \emptyset \Ra G_1 \sqcup G_2 \neq X 
+	\]
+\end{definition}
+
+\begin{definition}
+	Пусть $(X, \Tau)$ --- топологическое пространство. Тогда набор $\Gamma = \{G_\alpha\}_{\alpha \in \gA} \subseteq \Tau$ называется \textit{базой топологии $\Tau$}, если любое множество топологии выражается как объединение элементов $\Gamma$:
+	\[
+		\forall S \in \Tau\ \exists \gM \subseteq \gA \such \bigcup_{\beta \in \gM} G_\beta = S
+	\]
+\end{definition}
+
+\textcolor{red}{Определение топологизируемого пространства? Такое есть вообще?}
+
+\begin{definition}
+	Пусть $X$ --- произвольное топологизируемое пространство (то есть можно задать топологию). Тогда, зададим \textit{порядок $\preceq$ на топологиях} пространства $X$:
+	\[
+		\Tau_1 \preceq \Tau_2 \Lolra \Tau_1 \subseteq \Tau_2
+	\]
+\end{definition}
+
+\subsubsection*{Определения, общие для метрических и топологических пространств}
+
+\begin{note}
+	Далее $X$ --- это непосредственно множество элементов топологического или метрического пространства.
+\end{note}
+
+\begin{definition}
+	Пусть $A, B \subseteq X$. Тогда мы говорим, что \textit{$A$ плотно в $B$}, если выполнено вложение $B \subseteq \cl A$.
+\end{definition}
+
+\begin{definition}
+	Множество $A \subseteq X$ называется \textit{всюду плотным}, если $A$ плотно в $X$. Это означает, что $X = \cl A$.
+\end{definition}
+
+\begin{definition}
+	Множество $A \subseteq X$ называется \textit{нигде не плотным}, если в замыкании множества $A$ нет ни одного открытого множества.
+\end{definition}
+
+\begin{definition}
+	Пространство $X$ называется \textit{сепарабельным}, если существует не более чем счётное всюду плотное подмножество $A \subseteq X$.
+\end{definition}
