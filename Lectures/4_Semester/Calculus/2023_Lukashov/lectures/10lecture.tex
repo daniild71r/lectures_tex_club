@@ -116,16 +116,27 @@
 \end{proposition}
 
 \begin{proof}
-	Разобьём наш интеграл на 2 части и покажем, что для каждой есть равномерная оценка:
+	Рассмотрим $\alpha \in [\alpha_0; \alpha_1] \subset (0; +\infty)$. Так как степенная функция категорически меняет свое поведение при переходе $x = 1$, то мы разобьём интеграл на 2 и оценим каждую часть по отдельности:
 	\[
 		\int_0^{+\infty} x^{\alpha - 1}e^{-x}dx = \int_0^1 x^{\alpha - 1}e^{-x}dx + \int_1^{+\infty} x^{\alpha - 1}e^{-x}dx
 	\]
 	\begin{enumerate}
-		\item $\forall \alpha_0 \in \R_{> 0} \such |x^{\alpha - 1}e^{-x}| \le x^{\alpha_0 - 1}$ при любых $\alpha \ge \alpha_0 > 0$ и $x \in [0; 1]$
+		\item \(\forall x \in [0; 1]\ \ x^{\alpha - 1}e^{-x} \le x^{\alpha_0 - 1} \cdot 1 = x^{\alpha_0 - 1}\)
 		
-		\item $\forall A \in \R_{> 0} \such |x^{\alpha - 1}e^{-x}| \le x^{A - 1}$ при любом $\alpha \le A$ и $x \ge 1$
+		\item \(\forall x \ge 1\ \ x^{\alpha - 1}e^{-x} \le x^{\alpha_1 - 1}e^{-x}\)
+		
+		\item Дополнительно заметим, что экспонента на луче всегда перебивает степенную функцию:
+		\[
+			\exists x_0 \in \lsi{1; +\infty}, C > 0 \such \forall x \ge x_0\ \ x^{\alpha_1 - 1}e^{-x} \le Ce^{-x / 2}
+		\]
 	\end{enumerate}
-	При этом, для $x \ge x_0$ в какой-то момент верна оценка $x^{A - 1}e^{-x} \le Ce^{-x / 2}$, то есть интеграл $\Gamma(\alpha)$ сходится на $[\alpha_0; A]$. В силу равномерных оценок, он сходится равномерно на $[\alpha_0; A]$
+	Итого, мы умеем ограничивать интеграл для произвольного $\alpha$ из отрезка при помощи значений на концах отрезка:
+	\begin{multline*}
+		\int_0^{+\infty} x^{\alpha - 1}e^{-x}dx = \int_0^1 x^{\alpha - 1}e^{-x}dx + \int_1^{+\infty}x^{\alpha - 1}e^{-x}dx \le
+		\\
+		\int_0^1 x^{\alpha_0 - 1}dx + \int_1^{x_0} x^{\alpha_1 - 1}e^{-x}dx + \int_{x_0}^{+\infty} Ce^{-x / 2}dx
+	\end{multline*}
+	Каждый интеграл не зависит от $\alpha$ и сходится. Стало быть, гамма-функция сходится равномерно на отрезке.
 \end{proof}
 
 \begin{theorem} (Основные свойства гамма-функции)
@@ -142,9 +153,12 @@
 	\begin{enumerate}
 		\item Проверим условия теоремы о дифференцировании:
 		\begin{enumerate}
-			\item $(\alpha - 1)x^{\alpha - 2}e^{-x} \in C\big((0; +\infty) \times (0; +\infty)\big)$
+			\item $x^{\alpha - 1} \cdot \ln(x) \cdot e^{-x} \in C\big((0; +\infty) \times (0; +\infty)\big)$
 			
-			\item Интеграл от производной очевидно равномерно сходится, работают те же оценки
+			\item Интеграл от производной тоже должен сходится равномерно на любом отрезке в луче $(0; +\infty)$. Доказательство почти повторяет то, что происходило для гамма-функции, только нужно учесть простую оценку на натуральный логарифм:
+			\[
+				\forall x \in (0; +\infty)\ \ \ln(x) \le \sqrt{x} = x^{1 / 2}
+			\]
 			
 			\item При $\alpha = 1$ есть тривиальная сходимость
 		\end{enumerate}
