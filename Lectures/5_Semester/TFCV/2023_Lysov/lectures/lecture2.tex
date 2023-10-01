@@ -1,9 +1,15 @@
 \section{Дифференцируемость в $\Cm$}
 
-Зафиксируем до конца параграфа $a \in \Cm$, $f: O_r(a) \to \Cm$, $f(z) = u(\re z, \im z) + i v(\re z, \im z)$, где $u, v: \R^2 \to \R$ (разложили функцию на функции вещественной и мнимой части; если считать, что $\Cm = \R^2$, то даже $u, v: \Cm \to \R$).
+Зафиксируем до конца параграфа
+\begin{itemize}
+	\item $z_0 \in \Cm$, $z_0 = x_0 + i y_0$, $x_0, y_0 \in \R$;
+	\item $f: O_r(z_0) \to \Cm$, $f(z) = f(x + iy) = u(x, y) + i v(x, y)$
+	\item $u, v: \R^2 \to \R$, $u(x, y) = \re f(x + i y)$, $v(x + iy) = v(x, y) = \im f(x + i y)$ (вне $O_r(z_0)$ положим их равными нулю).
+\end{itemize}
+Т.е. разложили комплекснозначную функцию на функции вещественной и мнимой части (если считать, что $\Cm = \R^2$, то $u, v: \Cm \to \R$).
 
 \begin{definition}
-	Функция $f$ дифференцируема в точке $a$, если
+	Функция $f$ $\Cm$-дифференцируема в точке $a$, если
 	\[
 	(\exists A' \in \Cm) \,\, \ulim{z \to a} \frac{f(z) - f(a)}{z - a} = A',
 	\]
@@ -14,8 +20,111 @@
 	\[
 		(\exists A' \in \Cm) \,\, f(z_0 + \Delta z) - f(z_0) = \Delta f = A' \Delta z + o(\Delta z),
 	\]
-	где o-малое взято при $\Delta z \to 0$, можно использовать его в определении.	
+	где o-малое взято при $\Delta z \to 0$. Можно использовать его в определении.	
 \end{note}
 %TODO: доказать, хотя бы пару слов сказать.
+\begin{anote}
+	Как понимаю, выбираем такое название, потому что мы не хотим пересекаться с определением дифференцируемости вектор-функций. Нашу функция может быть воспринята как вектор-функция, но нам нужно другое определение.
+\end{anote}
 
+
+\begin{theorem}
+	$f$ дифференцируема в точке $z_0$ тогда и только тогда, когда $u$ и $v$ дифференцируемы в $(x_0, y_0)$ и выполнено условие Коши-Римана:
+	\[
+		\begin{cases}
+			{u'}_x(x_0, y_0) = {v'}_y(x_0, y_0), \\
+			{u'}_y(x_0, y_0) = -{v'}_x(x_0, y_0).
+		\end{cases}
+	\]
+\end{theorem}
+\begin{proof}	
+	Докажем слева направо: из дифференцируемости получим дифференцируемость компонент (как функций нескольких переменных) и условие Коши-Римана.
+	
+	Обозначим $f'(z_0) = \alpha + i \beta$, $\alpha, \beta \in \R$.
+	Воспользуемся эквивалентным определением дифференцируемости:
+	\[
+		f(z_0 + \Delta z) - f(z_0) = (\alpha + i \beta) \Delta z + o(\Delta z)
+	\]
+	при $\Delta z \to 0$. По определению о-малого [прим. автора: которого у нас пока нет, появится]:
+	\[
+		\left( \exists g: \Cm \to \Cm: \lim_{\Delta z \to 0} \frac{g(\Delta z)}{\Delta z} = 0 \right) (\forall \Delta z : \lvert \Delta_z \rvert < r) \,\, f(z_0 + \Delta z) - f(z_0) = (\alpha + i \beta) \Delta z + g(\Delta z).
+	\]
+	Обозначим $\Delta z$ как $(\Delta x, \Delta y) = \Delta x + i \Delta y$. Тогда условие примет вид: \\
+	\[
+		f(z_0 + \Delta z) - f(z_0) = (\alpha \Delta x - \beta \Delta y) + i (\beta \Delta x + \alpha \Delta y) + g(\Delta z).
+	\]
+	Распишем $f$ по определению $u$ и $v$:
+	\begin{align*}
+		u(x_0 + \Delta x, y_0 + \Delta y) + i v(x_0 + \Delta x, y_0 + \Delta y) - 	u(x_0, y_0) - i v(x_0, y_0) = \\
+		(\alpha \Delta x - \beta \Delta y) + i (\beta \Delta x + \alpha \Delta y) + g(\Delta z).
+	\end{align*}
+
+	Возьмём вещественную и мнимую части от выражения:
+	\begin{align*}
+		u(x_0 + \Delta x, y_0 + \Delta y) - u(x_0, y_0) &= (\alpha \Delta x - \beta \Delta y) + \re g(\Delta z) = \langle (\alpha, -\beta), \Delta z \rangle + \re g(\Delta z), \\
+		v(x_0 + \Delta x, y_0 + \Delta y) - v(x_0, y_0) &= (\beta \Delta x + \alpha \Delta y) + \im g(\Delta z) = \langle (\beta, \alpha), \Delta z \rangle + \im g(\Delta z).
+	\end{align*}
+
+	Мы до этого считали, что $\Delta z \in \Cm$ ($\Cm$ -- это тоже самое $\R^2$, только разрешено перемножать векторы, делить векторы и т.п.). Теперь рассматриваем $\Delta z$ как элемент $\R^2$.
+	Покажем, что $\re g(\Delta z)$ и $\im (\Delta z)$ являются $o(\lvert \Delta z \rvert)$. Тогда по определению дифференцируемости функции нескольких переменных получим дифференцируемость $u$ и $v$, это даст нам явный вид частных производных, т.к. градиент у нас уже есть.
+	
+	\begin{align*}
+		\ulim{\Delta z \to 0} \frac{g(\Delta z)}{\Delta z} = 0 \Lra \ulim{\Delta z \to 0} \jleft\lvert \frac{g(\Delta z)}{\Delta z} \jright\rvert = 0 \Lra \ulim{\Delta z \to 0} \frac{\lvert g(\Delta z) \rvert}{\lvert \Delta z \rvert} = 0.
+	\end{align*}
+
+	Первый переход обосновывается из определения предела: \[
+		\jleft\lvert \frac{g(\Delta z)}{\Delta z} - 0 \jright\rvert = \jleft\lvert \frac{g(\Delta z)}{\Delta z} \jright\rvert = \jleft\lvert \jleft\lvert \frac{g(\Delta z)}{\Delta z} \jright\rvert - 0 \jright\rvert.
+	\]
+	Второй переход верен, т.к. берем предел одной и той же функции (они всюду совпадают). \\
+	Воспользуемся свойствами модуля относительно вещественной и мнимой части:
+	\begin{align*}
+		\begin{cases}
+			-\mds{g(\Delta z)} \leq \re g(\Delta z) \leq \mds{g(\Delta z)}, \\
+			-\mds{g(\Delta z)} \leq \im g(\Delta z) \leq \mds{g(\Delta z)},
+		\end{cases}
+		\Rightarrow
+		\begin{cases}
+			-\frac{\mds{g(\Delta z)}}{\mds{\Delta z}} \leq \frac{\re g(\Delta z)}{\mds{\Delta z}} \leq \frac{\mds{g(\Delta z)}}{\mds{\Delta z}}, \\
+			-\frac{\mds{g(\Delta z)}}{\mds{\Delta z}} \leq \frac{\im g(\Delta z)}{\mds{\Delta z}} \leq \frac{\mds{g(\Delta z)}}{\mds{\Delta z}},
+		\end{cases} \\
+		\Rightarrow
+		\begin{cases}
+			\ulim{z \to 0} \frac{\re g(\Delta z)}{\mds{\Delta z}} = 0, \\
+			\ulim{z \to 0} \frac{\im g(\Delta z)}{\mds{\Delta z}} = 0. \\
+		\end{cases}
+	\end{align*}
+	Последний переход верен по теореме о зажатой функции для функций нескольких переменных. [Прим. автора: она ещё легко получается из определения, просто оценивается модуль.]
+	
+	Значит, $u$ и $v$ дифференцируемы как функции нескольких переменных. Знаем их градиенты, откуда выполнено и условие Коши-Римана: ${u'}_x = \alpha = {v'}_y$, ${u'}_y = -\beta = -{v'}_x$.
+	
+	{\color{red} В другую сторону тоже будет, скоро. } %TODO: в другую сторону! Там совсем быстро будет, думаю. Доказать только, что o(|z|) + io(|z|) = o(z)... 
+\end{proof}
+
+
+\begin{anote}
+	Как запомнить условие Коши-Римана? Предлагаю способ. Давайте придумаем такую матрицу:
+	\[
+		\begin{pmatrix}
+			{u'}_x & {u'}_y \\
+			{v'}_x & {v'}_y
+		\end{pmatrix}.
+	\]
+	Возьмём теперь её определитель: ${u'}_x {v'}_y - {u'}_y {v'}_x$. Пара сомножителей -- те компоненты, которые равны. Знак минус перед сомножителем указывает на то, что у компонент отличаются лишь знаком (и равны по модулю). \\
+	Запомнить просто: <<у икс, у игрек, в икс, в игрек>>. Можно её не выписывать, просто в голове считать определитель. \\
+	Матрица похожа на якобиан замены координат от $(u, v)$ к $(x, y)$. Можно придумать и другие способы.
+\end{anote}
+
+\begin{definition}
+	Пусть $U$ -- открытое множество в $\overline{\Cm}$; $f$ называется \emph{гомоморфной} в $U$, если $f$ $\Cm$-дифференцируема в любой точке $U$. 
+\end{definition}
+
+{\color{red} Спросить лектора, тут открытость, если не включается бесконечность, просто открытость в $\R^2$? А открытость с бесконечностью -- открытость без бесконечности + объединение с $\{ \infty \}$?}
+
+\begin{definition}
+	Пусть $E$ -- множество точек в $\overline{\Cm}$, $E$ не открыто; $f$ называется \emph{гомоморфной} в $E$, если существует открытое $U \supset E$, в котором $f$ гомоморфна.
+\end{definition}
+
+\begin{definition}
+	Пусть $g: U \to \R$, $U$ -- открытое в $\R^2$; функция $g$ называется \emph{гармонической}, если $g \in C^2(U)$ (дважды дифференцируема и вторая производная непрерывна) и $u_{xx} + u_{yy} = 0$ в любой точке $U$ [прим. автора: уравнение на вторые частные производные].
+\end{definition}
 
