@@ -1,0 +1,201 @@
+\section{Напоминание теории вероятностей}
+
+\begin{note}
+	В этом разделе мы живём в вероятностном пространстве $(\Omega, \F, P)$
+\end{note}
+
+\begin{reminder}
+	Пусть $\xi, \{\xi_n\}_{n = 1}^\infty$ --- случайные векторы из $\R^m$. Тогда мы рассматриваем следующие сходимости:
+	\begin{enumerate}
+		\item Сходимость $P$-почти наверное (с вероятностью 1)
+		\[
+			\xi_n \xrightarrow{P\text{ п.н.}} \xi \Lolra P(\xi_n \to \xi) = 1
+		\]
+		
+		\item Сходимость по вероятности
+		\[
+			\xi_n \xrightarrow{P} \xi \Lolra \forall \eps > 0\ \ P(\|\xi_n - \xi\|_2 > \eps) \xrightarrow[n \to \infty]{} 0
+		\]
+		
+		\item Сходимость в среднем порядка $p \ge 1$ (по норме $L_p$)
+		\[
+			\xi_n \xrightarrow{L_p} \xi \Lolra \E\|\xi_n - \xi\|_p^p \xrightarrow[n \to \infty]{} 0
+		\]
+		
+		\item Сходимость по распределению
+		\[
+			\xi_n \xrightarrow{d} \xi \Lolra \forall f \colon \R^m \to \R \text{ --- ограниченная непрерывная}\ \ \E f(\xi_n) \xrightarrow[n \to \infty]{} \E f(\xi)
+		\]
+	\end{enumerate}
+\end{reminder}
+
+\begin{reminder}
+	Для всех сходимостей из векторной сходимости следует покоординатная. В обратную сторону это неверно только для сходимости по распределению.
+\end{reminder}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Для сходимости с вероятностью 1 достаточно заметит соотношение:
+		\[
+			\forall j \in \range{1}{m}\ \ \bigcap_{n = 1}^m \{\xi_{i, n} \to \xi_i\} = \{\xi_n \to \xi\} \subseteq \{\xi_{j, n} \to \xi_j\}
+		\]
+		
+		\item Для сходимости по вероятности всё же нужно 2 отдельных вложения (для любого $\eps > 0$):
+		\begin{itemize}
+			\item[$\Ra$] \(\{|\xi_{i, n} - \xi_i| > \eps\} \subseteq \{\|\xi_n - \xi\|_2 > \eps\}\)
+			
+			\item[$\La$] \(\bigcup_{i = 1}^m \set{|\xi_{i, n} - \xi_i| > \frac{\eps}{\sqrt{m}}} \supseteq \{\|\xi_n - \xi\|_2 > \eps\}\)
+		\end{itemize}
+		
+		\item Покомпонентная сходимость из векторной тривиальна, а в обратную сторону нужно разложить вектор на сумму векторов с лишь одной его компонентой и воспользоваться неравенством треугольника. Тогда всё следует из предполагаемого условия (покомпонентная сходимость):
+		\[
+			\E \sum_{i = 1}^m \|\xi_{i, n} - \xi_i\|_p^p \xrightarrow[n \to \infty]{} 0
+		\]
+		
+		\item Доказать нужно (и возможно) только в одну сторону. Зафиксируем $g \colon \R \to \R$ --- непрерывную ограниченную функцию и рассмотрим $h_i(x_1, \ldots, x_m) = x_i$ --- функция проектора. Тогда композиция $g \circ h$ является ограниченной непрерывной функцией $\R^m \to \R$, а значит можем воспользоваться предположением:
+		\[
+			\E g(\xi_{i, n}) = \E g(h(\xi_n)) \xrightarrow[n \to \infty]{} \E g(h(\xi)) = \E g(\xi_i)
+		\]
+ 	\end{enumerate}
+\end{proof}
+
+\begin{reminder}
+	Имеют место следующие посылки:
+	\begin{itemize}
+		\item $(\xi_n \xrightarrow{P\text{ п.н.}} \xi) \Ra (\xi_n \xrightarrow{P} \xi)$
+		
+		\item $(\xi_n \xrightarrow{L_p} \xi) \Ra (\xi_n \xrightarrow{P} \xi)$
+		
+		\item $(\xi_n \xrightarrow{P} \xi) \Ra (\xi_n \xrightarrow{d} \xi)$
+	\end{itemize}
+\end{reminder}
+
+\begin{proposition}
+	Если $\xi_n \to^d c$, где $c = const \in \R^m$, то $\xi_n \to^p c$
+\end{proposition}
+
+\begin{proof}
+	Перейдём к сходимостям в координатах, а для них мы уже доказали эту лемму в курсе теории вероятностей:
+	\[
+		(\xi_n \xrightarrow{d} c) \Ra (\xi_{i, n} \xrightarrow{d} c_i) \Lora (\xi_{i, n} \xrightarrow{P} \xi_i) \Ra (\xi_n \xrightarrow{P} \xi)
+	\]
+\end{proof}
+
+\begin{theorem} (О наследовании сходимостей)
+	Пусть существует $B \in \B(\R^m)$ такое, что $P(\xi \in B) = 1$ и $h \colon \R^m \to \R^k$ непрерывна в каждой точке множества $B$. Тогда верны посылки:
+	\begin{enumerate}
+		\item \(\xi_n \xrightarrow{P\text{ п.н.}} \xi \Lora h(\xi_n) \xrightarrow{P\text{ п.н.}} h(\xi)\)
+		
+		\item \(\xi_n \xrightarrow{P} \xi \Lora h(\xi_n) \xrightarrow{P} h(\xi)\)
+		
+		\item \(\xi_n \xrightarrow{d} \xi \Lora h(\xi_n) \xrightarrow{d} h(\xi)\)
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item \(P(h(\xi_n) \to h(\xi)) \ge P(h(\xi_n) \to h(\xi) \wedge \xi \in B) \ge P(\xi_n \to \xi \wedge \xi \in B) = 1\)
+		
+		\item Предположим противное. Это означает следующее:
+		\[
+			\exists \eps_0 > 0\ \exists \delta_0 > 0\ \exists \{n_k\}_{k = 1}^\infty \such P(\|h(\xi_{n_k}) - h(\xi)\| > \eps_0) \ge \delta_0
+		\]
+		При этом $\xi_{n_k} \xrightarrow{P} \xi$. Как известно, из такой последовательности можно извлечь подпоследовательность, которая будет сходиться $P$-почти наверное:
+		\[
+			\xi_{n_{k_j}} \xrightarrow{P\text{ п.н.}} \xi \Ra h(\xi_{n_{k_j}}) \xrightarrow{P\text{ п.н.}} h(\xi) \Ra h(\xi_{n_{k_j}}) \xrightarrow{P} h(\xi)
+		\]
+		Получили противоречие с предположением
+		
+		\item Докажем случай лишь когда $h$ просто непрерывна в $\R^m$. Зафиксируем $f \colon \R^k \to \R$ --- непрерывная ограниченная функция. В силу условия, $f \circ h$ тоже непрерывна и ограничена на $\R^m$. Отсюда из сходимости по распределению:
+		\[
+			\E f(h(\xi_n)) \xrightarrow[n \to \infty]{} \E f(h(\xi))
+		\]
+		Всё доказанное вместе означает по определению, что $h(\xi_n) \xrightarrow{d} h(\xi)$.
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition} (без доказательства)
+	Пусть $\{\eta_n\}_{n = 1}^\infty$ --- случайные вектора из $\R^s$, причём $\eta_n \xrightarrow{d} c = const \in \R^s$ и также $\xi_n \xrightarrow{d} \xi$. Тогда верна векторная сходимость по распределению:
+	\[
+		\begin{pmatrix}
+			\xi_n
+			\\
+			\eta_n
+		\end{pmatrix}
+		\xrightarrow[n \to \infty]{d}
+		\begin{pmatrix}
+			\xi
+			\\
+			\eta
+		\end{pmatrix}
+		\in \R^{m + s}
+	\] 
+\end{proposition}
+
+\begin{corollary} (Лемма Слуцкого)
+	Пусть $\{\eta_n\}_{n = 1}^\infty$ --- случайные величины, причём $\eta_n \xrightarrow{d} c \in \R$ и также $\xi_n \xrightarrow{d} \xi$. Тогда верны такие сходимости:
+	\begin{itemize}
+		\item \(\xi_n + \eta_n \xrightarrow{d} \xi + c\)
+		
+		\item \(\xi_n \cdot \eta_n \xrightarrow{d} \xi \cdot c\)
+	\end{itemize}
+\end{corollary}
+
+\begin{proof}
+	Просто комбинируем утверждение без доказательства и теорему о наследовании сходимости для таких $f(x, y)$:
+	\begin{itemize}
+		\item $f(x, y) = x + y$
+		
+		\item $f(x, y) = xy$
+	\end{itemize}
+\end{proof}
+
+\begin{theorem} (Дельта-метод, одномерный случай)
+	Пусть $\xi_n, \xi$ --- случайные величины, $H \colon \R \to \R$ и $\{b_n\}_{n = 1}^\infty \subset \R$, на которые наложены следующие условия:
+	\begin{itemize}
+		\item $\xi_n \xrightarrow{d} \xi$
+		
+		\item $H \in D(a)$, где $a \in \R$ --- фиксированная точка
+		
+		\item $\lim_{n \to \infty} b_n = 0$
+		
+		\item $b_n \neq 0$
+	\end{itemize}
+	Тогда верна сходимость:
+	\[
+		\frac{H(a + \xi_nb_n) - H(a)}{b_n} \xrightarrow[n \to \infty]{d} H'(a)\xi
+	\]
+\end{theorem}
+
+\begin{proof}
+	Идея состоит в том, чтобы просто применить теорему о наследовании сходимостей. Итак, определим $h$ следующим образом:
+	\[
+		h(x) := \System{
+			&{\frac{H(a + x) - H(a)}{x},\ x \neq 0}
+			\\
+			&{H'(a),\ x = 0}
+		}
+	\]
+	Тогда $h$ непрерывна на $\R$. По лемме Слуцкого $b_n\xi_n \xrightarrow{d} 0 \cdot \xi = 0$. Осталось применить уже упомянутую теорему о наследовании:
+	\[
+		\frac{H(a + b_n\xi_n) - H(a)}{b_n\xi_n} = h(b_n\xi_n) \xrightarrow{d} h(0) = H'(a)
+	\]
+	Повторно используем лемму Слуцкого с доказанной сходимостью и $\xi_n \xrightarrow{d} \xi$, это и даёт утверждение теоремы.
+\end{proof}
+
+\begin{theorem} (Дельта-метод, многомерный случай)
+	Пусть $\xi_n, \xi$ --- случайные вектора из $\R^m$, $H \colon \R^m \to \R^s$, $a \in \R^m$ и $\{b_n\}_{n = 1}^\infty \subset \R$, на которые наложены следующие условия:
+	\begin{itemize}
+		\item $\xi_n \xrightarrow{d} \xi$
+		
+		\item $H \in D(a)$
+		
+		\item $b_n \to 0$
+		
+		\item $b_n \neq 0$
+	\end{itemize}
+	Тогда верна сходимость:
+	\[
+		\frac{H(a + \xi_nb_n) - H(a)}{b_n} \xrightarrow[n \to \infty]{d} H'(a)\xi
+	\]
+\end{theorem}

@@ -1,0 +1,211 @@
+\section{Параметрическая модель}
+
+\begin{definition}
+	Вероятностно-статистическая модель $(\cX, \B(\cX), \cP)$ называется \textit{параметрической}, если $\cP$ является не мерой, а параметризованным множеством мер на \\ $(\cX, \B(\cX))$, то есть
+	\[
+		\cP = \{P_\theta \colon \theta \in \Theta\}
+	\]
+\end{definition}
+
+\begin{note}
+	В силу свойств множества, мы считаем верной импликацию $(\theta_1 \neq \theta_2) \Ra (P_{\theta_1} \neq P_{\theta_2})$
+\end{note}
+
+\begin{note}
+	Как правило, $\Theta \subseteq \R^k$. Можно вспомнить базовые примеры, такие как $Exp(\theta)$, $Cauchy(\sigma)$, $N(a, \sigma^2)$
+\end{note}
+
+\begin{anote}
+	Далее, когда встречаются понятия, такие как наблюдение, в рамках параметрической модели, то их нужно понимать в вероятностно-статистической модели $(\cX, \B(\cX), P_\theta)$ для некоторого $\theta \in \Theta$
+\end{anote}
+
+\subsection{Статистики и оценки}
+
+\begin{definition}
+	Пусть $(\cX, \B(\cX), P)$ --- вероятностно-статистическая модель, $X$ --- наблюдение, $(E, \cE)$ --- измеримое пространство, $S \colon \cX \to E$ --- измеримое отображение. Тогда $S(X)$ называют \textit{статистикой}.
+\end{definition}
+
+\begin{note}
+	Как правило, $(E, \cE) = (\R, \B(\R))$ или $(\R^2, \B(\R^2))$. Базовым примером является функция среднего:
+	\[
+		S(X) = \ol{X} := \frac{\sum_{i = 1}^n X_i}{n}
+	\]
+\end{note}
+
+\begin{definition}
+	Любая статистика также может называться \textit{оценкой}.
+\end{definition}
+
+\begin{definition}
+	Пусть $X$ --- наблюдение в параметрической модели $(\cX, \B(\cX), \cP)$, а $S(X)$ --- оценка, чьё множество значений вложено в $\Theta$ (или $\tau(\Theta)$ для некоторой функции $\tau$). Тогда $S(X)$ называется \textit{оценкой неизвестного параметра $\theta$ ($\tau(\theta)$)}
+\end{definition}
+
+\begin{example}
+	Приведём несколько базовых классов статистик. Далее $X = (X_1, \ldots, X_n)$ --- это выборка из некоторого распределения в $(\R^m, \B(\R^m))$:
+	\begin{enumerate}
+		\item Если $g \colon \R^m \to \R^n$ --- борелевская функция, то \textit{выборочной характеристикой функции $g(x)$} называется следующая статистика:
+		\[
+			\ol{g(X)} = \frac{1}{n} \sum_{i = 1}^n g(X_i)
+		\]
+		\begin{itemize}
+			\item $\ol{X} = \frac{1}{n} \sum_{i = 1}^n X_i$ --- выборочное среднее
+			
+			\item ($m = 1$) $\ol{X^k} = \frac{1}{n} \sum_{i = 1}^n X_i^k$ --- выборочный момент $k$-го порядка
+		\end{itemize}
+		
+		\item Если $h$ --- борелевская функция, то \textit{функцией от выборочных квантилей} называется статистика следующего вида:
+		\[
+			S(X) = h(\ol{g_1(X)}, \ldots, \ol{g_k(X)})
+		\]
+		\begin{itemize}
+			\item ($m = 1$) $S^2 = \ol{X^2} - \ol{X}^2$ --- выборочная дисперсия. Здесь $h(x, y) = x - y^2$
+			
+			\item $M_k = \frac{1}{n} \sum_{i = 1}^n (X_i - \ol{X})^k$ --- выборочный центральный момент $k$-го порядка
+		\end{itemize}
+	
+		\item ($m = 1$) \textit{$k$-й порядковой статистикой} называется $k$-й по величине снизу элемент.
+		\begin{itemize}
+			\item $X_{(1)} = \min(X_1, \ldots, X_n)$
+			
+			\item $X_{(2)} =$ второй по порядку возрастания элемент выборки
+			
+			\item $X_{(n)} = \max(X_1, \ldots, X_n)$
+		\end{itemize}
+		При этом вектор $(X_{(1)}, \ldots, X_{(n)})$ называется \textit{вариационным рядом}
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	Доказать, что $S^2 = \frac{1}{n} \sum_{i = 1}^n (X_i - \ol{X})^2 = M_2$
+\end{exercise}
+
+\begin{note}
+	Во-первых, отметим, что до этого мы смогли ввести понятие эмпирической функции распределения, и она сходится почти наверное к реальной функции распределения выборки. Аналогичная судьба, вообще говоря, наблюдается и у статистик:
+	\[
+		\E g(X_i) = \int_\R g(xv)dF(x) \longleftrightarrow \int_\R g(x)dF_n(x) = \frac{1}{n} \sum_{i = 1}^n g(X_i) = \ol{g(X)}
+	\]
+\end{note}
+
+\begin{proposition}
+	Для выборочной дисперсии $S^2$ выборки $X$ верна формула:
+	\[
+		\E S^2 = \frac{n - 1}{n} DX_1
+	\]
+\end{proposition}
+
+\begin{proof}
+	Просто раскроем среднее и пересоберём формулу:
+	\begin{multline*}
+		\E S^2 = \frac{1}{n} \sum_{i = 1}^n \E\ps{X_i - \frac{1}{n}\sum_{j = 1}^n X_j}^2 = \frac{1}{n} \sum_{i = 1}^n \E\ps{X_i^2 - \frac{2}{n}\sum_{j = 1}^n X_iX_j + \frac{1}{n^2}\sum_{j = 1}^n \sum_{k = 1}^n X_jX_k} =
+		\\
+		\frac{1}{n} \sum_{i = 1}^n \E\ps{X_i^2 - \frac{2}{n}X_i^2 - \frac{2}{n} \sum_{j \neq i} X_iX_j + \frac{1}{n^2} \sum_{j = 1}^n \sum_{k \neq j} X_jX_k + \frac{1}{n^2} \sum_{j = 1}^n X_j^2}
+	\end{multline*}
+	Внесём в отдельные части матожидание и посчитаем их:
+	\begin{itemize}
+		\item $\E\ps{\frac{n - 2}{n}X_i^2} = \frac{n - 2}{n}\E X_i^2$
+		
+		\item $\E\ps{\frac{2}{n}\sum_{j \neq i} X_iX_j} = \frac{2}{n}\sum_{j \neq i} (\E X_i)\E X_j = \frac{2}{n} \E X_i \sum_{j \neq i} \E X_j = \frac{2(n - 1)}{n} (\E X_1)^2$
+		
+		\item $\E\ps{\frac{1}{n^2} \sum_{j = 1}^n \sum_{k \neq j} X_jX_k} = \frac{1}{n^2} \sum_{j = 1}^n \sum_{k \neq j} (\E X_j)\E X_k = \frac{n - 1}{n^2} \sum_{j = 1}^n (\E X_1)^2 = \frac{n - 1}{n} (\E X_1)^2$
+		
+		\item $\E\ps{\frac{1}{n^2} \sum_{j = 1}^n X_j^2} = \frac{1}{n} \E X_1^2$
+	\end{itemize}
+	Итого:
+	\begin{multline*}
+		\E S^2 = \frac{1}{n} \sum_{i = 1}^n \ps{\frac{n - 1}n \E X_1^2 - \frac{2(n - 1)}{n}(\E X_1)^2 + \frac{n - 1}{n}(\E X_1)^2} =
+		\\
+		\frac{n - 1}{n} (\E X_1^2 - (\E X_1)^2) = \frac{n - 1}{n} DX_1
+	\end{multline*}
+\end{proof}
+
+\begin{note}
+	Собственно, наблюдается неожиданная проблема: наша статистика немного смещена от реальной дисперсии, но это очень просто поправить!
+	\[
+		S_0^2 = \frac{n}{n - 1} S^2 = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \ol{X})^2 \text{ --- \textit{исправленная выборочная дисперсия}}
+	\]
+\end{note}
+
+\subsection{Свойства оценок}
+
+\begin{note}
+	Далее, если не оговорено явно иного, мы живём в параметрической модели $(\cX, \B(\cX), \cP)$ и рассматриваем выборку $X = (X_1, \ldots, X_n)$ с неизвестным распределением $P = P_\theta \in \cP$
+\end{note}
+
+\begin{definition}
+	Оценка $\theta^*(X)$ называется \textit{несмещённой оценкой параметра} $\theta$, если выполнено условие:
+	\[
+		\forall \theta \in \Theta\ \ \E_\theta \theta^*(X) = \theta
+	\]
+	где $\E_\theta$ --- интеграл Лебега (матожидание) по мере $P_\theta$
+\end{definition}
+
+\begin{example}
+	Рассмотрим $\cP = \{N(\theta, 1) \colon \theta \in \R\}$. Тогда оценки $X_1$ и $\ol{X}$ --- несмещённые
+\end{example}
+
+\begin{definition}
+	Пусть $\{X_k\}_{k = 1}^\infty$ --- счётная выборка из неизвестного распределения $P_\theta \in \cP$. Тогда последовательность оценок $\{\theta_n^*(X_1, \ldots, X_n)\}_{n = 1}^\infty$ называется \textit{состоятельной}, если имеется сходимость:
+	\[
+		\forall \theta \in \Theta\ \ \theta_n^*(X) \xrightarrow[n \to \infty]{P_\theta} \theta
+	\]
+	Что эквивалентно $\forall \theta \in \Theta\ \forall \eps > 0\ \ P_\theta(\|\theta_n^* - \theta\|_2 \ge \eps) \to 0$
+\end{definition}
+
+\begin{definition}
+	Пусть $\{X_k\}_{k = 1}^\infty$ --- счётная выборка из неизвестного распределения $P_\theta \in \cP$. Тогда последовательность оценок $\{\theta_n^*(X_1, \ldots, X_n)\}_{n = 1}^\infty$ называется \textit{сильно состоятельной}, если имеется сходимость:
+	\[
+		\forall \theta \in \Theta\ \ \theta_n^*(X) \xrightarrow[n \to \infty]{P_\theta\text{ п.н.}} \theta
+	\]
+\end{definition}
+
+\begin{example}
+	Для $\cP = \{N(\theta, 1)\}$ верно, что $\ol{X}$ --- сильно состоятельная оценка (в силу УЗБЧ)
+\end{example}
+
+\begin{definition}
+	Пусть $\{X_k\}_{k = 1}^\infty$ --- выборка из случайных величин с распределением $P_\theta$. Тогда оценка $\theta_n^*(X_1, \ldots, X_n)$ называется \textit{асимптотически нормальной оценкой $\theta$}, если выполнена сходимость:
+	\[
+		\forall \theta \in \Theta\ \ \sqrt{n}(\theta_n^*(X) - \theta) \xrightarrow[n \to \infty]{d_\theta} N(0, \sigma^2(\theta))
+	\]
+	где $d_\theta$ --- сходимость по распределению $P_\theta$. Величину $\sigma^2(\theta)$ называют \textit{асипмтотической дисперсией оценки $\theta_n^*$}
+\end{definition}
+
+\begin{anote}
+	В определениях, данных выше, использовано сокращение $\theta_n^*(X) = \theta_n^*(X_1, \ldots, X_n)$
+\end{anote}
+
+\begin{note}
+	Иногда в определении выше требуют, что $\sigma(\theta) > 0$
+\end{note}
+
+\begin{example}
+	Рассмотрим $\cP = \{N(\theta, 1)\}$. Тогда $\ol{X}$ является асимптотически нормальной оценкой $\theta$ в силу ЦПТ
+\end{example}
+
+\begin{note}
+	Введённые определения состоятельной, сильно состоятельной и асимптотически нормальной выборки являются \textit{асимптотическими свойствами}, то есть имеют смысл только в том случае, когда число элементов выборки растёт.
+\end{note}
+
+\begin{note}
+	Как уже упоминалось в определении, мы можем оценивать не только $\theta$, но и $\tau(\theta)$ для некоторой функции $\tau$.
+\end{note}
+
+\begin{proposition}
+	Если $\tau_n^*(X)$ --- асимптотически нормальная оценка для $\tau(\theta)$, то $\tau_n^*(X)$ --- состоятельная оценка для $\tau(\theta)$
+\end{proposition}
+
+\begin{proof}
+	Зафиксируем $\theta \in \Theta$. Тогда, в силу определения асимптотической нормальности и леммы Слуцкого, верна сходимость:
+	\[
+		\frac{1}{\sqrt{n}} \cdot \sqrt{n}(\tau_n^*(X) - \tau(\theta)) \xrightarrow[n \to \infty]{d_\theta} 0
+	\]
+	Итак, $\tau_n^* - \tau(\theta) \to^{d_\theta} 0$. Так как $\tau(\theta)$ --- константа, то имеет место эквивалентная сходимость $\tau_n^* \to^{P_\theta} \tau(\theta)$, что и требовалось доказать.
+\end{proof}
+
+\begin{proposition} (Наследование состоятельности и сильно состоятельности)
+	Пусть $\theta_n^*(X)$ --- (сильно) состоятельная оценка $\theta \in \Theta \subseteq \R^k$, при этом $\tau \colon \R^k \to \R^s$ --- непрерывная на $\Theta$ функция. Тогда $\tau(\theta_n^*(X))$ --- (сильно) состоятельная оценка $\tau(\theta)$
+\end{proposition}
+
+\begin{proof}
+	Фактически, это просто теорема о наследовании сходимости для случайных векторов.
+\end{proof}

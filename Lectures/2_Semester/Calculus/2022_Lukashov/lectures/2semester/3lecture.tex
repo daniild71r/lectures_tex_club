@@ -30,7 +30,14 @@
 \begin{theorem} (Дифференцируемость сложной функции)
 	Пусть $f$ дифференцируема в точке $\vv{y}_0 \in \R^m$, $\forall j \in \range{m}\ g_j$ дифференцируема в точке $\vv{x}_0 \in \R^n$, причём $g_j(\vv{x}_0) = y_{j, 0}$, если $\vv{y}_0 = (y_{1, 0}, \ldots, y_{m, 0})$. Тогда сложная функция $h(\vv{x}) = f(g_1(\vv{x}), \ldots, g_m(\vv{x}))$ дифференцируема в точке $\vv{x}_0$, причём
 	\[
-		\grad h(\vv{x}_0) = \grad f(\vv{y}_0)
+		\grad h(\vv{x}_0) = 
+		\begin{pmatrix}
+		& \grad g_1(\vv{x}_0) & \\
+		& \vdots & \\
+		& \grad g_m(\vv{x}_0) & \\
+		\end{pmatrix}^T
+		\cdot
+		\grad f(\vv{y}_0)
 	\]
 \end{theorem}
 
