@@ -16,7 +16,7 @@
     "e/4/Discrete_Analysis/2022_Raigorodskiy"
   ],
   "DanMax03": [
-    "l/2/Calculus/2022_Lukashov",
+    "!l/2/Calculus/2022_Lukashov",
     "!l/2/Combinatorics_and_Number_Theory/2022_Raigorodsky",
     "!l/3/Calculus/2022_Lukashov",
     "!l/3/Group_Theory/2022_Bogdanov",
@@ -25,7 +25,7 @@
     "!l/4/Discrete_Analysis/2023_Raigorodsky",
     "!l/4/Calculus/2023_Lukashov",
     "!l/4/Probability_Theory/2023_Shabanov",
-    "!l/5/Functional_Analysis/2023_Konovalov",
-    "l/5/Statistics/2023_Savelov"
+    "l/5/Functional_Analysis/2023_Konovalov",
+    "!l/5/Statistics/2023_Savelov"
   ]
 }
