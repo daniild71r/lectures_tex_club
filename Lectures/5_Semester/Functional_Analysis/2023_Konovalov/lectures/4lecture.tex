@@ -125,30 +125,8 @@
 		
 		\item Из любой последовательности элементов $X$ можно выделить сходящуюся подпоследовательность
 		
-		\item Для любого бесконечного мноества 
+		\item У любого бесконечного множества есть предельная точка
 		
-		\item Верны включения $C(X, \R) \subseteq B(X, \R)$ и $C(X, \Cm) \subseteq B(X, \Cm)$
+		\item Верны включения $C(X, \R) \subseteq B(X, \R)$ и $C(X, \Cm) \subseteq B(X, \Cm)$ --- любая непрерывная функция из $X$ в $\R$ или $\Cm$ является ограниченной
 	\end{enumerate}
 \end{theorem}
-
-\begin{proof}~
-	\begin{enumerate}
-		\item[$1 \Ra 2$] Покажем, что $X$ --- полное. Пусть $\{x_n\}_{n = 1}^\infty$ --- фундаментальная последовательность. Тогда:
-		\[
-			\forall \eps > 0\ \exists N \in \N \such \forall n \ge N, p \in \N\ \ \rho(x_{n + p}, x_n) < \eps
-		\]
-		Рассмотрим множества $A_n = \{x_n, x_{n + 1}, \ldots\}$. Если $n \ge N$, то выполнена цепочка вложений:
-		\[
-			A_n \subseteq B(x_n, \eps) \Lora \cl A_n \subseteq \cl B(x_n, \eps) \subseteq \ole{B}(x_n, \eps)
-		\]
-		С учётом определения, $\{\cl A_n\}_{n = 1}^\infty$ --- центрированная система замкнутых множеств. В силу компактности $X$, пересечение всех $\cl A_n$ непусто. Обозначим $x \in \bigcap_{n = 1}^\infty \cl A_n$. \textcolor{red}{А дальше на следующей лекции}
-		
-		\item[$2 \Ra 3$]
-		
-		\item[$3 \Ra 1$]
-		
-		\item[$3 \Lra 4$]
-		
-		\item[$2 \Lra 5$]
-	\end{enumerate}
-\end{proof}
