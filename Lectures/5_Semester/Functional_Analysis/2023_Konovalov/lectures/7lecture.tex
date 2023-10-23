@@ -1,0 +1,165 @@
+\textcolor{red}{$K = \Cm \vee \R$}
+
+\begin{definition}
+	Пространство $E$ называется \textit{линейно нормированным}, если выполнено 2 условия:
+	\begin{enumerate}
+		\item $E$ --- линейное пространство над $K$
+		
+		\item В пространстве $E$ существует \textit{оператор нормы} $\|\cdot\| \colon E \to \R_+$. Он удовлетворяет следующим условиям:
+		\begin{enumerate}
+			\item $\forall x \in E\ \ \|x\| \ge 0 \wedge \|x\| = 0 \Lra x = 0$
+			
+			\item $\forall x \in E,\ \alpha \in \R\ \ \|\alpha x\| = |\alpha| \cdot \|x\|$
+			
+			\item $\forall x, y \in E\ \ \|x  + y\| \le \|x\| + \|y\|$
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	Любое линейно нормированное пространство является метрическим с индуцированной нормой метрикой $\rho(x, y) = \|x - y\|$.
+\end{proposition}
+
+\begin{proof}
+	\textcolor{red}{Дописать}
+\end{proof}
+
+\begin{definition}
+	Полное линейно нормированное пространство называется \textit{банаховым}.
+\end{definition}
+
+\begin{example}~
+	\begin{enumerate}
+		\item $\R^n$ является банаховым пространством
+		
+		\item $C[a; b]$ со своей собственной нормой $\|f\| = \min_{[a; b]} |f|$ является банаховым
+		
+		\item \textcolor{red}{Дописать}
+	\end{enumerate}
+\end{example}
+
+\begin{note}
+	Далее буква $E$ закрепляется за линейно нормированным пространством. 
+\end{note}
+
+\begin{definition}
+	\textit{Линейным многообразием} $L \subseteq E$ называется линейная оболочка $\tbr{L}$. \textcolor{red}{Поправить формулировку}
+\end{definition}
+
+\begin{definition}
+	Пространство $L \subseteq E$ называется \textit{подпространством в $E$}, если $L$ --- линейное многообразие.
+\end{definition}
+
+\begin{definition}
+	\textit{Линейной оболочкой множества} $S \subseteq E$ называется множество всех конечных линейных комбинаций элементов из $S$. Обозначается как $[S]$ или $\Lin S$
+\end{definition}
+
+\begin{definition}
+	Норма $\|\cdot\|_1$ \textit{слабее, чем} норма $\|\cdot\|_2$, если выполнено условие:
+	\[
+		\exists C > 0 \such \forall x \in E\ \ \|x\|_1 \le C\|x\|_2
+	\]
+\end{definition}
+
+\begin{example}
+	В пространстве $C[a; b]$ норма $\|\cdot\|_1$ слабее нормы $\|\|_{C[a; b]}$:
+	\[
+		\int_a^b |f(x)|dx \le \max_{x \in [a; b]} |f(x)| \cdot (b - a) = \|f\|_C \cdot (b - a)
+	\]
+\end{example}
+
+\begin{definition}
+	Нормы $\|\cdot\|_1$, $\|\cdot\|_2$ эквивалентны, если они слабее друг друга \textcolor{red}{Нужно явно другое слово для определения}
+\end{definition}
+
+\begin{definition}
+	Пусть $E$ --- линейно нормированное пространство над $\R$. Тогда множество $S \subseteq E$ называется \textit{выпуклым}, если выполнено утверждение:
+	\[
+		\forall x, y \in S\ \forall \lambda \in [0; 1]\ \ \lambda x + (1 - \lambda)y \in S
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Базисом} $E$ называется набор векторов $\{v_k\}_{k = 1}^\infty$ такой, что $\tbr{\{v_k\}_{k = 1}^\infty} = E$
+\end{definition}
+
+\begin{definition}
+	\textcolor{red}{Базис Гамеля и базис Шаудера}
+\end{definition}
+
+\begin{definition}
+	\textit{Размерностью} $E$ называется мощность базиса в пространстве $E$.
+\end{definition}
+
+\begin{definition}
+	Пусть $E_1, E_2$ --- линейно нормированные пространства. Отображение $A \colon E_1 \to E_2$ называется \textit{оператором}.
+\end{definition}
+
+\begin{definition}
+	Пусть $E$ --- линейно нормированное пространство над $K$. Тогда отображение $f \colon E \to K$ называется \textit{функционалом}.
+\end{definition}
+
+\begin{theorem}
+	Пусть $\dim E < \infty$. Тогда на $E$ все нормы эквивалентны.
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Ниже приведено доказательство над $\R$}. Рассмотрим ортонормированный базис $\{e_1, \ldots, e_n\}$. Покажем, что произвольная норма $\|\cdot\|_1$ является эквивалентной к норме, порождённой ортогональным базисом:
+	\[
+		\|x\| = \no{\sum_{k = 1}^n \alpha_k e_k} = \sqrt{\sum_{k = 1}^n \alpha_k^2}
+	\]
+	\begin{itemize}
+		\item[$\Ra$] Обозначим $\kappa = \max_{k \in \range{1}{n}} \|e_k\|_1$. Имеет место цепочка неравенств:
+		\[
+			\|x\|_1 = \no{\sum_{k = 1}^n \alpha_ke_k}_1 \le \sum_{k = 1}^n \|\alpha_ke_k\|_1 \le \kappa \sum_{k = 1}^n |\alpha_k| \le \kappa \sqrt{n} \cdot \|x\|
+		\]
+		Последний переход --- неравенство Коши между средним арифметическим и квадратичным.
+		
+		\item[$\La$] Предположим противное. \textcolor{red}{Дописать}
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Пусть $L = \tbr{e_1, \ldots, e_n}$. Тогда $L$ --- банахово пространство.
+\end{proposition}
+
+\begin{proof}
+	$L$ --- конечномерное пространство. По доказанной теореме, все нормы в нём эквивалентны. В частности, можно рассмотреть $L$ как подпространство $\R^n$. Тогда норма на $L$ эквивалентна евклидовой норме, а стало быть есть полнота. \textcolor{red}{Последний переход не понял}
+\end{proof}
+
+\begin{theorem}
+	Пусть $\{e_1, \ldots, e_n\} \subseteq E$. Тогда $\tbr{e_1, \ldots, e_n}$ является подпространством $E$.
+\end{theorem}
+
+\begin{theorem} (Ф. Рисса)
+	Пусть $E$ --- бесконечномерное пространство. Тогда единичная сфера в $E$ не является вполне ограниченной.
+\end{theorem}
+
+\begin{corollary}
+	Единичная сфера не компактна.
+\end{corollary}
+
+\begin{lemma} (о <<почти перпендикуляре>>)
+	Пусть $E_1 \subset E$ --- подпространство. Тогда выполнено утверждение:
+	\[
+		\forall \eps > 0\ \exists y \in E \colon \System{
+			&{\|y\| = 1}
+			\\
+			&{\rho(y, E_1) > 1 - \eps}
+		}
+	\]
+\end{lemma}
+
+\begin{note}
+	Тот факт, что $E_1$ --- не просто линейное многообразие, а подпространство, существенно.
+	
+	Рассмотрим $E = C[0; 1]$, $E_1 = \mathcal{P}$. Тогда $E_1$ --- не подпространство.
+\end{note}
+
+\begin{proof}
+	Коль скоро $E_1 \neq E$, то существует $y_0 \notin E_1$. Введём обозначение $d = \rho(y_0, E_1)$. Сразу понятно, что в силу замыкания не может быть $d = 0$, иначе $y_0 \in E_1$. Из определения расстояния, в частности, верно утверждение:
+	\[
+		\forall \eps > 0\ \exists z_0 \in E_1 \such d \le \|y_0 - z_0\| < d(1 + \eps)
+	\]
+	Посмотрим на вектор $y = \frac{y_0 - z_0}{\|y_0 - z_0\|}$. Обозначим коэффициент при векторе за $\alpha$. Сразу видно, что $\|y\| = 1$, поэтому осталось проверить только расстояние 
+\end{proof}
