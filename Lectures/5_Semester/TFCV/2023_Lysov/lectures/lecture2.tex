@@ -1,3 +1,5 @@
+% Лекция от 9 сентября.
+
 \section{Дифференцируемость в $\Cm$}
 
 Зафиксируем до конца параграфа (если не сказано обратного в формулировке утверждения)
@@ -242,7 +244,7 @@
 \end{definition}
 
 \begin{definition}
-	Пусть $f, f_n: E \to \Cm$, $E \subseteq \Cm$; $f_n \rightrightarrows f$ (сходится равномерно) на $E$, если $(\forall \epsilon > 0) \, (\exists N) \, (\forall n \geq N) \, (\forall z \in E) \,\, \mds{f_n(z) - f(z)} < \epsilon$. %TODO: сделать определение понятия нормальное, обозначение в скобки, указать, из каких множеств берутся элементы в кванторах. Сказать, что все отличие в том, что квантор для любой точки стоит последним.
+	Пусть $f, f_n: E \to \Cm$, $E \subseteq \Cm$; $f_n \tto f$ (сходится равномерно) на $E$, если $(\forall \epsilon > 0) \, (\exists N) \, (\forall n \geq N) \, (\forall z \in E) \,\, \mds{f_n(z) - f(z)} < \epsilon$. %TODO: сделать определение понятия нормальное, обозначение в скобки, указать, из каких множеств берутся элементы в кванторах. Сказать, что все отличие в том, что квантор для любой точки стоит последним.
 \end{definition}
 
 \begin{theorem}[критерий Коши] % TODO: критерий Коши равномерной сходимости
@@ -285,6 +287,42 @@
 \begin{proof}
 	\begin{enumerate}
 		\item Пусть $\rho \in (r, R), \frac{1}{R} < \frac{1}{\rho} < \frac{1}{r}$. Тогда $(\exists N) \, (\forall n > N) \, {\mds{a_n}}^{\frac{1}{n}} < \frac{1}{\rho}$. $\mds{a_n z^n} \leq \frac{1}{\rho^n} r^n$ при $\mds z \leq r$. По признаку Вейерштрасса (ряд $\sum q^n$ сходится при $q < 1$), ряд $\sum_{n = 0}^\infty a_m z^n$ сходится абсолютно и равномерно. % \rho = \mds z, \rho \in [r, R] по условию. Все ли работает в этом случае? Если да, включить r. Объяснить переход от верхнего предела в неравенству на модуль.
-		\item Пусть $\mds z > R$, $\frac{1}{\mds z} < \frac{1}{R}$
+		\item Пусть $\mds z > R$, $\frac{1}{\mds z} < \frac{1}{R}$ и $(\exists \varepsilon > 0) \,\, \frac{1}{\mds z} < \frac{1}{R} - \epsilon \Ra \mds z > \frac{1}{\frac{1}{R} - \epsilon}$, $\exists n_k$ -- подпоследовательность такая, что $\mds{a_{n_k}}^{\frac{1}{n_k}} > \frac{1}{R} - \epsilon \ra \mds{a_{n_k} z^{n_k}} \geq {\jleft( \frac{1}{R} - \epsilon \jright)}^{n_k} {\jleft( \frac{1}{\frac{1}{R} - \epsilon} \jright)}^{n_k} = 1.$ Не выполнено необходимое условие.
+		\item $g(z) = \sum_{n = 1}^\infty n a_n z^{n - 1}$. $\uuplim{n \to \infty} \sqrt[n]{n \mds{a_n}} = \uuplim{n \to \infty} \sqrt[n]{\mds{a_n}} = \frac{1}{R}$, т.е. радиус сходимости сохраняется. $f(z) = \sum_{n = 0}^{N - 1} a_n z^n + \sum_{n = N}^\infty a_n z^n = F_N(z) + H_N(z)$. Тогда
+		\begin{align*}
+			\frac{f(z) - f(z_0)}{z - z_0} = \frac{F_N(z) - F_N(z_0)}{z - z_0} + \frac{H_N(z) - H_N(z_0)}{z - z_0} = \\
+			\underbrace{\jleft( \frac{F_N(z) - F_N(z_0)}{z - z_0} - F_N'(z_0) \jright)}_{\to F_N'(z_0) \text{ при } N \to \infty} + \underbrace{(F_N'(z_0) - g(z_0))}_{\tto 0 \text{ при } N \to \infty} + \jleft( g(z_0) + \frac{H_N(z) - H_N(z_0)}{z - z_0} \jright).
+		\end{align*}
+		$F_N'(z) = G_N(z)$, причем $G_N(z) \to g(z)$ для $\mds z < R$ (производная многочлена). \\
+		Последнее слагаемое:
+		\begin{align*}
+			\mds{\frac{H_N(z) - H_N(z_0)}{z - z_0}} \leq \sum_{n = N}^\infty \mds{a_n \frac{z^n - z_0^n}{z - z_0}} = \\
+			\sum_{n = N}^\infty \mds{a_n \jleft[ z^{n - 1} + z^{n - 2} z_0 + \ldots + z_0^{n - 1} \jright]} \leq \sum_{n = N}^\infty \mds{a_n} n r^{n - 1}.
+		\end{align*}
+		Последнее неравенство верно при $\mds z \leq r$, $\mds{z_0} \leq r_0$, $r < R$. Получили остаток сходящегося ряда
+		% Я бы сказал явно, что мы определяем пару функций для всех $N$, разделил их бы.
 	\end{enumerate}
 \end{proof}
+
+\begin{note}
+	$f(z) = \sum_{n = 0}^\infty a_n z^n \Ra a_0 = f(0), a_1 = f'(0), \ldots, a_n = \frac{f^{(n)}(0)}{n!}$.
+\end{note}
+
+\begin{definition}
+	$e^z = \sum_{n = 0}^\infty \frac{z^n}{n!}$, $R_\text{сх} = \infty$, $e^z$ голоморфна в $\Cm$.
+\end{definition}
+
+\begin{note}
+	$\jleft( e^z \jright)' = e^z$, $e^{z_1 + z_2} = e^{z_1} e^{z_2}$, $e^{\ol z} = \ol{e^z}$.
+\end{note}
+\begin{proof}
+	Докажем, что $e^{a - z} e^{z} = e^a$. Введем $g(z) = e^{a - z} e^z$. $g'(z) = e^{a - z} (-1) e^z + e^{a - z} e^z = 0 \Ra g(z) = const = g(0) = e^a$.
+\end{proof}
+
+\begin{note}
+	$\ulim{n \to \infty} {\jleft( 1 + \frac{z}{n} \jright)}^n = e^z$.
+\end{note}
+
+\begin{definition}
+	$\cos(z) = \frac{e^{iz} + e^{-iz}}{2}$, $\sin(z) = \frac{e^{iz} - e^{-iz}}{2i}$.
+\end{definition}

@@ -70,9 +70,14 @@
 \let\ol\overline
 \newcommand{\mds}[1]{\jleft\lvert#1\jright\rvert} % Комплексный модуль (complex modulus)
 
-\let\it\textit
+\DeclareMathOperator*{\lowlim}{\ul{lim}}
+\DeclareMathOperator*{\uplim}{\ol{lim}}
 
+\newcommand{\ulowlim}[1]{\lowlim\limits_{#1}}
+\newcommand{\uuplim}[1]{\uplim\limits_{#1}}
 \newcommand{\ulim}[1]{\lim\limits_{#1}}
+
+\let\it\textit
 
 %%% Перенос знаков в формулах (по Львовскому)
 \newcommand{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
