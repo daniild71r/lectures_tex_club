@@ -1,0 +1,27 @@
+% Лекция от 16 сентября.
+
+\section{Интегрирование}
+
+\begin{definition}
+	Пусть $\alpha, \beta \in \R$, $\alpha \leq \beta$, $z: [\alpha, \beta] \to \Cm$, $(\forall t \in [\alpha, \beta]) \,\, z = x(t) + i y(t)$, $x$ и $y$ непрерывны; $z$ называется \it{параметризацией кривой}. (Модифицировано автором.)
+\end{definition}
+
+\begin{definition}
+	Пусть $z_1: [\alpha_1, \beta_1] \to \Cm$, $z_2: [\alpha_2, \beta_2] \to \Cm$, $z_1$ и $z_2$ -- параметризации кривых; $z_1$ и $z_2$ эквивалентны, если существует непрерывная функция $\varphi: [\alpha_1, \beta_1] \to [\alpha_2, \beta_2]$ такая, что $z_1 = z_2 \circ \varphi$.
+\end{definition}
+
+\begin{anote}
+	Получилось отношение эквивалентности: рефлексивно, достаточно взять тождественное отображение, оно непрерывно; симметрично, т.к. $\varphi^{-1}$ существует и непрерывна по свойствам непрерывных функций из $\R$ в $\R$, $z_1 \circ \varphi^{-1} = z_2 \circ \varphi \circ \varphi^{-1} = z_2$; транзитивно: если $z_1 = z_2 \circ \varphi_1$, $z_2 = z_3 \circ \varphi_2$, то $z_1 = (z_3 \circ \varphi_2) \circ \varphi_1 = z_3 \circ (\varphi_2 \circ \varphi_3)$, при этом $\varphi_2 \circ \varphi_3$ непрерывна как композиция непрерывных функций.
+\end{anote}
+
+\begin{definition}
+	Класс эквивалентности параметризаций кривых по определенному отношению эквивалентности называется кривой.
+\end{definition}
+
+\begin{anote}
+	У любых двух эквивалентных параметризаций одно и то же множество значений: $(\forall t \in [\alpha_1, \beta_1]) \, \, z_1(t) = (z_2 \circ \varphi)(t)$, тогда $z_1([\alpha_1, \beta_1]) = z_2(\varphi([\alpha_1, \beta_1])) \subset z_2([\alpha_2, \beta_2])$. Можно показать включение в другую сторону благодаря симметричности определенного нами отношения.
+\end{anote}
+
+\begin{definition}
+	Пусть $z: [\alpha, \beta] \to \Cm$, $z$ -- параметризация кривой; \it{образом кривой} называется $z([\alpha, \beta])$.
+\end{definition}
