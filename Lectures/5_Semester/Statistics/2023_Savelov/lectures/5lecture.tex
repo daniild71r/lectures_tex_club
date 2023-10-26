@@ -1,0 +1,162 @@
+\begin{note}
+	Так как $z_p$ --- константа, то при помощи леммы Слуцкого несложно показать, что есть сходимость $z_{n, p} \to^P z_p$.
+\end{note}
+
+\begin{definition}
+	\textit{Медианой распределения $P$} называется его $\frac{1}{2}$-квантиль.
+\end{definition}
+
+\begin{definition}
+	Пусть $\{X_i\}_{i = 1}^n$ --- выборка. \textit{Выборочной медианой} $\hat{\mu}$ называется следующая оценка:
+	\[
+		\hat{\mu} = \System{
+			&{X_{(k + 1)},\ n = 2k + 1}
+			\\
+			&{\frac{X_{(k)} + X_{(k + 1)}}{2},\ n = 2k}
+		} = \frac{X_{(\floor{\frac{n}{2}})} + X_{(\ceil{\frac{n}{2}})}}{2}
+	\]
+\end{definition}
+
+\begin{theorem} (о выборочной медиане)
+	Пусть $\{X_i\}_{i = 1}^n$ --- выборка из распределения с плотностью $f(x)$. Пусть $z_{1 / 2}$ --- это $\frac{1}{2}$-квантиль этого распределения, причём $f$ непрерывно дифференцируема в некоторой окрестности $z_{1 / 2}$ и $f(z_{1 / 2}) > 0$. Тогда выполнена сходимость:
+	\[
+		\sqrt{n}(\hat{\mu}(X) - z_{1 / 2}) \xrightarrow[n \to \infty]{d} N\ps{0, \frac{1}{4f^2(z_{1 / 2})}}
+	\]
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Типа тривиально, но не тривиально}
+\end{proof}
+
+\begin{note}
+	Как и в случае теоремы о выборочных квантилях, имеет место сходимость $\hat{\mu} \to^P z_{1 / 2}$
+\end{note}
+
+\subsection{Сравнение оценок}
+
+\begin{definition}
+	\textit{Функцией потерь} называется любая борелевская неотрицательная функция $g \colon \R^n \times \R^n \to \R$.
+\end{definition}
+
+\begin{definition}
+	Пусть $\Theta \subseteq \R^m$ и $g$ --- функция потерь из $\R^m \times \R^m$. Тогда, если $\theta_n^*$ --- оценка параметра $\theta$, то функция $g(\theta^*(X), \theta)$ называется \textit{величиной потерь}.
+\end{definition}
+
+\begin{example}
+	Покажем несколько стандартных функций потерь:
+	\begin{enumerate}
+		\item $g(x, y) = |x - y|$
+		
+		\item $g(x, y) = (x - y)^2$ --- \textit{квадратичная функция потерь}
+		
+		\item Пусть $A \in \R^{k \times k}$, $A \succeq 0$ и $\theta \in \R^k$. Тогда $g(x, y) = \tbr{A(x - y), x - y}$
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $g$ --- функция потерь из $\Theta \times \Theta$. Тогда \textit{функцией риска оценки $\theta^*$} называется следующий объект:
+	\[
+		R(\theta^*, \theta) := \E_\theta g(\theta^*, \theta)
+	\]
+\end{definition}
+
+\subsubsection{Равномерный подход к сравнению оценок}
+
+\begin{definition}
+	Пусть $\hat{\theta}(X)$ и $\theta^*(X)$ --- оценки параметра $\theta$. Тогда \textit{$\hat{\theta}(X)$ лучше оценки $\theta^*(X)$ в равномерном подходе с функцией потерь $g$}, если выполнены утверждения:
+	\begin{itemize}
+		\item $\forall \theta \in \Theta\ \ R(\hat{\theta}(X), \theta) \le R(\theta^*(X), \theta)$
+		
+		\item Для некоторого $\theta_0 \in \Theta$ неравенство выше является строгим
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Далее мы отождествляем оценки $T_1$ и $T_2$, если выполнено утверждение:
+	\[
+		\forall \theta \in \Theta\ \ T_1(X) =^{P_{\theta}\text{ п.н.}} T_2(X)
+	\]
+\end{note}
+
+\begin{definition}
+	Оценка $\hat{\theta}$ называется \textit{наилучшей в классе оценок $\cK$}, если она лучше любой другой оценки $\theta^* \in \cK$.
+\end{definition}
+
+\begin{note}
+	Наилучшая оценка не всегда существует.
+\end{note}
+
+\subsubsection{Минимаксный подход}
+
+\begin{definition}
+	Оценка $\theta^*(X)$ называется \textit{наилучшей в минимаксном подходе}, если выполнено равенство:
+	\[
+		\sup_{\theta \in \Theta} R(\theta^*(X), \theta) = \inf_{\hat{\theta} \in \cK} \sup_{\theta \in \Theta} R(\hat{\theta}, \theta)
+	\]
+\end{definition}
+
+\begin{note}
+	Иными словами, $\theta^*(X)$ наилучшая в минимаксном подходе, если она обладает наименьшим максимумом функции риска.
+\end{note}
+
+\subsubsection{Байесовский подход}
+
+\begin{note}
+	До этого момента мы искали $\theta$ без какого-либо предположения, просто считая, что оно фиксировано. Альтернативный подход состоит в том, чтобы считать $\theta$ \textit{случайной величиной с распределением $Q$}. Тогда задание распределения выборки есть задание условного распределения $P(x|\theta)$. \textcolor{red}{Тут надо объяснить, что это за вероятностное пространство}
+\end{note}
+
+\begin{definition}
+	Пусть $\hat{\theta}(X)$ --- оценка $\theta$, $R(\hat{\theta}, \theta)$ --- её функция риска. Тогда \textit{риском оценки} \textcolor{red}{не факт, что лекторское определение} назовём следующую величину:
+	\[
+		R(\hat{\theta}(X)) = \E_Q R(\hat{\theta}(X), \theta) = \int_\Theta R(\hat{\theta}(X), t) dQ(t)
+	\]
+\end{definition}
+
+\begin{definition}
+	Оценка $\theta^*(X)$ называется \textit{наилучшей в байесовском подходе}, если выполнено равенство:
+	\[
+		R(\theta^*(X)) = \min_{\hat{\theta} \in \cK} R(\hat{\theta}(X))
+	\]
+\end{definition}
+
+\subsubsection{Асимптотический подход}
+
+\begin{definition}
+	Пусть $\hat{\theta}_1$ и $\hat{\theta}_2$ --- асимптотически нормальные оценки параметра $\theta$ с асимптотическими дисперсиями $\sigma_1^2(\theta)$ и $\sigma_2^2(\theta)$ соответственно. Тогда \textit{оценка $\hat{\theta}_1$ лучше оценки $\hat{\theta}_2$ в асимптотическом подходе}, если выполнено утверждение:
+	\[
+		\forall \theta \in \Theta\ \ \sigma_1^2(\theta) \le \sigma_2^2(\theta)
+	\]
+\end{definition}
+
+\begin{example}
+	Рассмотрим выборку из $N(0, \theta)$, а также оценки $\hat{\mu}$ и $\ol{X}$.
+	\begin{itemize}
+		\item С одной стороны, по ЦПТ $\sqrt{n}(\ol{X} - \theta) \xrightarrow{d_\theta} N(0, 1)$
+		
+		\item С другой стороны, по теореме о выборочной медиане $\sqrt{n}(\hat{\mu} - \theta) \xrightarrow{d_{\theta}} N(0, \pi / 2)$
+	\end{itemize}
+	Сразу видно, что оценка средним лучше оценки медианой в асимптотическом подходе.
+\end{example}
+
+\begin{definition}
+	Оценка $\hat{\theta}(X)$ называется \textit{наилучшей в классе оценок $\cK$ в асимптотически нормальном подходе}, если она лучше любой другой оценки.
+\end{definition}
+
+\begin{note}
+	\textit{Плотностью дискретного распределения $P$ из $(\R^n, \B(\R^n))$} мы называем плотность этого распределения по считающей мере $\mu$ множества $\Z^n$. Понятно, что $p(x) = P(\{x\})$ для любого $x \in \Z^n$ (остальные точки доопределяются, например, нулём)
+\end{note}
+
+\begin{example}
+	Если $\xi \sim Bin(n, p)$, то $P(\xi = k) = C_n^kp^kq^{n - k}\chi\{k \in \range{0}{n}\} = p_\xi(k)$
+\end{example}
+
+\begin{reminder}
+	Если $\xi$ --- дискретная случайная величина с плотностью $p(x)$, то по теореме о вычислении интеграла Лебега для меры с плотностью верна формула:
+	\[
+		\E g(\xi) = \sum_{k \in \Z} g(k)P(\xi = k) = \int_\R g(x)p(x)d\mu(x)
+	\]
+\end{reminder}
+
+\begin{note}
+	Всюду далее, когда говорим о плотности распределения, мы считаем, что либо это обычная плотность абсолютно непрерывного распределения, либо плотность дискретного распределения по считающей мере на $\Z^n$.
+\end{note}

@@ -1,0 +1,143 @@
+\subsubsection{Среднеквадратический подход}
+
+\begin{note}
+	Среднеквадратический подход --- это особый случай равномерного подхода, когда
+	\begin{itemize}
+		\item $\cK$ --- класс несмещённых оценок для $\tau(\theta)$
+		
+		\item $g$ --- квадратичная функция потерь
+	\end{itemize}
+\end{note}
+
+\begin{proposition}
+	Если $T_1, T_2 \in \cK$, причём обе оценки не хуже любых из того же класса $\cK$, то они эквивалентны в определённом ранее смысле:
+	\[
+		\forall \theta \in \Theta\ \ T_1(X) =^{P_\theta\text{ п.н.}} T_2(X)
+	\]
+\end{proposition}
+
+\begin{proof}
+	Если оценки являются не хуже любых из того же класса, то выполнены равенства:
+	\[
+		E_\theta (T_i - \tau(\theta))^2 = \inf_{T \in \cK} \E_\theta (T - \tau(\theta))^2
+	\]
+	Более того, мы рассматриваем класс несмещённых оценок. Стало быть:
+	\[
+		\E_\theta (T - \tau(\theta))^2 = \E_\theta T^2 - 2\tau(\theta)\E_\theta T + \tau^2(\theta) = \E_\theta T^2 - \tau^2(\theta)
+	\]
+	Стало быть, для $T_1$ и $T_2$ мы имеем равенство $\E_\theta T_1^2 = \E_\theta T_2^2$. Воспользуемся следующим алгебраическим свойством:
+	\[
+		\ps{\frac{a + b}{2}}^2 + \ps{\frac{a - b}{2}}^2 = \frac{a^2 + b^2}{2}
+	\]
+	Положим $a = T_1$ и $b = T_2$ и обозначим $T_3 = \frac{T_1 + T_2}{2}$. Если взять матожидание с обеих сторон равенства, то получим:
+	\[
+		\E_\theta T_3^2 + \frac{1}{4}\E_\theta (T_1 - T_2)^2 = \E_\theta T_1^2
+	\]
+	Если вычесть с каждой стороны по $\tau^2(\theta)$, то придём к функциям риска $T_3$ и $T_1$. Так как $T_1$ не хуже любой оценки из класса $\cK$ и $T_3 \in \cK$, то верно неравенство:
+	\[
+		\frac{1}{4}\E_\theta (T_1 - T_2)^2 = \E_\theta T_1^2 - \E_\theta T_3^2 = \E_\theta (T_3 - \tau(\theta))^2 - \E_\theta (T_1 - \tau(\theta))^2 \le 0
+	\]
+	Так как слева написана неотрицательная величина, то $\E_\theta (T_1 - T_2)^2 = 0$ абсолютно точно. А такое возможно тогда и только тогда, когда $(T_1 - T_2)^2 =^{P_\theta\text{ п.н.}} 0$, что эквивалентно $T_1 =^{P_\theta\text{ п.н.}} T_2$
+\end{proof}
+
+\begin{definition}
+	Если семейству распределений $\cP = \{P_\theta, \theta \in \Theta\}$ соответствует семейство плотностей $\{p_\theta, \theta \in \Theta\}$ по одной и той же мере $\mu$, то говорят, что \textit{$\cP$ доминируемо относительно $\mu$}
+\end{definition}
+
+\begin{note}
+	Далее мы считаем, что $X$ --- наблюдение с распределением из $\cP$, причём семейство доминируемо относительно $\mu$, и рассматриваем $\Theta \subseteq \R$
+\end{note}
+
+\begin{note}
+	Выборка (как вектор или кортеж) тоже является наблюдением. Её распределение согласовано с распределениями каждой компоненты, а отсюда плотность является тензорным произведением плотностей компонент.
+\end{note}
+
+\begin{definition}
+	Пусть $X$ --- наблюдение. Случайная величина $U_\theta(X) = \pd{}{\theta}\ln p_\theta(X)$ называется \textit{вкладом наблюдения $X$}
+\end{definition}
+
+\begin{note}
+	Интуиция за вкладом наблюдения раскроется, если расписать производную:
+	\[
+	U_\theta(x) = \frac{1}{p_\theta(x)} \cdot  \pd{}{\theta} p_\theta(x)
+	\]
+	С учётом того, что $p_\theta \ge 0$, вклад наблюдения по сути является относительной скоростью $p_\theta(x)$ по $\theta$.
+\end{note}
+
+\begin{definition}
+	Пусть $X$ --- наблюдение. Функция $I_X(\theta) = \E_\theta U_\theta^2(X)$ называется \textit{количеством информации о параметра $\theta$, содержащемся в $X$ (информация по Фишеру)}
+\end{definition}
+
+\begin{proposition}
+	Если $X = (X_1, \ldots, X_n)$ --- выборка $n$, то, при обозначении информации Фишера одного наблюдения $i(\theta)$ верно равенство $I_X(\theta) = ni(\theta)$.
+\end{proposition}
+
+\begin{proof}
+	Как уже было упомянуто ранее, верно равенство:
+	\[
+		p_\theta(x) = p_\theta(x_1, \ldots, x_n) = p_{\theta, 1}(x_1) \cdot \ldots \cdot p_{\theta, n}(x_n)
+	\]
+	Стало быть, $U_\theta(x) = \pd{}{\theta} \ps{\sum_{i = 1}^n \ln p_{\theta, i}(x_i)} = \sum_{i = 1}^n U_{\theta, i}(x_i)$. С учётом того, что $X_i$ независимы, получаем равенство:
+	\[
+		I_X(\theta) = \E_\theta \ps{\sum_{i = 1}^n U_{\theta, i}(X_i)}^2 = \sum_{i = 1}^n \E_\theta U_{\theta, i}^2(X_i) = ni(\theta)
+	\]
+\end{proof}
+
+\begin{definition}
+	\textit{Условиями регулярности} для вероятностно-статистической модели $(\cX, \B(\cX), \cP)$ и наблюдения $X$ называют следующие требования:
+	\begin{enumerate}
+		\item $\Theta \subseteq \R$ --- открытый интервал (может быть бесконечным)
+		
+		\item $A = \{x \in \cX \colon p_\theta(x) > 0\}$ не зависит от $\theta$. Это множество называют \textit{носителем}
+		
+		\item Для любой статистики $S(X)$ с условием $\forall \theta \in \Theta\ \E_\theta S^2(X) < \infty$ выполнено равенство:
+		\[
+			\pd{}{\theta} \E_\theta S(X) = \pd{}{\theta} \int_A S(x)p_\theta(x)d\mu(x) = \int_A S(x)\pd{}{\theta} p_\theta(x)d\mu(x) = \E_\theta \ps{S(X)\pd{}{\theta}\ln p_\theta(X)}
+		\]
+		В частности требуем, что $\forall \theta \in \Theta\ \pd{}{\theta}\ln p_\theta(x)$ существовало на $A$ и было конечно
+		
+		\item $\forall \theta \in \Theta\ \ 0 < I_X(\theta) < \infty$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem} (Неравенство Рао-Крам\'{е}ра)
+	Пусть выполнены условия регулярности, а также оценка $\hat{\theta}(X) \in \cK$ обладает условием $\forall \theta \in \Theta\ \E_\theta \hat{\theta}^2(X) < \infty$. Тогда верно следующее неравенство:
+	\[
+		D_\theta \hat{\theta}(X) \ge \frac{(\tau'(\theta))^2}{I_X(\theta)}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Подставим $S(X) = 1$ в третье условие регулярности:
+	\[
+		\pd{}{\theta} \E_\theta S(X) = \pd{}{\theta} 1 = 0 = \E_\theta \pd{}{\theta} \ln p_\theta(X) = \E_\theta U_\theta(X)
+	\]
+	Получили $E_\theta U_\theta(X) = 0$. Теперь, в то же условие подставим $\hat{\theta}(X)$:
+	\[
+		\pd{}{\theta} \E_\theta \hat{\theta}(X) = \pd{}{\theta} \tau(\theta) = \tau'(\theta) = \E_\theta \hat{\theta}(X)U_\theta(X)
+	\]
+	Умножим равенство $\E_\theta U_\theta(X) = 0$ на $\tau(\theta)$ и вычтем его из последнего равенства. Получим следующее:
+	\[
+		\tau'(\theta) = \E_\theta (\hat{\theta}(X) - \tau(\theta))U_\theta(X)
+	\]
+	Остаётся воспользоваться интегральным неравенством КБШ:
+	\[
+		(\tau'(\theta))^2 \le \Big(\E_\theta (\hat{\theta} - \tau(\theta))^2\Big)\Big(\E_\theta U_\theta^2(X)\Big) = D_\theta \hat{\theta}(X) \cdot I_X(\theta)
+	\]
+\end{proof}
+
+\begin{corollary}
+	Если $\tau(\theta) = \theta$, то в условиях теоремы имеем неравенство $D_\theta \hat{\theta}(X) \ge \frac{1}{I_X(\theta)}$
+\end{corollary}
+
+\begin{definition}
+	Если в неравенстве Рао-Крамера для оценки $\hat{\theta}(X) \in \cK$ достигается равенство, то оценка $\hat{\theta}(X)$ называется \textit{эффективной оценкой $\tau(\theta)$}.
+\end{definition}
+
+\begin{theorem} (Критерий эффективности)
+	Пусть выполнены условия регулярности. Тогда $\hat{\theta}(X) \in \cK$ является эффективной оценкой $\tau(\theta)$ тогда и только тогда, когда выполнено равенство
+	\[
+		\hat{\theta}(X) - \tau(\theta) = c(\theta) \cdot U_\theta(X)
+	\]
+	где $c(\theta) = \frac{\tau'(\theta)}{I_X(\theta)}$.
+\end{theorem}
