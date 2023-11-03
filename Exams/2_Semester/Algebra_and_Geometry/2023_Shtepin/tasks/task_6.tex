@@ -1,0 +1,174 @@
+\section{6. Линейная независимость собственных векторов, имеющих попарно различные собственные значения. Алгебраическая и геометрическая кратности собственного значения. Условия диагонализируемости линейного оператора.}
+
+\begin{definition}
+    Пусть $\lambda$ -- собственное значение оператора $\phi: V \to V$. Собственным подпространством 
+    оператора $\phi$, отвечающим $\lambda$ называется подпространство 
+    $V_{\lambda} = \ker (\phi - \lambda \epsilon) \leq V$.
+\end{definition}
+
+\begin{definition}
+    Подпространства $U_1, U_2, \ldots, U_n$ называются линейно независимыми, если из равенства 
+    $x_1 + x_2 + \dots + x_n = \bar{0}$, где $x_i \in U_i$, следует, что $x_1 = x_2 = \dots = x_n = 0$.
+\end{definition}
+
+\begin{theorem}[О линейной независимости собственных подпространств, отвечающих попарно различным собственным значениям]
+    \label{o_lnz}
+    Пусть $\phi: V \to V$, $\lambda_1, \lambda_2, \dots, \lambda_n$ -- различные собственные значения. 
+    Тогда $V_{\lambda_1}, \ldots, V_{\lambda_n}$ линейно независимы.
+\end{theorem}
+
+\begin{proof}
+    От противного. Пусть $\exists x_1 \in V_{\lambda_1}, x_2 \in V_{\lambda_2}, \dots, 
+    x_n \in V_{\lambda_n}$, не все равные нулю. 
+    Назовем эти наборы опровергающими, а его мощностью количество ненулевых векторов. 
+    Из всех таких наборов векторов выберем набор наименьшей мощности. Пусть 
+    указанный нами набор без ограничения общности -- искомый, перенумеруем множества и $x_i$ так,
+    чтобы ненулевыми были первые $j$ векторов. Тогда $x_1 + x_2 + \dots + x_j = 0$, все
+    $x_i \neq 0$, иначе есть набор меньшей мощности. Применим к сумме оператор $\phi$ и получим $\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_j x_j$. Умножим изначальную сумму на $-\lambda_1$
+    и сложим с получившейся. Тогда мы получили набор меньшей мощности, противоречие.
+\end{proof}
+
+\begin{definition}
+    Линейный оператор $\phi: V \to V$ над полем $F$ называется диагонализируемым, если в $V$ 
+    существует базис $e$ такой, что $A_{\phi}$ -- диагональная матрица.
+\end{definition}
+
+\begin{theorem}[критерий диагонализируемости линейного оператора]
+    \label{theorem4.1}
+    Пусть $\phi: V \to V$, $V$ над $F$. Пусть $\lambda_1, \lambda_2, \dots, \lambda_k$ -- все 
+    попарно различные собственные значения, тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $\phi$ -- диагонализируем.
+        \item В $V$ существует базис, состоящий из собственных векторов оператора $\phi$.
+        \item $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $1 \Rightarrow 2$ \\
+        Так как $\phi$ диагонализируем, то существует базис, в котором матрица оператора выглядит 
+        следующим образом:
+        \begin{equation*}
+        \left(
+            \begin{array}{cccc}
+            \lambda_{1} & 0 & \ldots & 0\\
+            0 & \lambda_{2} & \ldots & 0\\
+            \vdots & \vdots & \ddots & \vdots\\
+            0 & 0 & \ldots & \lambda_n
+            \end{array}
+        \right)
+        \end{equation*}
+        Значит, $\phi(e_i) = \lambda_i e_i$ для любого $i$, откуда $e_1, \dots, e_n$ -- собственные 
+        векторы для $\phi$. Значит, $e$ -- базис из собственных векторов.
+        \item $2 \Rightarrow 3$ \\
+        Пусть $e$ -- базис из собственных векторов оператора $\phi$. Перегруппируем базисные векторы 
+        по собственным значениям: 
+        $$\underbrace{(e_{11}, \dots, e_{1s_1})}_{\lambda_1} \underbrace{(e_{21}, \dots, e_{2s_2})}_{\lambda_2} 
+        \dots \underbrace{(e_{k1}, \dots, e_{ks_k})}_{\lambda_k}$$
+        $\langle e_{11}, \dots, e_{1s_1} \rangle \subseteq V_{\lambda_1}$, 
+        $\dots, \langle e_{k1}, \dots, e_{ks_k} \rangle \subseteq V_{\lambda_k}$. 
+        Откуда $V = V_{\lambda_1} + \dots + V_{\lambda_k}$, но так как собственные подпространства 
+        линейно независимы (по \ref{o_lnz}), то по теореме о характеризации прямой суммы 
+        $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$.
+        \item $3 \Rightarrow 1$ \\
+        Известно, что $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$. 
+        Выберем в каждом $V_{\lambda_i}$ базис: $e_{i_1}, \dots, e_{is_i}$. Тогда, объединяя базисы 
+        собственных подпространств, получим базис всего пространства $V$. 
+        При этом по диагонали будут стоять сначала $s_1$ значений $\lambda_1$, 
+        затем $s_2$ значений $\lambda_2$ и так далее. Остальные значения -- нули. 
+        Значит, $\phi$ -- диагонализируем.
+        \begin{equation*}
+        \left(
+            \begin{array}{ccccc}
+            \lambda_{1} & 0 & \ldots & 0 & 0\\
+            \vdots & \vdots & \ddots & \vdots & \vdots\\
+            0 & \ldots & \lambda_{1} & \ldots & 0\\
+            \vdots & \vdots & \ddots & \vdots & \vdots\\
+            0 & 0 & \ldots & \ldots & \lambda_n
+            \end{array}
+        \right)
+        \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Пусть $\phi: V \to V$, $\lambda \in F$ -- его собственное значение, $\chi_{\phi}(\lambda) = 0$.
+    Кратность корня $\lambda$ как корня характеристического многочлена называется алгебраической 
+    кратностью собственного значения $\lambda$. Обозначение: $alg(\lambda) \geq 1$.
+\end{definition}
+
+\begin{definition}
+    Размерность собственного подпространства $V_{\lambda}$ называется геометрической кратностью 
+    собственного значения $\lambda$. Обозначение: $geom(\lambda) = \dim V_{\lambda} \geq 1$.
+\end{definition}
+
+\begin{proposition}
+    \label{pr4.1}
+    Пусть $\phi: V \to V$ и $U$ -- инвариантное подпространство относительно $\phi$. 
+    Пусть $\psi = \phi \mid_{U}$. Тогда $\chi_{\phi} \vdots \chi_{\psi}$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $e$ -- базис в $V$, согласованный с инвариантным подпространством $U$: 
+    $e = (\underbrace{e_{1}, \dots, e_{k}}_{U}, e_{k + 1}, \dots, e_n)$
+    \[A_{\phi} = \left(\begin{array}{@{}c|c@{}}
+		B & C\\
+		\hline
+		0 & D
+    \end{array}\right)\]
+    \[\chi_{\phi}(\lambda) = \det \left(\begin{array}{@{}c|c@{}}
+		B - \lambda E & C\\
+		\hline
+		0 & D - \lambda E
+    \end{array}\right) = |B - \lambda E| |D - \lambda E| = \chi_{\psi} \chi_D.\]
+\end{proof}
+
+\begin{corollary}
+    Для любого собственного значения $\lambda$: $geom(\lambda) \leq alg(\lambda)$.
+\end{corollary}
+
+\begin{proof}
+    $U = V_{\lambda}$ -- инвариантно относительно оператора $\phi$.
+    \begin{equation*}
+    \psi =
+        \left(
+            \begin{array}{ccc}
+            \lambda & \dots & 0 \\
+            \vdots & \ddots & \vdots \\
+            0 & \dots & \lambda \\
+            \end{array}
+        \right)
+    \end{equation*}
+    $\chi_{\psi} = (\lambda - t)^k$, где $k = \dim V_{\lambda} = geom(\lambda)$. 
+    По утверждению \ref{pr4.1} $\chi_{\phi} \vdots \chi_{\psi}$, откуда следует, что 
+    $\chi_{\phi} \vdots (\lambda - t)^k$. Значит, $alg(\lambda) \geq geom(\lambda)$.
+\end{proof}
+
+\begin{theorem}[критерий диагонализируемости в терминах алгебраической и геометрической кратностей линейного оператора]
+    Пусть $\phi: V \to V$, $\dim V = n$. $\phi$ -- диагонализируем тогда и только тогда, когда 
+    \begin{enumerate}
+        \item $\chi_{\phi}(t)$ разлагается на линейные множители над $F$. (Далее: $\phi$ линейно факторизуем над полем $F$)
+        \item Для любого собственного значения $\lambda$ оператора $\phi$ выполнено $alg(\lambda) = geom(\lambda).$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $(\Rightarrow)$ Пусть $\phi$ -- диагонализируемый, тогда существует базис, в котором матрица оператора $\phi$ 
+        имеет диагональный вид и по теореме \ref{theorem4.1} 
+        $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$. 
+        Тогда по свойству прямой суммы: 
+        $$\sum_{i=1}^k geom(\lambda_i) = \sum_{i=1}^k \dim V_{\lambda_i} = 
+        \dim V = n = \deg \chi \geq \sum_{i=1}^k alg(\lambda_i)$$
+        С одной стороны, выполнено неравенство выше, но, с другой стороны, по предыдущему следствию 
+        $geom(\lambda) \leq alg(\lambda)$, откуда верно, что $\forall i: alg(\lambda_i) = geom(\lambda_i)$.
+        \item $(\Leftarrow)$ Пусть $\chi$ -- линейно факторизуем над $F$ и $alg(\lambda_i) = geom(\lambda_i)$. 
+        Докажем диагонализируемость оператора $\phi$.
+        $$\dim(V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}) = 
+        \sum_{i=1}^k \dim V_{\lambda_i} = \sum_{i=1}^k geom(\lambda_i) = \sum_{i=1}^k alg(\lambda_i) = n$$
+        Последнее равенство следует из линейной факторизуемости $\chi$. 
+        Отсюда получаем, что $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$ -- 
+        эквивалентное определение диагонализируемости.
+    \end{enumerate}
+\end{proof}

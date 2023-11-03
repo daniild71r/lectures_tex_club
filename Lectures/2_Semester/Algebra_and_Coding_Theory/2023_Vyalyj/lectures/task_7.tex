@@ -1,0 +1,142 @@
+\section{№7 Действия группы}
+
+\begin{example}
+  Пусть $x \in X$ --- точка, $G$ --- элементы
+  \begin{gather}
+    \phi: G \ra S(x) \\
+    G: X \ra X \\
+    \phi(g): X \ra X \\
+    g.x = \phi(g)(x)
+  \end{gather}
+\end{example}
+
+\begin{proposition}
+  Действие $G: G \ra G$:
+  \[g.h = gh\]
+\end{proposition}
+
+\begin{definition}
+  Точным наззывается гомоморфизм, так что:
+  \[\ke \phi = \{ e \}\]
+\end{definition}
+
+\begin{definition}[?]
+  Действие называется транзитивным, если:
+  \[\forall x, y \quad \exists g: \ g.x = y\]
+  \[(g_1 g_2)x \ = g_1 (g_2 x)\]
+\end{definition}
+
+\subsection{Теорема Кэли}
+
+\begin{theorem}[Кэли]
+  Если $|G| < \infty$, тогда $G \cong G' < S_n$.
+\end{theorem}
+
+\begin{proof}
+  \begin{gather}
+    n = |G| \\
+    \phi: G \ra S_n \\
+    \im \phi \cong G / \ke \phi \Ra \im \phi \cong G, \quad \ke \phi = \{ e \}
+  \end{gather}
+\end{proof}
+
+\subsection{Действие сопряжением}
+
+\begin{definition}
+  Действие сопряжением:
+  \begin{gather}
+    G: G \ra G \\
+    g.h = gh g^{-1} \\
+    (g_1 g_2).h = (g_1 g_2)h(g_1 g_2)^{-1} = (g_1 g_2)h(g_2^{-1} g_1^{-1}) = g_1 (g_2.h) g_1^{-1} = g_1 (g_2.h)
+  \end{gather}
+  Замечание:
+  \[ h' = ghg^{-1} \Lra h = g^{-1} h' g\]
+\end{definition}
+
+\begin{proposition}
+  $G$ --- абелева, тогда:
+  \[\phi : G \ra S(G), \quad \ke \phi = G\]
+\end{proposition}
+
+\begin{definition}
+  $\ke \phi = Z(G)$ --- центр, то есть:
+  \begin{gather}
+    \forall h: \ ghg^{-1} = h \Lra gh = hg
+  \end{gather}
+\end{definition}
+
+\begin{corollary}
+  Центр является нормальной подгруппой. То есть:
+  \[Z(G) \vartriangleleft G \]
+\end{corollary}
+
+\begin{definition}
+  Орбита действия:
+  \[\orb (x) = \{ g: \exists g: \ g.x = y \}\]
+\end{definition}
+
+\begin{definition}
+  Стабилизатор:
+  \[\stab (x) = \{ g: g.x = x \}\]
+\end{definition}
+
+\begin{proposition}
+  $\stab (x) < G$.
+\end{proposition}
+
+\begin{example}
+  Пусть $x \in X, \ g \in G$. Тогда:
+  \[ g.x = y, \ g'.x = y \Lra g' \in g \stab (x) \]
+\end{example}
+
+\begin{lemma}
+  Орбиты действия разбивают точки на непересекающиеся множества.
+  \[x \sim y \defev y = g.x \ g \in G\]
+\end{lemma}
+
+\begin{proof}~
+  \begin{enumerate}
+    \item $x \sim x x = e.x$ 
+    \item $x \sim y \Ra y \sim x \quad g^{-1}.y = g^{-1}.x .(g.x) = (g^{-1} g).x = e.x = x$ 
+    \item $x \sim y, y \sim z \Ra y = g1.x, \ z = g_2.y = (g_2 g_1).x$
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Лагранжа]
+  $|\orb (x)| = (G : \stab (x))$.
+\end{theorem}
+
+\begin{theorem}
+  $G: x \ra x, \ x \in X$. Тогда:
+  \[|G| = |\orb (x)| \cd |\stab (x)|\]
+\end{theorem}
+
+\subsection{Группы многогранников}
+
+\begin{reminder}~
+  \begin{itemize}
+  \item Додекаэдр --- 20 вершин, 12 граней.
+  \item Икосаэдр --- 12 вершин, 20 граней.
+  \end{itemize}
+\end{reminder}
+
+\begin{proposition}
+  Для каждого многогранника существует собственная группа движений, которая оставляет его на месте.
+\end{proposition}
+
+
+
+\begin{example}
+  Рассмотрим мощности групп правильных многогранников:
+  \begin{itemize}
+    \item $|\text{Тетраэдр}| = 12$
+    \item $|\text{Куб}| = 24$
+    \item $|\text{Октаэдр}| = 24$
+    \item $|\text{Додекаэдр}| = 20 \cd 3 = 60$
+    \item $|\text{Икосаэдр}| = 5 \cd 12 = 60$
+  \end{itemize}
+\end{example}
+
+\begin{proposition}
+  Куб $\cong S_4$.
+\end{proposition}

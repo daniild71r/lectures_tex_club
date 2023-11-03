@@ -27,5 +27,20 @@
     "!l/4/Probability_Theory/2023_Shabanov",
     "!l/5/Functional_Analysis/2023_Konovalov",
     "l/5/Statistics/2023_Savelov"
+  ],
+  "66golden": [
+    "l/1/Calculus/2022_Redkozubov",
+    "e/1/Calculus/2022_Redkozubov",
+    "e/1/Algebra_and_Geometry/2022_Shtepin",
+    "l/2/Calculus/2023_Redkozubov",
+    "e/2/Calculus/2023_Redkozubov",
+    "e/2/Algebra_and_Geometry/2023_Shtepin",
+    "e/2/Mathematical_Logic_and_Algorithm_Theory/2023_Musatov"
+  ],
+  "evkolidi_algos": [
+    "l/2/Algorithms_and_Data_Structures/2023_Ruhovich"
+  ],
+  "ovatik": [
+    "l/2/Algebra_and_Coding_Theory/2023_Vyalyj"
   ]
 }

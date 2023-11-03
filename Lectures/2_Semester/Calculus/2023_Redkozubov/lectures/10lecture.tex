@@ -1,0 +1,160 @@
+%09.03.23
+
+\begin{note}
+    В условиях теоремы (\ref{covergence-3.4}) имеем следующее:
+    \[\forall x \in [a, b] \hookrightarrow \frac{d}{dx}\lim_{n \to \infty} f_{n}(x) = \lim_{n \to \infty} \frac{d}{dx}f_{n}(x).\]
+\end{note}
+
+\begin{corollary}[о почленном дифференцировании ряда]
+    Пусть
+    \begin{enumerate}
+        \item $\exists x_{0} \in [a, b] \hookrightarrow \sum_{n = 1}^{\infty} f_{n}(x_{0})$ сходится на $[a, b]$;
+        \item $f_{n}: [a, b] \to \R$ дифференцируема $\forall n$;
+        \item $\sum_{n = 1}^{\infty} f_{n}'$ равномерно сходится на $[a, b]$.
+    \end{enumerate}
+    Тогда $\sum_{n = 1}^{\infty} f_{n}$ сходится равномерно на $[a, b]$, его сумма дифференцируема и для каждой точки $x \in [a, b]$ выполнено
+    \[\left(\sum_{n = 1}^{\infty} f_{n}(x)\right)' = \sum_{n = 1}^{\infty} f'_{n}(x).\]
+\end{corollary}
+
+\begin{note}
+    В теореме (\ref{covergence-3.4}) условие равномерной сходимости производных нельзя заменить на равномерную сходимость самих функций.
+\end{note}
+
+\begin{example}
+    $f_{n}: [-1, 1] \to \R$, $f_{n}(x) = \sqrt{x^2 + \frac{1}{n}}$. Имеем:
+    \[f_{n} \rightrightarrows f(x) = |x| \text{ на } [-1, 1], \text{ т.к. }\]
+    \[|f_{n}(x) - f(x)| \ \frac{\frac{1}{n}}{\sqrt{x^{2} + \frac{1}{n}} + |x|} \leq \frac{1}{\sqrt{n}}.\]
+    Все $f_{n}$ дифференцируемы на $[-1, 1]$, однако $f$ не дифференцируема в точке $0$. 
+\end{example}
+
+\subsection{Признаки равномерной сходимости функциональных рядов}
+
+\begin{theorem}[признак Вейерштрасса]
+    \label{convergence-3.5}
+    Пусть $f_{n}: E \to \Cm$, $a_{n} \in \R \ \forall n$. Пусть
+    \begin{enumerate}
+        \item $\forall n \in \N \ \forall x \in E \ (|f_{n}(x)| \leq a_{n})$;
+        \item числовой ряд $\sum_{n = 1}^{\infty}a_{n}$ сходится.
+    \end{enumerate}
+    Тогда функциональный ряд $\sum_{n = 1}^{\infty} f_{n}$ сходится равномерно и абсолютно на $E$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\epsilon > 0$. Пользуясь критерием Коши как необходимым условием, найдем $N$, что $\sum_{k = m}^{n} a_{k} < \epsilon$ при всех $n \geq m \geq N$. Тогда для таких $n, m$ и всех $x \in E$ справедлива оценка:
+    \[\left| \sum_{k = m}^{n} f_{k}(x)\right| \leq \sum_{k = m}^{n} |f_{k}(x)| \leq \sum_{k = m}^{n} a_{k} < \epsilon.\]
+    Пользуясь теперь критерием Коши как достаточным условием, получаем, что $\sum_{n=1}^{\infty} f_{n}$ и $\sum_{n=1}^{\infty} |f_{n}|$ равномерно сходятся на $E$.
+\end{proof}
+
+\begin{note}
+    В условиях теоремы (\ref{convergence-3.5}) ряд $\sum_{n = 1}^{\infty} a_{n}$ называется \textit{мажорантным} для $\sum_{n = 1}^{\infty}|f_{n}|$.
+\end{note}
+
+Получим более тонкие признаки сходимости функциональных рядов -- признаки Дирихле и Абеля.
+
+\begin{reminder}
+    Напомним \emph{преобразование Абеля}.
+    Пусть $\{a_n\}$, $\{b_n\}$ -- числовые последовательности, $A_n = \sum_{k=1}^n a_k$ для всех $n \in \N$. Тогда $a_k = A_k - A_{k-1}$ ($A_0 = 0$), и, значит,
+    \[
+        \sum_{k=1}^{n} a_k b_k = A_{n} b_{n} + \sum_{k = 1}^{n - 1} A_{k}(b_{k} - b_{k + 1}).
+    \]
+\end{reminder}
+
+\begin{reminder}[лемма Абеля]
+    Пусть $\{a_n\}$ -- (комплексная) последовательность, $\{b_n\}$ --- монотонная последовательность, $k = m, \ldots, n$. Пусть $\forall k \ |A_k| \le M$, где $A_{k} = \sum_{j = m}^{k} a_{j}$. Тогда:
+    \[\left|\sum_{k=m}^n a_k b_k \right| \le 2M(|b_m| + |b_n|).\]
+
+    \begin{proof}
+        Полагая $a_{k} = 0$ при $k < m$, получим:
+        \[\sum_{k=m}^{n} a_k b_k = A_{n} b_{n} + \sum_{k = m}^{n - 1} A_{k}(b_{k} - b_{k + 1}).\]
+        Следовательно,
+        \[ \left| \sum_{k=m}^n a_k b_k \right| \le M \left(|b_n| + |b_m| + \left| \sum_{k = m}^{n - 1} (b_{k+1} - b_k) \right| \right) = M \left(|b_n| + |b_m| + |b_n - b_m| \right) \leq 2M(|b_m| + |b_n|).\]
+    \end{proof}
+\end{reminder}
+
+\begin{definition}
+    Последовательность $g_{n}$ называется \textit{равномерно ограниченной} на $E$, если найдется такое $C > 0$, что $|g_{n}(x)| \leq C$ для всех $n \in \N$ и $x \in E$.
+\end{definition}
+
+\begin{theorem}[признак Дирихле]
+    \label{dirichlet-func-series}
+    Пусть $a_{n}: E \to \R$ (или $\Cm$), $b_{n}: E \to \R \ \forall n$ такие, что:
+    \begin{enumerate}
+        \item $A_{N} = \sum_{n = 1}^{N} a_{n}$ равномерно ограничена на E;
+        \item $\{b_{n}(x)\}$ монотонна при каждом $x \in E$;
+        \item $b_{n} \rightrightarrows 0$ на $E$.
+    \end{enumerate}
+    Тогда $\sum_{n = 1}^{\infty} a_{n}b_{n}$ равномерно сходится на $E$.
+\end{theorem}
+
+\begin{proof}
+    Зафиксируем $\epsilon > 0$. Отметим, что при $n \ge m$
+    \[\left|\sum_{k = m}^n a_k(x)\right| = |A_n(x) - A_{m - 1}(x)| \le 2C \]
+    для всех $x \in E$.
+
+    Из равномерной сходимости $\{b_n\}$ следует, что
+    \[\exists N \, \forall n \ge N \, \forall x \in E \ \left(|b_n(x)| < \frac{\epsilon}{8C}\right).\]
+
+    Тогда при $n \ge m \ge N$ и $x \in E$ по лемме Абеля
+    \[\left|\sum_{k = m}^n a_k(x) b_k(x)\right| \le 2 \cdot 2C \left(|b_m(x)| + |b_n(x)|\right) < \epsilon.\]
+
+    По критерию Коши $\sum_{n = 1}^\infty a_n b_n$ сходится равномерно на $E$.
+\end{proof}
+
+\begin{corollary}[признак Лейбница]
+    Пусть задан $\sum_{n = 1}^{\infty}(-1)^{n - 1} \alpha_{n}(x)$ на $E$.
+
+    Если $\{\alpha_{n}(x)\}$ монотонна при каждом $x \in E$ и $\alpha_{n} \rightrightarrows 0$ на $E$, то $\sum_{n = 1}^{\infty} (-1)^{n - 1}\alpha_{n}$ равномерно сходится на $E$.
+\end{corollary}
+
+\begin{corollary}
+    Пусть $I$ -- отрезок, не содержащий точки вида $2\pi m, \ m \in \Z$.
+    
+    Если $\{\alpha_{n}(x)\}$ монотонна при каждом $x \in I$ и $\alpha_{n} \rightrightarrows 0$ на $I$, то $\sum_{n = 1}^{\infty} \alpha_{n}(x)\cos(nx)$ и $\sum_{n = 1}^{\infty} \alpha_{n}(x) \sin(nx)$ равномерно сходятся на $I$.
+\end{corollary}
+
+\begin{proof}
+    Известно, что $\forall N$:
+    \[\left|\sum_{n = 1}^{N} \sin(nx)\right| \leq \frac{1}{|\sin(\frac{x}{2})|}.\]
+    
+    Так как $\int_{x \in I}|\sin(\frac{x}{2})| > 0$, то $\{\sum_{n = 1}^{N}\sin(nx)\}$ равномерно ограничена на $I$.
+    Следовательно, по признаку Дирихле $\sum_{n = 1}^{\infty}\alpha_{n}(x)\sin(nx)$ равномерно сходится. 
+    
+    Аналогично, для $\sum_{n = 1}^{\infty} \alpha_{n}(x)\cos(nx)$.
+\end{proof}
+
+\begin{example}
+    Исследовать сходимость и равномерную сходимость $\sum_{n = 1}^{\infty} \frac{\sin(nx)}{n^{\alpha}}$ на $E_{1} = (0, 2\pi)$, $E_{2} = [\delta, 2\pi - \delta]$, $\delta \in (0, \pi)$ при всех $\alpha \in \R$.
+\end{example}
+
+\begin{solution}
+    $\left|\sum_{n = 1}^{N} \sin(nx)\right| \leq \frac{1}{|\sin(\frac{x}{2})|} \ \forall N \ \forall x \in E_{1}$.
+
+    \[\frac{1}{n^{\alpha}} \to \begin{cases}
+        0, \ \alpha > 0 \\
+        1, \ \alpha = 0 \\
+        +\infty, \ \alpha < 0.
+    \end{cases}\]
+    Исследуем сходимость. 
+    \begin{enumerate}
+        \item $\alpha > 0$: Ряд сходится по признаку Дирихле для числовых рядов на $E_{1}$.
+        \item $\alpha \leq 0$: Покажем, что $\{\sin(nx)\}$ -- бесконечно малая.
+        \[\sin((n + 1)x) = \sin(nx)\cos(x) + \cos(nx)\sin(c) \Rightarrow\]
+        $\Rightarrow \{cos(nx)\}$ -- бесконечно малая, противоречие с основным тригонометрическим тождеством.
+    \end{enumerate}
+    Кроме того, $n^{-\alpha}\sin(nx) \not\to 0$. Следовательно, ряд расходится (по необходимому условию сходимости).
+
+    Исследуем равномерную сходимость.
+    \begin{enumerate}
+        \item $\alpha > 1$: $\frac{|\sin(nx)|}{n^{\alpha}} \leq \frac{1}{n^{\alpha}}$, следовательно ряд сходится на $E_{1}$ (по признаку Вейерштрасса).
+        \item $0 \leq \alpha \leq 1$:
+        
+        а) $E_{2} = [\delta, 2\pi - \delta]$ $\left|\sum_{n = 1}^{N}\sin(nx)\right| \leq \frac{1}{|\sin(\frac{x}{2})|}$. Следовательно, ряд сходится равномерно на $E_{2}$ (по признаку Дирихле или сл. 2);
+
+        б) $E_{1} = (0, 2\pi)$. Покажем, что ряд удовлетворяет определению условия равномерной сходимости
+        \[\exists \epsilon_{0} > 0 \ \forall N \ \exists n \geq N \ \exists p \in \N \ \exists x_{N} \in E_{1} \]
+        \[\left(\left|\sum_{k = N + 1}^{2N} \frac{\sin(kx_{N})}{k^{\alpha}}\right| \geq \epsilon_{0}\right),\]
+        $n = N$, $p = N$, $x_{N} = \frac{\pi}{4N} \in E_{1} \Rightarrow \frac{\pi}{4} < kx_{N} \leq \frac{\pi}{2}$, $k = N+1, \ldots, 2N:$
+        \[\left|\sum_{k = N + 1}^{2N} \frac{\sin(kx_{N})}{k^{\alpha}}\right| = \sum_{k = N + 1}^{2N} \frac{\sin(kx_{N})}{k^{\alpha}} \geq \frac{1}{\sqrt{2}}\sum_{k = N+1}^{2N}\frac{1}{k} = \frac{1}{2\sqrt{2}} = \epsilon_{0}.\]
+    \end{enumerate}
+    По критерию Коши ряд не сходится равномерно на $E_{1}$.
+\end{solution}

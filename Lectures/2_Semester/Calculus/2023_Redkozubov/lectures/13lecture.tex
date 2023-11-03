@@ -1,0 +1,130 @@
+%22.03.23
+Приведем достаточное условие представимости функции степенным рядом.
+
+\begin{lemma}
+    Если на $(x_{0} - \rho, x_{0} + \rho)$ функция $f$ имеет производные всех порядков и 
+    \[\exists C > 0 \ \forall n \in \N_{0} \ \forall x \in (x_{0} - \rho, x_{0} + \rho) \left(\left|f^{(n)}(x)\right| \leq \frac{C n!}{\rho^{n}}\right),\]
+    то 
+    \[f(x) = \sum_{n = 0}^{+\infty} \frac{f^{(n)}(x_{0})}{n!}(x - x_{0})^{n}\]
+    для всех $x \in (x_{0} - \rho, x_{0} + \rho)$.
+\end{lemma}
+
+\begin{proof}
+    Так как $\sqrt[n]{\frac{f^{(n)}(x)}{n!}} \leq \frac{C^{\frac{1}{n}}}{\rho} \to \frac{1}{\rho}$, то по формуле Коши-Адамара (\ref{cauchy-hadamard}) для $x \in (x_{0} - \rho, x_{0} + \rho)$ найдется $c$ между $x_{0}$ и $x$, что
+    \[\left|f(x) - \sum_{k = 0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x - x_{0})^{k}\right| = \left|\frac{f^{(n + 1)}(c)}{(n + 1)!}(x - x_{0})^{n + 1}\right|.\]
+    Поскольку $|f^{(n + 1)}(c)| \leq C$, то справедлива оценка:
+    \[\left|\frac{f^{(n + 1)}(c)}{(n + 1)!}(x - x_{0})^{(n + 1)}\right| \leq C\left|\frac{x - x_{0}}{\rho}\right|^{n + 1} \to 0,\]
+    что завершает доказательство.
+\end{proof}
+
+\begin{corollary}
+    Если на $x \in (x_{0} - \rho, x_{0} + \rho)$ функция $f$ имеет производные всех порядков и 
+    \[\exists M > 0 \ \forall n \in \N_{0} \ \forall x \in (x_{0} - \rho, x_{0} + \rho) \left(|f^{(n)}(x)| \leq M\right),\]
+    то $f$ на $(x_{0} - \rho, x_{0} + \rho)$ разлагается в ряд по степеням $(x - x_{0})$.
+\end{corollary}
+
+\begin{proof}
+    $\{\frac{n!}{\rho^{n}}\}$ -- бесконечно большая, значит условия леммы выполнены.
+\end{proof}
+
+\begin{corollary}
+    Ряды Маклорена функций $\exp, \sin, \cos$ сходятся на $\R$ к самим функциям, то есть $\forall x \in \R:$
+    \[e^{x} = \sum_{n = 0}^{+\infty} \frac{x^{n}}{n!},\]
+    \[\sin(x) = \sum_{n = 0}^{+\infty} \frac{(-1)^{n}}{(2n+1)!}x^{2n + 1},\]
+    \[\cos(x) = \sum_{n = 0}^{+\infty} \frac{(-1)^{n}}{(2n)!}x^{2n}.\]
+\end{corollary}
+
+\begin{proof}
+    Все указанные функции бесконечно дифференцируемы на $\R$, причем $(e^x)^{(n)} = e^x$, $\sin^{(n)}(x) = \sin(x + \frac{\pi n}{2})$, $\cos^{(n)}(x) = \cos(x + \frac{\pi n}{2})$.
+
+    Пусть $\delta > 0$ и $|x| < \delta$. Тогда $(e^x)^{(n)} \leq e^{\delta}$, $|\sin^{(n)}(x)| \leq 1$, $|\cos^{(n)}(x)| \leq 1$.
+
+    Следовательно, по следствию 1 ряды Маклорена этих функций сходятся к самим функциям на $(-\delta, \delta)$. Так как $\delta > 0$ -- любое, то предположение верно и на $\R$.
+\end{proof}
+
+\begin{theorem}[биномиальный ряд]
+    Если $\alpha \not\in \N_{0}$ и $C_{\alpha}^{n} = \frac{\alpha \cdot (\alpha - 1) \cdot \ldots \cdot (\alpha - n + 1)}{n!}$, $C_{\alpha}^{0} = 1$, то 
+    \[(1 + x)^{\alpha} = \sum_{n = 0}^{+\infty} C_{\alpha}^{n}x^{n}, \ |x| < 1.\]
+\end{theorem}
+
+\begin{proof}
+    Пусть $f(x) = (1 + x)^{\alpha}$. Тогда $f^{(n)}(x) = \alpha \cdot (\alpha - 1) \cdot \ldots \cdot (\alpha - n + 1) \cdot (1 + x)^{\alpha - 1}$ и, значит, $\frac{f^{(n)}(0)}{n!} = C_{\alpha}^{n}$. При $x \not= 0$:
+    \[\lim_{n \to +\infty}\frac{|C_{\alpha}^{n + 1} x^{n + 1}|}{|C_{\alpha}^{n}x^{n}|} = \lim_{n \to +\infty} \frac{|\alpha - n||x|}{n + 1} = |x|.\]
+    
+    Если $|x| < 1$, то ряд абсолютно сходится по признаку Даламбера.
+    Если $|x| > 1$, то ряд абсолютно расходится по признаку Даламбера.
+    Следовательно, $R_{\text{сх}} = 1$.
+
+    Обозначим $g(x) = \sum_{n = 0}^{+\infty} C_{\alpha}^{n}x^{n}$, и покажем, что $g \equiv f$ на $(-1, 1)$, т.е. $(1 + x)^{-\alpha} g(x) = 1$ при $x \in (-1, 1)$. Для этого найдем производную функции $(1 + x)^{-\alpha} g(x)$. По теореме (\ref{th1-power-series}) имеем
+    
+    \[((1 + x)^{-\alpha} g(x))' = (1 + x)^{-\alpha} \sum_{n = 1}^{+\infty}n C_{\alpha}^{n}x^{n - 1} - \alpha(1 + x)^{-\alpha - 1} \sum_{n = 0}^{+\infty} C_{\alpha}^{n}x^{n} = \]
+    \[ = (1 + x)^{-\alpha - 1}\left[\sum_{n = 1}^{+\infty}n C_{\alpha}^{n} x^{n - 1} + \sum_{n = 0}^{+\infty}n C_{\alpha}^{n}x^{n} - \alpha \sum_{n = 0}^{+\infty}C_{\alpha}^{n} x^{n}\right].\]
+
+    В первой сумме произведем замену индекса суммирования. После приведения подобных слагаемых получим
+
+    \[((1 + x)^{-\alpha} g(x))' = (1 + x)^{-\alpha - 1}\left[\sum_{n = 0}^{+\infty}(n + 1) C_{\alpha}^{n + 1} x^{n} - \sum_{n = 0}^{+\infty}(\alpha - n) C_{\alpha}^{n}x^{n}\right] = 0.\]
+
+    Отсюда следует, что $(1 + x)^{-\alpha} g(x)$ постоянна на $(-1, 1)$. Из условия $g(0) = 1$ получаем, что $(1 + x)^{-\alpha}g(x) = 1$ для всех $x \in (-1, 1)$.
+\end{proof}
+
+\begin{note}
+    При $\alpha > 0$ биномиальный ряд сходится к $(1 + x)^{\alpha}$ равномерно на $[-1, 1]$. Действительно, при $n > \alpha$
+
+    \[\frac{|C_{\alpha}^{n + 1}|}{|C_{\alpha}^{n}|} = \frac{n - \alpha}{n + 1} = 1 - \frac{\alpha + 1}{n} + O(\frac{1}{n^2}).\]
+
+    По признаку Гаусса ряд $\sum|C_{\alpha}^{n}|$ сходится. Следовательно, по признаку Вуейерштрасса ряд $\sum C_{\alpha}^{n}x^{n}$ сходится равномерно на $[-1, 1]$.
+\end{note}
+
+\begin{example}
+    Так как $\frac{1}{1 + x} = \sum_{n = 1}^{+\infty} (-1)^{n - 1}x^{n - 1}$ при $|x| < 1$, то по (\ref{cor2-power-series})
+    
+    \[\ln(1 + x) = \sum_{n = 1}^{+\infty}\frac{(-1)^{n - 1} x^{n}}{n}, \ |x| < 1.\]
+
+    Ряд в правой части сходится при $x = 1$, поэтому его сумма непрерывна на $(-1, 1]$ и, значит, равенство имеет место при $x = 1$. Получаем известный нам результат, что $\sum_{n = 1}^{+\infty}\frac{(-1)^{n - 1}}{n} = \ln 2$.
+\end{example}
+
+\begin{problem}
+    Разложите функцию $\arctg$ в ряд по степеням $x$. С помощью полученного разложения найдите сумму ряда $\sum_{n = 0}^{+\infty} \frac{(-1)^{n}}{2n + 1}$.
+\end{problem}
+
+\section{Метрические пространства}
+
+\begin{definition}
+    Пусть $X \not= \emptyset$. Функция $\rho: X \times X \to \R$ называется \textit{метрикой} на $X$, если для любых $x, y, z \in X$ выполнено:
+    
+    \begin{enumerate}
+        \item $\rho(x, y) \geq 0, \ \rho(x, y) = 0 \lra x = y;$
+        \item $\rho(x, y) = \rho(y, x);$
+        \item $\rho(x, y) \leq \rho(x, z) + \rho(z, y)$ (\textit{неравенство треугольника}).
+    \end{enumerate}
+
+    Пара $(X, \rho)$ называется \textit{метрическим пространством}.
+\end{definition}
+
+В дальнейшем часто под метрическим пространтвом будем понимать само множество $X$, предполагая наличие связанной с ним метрики.
+
+\begin{example}
+    Пусть $X \not= \emptyset$, $\rho(x, y) = 1$ при $x \neq y$, $\rho(x, y) = 0$ при $x = y$. Тогда $\rho$ -- метрика на $X$, называемая \textit{дискретной}. Неравенство $\rho(x, y) \leq \rho(x, z) + \rho(z, y)$ выполняется, т.к. левая часть не больше 1. Если левая часть равна 1, то $x \neq z$ или $y \neq z$, откуда следует, что правая часть не меньше 1.
+\end{example}
+
+Важные примеры метрических пространств возникают из других конструкций.
+
+\begin{definition}
+    Пусть $V$ -- линейное пространство. Функция $\|\cdot\|: V \to \R$ называется \textit{нормой}, если для любых $x, y \in V$ и $\alpha \in \R$ выполнено:
+
+    \begin{enumerate}
+        \item $\|x\| \geq 0, \ \|x\| = 0 \lra x = 0;$
+        \item $\|\alpha x\| = |\alpha|\|x\|;$
+        \item $\|x + y\| \leq \|x\| + \|y\|$ (\textit{неравенство треугольника}).
+    \end{enumerate}
+
+    Пара $(V, \|\cdot\|)$ называется \textit{нормированным пространством}.
+\end{definition}
+
+\begin{lemma}
+    Всякое нормированное пространство является метрическим с $\rho(x, y) = \|x - y\|$.
+\end{lemma}
+
+\begin{proof}
+    Проверка свойств метрики тривиальна. Например, для установления неравенства треугольника достаточно применить свойство 3 нормы для векторов $x - y$ и $y - z$.
+\end{proof}

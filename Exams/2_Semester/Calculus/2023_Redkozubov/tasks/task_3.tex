@@ -1,0 +1,290 @@
+\section{3. Поточечная и равномерная сходимость функциональных последовательностей и рядов, супремум-критерий. Арифметические свойства. Критерий Коши равномерной сходимости. Непрерывность предельной функции и суммы ряда. Интегрируемость предельной функции и почленное интегрирование ряда. Дифференцируемость предельной функции и почленное дифференцирование ряда. Признаки Вейерштрасса, Дирихле, Абеля равномерной сходимости рядов. Пример ван-дер-Вардена (б/д).}
+
+Пусть $f_n, f : E \rightarrow \R$ (или $\mathbb{C}$), $n \in \N$.
+\begin{definition}
+    Последовательность $\{f_n\}$ \emph{поточечно сходится} к $f$ на $E$, если $f(x) = \lim_{n \rightarrow {+\infty}} f_n(x)$ для всех $x \in E$.
+
+    Пишут $f_n \rightarrow f$ на $E$ и $f$ называют \emph{предельной функцией} последовательности $\{f_n\}$.
+\end{definition}
+
+Воспользуемся определением предела последовательности. $f_n \rightarrow f$ на $E$ тогда и только тогда, когда $\forall x \in E \, \forall \epsilon > 0 \, \exists N \in \N \, \forall n \ge N \ \left(|f_n(x) - f(x)| < \epsilon\right)$.
+
+Если $N(x)$ удаётся выбрать одним для всех $x \in E$ (при фиксированном $\epsilon$), то приходим к следующему понятию:
+
+\begin{definition}
+    Последовательность $\{f_n\}$ \emph{равномерно сходится} к $f$ на $E$, если
+    \[
+        \forall \epsilon > 0 \, \exists N \in \N \, \forall n \ge N \, \forall x \in E \ \left(|f_n(x) - f(x)| < \epsilon\right).
+    \]
+
+    Пишут $f_n \rightrightarrows f$ на $E$ или $f_n \rightrightarrows_E f$ при $n \rightarrow {+\infty}$.
+\end{definition}
+
+\begin{note}
+    Равномерная сходимость, очевидно, влечёт поточечную, но поточечная сходимость не влечёт равномерную в общем случае.
+\end{note}
+
+\begin{lemma}[супремум-критерий]
+    \label{sup-criterion}
+    $f_n \rightrightarrows f$ на $E$ тогда и только тогда, когда $\lim_{n \rightarrow {+\infty}} \rho_n = 0$, где $\rho_n = \sup_{x \in E} |f_n(x) - f(x)|$.
+
+    \begin{proof}
+        \[
+            \left(\forall x \in E \ \left(|f_n(x) - f(x)| \le \epsilon\right)\right) \Leftrightarrow \left(\sup_{x \in E} |f_n(x) - f(x)| \le \varepsilon\right).
+        \]
+    \end{proof}
+\end{lemma}
+
+Рассмотрим функциональный ряд $\sum_{n = 1}^{+\infty} f_n$, где $f_n : E \rightarrow \R$ (или $\mathbb{C}$)
+
+\begin{definition}
+    Функциональный ряд $\sum_{n = 1}^{+\infty} f_n$ \emph{поточечно сходится} на $E$, если числовой ряд $\sum_{n = 1}^{+\infty} f_n(x)$ сходится для любого $x \in E$. В этом случае $S(x) = \sum_{n = 1}^{+\infty} f_n(x)$, $x \in E$, называется \emph{суммой} ряда $\sum_{n = 1}^{+\infty} f_n$.
+
+    Функциональный ряд $\sum_{n = 1}^{+\infty} f_n$ \emph{равномерно сходится} на $E$, если последовательность частичных сумм $S_N = \sum_{n = 1}^N f_n$ равномерно сходится на $E$.
+\end{definition}
+
+\begin{property}[линейность]
+    \begin{enumerate}
+        \item Пусть $f_n \rightrightarrows f$ на $E$, $g_n \rightrightarrows g$ на $E$ и $\alpha, \beta \in \R$ ($\mathbb{C}$). Тогда $\alpha f_n + \beta g_n \rightrightarrows \alpha f + \beta g$ на $E$.
+
+        \item Пусть $\sum_{n = 1}^{+\infty} f_n$ и $\sum_{n = 1}^{+\infty} g_n$ равномерно сходятся на $E$. Тогда $\sum_{n = 1}^{+\infty} \alpha f_n + \beta g_n$ также равномерно сходится на $E$ и $\sum_{n = 1}^{+\infty} \alpha f_n + \beta g_n = \alpha \sum_{n = 1}^{+\infty} f_n + \beta \sum_{n = 1}^{+\infty} g_n$.
+    \end{enumerate}
+
+    \begin{proof}
+        Пусть $x \in E$. По неравенству треугольника
+        \[
+            |(\alpha f_n(x) + \beta g_n(x)) - (\alpha f(x) + \beta g(x))| \le |\alpha| \cdot |f_n(x) - f(x)| + |\beta| \cdot |g_n(x) - g(x)|.
+        \]
+
+        Далее по лемме (\ref{sup-criterion}).
+
+        Второй пункт вытекает из первого применением его к последовательности частичных сумм ряда.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    Пусть $g : E \rightarrow \R$ ($\mathbb{C}$) ограничена.
+
+    \begin{enumerate}
+        \item Если $f_n \rightrightarrows f$ на $E$, то $gf_n \rightrightarrows gf$ на $E$.
+
+        \item Если $\sum_{n = 1}^{+\infty} f_n$ равномерно сходится на $E$, то $\sum_{n = 1}^{+\infty} gf_n$ также равномерно сходится на $E$ и
+            \[
+                \sum_{n = 1}^{+\infty} gf_n = g\sum_{n = 1}^{+\infty} f_n
+            \]
+    \end{enumerate}
+
+    \begin{proof}~
+    
+        \begin{enumerate}
+            \item Пусть $|g(x)| \le M$ для всех $x \in E$. Тогда 
+            \[
+                \sup_{x \in E} |g(x)f_n(x) - g(x)f(x)| \le M \underbrace{\sup_{x \in E}|f_n(x) - f(x)|}_{\to 0}.
+            \]
+    
+            Значит, по супремум-критерию (\ref{sup-criterion}) $gf_{n} \rightrightarrows gf$ на $E$.
+            
+            \item Вытекает из пункта 1 применением его к последовательности частичных сумм.
+        \end{enumerate}
+    \end{proof}
+\end{property}
+
+\begin{theorem}[критерий Коши равномерной сходимости]
+    Для равномерной сходимости $\{f_{n}\}$ на $E$ необходимо и достаточно выполнения условия Коши:
+    \label{cauchy-convergence}
+    \[\forall \epsilon > 0 \ \exists N \in \N \ \forall n, m \geq N \ \forall x \in E \left(\left|f_{n}(x) - f_{m}(x)\right| < \epsilon\right).\]
+\end{theorem}
+
+\begin{proof}~
+
+    ($\Rightarrow$) Пусть $\epsilon > 0$. Из условия равномерной сходимости:
+    \[\exists N \in \N \ \forall n \geq N \ \forall x \in E \left(\left|f_{n}(x) - f(x)\right| < \frac{\epsilon}{2}\right).\]
+    Тогда для всех $n, m \geq N$ и $x \in E$ имеем:
+    \[\left|f_{n}(x) - f_{m}(x)\right| \leq |f_{n}(x) - f(x)| + |f_{m}(x) - f(x)| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.\]
+    
+    ($\Leftarrow$) Пусть $\{f_{n}\}$ удовлетворяет (\ref{cauchy-convergence}). Тогда для каждого $x \in E$ числовая последовательность $\{f_{n}(x)\}$ фундаментальна и, значит, сходится. Положим $f(x) = \lim_{n \to \infty} f_{n}(x)$, $x \in E$. Пусть $\epsilon > 0$ и номер $N$ из условия (\ref{cauchy-convergence}). Зафиксируем $n \geq N$ в неравенстве и перейдем к пределу при $m \to \infty$. Получим, что $|f_{n}(x) - f(x)| \leq \epsilon$ при всех $n \geq N$ и $x \in E$. Так как $\epsilon > 0$ -- любое, то $f_{n} \rightrightarrows f$ на $E$.
+\end{proof}
+
+\begin{corollary}
+    Для равномерной сходимости $\sum_{n = 1}^{+\infty}f_{n}$ на $E$ необходимо и достаточно выполнения условия Коши:
+    \[\forall \epsilon > 0 \ \exists N \in \N \ \forall n, m \geq N \ \forall x \in E \left(\left|\sum_{k = m}^{n}f_{k}(x)\right| < \epsilon\right).\]
+\end{corollary}
+
+\begin{theorem}[о непрерывности предельной функции]
+    \label{limit-fun-cont}
+    Пусть $E \subset \R$ и $f_{n} \rightrightarrows f$ на $E$. Если все $f_{n}$ непрерывны в точке $a \in E$ (на $E$), то функция $f$ также непрерывна в точке $a$ (на $E$).
+\end{theorem}
+
+\begin{proof}
+    Пусть $\epsilon > 0$. Из условия равномерной сходимости:
+    \[\exists N \, \forall n \ge N \, \forall x \in E \ \left(|f_n(x) - f(x)| < \frac{\epsilon}{3}\right).\]
+    Тогда для $x \in E$:
+    \[|f(x) - f(a)| \le |f(x) - f_N(x)| + |f_N(x) - f_N(a)| + |f_N(a) - f(a)| < |f_N(x) - f_N(a)| + \frac{2}{3}\epsilon.\]
+    Так как $f_N$ непрерывна в точке $a$, то
+    \[\exists \delta > 0 \, \forall x \in B_\delta(a) \cap E \ \left(|f_N(x) - f_N(a)| < \frac{\epsilon}{3}\right).\]
+    Следовательно, $|f(x) - f(a)| < \epsilon$ для всех $x \in B_\delta(a) \cap E$.
+\end{proof}
+
+\begin{corollary}[о непрерывности суммы ряда]
+    \label{ser-sum-continuity}
+    Пусть $\sum_{n = 1}^{\infty}f_{n}$ равномерно сходится на $E \subset \R$ и все $f_{n}$ непрерывны в точке $a \in E$. Тогда сумма ряда непрерывна в точке $a$ (на $E$).
+\end{corollary}
+
+\begin{theorem}[об интегрируемости предельной функции]
+    \label{limit-int}
+    Пусть $f_{n} \rightrightarrows f$ на $[a, b]$ и $f_{n} \in \mathcal{R}[a, b] \ \forall n$. Тогда $f \in \mathcal{R}[a, b]$ и $\lim_{n \to \infty}\int_{a}^{b} f_{n}(x) dx = \int_{a}^{b} f(x) dx$.
+\end{theorem}
+
+\begin{proof}
+    Зафиксируем $\epsilon > 0$. Из условия равномерной сходимости:
+    \[\exists N \ \forall n \geq N \ \forall x \in [a, b] \left(|f_{n}(x) - f(x)| < \frac{\epsilon}{4(b - a)}\right).\]
+    Тогда на $[a, b]$:
+    \[f_{N}(x) - \frac{\epsilon}{4(b - a)} < f(x) < f_{N}(x) + \frac{\epsilon}{4(b - a)}.\]
+    Поскольку $f_{N}$ интегрируема, то она ограничена на $[a, b]$, значит на $[a, b]$ ограничена $f$.
+
+    Пусть $T$ -- произвольное разбиение $[a, b]$. Тогда для верхних сумм Дарбу имеем:
+    \[S_{T}(f) = S_{T}(f - f_{N} + f_{N}) \leq S_{T}(f - f_{N}) + S_{T}(f_{N}) \leq \frac{\epsilon}{4} + S_{T}(f_{N}).\]
+    (так как $\sup_I \left(g(x) + h(x)\right) \le \sup_I g(x) + \sup_I h(x)$ при $I \subset [a, b]$)\\
+    Аналогично для нижних сумм Дарбу $s_{T}(f) \geq s_{T}(f_{N}) - \frac{\epsilon}{4}$.
+    Так как $f_{N} \in \mathcal{R}[a, b]$, то существует $T$ -- разбиение $\left(S_T(f_N) - s_T(f_N) < \frac{\epsilon}{2}\right)$, для такого $T$ имеем 
+    \[S_T(f) - s_T(f) \le \epsilon.\]
+    По критерию Дарбу $f \in \mathcal{R}[a, b]$.
+    Для $n \ge N$ имеем
+    \[
+        \left|\int_a^b f_n(x)\, dx - \int_a^b f(x)\, dx\right| \le \int_a^b |f_n(x) - f(x)|\, dx \le (b - a) \cdot \frac{\epsilon}{(b - a)} < \epsilon.
+    \]
+
+    Следовательно, $\int_a^b f_n(x)\, dx \rightarrow \int_a^b f(x)\, dx$.
+\end{proof}
+
+\begin{corollary}[о почленном интегрировании ряда]
+    Если ряд $\sum_{n = 1}^{\infty}f_{n}$ равномерно сходится на $[a, b]$, и все функции $f_{n} \in \mathcal{R}[a, b]$, то сумма ряда интегрируема на $[a, b]$ и 
+    \[\int_{a}^{b}\left(\sum_{n = 1}^{\infty} f_{n}(x)\right)dx = \sum_{n = 1}^{\infty}\left(\int_{a}^{b} f_{n}(x)dx\right).\]
+\end{corollary}
+
+\begin{note}
+    В условиях теоремы (\ref{limit-int})
+    \[\lim_{n \rightarrow \infty} \int_a^b f_n(x)\, dx = \int_a^b \lim_{n \rightarrow \infty} f_n(x)\, dx.\]
+\end{note}
+
+\begin{theorem}[о дифференцируемости предельной функции]
+    \label{covergence-3.4}
+    Если
+    \begin{enumerate}
+        \item $f_{n} \to f$ на $[a, b]$;
+        \item $\forall n \in \N$ функция $f_{n}: [a, b] \to \R$ дифференцируема;
+        \item $f_{n}' \rightrightarrows g$ на $[a, b]$.
+    \end{enumerate}
+    Тогда $f$ дифференцируема на $[a, b]$, причем $f' = g$ на $[a, b]$.
+\end{theorem}
+
+\begin{proof}
+    Докажем дифференцируемость функции $f$. Зафиксируем $x$. Рассмотрим последовательность
+    \[
+    \phi_{n}(t) = \begin{cases}
+        \frac{f_{n}(t) - f_{n}(x)}{t - x}, \ t \neq x; \\
+        f_{n}'(x), \ t = x.
+    \end{cases}
+    \]
+    Тогда $\phi_{n} \to \phi$ на $[a, b]$, где
+    \[\phi(t) = \begin{cases}
+        \frac{f(t) - f(x)}{t - x}, \ t \neq x; \\
+        g(x), \ t = x.
+    \end{cases}\]
+    Покажем, что сходимость равномерная. При $t \neq x$ по теореме Лагранжа:
+    \[\phi_{n}(t) - \phi_{m}(t) = \frac{(f_{n}(t) - f_{m}(t)) - (f_{n}(x) - f_{m}(x))}{t - x} = f_{n}'(\xi) - f_{m}'(\xi)\]
+    для некоторой точки $\xi$, лежащей между $t$ и $x$. Поскольку $\{f_{n}'\}$ удовлетворяет условию Коши равномерной сходимости, то $\{\phi_n\}$ удовлетворяет условию Коши.
+    Следовательно, $\{\phi_n\}$ равномерно сходится на $[a, b]$.
+    Поскольку $f_n$ дифференцируема в точке $x$, то $\phi_n$ непрерывна в точке $x$. По теореме (\ref{limit-fun-cont}) $\phi$ непрерывна в точке $x$. Тогда $\lim_{t \rightarrow x} \phi(t) = \phi(x)$, то есть $\exists f'(x) = g(x)$.
+\end{proof}
+
+\begin{corollary}[о почленном дифференцировании ряда]
+    Пусть
+    \begin{enumerate}
+        \item $\sum_{n = 1}^{\infty} f_{n}$ сходится поточечно на $[a, b]$;
+        \item $f_{n}: [a, b] \to \R$ дифференцируема $\forall n$;
+        \item $\sum_{n = 1}^{\infty} f_{n}'$ равномерно сходится на $[a, b]$.
+    \end{enumerate}
+    Тогда сумма ряда дифференцируема и для каждой точки $x \in [a, b]$ выполнено
+    \[\left(\sum_{n = 1}^{\infty} f_{n}(x)\right)' = \sum_{n = 1}^{\infty} f'_{n}(x).\]
+\end{corollary}
+
+\begin{theorem}[признак Вейерштрасса]
+    \label{convergence-3.5}
+    Пусть $f_{n}: E \to \Cm$, $a_{n} \in \R \ \forall n$. Пусть
+    \begin{enumerate}
+        \item $\forall n \in \N \ \forall x \in E \ (|f_{n}(x)| \leq a_{n})$;
+        \item числовой ряд $\sum_{n = 1}^{\infty}a_{n}$ сходится.
+    \end{enumerate}
+    Тогда функциональный ряд $\sum_{n = 1}^{\infty} f_{n}$ сходится равномерно и абсолютно на $E$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\epsilon > 0$. Пользуясь критерием Коши как необходимым условием, найдем $N$, что $\sum_{k = m}^{n} a_{k} < \epsilon$ при всех $n \geq m \geq N$. Тогда для таких $n, m$ и всех $x \in E$ справедлива оценка:
+    \[\left| \sum_{k = m}^{n} f_{k}(x)\right| \leq \sum_{k = m}^{n} |f_{k}(x)| \leq \sum_{k = m}^{n} a_{k} < \epsilon.\]
+    Пользуясь теперь критерием Коши как достаточным условием, получаем, что $\sum_{n=1}^{\infty} f_{n}$ и $\sum_{n=1}^{\infty} |f_{n}|$ равномерно сходятся на $E$.
+\end{proof}
+
+\begin{definition}
+    Последовательность $g_{n}$ называется \textit{равномерно ограниченной} на $E$, если найдется такое $C > 0$, что $|g_{n}(x)| \leq C$ для всех $n \in \N$ и $x \in E$.
+\end{definition}
+
+\begin{theorem}[признак Дирихле]
+    \label{dirichlet-func-series}
+    Пусть $a_{n}: E \to \R$ (или $\Cm$), $b_{n}: E \to \R \ \forall n$ такие, что:
+    \begin{enumerate}
+        \item $A_{N} = \sum_{n = 1}^{N} a_{n}$ равномерно ограничена на E;
+        \item $\{b_{n}(x)\}$ монотонна при каждом $x \in E$;
+        \item $b_{n} \rightrightarrows 0$ на $E$.
+    \end{enumerate}
+    Тогда $\sum_{n = 1}^{\infty} a_{n}b_{n}$ равномерно сходится на $E$.
+\end{theorem}
+
+\begin{proof}
+    Зафиксируем $\epsilon > 0$. Отметим, что при $n \ge m$
+    \[\left|\sum_{k = m}^n a_k(x)\right| = |A_n(x) - A_{m - 1}(x)| \le 2C \]
+    для всех $x \in E$.
+
+    Из равномерной сходимости $\{b_n\}$ следует, что
+    \[\exists N \, \forall n \ge N \, \forall x \in E \ \left(|b_n(x)| < \frac{\epsilon}{8C}\right).\]
+
+    Тогда при $n \ge m \ge N$ и $x \in E$ по лемме Абеля
+    \[\left|\sum_{k = m}^n a_k(x) b_k(x)\right| \le 2 \cdot 2C \left(|b_m(x)| + |b_n(x)|\right) < \epsilon.\]
+
+    По критерию Коши $\sum_{n = 1}^\infty a_n b_n$ сходится равномерно на $E$.
+\end{proof}
+
+\begin{theorem}[признак Абеля]
+    \label{abel-func-series}
+    Пусть $a_n : E \rightarrow \R$ (или $\mathbb{C}$), $b_n : E \rightarrow \R$, такие, что
+    \begin{enumerate}
+        \item $\sum_{n = 1}^\infty a_n$ равномерно сходится на $E$;
+        \item $\{b_n(x)\}$ монотонна при любом $x \in E$;
+        \item $\{b_n\}$ равномерно ограничена на $E$.
+    \end{enumerate}
+
+    Тогда $\sum_{n = 1}^\infty a_n b_n$ равномерно сходится на $E$.
+
+    \begin{proof}
+        Из равномерной сходимости ряда 
+        \[\exists N \, \forall n, m \, (n \ge m \ge N) \, \forall x \in E \ \left(\left|\sum_{k = m}^n a_k(x)\right| < \frac{\epsilon}{4C}\right).\]
+        Тогда при всех $x \in E$ и $n \ge m \ge N$ по лемме Абеля
+        \[
+            \left|\sum_{k = m}^n a_k(x) b_k(x)\right| \le 2 \cdot \frac{\epsilon}{4C} \left(|b_m(x)| + |b_n(x)|\right) \le 2 \cdot \frac{\epsilon}{4C}(C + C) = \epsilon.
+        \]
+
+        Доказательство завершается ссылкой на критерий Коши (\ref{cauchy-convergence}).
+    \end{proof}
+\end{theorem}
+
+\begin{example}[ван-дер-Варден]
+    Существует $f : \R \rightarrow \R$, непрерывная на $\R$, но не дифференцируемая ни в одной точке.
+
+    Пусть $\phi: \R \rightarrow \R, \phi(x \pm 2) = \phi(x), \phi|_{[-1, 1]}(x) = |x|$. Отметим, что если $(x, y) \cap \Z = \emptyset$, то $\phi$ кусочно-линейная с угловым коэффициентом $\pm 1$, поэтому
+    \begin{equation}
+        \label{vdw-eqn1}
+        |\phi(x) - \phi(y)| = |x - y|.
+    \end{equation}
+
+    Положим $f(x) = \sum_{n = 1}^\infty f_n(x), f_n(x) = \frac{1}{4^n} \phi(4^n x)$. Функция $f$ непрерывна как сумма равномерно сходящегося ряда (по признаку Вейерштрасса) из непрерывных функций, но не дифференцирума ни в одной точке.
+\end{example}

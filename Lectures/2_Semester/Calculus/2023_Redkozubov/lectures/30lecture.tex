@@ -1,0 +1,110 @@
+%11.05.23
+
+\begin{proof}
+    Если $f$ интегрируема на $E$, то $\int_{E}f^{\pm} d\mu < +\infty$. Тогда в силу оценки $|f| = f^{+} + f^{-}$ интеграл $\int_{E}|f| d\mu < +\infty$. Если $|f|$ интегрируема на $E$, то в силу оценки $0 \leq f^{\pm} \leq |f|$ получаем, что $\int_{E}f^{\pm} d\mu < +\infty$, то есть $f$ интегрируема на $E$. 
+    
+    Имеем
+    \[\left|\int_{E}f d\mu\right| = \left|\int_{E}f^{+} d\mu - \int_{E}f^{-} d\mu\right| \leq \int_{E}f^{+} d\mu + \int_{E}f^{-} d\mu = \int_{E}|f| d\mu.\]
+\end{proof}
+
+\begin{note}
+    Если $f$ интегрируема на $E$, то $f$ конечна почти всюду на $E$.
+\end{note}
+
+\begin{proof}
+    Определим $A = \{x \in E: |f(x)| = +\infty\}$. Тогда по неравенству Чебышева для любого $t \in (0; +\infty)$ : 
+    $\mu(A) \leq \mu\{x : |f(x)| \geq t\} \leq \frac{1}{t}\int_{E}|f| d\mu$. Устремляя $t \to +\infty$, получаем, что $\mu(A) = 0$.
+\end{proof}
+
+\begin{lemma}
+    Если $\underbrace{E_{0}}_{\text{изм.}} \subset E$ и $\mu(E\setminus E_{0}) = 0$, то интегралы $\int_{E}f d\mu$ и $\int_{E_{0}}f d\mu$ существуют одновременно и в случае существования совпадают.
+\end{lemma}
+
+\begin{proof}
+    Отметим, что $f$ на $E$ и $f$ на $E_{0}$ измеримы одновременно.
+    По свойству аддитивности по множествам:
+    \[\int_{E}f^{\pm} d\mu = \int_{E_{0}}f^{\pm} d\mu + \int_{E\setminus E_{0}}f^{\pm} d\mu = \int_{E_{0}}f^{\pm} d\mu.\]
+    Учтем, что интеграл по множеству меры 0 от произведения измеримых функций равен 0. Это вытекает из определения интеграла, для простых функций также следует учесть, что она ограничена. 
+\end{proof}
+
+\begin{corollary}
+    Пусть $f, g : \underbrace{E}_{\text{изм.}} \to {\R}$. Если $f$ интегрируема на $E$ и $f = g$ почти всюду на $E$, то $g$ интегрируема на $E$ и $\int_{E}g d\mu = \int_{E}f d\mu$.
+\end{corollary}
+
+\begin{problem}
+    Пусть $f$ измерима на $E$ и существует интегрируемая на $E$ функция $g$, такая что $|f| \leq g$ почти всюду на $E$. Докажите, что $f$ интегрируема на $E$. 
+\end{problem}
+
+\begin{proof}
+    Пусть $E_{0} \subset E$ -- подмножество, на котором $f \neq g$, $\mu(E_{0}) = 0$. 
+    
+    $\int_{E}|f| d\mu = \int_{E_{0}}|f| d\mu + \int_{E \setminus E_{0}}|f| d\mu \leq \int_{E \setminus E_{0}}g d\mu \leq \int_{E}g d\mu < + \infty$  
+\end{proof}
+
+\begin{theorem}
+    Пусть $f, g : E \to {\R}$ интегрируема и $\alpha \in {\R}$. Тогда:
+    \begin{enumerate}
+        \item Если $f \leq g$ на $E$, то $\int_{E}f d\mu \leq \int_{E}g d\mu$;
+        \item $\int_{E}\alpha f d\mu = \alpha \int_{E}f d\mu$;
+        \item $\int_{E}(f + g) d\mu = \int_{E}f d\mu + \int_{E}g d\mu$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+
+    \begin{enumerate}
+    \item Пусть $f \leq g$ на $E$. Тогда $f^{+} \leq g^{+}$, $f^{-} \geq g^{-}$ и, значит, $\int_{E}f^{+} d\mu \leq \int_{E}g^{+} d\mu$ и $\int_{E}f^{-} d\mu \geq \int_{E}g^{-} d\mu$. Вычтем одно неравенство из другого, получаем $\int_{E}f d\mu \leq \int_{E}g d\mu$.
+    
+    \item Пусть $\alpha \geq 0$. Тогда $(\alpha f)^{+} = \alpha f^{+}$, $(\alpha f)^{-} = \alpha f^{-}$ и, значит, 
+    $\int_{E}\alpha f d\mu = \int_{E}(\alpha f)^{+} d\mu - \int_{E}(\alpha f)^{-} d\mu = \alpha \int_{E}f^{+} d\mu - \alpha \int_{E}f^{-} d\mu = \alpha \int_{E}f d\mu$. Так как $(-f)^{+} = \max\{-f, 0\} = f^{-}$, $(-f)^{-} = \max\{f, 0\} = f^{+}$, то:
+    
+    \[\int_{E}(-f) d\mu = \int_{E}(-f)^{+} d\mu - \int_{E}(-f)^{-} d\mu = \int_{E}f^{-} d\mu - \int_{E}f^{+} d\mu = - \int_{E}f d\mu.\]
+    
+    Случай $\alpha < 0$ сводится к рассмотренному, так как $\alpha = (-1)|\alpha|$.
+    \item Так как $f$ и $g$ конечны почти всюду на $E$ (из интегрируемости), то $\exists E_{0} \subset E$ и $\mu(E \setminus E_{0}) = 0$, на котором определена функция $h = f + g$. Функция $h = f + g$ интегрируема на $E_{0}$ (так как $|h| \leq |f| + |g|$) и $h^{+} - h^{-} = h = f + g = (f^{+} - f^{-}) + (g^{+} - g^{-})$ или $h^{+} + f^{-} + g^{-} = h^{-} + f^{+} + g^{+}$ на $E_{0}$. Следовательно, $\int_{E_{0}}h^{+} d\mu + \int_{E_{0}}f^{-} d\mu + \int_{E_{0}}g^{-} d\mu = \int_{E_{0}}h^{-} d\mu + \int_{E_{0}}f^{+} d\mu + \int_{E_{0}}g^{+} d\mu$.
+    
+    Все интегралы в предыдущем равенстве конечны, их перегруппировка дает $\int_{E_{0}}h d\mu = \int_{E_{0}}f d\mu + \int_{E}g d\mu$.
+    
+    Так как $\mu(E \setminus E_{0})$, то доопределим на $E_{0} \cup (E \setminus E_{0})$ произвольным образом. Получаем равенство для интегралов из 3 пункта.    
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Лебег]
+    Пусть $f_{k} : E \to \overline{\R}$ измеримы и $f_{k} \to f$ почти всюду на $E$. Если существует интегрируемая на $E$ функция $g$, такая что $|f_{k}| \leq g \ \forall k$, то $\lim_{k \to + \infty}\int_{E}f_{k} d\mu = \int_{E}f d\mu$ 
+\end{theorem}
+
+\begin{proof}
+    Посколько при интегрируемости можно пренебрегать множествами меры 0, будем считать, что $f_{k} \to f$ всюду на $E$ и $g$ конечна на $E$. Так как $|f_{k}| \leq g$ на $E$, то все $f_{k}$ интегрируемы на $E$. Переходя к пределу при $k \to +\infty$, получаем $|f| \leq g$ на $E$. Следовательно, $f$ интегрируема.
+    
+    Определим $h_{k} = \sup_{m \geq k}|f_{m} - f|$ на $E$, тогда имеем $0 \leq h_{k+1}(x) \leq h_{k}(x)$ на $E$ и $\lim_{k \to +\infty}h_{k}(x) = \inf_{k}sup_{m \geq k}|f_{m}(x) - f(x)| = \overline{\lim}_{k \to + \infty}|f_{k}(x) - f(x)| = 0$.
+    Функция $h_{k}$ интегрируема на $E$ и $|h_{k}| \leq 2g$ ($|f_{k}| \leq g$, $|f| \leq g$). Применим теорему Леви к последовательности $\{2g - h_{k}\}$: 
+    \[\lim_{k \to +\infty}\int_{E}(2g - h_{k}) d\mu = \int_{E}2g d\mu,\]
+    откуда $\lim_{k \to +\infty}\int_{E}h_{k} d\mu = 0$. Для завершения доказательства $\int_{E}|f_{k} - f| d\mu \leq \int_{E}h_{k} d\mu \to 0$ при $k \to +\infty$ и, значит, $\left|\int_{E}f_{k} d\mu - \int_{E}f d\mu\right| \leq \int_{E}|f_{k} - f| d\mu \to 0$.
+\end{proof}
+
+\begin{theorem}
+    Пусть $f$ ограничена на $[a, b]$. $f$ интегрируема по Риману на $[a, b] \lra f$ непрерывна почти всюду на $[a, b]$. В этом случае функция интегрируема по Лебегу и оба интеграла совпадают. 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $f \in \mathcal{R}[a, b]$, $ J= \int_{a}^{b}f(x) dx$. Покажем, что $f$ непрерывна почти всюду на $[a, b]$ и $\int_{[a, b]}f d\mu = J$.
+        
+        Для разбиения $T = \{x_{k}\}_{k = 0}^{m}$ открытого на $[a, b]$ положим $M_{i} = \sup_{[x_{i-1}, x_{i}]} f$, $m_{i} = \inf_{[x_{i-1}, x_{i}]}f$ и определим простые функции 
+        \[\phi_{T} = \sum_{i=1}^{m}m_{i}\cdot \I_{[x_{i-1}, x_{i})}, \ \psi_{T} = \sum_{i=1}^{m}\I_{[x_{i-1}, x_{i})} \cdot M_{i}.\]
+        В последний промежуток включим точку $b = x_{n}$. Очевидно, что $\int_{[a, b]} \phi_{T} d\mu = s_{T}$, $\int_{[a, b]} \psi_{T} d\mu = S_{T}$ (сумма Дарбу). 
+        
+        Рассмотрим последовательность разбиений $\{T_{k}\}$, $T_{k} \subset T_{k+1}$ и $|T| \to 0$. Положим $\phi_{k} = \phi_{T_{k}}$, $\psi_{k} = \psi_{T_{k}}$. Имеем $\phi_{k}(x) \leq \phi_{k+1}(x) \leq f(x) \leq \psi_{k+1}(x) \leq \psi_{k}(x)$ для всех $x \in [a, b]$. Следовательно, существуют $\phi(x) = \lim_{k \to +\infty}\phi_{k}(x)$, $\psi(x) = \lim_{k \to +\infty}\psi_{k}(x)$.
+        
+        Функции $\phi, \psi$ измеримы (как предел измеримых функций) и если $|f| \leq M$, то $|\phi|, |\psi| \leq M$ и, значит, по теореме Лебега о мажорированной сходимости
+        
+        \[\int_{[a, b]}(\psi - \phi) d\mu = \lim_{k \to +\infty} \int_{[a, b]}(\psi_{k} - \phi_{k}) d\mu = \lim_{k \to +\infty}(S_{T_{k}} - s_{T_{k}}) = 0,\]
+        откуда следует, что $\psi - \phi = 0$ почти всюду на $[a, b]$.
+        
+        Пусть $Z = \{x : \phi (x) \neq \psi (x) \}$. Рассмотрим $x \not\in Z \cup (\bigcup_{k=1}^{+\infty}T_{k})$ и $\epsilon > 0$. Выберем $k$, так что $\psi_{k}(x) - \phi_{k}(x) < \epsilon$ и рассмотрим соотвествующее $T_{k}$. Выберем $(x - \delta, x + \delta)$, лежащий в одном отрезке разбиения $T_{k}$. Тогда $|f(t)-f(x)| < \psi_{k}(x) - \phi_{k}(x) < \epsilon \ \forall t \in (x - \delta, x + \delta)$. Это означает, что $f$ непрерывна в точке $x$. Следовательно, $f$ непрерывна почти всюду на $[a, b]$. По теореме Лебега
+        
+        \[J = \lim_{k \to + \infty}S_{T_{k}} = \lim_{k \to + \infty} \int_{[a, b]}\phi_{k} d\mu = \int_{[a, b]}f d\mu.\]
+        
+        \item Пусть $f$ непрерывна почти всюду на $[a, b]$ и $\epsilon > 0$. Рассмотрим $\{T_{k}\}$ -- разбиение $[a, b]$ на $2^{k}$ равных отрезка, тогда $T_{k + 1} \subset T_{k}$. Пусть $x$ не является точкой разрыва $f$ и $x \not\in \bigcup_{i=1}^{\infty}{T_{k}}$. Тогда, как и первом пункте , имеем $\phi_{k}(x) \uparrow f(x)$ и $\psi_{k} \downarrow f(x)$ (учли непрерывность в точке $x$). По теорме Лебега $S_{T_{k}} = \int_{[a, b]}\psi_{k} d\mu \to \int_{[a, b]}f d\mu$, $s_{T_{k}} = \int_{[a, b]}\phi_{k} d\mu = \int_{[a, b]}f d\mu$. Тогда, по критерию Дарбу $f \in \mathcal{R}[a, b]$.
+    \end{enumerate}
+\end{proof}

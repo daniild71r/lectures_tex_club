@@ -1,0 +1,99 @@
+\subsection{Аксиоматическое определение поля $\mathbb{R}$}
+
+    \begin{definition}
+        Непустое множество $F$ называется \textit{полем}, если на нём заданы операции сложения $"+": F \times F \longrightarrow F$, произведения $"\textbf{$\cdot$}": F \times F \longrightarrow F$, удовлетворяющее следующим аксиомам:
+        \begin{enumerate}
+            \item $\forall a, b \in F: a+b = b+a, \  a \cdot b = b \cdot a$ (коммутативность).
+            \item $\forall a, b, c \in F: (a + b) + c = a + (b + c), \ (a \cdot b) \cdot c = a \cdot (b \cdot c)$ (ассоциативность).
+            \item $\exists 0_{f} \in F: \forall a \in F \ \  a + 0_{f} = 0_{f} + a = a$ (существование нуля).
+            \item $\forall a \in F: \exists -a \in F \ \  a + (-a) = 0_{f}$ (существование противоположного).
+            \item $\exists 1_{f} \in F \setminus \{0_{f}\}: \forall a \in F \ \  a \cdot 1_{f} = a$ (существование единицы).
+            \item $\forall a \in F \setminus \{0_{f}\}: \exists a^{-1} \in F \ \ a \cdot a^{-1} = 1_{f}$ (существование обратного).
+            \item $\forall a, b, c \in F: (a + b) \cdot c = a \cdot c + b \cdot c$ (дистрибутивность).
+        \end{enumerate}
+    \end{definition}
+    
+    \begin{definition}
+        Поле $F$ называется \textit{упорядоченным}, если на нём выполняется \textbf{аксиома порядка}.
+    \end{definition}
+    
+    Существует ненулевое $P \subset F$:
+    
+    \begin{enumerate}
+        \item $\forall a,b \in P \ (a+b \in P \text{ и } ab \in P)$.
+        \item $\forall a \in F$ верно ровно одно: либо $a \in P$, либо $-a \in P$, либо $a = 0_{f}$.
+    \end{enumerate}
+    
+    Будем писать, $a < b \ (b > a)$, если $b - a \in P$. Будем писать, $a \leq b \ (b \geq a)$, если $a < b$ или $a = b$.
+    
+    \begin{note}
+        $\forall a,b \in F$ либо $a < b$, либо $a > b$, либо $a = b$.
+    \end{note}
+    
+    \begin{example}
+        $\mathds{Q} \ \ \  \frac{p}{q} = \frac{m}{n} \Rightarrow pn = mq$; $\frac{p}{q} + \frac{m}{n} = \frac{pn + mn}{qn}$; $\frac{p}{q} \cdot \frac{m}{n} = \frac{pm}{qn}$
+    \end{example}
+    
+    $\mathds{Q}_{+} = \{\frac{p}{q}| \ p, q \in \mathds{N}\}$.
+    
+    \begin{lemma}
+        Пусть $F$ -- упорядоченное поле, $a, b, c, d \in F$. Тогда
+        \begin{enumerate}
+            \item если $a < b$, $b < c$ $\Rightarrow a < c$.
+            \item если $a < b$, $c < d$ $\Rightarrow a + c < b + d$.
+            \item если $a < b$, $c > 0$ $\Rightarrow ac < bc$.
+            \item $\forall a \neq 0 \Rightarrow a^{2} > 0$, в частности $1 > 0$.
+        \end{enumerate}
+    \end{lemma}
+    
+\subsection{Модуль}
+    
+    \begin{definition}
+        Пусть $x \in F$. Модулем (абсолютной величиной) $x$ называется 
+        \[|x| = 
+        \begin{cases}
+            $x, x \geq 0$
+            \\
+            $-x, x < 0$
+        \end{cases}\]
+    \end{definition}
+    
+    \begin{lemma}
+        Пусть $F$ -- упорядоченное поле, $x, y \in F$. Тогда 
+        \begin{itemize}
+            \item $|x| \geq 0. \  |x| = 0 \lra x = 0$.
+            \item $|-x| = |x|$.
+            \item $-|x| \leq x \leq |x|$.
+            \item $|xy| = |x| \cdot |y|$.
+            \item $|x + y| \leq |x| + |y|$.
+        \end{itemize}
+    \end{lemma}
+    
+    \begin{proof}
+        (д) $\pm \  x \leq |x|$ и $\pm \  y \leq |y|$. Тогда $\pm (x + y) \leq |x| + |y|$, $\Rightarrow |x + y| \leq |x| + |y|$.
+    \end{proof}
+    
+    \begin{definition}
+        Пусть $A, B$ -- подмножества упорядоченоого поля. Будем говорить, что $A$ лежит левее $B$, если $\forall a \in A$, $\forall b \in B$: $a \leq b$. Будем говорить, что элемент $c$ разделяет $A$ и $B$, если $A$ лежит левее $\{c\}$, и $\{c\}$ лежит левее $B$, т.е. $\forall a \in A \ \forall b \in B (a \leq c \leq b)$. 
+    \end{definition}
+    
+    \begin{definition}
+        Упорядоченное поле $F$ называется \textit{полным}, если на нем выполняется \textbf{аксиома непрерывности}.
+    \end{definition}
+
+\subsection{Аксиома непрерывности}
+
+    Пусть $A, B \subset F (A \neq \varnothing, B \neq \varnothing)$, причём $A$ лежит левее $B$. Тогда $\exists c \in F$, разделяющий $A$ и $B$.
+    
+    \begin{definition}
+        Полное упорядоченное поле, содержащее множество рациональных чисел, называется полем действительных чисел и обозначается $\mathds{R}$. Элементы поля $\mathds{R}$ -- действительные числа.
+    \end{definition}
+    
+    \begin{definition}
+        Пусть $E \subset \mathds{R}$. Множество $E$ называется \textit{ограниченным} сверху, если $\exists m \in \mathds{R} \  \forall x \in E \ (x \leq m)$. m -- верхняя грань.
+        Множество $E$ называется \textit{ограниченным} снизу, если $\exists m \in \mathds{R} \  \forall x \in E \ (x \geq m)$.
+        Множество $E$ называется \textit{ограниченным}, если $E$ ограниченно и сверху, и снизу.
+    \end{definition}
+    
+    \textbf{Задача.} $E$ -- ограниченно $\lra \exists k > 0 \  \forall x \in E \ (|x| \leq k)$.
+    

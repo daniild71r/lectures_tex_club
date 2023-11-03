@@ -1,0 +1,162 @@
+\section{21. Ортогональное дополнение к подпространству. Задача об ортогональной проекции и ортогональной составляющей. Процедура ортогонализации Грама-Шмидта. Объем параллелепипеда.}
+
+\begin{definition}
+    Пусть $U \leq V$. Ортогональным дополнением к $U$ относительно функции $f \in B^{\pm}(V)$ 
+    называется подпространство $U^{\perp} = \{y \in V \,\vert \, \forall x \in U \hookrightarrow 
+    f(x, y) = 0\}$.
+\end{definition}
+
+\begin{proposition}
+\label{pr 12.2}
+    Пусть $U \subseteq V$, тогда $U^{\perp} = \psi (U^{\circ})$, где $U^{\circ}$ -- аннулятор пространства $U$ в $V^*$.
+\end{proposition}
+
+\begin{proof}
+    $y \in U^{\perp} \Leftrightarrow \forall x \in U \hookrightarrow (x, y) = 0 \Leftrightarrow \forall x \in U f_y(x) = 0 \Leftrightarrow f_y \in U^{\circ} \Leftrightarrow \psi(f_y) \in \psi(U^{\circ})$. Значит, мы доказали, что для любого вектора из ортогонального дополнения его образ принадлежит образу аннулятора, а так как в обратную сторону очевидно, то $U^{\perp} = \psi(U^{\circ})$.
+\end{proof}
+
+\begin{proposition}
+    Свойства ортогонального дополнения:
+    \begin{enumerate}
+        \item $(U^{\perp})^{\perp} = U$
+        \item $(U + W)^{\perp} = U^{\perp}$
+        \item $(U \cap W)^{\perp} = U^{\perp} + W^{\perp}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $x \in (U^{\perp})^{\perp} \Leftrightarrow \forall y \in U^{\perp} (x, y) = 0$. Но, с другой стороны, $\forall x \in U (x, y) = 0$. Значит, любой вектор из $U$ лежит в $(U^{\perp})^{\perp}$. И из того, что размерности равны, следует равенство пространств: $\dim (U^{\perp})^{\perp} = \dim V - \dim U^{\perp} = \dim V - (\dim V - \dim U) = \dim U$.
+        \item По утверждению \ref{pr 12.2}: 
+        \begin{gather*}
+            (U + W)^{\perp} = \psi((U + W)^{\circ}) = \psi(U^{\circ} \cap W^{\circ}) = \psi(U^{\circ} \cap \psi(W^{\circ}) = U^{\perp} \cap W^{\circ}
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}[Задача об ортогональной проекции]
+    Пусть $V$ -- пространство со скалярным произведением, $U$ -- подпространство $V$. Обозначим 
+    размерность $V$ за $n$, размерность $U$ за $k$. Тогда сужение на $U$
+    невырожденной функции $f(x, y)$, являющейся скалярным произведением в $V$, так же будет являться
+    скалярным произведением и в $U$. \\
+    Пространство $V$ будет представляться как $V = U + U^{\perp}$. \\
+    Дан базис в $U$, вектор $x \in V$. Требуется представить вектор $x$ в виде суммы его проекций 
+    $\tilde{x} = \pr_U x$ и $\stackrel{o}{x} = \ort_U x$ на $U$ и $U^{\perp}$ соответственно.
+\end{problem}
+
+\begin{algorithm}~
+    \begin{enumerate}
+        \item Зафиксируем в $U$ ортонормированный базис $e_1, \dots e_k$, достроив его до базиса 
+        $e_1, \dots e_n$ в $V$. Тогда:
+        \begin{gather*}
+            x = \sum_{i=1}^{k} \alpha_i e_i + \sum_{i=k+1}^{n}\alpha_i e_i.
+        \end{gather*}
+        При этом $\displaystyle\sum_{i=1}^{k} \alpha_i e_i \in U$, 
+        $\displaystyle \sum_{i=k+1}^{n}\alpha_i e_i \in U^{\perp}$. Тогда 
+        $\tilde{x} = \displaystyle\sum_{i=1}^{k}\alpha_i e_i$, откуда $\stackrel{o}{x} = x - \tilde{x}$.
+        \item Зафиксируем в $U$ ортогональный базис $e_1, e_2, \dots e_k$, достроив его до 
+        ортогонального базиса $e_1, \dots e_n$ в $V$. Тогда рассмотрим базис $e'$ такой, что
+        $e'_i = \frac{e_i}{|e_i|}$, очевидно являющийся ортонормированным. Тогда 
+        \begin{gather*}
+            \tilde{x} = \displaystyle\sum_{i=1}^{k} (x, e'_i)e'_i = \displaystyle\sum_{i=1}^{k} (x, e'_i) 
+            \frac{e_i}{|e_i|} = \displaystyle\sum_{i=1}^{k} \frac{(x, e_i)}{(e_i, e_i)} e_i = 
+            \pr_e x = \frac{(x, e)}{(e, e)} e.
+        \end{gather*}
+        \item Зафиксируем произвольный базис $e_1, e_2, \dots e_k$ в $U$, достроив его до базиса
+        $e_1, \dots e_n$ в $V$.
+        Тогда необходимые нам векторы выражаются как $\tilde{x} = \displaystyle\sum_{i=1}^{k} \lambda_i e_i$ и $\stackrel{o}{x} = x - \tilde{x} = 
+        x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i \perp e_1, \, \dots , \, e_k$.
+        
+        Чтобы получить коэффициенты $\lambda_i$ запишем следующую систему:
+        \begin{eqnarray*}
+            \begin{cases*}
+                (x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i, e_1) = 0,
+                \\
+                (x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i, e_2) = 0,
+                \\
+                \dots
+                \\
+                (x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i, e_k) = 0.
+            \end{cases*} \Leftrightarrow \begin{cases*}
+                (e_1, e_1) \lambda_1 + (e_2, e_1) \lambda_2 + \, ... \, + (e_k, e_1) = (x, e_1),
+                \\
+                (e_1, e_2) \lambda_1 + (e_2, e_2) \lambda_2 + \, ... \, + (e_k, e_2) = (x, e_2),
+                \\
+                \dots
+                \\
+                (e_1, e_k) \lambda_1 + (e_2, e_k) \lambda_2 + \, ... \, + (e_k, e_k) = (x, e_k).
+            \end{cases*}
+        \end{eqnarray*}
+        Матрица системы является сужением $\Gamma$ на $U$, а значит $|\Gamma \vert_{U} (e_1, \, \dots, \, e_k)| > 0$.
+        Таким образом по теореме Крамера система имеет единственное решение.
+    \end{enumerate}
+\end{algorithm}
+
+\begin{theorem}[метод Грама-Шмидта]
+	Пусть $(\overline{f_1}, \dots, \overline{f_n})$ "--- базис в $V$. Тогда в $V$ существует ортогональный базис $(\overline{e_1}, \dots, \overline{e_n})$ такой, что $\forall k \hm{\in} \{1, \dots, n\}: \langle\overline{e_1}, \dots, \overline{e_k}\rangle \hm= \langle\overline{f_1}, \dots, \overline{f_k}\rangle$, причем матрица перехода $S$ "--- верхнетреугольная с единицами на главной диагонали.
+\end{theorem}
+
+\begin{proof}
+	Положим $\overline{e_1} := \overline{f_1}$ и $\overline{e_k} := \overline{f_k} \hm{-} \pr_{\langle\overline{f_1}, \dots, \overline{f_{k - 1}}\rangle}\overline{f_k}$ при всех $k \in \{2, \dots, n\}$. Тогда матрица перехода $S$ "--- верхнетреугольная с единицами на главной диагонали, поэтому $(\overline{e_1}, \dotsc, \overline{e_n})$ является базисом в $V$. Проверим равенство $\langle\overline{e_1}, \dots, \overline{e_k}\rangle \hm= \langle\overline{f_1}, \dots, \overline{f_k}\rangle$ индукцией по $k$. База, $k = 1$, тривиальна. Пусть теперь $k > 1$, тогда: $\langle\overline{e_1}, \dots, \overline{e_{k-1}}, \overline{e_k}\rangle \hm= \langle\overline{e_1}, \dots, \overline{e_{k-1}}, \overline{f_k}\rangle = \langle\overline{f_1}, \dots, \overline{f_{k-1}}, \overline{f_i}\rangle$.
+\end{proof}
+
+\begin{note}
+	Получим явную формулу для $\overline{e_k}$ при всех $k \in \{2, \dots, n\}$:
+	\[\overline{e_k} = \overline{f_k} - \pr_{\langle\overline{f_1}, \dots, \overline{f_{k - 1}}\rangle}{\overline{f_k}} = \overline{f_k} - \pr_{\langle\overline{e_1}, \dots, \overline{e_{k - 1}}\rangle}{\overline{f_k}} = \overline{f_k} - \sum_{j = 1}^{k - 1}\frac{(\overline{f_k}, \overline{e_j})}{||\overline{e_j}||^2}\overline{e_j}\]
+\end{note}
+
+\begin{corollary}
+	Пусть $(\overline{e_1}, \dots, \overline{e_k})$ "--- ортогональная система ненулевых векторов из $V$. Тогда в $V$ существует ортогональный базис $(\overline{e_1}, \dots, \overline{e_n}) \supset (\overline{e_1}, \dots, \overline{e_k})$.
+\end{corollary}
+
+\begin{proof}
+	Дополним систему $(\overline{e_1}, \dots, \overline{e_k})$ до произвольного базиса и применим метод Грама-Шмидта. Тогда базис станет ортогональным, при этом первые $k$ векторов в нем не изменятся, поскольку $\forall i \hm{\in} \{1, \dots, k\}: \overline{e_i} \hm{\mapsto} \overline{e_i} - \pr_{\langle\overline{e_1}, \dots, \overline{e_{i - 1}}\rangle}{\overline{e_i}} = \overline{e_i}$.
+\end{proof}
+
+\begin{definition}
+    Определеим объем системы векторов по индукции:
+    \begin{enumerate}
+        \item $V_1(x_1) = |x_1|$
+        \item $V_k(x_1, \dots x_k) = V_{k -1} (x_1, \dots, x_{k - 1}) \rho(x_k, \langle x_1, \dots, x_{k - 1} \rangle)$
+    \end{enumerate}
+\end{definition}
+
+\begin{corollary}
+    $V_k(x_1, \dots, x_k) \geq 0$, причем равенство достигается только в том случае, когда $\exists i \hookrightarrow \rho(x_k, \langle x_1, \dots, x_{k - 1} \rangle) = 0$. Что возможно только когда система $\langle x_1, \dots, x_{k - 1} \rangle$ -- линейно зависима.
+\end{corollary}
+
+\begin{proposition}
+    $\rho (U, x) = |\ort_U x|$
+\end{proposition}
+
+\begin{proof}
+    $|x - u| \geq |\stackrel{\circ}{x - u}|$ -- по определению. Тогда по теореме Пифагора: $|\stackrel{\circ}{x} - \stackrel{\circ}{u}| = |\stackrel{\circ}{x}|$ -- ортогональное дополнение. Значит $\inf_{y \in U} |x - y| \geq |\stackrel{\circ}{x}|$ -- достигается.
+\end{proof}
+
+\begin{theorem}[о геометрическом свойстве определителя Грама системы векторов]
+    Если $x_1, \dots, x_k$ -- система векторов в пространстве со скалярным произведением, то $(V_k)^2(x_1, \dots, x_k) = |\Gamma(x_1, \dots, x_k)|$
+\end{theorem}
+
+\begin{proof}
+    Если система $x_1, \dots, x_k$ -- линейно зависима, то $0 = 0$ -- теорема выполняется. Пусть система линейно независима.
+    \begin{enumerate}
+        \item Покажем, что преобразование Грама-Шмидта не изменяет левую и правую части равенства: для этого возьмем унипотентную матрицу перехода $S$: $(y_1, \dots, y_k) = (x_1, \dots, x_k)S$, тогда:
+        $$|\Gamma(y_1, \dots, y_k)| = |S^T \Gamma(x_1, \dots, x_k)S| = |\det S|^2 |\Gamma(x_1, \dots, x_k)| = |\Gamma (x_1, \dots, x_k)|$$
+        \item Теперь покажем равенство квадратов объемов индукцией по $k$: при $k = 1$ -- очевидно, что $y_1 = x_1$. Теперь пусть $V_{k - 1} (x_1, \dots, x_{k - 1}) = V_{k - 1}(y_1, \dots, y_{k - 1})$. По определению объема делаем шаг индукции:
+        $$\rho(x_k, \langle x_1, \dots, x_{k -1} \rangle) = |\ort_{\langle x_1, \dots, x_{k -1} \rangle} x_k| = |\ort_{\langle x_1, \dots, x_{k -1} \rangle} y_k| = |\ort_{\langle y_1, \dots, y_{k -1} \rangle} y_k| = \rho(y_k, \langle y_1, \dots, y_k \rangle)$$
+        \item Теперь равенство достаточно доказать для ортонормированного базиса:
+        \[(V_k)^2(y_1, \dots, y_k) = (V_{k - 1})^2(y_1, \dots, y_k) \rho^2(y_k, \langle y_1, \dots, y_k \rangle) = \]\[ = (V_{k - 1})^2(y_1, \dots, y_k) |y_k|^2 = \displaystyle\sum_{i = 1}^{k} (y_i, y_i) = |\Gamma (y_1, \dots, y_k)\]
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Параллелепипедом, порожденным $a_1, a_2, \ldots, a_n$, называется множество $P(a_1, \ldots, a_n) = \{\sum_{i = 1}^{n}\alpha_i a_i , \ 0 \leq \alpha_i \leq 1\}$. 
+\end{definition}
+
+\begin{definition}
+    Пусть $V$ -- евклидово пространство с определенной ориентацией (базис положительно определен). $V_{or}P(a_{1}, \ldots, a_{n}) = \epsilon V_{n}(a_{1}, \ldots, a_{n})$, $\epsilon = 
+    \begin{cases}
+        1,  \text{ если } (a_1, \ldots, a_n) \text{ положит. опр. } \\
+        -1, \text{ иначе }
+    \end{cases}$ 
+\end{definition}

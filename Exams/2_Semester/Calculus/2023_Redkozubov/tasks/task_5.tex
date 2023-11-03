@@ -1,0 +1,305 @@
+\section{5. Метрические и нормированные пространства, $p$-нормы на $\R^{n}$. Топология метрических пространств: открытые и замкнутые множества, их свойства. Предельные точки. Критерии замкнутости множества. Замыкание множества. Подпространства метрического пространства, описание открытых множеств подпространства. Компакты и их свойства. Теорема о секвенциальной компактности. Описание компактов в $\R^{n}$. Теорема Больцано-Вейерштрасса. Полные метрические пространства. Полнота пространств $\R^{n}$ и $B(E)$.}
+
+\begin{definition}
+    Пусть $X \not= \emptyset$. Функция $\rho: X \times X \to \R$ называется \textit{метрикой} на $X$, если для любых $x, y, z \in X$ выполнено:
+    
+    \begin{enumerate}
+        \item $\rho(x, y) \geq 0, \ \rho(x, y) = 0 \lra x = y;$
+        \item $\rho(x, y) = \rho(y, x);$
+        \item $\rho(x, y) \leq \rho(x, z) + \rho(z, y)$ (\textit{неравенство треугольника}).
+    \end{enumerate}
+
+    Пара $(X, \rho)$ называется \textit{метрическим пространством}.
+\end{definition}
+
+В дальнейшем часто под метрическим пространтвом будем понимать само множество $X$, предполагая наличие связанной с ним метрики.
+
+\begin{definition}
+    Пусть $V$ -- линейное пространство. Функция $\|\cdot\|: V \to \R$ называется \textit{нормой}, если для любых $x, y \in V$ и $\alpha \in \R$ выполнено:
+
+    \begin{enumerate}
+        \item $\|x\| \geq 0, \ \|x\| = 0 \lra x = 0;$
+        \item $\|\alpha x\| = |\alpha|\|x\|;$
+        \item $\|x + y\| \leq \|x\| + \|y\|$ (\textit{неравенство треугольника}).
+    \end{enumerate}
+
+    Пара $(V, \|\cdot\|)$ называется \textit{нормированным пространством}.
+\end{definition}
+
+\begin{example}
+    $X = \R^n, \ x = (x_1, \ldots, x_n)^T, \ y = (y_1, \ldots, y_n)^T$.
+
+    \begin{enumerate}
+        \item $|x| = \sqrt{\sum_{i = 1}^n |x_i|^2}$, $\rho_2(x, y) = \sqrt{\sum_{i = 1}^n |x_i - y_i|^2}$.
+        \item $\|x\|_p = \left(\sum_{i = 1}^n |x_i|^p\right)^{\frac{1}{p}}$, $\rho_p(x, y) = \left(\sum_{i = 1}^n |x_i - y_i|^p\right)^{\frac{1}{p}}$, $p \ge 1$.
+        \item $\|x\|_\infty = \max_{1 \le i \le n} |x_i|$, $\rho_\infty(x, y) = \max_{1 \le i \le n} |x_i - y_i|$.
+    \end{enumerate}
+
+\end{example}
+
+\begin{proof}
+    Покажем, что $\|\cdot\|_p$ --- норма на $\R^n$.
+    
+    Проверим сначала, что если $\|x\|_p \le 1, \|y\|_p \le 1, \alpha + \beta = 1, \alpha \ge 0, \beta \ge 0$, то $\|\alpha x + \beta y\|_p \le 1$.
+    
+    Функция $\phi(s) = s^p$ --- выпуклая на $[0, +\infty)$, следовательно $|\alpha x_i + \beta y_i|^p \le \alpha |x_i|^p + \beta |x_i|^p$.
+    
+    Просуммируем по $i = 1, \ldots, n$.
+    $\|\alpha x + \beta y \|^p_p \le \alpha \|x\|^p_p + \beta \|y\|^p_p \le \alpha + \beta = 1$.
+    
+    Пусть $x, y$ произвольны. Если $x = 0$ или $y = 0$, то неравенство выполняется. Будем предполагать, что $x \neq 0$ и $y \neq 0$. Покажем, что $\|x + y\|_p \le \|x\|_p + \|y\|_p$ (индекс $p$ будем опускать)
+    
+    Введём обозначения $\alpha = \frac{\|x\|}{\|x\| + \|y\|}, \beta = \frac{\|y\|}{\|x\| + \|y\|}, \hat{x} = \frac{x}{\|x\|}, \hat{y} = \frac{y}{\|y\|}$. Тогда, учитывая, что $\|\alpha \hat{x} + \beta \hat{y}\| \le 1$, имеем
+    \[
+        \|x + y\| = \left(\|x\| + \|y\|\right) \left\|\frac{x}{\|x\| + \|y\|} + \frac{y}{\|x\| + \|y\|}\right\| = \left(\|x\| + \|y\|\right)\|\alpha \hat{x} + \beta \hat{y}\| \le \|x\| + \|y\|.
+    \]
+
+    Проверка, что $\|\cdot\|_{\infty}$ является нормой, легко следует из свойств модуля числа.
+\end{proof}
+
+\begin{definition}
+    Пусть $(X, \rho)$ --- метрическое пространство, $x \in X$.
+
+    Множество $B_r(x) = \{y \in X \ | \ \rho(y, x) < r\}, r > 0$ называется \emph{открытым шаром} с центром в точке $x$ и радиуса $r$.
+
+    Множество $\overline{B}_r(x) = \{y \in X \ | \ \rho(y, x) \le r\}$ называется \emph{замкнутым шаром} с центром в точке $x$ и радиуса $r$.
+\end{definition}
+
+\begin{definition}
+    Пусть $(X, \rho)$ --- метрическое пространство, $E \subset X$ и $x \in X$.
+
+    \begin{enumerate}
+        \item Точка $x$ называется \emph{внутренней точкой} множества $E$, если $\exists \epsilon > 0 \ (B_\epsilon(x) \subset E)$.
+        \item Точка $x$ называется \emph{внешней точкой} множества $E$, если $\exists \epsilon > 0 \ (B_\epsilon(x) \subset X \setminus E)$.
+
+            Обозначим $\operatorname{ext} E$ --- множество внешних точек $E$. Очевидно, $\operatorname{ext} E = \operatorname{int} (X \setminus E)$.
+
+        \item Точка $x$ называется \emph{граничной точкой} множества $E$, если
+            \[
+                \forall \epsilon > 0 \ \left\{\begin{array}{l}B_\epsilon (x) \cap E \neq \emptyset \\ B_\epsilon (x) \cap (X \setminus E) \neq \emptyset\end{array}\right.
+            \]
+
+            Обозначим $\partial E$ --- множество граничных точек $E$.
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    $X = \operatorname{int} E \cup \operatorname{ext} E \cup \partial E$, причём $\operatorname{int} E, \operatorname{ext} E, \partial E$ попарно не пересекаются.
+\end{note}
+
+\begin{definition}
+    Множество $G \subset X$ называется \emph{открытым}, если все точки $G$ являются внутренними (то есть $G = \operatorname{int} G$).
+
+    Множество $F \subset X$ называется \emph{замкнутым}, если $X \setminus F$ открыто.
+\end{definition}
+
+Аналогично случаю $X = \R$ доказывается следующая лемма.
+\begin{lemma}
+    Объединение произвольного семейства открытых множеств и пересечение \emph{конечного} семейства открытых множеств являются открытыми множествами.
+
+    Объединение \emph{конечного} семейства замкнутых множеств и пересечение произвольного семейства замкнутых множеств являются замкнутыми множествами.
+\end{lemma}
+
+\begin{definition}
+    Точка $x$ называется \emph{предельной точкой} множества $E$, если $\forall \epsilon > 0 \ (\mathring{B}_\epsilon(x) \cap E \neq \emptyset)$. Здесь и далее $\mathring{B}_\epsilon(x) = B_\epsilon(x) \setminus \{x\}$.
+\end{definition}
+
+\begin{definition}
+    Точка $x$ называется \emph{изолированной точкой} множества $E$, если $x \in E$ и $x$ не предельная.
+\end{definition}
+
+\begin{theorem}
+    Следующие утверждения эквивалентны:
+    \begin{enumerate}
+        \item $E$ замкнуто;
+        \item $E$ содержит все свои граничные точки;
+        \item $E$ содержит все свои предельные точки;
+    \end{enumerate}
+
+    \begin{proof}~
+    
+        \emph{(1 $\Rightarrow$ 2)} $x \in \underbrace{X \setminus E}_{\text{откр.}} \Rightarrow \exists B_\epsilon(x) \subset X \setminus E \Rightarrow x \neq \partial E \Rightarrow \partial E \subset E$.
+
+        \emph{(2 $\Rightarrow$ 3)} Любая предельная точка является внутренней или граничной, значит $E$ содержит все предельные точки.
+
+        \emph{(3 $\Rightarrow$ 1)} Пусть $x \in X \setminus E$. Точка $x$ не является предельной для $E$, т.е. $\exists \epsilon > 0 \ (\mathring{B}_\epsilon(x) \cap E = \emptyset) \Rightarrow B_\epsilon(x) \subset X \setminus E$. Значит, $X \setminus E$ открыто.
+
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    $\overline{E} = E \cup \partial E$ --- \emph{замыкание} $E$.
+\end{definition}
+
+\begin{note}
+    $x \in \overline{E} \lra \exists \{x_{n}\} \subset E \ \left(x_{n} \to x\right)$.
+\end{note}
+
+\begin{proof}
+    Если $x \in E \cup \partial E$, то $\forall \epsilon > 0 \ (B_{\epsilon}(x) \cap E \neq \emptyset)$. Выберем точку $x_{n} \in B_{\frac{1}{n}}(x) \cap E$. Так как $\rho(x_{n}, x) < \frac{1}{n}$, то $x_{n} \to x$.
+
+    Обратно, если $x \in X \setminus \overline{E}$, то $x$ -- внешнаяя точка $E$ и, значит, $x$ не может быть пределом последовательности точек из $E$.
+\end{proof}
+
+\begin{corollary}
+    Множество $E$ замкнуто $\lra$ $\forall \{x_{n}\}, \ x_{n} \in E \ \left(x_{n} \to x \Rightarrow x \in E\right)$.
+\end{corollary}
+
+\begin{definition}
+Пусть $(X, \rho)$ --- метрическое пространство, $E \subset X, E \neq \emptyset$. Сужение $\rho\vert_{E \times E}$ является метрикой на $E$. Пара $(E, \rho\vert_{E \times E})$ называется \emph{подпространством} $(X, \rho)$, а функция $\rho\vert_{E \times E}$ --- \emph{индуцированной метрикой}.
+\end{definition}
+
+Рассмотрим $B_r^E (x) = \{y \in E \ | \ \rho(x, y) < r\} = B^X_r(x) \cap E$.
+
+\begin{lemma}
+    Пусть $(X, \rho)$ --- метрическое пространство, $E \subset X$.
+    \[
+        \underbrace{U}_{\text{откр. в $E$}} \Leftrightarrow \exists \underbrace{V}_{\text{откр. в $X$}} \ (U = V \cap E).
+    \]
+
+
+    \begin{proof}
+        \emph{($\Rightarrow$)} Пусть $U$ открыто в $E$. Тогда $\forall x \in U \, \exists B_{\epsilon_x}^E(x) \subset U$ и, значит, $U = \bigcup_{x \in U} B_{\epsilon_x}^E (x)$. Положим $V = \bigcup_{x \in U} B_{\epsilon_x}^X (x)$. Тогда $V$ открыто в $X$ и $V \cap E = \bigcup_{x \in U} (B_{\epsilon_x}^X(x) \cap E) = \bigcup_{x \in U} B_{\epsilon_x}^E(x) = U$.
+
+        \emph{($\Leftarrow$)} Пусть $x \in U$ и $U = \underbrace{V}_{\text{откр. в $X$}} \cap E$, тогда $x \in V \Rightarrow \exists B_\epsilon^X(x) \subset V \Rightarrow B_\epsilon^E(x) = B_\epsilon^X(x) \cap E \subset V \cap E = U$, то есть $U$ открыто в $E$.
+    \end{proof}
+\end{lemma}
+
+\begin{corollary}
+    \[
+        \underbrace{Z}_{\text{замк. в $E$}} \Leftrightarrow \exists \underbrace{F}_{\text{замк. в $X$}} \ (Z = F \cap E).
+    \]
+\end{corollary}
+
+\begin{definition}
+    Пусть $X$ --- множество, $Y \subset X$. Семейство $\{X_\alpha\}_{\alpha \in A}$ подмножеств $X$ называется \emph{покрытием $Y$}, если $Y \subset \bigcup_{\alpha \in A} X_\alpha$.
+
+    Если $B \subset A$ и $\{X_\alpha\}_{\alpha \in B}$ также является покрытием $Y$, то оно называется \emph{подпокрытием}.
+\end{definition}
+
+\begin{definition}
+    Пусть $(X, \rho)$ --- метрическое пространство, $K \subset X$. $K$ называется \emph{компактом} (в $X$), если из любого его открытого покрытия $\{G_\lambda\}_{\lambda \in \Lambda}$ можно выделить конечное подпокрытие, то есть $\exists \lambda_1, \ldots \lambda_m \in \Lambda \ (K \subset G_{\lambda_1} \cup \ldots \cup G_{\lambda_m})$.
+\end{definition}
+
+\begin{lemma}
+    \label{lem_lim_closed}
+    Пусть $(X, \rho)$ --- метрическое пространство, $K \subset X$. Если $K$ --- компакт, то $K$ ограничено и замкнуто в $X$.
+
+    \begin{proof}
+        Пусть $a \in K$. Так как $\bigcup_{n = 1}^\infty B_n(a) = X$, то $\{B_n(a)\}_{n \in \N}$ --- открытое покрытие $K$. Следовательно, $K \subset B_{n_1}(a) \cup \ldots \cup B_{n_m}(a) = B_N(a)$, где $N = \max_{1 \le i \le m}\{n_i\}$, и, значит, $K$ ограничено.
+
+        Пусть $a \in X \setminus K$. Так как $\bigcup_{n=1}^{\infty}\left(X \setminus \overline{B}_{\frac{1}{n}}(a)\right) = X \setminus \{a\}$, то $\{X \setminus \overline{B}_{\frac{1}{n}} (a)\}_{n \in \N}$ --- открытое покрытие $K$. Следовательно, $K \subset \left(X \setminus \overline{B}_{\frac{1}{n_1}}(a)\right) \cup \ldots \cup \left(X \setminus \overline{B}_{\frac{1}{n_m}}(a)\right) = X \setminus \overline{B}_{\frac{1}{N}}(a)$, где $N = \max_{1 \le i \le m}\{n_i\}$. Тогда $\overline{B}_{\frac{1}{N}}(a) \subset X \setminus K$ и, значит, $X \setminus K$ открыто, а значит, $K$ -- замкнуто.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    \label{lem_comp_subset}
+    Замкнутое подмножество компакта --- компакт.
+
+    \begin{proof}
+        Пусть $K$ --- компакт в $X$, $\underbrace{F}_{\text{замк. в $X$}} \subset K$. Покажем, что $F$ -- компакт. Рассмотрим открытое покрытие $\{G_\lambda\}_{\lambda \in \Lambda}$ множества $F$, тогда $\{G_{\lambda}\}_{\lambda \in \Lambda} \cup \{X \setminus F\}$ --- открытое покрытие $K$, так как $\left(\bigcup_{\lambda \in \Lambda} G_\lambda\right) \cup (X \setminus F) = X$. Поскольку $K$ --- компакт, то $K \subset G_{\lambda_1} \cup \ldots \cup G_{\lambda_m} \cup (X \setminus F) \overset{F \subset K}{\Rightarrow} F \subset G_{\lambda_1} \cup \ldots \cup G_{\lambda_m}$. Значит, $F$ -- компакт.
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}[о секвенциальной компактности]
+    \label{compact-criterion}
+    Пусть $(X, \rho)$ --- метрическое пространство, $K \subset X$. $K$ --- компакт тогда и только тогда, когда из любой последовательности элементов $K$ можно выделить сходящуюся в $K$ подпоследовательность.
+
+    \begin{proof}
+        \emph{($\Rightarrow$)} Пусть $\forall n \in \N \ x_n \in K$. Предположим, что из $\{x_n\}$ нельзя выделить сходяющуюся подпоследовательность в $K$. Тогда $\forall a \in K \ \exists \delta_a > 0 \ \exists N_a \ \forall n \ge N_a \ (x_n \not\in B_{\delta_a}(a))$.
+
+        Рассмотрим $\{B_{\delta_a}(a)\}_{a \in K}$ --- открытое покрытие $K$. Следовательно, $K \subset B_{\delta_{a_1}}(a_1) \cup \ldots \cup B_{\delta_{a_m}}(a_m)$.
+    
+        Положим $N = \max_{1 \le i \le m} \{N_{a_i}\}$. Так как $N \ge N_{a_i}$, то $x_N \not\in B_{\delta_{a_i}}(a_i)$ $i = 1, \ldots, m \Rightarrow x_N \not\in K$ --- противоречие.
+    
+        \emph{($\Leftarrow$)} Пусть из любой последовательности элементов $K$ можно выделить сходящуюся в $K$ подпоследовательность.
+
+        \begin{enumerate}
+            \item Покажем, что для любого $\epsilon > 0$ $K$ можно покрыть конечным набором открытых шаров радиуса $\epsilon$.
+    
+            Докажем от противного -- пусть нельзя покрыть. Индуктивно построим последовательность $\{x_n\}$, $x_1 \in K, x_n \in K \setminus \bigcup_{i = 1}^{n - 1} B_\epsilon(x_i)$.
+    
+            По построению $\rho(x_i, x_j) \geq \epsilon$, и, значит, из $\{x_n\}$ нельзя выделить сходящуюся подпоследовательность -- противоречие.
+    
+            \item Пусть $\{G_\lambda\}_{\lambda \in \Lambda}$ --- открытое покрытие $K$, тогда $\exists \epsilon > 0 \, \forall x \in K \, \exists \lambda \in \Lambda \ \left(B_\epsilon(x) \ \subset G_\lambda\right)$. Предположим, что это не выполняется, тогда $\forall n \in \N \, \exists x_n \in K \, \forall \lambda \in \Lambda \left(B_{\frac{1}{n}}(x_n) \not\subset G_\lambda\right)$.
+    
+            Имеем $\{x_n\} \subset K \Rightarrow \exists x_{n_k} \rightarrow x \in K$, следовательно, $\exists \lambda_0 \in \Lambda (x \in \underbrace{G_{\lambda_0}}_{\text{откр.}}) \Rightarrow \exists B_{\alpha}(x) \subset G_{\lambda_0}$. Выберем $k$ так, чтобы $x_{n_k} \in B_{\frac{\alpha}{2}}(x)$ и $\frac{1}{n_k} < \frac{\alpha}{2}$. Если $z \in B_{\frac{1}{n_k}}(x_{n_k}) \Rightarrow \rho(z, x) \le \rho(z, x_{n_k}) + \rho(x_{n_k}, x) < \frac{\alpha}{2} + \frac{\alpha}{2} = \alpha$.
+    
+            Следовательно, $z \in B_\alpha(x)$, $B_{\frac{1}{n_k}}(x_{n_k}) \subset B_\alpha(x) \subset G_{\lambda_0}$ --- противоречие.
+    
+            \item Пусть $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $K$. Тогда по (2):
+            \[\exists \epsilon > 0 \ \forall x \in K \ \exists \lambda \in \Lambda \ (B_{\epsilon}(x) \subset G_{\lambda})\]
+    
+            По (1) $\exists x_{1}, x_{2}, ..., x_{m} \in K$, что $K \subset B_{\epsilon}(x_{i}) \cup ... \cup B_{\epsilon}(x_{m}) \subset G_{\lambda_{1}} \cup ... \cup G_{\lambda_{m}}$, где $\lambda_{i}$ удовлетворяет условию $B_{\epsilon}(x_{i}) \subset G_{\lambda_{i}}$.
+    
+            Следовательно, $K$ -- компакт.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    \label{criterion-compact-corollary}
+    Множество $K$ является компактом в $\R^{n}$ $\lra$ $K$ ограничено и замкнуто
+\end{corollary}
+
+\begin{proof}
+    $\Rightarrow$ лемма (\ref{lem_lim_closed}).
+
+    $\Leftarrow$ Если $K$ ограничено, то $K \subset B_{r}(x)$ для некоторой точки $x = (x_{1}, \ldots, x_{n})^{T}$ и $r > 0$. Рассмотрим замкнутый брус $[x_{1} - r, x_{1} + r] \times \ldots \times [x_{n} - r, x_{n} + r]$. Этот брус содержит $B_{r}(x)$, а значит, и $K$.
+
+    Тогда $K$ -- компакт по лемме (\ref{lem_comp_subset}).
+\end{proof}
+
+\begin{corollary}[теорема Больцано--Вейерштрасса]
+    Из любой ограниченной последовательности в $\R^{n}$ можно выделить сходящуюся подпоследовательность.
+\end{corollary}
+
+\begin{proof}
+    Если последовательность ограничена, то она лежит в некотором замкнутом шаре. Этот шар -- компакт по следствию (\ref{criterion-compact-corollary}). Осталось применить теорему (\ref{compact-criterion}).
+\end{proof}
+
+Пусть $(X, \rho)$ -- метрическое пространство.
+
+\begin{definition}
+    Последовательность $\{x_{n}\}$ в $X$ называется \textit{фундаментальной}, если 
+    \[\forall \epsilon > 0 \ \exists N \ \forall n, m \geq N \ (\rho(x_{n}, x_{m}) < \epsilon).\]
+\end{definition}
+
+\begin{lemma}
+    Всякая сходящаяся последовательность фундаментальна.
+\end{lemma}
+
+\begin{proof}
+    $x_{n} \in X$, $x_{n} \to a$. Пусть $\epsilon > 0$, тогда $\exists N \ \forall n \geq N \ (\rho(x_{n}, a) < \frac{\epsilon}{2})$. Следовательно, $\forall n, m \geq N$:
+    \[\rho (x_{n}, x_{m}) \leq \rho(x_{n}, a) + \rho(x_{m}, a) < \epsilon.\]
+\end{proof}
+
+\begin{definition}
+    Метрическое пространство называется \textit{полным}, если всякая фундаментальная последовательность в нем сходится.
+\end{definition}
+
+\begin{theorem}
+    Евклидово пространство $\R^{n}$ -- полное.
+\end{theorem}
+
+\begin{proof}~
+
+    Пусть $\{x_{k}\}$ -- фундаментальная последовательность в $\R^{n}$, $x_{k} = (x_{1, k}, \ldots, x_{n, k})^{T}$. Так как $|x_{i, k} - x_{i, m}| \leq \rho_{2}(x_{k}, x_{m})$, то из фундаментальности $\{x_{k}\}$ следует фундаментальность $\{x_{i, k}\}$ в $\R$ для $i = 1, \ldots , n$. По критерию Коши для числовых последовательностей $x_{i, k} \to a_{k} \in \R$. Рассмотрим $a = (a_{1}, \ldots, a_{n})^{T}$. $\rho_{2}(x_{k}, a) = \sqrt{\sum_{i = 1}^{n}(x_{k, i} - a_{i})^{2}} \to 0$ при $k \to \infty$. Значит, $x_{k} \to a \Rightarrow$ $\R^{n}$ -- полное метрическое пространство.
+\end{proof}
+
+\begin{example}
+    $B(E)$ -- линейное пространство всех \textit{ограниченных} функций $f: E \to \R$.
+
+    $B(E)$ является нормированным пространством относительно $\|f\| = \sup_{x \in E}|f(x)|$. Имеем $\sup|f(x) + g(x)| \leq \sup|f(x)| + \sup|g(x)|$. Имеем $f_{n} \to f$ в $B(E) \lra \|f_{n} - f\| \to 0 \lra \sup_{x \in E}|f_{n}(x) - f(x)| \to 0 \lra f_{n} \rightrightarrows f$ на $E$.
+\end{example}
+
+\begin{theorem}
+    $B(E)$ -- полное.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\{f_{n}\}$ фундаментальна в $B(E)$, $\epsilon > 0$. Тогда 
+    \[\exists N \ \forall n, m \geq N \ (\sup_{x \in E} |f_{n}(x) - f_{m}(x)| \leq \epsilon).\]
+
+    По критерию Коши равномерной сходимости $\exists f: f_{n} \rightrightarrows f$ на $E$. Осталось доказать, что равномерный предел ограниченных функций -- ограниченная функция. Для $\epsilon = 1$ $\exists N: |f_{N}(x) - f(x)| \leq 1 \ \forall x \in E \Rightarrow |f(x)| \leq |f_{N}(x)| + 1 \Rightarrow f \in B(E) \Rightarrow B(E)$ -- полное.
+\end{proof}

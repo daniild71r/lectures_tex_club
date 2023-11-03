@@ -1,0 +1,66 @@
+\subsection{Линейное пространство. Понятие линейно (не)зависимой системы векторов. Подпространство линейного пространства. Линейная оболочка системы векторов, её характеризация.}
+
+    \begin{definition}
+    	\textit{Линейным пространством}, или \textit{векторным пространством}, над полем $F$ называется абелева группа $(V, +)$, на которой определено \textit{умножение на элементы поля} $\cdot: F \times V \rightarrow V$, удовлетворяющее следующим условиям:
+    	\begin{itemize}
+    		\item $\forall \alpha, \beta \in F: \forall \overline{v} \in V: (\alpha + \beta)\overline{v} = \alpha\overline{v} + \beta\overline{v}$
+    		\item $\forall \alpha \in F: \forall \overline{u}, \overline{v} \in V: \alpha(\overline{u} + \overline{v}) = \alpha\overline{u} + \alpha\overline{v}$
+    		\item $\forall \alpha, \beta \in F: \forall \overline{v} \in V: (\alpha\beta)\overline{v} = \alpha(\beta\overline{v})$
+    		\item $\forall \overline{v} \in V: 1\overline{v} = \overline{v}$
+    	\end{itemize}
+    
+    	Элементы поля $F$ называются \textit{скалярами}, элементы группы $V$ --- \textit{векторами}.
+    \end{definition}
+    
+    \begin{example}
+    	Рассмотрим несколько примеров линейных пространств:
+    	\begin{itemize}
+    		\item $V_1$, $V_2$, $V_3$ являются линейными пространствами над $\R$
+    		\item $F^n := M_{n \times 1}(F)$ является линейным пространством над полем $F$
+    		\item $M_{n \times k}(F)$ является линейным пространством над полем $F$
+    		\item $F[x]$ --- множество многочленов от переменной $x$ с коэффициентами из $F$ --- является линейным пространством над полем $F$
+    		\item Поле $F$ является линейным пространством над своим подполем $K$
+    	\end{itemize}
+    \end{example}
+    
+    \begin{reminder}
+        Система $(\overline{v_1}, \dots, \overline{v_n})$ векторов из $V_n$ называется \textit{линейно независимой}, если для любых $\alpha_1, \dotsc, \alpha_n \in \R$ выполнено следующее условие:
+        \[\sum_{i = 1}^{n}\alpha_i\overline{v_i} = \overline{0} \Leftrightarrow \alpha_1 = \dots = \alpha_n = 0\]
+    
+        Система $(\overline{v_1}, \dots, \overline{v_n})$ векторов из $V_n$ называется \textit{линейно зависимой}, если существует ее нетривиальная линейная комбинация, равная $\overline{0}$.
+    \end{reminder}
+    
+    \begin{definition}
+    	\textit{Подпространством} линейного пространства $V$ над полем $F$ называется такое его непустое подмножество $U \subset V$, что выполнены следующие условия:
+    	\begin{itemize}
+    		\item $(U, +)$ "--- подгруппа в $(V, +)$
+    		\item $\forall \alpha \in F: \forall \overline{u} \in U: \alpha\overline{u} \in U$
+    	\end{itemize}
+    	
+    	Обозначение "--- $U \le V$.
+    \end{definition}
+    
+    \begin{definition}
+    	Пусть $V$ "--- линейное пространство над $F$, $\overline{v_1}, \dots, \overline{v_k} \in V$. \textit{Линейной оболочкой} векторов $\overline{v_1}, \dots, \overline{v_k}$ называется множество линейных комбинаций этих векторов:
+    	\[\langle\overline{v_1}, \dots, \overline{v_k}\rangle := \left\{\sum_{i = 1}^{k}\alpha_i\overline{v_i}: \alpha_1, \dots, \alpha_k \in F\right\}\]
+    \end{definition}
+    
+    \begin{note}
+    	Линейную оболочку можно определить и для бесконечного набора векторов. В этом случае следует брать всевозможные линейные комбинации конечного числа векторов из набора.
+    \end{note}
+    
+    \begin{proposition}
+    	Пусть $V$ "--- линейное пространство, $\overline{v_1}, \dots, \overline{v_k} \hm{\in} V$, $U := \langle\overline{v_1}, \dots, \overline{v_k}\rangle$. Тогда $U \le V$, и, более того, $U$ является наименьшим по включению подпространством в $V$, содержащим все векторы $\overline{v_1}, \dotsc, \overline{v_k}$.
+    \end{proposition}
+    
+    \begin{proof}
+    	Сначала проверим, что $U$ является линейным пространством:
+    	\begin{itemize}
+    		\item Множество $U$ замкнуто относительно сложения и взятия обратного элемента п осложению, поэтому $(U, +)$ "--- подгруппа в $(V, +)$
+    		
+    		\item $U$ замкнуто относительно умножения на скаляр
+    	\end{itemize}
+    
+    	Наконец, если $W \le V$ и $\overline{v_1}, \dots, \overline{v_k} \hm{\in} W$, то и $U = \langle\overline{v_1}, \dots, \overline{v_k}\rangle \hm{\subset} W$.
+    \end{proof}
+    

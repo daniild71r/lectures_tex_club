@@ -1,0 +1,242 @@
+\section{7. Дифференцируемость функции из $\R^n$ в $\R^m$. Производная по вектору и ее связь с дифференциалом. Дифференцируемость композиции. Связь дифференцируемости функции с дифференцируемостью ее координатных функций. Частные производные, необходимые условия дифференцируемости. Градиент. Матрица Якоби. Достаточные условия дифференцируемости. Частные производные высших порядков. Независимость смешанной производной от порядка дифференцирования. Дифференциалы высших порядков и кратная дифференцируемость. Формула Тейлора с остаточным членом в форме Лагранжа, в форме Пеано (б/д).}
+
+Пусть $U \subset \R^{n}$, $U$ -- открытое и задана функция $f: U \to \R^{m}$.
+
+\begin{definition}
+    Функция $f$ называется \textit{дифференцируемой} в точке $a$, если существует такое непрерывное линейное отображение $L_{a}: X \to Y$, что 
+    \[f(a + h) = f(a) + L_{a}(h) + \alpha(h)\|h\|, \label{def_dif}\]
+    для некоторой функции $\alpha$, такой что $\alpha(h) \to 0$.
+\end{definition}
+
+\begin{note}
+    Формула (\ref{def_dif}) не определяет значение $\alpha$ в нуле. В дальнейшем будем считать, что $\alpha(0) = 0$ и, значит, функция $\alpha$ непрерывна в нуле.
+
+    Формулу (\ref{def_dif}) можно написать в виде
+    \[f(a + h) = f(a) + df_{a}(h) + o(\|h\|), \ h \to 0.\]
+
+    Линейное отображение $L_{a}$ называется \textit{дифференциалом} $f$ в точке $a$ и обозначается $df_{a}$.
+\end{note}
+
+\begin{definition}
+    Пусть $v \in \R^{n}$ и функция $f$ определена на множестве $\{a + tv: |t| < \delta\}$ для некоторого $\delta > 0$. Предел 
+    \[\lim_{t \to 0} \frac{f(a + tv) - f(a)}{t},\]
+    если этот предел существует, называется \textit{производной $f$ по вектору v} в точке $a$ и обозначается $\frac{\partial f}{\partial v}(a)$ (а также $f'_{v}(a)$ и $\partial_{v}f(a)$).
+\end{definition}
+
+\begin{theorem}
+    \label{th_dif1}
+    Если $f: U \to \R^{n}$ дифференцируема в точке $a$, $v \in \R^{n}$, то существует $\frac{\partial f}{\partial v}(a) = df_{a}(v)$.
+\end{theorem}
+
+\begin{proof}
+    Для $v = 0$ утверждение верно. Пусть $v \neq 0$. Выберем $\delta > 0$ так, что $B_{\delta}(a) \subset U$. Тогда для всех $t \in \R$ с $|t| < \frac{\delta}{|v|}$, получим
+    \[f(a + tv) = f(a) + df_{a}(tv) + \alpha(tv)\|tv\|.\]
+    В силу линейности $df_{a}(tv) = tdf_{a}(v)$. Далее, по непрерывности $\alpha$ в $0$ имеем $\alpha(tv) \to 0$ при $t \to 0$, поэтому
+    \[\frac{\partial f}{\partial v}(a) = \lim_{t \to 0}\frac{f(a + tv) - f(a)}{t} = \lim_{t \to 0}(df_{a}(v) \pm \alpha(tv)\|v\|) = df_{a}(v).\]
+\end{proof}
+
+\begin{theorem}[дифференцирование композиции]
+    Пусть $\underbrace{U}_{\text{откр.}} \subset \R^n, \underbrace{V}_{\text{откр.}} \subset \R^m$.
+
+    Если $f : U \rightarrow \R^m$ дифференцируема в точке $a$, $g : V \rightarrow \R^k$ дифференцируема в точке $f(a)$, $f(U) \subset V$, то композиция $g \circ f : U \rightarrow \R^k$ дифференцируема в точке $a$ и
+    \[
+        d(g \circ f)_a = dg_{f(a)} \circ df_a.
+    \]
+
+
+    \begin{proof}
+        Положим $b = f(a)$. По определению
+        \begin{gather*}
+            f(a + h) = f(a) + df_a(h) + \alpha(h)\|h\|, h \rightarrow 0 \Rightarrow \alpha(h) \rightarrow 0, \\
+            g(b + u) = g(b) + dg_b(u) + \beta(u)\|u\|, u \rightarrow 0 \Rightarrow \beta(u) \rightarrow 0, \\
+        \end{gather*}
+
+        Подставим вместо $u$ во второе равенство выражение $\kappa(h) = df_a(h) + \alpha(h)\|h\|$.
+        \begin{gather*}
+            g(f(a + h)) = g(b + \kappa(h)) = g(b) + dg_b(df_a(h) + \alpha(h)\|h\|) + \beta(\kappa(h)) \|\kappa(h)\| =\\= g(b) + dg_b(df_a(h)) + dg_b(\alpha(h)) \cdot \|h\| + \beta(\kappa(h)) \cdot \|\kappa(h)\| =\\= g(b) + dg_b(df_a(h)) + \gamma(h)\|h\|, \gamma(h) = dg_b(\alpha(h)) + \beta(\kappa(h))\frac{\|\kappa(h)\|}{\|h\|}.
+        \end{gather*}
+
+        По теореме о непрерывности композиции $dg_b(\alpha(h))$ и $\beta(\kappa(h))$ непрерывны при $h = 0$ со значением $0$. Также $\exists C \ge 0 \ \left(\|df_a(h)\| \le C\|h\|\right)$. Следовательно, $\frac{\|\kappa(h)\|}{\|h\|}$ ограничена в некоторой проколотой окрестности $h = 0$ и, значит, $\gamma(h)$ --- бесконечно малая при $h \rightarrow 0$ (как сумма двух бесконечно малых).
+    \end{proof}
+\end{theorem}
+
+Пусть $U \subset \R^{n}$ открыто, и функция $f: U \to \R^{m}$, $f = (f_{1}, \ldots, f_{m})^{T}$.
+
+\begin{lemma}
+    \label{dif-lem1}
+    Функция $f$ дифференцируема в точке $a$ тогда и только тогда, когда все координатные функции $f_{i}$ дифференцируемы в точке $a$.
+\end{lemma}
+
+\begin{proof}
+    Пусть $f$ дифференцируема в точке $a$. Распишем формулу (1) покоординатно:
+    \[f_{i}(a + h) = f_{i} + L_{i}(h) + \alpha_{i}(h)|h|.\]
+    Координатные функции $L_{i}$ дифференциала $L_{a}$ линейны, а условие "$\alpha(h) \to 0$ при $h \to \overline{0}$"\ равносильно "$\alpha_{i}(h) \to 0$ при $h \to 0$"\ , где $i = 1, \ldots, m$, поэтому функция $f_{i}$ дифференцируема в точке $a$ и ее дифференциал $d(f_{i})_{a} = L_{i}$.
+
+    Обратно, если все функции $f_{i}$ дифференцируемы, то верна и формула (1) с $L_{a} = (L_{1}, \ldots, L_{m})^{T}$ и $\alpha = (\alpha_{1}, \ldots, \alpha_{m})^{T}$.
+\end{proof}
+
+\begin{definition}
+    Производная по вектору $e_{k}$ в точке $a$, т.е. $\frac{\partial f}{\partial e_{k}}(a) = \lim_{t \to 0}\frac{f(a + t e_{k}) - f(a)}{t}$, называется \textit{частной производной} функции $f$ по переменной $x_{k}$ в точке $a$ и обозначается $\frac{\partial f}{\partial x_{k}}(a)$ (а также $f'_{x_{k}}(a)$ и $\partial_{k}f(a)$).
+\end{definition}
+
+Из теоремы 1 получим необходимое условие дифференцируемости.
+
+\begin{corollary}
+    Если $f: U \to \R$ дифференцируема в точке $a$, то она имеет в этой точке частные производные $\frac{\partial f}{\partial x_{k}}(a)$, $k = 1, \ldots, n$, и $df_{a}(h) = \sum_{k = 1}^{n}\frac{\partial f}{\partial x_{k}}(a)h_{k}$ для всех $h \in \R^{n}$.
+\end{corollary}
+
+\begin{proof}
+    По теореме (\ref{th_dif1}) существуют $\frac{\partial f}{\partial x_{k}}(a) = df_{a}(e_{k})$, следовательно, в силу линейности
+    \[df_{a}(h) = df_{a}\left(\sum_{k = 1}^{n}h_{k}e_{k}\right) = \sum_{k = 1}^{n}h_{k}df_{a}(e_{k}) = \sum_{k = 1}^{n}\frac{\partial f}{\partial x_{k}}(a)h_{k}.\]
+\end{proof}
+
+\begin{definition}
+    Вектор $(\frac{\partial f}{\partial x_{1}}(a), \ldots, \frac{\partial f}{\partial x_{n}}(a))^{T}$ называется \textit{градиентом} функции $f$ в точке $a$ и обозначается $grad f(a)$ или $\nabla f(a)$.
+\end{definition}
+
+\begin{corollary}
+    Пусть $f$ дифференцируема в точке $a$, и $grad f(a) \neq 0$. Тогда для любого $v \in \R^{n}$ с $|v| = 1$ выполнено
+    \[\left|\frac{\partial f}{\partial v}(a)\right| \leq |grad f(a)|,\]
+    причем равенство достигается лишь при $v = \pm \frac{grad f(a)}{|grad f(a)|}$.
+\end{corollary}
+
+\begin{proof}
+    Так как $\frac{\partial f}{\partial v}(a) = df_{a}(v) = (grad f(a), v)$, то по неравенству Коши-Буняковского-Шварца $\left|\frac{\partial f}{\partial v}(a)\right| \leq |grad f(a)| \cdot |v| = |grad f(a)|$, причем равенство достигается лишь в случае коллинеарности $grad f(a)$ и $v$, то есть $v = \pm \frac{grad f(a)}{|grad f(a)|}$.
+\end{proof}
+
+Поскольку действие линейного отображения из $\R^{n}$ в $\R^{m}$ на вектор есть умножение этого вектора слева на матрицу, поэтому найдется такая матрица $Df_{a}$ размера $m \times n$, что $df_{a}(h) = D f_{a} \cdot h$ для всех $h \in \R^{n}$.
+
+\begin{definition}
+    Матрица $Df_{a}$ называется \textit{матрицей Якоби} функции $f$ в точке $a$.
+\end{definition}
+
+\begin{note}
+    По лемме 1 следует, что $df(h) = (df_{1}(h), \ldots, df_{m}(h))^{T}$, поэтому $ij$-й элемент матрицы Якоби в точке $a$ равен значению $d(f_{i})_{a}(e_{j})$, то есть $\frac{\partial f_{i}}{\partial x_{j}}(a)$. Таким образом, строками матрицы Якоби являются градиенты ее координатных функций в этой точке.
+\end{note}
+
+\begin{theorem}[Достаточное условие дифференцируемости]
+    Пусть $f: U \subset \R^{n} \to \R$, точка $a \in U$. Если все частные производные $\frac{\partial f}{\partial x_{k}}$ определены в окрестности а и непрерывны в точке $a$, то $f$ дифференцируема в точке $a$.
+\end{theorem}
+
+\begin{proof}
+    Пусть все $\frac{\partial f}{\partial x_{k}}$ определены в $B_{r}(a) \subset U$. Рассмотрим $h = (h_{1}, \ldots, h_{n})^{T}$ с $|h| < r$, и определим точки $x_{0} = a$, $x_{k} = a + \sum_{j = 1}^{k} h_{j}e_{j}$. Тогда приращение
+    \[f(a + h) - f(a) = \sum_{k = 1}^{n}(f(x_{k}) - f(x_{k - 1})) = \sum_{k = 1}^{n}(f(x_{k - 1} + h_{k}e_{k}) - f(x_{k - 1})).\]
+
+    Функция $g(t) = f(x_{k - 1} + te_{k}) - f(x_{k - 1})$ на отрезке с концами $0$ и $h_{k}$ (при $h_{k} \neq 0$) имеет производную $g'(t) = \frac{\partial f}{\partial x_{k}}(x_{k - 1} + t_{e_{k}})$. По теореме Лагранжа о среднем $g(h_{k}) - g(0) = g'(\xi_{k})h_{k}$ для некоторого $\xi_{k}$ между $0$ и $h_{k}$. Положим $c_{k}(h) = x_{k - 1} + \xi_{k}e_{k}$, тогда последнее равенство перепишется в виде $f(x_{k}) - f(x_{k - 1}) = \frac{\partial f}{\partial x_{k}}(c_{k})h_{k}$, причем $c_{k} \to a$ при $h \to 0$. Поэтому 
+    \[f(a + h) - f(a) - \sum_{k = 1}^{n} \frac{\partial f}{\partial x_{k}}(a)h_{k} = \sum_{k = 1}^{n}\left(\frac{\partial f}{\partial x_{k}}(c_{k}) - \frac{\partial f}{\partial x_{k}}(a)\right)h_{k} =\]
+    \[=\sum_{k = 1}^{n} \left(\frac{\partial f}{\partial x_{k}}(c_{k}) - \frac{\partial f}{\partial x_{k}}(a)\right)\frac{h_{k}}{|h|}|h| =: \alpha(h)|h|.\]
+
+    В силу непрерывности $\frac{\partial f}{\partial x_{k}}$ в точке $a$ и неравенства $|h_{k}| \leq |h|$ функция $\alpha(h) \to 0$ при $h \to 0$. Следовательно, $f$ дифференцируема в точке $a$.
+\end{proof}
+
+Пусть $\underbrace{U}_{\text{откр.}} \subset \R^n, f : U \rightarrow \R, k \in \N$.
+
+\begin{definition}
+    Частной производной нулевого порядка в точке $a$ называют $f(a)$.
+
+    Если частная производная $\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_1}}$ $k - 1$-го порядка определена в некоторой окрестности точки $a$ и меет в точке $a$ частную производную по $x_{i_k}$, то
+    \[
+        \frac{\partial^k f}{\partial x_{i_k}\partial x_{i_{k - 1}} \ldots \partial x_{i_1}} \coloneqq \frac{\partial}{\partial x_{i_k}} \left.\left(\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_1}}\right)\right|_{x = a}
+    \]
+
+    называется \emph{частной производной $k$-го порядка функции $f$ в точке $a$}.
+\end{definition}
+
+\begin{theorem}[Юнг]
+\label{jung_th}
+Пусть $\underbrace{U}_{\text{откр.}} \subset \R^2, f : U \rightarrow \R$. Если частные производные $\frac{\partial f}{\partial x}$ и $\frac{\partial f}{\partial y}$ определены в некоторой окрестности точки $(a, b)$ и дифференцируемы в точке $(a, b)$, то
+\[
+    \frac{\partial^2 f}{\partial y \partial x}(a, b) = \frac{\partial^2 f}{\partial x \partial y}(a, b).
+\]
+\end{theorem}
+
+\begin{proof}
+    Выберем окрестность $B_{\delta}(a, b)$, в которой определены $\frac{\partial f}{\partial x}$ и $\frac{\partial f}{\partial y}$. Рассмотрим выражение
+    
+    \[\Delta(t) = f(a + t, b + t) - f(a + t, b) - f(a, b + t) + f(a, b), \ 0 < |t| < \delta.\]
+
+    Функция $g(s) = f(a + s, b + t) - f(a + s, b)$ на отрезке с концами $0$ и $t$ имеет производную $g'(s) = \frac{\partial f}{\partial x}(a + s, b + t) - \frac{\partial f}{\partial x}(a + s, b)$. По теореме Лагранжа $g(t) - g(0) = g'(\xi)t$ для некоторого $\xi$ между $0$ и $t$. Тогда в силу равенства $\Delta(t) = g(t) - g(0)$ и дифференцируемости $\frac{\partial f}{\partial x}$ имеем
+
+    \[\Delta(t) = g'(\xi)t = \frac{\partial f}{\partial x}(a + \xi, b + t)t - \frac{\partial f}{\partial x}(a + \xi, b)t =\]
+    \[= \left(\frac{\partial f}{\partial x}(a, b) + \frac{\partial^2 f}{\partial^2 x}(a, b)\xi + \frac{\partial^2 f}{\partial y \partial x}(a, b)t + \alpha(t)\sqrt{\xi^2 + t^2}\right)t - \left(\frac{\partial f}{\partial x}(a, b) + \frac{\partial^2 f}{\partial^2 x}(a, b)\xi + \beta(t)|\xi|\right)t =\]
+    \[= \left(\frac{\partial^2 f}{\partial y \partial x}(a, b) \pm \alpha(t)\sqrt{1 + \frac{\xi^2}{t^2}} \pm \beta(t) \frac{|\xi|}{|t|}\right)t^2,\]
+    где $\alpha(t) \to 0$, $\beta(t) \to 0$ при $t \to 0$. Следовательно, существует $\lim_{t \to 0}\frac{\Delta(t)}{t^2} = \frac{\partial^2 f}{\partial y \partial x}(a, b)$.
+
+    Аналогично $\lim_{t \to 0}\frac{\Delta(t)}{t^2} = \frac{\partial^2 f}{\partial x \partial y}(a, b)$, что и доказывает теорему.
+\end{proof}
+
+Распространим теорему на случай $n$ переменных.
+
+\begin{corollary}
+    Пусть $k \in \N, k \geq 2$. Если все частные производные до порядка $k - 2$ дифференцируемы в некоторой окрестности точки $a$, а все частные производные порядка $k - 1$ дифференцируемы в точке $a$, то
+
+    \[\frac{\partial^k f}{\partial x_{ik} \ldots \partial x_{i1}}(a) = \frac{\partial^k f}{\partial x_{jk} \ldots \partial x_{j1}}(a)\]
+    при условии, что списки $(i_{1}, \ldots, i_{k})$ и $(j_{1}, \ldots, j_{k})$ отличаются лишь порядком.
+\end{corollary}
+
+\begin{proof}
+    Индукция по $k$. Пусть $k = 2$. Положим $x_{r} = a_{r}, r \neq i_{1},i_{2}$, тогда имеем функцию двух переменных $x_{i_{1}}$ и $x_{i_{2}}$, и равенство вытекает по теореме Юнга (\ref{jung_th}).
+
+    Пусть $k > 2$. Можно считать, что список $(j_{1}, \ldots, j_{k})$ получен из $(i_{1}, \ldots, i_{k})$ с помощью одной транспозиции, то есть обменом $i_{r}$ и $i_{r - 1}$.
+
+    Рассмотрим $g = \frac{\partial^{r - 2} f}{\partial x_{i_{r - 2}} \ldots \partial x_{i_{1}}}$. По теореме Юнга в окрестности точки $a$ имеет место равенство $\frac{\partial^2 g}{\partial x_{i_{r}} \partial x_{i_{r - 1}}} = \frac{\partial^2 g}{\partial x_{i_{r - 1}} \partial x_{i_{r}}}$. При $r = k$ имеем $\frac{\partial^2 g}{\partial x_{i_{r}} \partial x_{i_{r - 1}}}(a) = \frac{\partial^2 g}{\partial x_{i_{r - 1}} \partial x_{i_{r}}}(a)$, что лишь формой записи отличается от требуемого равенства; при $r < k$ еще надо продифференцировать по переменным $x_{i_{r + 1}}, \ldots, x_{i_{k}}$ и подставить $x = a$.
+\end{proof}
+
+Дифференциалы высших порядков определяются индуктивно.
+
+Пусть $U \subset \R^{n}$ открыто.
+
+\begin{definition}
+    Положим $d^{1}f = df$. Пусть $k \in \N, k \geq 2$. Пусть $d^{k - 1}f$ определен в некоторой окрестности точки $a$ и дифференцируем в точке $a$, то $d^{k}f_{a} := d(d^{k - 1}f)_{a}$, понимаемый как $k$-линейное отображение, называется \textit{дифференциалом} $k$-го порядка функции $f$ в точке $a$. При этом функция $f$ называется $k$ \textit{раз дифференцируемой} в точке $a$.
+\end{definition}
+
+\begin{lemma}
+    Дифференциал $d^{k}f$ симметричен, то есть на наборах $k$ векторов, отличающихся лишь порядком, принимает одинаковые значения.
+\end{lemma}
+
+\begin{proof}
+    Достаточно установить совпадение на наборах векторов стандартного базиса и воспользуемся линейностью.
+
+    Покажем по индукции, что $d^{k}f_{a}(e_{i_{1}}, \ldots, e_{i_{k}}) = \frac{\partial^k f}{\partial x_{i_{k}} \ldots \partial x_{i_{1}}}(a)$. При $k = 1$ это следует из теоремы $1$ и определения частной производной. Если равенство верно для $k - 1$, то $\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_{1}}} = d^{k - 1}f(e_{i_{1}}, \ldots, e_{i_{k - 1}})$ дифференцируема в точке $a$. Следовательно,
+    
+    \[d^{k}f_{a}(e_{i_{1}, \ldots, e_{i_{k}}}) = d\left(\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_{1}}}\right)_{a}(e_{i_{k}}) = \frac{\partial}{\partial x_{i_{k}}}\left(\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_{1}}}\right)\vert_{x = a} = \frac{\partial^k f}{\partial x_{i_{k}} \ldots \partial x_{i_{1}}}(a).\]
+
+    Симметричность $d^{k}f$ на наборах базисных векторов теперь вытекает из следствия теоремы Юнга (\ref{jung_th}).
+\end{proof}
+
+\begin{corollary}
+    Функция $f$ дифференцируема $k$ раз в точке $a$, тогда и только тогда, когда все частные производные до порядка $k - 2$ дифференцируемы в некоторой окрестности точки $a$, а все частные производные порядка $k - 1$ дифференцируемы в точке $a$.
+\end{corollary}
+
+\begin{theorem}[формула Тейлора с остаточным членом в форме Лагранжа]
+    \label{taylor-lagrange}
+    Пусть $f: \underbrace{U}_{\text{откр.}} \to \R$ дифференцируема $(p + 1)$ раз на $U$. Если $a \in U$, $h \in \R^{n}$, такие что $[a, a+h] \subset U$, то $\exists \Theta \in (0, 1)$, что
+
+    \[f(a + h) = f(a) + \sum_{k = 1}^{p}\frac{1}{k!}d^{k}f_{a}(h) + \frac{1}{(p+1)!}d^{p+1}f_{a + \Theta h}(h).\]
+\end{theorem}
+
+\begin{proof}
+    $[a, a + h] = \{a + th \ | \ t \in [0, 1]\}$ --- отрезок с концами $a$ и $a + h$.
+
+    Рассмотрим функцию $g(t) = f(a + th)$, определённую на интервале, содержащем $[0, 1]$. Так как $t \mapsto \underbrace{a}_{\text{пост.}} + \underbrace{th}_{\text{линейн.}} \Rightarrow \forall \tau \in \R \ d(a + th)_t(\tau) = \tau h$. Тогда по теореме о дифференцировании композиции
+    \[
+        dg_t(\tau) = df_{a + th}(\tau h).
+    \]
+    По индукции
+    \[
+        d^kg_t(\tau) = d^kf_{a + th}(\tau h) \quad k = 1, \ldots, p + 1.
+    \]
+    Имеем $d^kg_t(\tau) = g^{(k)}(t)\tau^k \overset{\tau = 1}{\Rightarrow} g^{(k)}(t) = d^k f_{a + th}(h), \quad k = 1, \ldots, p + 1$.
+
+    По формуле Тейлора с остаточным членом в форме Лагранжа
+    \[
+        g(t) = g(0) + \sum_{k = 1}^p \frac{g^{(k)}(0)}{k!}t^k + \frac{g^{(p + 1)}(\theta_t)}{(p + 1)!}t^{p + 1}.
+    \]
+    При $t = 1$ и $\theta = \theta_1$ получаем искомую формулу.
+\end{proof}
+
+\begin{theorem}[остаточный член в форме Пеано]~
+    Если функция $f: \underbrace{U}_{\text{откр.}} \to \R$ дифференцируема $p$ раз в точке $a$, то 
+
+    \[f(a + h) = f(a) + \sum_{k = 1}^{p}\frac{1}{k!}d^{k}f_{a}(h) + o(|h|^{p}), \ h \to 0.\]
+\end{theorem}

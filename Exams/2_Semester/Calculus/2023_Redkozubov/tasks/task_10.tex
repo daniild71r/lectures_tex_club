@@ -1,0 +1,331 @@
+\section{10. Интеграл от неотрицательной простой функции и его свойства. Интеграл от неотрицательной измеримой функции. Монотонность интеграла по функциям и по множествам. Теорема Леви о монотонной сходимости. Аддитивность интеграла по функциям. Счетная аддитивность интеграла по множествам. Неравенство Чебышева. Интеграл Лебега от произвольной измеримой функции. Интегрируемые функции. Одновременная интегрируемость функции и ее модуля. Конечность почти всюду интегрируемой функции. Пренебрежение при интегрировании множествами меры нуль. Монотонность и линейность интеграла. Теорема Лебега о мажорированной сходимости. Связь интеграла Лебега и определенного интеграла Римана. Формула суммирования Эйлера (б/д). Формула Стирлинга.}
+
+\begin{definition}
+    Пусть $\phi$ -- неотрицательная простая функция, $\phi = \sum_{i = 1}^{m}a_{i} \I_{A_{i}}$, где $\{A_{i}\}_{i = 1}^{m}$ -- допустимое разложение.
+
+    Интегралом от $\phi$ по измеримому множеству $E$ называется
+    \[\int_{E}\phi d\mu = \sum_{i = 1}^{m}a_{i}\mu(E \cap A_{i}).\]
+\end{definition}
+
+\begin{lemma}
+    Пусть $\phi, \psi$ -- неотрицательные простые функции. Тогда:
+    \begin{enumerate}
+        \item Если $\phi \leq \psi$ на $E$, то $\int_{E}\phi d\mu \leq \int_{E}\psi d\mu$ (монотонность).
+        \item Если $\alpha \in [0, +\infty)$, то $\int_{E}\alpha\phi d\mu = \alpha \int_{E}\phi d\mu$ (положительная однородность).
+        \item $\int_{E}(\phi + \psi) d\mu = \int_{E}\phi d\mu + \int_{E}\psi d\mu$ (аддитивность по функциям).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Пусть $\{A_{i}\}_{i = 1}^{m}$, $\{B_{j}\}_{j = 1}^{k}$ -- допустимые разбиения $\phi$ и $\psi$ соответственно $(\phi|_{A_{i}} = a_{i}, \ \phi|_{B_{j}} = b_{j})$. Положим $C_{ij} = A_{i} \cap B_{j}$.
+
+    Тогда $\{C_{ij}\}$ -- общее допустимое разбиение для $\phi$ и $\psi$. Поскольку $A_{i} = A_{i} \cap \R^{n} = A_{i} \cap (\bigcup_{j = 1}^{k}B_{j}) = \bigcup_{j = 1}^{k}C_{ij}$, то по свойству аддитивности меры $\int_{E}\phi d\mu = \sum_{i = 1}^{m}a_{i} \mu(E \cap A_{i}) = \sum_{i = 1}^{m}a_{i}\mu(\bigcup_{j = 1}^{k}(E \cap C_{ij})) = \sum_{i = 1}^{m}\sum_{j = 1}^{k}a_{i}\mu(E \cap C_{ij})$.
+
+    Аналогично, $\int_{E} \psi d\mu = \sum_{j = 1}^{k}\sum_{i = 1}^{m}b_{j}\mu(E \cap C_{ij})$. Если $E \cap C_{ij} \neq \emptyset$, то для любого $x \in E \cap C_{ij}$ имеем $a_{i} = \phi(x) \leq \psi(x) = b_{j}$, что завершает доказательство.
+
+    Доказательство пункта 2 очевидно.
+
+    Доказательство пункта 3 аналогично пункту 1.
+\end{proof}
+
+\begin{definition}
+    Пусть $f: E \to [0, +\infty]$ -- неотрицательная измеримая функция. Тогда:
+    \[\int_{E} f d\mu = \sup\left\{\int_{E}\phi d\mu, \ 0 \leq \phi \leq f, \ \phi \text{ -- простая}\right\}.\]
+\end{definition}
+
+\begin{note}
+    Покажем, что определение согласуется с интегралом от простой функции. Чтобы их различить, перед знаком введенного ранее интеграла поставим $(s)$.
+
+    Пусть $f$ -- простая неотрицательная функция. Если $0 \leq \phi \leq f$ и $\phi$ -- простая, то по свойству монотонности $(s)\int_{E} \phi d\mu \leq (s) \int_{E} f d\mu$. Переходя к супремуму по $\phi$, получим $\int_{E} f d\mu \leq (s) \int_{E} f d\mu$. Противоположное неравенство очевидно, так как $f$ сама является простой функцией.
+\end{note}
+
+Пусть $f, g : E \rightarrow [0, +\infty]$ --- неотрицательные измеримые функции.
+
+\begin{property}[монотонность]
+    \label{lebint-prop1}
+    Если $f \le g$ на $E$, то $\int_E f \, d\mu \le \int_E g \, d\mu$.
+\end{property}
+
+\begin{property}[однородность]
+    Если $\lambda \in [0, +\infty)$, то $\int_E \lambda f \, d\mu = \lambda \int_E f \, d\mu$.
+\end{property}
+
+\begin{property}
+    \label{lebint-prop3}
+    Если $E_0 \subset E$ измеримо, то $\int_{E_0} f \, d\mu = \int_E f \cdot \I_{E_0} \, d\mu$.
+
+    \begin{proof}
+        Пусть $0 \le \underbrace{\phi}_{\text{прост.}} \le f$ на $E_0$, тогда
+        \begin{gather*}
+            \int_{E_0} \phi \, d\mu = \int_E \phi \cdot \I_{E_0} \, d\mu \le \int_E f \cdot \I_{E_0} \, d\mu, \\
+            \int_{E_0} f \, d\mu \le \int_E f \cdot \I_{E_0} \, d\mu.
+        \end{gather*}
+
+        Обратно, пусть $0 \le \underbrace{\psi}_{\text{прост.}} \le f \cdot \I_{E_0}$ на $E$. Тогда $\psi = 0$ на $E \setminus E_0$ и, значит, $\psi = \psi \cdot \I_{E_0}$ на $E$. Следовательно,
+        \[
+            \int_E \psi \, d\mu = \int_E \psi \cdot \I_{E_0} \, d\mu = \int_{E_0} \psi \, d\mu \le \int_{E_0} f \, d\mu.
+        \]
+        и, переходя к супремуму по всем таким $\psi$, $\int_E f \cdot \I_{E_0} \, d\mu \le \int_{E_0} f \, d\mu$.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    Если $E_0 \subset E$ измеримо, то $\int_{E_0} f \, d\mu \le \int_E f \, d\mu$.
+
+    \begin{proof}
+        По свойствам (\ref{lebint-prop1}) и (\ref{lebint-prop3}) имеем
+        \[
+            \int_{E_0} f \, d\mu = \int_E f \cdot \I_{E_0} \, d\mu \le \int_E f \, d\mu.
+        \]
+    \end{proof}
+\end{property}
+
+\begin{theorem}[Беппо Леви]
+    Пусть $f_k : E \rightarrow [0, +\infty]$ измеримы, и $f_k \rightarrow f$ на $E$. Если $0 \le f_k(x) \le f_{k + 1}(x)$ для всех $x \in E$ и $k \in \N$, то
+    \[
+        \lim_{k \rightarrow \infty} \int_E f_k \, d\mu = \int_E f \, d\mu.
+    \]
+
+    \begin{proof}
+        Интегрируя $f_k \le f_{k + 1} \le f$ на $E$, получим
+        \[
+            \int_E f_k \, d\mu \le \int_E f_{k + 1} \, d\mu \le \int_E f \, d\mu.
+        \]
+        Следовательно, $\left\{\int_E f \, d\mu \right\}$ нестрого возрастает (в $\overline{\R}$) и, значит, существует
+        \[
+            \lim_{k \rightarrow \infty} \int_E f_k \, d\mu \le \int_E f \, d\mu.
+        \]
+        Докажем противоположное неравенство. Для этого достаточно доказать, что $\lim_{k \to \infty}\int_E f_k \, d\mu \ge \int_E \phi \, d\mu$ для всех простых $\phi$, $0 \le \phi \le f$ на $E$.
+
+        Рассмотрим такую функцию $\phi$. Зафиксируем $t \in (0, 1)$. Положим $E_k = \left\{x \in E : f_k(x) \ge t\phi(x)\right\}$.
+
+        Ввиду монотонности $\forall k \ E_k \subset E_{k + 1}$. Докажем, что $\bigcup_{k = 1}^\infty E_k = E$. Включение <<$\subset$>> очевидно.
+
+        Пусть $x \in E$. Если $\phi(x) = 0$, то $\forall k \ x \in E_k$.
+
+        Если $\phi(x) > 0$, то $f(x) \ge \phi(x) > t\phi(x)$. Тогда $\exists m \in \N \ \left(f_m(x) \ge t\phi(x)\right)$, то есть $x \in E_m$.
+
+        По монотонности
+        \begin{equation}
+            \label{levi-asterisk}
+            \int_E f_k \, d\mu \ge \int_{E_k} f_k \, d\mu \ge t\int_{E_k} \phi \, d\mu.
+        \end{equation}
+
+        Пусть $\phi = \sum_{i = 1}^N a_i \cdot \I_{A_i}$, где $\{A_i\}_1^N$ --- допустимое разбиение.
+
+        Тогда по свойству монотонности меры:
+        \[
+            \int_{E_k} \phi \, d\mu = \sum_{i = 1}^N a_i \mu(A_i \cap E_k) \underset{k \rightarrow \infty}{\rightarrow} \sum_{i = 1}^N a_i \mu(A_i \cap E) = \int_E \phi \, d\mu.
+        \]
+
+        Переходя к пределу в неравенстве (\ref{levi-asterisk})
+        \[
+            \lim_{k \rightarrow \infty} \int_E f_k \, d\mu \ge t \int_E \phi \, d\mu, \ t \rightarrow 1 - 0.
+        \]
+    \end{proof}
+\end{theorem}
+
+\begin{property}[аддитивность]
+    Если $f, g \ge 0$ измеримы на $E$, то $\int_E (f + g) \, d\mu = \int_E f \, d\mu + \int_E g \, d\mu$.
+
+    \begin{proof}
+        Пусть $\phi_k \uparrow (\text{ возрастает и стремится к }) f, \psi_k \uparrow g$ на $E$. Тогда $\phi_k + \psi_k \uparrow f + g$ на $E$ и, значит, по теореме Леви
+        \begin{gather*}
+            \int_E (f + g) \, d\mu = \lim_{k \rightarrow \infty} \int_E (\phi_k + \psi_k) \, d\mu =\\= \lim_{k \rightarrow \infty} \int_E \phi_k \, d\mu + \lim_{k \rightarrow \infty} \int_E \psi_k \, d\mu = \int_E f \, d\mu + \int_E g \, d\mu.
+        \end{gather*}
+    \end{proof}
+\end{property}
+
+\begin{corollary}[теорема Леви для рядов]
+    Если $f_k \ge 0$ измерима на $E$, то
+    \[
+        \int_E \sum_{k = 1}^\infty f_k \, d\mu = \sum_{k = 1}^\infty \int_E f_k \, d\mu.
+    \]
+
+    \begin{proof}
+        По предыдущему свойству
+        \[
+            \int_E \sum_{k = 1}^m f_k \, d\mu = \sum_{k = 1}^m \int_E f_k \, d\mu.
+        \]
+
+        Поскольку $f_k \ge 0$, то последовательность частичных сумм ряда нестрого возрастает (по $m$). Поэтому по теореме Леви $\lim_{m \rightarrow \infty} \int_E \sum_{k = 1}^m f_k \, d\mu = \int_E \sum_{k = 1}^\infty f_k \, d\mu$.
+    \end{proof}
+\end{corollary}
+
+\begin{theorem}[счётная аддитивность интеграла]
+    Пусть $E_k$ измеримы и попарно не пересекаются, $E = \bigsqcup_{k = 1}^\infty E_k$. Если $f \ge 0$ на $E$, то
+    \[
+        \int_E f \, d\mu = \sum_{k = 1}^\infty \int_{E_k} f \, d\mu.
+    \]
+
+    \begin{proof}
+        Поскольку $\{E_k\}$ образуют разбиение $E$, то $\I_E = \sum_{k = 1}^\infty \I_{E_k}$, $f = f \cdot \I_E = \sum_{k = 1}^\infty f \cdot \I_{E_k}$ на $E$. Следовательно, по теореме Леви для рядов и
+        \[
+            \int_E f \, d\mu = \sum_{k = 1}^\infty \int_E f \cdot \I_{E_k} \, d\mu = \sum_{k = 1}^\infty \int_{E_k} f \, d\mu.
+        \]
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[неравенство Чебышёва]
+    Если $f \ge 0$ измерима на $E$, то $\forall t \in (0, +\infty)$
+    \[
+        \mu\{x \in E : f(x) \ge t\} \le \frac{1}{t} \int_E f \, d\mu.
+    \]
+
+    \begin{proof}
+        Рассмотрим $E_t = \{x : f(x) \ge t\}$, тогда
+        \[
+            \int_E f \, d\mu \ge \int_{E_t} f \, d\mu \ge t\int_{E_t} d\mu = t \cdot \mu(E_t).
+        \]
+    \end{proof}
+\end{theorem}
+
+\begin{definition}
+    Функции $f^{+} = \max\{f, 0\}$ и $f^{-} = \max\{-f, 0\}$ называются \textit{положительной} и \textit{отрицательной} частями $f$ соответственно.
+\end{definition}
+
+\begin{note}
+    Из определения следует, что $f = f^{+} - f^{-}$, $|f| = f^{+} + f^{-}$ и $0 \leq f^{\pm} \leq |f|$.
+\end{note}
+
+\begin{definition}
+    Пусть $f : E \rightarrow \overline{\R}$ измерима, тогда
+    \[
+        \int_E f \, d\mu \coloneqq \int_E f^+ \, d\mu - \int_E f^- \, d\mu,
+    \]
+    при условии, что хотя бы один из $\int_E f^\pm \, d\mu$ конечен.
+
+    Функция $f$ называется \emph{интегрируемой} (по Лебегу), если оба интеграла $\int_E f^\pm \, d\mu$ конечны.
+\end{definition}
+
+\begin{note}
+    Если $f$ измерима на $E$, то условия интегрируемости $f$ и $|f|$ равносильны. В случае интегрируемости $\left|\int_E f \, d\mu\right| \le \int_E |f| \, d\mu$.
+\end{note}
+
+\begin{proof}
+    Если $f$ интегрируема на $E$, то $\int_{E}f^{\pm} d\mu < +\infty$. Тогда в силу оценки $|f| = f^{+} + f^{-}$ интеграл $\int_{E}|f| d\mu < +\infty$. Если $|f|$ интегрируема на $E$, то в силу оценки $0 \leq f^{\pm} \leq |f|$ получаем, что $\int_{E}f^{\pm} d\mu < +\infty$, то есть $f$ интегрируема на $E$. 
+    
+    Имеем
+    \[\left|\int_{E}f d\mu\right| = \left|\int_{E}f^{+} d\mu - \int_{E}f^{-} d\mu\right| \leq \int_{E}f^{+} d\mu + \int_{E}f^{-} d\mu = \int_{E}|f| d\mu.\]
+\end{proof}
+\begin{note}
+    Если $f$ интегрируема на $E$, то $f$ конечна почти всюду на $E$.
+\end{note}
+
+\begin{proof}
+    Определим $A = \{x \in E: |f(x)| = +\infty\}$. Тогда по неравенству Чебышева для любого $t \in (0; +\infty)$ : 
+    $\mu(A) \leq \mu\{x : |f(x)| \geq t\} \leq \frac{1}{t}\int_{E}|f| d\mu$. Устремляя $t \to +\infty$, получаем, что $\mu(A) = 0$.
+\end{proof}
+
+\begin{lemma}
+    Если $\underbrace{E_{0}}_{\text{изм.}} \subset E$ и $\mu(E\setminus E_{0}) = 0$, то интегралы $\int_{E}f d\mu$ и $\int_{E_{0}}f d\mu$ существуют одновременно и в случае существования совпадают.
+\end{lemma}
+
+\begin{proof}
+    Отметим, что $f$ на $E$ и $f$ на $E_{0}$ измеримы одновременно.
+    По свойству аддитивности по множествам:
+    \[\int_{E}f^{\pm} d\mu = \int_{E_{0}}f^{\pm} d\mu + \int_{E\setminus E_{0}}f^{\pm} d\mu = \int_{E_{0}}f^{\pm} d\mu.\]
+    Учтем, что интеграл по множеству меры 0 от произведения измеримых функций равен 0. Это вытекает из определения интеграла, для простых функций также следует учесть, что она ограничена. 
+\end{proof}
+
+\begin{corollary}
+    Пусть $f, g : \underbrace{E}_{\text{изм.}} \to {\R}$. Если $f$ интегрируема на $E$ и $f = g$ почти всюду на $E$, то $g$ интегрируема на $E$ и $\int_{E}g d\mu = \int_{E}f d\mu$.
+\end{corollary}
+
+\begin{theorem}
+    Пусть $f, g : E \to {\R}$ интегрируема и $\alpha \in {\R}$. Тогда:
+    \begin{enumerate}
+        \item Если $f \leq g$ на $E$, то $\int_{E}f d\mu \leq \int_{E}g d\mu$;
+        \item $\int_{E}\alpha f d\mu = \alpha \int_{E}f d\mu$;
+        \item $\int_{E}(f + g) d\mu = \int_{E}f d\mu + \int_{E}g d\mu$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+
+    \begin{enumerate}
+    \item Пусть $f \leq g$ на $E$. Тогда $f^{+} \leq g^{+}$, $f^{-} \geq g^{-}$ и, значит, $\int_{E}f^{+} d\mu \leq \int_{E}g^{+} d\mu$ и $\int_{E}f^{-} d\mu \geq \int_{E}g^{-} d\mu$. Вычтем одно неравенство из другого, получаем $\int_{E}f d\mu \leq \int_{E}g d\mu$.
+    
+    \item Пусть $\alpha \geq 0$. Тогда $(\alpha f)^{+} = \alpha f^{+}$, $(\alpha f)^{-} = \alpha f^{-}$ и, значит, 
+    $\int_{E}\alpha f d\mu = \int_{E}(\alpha f)^{+} d\mu - \int_{E}(\alpha f)^{-} d\mu = \alpha \int_{E}f^{+} d\mu - \alpha \int_{E}f^{-} d\mu = \alpha \int_{E}f d\mu$. Так как $(-f)^{+} = \max\{-f, 0\} = f^{-}$, $(-f)^{-} = \max\{f, 0\} = f^{+}$, то:
+    
+    \[\int_{E}(-f) d\mu = \int_{E}(-f)^{+} d\mu - \int_{E}(-f)^{-} d\mu = \int_{E}f^{-} d\mu - \int_{E}f^{+} d\mu = - \int_{E}f d\mu.\]
+    
+    Случай $\alpha < 0$ сводится к рассмотренному, так как $\alpha = (-1)|\alpha|$.
+    \item Так как $f$ и $g$ конечны почти всюду на $E$ (из интегрируемости), то $\exists E_{0} \subset E$ и $\mu(E \setminus E_{0}) = 0$, на котором определена функция $h = f + g$. Функция $h = f + g$ интегрируема на $E_{0}$ (так как $|h| \leq |f| + |g|$) и $h^{+} - h^{-} = h = f + g = (f^{+} - f^{-}) + (g^{+} - g^{-})$ или $h^{+} + f^{-} + g^{-} = h^{-} + f^{+} + g^{+}$ на $E_{0}$. Следовательно, $\int_{E_{0}}h^{+} d\mu + \int_{E_{0}}f^{-} d\mu + \int_{E_{0}}g^{-} d\mu = \int_{E_{0}}h^{-} d\mu + \int_{E_{0}}f^{+} d\mu + \int_{E_{0}}g^{+} d\mu$.
+    
+    Все интегралы в предыдущем равенстве конечны, их перегруппировка дает $\int_{E_{0}}h d\mu = \int_{E_{0}}f d\mu + \int_{E}g d\mu$.
+    
+    Так как $\mu(E \setminus E_{0})$, то доопределим на $E_{0} \cup (E \setminus E_{0})$ произвольным образом. Получаем равенство для интегралов из 3 пункта.    
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Лебег]
+    Пусть $f_{k} : E \to \overline{\R}$ измеримы и $f_{k} \to f$ почти всюду на $E$. Если существует интегрируемая на $E$ функция $g$, такая что $|f_{k}| \leq g \ \forall k$, то $\lim_{k \to + \infty}\int_{E}f_{k} d\mu = \int_{E}f d\mu$ 
+\end{theorem}
+
+\begin{proof}
+    Посколько при интегрируемости можно пренебрегать множествами меры 0, будем считать, что $f_{k} \to f$ всюду на $E$ и $g$ конечна на $E$. Так как $|f_{k}| \leq g$ на $E$, то все $f_{k}$ интегрируемы на $E$. Переходя к пределу при $k \to +\infty$, получаем $|f| \leq g$ на $E$. Следовательно, $f$ интегрируема.
+    
+    Определим $h_{k} = \sup_{m \geq k}|f_{m} - f|$ на $E$, тогда имеем $0 \leq h_{k+1}(x) \leq h_{k}(x)$ на $E$ и $\lim_{k \to +\infty}h_{k}(x) = \inf_{k}sup_{m \geq k}|f_{m}(x) - f(x)| = \overline{\lim}_{k \to + \infty}|f_{k}(x) - f(x)| = 0$.
+    Функция $h_{k}$ интегрируема на $E$ и $|h_{k}| \leq 2g$ ($|f_{k}| \leq g$, $|f| \leq g$). Применим теорему Леви к последовательности $\{2g - h_{k}\}$: 
+    \[\lim_{k \to +\infty}\int_{E}(2g - h_{k}) d\mu = \int_{E}2g d\mu,\]
+    откуда $\lim_{k \to +\infty}\int_{E}h_{k} d\mu = 0$. Для завершения доказательства $\int_{E}|f_{k} - f| d\mu \leq \int_{E}h_{k} d\mu \to 0$ при $k \to +\infty$ и, значит, $\left|\int_{E}f_{k} d\mu - \int_{E}f d\mu\right| \leq \int_{E}|f_{k} - f| d\mu \to 0$.
+\end{proof}
+
+\begin{theorem}
+    Пусть $f$ ограничена на $[a, b]$. $f$ интегрируема по Риману на $[a, b] \lra f$ непрерывна почти всюду на $[a, b]$. В этом случае функция интегрируема по Лебегу и оба интеграла совпадают. 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $f \in \mathcal{R}[a, b]$, $ J= \int_{a}^{b}f(x) dx$. Покажем, что $f$ непрерывна почти всюду на $[a, b]$ и $\int_{[a, b]}f d\mu = J$.
+        
+        Для разбиения $T = \{x_{k}\}_{k = 0}^{m}$ открытого на $[a, b]$ положим $M_{i} = \sup_{[x_{i-1}, x_{i}]} f$, $m_{i} = \inf_{[x_{i-1}, x_{i}]}f$ и определим простые функции 
+        \[\phi_{T} = \sum_{i=1}^{m}m_{i}\cdot \I_{[x_{i-1}, x_{i})}, \ \psi_{T} = \sum_{i=1}^{m}\I_{[x_{i-1}, x_{i})} \cdot M_{i}.\]
+        В последний промежуток включим точку $b = x_{n}$. Очевидно, что $\int_{[a, b]} \phi_{T} d\mu = s_{T}$, $\int_{[a, b]} \psi_{T} d\mu = S_{T}$ (сумма Дарбу). 
+        
+        Рассмотрим последовательность разбиений $\{T_{k}\}$, $T_{k} \subset T_{k+1}$ и $|T| \to 0$. Положим $\phi_{k} = \phi_{T_{k}}$, $\psi_{k} = \psi_{T_{k}}$. Имеем $\phi_{k}(x) \leq \phi_{k+1}(x) \leq f(x) \leq \psi_{k+1}(x) \leq \psi_{k}(x)$ для всех $x \in [a, b]$. Следовательно, существуют $\phi(x) = \lim_{k \to +\infty}\phi_{k}(x)$, $\psi(x) = \lim_{k \to +\infty}\psi_{k}(x)$.
+        
+        Функции $\phi, \psi$ измеримы (как предел измеримых функций) и если $|f| \leq M$, то $|\phi|, |\psi| \leq M$ и, значит, по теореме Лебега о мажорированной сходимости
+        
+        \[\int_{[a, b]}(\psi - \phi) d\mu = \lim_{k \to +\infty} \int_{[a, b]}(\psi_{k} - \phi_{k}) d\mu = \lim_{k \to +\infty}(S_{T_{k}} - s_{T_{k}}) = 0,\]
+        откуда следует, что $\psi - \phi = 0$ почти всюду на $[a, b]$.
+        
+        Пусть $Z = \{x : \phi (x) \neq \psi (x) \}$. Рассмотрим $x \not\in Z \cup (\bigcup_{k=1}^{+\infty}T_{k})$ и $\epsilon > 0$. Выберем $k$, так что $\psi_{k}(x) - \phi_{k}(x) < \epsilon$ и рассмотрим соотвествующее $T_{k}$. Выберем $(x - \delta, x + \delta)$, лежащий в одном отрезке разбиения $T_{k}$. Тогда $|f(t)-f(x)| < \psi_{k}(x) - \phi_{k}(x) < \epsilon \ \forall t \in (x - \delta, x + \delta)$. Это означает, что $f$ непрерывна в точке $x$. Следовательно, $f$ непрерывна почти всюду на $[a, b]$. По теореме Лебега
+        
+        \[J = \lim_{k \to + \infty}S_{T_{k}} = \lim_{k \to + \infty} \int_{[a, b]}\phi_{k} d\mu = \int_{[a, b]}f d\mu.\]
+        
+        \item Пусть $f$ непрерывна почти всюду на $[a, b]$ и $\epsilon > 0$. Рассмотрим $\{T_{k}\}$ -- разбиение $[a, b]$ на $2^{k}$ равных отрезка, тогда $T_{k + 1} \subset T_{k}$. Пусть $x$ не является точкой разрыва $f$ и $x \not\in \bigcup_{i=1}^{\infty}{T_{k}}$. Тогда, как и первом пункте , имеем $\phi_{k}(x) \uparrow f(x)$ и $\psi_{k} \downarrow f(x)$ (учли непрерывность в точке $x$). По теорме Лебега $S_{T_{k}} = \int_{[a, b]}\psi_{k} d\mu \to \int_{[a, b]}f d\mu$, $s_{T_{k}} = \int_{[a, b]}\phi_{k} d\mu = \int_{[a, b]}f d\mu$. Тогда, по критерию Дарбу $f \in \mathcal{R}[a, b]$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Эйлер]
+    Пусть $f: [1, +\infty) \to \R$ дифференцируема и $f'$ локально интегрируема на $[1, +\infty)$. Тогда для любого $n \in \N$ справедливо равенство
+    \[\sum_{k = 1}^{n} f(k) = \int_{1}^{n}f(t)dt + \frac{f(1) + f(n)}{2} + \int_{1}^{n}\left(\{t\} - \frac{1}{2}\right)f'(t)dt.\]
+\end{theorem}
+
+\begin{corollary}
+    Пусть $f: [1, +\infty) \to \R$ дифференцируема, $f'$ монотонна и $f'(t) \to 0$ при $t \to +\infty$. Тогда для любого $n \in \N$ справедливо
+    \[\sum_{k = 1}^{n}f(k) = \int_{1}^{n}f(t)dt + C_{f} + \frac{f(n)}{2} + \epsilon_{n},\]
+    где $C_{f} = \frac{f(1)}{2} + \int_{1}^{+\infty}\left(\{t\} - \frac{1}{2}\right)f'(t)dt$, $\epsilon_{n} = -\int_{n}^{+\infty}\left(\{t\} - \frac{1}{2}\right)f'(t)dt$.
+\end{corollary}
+
+\begin{example}[формула Стирлинга]
+    При $n \to +\infty$ справедлива оценка
+    \[n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^{n}.\]
+\end{example}
+
+\begin{proof}
+    Применим следствие к функции $f(t) = \ln t$. Тогда
+    \[\sum_{k = 1}^{n} \ln k = n \ln n - n + 1 + C + \frac{\ln n}{2} + \epsilon_{n},\]
+    \[\ln n! = \ln(n^{n}e^{-n}\sqrt{n}e^{C + 1}e^{\epsilon_{n}}),\]
+    \[n! = c\sqrt{n}\left(\frac{n}{e}\right)^{n}(1 + o(1)), \ n \to +\infty.\]
+
+    Для нахождения константы $c$ воспользуемся формулой Валлиса:
+    \[\pi = \lim_{n \to +\infty}\frac{1}{n}\left(\frac{(2n)!!}{(2n-1)!!}\right)^{2}\]
+    Имеем 
+    \[\frac{(2n)!!}{(2n-1)!!} = \frac{2^{2n}(n!)^{2}}{(2n)!} = \frac{2^{2n}c^{2}n\left(\frac{n}{e}\right)^{2n}(1 + o(1))^{2}}{c \sqrt{2n}\left(\frac{2n}{e}\right)^{2n}(1 + o(1))} = \frac{c\sqrt{n}}{\sqrt{2}}(1 + o(1)),\]
+    значит,
+    \[\pi = \lim_{n \to +\infty}\frac{1}{n}\frac{c^{2}n}{2}(1 + o(1))^{2} = \frac{c^{2}}{2} \Rightarrow c = \sqrt{2\pi}.\]
+\end{proof}

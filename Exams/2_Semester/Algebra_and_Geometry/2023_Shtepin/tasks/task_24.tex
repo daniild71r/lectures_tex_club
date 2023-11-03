@@ -1,0 +1,107 @@
+\section{24. Ортогональные преобразования и их свойства. Канонический вид ортогонального преобразования. Инвариантные подпространства малых размерностей для линейного оператора в действительном линейном пространстве.}
+
+\begin{definition}
+	Оператор $\phi \in \mathcal{L}(V)$ называется \textit{ортогональным} (\textit{унитарным}), если $\forall \overline{u}, \overline{v} \in V: (\phi(\overline{u}), \phi(\overline{v})) = (\overline{u}, \overline{v})$.
+\end{definition}
+
+\begin{theorem}
+	Пусть $\phi \in \mathcal{L}(V)$. Тогда оператор $\phi$ ортогонален (унитарен) $\hm\Leftrightarrow$ $\phi$ обратим и $\phi^{-1} = \phi^{*}$.
+\end{theorem}
+
+\begin{proof}
+	По определению, $\phi$ ортогональнен (унитарен) $\hm{\Leftrightarrow}$ для любых векторов $\overline{u}, \overline{v} \in V$ выполнено $(\overline{u}, \overline{v}) = (\phi(\overline{u}), \phi(\overline{v})) = (\overline{u}, (\phi^*\phi)(\overline{v}))$. В силу единственности сопряженного оператора, это равносильно равенству $\phi^*\phi = \id^* = \id$. Это, в свою очередь, равносильно тому, что $\phi$ обратим и $\phi^{-1} \hm{=} \phi^{*}$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $\phi\in \mathcal{L}(V)$ "--- ортогональный (унитарный), $U \le V$. Тогда $U$ инвариантно относительно $\phi$ $\Leftrightarrow$ $U^\perp$ инвариантно относительно $\phi$.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $(U^\perp)^\perp = U$, то достаточно доказать импликацию $\ra$. Так как $U$ инвариантно относительно $\phi$, то $U^\perp$ инвариантно относительно $\phi^* = \phi^{-1}$, то есть $\phi^{-1}(U^\perp) \le U^\perp$. Но оператор $\phi$ биективен, поэтому $\phi^{-1}(U^\perp) = U^\perp$ и $\phi(U^\perp) = U^\perp$, откуда $U^\perp$ инвариантно относительно $\phi$.
+\end{proof}
+
+\begin{theorem}[о каноническом виде ортогонального оператора]
+    Пусть $V$ - евклидово пространство, $\phi: V \to V$ -- ортогональный оператор. Тогда существует ортонормированный базис $e$, в котором матрица $\phi$ состоит из матриц поворота и единиц на главной диагонали.
+     \[\phi = \left(\begin{array}{@{}cccc@{}}
+		\cline{1-1}
+		\multicolumn{1}{|c|}{R(\alpha_1)} & 0 & \dots & 0\\
+		\cline{1-2}
+		0 & \multicolumn{1}{|c|}{R(\alpha_2)} & \dots & 0\\
+		\cline{2-2}
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \dots & 1\\
+	\end{array}\right),\]
+\end{theorem}
+
+\begin{proof}
+    $\phi$ имеет в $V$ одномерные или двумерные инвариантные подпространства. Пусть $U$ - 
+    одномерное подпространство, или, если таких нет, двумерное инвариантное подпространство.
+    \begin{enumerate}
+        \item Пусть $\dim U = 1$, $e \in U$, $|e|= 1$. Покажем, что в таком случае модуль $\lambda$ равен единице. В $U$ верно $\phi(e) = \lambda e$. Тогда $(e, e) = (\phi(e), \phi(e)) = 
+        \lambda^2 (e, e)$. Отсюда $\lambda^2 = 1$, а значит $\lambda = \pm 1$.
+        \item Пусть $\dim V = 2$, $(e_1, e_2)$ - ортонормированный базис в $U$. Тогда $A^T A = E$. Найдем вид $A$.
+        Пусть $ A = \begin{pmatrix}
+                        a     & b \\
+                        c     & d        
+                    \end{pmatrix}$. Тогда:
+        \begin{gather*}
+            \begin{pmatrix}
+                a     & c \\
+                b     & d        
+            \end{pmatrix} \begin{pmatrix}
+                a     & b \\
+                c     & d        
+            \end{pmatrix} = \begin{pmatrix}
+                1     & 0 \\
+                0     & 1        
+            \end{pmatrix}
+        \end{gather*}
+        Получим следующую систему уравнений:
+        \begin{gather*}
+            a^2 + c^2 = 1 (1) \\
+            b^2 + d^2 = 1 (2) \\
+            ab + cd = 0 (3) \\
+        \end{gather*}
+        Положим 
+        \begin{gather*}
+            a = \cos(\alpha), c = \sin(\alpha), b = - \sin(\beta), d = \cos(\beta)
+        \end{gather*}
+        Условия $(1)$ и $(2)$ очевидно выполняются. Проверим $(3)$ и найдем при помощи него связь 
+        между углами $\alpha$ и $\beta$.
+        \begin{gather*}
+            -\cos(\alpha) \sin(\beta) + \sin(\alpha) \cos(\beta) = 0 \\
+            \sin(\alpha - \beta) = 0 \hookrightarrow \alpha - \beta = \pi k, k \in Z
+        \end{gather*}
+        Рассмотрим случаи:
+        \begin{enumerate}
+            \item $\alpha = \beta$ -- по модулю $2\pi$.
+            \item $\alpha = \beta + \pi$ -- по модулю $2\pi$.
+            \item Покажем, что $\alpha + \beta = \pi$ быть не может:
+            \begin{gather*}
+                \cos(\beta) = \cos(\alpha - \pi) = -\cos(\alpha) \\
+                \sin(\beta) = \sin(\alpha - \pi) = -\sin(\alpha) \Mapsto
+                A = \begin{pmatrix}
+                        \cos(\alpha)     & \sin(\alpha) \\
+                        \sin(\alpha)     & -\cos(\alpha)       
+                    \end{pmatrix}
+            \end{gather*}
+            Где $A^T = A$ и получаем два собственных вектора: $v_1 = (\cos(\frac{\alpha}{2}), \sin(\frac{\alpha}{2}))^T$, $v_{-1} = (-\sin(\frac{\alpha}{2}), \cos(\frac{\alpha}{2}))^T$ -- это противоречит с тем, что нет одномерных инвариантных подпространств.
+        \end{enumerate}
+        Теперь пространство $V$ раскладывается в прямую сумму $V = U \oplus U^{\perp}$. По предположению индукции для ортогонального дополнения $U$ теорема верна. Тогда она верна и для всего $V$.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	Пусть $V$ "--- линейное пространство над $\mathbb{R}$, $\dim{V} \ge 1$, $\phi \in \mathcal{L}(V)$. Тогда у $\phi$ существует одномерное или двумерное инвариантное подпространство.
+\end{proposition}
+
+\begin{proof}
+	По основной теореме алгебры, минимальный многочлен $\mu_\phi$ имеет следующий вид:
+	\[\mu_\phi(x) = \prod_{i = 1}^k(x - \alpha_i)\prod_{j = 1}^m(x^2 + \beta_jx + \gamma_j)\]
+	
+	Поскольку $\mu_\phi(\phi) = 0$, то хотя бы один из операторов $\phi - \alpha_i$, $\phi^2 + \beta_j\phi + \gamma_j$ "--- вырожденный. Более того, все они вырожденные в силу минимальности многочлена $\mu_\phi$. Значит, возможны два случая:
+	\begin{enumerate}
+		\item Если $\phi - \alpha$ "--- вырожденный, то $\exists \overline{v} \in V$, $\overline{v} \ne \overline{0}$ "--- собственный вектор с собственным значением $\alpha$, и $\langle\overline{v}\rangle \le V$ "--- искомое подпространство.
+		\item Если $\phi^2 + \beta\phi + \gamma$ "--- вырожденный, то $\exists \overline{v} \in V$, $\overline{v} \ne \overline{0}: (\phi^2 + \beta\phi \hm{+} \gamma)(\overline{v}) \hm{=} \overline{0}$. Поскольку $\phi^2(\overline{v}) = -\beta\phi(\overline{v}) - \gamma\overline{v}$, то $\langle\overline{v}, \phi(\overline{v})\rangle \hm{\le} V$ "--- искомое подпространство.\qedhere
+	\end{enumerate}
+\end{proof}

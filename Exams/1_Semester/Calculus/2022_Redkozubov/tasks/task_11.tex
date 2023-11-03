@@ -1,0 +1,303 @@
+\section{11. Определенный интеграл Римана. Формула Ньютона-Лейбница. Ограниченность интегрируемой функции. Линейность и монотонность интеграла. Верхние и нижние суммы Дарбу и их свойства. Критерий интегрируемости Дарбу. Интегрируемость по подотрезкам. Аддитивность интеграла. Интегрируемость произведения и модуля интегрируемых функций. Интегральная теорема о среднем. Интегрируемость непрерывных функций, монотонных функций и ограниченных функций с конечным числом точек разрыва. Интеграл с переменным верхним пределом: непрерывность и дифференцируемость. Существование первообразной у непрерывной функции. Замена переменной в интеграле. Формула интегрирования по частям.}
+
+    \begin{definition}
+        Пусть $[a, b]$ -- невырожденный отрезок. Набор точек $T = \{x_{i}\}_{i=0}^{n}$, $a = x_{0} < x_{1} < \dots < x_{n} = b$, называется \textit{разбиением} отрезка $[a, b]$.\\
+        Отрезок $[x_{i-1}, x_{i}]$ называется \textit{$i$--м отрезком разбиения}, $\Delta x_{i} = x_{i} - x_{i-1}$. Величина $|T| = \underset{1 \leq i \leq n}{\max} \Delta x_{i}$ называется \textit{мелкостью} разбиения $T$.\\
+        Если $\xi_{i} \in [x_{i-1}, x_{i}]$, то пара $(T, \xi)$, где $\xi = \{\xi_{i}\}_{i=1}^{n}$, называется \textit{отмеченным разбиением} $[a, b]$.\\
+        Пусть числовая функция $f$ определена на отрезке $[a, b]$. Сумма
+        \[\sigma_{T}(f, \xi) = \sum_{i=1}^{n} f(\xi_{i}) \Delta x_{i}\]
+        называется \textit{интегральной суммой} функции $f$, отвечающей отмеченному разбиению $(T, \xi)$.
+    \end{definition}
+
+    Если функция $f$ неотрицательна, то слагаемое $f(\xi_{i}) \Delta x_{i}$ равно площади прямоугольника с основанием $[x_{i-1}, x_{i}]$ и высотой $f(\xi_{i})$, а интегральная сумма -- площади фигуры, полученной объединением всех таких прямоугольников.
+
+    \begin{definition}
+        Функция $f$ \textit{интегрируема по Риману} на отрезке $[a, b]$, если
+        \[\exists I \in \R \ \forall \epsilon > 0 \ \exists \delta > 0 \ \forall (T, \xi) \ (|T| < \delta \Rightarrow |\sigma_{T}(f, \xi) - I| < \epsilon).\]
+        Число $I$ называется \textit{определенным интегралом} функции $f$ по $[a, b]$ и обозначается символом $\int_{a}^{b} f(x) dx$.\\
+        Множество функций, интегрируемых по Риману на отрезке $[a, b]$, будем обозначать $\mathcal{R}[a, b]$.
+    \end{definition}
+
+    \begin{theorem}{Формула Ньютона-Лейбница.}\\
+        Пусть функция $f \in \mathcal{R}[a, b]$ и имеет первообразную $F$ на $[a, b]$. Тогда справедливо равенство
+        \[\int_{a}^{b} f(x) \,dx = F(b) - F(a).\]
+    \end{theorem}
+
+    \begin{proof}
+        Пусть $T = \{x_{i}\}_{i=0}^{m}$ -- разбиение отрезка $[a, b]$. По теореме Лагранжа о среднем найдется такая точка $c_{i} \in (x_{i-1}, x_{i})$, что 
+        \[F(x_{i}) - F(x_{i-1}) = F'(c_{i})(x_{i} - x_{i-1}) = f(c_{i}) \Delta x_{i}.\]
+        Положим $\xi = \{c_{i}\}_{i=1}^{m}$. Тогда для отмеченного разбиения $(T, \xi)$ выполнено
+        \[\sigma_{T}(f, \xi) = \sum_{i=1}^{m}(F(x_{i}) - F(x_{i-1})) = F(b) - F(a).\]
+        Рассмотрим произвольную последовательность $T_{n}$ разбиений $[a, b]$, мелкость которых стремится к нулю с ростом $n$. Далее, для каждого $n$ выберем набор точек $\xi_{n}$, как указано выше. Тогда $\sigma_{T_{n}}(f, \xi_{n}) = F(b) - F(a)$ для всех $n$. Поскольку $f \in \mathcal{R}[a, b]$, то 
+        \[\int_{a}^{b} f(x) \,dx = \lim_{n \to \infty} \sigma_{T_{n}}(f, \xi_{n}) = F(b) - F(a),\]
+        что завершает доказательство.
+    \end{proof}
+
+    \begin{lemma}
+        Если функция $f \in \mathcal{R} [a, b]$, то она ограничена на $[a, b]$.
+    \end{lemma}
+
+    \begin{proof}
+        Пусть функция $f$ неограничена на $[a, b]$. Рассмотрим произвольное разбиение $T = \{x_{i}\}_{i=0}^{n}$ отрезка $[a, b]$. Из неограниченности следует существование такого $k$, что $f$ неограничена на $[x_{k-1}, x_{k}]$. Выберем каким-либо образом точки $\xi_{i} \in [x_{i-1}, x_{i}]$ при $i \neq k$. Для произвольного числа $I$ выбором $\xi_{k} \in [x_{k-1}, x_{k}]$ можно добиться, чтобы интегральная сумма
+        \[\sigma_{T}(f, \xi) = \sum_{i \neq k} f(\xi_{i}) \Delta x_{i} + f(\xi_{k}) \Delta x_{k}\]
+        удовлетворяла неравенству $|\sigma_{T}(f, \xi)| > |I| + 1$. Это доказывает, что $I$ не является интегралом $f$ по $[a, b]$.
+    \end{proof}
+
+    \textbf{Линейность.}\\
+    Если $f, g \in \mathcal{R}[a, b]$, то для любых $\alpha, \beta \in \R$ функция $\alpha f + \beta g \in \mathcal{R}[a, b]$, причем
+    \[\int_{a}^{b}(\alpha f(x) + \beta g(x)) \,dx = \alpha \int_{a}^{b}f(x) \,dx + \beta \int_{a}^{b} g(x) \,dx.\]
+
+    \begin{proof}
+        Положим $I_{1} = \int_{a}^{b} f(x) \,dx$ и $I_{2} = \int_{a}^{b} g(x) \,dx$. Пусть $\epsilon > 0$. Функции $f$ и $g$ интегрируемы на $[a, b]$, поэтому найдется такое $\delta > 0$, что для всякого отмеченного разбиения $(T, \xi)$ мелкости $|T| < \delta$ выполнено $|\sigma_{T}(f, \xi) - I_{1}| < \frac{\epsilon}{2(|\alpha| + 1)}$ и $|\sigma_{T}(g, \xi) - I_{2}| < \frac{\epsilon}{2(|\beta| + 1)}$. Поскольку $\sigma_{T}(\alpha f + \beta g, \xi) = \alpha \sigma_{T}(f, \xi) + \beta \sigma_{T}(g, \xi)$, то 
+        \[|\sigma_{T}(\alpha f + \beta g, \xi) - (\alpha I_{1} + \beta I_{2})| \leq |\alpha| \cdot |\sigma_{T}(f, \xi) - I_{1}| + |\beta| \cdot |\sigma_{T}(g, \xi) - I_{2}| < \epsilon\]
+        Так как $\epsilon> 0$ -- любое, то $\alpha f + \beta g$ интегрируема на $[a, b]$ и $\int_{a}^{b}(\alpha f(x) + \beta g(x)) \,dx = \alpha I_{1} + \beta I_{2}$.
+    \end{proof}
+
+    \textbf{Монотонность.}\\
+    Если $f, g \in \mathcal{R}[a, b]$ и $f \leq g$ на $[a, b]$, то
+    \[\int_{a}^{b} f(x) \,dx \leq \int_{a}^{b} g(x) \,dx.\]
+
+    \begin{proof}
+        Для всякого отмеченного разбиения $(T, \xi)$ верно неравенство $\sigma_{T}(f, \xi) \leq \sigma_{T}(g, \xi)$. Поэтому достаточно рассмотреть последовательность разбиений $(T_{n}, \xi_{n})$ с $|T_{n}| \to 0$ и в неравенстве для интегральных сумм перейти к пределу при $n \to \infty$.
+    \end{proof}
+
+    \textbf{Аддитивность.}\\
+    Если функция $f$ интегрируема по Риману на $[a, b]$ и отрезках $[a, c], [c, b]$, где $a < c < b$, то верно равенство
+    \[\int_{a}^{b}f(x) \,dx = \int_{a}^{c}f(x) \,dx + \int_{c}^{b}f(x) \,dx\]
+
+    \begin{proof}
+        Для каждого $n \in \N$ рассмотрим отмеченное разбиение $(\hat{T_{n}}, \hat{\xi_{n}})$ отрезка $[a, c]$, состоящее из точек $x_{k, n} = a + \frac{(c - a)k}{n} \ (k = 0, \dots, n)$, и отмеченных точек $\hat{\xi_{k, n}} = x_{k-1, n} \ (k = 1, \dots, n)$. Рассмотрим также $(\check{T_{n}}, \check{\xi_{n}})$ -- отмеченное разбиение $[c, b]$ с точками $y_{k, n} = c + \frac{(b - c)k}{n}$, $\check{\xi_{k, n}} = y_{k-1, n}$. Тогда объединение $(T_{n}, \xi_{n})$ этих разбиений является отмеченным разбиением $[a, b]$, причем
+        \[\sigma_{T_{n}}(f, \xi_{n}) = \sigma_{\hat{T_{n}}}(f, \hat{\xi_{n}}) + \sigma_{\check{T}_{n}}(f, \check{\xi_{n}}).\]
+        Переходя к пределу при $n \to \infty$, получим искомое равенство для интегралов.
+    \end{proof}
+    
+    \begin{definition}
+        Пусть $f$ ограничена на $[a, b]$. Пусть $T = \{x_{i}\}_{i = 0}^{n}$ -- разбиение $[a, b]$ и $M_{i} = \underset{[x_{i-1}; x_{i}]}{\sup} f(x)$, $m_{i} =  \underset{[x_{i-1}; x_{i}]}{\inf} f(x)$. Тогда\\
+        $S_{T}(f) = \sum_{i = 1}^{n} M_{i}\Delta x_{i}$ -- \textit{верхняя сумма Дарбу} $f$, отвечающая разбиению $T$.\\
+        $s_{T}(f) = \sum_{i = 1}^{n} m_{i}\Delta x_{i}$ -- \textit{нижняя сумма Дарбу} $f$, отвечающая разбиению $T$.
+    \end{definition}
+
+    \begin{lemma}
+        Для любого разбиения $T$ выполнено
+        \[S_{T}(f) = \underset{\xi}{\sup} \ \sigma_{T}(f, \xi), \ s_{T}(f) = \underset{\xi}{\inf} \ \sigma_{T}(f, \xi)\]
+    \end{lemma}
+    
+    \begin{proof}
+        Пусть $T = \{x_{i}\}_{i=0}^{n}$. Поскольку для $\xi = \{\xi_{i}\}_{i=1}^{n}$, где $\xi_{i} \in [x_{i-1}, x_{i}]$, верно $f(\xi_{i}) \leq M_{i}$, то $\sigma_{T}(f, \xi) \leq S_{T}(f)$. Зафиксируем $\epsilon > 0$ и подберем $\xi'_{i} \in [x_{i-1}, x_{i}]$ так, чтобы $f(\xi'_{i}) > M_{i} - \frac{\epsilon}{b - a}$. Тогда для $\xi' = \{\xi'_{i}\}_{i=1}^{n}$ выполнено
+        \[\sigma_{T}(f, \xi') = \sum_{i = 1}^{n}f(\xi'_{i})\Delta x_{i} > \sum_{i = 1}^{n}(M_{i} - \frac{\epsilon}{b - a})\Delta x_{i} = S_{T}(f) - \frac{\epsilon}{b - a}\sum_{i=1}^{n}\Delta x_{i} = S_{T}(f) - \epsilon.\]
+        Это означает что $S_{T}(f)$ является супремумом множества $\sigma_{T}(f, \xi)$. Аналогично для $s_{T}(f)$.
+    \end{proof}
+    Покажем, что при добавлении точек в разбиение верхние суммы Дарбу не увеличиваются, а нижние -- не уменьшаются.
+    
+    \begin{lemma}
+        Если разбиение $T'$ получено из рабиения $T$ добавлением $m$ точек, то
+        \[0 \leq S_{T}(f) - S_{T'}(f) \leq 2 M_{f}m|T|\]
+        \[0 \leq s_{T'}(f) - s_{T}(f) \leq 2 M_{f}m|T|,\]
+        где $M_{f} = \underset{[a, b]}{\sup} |f|$.
+    \end{lemma}
+    
+    \begin{proof}
+        Пусть $T = \{x_{i}\}_{i=0}^{n}$ и пусть $T' = T + {x^{*}}$, $x^{*} \in (x_{j-1}, x_{j})$. Введем обозначения
+        \[M_{j}' = \underset{[x_{j-1}, x^{*}]}{\sup} f, \ M_{j}'' = \underset{[x_{*}, x_{j}]}{\sup} f\]
+        Тогда 
+        \[S_{T}(f) - S_{T'}(f) = M_{j}(x_{j} - x_{j - 1}) - M_{j}'(x^{*} - x_{j - 1}) - M_{j}''(x_{j} - x^{*}) = (M_{j} - M_{j}')(x^{*} - x_{j - 1}) + (M_{j} - M_{j}'')(x_{j} - x^{*}).\]
+        Поскольку $0 \leq M_{j} - M_{j}' \leq 2M_{f}$ и $0 \leq M_{j} - M_{j}'' \leq 2M_{f}$, то
+        \[0 \leq S_{T}(f) - S_{T'}(f) \leq 2M_{f}(x_{j} - x_{j - 1}) \leq 2M_{f}|T|\]
+        Общий случай следует индукцией по $m$. Проверка нижних сумм Дарбу аналогична.
+    \end{proof}
+    
+    \begin{definition} \ \\
+        $I^{*}(f) = \underset{T}{\inf} \ S_{T}(f)$ -- \textit{верхний интеграл Дарбу} функции $f$.\\
+        $I_{*}(f) = \underset{T}{\sup} \ s_{T}(f)$ -- \textit{нижний интеграл Дарбу} функции $f$.
+    \end{definition}
+
+    \begin{theorem}{Критерий интегрируемости Дарбу.}\\
+        Пусть $f$ ограничена на $[a, b]$
+        \[f \in \mathcal{R}[a, b] \lra I^{*}(f) = I_{*}(f)\]
+        При этом $\int_{a}^{b} f(x) dx = I^{*}(f) = I_{*}(f)$.
+    \end{theorem}
+    
+    \begin{proof}
+        $\Rightarrow$ Пусть $f \in \mathcal{R}[a, b]$. Зафиксируем $\epsilon > 0$. Тогда $\exists \delta > 0 \ \forall(T, \psi), |T| < \delta$
+        \[I - \epsilon < \sigma_{T}(f, \psi) < I + \epsilon. \text{ По лемме 2 получим } I - \epsilon \leq s_{T}(f) \leq S_{T}(f) \leq I + \epsilon.\]
+        Т.к. $\epsilon > 0$ -- любое, то $I_{*}(f) = I^{*}(f) = I$.\\
+        $\Leftarrow$ Пусть  $I_{*}(f) = I^{*}(f) = I$. Зафиксируем $\epsilon > 0$. По следствию 2 $\exists \delta > 0 \ \forall(T, \psi), |T| < \delta$
+        \[0 \leq S_{T}(f) - I^{*}(f) < \epsilon\]
+        \[0 \leq I_{*}(f) - s_{T}(f) < \epsilon\]
+        Тогда $\sigma_{T}(f, \psi) - I \leq S_{T}(f) - I^{*}(f) < \epsilon$, 
+        $\sigma_{T}(f, \psi) - I \geq s_{T}(f) - I_{*}(f) > -\epsilon$.\\
+        Значит, $|\sigma_{T}(f, \psi) - I| < \epsilon$, следовательно, $f \in \mathcal{R}[a, b]$ и $I = \int_{a}^{b}f(x)dx$.
+    \end{proof}
+
+    \begin{definition}
+        Пусть $f: D \to \R$, $E \subset \R$. \textit{Колебанием} функции $f$ на множестве $E$ называется величина:
+        \[\omega(f, E) = \sup_{x, y \in E}|f(x) - f(y)|.\]
+        Для $f$ ограниченной на $[a, b]$, и разбиения $T = \{x_{i}\}_{i = 0}^{n}$ этого отрезка, положим $\Omega_{T}(f) = S_{T}(f) - s_{T}(f)$.
+    \end{definition}
+
+    \begin{theorem}
+        \hypertarget{punkt_2}{\item}
+        1) Если $f \in \mathcal{R}[a, b], [c, d] \subset [a, b]$. Тогда $f \in \mathcal{R}[c, d]$.\\
+        2) Если a < c < b и $f \in \mathcal{R}[a, c]$ и $f \in \mathcal{R}[c, b]$, то $f \in \mathcal{R}[a, b]$.\\
+        3) Если $f, g \in \mathcal{R}[a, b]$, то $f \cdot g \in \mathcal{R}[a, b]$.\\
+        4) Если $f \in \mathcal{R}[a, b]$, то $|f| \in \mathcal{R}[a, b]$.
+    \end{theorem}
+    
+    \begin{proof} \ \\
+        1) Т.к. $f \in \mathcal{R}[a, b]$, то $f$ ограничена на $[a, b]$ и, значит, ограничена на $[c, d]$.
+        Зафиксируем $\epsilon > 0$. Тогда $\exists T$ -- разбиение $[a, b] \ (\Omega_{T}(f) < \epsilon)$.
+        Положим $T_{0} = T + \{c, d\}$. Следовательно , 
+        \[\Omega_{T_{0}}(f) = S_{T_{0}}(f) - s_{T_{0}}(f) \leq S_{T}(f) - s_{T}(f) = \Omega_{T}(f),\]
+        значит функция интегрируема на $[a, b]$.
+        \\2) Ограниченность на $[a, c]$ и $[c, b]$ влечет ограниченность на $[a, b]$.
+        Так как $f \in \mathcal{R}[a, c]$, то существует $T_1$ -- разбиение $[a, c]$,
+        такое что $\Omega_{T_1}(f|_{[a, c]}) < \frac{\epsilon}{2}$.
+        Так как $f \in \mathcal{R}[c, b]$, то существует $T_2$ -- разбиение $[c, b]$,
+        такое что $\Omega_{T_2}(f|_{[c, b]}) < \frac{\epsilon}{2}$.
+        $T = T_1 \cup T_2$ -- разбиение $[a, b]$.
+        Тогда $\Omega_{T}(f) = \Omega_{T_1}(f|_{[a, c]}) + \Omega_{T_2}(f|_{[c, b]}) < \epsilon$.
+        Тогда $f$ интегрируема на $[a, b]$.
+        \\3) Оценим колебания произведения функций на $E \subset [a, b]$.
+        Так как $f$ и $g$ -- ограничены на $[a, b]$, то $\exists M > 0 (|f| \leq M, |g| \leq M$) на $[a, b]$.
+        Пусть $x, y \in [a, b]$, тогда
+        \[|f(y)g(y) - f(x)g(x)| = |f(y)g(y) - f(y)g(x) + f(y)g(x) - f(x)g(x)| \leq\]
+        \[\leq |f(y)||g(y) - g(x)| + |g(x)||f(y) - g(x)| \leq\]
+        \[\leq M|g(y) - g(x)| + M|f(y) - f(x)| \leq \]
+        \[\leq M\omega(f, E) + M\omega(g, E) \Rightarrow \omega(fg, E) \leq M(\omega(f, E) + \omega(g, E))\]
+        Зафиксируем $\epsilon > 0$. Так как $f \in \mathcal{R}[a, b]$, то $\exists T_f$ -- разбиение $[a, b]$,
+        такое что $\Omega_T(f) < \frac{\epsilon}{2M}$, $g \in \mathcal{R}[a, b]$, то $\exists T_g$ -- разбиение $[a, b]$,
+        такое что $\Omega_T(f) < \frac{\epsilon}{2M}$.
+        Положим $T = T_f \cup T_g$ -- разбиение $[a, b]$. Тогда $\Omega_T(f) \leq \Omega_{T_f}(f)$,
+        $\Omega_T(g) \leq \Omega_{T_g}(g)$. Следовательно, $\Omega_T(fg) \leq M\Omega_T(f) + M\Omega_T(g) <
+        \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+        Значит, $fg \in \mathcal{R}[a, b]$.
+        \\4) Так как $||f(y)| - |f(x)|| \leq |f(y) - f(x)| \ \forall x, y \in E$,
+        то $\omega(|f|, E) \leq \omega(f, E)$. Далее повторяем рассуждения из прошлого пункта.
+    \end{proof}
+
+    \begin{theorem}{Интегрируемости о среднем.}\\
+        Пусть $f, g \in \mathcal{R}[a, b], \ m \leq f \leq M$ на $[a, b]$.
+        Если $g \geq 0$ на $[a, b]$ или $g \leq 0$ на $[a, b]$, то
+        $\exists \lambda \in [m, M] \ : \int_a^b f(x)g(x) \,dx = \lambda \int_a^b g(x) \,dx$.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть $g \geq 0$ на $[a, b]$.  Тогда $mg \leq fg \leq Mg$ на $[a, b]$.
+        По свойству монотонности $m \int_a^b g(x) \,dx \leq \int_a^b f(x)g(x) \,dx \leq M \int_a^b g(x) \,dx$.
+        Если $\int_a^b g(x) \,dx = 0$, то $\int_a^b f(x)g(x) \,dx = 0$ и в качестве $\lambda$ -- любое число от $m$ до $M$.
+        Если $\int_a^b g(x) \,dx > 0$, то равенство выполняется для
+        \(\lambda = \frac{\int_a^b f(x)g(x) \,dx}{\int_a^b g(x) \,dx} \in [m, M].\)\\
+        Случай $g \leq 0$ сводится к предыдущему заменой $g$ на $-g$.
+    \end{proof}
+
+    \begin{theorem}
+        Если $f$ непрерывна на $[a, b]$, то $f$ интегрируема на $[a, b]$.
+    \end{theorem}
+    
+    \begin{proof}
+        Так как $f$ непрерывна на $[a, b]$, то по теореме Вейерштрасса $f$ ограничена на $[a, b]$
+        и по теореме Кантора равномерно непрерывна на $[a, b]$.
+        Зафиксируем $\epsilon > 0$. Из условия равномерной непрерывности
+        $\exists \delta > 0 \ \forall x, y \in [a, b] \ (|x - y| < \delta \Rightarrow |f(x) - f(y)| < \frac{\epsilon}{b-a})$. Рассмотрим $T$ -- разбиение $[a, b]$, $|T| < \delta$. По теореме Вейерштрасса
+        $\exists x'_i, x''_i \in [a, b] (f(x'_i) = M_i, \ f(x''_i) = m_i)$.
+        Так как $|x'_i - x''_i| \leq \Delta x_i < \delta$, то $f(x'_i) - f(x''_i) < \frac{\epsilon}{b-a}$.
+        Следовательно, \(\Omega_T(f) = \sum_{i = 1}^n(M_i - m_i)\Delta x_i = 
+        \sum_{i = 1}^n(f(x'_i) - f(x''_i))\Delta x_i < \frac{\epsilon}{b-a}\sum_{i = 1}^n \Delta x_i = \epsilon\).
+        Тогда $f \in \mathcal{R}[a, b]$.
+    \end{proof}
+    
+    \begin{theorem}
+        Если $f$ монотонна на $[a, b]$, то $f$ интегрируема на $[a, b]$.
+    \end{theorem}
+    
+    \begin{proof}
+        Пусть для определенности $f$ нестрого возрастает на $[a, b]$. Тогда $f(a) \leq f(x) \leq f(b) \ \forall x \in [a, b]$ и, значит, $f$ ограничена на $[a, b]$. Для произвольного $T = \{x_i\}_{i = 0}^n$ -- разбиение $[a, b]$, выполнено:
+        $\Omega_T (f) = \sum_{i = 1}^n(M(i) - m_{i})\Delta x_i \leq |T|\sum_{i = 1}^n(f(x_i) - f(x_{i-1}))
+        = |T|(f(b) - f(a))$.
+        Выберем $T$ так, что $|T| (f(b) - f(a)) < \epsilon$, тогда $\Omega_T(f) < \epsilon$, тогда
+        $f \in \mathcal{R}[a, b]$.
+    \end{proof}
+    
+    \begin{theorem}
+        Пусть $f$ определена на $[a, b]$ и ограничена на нем.
+        Если $f \in \mathcal{R}[c, d] \ \forall [c, d] \sub (a, b)$, то $f \in \mathcal{R}[a, b]$.
+    \end{theorem}
+    
+    \begin{proof}
+        По условию $\exists M > 0 \ (|f| \leq M $) на $[a, b]$.
+        Зафиксируем $\epsilon > 0$. Рассмотрим $c = a + \frac{\epsilon}{6M},
+        c = a + \frac{\epsilon}{6M}, d = b - \frac{\epsilon}{6M} \ (c < d)$.
+        По условию $f \in \mathcal{R}[c, d]$, тогда $\exists T_0$ -- разбиение
+        $[c, d] : \ \Omega_{T_0}(f) < \frac{\epsilon}{3}$.
+        $T = T_0 \cup \{a, b\}$ -- разбиение $[a, b]$.
+        $\Omega_T(f) = \omega(f, [a, c])(c - a) + \Omega_{T_0}(f) + \omega(f, [d, b])(b - d)$.
+        $\omega(f, [a, c]) \leq 2M, \omega(f, [d, b]) \leq 2M$ и, следовательно,
+        $\Omega_T(f) < 2M \frac{\epsilon}{6M} + \frac{\epsilon}{3} + 2M \frac{\epsilon}{6M} = \epsilon$.
+        Тогда $f \in \mathcal{R}[a, b]$.
+    \end{proof}
+
+    \begin{corollary}
+        Пусть $f$ ограничена на $[a, b]$ и множество точек разрыва $f$ на $[a, b]$ конечно,
+        тогда $f \in \mathcal{R}[a, b]$.
+    \end{corollary}
+    
+    \begin{proof}
+        Добавим к множеству точек разрыва $f$ на $[a, b]$ точки
+        $a, b \ : \ a = x_0 < x_1 < \dots < x_N = b$.
+        По теореме о непрерывности на отрезке: $f \in \mathcal{R}[\alpha, \beta] \forall [\alpha, \beta] \sub (x_{i-1}, x_i)$
+        и $f$ ограничена на $[x_{i-1}, x_{i}]$. Тогда $f \in \mathcal{R}[x_{i-1}, x_{i}],
+        (i = 1, \dots, N)$. Последовательно применяя \hyperlink{punkt_2}{пункт 2} получим $f \in \mathcal{R}[a, b]$.
+    \end{proof}
+
+    \begin{definition}
+        Пусть $I$ -- промежуток, $f: I \to \R$ интегрируема на любом $[\alpha, \beta] \subset I, \ a \in I$.
+        Функция $F: I \in \R, F(x) = \int_a^x f(t) \,dt$, называется \textit{интегралом с переменным верхним пределом.}
+    \end{definition}
+    
+    \begin{theorem}
+        Пусть $I$ -- невырожденный промежуток, $f: I \to \R$
+        и $f \in \mathcal{R}[\alpha, \beta] \ \forall [\alpha, \beta] \sub I, a \in I, \ F : I \to \R,
+        \ F(x) = \int_a^x f(t) \,dt$. Тогда $F$ непрерывна на $I$.
+        Кроме того, если $f$ непрерывна в точке $x$, то $F$ диффиренцируема в точке $x$, $F'(x) = f(x)$.
+    \end{theorem}
+    
+    \begin{proof}
+        Зафиксируем $x \in I$.
+        Выберем $\delta > 0$, что $[x-\delta, x+\delta] \cap I$ -- невырожденный отрезок $[\alpha, \beta]$.
+        По условию $f \in \mathcal{R}[\alpha, \beta]$,
+        тогда $\exists M > 0 \ (|f| \leq M$ на $[\alpha, \beta])$.
+        Тогда $\forall y \in [\alpha, \beta]$
+        \(|F(y) - F(x)| = |\int_a^y f(t) \,dt - \int_a^x f(t) \,dt| = 
+        |\int_x^y f(t) \,dt| \leq \int_x^y |f(t)| \,dt \leq M|y-x|\),
+        следовательно \(\lim_{y \to x} F(y) = F(x)\).\\
+        Докажем второе утверждение. Зафиксируем $\epsilon > 0$. Поскольку $f$ непрерывна в точке $x$, то существует такое $\delta > 0$, что $(|f(t) - f(x)| < \epsilon)$ для всех $t \in B_{\delta}(x) \cap I$. Тогда для любого $y \in \overset{o}{B}_{\delta}(x) \cap I$ имеем
+        \[|\frac{F(y) - F(x)}{y - x} - f(x)| = |\frac{1}{y - x} \int_{x}^{y} f(t) \,dt - \frac{1}{y - x} \int_{x}^{y} f(x) \,dt| \leq\]
+        \[\leq \frac{1}{|y - x|} |\int_{x}^{y}|f(t) - f(x)| \,dt| \leq \frac{1}{|y-x|}\cdot \epsilon |y - x| = \epsilon.\]
+        Это означает, что $\lim_{y - x} \frac{F(y) - F(x)}{y - x} = f(x)$, т.е. $F'(x) = f(x)$.
+    \end{proof}
+    
+    \begin{corollary}
+        Если $f$ непрерывна на промежутке $I$, то $f$ имеет на $I$ первообразную.
+    \end{corollary}
+
+    \begin{theorem}{О замене переменной.}\\
+        Пусть $f$ непрерывна на промежутке $I$, функция $\phi: [\alpha, \beta] \to I$ дифференцируема на $[\alpha, \beta]$, причем $\phi' \in \mathcal{R}[\alpha, \beta]$. Тогда
+        \[\int_{a}^{b}f(x)dx = \int_{\alpha}^{\beta}f(\phi(t))\phi'(t)dt,\]
+        где $a = \phi(\alpha), b = \phi(\beta).$
+    \end{theorem}
+    
+    \begin{proof}
+        Функция $f_{o}\phi$ непрерывна на $[\alpha, \beta]$, поэтому $(f_{o}\phi)\phi' \in \mathcal{R}[\alpha, \beta]$. Пусть $F$ -- первообразная $f$ на $I$. Тогда по правилу дифференцирования композиции $(F_{o}\phi)' = (f_{o}\phi)\phi'$ на $[\alpha, \beta]$ и, значит, $F_{o}\phi$ -- первообразная $(f_{o}\phi)\phi'$ на этом отрезке. По формуле Ньютона-Лейбница
+        \[\int_{\alpha}^{\beta}f(\phi(t))\phi'(t)dt = F(\phi(t))|_{\alpha}^{\beta} = F(b) - F(a) = \int_{a}^{b}f(x)dx.\]
+    \end{proof}
+    
+    \begin{theorem}{Формула интегрирования по частям.}\\
+        Пусть функции $F$ и $G$ дифференцируемы на $[a, b]$, а их производные $f, g$ интегрируемы на этом отрезке. Тогда
+        \[\int_{a}^{b}F(x)g(x)dx = F(x)G(x)|_{a}^{b} - \int_{a}^{b}G(x)f(x)dx.\]
+    \end{theorem}
+    
+    \begin{proof}
+        Так как $(FG)' = Fg + fG$, то $FG$ является первообразной функции $h = Fh + fG$. Из дифференцируемости $F, G$ следует их непрерывность, а значит, и интегрируемость на $[a, b]$. Следовательно, $h \in \mathcal{R}[a, b]$. По свойству линейности и формуле Ньютона-Лейбница
+        \[\int_{a}^{b}Fg(x)dx + \int_{a}^{b}Gf(x)dx = \int_{a}^{b}(FG)'(x)dx = F(b)G(b) - F(a)G(a)\]
+        и искомое равенство установлено.
+    \end{proof}

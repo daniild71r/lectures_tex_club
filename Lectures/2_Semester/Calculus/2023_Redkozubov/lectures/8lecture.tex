@@ -1,0 +1,168 @@
+%01.03.23
+
+\begin{theorem}
+    Пусть $\{J_n\}_{n = 1}^{+\infty}$ --- разбиение $J$, то есть $\bigcup_{n = 1}^{+\infty} J_n = J$ и $J_k \cap J_i = \emptyset$.
+
+    Ряд $\sum_{j \in J} a_j$ сходится тогда и только тогда, когда
+    \begin{equation}
+        \label{eqn-12-1}
+        \sum_{n = 1}^{+\infty} \sum_{j \in J_n} |a_j| < {+\infty}.
+    \end{equation}
+
+    В этом случае
+    \begin{equation}
+        \label{eqn-12-2}
+        \sum_{j \in J} a_j = \sum_{n = 1}^{+\infty} \sum_{j \in J_n} a_j.
+    \end{equation}
+
+    \begin{proof}
+        $(\Leftarrow)$ Пусть выполнено (\ref{eqn-12-1}). Если $\underbrace{F}_{\text{конечно}} \subset J$, то $\exists N \ F \subset \bigcup_{n = 1}^N J_n$. Поэтому
+        \[
+            \sum_{j \in F} |a_j| = \sum_{n = 1}^N \sum_{j \in F \cap J_n} |a_j| \le \sum_{n = 1}^N \sum_{j \in J_n} |a_j| \le \sum_{n = 1}^{+\infty} \sum_{j \in J_n} |a_j|.
+        \]
+
+        Следовательно, ряд $\sum_{j \in J} |a_j|$ сходится и, значит, сходится $\sum_{j \in J} a_j$.
+
+        $(\Rightarrow)$ Пусть ряд $\sum_{j \in J} a_j$ сходится. Тогда $\sum_{j \in J} |a_j| < {+\infty}$ и, значит, $\sum_{j \in J_n} |a_j| < {+\infty}$ для любого $n$. Пусть $\epsilon > 0$. Для любого $n$ $\underbrace{\exists F_n}_{\text{конечно}} \subset J_n \ \sum_{j \in F_n} |a_j| > \sum_{j \in J_n} |a_j| - \frac{\epsilon}{2^n}$.
+
+        Зафиксируем $N$ и пусть $F = \bigcup_{n = 1}^N F_n$. Тогда
+        \[
+            \sum_{n = 1}^N \sum_{j \in J_n} |a_j| < \sum_{n = 1}^N \left(\sum_{j \in F_n} |a_j| + \frac{\epsilon}{2^n}\right) = \sum_{j \in F} |a_j| + \sum_{n = 1}^N \frac{\epsilon}{2^n} \le \sum_{j \in J} |a_j| + \epsilon.
+        \]
+
+        Так как $N$ произвольно, то $\sum_{n = 1}^{+\infty} \sum_{j \in J_n} |a_j| \le \sum_{j \in J} |a_j|$.
+
+        Таким образом (2) верно и для $a_j \ge 0$. В частности, (\ref{eqn-12-2}) верно для $a_j^\pm$. Поскольку $a_j = a_j^+ - a_j^-$, то (\ref{eqn-12-2}) в общем случае следует по свойству линейности.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    Ряд $\sum_{n \in \N} a_n$ сходится тогда и только тогда, когда сходится $\sum_{n = a}^{+\infty} |a_n|$.
+
+    В этом случае $\sum_{n \in \N} a_n = \sum_{n = 1}^{+\infty} a_n$.
+\end{corollary}
+
+\begin{corollary}[теорема Фубини]
+    Пусть $\{a_{nm}\}_{n, m = 1}^{+\infty}$. Тогда
+    \[
+        \sum_{n = 1}^{+\infty} \sum_{m = 1}^{+\infty} a_{nm} = \sum_{m = 1}^{+\infty} \sum_{n = 1}^{+\infty} a_{nm} = \sum_{n, m \in \N \times \N} a_{nm}
+    \]
+    при условии, что хотя бы один из рядов сходится при замене $a_{nm}$ на $|a_{nm}|$.
+\end{corollary}
+
+\section{Функциональные ряды}
+
+\subsection{Равномерная сходимость}
+
+Пусть $f_n, f : E \rightarrow \R$ (или $\mathbb{C}$), $n \in \N$.
+\begin{definition}
+    Последовательность $\{f_n\}$ \emph{поточечно сходится} к $f$ на $E$, если $f(x) = \lim_{n \rightarrow {+\infty}} f_n(x)$ для всех $x \in E$.
+
+    Пишут $f_n \rightarrow f$ на $E$ и $f$ называют \emph{предельной функцией} последовательности $\{f_n\}$.
+\end{definition}
+
+Воспользуемся определением предела последовательности. $f_n \rightarrow f$ на $E$ тогда и только тогда, когда $\forall x \in E \, \forall \epsilon > 0 \, \exists N \in \N \, \forall n \ge N \ \left(|f_n(x) - f(x)| < \epsilon\right)$.
+
+\begin{example}
+    Пусть $f_n: [0, 1] \rightarrow \R, f_n(x) = x^n$. Тогда $f_n \rightarrow f$ на $[0, 1]$, где
+    \[
+        f(x) = \left\{\begin{array}{lc}
+                0, & x \in [0, 1) \\
+                1, & x = 1
+        \end{array}\right.
+    \]
+
+    Зафиксируем $\epsilon \in (0, 1)$. $x^n < \epsilon \Rightarrow N(x) \ge \frac{\ln \epsilon}{\ln x} \Rightarrow N(x) \rightarrow +\infty$ при $x \rightarrow 1 - 0$.
+\end{example}
+
+Если $N(x)$ удаётся выбрать одним для всех $x \in E$ (при фиксированном $\epsilon$), то приходим к следующему понятию:
+
+\begin{definition}
+    Последовательность $\{f_n\}$ \emph{равномерно сходится} к $f$ на $E$, если
+    \[
+        \forall \epsilon > 0 \, \exists N \in \N \, \forall n \ge N \, \forall x \in E \ \left(|f_n(x) - f(x)| < \epsilon\right).
+    \]
+
+    Пишут $f_n \rightrightarrows f$ на $E$ или $f_n \rightrightarrows_E f$ при $n \rightarrow {+\infty}$.
+\end{definition}
+
+\begin{note}
+    Равномерная сходимость, очевидно, влечёт поточечную, но поточечная сходимость не влечёт равномерную в общем случае, как показывает предыдущий пример.
+\end{note}
+
+\begin{lemma}[супремум-критерий]
+    \label{sup-criterion}
+    $f_n \rightrightarrows f$ на $E$ тогда и только тогда, когда $\lim_{n \rightarrow {+\infty}} \rho_n = 0$, где $\rho_n = \sup_{x \in E} |f_n(x) - f(x)|$.
+
+    \begin{proof}
+        \[
+            \left(\forall x \in E \ \left(|f_n(x) - f(x)| \le \epsilon\right)\right) \Leftrightarrow \left(\sup_{x \in E} |f_n(x) - f(x)| \le \varepsilon\right).
+        \]
+    \end{proof}
+\end{lemma}
+
+\begin{problem}
+    Пусть $f_n \rightrightarrows f$ на $E$. Покажите, что $\forall \{x_n\} \subset E \ \lim_{n \rightarrow {+\infty}} |f_n(x_n) - f(x_n)| = 0$.
+\end{problem}
+
+Рассмотрим функциональный ряд $\sum_{n = 1}^{+\infty} f_n$, где $f_n : E \rightarrow \R$ (или $\mathbb{C}$)
+
+\begin{definition}
+    Функциональный ряд $\sum_{n = 1}^{+\infty} f_n$ \emph{поточечно сходится} на $E$, если числовой ряд $\sum_{n = 1}^{+\infty} f_n(x)$ сходится для любого $x \in E$. В этом случае $S(x) = \sum_{n = 1}^{+\infty} f_n(x)$, $x \in E$, называется \emph{суммой} ряда $\sum_{n = 1}^{+\infty} f_n$.
+
+    Функциональный ряд $\sum_{n = 1}^{+\infty} f_n$ \emph{равномерно сходится} на $E$, если последовательность частичных сумм $S_N = \sum_{n = 1}^N f_n$ равномерно сходится на $E$.
+\end{definition}
+
+\begin{property}[линейность]
+    \begin{enumerate}
+        \item Пусть $f_n \rightrightarrows f$ на $E$, $g_n \rightrightarrows g$ на $E$ и $\alpha, \beta \in \R$ ($\mathbb{C}$). Тогда $\alpha f_n + \beta g_n \rightrightarrows \alpha f + \beta g$ на $E$.
+
+        \item Пусть $\sum_{n = 1}^{+\infty} f_n$ и $\sum_{n = 1}^{+\infty} g_n$ равномерно сходятся на $E$. Тогда $\sum_{n = 1}^{+\infty} \alpha f_n + \beta g_n$ также равномерно сходится на $E$ и $\sum_{n = 1}^{+\infty} \alpha f_n + \beta g_n = \alpha \sum_{n = 1}^{+\infty} f_n + \beta \sum_{n = 1}^{+\infty} g_n$.
+    \end{enumerate}
+
+    \begin{proof}
+        Пусть $x \in E$. По неравенству треугольника
+        \[
+            |(\alpha f_n(x) + \beta g_n(x)) - (\alpha f(x) + \beta g(x))| \le |\alpha| \cdot |f_n(x) - f(x)| + |\beta| \cdot |g_n(x) - g(x)|.
+        \]
+
+        Далее по лемме (\ref{sup-criterion}).
+
+        Второй пункт вытекает из первого применением его к последовательности частичных сумм ряда.
+    \end{proof}
+\end{property}
+
+\begin{corollary}
+    Если $\sum_{n = 1}^{+\infty} f_n$ равномерно сходится на $E$, то $f_n \rightrightarrows 0$ на $E$.
+
+    \begin{proof}
+        $f_n = S_n - S_{n - 1} \rightrightarrows S - S = 0$.
+    \end{proof}
+\end{corollary}
+
+\begin{property}
+    Пусть $g : E \rightarrow \R$ ($\mathbb{C}$) ограничена.
+
+    \begin{enumerate}
+        \item Если $f_n \rightrightarrows f$ на $E$, то $gf_n \rightrightarrows gf$ на $E$.
+
+        \item Если $\sum_{n = 1}^{+\infty} f_n$ равномерно сходится на $E$, то $\sum_{n = 1}^{+\infty} gf_n$ также равномерно сходится на $E$ и
+            \[
+                \sum_{n = 1}^{+\infty} gf_n = g\sum_{n = 1}^{+\infty} f_n
+            \]
+    \end{enumerate}
+
+    \begin{proof}~
+    
+        \begin{enumerate}
+            \item Пусть $|g(x)| \le M$ для всех $x \in E$. Тогда 
+            \[
+                \sup_{x \in E} |g(x)f_n(x) - g(x)f(x)| \le M \underbrace{\sup_{x \in E}|f_n(x) - f(x)|}_{\to 0}.
+            \]
+    
+            Значит, по супремум-критерию (\ref{sup-criterion}) $gf_{n} \rightrightarrows gf$ на $E$.
+            
+            \item Вытекает из пункта 1 применением его к последовательности частичных сумм.
+        \end{enumerate}
+    \end{proof}
+\end{property}

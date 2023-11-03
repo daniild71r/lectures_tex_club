@@ -1,0 +1,151 @@
+\section{3. Внутренность, внешность и граница подмножества $\R$. Открытые и замкнутые множества и их свойства. Предельные точки множества, критерии замкнутости. Замкнутость множества частичных пределов. Замыкание множества. Лемма Гейне--Бореля.}
+
+    \begin{definition}
+        Пусть $\epsilon > 0, a \in \R$. Введем обозначения
+        \begin{enumerate}
+            \item $B_{\epsilon}(a) = (a - \epsilon , a + \epsilon)$ -- $\epsilon$--окрестность в точке $a$.
+            \item $\mathring{B_{\epsilon}} (a) = B_{\epsilon}(a) \setminus \{a\}$ -- проколотая $\epsilon$--окрестность в точке $a$.
+        \end{enumerate}
+    \end{definition}
+    
+    Классифицируем точки по отношению к заданному множеству.
+    
+    \begin{definition}
+        Пусть $E \subset \R$ и $x \in \R$.
+        \begin{enumerate}
+            \item Точка $x$ называется \textit{внутренней} точкой множества $E$, если $\exists \epsilon > 0 \ (B_{\epsilon}(x) \subset E)$. Обозначение $int(E)$ -- множество всех внутренних точек E.
+            \item Точка $x$ называется \textit{внешней} точкой множества $E$, если $\exists \epsilon > 0 \ (B_{\epsilon}(x) \subset \R \setminus E)$. Обозначение $ext(E)$ -- множество всех внешних точек E.
+            \item Точка $x$ называется \textit{граничной} точкой множества $E$, если $\forall \epsilon > 0 \ B_{\epsilon}(x) \cap E \neq \emptyset$, $B_{\epsilon}(x) \cap R \setminus E \neq \emptyset$. Обозначение $\delta(E)$ -- множество всех граничных точек E.
+        \end{enumerate}
+    \end{definition}
+    
+    \begin{note}
+        \[\R = int(E) \cup ext(E) \cup \delta(E) \text{, и } int(E), ext(E), \delta(E) \text{ попарно не пересекаются.}\]
+    \end{note}
+    
+    \begin{definition}
+        Множество $G \subset \R$ называется \textit{открытым}, если все его точки являются внутренними. То есть $G = int(G)$.
+        Множество $F \subset \R$ называется \textit{замкнутым}, если $\R \setminus F$ открыто.
+    \end{definition}
+    
+    \begin{lemma}
+        $\text{}$
+        \begin{enumerate}
+            \item Если $G_{\lambda}$ -- открытое $\forall \lambda \in \Lambda$, то $\underset{\lambda \in \Lambda}{\cup} G_{\lambda}$ -- открытое множество.
+            \item Если $G_{1}, G_{2}, ..., G_{m}$ -- открытые, то $\overset{m}{\underset{k = 1}{\cap}} G_{k}$ -- открытое множество.
+            \item $\R, \emptyset$ -- открытые множества.
+        \end{enumerate}
+    \end{lemma}
+    
+    \begin{proof}
+        1) Пусть $G = \underset{\lambda \in \Lambda}{\cup} G_{\lambda}$. Пусть $x \in G \Rightarrow \exists \lambda_{0} \in \Lambda (x \in G_{\lambda_0})$.
+        \\
+        $G_{\lambda_0}$ -- открытое, $x \in G_{\lambda_0} \Rightarrow \exists B_{\epsilon}(x) \subset G_{\lambda_0} \subset G$, т. е. $x$ -- внутренняя точка $G$.
+        \\
+        2) Пусть $G = \overset{m}{\underset{k = 1}{\cap}} G_{k}$, $x \in G$. Тогда $\forall k = 1, .., m: (x \in G_{k})$, $G_k$ -- открытое $\Rightarrow \exists B_{\epsilon_{k}} (x) \subset G_{k}$.
+        \\
+        Положим $\epsilon = \underset{1 \leq k \leq m}{min}\{\epsilon_{k}\}$, тогда $\epsilon > 0$ и $B_{\epsilon}(x) \subset B_{\epsilon_{k}}(x) \subset G_{k}$ для $k = 1, .., m \Rightarrow B_{\epsilon}(x) \subset \overset{m}{\underset{k = 1}{\cap}} G_{k} = G$, т. е. $x$ -- внутренняя точка $G$.
+        \\
+        3) Вытекает из определения.
+    \end{proof}
+    
+    \begin{lemma}
+        $\text{}$
+        \begin{enumerate}
+            \item Если $F_{\lambda}$ -- замкнутое $\forall \lambda \in \Lambda$, то $\underset{\lambda \in \Lambda}{\cap} F_{\lambda}$ -- замкнутое.
+            \item Если $F_{1}, ..., F_{m}$ -- замкнуто, то $\overset{m}{\underset{k = 1}{\cup}} F_{k}$ -- замкнутое.
+            \item $\R, \emptyset$ -- замкнутые.
+        \end{enumerate}
+    \end{lemma}
+    
+    \begin{proof}
+        1) $\R \setminus \underset{\lambda \in \Lambda}{\cap} F_{\lambda} = \underset{\lambda \in \Lambda}{\cup} (\R \setminus F_{\lambda})$.
+        \\
+        2) $\R \setminus \overset{m}{\underset{k = 1}{\cup}} F_{k} = \overset{m}{\underset{k = 1}{\cap}} (\R \setminus F_{k})$, то утверждение следует из леммы 1 и законов Де Моргана.
+        \\
+        3) Оба множества замкнуты, т.к. мы доказали, что дополнения к ним открыты.
+    \end{proof}
+    
+    \begin{definition}
+        Точка $x \in \R$ называется \textit{предельной точкой} множества $E \in \R$, если \\
+        $\forall \epsilon > 0 \ (\mathring{B}_\epsilon(x) \cap E \neq \emptyset)$. Множество предельных точек обозначается $E^{'}$.
+    \end{definition}
+
+    \begin{lemma}
+        \hypertarget{tar4}{\item}$x \in E$ -- предельная $\lra \ \exists \{x_{n}\}: x_{n} \to x$ и $x_{n} \neq x$.
+    \end{lemma}
+
+    \begin{proof}
+        Пусть $x$ -- предельная точка множества $E$. Тогда для каждого $n \in \N$ множество $\overset{o}{B}_{1/n}(x) \cap E$ не пусто. Выберем точку $x_{n} \in \overset{o}{B}_{1/n}(x) \cap E$. Так как $|x_{n} - x| < \frac{1}{n}$, то последовательность $\{x_{n}\}$ сходится к $x$.\\
+        Обратно, пусть последовательность $x_{n}$ удовлетворяет перечисленным в условии свойствам. Тогда для всякого $\epsilon > 0$ найдется номер $N$, такой что $|x_{n} - x| < \epsilon$ для всех $n \geq N$. Значит, $\overset{o}{B}_{\epsilon}(x) \cap E$ не пусто (содержит, например, $x_{N} \neq x$), и точка $x$ предельная для $E$.
+    \end{proof}
+    
+    \begin{theorem}{Критерии замкнутости}\\
+        Пусть $E \subset \R$, тогда следующие утверждения эквивалентны:
+        \begin{enumerate}
+            \item $E$ замкнуто
+            \item $E$ содержит все свои граничные точки
+            \item $E$ содержит все свои предельные точки
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item $1 \Rightarrow 2$\\
+            $x \in \R \setminus E$ (открытое) $\Rightarrow \exists B_{\epsilon}(x) \subset \R \setminus E \Rightarrow x$ -- внешняя точка $E \Rightarrow x \neq \delta (E) \Rightarrow E \supset \delta (E)$.
+            \item $2 \Rightarrow 3$\\
+            Любая предельная точка -- внутренняя или граничная. $int(E) \subset E, \delta (E) \subset E \Rightarrow E^{'} \subset E$.
+            \item $3 \Rightarrow 1$\\
+            $x \in \R \setminus E \Rightarrow x \notin E' \Rightarrow \exists \mathring{B}_{\epsilon}(x) \cap E = \emptyset \Rightarrow B_{\epsilon}(x) \subset \R \setminus E \Rightarrow \R \setminus E$ -- открыто $\Rightarrow E$ -- замкнуто.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{corollary}
+        $E$ -- замкнуто $\iff \forall {x_{n}} \subset E (x_{n} \to x \Rightarrow x \in E)$
+    \end{corollary}
+
+    \begin{proof} $\Rightarrow$\\
+        Пусть $\{x_{n}\} \subset E$, а $x \notin E$.\\
+        $x_{n} \to x \Rightarrow x \in E' \Rightarrow E$ -- не замкнуто по 3 критерию замкнутости, так как $x \notin E$.
+    \end{proof}
+    
+    \begin{proof} $\Leftarrow$\\
+        Пусть задано условие на последовательности. Тогда $E \supset E'$ \hyperlink{tar4}{по лемме}, следовательно $E$ -- замкнуто по 3 критерию замкнутости.
+    \end{proof}
+    
+    \begin{definition}
+        $\bar{E} = E \cup \delta (E)$ -- \textit{замыкание множества} $E$.
+    \end{definition}
+    
+    \begin{lemma}
+        Множество $\bar{E}$ -- замкнуто. Более того, $\bar{E} = E \cup E'$.
+    \end{lemma}
+    
+    \begin{proof}
+        Пусть $x \in \R \setminus \bar{E} \Rightarrow x \in ext(E) \Rightarrow \exists B_{\epsilon}(x) \subset \R \setminus E$.
+        Кроме того, $B_{\epsilon}(x) \subset \R \setminus \bar{E}$, иначе $B_{\epsilon}(x) \cap \delta (E) \neq \emptyset$, но тогда $B_{\epsilon}(x) \cap E \neq \emptyset$.
+        Следовательно $\R \setminus \bar{E}$ -- открыто.\\
+        2 утверждение вытекает из 2 наблюдений:
+        \begin{enumerate}
+            \item любая предельная точка либо внутренняя, либо граничная ($E \cup E' \subset E \cup \delta (E)$)
+            \item Любая граничная точка, не принадлежащая множеству $E$ является предельной ($E \cup \delta (E) \subset E \cup E'$)
+        \end{enumerate}
+    \end{proof}
+    
+    \begin{definition}
+        Семейство $\{G_{\lambda}\}_{\lambda \in \Lambda}$ называется \textit{покрытием} множества $E$, если $E \subset \underset{\lambda \in \Lambda}{\cup} G_{\lambda}$. Если все множества $G_{\lambda}$ открыты, то покрытие называется \textit{открытым}.
+    \end{definition}
+    
+    \begin{theorem}{Гейне-Борель}\\
+        Если $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $[a, b]$, то $\exists\lambda_1, \lambda_2, ..., \lambda_n \in \Lambda \  ([a, b] \subset G_{\lambda_1} \cup G_{\lambda_2} \cup ... \cup G_{\lambda_n})$
+    \end{theorem}
+
+    \begin{proof}
+        Предположим, $[a, b]$ не покрывается никаким конечным набором $G_{\lambda}$.
+        Разделим $[a, b]$ пополам и обозначим $[a_1, b_1]$ ту половину, которая не покрывается конечным набором $G_{\lambda}$.
+        Разделим пополам $[a_1, b_1]$ и т.д.
+        По индукции будет построена $\{[a_{n}, b_{n}]\}$ -- стягивающаяся ($b_n-a_n = \frac{b-a}{2^{n}} \to 0$),
+        каждый из её отрезков не покрывается конечным набором $G_{\lambda}$. По теореме Кантора $\exists c \in \cap_{n = 1}^{\infty}[a_n, b_n]$.
+        $c \in [a, b] \subset \cup_{\lambda \in \Lambda} G_{\lambda} \Rightarrow \exists \lambda_0 \in \Lambda \ (c \in G_{\lambda_0})$. $G_{\lambda_0}$ -- открыто $\Rightarrow \exists B_{\epsilon}(c) \subset G_{\lambda_0}$.\\
+        $a_{n} \to c, b_n \to c \Rightarrow \forall \epsilon > 0 \ \exists k : c - a_{k} < \epsilon, \  b_{k} - c < \epsilon \Rightarrow [a_k, b_k] \subset B_{\epsilon}(c) \subset G_{\lambda_0}$. Противоречие с выбором $[a_k, b_k]$.
+    \end{proof}

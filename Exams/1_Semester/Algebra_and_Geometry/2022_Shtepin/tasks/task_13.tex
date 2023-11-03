@@ -1,0 +1,148 @@
+\subsection{Инварианты кривой второго порядка.}
+
+    $P(x, y) \hm{=} Ax^2 + 2Bxy + Cy^2 + 2Dx + 2Ey + F$.
+
+    \begin{definition}
+        \textit{Инвариантом} кривой второго порядка называется $F(A, ..., F)$, которая сохраняет свое значение при переходе от одной ПДСК к другой.
+    \end{definition}
+
+    \begin{theorem}
+        Следующие величины являются инвариантами кривой второго порядка:
+        \[\Delta = \begin{vmatrix}
+            A & B & D \\
+            B & C & E \\
+            D & E & F
+        \end{vmatrix}, \ \delta = \begin{vmatrix}
+            A & B \\
+            B & C
+        \end{vmatrix}, \ I = A + C\]
+    \end{theorem}
+
+    \begin{proof}
+        Запишем матричное уравнение кривой второго порядка
+        \[\begin{pmatrix}
+            x & y & z
+        \end{pmatrix} \cdot \begin{pmatrix}
+            A & B & D \\
+            B & C & E \\
+            D & E & F
+        \end{pmatrix} \cdot \begin{pmatrix}
+            x \\
+            y \\
+            z
+        \end{pmatrix}\bigg|_{z = 1} = 0. \ \text{(I)}\]
+        Так же запишем формулу перехода
+        \[\begin{pmatrix}
+    		x\\ y
+            \end{pmatrix} = \begin{pmatrix}
+                \cos\phi & -\sin\phi \\
+                \sin\phi & \cos\phi
+            \end{pmatrix} \begin{pmatrix}
+    		x'\\ y'
+            \end{pmatrix} + \begin{pmatrix}
+    		\gamma_{1}\\ \gamma_{2}
+            \end{pmatrix}, \ \text{(1)}\]
+        от $(0, \overline{e_{1}}, \overline{e_{2}})$ к $(0', \overline{e_{1}}', \overline{e_{2}}')$. Наряду с (1) рассмотрим преобразование в пространстве
+        \[\begin{pmatrix}
+    		x \\
+                y \\
+                z
+            \end{pmatrix} =  \begin{pmatrix}
+                \cos\phi & -\sin\phi & \gamma_1 \\
+                \sin\phi & \cos\phi & \gamma_2 \\
+                0 & 0 & 1
+            \end{pmatrix} \begin{pmatrix}
+    		x' \\
+                y' \\
+                z'
+            \end{pmatrix}, \ \text{(2)}\]
+        при этом $z = z' = 1$. После преобразования в пространстве (2) ур-ие (I) примет вид:
+        \[\begin{pmatrix}
+            x' & y' & z'
+        \end{pmatrix} \left(\begin{pmatrix}
+            \cos\phi & \sin\phi & 0 \\
+            -\sin\phi & \cos\phi & 0 \\
+            \gamma_1 & \gamma_2 & 1
+        \end{pmatrix} \begin{pmatrix}
+            A & B & D \\
+            B & C & E \\
+            D & E & F
+        \end{pmatrix} \begin{pmatrix}
+            \cos\phi & -\sin\phi & \gamma_1 \\
+            \sin\phi & \cos\phi & \gamma_2 \\
+            0 & 0 & 1
+        \end{pmatrix}\right) \begin{pmatrix}
+            x' \\
+            y' \\
+            z'
+        \end{pmatrix}\bigg|_{z' = 1} = 0.\]
+        Обозначим $R' = \begin{pmatrix}
+            \cos\phi & \sin\phi & 0 \\
+            -\sin\phi & \cos\phi & 0 \\
+            \gamma_1 & \gamma_2 & 1
+        \end{pmatrix}$, $R = \begin{pmatrix}
+            \cos\phi & -\sin\phi & \gamma_1 \\
+            \sin\phi & \cos\phi & \gamma_2 \\
+            0 & 0 & 1
+        \end{pmatrix}$. Тогда
+        \[\Delta = \begin{vmatrix}
+            R' \begin{pmatrix}
+                A & B & D \\
+                B & C & E \\
+                D & E & F
+            \end{pmatrix} R
+        \end{vmatrix} = |R'|\Delta |R| = \Delta.\]
+        Обозначим $R(-\phi) = \begin{pmatrix}
+            \cos\phi & \sin\phi \\
+            -\sin\phi & \cos\phi
+        \end{pmatrix}$, $R(\phi) = \begin{pmatrix}
+                \cos\phi & -\sin\phi \\
+                \sin\phi & \cos\phi
+            \end{pmatrix}$. Тогда
+        \[\delta' = \begin{vmatrix}
+            R(-\phi) \begin{pmatrix}
+                A & B \\
+                B & C
+            \end{pmatrix} R(\phi)
+        \end{vmatrix} = \begin{vmatrix}
+            R(-\phi)
+        \end{vmatrix} \delta \begin{vmatrix}
+            R(\phi)
+        \end{vmatrix} = \delta.\]
+        Заметим, что $I = A + C = tr\begin{pmatrix}
+            A & B \\
+            B & C
+        \end{pmatrix}$ ($tr(A)$ -- след матрицы $\lra$ сумма элементов на главной диагонали). Тогда
+        \[I' = tr\begin{pmatrix}
+            A' & B' \\
+            B' & C'
+        \end{pmatrix} = tr\left(R(-\phi)\begin{pmatrix}
+            A & B \\
+            B & C
+        \end{pmatrix} R(\phi)\right) = I.\]
+    \end{proof}
+
+    \begin{proposition}{Классификация кривых второго порядка относительно инвариантов.} \\
+        \begin{itemize}
+    		\item Кривые эллиптического типа:
+    		\begin{enumerate}
+    			\item $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$, $a \ge b > 0$, "--- \textit{эллипс} $\lra \delta > 0, \ I\cdot\Delta < 0.$
+    			\item $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 0$, $a \ge b > 0$, "--- \textit{пара мнимых прямых} $\lra \delta > 0, \ \Delta = 0.$
+    			\item $\frac{x^2}{a^2} + \frac{y^2}{b^2} = -1$, $a \ge b > 0$, "--- \textit{мнимый эллипс} $\lra \delta > 0, \ I\cdot\Delta > 0.$
+    		\end{enumerate}
+    	
+    		\item Кривые гиперболического типа:
+    		\begin{enumerate}
+    			\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1$, $a, b > 0$, "--- \textit{гипербола} $\lra \delta < 0, \ \Delta \neq 0.$
+    			\item $\frac{x^2}{a^2} - \frac{y^2}{b^2} = 0$, $a, b > 0$, "--- \textit{пара пересекающихся прямых} $\lra \delta < 0, \ \Delta = 0.$
+    		\end{enumerate}
+    	
+    		\item Кривые параболического типа:
+    		\begin{enumerate}
+    			\item $y^2 = 2px$, $p > 0$, "--- \textit{парабола} $\lra \delta = 0, \ \Delta \neq 0.$
+    			\item $\frac{y^2}{a^2} = 1$, $a > 0$, "--- \textit{пара параллельных прямых} $\ra \delta = 0, \ \Delta = 0.$
+    			\item $\frac{y^2}{a^2} = 0$, $a > 0$, "--- \textit{пара совпадающих прямых} $\ra \delta = 0, \ \Delta = 0.$
+    			\item $\frac{y^2}{a^2} = -1$, $a > 0$, "--- \textit{пара мнимых параллельных прямых} $\ra \delta = 0, \ \Delta = 0.$
+    		\end{enumerate}
+    	\end{itemize}
+    \end{proposition}

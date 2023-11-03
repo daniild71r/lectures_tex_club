@@ -1,0 +1,136 @@
+\section{9. Измеримые функции. Согласованность измеримости функций с арифметическими операциями. Измеримость точных граней и предела последовательности измеримых функций. Сходимость почти всюду. Простые функции. Теорема о приближении измеримой функции простыми.}
+
+Пусть $E$ измеримо и $f: E \to \overline{\R}$.
+\begin{definition}
+    Функция $f$ называется \textit{измеримой} (по Лебегу), если $\{x \in E: f(x) < a\} = f^{-1}([-\infty, a))$ измеримо для всех $a \in \R$.
+\end{definition}
+
+\begin{lemma}
+    Пусть $f: E \to \R$. Тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $f$ измеримо;
+        \item $f^{-1}(U)$ измеримо для любого открытого $U$ в $\overline{\R}$;
+        \item $f^{-1}(\Omega)$ измеримо для любого борелевского $\Omega$ в $\overline{\R}$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Рассмотрим $\mathcal{A} = \{A \in B(\overline{\R}): f^{-1}(A) \text{ измеримо}\}$. Так как $\emptyset \in \mathcal{A}$, $E \setminus f^{-1}(A) = f^{-1}(\overline{\R} \setminus A) \Rightarrow (A \in \mathcal{A} \Rightarrow \overline{\R} \setminus A \in \mathcal{A})$ и $f^{-1}(\bigcup_{i = 1}^{\infty}A_{i}) = \bigcup_{i = 1}^{\infty}f^{-1}(A_{i}) \Rightarrow \bigcup_{i = 1}^{\infty}A_{i} \in \mathcal{A}$, то $\mathcal{A}$ образует $\sigma$-алгебру. $\mathcal{A}$ содержит все лучи $[-\infty, a)$. Следовательно, $B(\overline{\R}) = \mathcal{A}$, то есть $(1 \Rightarrow 3)$.
+
+    Импликации $(3 \Rightarrow 2 \Rightarrow 1)$ очевидны.
+\end{proof}
+
+\begin{theorem}
+    Если $f, g: E \to \R$ измеримые и $\lambda \in \R$, то $f + g, \lambda f, |f|, fg$ также измеримы.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Докажем измеримость суммы. Поскольку $\alpha < \beta \lra \exists r \in \Q (\alpha < r < \beta)$, $\Q = \{r_{k}\}_{k = 1}^{\infty}$, то 
+        \[\{x \in E: f(x) + g(x) < a\} = \{x \in E: f(x) < a - g(x)\} = \bigcup_{k = 1}^{\infty}\{x \in E: f(x) < r_{k} < a - g(x)\} = \]
+        \[= \bigcup_{k = 1}^{\infty}\{x \in E: f(x) < r_{r}\} \cap \{x \in E: g(x) < a - r_{k}\}.\]
+    
+        Следовательно, $\{x \in E: f(x) + g(x) < a\}$ измеримо.
+
+        \item Пусть $\lambda > 0$, тогда $\{x \in E: \lambda f(x) < a\} = \{x \in E: f(x) < \frac{a}{\lambda}\}$ измеримо.
+    
+        Если $\lambda = 0$, то тривиально. Если $\lambda < 0$, то аналогично.
+
+        \item Так как $\{x \in E: f^{2}(x) < a\} = \{x \in E: f(x) < \sqrt{a}\} \cap \{x \in E: f(x) > -\sqrt{a}\}$ измеримо $\forall a > 0$.
+    
+        Если $a \leq 0$, то $\{x \in E: f^{2}(x) < a\} = \emptyset$ -- измеримо.
+    
+        Следовательно, $f^{2}$ -- измеримая функция. Аналогично для $|f|$.
+    
+        Так как $fg = \frac{1}{2}\left((f + g)^{2} - f^{2} - g^{2}\right)$, то $fg$ измерима.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Если $f_{k}: E \to \overline{\R}$ -- измеримы, то $\underset{k}{\sup}f_{k}$, $\underset{k}{\inf}f_{k}$, $\overline{\lim}_{k \to +\infty}f_{k}$, $\underline{\lim}_{k \to +\infty}f_{k}$ также измеримы на $E$.
+\end{theorem}
+
+\begin{proof}
+    Измеримость $g = \underset{k}{\sup}f_{k}$ следует из равенства:
+    \[\{x \in E: g(x) \leq a\} = \bigcap_{k = 1}^{+\infty}\{x \in E: f_{k}(x) \leq a\}\]
+
+    Измеримость $h = \underset{k}{\inf}f_{k}$ следует из $\underset{k}{\inf}f_{k} = -\underset{k}{\sup}(-f_{k})$.
+
+    Далее, поскольку $\overline{\lim}_{k \to +\infty}f_{k} = \underset{k}{\inf}\underset{m \geq k}{\sup}f_{m}$, $\underline{\lim}_{k \to +\infty}f_{k} = \underset{k}{\sup}\underset{m \geq k}{\inf}f_{m}$, то оба предела измеримы.
+\end{proof}
+
+\begin{corollary}
+    Если $f_{k}: E \to \overline{\R}$ измеримы, и $f(x) = \lim_{k \to +\infty}f_{k}(x)$ для всех $x \in E$, то $f$ измерима на $E$.
+\end{corollary}
+
+\begin{proof}
+    Вытекает из предыдущей теоремы, но докажем непосредственно.
+
+    Имеем $f(x) < a \lra \exists j \in \N \ \exists N \ \forall k \geq N \ (f_{k}(x) < a - \frac{1}{j})$.
+
+    $\{x: f(x) < a\} = \bigcup_{j = 1}^{+\infty}\bigcup_{N = 1}^{+\infty}\bigcap_{k = N}^{+\infty} \{x: f_{k}(x) < a - \frac{1}{j}\}$ -- измеримо как операции над измеримыми множествами.
+\end{proof}
+
+\begin{definition}
+    Пусть $E \subset \R^{n}$, $Q$ -- формула на $E$.
+
+    Говорят, что $Q$ верна \textit{почти везде на $E$}, если $\mu(x \in E: Q(x) \text{ ложно}) = 0$.
+\end{definition}
+
+\begin{lemma}
+    Пусть $f, g: E \to \R$. Если $f = g$ почти везде и $f$ измерима, то $g$ измерима.
+\end{lemma}
+
+\begin{proof}
+    По условию, $Z = \{x \in E: f(x) \neq g(x)\}$ имеет меру нуль. Тогда для любого $a \in \R$ имеем $\{x \in E: g(x) < a\} = (\{x \in E : f(x) < a\} \cap Z^{c})\cup(\{x \in E: g(x) < a\}\cap Z)$ -- измеримо.
+\end{proof}
+
+\begin{corollary}
+    Если $f_{k}: E \to \overline{\R}$ измеримы и $f_{k} \to f$ почти везде на $E$, где $f: E \to \overline{\R}$, то $f$ измерима.
+\end{corollary}
+
+\begin{proof}
+    $g = \overline{\lim}_{k \to +\infty}f_{k}$ измерима на $E$, $f = g$ почти везде на $E$, значит $f$ измерима (по лемме).
+\end{proof}
+
+\begin{definition}
+    Функция $\phi: \R^{n} \to \R$ называется \textit{простой}, если $\phi$ измерима и множество её значений конечно.
+\end{definition}
+
+\begin{example}
+    Пусть $A \subset \R^{n}$, Определим \textit{индикатор (характеристическую функцию)} $A$:
+    \[\I_{A}: \R^{n} \to \R, \ \I_{A}(x) = \begin{cases}
+        1, \ x \in A;\\
+        0, \ x \not\in A.
+    \end{cases}\]
+    Поскольку $\{x: \I_{A}(x) < a\}$ пусто при $a \leq 0$, совпадает с $A^{c}$ при $a \in (0, 1]$ и совпадает с $\R^{n}$ при $a > 1$, то функция $\I_{A}$ является измеримой $\lra$ $A$ измеримо.
+\end{example}
+
+\begin{note}
+    Любая линейная комбинация индикаторов измеримых множеств является простой функцией.
+
+    С другой стороны, для любой простой функции $\phi$ существует разбиение $\R^{n}$ конечным числом измеримых множеств, на которых $\phi$ постоянна (допустимое разбиение для $\phi$). Такое разбиение можно построить следующим образом: пусть $\phi(\R^{n}) = \{a_{1}, \ldots, a_{m}\}$, где $a_{i}$ попарно различны, определим $A_{i} = \phi^{-1}(a_{i})$. Тогда $\phi = \sum_{i = 1}^{m}a_{i} \I_{A_{i}}$ и $\{A_{i}\}$ -- допустимое разбиение.
+\end{note}
+
+\begin{theorem}
+    Если $f: E \to [0, +\infty]$ -- неотрицательная измеримая функция, то существует последовательность $\{\phi_{k}\}$ неотрицательных простых функций, таких что $\forall x \in E$ выполняется
+    \begin{enumerate}
+        \item $0 \leq \phi_{1}(x) \leq \phi_{2}(x) \leq \ldots$
+        \item $\lim_{k \to +\infty}\phi_{k}(x) = f(x)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Для $k \in \N$ определим множества:
+    \[E_{k, j} = \left\{x \in E: \frac{j - 1}{2^{k}} \leq f(x) < \frac{j}{2^{k}}\right\}, \ j = 1, \ldots, k\cdot2^{k},\]
+    \[F_{k} = \{x \in E: f(x) \geq k\}.\]
+    Множества $E_{k, j}$ и $F_{k}$ измеримы и в объединении дают $E$.
+
+    Определим $\phi_{k} = \sum_{j = 1}^{k\cdot2^{k}}\frac{j - 1}{2^{k}}\I_{E_{k, j}} + k\cdot\I_{F_{k}}$. Пусть $x \in E$. Покажем, что $\{\phi_{k}(x)\}$, возрастая, стремится к $f(x)$.
+
+    Если $f(x) = +\infty$, то $\phi_{k}(x) = k$ для всех $k$ и утверждение верно.
+
+    Пусть $f(x) \in \R$ и $k \in \N$. Если $f(x) \geq k + 1$, то $\phi_{k + 1}(x) = k + 1 > k = \phi_{k}(x)$. Если $k \leq f(x) < k + 1$, то $\phi_{k + 1}(x) \geq k = \phi_{k}(x)$.
+
+    Пусть $f(x) < k$, тогда $\frac{j - 1}{2^{k}} \leq f(x) < \frac{j}{2^{k}}$ для некоторого $j$, $1 \leq j \leq k\cdot2^{k}$. Возможны два варианта: $\frac{2j - 2}{2^{k + 1}} \leq f(x) < \frac{2j - 1}{2^{k + 1}}$ или $\frac{2j - 1}{2^{k + 1}} \leq f(x) < \frac{2j}{2^{k + 1}}$. В обоих случаях $\phi_{k + 1}(x) \geq \frac{2j - 2}{2^{k+1}} = \frac{j - 1}{2^{k}} = \phi_{k}(x)$ и возрастание установлено. Кроме того, $0 \leq f(x) - \phi_{k}(x) < 2^{-k}$ при всех $k \geq [f(x)] + 1$, откуда следует, что $\phi_{k}(x) \to f(x)$. 
+\end{proof}

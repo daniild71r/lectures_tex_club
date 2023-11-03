@@ -1,0 +1,132 @@
+\begin{definition}
+    Точка $x \in \mathds{R}$ называется \underline{предельной точкой} множества $E \in \mathds{R}$,\\
+    если $\forall \epsilon > 0 \ (\mathring{E}_\epsilon(x) \cap E \neq \emptyset)$
+\end{definition}
+
+\begin{lemma}
+    $x$ -- предельная точка множества $E \iff \exists \{x_{n}\} \subset E \ (x_n \to x)$
+\end{lemma}
+
+\begin{proof} $\Rightarrow$ \\
+    Пусть $x \in E'$, где $E'$ -- множество всех предельных точек множества $E$.
+    Тогда $\forall n \in \mathds{N} (\mathring{B}_{\frac{1}{n}}(x) \cap E \neq \emptyset)$.
+    Выберем $x_n \in \mathring{B}_{\frac{1}{n}}(x) \cap E$.
+    Имеем $\forall n \ (0 < |x_n - x| < \frac{1}{n}) \Rightarrow x_n \to x, x_n \neq x$
+\end{proof}
+
+\begin{proof} $\Leftarrow$ \\
+    Пусть $x_{n} \to x$, $x_{n} \neq x$ Зафиксируем $\epsilon > 0$. Тогда $\exists N \ \forall n \geq N (|x_{n} - x| < \epsilon)$. Следовательно, $\mathring{B}_{\epsilon}(x) \cap E \neq \emptyset \ (\mathring{B}_{\epsilon}(x) \cap E \ni x_{N})$
+\end{proof}
+
+\begin{theorem} Критерий замкнутости.\\
+    Пусть $E \subset \mathds{R}$, тогда следующие утверждения эквивалентны:
+    \begin{enumerate}
+        \item $E$ замкнуто
+        \item $E$ содержит все свои граничные точки
+        \item $E$ содержит все свои предельные точки
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $1 \Rightarrow 2$\\
+        $x \in \mathds{R} \setminus E$ (открытое) $\Rightarrow \exists B_{\epsilon}(x) \subset \mathds{R} \setminus E \Rightarrow x$ -- внешняя точка $E \Rightarrow x \neq \delta E \Rightarrow E \supset \delta E$.
+        \item $2 \Rightarrow 3$\\
+        Любая предельная точка -- (внутренняя/граничная). $intE \subset E, \delta E \subset E \Rightarrow E' \subset E$.
+        \item $3 \Rightarrow 1$\\
+        $x \in \mathds{R} \setminus E \Rightarrow x \notin E' \Rightarrow \exists \mathring{B}_{\epsilon}(x) \cap E = \emptyset \Rightarrow B_{\epsilon}(x) \subset \mathds{R} \setminus E \Rightarrow \mathds{R} \setminus E$ -- открыто $\Rightarrow E$ -- замкнуто.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    $E$ -- замкнуто $\iff \forall {x_{n}} \subset E (x_{n} \to x \Rightarrow x \in E)$
+\end{corollary}
+
+\begin{proof} $\Rightarrow$\\
+    Пусть $\{x_{n}\} \subset E$, а $x \notin E$.\\
+    $x_{n} \to x \Rightarrow x \in E' \Rightarrow E$ -- не замкнуто по теореме 1 пункту 3, так как $x \notin E$.
+\end{proof}
+
+\begin{proof} $\Leftarrow$\\
+    Пусть задано условие на последовательности. Тогда $E \supset E'$ по лемме 2, следовательно $E$ -- замкнуто по теореме 1 пункту 3.
+\end{proof}
+
+\begin{example}
+    Пусть $L$ -- множество частичных пределов числовой последовательности $\{a_{n}\}$.
+    Покажем, что $L$ -- замкнуто.\\
+    Пусть $x_{n} \to n$ и $x_{n} \in L$. Так как $x_{k}$ -- частичный предел $\{a_{n}\}$, то существует строго возрастащая последовательность номеров $\{n_{k}\} \subset \mathds{N}$, такая что $|x_{k} - a_{n_{k}}| < \frac{1}{k}$. Тогда $|a_{n_{k}} - x| \leq |a_{n_k} - x_k| + |x_k - x| < \frac{1}{k} + |x_k - x| \forall k \Rightarrow a_{n_k} \to x$, то есть $x \in L$.
+\end{example}
+
+\begin{definition}
+    $\bar{E} = E \cup \delta E$ -- \underline{замыкание множества} $E$.
+\end{definition}
+
+\begin{lemma}
+    Множество $\bar{E}$ -- замкнуто. Более чтого $\bar{E} = E \cup E'$.
+\end{lemma}
+
+\begin{proof}
+    Пусть $x \in \mathds{R} \setminus \bar{E} \Rightarrow x \in extE \Rightarrow \exists B_{\epsilon}(x) \subset \mathds{R} \setminus E$.
+    Кроме того, $B_{\epsilon}(x) \subset \mathds{R} \setminus \bar{E}$, иначе $B_{\epsilon}(x) \cap \delta E \neq \emptyset$, но тогда $B_{\epsilon}(x) \cap E \neq \emptyset$.
+    Следовательно $\mathds{R} \setminus \bar{E}$ - открыто.\\
+    2 утверждение вытекает из 2 наблюдений:
+    \begin{enumerate}
+        \item любая предельная точка либо внутренняя, либо граничная ($E \cup E' \subset E \cup \delta E$)
+        \item Любая граничная точка, не принадлежащая множеству $E$ является предельной ($E \cup \delta E \subset E \cup E'$)
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    $a \in \bar{E} \iff \exists\{x_{n}\} \subset E \ (x_{n} \to a)$
+\end{problem}
+
+\begin{definition}
+    Семейство $\{G_{\lambda}\}_{\lambda \in \Lambda}$ называется \underline{покрытием множества} $E$, если $E \subset \cup_{\lambda \in \Lambda} G_{\lambda}$. Если все множества $G_{\lambda}$ открыты, то покрытие называется \underline{открытым}.
+\end{definition}
+
+\begin{example}
+    $\{(\frac{1}{n}, 1)\}$ -- открытое покрытие $(0, 1)$, так как $\cup_{n = 1}^{\infty}(\frac{1}{n}, 1) = (0, 1)$.
+\end{example}
+
+\begin{theorem} Гейне-Борель\\
+    Если $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $[a, b]$, то $\exists\lambda_1, \lambda_2, ..., \lambda_n \in \Lambda \  ([a, b] \subset G_{\lambda_1} \cup G_{\lambda_2} \cup ... \cup G_{\lambda_n})$
+\end{theorem}
+
+\begin{proof}
+    Предположим, $[a, b]$ не покрывается никаким конечным набором $G_{\lambda}$.
+    Разделим $[a, b]$ пополам и обозначим $[a_1, b_1]$ ту половину, которая не покрывается конечным набором $G_{\lambda}$.
+    Разделим пополам $[a_1, b_1]$ и т.д.
+    По индукции будет построена $\{[a_{n}, b_{n}]\}$ -- стягивающаяся ($b_n-a_n = \frac{b-a}{2^{n}} \to 0$),
+    каждый из её отрезков не покрывается конечным набором $G_{\lambda}$. По теореме Кантора $\exists c \in \cap_{n = 1}^{\infty}[a_n, b_n]$.
+    $c \in [a, b] \subset \cup_{\lambda \in \Lambda} G_{\lambda} \Rightarrow \exists \lambda_0 \in \Lambda \ (c \in G_{\lambda_0})$. $G_{\lambda_0}$ -- открыто $\Rightarrow \exists B_{\epsilon}(c) \subset G_{\lambda_0}$.\\
+    $a_{n} \to c, b_n \to c \Rightarrow \exists k : c - a_{k} < \epsilon, b_{k} - c < \epsilon \Rightarrow [a_k, b_k] \subset B_{\epsilon}(c) \subset G_{\lambda_0}$!!! (с выбором $[a_k, b_k]$).
+\end{proof}
+
+\begin{corollary}
+    Если $F$ -- замкнутое ограниченное множество и $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $F$, то $\exists \lambda_1, \lambda_2, ..., \lambda_n \in \Lambda (F \subset G_{\lambda_1} \cup G_{\lambda_2} \cup ... \cup G_{\lambda_n})$ (найдется такое конечное множество $\lambda$).
+\end{corollary}
+
+\begin{proof}
+    Пусть $F$ -- замкнутое ограниченное множество, $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $F$.\\
+    Так как $F$ -- ограниченное, то $\exists [a, b] \supset F$.\\
+    $\{G_{\lambda}\}_{\lambda \in \Lambda} \cup \{\mathds{R} \setminus F\}$ -- открытое покрытие $[a, b]$, так как $\cup_{\lambda \in \Lambda}G_{\lambda} \cup (\mathds{R} \setminus F) = \mathds{R}$.\\
+    По теореме 2 $\exists \lambda_1, \lambda_2, ..., \lambda_n \in \Lambda \ (F \subset [a, b] \subset G_{\lambda_1} \cup G_{\lambda_2} \cup ... \cup G_{\lambda_n} \cup (\mathds{R} \setminus F))$.
+    Следовательно, $F \subset G_{\lambda_1} \cup G_{\lambda_2} \cup ... \cup G_{\lambda_n}$.\\
+\end{proof}
+
+\begin{definition}
+    Пусть $\epsilon > 0$.\\
+    $B_{\epsilon}(+\infty) = (\frac{1}{\epsilon}, +\infty) \cup \{\infty\}$ -- \underline{$\epsilon$ -- окрестность $+\infty$}\\
+    $\mathring{B}_{\epsilon}(+\infty) = (\frac{1}{\epsilon}, +\infty)$ -- \underline{проколотая $\epsilon$ -- окрестность $+\infty$}\\
+    $B_{\epsilon}(-\infty) = \{-\infty\} \cup (-\infty, -\frac{1}{\epsilon})$ -- \underline{$\epsilon$ -- окрестность $-\infty$}\\
+    $\mathring{B}_{\epsilon}(-\infty) = (-\infty, -\frac{1}{\epsilon})$ -- \underline{проколотая $\epsilon$ - окрестность $-\infty$}\\
+\end{definition}
+
+Поскольку все понятия этого параграфа вводились через окрестности, то определения без изменения переносятся на множество $\bar{\mathds{R}}$.
+В частности, $+\infty(-\infty)$ -- предельная точка $E \subset \bar{\mathds{R}} \iff E \setminus \{\pm\infty\}$ -- неограничено сверху(снизу) в $\mathds{R}$.
+
+В терминах окрестности можно дать общее определение предела числовой последовательности.
+
+\begin{definition}
+    Точка $a \in \bar{\mathds{R}}$ называется \underline{пределом последовательности} $\{a_{n}\}$, если $\forall \epsilon > 0 \ \exists N \in \mathds{N} \ \forall n \geq N \ (a_{n} \in B_{\epsilon}(a))$
+\end{definition}

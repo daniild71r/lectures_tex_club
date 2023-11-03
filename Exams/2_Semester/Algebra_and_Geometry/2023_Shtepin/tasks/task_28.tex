@@ -1,0 +1,106 @@
+\section{28. Тензоры типа $(p, q)$. Тензорное произведение тензоров. Координатная запись тензора, изменение координат при замене базиса, тензорный базис.}
+
+Зафиксируем линейное пространство $V$ размерности $n$ над полем~$F$ и сопряженное к нему пространство $V^* = \mathcal{L}(V, F)$. Для любых $s, t \in \N \cup \{0\}$ положим $V^s := \underbrace{V \times \dots \times V}_{s}$, $(V^*)^t := \underbrace{V^* \times \dots \times V^*}_{t}$.
+
+\begin{definition}
+	\textit{Тензором типа $(p, q)$}, или \textit{$p$ раз контравариантныым и $q$ раз ковариантным тензором} называется полилинейное отображение $t: (V^*)^p \times V^q \rightarrow F$. Все тензоры типа $(p, q)$ образуют линейное пространство над $F$, обозначение "--- $\mathbb{T}^p_q(V)$ или $\mathcal{L}(\underbrace{V^*, \dots, V^*}_{p}, \underbrace{V, \dots, V}_{q}; F)$.
+\end{definition}
+
+\begin{note}
+	Тензор задается однозначно своими значениями на всевозможных комбинациях аргументов из базиса в $V$ и базиса в $V^*$, то есть на $n^{p + q}$ наборах векторов.
+\end{note}
+
+\begin{example}
+	Рассмотрим несколько тензоров различных типов:
+	\begin{enumerate}
+		\item Тензор\;типа\;$(0, 1)$\:"---\:это\;линейный функционал на $V$, поэтому $\mathbb{T}_1^0 = V^*$.
+		
+		\item Тензор\;типа\;$(1, 0)$\:"---\:это\;элемент пространства $V^{**} \cong V$, поэтому $\mathbb{T}^1_0 \cong V$, причем эти пространства можно отождествить в силу канонического изоморфизма.
+		
+		\item Тензор\;типа\;$(0, 2)$\:"---\:это\;билинейная форма на $V$, поэтому $\mathbb{T}^0_2 = \mathcal{B}(V)$.
+		
+		\item Тензор\;типа\;$(1, 1)$\:"---\:это\;билинейное отображение $t: V^* \times V \hm{\rightarrow} F$. Зафиксируем $\overline{v} \in V$, тогда $t_{\overline{v}}(f) \hm{:=} t(f, \overline{v})$ "--- линейный функционал на $V^*$, то есть $t_{\overline{v}} = \overline{u} \in V$. Тензору $t$ можно поставить в соответствие линейный оператор $\phi \in \mathcal{L}(V)$, $\phi(\overline{v}) = t_{\overline{v}} = \overline{u}$. Это соответствие линейно, поскольку $t$ линеен по второму аргументу, и обратимо: $\forall \phi \in \mathcal{L}(V): \phi \mapsto t$, где $t \in \mathbb{T}^1_1$ "--- такой, что $t(f, \overline{v}) = f(\phi(\overline{v}))$. Значит, $\mathbb{T}^1_1 \cong \mathcal{L}(V)$, причем эти пространства можно отождествить в силу канонического изоморфизма.
+		
+		\item Пусть $A$ "--- алгебра над $F$. Тогда умножение $\cdot: A \times A \rightarrow A$ "--- это билинейное отображение, $\cdot \in \mathcal{L}(A, A; A)$, и ему соответствует тензор $t \in \mathbb{T}^1_2(A)$ следующего вида:
+		\[t(f, \overline{a_1}, \overline{a_2}) := f(\overline{a_1} \cdot \overline{a_2})\]
+		
+		Аналогично прошлому примеру, соответствие $\cdot \mapsto t$ линейно и обратимо, поэтому $\mathbb T^1_2(A) \cong \mathcal{L}(A \times A, A)$, причем эти пространства можно отождествить в силу канонического изоморфизма.
+			
+		\item Один из тензоров типа $(0, n)$, $n \in \mathbb{N}$, "--- это определитель.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $t \in \mathbb{T}^p_q$, $t' \in \mathbb{T}^{p'}_{q'}$. Тогда \textit{тензорным произведением} тензоров $t$ и $t'$ называется тензор $t \otimes t' \in \mathbb{T}^{p + p'}_{q + q'}$ следующего вида:
+	\[t \otimes t' (f_1, \dots, f_{p + p'}, \overline{v_1}, \dots, \overline{v_{q + q'}}) := t(f_1, \dots, f_p, \overline{v_1}, \dots, \overline{v_q})t'(f_{p+1}, \dots, f_{p + p'}, \overline{v_{q+1}}, \dots, \overline{v_{q+q'}})\]
+\end{definition}
+
+\begin{example} Рассмотрим несколько тензорных произведений:
+	\begin{enumerate}
+		\item Пусть $f_1, f_2 \in \mathbb{T}^0_1 = V^*$. Тогда $f_1 \otimes f_2 \in \mathbb{T}^0_2 = \mathcal{B}(V)$, причем $f_1 \otimes f_2(\overline{v_1}, \overline{v_2}) = f_1(\overline{v_1})f_2(\overline{v_2})$ и легко видеть, что $\rk{f_1 \otimes f_2} \le 1$.
+		
+		\item Пусть $g \in V^*$, $\overline{u} \in V$. Тогда $g \otimes \overline{u} \in \mathbb{T}^1_1 \hm{=} \mathcal{L}(V)$, и данному тензору соответствует оператор $\phi \in \mathcal{L}(V)$ такой, что $\phi(\overline{v}) = g(\overline{v})\overline{u}$. В частности, $\rk{\phi} \le 1$.
+	\end{enumerate}
+\end{example}
+
+\begin{proposition} Тензорное произведение обладает следующими свойствами:
+	\begin{enumerate}
+		\item $\otimes$ линейно по обоим аргументам.
+		\item $\otimes$ ассоциативно, но необязательно коммутативно.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Оба свойства следуют непосредственно из формулы в определении тензорного произведения. В то же время, если, например, $t_1, t_2 \in T^0_1$, то:
+	\begin{gather*}
+		t_1 \otimes t_2 (\overline{v_1}, \overline{v_2}) = t_1(\overline{v_1})t_2(\overline{v_2})\\
+		t_2 \otimes t_1 (\overline{v_1}, \overline{v_2}) = t_2(\overline{v_1})t_1(\overline{v_2})
+	\end{gather*}
+	
+	Видно, что при $\dim{V} > 0$ можно подобрать такие тензоры и такие векторы, на которых значения выражений выше будут отличаться.
+\end{proof}
+
+\begin{note}
+	Далее в записях будут применяться нижние и верхние индексы, не означающие возведение в степень. Они нужны исключительно для упрощения формул.
+\end{note}
+
+\begin{definition}
+	Пусть $e = (e_1, \dots, e_n)$ "--- базис в $V$. \textit{Взаимным (биортогональным)} к $e$ базисом называется базис $e^* = (e^1, \dots, e^n)$ в $V^*$ такой, что:
+	\[\forall i, j \in \{1, \dotsc, n\}: e^j(e_i) = e_i(e^j) = \delta^j_i = \left\{\begin{aligned}
+	0, i \ne j\\
+	1, i = j
+	\end{aligned}\right.\]
+	
+	Будем обозначать через $v^j := e^j(\overline{v})$ $j$-ую координату вектора $\overline{v}$ в базисе $e$, а через $f_i := e_i(f)$ "--- $i$-ую координату функционала $f$ в базисе $e^*$.
+\end{definition}
+
+\begin{definition}
+	Пусть $e$ и $e^*$ "--- взаимные базисы в $V$ и $V^*$, $t \in \mathbb{T}^p_q$. \textit{Координатами тензора $t$ в базисе $e$} называется набор из следующих величин:
+	\[t^{i_1, \dots, i_p}_{j_1, \dots, j_q} = t(e^{i_1}, \dots, e^{i_p}, e_{j_1}, \dots, e_{j_q}),~i_1, \dots, i_p, j_1, \dots, j_q \in \{1, \dots, n\}\]
+\end{definition}
+
+\begin{note}
+	Как уже было отмечено, тензор $t \in \mathbb T^p_q$ однозначно задается своими координатами в неотором базисе. Заметим, что тензор $t = e_{i_1} \otimes \dots \otimes e_{i_p} \otimes e^{j_1} \hm{\otimes} \dots \otimes e^{j_q} \hm{\in} \mathbb{T}^p_q$ имеет координаты следующего вида:
+	\[t^{i'_1, \dots, i'_p}_{j'_1, \dots, j'_q} = \delta_{i_1}^{i'_1}\dots\delta_{i_p}^{i'_p}\delta_{j'_1}^{j_1}\dots\delta_{j'_q}^{j_q}\]
+	
+	Значит, произвольный тензор $t \in \mathbb{T}^p_q$ можно записать в таком виде:
+	\[t = t^{i_1, \dots, i_p}_{j_1, \dots, j_q}e_{i_1} \otimes \dots \otimes e_{i_p} \otimes e^{j_1} \hm{\otimes} \dots \otimes e^{j_q}\]
+	
+	Равенство выше справедливо потому, что значения тензоров в левой и правой части совпадают на всех наборах вида $(e^{i_1}, \dots, e^{i_p}, e_{j_1}, \dots, e_{j_q})$.
+\end{note}
+	
+\begin{note}
+	Как уже было отмечено, тензоры вида $e_{i_1} \otimes \dots \otimes e_{i_p} \otimes e^{j_1} \hm{\otimes} \dots \otimes e^{j_q}$ "--- это порождающая система в $\mathbb T^p_q$. Более того, она линейно независима, поскольку для каждого тензора вида $e_{i_1} \otimes \dots \otimes e_{i_p} \otimes e^{j_1} \hm{\otimes} \dots \otimes e^{j_q}$ можно выбрать такой набор $(e^{i_1}, \dots, e^{i_p}, e_{j_1}, \dots, e_{j_q})$, который обнулит все тензоры системы кроме данного. Значит, эта система образует базис в пространстве $\mathbb{T}^p_q$.
+\end{note}
+
+\begin{theorem}
+	Пусть $e$, $e'$ "--- базисы в $V$ такие, что $e_j' = a_j^ie_i$, $e^k = a^k_ie'^i$. Тогда преобразование координат тензора $t \in \mathbb T^p_q$ при замене базиса имеет следующий вид:
+	\[t^{i_1, \dots, i_p}_{j_1, \dots, j_q} = a^{i_1}_{i_1'}\dots a^{i_p}_{i'_p}b^{j_1'}_{j_1}\dots b^{j'_q}_{j_q}t'^{i'_1, \dots, i'_p}_{j'_1, \dots, j'_q}\]
+\end{theorem}
+
+\begin{proof}
+	Для простоты выполним проверку в случае, когда $t \in \mathbb{T}^1_1$, поскольку в общем случае рассуждение аналогично:
+	\[t = t^i_je_i \otimes e^j = t^{i'}_{j'}e'_{i'} \otimes e'^{j'} = t^{i'}_{j'}(a_{i'}^ie_i) \otimes (b^{j'}_je^{j}) = t^{i'}_{j'}a^i_{i'}b^{j'}_j e_i \otimes e^j\]
+	
+	Получено разложение тензора $t$ по базису $e$ двумя способами, поэтому $t^i_j = t'^{i'}_{j'}a^i_{i'}b^{j'}_j$.
+\end{proof}

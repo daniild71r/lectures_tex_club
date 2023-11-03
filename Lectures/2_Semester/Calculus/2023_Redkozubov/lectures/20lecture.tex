@@ -1,0 +1,110 @@
+%12.04.23
+
+\subsection{Линейные отображения в евклидовых пространствах}
+
+\begin{definition}
+    Отображение $L$ называется \textit{линейным}, если $\forall x_{1}, x_{2} \in X$ и $\forall \alpha_{1}, \alpha_{2} \in \R$ выполнено $L(\alpha_{1}x_{1} + \alpha_{2}x_{2}) = \alpha_{1}L(x_{1}) + \alpha_{2}L(x_{2})$.
+\end{definition}
+
+\begin{example}
+    Пусть $L: \R^{n} \to \R^{m}$ линейно, $L(x) = Ax$ с $A = (a_{ij})$. Так как $|L(x)|^{2} = \sum_{i = 1}^{m}(L_{i}, x)^{2}$, где $L_{i} = (a_{i1}, \ldots, a_{in})^{T}$, то по неравенству Коши-Буняковского-Шварца
+    \[|L(x)|^{2} \leq \sum_{i = 1}^{m}|L_{i}|^{2}|x|^{2} = |x|^{2}\sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij}^{2},\]
+    так что $\|L\|\ \leq C$ для $C = \sqrt{\sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij}^{2}}$.
+\end{example}
+
+\begin{definition}
+    Для $L \in \mathcal{L}(X, Y)$ определим $\|L\| = \underset{x \neq 0}{\sup}\frac{\|L(x)\|}{\|x\|}$.
+\end{definition}
+
+\begin{note}
+    $\|L\| \in \R$. По определению супремума $\|L(x)\| \leq \|L\|\|x\|$ для всех $x \in X$, и для всякого $\epsilon > 0$ найдется такое $x_{\epsilon} \in X$, что $\|L(x)\| > (\|L\| - \epsilon)\|x_{\epsilon}\|$. Это означает, что $\|L\|$ -- наименьшее из чисел $C > 0$, таких что $\|L(x)\| \leq C\|x\|$ для всех $x \in X$.
+
+    Нетрудно проверить, что $(\mathcal{L}(X, Y), \|\cdot\|)$ является нормированным пространством, причем $\|L_{2}L_{1}\| \leq \|L_{2}\|\|L_{1}\|$.
+\end{note}
+
+\section{Дифференциальное исчисление}
+
+\subsection{Дифференцируемость функции в точке}
+
+Пусть $U \subset \R^{n}$, $U$ -- открытое и задана функция $f: U \to \R^{n}$.
+
+\begin{definition}
+    Функция $f$ называется \textit{дифференцируемой} в точке $a$, если существует такое непрерывное линейное отображение $L_{a}: X \to Y$, что 
+    \[f(a + h) = f(a) + L_{a}(h) + \alpha(h)\|h\|, \label{def_dif}\]
+    для некоторой функции $\alpha$, такой что $\alpha(h) \to 0$.
+\end{definition}
+
+\begin{note}
+    Формула (\ref{def_dif}) не определяет значение $\alpha$ в нуле. В дальнейшем будем считать, что $\alpha(0) = 0$ и, значит, функция $\alpha$ непрерывна в нуле.
+
+    Формулу (\ref{def_dif}) можно знаписать в виде
+    \[f(a + h) = f(a) + df_{a}(h) + o(\|h\|), \ h \to 0.\]
+
+    Линейное отображение $L_{a}$ называется \textit{дифференциалом} $f$ в точке $a$ и обозначается $df_{a}$.
+\end{note}
+
+\begin{note}
+    Если функция $f$ дифференцируема в точке $a$, то $f$ непрерывна в точке $a$. Действительно, $a$ -- внутренняя точка $U$, и по (\ref{def_dif}) $\lim_{h \to 0} f(a + h) = f(a) \lra \lim_{x \to a}f(x) = f(a)$.
+\end{note}
+
+\begin{definition}
+    Пусть $v \in \R^{n}$ и функция $f$ определена на множестве $\{a + tv: |t| < \delta\}$ для некоторого $\delta > 0$. Предел 
+    \[\lim_{t \to 0} \frac{f(a + tv) - f(a)}{t},\]
+    если этот предел существует, называется \textit{производной $f$ по вектору v} в точке $a$ и обозначается $\frac{\partial f}{\partial v}(a)$ (а также $f'_{v}(a)$ и $\partial_{v}f(a)$).
+\end{definition}
+
+\begin{example}
+    $f: \R^{n} \to \R$, $f(x) = |x|$. Пусть $x, v \in \R^{n} \setminus \{0\}$. Тогда $\frac{\partial f}{\partial v}(x) = \frac{d}{dt}|_{t = 0}|x + tv| = \frac{d}{dt}|_{t = 0}\left(\sum_{i = 1}^{n}(x_{i} + tv_{i})^{2}\right)^\frac{1}{2} = \frac{1}{2|x|}\sum_{i = 1}^{n}2x_{i}v_{i} = \left(\frac{x}{|x|}, v\right)$.
+\end{example}
+
+\begin{theorem}
+    Если $f: U \to \R^{n}$ дифференцируема в точке $a$, $v \in \R^{n}$, то существует $\frac{\partial f}{\partial v}(a) = df_{a}(v)$.
+\end{theorem}
+
+\begin{proof}
+    Для $v = 0$ утверждение верно. Пусть $v \neq 0$. Выберем $\delta > 0$ так, что $B_{\delta}(a) \subset U$. Тогда для всех $t \in \R$ с $|t| < \frac{\delta}{|v|}$, получим
+    \[f(a + tv) = f(a) + df_{a}(tv) + \alpha(tv)\|tv\|.\]
+    В силу линейности $df_{a}(tv) = tdf_{a}(v)$. Далее, по непрерывности $\alpha$ в $0$ имеем $\alpha(tv) \to 0$ при $t \to 0$, поэтому
+    \[\frac{\partial f}{\partial v}(a) = \lim_{t \to 0}\frac{f(a + tv) - f(a)}{t} = \lim_{t \to 0}(df_{a}(v) \pm \alpha(tv)\|v\|) = df_{a}(v).\]
+\end{proof}
+
+\begin{corollary}
+    Если функция $f$ дифференцируема в точке $a$, то ее дифференциал в точке $a$ определен однозначно.
+\end{corollary}
+
+\begin{example}
+    Любое линейное отображение $L: \R^{n} \to \R^{m}$ дифференцируемо в каждой точке $a \in \R^{n}$ и $dL_{a} = L$. Это следует из равенства
+    \[L(a + h) = L(a) + L(h).\]
+\end{example}
+
+Запишем определение дифференцируемости для конкретных случаев $X = \R^{n}$ и $Y = \R^{m}$.
+
+\textit{Случай функций из $\R$ в $\R^{m}$.}
+
+Дифференцируемость функции $\gamma : (\alpha, \beta) \to \R^{m}$ в точке $a \in (\alpha, \beta)$ определялась ранее как существование производной $\gamma'(a) = \lim_{t \to 0}\frac{\gamma(a + t) - \gamma(a)}{t}$. Это согласуется с определением дифференцируемости, поскольку наличие предела равносильно $\gamma(a + t) - \gamma(a) = t \gamma'(a) + t\sigma(t)$, где $\sigma(t) \to 0$ при $t \to 0$. Таким образом, $d\gamma_{a}(t) = t\gamma'(a)$.
+
+\textit{Случай функций из $\R^{n}$ в $\R$.}
+
+Пусть $U \subset R^{n}$ открыто, и функция $f: U \to \R$. Пусть $e_{1}, \ldots, e_{n}$ -- стандартный базис в $\R^{n}$.
+
+\begin{definition}
+    Производная по вектору $e_{k}$ в точке $a$, т.е. $\frac{\partial f}{\partial e_{k}}(a) = \lim_{t \to 0}\frac{f(a + t e_{k}) - f(a)}{t}$, называется \textit{частной производной} функции $f$ по переменной $x_{k}$ в точке $a$ и обозначается $\frac{\partial f}{\partial x_{k}}(a)$ (а также $f'_{x_{k}}(a)$ и $\partial_{k}f(a)$).
+\end{definition}
+
+Из теоремы 1 получим необходимое условие дифференцируемости.
+
+\begin{corollary}
+    Если $f: U \to \R$ дифференцируема в точке $a$, то она имеет в этой точке частные производные $\frac{\partial f}{\partial x_{k}}(a)$, $k = 1, \ldots, n$, и $df_{a}(h) = \sum_{k = 1}^{n}\frac{\partial f}{\partial x_{k}}(a)h_{k}$ для всех $h \in \R^{n}$.
+\end{corollary}
+
+\begin{proof}
+    По теореме 1 существуют $\frac{\partial f}{\partial x_{k}}(a) = df_{a}(e_{k})$, следовательно, в силу линейности
+    \[df_{a}(h) = df_{a}\left(\sum_{k = 1}^{n}h_{k}e_{k}\right) = \sum_{k = 1}^{n}h_{k}df_{a}(e_{k}) = \sum_{k = 1}^{n}\frac{\partial f}{\partial x_{k}}(a)h_{k}.\]
+\end{proof}
+
+\begin{note}
+    Для координатной функции $p_{k}(x_{1}, \ldots, x_{n}) = x_{k}$ совпадает в любой точке с самой функцией. Обозначим его через $dx_{k}$, тогда $dx_{k}(h) = h_{k} \ \forall h \in \R^{n}$. Следовательно, имеем функциональную запись для дифференциала:
+    \[df_{a} = \sum_{k = 1}^{n}\frac{\partial f}{\partial x_{k}}(a) d x_{k}.\]
+
+    Функции $dx_{1}, \ldots, dx_{n}$ образуют базис в $(\R^{n})^{*}$, двойственный к стандартному $e_{1}, \ldots, e_{n}$.
+\end{note}

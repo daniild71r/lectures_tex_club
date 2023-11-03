@@ -1,0 +1,222 @@
+\section{№13 Продолжение конечных полей}
+
+\begin{theorem}[1]
+  $|F_1| = |F_2| = p^n \Lra F_1 \cong F_2$.
+\end{theorem}
+
+\begin{example}
+  \begin{gather}
+    F_1 \cong \FF_p[x]/(f) \\
+    F_2 \cong \FF_p[x]/(g) 
+  \end{gather}
+\end{example}
+
+\begin{theorem}[2]
+  \label{th:2nl}
+  $\FF_{p^k} < \FF_{p^n} \Lra k \mid n$. Притом такое поле единственно.
+\end{theorem}
+
+\begin{example}
+  $F_1 \subset F_2 \Ra |F_2| = |F_1|$.
+\end{example}
+
+\begin{proof}[Доказательство теоремы 2]
+  % \begin{itemize}
+  \item[$\Ra$] Доказано на прошлой лекции.
+  % \end{itemize}
+  \item[Единственность.]
+  \[\FF_{p^k} \subset \FF_{p^n}\]
+  \[x : x ^{p^k} - x = 0 \]
+  \[\Ra x^{p^k - 1} = 1\]
+\end{proof}
+
+\begin{lemma}
+  $x^{p^k} - x \mid x^{p^n} - x$.
+\end{lemma}
+
+\begin{proof}
+  \begin{gather}
+    x^{p^k - 1} - 1 \mid x^{p^n - 1} - 1 \\
+    p^k - 1 \mid p^n - 1 = p^{kd} - 1 = {(p^k)}^d - 1 \\
+    x - 1 \mid x^d - 1 = (x-1)(1 + x + \dots + x^{d-1}) 
+  \end{gather}
+  Пусть $A = p^k - 1$ и $B = p^n - 1$. Тогда, учтя, что $B = AC$:
+  \[x^A - 1 \mid x^{AC} - 1\]
+\end{proof}
+
+Пусть есть некоторое поле $a \in F, \quad \charf \ F = p, \quad |F| < \infty$. Тогда, $F(a)$~--- наименьшее подполе $F$, которое содержит $a$.
+\[F(a) = \{0, 1, a, a^2, \dots, a^k, a^{-1}\}\]
+\begin{gather}
+  \eva : \FF_p[x] \ra F, \quad f \raone^{\eva} f(a) \\
+  \ke \eva = (m_a) \neq (0) \\
+  m_a(a) = 0, \ h(a) = 0 \Lra h = m_a \cd g
+\end{gather}
+
+\begin{lemma}
+  $F(a) \cong \FF_p[x]/(m_a) \cong \im \eva$
+\end{lemma}
+
+\begin{proposition}
+  $m_a$~--- неприводим в $\FF_p[x]$.
+\end{proposition}
+
+\begin{proof}
+  \begin{gather}
+    m_a = g \cd h \\
+    0 = m_a(a) = g(a) \cd h(a) \\
+    g(a) = 0 \Ra g = f \cd m_a \\
+    \deg m_a = \deg g
+  \end{gather}
+  Тогда, $\deg h = 0$.
+\end{proof}
+
+Если $b \in \im \eva \Ra b = \displaystyle{\sum_{i} \lambda_i a^i, \ \lambda_i \in \FF_p}$. И при этом $a \in \im \eva = F(a) \cong \FF_p[x]/(m_a)$.
+
+\begin{proposition}
+  $\langle \alpha \rangle = F_2^{*}$ и $F(\alpha) = F_2$.
+  \[x^{p^n - 1} - x = m_\alpha (x) \cd h(x) \in \FF_p[x]\]
+  Тогда, $F(a) \cong \FF_p[x] / (m_a)$. То есть $\FF_p \subset F_1, \quad \exists \beta \in F_1, \ m_\alpha(\beta) = 0$. Получаем $m_\beta \sim m_\alpha \Ra m_\beta = C \cd m_\alpha$, где $C$~--- константа.
+
+  В итоге имеем:
+  \[\FF_p[x] \cong \FF_p[x] / (m_\beta) \cong F(\beta) = F_1\]
+  \[|F_2| = |F(\beta)| = |F_1|\]
+\end{proposition}
+
+% КРУТАЯ ШТУКА
+
+% % ВСТАВИТЬ КРУТУЮ ШТУКУ НИЖЕ!!!!!!!!
+% \[
+% \begin{minipage}{.5\linewidth}
+%   \begin{gather}
+%     x^2 \equiv -1 \mod 7 \\
+%     {(-1)}^{\frac{7 - 1}{2}} = -1
+%   \end{gather}
+%   То есть первое является полем.
+% \end{minipage}%
+% \begin{minipage}{.5\linewidth}
+%   \begin{gather}
+%     t^2 + t - 1 = 0 \\
+%     D = 1 + 5 = ...
+%   \end{gather}
+% \end{minipage}
+% \]
+
+% КРУТАЯ ШТУКА
+
+\begin{example}
+  Возьмём $F_1 = \FF_7[x] / (x^2 + 1)$ и $F_ 2 = \FF_7[t]/(t^2 + t - 1)$.
+
+  \begin{minipage}{.5\linewidth}
+    \begin{gather}
+      F_1: \\
+      x^2 \equiv -1 \mod 7 \\
+      {(-1)}^{\frac{7 - 1}{2}} = -1
+    \end{gather}
+  \end{minipage}
+  \begin{minipage}{.5\linewidth}
+    \begin{gather}
+      F_2: \\
+      t^2 + t - 1 = 0 \text{ в $\FF_7$} \\
+      D = 1 + 4 = 5 \equiv -2 \\
+      [t] = \alpha, \quad \alpha^2 + \alpha - 1= 0 \\
+      [x] = \gamma, \quad \gamma^2 + 1 = 0
+    \end{gather}
+  \end{minipage}
+  В итоге имеем: $\FF_7[x] / (x^2 + 1) \cong \FF_7[t]/(t^2 + t - 1)$.
+\end{example}
+
+\begin{example}~\\
+  \begin{minipage}{.5\linewidth}
+    \begin{gather}
+      F_1: \\
+      \phi: 1 \raone 1 \\
+      \phi: [t] \raone [at + b] = [3x/2 - 1/2] = [5x - 4] \\
+    \end{gather}
+  \end{minipage}
+  \begin{minipage}{.5\linewidth}
+    \begin{gather}
+      F_2: \\
+      \phi: 1 \raone 1 \\
+      \phi: \alpha \raone \beta = \frac{-1 + 3 \gamma}{2}
+    \end{gather}
+  \end{minipage}
+  % \begin{gather}
+  %   \phi: 1 \raone 1 \\
+  %   \phi: [t] \raone [at + b] = [3x/2 - 1/2] = [5x - 4] \\
+  %   \\
+  %   \phi: 1 \raone 1 \\
+  %   \phi: \alpha \raone \beta = \frac{-1 + 3 \gamma}{2}
+  % \end{gather}
+\end{example}
+
+% \begin{example}
+% \end{example}
+
+\begin{problem}
+  \begin{gather}
+    t^2 + t - 1 = 0 \text{ в $F_1$} \\
+    \beta = \frac{-1 + \sqrt{5}}{2} = \frac{-1 + \gamma \sqrt{2}}{2}
+  \end{gather}
+  Где $\sqrt{5} = \sqrt{-2}$ и $2 = 3^2 \mod 7 \Ra \sqrt{2} = 3 \mod 7$
+\end{problem}
+
+\subsection{Автоморфизм Фробениуса}
+
+\begin{definition}
+  $\charf F = p$.
+  \begin{gather}
+    \phi: x \raone x^p \\
+    0 \raone 0 \\
+    1 \raone 1 \\
+    x + y \raone x^p + y^p = (x + y)^p \\
+    xy \raone x^p y^p \\
+    \ke \phi = \{x: \ x^p = 0 \} =\{0 \}
+  \end{gather}
+  Если поле конечно $|F| < \infty$, то любое инъективное отображение является также сюрьективным.
+  Если поле простое $\FF_p \subset F$, то $x^p = x$.
+\end{definition}
+
+\subsection{Орбита Фробениуса}
+
+Рассмотрим $(b, b^p, b^{p^2}, \dots, b^{p^d - 1}) \cd b^{p^d} = b, \quad \FF_q \ q = p^n$.
+
+\begin{gather}
+  m_{b^2} \sim m_b, \quad k = \deg m_b \geq d \\
+  m_b \in \FF_p[x] \\
+  m_b (b^p) = \sum \lambda_i b^{pi} = \sum \lambda_i^p b^{pi} = (\sum \lambda_i b^i)^p = m_p(b)^p = 0
+  \\
+  k \mid n \quad |F(b)| = p^k \\
+  b^{p^k} = b \quad d \mid n \quad b \in \FF_{p^d} \subset \FF_{p^n}
+\end{gather}
+
+\begin{proposition}
+  $m_b(x) = \prod_{i = 0}^{d - 1}(x - b^{pi})$.
+\end{proposition}
+
+% \begin{example}
+%   $\langle \phi \rangle: \FF_q \ra \FF_q$.
+% \end{example}
+
+\begin{example}
+  $\charf = 2, \quad x^{15} - 1 \in \FF_2[x] \subset K = \FF_{16}$~--- поле разложения.
+  Образуется мультипликативная группа $\{1, a, a^2, \dots, a^{14}, a^{15} = 1 \}$.
+  
+  Строим орбиты Фробениуса:
+  \begin{align}
+    &(0) \\
+    &(1) \\
+    &(a, a^2, a^4, a^8) \cd a^{16} = a \\
+    &(a^3, a^6, a^{12}, a^9) \cd a^{18} = a^3 \\
+    &(a^5, a^{10}) \cd a^{20} = a^5 \\
+    &(a^7, a^{14}, a^{13}, a{11}) \cd a^{22} = a^7
+  \end{align}
+\end{example}
+
+\begin{example}
+  $p = 2, \quad x^{23} - 1, \quad \FF_2 \subset K$~--- поле разложения.
+  \[\{ a^i \}, i = \overline{0 \dots 22}, \quad a^{23} = 1\]
+  \begin{align}
+    &(1) \\
+    &(a, a^2, a^4, a^8, a^{16}, a^{32}=a^9, a^{18}, a^{36} = a^{13}, a^{26} = a^3, a^6, a^{12}, a^{24} = a) \text{~--- 11 элементов}
+  \end{align}
+\end{example}

@@ -1,0 +1,110 @@
+\section{7. Приведение матрицы преобразования к треугольному виду. Теорема Гамильтона-Кэли (случай, когда характеристический многочлен линейного оператора раскладывается на линейные множители).}
+
+\begin{proposition}
+    \label{prop4.2}
+    Следующие условия на подпространстве $U$ эквивалентны:
+    \begin{enumerate}
+        \item $U$ -- инвариантно относительно $\phi$.
+        \item $\exists \lambda \in F: U$ -- инвариантно относительно $\phi - \lambda E$.
+        \item  $\forall \lambda \in F: U$ -- инвариантно относительно $\phi - \lambda E$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $(1 \Rightarrow 3)$ Возьмем вектор $x \in U$. Тогда верно
+        $$(\phi - \lambda E)(x) = \phi(x) - (\lambda E)(x) \in U.$$
+        \item $(3 \Rightarrow 2)$ Очевидно.
+        \item $(2 \Rightarrow 1)$ По условию $\exists \lambda \in F:$
+        $$\forall x \in U \; \phi(x) = (\phi - \lambda E)(x) + (\lambda E)(x) \in U.$$
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    \label{utv4.3}
+    Пусть $\phi: V \to V$, $\phi$ линейно факторизуем над $F$ и  $n = \dim V$. Тогда в $V$ найдется 
+    $(n - 1)$--мерное подпространство, инвариантное относительно $\phi$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $\chi_{\phi}(t) = \prod_{i=1}^n (\lambda_i - t)$, $\lambda_n$ -- собственное значение для $\phi$, 
+    $V_{\lambda_n} = \ker (\phi - \lambda_n E) \neq \{ \overline{0} \}$. Из того, что ядро не пусто, 
+    следует, что образ $\im(\phi - \lambda_n E) \neq V$, и, значит, $\dim (\im(\phi - \lambda_n E)) \leq n - 1$. 
+    Тогда существует подпространство $U$ такое, что $\dim U = n - 1$ и образ $\phi - \lambda_n E$ лежит в $U$. 
+    
+    Докажем, что такое подпространство инвариантно. Пусть $x \in U$, то $(\phi - \lambda_n E)(x) \in \im(\phi - \lambda_n E) \subseteq U$. 
+    Значит, $U$ инвариантно относительно $\phi - \lambda_n E$, то есть $U$ инвариантно и относительно $\phi$.
+\end{proof}
+
+\begin{definition}
+    \textit{Флагом} подпространства над $V$ называется цепочка инвариантных подпространств 
+    $$\{ \overline{0} \} = V_0 < V_1 < \ldots < V_n = V, \ \dim V_k = k.$$
+\end{definition}
+
+\begin{theorem}[о приведении линейного оператора к верхнетреугольному виду]
+    Пусть $\phi: V \to V$, $\phi$ линейно факторизуем над $F$ и  $n = \dim V$. Тогда в $V$ существует базис $e$, в котором матрица $\phi$ -- верхнетреугольная.
+    \begin{equation*}
+        \left(
+            \begin{array}{ccc}
+            \lambda_1 & \dots & * \\
+            \vdots & \ddots & \vdots \\
+            0 & \dots & \lambda_n \\
+            \end{array}
+        \right)
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    Докажем индукцией по $n$. \\
+    \begin{enumerate}
+        \item База $n = 1$: $\{ \overline{0} \} < U_1 = V_1$ -- флаг существует.
+        \item
+        Шаг индукции: пусть для $V$ с $\dim V < n$ утверждение справедливо. Докажем для $V: \dim V = n$. 
+        По утверждению \ref{utv4.3} в $V$ найдется $U_{n - 1} < V$; $\dim U_{n - 1} = n - 1$. 
+        Рассмотрим функцию $\psi = \phi \mid_{U_{n - 1}}$, тогда по \ref{pr4.1} 
+        $\chi_{\phi} \vdots \chi_{\psi}$. Где $\chi_{\phi}$ раскладывается на $n$ линейных множителей. 
+        Очевидно, что тогда характеристический многочлен $\chi_{\psi}$ состоит из тех линейных множителей, 
+        которые входили в $\chi_{\phi}$. Следовательно, $\chi_{\psi}$ раскладывается на линейные множители. 
+        Тогда к определителю $\psi: U_{n - 1} \to U_{n - 1}$ применимо предположение индукции:
+        $$\{ \overline{0} \} < U_1 < \dots < U_{n - 1} < U_n = V  (*)$$
+        Тут первые $n - 1$ подпространств инвариантны относительно $\psi$, значит, инвариантны и относительно $\phi$. \\
+        Выберем базис $e$ в $V$, согласованный с разложением $(*)$, где $(e_1, \dots, e_k)$ -- базис в $U_k$, 
+        тогда в матрице базиса $e$ в первой строке будет столбец, согласованный с $U_1$, то есть 
+        $\lambda_1$ и нули снизу, далее столбец, согласованный с $U_2$ и так далее.
+        \begin{equation*}
+            \phi_e =
+            \left(
+                \begin{array}{cccc}
+                    \lambda_1 & * & \dots & * \\
+                    0 & \lambda_2 & \dots & * \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \dots & \lambda_n \\
+                \end{array}
+                \right)
+            \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    \label{col2}
+    В условиях предыдущей теоремы $\forall k = 1, \dots, n \hookrightarrow (\phi - \lambda_k E)(\phi - \lambda_{k + 1} E) \dots (\phi - \lambda_n E) V \subseteq U_{k - 1}$. (первые несколько скобок -- множители $\chi$)
+\end{corollary}
+
+\begin{proof}
+    $\chi(V) = (\phi - \lambda_k E) \dots (\phi - \lambda_{n - 1} E) U_{n - 1} \subseteq \dots \subseteq U_{k - 1}$.
+\end{proof}
+
+\begin{theorem}[Гамильтона--Кэли]
+    \label{th4.4}
+    Пусть $\phi: V \to V$, $\phi$ -- линейно факторизуем над $F$, $\chi_{\phi}(t) \in F[t]$ -- характеристический многочлен. Тогда $\chi_{\phi}(\phi) = 0$ (нулевой оператор).\\
+    (Иначе: $A \in M_n(F)$, $\chi_A(t)$ -- характеристический многочлен матрицы $A$, то $\chi_A(A) = 0$).
+\end{theorem}
+
+\begin{proof}~
+
+    Выберем базис $e$ в $V$, согласованный с флагом инвариантных подпространств. Имеем $\chi_{\phi}(t) = \prod_{i=1}^n (\lambda_i - t)$. Применим $\chi_{\phi}(\phi)$ к пространству $V$, получим $\chi_{\phi}(\phi)V = \left((-1)^n \prod_{i=1}^n (\phi - \lambda_i E)\right)V$. При $k = 0$ из следствия \ref{col2} получаем, что $\chi_{\phi}(\phi)V \leq \{\overline{0}\}$. Значит, $\chi_{\phi}(\phi) = 0$.
+\end{proof}
+
+\begin{note}
+    Теорема Гамильтона-Кэли справедлива для любого линейного оператора над любым полем.
+\end{note}
