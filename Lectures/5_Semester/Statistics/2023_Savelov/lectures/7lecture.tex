@@ -1,0 +1,140 @@
+\begin{definition}
+	\textit{Экспоненциальным семейством распределений} называют все распределения, чья обобщённая плотность имеет следующий вид:
+	\[
+		p_\theta(x) = h(x)\exp\ps{\sum_{i = 1}^k a_i(\theta)T_i(x) + V(\theta)}
+	\]
+	где $a_0(\theta) \equiv 1$, а оставшиеся $a_1(\theta), \ldots, a_k(\theta)$ являются линейно независимой системой на $\Theta$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим распределение $\Gamma(\alpha, \beta)$. Оно принадлежит к экспоненциальному семейству:
+	\[
+		p_{\alpha, \beta}(x) = \frac{\alpha^\beta x^{\beta - 1}}{\Gamma(\beta)} e^{-\alpha x} \chi\{x > 0\} = \frac{1}{x}\chi\{x > 0\} \cdot \exp(\beta \ln x - \alpha x + \ln \frac{\alpha \beta}{\Gamma(\beta)})
+	\]
+\end{example}
+
+\subsubsection*{Связь экспоненциальных семейств и условия существования эффективной оценки}
+
+\begin{note}
+	Хорошо, вот мы узнали неравенство Рао-Крамера, ввели эффективные оценки, выяснили критерий эффективности и даже нашли вид множества всех эффективных оценок, если знаем хотя бы одну. Закономерный вопрос: <<А как по распределению с условиями регулярности понять, что в нём найдутся эффективные оценки вообще?>> На это помогает ответить уже введённое \textit{экспоненциальное семейство распределений}.
+\end{note}
+
+\begin{note}
+	В этом параграфе мы предполагаем, что выполнены условия регулярности.
+\end{note}
+
+\begin{theorem}
+	Пусть $\{X_i\}_{i = 1}^n$ --- выборка из распределения $P_\theta \in \cP$. Тогда для этого распределения существует $\tau(\theta) \neq const$ такая, что найдётся соответствующая эффективная оценка $\hat{\tau}(X)$.
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\La$] Итак, пусть $f_\theta$ --- функция плотности наблюдения $X = (X_1, \ldots, X_n)$. Тогда её можно расписать так (для простоты рассматриваем случай, когда в экспоненте сумма из одного слагаемого):
+		\[
+			f_\theta(x) = \prod_{i = 1}^n p_\theta(x_i),\ p_\theta(x_i) = h(x_i)\exp(a(\theta)T(x_i) + V(\theta))
+		\]
+		Стало быть, у нас есть корректно определённый вклад наблюдения:
+		\begin{multline*}
+			U_\theta(X) = \pd{}{\theta} \ln f_\theta(X) = \pd{}{\theta} \ps{\sum_{i = 1}^n \ln (h(X_i)) + a(\theta)T(X_i) + V(\theta)} =
+			\\
+			\pd{}{\theta} \ps{a(\theta)\sum_{i = 1}^n T(X_i) + nV(\theta)} = a'(\theta)\sum_{i = 1}^n T(X_i) + nV'(\theta)
+		\end{multline*}
+		Если $T = const$, то $p_\theta(x) = h(x)e^{b(\theta)}$, а тогда $\int_\R p_\theta(x)d\mu(x) = 1$, то есть $b(\theta) = const$ и $p_\theta(x)$ не зависит от $\theta$. Такие случаи мы не рассматриваем. \textcolor{red}{Мы также считаем, что $a'(\theta) \neq 0$.} Тогда мы можем переписать равенство в стиле критерия эффективности:
+		\[
+			\frac{1}{na'(\theta)}U_\theta(X) = \frac{1}{n}\sum_{i = 1}^n T(X_i) - \frac{-V'(\theta)}{a'(\theta)}
+		\]
+		Итак, $\hat{\tau}(X) = \ol{T(X)}$ является эффективной оценкой для $\tau(\theta) = \frac{-V'(\theta)}{a'(\theta)}$ \textcolor{red}{в случае, если это отношение не стало константой.}
+		
+		\item[$\Ra$] Пусть $\hat{\tau}(X)$ --- эффективная оценка некоторой $\tau(\theta) \neq 0$. \textcolor{red}{Потребуем, что $\forall \theta \in \Theta\ \ \tau'(\theta) \neq 0$}. Так как оценка эффективна, то выполнено равенство Рао-Крамера:
+		\[
+			D_\theta \hat{\tau}(X) = \frac{(\tau'(\theta))^2}{I_X(\theta)} < \infty
+		\]
+		Отсюда автоматически следует, что $\hat{\tau}(X) \in L_2$. За счёт этого мы можем воспользоваться критерием эффективности:
+		\[
+			\hat{\tau}(X) - \tau(\theta) =^{P_\theta\text{ п.н.}} c(\theta)U_\theta(X)
+		\]
+		\textcolor{red}{За счёт того, что $\tau'(\theta) \neq 0$, мы также имеем $c(\theta) = \frac{\tau'(\theta)}{I_X(\theta)} \neq 0$}. Выразим $U_\theta(X)$ и подставим его по определению:
+		\[
+			\pd{}{\theta} \ln f_\theta(X) =^{P_\theta\text{ п.н.}} \frac{\hat{\tau}(X) - \tau(\theta)}{c(\theta)}
+		\]
+		От случайных величин перейдём к их значениям и, в предположении корректности операции, проинтегрируем равенство. Тогда:
+		\begin{align*}
+			&{\ln f_\theta(x) = \int \frac{\hat{\tau}(x) - \tau(\theta)}{c(\theta)}d\theta + g(x)}
+			\\
+			&{\prod_{i = 1}^n p_\theta(x_i) = f_\theta(x) = \exp(\beta(\theta)T(x) + D(\theta) + g(x)) = H(x)\exp(\beta(\theta)T(x) + D(\theta))}
+		\end{align*}
+		Теперь, если мы зафиксируем $x_{2, 0}, \ldots, x_{n, 0} \in A$ (где $A$ из условий регулярности), а $x_1$ оставим переменной, то можно получить формулу плотности одной случайной величины:
+		\[
+			p_\theta(x_1) = \frac{H(x_1, x_{2, 0}, \ldots, x_{n, 0})}{\prod_{i = 2}^n p_\theta(x_{i, 0})}\exp(\beta(\theta)T(x_1, x_{2, 0}, \ldots, x_{n, 0}) + D(\theta))
+		\]
+	\end{itemize}
+	\textcolor{red}{Нужно ещё что-то сказать про независимость $a_1$ с 1. Дописать}
+\end{proof}
+
+\subsection{Достаточные статистики}
+
+\textcolor{red}{В каком пространстве сидим?}
+
+\begin{note}
+	Далее $X = (X_1, \ldots, X_n)$ --- выборка из неизвестного распределения.
+\end{note}
+
+\begin{definition}
+	Статистика $T(X)$ называется \textit{достаточной для параметра $\theta$}, если выполнено условие:
+	\[
+		\forall t\ \forall B \in \F\ \ P_\theta(X \in B | T(x) = t) \text{ --- не зависит от $\theta$}
+	\]
+\end{definition}
+
+\begin{note}
+	Если существует биекция между статистиками $S$ и $T$, причём $T$ достаточная, то и $S$ тоже достаточная. Таким образом, важна не сама статистика, а порождённое ей разбиение вероятностного пространства.
+\end{note}
+
+\textcolor{red}{А определение функции правдоподобия кто давать будет? Видимо я}
+
+\begin{theorem} (Нейман, Фишер. Критерий факторизации)
+	Пусть $\cP = \{P_\theta \colon \theta \in \Theta\}$ --- доминируемое семейство. Тогда статистика $T$ является достаточной для параметра $\theta$ тогда и только тогда, когда функция правдоподобия $f_\theta(x)$ представима в следующем виде:
+	\[
+		f_\theta(x) = \psi(T(x), \theta)h(x)
+	\]
+	где обе функции $\psi, h$ неотрицательны, а также $\psi(t, \theta)$ измерима по $t$, $h$ измерима по $x$
+\end{theorem}
+
+\begin{note}
+	Разложение функции правдоподобия неоднозначно, коль скоро можно $h$ поделить на константу, а $\psi$ на неё же домножить.
+\end{note}
+
+\begin{proof}
+	Проведём доказательство только в дискретном случае.
+	\begin{itemize}
+		\item[$\Ra$] $T(X)$ --- достаточная статистика. Тогда можно записать цепочку равенств:
+		\begin{multline*}
+			f_\theta(x) = P_\theta(X = x) = P_\theta(X = x \wedge T(X) = T(x)) =
+			\\
+			\underbrace{P_\theta(T(X) = T(x))}_{\psi(T(x), \theta)} \cdot \underbrace{P_\theta(X = x | T(X) = T(x))}_{h(x)}
+		\end{multline*}
+		Определение $h$ корректно в силу достаточности $T(X)$.
+		
+		\item[$\La$] Итак, $f_\theta(x) = \psi(T(x), \theta)h(x)$. В силу дискретности, мы можем заявить следующее:
+		\[
+			f_\theta(x) = P_\theta(X = x) = \psi(T(x), \theta)h(x) \Lora P_\theta(X = x | T(X) = t) = \frac{P_\theta(X = x \wedge T(X) = t)}{P_\theta(T(X) = t)}
+		\]
+		С учётом этого, распишем условную вероятность по определению и покажем явно, что зависимости от $\theta$ нет:
+		\begin{multline*}
+			P_\theta(X = x | T(X) = t) = \frac{P_\theta(X = x \wedge T(X) = t)}{P_\theta(T(X) = t)} =
+			\\
+			\System{
+				&{0,\ T(x) \neq t}
+				\\
+				&{\frac{P_\theta(X = x)}{P_\theta(T(X) = t)} = \frac{\psi(t, \theta)h(x)}{\sum_{y \colon T(y) = t} \psi(t, \theta)h(y)} = \frac{h(x)}{\sum_{y \colon T(y) = t} h(y)},\ T(x) = t}
+			}
+		\end{multline*}
+		В итоговых выражениях системы нет $\theta$, что и требовалось.
+	\end{itemize}
+\end{proof}
+
+\subsubsection{Улучшение оценок с помощью достаточных оценок}
+
+\begin{theorem} (Колмогоров-Блэквелл-Рао, об улучшении несмещённой оценки)
+	Пусть $T(X)$ --- достаточная статистика для $\theta$. Также пусть $d(X)$ --- несмещённая оценка для $\tau(\theta)$. Положим $\phi(T) = \E_\theta (d(X)|T)$. Тогда $\phi(T)$
+\end{theorem}

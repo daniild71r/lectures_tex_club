@@ -25,7 +25,7 @@
 	\[
 		\E_\theta (T - \tau(\theta))^2 = \E_\theta T^2 - 2\tau(\theta)\E_\theta T + \tau^2(\theta) = \E_\theta T^2 - \tau^2(\theta)
 	\]
-	Стало быть, для $T_1$ и $T_2$ мы имеем равенство $\E_\theta T_1^2 = \E_\theta T_2^2$. Воспользуемся следующим алгебраическим свойством:
+	Таким образом, для $T_1$ и $T_2$ мы имеем равенство $\E_\theta T_1^2 = \E_\theta T_2^2$. Воспользуемся следующим алгебраическим свойством:
 	\[
 		\ps{\frac{a + b}{2}}^2 + \ps{\frac{a - b}{2}}^2 = \frac{a^2 + b^2}{2}
 	\]
@@ -94,7 +94,7 @@
 		\[
 			\pd{}{\theta} \E_\theta S(X) = \pd{}{\theta} \int_A S(x)p_\theta(x)d\mu(x) = \int_A S(x)\pd{}{\theta} p_\theta(x)d\mu(x) = \E_\theta \ps{S(X)\pd{}{\theta}\ln p_\theta(X)}
 		\]
-		В частности требуем, что $\forall \theta \in \Theta\ \pd{}{\theta}\ln p_\theta(x)$ существовало на $A$ и было конечно
+		В частности требуем, чтобы для любого $\theta \in \Theta\ \pd{}{\theta}\ln p_\theta(x)$ существовало на $A$ и было конечно
 		
 		\item $\forall \theta \in \Theta\ \ 0 < I_X(\theta) < \infty$
 	\end{enumerate}
@@ -130,14 +130,94 @@
 	Если $\tau(\theta) = \theta$, то в условиях теоремы имеем неравенство $D_\theta \hat{\theta}(X) \ge \frac{1}{I_X(\theta)}$
 \end{corollary}
 
+\begin{anote}
+	Далее $\wh{\cK}$ --- это подмножество класса $\cK$, у оценок которого существует конечная дисперсия (то есть выполнено условие $\forall \theta \in \Theta\ \E_\theta \hat{\theta}^2(X) < \infty$)
+\end{anote}
+
 \begin{definition}
-	Если в неравенстве Рао-Крамера для оценки $\hat{\theta}(X) \in \cK$ достигается равенство, то оценка $\hat{\theta}(X)$ называется \textit{эффективной оценкой $\tau(\theta)$}.
+	Если в неравенстве Рао-Крамера для оценки $\hat{\theta}(X) \in \wh{\cK}$ достигается равенство, то оценка $\hat{\theta}(X)$ называется \textit{эффективной оценкой $\tau(\theta)$}.
 \end{definition}
 
 \begin{theorem} (Критерий эффективности)
-	Пусть выполнены условия регулярности. Тогда $\hat{\theta}(X) \in \cK$ является эффективной оценкой $\tau(\theta)$ тогда и только тогда, когда выполнено равенство
+	Пусть выполнены условия регулярности. Тогда оценка $\hat{\theta}(X)$ принадлежит классу $\wh{\cK}$ и является эффективной оценкой $\tau(\theta)$ тогда и только тогда, когда выполнено равенство
 	\[
 		\hat{\theta}(X) - \tau(\theta) = c(\theta) \cdot U_\theta(X)
 	\]
 	где $c(\theta) = \frac{\tau'(\theta)}{I_X(\theta)}$.
 \end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] Если $\hat{\theta}$ --- эффективная оценка, то в доказательстве неравенства Рао-Крамера у нас достигается равенство в КБШ. Это происходит тогда и только тогда, когда $\eta = \hat{\theta}(X) - \tau(\theta)$ и $\xi = U_\theta(X)$ являются линейно зависимыми случайными величинами, то есть $\alpha(\theta) + \beta(\theta)\xi + \gamma(\theta)\eta =^{P_\theta\text{ п.н.}} 0$. Заметим, что $\E_\theta \xi = \E_\theta \eta = 0$. Стало быть, если применить матожидание к имеющемуся равенству, то $\alpha(\theta) =^{P_\theta\text{ п.н.}} 0$. Этот факт также позволяет заявить, что $\gamma(\theta) \neq^{P_\theta\text{ п.н.}} 0$ (иначе линейная комбинация тривиальна). Таким образом:
+		\[
+			\eta =^{P_\theta\text{ п.н.}} -\frac{\beta(\theta)}{\gamma(\theta)}\xi;\ \ \hat{\theta}(X) - \tau(\theta) = c(\theta) \cdot U_\theta(X)
+		\]
+		
+		\item[$\La$] Выразим оценку из равенства:
+		\[
+			\hat{\theta}(X) = \tau(\theta) + c(\theta) \cdot U_\theta(X)
+		\]
+		Так как $E_\theta U_\theta(X) = 0$, то $\hat{\theta} \in \cK$. Домножим исходное равенство и возьмём матожидание:
+		\[
+			\E_\theta (\hat{\theta} - \tau(\theta))U_\theta = c(\theta) \E_\theta U_\theta^2(X) = c(\theta) I_X(\theta)
+		\]
+		В силу регулярности $0 < I_X(\theta) < +\infty$. Таким образом, $\hat{\theta} \in \wh{\cK}$. При этом, из доказательства неравенства Рао-Крамера мы знаем, что левая часть равна $\tau'(\theta)$. Отсюда выражение для $c(\theta)$. В силу линейной зависимости $\eta = \hat{\theta} - \tau(\theta)$ и $\xi = U_\theta(X)$, $\hat{\theta}$ является эффективной оценкой.
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	Если $\theta^*(X) \in \wh{\cK}$ не хуже эффективной оценки $\hat{\theta} \in \wh{\cK}$, то по критерию эффективности $\theta^* =^{P_\theta\text{ п.н.}} \hat{\theta}$.
+\end{corollary}
+
+\begin{note}
+	Если есть эффективная оценка $\tau(\theta)$, то она наилучшая оценка $\tau(\theta)$ в классе $\wh{\cK}$. Обратное, при этом, неверно.
+\end{note}
+
+\begin{theorem}
+	Если в условиях регулярности существует эффективная оценка для $\tau \neq const$, то множество функций, для которых существует эффективная оценка, может быть выражено как $\{a\tau(\theta) + b \colon a, b \in \R\}$.
+\end{theorem}
+
+\begin{anote}
+	Теорема работает так же, как и неопределённый интеграл: для выражения множества всех первообразных достаточно знать одну.
+\end{anote}
+
+\begin{proposition}
+	Пусть $A = \{x \in \cX \colon p_\theta(x) > 0\}$ не зависит от $\theta$. Тогда имеет место эквивалентность:
+	\[
+		\forall B \in \B(\cX)\quad \Big(\exists \theta_0 \in \Theta\ P_{\theta_0}(X \in B) = 1\Big) \Lra \Big(\forall \theta \in \Theta\ P_\theta(X \in B) = 1\Big)
+	\]
+\end{proposition}
+
+\begin{proof}
+	Доказывать утверждение нужно только в одну сторону, ибо в другую очевидно. Итак, $P_{\theta_0}(X \in B) = 1$. Вспомним, что всегда выполнено равенство:
+	\[
+		\forall C, D \in \B(\cX)\ \ P_\theta(C) + P_\theta(D) = P_\theta(C \cup D) + P_\theta(C \cap D)
+	\]
+	При всех $\theta$ верно, что $P_\theta(X \in A) = P_\theta(X \in A \cup B) = 1$. Стало быть, $P_\theta(X \in B) = P_\theta(X \in A \cap B)$.
+	\textcolor{red}{Появится ближе к сессии. Идейно надо от противного}
+\end{proof}
+
+\begin{proof}
+	Доказывать равенство множеств будем двумя вложениями:
+	\begin{itemize}
+		\item[$\subseteq$] Пусть $\hat{\tau}(X)$ и $\hat{v}(X)$ --- эффективные оценки для $\tau(\theta)$ и $v(\theta)$ соответственно. По критерию эффективности мы знаем, что:
+		\[
+			\forall \theta \in \Theta\ \System{
+				&{\hat{\tau}(X) =^{P_\theta\text{ п.н.}} \tau(\theta) + c(\theta)U_\theta(X)}
+				\\
+				&{\hat{v}(X) =^{P_\theta\text{ п.н.}} v(\theta) + d(\theta)U_\theta(X)}
+			}
+		\]
+		В условиях регулярности $\Theta$ является интервалом, причём мы знаем, что $\tau \neq const$. Стало быть, существует $\theta_0$ такая, что $\tau'(\theta_0) \neq 0$. Тогда и $c(\theta_0) \neq 0$, а потому при $\theta_0$ из первого равенства можно выразить $U_\theta(X)$ и подставить во второе:
+		\[
+			\hat{v}(X) = v(\theta_0) + d(\theta_0)\ps{\frac{\hat{\tau}(X) - \tau(\theta_0)}{c(\theta_0)}} = a(\theta_0)\hat{\tau}(X) + b(\theta_0)
+		\]
+		
+		\item[$\supseteq$] Итак, $\hat{\tau}(X)$ --- эффективная оценка для $\tau(\theta)$. Нужно проверить, что и $\hat{v}(X) = a\hat{\tau}(X) + b$ является эффективной оценкой для $v(\theta) = a\tau(\theta) + b$. Простыми манипуляциями преобразуем уже имеющийся критерий эффективности для $\hat{\tau}(X)$ так, чтобы он соответствовал $\hat{v}(X)$:
+		\[
+			\hat{\tau}(X) = \tau(\theta) + c(\theta)U_\theta(X) \Ra (a\hat{\tau(X)} + b) = (a\tau(\theta) + b) + (ac(\theta))U_\theta(X)
+		\]
+		Получили верный критерий эффективности для $\hat{v}(X)$, что завершает доказательство.
+	\end{itemize}
+\end{proof}
+

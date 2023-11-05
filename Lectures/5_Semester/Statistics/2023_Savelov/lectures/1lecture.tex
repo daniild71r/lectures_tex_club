@@ -44,7 +44,7 @@
 		\begin{itemize}
 			\item[$\Ra$] \(\{|\xi_{i, n} - \xi_i| > \eps\} \subseteq \{\|\xi_n - \xi\|_2 > \eps\}\)
 			
-			\item[$\La$] \(\bigcup_{i = 1}^m \set{|\xi_{i, n} - \xi_i| > \frac{\eps}{\sqrt{m}}} \supseteq \{\|\xi_n - \xi\|_2 > \eps\}\)
+			\item[$\La$] \(\bigcup_{i = 1}^m \set{|\xi_{i, n} - \xi_i| > \eps} \supseteq \{\|\xi_n - \xi\|_2 > \eps\}\)
 		\end{itemize}
 		
 		\item Покомпонентная сходимость из векторной тривиальна, а в обратную сторону нужно разложить вектор на сумму векторов с лишь одной его компонентой и воспользоваться неравенством треугольника. Тогда всё следует из предполагаемого условия (покомпонентная сходимость):
@@ -77,7 +77,7 @@
 \begin{proof}
 	Перейдём к сходимостям в координатах, а для них мы уже доказали эту лемму в курсе теории вероятностей:
 	\[
-		(\xi_n \xrightarrow{d} c) \Ra (\xi_{i, n} \xrightarrow{d} c_i) \Lora (\xi_{i, n} \xrightarrow{P} \xi_i) \Ra (\xi_n \xrightarrow{P} \xi)
+		(\xi_n \xrightarrow{d} c) \Ra (\xi_{i, n} \xrightarrow{d} c_i) \Lora (\xi_{i, n} \xrightarrow{P} c_i) \Ra (\xi_n \xrightarrow{P} c)
 	\]
 \end{proof}
 
