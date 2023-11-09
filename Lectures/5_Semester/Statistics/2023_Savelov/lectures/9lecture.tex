@@ -1,3 +1,104 @@
 \subsubsection{Построение доверительных интервалов}
 
-\textcolor{red}{Помогите\ldots лектор снова пошёл в разнос}
+\begin{proposition}
+	Если  нас имеется асимптотически нормальная оценка $\hat{\theta}_n(X)$ с непрерывным асимптотическим среднеквадратичным отклонением $\sigma(\theta) > 0$, то мы можем построить асимптотический доверительный интервал уровня доверия $\gamma$ для $\theta$ следующего вида:
+	\[
+		\ps{\hat{\theta}_n(X) - u_{\frac{1 + \gamma}{2}} \cdot \frac{\sigma(\hat{\theta}_n)}{\sqrt{n}}, \hat{\theta}_n(X) + u_{\frac{1 + \gamma}{2}} \cdot \frac{\sigma(\hat{\theta}_n)}{\sqrt{n}}}
+	\]
+	где $\sigma(\hat{\theta}_n)$ --- среднеквадратичное отклонение оценки $\hat{\theta}_n(X)$, $u_p$ --- $p$-квантиль распределения $N(0, 1)$.
+\end{proposition}
+
+\begin{proof}
+	Действительно, воспользуемся определением асимптотической нормальности:
+	\[
+		\forall \theta \in \Theta\ \ \sqrt{n}(\hat{\theta}_n(X) - \theta) \xrightarrow[n \to \infty]{d_\theta} N(0, \sigma^2(\theta))
+	\]
+	Поделим на $\sigma(\theta)$, чтобы перейти к $N(0, 1)$ в правой части, однако это создаст проблемы слева, ибо появится лишняя зависимость от $\theta$:
+	\[
+		\forall \theta \in \Theta\ \ \frac{\sqrt{n}(\hat{\theta}_n(X) - \theta)}{\sigma(\theta)} \xrightarrow[n \to \infty]{d_\theta} N(0, 1)
+	\]
+	Эту проблему можно решить при помощи леммы Слуцкого. Действительно, в силу асимптотической нормальности, $\hat{\theta}_n(X) \to^{P_\theta} \theta$, причём $\sigma(\theta)$ непрерывна по условию. Стало быть, есть сходимость $\sigma(\hat{\theta}_n(X)) \to^{P_\theta} \sigma(\theta)$. При помощи упомянутой леммы можем собрать это в следующий факт:
+	\[
+		\forall \theta \in \Theta\ \ \frac{\sqrt{n}(\hat{\theta}_n(X) - \theta)}{\sigma(\theta)} \cdot \frac{\sigma(\theta)}{\sigma(\hat{\theta}_n)} \xrightarrow[n \to \infty]{d_\theta} N(0, 1) \cdot 1 = N(0, 1)
+	\]
+	Далее мы классически рассматриваем вероятность попадания между $u_{\frac{1 - \gamma}{2}}$ и $u_{\frac{1 + \gamma}{2}}$, которая будет сходиться к $\gamma$. Её несложно свернуть в следующую форму:
+	\[
+		\forall \theta \in \Theta\ \ P_\theta\ps{\sqrt{n}\md{\frac{\hat{\theta}_n(X) - \theta}{\sigma(\hat{\theta}_n)}} < u_{\frac{1 + \gamma}{2}}} \xrightarrow[n \to \infty]{} \gamma
+	\]
+	Таким образом, мы нашли нужный асимптотический доверительный интервал.
+\end{proof}
+
+\subsection{Метод максимального правдоподобия}
+
+\begin{note}
+	Далее мы живём в вероятностно-статистическом пространстве $(\cX, \B(\cX), \cP)$, $\cP = \{P_\theta, \theta \in \Theta\}$.
+\end{note}
+
+\begin{definition}
+	Пусть $X$ --- наблюдение с неизвестным распределением $P_\theta \in \cP$, причём $\cP$ доминируется относительно меры $\mu$. \textit{Функцией правдоподобия} называется функция $f_\theta(x) = p_\theta(x)$, где $p_\theta$ --- плотность $P_\theta$ по мере $\mu$.
+\end{definition}
+
+\begin{anote}
+	В физическом смысле, функция правдоподобия говорит статисту, насколько вероятен тот или иной исход.
+\end{anote}
+
+\begin{example}
+	Пусть $X = (X_1, \ldots, X_n)$ --- выборка с плотностью $p_\theta(x)$. Тогда функция правдоподобия является плотностью $X$ как наблюдения:
+	\[
+		f_\theta(x) = p_\theta(x) = \prod_{i = 1}^n p_\theta(x_i)
+	\]
+\end{example}
+
+\begin{definition}
+	Пусть $X$ --- наблюдене с функцией правдоподобия $f_\theta$. \textit{Оценкой параметра $\theta$ по методы максимального правдоподобия (ОМП)} называется такая статистика $\hat{\theta}(X)$, что верно равенство:
+	\[
+		\hat{\theta}(X) = \arg\max_{\theta \in \Theta} f_\theta(X)
+	\]
+\end{definition}
+
+\begin{anote}
+	То есть из всех возможных параметров ОМП выбирает тот, при котором заданная выборка наиболее вероятна.
+\end{anote}
+
+\begin{example}
+	Рассмотрим дискретную модель трёх бросков монетки с вероятностью $\theta$ получения орла и исход $X = (1, 1, 0)$. Тогда, для $\theta_1 = \frac{1}{9}$ мы имеем значение функции правдоподобия $\frac{8}{9^3}$, а для $\theta_2 = \frac{7}{8}$ это будет $\frac{7^2}{8^3}$ и это больше предыдущей вероятности. В связи с этим мы верим, что вторая монетка должна лучше предсказывать реальность, нежели первая.
+\end{example}
+
+\begin{example}
+	Найдём явно оценку ОМП в базовом случае $X_i \sim U[0; \theta]$. Тогда функция правдоподобия имеет вид:
+	\[
+		f_\theta(X) = \frac{1}{\theta^n} \prod_{i = 1}^n \chi\{0 \le X_i \le \theta\} = \frac{\chi\{0 \le X_{(1)} \le X_{(n)} \le \theta\}}{\theta^n}
+	\]
+	Так как мы считаем, что реализация выборки $X$ фиксирована при выборе $\theta$, то оценка должна быть очевидна: $\hat{\theta}(X) = X_{(n)}$.
+\end{example}
+
+\begin{definition}
+	Функция $L_\theta(x) = \ln f_\theta(x)$ называется \textit{логарифом функции правдоподобия}.
+\end{definition}
+
+\begin{note}
+	Далее мы дополнительно требуем, что $\cP$ является доминируемым семейством относительно меры $\mu$, а также расширяем и нумеруем \textit{условия регулярности}:
+	\begin{enumerate}
+		\item Множество носителей $A = \{x \in \cX \colon p_\theta(x) > 0\}$ не зависит от $\theta$
+		
+		\item Наблюдение $X$ есть выборк из неизвестного распределения $P_\theta$
+		
+		\item $\Theta \subseteq \R$ --- открытый интервал (возможно бесконечный)
+		
+		\item Функция $p_\theta(x)$ непрерывно дифференцируема по $\theta$ при всех $x \in A$
+		
+		\item Функция $p_\theta(x)$ трижды непрерывно дифференцируема по $\theta$ при всех $x \in A$
+		
+		\item Интеграл $\int_A p_\theta(X)d\mu(x)$ трижды дифференцируем по $\theta$ под знаком интеграла
+		
+		\item Имеет место конечность информации Фишера для одного наблюдения из выборки:
+		\[
+			\E_\theta\ps{\pd{}{\theta} \ln p_\theta(X_1)}^2 = i(\theta) \in (0; +\infty)
+		\]
+		
+		\item Существует равномерная интегрируемая оценка сверху в некотором интервале вокруг любого параметра $\theta_0 \in \Theta$:
+		\[
+			\forall \theta_0 \in \Theta\ \exists c > 0, H(x) \such \E_\theta H(X) < \infty \wedge \forall \theta \in (\theta_0 - c; \theta_0 + c),\ x \in A\ \ \md{\pd{^3}{\theta^3} \ln p_\theta(x)} < H(x)
+		\]
+	\end{enumerate}
+\end{note}
