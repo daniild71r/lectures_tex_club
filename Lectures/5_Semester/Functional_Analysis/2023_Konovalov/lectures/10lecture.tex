@@ -1,0 +1,130 @@
+\begin{definition}
+	\textit{Нормой оператора} $A$ называется $\|A\| := \inf K$ \textcolor{red}{Переписать}
+\end{definition}
+
+\begin{proposition}
+	Для нормы оператор верны равенства:
+	\[
+		\|A\| = \inf K = \sup_{\|x\| \le 1} \|Ax\| = \sup_{\|x\| = 1} \|Ax\| = \sup_{x \neq 0} \frac{\|Ax\|}{\|x\|}
+	\]
+\end{proposition}
+
+\begin{proof}
+	\textcolor{red}{Доказать}
+\end{proof}
+
+\textcolor{red}{Здесь должен быть здравый смысл к определению нормы}
+
+\begin{theorem}
+	Пусть $A \colon E_1 \to E_2$ --- линейный оператор. Тогда $A$ ограничен тогда и только тогда, когда он непрерывен.
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] По условию мы знаем, что
+		\[
+			\forall x \in E_1\ \ \|Ax\| \le \|A\| \cdot \|x\|
+		\]
+		С другой стороны, рассмотрим последовательность $\{x_n\}_{n = 1}^\infty \subseteq E_1$, сходящуюся к $x \in E_1$. Тогда:
+		\[
+			\|A(x_n - x)\| \le \|A\| \cdot \|x_n - x\| \xrightarrow[n \to \infty]{} 0
+		\]
+		
+		\item[$\La$] Пойдём от противного. Тогда оператор должен быть неограничен, а это можно записать так:
+		\[
+			\forall n \in \N\ \exists x_n \in E_1 \such \|Ax_n\| > n\|x_n\|
+		\]
+		\textcolor{red}{Дописать}
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	\textit{Множество всех линейных ограниченных операторов} обозначается как $\cL(E_1, E_2)$.
+\end{definition}
+
+\begin{note}
+	Укажем 2 важных частных случая:
+	\begin{itemize}
+		\item $\cL(E) := \cL(E, E)$
+		
+		\item $\cL(E, \R) = E^*$
+	\end{itemize}
+\end{note}
+
+\begin{theorem}
+	Имеет место 2 утверждения:
+	\begin{enumerate}
+		\item $\cL(E_1, E_2)$ --- нормированное пространство с нормой, порождённой нормой операторов
+		
+		\item Если $E_2$ --- банахово пространство, то и $\cL(E_1, E_2)$ --- банахово пространство
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Линейность пространства тривиальна. Для того, чтобы доказать корректность нормы, нам достаточно проверить неравенство треугольника (остальное просто очевидно):
+		\[
+			\|A_1 + A_2\| = \sup_{\|x\| = 1} \|A_1x + A_2x\| \le \sup_{\|x\| = 1} \|A_1x\| + \sup_{\|x\| = 1} \|A_2x\| = \|A_1\| + \|A_2\|
+		\]
+		
+		\item Нужно показать полноту пространства. Пусть $\{A_n\}_{n = 1}^\infty \subseteq \cL(E_1, E_2)$ --- фундаментальная последовательность:
+		\[
+			\forall \eps > 0\ \exists N \in \N \such \forall n, m \ge N\ \ \|A_n - A_m\| < \eps
+		\]
+		Покажем, что есть поточечная сходимость. Действительно:
+		\[
+			\forall x \in S(0, 1)\ \ \|A_nx - A_mx\| \le \|A_n - A_m\| \cdot \|x\| = \|A_n - A_m\| < \eps
+		\]
+		Стало быть, последовательность $\{A_nx\}_{n = 1}^\infty \subseteq E_2$ фундаментальна при любом $x \in E_1$, а в силу банаховости $E_2$ сходится. Определим оператор $A$ следующим образом:
+		\[
+			\forall x \in E_1\ \ Ax := \lim_{n \to \infty} A_nx
+		\]
+		\textcolor{red}{Доказать его линейность, ограниченность и то, что оператор $A$ является пределом $A_n$ по норме}
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}~
+	\begin{itemize}
+		\item Если $E$ --- банахово пространство, то и $\cL(E)$ банахово.
+		
+		\item Для любого линейного нормированного пространства $E$ верно, что $E^*$ --- банахово пространство
+	\end{itemize}
+\end{corollary}
+
+\begin{example}
+	Существует ли оператор, который был бы линейным, но не ограниченным?
+	\textcolor{red}{В конечномерном случае нет, в бесконечномерным --- да, оператор дифференцировния в $\cL(E_1, E_2)$, $E_1 = C^1[0; 1]$ с нормой $C[0; 1]$, $E_2 = C[0; 1]$. Контрпример даёт $\frac{\sin nx}{n} \rra 0$}
+\end{example}
+
+\begin{theorem}
+	Пусть $D(A) \subseteq E_1$ --- линейное многообразие. Тогда для любого линейного ограниченного оператора $A \colon D(A) \to E_2$ существует согласованный оператор $\tilde{A} \in \cL(E_1, E_2)$ такой, что
+	\begin{enumerate}
+		\item $\tilde{A}|_{D(A)} = A$
+		
+		\item $\|\tilde{A}\| = \|A\|$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\textcolor{red}{Докаательство после кучи теорем дальше}
+\end{proof}
+
+\begin{theorem} (1927г. Банаха-Штейнгауза-Хана, принцип равномерной ограниченности)
+	Пусть $E_1$ --- банахово пространство, $\{A_n\}_{n = 1}^\infty \subseteq \cL(E_1, E_2)$. Тогда верна импликация:
+	\[
+		\Big(\forall x \in E\ \ \sup_{n \in \N} \|A_n x\| < \infty\Big) \Ra \sup_{n \in \N} \|A_n\| < \infty
+	\]
+\end{theorem}
+
+\begin{proof}
+	Запишем утверждение теоремы в эквивалентной форме:
+	\[
+		\sup_{n \in \N} \|A_n\| = \infty \Ra \Big(\exists x \in E_1 \such \sup_{n \in \N} \|A_nx\| = \infty\Big)
+	\]
+	Именно в такой форме мы и докажем требуемое. Сделаем это в 2 шага:
+	\begin{enumerate}
+		\item \textcolor{red}{Дописать}
+		
+		\item \textcolor{red}{Дописать}
+	\end{enumerate}
+\end{proof}
