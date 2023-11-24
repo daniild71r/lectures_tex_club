@@ -58,7 +58,7 @@
 \begin{definition}
 	Подпространство $Y \subseteq X$ называется \textit{ограниченным}, если существует $K \ge 0$ такое, что оно ограничивает расстояние между любыми двумя точками в $Y$:
 	\[
-		\exists K \ge 0 \such \forall x, y \in K\ \ \rho(x, y) \le K
+		\exists K \ge 0 \such \forall x, y \in Y\ \ \rho(x, y) \le K
 	\]
 \end{definition}
 
@@ -142,6 +142,10 @@
 		\forall H \in \Tau_Y\ \exists G \in \Tau_X \such H = G \cap Y
 	\]
 \end{definition}
+
+\begin{anote}
+	Требование на $\Tau_Y$ для подпространства $Y \subseteq X$ можно записать в более короткой форме: $\Tau_Y \subseteq 2^Y \cap \Tau_X$.
+\end{anote}
 
 \begin{definition}
 	Любой элемент топологии называется \textit{открытым} множеством.
