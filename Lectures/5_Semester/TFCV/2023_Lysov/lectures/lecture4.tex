@@ -1,0 +1,74 @@
+% Лекция от 9 октября.
+
+\begin{proof}
+	Рассмотрим случаи взаимного расположения $a$ и $\ol \triangle$ (замыкания треугольника).
+	\begin{enumerate}
+		\item Если $a \not\in \ol \triangle$. Проведем средние линии, получим $\triangle^{(1)}, \triangle^{(2)}, \triangle^{(3)}, \triangle^{(4)}$. Обозначим интеграл по границе треугольника (любого) как $I(\triangle')$:
+		\[
+			I(\triangle') = \int_{\partial \triangle'} f(z) dz.
+		\]
+		
+		Тогда \begin{align}
+			\label{gurse_middle_lines}
+			I(\triangle) = I\jleft( \triangle^{(1)} \jright) + I\jleft( \triangle^{(2)} \jright) + I\jleft( \triangle^{(3)} \jright) + I\jleft( \triangle^{(4)} \jright)
+		\end{align}
+		(к этому равенству есть комментарий после доказательства, посмотрите).
+
+		Оценим модуль интеграла по треугольнику (с помощью неравенства треугольника для модуля):
+		\[
+			\begin{aligned}
+				\mds{I(\triangle)} & = && \mds{I\jleft( \triangle^{(1)} \jright) + I\jleft( \triangle^{(2)} \jright) + I\jleft( \triangle^{(3)} \jright) + I\jleft( \triangle^{(4)} \jright)} & \leq & \\
+				& && \mds{I\jleft( \triangle^{(1)} \jright)} + \mds{I\jleft( \triangle^{(2)} \jright)} + \mds{I\jleft( \triangle^{(3)} \jright)} + \mds{I\jleft( \triangle^{(4)} \jright)} & \leq & \\
+				& && 4 \mds{I\jleft( \triangle^{(k)} \jright)} && ,
+			\end{aligned}
+		\]
+		где $k$ -- индекс треугольника с наибольшим по модулю интегралом по границе $I\jleft( \triangle^{(k)} \jright)$. Т.е.
+		\[
+			I \jleft( \triangle^{(k)} \jright) \geqslant \frac{1}{4} I(\triangle).
+		\]
+		Обозначим $\triangle_1 = \triangle$, $\triangle_2 = \triangle^{(k)}$, $\triangle_3$ и далее построим итеративно таким же образом из предыдущего треугольника в последовательности. (Прим. автора: можно ещё то же самое так сказать: строим последовательность $\triangle_n$, итеративно выбирая из разбиения средними линиями треугольник с максимальным по модулю интегралом по границе, $\triangle_1 = \triangle$.)
+		
+		Получили последовательность вложенных треугольников:
+		\[
+			\triangle_1 \subset \triangle_2 \subset \ldots \subset \triangle_n \subset \ldots
+		\]
+		
+		В силу компактности $\ol \triangle$ (прим. автора: он компактен, потому что замкнут и ограничен, при замыкании треугольника, открытый он или замкнутый, мы получаем треугольник с границами; после теоремы есть комментарий, как мы из компактности получаем это свойство):
+		\[
+			\exists z_0 \in \bigcup_{n = 1}^\infty \triangle_n.
+		\]
+		
+		Т.к. $f$ дифференцируема в $z_0$, то по определению дифференцируемости
+		\[
+			\begin{aligned}
+				f: & (\forall z \in \Cm) \,\, f(z) = f(z_0) + f'(z_0) (z - z_0) + o(z - z_0), \\
+				o(z - z_0) = f(z) - f(z_0) - f'(z_0) (z - z_0) : & (\forall \epsilon > 0) (\exists \delta_0 > 0) \jleft( \forall z \in B_{\delta_0}(z_0) \jright) \,\, \mds{o(z - z_0)} \leq \epsilon \mds{z - z_0}.
+			\end{aligned}
+		\]
+		{\color{red} Использовать здесь наше определение дифференцируемости.}
+		
+		Рассмотрим интеграл по границе для произвольного $\triangle_n$.
+		\[
+			\int_{\triangle_n} f(z) dz = \int_{\triangle_n} f(z_0) dz + \int_{\triangle_n} f'(z_0) (z - z_0) dz + \int_{\triangle_n} o(z - z_0) dz.
+		\]
+		Первые два интеграла равны нулю, поскольку интеграл берется по замкнутой кривой и у интегрируемых функций есть первообразные (т.е. под интегралами полные дифференциалы):
+		\[
+			(z f(z_0))' = f(z_0), \jleft( f'(z_0) \frac{(z - z_0)^2}{2} \jright)' = f'(z_0) (z - z_0).
+		\]
+		Тогда
+		\[
+			\int_{\triangle_n} f(z) dz = \int_{\triangle_n} o(z - z_0) dz.
+		\]
+		
+		Зафиксируем $\epsilon > 0$. {\color{red} Продолжение следует.}
+		
+		
+	\end{enumerate}
+\end{proof}
+\begin{anote}
+	По всей видимости в теореме треугольник может быть и без границы, с частичной границей, может быть внутренность треугольника. Иначе мы бы не говорили про замыкание.
+\end{anote}
+\begin{anote}
+	{\color{red} Здесь будет картинка для \ref{gurse_middle_lines}.}
+\end{anote}
+% Нарисовать картинку с треугольниками в tikz по координатам, объяснить, как получается равенство из свойств интеграла по кривой: надо воспользоваться аддитивностью.
