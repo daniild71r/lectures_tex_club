@@ -33,7 +33,7 @@
 			\triangle_1 \subset \triangle_2 \subset \ldots \subset \triangle_n \subset \ldots
 		\]
 		
-		В силу компактности $\ol \triangle$ (прим. автора: он компактен, потому что замкнут и ограничен, при замыкании треугольника, открытый он или замкнутый, мы получаем треугольник с границами; после теоремы есть комментарий, как мы из компактности получаем это свойство):
+		В силу компактности $\ol \triangle$ (прим. автора: он компактен, потому что замкнут и ограничен, при замыкании треугольника, открытый он или замкнутый, мы получаем треугольник с границами; после теоремы есть комментарий, как мы из компактности получаем это свойство {\color{red} написать, не забыть; там будет ссылка на то, что есть эквивалентное определение компактности, номер 4 \href{https://en.wikipedia.org/wiki/Compact_space#Characterization}{тут}, подмножества, которое подойдет нам.}):
 		\[
 			\exists z_0 \in \bigcup_{n = 1}^\infty \triangle_n.
 		\]
@@ -42,9 +42,10 @@
 		\[
 			\begin{aligned}
 				f: & (\forall z \in \Cm) \,\, f(z) = f(z_0) + f'(z_0) (z - z_0) + o(z - z_0), \\
-				o(z - z_0) = f(z) - f(z_0) - f'(z_0) (z - z_0) : & (\forall \epsilon > 0) (\exists \delta_0 > 0) \jleft( \forall z \in B_{\delta_0}(z_0) \jright) \,\, \mds{o(z - z_0)} \leq \epsilon \mds{z - z_0}.
+				o(z - z_0) : & (\forall \epsilon > 0) (\exists \delta_0(\epsilon) > 0) \jleft( \forall z \in B_{\delta_0}(z_0) \jright) \,\, \mds{o(z - z_0)} \leq \epsilon \mds{z - z_0}.
 			\end{aligned}
 		\]
+		(Прим. автора: причем $o(z - z_0) = f(z) - f(z_0) - f'(z_0) (z - z_0)$, т.е. мы знаем, как она выглядит, просто на неё есть ограничения.)
 		{\color{red} Использовать здесь наше определение дифференцируемости.}
 		
 		Рассмотрим интеграл по границе для произвольного $\triangle_n$.
@@ -60,9 +61,38 @@
 			\int_{\triangle_n} f(z) dz = \int_{\triangle_n} o(z - z_0) dz.
 		\]
 		
-		Зафиксируем $\epsilon > 0$. {\color{red} Продолжение следует.}
+		Зафиксируем $\epsilon > 0$. Возьмём $N$ такое, что
+		\[
+			(\forall z \in \partial \triangle_N) \,\, \mds{z - z_0} < \delta_0(\epsilon).
+		\]
+		Тогда по определению $o$-малого
+		\[
+			(\forall z \in B_{\delta_0(\epsilon)}(z_0)) \,\, \mds{o(z - z_0)} \leq \epsilon \mds{z - z_0}.
+		\]
+		(Прим. автора: т.е. можем оценить значения функции, скрытой под знаком $o$-малого, на границе треугольника, т.к. граница входит в рассматриваемый шар.)
+		Можем оценить интеграл по границе $\triangle_N$:
+		\[
+			\begin{aligned}
+				\mds{\int_{\partial \triangle_N} f(z) dz} = \mds{\int_{\triangle_N} o(z - z_0) dz} \leq \\
+				\max_{z \in \partial \triangle_N} \mds{o(z - z_0)} \mds{\partial \triangle_N} \leq \\
+				\max_{z \in \partial \triangle_N} \epsilon \mds{z - z_0} \mds{\partial \triangle_N} = \epsilon \max_{z \in \partial \triangle_N} \mds{z - z_0} \mds{\partial \triangle_N} \leq \\
+				\epsilon \mds{\partial \triangle_N} \mds{\partial \triangle_N}.
+			\end{aligned}
+		\]
+		(Прим. автора: второй переход в произошел по свойству о неравенствах интеграла по кривой, третий переход произошел потому, что у нас есть оценка на значения функции за $o$-малым для границы, {\color{red} объяснить далее}.)
 		
-		
+		Перед нами $\mds{\partial \triangle_N}$, это же длина кривой. Т.е. периметр треугольника. А при переходе к одному треугольников, составленных средними линиями, длины сторон уменьшаются в два раза (для центрального средние линии -- половины длин; для боковых треугольников две стороны исходного стали в два раза меньше, средняя линия создает сторону длиной в два раза меньше {\color{red} нужна картинка со средними линиями в треугольнике, можно не понять}.) Значит, мы знаем периметр по сравнению с исходным периметром. Обозначим периметр произвольного треугольника как $P(\triangle')$.
+		\[
+			P(\triangle_N) = \frac{1}{2^N} P(\triangle).
+		\]
+		Тогда
+		\[
+			\begin{aligned}
+				\frac{1}{4^N} \mds{I(\triangle)} \leq \mds{I(\triangle_N)} \leq \epsilon \frac{P_0}{4^N}, \\
+				\mds{I(\triangle)} \leq \epsilon P_0.
+			\end{aligned}
+		\]
+		Исходный интеграл $\mds{I(\triangle)}$ можно сделать сколь угодно маленьким. Значит, он равен нулю.
 	\end{enumerate}
 \end{proof}
 \begin{anote}
