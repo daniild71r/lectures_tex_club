@@ -137,15 +137,11 @@
 \end{note}
 
 \begin{definition}
-	$(Y, \Tau_Y)$ называется \textit{подпространством топологического пространства $X$}, если $Y \subseteq X$ и элементы $\Tau_Y$ заданы следующим образом:
+	$(Y, \Tau_Y)$ называется \textit{подпространством топологического пространства $X$}, если $Y \subseteq X$ и топология $\Tau_Y$ записывается так:
 	\[
-		\forall H \in \Tau_Y\ \exists G \in \Tau_X \such H = G \cap Y
+		\Tau_Y = \{Y \cap G \colon G \in \Tau_X\}
 	\]
 \end{definition}
-
-\begin{anote}
-	Требование на $\Tau_Y$ для подпространства $Y \subseteq X$ можно записать в более короткой форме: $\Tau_Y \subseteq 2^Y \cap \Tau_X$.
-\end{anote}
 
 \begin{definition}
 	Любой элемент топологии называется \textit{открытым} множеством.
