@@ -50,7 +50,7 @@
 \end{note}
 
 \begin{reminder} (Неравенство Бесселя)
-	Пусть $\{e_n\}_{n = 1}^\infty \subseteq E$ --- ортогональная система, $x \in E$. Тогда, если $\alpha_n = \frac{\tbr{x, e_n}}{\|e_n\|^2}$ (коэффициент проекции $x$ на $e_n$), то выполнено неравенство:
+	Пусть $\{e_n\}_{n = 1}^\infty \subseteq E$ --- ортогональная система, $x \in E$. Тогда, если $\alpha_n = \frac{(x, e_n)}{\|e_n\|^2}$ (коэффициент проекции $x$ на $e_n$), то выполнено неравенство:
 	\[
 		\sum_{n = 1}^\infty \alpha_n^2\|e_n\|^2 \le \|x\|^2
 	\]
@@ -59,17 +59,17 @@
 \begin{proof} (от автора)
 	Доказательство целиком опирается на так называемом \textit{равенстве Бесселя}:
 	\begin{multline*}
-		\no{x - \sum_{n = 1}^N \tbr{x, e_n}e_n}^2 = \tbr{x - \sum_{n = 1}^N \tbr{x, e_n}e_n, x - \sum_{n = 1}^N \tbr{x, e_n}e_n} =
+		\no{x - \sum_{n = 1}^N (x, e_n)e_n}^2 = \ps{x - \sum_{n = 1}^N (x, e_n)e_n, x - \sum_{n = 1}^N (x, e_n)e_n} =
 		\\
-		\|x\|^2 - 2\tbr{x, \sum_{n = 1}^N \tbr{x, e_n}e_n} + \no{\sum_{n = 1}^N \tbr{x, e_n}e_n}^2 =
+		\|x\|^2 - 2\ps{x, \sum_{n = 1}^N (x, e_n)e_n} + \no{\sum_{n = 1}^N (x, e_n)e_n}^2 =
 		\\
-		\|x\|^2 - 2\sum_{n = 1}^N |\tbr{x, e_n}|^2 + \sum_{n = 1}^N |\tbr{x, e_n}|^2 = \|x\|^2 - \sum_{n = 1}^N |\tbr{x, e_n}|^2
+		\|x\|^2 - 2\sum_{n = 1}^N |(x, e_n)|^2 + \sum_{n = 1}^N |(x, e_n)|^2 = \|x\|^2 - \sum_{n = 1}^N |(x, e_n)|^2
 	\end{multline*}
 	Осталось заметить, что квадрат нормы с самого начала является неотрицательной величиной, отсюда и неравенство:
 	\begin{multline*}
-		0 \le \no{x - \sum_{n = 1}^N \tbr{x, e_n}e_n}^2 = \|x\|^2 - \sum_{n = 1}^N |\tbr{x, e_n}|^2
+		0 \le \no{x - \sum_{n = 1}^N (x, e_n)e_n}^2 = \|x\|^2 - \sum_{n = 1}^N |(x, e_n)|^2
 		\\
-		\Lora \sum_{n = 1}^N |\tbr{x, e_n}|^2 \le \|x\|^2 \Lora \sum_{n = 1}^\infty |\tbr{x, e_n}|^2 \le \|x\|^2
+		\Lora \sum_{n = 1}^N |(x, e_n)|^2 \le \|x\|^2 \Lora \sum_{n = 1}^\infty |(x, e_n)|^2 \le \|x\|^2
 	\end{multline*}
 	Приведение к искомому виду уже тривиально.
 \end{proof}
