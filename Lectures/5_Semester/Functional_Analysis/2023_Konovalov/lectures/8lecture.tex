@@ -1,36 +1,36 @@
 \begin{definition}
 	Линейное пространство $E$ над $K$ называется \textit{евклидовым}, если в нём определена билинейная симметричная (полуторалинейная) положительно определённая форма $(\cdot, \cdot) \colon E^2 \to \K$:
 	\begin{enumerate}
-		\item $\forall x \in E\ \ \tbr{x, x} \ge 0 \wedge (\tbr{x, x} = 0 \Lra x = 0)$
+		\item $\forall x \in E\ \ (x, x) \ge 0 \wedge \Big((x, x) = 0 \Lra x = 0\Big)$
 		
-		\item $\forall x, y \in E\ \ \tbr{x, y} = \ole{\tbr{y, x}}$
+		\item $\forall x, y \in E\ \ (x, y) = \ole{(y, x)}$
 		
-		\item $\forall \alpha \in \K\ \forall x, y \in E\ \ \tbr{\alpha x, y} = \alpha\tbr{x, y}$
+		\item $\forall \alpha \in \K\ \forall x, y \in E\ \ (\alpha x, y) = \alpha(x, y)$
 		
-		\item $\forall x_1, x_2, y \in E\ \ \tbr{x_1 + x_2, y} = \tbr{x_1, y} + \tbr{x_2, y}$
+		\item $\forall x_1, x_2, y \in E\ \ (x_1 + x_2, y) = (x_1, y) + (x_2, y)$
 	\end{enumerate}
 \end{definition}
 
 \begin{anote}
-	В комплексном случае нельзя забывать, что $\tbr{x, \alpha y} = \ole{\tbr{\alpha y, x}} = \ole{\alpha}\tbr{x, y}$. В этом и есть суть названия <<полуторалинейная>>.
+	В комплексном случае нельзя забывать, что $(x, \alpha y) = \ole{(\alpha y, x)} = \ole{\alpha}(x, y)$. В этом и есть суть названия <<полуторалинейная>>.
 \end{anote}
 
 \begin{proposition}
-	Всякое евклидово пространство является линейным нормированным с нормой $\|x\| := \sqrt{\tbr{x, x}}$.
+	Всякое евклидово пространство является линейным нормированным с нормой $\|x\| := \sqrt{(x, x)}$.
 \end{proposition}
 
 \begin{proof}
 	Проверим аксиомы нормы:
 	\begin{enumerate}
-		\item (Неотрицательность и единственность нуля) Так как $\tbr{x, x} \ge 0$ по определению, то и $\sqrt{\tbr{x, x}} \ge 0$. Если $\|x\| = 0$, то $\tbr{x, x} = 0$. А это эквивалентно равенству $x = 0$ по определению.
+		\item (Неотрицательность и единственность нуля) Так как $(x, x) \ge 0$ по определению, то и $\sqrt{(x, x)} \ge 0$. Если $\|x\| = 0$, то $(x, x) = 0$. А это эквивалентно равенству $x = 0$ по определению.
 		
-		\item (Линейность нормы) $\|\alpha x\| = \sqrt{\tbr{\alpha x, \alpha x}} = \sqrt{\alpha\ole{\alpha}\tbr{x, x}} = |\alpha|\sqrt{\tbr{x, x}} = |\alpha| \cdot \|x\|$
+		\item (Линейность нормы) $\|\alpha x\| = \sqrt{(\alpha x, \alpha x)} = \sqrt{\alpha\ole{\alpha}(x, x)} = |\alpha|\sqrt{(x, x)} = |\alpha| \cdot \|x\|$
 		
 		\item (Неравенство треугольника) Пусть $x, y \in E$. Тогда, вместо рассмотрения нормы, мы посмотрим на её квадрат:
 		\begin{multline*}
-			\|x + y\|^2 = \tbr{x + y, x + y} = \tbr{x, x} + \tbr{y, y} + 2\re \tbr{x, y} \le \tbr{x, x} + \tbr{y, y} + 2|\tbr{x, y}| \le
+			\|x + y\|^2 = (x + y, x + y) = (x, x) + (y, y) + 2\re (x, y) \le (x, x) + (y, y) + 2|(x, y)| \le
 			\\
-			\tbr{x, x} + \tbr{y, y} + 2\sqrt{\tbr{x, x}} \cdot \sqrt{\tbr{y, y}} = \ps{\sqrt{\tbr{x, x}} + \sqrt{\tbr{y, y}}}^2 = (\|x\| + \|y\|)^2
+			(x, x) + (y, y) + 2\sqrt{(x, x)} \cdot \sqrt{(y, y)} = \ps{\sqrt{(x, x)} + \sqrt{(y, y)}}^2 = (\|x\| + \|y\|)^2
 		\end{multline*}
 		Остаётся без зазрения совести снять квадрат и получится требуемое.
 	\end{enumerate}
@@ -77,7 +77,7 @@
 \begin{proposition} (Неравенство Коши-Буняковского)
 	Имеет место неравенство:
 	\[
-		\forall x, y \in E\ \ |\tbr{x, y}| \le \|x\| \cdot \|y\|
+		\forall x, y \in E\ \ |(x, y)| \le \|x\| \cdot \|y\|
 	\]
 	Причём равенство достигается тогда и только тогда, когда $x, y$ линейно зависимы.
 \end{proposition}
@@ -85,11 +85,11 @@
 \begin{proof} (через неравенство Бесселя)
 	Запишем неравенство Бесселя, если ортонормированная система состоит из одного вектора $e$:
 	\[
-		\forall v \in E\ \ |\tbr{v, e}| \le \sqrt{\tbr{v, v}} = \|v\|
+		\forall v \in E\ \ |(v, e)| \le \sqrt{(v, v)} = \|v\|
 	\]
 	Откуда в неравенстве Коши-Буняковского получить единичный вектор (который и составит ортогональную систему)? Занести норму множителя справа в скалярное произведение!
 	\[
-		|\tbr{x, y}| \le \|x\| \cdot \|y\| \Lra \md{\tbr{x, \frac{y}{\|y\|}}} \le \|x\|
+		|(x, y)| \le \|x\| \cdot \|y\| \Lra \md{\ps{x, \frac{y}{\|y\|}}} \le \|x\|
 	\]
 	Второе неравенство тогда верно по неравенству Бесселя и всё доказано.
 \end{proof}
@@ -118,7 +118,7 @@
 \begin{definition}
 	Пусть $S \subseteq E$ --- подпространство евклидова пространства. Тогда \textit{аннулятором $S$} называется следующее множество:
 	\[
-		S^\bot = \{y \in E \colon \forall x \in S\ \tbr{x, y} = 0\}
+		S^\bot = \{y \in E \colon \forall x \in S\ (x, y) = 0\}
 	\]
 \end{definition}
 
@@ -187,7 +187,7 @@
 \begin{proof} (теоремы о проекции)
 	Наша задача состоит в том, чтобы показать, что любой элемент $h \in H$ представим в виде $h = x + y$, где $x \in M, y \in M^\bot$. Зафиксируем произвольный $h \notin M$ (иначе разложение тривиально). Пусть $x$ --- элемент наилучшего приближения $\rho(h, M)$.  Утверждается, что $y := h - x \in M^\bot$. Проверим по определению этот факт. Пусть $z \in M$. Тогда, будем работать с $\alpha z \in M$, $\alpha \in \K$. Воспользуемся определением $x$ (далее $d = \rho(h, M)$):
 	\[
-		0 \le d^2 = \|h - x\|^2 \le \|h - x - \alpha z\|^2 = d^2\underbrace{ - \tbr{y, \alpha z} - \tbr{\alpha z, y}}_{-2\re(\alpha)\tbr{z, y}} + |\alpha|^2\|z\|^2
+		0 \le d^2 = \|h - x\|^2 \le \|h - x - \alpha z\|^2 = d^2\underbrace{ - (y, \alpha z) - (\alpha z, y)}_{-2\re((\alpha(z, y))} + |\alpha|^2\|z\|^2
 	\]
-	Отсюда $2\re(\alpha) \tbr{z, y} \le \alpha^2\|z\|^2$. Если рассмотреть $\eps \in \R$, $\eps > 0$ и $\alpha = \pm \eps$, то получится оценка $|2 \tbr{z, y}| \le \eps \|z\|^2$. Так как $\eps$ произвольно, то такое возможно тогда и только тогда, когда $\tbr{z, y} = 0$, что и требовалось показать.
+	Отсюда $2\re(\alpha(z, y)) \le \alpha^2\|z\|^2$. Если рассмотреть $\eps \in \R$, $\eps > 0$ и $\alpha = \pm \eps$, то получится оценка $|2 \re((z, y))| \le \eps \|z\|^2$. Так как $\eps$ произвольно, то такое возможно тогда и только тогда, когда $\re((z, y)) = 0$. Аналогично смотрим $\alpha = \pm i\eps$, что даёт оценку $|2\im((z, y))| \le \eps \|z\|^2$ и делаем вывод $\im((z, y)) = 0$. Стало быть, $(z, y) = 0$, что и требовалось доказать.
 \end{proof}

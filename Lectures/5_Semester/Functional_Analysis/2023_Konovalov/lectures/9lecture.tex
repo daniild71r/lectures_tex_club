@@ -9,7 +9,7 @@
 		
 		\item $e^\bot = \{0\}$
 		
-		\item Выполнено равенство Парсеваля: $\forall x \in H\ \|x\|^2 = \sum_{i = 1}^\infty |\tbr{x, e_i}|^2$
+		\item Выполнено равенство Парсеваля: $\forall x \in H\ \|x\|^2 = \sum_{i = 1}^\infty |(x, e_i)|^2$
 	\end{enumerate}
 \end{theorem}
 
@@ -24,11 +24,11 @@
 \begin{proof}
 	Во-первых, базовое правило для выведения неравенств состоит в том, что надо работать с квадратом нормы. Во-вторых, мы просто оценим квадрат нормы справа, расписав его в явном виде (а чтобы выделить в равенствах выражение слева, мы вычтем и добавим соответствующие суммы):
 	\begin{multline*}
-	\no{x - \sum_{n = 1}^N \alpha_n e_n}^2 = \|x\|^2 + \no{\sum_{n = 1}^N \alpha_n e_n}^2 - 2\sum_{n = 1}^N \alpha_n \tbr{x, e_n} =
+	\no{x - \sum_{n = 1}^N \alpha_n e_n}^2 = \|x\|^2 + \no{\sum_{n = 1}^N \alpha_n e_n}^2 - 2\sum_{n = 1}^N \alpha_n (x, e_n) =
 	\\
-	\|x\|^2 - \sum_{n = 1}^N |\tbr{x, e_n}|^2 + \sum_{n = 1}^N \alpha_n^2 - 2\sum_{n = 1}^N \alpha_n\tbr{x, e_n} + \sum_{n = 1}^N |\tbr{x, e_n}|^2 =
+	\|x\|^2 - 2\sum_{n = 1}^N |(x, e_n)|^2 + \sum_{n = 1}^N \alpha_n^2 - 2\sum_{n = 1}^N \alpha_n(x, e_n) + 2\sum_{n = 1}^N |(x, e_n)|^2 =
 	\\
-	\no{x - \sum_{n = 1}^N \tbr{x, e_n}e_n}^2 + \sum_{n = 1}^N (\alpha_n - \tbr{x, e_n})^2 \ge \no{x - \sum_{n = 1}^N \tbr{x, e_n}e_n}^2
+	\no{x - \sum_{n = 1}^N (x, e_n)e_n}^2 + \sum_{n = 1}^N (\alpha_n - (x, e_n))^2 \ge \no{x - \sum_{n = 1}^N (x, e_n)e_n}^2
 	\end{multline*}
 \end{proof}
 
@@ -48,7 +48,7 @@
 		\[
 			\forall \eps > 0\ \exists T = \sum_{n = 1}^N \alpha_n e_n\ \no{x - \sum_{n = 1}^N \alpha_n e_n} < \eps
 		\]
-		Стало быть, в силу минимального свойства сумм Фурье верно и такое утверждение:
+		Стало быть, в силу минимального свойства сумм Фурье верно следующее:
 		\[
 			\forall \eps > 0\ \exists N \in \N \such \|S_N(x) - x\| \le \|T - x\| < \eps
 		\]
