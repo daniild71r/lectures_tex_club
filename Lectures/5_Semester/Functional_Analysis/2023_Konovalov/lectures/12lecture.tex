@@ -2,48 +2,6 @@
 	Доказать, что для любой точки $x_0 \in [-\pi; \pi]$ существует функция $f \in C_{2\pi}$ такая, что частные суммы Фурье $S_n(f, x_0)$ расходятся.
 \end{exercise}
 
-\begin{proof} (теоремы \ref{op_cont_th})
-	\begin{enumerate}
-		\item (Идея) Пусть $\wdt{A}$ --- некоторое продолжение оператора $A$ по условию теоремы. Тогда несложно заметить, что по условию выполнено утверждение:
-		\[
-			\forall x \in E_1\ \exists \{x_n\}_{n = 1}^\infty \subseteq D(A) \such \lim_{n \to \infty} x_n = x \wedge \wdt{A}x_n = Ax_n \xrightarrow[n \to \infty]{} \wdt{A}x
-		\]
-		Стало быть, нужно отталкиваться от поточечного определения $\wdt{A}$.
-		
-		\item (Существование) Определим $\wdt{A}$ согласно идее (оператор $A$ непрерывен, поэтому пределы всегда есть):
-		\[
-			\forall x \in E_1\ \forall \{x_n\}_{n = 1}^\infty \subseteq D(A) \such \lim_{n \to \infty} x_n = x \Ra \wdt{A}x := \lim_{n \to \infty} Ax_n
-		\]
-		Теперь, покажем корректность такого определения:
-		\begin{itemize}
-			\item Значение $\wdt{A}$ не зависит от рассматриваемой последовательности $\{x_n\}_{n = 1}^\infty \subseteq D(A)$, $\lim_{n \to \infty} x_n = x$. Действительно, рассмотрим 2 последовательности $\lim_{n \to \infty} x_{n, 1} = \lim_{n \to \infty} x_{n, 2} = x$. Тогда, можно написать следующее неравенство:
-			\[
-				\|Ax_{1, n} - Ax_{2, m}\| \le \|A\| \cdot \|x_{1, n} - x_{2, m}\| \xrightarrow[n, m \to \infty]{} 0
-			\]
-			Более строго, нужно поочерёдно устремить в бесконечность $n, m \to \infty$ и тем самым сделать 2 предельных перехода.
-			
-			\item Почему $\wdt{A}$ --- линейный оператор? Это тривиально из линейности предела:
-			\begin{multline*}
-				\forall x, y \in E_1,\ \alpha, \beta \in \K\ \ \wdt{A}(\alpha x + \beta y) = \lim_{n \to \infty} A(\alpha x_n + \beta y_n) =
-				\\
-				\alpha \lim_{n \to \infty} Ax_n + \beta \lim_{n \to \infty} Ay_n = \alpha Ax + \beta Ay
-			\end{multline*}
-			
-			\item Почему $\wdt{A}$ --- ограниченный оператор? Воспользуемся старым добрым предельным переходом:
-			\[
-				\|\wdt{A}x_n\| = \|Ax_n\| \le \|A\| \cdot \|x_n\| \Ra \|\wdt{A}x\| \le \|A\| \cdot \|x\| \Ra \|\wdt{A}\| \le \|A\|
-			\]
-			При этом из определения $\wdt{A}$ сразу следует, что $\|\wdt{A}\| \ge \|A\|$. Таким образом, мы сразу установили равенство $\|\wdt{A}\| = \|A\|$
-		\end{itemize}
-	
-		\item (Единственность) Предположим, есть 2 продолжающих оператора: $\wdh{A}$ и $\wdt{A}$. Как мы и требовали, они должны быть согласованы с $A$. Стало быть, можно записать следующее:
-		\[
-			\forall x \in E_1\ \ \wdh{A}x = \lim_{n \to \infty} Ax = \wdt{A}x
-		\]
-		Следовательно, $\wdh{A} = \wdt{A}$.
-	\end{enumerate}
-\end{proof}
-
 \section{Сопряжённое пространство}
 
 \begin{note}
