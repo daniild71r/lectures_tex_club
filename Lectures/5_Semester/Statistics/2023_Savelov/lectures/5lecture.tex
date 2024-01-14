@@ -35,7 +35,7 @@
 \subsection{Сравнение оценок}
 
 \begin{definition}
-	\textit{Функцией потерь} называется любая борелевская неотрицательная функция $g \colon \R^n \times \R^n \to \R$.
+	\textit{Функцией потерь} называется любая борелевская неотрицательная функция $g \colon \R^n \times \R^n \to \R_+$.
 \end{definition}
 
 \begin{definition}
@@ -139,13 +139,13 @@
 \end{definition}
 
 \begin{example}
-	Рассмотрим выборку из $N(0, \theta)$, а также оценки $\hat{\mu}$ и $\ol{X}$.
+	Рассмотрим выборку из $N(\theta, 1)$, а также оценки $\hat{\mu}$ и $\ol{X}$.
 	\begin{itemize}
 		\item С одной стороны, по ЦПТ $\sqrt{n}(\ol{X} - \theta) \xrightarrow{d_\theta} N(0, 1)$
 		
 		\item С другой стороны, по теореме о выборочной медиане $\sqrt{n}(\hat{\mu} - \theta) \xrightarrow{d_{\theta}} N(0, \pi / 2)$
 	\end{itemize}
-	Сразу видно, что оценка средним лучше оценки медианой в асимптотическом подходе.
+	Сразу видно, что оценка средним лучше оценки медианой в асимптотическом подходе для семейства $N(\theta, 1)$.
 \end{example}
 
 \begin{definition}

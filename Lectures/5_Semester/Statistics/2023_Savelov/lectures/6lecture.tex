@@ -157,9 +157,9 @@
 		\[
 			\hat{\theta}(X) = \tau(\theta) + c(\theta) \cdot U_\theta(X)
 		\]
-		Так как $E_\theta U_\theta(X) = 0$, то $\hat{\theta} \in \cK$. Домножим исходное равенство и возьмём матожидание:
+		Так как $E_\theta U_\theta(X) = 0$, то $\hat{\theta} \in \cK$. Домножим исходное равенство на $U_\theta(X)$ и возьмём матожидание:
 		\[
-			\E_\theta (\hat{\theta} - \tau(\theta))U_\theta = c(\theta) \E_\theta U_\theta^2(X) = c(\theta) I_X(\theta)
+			\E_\theta (\hat{\theta} - \tau(\theta))U_\theta(X) = c(\theta) \E_\theta U_\theta^2(X) = c(\theta) I_X(\theta)
 		\]
 		В силу регулярности $0 < I_X(\theta) < +\infty$. Таким образом, $\hat{\theta} \in \wh{\cK}$. При этом, из доказательства неравенства Рао-Крамера мы знаем, что левая часть равна $\tau'(\theta)$. Отсюда выражение для $c(\theta)$. В силу линейной зависимости $\eta = \hat{\theta} - \tau(\theta)$ и $\xi = U_\theta(X)$, $\hat{\theta}$ является эффективной оценкой.
 	\end{itemize}

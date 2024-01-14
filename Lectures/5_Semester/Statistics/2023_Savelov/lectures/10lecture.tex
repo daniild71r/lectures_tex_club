@@ -1,0 +1,178 @@
+\begin{corollary}
+	Пусть выполнены условия регуляности 0-4 и для любого $n \in \N$ и любого $x \in A$ существует единственное решение уравнения правдоподобия $\wh{\theta}_n(x_1, \ldots, x_n)$. Дополнительно, пусть оно является измеримой функцией. Тогда
+	\begin{enumerate}
+		\item $\wh{\theta}_n(X)$ --- состоятельная оценка $\theta$
+		
+		\item С вероятностью, стремящейся к единице, $\wh{\theta}_n$ является ОМП
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Следует из доказанной теоремы
+		
+		\item Согласно предыдущим обозначениям, $x \in S_n$. Тогда $\wh{\theta}_n(x) = \wt{\theta}_n$ --- точка локального максимума. Предположим, что ОМП даёт лучшую точку, отличную от $\wt{\theta}_n$. Тогда строго между ними обязана существовать точка, в которой занулится производная (точка локального минимума). Получаем противоречие с единственностью корня уравнения правдоподобия, а значит $\wh{\theta}_n$ --- ОМП на $S_n$, причём $\lim_{n \to \infty} P_{\theta_0}(S_n) = 1$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (без доказательства)
+	Пусть выполнены условия регулярности 0-8. Тогда для любая состоятельная оценка $\wh{\theta}_n$, являющаяся решением уравнения правдоподобия, удовлетворяет соотношению:
+	\[
+		\forall \theta \in \Theta\ \ \sqrt{n}(\wh{\theta}_n - \theta) \xrightarrow[n \to \infty]{d_\theta} N\ps{0, \frac{1}{i(\theta)}}
+	\]
+\end{theorem}
+
+\begin{note}
+	Идея доказательства состоит в том, чтобы разложить $\wh{\theta}_n$ в ряд Тейлора.
+\end{note}
+
+\begin{corollary} (асимптотическая нормальность ОМП)
+	Пусть выполнены условия регулярности 0-8. Если при любом $n \in \N$ и $x \in A$ существует единственное решение уравнения правдоподобия $\wh{\theta}_n(x)$. Дополнительно, пусть оно является измеримой функцией. Тогда $\wh{\theta}_n(X)$ является асимптотически нормальной оценкой $\theta$ с асимптотической дисперсией $\sigma^2(\theta) = \frac{1}{i(\theta)}$ и с вероятностью, стремящейся к 1, $\wh{\theta}_n(X)$ является ОМП.
+\end{corollary}
+
+\begin{theorem} (Бахадура, без доказательства)
+	Пусть выполнены условия регулярности 0-8. Также $\wh{\theta}_n(X)$ --- асимптотически нормальная оценка $\theta$, причём асимптотическое отклонение $\sigma(\theta)$ непрерывно по $\theta$ (асимптотическая дисперсия --- $\sigma^2(\theta)$). Тогда:
+	\[
+		\forall \theta \in \Theta\ \ \sigma^2(\theta) \ge \frac{1}{i(\theta)}
+	\]
+\end{theorem}
+
+\begin{note}
+	Таким образом, в условиях следствия про асипмтотическую нормальность ОМП, эта оценка обладает наилучшей асимптотической дисперсией среди асимптотических оценок с непрерывной дисперсией.
+\end{note}
+
+\begin{definition}
+	Пусть $\hat{\theta}_n(X)$ --- асимптотически нормальная оценка $\theta$ с непрерывной $\sigma(\theta)$. Если $\sigma^2(\theta) = \frac{1}{i(\theta)}$, то оценка $\hat{\theta}_n(X)$ называется \textit{асимтотически эффективной оценкой $\theta$}.
+\end{definition}
+
+\begin{proposition}
+	Пусть выполнены условия регулярности неравенства Рао-Крамера, $\hat{\theta}(X)$ --- эффективная оценка $\theta$, причём
+	\[
+		\forall x \in A, \theta \in \Theta\ \ \wh{\theta}(x) - \theta = c(\theta) U_\theta(x)
+	\]
+	Тогда $\wh{\theta}_n(X)$ --- ОМП.
+\end{proposition}
+
+\begin{proof}
+	Подставим $c(\theta)$ явно, ведь мы знаем из критерия эффективности формулу для него:
+	\[
+		\wh{\theta}_n(X) - \theta = \frac{1}{I_X(\theta)} \cdot \pd{}{\theta} \ln f_\theta(X)
+	\]
+	Отсюда при $\theta < \wh{\theta}_n(x)$ получим $\pd{}{\theta} \ln f_\theta(x) > 0$ и аналогично при $\theta > \wh{\theta}_n(x)$ будет $\pd{}{\theta} \ln f_\theta(x) < 0$, а значит $\theta = \wh{\theta}(X)$ --- точка максимума для $\ln f_\theta(X)$.
+	
+	\textcolor{red}{Я не знаю, что даёт этот факт и почему отсюда $\wh{\theta}_n(X)$ --- ОМП. Это не похоже на правду}
+\end{proof}
+
+\section{Линейная регрессионная модель}
+
+\begin{note}
+	В линейной модели наблюдением является случайный вектор $X \in \R^n$, который представим в виде $X = l + \eps$, где $l$ --- неизвестный фиксированный вектор, а $\eps$ --- тоже случайный вектор. Вектор $l$ называется \textit{оцениваемой величиной}, а $\eps$ --- \textit{ошибка измерений}.
+	
+	Мы полагаем, что $\E \eps = 0$ и $D\eps = \sigma^2 E_n$, $\sigma > 0$ и неизвестна. Про $l$ мы знаем, что $l \in L \subseteq \R^n$ --- некоторое подпространство.
+	
+	Наша задача состоит в том, чтобы оценить неизвестные параметры $l$ и $\sigma^2$.
+	
+	Пусть $L$ задано при помощи своего базиса $\{z_1, \ldots, z_k\}$. Составим матрицу $Z = (z_1, \ldots, z_k)^\square$, тогда $l = Z\theta$, где $\theta = (\theta_1, \ldots, \theta_k)^T$ --- неизвестные координаты в базисе $z$. Таким образом, задача сводится к оценке $(\theta, \sigma^2)$. Итоговый вид модели такой:
+	\[
+		X = Z\theta + \eps,\ \E \eps = 0, D\eps = \sigma^2 E_n
+	\]
+\end{note}
+
+\subsection{Метод Наименьших Квадратов (МНК)}
+
+\begin{definition}
+	\textit{Оценкой по методу наименьших квадратов (МНК) для $\theta$} называется оценка следующего вида:
+	\[
+		\wh{\theta}(X) = \arg\min_{Z\theta \in L} \|X - Z\theta\|^2 = \arg\min_{Z\theta \in L} \tbr{X - Z\theta, X - Z\theta}
+	\]
+\end{definition}
+
+\begin{note}
+	Геометрический смысл состоит в том, что $\wh{\theta}$ соответствует координатам проекции $X$ на подпространство $L$.
+\end{note}
+
+\begin{note}
+	Далее $\wh{\theta}(X)$ обозначает оценку МНК, если явно не сказано иного.
+\end{note}
+
+\begin{lemma} (Явный вид МНК)
+	Для МНК имеет место формула:
+	\[
+		\wh{\theta}(X) = (Z^TZ)^{-1}Z^TX
+	\]
+\end{lemma}
+
+\begin{proof}
+	Найдём минимум скалярного произведения через дифференцирование по $\theta$:
+	\[
+		d\tbr{X- Z\theta, X - Z\theta} = 2\tbr{-Zd\theta, X - Z\theta} = \tbr{-2Z^T(X - Z\theta), d\theta} \Ra \nabla_\theta = 2Z^T(Z\theta - X)
+	\]
+	Приравняем $\nabla_\theta = 0$ и найдём значение $\theta$:
+	\[
+		2Z^T(Z\theta - X) = 0;\ \theta = (Z^TZ)^{-1}Z^TX
+	\]
+\end{proof}
+
+\begin{note}
+	Матрица $Z^TZ$ невырождена, коль скоро это матрица Грама.
+\end{note}
+
+\begin{proposition}
+	Для оценки МНК $E \wh{\theta}(X) = \theta$, $D \wh{\theta}(X) = \sigma^2(Z^TZ)^{-1}$
+\end{proposition}
+
+\begin{proof}
+	Считаем при помощи подстановки явной формулы:
+	\begin{itemize}
+		\item $\E \wh{\theta}(X) = \E (Z^TZ)^{-1}Z^TX = (Z^TZ)^{-1}Z^T\E X = (Z^TZ)^{-1}Z^TZ\theta = \theta$
+		
+		\item $D \wh{\theta}(X) = (Z^TZ)^{-1}Z^T DX ((Z^TZ)^{-1}Z^T)^T = \sigma^2(Z^TZ)^{-1}$
+	\end{itemize}
+\end{proof}
+
+\begin{theorem} (без доказательства)
+	Пусть $t = T\theta$ --- линейный оператор, $T \in \cM_{m \times k}$. Тогда оценка $\wh{t}(X) = T\wh{\theta}(X)$ является оптимальной оценкой $t$ в классе линейных несмещённых оценок (то есть оценок вида $B \cdot X$)
+\end{theorem}
+
+\begin{lemma}
+	Имеет место равенство $\E \|X - Z\wh{\theta}(X)\|^2 = \sigma^2(n - k)$
+\end{lemma}
+
+\begin{proof}
+	По доказанному, $\E (X - Z\wh{\theta}(X)) = 0$. Стало быть, $\E \|X - Z\wh{\theta}(X)\|^2 = \Tr D(X - Z\wh{\theta}(X))$. Осталось расписать матрицу ковариаций в явном виде:
+	\begin{multline*}
+		D(X - Z\wh{\theta}(X)) = D\big((E_n - \underbrace{Z(Z^TZ)^{-1}Z}_{A})X\big) = (E_n - A) DX (E_n - A)^T = [A^T = A] =
+		\\
+		\sigma^2 (E_n - A)^2 = \sigma^2(E_n - 2A + A^2) = [A^2 = A] = \sigma^2(E_n - A)
+	\end{multline*}
+	Осталось подставить полученное выражение в матожидание (при этом $A = Z(Z^TZ)^{-1}Z = ZZ^{-1}Z^{-T}Z = Z^{-T}Z$):
+	\[
+		\E \|X - Z\wh{\theta}(X)\|^2 = \sigma^2(n - \Tr A) = \sigma^2(n - k)
+	\]
+\end{proof}
+
+\begin{corollary}~
+	\begin{enumerate}
+		\item $X - Z\wh{\theta}(X) = \Pi_{L^\bot} X$ --- проекция $X$ на ортогональное дополнение к $L$
+		
+		\item $\frac{1}{n - k} \|X - Z\wh{\theta}(X)\|^2$ --- несмещённая оценка $\sigma^2$
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item В силу гильбертовости $\R^n$, $L \oplus L^\bot = \R^n$. Стало быть, $X = \Pi_L X + \Pi_{L^\bot} X$, причём первый вектор равен $Z\wh{\theta}(X)$.
+		
+		\item Тривиально.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Гауссовская линейная модель}
+
+\begin{note}
+	Гауссовская линейная модель отличается от обычной тем, что добавляется условие \\ $\eps \sim N(0, \sigma^2E_n)$.
+\end{note}
+
+\begin{reminder}
+	Распределение хи-квадрат с $k$ степенями свободы можно с одной стороны считать $\chi_k^2 = \Gamma(\frac{1}{2}, \frac{k}{2})$, а с другой стороны, это соответствует случайной величине $\xi_1^2 \plusdots \xi_k^2,\ \xi_i \sim N(0, 1)$.
+\end{reminder}
