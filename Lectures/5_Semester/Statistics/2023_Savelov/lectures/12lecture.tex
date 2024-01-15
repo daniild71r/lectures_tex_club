@@ -1,0 +1,148 @@
+\begin{lemma} (Неймана-Пирсона)
+	Пусть критерий $R$ удовлетворяет соотношению $\beta(P_0, R) \le \beta(P_0, S_\lambda)$. Тогда
+	\begin{enumerate}
+		\item $\beta(P_1, R) \le \beta(P_1, S_\lambda)$ ($S_\lambda$ мощнее $R$)
+		
+		\item $\beta(P_0, S_\lambda) \le \beta(P_1, S_\lambda)$ ($S_\lambda$ несмещён)
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	Далее $I_A(x)$ --- индикатор $x \in A$.
+	\begin{enumerate}
+		\item Что получится, если проинтегрировать функцию из определения $S_\lambda$ по этому же множеству?
+		\[
+			\int_{S_\lambda} (p_1(x) - \lambda p_0(x))d\mu(x) = \int_\cX I_{S_\lambda}(p_1(x) - \lambda p_0(x))d\mu(x) =  P_1(X \in S_\lambda) - \lambda P_0(X \in S_\lambda)
+		\]
+		Осталось заметить, что этот же интеграл можно оценить снизу аналогичным, но по $R$, ибо все неотрицательные значения подынтегральной функции уже учтены (в силу определения $S_\lambda$):
+		\begin{multline*}
+			P_1(X \in R) - \lambda P_0(X \in R) = \int_R (p_1(x) - \lambda p_0(x))d\mu(x) \le
+			\\
+			\int_{S_\lambda} (p_1(x) - \lambda p_0(x))d\mu(x) = P_1(X \in S_\lambda) - \lambda P_0(X \in S_\lambda)
+		\end{multline*}
+		Это неравенство можно переписать так:
+		\[
+			P_1(X \in S_\lambda) - P_1(X \in R) \ge \lambda(P_0(X \in S_\lambda) - P_0(X \in R)) \ge 0
+		\]
+		
+		\item Придётся разобрать несколько случаев
+		\begin{itemize}
+			\item $\lambda > 1$. Значит, $p_1(x) \ge p_0(x)$ при $x \in S_\lambda$:
+			\[
+				P_0(X \in S_\lambda) = \int_{S_\lambda} p_0(x)d\mu(x) \le \int_{S_\lambda} p_1(x)d\mu(x) = P_1(X \in S_\lambda)
+			\]
+			
+			\item $\lambda \in [0; 1]$. В этом случае наоборот, при $x \in \ol{S_\lambda}$ имеем $p_1(x) \le p_0(x)$. Для нужной оценки обратимся к вероятности на дополнении $\ol{S_\lambda}$:
+			\begin{multline*}
+				1 - \beta(P_1, S_\lambda) = P_1(X \in \ol{S_\lambda}) = \int_{\ol{S_\lambda}} p_1(x)d\mu(x) \le
+				\\
+				\int_{\ol{S_\lambda}} p_0(x)d\mu(x) = P_0(X \in \ol{S_\lambda}) = 1 - \beta(P_0, S_\lambda)
+			\end{multline*}
+		\end{itemize}
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Если $\lambda > 0$ и $P_0(X \in S_\lambda) = \eps > 0$, то $S_\lambda$ --- РНМК уровня значимости $\eps$.
+\end{corollary}
+
+\begin{note}
+	Стало быть, для нахождения РНМК нужно решить уравнение относительно $\lambda$:
+	\[
+		\int_{S_\lambda} p_0(x)d\mu(x) = \eps > 0
+	\]
+	
+	В случае абсолютно непрерывного распределения ($\mu$ --- мера Лебега) решение, как правило, существует, а в дискретном случае решения может не быть для всех $\eps > 0$. Поэтому приходится выбирать из тех $\eps$, при которых уравнение разрешимо.
+\end{note}
+
+\subsection{Монотонное отношение правдоподобия}
+
+\begin{note}
+	Пусть семейство $\cP$ параметризовано параметром $\theta \in \R$, а также оно доминируемо относительно меры $\mu$ (этим мы гарантируем налачие функции правдоподобия).
+\end{note}
+
+\begin{definition}
+	Семейство $\cP = \{P_\theta\}_{\theta \in \Theta}$ называется \textit{монотонным относительно правдоподобия по статистике $T(X)$}, если
+	\[
+		\forall \theta_0 < \theta_1\ \ \frac{f_{\theta_1}(x)}{f_{\theta_0}(x)} \text{ --- монотонная функция от $T(x)$}
+	\]
+	причём характер монотонности один и тот же.
+\end{definition}
+
+\begin{theorem} (о монотонности относительно правдоподобия, без доказательства)
+	Пусть даны гипотезы $H_0 \colon \theta \le \theta_0$ (или $\theta = \theta_0$), $H_1 \colon \theta > \theta_0$, а семейство $\cP$ монотонно относительно правдоподобия, причём характер монотонности --- неубывание. Тогда критерий $S_\eps = \{T(x) \ge c_\eps\}$ с условием $P_{\theta_0}(S_\eps) = \eps$ является РНМК с уровнем значимости $\eps$ для проверки $H_0$ против $H_1$.
+\end{theorem}
+
+\subsection{Двойственность доверительного оценивания и проверки гипотез}
+
+\begin{itemize}
+	\item[$\Ra$] Пусть $S(X)$ --- доверительная область уровня доверия $1 - \eps$ для параметра $\theta \in \Theta$. Если я хочу проверить простую гипотезу $H_0 \colon \theta = \theta_0$, то имеет смысл рассмотреть такой критерий:
+	\[
+		\wt{S}(\theta) = \{x \in \cX \colon \theta \notin S(x)\}
+	\]
+	Тогда $\wt{S}(\theta_0)$ --- критерий с уровнем значимости $\eps$ для проверки $H_0$. Проверим этот факт явно:
+	\[
+		P_{\theta_0}(X \in \wt{S}(\theta_0)) = P_{\theta_0}(\theta_0 \notin S(X)) = 1 - P_{\theta_0}(\theta_0 \in S(X)) \le \eps
+	\]
+	
+	\item[$\La$] Наоборот, $S_{\theta_0}$ --- критерий проверки гипотезы $H_0 \colon \theta = \theta_0$ с уровнем значимости $\eps$. Пусть известен критерий $S_{\theta_0}$ при любом $\theta_0 \in \Theta$. Тогда мы можем рассмотреть $S(X) = \{\theta \in \Theta \colon X \notin S_\theta\}$, это будет искомым доверительным множеством с уровнем доверия $1 - \eps$:
+	\[
+		P_\theta(\theta \in S(X)) = P_\theta(X \notin S_\theta) = 1 - P_\theta(X \in S_\theta) \ge 1 - \eps
+	\]
+\end{itemize}
+
+\subsection{Проверка гипотез в гауссовской линейной модели}
+
+\begin{note}
+	Рассмотрим гауссовскую линейную модель:
+	\[
+		X = Z\theta + \eps,\ \eps \sim N(0, \sigma^2E_n),\ \theta \in \R^k,\ Z \in \cM_{n \times k},\ \rk Z = k \le n
+	\]
+\end{note}
+
+\begin{problem}
+	Проверить простую гипотезу $H_0 \colon T \theta = t$, где $T \in \cM_{m \times k}$, $t \in \R^m$ и $\rk T = m \le k$. Уровень значимости $\alpha$.
+\end{problem}
+
+\begin{solution} ($F$-критерий или критерий Фишера)
+	Идея состоит в том, что мы умеем по выборке оценивать $T\theta$ с использованием оценки $\wh{\theta}(X)$. Мы будем строить критерий исходя из того, что надо проверить, насколько сильное отклонение в сравнении $T\wh{\theta}(X)$ и $t$. Далее для вывода критерия мы предполагаем верность гипотезы $T\theta = t$.
+	
+	Итак, $\wh{\theta}(X) = (Z^TZ)^{-1}Z^TX$ --- это ОНК для $\theta$. В силу известных фактов, $\wh{t}(X) = T\wh{\theta}(X)$ --- оптимальная оценка для $T\theta$. Так как распределение $\wh{\theta}(X) \sim N(\theta, \sigma^2(Z^TZ)^{-1})$, то $\wh{t}(X) \sim N(T\theta, T\sigma^2(Z^TZ)^{-1}T^T) =: N(T\theta, \sigma^2B)$. Матрица $B$ положительно определена и симметрична, а поэтому существует $\sqrt{B}$ --- тоже симметричная матрица. Это позволяет оценку с независящим от параметров распределением:
+	\[
+		\frac{1}{\sigma}(\sqrt{B})^{-1}(\wh{t}(X) - T\theta) \sim N(0, E_m) \Ra Q_T(X) := \nm{\frac{1}{\sigma}(\sqrt{B})^{-1}(\wh{t}(X) - T\theta)}^2 \sim \chi_m^2
+	\]
+	Как и раньше, $Q_T(X)$ нам не подойдёт, ибо присутствует $\sigma$, но это мы решим применением ещё одной статистики. Сейчас же перепишем $Q_T(X)$ в более удобном виде (с учётом верности гипотезы):
+	\[
+		Q_T(X) = \frac{1}{\sigma^2} \big((\sqrt{B})^{-1}(\wh{t}(X) - t))^T(\sqrt{B})^{-1}(\wh{t}(X) - t) = \frac{1}{\sigma^2}\underbrace{(\wh{t}(X) - t)^TB^{-1}(\wh{t}(X) - t)}_{\wh{Q}_T(X)}
+	\]
+	Так как $\wh{Q}_T(X)$ выражается через $\wh{\theta}(X)$, то $\wh{Q}_T(X) \indep X - Z\wh{\theta}(X)$, при этом $\frac{1}{\sigma^2}\|X - Z\wh{\theta}(X)\|^2 \sim \chi_{n - k}^2$. Отсюда, в условиях гипотезы $H_0$, получаем следующую статистику:
+	\[
+		F(X) := \frac{\sigma^2 Q_T(X)}{\|X - Z\wh{\theta}(X)\|^2} \cdot \frac{n - k}{m} = \frac{\wh{Q}_T(X)}{\|X - Z\wh{\theta}(X)\|^2} \cdot \frac{n - k}{m} \sim F_{m, n - k}
+	\]
+	Остаётся взять квантиль $u_{1 - \alpha}$, тогда $\{x \colon F(x) > u_{1 - \alpha}\}$ --- искомый критерий, также называемый \textit{$F$-критерием или критерием Фишера}
+\end{solution}
+
+\begin{example}
+	Рассмотрим следующий пример: есть два груза с неизвестными весами $a_1$, $a_2$. Производится $n$ взвешиваний первого и $m$ взвешиваний второго. Требуется проверить гипотезу $H_0 \colon a_1 = a_2$.
+	
+	Для начала, переформулируем условие задачи: $X_1, \ldots, X_n \sim N(a_1, \sigma^2)$, $Y_1, \ldots, Y_m \sim N(a_2, \sigma^2)$, $W := (X_1, \ldots, X_n, Y_1, \ldots, Y_m)^T$. Получается гауссовская линейная модель:
+	\[
+		W = Z\theta + \eps,\ \theta = (a_1, a_2)^T,\ \eps \sim N(0, \sigma^2E_{n + m})
+	\]
+	Для краткости, описание $Z$ опускается (задача читателю на дом). Гипотезу $H_0$ можно переформулировать в терминах, изложенных ранее, тогда $T = (1, -1)$ и $t = 0$.
+	\begin{itemize}
+		\item $\wh{\theta}(W) = (Z^TZ)^{-1}Z^TW = \begin{pmatrix} \ol{X} \\ \ol{Y}\end{pmatrix}$ (проверяется явным вычислением с $Z$)
+		
+		\item $\wh{t}(W) = \ol{X} - \ol{Y}$
+		
+		\item $B = T(Z^TZ)^{-1}T^T = \frac{1}{n} + \frac{1}{m}$
+		
+		\item $\wh{Q}_T(W) = \frac{nm}{n + m}(\ol{X} - \ol{Y})^2$
+		
+		\item $\|W - Z\wh{\theta}(W)\|^2 = \sum_{i = 1}^n (X_i - \ol{X})^2 + \sum_{j = 1}^m (Y_i - \ol{Y})^2 = nS_X^2 + mS_Y^2$
+	\end{itemize}
+	Из всего вышесказанного, $F$-статистика принимает вид:
+	\[
+		F(W) = \frac{\frac{nm}{n + m}(\ol{X} - \ol{Y})^2}{nS_X^2 + mS_Y^2} \cdot \frac{n + m - 2}{1} \sim F_{1, n + m - 2}
+	\]
+\end{example}
