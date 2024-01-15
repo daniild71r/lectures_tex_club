@@ -81,7 +81,7 @@
 \subsection{Метод Наименьших Квадратов (МНК)}
 
 \begin{definition}
-	\textit{Оценкой по методу наименьших квадратов (МНК) для $\theta$} называется оценка следующего вида:
+	\textit{Оценкой по методу наименьших квадратов (ОНК) для $\theta$} называется оценка следующего вида:
 	\[
 		\wh{\theta}(X) = \arg\min_{Z\theta \in L} \|X - Z\theta\|^2 = \arg\min_{Z\theta \in L} \tbr{X - Z\theta, X - Z\theta}
 	\]
@@ -92,10 +92,10 @@
 \end{note}
 
 \begin{note}
-	Далее $\wh{\theta}(X)$ обозначает оценку МНК, если явно не сказано иного.
+	Далее $\wh{\theta}(X)$ обозначает оценку по МНК, если явно не сказано иного.
 \end{note}
 
-\begin{lemma} (Явный вид МНК)
+\begin{lemma} (Явный вид ОНК)
 	Для МНК имеет место формула:
 	\[
 		\wh{\theta}(X) = (Z^TZ)^{-1}Z^TX
@@ -118,7 +118,7 @@
 \end{note}
 
 \begin{proposition}
-	Для оценки МНК $E \wh{\theta}(X) = \theta$, $D \wh{\theta}(X) = \sigma^2(Z^TZ)^{-1}$
+	Для оценки по МНК $E \wh{\theta}(X) = \theta$, $D \wh{\theta}(X) = \sigma^2(Z^TZ)^{-1}$
 \end{proposition}
 
 \begin{proof}
