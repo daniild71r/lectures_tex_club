@@ -1,0 +1,29 @@
+\subsection{Критерий согласия Пирсона}
+
+\begin{problem}
+	Рассмотрим дискретную модель $X_k \sim (a_i, p_i)_{i = 1}^m$. Необходимо проверить гипотезу $H_0 \colon p = p_0$.
+\end{problem}
+
+\begin{definition}
+	$V_i(X)$ --- статистика количества исходов, равных $a_i$:
+	\[
+		V_i(X) := \sum_{k = 1}^n I\{X_k = a_i\}
+	\]
+\end{definition}
+
+\begin{definition}
+	\textit{Статистикой хи-квадрат (Пирсона)} называется статистика следующего вида:
+	\[
+		\wh{\chi}_n^2 = \sum_{i = 1}^m \frac{(V_i - np_{0, i})^2}{np_{0, i}}
+	\]
+\end{definition}
+
+\begin{theorem} (Пирсона)
+	Если гипотеза $H_0$ верна, то имеет место сходимость
+	\[
+		\wh{\chi}_n^2 \xrightarrow[n \to \infty]{d} \chi_{m - 1}^2
+	\]
+\end{theorem}
+
+
+
