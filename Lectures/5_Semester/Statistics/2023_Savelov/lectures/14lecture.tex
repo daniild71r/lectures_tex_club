@@ -1,0 +1,41 @@
+\begin{theorem} (о байесовской оценке)
+	Байесовская оценка является наилучшей оценкой в байесовском подходе с квадратичной функцией потерь.
+\end{theorem}
+
+\begin{theorem} (о наилучшем квадратичном прогнозе)
+	Пусть $\xi$ --- случайная величина, $\cC$ --- $\sigma$-алгебра в $\F$. Определим $A = \{\eta \colon \eta \text{ --- $\cC$-измерима}\}$. Тогда
+	\[
+		\inf_{\eta \in A} \E(\xi - \eta)^2 = \E(\xi - \E(\xi | \cC))^2
+	\]
+\end{theorem}
+
+\begin{proof}
+	Теорема требует разбора случаев:
+	\begin{itemize}
+		\item $\xi \notin L_2$. Без доказательства
+		
+		\item $\xi \in L_2$. Нужно добавить и вычесть соответствующий матож в скобке, выделить минимальную часть и показать, что остальное можно либо убрать из-за неотрицательности, либо оно равно нулю:
+		\begin{multline*}
+			\E(\xi - \eta)^2 = \E(\xi - \E(\xi | \eta) + \E(\xi | \eta) - \eta)^2 =
+			\\
+			\E(\xi - \E(\xi | \eta))^2 + \E(\eta - \E(\xi | \eta))^2 + 2\E(\xi - \E(\xi | \eta))(\E(\xi | \eta) - \eta)
+		\end{multline*}
+		Сразу $\E(\eta - \E(\xi | \eta))^2 \ge 0$. Покажем, что правое слагаемое равно нулю:
+		\begin{multline*}
+			\E(\xi - \E(\xi | \eta))(\E(\xi | \eta) - \eta) = \E\Big(\E\big((\xi - \E(\xi | \eta))(\E(\xi | \eta) - \eta)|\eta\big)\Big) =
+			\\
+			\E\Big((\E(\xi | \eta) - \eta)\underbrace{\E\big(\xi - \E(\xi | \eta) | \eta\big)}_{0}\Big) = 0
+		\end{multline*}
+		Отсюда $\E(\xi - \eta)^2 \ge \E(\xi - \E(\xi | \eta))^2$, при этом равенство достигается при $\eta = \E(\xi | \cC)$.
+	\end{itemize}
+\end{proof}
+
+\begin{proof}
+	Пусть $\wh{\theta}(X)$ --- произвольная оценка $\theta$. Тогда, согласно байесовскому подходу, мы минимизируем следующий интеграл:
+	\begin{multline*}
+		\int_\Theta R(\wh{\theta}(X), t)q(t)d\mu(t) = \int_\Theta \E_t(\wh{\theta}(X) - t)^2q(t)d\mu(t) =
+		\\
+		\int_\Theta \int_\cX (\wh{\theta}(X) - t)^2f(t, x)d\mu(x)d\mu(\theta) = \E_{\wt{P}} (\wh{\theta}(X) - \theta)^2
+	\end{multline*}
+	Таким образом, мы минимизируем среднеквадратичное отклонение от функции, зависящей от $X$. Согласно теореме о наилучшем квадратичном прогнозе, оптимальной оценкой будет $\E_{\wt{P}}(\theta | X)$, то есть байесовская оценка.
+\end{proof}
