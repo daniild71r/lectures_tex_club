@@ -50,17 +50,15 @@
 	\[
 		\forall x \in A, \theta \in \Theta\ \ \wh{\theta}(x) - \theta = c(\theta) U_\theta(x)
 	\]
-	Тогда $\wh{\theta}_n(X)$ --- ОМП.
+	Тогда $\wh{\theta}(X)$ --- ОМП.
 \end{proposition}
 
 \begin{proof}
 	Подставим $c(\theta)$ явно, ведь мы знаем из критерия эффективности формулу для него:
 	\[
-		\wh{\theta}_n(X) - \theta = \frac{1}{I_X(\theta)} \cdot \pd{}{\theta} \ln f_\theta(X)
+		\wh{\theta}(X) - \theta = \frac{1}{I_X(\theta)} \cdot \pd{}{\theta} \ln f_\theta(X)
 	\]
-	Отсюда при $\theta < \wh{\theta}_n(x)$ получим $\pd{}{\theta} \ln f_\theta(x) > 0$ и аналогично при $\theta > \wh{\theta}_n(x)$ будет $\pd{}{\theta} \ln f_\theta(x) < 0$, а значит $\theta = \wh{\theta}(X)$ --- точка максимума для $\ln f_\theta(X)$.
-	
-	\textcolor{red}{Я не знаю, что даёт этот факт и почему отсюда $\wh{\theta}_n(X)$ --- ОМП. Это не похоже на правду}
+	Отсюда при $\theta < \wh{\theta}(x)$ получим $\pd{}{\theta} \ln f_\theta(x) > 0$ и аналогично при $\theta > \wh{\theta}(x)$ будет $\pd{}{\theta} \ln f_\theta(x) < 0$, а значит $\wh{\theta}(x) = \theta$ --- точка максимума для $\ln f_\theta(x)$. Значит, оценка ОМП принимает такое значение $\theta_0$, при котором так же выполнено равенство $\wh{\theta}(X) = \theta_0$, то есть оценка ОМП совпадает с $\wh{\theta}(X)$, что и требовалось доказать.
 \end{proof}
 
 \section{Линейная регрессионная модель}
