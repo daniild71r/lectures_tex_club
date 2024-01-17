@@ -35,7 +35,7 @@
 \end{definition}
 
 \begin{definition}
-	Пусть $\Theta \subseteq \R^m$ и $g$ --- функция потерь из $\R^m \times \R^m$. Тогда, если $\theta_n^*$ --- оценка параметра $\theta$, то функция $g(\theta^*(X), \theta)$ называется \textit{величиной потерь}.
+	Пусть $\Theta \subseteq \R^m$ и $g$ --- функция потерь из $\R^m \times \R^m$. Тогда, если $\theta_n^*$ --- оценка параметра $\theta$, то функция $g(\theta_n^*(X), \theta)$ называется \textit{величиной потерь}.
 \end{definition}
 
 \begin{example}
@@ -75,14 +75,28 @@
 \end{note}
 
 \begin{definition}
-	Оценка $\hat{\theta}$ называется \textit{наилучшей в классе оценок $\cK$}, если она лучше любой другой оценки $\theta^* \in \cK$.
+	Оценка $\hat{\theta}$ называется \textit{наилучшей в классе оценок $\cK$}, если она не хуже любой другой оценки $\theta^* \in \cK$.
 \end{definition}
 
 \begin{note}
 	Наилучшая оценка не всегда существует.
 \end{note}
 
-\textcolor{red}{Доказать, что в классе всех оценок нет наилучшей}
+\begin{proposition}
+	В классе всех оценок не существует наилучшей с квадратичной функцией потерь
+\end{proposition}
+
+\begin{proof}
+	Предположим, что $\theta^*$ --- наилучшая оценка. Тогда:
+	\[
+		\forall \wh{\theta}\ \forall \theta \in \Theta\ \ \E_\theta (\theta^*(X) - \theta)^2 \le \E_\theta (\wh{\theta}(X) - \theta)^2
+	\]
+	В частности, это так для $\wh{\theta}(X) = \theta_1$ --- некоторый произвольно выбранный параметр из $\Theta$. Стало быть, при $\theta = \theta_1$ имеем
+	\[
+		\E_{\theta_1} (\theta^*(X) - \theta_1)^2 \le \E_{\theta_1} (\theta_1 - \theta_1)^2 = 0 \Lora \E_{\theta_1} (\theta^*(X) - \theta_1)^2 = 0
+	\]
+	Такое возможно тогда и только тогда, когда $\theta^*(X) =^{\aal{P_{\theta_1}}} \theta_1$, то есть оценка заранее знает то, что оценивает, противоречие.
+\end{proof}
 
 \subsubsection{Минимаксный подход}
 
@@ -119,7 +133,7 @@
 \end{definition}
 
 \begin{definition}
-	Оценка $\theta^*(X)$ называется \textit{наилучшей в байесовском подходе}, если выполнено равенство:
+	Оценка $\theta^*(X)$ называется \textit{наилучшей в байесовском подходе}, если её риск минимален:
 	\[
 		R(\theta^*(X)) = \min_{\hat{\theta} \in \cK} R(\hat{\theta}(X))
 	\]

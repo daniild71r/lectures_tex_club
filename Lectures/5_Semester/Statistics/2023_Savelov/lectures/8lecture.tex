@@ -48,7 +48,10 @@
 	\[
 		p_\theta(x) = h(x)\exp\ps{\sum_{i = 1}^k a_i(\theta)T_i(x) + V(\theta)}
 	\]
-	Тогда, если область значений векторной функции $\vv{a}(\theta) = (a_1(\theta), \ldots, a_k(\theta))^T, \theta \in \Theta$ содержит $k$-мерный параллелепипед, то \textcolor{red}{внезапно, вектор стал оценкой скаляра}
+	Тогда, если область значений векторной функции $a(\theta) = (a_1(\theta), \ldots, a_k(\theta))^T, \theta \in \Theta$, содержит $k$-мерный параллелепипед, то статистика $T(X)$ следующего вида является полной и достаточной для $\Theta$:
+	\[
+		T(X) = \ps{\sum_{i = 1}^k T_i(X_1), \ldots, \sum_{i = 1}^k T_i(X_n)}^T
+	\]
 \end{theorem}
 
 \begin{note}

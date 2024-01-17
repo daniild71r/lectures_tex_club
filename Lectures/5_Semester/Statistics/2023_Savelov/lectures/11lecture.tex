@@ -26,7 +26,7 @@
 	Статистика $S(X) = (\Pi_L X, \|\Pi_{L^\bot} X\|^2)$ является полной.
 \end{theorem}
 
-\begin{corollary}
+\begin{corollary}~
 	\begin{itemize}
 		\item $\wh{\theta}(X)$ --- оптимальная оценка для $\theta$
 		
@@ -108,7 +108,7 @@
 \begin{itemize}
 	\item Для $\sigma^2$: у нас есть статистика $\frac{1}{\sigma^2}\|X - Z\wh{\theta}(X)\|^2 \sim \chi_{n - k}^2$. Возьмём $u_{1 - \gamma}$ --- соответствующий квантиль $\chi_{n - k}^2$. Тогда
 	\[
-		\gamma = P(\frac{1}{\sigma^2}\|X - Z\wh{\theta}(X)\|^2 > u_{1 - \gamma}) = P\ps{\sigma^2 \in \Big(0; \frac{\|X - Z\wh{\theta}(X)\|^2}{u_{1 - \gamma}}\Big)}
+		\gamma = P\ps{\frac{1}{\sigma^2}\|X - Z\wh{\theta}(X)\|^2 > u_{1 - \gamma}} = P\ps{\sigma^2 \in \Big(0; \frac{\|X - Z\wh{\theta}(X)\|^2}{u_{1 - \gamma}}\Big)}
 	\]
 	
 	\item Для $\theta_i$: воспользуемся тем фактом, что $\wh{\theta}(X) \sim N(\theta, \sigma^2A)$, где $A = (Z^TZ)^{-1}$. Тогда $\theta_i \sim N(\theta_i, \sigma^2a_{ii})$, а значит $\frac{\wh{\theta}_i - \theta_i}{\sqrt{\sigma^2a_{ii}}} \sim N(0, 1)$. Чтобы убрать $\sigma^2$ из знаменателя, вспомним, что $\wh{\theta}(X) \indep X - Z\wh{\theta}(X)$. Стало быть, можем поделить оценку на корень из $\frac{1}{\sigma^2}\|X - Z\wh{\theta}(X)\|^2 \sim \chi_{n - k}^2$ и получить распределение Стюдента:

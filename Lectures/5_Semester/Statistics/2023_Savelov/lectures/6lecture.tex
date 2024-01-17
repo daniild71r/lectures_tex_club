@@ -157,21 +157,25 @@
 		\[
 			\hat{\theta}(X) = \tau(\theta) + c(\theta) \cdot U_\theta(X)
 		\]
-		Так как $E_\theta U_\theta(X) = 0$, то $\hat{\theta} \in \cK$. Домножим исходное равенство на $U_\theta(X)$ и возьмём матожидание:
+		Так как $E_\theta U_\theta(X) = 0$, то $\hat{\theta} \in \cK$. Перенесём $\tau(\theta)$ влево, возведём равенство в квадрат и возьмём матожидание:
+		\[
+			D_\theta \hat{\theta}(X) = \E_\theta (\hat{\theta}(X) - \tau(\theta))^2 = c^2(\theta)\E_\theta U_\theta^2(X) = c^2(\theta)I_X(\theta)
+		\]
+		Так как $0 < I_X(\theta) < +\infty$, то $\hat{\theta} \in \wh{\cK}$. Теперь домножим исходное равенство на $U_\theta(X)$ и возьмём матожидание:
 		\[
 			\E_\theta (\hat{\theta} - \tau(\theta))U_\theta(X) = c(\theta) \E_\theta U_\theta^2(X) = c(\theta) I_X(\theta)
 		\]
-		В силу регулярности $0 < I_X(\theta) < +\infty$. Таким образом, $\hat{\theta} \in \wh{\cK}$. При этом, из доказательства неравенства Рао-Крамера мы знаем, что левая часть равна $\tau'(\theta)$. Отсюда выражение для $c(\theta)$. В силу линейной зависимости $\eta = \hat{\theta} - \tau(\theta)$ и $\xi = U_\theta(X)$, $\hat{\theta}$ является эффективной оценкой.
+		При этом, из доказательства неравенства Рао-Крамера мы знаем, что левая часть равна $\tau'(\theta)$. Отсюда выражение для $c(\theta)$. В силу линейной зависимости $\eta = \hat{\theta} - \tau(\theta)$ и $\xi = U_\theta(X)$, $\hat{\theta}$ является эффективной оценкой.
 	\end{itemize}
 \end{proof}
-
-\begin{corollary}
-	Если $\theta^*(X) \in \wh{\cK}$ не хуже эффективной оценки $\hat{\theta} \in \wh{\cK}$, то по критерию эффективности $\theta^* =^{P_\theta\text{ п.н.}} \hat{\theta}$.
-\end{corollary}
 
 \begin{note}
 	Если есть эффективная оценка $\tau(\theta)$, то она наилучшая оценка $\tau(\theta)$ в классе $\wh{\cK}$. Обратное, при этом, неверно.
 \end{note}
+
+\begin{corollary}
+	Если $\theta^*(X) \in \wh{\cK}$ не хуже эффективной оценки $\hat{\theta} \in \wh{\cK}$, то $\theta^* =^{P_\theta\text{ п.н.}} \hat{\theta}$.
+\end{corollary}
 
 \begin{theorem}
 	Если в условиях регулярности существует эффективная оценка для $\tau(\theta)$, $\tau \neq const$, то множество функций, для которых существует эффективная оценка, может быть выражено как $\{a\tau(\theta) + b \colon a, b \in \R\}$.
@@ -208,7 +212,7 @@
 				&{\hat{v}(X) =^{P_\theta\text{ п.н.}} v(\theta) + d(\theta)U_\theta(X)}
 			}
 		\]
-		В условиях регулярности $\Theta$ является интервалом, причём мы знаем, что $\tau \neq const$. Стало быть, существует $\theta_0$ такая, что $\tau'(\theta_0) \neq 0$. Тогда и $c(\theta_0) \neq 0$, а потому при $\theta_0$ из первого равенства можно выразить $U_\theta(X)$ и подставить во второе:
+		В условиях регулярности $\Theta$ является интервалом, причём мы знаем, что $\tau \neq const$. Стало быть, существует $\theta_0$ такой, что $\tau'(\theta_0) \neq 0$. Тогда и $c(\theta_0) \neq 0$, а потому при $\theta_0$ из первого равенства можно выразить $U_\theta(X)$ и подставить во второе:
 		\[
 			\hat{v}(X) = v(\theta_0) + d(\theta_0)\ps{\frac{\hat{\tau}(X) - \tau(\theta_0)}{c(\theta_0)}} = a(\theta_0)\hat{\tau}(X) + b(\theta_0)
 		\]
