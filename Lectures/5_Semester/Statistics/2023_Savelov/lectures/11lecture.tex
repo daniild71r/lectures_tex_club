@@ -118,6 +118,24 @@
 	\end{enumerate}
 \end{proposition}
 
+\begin{proof}~
+	\begin{enumerate}
+		\item Если $\xi \sim T_m$, то $\xi = \frac{\zeta}{\sqrt{\eta / m}}$, где $\zeta \sim N(0, 1)$ и $\eta \sim \chi_m^2$. Стало быть, $\xi^2 = \frac{\zeta^2 / 1}{\eta / m}$
+		
+		\item Если $\xi \sim F_{k, m}$, то $\xi = \frac{\zeta / k}{\eta / m}$, $\zeta \sim \chi_k^2$ и $\eta \sim \chi_m^2$. Отсюда $\frac{1}{\xi} = \frac{\eta / m}{\zeta / k} \sim F_{k, m}$
+		
+		\item Если $\xi_m \sim F_{k, m}$, то $\xi_m = \frac{\zeta / k}{\eta_m / m}$, где $\zeta \sim \chi_k^2$ и $\eta_m \sim \chi_m^2$. В свойствах распределения Стьюдента было установлено, что $\frac{\eta_m}{m} \xrightarrow{\aal{P}} 1$, а потому
+		\[
+			k\xi_m = \frac{\zeta}{\eta_m / m} \xrightarrow[m \to \infty]{d} \chi_k^2
+		\]
+		
+		\item Если $\xi_{k, m} \sim F_{k, m}$, то $\xi_m = \frac{\zeta_k / k}{\eta_m / m}$. Как и раньше:
+		\[
+			\xi_{k, m} = \frac{\zeta_k / k}{\eta_m / m} \xrightarrow{\aal{P}} \frac{1}{1} = 1
+		\]
+	\end{enumerate}
+\end{proof}
+
 \subsubsection{Доверительные интервалы в гауссовской линейной модели}
 
 Далее $\gamma$ --- уровень доверия.
