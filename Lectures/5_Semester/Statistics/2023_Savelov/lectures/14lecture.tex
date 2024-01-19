@@ -63,9 +63,9 @@
 \end{proposition}
 
 \begin{proof}
-	Как известно, $S_X^2 = \sum_{i = 1}^n (X_i - \ol{X})^2 = \ol{X^2} - (\ol{X})^2$. По УЗБЧ имеем сходимости $\ol{X^2} \to^{\aal{P}} \E X_1^2$ и $\ol{X} \to^{\aal{P}} \E X_1$. Стало быть, $S_X^2 \to^{\aal{P}} DX_1$. Аналогично
+	Как известно, $S_X^2 = \frac{1}{n}\sum_{i = 1}^n (X_i - \ol{X})^2 = \ol{X^2} - (\ol{X})^2$. По УЗБЧ имеем сходимости $\ol{X^2} \to^{\aal{P}} \E X_1^2$ и $\ol{X} \to^{\aal{P}} \E X_1$. Стало быть, $S_X^2 \to^{\aal{P}} DX_1$. Аналогично
 	\[
-		\sum_{i = 1}^n (X_i - \ol{X})(Y_i - \ol{Y}) = \ol{XY} - \ol{X} \cdot \ol{Y} \xrightarrow[n \to \infty]{\aal{P}} \cov(X_1, Y_1) = \E X_1Y_1 - \E X_1 \E Y_1
+		\frac{1}{n}\sum_{i = 1}^n (X_i - \ol{X})(Y_i - \ol{Y}) = \ol{XY} - \ol{X} \cdot \ol{Y} \xrightarrow[n \to \infty]{\aal{P}} \cov(X_1, Y_1) = \E X_1Y_1 - \E X_1 \E Y_1
 	\]
 	С использованием теоремы о наследовании сходимости получаем требуемое:
 	\[

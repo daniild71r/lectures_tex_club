@@ -17,7 +17,7 @@
  	\]
  	Стало быть:
 	\[
-	 	p(x) = \ps{\frac{1}{\sigma\sqrt{2\pi}}}\exp\ps{-\frac{1}{2\sigma^2}\big(\|\Pi_L x - l\|^2 + \|\Pi_{L^\bot} x\|^2\big)}
+	 	p(x) = \ps{\frac{1}{\sigma\sqrt{2\pi}}}^n\exp\ps{-\frac{1}{2\sigma^2}\big(\|\Pi_L x - l\|^2 + \|\Pi_{L^\bot} x\|^2\big)}
 	\]
 	Значит, $S(X)$ действительно достаточная статистика.
 \end{proof}
@@ -83,6 +83,23 @@
 		\item Если $\zeta_k \sim T_k$, то $\zeta_k \xrightarrow{d} N(0, 1)$
 	\end{enumerate}
 \end{proposition}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Тривиально, ведь $N(0, 1)$ симметрично, значит $-\xi \sim N(0, 1)$
+		
+		\item \textcolor{red}{Дописать}
+		
+		\item Сначала отметим по УЗБЧ:
+		\[
+			\frac{\eta_k}{k} \xrightarrow[k \to \infty]{d} \E \eta_1 = \E N(0, 1)^2 = 1
+		\]
+		Так как мы получили выше сходимость к константе, то по теореме о наследовании сходимости получим требуемое:
+		\[
+			\zeta = \frac{\xi}{\sqrt{\eta_k / k}} \xrightarrow[k \to \infty]{d} N(0, 1)
+		\]
+	\end{enumerate}
+\end{proof}
 
 \begin{definition}
 	Пусть $\xi \sim \chi_k^2$, $\eta \sim \chi_m^2$ и $\xi \indep \eta$. Тогда случайная величина $\zeta = \frac{\xi / k}{\eta / m}$ обладает \textit{распределением Фишера с параметрами $k, m$}. Обозначается как $\zeta \sim F_{k, m}$

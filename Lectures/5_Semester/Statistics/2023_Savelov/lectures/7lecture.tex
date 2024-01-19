@@ -3,7 +3,7 @@
 	\[
 		p_\theta(x) = h(x)\exp\ps{\sum_{i = 1}^k a_i(\theta)T_i(x) + V(\theta)}
 	\]
-	где $a_0(\theta) \equiv 1$, а оставшиеся $a_1(\theta), \ldots, a_k(\theta)$ являются линейно независимой системой на $\Theta$.
+	где $a_1(\theta) \equiv 1$, а оставшиеся $a_2(\theta), \ldots, a_k(\theta)$ являются линейно независимой системой на $\Theta$.
 \end{definition}
 
 \begin{example}
@@ -162,7 +162,7 @@
 		D\eta = \E (\eta - \E\eta)^2 = \E(\eta - \zeta + \zeta - \E\eta)^2 = \E(\eta - \zeta)^2 + \E(\zeta - \E\eta)^2 + 2\E(\eta - \zeta)(\zeta - \E\eta)
 	\]
 	 \begin{enumerate}
-	 	\item Первое слагаемое мы без проблем можем убрать в неравенстве, а вот с последним непонятно. Так как это константа, то ничто не мешает изучить её, скажем, в условном матожидании:
+	 	\item Первое слагаемое мы без проблем можем убрать в неравенстве, а вот с последним непонятно. Воспользуемся свойством условного матожидания:
 	 	\[
 	 		\E\Big(\E\big((\eta - \zeta)(\zeta - \E\eta) | \xi\big)\Big) = \E\Big((\zeta - \E\eta)\E(\eta - \zeta | \xi)\Big)
 	 	\]
