@@ -1,0 +1,171 @@
+%12.10.23
+
+\subsection{Лемма Бернсайда}
+\begin{definition}
+    Пусть $I: G \to S(\Omega)$. Действие $I$ называется транзитивным, если оно имеет только одну орбиту, то есть $\forall \omega_1, \omega_2 \exists a \in G: a(\omega_1) = \omega_2$
+\end{definition}
+
+\begin{theorem}[Лемма Бернсайда]
+    Пусть $G$ -- конечная группа, $\Omega$ -- конечная, $I: G \to S(\Omega)$ транзитивно и пусть для $a \in G$ $N(a) = \{ \omega \in \Omega | a(\omega) = \omega \}$ -- число неподвижных точек в $\Omega$ под действием $I_a$. Тогда $\sum\limits_{a \in G} N(a) = |G|$.
+\end{theorem}
+
+\begin{proof}
+    Рассмотрим стабилизатор $\omega$: $\stationar(\omega) = \{ a \in G | a \omega = \omega \}$, тогда количество неподвижных точек будет равно $|\stationar(\omega)| = \frac{|G|}{|\Omega|}$. Назовем пару $(a, \omega) \in G \times \Omega$ допустимой, если $a(\omega) = \omega$. Путсь $\Delta$ -- множество всех допустимых пар, тогда с одной стороны
+    $$|\Delta| = \sum\limits_{\omega \in \Omega} |\stationar(\omega)| = \sum\limits_{\omega \in \Omega} \frac{|G|}{|\Omega|} = \frac{|G|}{|\Omega|} \cdot |\Omega| = |G|$$
+    С другой же стороны 
+    $$|\Delta| = \sum\limits_{a \in G} N(a) = |G|$$
+\end{proof}
+
+\begin{corollary}[О среднем числе неподвижных точек]
+    Пусть $G$ -- конечная группа и она действует на конечном множестве $\Omega$. Тогда $|\Omega/G| = \frac{1}{|G|} \sum\limits_{a \in G} N(a)$. Иначе говоря, количество орбит равно среднему чсилу неподвижных точек.
+\end{corollary}
+
+\begin{proof}
+    Пусть $\Omega_1, \dots, \Omega_s$ -- все различные орбиты группы $G$ при действии на $\Omega$. \\
+    $\Omega = \Omega_1 \bigsqcup \dots \bigsqcup \Omega_s$, $I: G \to S(\Omega_i)$ -- транзитивно для любого $i$. Тогда для каждой орбиты запишем $\sum\limits_{a \in G} N_i(a) = |G|$, итого
+    $$\sum\limits_{i = 1}^s\sum\limits_{a \in G} N_i(a) = \sum\limits_{a \in G} N(a) = s|G| \implies s = \frac{\sum\limits_{a \in G} N(a)}{|G|}$$
+\end{proof}
+
+\section{Прямое произведение групп}
+\begin{definition}
+    Пусть $A, B$ -- группы относительно <<$\cdot$>>. Внешним прямым произведением групп $A$ и $B$ называется множество упорядоченных пар $(a, b), a \in A, b \in B$ с операцией <<$\cdot$>>:
+    $$(a_1, b_1) \cdot (a_2, b_2) = (a_1a_2, b_1b_2)$$
+\end{definition}
+
+\begin{note}
+    Покажем, что $A \times B$ -- группа: $(e_1, e_2)$ -- нейтральный элемент и $(a, b)^{-1} = (a^{-1}, b^{-1})$
+\end{note}
+
+\begin{proposition}
+\label{pr6.1}
+    Если $A \times B$ -- внешнее прямое произведение, то 
+    \begin{enumerate}
+        \item В группе $A \times B$ есть подгруппы $A \times \{ e \} \cong A, \{ e \} \times B \cong B$.
+        \item $A \times \{ e \} \lhd A \times B$ и $\{ e \} \times B \lhd A \times B$.
+        \item Элементы подгрупп $A \times \{ e \}$ и $\{ e \} \times B$ коммутируют.
+        \item $(A \times \{ e \}) \cdot (\{ e \} \times B) = A \times B$ -- произведение подгрупп.
+        \item $A \times B \cong B \times A$ (коммутативность).
+        \item $(A \times B) \times C \cong A \times (B \times C)$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \item Построим явно $(a, e) \to a$ -- изоморфизм. Для группы $B$ изоморфизм аналогичный.
+    \item Рассмотрим $(a, b) \in A \times B$, $(a', e) \in A \times e$, тогда распишем произведение $(a, b)(a', e)(a^{-1}, b^{-1}) = (aa'a^{-1}, e) \in A \times e$.
+    \item $(a, e)(e, b) = (a, b) = (e, b)(a, e)$ -- коммутативность очевидна.
+    \item $(a, e)(e, b) = (a, b)$.
+    \item Построим изоморфизм: $(a, b) \to (b, a)$.
+    \item Опять же изоморфизм: $((a, b), c) \to (a, (b, c))$.
+\end{proof}
+
+\begin{proposition}
+    Пусть $A_1 \leq A, B_1 \leq B$, тогда $A_1 \times B_1 \leq A \times B$. Более того, если эти подгруппы нормальные $A_1 \lhd A, B_1 \lhd B$, то $A_1 \times B_1 \lhd A \times B$. В этом случае имеет место изоморфизм $(A \times B)/(A_1 \times B_1) \cong (A/A_1) \times (B/B_1)$.
+\end{proposition}
+
+\begin{proof}
+    Первая часть утверждения проверяется по критерию подгрупп (если элементы лежали в подгруппе, то там лежит и пара, существование обратного аналогично). \\
+    Проверим $A_1 \times B_1 \lhd A \times B$. Пусть $(a', b') \in A_1 \times B_1$, $(x, y) \in A \times B$, тогда $(x, y)^{-1}(a', b')(x, y) = (x^{-1}a'z, y^{-1}b'y) \in A_1 \times B_1$. \\
+    Теперь построим гомоморфизм вида $\phi: A \times B \to (A/A_1) \times (B/B_1). \phi: (a, b) \to (aA_1, bB_1)$ -- он сюръективен, так как любой паре справа можно сопоставить пару слева. Рассмотрим ядро этого гомоморфизма: $\ker \phi = A_1 \times B_1$(нормальная подгруппа по доказанному выше). Тогда по основной теореме о гомоморфизме \ref{th3.1} $(A/A_1) \times (B/B_1) \cong A \times B/ A_1 \times B_1$ и указанный изоморфизм существует.
+\end{proof}
+
+\begin{corollary}
+    $A \times B/A \cong B, A \times B/B \cong A$
+\end{corollary}
+
+\begin{proof}
+    Пусть $A_1 = A, B_1 = \{ e \}$, тогда $A/A_1 = \{ e \}$, $B/B_1 = B/\{ e \} \cong B$. По утверждению \ref{pr6.1} получаем $A_1 \times B_1 = A \times \{ e \} \cong A, B \cong \{ e \} \times B \cong A \times B/A$.
+\end{proof}
+
+\begin{theorem}[о разложении группы в прямое произведение нормальных подгрупп]~
+\label{th6.1}
+    $G$ -- группа, $A, B$ -- тривиально пересекающиеся нормальные подгруппы в $G$ $(A \cap B = \{ e \})$ и пусть $A \cdot B = G$. Тогда $G \cong A \times B$ (группа изоморфна внешнему прямому произведению подгрупп $A$ и $B$).
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Покажем, что $\forall a \in A$ и $\forall b \in B: ab = ba$.
+        Так как $(aba^{-1})b^{-1} = a(ba^{-1}b^{-1})$, где левая часть по критерию нормальности принадлежит $B$, а правая -- аналогично принадлежит $A$, то есть $aba^{-1}b^{-1} = e$ -- лежит в центре, отсюда следует коммутативность (домножение на $ba$ справа).
+        \item Теперь проверим изоморфизм. Рассмотрим $\phi: A \times B \to G, \phi(a, b) = a \cdot b$. Проверим, что это гомоморфизм $\phi(a_1, b_1)\phi(a_2, b_2) = a_1b_1a_2b_2 = a_1a_2b_1b_2 = \phi (a_1a_2, b_1b_2)$. Очведино, что $\phi$ -- сюръективно, так как $\forall g \in G, g = ab, \phi(a, b) = ab = g$. Рассмотрим ядро $\ker \phi = \{ (a, b) | ab = e \}$, $a = b^{-1} \implies a \in A \cap B \implies a = e, b = e \implies \ker \phi = \{ e \}$. Значит, по основной теореме о гомоморфизмах \ref{th3.1} получаем $G/ \{ e \} \cong G \cong A \times B$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Группа $G$, удовлетворяющая условиям теоремы \ref{th6.1}, называется внутренним прямым произведением подгрупп $A$ и $B$.
+\end{definition}
+
+\begin{corollary}
+    Внешнее прямое произведение изоморфно внутреннему прямому произведению.
+\end{corollary}
+
+\subsection{Полупрямое произведение}
+
+$A, B$ -- группы с операцией <<$\cdot$>>. Пусть $I: B \to \Aut A$ -- гомоморфизм (то есть $B$ действует на группу $A$ автоморфизмами, то есть $I_b \in \Aut A$).
+\begin{definition}
+    Полупрямым произведением групп $A$ и $B$, обозначаемым $A \rtimes_I B$, называется множество всех упорядоченных пар $(a, b) \in A \times B$ с операцией умножения:
+    $$(a_1, b_1) \cdot (a_2, b_2) = (a_1 \cdot I_{b_1}(a_2), b_1b_2)$$
+\end{definition}
+
+\begin{proof}
+    Докажем корректность.
+    \begin{enumerate}
+        \item Ассоциативность: 
+        $$((a_1, b_1)(a_2, b_2))(a_3, b_3) = (a_1 I_{b_1}(a_2), b_1b_2)(a_3, b_3) = (a_1I_{b_1}(a_2)I_{b_1b_2}(a_3), b_1b_2b_3)$$
+        С другой стороны: 
+        \begin{equation}
+            \begin{gathered}
+                (a_1, b_1)((a_2, b_2)(a_3, b_3)) = (a_1, b_1)(a_2I_{b_2}(a_3), b_2b_3) = (a_1I_{b_1}(a_2I_{b_2}(a_3)), b_1b_2b_3) = \\
+                = (a_1I_{b_1}(a_2)I_{b_1b_2}(a_3), b_1b_2b_3)
+            \end{gathered}
+        \end{equation}
+        Из двух равенств вытекает ассоциативность.
+        \item $(e, e)$ -- нейтральный.
+        \item Обратный: 
+        $(a, b)^{-1} = (I_{b^{-1}}(a^{-1}), b^{-1})$. Проверим: $$(I_{b^{-1}}(a^{-1}), b^{-1})(a, b) = (I_{b^{-1}}(a^{-1}) I_{b^{-1}}(a), e) = (e, e)$$
+        Последний переход верен из следующих соображений: $\phi(a^{-1}) \phi(a) = \phi(a a^{-1}) = \phi(e) = e_1$. Проверим с другой стороны: $$(a, b)(I_{b^{-1}}(a^{-1}), b^{-1}) = (a I_b(I_{b^{-1}}(a)), e) = (a I_e(a^{-1}), e) = (e, e)$$
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Если в качестве автоморфизма взять $\id$, то получим обычное прямое произведение.
+\end{note}
+
+\begin{theorem}[о свойствах полупрямых произведений]~
+    Пусть $I: B \to \Aut A, A \rtimes_I B$. Тогда:
+    \begin{enumerate}
+        \item $A \lhd A \rtimes_I B$ (здесь мы отождествляем $A \cong A \times \{ e \}$).
+        \item $A \cdot B = A \rtimes B$ ($A \cong A \cdot \{ e \}, B \cong \{ e \} \cdot B$).
+        \item Действие группы $B \times \{ e \}$ на $A \times B$ сопряжениями на $A \times \{ e \}$ совпадает с действием $I: B \to \Aut A$
+        $$(a, e)^{(e, b)^{-1}} = (I_b(a), e)$$
+        \item $A \rtimes B/A \cong B$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $(a', e) \in A \times \{ e \}$. Проверим критерий нормальности: 
+        \begin{equation}
+        \begin{gathered}
+        (a, b)^{-1}(a', e)(a, b) = (I_{b^{-1}}(a^{-1}), b^{-1})(a', e)(a, b) = (I_{b^{-1}}(a^{-1}) I_{b^{-1}}(a'), b^{-1})(a, b) = \\
+        = (I_{b^{-1}}(a^{-1})I_{b^{-1}}(a')I_{b^{-1}}(a), e) = (I_{b^{-1}}(a^{-1} a' a), e) \in A \times \{ e \}
+        \end{gathered}
+        \end{equation}
+        \item $(a, b) = (a, e) \cdot (e, b) = (a I_e(e), b)$
+        \item $(e, b)(a, e)(e, b)^{-1} = (I_b(a), b)(I_{b^{-1}}(e), b^{-1}) = (I_b(a)I_b(I_{b^{-1}}(e)), bb^{-1}) = (I_b(a), e)$.
+        \item $A \rtimes B/A \cong B$ -- ? \\
+        Рассмотрим $\phi: A \rtimes B \to B, \phi(a, b) = b$. Проверим, что это сюръективный гомоморфизм: $\phi((a_1, b_1) \cdot (a_2, b_2)) = \phi ((a_1I_{b_1}(a_2), b_1b_2)) = b_1b_2 = \phi(a_1, b_1) \cdot \phi(a_2, b_2)$. Теперь найдем ядро: $\ker \phi = \{ (a, b)|b = e \} \cong A$. По основной теореме о гомоморфизмах \ref{th3.1}: $B \cong A \rtimes B/A$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    $G$ -- группа, $A$ и $B$ -- тривиально пересекающиеся подгруппы в $G$, $A \lhd G$ и $A \cdot B = G$. Тогда $G \cong A \rtimes_c B$, где $c$ означает, что $B$ действует на группе $A$ сопряжениями: $I_b(a) = bab^{-1}$.
+\end{theorem}
+
+\begin{proof}
+    Рассмотрим $\phi: A \rtimes_c B \to G, \phi(a, b) = a \cdot b \in G$. Проверим $\phi$ на гомоморфизм:
+    \begin{equation}
+        \begin{gathered}
+            \phi((a_1, b_1) \cdot (a_2, b_2)) = \phi (a_1 I_{b_1}(a_2), b_1b_2) = \phi(a_1b_1a_2b_1^{-1}, b_1b_2) = a_1b_1a_2b_2 = \phi(a_1, b_1) \phi(a_2, b_2)
+        \end{gathered}
+    \end{equation}
+    Также $\phi$ сюръективно, так как $A \cdot B = G$. Осталось рассмотреть ядро гомоморфизма: $\ker \phi = \{ (a, b)|ab = e \} = \{ e \}$, так как $A$ и $B$ пересекаются тривиально. Отсюда по основной теореме о гомоморфизмах \ref{th3.1} получаем желаемое.
+\end{proof}

@@ -1,0 +1,288 @@
+
+\begin{example}
+    Рассмотрим $G = S_4$, нормальную подгруппу $H = V_4 = \{e, (1 2)(3 4), (1 3)(2 4), (1 4)(2 3)\}$,
+    и подгруппу $K = S_3$ перестановок, сохраняющих четвертый элемент неподвижным. Тогда:
+    \begin{enumerate}
+        \item Произведение подгрупп запишем как $H \cdot K = \{h\cdot k \, \vert \, h \in H, k \in K \}$.
+        
+        Покажем, что любой элемент $HK$ может быть получен единственным способом. Действительно, 
+        пусть $h_1 \cdot k_1 = h_2 \cdot k_2$. Умножением на $h_2^{-1}$ и $k_1^{-1}$ получим равенство 
+        $h_2^{-1} h_1 = k_2 k_1^{-1}$. 
+        
+        Произведение $h_2^{-1} h_1$ лежит в $H$, произведение $k_2 k_1^{-1}$ -- в $K$. Значит, 
+        полученный элемент лежит в $H \cap K = \{e\}$. Отсюда 
+        $h_2^{-1} h_1 = k_2 k_1^{-1} = e$, а значит $h_1k_1 = h_2k_2$.
+
+        Все произведения $hk$ различны, значит $|HK| = |H|\cdot|K| = 4 \cdot 6 = 24$. При этом $|S_4| = 24$, 
+        откуда $HK = S_4$, так как все элементы $HK$ лежат в $S_4$ и эти группы имеют одинаковый порядок.
+        \item $H \cap K = \{e\} \vartriangleleft K$.
+        \item Будем считать известным тот факт, что $S_4/V_4 \cong S_3$, но $S_3 
+        \not\vartriangleleft S_4$. Тогда получаем требуемый изоморфизм: $HK/H = S_4/V_4 \cong S_3 
+        = S_3/(H\cap K)$.
+    \end{enumerate} 
+\end{example}
+
+\begin{definition}
+    Будем использовать обозначение $\inter(H, G)$ для множества всех групп $K$ таких, что $H \leq K \leq G$.
+\end{definition}
+
+\begin{definition}
+    Будем использовать обозначение $\text{Sub}(G)$ для множества подгрупп группы $G$.
+\end{definition}
+
+\begin{theorem}(Вторая теорема об изоморфизме, теорема о соответствии)~
+
+    Пусть $H \vartriangleleft G$, $H \leq K \leq G$. Тогда:
+    \begin{enumerate}
+        \item $K/H \leq G/H$.
+        \item Отображение $\alpha: \inter(H, G) \to \text{Sub}(G/H)$ такое, что $\alpha(K) = K/H$, 
+        является единственным взаимно-однозначным, сохраняющим знак $\leq$.
+        \item Отображение $\alpha$ сохраняет также нормальность: $K \vartriangleleft G 
+        \Leftrightarrow (K/H) \vartriangleleft (G/H)$.
+        \item Отображение $\alpha$ сохраняет индексы подгрупп: $(G:K) = ((G/H):(K/H))$.
+        \item Если одна из подгрупп в пункте 3 нормальна, то нормальна и вторая, а также верно 
+        $G/K \cong (G/H)/(K/H)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Покажем, что $K/H \leq G/H$. Рассмотрим два элемента $k_1H$ и $k_2H \in K/H$. Так как верно 
+        $k_1 k_2 \in K$, верно и $k_1 H \cdot k_2H = k_1k_2H \in K/H$. Также верно 
+        $(k_1H)^{-1} = k_1^{-1}H \in K/H$. Получаем, что выполняется замкнутость относительно 
+        умножения и взятия обратного элемента, откуда $K/H \leq G/H$.
+        \item Покажем биективность $\alpha$.
+        \begin{enumerate}
+            \item Инъективность. 
+            
+            Пусть $K_1, K_2 \in \inter(H, G)$ и $K_1 \neq K_2$.
+            Тогда без ограничения общности существует элемент $a \in K_1$ такой, что $a \notin K_2$. 
+            Тогда $aH \in K_1H$, но $aH \notin K_2H$, и $\alpha(K_1) \neq \alpha(K_2)$. 
+            
+            В противном случае в $K_2$ существует порождающий для $aH$, то есть элемент $k_2 \in K_2$ такой, 
+            что $aH = k_2H$. Тогда существует $h \in H$ такой, что $a = k_2h$, так как $a \in aH$.
+            Но $k_2, h \in K_2$, откуда $a \in K_2$, что приводит к противоречию.
+            \item Сюрьективность.
+            
+            Покажем, что для любого элемента $S \leq G/H$ есть прообраз, то есть что существует 
+            такая группа $K \in \inter(H, G)$, что $K/H \leq G/H$.
+            
+            Рассмотрим канонический изоморфизм $p: G \to G/H$, такой, что $p(x) = xH$.
+            Рассмотрим также $S \leq G/H$. Покажем, что $p^{-1}(S) \leq G$. Проверим свойства группы:
+            
+            Пусть $x, y \in p^{-1}(S)$. Положим $p(x) = a \in S$, $p(y) = b \in S$. Тогда $p(xy) = ab$,
+            а значит, произведение $xy \in p^{-1}(S)$. Замкнутость относительно умножения выполнена.
+            
+            Также верна замкнутость относительно взятия обратного элемента: $x^{-1} \in p^{-1}(S)$ так как $p(x^{-1}) = p(x)^{-1} 
+            = a^{-1} \in S$.
+
+            Таким образом, $p^{-1}(S) \leq G$. Это наша искомая группа $K$. При этом выполняется 
+            $p^{-1}(e) = H \leq p^{-1}(S)$, откуда $K \in \inter(H, G)$. Проверим, что $K$ -- прообраз $S$:
+            \begin{gather*}
+                \alpha(K) = K/H = p(K) = p(p^{-1}(S)) = S
+            \end{gather*}
+
+            Для произвольной $S \leq G/H$ существует прообраз, а значит $\alpha$ -- сюрьекция.
+        \end{enumerate}
+        Осталось показать, что $\alpha$ сохраняет знак $\leq$. Действительно, пусть верно $K_1 \leq K_2$, 
+        тогда верно и $K_1/H \leq K_2/H$. В обратную сторону переход тоже работает.
+        \item Пусть $K \vartriangleleft G$. Это верно тогда и только тогда, когда для всех 
+        $x \in G$ и для всех $k \in K$ имеем $x^{-1}kx \in H$. Из предыдущего пункта путем применения 
+        отображения $\alpha$ получаем равносильность:
+        \begin{gather*}
+            x^{-1}kx \in H \Leftrightarrow (xH)^{-1}(kH)(xH) \in K/H
+        \end{gather*}
+        Так как $\alpha$ -- биекция, левая часть верна для всех $x$ и $k$ тогда и только тогда,
+        когда правая верна для всех $xH$ и $kH$. Получаем равносильность нормальности 
+        $K \vartriangleleft G$ и $K/H \vartriangleleft G/H$.
+        \item Пусть $a$ и $b$ $\in G$ лежат в одном смежном классе по $K$. Тогда $a^{-1}b \in K$, 
+        а значит, применяя отображение $\alpha$, получим $(aH)^{-1}(bH) \in K/H$. Отсюда $aH$ и $bH$ лежат в одном и том же смежном 
+        классе по $K/H$. Рассуждения верны и в обратную сторону из биективности $\alpha$, а значит, 
+        левые смежные классы $G$ по $K$ и $G/H$ по $K/H$ равномощны.
+        \item Рассмотрим канонический эпиморфизм $p: G \to G/H$ и эпиморфизм $\pi: G/H \to (G/H)/(K/H)$.
+        Тогда $\pi \cdot p$ -- эпиморфизм $G \to (G/H)/(K/H)$.
+        По теореме \ref{th3.1} верно: 
+        \begin{gather*}
+            \ke (\pi \cdot p) = (\pi \cdot p)^{-1}(e_2) = p^{-1}(\pi^{-1}(e_2)) = p^{-1}(K/H) = K.
+        \end{gather*}
+        Также по этой теореме верно $(G/H)/(K/H) \cong G/K$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Отображение $\alpha: \inter(H, G) \to \text{Sub}(G/H)$ является отображением одного множества 
+    групп на другое, но не гомоморфизмом.
+\end{note}
+
+\section{Действия групп}
+\subsection{Действие группы на множество}
+
+\begin{definition}
+    \label{def4.1}
+    Действием мультипликативной группы $G$ на произвольное множество $\Omega$ называется отображение
+    $G \times \Omega \to \Omega$, такое, что $(a, \omega)$ переходит в $a \cdot \omega = a(\omega)$.
+    Это отображение должно удовлетворять следующим свойствам:
+    \begin{enumerate}
+        \item $(ab)(\omega) = a(b(\omega))$,
+        \item $e \omega = e(\omega) = \omega$ для всех $\omega \in \Omega$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    \label{def4.2}
+    Обозначим как $S(\Omega)$ множество всех биекций $\Omega \to \Omega$. Тогда $(S(\Omega), \cdot)$ -- 
+    группа. Действием группы $G$ на множестве $\Omega$ называется произвольный гомоморфизм $I: G \to S(\Omega)$.
+\end{definition}
+
+\begin{theorem}
+    Определения \ref{def4.1} и \ref{def4.2} эквивалентны.
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Покажем, что из первого определения следует второе.
+        
+        Рассмотрим отображение $I: G \times \Omega \to \Omega$, удовлетворяющее $I_a(\omega) = a \omega$.
+        Проверим условия гомоморфизма:
+        \begin{gather*}
+            I_{ab}(\omega) = (ab)(\omega) = a(b(\omega)) = a(I_b(\omega)) = (I_a \circ I_b)(\omega).
+        \end{gather*}
+        Отображение $I_a: \Omega \to \Omega$ -- взаимно-однозначное, обратным к нему 
+        будет отображение $I_{a^{-1}}$:
+        \begin{gather*}
+            (I_{a^{-1}} \circ I_a)(\omega) = a^{-1}(a(\omega)) = (a^{-1}a)(\omega) = e(\omega) = \omega.
+        \end{gather*}
+        Таким образом, $I$ действительно сопоставляет элементу $a \in G$ элемент $I_a \in S(\Omega)$.
+        Определение гомоморфизма выполняется, значит $I$ -- действие группы на множество по второму определению.
+        \item Покажем, что из второго определения следует первое.
+        Пусть $I: G \to S(\Omega)$ -- гомоморфизм. Определим $a\omega = I_a(\omega)$. 
+        Из гомоморфизма верно $I_a \circ I_b = I_{ab}$, а значит верно и:
+        \begin{gather*}
+            (ab)(\omega) = I_{ab}(\omega) = (I_a \circ I_b)(\omega) = I_a(I_b(\omega)) = a(b(\omega)).
+        \end{gather*}
+        Нейтральный элемент $e \in G$, поэтому $I_e = \text{Id}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Результат $I_a(\omega)$ называется действием элемента $a$ на $\omega$.
+\end{definition}
+
+\begin{definition}
+    Ядром действия $I$ называется множество $\ke I = \{a \in G \, | \, \forall \omega 
+    \hookrightarrow a\omega = \omega\}$.
+\end{definition}
+
+\begin{definition}
+    Действие $I$ группы $G$ называется эффективным (точным), если $\ke I = \{e\}$.
+\end{definition}
+
+\begin{definition}
+    Действие $I$ называется свободным, если для всех $a \neq e$ и для всех $\omega \in \Omega$ верно $a\omega \neq \omega$.
+\end{definition}
+
+\begin{note}
+    Из свободы следует эффективность: если $a \neq e$, то $a \notin \ke I$, откуда $\ke I = \{e\}$.
+\end{note}
+
+\begin{example}(действия группы на множестве)~
+    \begin{enumerate}
+        \item Линейным представлением группы $G$ называется произвольный гомоморфизм $T: G \to \text{Gl}(V)$,
+        где $\text{Gl}(V)$ -- невырожденные преобразования пространства $V$. Представление $T$ называется 
+        неприводимым, если не существует нетривиального подпространства $W \subseteq V$ такого, что
+        $T(g)W \subseteq W$ для всех $g \in G$.
+        \item Пусть $\Omega$ -- множество из $n$ элементов, тогда $S(\Omega) \cong S_n$. Осталось
+        определить $I: G \to S_n$. При этом $a(\omega)$ -- подстановка на $\Omega$.
+        \item В качестве группы рассмотрим $G = O_2(\R)$ -- группу ортогональных матриц порядка $2$.
+        
+        Обозначим как $\Delta_n$ правильный треугольник с центром в точке $O$. Тогда можно рассматривать 
+        действие $G$ на плоскости $\R^2$, на множестве вершин $\Delta_n$, на множестве диагоналей $\Delta_n$.
+        \item Можно рассмотреть действие группы на себя левыми сдвигами: $I_a(x) = ax$.
+    \end{enumerate}
+\end{example}
+
+\subsection{Орбита элемента группы относительно действия}
+
+\begin{definition}
+    Пусть $I: G \to S(\Omega)$. Орбитой действия элемента $\omega \in \Omega$ под действием $I$
+    называется множество $G(\omega) = \{a\omega \, | \, a \in G\}$.
+\end{definition}
+
+\begin{definition}
+    Будем говорить, что $\omega_1 \sim \omega_2$, если $\omega_2 \in G(\omega_1)$.
+\end{definition}
+
+\begin{proposition}
+    Отношение $\sim$ -- отношение эквивалентности.
+\end{proposition}
+
+\begin{proof} 
+    Проверим свойства отношения эквивалентности.
+    \begin{enumerate}
+        \item Рефлексивность: $\omega \sim \omega$, так как $\omega \in G(\omega)$.
+        \item Симметричность: пусть $\omega_1 \sim \omega_2$. Тогда существует $a \in G$ такой, что 
+        $a\omega_1 = \omega_2$. Но, тогда, умножая на $a^{-1}$, получим $\omega_1 = a^{-1}\omega_2 \in G(\omega_2)$, откуда 
+        $\omega_2 \sim \omega_1$.
+        \item Транзитивность: пусть $\omega_1 \sim \omega_2$ и $\omega_2 \sim \omega_3$. 
+        Тогда существуют $a$ и $b$ $\in G$ такие, что $\omega_2 = a \omega_1$ и $\omega_3 = b \omega_2$.
+        Но тогда и $\omega_3 = ba \omega_1 \in G(\omega)$, откуда $\omega_1 \sim \omega_3$.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Пусть $\Omega_1$, $\Omega_2$, $\dots$ $\Omega_s$ -- все возможные различные орбиты. Тогда 
+    $\Omega = \sqcup \, \Omega_i$.
+\end{corollary}
+
+\begin{definition}
+    Пусть $I$ -- действие $G$ на $\Omega$ и $\omega$, $\omega' \in \Omega$. Определим 
+    $\shift(\omega, \omega')$ как: $$\shift(\omega, \omega') = \{a \in G \, | \, a\omega = \omega'\}.$$
+\end{definition}
+
+\begin{definition}
+    Стационарной подгруппой элемента $\omega$ под действием $I$ называется множество 
+    $\stationar(\omega) = \{a \in G \, | \, a\omega = \omega\}$. Стационарная подгруппа -- 
+    стабилизатор $\omega$.
+\end{definition}
+
+\begin{proposition}
+    Пусть $I$ -- действие $G$ на $\Omega$ и $\omega$, $\omega' \in \Omega$. Тогда 
+    $\shift(\omega, \omega')$ является правым смежным классом по стабилизатору $\omega$ и левым 
+    смежным классом по стабилизатору $\omega'$.
+    Более того, если $s \in \shift(\omega, \omega')$, то $\shift(\omega, \omega') = s \cdot 
+    \stationar(\omega) = \stationar(\omega') \cdot s$.
+\end{proposition}
+
+\begin{proof}
+    Покажем равенство $\shift(\omega, \omega') = s \cdot \stationar(\omega)$ через вложение в обе стороны.
+    \begin{enumerate}
+        \item $s \cdot \stationar(\omega) \subseteq \shift(\omega, \omega')$:
+        
+        Пусть $s_1 \in s \cdot \stationar(\omega)$. Тогда существует $s' \in \stationar(\omega)$ 
+        такой, что $s_1 = s \cdot s'$. 
+        Тогда: $$s_1(\omega) = s(s'(\omega)) = s(\omega) = \omega',$$ Откуда 
+        $s_1 \in \shift(\omega, \omega')$.
+        \item $\shift(\omega, \omega') \subseteq s \cdot \stationar(\omega)$:
+        
+        Покажем, что $s^{-1} \cdot \shift(\omega, \omega') \subseteq \stationar(\omega)$. Пусть 
+        $s_1 \in s^{-1} \cdot \shift(\omega, \omega')$. Тогда $s s_1 \in \shift(\omega, \omega')$, 
+        откуда $s(s_1(\omega)) = \omega'$. Тогда $s_1(\omega) = s^{-1}(\omega') = \omega$, что значит, что 
+        $s_1 \in \stationar(\omega)$.
+
+        Таким образом, $s^{-1} \cdot \shift(\omega, \omega') \subseteq \stationar(\omega)$. Отсюда 
+        $\shift(\omega, \omega') \subseteq s \cdot \stationar(\omega)$. 
+    \end{enumerate}
+    Аналогично доказывается и равенство $\shift(\omega, \omega') = \stationar(\omega') \cdot s$.
+\end{proof}
+
+\begin{corollary}
+    Стационарные подгруппы элементов одной орбиты равномощны.
+\end{corollary}
+
+\begin{proof}
+    Действительно, раз $s \cdot \stationar(\omega) = \stationar(\omega') \cdot s$, то 
+    $\stationar(\omega') = s \cdot \stationar(\omega) \cdot s^{-1}$.
+    Условие принадлежности элементов одной орбите существенно, так как иначе $\shift(\omega, \omega')$ 
+    -- пустое множество.
+\end{proof}
+

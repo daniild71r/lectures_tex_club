@@ -1,0 +1,30 @@
+\begin{note}
+    \label{note7.1}
+        Пусть $H_1, H_2 \leq G$, $H_1 \cap H_2 = \{ e \}$, тогда $|H_1 \cdot H_2| = |H_1||H_2|$
+    \end{note}
+    
+    \begin{proof}
+        Пусть $h_1 h_2 = h_1' h_2', h_1, h_1' \in H_1, h_2, h_2' \in H_2$, тогда $h_1^{-1} h_1' = h_2 (h_2')^{-1} = e$ -- следует из тривиального пересечения подгрупп. Следовательно, $h_1' = h_1, h_2 = h_2'$.
+    \end{proof}
+    
+    \begin{example}[разложение группы в полупрямое произведение]
+        \begin{enumerate}
+            \item $S_n = A_n \rtimes <(12)>$. Проверим нужные условия: $A_n \lhd S_n, A_n \cap <(12)> = \{ e \}$, по замечанию \ref{note7.1}: $|A_n \cdot <(12)>| = \frac{n!}{2} \cdot 2 = n!$
+            \item $S_4 = V_4 \rtimes S_3$, $S_3 \leq S_4$, $V_4 = \{ e, (12)(34), (13)(24), (14)(23) \}$ -- класс сопряженности, по критерию нормальности содержит класс сопряженности с каждым элементом. $V_4 \rhd S_4, V_4 \bigcap S_3 = \{ e \}, |V_4 \cdot S_3| = 4 * 6 = 24 \implies V_4 \cdot S_3 = S_4$.
+        \end{enumerate}
+    \end{example}
+    
+    \section{Коммутант. Основная теорема о коммутанте}
+    
+    Далее $G$ -- группа, $x, y \in G$.
+    \begin{definition}
+        Коммутатором элементов $x$ и $y$ называется $[x, y] = xyx^{-1}y^{-1}$.
+    \end{definition}
+    
+    \begin{proposition}[о свойствах коммутатора]
+        \begin{enumerate}
+            \item $xy = [x, y]yx$ -- коммутатор -- корректный множитель, позволяющий переставить $x$ и $y$ местами.
+            \item $[x, y] = e \iff xy = yx$.
+            \item $[x, y]^{-1} = [y, x]$ -- взятие обратного -- коммутатор
+        \end{enumerate}
+    \end{proposition}

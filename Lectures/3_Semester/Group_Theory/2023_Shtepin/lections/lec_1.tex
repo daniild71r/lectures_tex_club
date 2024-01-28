@@ -1,0 +1,278 @@
+% 07.09.23 Оля
+
+\section{Группы и подгруппы}
+
+\begin{definition}
+    Группой $\left(G, \cdot\right)$ называют множество $G$ с определенной на нем бинарной операцией 
+    $\cdot\,$, обладающей следующими свойствами:
+    \begin{enumerate}
+        \item Ассоциативность: 
+        $$\forall a,b,c \in G \hookrightarrow \left(a \cdot b\right) \cdot c = a \cdot \left(b \cdot c\right),$$
+        \item Существование нейтрального элемента: 
+        $$\exists e \in G: \forall a \in G \hookrightarrow e \cdot a = a \cdot e = a,$$
+        \item Существование обратного элемента: 
+        $$\forall a \in G \exists a^{-1} \in G: a \cdot a^{-1} = a^{-1} \cdot a = e.$$
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    Для того, чтобы проверить, что пара $\left(G, \cdot\right)$ является группой необходимо:
+    \begin{enumerate}
+        \item Проверить, что операция $\cdot$ определена на множестве $G$, то есть действует из 
+        $G \times G$ в $G$,
+        \item Проверить аксиомы группы.
+    \end{enumerate}
+\end{note}
+
+\begin{exercise}
+    Показать, что в любой группе нейтральный элемент единственен, и для любого элемента группы 
+    обратный элемент так же единственен.
+\end{exercise}
+
+\begin{exercise}
+    Показать, что в группе верно правило сокращения, то есть если верно $a \cdot b = a \cdot c$, то верно и
+    $b = c$.
+\end{exercise}
+
+\begin{note}
+    Если в группе так же верна аксиома коммутативности:
+    $$\forall a, b \in G \hookrightarrow a \cdot b = b \cdot a,$$
+    то такая группа называется Абелевой.
+\end{note}
+
+\begin{definition}
+    Подгруппа $H \leq G$ -- непустое подмножество $H \subset G$, замкнутое относительно операции $\cdot$
+    и взятия обратного элемента: 
+    $$\forall a, b \in G \hookleftarrow a \cdot b \in G, a^{-1} \in G.$$
+    \label{def1}
+\end{definition}
+
+\begin{remarkfrom}
+    Определение выше эквивалентно тому, что непустое множество $H \subset G$ -- подгруппа в $G$ тогда и только тогда, 
+    когда $H$ является группой с той же операцией, что и $G$. Такое определение было дано на 
+    лекции Вадима Владимировича в 2021 году.
+\end{remarkfrom}
+
+\begin{example}~
+    \begin{enumerate}
+        \item Целые числа $\Z = \left(\Z, +\right)$ и вычеты $\Z_n = \left(\Z_n, +\right)$ -- абелевы группы,
+        \item Если $R$ -- кольцо, то $\left\{R, +\right\}$ -- абелева группа,
+        \item Если $F$ -- поле, то $\left\{F, +\right\}$ и
+        $F^* = \left( F \backslash \{0\}, \cdot\right)$ -- абелева группы,
+        \item Если $V$ -- линейное пространство, то $(V, +)$ -- абелева группа,
+        \item Группа перестановок $S_n$ - группа, не является абелевой при $n \geq 3$.
+        
+        Любая перестановка $\sigma \in S_n$ раскладывается в произведение независимых циклов. Знак перестановки --
+        $\sgn(\sigma) = (-1)^{\sigma} = (-1)^{\text{\#инверсий}}$. Тогда верно $\sgn(\sigma\tau) = \sgn(\sigma) \cdot \sgn(\tau)$.
+        \item $Gl_n(F)$ -- невырожденные матрицы размера $n\times n$ над полем $F$. Являются группой относительно умножения.
+        \item $A_n \leq S_n$ -- подгруппа четных перестановок.
+        \item $Sl_n(F)$ -- подгруппа матриц с $\det A = 1$.
+        \item $O_n \leq Gl_n(\R)$ -- группа ортогональных матриц. Так же является группой ортогональных 
+        преобразований евклидового пространства размерности $n$. 
+        \item $U_n \leq Gl_n(\Cm)$ -- группа унитарных матриц. Так же является группой унитарных 
+        преобразований эрмитового пространства размерности $n$. 
+        \item В $O_2$ есть подгруппа $D_n$ всех ортогональных преобразований, переводящих 
+        правильные $n$-угольники в себя.
+        \item В группе $\Cm^*$ есть подгруппа $\mathbb{T} = \{z: |z| = 1\}$.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Изоморфизм - сохраняющая операции биекция $\phi: G \to H$. Таким образом если $\left(G, \cdot\right)$ и 
+    $\left(H, *\right)$ -- группы, а $\phi$ -- изоморфизм, то должно выполняться $\phi(g_1, g_2) = \phi(g_1) * \phi(g_2)$.
+\end{definition}
+
+\begin{definition}
+    Группы изоморфны если между ними есть изоморфизм.
+\end{definition}
+
+\begin{theorem}[Кэли]
+    Любая группа $G$ порядка $n$ изоморфна подгруппе в $S_n$.
+\end{theorem}
+
+\begin{definition}
+    Пусть $M \subseteq G$. Тогда можно определить подгруппу, порожденную $M$:
+    \begin{gather*}
+        \langle M \rangle = \{ m_1^{\epsilon_1} \cdot \, \dots \, \cdot m_k^{\epsilon_k} \: \vert \:
+        m_1, \, \dots \, m_k \in M, \, \epsilon_i \in \{\pm 1\}\}
+    \end{gather*}
+\end{definition}
+
+\begin{note}
+    $\langle M \rangle$ -- наименьшая по включению подгруппа в $G$, содержащая $M$.
+\end{note}
+
+\begin{example} Группа перестановок $S_n$ может быть порождена следующими способами:
+    \begin{gather*}
+        S_n = \langle (i, j) \, \vert \, 1 \leq i \leq j \leq n\rangle = 
+        \langle (i, i + 1) \, \vert \, 1 \leq i < n \rangle
+    \end{gather*}
+\end{example}
+
+\begin{exercise}
+    Показать, что группа $D_n$ порождается как $\langle R, S\rangle$, где $R$ -- элементарный поворот,
+    $S$ -- симметрия.
+\end{exercise}
+
+\begin{idea}
+    Любое преобразование задается преобразованием двух вершин, а значит является комбинацией поворота и симметрии.
+\end{idea}
+
+\begin{definition}
+    Порядок $|G|$ группы $G$ -- число элементов в ней.
+\end{definition}
+
+\begin{definition}
+    Порядок элемента $a$ группы $G$ -- наименьшая натуральная степень $k$, такая что $a^k = e$. 
+    Обозначение - $\ord a := \min \left\{k \: | \: a^k = e\right\}$.
+\end{definition}
+
+\begin{note}
+    Если для всех натуральных $k$ верно $a^k \neq e$, то порядок элемента принимают равным бесконечности.
+\end{note}
+
+\begin{proposition}
+    Пусть $G$ -- группа, $g \in G$. Тогда $\ord g = | \langle g \rangle |$.
+\end{proposition}
+
+\begin{definition}
+    Группа $G$ называется циклической, если $\exists g \in G: G = \langle g \rangle$.
+\end{definition}
+
+\begin{proposition}
+    Если $G$ -- циклическая, то верно одно из двух свойств:
+    \begin{enumerate}
+        \item $|G| = + \infty$ и $G \cong \Z$,
+        \item $|G| = n$ и $G \cong \Z_n$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+    Если $G$ -- циклическая группа и $H \leq G$, то $H$ -- так же циклическая группа.
+\end{theorem}
+
+\begin{note}
+    Подгруппа $2$-порожденной подгруппы -- не обязательно $2$-порожденная.
+\end{note}
+
+\subsection{Смежные классы}
+
+\begin{definition}
+    Пусть $G$ -- группа, $H \leq G$, $g \in G$. \begin{enumerate}
+        \item Левым смежным классом элемента $g$ по подгруппе $H$ называется $gH = \{gh: h \in H\}$.
+        \item Правым смежным классом элемента $g$ по подгруппе $H$ называется $Hg = \{hg: h \in H\}$.
+    \end{enumerate} 
+\end{definition}
+
+\begin{note}
+    Если $G$ -- абелева группа, то $gh = hg$, и левый и правый смежные классы совпадают.
+\end{note}
+
+\begin{proposition}
+    $n\Z$ -- подгруппа в $\Z$, $k\Z_n$ -- подгруппа в $\Z_n$ при условии $k|n$.
+\end{proposition}
+
+\begin{definition}
+    Множество всех левых смежных классов по $H$ обозначают $G / H$, правых смежных классов -- $H \backslash G$.
+\end{definition}
+
+\begin{proposition}
+    \label{pr1.1}
+    Пусть $H \leq G$, $a, b \in G$. Тогда равносильны следующие утверждения:
+    \begin{enumerate}
+        \item $aH \cap bH \neq \varnothing$,
+        \item $b^{-1}a \in H$,
+        \item $a \in bH$,
+        \item $aH = bH$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $(1) \to (2)$: По условию $\exists\, h_1, h_2 \in H: ah_1 = bh_2$. Тогда $b^{-1}a = h_2 h_1^{-1} \in H$.
+        \item $(2) \to (3)$: По условию $b^{-1}a \in H$, а значит $a \in bH$ по определению левого смежного класса.
+        \item $(3) \to (4)$: По условию $a \in bH$, а значит $\exists h: a = bh$. Тогда $b = ah^{-1} \in aH$. Так же из 
+        $a \in bH$ верно $aH \subseteq bHH = bH$. Аналогично $bH \subseteq aH$.
+        Таким образом $aH = bH$.
+        \item $(4) \to (1)$: Очевидно так как $aH \cap bH = aH \neq \varnothing$.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Группа $G$ разбивается на левые смежные классы по $H$.
+\end{corollary}
+
+\begin{proposition}
+    Пусть $G$ -- группа, $H \leq G$, $g \in G$. Тогда $|gH| = |H|$.
+\end{proposition}
+
+\begin{proof}
+    Построим однозначное соответствие $\phi: H \to gH$ так чтобы $\phi(h) = gh$. Тогда обратное отображение 
+    $\phi^{-1}: gH \to H$ переводит $x$ в $g^{-1}x$, а значит тоже является однозначным. Таким образом 
+    $\phi$ -- биекция, а $H$ и $gH$ равномощны.
+\end{proof}
+
+\begin{theorem}[Лагранжа]
+    \label{th1.1}
+    Пусть $G$ -- конечная группа, $H \leq G$. Тогда $|H| \, | \, |G|$. И, более того, верно $|G / H| = \frac{|G|}{|H|}$. 
+\end{theorem}
+
+\begin{proof}
+    Если смежные классы пересекаются хотя бы по одному элементу, то
+    они совпадают. Тогда $G$ разбивается на непересекающиеся
+    смежные классы порядка $H$, и их количество равно $\frac{|G|}{|H|}$. 
+\end{proof}
+
+\begin{corollary}
+    Если $g \in G$, то $\ord(g) \: | \: |G|$.
+\end{corollary}
+
+\begin{proof}
+    $\ord(g) = |\langle g \rangle| \: | \: |G|$.
+\end{proof}
+
+\begin{corollary}[Теорема Ферма]
+    Если $a \in \Z_p^*$, то $a^{p-1} = 1$.
+\end{corollary}
+
+\begin{proof}
+    $\ord(a) \: | \: |\Z_p^*| = p-1$. Значит, $a^{p-1} = 1$.
+\end{proof}
+
+\begin{reminder}
+    Если $R$ -- кольцо с единицей, то его мультипликативная группа: 
+    $$R^* = \{a \in R \, | \, \exists b \in R: ab = ba = 1\}.$$
+    Мультипликативная группа для целых чисел $\Z^* = \{\pm 1\}$, для колец вычетов: 
+    $$\Z_n^* = \{a \in \Z_n \, | \, (a, n) = 1\}, \; |\Z_n^*| = \phi(n).$$
+\end{reminder}
+
+\begin{corollary}[Теорема Эйлера]
+    Если $a \in \Z_n$ и $(a, n) = 1$, то $n | a^{\phi(n) - 1}$.
+\end{corollary}
+
+\begin{note}
+    Факты, аналогичные доказанным в этом разделе верны и для $H \backslash G$ с заменой в 
+    утверждении \ref{pr1.1} условия $aH = bH$ на $Ha = Hb$ и 
+    условия $b^{-1}a \in H$ на $ab^{-1} \in H$.
+\end{note}
+
+\begin{proposition}
+    Если $H \leq G$, то $G / H$ и $H \backslash G$ равномощны. 
+\end{proposition}
+
+\begin{proof}
+    Биекция между множествами строится при помощи функции $\phi(gH) = Hg^{-1}$.
+\end{proof}
+
+\begin{note}
+    Функция $\phi(gH) = Hg$ не работает так как истинность $g_1 H = g_2 H$ не гарантирует 
+    истинности $H g_1 = H g_2$.
+\end{note}
+
+\begin{remarkfrom}
+    Так же утверждение следует из теоремы \ref{th1.1} для $G / H$ и $H \backslash G$.
+\end{remarkfrom}
+
+\begin{definition}
+    Индексом подгруппы называется $|G:H| = |G / H| = |H \backslash G|$.
+\end{definition}
