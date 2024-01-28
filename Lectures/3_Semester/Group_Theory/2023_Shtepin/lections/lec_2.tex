@@ -1,0 +1,307 @@
+% 14.09.23 Костя и Аня
+
+\subsection{Нормальные подгруппы}
+
+\begin{reminder}
+    Пусть $H \leq G, x \in G$, тогда $xH = \{xh | h \in H\}$ -- левый смежный класс. Свойства левых смежных классов:
+
+\begin{enumerate}
+    \item Каждый левый смежный класс порождается любым из своих элементов: $$y \in xH \implies xH = yH$$
+    \item Всякие два левых смежных класса либо не пересекаются, либо совпадают: $$xH \cap yH = 0 \text{ или } 
+    \exists z \in xH, z \in yH: zH = xH = yH \implies xH = yH$$
+    \item Группа $G$ представима в виде дизъюнктного объединения левых смежных классов по $H$: $$G = 
+    \bigsqcup_{i \in I} x_iH.$$ 
+    Действительно, справедливо представление $G = \bigcup_{x \in G} xH$. Далее из каждого семейства 
+    совпадающих левых смежных классов выбросим все, оставив по одному представителю.
+\end{enumerate}
+\end{reminder}
+
+\begin{note}
+    Аналогичные свойства верны и  для правых смежных классов.
+\end{note}
+
+\begin{theorem}[Критерий принадлежности двух элементов группы $G$: $x, y$ одному и тому же левому смежному классу]
+    Следующие условия эквивалентны тому, что $x$ и $y$ принадлежат одному и тому же левому смежному классу:
+    \begin{enumerate}
+        \item $x^{-1}y \in H$
+        \item $y^{-1}x \in H$
+        \item $xH = yH$
+        \item $x \in yH$
+        \item $y \in xH$
+        \item $xH \cap yH \neq \emptyset$
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    Пусть $G$ конечно, тогда $G/H$ -- множество левых смежных классов, а $H \backslash G$ -- 
+    множество правых смежных классов
+\end{definition}
+
+\begin{proposition}
+    Верно $|G/H| = \frac{|G|}{|H|} = |H \backslash G|$.
+\end{proposition}
+
+\begin{proof}
+    $(xH)^{-1} = H^{-1}x^{-1} = Hx^{-1}$
+\end{proof}
+
+\begin{definition}
+    $|G/H| = |H \backslash G| = (G : H)$ -- индекс подгруппы $H$ в $G$
+\end{definition}
+
+\begin{exercise}
+    Покажите, что если $G$ - конечная, то верна мультипликативность индекса: $$\forall K, H: K 
+    \leq H \leq G \hookrightarrow (G : K) = (G : H) \cdot (H : K)$$
+\end{exercise}
+
+\begin{note}
+    Из истинности $aH = bH $ не следует $ Ha = Hb$
+\end{note}
+
+\begin{example}
+    Рассмотрим группу $S = S_3$ и подгруппу $H = \langle(1 2)\rangle = \{e, (1 2)\}$. Положим $a = 
+    (1 3)$ и $b = (1 2 3)$ и покажем,
+    что $aH = bH$, но $Ha \neq Hb$:
+    \begin{enumerate}
+        \item $(1 3) \cdot (1 2) = (1 2 3), (1 2 3) \in (1 3)H \implies (1 2 3)H = (1 3)H.$ 
+        \item $H(1 3) = \{e(1 3), (1 2) \cdot (1 3)\} = \{(1 3), (1 3 2)\} \neq  \{(1 2 3), (2 3)\} = 
+        \{e \cdot (1 2 3), (1 2) \cdot (1 2 3)\} = H(1 2 3).$
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Подгруппа $H$ группы $G$ называется нормальной подгруппой, если левостороннее разложение $G$ 
+    по $H$ совпадает с правосторонним:
+    $$G = \bigsqcup_{i \in I} x_iH = \bigsqcup_{j \in J} Hy_j,$$ То есть разбиение группы на 
+    непересекающиеся классы слева и справа одно и то же.\\
+    Так же используются названия: "нормальный делитель" и "инвариантная подгруппа".\\
+    Обозначение: $H \vartriangleleft G$.
+\end{definition}
+
+\begin{theorem}[Критерий нормальности]
+    \label{th2.1}
+    Пусть $H \leq G$, тогда $H \vartriangleleft G$ тогда и только тогда, когда для всех $x \in G$ верно 
+    $xH = Hx$ (что равносильно $x^{-1}Hx = H$ и $xHx^{-1} = H$).
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $H \vartriangleleft G, x \in G$. Тогда верно
+        $\underset{i \in I}{\bigsqcup} x_iH = \underset{j \in J}{\bigsqcup} Hy_j$.
+
+        Рассмотрим $x$, лежащий в некоторых классах $x_iH$ и $Hy_j$. В таком случае, по определению нормальности 
+        подгруппы $H$, эти классы совпадают. Тогда верна цепочка равенств:
+        $$xH = x_iH = Hy_j = Hx.$$
+        \item  Достаточность. Искомые совпадающие разложения можно получить следующим образом:
+        $$xH = Hx \implies \bigsqcup_{i \in I} x_iH = \bigsqcup_{i \in I} Hx_i.$$
+    \end{enumerate}
+\end{proof}
+    
+\begin{proposition}
+    Пусть $H_1 \vartriangleleft G, H_2 \vartriangleleft G$. Тогда $H_1 \cap H_2 \vartriangleleft G$.
+\end{proposition}
+
+\begin{proof}
+    $\forall x \in G: x^{-1}(H_1 \cap H_2)x = x^{-1}H_1x \cap x^{-1}H_2x = H_1 \cap H_2$
+\end{proof}
+
+\begin{example}~
+    \begin{enumerate}
+        \item Если $G$ -- абелева группа, то из $H \leq G $ следует $ H \vartriangleleft G$. Действительно,
+        $xH = Hx$, так как $xh = hx$ для всех $h \in H$.
+        \item Пусть $(G : H) = 2$, тогда $H \vartriangleleft G$. Действительно,
+        левостороннее разложение получается как: $$G = H \sqcup (G \backslash H).$$ 
+        Правостороннее разложение можно получить аналогично, а значит $H \vartriangleleft G$.
+        \item 
+        $GL_n(F)$ -- группа невырожденных матриц размера $n \times n$ над полем $F$, \\
+        $SL_n(F)$ -- группа матриц размера $n \times n$ с единичным определителем.
+
+        Тогда $SL_n(F) \vartriangleleft GL_n(F)$.
+
+        Действительно, пусть $X \in GL_n(F)$, $A \in SL_n(F)$. Тогда верно: $$\det (X^{-1}AX) = \det (X^{-1}) \cdot \det A \cdot \det X = 1.$$
+        \item $A_n$ -- группа четных подстановок, то есть таких что  $\epsilon(\sigma) = 1$. 
+        Тогда $A_n \vartriangleleft S_n$.
+
+        Действительно, $|A_n| = \frac{n!}{2} = \frac{|S_n|}{2}$, а значит, из соображений мощности,
+        в разложении на смежные классы будет всего два элемента: $A_n$ и $S_n \backslash A_n$.
+        \item Если $\tau$ -- транспозиция, то $\langle\tau\rangle \ntriangleleft S_3$ 
+        
+        Действительно, любое произведение транспозиций в $S_3$ не коммутирует: 
+        \begin{gather*}
+            (a b) (b c) = (a b c) \neq (a c b) = (b c) (a b).
+        \end{gather*}
+        Тогда $\sigma \langle \tau \rangle = \{\sigma, \sigma \cdot \tau\} \neq \{\tau, \tau \cdot \sigma\} = \langle\tau\rangle \sigma$.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}[О произведении нормальной подгруппы на подгруппу]~
+    \label{th2.3}
+    Пусть $G$ -- группа, $H \vartriangleleft G, K \leq G$, тогда:
+    \begin{enumerate}
+        \item $H \cdot K \leq G$,
+        \item если $K \vartriangleleft G$, то $H \cdot K \vartriangleleft G$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Покажем, что $HK \cdot HK = HK$: 
+        $$HK \cdot HK = H(K \cdot H)K = H(H \cdot K)K = (H \cdot H)(K \cdot K) = H \cdot K.$$
+        
+        Тогда: 
+        $$K \cdot H = \bigcup_{k \in K} kH = \bigcup_{k \in K}Hk = H \cdot K.$$
+        \item $x^{-1}HKx = x^{-1}Hxx^{-1}Kx = H \cdot K$, значит $HK \vartriangleleft G$ (по теореме 2)
+    \end{enumerate}
+\end{proof}
+
+\section{Гомоморфизмы}
+\subsection{Сопряженность в группе}
+
+\begin{definition}
+    Пусть $G$ -- группа, $a, x \in G$. Тогда элемент $x^{-1}ax$ называется сопряженным к элементу 
+    $a$ с помощью элемента $x$. Обозначение: $a^{x}$.
+\end{definition}
+
+\begin{proposition}
+    Свойства операции $({\uparrow}^x)$
+    \begin{enumerate}
+        \item $a^{xy} = (a^x)^y$
+        \item $a^x \cdot b^x = (ab)^x$
+        \item Операции $\uparrow^x$ и $\uparrow^{-1}$ коммутируют.
+    \end{enumerate}    
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $a^{xy} = (xy)^{-1}a(xy) = y^{-1}(x^{-1}ax)y = y^{-1}(a^x)y = (a^x)^y$
+        \item $(ab)^x = x^{-1}abx = x^{-1}ax x^{-1}bx = a^x b^x$
+        \item $(a^{-1})^x \cdot a^x = (a^{-1} \cdot a)^x = e^x = e$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Отображение $\phi: G \rightarrow G$, переводящее  $a$ в $a^x$ при фиксированном $x$ -- автоморфизм
+    (изоморфизм $G \to G$).
+\end{note}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Из второго свойства операции сопряжения следует, что $\phi$ -- гомоморфизм. 
+        \item Покажем, что $\phi$ инъективен. Действительно, если $a^x = b^x$, то $x^{-1}ax = x^{-1}bx$, 
+        откуда $a = b$.
+        \item Покажем, что $\phi$ сюрьективен. Зафиксируем элемент $a \in G$. Тогда $x a x^{-1} \in G$, 
+        и верно: $$\phi(x a x^{-1}) = x^{-1} (x a x^{-1}) x = a.$$ Таким образом, для любого элемента есть прообраз, 
+        а значит, $\phi$ сюрьективен.
+    \end{enumerate}
+\end{proof}
+
+\begin{remarkfrom}
+    Определение автоморфизма и других морфизмов будет дано в следующем разделе. Доказательство 
+    факта выше добавлено автором и на лекции представлено не было.
+\end{remarkfrom}
+
+\begin{note}
+    Сопряжение $\sim$ является отношением эквивалентности.
+\end{note}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Рефлексивность $a \sim a$.
+        
+        Любой элемент $a$ сопряжен сам с собой при помощи нейтрального элемента $e$: 
+        $$e^{-1} a e = a.$$
+        \item Симметричность $a \sim b \iff b \sim a$.
+        
+        Пусть $a = b^x$. Тогда: 
+        $$b = x x^{-1} \cdot b \cdot x x^{-1} = x \cdot x^{-1} b x \cdot x^{-1} = a^{x^{-1}}.$$ 
+        Отсюда $b$ сопряжен с $a$ при помощи $x^{-1}$.
+        \item Транзитивность $a \sim b,\, b \sim c \Rightarrow a \sim c$.
+        
+        Пусть $b = a^x$ и $c = b^y$. Тогда $c = b^y = (a^x)^y = a^{xy}$, откуда $a$ сопряжен с $c$
+        при помощи элемента $xy$.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Группа $G$ распадается на непересекающиеся классы сопряженных элементов (классы сопряженности)
+\end{corollary}
+
+
+\begin{definition}
+    Обозначим $a^G = \{a^x \,|\, x \in G\}$ -- класс, содержащий $a$
+\end{definition}
+
+\begin{proposition}
+    \label{pr2.1}
+    $H \leq G$. $H$ является нормальной подгруппой в $G$ тогда и только тогда, когда $H$ является дизъюнктным объединением каких-то из классов сопряженных элементов (или $H$ вместе с каждым своим элементом $a$ содержит целиком класс сопряженности $a^G$)
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. $H \lhd G$ \\
+    $a_1 \in H$, по \ref{th2.1} $x^{-1}Hx = H \implies a_{1}^G \subseteq H$ \\
+    Далее по индукции рассматриваем для каждого из элементов подгруппы $H$: $x^{-1}Hx = H, a_2 \in H \backslash (a_{1}^G) \implies a_{2}^G \subseteq H \dots$, поэтому $H$ разложится в прямую сумму $H = a_{1}^G \sqcup a_{2}^G \sqcup \ldots$
+        \item Достаточность. Пусть $H = a_{1}^G \sqcup a_{2}^G \sqcup \ldots \sqcup a_{k}^G \sqcup \ldots$ \\
+    $H^x = x^{-1}Hx = ((a_{1}^G)^x \sqcup (a_{2}^G)^x \sqcup \ldots \sqcup (a_{k}^G)^x \sqcup \ldots) = a_{1}^G \sqcup a_{2}^G \sqcup \ldots \sqcup a_{k}^G \sqcup \ldots = H$, тогда по \ref{th2.1} $H \lhd G$
+    \end{enumerate}
+\end{proof}
+
+\begin{example}[Описание классов сопряженностей в $S_n$]~
+    Пусть $\sigma \in S_n$, $$\sigma = (a_1, a_2, \ldots, a_k)(b_1, b_2, \ldots, b_l)(c_1 \ldots)$$ 
+    Тогда $$\tau^{-1} \sigma \tau = \tau^{-1} (a_1 \ldots a_k) \tau \tau^{-1} (b_1 \ldots b_l) \tau \tau^{-1}(c_1 \ldots) \ldots$$
+\end{example}
+
+\begin{proposition}
+    $\tau^{-1} (a_1 \ldots a_k) \tau = (\tau^{-1}(a_1) \tau^{-1}(a_2) \ldots)$
+\end{proposition}
+
+\begin{proof}
+    $\tau^{-1} (a_1 \ldots a_k) \tau (\tau^{-1}(a_i)) = \tau^{-1} (a_1 \ldots a_k)(a_i) = \tau^{-1}(a_{i+1})$
+\end{proof}
+
+\begin{corollary}
+    При действии сопряжения на цикл длины $k$ получается цикл такой же длины. $\tau^{-1} \sigma \tau = (a'_1 a'_2 \ldots a'_k)(b'_1 b'_2 \ldots b'_l)(c'_1 \ldots) = \sigma'$ \\
+    При сопряжении циклический тип подставноки $\sigma$ сохраняется. Чтобы $\sigma'$ перешла в $\sigma$ при сопряжении необходимо взять такое $\tau$, что $\tau(a'_i) = a_i, \tau(b'_j) = b_j, \ldots$
+    
+    Вывод: множество всех классов сопряженности в группе $S_n$ находятся в биективном соответствии с множеством всех циклических типов для $\sigma \in S_n$
+\end{corollary}
+
+\begin{example}~
+    $P(n)$ -- число циклических типов подстановки из $S_n$ (функция разбиения). $P(2) = 2, P(3) = 3, P(4) = 5, \ldots$ \\
+    Так как $S_2 = \{e, | (1 2)\}$ -- абелева, то $a^x = a$ \\
+    $S_3 = \{e, | (1 2), (1 3), (2 3), | (1 2 3), (1 3 2)\}$ \\
+    $S_4 = \{e\} \sqcup \{(1 2), \ldots\} \sqcup \{(1 2)(3 4) \ldots\} \sqcup \{(1 2 3) \ldots\} \sqcup \{(1 2 3 4)\}$
+\end{example}
+
+\begin{definition}
+    $P(n)$ -- число способов представить $n$ в виде суммы натуральных чисел (порядок не важен). Оказывается, что для нее нет регулируемого соотношения(явной формулы).
+\end{definition}
+
+\begin{example}
+    Если $n = 2$, то $2 = 1 + 1$, $2 = 2$ \\
+    При $n = 3: n = 1 + 1 + 1 = 1 + 2 + 3$ \\
+    И, наконец, для $n = 4: n = 1 + 1 + 1 + 1 = 1 + 1 + 2 = 2 + 2 = 1 + 3 = 4$
+\end{example}
+
+\subsection{Гомоморфизмы групп}
+
+\begin{definition}
+    \label{def2.4}
+    Пусть есть группы $(G_1, \cdot), (G_2, \circ)$. \\ 
+    Отображение $\phi: G_1 \rightarrow G_2$ называется гомоморфизмом, если $\forall a, b \in G_1: \phi(a \cdot b) = \phi(a) \circ \phi(b)$
+\end{definition}
+
+\begin{proposition}(Свойства гомоморфизмов)
+    \begin{enumerate}
+        \item $\phi(e_1) = e_2$
+        \item $\phi(a^{-1}) = \phi(a)^{-1}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $\phi(e_1 \cdot e_1) = \phi(e_1) \cdot {\phi}^{-1}(e_1) = \phi(e_1) \cdot \phi(e_1) \cdot {\phi}^{-1}(e_1) 
+        \implies \phi(e_1) = e_2$
+    \end{enumerate}
+\end{proof}
+

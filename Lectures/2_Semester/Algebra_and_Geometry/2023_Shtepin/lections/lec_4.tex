@@ -1,0 +1,482 @@
+%22.02.2023 Аня
+
+\section{Линейные операторы}
+\subsection{Диагонализуемость линейного оператора}
+
+\begin{definition}
+    Линейный оператор $\phi: V \to V$ над полем $F$ называется диагонализируемым, если в $V$ 
+    существует базис $e$, такой что $A_{\phi}$ -- диагональная матрица.
+\end{definition}
+
+\begin{theorem}[критерий диагонализируемости линейного оператора]
+    \label{theorem4.1}
+    Пусть $V$ - пространство над полем $F$, оператор $\phi: V \to V$. Пусть $\lambda_1, \lambda_2, \dots, \lambda_k$ -- все 
+    попарно различные собственные значения, тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $\phi$ -- диагонализируем.
+        \item В $V$ существует базис, состоящий из собственных векторов оператора $\phi$.
+        \item $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $1 \Rightarrow 2$ \\
+        Так как $\phi$ диагонализируем, то существует базис, в котором матрица оператора выглядит 
+        следующим образом:
+        \begin{equation*}
+        \left(
+            \begin{array}{cccc}
+            \lambda_{1} & 0 & \ldots & 0\\
+            0 & \lambda_{2} & \ldots & 0\\
+            \vdots & \vdots & \ddots & \vdots\\
+            0 & 0 & \ldots & \lambda_n
+            \end{array}
+        \right)
+        \end{equation*}
+        Значит, $\phi(e_i) = \lambda_i e_i$ для любого $i$, откуда $e_1, \dots, e_n$ -- собственные 
+        векторы для $\phi$. Значит, $e$ -- базис из собственных векторов.
+        \item $2 \Rightarrow 3$ \\
+        Пусть $e$ -- базис из собственных векторов оператора $\phi$. Перегруппируем базисные векторы 
+        по собственным значениям: 
+        $$\underbrace{(e_{11}, \dots, e_{1s_1})}_{\lambda_1} \underbrace{(e_{21}, \dots, e_{2s_2})}_{\lambda_2} 
+        \dots \underbrace{(e_{k1}, \dots, e_{ks_k})}_{\lambda_k}$$
+        Теперь $\langle e_{11}, \dots, e_{1s_1} \rangle \subseteq V_{\lambda_1}$, 
+        $\dots, \langle e_{k1}, \dots, e_{ks_k} \rangle \subseteq V_{\lambda_k}$, 
+        откуда $V = V_{\lambda_1} + \dots + V_{\lambda_k}$. По лемме \ref{o_lnz} собственные подпространства 
+        линейно независимы. Тогда по теореме о характеризации прямой суммы 
+        $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$.
+        \item $3 \Rightarrow 1$ \\
+        Известно, что $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$. 
+        Выберем в каждом $V_{\lambda_i}$ базис: $e_{i_1}, \dots, e_{is_i}$. Тогда, объединяя базисы 
+        собственных подпространств, получим базис всего пространства $V$. 
+        При этом по диагонали будут стоять сначала $s_1$ значений $\lambda_1$, 
+        затем $s_2$ значений $\lambda_2$ и так далее. Остальные значения -- нули. 
+        Значит, $\phi$ -- диагонализируем.
+        \begin{equation*}
+        \left(
+            \begin{array}{ccccc}
+            \lambda_{1} & 0 & \ldots & 0 & 0\\
+            \vdots & \vdots & \ddots & \vdots & \vdots\\
+            0 & \ldots & \lambda_{1} & \ldots & 0\\
+            \vdots & \vdots & \ddots & \vdots & \vdots\\
+            0 & 0 & \ldots & \ldots & \lambda_n
+            \end{array}
+        \right)
+        \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Пусть $\phi$ - диагонализируемый и базис такой, что матрица диагональная, $\dim V = n$.
+    \begin{enumerate}
+        \item Все базисные векторы - собственные.
+        \item По главной диагонали - собственные значения $\phi$.
+        \item $\tr \phi = \sum_{i=1}^n \lambda_i$ (с учётом кратности).
+        \item $\det \phi = \prod_{i=1}^n \lambda_i$.
+        \item $\chi _{\lambda} (t) = \prod_{i=1}^n (\lambda_i - t)$ 
+        (раскладывается на линейные множители над $F$).
+    \end{enumerate}
+\end{note}
+
+\begin{corollary}
+    Если характеристический многочлен линейного оператора не раскладывается на линейные множители 
+    над $F$, то такой оператор заведомо не диагонализуем.
+\end{corollary}
+
+\begin{example}
+    Рассмотрим следующий оператор $\phi$:
+    \begin{equation*}
+    \phi =
+        \left(
+            \begin{array}{cc}
+            \cos{\phi} & - \sin{\phi} \\
+            \sin{\phi} & \cos{\phi} \\
+            \end{array}
+        \right)
+    \end{equation*}
+    Его характеристический многочлен записывается как:
+    \begin{equation*}
+    \chi_{\phi}(t) = \det
+        \left(
+            \begin{array}{cc}
+            \cos{\phi} & - \sin{\phi} \\
+            \sin{\phi} & \cos{\phi} \\
+            \end{array}
+        \right) = t^2 - 2\cos{\phi} t + 1
+    \end{equation*}
+    $D = 4 \cos^2{\phi} - 4 = - 4\sin^2{\phi} < 0$, что значит, многочлен не раскладывается на множители 
+    и матрица не диагонализируема.
+\end{example}
+
+\subsection{Алгебраическая и геометрическая кратности собственных значений}
+
+\begin{definition}
+    Пусть $\phi: V \to V$, $\lambda \in F$ -- его собственное значение, $\chi_{\phi}(\lambda) = 0$.
+    Кратность корня $\lambda$ как корня характеристического многочлена называется алгебраической 
+    кратностью собственного значения $\lambda$. Обозначение: $alg(\lambda) \geq 1$.
+\end{definition}
+
+\begin{definition}
+    Размерность собственного подпространства $V_{\lambda}$ называется геометрической кратностью 
+    собственного значения $\lambda$. Обозначение: $geom(\lambda) = \dim V_{\lambda} \geq 1$.
+\end{definition}
+
+\begin{proposition}
+    \label{pr4.1}
+    Пусть $\phi: V \to V$ и $U$ -- инвариантное подпространство относительно $\phi$. 
+    Пусть $\psi = \phi \vert_{U}$. Тогда $\chi_{\phi} \vdots \chi_{\psi}$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $e$ -- базис в $V$, согласованный с инвариантным подпространством $U$: 
+    $$e = (\underbrace{e_{1}, \dots, e_{k}}_{U}, e_{k + 1}, \dots, e_n).$$
+    Матрица $A_{\phi}$ имеет следующий вид:
+    \[A_{\phi} = \left(\begin{array}{@{}c|c@{}}
+		B & C\\
+		\hline
+		0 & D
+    \end{array}\right)\]
+    Тогда характеристический многочлен записывается следующим образом:
+    \[\chi_{\phi}(\lambda) = \det \left(\begin{array}{@{}c|c@{}}
+		B - \lambda E & C\\
+		\hline
+		0 & D - \lambda E
+    \end{array}\right) = |B - \lambda E| \cdot |D - \lambda E| = \chi_{\psi} \cdot \chi_D\]
+\end{proof}
+
+\begin{corollary}
+    Для любого собственного значения $\lambda$: $geom(\lambda) \leq alg(\lambda)$.
+\end{corollary}
+
+\begin{proof}
+    Подпространство $U = V_{\lambda}$ инвариантно относительно оператора $\phi$. Тогда $\psi$ имеет 
+    на $U$ следующую матрицу:
+    \begin{equation*}
+    \psi =
+        \left(
+            \begin{array}{ccc}
+            \lambda & \dots & 0 \\
+            \vdots & \ddots & \vdots \\
+            0 & \dots & \lambda \\
+            \end{array}
+        \right)
+    \end{equation*}
+    Характеристический многочлен $\chi_{\psi}$ записывается как 
+    $\chi_{\psi} = (\lambda - t)^k$, где $k = \dim V_{\lambda} = geom(\lambda)$. 
+    По утверждению \ref{pr4.1} $\chi_{\phi} \vdots \chi_{\psi}$, откуда следует, что 
+    $\chi_{\phi} \vdots (\lambda - t)^k$. Значит, $alg(\lambda) \geq geom(\lambda)$.
+\end{proof}
+
+\begin{theorem}[критерий диагонализируемости в терминах алгебраической и геометрической кратностей линейного оператора]
+    Пусть $\phi: V \to V$, $\dim V = n$. $\phi$ -- диагонализируем тогда и только тогда, когда: 
+    \begin{enumerate}
+        \item $\chi_{\phi}(t)$ разлагается на линейные множители над $F$. Далее будет использоваться 
+        формулировка "оператор $\phi$ линейно факторизуем над полем $F$".
+        \item Для любого собственного значения $\lambda$ оператора $\phi$ выполнено $alg(\lambda) = geom(\lambda).$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость \\
+        Пусть $\phi$ диагонализуем над $F$. Тогда существует базис, в котором матрица оператора $\phi$ 
+        имеет диагональный вид и по теореме \ref{theorem4.1} верно
+        $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$. 
+        Тогда по свойству прямой суммы: 
+        $$\sum_{i=1}^k geom(\lambda_i) = \sum_{i=1}^k \dim V_{\lambda_i} = 
+        \dim V = n = \deg \chi \geq \sum_{i=1}^k alg(\lambda_i)$$
+        С одной стороны, выполнено неравенство выше, но, с другой стороны, по предыдущему следствию, 
+        $geom(\lambda) \leq alg(\lambda)$, откуда верно, что $alg(\lambda_i) = geom(\lambda_i)$ для всех $i$.
+        \item Достаточность \\
+        Пусть $\phi$ линейно факторизуем над $F$ и $alg(\lambda_i) = geom(\lambda_i)$. 
+        Докажем диагонализируемость оператора $\phi$:
+        $$\dim(V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}) = 
+        \sum_{i=1}^k \dim V_{\lambda_i} = \sum_{i=1}^k geom(\lambda_i) = \sum_{i=1}^k alg(\lambda_i) = n$$
+        Последнее равенство следует из линейной факторизуемости $\phi$. 
+        Отсюда получаем, что $V$ представляется в виде прямой суммы собственных подпространств 
+        $V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \dots \oplus V_{\lambda_k}$. Тогда по теореме 
+        \ref{theorem4.1} $\phi$ диагонализуем. 
+    \end{enumerate}
+\end{proof}
+
+\begin{example}~
+
+    Пример не диагонализируемого линейного оператора на $\Cm$ - Жорданова клетка порядка n.
+    \begin{equation*}
+    J_n(\lambda) =
+        \left(
+            \begin{array}{cccc}
+            \lambda & 1 & \dots & 0 \\
+            \vdots & \ddots & \vdots & \vdots \\
+            \vdots & \dots & \lambda & 1 \\
+            0 & \dots & \dots & \lambda \\
+            \end{array}
+        \right)
+    \end{equation*}
+\end{example}
+
+\begin{proof}
+    Запишем характеристический многочлен для Жордановой клетки порядка $n$:
+    \begin{equation*}
+    \chi_{J_n}(t) = \det
+        \left(
+            \begin{array}{cccc}
+            \lambda - t & 1 & \dots & 0 \\
+            \vdots & \ddots & \vdots & \vdots \\
+            \vdots & \dots & \lambda - t & 1 \\
+            0 & \dots & \dots & \lambda - t \\
+            \end{array}
+        \right) = (\lambda - t)^n
+    \end{equation*}
+    Таким образом, $alg(\lambda) = \dim V_{\lambda} = n$. Так как $\ker B = \ker (J_n(\lambda) - \lambda E)$, 
+    ядро этой матрицы состоит из нулей и единичной диагонали размером $(n - 1) \times (n - 1)$. 
+    Тогда $rk B = n - 1$. Получаем, что $\dim \ker B = n - (n - 1) = 1$, то есть 
+    $V_{\lambda} = \langle e_1 \rangle$; $geom(\lambda) = 1$. \\
+    Таким образом, Жорданова клетка порядка 2 и выше является не диагонализируемой.
+\end{proof}
+
+\subsection{Приведение линейного оператора к верхнетреугольному виду}
+
+\begin{agreement}
+    В этом разделе будем считать, что оператор $\phi: V \to V$ линейно факторизуем над полем $F$ и 
+    характеристический многочлен имеет вид $\chi_{\phi}(t) = \prod_{i=1}^n (\lambda_i - t)$.
+    Размерность пространства $V$ равна $\dim_F V = n$.
+\end{agreement}
+
+\begin{proposition}
+    \label{prop4.2}
+    Следующие условия на подпространстве $U$ эквивалентны:
+    \begin{enumerate}
+        \item $U$ -- инвариантно относительно $\phi$.
+        \item $\exists \lambda \in F: U$ - инвариантно относительно $\phi - \lambda E$.
+        \item  $\forall \lambda \in F \hookrightarrow U$ - инвариантно относительно $\phi - \lambda E$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item ($1 \Rightarrow 3$): Нужно доказать, что $\forall x \in U \hookrightarrow \phi(x) \in U$. 
+        
+        Пусть $\lambda \in F$, тогда $\forall x \in U \hookrightarrow (\phi - \lambda E)(x) = \phi(x) - \lambda x$, 
+        где обе части принадлежат $U$. Значит и все выражение принадлежит $U$.
+        \item ($3 \Rightarrow 2$): Очевидно.
+        \item ($2 \Rightarrow 1$): Пусть $\exists \lambda \in F: U$ инвариантно относительно 
+        $\phi - \lambda E$, тогда верно: 
+        $$\forall x \in U \hookrightarrow \phi(x) = (\phi - \lambda E)(x) + (\lambda E)(x) \in U.$$
+        Следовательно, $U$ инвариантно относительно $\phi$.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    \label{utv4.3}
+    Пусть $\phi: V \to V$, $\phi$ линейно факторизуем над $F$ и  $n = \dim V$, тогда в $V$ найдется 
+    $(n - 1)$ -- мерное подпространство, инвариантное относительно $\phi$.
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item 
+        По определению линейной факторизуемости $\phi$ его характеристический многочлен представляется в виде:
+        $$\chi_{\phi}(t) = \prod_{i=1}^n (\lambda_i - t),$$ 
+        где $\lambda_i$ -- собственные значение для $\phi$.
+        \item 
+        Рассмотрим собственное подпространство $V_{\lambda_n} = \ker (\phi - \lambda_n \epsilon) \neq \{ \overline{0} \}$. 
+        Из того, что ядро не пусто, следует, что $\im(\phi - \lambda_n E)$ не совпадает с $V$. Значит 
+        размерность образа $(\phi - \lambda_n \epsilon)$ не превышает $n - 1$. 
+        Тогда существует подпространство $U$ такое, что $\dim U = n - 1$ и образ оператора 
+        $\phi - \lambda_n \epsilon$ 
+        лежит в $U$. 
+        \item 
+        Докажем, что такое подпространство инвариантно. Пусть $x \in U$, тогда: 
+        $$(\phi - \lambda_n \epsilon)(x) \in \im(\phi - \lambda_n E) \subseteq U.$$ 
+        Значит, $U$ инвариантно относительно $\phi - \lambda_n \epsilon$, и тогда, по утверждению 
+        \ref{prop4.2} $U$ инвариантно и относительно $\phi$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Предположение линейной факторизации можно ослабить и заменить на то, что $\phi$ имеет хотя бы одно характеристическое значение (хотя бы один корень).
+\end{note}
+
+\subsection{Флаг подпространства}
+
+\begin{definition}
+    Флагом подпространства над $V$ называется цепочка инвариантных подпространств: 
+    $$\{ \overline{0} \} = V_0 < V_1 < \dots < V_n = V, \dim V_k = k$$
+\end{definition}
+
+\begin{theorem}[о приведении линейного оператора к верхнетреугольному виду]~ \\
+    Пусть $\phi: V \to V$, $\phi$ линейно факторизуем над $F$ и  $n = \dim V$. Тогда в $V$ существует 
+    базис $e$, в котором матрица $\phi$ -- верхнетреугольная:
+    \begin{equation*}
+        \left(
+            \begin{array}{ccc}
+            \lambda_1 & \dots & * \\
+            \vdots & \ddots & \vdots \\
+            0 & \dots & \lambda_n \\
+            \end{array}
+        \right)
+    \end{equation*}
+\end{theorem}
+
+\begin{idea}
+    Построить в $V$ флаг инвариантных подпространств относительно $\phi$.
+\end{idea}
+
+
+\begin{proof}
+    Докажем индукцией по $n$.
+    \begin{enumerate}
+        \item База $n = 1$: $\{ \overline{0} \} < U_1 = V_1$ - флаг существует.
+        \item
+        Шаг индукции: пусть для $V$ с $\dim V < n$ утверждение справедливо. Докажем для пространства 
+        $V$ размерности $n$. 
+
+        По утверждению \ref{utv4.3} в $V$ найдется $U_{n - 1} < V$; $\dim U_{n - 1} = n - 1$. 
+        Рассмотрим функцию $\psi = \phi \mid_{U_{n - 1}}$, тогда по \ref{pr4.1} 
+        $\chi_{\phi} \vdots \chi_{\psi}$. Где $\chi_{\phi}$ раскладывается на $n$ линейных множителей. 
+        Очевидно, что тогда характеристический многочлен $\chi_{\psi}$ состоит из тех линейных множителей, 
+        которые входили в $\chi_{\phi}$. Следовательно, $\chi_{\psi}$ раскладывается на линейные множители. 
+        Тогда к определителю $\psi: U_{n - 1} \to U_{n - 1}$ применимо предположение индукции:
+        $$\{ \overline{0} \} < U_1 < \dots < U_{n - 1} < U_n = V  (*)$$
+        Тут первые $n - 1$ подпространств инвариантны относительно $\psi$, значит, инвариантны и относительно $\phi$. \\
+        Выберем базис $e$ в $V$, согласованный с разложением $(*)$, где $(e_1, \dots, e_k)$ -- базис в $U_k$, 
+        тогда в матрице базиса $e$ в первой строке будет столбец, согласованный с $U_1$, то есть 
+        $\lambda_1$ и нули снизу, далее столбец, согласованный с $U_2$ и так далее.
+        \begin{equation*}
+            \phi_e =
+            \left(
+                \begin{array}{cccc}
+                    \lambda_1 & * & \dots & * \\
+                    0 & \lambda_2 & \dots & * \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \dots & \lambda_n \\
+                \end{array}
+                \right)
+            \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    В условиях предыдущей теоремы, если $e$ -- базис, в котором $\phi$ имеет верхнетреугольную матрицу, 
+    то $(\phi - \lambda_k E) U_k \subseteq U_{k - 1}$, для всех $k = 1, 2, \dots, n$.
+\end{corollary}
+
+\begin{proof}
+    $U_k = U_{k - 1} \oplus \langle e_k \rangle$ \\
+    $(\phi - \lambda_k E) U_{k - 1} \subseteq U_{k - 1}$ \\
+    $(\phi - \lambda_k E) e_k = \sum_{i=1}^{k - 1} a_{ik}e_i \in U_{k - 1}$
+\end{proof}
+
+\begin{corollary}
+    \label{col2}
+    В условиях предыдущей теоремы $\forall k = 1, \dots, n \hookrightarrow (\phi - \lambda_k E)(\phi - \lambda_{k + 1} E) \dots (\phi - \lambda_n E) V \subseteq U_{k - 1}$. (первые несколько скобок - множители $\chi$)
+\end{corollary}
+
+\begin{proof}
+    $\chi(V) = (\phi - \lambda_k E) \dots (\phi - \lambda_{n - 1} E) U_{n - 1} \subseteq \dots \subseteq U_{k - 1}$.
+\end{proof}
+
+\begin{theorem}[Гамильтона - Кэли]
+    \label{th4.4}
+    Пусть $\phi: V \to V$, $\phi$ -- линейно факторизуем над $F$. Пусть $\chi_{\phi}(t) \in F[t]$ -- характеристический многочлен, тогда $\chi_{\phi}(\phi) = 0$ (нулевой оператор).\\
+    (Иначе: $A \in M_n(F), \chi_A(t)$ -- характеристический многочлен матрицы $A$, то $\chi_A(A) = 0$)
+\end{theorem}
+
+\begin{proof}
+    По определению характеристического многочлена $\chi_{\phi}(t) =  \prod_{i=1}^n (\lambda_i - t)$, $n = \dim V$, тогда верно и $\chi_{\phi}(\phi) = (-1)^n \prod_{i=1}^n (\phi - \lambda_i E)$. Домножим обе части на $V$: $\chi_{\phi}(\phi) V = (-1)^n \prod_{i=1}^n (\phi - \lambda_i E) V$, причем базис $e$ пространства согласован с разложением во флаг инвариантных подпространств. Тогда по второму следствию \ref{col2} получаем $\chi_{\phi}(\phi) V = (-1)^n (\phi - \lambda_1 E) U_1 = (-1)^n (\phi(e_1) - \lambda_1 E) = \overline{0}$. Значит, все векторы аннулируются под действием $\chi_{\phi}(\phi) = 0$. \\
+    (Неправильное доказательство: подставить вместо $t$ матрицу $A$ и получить $\chi_{A}(A) = \det (A - AE) = \det 0 = 0$)
+\end{proof}
+
+\begin{note}
+    Теорема Гамильтона-Кэли справедлива для любого линейного оператора над любым полем.
+\end{note}
+
+\subsection{Аннулирующие многочлены}
+
+\begin{definition}
+    $\phi: V \to V$, $P \in F[t]$ называется аннулирующим для оператора $\phi$, если $P(\phi) = 0$ (иначе говоря: $\forall x \in V \hookrightarrow P(\phi) = \overline{0}$).
+\end{definition}
+
+\begin{note}
+    Если $\dim V = n$, то у любого $\phi$ существует аннулирующий многочлен.
+\end{note}
+
+\begin{proof}
+    Если $\phi$ соответствует матрица $A$ размером $n$ на $n$ и $\dim M_n(F) = n^2$. \\
+    Тогда если рассмотреть все матрицы вида $E, A, A^2, \dots, A^{n^2}$, то существуют $\alpha_i \in F: \sum_{i = 0}^{n^2} \alpha_i A^i = 0$, тогда аннулирующий многочлен выглядит как $P = \sum_{i = 0}^{n^2} \alpha_i t^i$.
+\end{proof}
+
+\begin{definition}
+    Аннулирующий многочлен для $\phi$ минимальной возможной степени называется минимальным многочленом оператора $\phi$ и обозначается: $\mu_{\phi}$.
+\end{definition}
+
+\begin{example}
+    $\phi = E$, $E(x) = x \forall x$, тогда $\mu(t) = t - 1$, $\mu(E) = E - 1 \cdot E = 0$
+\end{example}
+
+\begin{theorem}
+    \label{th4.5}
+    Пусть $\phi: V \to V$, $\mu(t)$ -- минимальный многочлен $\phi$ и пусть $P(t)$ -- аннулирующий многочлен оператора $\phi$. Тогда $P \vdots \mu$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $P(t) = Q(t) \cdot \mu(t) + R(t)$, $\deg R < \deg \mu$ или $R = 0$. \\
+    От противного, пусть $R \neq 0$ тогда выразим этот остаток из предыдущего выражения: 
+    $R(\phi) = P(\phi) - Q(\phi) \cdot \mu (\phi) = 0$ -- так как аннулирующий и минимальный 
+    многочлены зануляются, то и остаток равен нулю. Противоречие. Значит, $\mu(t) \vert P(t)$.
+\end{proof}
+
+\begin{corollary}
+    Минимальный многочлен линейного оператора $\phi$ определяется с точностью до ассоциированности.
+\end{corollary}
+
+\begin{proof}
+    Пусть $\mu$ и $\mu'$ -- два минимальных многочлена, тогда по предыдущей теореме 
+    $\mu \vert \mu'$ и $\mu' \vert \mu$, откуда следует, что $\mu \sim \mu'$.
+\end{proof}
+
+\begin{corollary}
+    $\mu _{\phi} \vert \chi_{phi}$.
+\end{corollary}
+
+\begin{reminder}
+    Многочлены $P$ и $Q$ называются взаимно простыми, если $\gd(P, Q) = 1$. Многочлены взаимно просты тогда и только тогда, когда $\exists u, v \in F[x]: u \cdot P + v \cdot Q = 1$.
+\end{reminder}
+
+\begin{theorem}[о взаимно простых делителях аннулирующего многочлена]~
+    \label{th4.6}
+
+    Пусть $\phi: V \to V$ и пусть $f$ -- аннулирующий многочлен оператора $\phi$. 
+    Пусть $f = f_1 \cdot f_2$, где многочленый $f_1$ и $f_2$ взаимно простые. 
+    Пусть $V_1 = \ker f_1(\phi)$, $V_2 = \ker f_2(\phi)$, тогда $V = V_1 \oplus V_2$, 
+    причем и $V_1$, и $V_2$ инвариантны относительно $\phi$.
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item По теореме о представлении НОД в виде линейной комбинации: 
+            $$\exists u_1, u_2 \in F[t] \hookrightarrow u_1(t)f_1(t) + u_2(t)f_2(t) = 1$$ 
+            Если подставить оператор, получим $u_1(\phi)f_1(\phi) + u_2(\phi)f_2(\phi) = E$. \\
+            По утверждению о коммутирующих операторах: $f_i(\phi) \cdot \phi = \phi \cdot f_i(\phi)$, 
+            где $V_1$ и $V_2$ инвариантны относительно оператора $\phi$.
+        \item Покажем теперь, что $\im f_1(\phi) \subseteq V_2; \im f_2(\phi) \subseteq V_1$. 
+            Для этого рассмотрим некоторый вектор $y \in \im f_1(\phi)$ и докажем, 
+            что существует такой вектор $x \in V$, что $y = f_1(\phi) x \in V_2$. 
+            Для этого рассмотрим $f_2(\phi) y = f_1(\phi) f_2(\phi) x = f(\phi) x = 0 \cdot x = 0$. 
+            Значит, $y \in \ker f_2(\phi) = V_2$. 
+            
+            Таким образом, любой вектор из ядра $f_1(\phi)$ 
+            лежит в $V_2$, откуда следует вложенность. Для $V_1$ доказательство аналогично.
+        \item Теперь докажем, что $V = V_1 + V_2$. Пусть $x \in V$, тогда:
+            $$x = Ex = (f_1(\phi)u_1(\phi) + f_2(\phi)u_2(\phi)) x = f_2(\phi) x' + f_1(\phi) x'',$$ 
+            где первое слагаемое принадлежит $V_1$, а второе - $V_2$ 
+            (по предыдущему пункту доказательства). Значит, вектор принадлежит сумме.
+        \item Последним шагом докажем, что сумма прямая, то есть $V = V_1 \oplus V_2$. 
+            Пусть $x \in V_1 \land V_2$. Значит, для $x$ верно $f_1(\phi) x = 0$ и $f_2(\phi) x = 0$. 
+            Из этого можно получить равенство:
+            $$x = Ex = (f_1(\phi)u_1(\phi) + f_2(\phi)u_2(\phi)) x = \overline{0} + \overline{0} = \overline{0}.$$ 
+            Так как $x$ -- произвольный вектор из пересечения, то пересечение пусто и, значит, сумма прямая.
+    \end{enumerate}
+\end{proof}

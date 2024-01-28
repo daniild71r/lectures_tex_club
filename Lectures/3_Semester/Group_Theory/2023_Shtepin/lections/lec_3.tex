@@ -1,0 +1,355 @@
+% Оля по конспекту Андрея
+
+\begin{definition}
+    \label{def2.5}
+    Ядром гомоморфизма называется $\ke \phi = \{a \in G_1 | \phi(a) = e_2\} = \phi^{-1}(e_2)$.
+\end{definition}
+
+\begin{proposition}
+    \label{pr3.1}
+    Пусть $\phi: G_1 \to G_2$ - гомоморфизм групп $(G_1, \cdot)$, $(G_2, \circ)$. Тогда:
+    \begin{enumerate}
+        \item $\ke \phi \vartriangleleft G_1$,
+        \item $\im \phi \leq G_2$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Проверим по определению \ref{def1}. Пусть $a, b \in \ke \phi$. Тогда $\phi(a) = e_2$, 
+        $\phi(b) = e_2$. При этом:
+        \begin{enumerate}
+            \item $\phi(ab) = \phi(a) \circ \phi(b) = e_2 \circ e_2 = e_2$, а значит $ab \in \ke \phi$.
+            \item $\phi(a^{-1}) = \phi(a)^{-1} = e_2^{-1} = e_2$, а значит $a^{-1} \in \ke \phi$.
+        \end{enumerate}
+        Таким образом, $\ke \phi$ -- подгруппа в $G$. Покажем, что она является нормальной.
+
+        Рассмотрим $x \in G_1$, $a \in \ke \phi$. Тогда:
+        \begin{gather*}
+            \phi(a^x) = \phi(x^{-1}) \circ \phi(a) \circ \phi(x) = \phi(x)^{-1} \circ e_2 \circ \phi(x) = 
+            \phi(x)^{-1} \circ \phi(x) = e_2.
+        \end{gather*}
+        Таким образом $a \in \ke \phi$, а значит, по критерию \ref{th2.1}, 
+        верно $\ke \phi \vartriangleleft G_1$.
+        \item Пусть $x, y \in \im \phi$. Тогда существуют $a$ и $b$ $\in G_1$, такие, что $\phi(a) = x$, 
+        $\phi(b) = y$. Для них верно:
+        \begin{enumerate}
+            \item $\phi(ab) = \phi(a) \circ \phi(b) = xy$, откуда $xy \in \im \phi$.
+            \item $\phi(a^{-1}) = \phi(a)^{-1} = x^{-1}$, откуда $x^{-1} \in \im \phi$.
+        \end{enumerate}
+        Тогда по определению \ref{def1} подгруппы верно $\im \phi \leq G_2$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Если $H \leq G_1$ и $\phi \vert_{H}: H \to G_2$, то $\phi(H) \leq G_2$.
+\end{note}
+
+\begin{note}
+    Если есть гомоморфизм $\phi: G_1 \to G_2$ и верно $H \vartriangleleft  G_1$, то 
+    не гарантируется, что $\phi(H) \vartriangleleft G_2$. Контрпример: гомоморфизм вложения $\phi: 
+    S_n \to S_{n+1}$. Для него верно $A_n \vartriangleleft S_n$, 
+    но, при этом, $\phi(A_n) = A_n \ntriangleleft S_{n+1}$.
+\end{note}
+
+\begin{example}~
+    \label{ex2.1}
+    \begin{enumerate}
+        \item $\phi: G_1 \to \{e_2\}$,
+        \item $\phi: (\Z, +) \to (\Z_n, +)$, $\phi(a) = a + n\Z$,
+        \item $\epsilon: S_n \to \{\pm 1\}$ -- знак перестановки,\\
+        $\ke \epsilon = A_n \vartriangleleft S_n$,
+        \item $\det: Gl_n(\F) \to \F^*$ -- определитель матрицы. Проверим свойства:
+        \begin{enumerate}
+            \item $\det(AB) = \det A \cdot \det B$, 
+            \item $\det(A^{-1}) = (\det(A))^{-1}$.
+        \end{enumerate}
+        \item $\text{Aff}(\R)$ -- группа афинных преобразований прямой. \\
+        Элементы группы: $f(x) = ax + b$, где $a \in \R^*$, $b \in \R$. \\
+        Является 
+        группой относительно композиции. Пусть $f(x) = ax + b$, $g(x) = \hat{a}x + \hat{b}$, тогда:
+        \begin{gather*}
+            (f \circ g)(x) = f(\hat{a}x + \hat{b}) = (a\hat{a}x) + (a\hat{b}+b) \in \text{Aff}(\R).
+        \end{gather*}
+        Отображение $\phi: \text{Aff}(\R) \to \R$, где $\phi(f) = a$ -- гомоморфизм. Ядро:
+        $$\ke \phi = \{f: x + b\} := T \vartriangleleft \text{Aff}(\R).$$ 
+        Для композиции верно: $\phi(f \circ g) = a \cdot \hat(a) = \phi(f) \cdot \phi(g)$.\\
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Гомоморфизм $\phi: G_1 \to G_2$ называется эпиморфизмом, если $\phi$ сюрьективно.
+\end{definition}
+
+\begin{definition}
+    Гомоморфизм $\phi: G_1 \to G_2$ называется мономорфизмом (вложением), если $\phi$ инъективно.
+\end{definition}
+
+\begin{definition}
+    Гомоморфизм $\phi: G \to G$ называется эндоморфизмом.
+\end{definition}
+
+\begin{definition}
+    Изоморфизм $\phi: G \to G$ называется автоморфизмом.
+\end{definition}
+
+\begin{proposition}
+    Гомоморфизм $\phi: G_1 \to G_2$ является мономорфизмом (вложением группы $G_1$ в группу $G_2$) 
+    тогда и только тогда, когда $\ke \phi = \{e_1\}$.
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $\phi$ -- инъективный гомоморфизм. Тогда в $e_2$ может переходить 
+        только один элемент. Так как $e_1$ всегда переходит в $e_2$, верно $\ke \phi = \{e_1\}$.
+        \item Достаточность. Пусть $\ke \phi = \{e_1\}$. Докажем от противного:
+        
+        Предположим, что существуют такие $a, b \in G_1$, 
+        что $a \neq b$, но $\phi(a) = \phi(b)$. Тогда: 
+        $$\phi(a^{-1}b) = \phi(a)^{-1} \cdot \phi(b) = e_2.$$
+        Отсюда $a^{-1}b \in \ke \phi$, что значит, что $a^{-1}b = e_1$. Таким образом, $a = b$, что 
+        приводит к противоречию с начальным предположением.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Фактор-группа}
+
+\begin{definition}
+    Пусть $G$ -- группа, $A$ и $B$ -- подмножества $G$. Определим произведение подмножеств 
+    как $A \cdot B = \{a\cdot b \,|\, a \in A, b \in B\}$.
+\end{definition}
+
+\begin{theorem}
+    \label{th2.2}
+    Если $H \vartriangleleft G$, то множество смежных классов $G$ по $H$ -- группа относительно 
+    операции умножения подмножеств.
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Операция определена:
+        \begin{gather*}
+            (aH)(bH) = a(Hb)H = a(bH)H = (ab)(HH) = abH \in G/H.
+        \end{gather*}
+        \item Нейтральный элемент -- $H = eH$:
+        \begin{gather*}
+            aH * eH = eH * aH = aH.
+        \end{gather*}
+        \item Обратный элемент -- $(aH)^{-1} = a^{-1}H$:
+        \begin{gather*}
+            a^{-1}H \cdot aH = a^{-1}aH = H.
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Построенная группа, состоящая из смежных классов $G$ по $H$, называется фактор-группой $G$ по $H$ 
+    и обозначается $G/H$.
+\end{definition}
+
+\begin{exercise}
+    Показать, что произведение двух левых смежных классов не обязательно является левым смежным 
+    классом, но всегда является дизъюнктным объединением левых смежных классов.
+\end{exercise}
+
+\begin{proposition}
+    \label{pr3.2}
+    Пусть $G$ -- группа, $H \vartriangleleft G$ и $G/H$ -- фактор-группа. Тогда отображение 
+    $p: G \to G/H$, определяемое равенством $p(a) = aH$, является эпиморфизмом (сюрьективным 
+    отображением группы на фактор-группу).
+\end{proposition}
+
+\begin{proof}
+    Проверим определение эпиморфизма:
+    \begin{enumerate}
+        \item $p(a) \cdot p(b) = aH \cdot bH = abH = p(ab)$ -- отображение является гомоморфизмом.
+        \item Докажем сюрьективность. Рассмотрим произвольный $aH \in G/H$. Тогда существует элемент  
+        элемент $a \in H$, и $p(a) = aH$, а значит $p$ сюрьективно.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Построенный эпиморфизм группы на фактор-группу является каноническим эпиморфизмом.
+\end{definition}
+
+\begin{note}
+    \label{note2.1}
+    Ядро канонического эпиморфизма $\ke p = H$.
+\end{note}
+
+\begin{proof}
+    Докажем по определению ядра \ref{def2.5}.
+
+    Пусть существует элемент $b \not\in H$ такой, что $bH = H$. Тогда для некоторого $h_1 \in H$ 
+    верно $bh_1 = h_2 \in H$, а значит $b \in H$, что приводит к противоречию.
+\end{proof}
+
+\begin{corollary}[из утверждения \ref{pr3.2}]
+    Ядра гомоморфизмов $\phi: G \to G'$ и только они являются нормальными подгруппами в группе $G$.
+\end{corollary}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Пусть $\phi: G \to G'$. Тогда $\ke \phi \vartriangleleft G$ по утверждению \ref{pr3.1}.
+        \item Пусть $H \vartriangleleft G$, $p: G \to G/H$. Тогда $\ke p = H$, а значит мы можем 
+        явно предъявить гомоморфизм, ядром которого является $H$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Основная теорема о гомоморфизмах]~ \\
+    \label{th3.1}
+    Пусть $\phi: G \to  K$ -- гомоморфизм, $H = \ke \phi \vartriangleleft  G$.
+    Тогда $\im \phi \cong G/H$, причем существует изоморфизм $\psi: \im \phi \to G/H$, 
+    при котором коммутативна следующая диаграмма:
+    \[
+	\begin{tikzcd}[row sep = huge]
+		a \in G \arrow{rr}{p} \arrow[swap]{dr}{\phi} && G/H \\
+		& \im \phi \leq K \arrow[swap, xshift = 4pt]{ur}{\psi} &
+	\end{tikzcd}
+	\]
+    Что означает, что композиция $\psi \circ \phi$ совпадает с $p$, где $p$ -- канонический эпиморфизм.
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Определим $\psi$. Пусть $k \in \im \phi$ и существует $a \in G: \phi(a) = k$. Положим: 
+        $$\psi(k) = \phi^{-1}(k) = \{a \in G \, | \, \phi(a) = k\}.$$
+        Покажем, что если $\phi(a) = k$, то $\psi(k) = aH \in G/H$:
+        \begin{enumerate}
+            \item Проверим, что $aH \subseteq \phi^{-1}(k)$:
+            
+            По определению вложенности для всех $h \in aH$ должно быть выполнено $h \in \phi^{-1}(k)$, 
+            то есть должно быть верно $\phi(h) = k$. Проверим это. 
+            
+            Зафиксируем $h \in aH$. Тогда существует $h' \in H$ такой, что $h = ah'$. При этом:
+            $$\phi(h) = \phi(ah') = \phi(a) \cdot \phi(h') = k \cdot e_2 = k.$$
+            Таким образом, для всех $h \in aH$ верно $h \in \phi^{-1}(k)$, откуда $aH \subseteq \phi^{-1}(k)$.
+
+            \item Проверим, что $\phi^{-1}(k) \subseteq aH$:
+            
+            Пусть $b \in \phi^{-1}(k)$, тогда верно $\phi(b) = k = \phi(a)$. 
+            При этом: $$\phi(a^{-1}b) = \phi(a)^{-1} \cdot \phi(b) = \phi(b)^{-1} \cdot \phi(b) = e_2.$$ 
+            Тогда $a^{-1}b \in \ker \phi = H$, откуда $b \in aH$. 
+            
+            Таким образом, для всех $b \in \phi^{-1}(k)$
+            верно $b \in aH$, что значит, что $\phi^{-1}(k) \subseteq aH$.
+        \end{enumerate}
+        Мы показали вложенность в обе стороны, откуда $\psi(k) = \phi^{-1}(k) = aH$.
+        \item Покажем, что $\psi$ -- гомоморфизм. Для этого необходимо проверить определение \ref{def2.4}.
+        
+        Пусть $k_1$, $k_2 \in \im \phi$. Тогда существуют $a_1$, $a_2$ такие, что $\phi(a_1) = k_1$, 
+        $\phi(a_2) = k_2$. Тогда из предыдущего пункта $\psi(k_1) = a_1 H$, $\psi(k_2) = a_2 H$. При этом:
+        $$\psi(k_1) \cdot \psi(k_2) = a_1 H \cdot a_2 H = a_1 a_2 H = \psi(a_1 a_2).$$
+        Таким образом, $\psi$ -- гомоморфизм по определению.
+        \item Покажем, что гомоморфизм $\psi$ является изоморфизмом, то есть биективен.
+        \begin{enumerate}
+            \item Инъективность.
+            
+            Покажем от противного. Пусть найдутся $k_1 \neq k_2$, для которых верно $\psi(k_1) = \psi(k_2)$. 
+            Пусть $k_1 = \phi(a_1)$ и $k_2 = \phi(a_2)$, тогда из первого пункта $\psi(k_1) = a_1 H$, $\psi(k_2) = a_2 H$. 
+
+            Также по предположению верно $a_1 H = a_2 H$.
+            
+            Для любого элемента $h \in H = \ker \phi$ верно $a_1 h \in a_1 H$ и $\phi(a_1 h) = \phi(a_1) \cdot 
+            \phi(h) = k_1$. Таким образом, $\phi(a_1 H) = k_1$. 
+            Аналогично для $a_2$ получим $\phi(a_2 H) = k_2$. 
+
+            При этом, так как $a_1 H = \psi(k_1) = \psi(k_2) = a_2 H$, получаем $a_1 H = a_2 H$.
+            Отсюда следует, что $\phi(a_1 H) = \phi(a_2 H)$, что значит, что $k_1 = k_2$. Противоречие.
+            \item Сюрьективность.
+            
+            Рассмотрим элемент $aH \in G/H$ и покажем, что у него есть прообраз. Действительно, пусть
+            $\phi(a) = k \in \im \phi$, тогда $\psi(k) = aH$. Прообраз найден.
+        \end{enumerate}
+        Таким образом, $\psi$ -- изоморфизм.
+        \item Осталось показать, что $\psi \cdot \phi = p$. 
+        
+        Действительно, пусть $\phi(a) = k$, тогда $\psi(\phi(a)) = \psi(k) = aH = p(a)$ для всех $a$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Из доказательства теоремы \ref{th3.1} вытекает, что элементы смежного класса по подгруппе 
+    $H = \ke \phi$ при применении гомоморфизма склеиваются.
+\end{note}
+
+\begin{note}
+    Если $\phi: G \to K$ -- сюрьективный гомоморфизм, то по основной теореме о гомоморфизмах 
+    \ref{th3.1} верно $K \cong G/\ke \phi$.
+\end{note}
+
+\begin{note}
+    Гомоморфный образ группы в честь победы коммунизма изоморфен фактор-группе по ядру гомоморфизма!
+\end{note}
+
+\begin{example}
+    Построим фактор-группу афинных преобразований $\text{Aff}/\text{T}$, где $\text{T}$ -- преобразования, не меняющие 
+    углового коэффициента прямых (см. пример \ref{ex2.1}). Покажем её изоморфизм с $\R^*$. 
+    \begin{enumerate}
+        \item 
+        Рассмотрим $f_1(x) = a_1 x + b_1$ и $f_2(x) = a_2 x + b_2$, принадлежащие одному и тому же 
+        смежному классу. Тогда верно $f_1^{-1} \circ f_2 \in T$. 
+        
+        \item Выразим коэффициенты $f_1^{-1} = 
+        \widetilde{a_1} x + \widetilde{b_1}$, зная, что $f^{-1}\circ f (x) = x$:
+        \begin{gather*}
+            \widetilde{a_1}(a_1 x + b_1) + \widetilde{b_1} = \widetilde{a_1} a_1 x + \widetilde{a_1} b_1 
+            + \widetilde{b_1} = x.
+        \end{gather*}
+        Отсюда получаем следующую систему:
+        \begin{equation*}
+            \begin{cases}
+              \widetilde{a_1} = \frac{1}{a_1} \in \R^*, 
+              \\
+              \widetilde{b_1} = - \frac{b_1}{a_1} \in \R^*.
+            \end{cases}
+        \end{equation*}
+        Таким образом, $f_1^{-1}(x) = \frac{1}{a_1} x - \frac{b_1}{a_1}$. 
+        \item Выразим теперь $f_1^{-1} \circ f_2$:
+        \begin{gather*}
+            f_1^{-1} \circ f_2 = \frac{1}{a_1} (a_2 x + b_2) - \frac{b_1}{a_1} = 
+            \frac{a_2}{a_1} x + \frac{b_1 - b_2}{a_1}.
+        \end{gather*}
+        Так как $f_1^{-1} \circ f_2 \in \text{T}$, получаем $a_1 = a_2$. 
+        
+        \item Тогда смежный класс имеет вид $[a] = \{f(x) = ax + c\} = a\text{T}$.
+        
+        Произведение смежных классов будет иметь вид $[a_1] \cdot [a_2] = [a_1 \cdot a_2]$
+        \item Определим $\phi(f) = a$, тогда $\ke \phi = \text{T}$. Получаем канонический эпиморфизм.
+        \item Построим коммутативную диаграмму:
+        \[
+	    \begin{tikzcd}[row sep = huge]
+	    	\text{Aff}(\R) \arrow{rr}{p} \arrow[swap]{dr}{\phi} && \text{Aff}(\R)/\text{T} \\
+	    	& \R^* \arrow[swap, xshift = 4pt]{ur}{\psi} &
+	    \end{tikzcd}
+	    \]
+        По теореме \ref{th3.1} получаем $\text{Aff}(\R)/\text{T} \cong \R^*$.
+    \end{enumerate}
+\end{example}
+
+\subsection{Теоремы об изоморфизмах}
+
+\begin{theorem}(Первая теорема об изоморфизмах)
+    Пусть $H \vartriangleleft G$ и $K \leq G$. Тогда:
+    \begin{enumerate}
+        \item $H \cdot K = K \cdot H \leq G$,
+        \item $H \cap K \vartriangleleft K$,
+        \item $HK/H \cong K/(H \cap K)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Было доказано в рамках теоремы \ref{th2.3}.
+        \item Пусть $k \in K$, $a \in H \cap K$. Тогда $a^{k} = k^{-1} a k \in H \cap K$.
+        Таким образом, $(H \cap K)^K = H \cap K$, и по критерию \ref{pr2.1} подгруппа нормальна.
+        \item Рассмотрим канонический гомоморфизм $p: HK \to HK/H$, он сюрьективен.
+        При этом $p(HK)= p(H) \cdot p(K) = p(K)$, откуда $p \vert_{K}: K \to HK/H$ сюрьективен.
+
+        Пусть $a \in \ke p \vert_{K}$, тогда $a \in K$ и $p(a) = aH \in H$. Отсюда если $a \in H$,
+        то и $a \in K \cap H$.
+
+        По теореме \ref{th3.1} верно $(HK)/H \cong K/(H \cap K)$.
+    \end{enumerate}
+\end{proof}
+

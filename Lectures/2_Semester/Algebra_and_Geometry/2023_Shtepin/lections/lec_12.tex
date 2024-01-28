@@ -1,0 +1,298 @@
+\subsection{Изоморфизм евклидовых (эрмитовых) пространств}
+\begin{definition}
+    Пусть $V_1, V_2$ -- евклидовы (эрмитовы) пространства. Тогда $\phi: V_1 \to V_2$ называется изоморфизмом, если:
+    \begin{enumerate}
+        \item $\phi$ -- изоморфизм линейного пространства $V_1$ на линейное пространство $V_2$
+        \item $\phi$ сохраняет скалярное произведение: $(\phi(x), \phi(y)) = (x, y) \forall x, y \in V$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Два конечномерные евклидовые (эрмитовые) пространства $V_1$ и $V_2$ изоморфны тогда и только тогда, когда $\dim V_1 = \dim V_2$.
+\end{proposition}
+
+\begin{proof}
+    Необходимость очевидна по соответсвующей теореме для линейных пространств. \\
+    Достаточность: пусть $\dim V_1 = \dim V_2$ и $e$ -- ортонормированнй базис в $V_1$, $f$ -- ортонормированный базис в $V_2$. Тогда можно подобрать такой оператор $\phi: V_1 \to V_2$, что $V_1 \cong V_2$ (как и в первом семестре), причем все условия сохранятся: $\phi(e_i) = f_i \forall i$, $\phi(e \alpha) = f \alpha$, $(x, y) = \alpha^T \overline{\beta}$.  
+\end{proof}
+
+\begin{theorem}[Рисс]
+    Пусть $V$ -- конечномерное евклидово пространство. Тогда соответсвия $a (\in V) \to f_a$, такие что $f_a(x) = (x, a)$. В этом случае $f_a(x) \in V^*$ и обратно, если каждый линейный функционал $f$ на $V$ имеет вид $f_a$ для однозначно определенного вектора $a \in V$.
+\end{theorem}
+
+\begin{proof}
+    То, что $f_a \in V^*$ очевидно следует из линейности скалярного произведения ($f \neq 0$). Теперь пусть $f: V \to \R$ -- линейный функционал на $V$ и $\dim \ker f = \dim V - \dim \R = n - 1$.
+    Возьмем $U = \ker f$ и ортогональное дополнение $U^{\perp}$. Пусть $e$ -- единичный вектор из $U^{\perp}$, возьмем $a = f(e)e$. Тогда $f_a(U) = (U, a) = (U, f(e) e) = 0$ и $f_a(e) = (e, a) = (e, f(e)e) = f(e) |e|^2 = f(e)$. Таким образом мы доказали, что $f$ и $f_a$ совпадают на $U, U^{\perp}$, то есть совпадают на всем пространстве $V$.
+\end{proof}
+\begin{note}
+    Существует каноническая биекция $\phi: V \to V^*$, для которой верно: $\phi(a) = f_a$, причем $\forall f_a, f_b (\neq = 0) (f_a, f_b) = (a, b)$.
+\end{note}
+
+\begin{theorem}[о каноническом изоморфизме евклидова пространства $V$ и сопряженного $V^*$]
+    Каноническая биекция $\phi(a) = f_a$ является изоморфизмом евклидовых пространств.
+\end{theorem}
+
+\begin{proof}
+    Биективность следует из теоремы Рисса, аддитивность: $f_{a + b} = f_a + f_b$, так как $(x, a + b) = (x, a) + (x, b)$. Также сохраняется скалярное произведение: $(f_a, f_b) = (\phi(a), \phi(b)) = (a, b)$.
+\end{proof}
+
+\begin{note}
+    Эрмитов случай: пусть $f_a(x) = (x, a) \in V^*$, $\phi: V \to V^*$. Тогда теорема Рисса доказывается (и работает) дословно, но $a = \overline{f(e)} e$. Но в этом случае каноническая биекция $\phi$ -- антилинейна, поэтому она не будет изоморфизмом и скалярное произведение теперь выглядит так: $(f_a, f_b) = (b, a)$. Отсутсвие изоморфизма доказывает следующая цепочка равенств:
+    \begin{gather*}
+        f_{\lambda a}(x) = (x, \lambda a) = \overline{\lambda} (x, a) = \overline{\lambda} f_a(x)
+    \end{gather*}
+    тогда 
+    \begin{gather*}
+        (f_a, \lambda f_b) = (f_a, f_{\overline{\lambda} b}) = (\overline{\lambda} b, a) = \overline{\lambda}(b, a) = \overline{\lambda} (f_a, f_b)
+    \end{gather*}
+    Вывод: $(\phi(a), \phi(b)) = (f_a, f_b) = (b, a) = \overline{(a, b)}$. Так как скалярное произведение не сохраняется, то $\phi$ -- не изоморфизм. \\
+    В эрмитовом случае $\phi$ называется антиизоморфизмом.
+\end{note}
+
+\subsubsection{Свойства операции ортогонального дополнения}
+Пусть $\phi: V \to V^*$ -- изоморфизм для Евклидова пространства и антиизоморфизм для Эрмитова. И пусть $\psi: V^* \to V$, ткое что $\phi \circ \psi = \psi \circ \phi = E$.
+
+\begin{proposition}
+\label{pr 12.2}
+    Пусть $U \subseteq V$, тогда $U^{\perp} = \psi (U^{\circ})$, где $U^{\circ}$ -- аннулятор пространства $U$ в $V^*$.
+\end{proposition}
+
+\begin{proof}
+    $y \in U^{\perp} \Leftrightarrow \forall x \in U \hookrightarrow (x, y) = 0 \Leftrightarrow \forall x \in U f_y(x) = 0 \Leftrightarrow f_y \in U^{\circ} \Leftrightarrow \psi(f_y) \in \psi(U^{\circ})$. Значит, мы доказали, что для любого вектора из ортогонального дополнения его образ принадлежит образу аннулятора, а так как в обратную сторону очевидно, то $U^{\perp} = \psi(U^{\circ})$.
+\end{proof}
+
+\begin{proposition}
+    Свойства ортогонального дополнения:
+    \begin{enumerate}
+        \item $(U^{\perp})^{\perp} = U$
+        \item $(U + W)^{\perp} = U^{\perp}$
+        \item $(U \cap W)^{\perp} = U^{\perp} + W^{\perp}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $x \in (U^{\perp})^{\perp} \Leftrightarrow \forall y \in U^{\perp} (x, y) = 0$. Но, с другой стороны, $\forall x \in U (x, y) = 0$. Значит, любой вектор из $U$ лежит в $(U^{\perp})^{\perp}$. И из того, что размерности равны, следует равенство пространств: $\dim (U^{\perp})^{\perp} = \dim V - \dim U^{\perp} = \dim V - (\dim V - \dim U) = \dim U$.
+        \item По утверждению \ref{pr 12.2}: 
+        \begin{gather*}
+            (U + W)^{\perp} = \psi((U + W)^{\circ}) = \psi(U^{\circ} \cap W^{\circ}) = \psi(U^{\circ} \cap \psi(W^{\circ}) = U^{\perp} \cap W^{\circ}
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Для Евклидова пространства со скалярным произведением выполняются следующие утверждения:
+    \begin{enumerate}
+        \item Теорема Пифагора: $|x + y|^2 = |x|^2 + |y|^2$, откуда $|x| \leq |\ort_U x|$
+        \item Формула расстояния от вектора до подпространства: $\rho (U, x) = \inf \rho (x, u) = \inf |x - u|$ - по всем $u \in U$.
+    \end{enumerate}
+\end{note}
+
+\begin{proposition}
+    $\rho (U, x) = |\ort_U x|$
+\end{proposition}
+
+\begin{proof}
+    $|x - u| \geq |\stackrel{\circ}{x - u}|$ -- по определению. Тогда по теореме Пифагора: $|\stackrel{\circ}{x} - \stackrel{\circ}{u}| = |\stackrel{\circ}{x}$ -- ортогональное дополнение.
+\end{proof}
+
+\begin{definition}
+    Определеим объем системы векторов по индукции:
+    \begin{enumerate}
+        \item $V_1(x_1) = |x_1|$
+        \item $V_k(x_1, \dots x_k) = V_{k -1} (x_1, \dots, x_{k - 1}) \rho(x_k, \langle x_1, \dots, x_{k - 1} \rangle)$
+    \end{enumerate}
+\end{definition}
+
+\begin{corollary}
+    $V_k(x_1, \dots, x_k) \geq 0$, причем равенство достигается только когда $\exists i \hookrightarrow \rho(x_k, \langle x_1, \dots, x_{k - 1} \rangle) = 0$. Что возможно только когда система $\langle x_1, \dots, x_{k - 1} \rangle$ -- линейно зависима.
+\end{corollary}
+
+\begin{theorem}[о геометрическом свойстве определителя Грама системы векторов]~
+    Если $x_1, \dots, x_k$ -- система векторов в пространстве со скалярным произведением, то $(V_k)^2(x_1, \dots, x_k) = |\Gamma(x_1, \dots, x_k)|$
+\end{theorem}
+
+\begin{proof}
+    Если система $x_1, \dots, x_k$ -- линейно зависима, то $0 = 0$ -- теорема выполняется. Пусть система линейно независима.
+    \begin{enumerate}
+        \item Покажем, что преобразование Грама-Шмидта не изменяет левую и правую части равенства: для этого возьмем унипотентную матрицу перехода $S$: $(y_1, \dots, y_k) = (x_1, \dots, x_k)S$, тогда:
+        \begin{gather*}
+            |\Gamma(y_1, \dots, y_k)| = |S^T \Gamma(x_1, \dots, x_k)S| = |\det S|^2 |\Gamma(x_1, \dots, x_k)| = |\Gamma (x_1, \dots, x_k)|
+        \end{gather*}
+        \item Теперь покажем равенство квадратов объемов индукцией по $k$: при $k = 1$ -- очевидно, что $y_1 = x_1$. Теперь пусть $V_{k - 1} (x_1, \dots, x_{k - 1}) = V_{k - 1}(y_1, \dots, y_{k - 1})$. По определению объема делаем шаг индукции:
+        \begin{gather*}
+            \rho(x_k, \langle x_1, \dots, x_{k -1} \rangle) = |\ort_{\langle x_1, \dots, x_{k -1} \rangle} x_k| = |\ort_{\langle x_1, \dots, x_{k -1} \rangle} y_k| = |\ort_{\langle y_1, \dots, y_{k -1} \rangle} y_k| = \rho(y_k, \langle y_1, \dots, y_k \rangle)
+        \end{gather*}
+        \item Теперь равенство достаточно доказать для ортонормированного базиса:
+        \begin{gather*}
+            (V_k)^2(y_1, \dots, y_k) = (V_{k - 1})^2(y_1, \dots, y_k) \rho^2(y_k, \langle y_1, \dots, y_k \rangle) = (V_{k - 1})^2(y_1, \dots, y_k) |y_k|^2 = \displaystyle\prod_{i = 1}^{k} (y_i, y_i) = |\Gamma (y_1, \dots, y_k)
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Пусть $e = (e_1, \dots, e_n)$ -- базис в $V$. Тогда если $(x_1, \dots, x_n) = (e_1, \dots, e_n)S$. Тогда $V_1(x_1, \dots, x_n) = |\det S| V_n(e_1, \dots, e_n)$
+\end{corollary}
+
+\begin{proof}
+    \begin{gather*}
+        (V_n)^2(x_1, \dots, x_n) = |\Gamma (x_1, \dots, x_n)| = |S^T \Gamma (e_1, \dots, e_n) S| = |\det S|^2 |\Gamma (e_1, \dots, e_n)| = |\det S|^2 (V_n)^2(e_1, \dots, e_n)
+    \end{gather*}
+\end{proof}
+
+\begin{corollary}
+    Пусть $e_1, \dots, e_n$ -- базис в $U$, тогда 
+    \begin{gather*}
+        \rho(x, U) = \sqrt{\frac{|\Gamma (x, e_1, \dots, e_k)|}{|\Gamma (e_1, \dots, e_k)|}}
+    \end{gather*}
+\end{corollary}
+
+\begin{proof}
+    Напрямую следует из того, что $\rho(x, U) = \frac{V_{k + 1}(x, e_1, \dots, k)}{V_k(e_1, \dots, e_k)}$
+\end{proof}
+
+\section{Сопряженные операторы}
+\begin{note}
+    Далее: $V$ -- пространство со скалярным произведением, $\theta = 2$ в Евклидовом пространстве и $\theta = 1,5$ в Эрмитовом пространстве. $B_{\theta}(V)$ -- множество линейных функций на $V$, $\phi \in L (V)$
+\end{note}
+
+\begin{definition}
+    Пусть $l_{\phi}(x, y) = (\phi(x), y)$ -- $\theta$ - линейная функция.
+\end{definition}
+
+\begin{proposition}
+    \label{pr 12.3}
+    Если $e$ -- ортонормированный базис в $V$ и $\phi$ в нем имеет вид матрицы $A$, то $l_{\phi}$ имеет вид матрицы $A^T$ в этом же базисе.
+\end{proposition}
+
+\begin{proof}
+    $x$ имеет координаты $\alpha$, $y$ имеет координаты $\beta$, тогда $(x, y) = x^T B \overline{y}$. С другой стороны, $l_{\phi}(x, y) = (A \alpha, \beta) = (A \alpha)^T \beta = \alpha ^T A^T \beta$, откуда $B = A^T$
+\end{proof}
+
+\begin{corollary}
+    Соответствие $\phi \hookrightarrow l_{\phi}$ является линейной биекцией $\mathcal{L}(V)$ на $B_{\theta}(V)$
+\end{corollary}
+
+\begin{proof}
+    Жостаточно доказать аддитивность: $l_{\phi + \psi} (x, y) = ((\phi + \psi) (x), y) = (\phi(x), y) + (\psi(x), y) = l_{\phi}(x, y) + l_{\psi}(x, y)$ 
+\end{proof}
+
+\begin{definition}
+    Теперь пусть $r_{\phi}(x, y) = (x, \phi(y))$ -- $\theta$ - линейная функция.
+\end{definition}
+
+\begin{corollary}
+    Соответсвие $\phi \hookrightarrow r_{\phi}$ является антилинейной биекцией $\mathcal{L}(V) \to B_{\theta}(V)$.
+\end{corollary}
+
+\begin{proof}
+    $r_{\lambda \phi} (x, y) = (x, \lambda \phi(y)) = \overline{\lambda} (x, \phi(y)) = \overline{\lambda} r_{\phi}(x, y)$
+\end{proof}
+
+\begin{definition}
+    Оператор $\phi^*$ называется сопряженным к оператору $\phi$, если $l_{\phi} = r_{\phi^*}$
+\end{definition}
+
+\begin{definition}
+    То же самое, но языком попроще: $(\phi(x), y) = (x, \phi^*(y)) \forall x, y \in V$.
+\end{definition}
+
+\begin{proposition}
+    \label{pr 12.4}
+    Если $e$ -- ортонормированный базис в $V$, $\phi \leftrightarrow A$, то $r_{\phi} \leftrightarrow \overline{A}$.
+\end{proposition}
+
+\begin{corollary}
+    Если $e$ -- ортонормированный базис в $V$, $\phi \leftrightarrow A$, то $\phi^* \leftrightarrow A^* = \overline{A^T}$
+\end{corollary}
+
+\begin{proof}
+    $\phi \leftrightarrow A$ тогда по утверждению \ref{pr 12.3} выше и по \ref{pr 12.4} $l_{\phi} \leftrightarrow A^T$ по определению $r_{\phi^*} \leftrightarrow A^T$ и $\phi^* \leftrightarrow \overline{A^T}$
+\end{proof}
+
+\begin{corollary}
+    Для каждого $\phi \in L (V)$ сопряженный оператор $\phi^*$ существует и единственный
+\end{corollary}
+
+\begin{corollary}
+    $\rk \phi = \rk \phi^*$
+\end{corollary}
+
+\begin{corollary}
+    $\overline{\chi_{\phi} (\lambda)} = \chi_{\phi^*}(\overline{\lambda})$
+\end{corollary}
+
+\begin{proof}
+    Пусть $e$ -- ортонормированный базис $\chi_{\phi^*}(\overline{\lambda}) = \det(\overline{A^T} - \overline{\lambda} E) = \det \overline{A^T - \lambda E)} = \overline{\det(A - \lambda E)} = \overline{\chi_{\phi} (\lambda)}$
+\end{proof}
+
+\begin{corollary}
+    Если $\lambda$ -- собственное значение оператора $\phi$, то $\overline{\lambda}$ -- собственное значение оператора $\phi^*$.
+\end{corollary}
+
+\begin{proposition}
+    Пусть $U$ - инвариантное относительно $\phi$ пространство. Тогда $U^{\perp}$ -- инвариантно относительно $\phi^*$
+\end{proposition}
+
+\begin{proof}
+    Пусть $x$ -- произвольный вектор $U$, $y$ -- произвольный вектор из $U^{\perp}$. Тогда по определению $(x, \phi^*(x)) = (\phi(x), y) = 0$. Значит, и $\phi^*(y) \in U^{\perp}$, то есть инвариантность выполняется.
+\end{proof}
+
+\begin{theorem}[Фредгольм]
+    \begin{enumerate}
+        \item $\ker \phi^* = (Im \phi)^{\perp}$
+        \item $Im \phi^* = (\ker \phi^*)^{\perp}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Из первого пункта очевидно следует второй, поэтому докажем только первое утверждение теоремы. \\
+    Пусть $y \in \ker \phi^*$ или $\phi^*(y) = 0$. Тогда $\forall x \in V \hookrightarrow (x, \phi^*(y)) = 0$. Отсюда по определению вытекает, что $(\phi(x), y) = 0$, поэтому $y \in (Im \phi)^{\perp}$. Мы доказали включение в одну сторону, тогда докажем, что равны размерности, откуда будут равны пространства: $\dim(\ker \phi^*) = \dim V - \dim(Im \phi^*) = \dim V - \rk \phi^* = \dim V - \rk \phi = \dim V - \dim (Im \phi) = \dim (Im \phi)^{\perp}$
+\end{proof}
+
+\subsection{Свойства операции сопряжения}
+\begin{proposition}
+    \begin{enumerate}
+        \item $\phi^{**} = \phi$
+        \item $(\phi + \psi)^* = \phi^* + \psi^*$
+        \item $(\lambda \phi)^* = \overline{\lambda}\phi^*$
+        \item $(\phi \psi)^* = \psi^* \phi^*$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Доказательство вытекает из свойств матриц соответсвующих операторов.
+\end{proof}
+
+\subsection{Самосопряженный оператор}
+\begin{definition}
+    $\phi \in \mathcal{L}(V)$ назывется самосопряженным, если $\phi^* = \phi$ или $\forall x, y \in V \hookrightarrow (\phi(x), y) = (x, \phi(y))$
+\end{definition}
+
+\begin{corollary}
+    Если $e$ -- ортонормированный базис в $V$, то $\phi$ -- самосопряженный тогда и только тогда, когда $A = A^*$ (в Эрмитовом пространстве $A = \overline{A^T}$, в Евклидовом: $A = A^T$ соответственно).
+\end{corollary}
+
+\begin{corollary}
+    $\phi$ -- самосопряженный в $V$, $U$ -- инвариантно относительно $\phi$. Тогда $U^{\perp}$ инвариантно относительно $\phi$.
+\end{corollary}
+
+\subsection{Инвариантные подпространства малых размерностей}
+\begin{proposition}
+    $\phi \in \mathcal{L}(V)$, $V$ над $\Cm$.
+    Тогда у $\phi$ обязательно существует одномерное инвариантное подпространство.
+\end{proposition}
+
+\begin{proposition}
+    Рассмотрим характеристический многочлен $\chi_{\phi}(\lambda)$, тогда существует такое комплексное $\lambda_0$, что $\chi_{\phi}(\lambda_0) = 0$. Следовательно, $\lambda_0$ -- собственное значение, для которого существует собственный вектор $x$, на котором и строится инвариантное подпространство $U = \langle x \rangle$.
+\end{proposition}
+
+\begin{proof}
+    Представим характеристический многочлен в виде $\chi_{\phi}(\lambda) = p_1(\lambda), \dots, p_s(\lambda)$, $\deg p_k(\lambda) \leq 2$, причем если $\deg p_k(\lambda) = 2$, то $D < 0$. По теореме Гамильтона-Кэли верно, что $\chi_{\phi}(\phi) = p_1(\phi), \dots, p_s(\phi) = 0$. Значит, среди многочленом существует вырожденный. Рассмотрим две ситуации степени этого многочлена:
+    \begin{enumerate}
+        \item $\deg p_k(\lambda) = 1$, \\
+        $p_k(\lambda) = a(\lambda - \lambda_0)$, где $a \neq 0$. Тогда $p_k(\phi) = a(\phi - \lambda_0 E)$ и из-за вырожденности существует $x \neq 0 \hookrightarrow (\phi - \lambda_0 E)(x) = 0$.
+        \item $\deg p_k(\lambda) = 2$ \\
+        По условию (по предположению) $p_k(\lambda) = a \lambda^2 + b \lambda + c, a \neq 0, D < 0$. Аналогично предыдущему пункту существует такой ненулевой вектор, что $(a\phi^2 + b\phi +cE)(x) = \overline{0}$. Тогда рассмотрим инвариантное подпространство $U = \langle x, \phi(x) \rangle$ и докажем, что его размерность ровно $2$. В противном случае размерность меньше и существует такой вектор, что $\phi(x) = \lambda x$, то есть $(a \lambda^2 + b \lambda + c)(x) = 0$, откуда $a \lambda^2 + b \lambda + c = 0$, то есть $\lambda$ -- корень $p_k(\phi)$ -- противоречит с отрицательностью дискриминанта.
+    \end{enumerate}
+\end{proof}

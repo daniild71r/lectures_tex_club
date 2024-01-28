@@ -1,0 +1,220 @@
+%05.10.23
+\subsection{Классические действия}
+\begin{theorem}[О мощности орбиты]
+\label{th5.1}
+    Мощность орбиты равна индексу сатбилизатора: $|G(\omega)| = |G: \stationar(\omega)|$. Более того, если группа $G$ -- конечная, то $|G(\omega)| = \frac{|G|}{|\stationar(\omega)|}$.
+\end{theorem}
+
+\begin{proof}
+    Сопоставим левому смежному классу по орбите элемент из $\Omega$: $a\stationar(\omega) \to a\omega = a(\omega) \in G(\omega)$. Вспомним, когда смежные классы совпадают: $a\stationar(\omega) = b\stationar(\omega) \iff a^{-1}b(\omega) = \omega \iff a(\omega) = b(\omega)$. Таким образом, мы доказали, что есть биекция между смежными классами и элементами орбиты. Отсюда следует утверждение.
+\end{proof}
+
+\begin{note}
+    Мощности различных орбит могут быть различны.
+\end{note}
+
+\begin{proposition}[Формула орбит]
+\label{orbit_form}
+    Пусть $I: G \to S(\Omega)$ -- действие и $\Omega$ -- конечно. Если $\Omega = \Omega_1 \bigsqcup \Omega_2 \bigsqcup \dots \Omega_s$ и $\omega_i$ -- представитель орбиты $\Omega_i$, то справедливо равенство: \\ $|\Omega| = \sum\limits_{i = 1}^s |\Omega_i| = \sum\limits_{i = 1}^s (G : \stationar(\omega_i))$.
+\end{proposition}
+
+\begin{proof}
+    Доказательство напрямую следует из теоремы \ref{th5.1}.
+\end{proof}
+
+\subsection{Классические примеры действий групп на себя}
+\subsubsection{Действие группы на себя левыми сдвигами}
+\begin{definition}
+    В качестве множества выступает $\Omega = G$, действие имеет вид $I: G \to S(G)$ и справедливо соответствие $a \to (x \to ax)$. Тогда левый сдвиг - это $I_a(x) = ax, \forall x \in G$.
+\end{definition}
+
+\begin{enumerate}
+    \item Проверим, является ли это действием: $$(I_a \circ I_b)(x) = abx = I_{ab}(x)$$
+    \item Проверим на эффективность: $\ker I = \{ a \in G | ax = x \forall x \in G \} = {e} \implies I$ -- эффективною
+    \item Проверим на свободность. От обратного. Пусть $a \neq e$. Если действие не свободно, то $\exists \omega \in \Omega: a\omega = \omega$. Так как оба элемента в группе, то домножим на обратный элемент $\omega^{-1}$, получим $a = e$ -- противоречие.
+    \item Рассмотрим образ гомоморфизма $I$: $\im I \leq S(G)$. По теореме о гомоморфизмах \ref{th3.1} $\im I \cong G/ \ker I = G / {e} \cong G$. Получается, мы можем вложить группу $G$ в $S(G)$.
+    В частности, если $I: S_n \to S(M) \cong S_n$. То, применяя $G \cong \im I \leq S_n$, получим доказательство теоремы Кэли: всякая конечная группа порядка $n$ изоморфна некоторой подгруппе группы $S_n$.
+\end{enumerate}
+
+\begin{note}
+    Правый сдвиг не является действием!
+\end{note}
+
+\subsubsection{Действие группы на себя сопряжением}
+\begin{definition}
+    Сопряжением назовем: $I_a: G \to S(G), I_a(x) = x^{a^{-1}} = axa^{-1}$ (споряжен $a$ с помощью $a^{-1}$).
+\end{definition}
+
+\begin{enumerate}
+    \item Проверим, что это действие: $$(I_a \circ I_b)(x) = (x^{b^{-1}})^{a^{-1}} = x^{b^{-1}a^{-1}} = x^{(ab)^{-1}} = I_{ab}(x)$$
+    \item Проверим свободность. Пусть $a \neq e$, тогда $I_a(x) = x \iff x^{a^{-1}} = x \iff axa^{-1} = x \iff ax = xa$. Получается, действие сопряжения на себя не всегда свободно (например, в абелевых группах).
+\end{enumerate}
+
+\begin{note}
+    $I_a(x) = x^a$ -- не действие.
+\end{note}
+
+\begin{definition}
+    Орбита сопряжения: $G(x) = \{ x^a | a \in G \} = x^G$ -- класс сопряженных элементов, порожденных $x$.
+\end{definition}
+
+\begin{definition}
+    Стабилизатор сопряжения: $\stationar(x) = \{ a \in G | I_a(x) = x \} = \{ a \in G | ax = xa \}$ -- централизатор элемента $x$ в группе $G$. \\
+    Обозначение: $C_G(x) = \{ a \in G | ax = xa \}$.
+\end{definition}
+
+\begin{corollary}
+\label{col5.1}
+    Из теоремы \ref{th5.1} следует, что $|x^G| = |(G : \stationar(x))| = \frac{|G|}{|C_G(x)|}$.
+\end{corollary}
+
+\begin{corollary}
+    Порядок $C_G(x)$ является делителем порядка группы.
+\end{corollary}
+
+\begin{definition}
+    $\ker I = \underset{x \in G}{\bigcap}\stationar(x) = \underset{x \in G}{\bigcap} C_G(x) = \{ a \in G | ax = xa \forall x \in G \} = Z(G)$ -- центр группы $G$. Иначе говоря, центр группы -- это такие элементы, которые коммутируют со всеми элементами группы. Из определения также видно, что $Z(G) \triangleleft G$.
+\end{definition}
+
+\begin{exercise}
+    Доказать, что $C_G(x)$ -- это наибольшая подгруппа в $G$, такая что $x$ принадлежит её центру.
+\end{exercise}
+
+\begin{proposition}
+    Пусть $|G| < \inf$, $x \in G$, тогда $|x^G|$ делит $\frac{|G|}{\ord x}$.
+\end{proposition}
+
+\begin{proof}
+    $|x^G| = \frac{|G|}{|C_G(x)|}$ по \ref{col5.1}. Так как любая степень $x$ коммутирует с $x$, то верно $<x> \leq C_G(x) \implies |C_G(x)| = |<x>|k, k \in \N$. Так как $|<x>| = \ord x$, то $k|x^G| = \frac{|G|}{ord(x)}$ -- что и требовалось.
+\end{proof}
+
+\begin{definition}
+    Изоморфизм $\phi: G \to G$ называется автоморфизмом $G$. Относительно композиции отображений множество всех автоморфизмов образует группу $\Aut(G)$.
+\end{definition}
+
+\subsection{Внутренние автоморфизмы}
+\begin{proposition}
+    Отображение $I_a: G \to G$, $I_a(x) = x^{a^{-1}}$ -- автоморфизм.
+\end{proposition}
+
+\begin{proof}
+    Проверим снчала, что это гомоморфизм группы $G$ на себя. Для этого проверим: $I_a(xy) = I_a(x) I_a(y)$. Это верно, потому что $(xy)^{a^{-1}} = x^{a^{-1}} y^{a^{-1}}$. Более того $(I_a)^{-1} = I_{a^{-1}}$ -- обратима, следовательно, $I_a$ -- автоморфизм.
+\end{proof}
+
+\begin{definition}
+    Построенные автоморфизмы $I_a$ называются внутренними автоморфизмами. Более того, $\Inn G$ -- группа внутренних автоморфизмов.
+\end{definition}
+
+\begin{proposition}
+    $\Inn G \cong G/Z(G)$
+\end{proposition}
+
+\begin{proof}
+    Рассмотрим гомоморфизм $I: G \to \Inn G$, причем так как для каждого $a \in G$ имеется сопоставление $a \to I_a$, то $\im I = \Inn G$, то есть гомоморфизм сюръективен. Более того, по определению центра мы знаем, что $\ker I = \{ a \in G | ax = xa \forall x \in G \} = Z(G)$. По теореме о гомоморфизме \ref{th3.1} получаем требуемое $\Inn G \cong G/\ker I = G/Z(G)$.
+\end{proof}
+
+\begin{proposition}
+    $\Inn G \triangleleft \Aut G$
+\end{proposition}
+
+\begin{proof}
+    Пусть $\phi = I_a \in \Inn G$, $\psi \in \Aut G$. \\
+    Рассмотрим $\psi \circ \phi \circ \psi^{-1} = \psi \circ I_a \circ \psi^{-1}$
+    $$\psi \circ I_a \circ \psi^{-1}(x) = \psi(I_a(\psi^{-1}(x))) = \psi(a \psi^{-1}(x) a^{-1}) = \psi(a) \psi(\psi^{-1}(x))\psi(a^{-1}) = \psi(a) x \psi(a^{-1}) = I_{\psi(a)}(x)$$
+    Отсюда $\psi \circ I_a \circ \psi^{-1} = I_{\psi(a)} \in \Inn G$, то есть подгруппа нормальная.
+\end{proof}
+
+\begin{definition}
+    Фактор-группа $\Aut G/ \Inn G$ называется подгруппой внешних автоморфизмов $G$. Обозначение: $\Out G = \Aut G/ \Inn G$.
+\end{definition}
+
+\begin{example}
+    Пусть $G$ -- абелева, тогда $I_a(x) = axa^{-1} = x \forall a$. Получается, что группа внутренних автоморфизмов тривиальна $|\Inn G| = 1$ и $\Aut G \neq \Inn G$. Отсюда $x \to x^{-1}$ -- внешний автоморфизм в $G$.
+\end{example}
+
+\begin{exercise}
+    Доказать, что $\Aut \Z_n \cong Z_n^*$. Или частный случай: $\Aut \Z \cong \Z_2$.
+\end{exercise}
+
+\subsection{Уравнения классов(сопряженных элементов)}
+Пусть $G$ -- группа, $Z = Z(G)$ -- центр $G$. Если $x \in Z$, то $x$ коммутирует со всеми элементами группы, то есть $|x^G| = 1$ -- класс сопряженности состоит только из $x$. \\
+Теперь, если $x \notin Z$, то $\exists a \in G: ax \neq xa \iff axa^{-1} \neq x \implies |x^G| > 1$.
+Применим формулу орбит \ref{orbit_form} к действию $I: G \to S(G)$ сопряжениями. Сразу вынесем из суммы мощность центра:
+$$|G| = |Z(G)| + \sum\limits_{i = 1}^r(G: C_G(a_i))$$
+Где $a_i$ -- представители тех классов сопряженных элементов, которые содержат более чем один элемент.
+\begin{definition}
+\label{uravn_class}
+    Полученное уравнение $|G| = |Z(G)| + \sum\limits_{i = 1}^r(G: C_G(a_i))$ называется уравнением классов(сопряженных элементов).
+\end{definition}
+
+\subsection{Конечные $p$-группы}
+
+\begin{definition}
+    Конечная группа $G$, такая что $|G| = p^k, k \in \N$, где $p$ -- простое, называется $p$-группой.
+\end{definition}
+
+\begin{theorem}
+    Всякая $p$-группа имеет нетривиальный центр.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $Z(G) = G$ -- доказано.
+        \item Пусть теперь $Z = Z(G) < G$. Из уравнения \ref{uravn_class}: $$|Z| = |G| - \sum\limits_{i = 1}^r(G: C_G(a_i)) = (p^n - \sum p^{k_i}) \vdots p, k_i \in \N, k_i > 0$$
+        Получаем, что $|Z| \geq p$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Пусть $G$ -- неабелева группа, тогда $G/Z(G)$ -- не циклическая.
+\end{theorem}
+
+\begin{proof}
+    Докажем от противного. Пусть $G/Z = <aZ>$. Покажем, что в этом случае $\forall x, y: xy = yx$. Пусть $x \in a^kZ, y \in a^lZ \implies x = a^kz_1, y = a^lz_2, z_1, z_2 \in Z$. Тогда
+    $$xy = a^kz_1a^lz_2 = a^{k + l}z_1z_2 = (a^lz_2)(a^kz_1) = yx$$
+\end{proof}
+
+\begin{corollary}
+    Если $|G| = p^2$, где $p$ -- простое, то $G$ -- абелева.
+\end{corollary}
+
+\begin{proof}
+    $|Z| = p$ или $|Z| = p^2$. По теореме Лагранжа $|Z|$ делит $|G|$.
+    \begin{enumerate}
+        \item Если $|Z| = p^2$, то $G = Z \implies G$ -- абелева.
+        \item Если $|Z| = p$, то $|G/Z| = p$ и по следствию из теоремы Лагранжа $G/Z$ -- циклическая, то есть $G$ не может быть неабелевой, следовательно, $G$ -- абелева.
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    Неабелева группа порядка $p^3$.
+    $$G = \{
+    \begin{pmatrix}
+        1 & a & b\\
+        0 & 1 & c\\
+        0 & 0 & 0
+    \end{pmatrix}, a, b, c \in \Z_p \} \implies |G| = p^3$$
+\end{example}
+
+\subsection{Действие группы $G$ сопряжением на множестве подгрупп группы $G$}
+\begin{proposition}
+    Действием группы $G$ сопряжением на множестве подгрупп группы $G$ назовем:
+    $$I: G \to S(\Sub G)$$ 
+    $$a \to I_a, I_a(H) = H^{a^{-1}}$$
+\end{proposition}
+
+\begin{enumerate}
+    \item Проверим, что это действие: $$(I_a \circ I_b)(H) = (H^{b^{-1}})^{a^{-1}} = H^{b^{-1}a^{-1}} = H^{(ab)^{-1}} = I_{ab}(H)$$
+    \item Проверим эффективность. $\forall H \in \Sub G$:
+    $$\ker I = \{ a \in G | H^{a^{-1}} = H \} = \{ a \in G | aHa^{-1} = H \} = \{ a \in G | aH = Ha \}$$
+    Так как ядро не всегда тривиально, то действие не всегда эффективно, при этом $\stationar(H) = \{ a \in G | H^{a^{-1}} = H \} = \{ a \in G | aH = Ha \}$.
+\end{enumerate}
+
+\begin{definition}
+    Полученное множество называется нормализатором подгруппы $H$ в группу $G$:
+    $$N_G(H) = \{ a \in G | aH = Ha \}$$
+\end{definition}
+
+\begin{exercise}
+    Доказать, что $N_G(H)$ -- нормальная подгруппа в группе $G$, в которой $H$ является нормальной подгруппой.
+\end{exercise}
