@@ -1,0 +1,398 @@
+% 10.05.23
+
+\subsection{Линейные операторы в пространстве со скалярным произведением}
+
+\begin{reminder}
+    Пространство со скалярным произведением называется Евклидовым в случае действительных чисел и Эрмитовым в случае комплексных чисел.
+\end{reminder}
+
+\begin{theorem}[Основная теореиа о самосопряженных операторах]
+    \label{th 13.1}
+    Пусть $V$ - пространство со скалярным произведением и $V \in \mathcal{L}(V)$. Тогда оператор $\phi$ самосопряженный тогда и только тогда, когда в $V$ существует ортонормированный базис, в котором $\phi$ принимает диагональный вид с собственными значениями на главной диагонали. 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Достаточность. Пусть существует такой ортонормированный базис, что $A_{\phi}$ имеет вид $A_{\phi} = 
+    \begin{pmatrix}
+        \lambda_1  & \dots & 0 \\
+		\vdots & \ddots & \vdots \\
+        0 & \dots & \lambda_n \\
+    \end{pmatrix}$.
+        Покажем, что $(\phi(x), y) = (x, \phi(y))$. 
+        \begin{gather*}
+            (\phi(x), y) = (\phi(\sum_{i} x_i e_i), \sum_{j} y_j e_j) = (\sum_{i} x_i \phi(e_i), \sum_{j} y_j e_j) = 
+            \sum_{i} \sum_{j} x_i \overline{y_j} \lambda_i (e_i, e_j) = \sum_{i} \lambda_i x_i \overline{y_i} \\
+            (x, \phi(y)) = (\sum_{i} x_i e_i, \phi(\sum_{j} y_j e_j)) = (\sum_{i} x_i e_i, \sum_{j} y_j \phi(e_j)) = 
+            \sum_{i} \sum_{j} x_i \lambda_j \overline{y_j} (e_i, e_j) = \sum_{i} \lambda_i x_i \overline{y_i}
+        \end{gather*}
+        \item Покажем, что все собственные значения самосопряженного оператора $\phi$ вещественные.
+        Для этого рассмотрим два случая:
+        \begin{enumerate}
+            \item Эрмитово пространство: \\
+            Пусть $x$ - собственный вектор в $V$, $\lambda$ - соответствующее ему собственное значение.
+            Тогда $(\lambda x, x) = \lambda (x, x) = (\phi(x), x) = (x, \phi(x)) = (x, \lambda x) = \overline{\lambda} (x, x)$. Значит, $\lambda = \overline{\lambda} \in \R$.
+            \item Евклидово пространство: \\
+            Пусть $e$ - ортонормированный базис. Тогда $A = A^* = A^T = \overline{A^T}$. Рассмотрим комплексное пространство $\Cm^n$
+            со стандартным базисом и стандартным скалярным произведением. Определим оператор $\psi$ такой, что $\psi \leftrightarrow A$ (эрмитова матрица).Тогда $\psi$ - самосопряженный, а значит, по доказанному выше все собственные значения $\psi$ - вещественные и он раскладывается в произведение $\chi_{\psi} (\lambda) = (-1)^n \displaystyle\prod_{i = 1}^{n} (-1)^n (\lambda - \lambda_i)$.
+            Но тогда $\chi_{A} (\lambda) = \displaystyle\prod_{i = 1}^{n} (-1)^n (\lambda - \lambda_i)$, а значит, $\phi$ линейно 
+            факторизуем и все собственные знаечния вещественные.
+        \end{enumerate}
+        Покажем теперь, что существует ортонормированный базис $e$, в котором $A_{\phi}$ диагонализуем. Индукция по 
+        размерности пространтсва $n$:
+        \begin{enumerate}
+            \item База $n = 1$: $|e_1| = 1$ -- ортонормированный.
+            \item По предположению верно для $V: \dim V < n$. Переход. Пусть $\lambda_1 \in \R$ - собственное значение оператора $\phi$, $V_{\lambda_1}$ -- собственное подпространство. Тогда $V  = V_{\lambda_1} \oplus V_{\lambda_1}^{\perp}$. Для собственного подпространства рассмотрим базис $e_1$, в котором оператор сужения $\phi \vert_{V_{\lambda_1}}$ имеет диагональный вид со значением $\lambda_1$. Для ортогонального дополнения по предположению индукции существует базис $e_2$, в котором выполняются условия. Тогда для $V$ достаточно рассмотреть базис $e = e_1 \sqcup e_2$.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Если $\phi$ самосопряженный оператор в $V$ то $\forall x \in V$ верно $(\phi(x), x) \in \R$.
+\end{note}
+
+\begin{proof}
+    \begin{gather*}
+        (\phi(x), x) = (x, \phi(x)) = \overline{(\phi(x), x)} \\
+        (\phi(x), x) = \displaystyle \sum_{i}^{n} \lambda_i x_i \overline{x_i} = \displaystyle \sum_{i}^{n} \lambda_i |x_i|^2 \in \R.
+    \end{gather*}
+\end{proof}
+
+\begin{definition}
+    Самосопряженный оператор $\phi: V \to V$ называется положительно определенным если $\forall x \neq 0$ верно $(\phi(x), x) > 0$. Пишут $[\phi > 0]$.
+\end{definition}
+
+\begin{corollary}
+    Оператор $\phi$ положительно определен тогда и только тогда, когда все его собственные значения $\lambda_i$ положительны.
+\end{corollary}
+
+\begin{proof}
+    Пусть $\phi$ положительно определен. Предположим противное: пусть существует $\lambda \leq 0$ для собственного вектора $x$.
+    Тогда $(\phi(x), x) = \lambda (x, x) \leq 0$. Противоречие.
+    В обратную сторону, пусть все собственные значения $\lambda_i$ положительны. Тогда $(\phi(x), x) = \sum_{i} \lambda_i |x_i|^2 > 0$ (в каноническом базисе). Таким образом, $\phi$ положительно определен.
+\end{proof}
+
+\begin{proposition}
+    Пусть $\lambda_1$, $\lambda_2$ - различные собственные значения самосопряженного оператора $\phi$.
+    Тогда $V_{\lambda_1} \perp V_{\lambda_2}$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $x \in V_{\lambda_1}$, $y \in V_{\lambda_2}$. Тогда $(\phi(x), y) = (x, \phi(y))$, а значит $(\lambda_1 x, y) = (x, \lambda_2 y)$, то есть $\lambda_1 (x, y) = \overline{\lambda_2} (x, y) = 
+    \lambda_2 (x, y)$. Отсюда $(\lambda_1 - \lambda_2)(x, y) = 0 \Mapsto x \perp y$
+\end{proof}
+
+\section{Ортогональные и унитарные операторы}
+
+\begin{definition}
+    Пусть $V$ - пространство со скалярным произведением. Оператор $\phi \in \mathcal{L}(V)$ называется ортогональным (если $V$ - евклидово) и унитарным (если $V$ - эрмитово) если $\phi$ сохраняет 
+    скалярное произведение:
+    \begin{gather*}
+        \forall x, y \in V \hookrightarrow (\phi(x), \phi(y)) = (x, y).
+    \end{gather*}
+\end{definition}
+
+\begin{note}
+    Существует терминология, в которой эрмитовы пространства называются унитарными. Название унитарных операторов произошло от этого названия эрмитовых пространств.
+\end{note}
+
+\begin{proposition}
+    $\phi \in \mathcal{L}(V)$ является ортогональным (унитарным) тогда и только тогда, когда $\phi$ сохраняет длины векторов, то есть $|\phi(x)| = |x|$ ($\phi$ - изометрический),$[\rho(x, y) = |x - y|]$.
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Необходимость. По определению $(\phi(x), \phi(x)) = (x,x)$, а значит, $|\phi(x)| = |x|$.
+        \item Достаточность. Пусть $f(x ,y)$ - скалярное произведение - $\theta$-линейная симметричная (эрмитова симметричная) функция. Тогда по изоморфизму можно выбрать $q(x) = |x|^2$ - 
+        квадратичную или эрмитову квадратичную функцию Тогда $\phi$ сохраняет $q(x)$ и сохраняет $f(x, y) = (x, y)$. $\phi$ также сохраняет скалярное произведение, так как (в евклидовом случае): $[(x, y) = \frac{1}{4} (q(x + y) - q(x - y))]$
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    \label{pr 13.2}
+    Пусть $\phi \in \mathcal{L}(V)$ является ортогональным (унитарным). Тогда $\phi^* \phi = \epsilon$ (или $\phi^* = \phi^{-1}$).
+\end{proposition}
+
+\begin{proof}
+    По определению $(\phi(x), \phi(y)) = (x, y)$. Тогда $(\phi^* \phi(x), y) = (x, y)$.
+    Тогда $\phi^* \phi (x) = x$ для всех $x$, а значит, $\phi^* \phi = \epsilon$.
+\end{proof}
+
+\begin{corollary}
+    Если $\phi$ - ортогональный (унитарный) оператор, то $|\det \phi| = 1$.
+\end{corollary}
+
+\begin{proof}
+    $e$ -- ортонормированный базис в $V$ и так как $\phi \leftrightarrow A \, \phi^* \leftrightarrow A^{-1} \, \overline{A^T} A = \epsilon \, \overline{\det A} \det A = 1 \, |\det A|^2 = 1$.
+\end{proof}
+
+\begin{proposition}
+    $\phi \in \mathcal{L}(V)$ является ортогональным (унитарным) тогда и только тогда, когда в любом ортонормированном базисе $e$ пространтсва $V$ матрица $A_\phi$ является ортогональной (унитарной)(доказательство просто по определению).
+\end{proposition}
+
+\begin{proposition}
+    \label{pr 13.4}
+    Пусть $\phi \in \mathcal{L}(V)$, $e$ - ортонормированный базис в $V$. Тогда $\phi$ ортогонален (унитарен) тогда и только 
+    тогда, когда $\phi(e)$ - ортонормированный базис.
+\end{proposition}
+
+\begin{proof}
+    Пусть $\phi(e) = e' = e A$. Тогда $A$ - матрица перехода от базиса $e$ к $e'$. При этом $A$ - матрица оператора $\phi$ в базисе $e$. По условию $\Gamma(e) = E$. Тогда 
+    \begin{gather*}
+        \Gamma(e') = \Gamma(\phi(e)) = (A^T \Gamma(e) \overline{A}) = A^T \overline{A} = E
+    \end{gather*}
+    Таким образом, $e'$ - ортонормированный базис.
+    $\overline{A_T} A = E$ тогда и только тогда, когда $\phi$ -- ортогональный (унитарный).
+\end{proof}
+
+\begin{proposition}
+    Пусть $\phi$ -- ортогональный (унитраный) оператор в $V$ со скалярным произведением, $U$ инвариантно относительно $\phi$. Тогда $U^{\perp}$ - инвариантно относительно $\phi$.
+\end{proposition}
+
+\begin{proof}
+    Пусть $\phi \vert_{U} : U \to U$. Тогда $\forall x \in U \exists x' \in U: x = \phi(x')$. \\
+    Пусть $x \in U$, $y \in U^{\perp}$. Покажем, что $\phi(y) \in U^{\perp}$.
+    \begin{gather*}
+        (x, \phi(y)) = (\phi(x'), \phi(y)) = (x', y) = 0 \Mapsto \phi(y) \in U^{\perp}
+    \end{gather*}
+\end{proof}
+
+\begin{theorem}
+    Пусть $V$ - эрмитово пространство, $\phi$ - унитарный оператор в $V$. Тогда существует ортонормированный базис $e$ в $V_1$ в котором $\phi$ диагонализуем с собственными значениями на главной диагонали, причем $|\lambda_i| = 1$.
+    $\phi = 
+    \begin{pmatrix}
+        \lambda_1  & \dots & 0 \\
+		\vdots & \ddots & \vdots \\
+        0 & \dots & \lambda_n \\
+    \end{pmatrix}$.
+\end{theorem}
+
+\begin{proof}
+    Докажем индукцией по $\dim V$.
+    \begin{enumerate}
+        \item База $\dim V = 1$. Пусть $e$ - единичный вектор, $\phi(e) = \lambda e$. Тогда:
+        \begin{gather*}
+            (e, e) = (\phi(e), \phi(e)) = (\lambda e, \lambda e) = |\lambda|^2 (e, e),
+        \end{gather*}
+        откуда $|\lambda|^2 = 1$, а значит, $|\lambda| = 1$.
+        \item Пусть для подпространств $V$ размерности меньше $n$ утверждение верно. Возьмем 
+        $\lambda_1$ - произвольное собственное значение оператора $\phi$, $|\lambda_1| = 1$.
+        Пусть $e_1$ - собственный вектор единичной длины. Тогда $V = \langle e_1 \rangle \oplus 
+        \langle e_1 \rangle^{\perp}$. Для ортогонального дополнения к $\langle e_1 \rangle$ 
+        утверждение верно по индукции.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Канонический вид ортогонального оператора}
+
+\begin{example}~
+    \begin{enumerate}
+        \item Тривиальный оператор $\epsilon$.
+        \item Оператор $R(\alpha)$ поворота на угол $\alpha$.
+        $R(\alpha) = 
+         \begin{pmatrix}
+        \cos{\alpha}  & -\sin{\alpha} \\
+		\sin{\alpha} & \cos{\alpha} \\
+        \end{pmatrix}$.
+        \item (Ортогональный) симметричный относительно подпространтсва оператор: \\
+        Пусть $V = U \oplus U^{\perp}$, $x = x_1 + x_2$, где $x \in V$, $x_1 \in U$, $x_2 \in U^{\perp}$.
+        Тогда $\phi(x) = x_1 - x_2$.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}[о каноническом виде ортогонального оператора]
+    Пусть $V$ - евклидово пространство, $\phi: V \to V$ -- ортогональный оператор. Тогда существует ортонормированный базис $e$, в котором матрица $\phi$ состоит из матриц поворота и единиц на главной диагонали.
+     \[\phi = \left(\begin{array}{@{}cccc@{}}
+		\cline{1-1}
+		\multicolumn{1}{|c|}{R(\alpha_1)} & 0 & \dots & 0\\
+		\cline{1-2}
+		0 & \multicolumn{1}{|c|}{R(\alpha_2)} & \dots & 0\\
+		\cline{2-2}
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \dots & 1\\
+	\end{array}\right),\]
+\end{theorem}
+
+\begin{proof}
+    $\phi$ имеет в $V$ одномерные или двумерные инвариантные подпространства. Пусть $U$ - 
+    одномерное подпространство, или, если таких нет, двумерное инвариантное подпространство.
+    \begin{enumerate}
+        \item Пусть $\dim U = 1$, $e \in U$, $|e|= 1$. Покажем, что в таком случае модуль $\lambda$ равен единице. В $U$ верно $\phi(e) = \lambda e$. Тогда $(e, e) = (\phi(e), \phi(e)) = 
+        \lambda^2 (e, e)$. Отсюда $\lambda^2 = 1$, а значит $\lambda = \pm 1$.
+        \item Пусть $\dim V = 2$, $(e_1, e_2)$ - ортонормированный базис в $U$. Тогда $A^T A = E$. Найдем вид $A$.
+        Пусть $ A = \begin{pmatrix}
+                        a     & b \\
+                        c     & d        
+                    \end{pmatrix}$. Тогда:
+        \begin{gather*}
+            \begin{pmatrix}
+                a     & c \\
+                b     & d        
+            \end{pmatrix} \begin{pmatrix}
+                a     & b \\
+                c     & d        
+            \end{pmatrix} = \begin{pmatrix}
+                1     & 0 \\
+                0     & 1        
+            \end{pmatrix}
+        \end{gather*}
+        Получим следующую систему уравнений:
+        \begin{gather*}
+            a^2 + c^2 = 1 (1) \\
+            b^2 + d^2 = 1 (2) \\
+            ab + cd = 0 (3) \\
+        \end{gather*}
+        Положим 
+        \begin{gather*}
+            a = \cos(\alpha), c = \sin(\alpha), b = - \sin(\beta), d = \cos(\beta)
+        \end{gather*}
+        Условия $(1)$ и $(2)$ очевидно выполняются. Проверим $(3)$ и найдем при помощи него связь 
+        между углами $\alpha$ и $\beta$.
+        \begin{gather*}
+            -\cos(\alpha) \sin(\beta) + \sin(\alpha) \cos(\beta) = 0 \\
+            \sin(\alpha - \beta) = 0 \hookrightarrow \alpha - \beta = \pi k, k \in Z
+        \end{gather*}
+        Рассмотрим случаи:
+        \begin{enumerate}
+            \item $\alpha = \beta$ -- по модулю $2\pi$.
+            \item $\alpha = \beta + \pi$ -- по модулю $2\pi$.
+            \item Покажем, что $\alpha + \beta = \pi$ быть не может:
+            \begin{gather*}
+                \cos(\beta) = \cos(\alpha - \pi) = -\cos(\alpha) \\
+                \sin(\beta) = \sin(\alpha - \pi) = -\sin(\alpha) \Mapsto
+                A = \begin{pmatrix}
+                        \cos(\alpha)     & \sin(\alpha) \\
+                        \sin(\alpha)     & -\cos(\alpha)       
+                    \end{pmatrix}
+            \end{gather*}
+            Где $A^T = A$ и получаем два собственных вектора: $v_1 = (\cos(\frac{\alpha}{2}), \sin(\frac{\alpha}{2}))^T$, $v_{-1} = (-\sin(\frac{\alpha}{2}), \cos(\frac{\alpha}{2}))^T$ -- это противоречит с тем, что нет одномерных инвариантных подпространств.
+        \end{enumerate}
+        Теперь пространство $V$ раскладывается в прямую сумму $V = U \oplus U^{\perp}$. По предположению индукции для ортогонального дополнения $U$ теорема верна. Тогда она верна и для всего $V$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Пусть $V$ пространство над $\Cm$, $\dim V = 1$. Тогда:
+    \begin{gather*}
+        \phi(z) = r (\cos\phi  + i \sin \phi) z = r e^{i \phi} z \\
+        \phi(z) = rz \\
+        (rz_1, z_2) = (z_1, rz_2) \\.
+    \end{gather*}
+    Где $\phi$ -- самосопряженный оператор в $V$. Теперь рассмотрим унитарный оператор $\phi(z) = e^{i\phi} z$, $(e^{i\phi} z_1, e^{i\phi} z_2) = e^{i\phi} e^{-i\phi} (z_1, z_2) = (z_1, z_2)$.
+\end{note}
+
+\begin{theorem}[О полярном разложении линейного оператора]
+    Пусть $V$ - пространство со скалярным произведением, $\phi \in \mathcal{L}(V)$. Тогда существуют линейные операторы $\psi$ и $\theta$ $\in \mathcal{L}(V)$ такие, что $\phi = \psi \theta$, где $\psi$ - самосопряженный оператор с неотрицательными собственными значениями, а 
+    $\theta$ - ортогональный (унитарный оператор).
+\end{theorem}
+
+\begin{proof}
+    Покажем при помощи конструктивного построения $\psi$ и $\theta$.
+    \begin{enumerate}
+        \item Рассмотрим вспомогательный оператор $\nu = \phi^* \phi$.
+        Тогда \begin{gather*}
+            \nu^* = (\phi^* \phi)^* = \phi^* \phi = \nu.
+        \end{gather*}
+        Таким образом $\nu$ - самосопряженный оператор. Пусть $e$ - ортонормированный базис из собственных векторов оператора $\nu$: $e = (e_1, e_2, \dots e_n)$ и $\nu(e_i) = \lambda_i e_i$.
+        Построенный базис называется первым сингулярным базисом $\phi$.
+        \item Покажем, что у $\nu$ все собственные значения $\lambda_i \geq 0$:
+        \begin{gather*}
+            0 \leq (\phi(e_i), \phi(e_i)) = (\phi^* \phi(e_i), e_i) = (\lambda_i e_i, e_i) = \lambda_i (e_i, e_i).
+        \end{gather*}
+        Таким образом (так как $(e_i, e_i)$) $\lambda_i \geq 0$ для всех $i$.
+        \item Пусть $f_i = \phi(e_i)$. Покажем, что $f_i \perp f_j$ при $i \neq j$: \begin{gather*}
+            (f_i, f_j) = (\phi(e_i), \phi(e_j)) = (\phi^* \phi(e_i), e_j) = (\lambda_i e_i, e_j) =
+            \lambda_i(e_i, e_j) = 0.
+        \end{gather*}
+        Для $i = j$ получим $(f_i, f_i) = \lambda_i (e_i, e_i) = \lambda_i$, откуда $|f_i| = \sqrt{\lambda_i}$.
+        \item Перенумерация векторов базиса $e$. Переупорядочим векторы базиса $e$ так, чтобы
+        \begin{gather*}
+            \lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n.
+        \end{gather*}
+        Пусть ненулевыми будут первые $k$ собственных значений, а $\lambda_{k+1} = \dots = \lambda_n = 0$.
+        \item Построим второй сингулярный базис $\phi$. Положим $g_i = \frac{f_i}{|f_i|} = \frac{f_i}{\sqrt{\lambda_i}}$, 
+        если $i \leq k$. Дополним его до ортонормированного базиса произвольным образом: $\langle g_1, g_2, \dots g_k \rangle^{\perp} = \langle f_1, f_2, \dots f_k \rangle^{\perp}$.
+        Полученный базис $g = (g_1, \dots, g_k, g_{k + 1}, \dots, g_n)$ называется вторым сингулярным базисом оператора $\phi$.
+        \item Заметим, что $f_i = \sqrt{\lambda_i} g_i$ для всех $i$, в том числе для больших, чем $k$, так как $0 = 0$. При этом $e$ - ортонормированный базис, $g$ - тоже ортонормированный базис. Выберем $\theta(e_i) = g_i$ - ортогональный (унитарный)
+        оператор по \ref{pr 13.4}. Выберем $\psi(g_i) = f_i = \sqrt{\lambda_i} g_i$. оператор $\psi$ в 
+        базисе $g$ будет иметь диагональный вид 
+        $A = \begin{pmatrix}
+            \sqrt{\lambda_1}     & \dots & 0 \\
+            \vdots     & \ddots & \vdots \\
+            0 & \dots & \sqrt{\lambda_n} \\
+        \end{pmatrix}$
+        а значит, по теореме \ref{th 13.1} оператор $\psi$ -- самосопряженный.
+        \item Тогда получаем, что
+        \begin{gather*}
+            \psi \theta (e_i) = \psi(g_i) = f_i \hookrightarrow \forall i \leq n \\
+            \phi(e_i) = f_i \forall i \leq n \Mapsto \phi = \psi \theta
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Пусть дополнительно к условиям теоремы $\phi$ невыроженный оператор. Тогда существуют такие $\psi, \theta \in \mathcal{L}(V)$, что $\psi$ -- положительно определен, $\theta$ -- ортогональный (унитарный) оператор.
+\end{corollary}
+
+\begin{proof}
+    По условию $\det \phi \neq 0$. Покажем от противного. Пусть у оператора $\psi$ есть нулевое собственное значение $\lambda_i = 0$. Тогда $\det \psi = 0$. Но тогда $\det \phi = 0$ так как $\phi = \psi \theta$.
+    Противоречие.
+\end{proof}
+
+\begin{corollary}
+    Если дополнительно к условиям теоремы $\phi$ - невырожденный оператор, а $\psi$ - положительно оперделенный и $\theta$ ортогональный (унитарный), то это найденное разложение единственно.
+\end{corollary}
+
+\begin{proof}
+    Пусть $\phi = \psi_1 \theta_1 = \psi_2 \theta_2$.
+    Покажем сначала единственность $\psi$:
+    \begin{gather*}
+        \phi \phi^* = (\psi_1 \theta_1) (\psi_1 \theta_1)^* = \psi_1 \theta_1 (\theta_1)^* (\psi_1)^* = \psi_1^2, \theta_1 (\theta_1)^* = \epsilon
+    \end{gather*}
+    Последний переход был сделан по утверждению \ref{pr 13.2}. Тогда $(\psi_1)^2 = (\psi_2)^2 = S$ - положительно определенный оператор. Проверим равенство операторов $\psi_1 = \psi_2$. Пусть $\mu_1, \mu_2, \dots \mu_k$ - собственные значения $\psi_1$, 
+    $W_1, W_2, \dots W_k$ - собственные подпространства $\psi_1$. Пусть $\lambda_1, \lambda_2, \dots \lambda_n$ - 
+    собственные значения оператора $S$, и соответственно $V_1, V_2, \dots V_k$ - его собственные подпространства.
+    Тогда:
+    \begin{gather*}
+        \psi_1 \vert_{W_i} = \mu_1 \epsilon \Rightarrow (\psi_1)^2 \vert_{W_i} = S \vert_{W_i} = (\mu_i)^2 \epsilon.
+    \end{gather*}
+    Тогда существует такое $i$, что $(\mu_i)^2 = \lambda_i, \psi_1 \vert_{V_i} = \sqrt{\lambda_i} \epsilon, \psi_2 \vert_{V_i} = \sqrt{\lambda_i} \epsilon  \Rightarrow W_i = V_i$. Тогда $\psi_1 = \psi_2$. Отсюда же следует единственность $\theta$.
+\end{proof}
+
+\subsection{Приведение квадратичной формы к главным осям}
+
+\begin{theorem}
+    \label{th 13.5}
+    Пусть $V$ - евклидово (эрмитово) пространство, $q(x)$ - квадратичная форма в $V$. Тогда существует ортонормированный базис в $V$, в котором матрица $q$ диагональна.
+\end{theorem}
+
+\begin{proof}
+    По $q(x)$ можно восстановить полярную функцию $f(x, y)$, которая $\theta$ симмертична в случае евклидова пространства или эрмитово симметрична в случае эрмитова пространства.
+    По $f(x, y)$ можно восстановить оператор $\phi \in \mathcal{L}(V)$ такой, что $f(x, y) = (\phi(x), y)$.
+    Покажем, что $\phi$ - самосопряженный.
+    \begin{enumerate}
+        \item Евклидов случай:
+        \begin{gather*}
+            (\phi(x), y) = f(x, y) = f(y, x) = (\phi(y), x) = (x, \phi(y)).
+        \end{gather*}
+        \item Эрмитов случай:
+        \begin{gather*}
+            (\phi(x), y) = f(x, y) = \overline{f(y, x)} = \overline{\phi(y), x} = (x, \phi(y))
+        \end{gather*}
+    \end{enumerate}
+    Тогда по предыдущим теоремам существует базис, в котором матрица $\phi$ диагональна. Теперь мы можем однозначно восстановить матрицу $f$ -- симметричную, то есть получить диагональную матрицу для $q(x)$.
+\end{proof}
+
+\begin{theorem}[Об одновременном приведении двух квадратичных (эрмитовых квадратичных) форм, одна из которых положительно определена, к диагональному виду]~
+    Пусть $V$ - линейное пространство над $\R$ (или над $\Cm$), $q_1$, $q_2$ - (эрмитовы) квадратичные формы на $V$ и пусть $q_2$ - положительно опеределена. Тогда в $V$ существует базис 
+    $e$, в котором обе формы одновременно приводятся к диагональному виду.
+\end{theorem}
+
+\begin{proof}
+    Пусть $f(x, y)$ - полярная функция, соответствующая $q_1(x)$, $g(x, y)$ - полярная функция, соответствующая $q_2(x)$ ($[f(x, y) = \frac{1}{4}(q_1(x + y) = q_1(x - y)]$). Тогда $g(x, y)$ удовлетворяет всем свойствам скалярного произведения. 
+    Примем её за скалярное произведение: $(x, y) = g(x, y)$. Тогда по теореме \ref{th 13.5} существует ортонормированный базис $e$ 
+    относительно скалярного произведения $g$, в котором $f(x, y)$ диагональна. Матрица Грама для ортонормированного базиса $e$ -- единичная. Она же равна матрице скалярного произведения $g(x, y)$. Получаем, что обе матрицы с помощью перехода к базису $e$ стали единичными.
+    \begin{gather*}
+        q_1(x) = \sum_{i=1}^{n} \lambda_i |x_i|^2, q_2(x) = \sum_{i=1}^{n} |x_i|^2 
+    \end{gather*}
+\end{proof}

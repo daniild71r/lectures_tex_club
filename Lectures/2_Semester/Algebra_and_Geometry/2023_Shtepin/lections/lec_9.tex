@@ -1,0 +1,561 @@
+%05.04.23 Оля
+
+\subsection{Симметричные и кососимметричные билинейные функции и формы}
+
+\begin{definition}
+    Билинейная функция $f(x, y)$ называется симметричной если для всех $x, y \in V$ верно 
+    $f(x, y) = f(y, x)$.
+\end{definition}
+
+\begin{definition}
+    Билинейная функция $f(x, y)$ называется кососимметричной, если для всех $x, y \in V$ верно:
+    \begin{enumerate}
+        \item $f(x, y) = -f(y, x)$,
+        \item $f(x, x) = 0$.
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    Первое условие следует из истинности второго.
+\end{note}
+
+\begin{proof}
+    Заметим, что:
+    \begin{gather*}
+        0 = f(x+y, x+y) = f(x, x) + f(x, y) + f(y, x) + f(y, y).
+    \end{gather*}
+    При этом $f(x, x) = 0$ и $f(y, y) = 0$ по второму условию, а значит $f(x, y) = - f(y, x)$.
+\end{proof}
+
+\begin{note}
+    Если $\cha F \neq 2$, то и из первого условия следует второе.
+\end{note}
+
+\begin{proof}
+    $f(x, x) = - f(x, x)$, откуда $2 f(x, x) = 0$, а значит, при $\cha F \neq 2$ обязательно 
+    верно $f(x, x) = 0$.
+\end{proof}
+
+\begin{agreement}
+    В случае $\cha F \neq 2$ оставим в определении только первое условие, 
+    в противном случае только второе.
+\end{agreement}
+
+\begin{agreement}
+    Будем обозначать как $B^{+}(V)$ пространство симметричных билинейных функций, как $B^-(V)$ -- 
+    пространство кососимметричных функций.
+\end{agreement}
+
+\begin{proposition}
+    Пусть $\cha F \neq 2$. Тогда $B(V) = B^+ (V) \oplus B^- (V)$.
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Докажем, что $B^+(V) \cap B^-(V) = \{0\}$. Предположим, f является симметричной 
+        и кососимметричной одновременно. Тогда для любых $x, y \in V$: 
+        \begin{enumerate}
+            \item $f(x, y) =  - f(y, x)$ -- из кососимметричности,
+            \item $f(x, y) = f(y, x)$ -- из симметричности.
+        \end{enumerate}
+        Таким образом для всех $x, y \in V$ верно $f(y, x) = 0$. \\ Это означает, что $f$ является 
+        тождественно нулевой, а значит $B^+(V) \cap B^-(V) = \{0\}$.
+
+        \item Покажем теперь, что любая функция из $B(V)$ лежит в $B^+(V) + B^-(V)$. 
+        
+        Рассмотрим $f \in B(V)$. Через неё можно выразить следующие две функции: 
+        \begin{enumerate}
+            \item $f^+(x, y) = \frac{f(x, y) + f(y, x)}{2} \in B^+(V)$ - симметризация $f$,
+            \item $f^-(x, y) = \frac{f(x, y) - f(y, x)}{2} \in B^-(V)$ - антисимметризация $f$.
+        \end{enumerate} 
+        Тогда $f = f^+ + f^- \in B^+ + B^-$, а значит $B(V) \subseteq B^+ + B^-$. При этом 
+        $B^+, B^-$ лежат в $B(V)$ по определению, а значит $B(V) = B^+ + B^-$. 
+        По доказанному в предыдущем пункте сумма $B^+ + B^-$ является прямой.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Для поля характеристики 2 утверждение неверно.
+\end{note}
+
+\begin{example}
+    Рассмотрим поле $V = (F_2)^2$ и функцию $f(x, y) = x_1 y_2 + x_2 y_1$ на нем. Для неё верно: 
+    \begin{enumerate}
+        \item $f(y, x) = y_1 x_2 + y_2 x_1 = f(x, y)$ - симметричность,
+        \item $f(x, x) = x_1 x_2 + x_2 x_1 = 2 x_1 x_2 = 0$ - кососимметричность.
+    \end{enumerate}
+    Таким образом ненулевая функция $f$ является одновременно симметричной и кососимметричной.
+\end{example}
+
+\begin{proposition}
+    Пусть $f \in B(V)$, $e$ - базис в $V$, и $A$ - матрица функции $f$ относительно базиса $e$. 
+    Тогда $f$ симметрична тогда и только тогда, когда $A$ симметрична.
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $f$ - симметричная. 
+        Тогда $a_{ij} = f(e_i, e_j) = f(e_j, e_i) = a_{ji}$, а значит матрица $A$ так же симметрична.
+        \item Достаточность. Пусть $A = A^T$. Тогда верно:
+        \begin{enumerate}
+            \item $f(x, y) = x^T A y$, 
+            \item $f(y, x) = y^T A x$. 
+        \end{enumerate} 
+        Таким образом, $f(x, y) = (x^T A y)^T = y^T A^T x = y^T A x = f(y, x)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    \label{pr9.3}
+    Пусть $f \in B(V)$, $e$ - базис, $A$ - матрица $f$ в базисе $e$. 
+    Тогда $f$ кососимметрична тогда и только 
+    тогда, когда $A^T = -A$ и $a_{ii} = 0$ для всех $i$.
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $f(x, y) = - f(y, x)$. Тогда 
+        $a_{ij} = f(e_i, e_j) = - f(e_j, e_i) = -a_{ij}$, а значит $A = - A^T$. 
+        При этом $f(x, x) = - f(x, x) = 0$, а значит так же верно $a_{ii} = f(e_i, e_i) = 0$. 
+        \item Достаточность. Пусть $A^T = - A$ и $a_{ii} = 0$. Тогда по утверждению \ref{pr8.1} 
+        верно следующее представление $f(x, x)$ в виде билинейной формы:
+        \begin{gather*}
+            f(x, x) = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij} x_i x_j = \sum_{i=1}^{n} a_{ii} x_i^2 + 
+            \sum_{i < j} (a_{ij} + a_{ji}) x_i x_j = 0.
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Если $\cha F \neq 2$, утверждение \ref{pr9.3} можно сформулировать без второго условия на 
+    матрицу $A$.
+\end{note}
+
+\begin{proof}
+    Проверим достаточность. Пусть $A^T = A$. Покажем, что $f(x, y) = - f(y, x)$:
+    \begin{gather*}
+        f(x, y) + f(y, x) = x^T A y + (y^T A x)^T = x^T A y + x^T A^T y = x^T (A - A) y = 0.
+    \end{gather*}
+\end{proof}
+
+\subsubsection{Ядро симметричных и кососимметричных билинейных функций}
+
+\begin{agreement}
+    Многие утверждения, доказываемые в этом разделе верны и для симметричных и для кососимметричных 
+    функций. Чтобы показать, что функция $f$ лежит в $B^+$ или в $B^-$ будем использовать 
+    обозначение $f \in B^{\pm}$.
+\end{agreement}
+
+\begin{definition}
+    \label{def8.5}
+    Пусть $f \in B^{\pm}(V)$. Тогда ядром $f$ является: 
+    $$\ker f = \{x \in V \vert \, \forall y \in V \hookrightarrow f(x, y) = 0\} = 
+    \{y \in V \vert \, \forall x \in V \hookrightarrow f(x, y) = 0\},$$ 
+    где сначала выписано левое ядро, а затем правое ядро, и они равны.
+\end{definition}
+
+\begin{proposition}
+    Пусть $f \in B^{\pm} (V)$. Тогда верны следующие свойства:
+    \begin{enumerate}
+        \item $\ker f \leq V$,
+        \item $\dim \ker f = \dim V - \rk f$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Очевидно из опеределения $\ker f$.
+        \item Пусть $y \in \ker f$, что эквивалентно тому, что для любого вектора $x \in V$ верно 
+        $f(x, y) = 0$ (по определению \ref{def8.5} ядра (косо)симметричной билинейной функции). 
+
+        Рассмотрим базис $e$ в пространстве $V$. Тогда утверждение $\forall x \in V \hookrightarrow 
+        f(x, y) = 0$ в силу линейности эквивалентно тому, что $\forall i = 1, 2, \dots n 
+        \hookrightarrow f(e_i, y) = 0$. Представим это в виде системы уравнений:
+        \begin{gather*}
+            \begin{cases*}
+            (1, 0, 0, \dots 0) A y = 0, \\
+            (0, 1, 0, \dots 0) A y = 0, \\
+            \dots                       \\
+            (0, 0, 0, \dots 1) A y = 0.
+            \end{cases*} \; \Leftrightarrow E A y = 0 \; \Leftrightarrow \; Ay = 0.
+        \end{gather*} 
+        Таким образом размерность $\ker f$ равна размерности пространства решений системы $Ay = 0$. 
+        Его размерность равна $\dim V - \rk A$, где $A$ - матрица преобразования $f$. \\ 
+        Получаем $\dim \ker f = \dim V - \rk f$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Функция $f \in B^{\pm}(V)$ называется невырожденной над $V$, если выполняется одно из трех 
+    эквивалентных условий:
+    \begin{enumerate}
+        \item $\det A \neq 0$, $A$ - матрица $f$ относительно произвольного базиса $e$ в $V$,
+        \item $\rk f = \dim V$,
+        \item $\ker f = \{0\}$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $(1) \Rightarrow (2)$:
+        
+        $\det A \neq 0$, значит $\rk A = n = \dim V$ по теореме Фробениуса.
+        \item $(2) \Rightarrow (3)$:
+        
+        Пусть $\rk F = \dim V$. Тогда $\dim \ker F = \dim V - \rk F = 0$, а значит $\ker F \{0\}$.
+        \item $(3) \Rightarrow (1)$:
+        
+        $\ker F = \{0\}$, откуда $\rk f = n = \dim V$. При этом $\rk f = \rk A$, а значит 
+        $M_{1\dots n}^{1\dots n} = \det A \neq 0$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Пусть $f \in B^{\pm}(V)$. Будем говорить, что $x$ ортогонально $y$ относительно $f$ если 
+    $f(x, y) = 0$, что равносильно $f(y, x) = 0$. Обозначение: $x \perp y$.
+\end{definition}
+
+\begin{definition}
+    Пусть $U \leq V$. Ортогональным дополнением к $U$ относительно функции $f \in B^{\pm}(V)$ 
+    называется подпространство $U^{\perp} = \{y \in V \,\vert \, \forall x \in U \hookrightarrow 
+    f(x, y) = 0\}$.
+\end{definition}
+
+\begin{proposition}
+    \label{pr8.8}
+    Пусть $U \leq V$, $U^{\perp}$ - ортогональное дополнение к $U$ относительно $f \in B^{\pm}(V)$. 
+    Тогда:
+    \begin{enumerate}
+        \item $U^{\perp} \leq V$,
+        \item $\dim U^{\perp} \geq \dim V - \dim U$,
+        \item Если $f \vert_{U}$ невырождена, то имеет место равенство: 
+        \begin{gather*}
+            \dim U^{\perp} = \dim V - \dim U.
+        \end{gather*}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Очевидно из опеределения.
+        \item Пусть $\dim U = k$, $e$ - базис в $V$, согласованный с базисом в $U$, то есть 
+        \begin{align*}
+            (e_1, \dots e_k) & \text{ - базис в U}, \\
+            (e_1, \dots e_k, \dots e_n) & \text{ - базис в V},
+        \end{align*}
+        Пусть $y \in U^{\perp}$. В силу выбора базисов это равносильно тому, что для всех значений 
+        $i = 1, \dots k$ верно $F(e_i, y) = 0$.
+        Таким образом $^k A y = 0$, где $^k A$ - подматрица в $A$, состоящая из первых $k$ строк.
+        В таком случае верно $\rk \, ^k A \leq k$, а значит:
+        \begin{gather*}
+            \dim U^{\perp} = \dim V - \rk \, ^k A \geq \dim V - k = \dim V - \dim U.
+        \end{gather*}
+        \item Пусть $f \vert_{U}$ невырождена, то есть $| M_{12\dots k}^{12\dots k} | \neq 0$. 
+        Тогда в предыдущем пункте достигается точное равенство $\rk \, ^k A = k$, 
+        откуда получается искомое $\dim U^{\perp} = \dim V - \dim U$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Из равенства $\dim U^{\perp} \dim V - \dim U$ не следует невырожденность $f \vert_{U}$.
+\end{note}
+
+\begin{example}
+    Пусть $A = \begin{pmatrix}
+        0      & 1   \\
+        1      & 0   \\
+    \end{pmatrix}$, $U = \langle e_1 \rangle$. Тогда: 
+    \begin{gather*}
+        U^{\perp} = \left\{ y \in V \,\Big\vert \begin{pmatrix}
+            0  & 1
+        \end{pmatrix} \begin{pmatrix}
+            0  & 1   \\
+            1  & 0 
+        \end{pmatrix} \begin{pmatrix}
+            y_1   \\
+            y_2  
+        \end{pmatrix} = 0 \right\} = \left\{ y \in V \,\big\vert \, y_2 = 0\right\} = \left\{
+        \begin{pmatrix}
+            y_1   \\
+            0  
+        \end{pmatrix}\right\} = \langle e_1 \rangle.
+    \end{gather*}
+    Таким образом, $U^{\perp} = U$, $\dim U^{\perp} = 2 - 1 = 1$. Однако $f \vert_{U} = \{0\}$ - 
+    вырождено.
+\end{example}
+
+\begin{example} 
+    Покажем, что неравенство во втором пункте утверждения \ref{pr8.8} может быть строгим:
+    \begin{multline*}
+        \text{Пусть } A = \begin{pmatrix}
+            0      & 0   \\
+            0      & 1   \\
+        \end{pmatrix} \text{, } U = \langle e_1 \rangle. \text{ Тогда: } \\ 
+        U^{\perp} = \left\{ y \in V \,\Big\vert \begin{pmatrix}
+            0  & 1
+        \end{pmatrix} \begin{pmatrix}
+            0  & 0   \\
+            0  & 1 
+        \end{pmatrix} \begin{pmatrix}
+            y_1   \\
+            y_2  
+        \end{pmatrix} \right\} = \left\{ y \in V \,\Big\vert \begin{pmatrix}
+                y_1   \\
+                y_2  
+            \end{pmatrix} = 0 \right\} = V.
+    \end{multline*}
+\end{example}
+
+\begin{definition}
+    Подпространство $U \leq V$ назовем невырожденным относительно функции $f \in B^{\pm}(V)$, если 
+    сужение $f$ на $U$ невырожденно.
+\end{definition}
+
+\begin{note}
+    Построенные выше примеры показывают, что у пространства, на котором $f$ невырождена, могут быть 
+    вырожденные подпространства, и наоборот, у пространства на котором $f$ вырождена, могут 
+    быть невырожденные подпространства.
+\end{note}
+
+\begin{theorem}
+    \label{th8.1}
+    Пусть $U \leq V$, $f \in B^{\pm}(V)$. Тогда $U$ невырожденно относительно $f$ тогда и только 
+    тогда когда $V$ раскладывается в прямую сумму подпространств: $V = U \oplus U^{\perp}$.
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. Пусть $f \vert_{U}$ невырождено. Покажем, что тогда 
+        $\ker f \vert_{U} = \{0\}$.
+        \begin{multline*}
+            \ker f \vert_{U} = \{y \in U \vert \, \forall x \in U \hookrightarrow f(x, y) = 0\} = \\
+            = \{y \in V \vert \, \forall x \in U \hookrightarrow f(x, y) = 0\} \cap U 
+            = U^{\perp} \cap U = \{0\},
+        \end{multline*}
+        где первое равенство получено по определению ядра $f$ над $U$, а третье по определению 
+        ортогонального дополнения. Из соображений размерностей подпространств получим:
+        \begin{multline*}
+            dim (U + U^{\perp}) = \dim U + \dim U^{\perp} - \dim (U \cap U^{\perp}) = \\ =
+            \dim U + \dim U^{\perp} \geq \dim U + \dim V - \dim U = \dim V.
+        \end{multline*} 
+        Так как $U + U^{\perp} \leq V$, получаем равенство размерностей $\dim (U + U^{\perp}) = \dim V$, 
+        а значит и равенство подпространств: $U + U^{\perp} = V$. 
+        
+        По теореме о характеристике прямой суммы получаем $V = U \oplus U^{\perp}$.
+
+        \item Пусть $V = U \oplus U^{\perp}$. Но $\ker (f \vert_{U}) = U \cap U^{\perp} = \{0\}$, 
+        а значит $f$ невырождена на $U$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Пусть $f \vert_{U}$ невырождена. Тогда по теореме \ref{th8.1} верно $V = U \oplus U^{\perp}$.
+    Выберем базис $e$, согласующийся с разложением. Тогда матрица $A$ в нем имеет вид 
+    $A = \left(\begin{array}{@{}c|c@{}}
+            A_{U} & 0\\
+            \hline
+            0           & A_{U^{\perp}}
+        \end{array}\right)$.
+\end{note}
+
+\subsection{Квадратичные билинейные формы}
+
+\begin{definition}
+    Пусть $f \in B(V)$, $f: V \times V \to F$. Тогда $\Delta = \{(x, x) \in V \times V\}$ - 
+    диагональ в пространстве $V$.
+\end{definition}
+
+\begin{definition} 
+    Пусть $f \in B^{+}(V)$. Квадратичной функцией на $V$ называется произвольное сужение симметричной 
+    билинейной функции $f$ на диагональ $\Delta$:
+    \begin{gather*}
+        q(x) = f(x, y) \vert_{\Delta} = f(x, x): \, V \to F.
+    \end{gather*} 
+\end{definition}
+
+\begin{note}
+    В пространстве $V_3$ верно $(x, y)\vert_{\Delta} = (x, x) = |x|^2 \geq 0$.
+\end{note}
+
+\begin{note}
+    Сужать кососимметричные функции на диагональ мы не будем, так как сужение является нулевой 
+    функцией и не представляет интереса.
+\end{note}
+
+\begin{agreement}
+    Будем обозначать как $Q(V)$ множество всех квадратичных функций на $V$.
+\end{agreement}
+
+\begin{theorem}
+    Линейные пространства $B^+(V)$ и $Q(V)$ изоморфны, изоморфизм осужествляет отображение $\phi$ 
+    сужения на диагональ $\Delta \subset V \times V$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\phi: B^+(V) \to Q(V)$, переводящее $f(x, x) \in B^+(V)$ в $q(x) \to Q(V)$. 
+    Операции сложения и умножения на скаляр сохраняются. Покажем его биективность:
+    \begin{enumerate}
+        \item Отображение $\phi$ сюрьективно по определению квадратичной функции.  
+        \item Проверим инъективность $\phi$. Пусть $\phi(f) = q$, $\phi(g) = q$, покажем, что тогда 
+        $f = g$. 
+        
+        По определению $q(x) = f(x, x)$, тогда:
+        \begin{gather*}
+            q(x \pm y) = f(x \pm y, x \pm y) = f(x, x) \pm 2 f(x, y) + f(y, y) =
+            q(x) \pm 2 f(x, y) + q(y).
+        \end{gather*}
+        Аналогично $q(x \pm y) = q(x) \pm 2 g(x, y) + q(y)$, откуда:
+        \begin{gather*}
+            f(x, y) = \frac{1}{4} (q(x+y) - q(x-y)) = g(x, y).
+        \end{gather*} 
+    \end{enumerate} 
+    Таким образом полученное отображение - биекция, сохраняющая необходимые операции, а значит 
+    получен изоморфизм между $B^+(V)$ и $Q(V)$.
+\end{proof}
+
+\begin{definition}
+    Выражение $f(x, y)$ через $q(x)$ и $q(y)$ называется поляризационным тождеством.
+    Обратное отображение $\psi:\, Q(V) \to B^+(V)$ называется поляризацией,
+    $f(x, y)$ - полярной функцией к $q(x)$.
+\end{definition}
+
+\begin{definition}
+    Базис в $V$ называется ортогональным относительно $f$ если для всех $i$, $j$, $i \neq j$ верно 
+    $a_{ij} = f(e_i, e_j) = 0$.
+\end{definition}
+
+\begin{note}~
+
+    Ортогональный базис выгоден в силу того, что в нем наиболее просто представимы $f$ и $g$:
+    \begin{align*}
+        f(x, y) = & \lambda_1 x_1 y_1 + \lambda_2 x_2 y_2 + \dots \lambda_n x_n y_n, \\
+        g(x, y) = & \lambda_1 x_1^2 + \lambda_2 x_2^2 + \dots \lambda_n x_n^2.
+    \end{align*}
+    Записанные выше представления называются диагональным видом $f$ и $g$. Количество 
+    ненулевых коэффициентов $\lambda_i$ равно рангу матриц $f$ и $q$ в силу того, что матрица 
+    в ортогональном базисе будет иметь диагональный вид со значенимями $\lambda_i$ на диагонали.
+\end{note}
+
+\begin{theorem}[Лагранжа]
+    Всякую билинейную симметричную функцию $f$ и ассоциированную с ней квадратичную функцию 
+    подходящим выбором базиса можно привести к диагональному виду.
+\end{theorem}
+
+\begin{proof}
+    Индукция по размерности пространства.
+    \begin{enumerate}
+        \item База: при $n=1$ матрица уже имеет диагональный вид.
+        \item Предположение индукции: пусть для пространств $V$ размерности меньшей чем $n$ 
+        теорема верна. Совершим переход к подпространствам размерности $n+1$.
+
+        Если функция $f$ тождественно нулевая, её матрица так же очевидно диагональная.
+
+        В случае ненулевой функции $f$ в силу поляризационного тождества функция $q$ так же является 
+        ненулевой. Тогда существует вектор $e_1$, такой что $q(e_1) = a_{11} = f(e_1, e_1) \neq 0$. 
+        Рассмотрим тогда $U = \langle e_1 \rangle$. Тогда $f \vert_{U}$ невырождена, а значит 
+        $V = U \oplus U^{\perp}$. 
+
+        По предположению индукции в $U^{\perp}$ найдется ортогональный относительно сужения 
+        $f \vert_{U^{\perp}}$ базис $(e_2, \dots e_n)$. Матрица $A_{U^{\perp}}$ в нем будет иметь вид:
+        \begin{gather*}
+            A_{U^{\perp}} = \begin{pmatrix}
+                \lambda_2  & 1         & \dots  & 0         \\
+                0          & \lambda_3 & \dots  & 0         \\
+                \vdots     & \vdots    & \ddots & \vdots    \\
+                0          & 0         & \dots  & \lambda_n
+            \end{pmatrix}
+        \end{gather*}
+        В силу того, что $U$ и $U^{\perp}$ образуют прямую сумму, равную всему пространству $V$,
+        при добавлении в $(e_2, \dots e_n)$ вектора $e_1$ получится базис в $V$, 
+        являющийся ортогональным относительно $f$. Матрица $f$ в базисе $(e_1, e_2, \dots e_n)$ имеет 
+        вид:
+        \begin{gather*}
+            A = \begin{pmatrix}
+                \lambda_1  & 1         & \dots  & 0         \\
+                0          & \lambda_2 & \dots  & 0         \\
+                \vdots     & \vdots    & \ddots & \vdots    \\
+                0          & 0         & \dots  & \lambda_n
+            \end{pmatrix}
+        \end{gather*}
+        При этом коэффициенты в матрице равны $\lambda_i = q(e_i)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Полученные базис и коэффициенты определены неоднозначно. Например мы можем растянуть один из 
+    базисных векторов $e_i$ в $c_i$ раз и получить $e'_i = e_i c_i$. Тогда:
+    \begin{gather*}
+        \lambda'_i = q(e'_i) = q(c_i e_i) = f(c_i e_i,\, c_i e_i) = c_i^2 f(e_i, e_i) 
+        = c_i^2 q(e_i) = c_i^2 \lambda_i.
+    \end{gather*}
+\end{note}
+
+\begin{definition}
+    Пусть $F = \R$. Вид квадратичной функции
+    \begin{align*}
+        q(x) = x_1^2 + x_2^2 + \dots + x_p^2 - x_{p+1}^2 - \dots - x_{p+q}^2,
+    \end{align*} 
+    где $p + q = \rk q$, называется каноническим видом квадратичной функции в $V$ над $\R$.
+\end{definition}
+
+\begin{corollary}
+    Если $F = \R$, то всякую квадратическую функцию выбором базиса можно привести к каноническому виду 
+    выбором базиса.
+\end{corollary}
+
+\begin{exercise}
+    Пусть $V$ - пространство над полем $\Cm$. Доказать, что любую функцию в комплексном пространстве 
+    можно привести к виду $q(x) = x_1^2 + x_2^2 + \dots x_p^2$, $r = \rk q$.
+\end{exercise}
+
+\begin{note}
+    В практических задачах проще искать не канонический базис, а преобразование координат, приводящее 
+    к каноническому виду: 
+    \begin{gather*}
+        \begin{pmatrix}
+            x_1    \\
+            x_2    \\
+            \vdots \\
+            x_n              
+        \end{pmatrix} = S \begin{pmatrix}
+            \xi_1      \\
+            \xi_2      \\
+            \vdots          \\
+            \xi_n              
+            \end{pmatrix},
+    \end{gather*}
+    где $\xi_i$ - канонические координаты.
+\end{note}
+
+\begin{algorithm}[Поиск преобразования, приводящего к каноническому виду]~\\
+    В нашем базисе $q(x)$ имеет следующее предстваление:
+    \begin{gather*}
+        q(x) = \sum_{i=1}^{n}\sum_{j=1}^{n} a_{ij}x_i x_j
+    \end{gather*}
+    Его можно преобразовать к виду: 
+    \begin{gather*}
+        q(x) = \frac{1}{a_{11}} (a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n)^2 - 
+        \sum_{i=2}^{n}\sum_{j=2}^{n} a_{ij}x_i x_j.
+    \end{gather*}
+    Сумма после вынесения первого слагаемого не содержит $x_1$ ни в одном члене. Обозначим тогда 
+    $(a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n)$ за $\xi_1$, который будет являться первым 
+    искомым каноническим вектором. После этого $q(x)$ можно записать как:
+    \begin{gather*}
+        q(x) = \lambda_1  \xi_1^2 + \sum_{i=1}^{n}\sum_{j=1}^{n} a_{ij}x_i x_j.
+    \end{gather*}
+    Таким образом можно продолжать преобразования суммы до получения разложения в канонический вид:
+    \begin{gather*}
+        q(x) = \lambda_1  \xi_1^2 + \lambda_2 \xi_2^2 + \dots \lambda \xi_n^n
+    \end{gather*}
+    При этом столбцы матрицы $S$ будут являться координатами векторов базиса в каноническом базисе.
+\end{algorithm}
+
+\begin{definition}
+    Квадратичная функция $q(x)$ называется положительно определенной (отрицательно опеределенной), 
+    если для всех $x \neq 0$ верно $q(x) > 0$ ($q(x) < 0$).
+\end{definition}
+
+\begin{definition}
+    Квадратичная функция $q(x)$ называется положительно полуопределенной (отрицательно полуоопределенной) 
+    если для всех $x \in V$ верно $q(x) \geq 0$ ($q(x) \leq 0$).
+\end{definition}

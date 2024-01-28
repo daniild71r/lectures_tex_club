@@ -1,0 +1,534 @@
+% 19.04.23
+
+\begin{reminder}
+    Функция $q(x)$ называется эрмитовой квадратичной функцией, если она получена сужением на $\Delta \subseteq V \times V$
+    эрмитовой полуторалинейной функции $q(x) = f(x, y) \vert_{\Delta} = f(x, x)$. \\
+    Таким образом $f(x, y) = \overline{f(y, x)}$, откуда $q(x) = f(x, x) = \overline{f(x, x)} \in \R$.
+\end{reminder}
+
+\begin{proposition}
+    Пусть $e$ - канонический базис в пространстве $V$, $q(x)$ - квадратичная эрмитова функция. 
+    Тогда:
+    \begin{enumerate}
+        \item $q(x)$ положительно определена тогда и только Тогда, когда её матрица в каноническом 
+        базисе единичная
+        \item $q(x)$ положительно полуопределена тогда и только тогда, когда её матрица в 
+        каноническом базисе не имеет -1 на главной диагонали.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item \begin{enumerate}
+            \item Необходимость - как в вещественном случае.
+            \item Достаточность: $$q(x) = x^T A \overline{x} = x^T \overline{x} = \sum_{i=1}^{n} x_i \overline{x_i} 
+            = \sum_{i=1}^{n} |x_i| = 0.$$
+        \end{enumerate}
+        \item \begin{enumerate}
+            \item Необходимость - как в вещественном случае.
+            \item Достаточность. Матрица принимает следующий вид:
+            \begin{gather*}
+                A = \begin{pmatrix}
+                E_r    & 0      \\
+                0      & 0      \\
+                \end{pmatrix}
+            \end{gather*}
+            Тогда $r = \rk r$, $q(x) = x^T A \overline{x} = \sum_{i=1}^{r} |x_i|^2 \geq 0$ для всех $x \in V$.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}[Закон инерции для квадратичных эрмитовых функций]~ 
+
+    Пусть $e$ - произвольный канонический базис для $q(x)$ и пусть $p, q$ - положительный и отрицательный
+    индексы инерции относительно $e$. Тогда:
+    \begin{enumerate}
+        \item $p = \max \{\dim U | U \leq V: q \vert_{U} \text{ - положительно опеределена}\}$.
+        \item $q = \max \{\dim U | U \leq V: q \vert_{U} \text{ - отрицательно опеределена}\}$.
+        \item $p$ и $q$ не зависят от выбора канонического базиса.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Аналог критерия Сильвестра]~ 
+
+    Пусть $q(x) \in H(V)$ - эрмитова квадратичная функция, $A$ - её матрица в произвольном базисе, где 
+    выполняется условие эрмитовости $\overline{A^T} = A$. Тогда:
+    \begin{enumerate}
+        \item $q(x)$ положительно определена тогда и только тогда, когда $\Delta_1 > 0$, $\Delta_2 > 0$, $\dots$, 
+        $\Delta_n > 0$.
+        \item $q(x)$ отрицательно определена тогда и только тогда, когда $\Delta_1 > 0$, $\Delta_2 > 0$, $\dots$, 
+        $\sgn (\Delta_n) = (-1)^n$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Евклидовы и Эрмитовы пространства}
+
+\begin{definition}
+    Линейное пространство над полем действительных чисел называется Евклидовым, если 
+    на нем определена положительно определенная билинейная симметрическая функция $f(x, y)$. По 
+    определению $f(x, y)$ называется скалярным произведением и обозначается $(x, y)$.
+    Скалярное произведение можно определить при помощи следующих аксиом:
+    \begin{enumerate}
+        \item $(x, y) = (y, x)$ - симметричность,
+        \item $(x_1 + x_2, y) = (x_1, y) + (x_2, y)$, 
+        \item $\forall \lambda \in \R \hookrightarrow (\lambda x, y) = \lambda(x, y)$,
+        \item $(x, x) \geq 0$, при этом $(x, x) = 0 \Leftrightarrow x = 0$ - положительная определенность.
+    \end{enumerate}
+    Второе и третье свойства вместе называются линейностью по первому аргументу.
+\end{definition}
+
+\begin{example}~
+    \begin{enumerate}
+        \item Пространство $V_3$ со скалярным произведением $(x, y) = |x| |y| \cos\angle (x, y)$,
+        \item Пространство $\R^n$ со скалярным произведением $(x, y) = x^T E y = x^T y = \displaystyle\sum_{x_i}^{y_i}$.
+        \item Пространство $M_n(\R)$ со скалярным произведением $(X, Y) = \tr(X^T, Y)$,
+        \item Пространство $C_{[a, b]}$ со скалярным произведением $ (f, g) = \int_{a}^{b} f(x)g(x) dx$.
+    \end{enumerate} 
+\end{example}
+
+\begin{definition}
+    Длиной вектора $x$ называется $|x| = \sqrt{(x,x)}$.
+\end{definition}
+
+\begin{definition}
+    Если $x, y$ - два ненулевых вектора, то можно ввести угол между ними: 
+    $$\phi = \angle (x, y) = \arccos \frac{(x, y)}{\sqrt{(x, x)(y, y)}}.$$
+\end{definition}
+
+\begin{note}
+    В понятие скалярного произведения включена возможность введения длины вектора и угла между 
+    векторами.
+\end{note}
+
+\begin{definition}
+    Пусть $V$ - линейное пространство над $\Cm$. $V$ называется эрмитовым, если на $V$ определена 
+    положительно определенная эрмитова полуторалинейная функция $f(x, y)$. Аналогично с евклидовыми 
+    пространствами $f(x, y)$ называется скалярным произведением и обозначается $(x, y)$.
+\end{definition}
+
+\begin{note}
+    В отличие от Евклидовых прространств, на эрмитовых пространствах скалярное произведение может 
+    принимать комлексные значениях.
+\end{note}
+
+\begin{note}
+    Скалярное произведение на Эрмитовых пространствах можно определить при помощи следующих аксиом:
+    \begin{enumerate}
+        \item $(x, y) = \overline{y, x}$ - эрмитова симметричность.
+        \item $(x_1 + x_2, y) = (x_1, y) + (x_2, y)$, 
+        \item $\forall \lambda \in \Cm \hookrightarrow (\lambda x, y) = \lambda(x, y)$
+        \item Для всех $x \in V$ верно $(x, x) \in \R$, причем $(x, x) = 0 \Leftrightarrow x = 0$.
+    \end{enumerate}
+\end{note}
+
+\begin{example}~
+    \begin{enumerate}
+        \item Эрмитово пространство $\Cm^n$ со скалярным произведением 
+        $(x, y) = x^T \cdot E \cdot \overline{y} = \displaystyle\sum_{i=1}^{n} x_i \overline{y_i}$.
+        \item Эрмитово пространство $M_n(\Cm)$ со скалярным произведением $(X, Y) = \tr (X^T \overline{Y})$.
+        \item Пространство $C_{[a, b]}^{\Cm}$ со скалярным произведением $(f, g) = \int_{a}^{b} f(x) \overline{g(x)} dx$.
+    \end{enumerate}
+\end{example}
+
+\begin{note}
+    Многие утверждения этого раздела верны одновременно и для евклидовых и для эрмитовых пространств,
+    поэтому в случае, когда это так, будем говорить "пространство со скалярным произведением"\,, подразумевая 
+    любое из них.
+\end{note}
+
+\begin{definition}
+    Матрицей Грама системы $a_1, a_2, \dots a_k$ называется матрица: 
+    \begin{gather*}
+        \Gamma(a_1, \dots a_n) = \begin{pmatrix}
+        (a_1, a_1)      & (a_1, a_2)      & \dots  & (a_1, a_k)        \\
+        (a_2, a_1)      & (a_2, a_2)      & \dots  & (a_2, a_k)        \\
+        \vdots & \vdots & \ddots & \vdots   \\
+        (a_k, a_1)      & (a_k, a_2)      & \dots  & (a_k, a_k)
+        \end{pmatrix}
+    \end{gather*}
+\end{definition}
+
+\begin{theorem}~
+    \label{th11.1}
+    \begin{enumerate}
+        \item
+        Пусть $e_1, e_2, \dots e_n$ - базис в $V$, $\Gamma = \Gamma(e)$. Тогда $\forall x, y \in V$ верно 
+        $(x, y) = x^T \cdot \Gamma \cdot \overline{y}$
+        \item Пусть $a_1, a_2, \dots a_k$ - произвольная система векторов в $V$. Тогда $|\Gamma(a_1, \dots a_n)| \geq 0$, 
+        причем равенство достигается тогда и только тогда, когда система линейно зависима.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $f(x, y) = x^T \cdot A \cdot \overline{y} =  x^T \cdot \Gamma \cdot \overline{y}$,
+        где $a_{ij} = f(e_i, e_j) = (e_i, e_j) = (\Gamma)_{ij}$.
+        \item Пусть система линейно независима. Тогда $U = \langle a_1, a_2, \dots a_k \rangle$, 
+        $f \vert_{U}$ - положительно определена, а значит по критерию Сильвестра $|\Gamma(a_1, \dots a_n)| > 0$.
+
+        Пусть теперь система линейно зависима и без ограничения общности: 
+        $$a_k = \lambda_1 a_1 + \dots + \lambda_{k-1} a_{k-1}.$$
+        Заметим, что элемент нижней строки матрицы Грама в таком случае равен: 
+        $$(a_k, a_i) = (\lambda_1 a_1 + \dots + \lambda_{k-1} a_{k-1}, a_i) = \lambda_1 (a_1, a_i) + 
+        \lambda_2 (a_2, a_i) + \, \dots \, + \lambda_{k-1} (a_{k-1}, a_i).$$
+        Таким образом строки матрицы Грама линейно зависимы, так как последнюю строку можно представить 
+        в виде суммы всех предыдущих с коэффициентами $\lambda_1$, $\lambda_2$, $\dots$, $\lambda_{k-1}$.
+
+        Тогда матрица Грама вырождена, а значит её определитель равен нулю.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Пусть $\Gamma = \Gamma(a_1, a_2, \dots a_n)$, $n = \dim V$. Тогда $\Gamma$ положительно определена 
+    тогда и только тогда, когда $a_1, a_2, \dots a_n$ - базис в $V$.
+\end{corollary}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Необходимость. 
+        
+        Пусть $|\Gamma(a_1, a_2, \dots a_n)| > 0$. Тогда по теореме \ref{th11.1} система 
+        $a_1, a_2, \dots a_n$ линейно независима, а значит является базисом в $V$.
+        \item Достаточность. 
+        
+        Пусть система $a_1, a_2, \dots a_n$ является базисом. Тогда она 
+        линейно независима, а значит определитель матрицы Грама $|\Gamma(a_1, a_2, \dots a_n)| > 0$. Тогда по 
+        критерию Сильвестра $\Gamma$ положительно определена.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Неравенство Коши-Буняковского]
+    Пусть $V$ - пространство со скалярным произведением, и пусть $x, y \in V$. Тогда: 
+    \begin{gather*}
+        |(x, y)|^2 \leq (x, x) \cdot (y, y)
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item Пусть $x$ или $y$ - нулевой вектор, тогда $0 = 0$.
+        \item Пусть $x$ и $y$ ненулевые и коллинеарны, то есть $y = \lambda x$. Тогда: 
+        \begin{gather*}
+            |(x, \lambda x)|^2 = |\lambda|^2 |(x, x)|^2 = \lambda \overline{\lambda} |(x, x)|^2 = 
+            (x, x) (y, y)
+        \end{gather*}
+        \item Пусть $x$ и $y$ ненулевые и неколлинеарны. Тогда система из $x$ и $y$ линейно независима, а значит 
+        по теореме \ref{th11.1}:
+        \begin{gather*}
+            0 < |\Gamma(x, y)| = (x, x)(y, y) - (x, y)(y, x) = (x, x)(y, y) - |(x, y)|^2.
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    В неравенстве Коши-Буняковского равенство достигается тогда и только тогда, когда система один из 
+    векторов нулевой или они коллинеарны.
+\end{corollary}
+
+\begin{corollary}[Корректность определения угла]~ \\
+    Пусть $V$ - евклидово пространство, $x, y$ - ненулевые векторы. Тогда по КБ 
+    $|(x, y)| \leq \sqrt{(x, x)(y, y)}$, а значит аргумент $\arccos \frac{(x, y)}{\sqrt{(x, x)(y, y)}}$
+    не превосходит 1.
+\end{corollary}
+
+\begin{corollary}[Неравенство треугольника]
+    Для всех $x, y \in V$ верно:
+    \begin{gather*}
+        |x + y| \leq |x| + |y|
+    \end{gather*}
+\end{corollary}
+
+\begin{proof}
+    Докажем непосредственной проверкой:
+    \begin{gather*}
+        | x + y |^2 = (x+y, x+y) = (x, x) + (x, y) + (y, x) + (y, y) = (x, x) + 2 \re (x, y) + (y, y).
+    \end{gather*}
+    При этом $\re (x, y) \leq |(x, y)| \leq |x| \cdot |y|$, а значит:
+    \begin{gather*}
+        |x + y|^2 \leq |x|^2 + 2 |x| \cdot |y| + |y|^2 = (|x| + |y|)^2.
+    \end{gather*}
+    Величины $|x|$ и $|y|$ неотрицательны, а значит $|x+y| \leq |x| + |y|$.
+\end{proof}
+
+\subsubsection{Ортогональность в пространстве со скалярным произведением}
+
+\begin{definition}
+    $x \perp y$ если $(x, y) = 0$.
+\end{definition}
+
+\begin{definition}
+    Система векторов $x_1, x_2, \dots x_k$ называется ортогональной тогда и только тогда, когда 
+    $(x_i, x_j) = 0$ для всех $i \neq j$.
+\end{definition}
+
+\begin{definition}
+    Система векторов $x_1, x_2, \dots x_k$ называется ортонормированной тогда и только тогда, когда 
+    она ортогональна и нормирована. Нормированность означает, что $(x_i, x_i) = 1$ для всех $i$.
+\end{definition}
+
+\begin{definition}
+    Система подпространств $U_1$, $U_2, \dots$, $U_k$ называется ортогональной тогда и только тогда,
+    когда для любой системы векторов $u_1 \in U_1$, $u_2 \in U_2$, $\dots u_k \in U_k$ верно, 
+    что она ортогональна.
+\end{definition}
+
+\begin{proposition}
+    Пусть $U_1$, $U_2, \dots$, $U_k$ - ортогональная система подпространств. Тогда 
+    \begin{gather*}
+        U_1 + U_2 + \dots U_k = U_1 \oplus U_2 \oplus \dots \oplus U_k.
+    \end{gather*}
+\end{proposition}
+
+\begin{proof}
+    Покажем, что пересечение подпространств $U_i \cap (U_1 + \dots + U_k) = \{0\}$. 
+
+    Действительно, пусть $x \in U_i$ и $x \in U_1 + \, \dots \, + U_{i-1} + U_{i+1} \, \dots \, + U_k$. Тогда:
+    \begin{gather*}
+        (x, x) = (x_i, x_1 + \, \dots \, + x_{i-1} + x_{i+1} + \, \dots \, + x_k) = 0.
+    \end{gather*}
+
+    Таким образом $x = 0$, а значит $U_i \cap (U_1 + \dots + U_k) = \{0\}$.
+\end{proof}
+
+\begin{corollary}
+    \label{col11.1}
+    Если $U_1$, $U_2, \dots$, $U_k$ - ортогональная система подпространств, то эти подпространства 
+    линейно независимы.
+\end{corollary}
+
+\begin{corollary}
+    Если векторы $x_1, \, \dots , \, x_k$ ненулевые и образуют ортогональную систему, то они линейно-независимы.
+\end{corollary}
+
+\begin{proof}
+    Пусть $U_1 = \langle x_1 \rangle$, $U_2 = \langle x_2 \rangle$, $\dots$, $U_k = \langle x_k \rangle$.
+    Тогда если система $x_1, \, \dots , \, x_k$ линейно зависима, то соответствующие пространства 
+    $U_1$, $U_2, \dots$, $U_k$ линейно зависимы, что противоречит следствию \ref{col11.1}.
+\end{proof}
+
+\begin{proposition}
+    Пусть $V$ - пространство со скалярным произведением. Тогда в нём существует ортонормированный базис.
+\end{proposition}
+
+\begin{proof}
+    Пусть $f(x, y) = (x, y)$, тогда для неё существует канонический базис, в котором $f$ имеет 
+    матрицу $E$. $f(e_i, e_j) = (e_i, e_j) = \delta_{ij}$, откуда этот базис - ортонормированный.
+\end{proof}
+
+\begin{corollary}[Выражение координат векторов и скалярного произведения в ортонормированном базисе]
+    Пусть $V$ - пространство со скалярным произведением, $e$ - ортонормированный базис. Пусть 
+    $x \leftrightarrow \alpha$, $y \leftrightarrow \beta$. Тогда:
+    \begin{enumerate}
+        \item $(x, y) = \alpha^T \cdot \overline{\beta}$,
+        \item $\alpha_i = (x, e_i)$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}~
+    \begin{enumerate}
+        \item $f(x, y) = \alpha^T \cdot A \cdot \overline{\beta} = \alpha^T \cdot E \cdot \overline{\beta} 
+        = \alpha^T \cdot \overline{\beta}$.
+        \item $(x, e_i) = (\alpha_1, \,\dots ,\,) \cdot (0, \, \dots , \, 1, \, \dots , \, 0)^T = 
+        \alpha_i$, 
+        
+        где единица в столбце координат вектора $e_i$ стоит на $i$-й позиции.
+    \end{enumerate}
+\end{proof}
+
+\subsubsection{Задача об ортогональной проекции}
+
+\begin{problem}
+    Пусть $V$ - пространство со скалярным произведением, $U$ - подпространство $V$. Обозначим 
+    размерность $V$ за $n$, размерность $U$ за $k$. Тогда сужение на $U$
+    невырожденной функции $f(x, y)$, являющейся скалярным произведением в $V$, так же будет являться
+    скалярным произведением и в $U$. \\
+    Пространство $V$ будет представляться как $V = U + U^{\perp}$. \\
+    Дан базис в $U$, вектор $x \in V$. Требуется представить вектор $x$ в виде суммы его проекций 
+    $\tilde{x} = \pr_U x$ и $\stackrel{o}{x} = \ort_U x$ на $U$ и $U^{\perp}$ соответственно.
+\end{problem}
+
+\begin{algorithm}~
+    \begin{enumerate}
+        \item Зафиксируем в $U$ ортонормированный базис $e_1, \dots e_k$, достроив его до базиса 
+        $e_1, \dots e_n$ в $V$. Тогда:
+        \begin{gather*}
+            x = \sum_{i=1}^{k} \alpha_i e_i + \sum_{i=k+1}^{n}\alpha_i e_i.
+        \end{gather*}
+        При этом $\displaystyle\sum_{i=1}^{k} \alpha_i e_i \in U$, 
+        $\displaystyle \sum_{i=k+1}^{n}\alpha_i e_i \in U^{\perp}$. Тогда 
+        $\tilde{x} = \displaystyle\sum_{i=1}^{k}\alpha_i e_i$, откуда $\stackrel{o}{x} = x - \tilde{x}$.
+        \item Зафиксируем в $U$ ортогональный базис $e_1, e_2, \dots e_k$, достроив его до 
+        ортогонального базиса $e_1, \dots e_n$ в $V$. Тогда рассмотрим базис $e'$ такой, что
+        $e'_i = \frac{e_i}{|e_i|}$, очевидно являющийся ортонормированным. Тогда 
+        \begin{gather*}
+            \tilde{x} = \displaystyle\sum_{i=1}^{k} (x, e'_i)e'_i = \displaystyle\sum_{i=1}^{k} (x, e'_i) 
+            \frac{e_i}{|e_i|} = \displaystyle\sum_{i=1}^{k} \frac{(x, e_i)}{(e_i, e_i)} e_i = 
+            \pr_e x = \frac{(x, e)}{(e, e)} e.
+        \end{gather*}
+        \item Зафиксируем произвольный базис $e_1, e_2, \dots e_k$ в $U$, достроив его до базиса
+        $e_1, \dots e_n$ в $V$.
+        Тогда необходимые нам векторы выражаются как $\tilde{x} = \displaystyle\sum_{i=1}^{k} \lambda_i e_i$ и $\stackrel{o}{x} = x - \tilde{x} = 
+        x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i \perp e_1, \, \dots , \, e_k$.
+        
+        Чтобы получить коэффициенты $\lambda_i$ запишем следующую систему:
+        \begin{eqnarray*}
+            \begin{cases*}
+                (x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i, e_1) = 0,
+                \\
+                (x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i, e_2) = 0,
+                \\
+                \dots
+                \\
+                (x - \displaystyle\sum_{i=1}^{k} \lambda_i e_i, e_k) = 0.
+            \end{cases*} \Leftrightarrow \begin{cases*}
+                (e_1, e_1) \lambda_1 + (e_2, e_1) \lambda_2 + \, ... \, + (e_k, e_1) = (x, e_1),
+                \\
+                (e_1, e_2) \lambda_1 + (e_2, e_2) \lambda_2 + \, ... \, + (e_k, e_2) = (x, e_2),
+                \\
+                \dots
+                \\
+                (e_1, e_k) \lambda_1 + (e_2, e_k) \lambda_2 + \, ... \, + (e_k, e_k) = (x, e_k).
+            \end{cases*}
+        \end{eqnarray*}
+        Матрица системы является сужением $\Gamma$ на $U$, а значит $|\Gamma \vert_{U} (e_1, \, \dots, \, e_k)| > 0$.
+        Таким образом по теореме Крамера система имеет единственное решение.
+    \end{enumerate}
+\end{algorithm}
+
+\begin{note}
+    Есть и другой способ решения данной задачи, основанный на процедуре ортогонализации Грама-Шмидта.
+\end{note}
+
+\begin{definition}
+    Процедурой ортогонализации называется любой алгоритм, позволяющий по произвольному базису 
+    в пространстве $V$ построить ортогональный базис.
+\end{definition}
+
+\begin{theorem}[Грама-Шмидта]
+    Пусть $e$ - произвольный базис в пространстве $V$ со скалярным произведением. Тогда существует 
+    базис $f$ в пространстве $V$, такой что:
+    \begin{enumerate}
+        \item Для всех $k = 1, \dots n$ верно $\langle e_1, \, \dots, \, e_k \rangle = \langle f_1, \dots f_k \rangle$
+        \item Матрица перехода $S = S_{e \to f}$ унипотентна.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Докажем по индукции по $n = \dim V$.
+    \begin{enumerate}
+        \item База $n = 1$ - $f_1 = e_1$, $S = (1)$.
+        \item Предположим, для подпространства из $k-1$ вектора построено. Покажем, что для подпространства 
+        образованного $e_1, \dots e_k$ можно достроить построенный базис. Выберем 
+        $f_k = \ort e_k \langle f_1, \dots f_{k-1} \rangle$. Тогда:
+        \begin{enumerate}
+            \item По построению $f_k$ получаем $f_k \perp \langle f_1, \dots f_{k-1} \rangle$, 
+            откуда $f_1, \dots f_k$ - ортогональная система.
+            \item Пусть $f_k = 0$. Тогда $e_k \in \langle f_1, \dots f_{k_1} \rangle = \langle e_1, \dots e_{k_1} \rangle$, 
+            а значит базис $e$ - линейно зависимый, что приводит к противоречию. Таким образом $f_k \neq 0$.
+            \item Покажем, что $\langle f_1, \dots f_{k} \rangle = \langle e_1, \dots e_{k} \rangle$.
+            Действительно, вектор $f_k$ выражается как: 
+            $$f_k = e_k - \tilde{e_k} \in \langle f_1, \, \dots ,\, f_{k-1}\rangle 
+            = e_k - \displaystyle\sum_{i=1}^{k-1} \lambda_i f_i.$$ 
+            Тогда $e_k = f_k + \displaystyle\sum_{i=1}^{k-1} \lambda_i f_i \in \langle f_1, \dots f_{k} \rangle$.
+            
+            При этом по предположению индукции $\langle f_1, \dots f_{k-1} \rangle = 
+            \langle e_1, \dots e_{k-1} \rangle$. \\ Таким образом 
+            $\langle f_1, \dots f_{k} \rangle \subseteq 
+            \langle e_1, \dots e_{k} \rangle$. Покажем включение в обратную сторону.
+
+            Как было показано выше, $f_k = e_k - \tilde{e_k}$, что значит, что $f_k \in \langle e_1, 
+            \, \dots, \, e_k \rangle$. Так же по предположению индукции $\langle f_1, \dots f_{k-1} \rangle = 
+            \langle e_1, \dots e_{k-1} \rangle$, откуда $\langle e_1, \dots e_{k} \rangle \subseteq 
+            \langle f_1, \dots f_{k} \rangle$.
+        \end{enumerate}
+        Таким образом построенный базис будет иметь вид $f_1 = e_1$, $f_k = e_k - \tilde{e_k} = 
+        e_k - \displaystyle\sum_{i=1}^{k-1} \frac{(e_k, f_i)}{(f_i, f_i)}f_i$. Осталось показать, что 
+        матрица перехода является унипотентной. Используя выражения $f_k$ через $e_1, \dots e_k$ запишем 
+        матрицу $S_{e \to f}$:
+        \begin{gather*}
+            S_{e \to f} = \begin{pmatrix}
+            1      & -\alpha & \dots  & -\beta_1   \\
+            0      & 1       & \dots  & -\beta_2   \\
+            \vdots & \vdots  & \ddots & \vdots     \\
+            0      & 0       & \dots  & 1
+            \end{pmatrix}
+        \end{gather*}
+        Где коэффициент $\alpha$ равен $\alpha = \frac{(e_2, f_1)}{(f_1, f_1)}$, коэффициенты $\beta$
+        равны $\beta_i = \frac{(e_k, f_i)}{(f_i, f_i)}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    Процедура ортогонализации Грама-Шмидта дает нулевой вектор на некотором шаге тогда и только тогда, 
+    когда система $e_1, \dots e_n$ линейно зависима, что позволяет использовать её для проверки линейной
+    независимости системы.
+\end{note}
+
+\begin{exercise}
+    Пусть по базису $(a_1, \dots a_k)$ при помощи процедуры Грама-Шмидта был построен базис $(f_1, \dots f_k)$.
+    Доказать, что $|\Gamma(f_1, \dots f_k)| = |\Gamma(a_1, \dots a_k)|$.
+\end{exercise}
+
+\begin{corollary}
+    $0 \leq |\Gamma(a_1, \dots a_k)| \leq |a_1|^2 \cdot |a_2|^2 \cdot \dots |a_k|^2$.
+\end{corollary}
+
+\begin{corollary}
+    Если $U \leq V$, $e_1, \dots e_k$  - ортогональный базис в $U$, то существует ортогональный 
+    базис $e_1, \dots e_k, e_{k+1}, \dots e_n$ в $V$.
+\end{corollary}
+
+\begin{idea}
+    Дополним $e_1, \dots e_k$ до какого-нибудь базиса в $V$, после чего ортогонализируем его. Очевидно,
+    метод Грама-Шмидта не испортит первые $k$ векторов.
+\end{idea}
+
+\subsubsection{Ортогональные и унитарные матрицы}
+
+\begin{definition}
+    Матрица $A \in M_n(\R)$ называется ортогональной, если $A^T A = E$, откуда так же $A A^T = E$.
+\end{definition}
+
+\begin{example}
+    Матрица поворота $A = \begin{pmatrix}
+    \cos \phi & - \sin \phi    \\
+    \sin \phi &   \cos \phi    \\
+    \end{pmatrix}$
+\end{example}
+
+\begin{definition}
+    Матрица $A \in M_n(\Cm)$ называется унитарной, если $\overline{A^T} A = E = A \overline{A^T}$.
+\end{definition}
+ 
+\begin{proposition}
+    Пусть $V$ - пространство со скалярным произведением, $e$ - ортонормированный базис в $V$, 
+    $f$ - произвольный базис в $V$. Тогда матрица перехода $S = S_{e \to f}$ является 
+    ортогональной тогда и только тогда, когда $f$ - ортонормированный базис.
+\end{proposition}
+
+\begin{proof}
+    Пусть $f(x, y)$ имеет матрицу $\Gamma$. Тогда так как $e$ - ортонормированный базис, его 
+    матрица Грама является единичной $\Gamma(e) = E$.
+
+    Тогда $\Gamma(f) = S^T \cdot \Gamma(e) \cdot \overline{S} = S^T \cdot \overline{S}$. Верна следующая цепочка эквивалентностей:
+
+    $f$ - ортонормированный базис $\Leftrightarrow$ $\Gamma(f) = E$ $\Leftrightarrow$ $S^T \cdot \overline{S} = E$ 
+    $\Leftrightarrow \overline{S^T} \cdot S = E$.
+\end{proof}
+
+\begin{corollary}~
+    \begin{enumerate}
+        \item
+        Множество всех ортогональных матриц в $GL_n(\R)$ является подгруппой и называется ортогональной
+        подгруппой, используется обозначение $O_n(\R)$.
+        \item Множество всех унитарных матриц в $GL_n(\R)$ является подгруппой и называется 
+        унитарной подгруппой, используется обозначение $U_n(\R)$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}~
+
+    Пусть $A, B$ - унитарные матрицы, $A = S_{e \to f}$, $B = S_{f \to g}$.
+    Тогда $A \cdot B = S_{e \to g}$, $A^{-1} = S_{f \to e}$. Таким образом $A\cdot B$ и $A^{-1}$ 
+    так же являются унитарными, а значит $U_n(\R)$ - группа.
+\end{proof}
