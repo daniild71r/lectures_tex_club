@@ -1,0 +1,396 @@
+\section{О числах}
+
+\subsection{Натуральные числа}
+
+\begin{definition}
+    Неопределяемые понятия:
+    \begin{itemize}
+        \item "1"
+        \item $Sc(\ )$ - следующий элемент
+            (от английского слова \textit{successor} - преемник)
+    \end{itemize}
+    
+    Натуральные числа - система $\N$, удовлетворяющая
+    следующим аксиомам:
+\end{definition}
+
+\subsubsection*{Аксиомы Пеано}
+
+\begin{definition}
+    Аксиомы Пеано - это набор бездоказательных
+    высказываний, позволяющих на своей основе построить
+    всю систему натуральных чисел (т.е. определить все
+    элементы, отношения и операции).
+\end{definition}
+
+\begin{enumerate}
+    \item $\mathbf{1}$ есть натуральное число, то есть
+        $\mathbf{1} \in \N$
+    \item $(\forall n \in \N)\ \exists!\ Sc(n) \in \N$ - для
+        любого числа существует единственное, следующее за ним
+    \item ($\forall n \in \N)\ 1 \neq Sc(n)$ - число $1$ не
+        является чьим-либо преемником
+    \item $(\forall n \in \N)(\forall m \in \N)\ 
+        Sc(n) = Sc(m) \Ra n = m$ - то есть $Sc$ инъективна
+    \item (Аксиома индукции) $(\forall A
+        \subset \N)\ \such 
+        \System{
+            &(1 \in A)
+            \\
+            &(\forall n \in A)\ Sc(n) \in A
+        }
+        \Ra A = \N$
+\end{enumerate}
+
+\begin{note}
+    Использование аксиомы индукции (метод мат. индукции):
+
+    Чтобы доказать, что $P(n)$ справедливо $(\forall n \in \N)$,
+    достаточно проверить два факта:
+    \begin{enumerate}
+        \item $P(1)$ --- истинно 
+        \item $P(n)$ --- истинно $\Ra \ P(Sc(n))$ --- истинно 
+    \end{enumerate}
+\end{note}
+
+\begin{example}
+    Понятно, что данным аксиомам могут соответствовать
+    разные модели. Одной из таких является модель Фреге-Рассела:
+    
+    \[1 := \{\emptyset\}\]
+    \[Sc(n) := n \cup \{n\}\]
+    То есть:
+    $2 = \{\emptyset, \{\emptyset\}\}$,
+    $\ 3 = \{\emptyset, \{\emptyset\}, \{\emptyset,\{\emptyset\}\}\}$
+\end{example}
+
+\subsubsection*{Сложение}
+
+Чтобы определить операцию сложения, нам необходимо
+ввести 2 аксиомы:
+\begin{enumerate}
+    \item $(\forall m \in \N)\ m + 1 := Sc(m)$
+    \item $(\forall n,\ m \in \N)\ m + Sc(n) := Sc(m + n)$
+    \begin{note}
+        Эта аксиома не интуитивна (ведь мы не определили
+        $m + n$), но верна за счёт первой.
+        
+        База $n = 1$: $m + Sc(1) := Sc(m + 1)$ - всё верно и определено.
+
+        Предположение индукции: $m + Sc(n) = Sc(m + n)$ --- верно.
+        Тогда поймём, что и
+        $m + Sc(Sc(n)) = Sc(m + Sc(n))$ - также определено и
+        верно в силу предыдущего шага
+        $\Ra$ аксиома верна и для любых натуральных $m$ и $n$.
+        (Несмотря на наличие "доказательной"\ 
+        части, данное выражение остаётся аксиомой, иначе базу
+        не обосновать)
+    \end{note}
+\end{enumerate}
+
+Из этих двух аксиом следует, что операция сложения
+существует и единственна.
+
+\subsubsection*{Умножение}
+
+Чтобы определить операцию умножения, нам необходимо
+ввести 2 аксиомы:
+\begin{enumerate}
+    \item $(\forall m \in \N)\ m \cdot 1 := m$
+    \item $(\forall m \in \N)\ m \cdot Sc(n) := m \cdot n + m$
+\end{enumerate}
+
+Из этих двух аксиом следует, что операция сложения существует и единственна.
+
+\begin{example}
+    Доказать: $2 \cdot 2 = 4$
+    
+    Что такое $2$? По определению, $2 := Sc(1)$.
+    Аналогично $3 := Sc(2),\ 4 := Sc(3)$. Тогда:
+    
+    $2 \cdot 2 = 2 \cdot Sc(1) = 2 \cdot 1 + 2 = 2 + Sc(1)
+    = Sc(2 + 1) = Sc(Sc(2)) = Sc(3) = 4$, что и требовалось доказать.
+\end{example}
+
+\subsubsection*{Отношение строгого порядка на множестве
+натуральных чисел (не материал лектора)}
+
+\begin{definition}
+    Отношение строгого порядка $<$ на множестве $\N$ определяется как
+    \[
+        (m < n) \overset{def}{\lra}\ (\exists p \in \N)\ m + p = n
+    \]
+    Для $>$ аналогично.
+\end{definition}
+
+\subsubsection*{Отношение порядка на множестве натуральных чисел}
+
+\begin{definition}
+	Отношение порядка $\le$ на множестве $\N$ определяется как
+
+	\[
+        (\forall n,\ m \in \N)\ m \le n \overset{def}{\lra}\ 
+        (m = n) \vee ((\exists p \in \N)\ n = p + m)
+    \]
+
+	Для $\ge$ аналогично.
+\end{definition}
+
+\begin{anote}
+    Отношение порядка также можно задать следующим образом:
+    \[
+    	(a \le b) := \big((a = b) \vee (a < b)\big)
+    \]
+\end{anote}
+
+Из определения становится возможным доказать теорему,
+о том, что отношения $\le$ и $\ge$ являются отношениями порядка.
+(Для этого необходимо доказать 3 свойства).
+
+\subsubsection*{Свойства операций и отношений на натуральных числах}
+
+\begin{theorem}
+    $(\forall m, n, p \in \N)$ верно следующее:
+
+    \begin{itemize}
+        \item Сложение
+        \begin{itemize}
+            \item[I-а).] $m + n = n + m$ (коммутативность)
+            \item[I-б).] $(m + n) + p = m + (n + p)$ (ассоциативность)
+        \end{itemize}
+        \item Умножение
+        \begin{itemize}
+            \item[II-а).] $m \cdot n = n \cdot m$ (коммутативность)
+            \item[II-б).] $(m \cdot n) \cdot p = m \cdot (n \cdot p)$ (ассоциативность)
+            \item[II-в).] $m \cdot 1 = 1 \cdot m = m$ (единичный элемент)
+        \end{itemize}
+        \item Отношение порядка
+        \begin{itemize}
+            \item[III-а).] $m \le m$ (рефлексивность)
+            \item[III-б).] $(m \le n) \wedge (n \le m) \Ra (m = n)$ (антисимметричность)
+            \item[III-в).] $(m \le n) \wedge (n \le p) \Ra (m \le p)$ (транзитивность)
+            \item[III-г).] $(m \le n) \vee (n \le m)$ - всегда истинное
+                выражение (множество $\N$ линейно упорядочено)
+        \end{itemize}
+        \item Дистрибутивность:
+
+        \begin{itemize}
+            \item[I-II).] $m \cdot (n + p) = m \cdot n + m \cdot p$ (сложения и умножения)
+            \item[I-III).] $(m \le n) \Ra \ m + p \le n + p$
+            \item[II-III).] $(m \le n) \Ra \ m \cdot p \le n \cdot p$
+        \end{itemize}
+        \item Свойство Архимеда
+        \[
+            (\forall m \in \N)(\forall p \in \N)(\exists n \in \N)\ 
+            m \cdot n > p
+        \]
+    \end{itemize}
+\end{theorem}
+
+
+\subsection{Целые числа}
+
+\begin{definition}
+    \textit{Множеством целых чисел} называется множество
+    
+    \[\Z := \N \cup \{0\} \cup \{-n\ :\ n \in \N\}\]
+\end{definition}
+
+Из определения сразу следует, что $\N \subset \Z$
+
+\subsubsection*{Сложение}
+
+Рассмотрим $\forall m, n \in \N$ и доопределим операции:
+
+\begin{enumerate}
+    \item $m + n \Ra$ сложение происходит также, как и с натуральными числами.
+    \item $(-m) + (-n) := -(m + n)$
+    \item $m + (-n) := \System{&{p \in \N\ :\ n + p = m, \text{ если } m > n} \\ 
+                              &{0, \text{ если } m = n} \\ 
+                              &{-p,\ p \in \N\ :\ m + p = n, \text{ если } m < n}}$
+\end{enumerate}
+
+\subsubsection*{Умножение}
+
+Рассмотрим $\forall m, n \in \N$:
+
+\begin{enumerate}
+    \item $m \cdot n \Ra$ умножение происходит также, как и с натуральными числами.
+    \item $(-m) \cdot (-n) := m \cdot n$
+    \item $m \cdot (-n) := -(m \cdot n)$
+    \item $m \cdot 0 := 0$
+\end{enumerate}
+
+\subsubsection*{Свойства операций и отношений на множестве целых чисел}
+
+\begin{theorem}~
+
+    \begin{itemize}
+        \item Сложение
+        \begin{itemize}
+            \item[I).] Все свойства сложения натуральных чисел
+                верны и для целых.
+            \item[I-в).] $m + 0 := m$ (существование нейтрального
+                к сложению числа)
+            \item[I-г).] $(\forall m \in \Z)(\exists (-m) \in \Z)
+                \ \ m + (-m) = 0$
+                (существование обратного числа по сложению)
+        \end{itemize}
+        \item Умножение
+        \begin{itemize}
+            \item[II).] Все свойства умножения натуральных чисел
+                верны и для целых.
+        \end{itemize}
+        \item Отношение порядка
+        \begin{itemize}
+            \item[II-III).] $(\forall m \in \Z) (\forall n \in \Z)
+                (\forall p \in \N)\ (m \le n) \Ra
+                (m \cdot p \le n \cdot p)$
+            \item[IV).] $(\forall m_1 \in \Z)
+                (\forall m_2 \in \Z \bs \{0\})
+                (\exists n \in \Z)\ n \cdot m_2
+                \ge m_1$ (свойство Архимеда)
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\subsection{Рациональные числа}
+
+\begin{definition}
+    \textit{Рациональным числом} называется число вида
+    $\frac{m}{n}$, где $m \in \Z, n \in \N$. Его можно
+    однозначно задать с помощью упорядоченная пара $(m, n)$.
+    Множество рациональных чисел обозначают $\Q$.
+\end{definition}
+
+\subsubsection*{Отношение эквивалентности на
+множестве рациональных чисел}
+
+\begin{definition}
+    Введем отношение: $(m, n)R(p, q) \overset{def}{\lra}
+    (m \cdot q = n \cdot p)$
+\end{definition}
+
+\begin{proposition}
+    Отношение $R$ является отношением эквивалентности
+    на множестве рациональных чисел
+\end{proposition}
+
+\begin{proof}
+    Для доказательства необходимо проверить, что
+    выполнены все свойства отношения эквивалентности:
+    \begin{enumerate}
+        \item Рефлексивность: $(m, n)R(m, n) \overset{def}{\lra}
+            (m \cdot n = n \cdot m)$ - верно.
+        \item Симметричность: $(m, n)R(p, q) \Ra
+            (p, q)R(m, n)$
+            
+            $(p, q)R(m, n) \lra
+            (p \cdot n = q \cdot m) \lra (m \cdot q = n \cdot p)
+            \lra (m, n)R(p, q)$.
+        \item Транзитивность: 
+        $(m, n)R(p, q) \wedge (p, q)R(r, s) \Ra (m, n)R(r, s)$.
+        
+        Опуская формальности, имеем $2$ равенства: $mq = np$ и $ps = qr$.
+        Домножим первое на $s$, а второе на
+        $n$: $mqs = nps = psn = qrn \Ra mqs =
+        qrn \Ra ms = rn = nr$ - верно.
+    \end{enumerate}
+    все $3$ свойства верны, а значит $R$ является
+    отношением эквивалентности, что и требовалось доказать.
+\end{proof}
+
+\subsubsection*{Положительное рациональное число}
+
+\begin{definition}
+    \textit{Положительным рациональным числом} называется
+    класс эквивалентности в $\N^2$ по отношению $R$
+    на множестве $\Q$.
+\end{definition}
+    
+Множество всех положительных чисел обозначается $\Q_+$
+    
+Тогда множество рациональных чисел задается так:
+\[\Q := \Q_+ \cup \{0\} \cup \{-r\ :\ r \in \Q_+\}\]
+    
+Отсюда также следует, что $\N \subset \Z \subset \Q$ 
+
+\begin{anote}
+    Рациональное число определяется как класс
+    эквивалентности из-за того факта, что
+    $\frac{1}{2} = \frac{2}{4}$ и так далее.
+    Определение положительного рационального числа
+    через $N^2$ справедливо, так как
+    $\N \subset\Z \Ra \N^2 \subset \Z \times \N$
+\end{anote}
+
+\subsubsection*{Отношение строгого порядка на множестве
+рациональных чисел (не материал лектора)}
+
+\begin{definition}
+    Отношение строгого порядка $<$ ($>$) на
+    множестве $\Q$ задаётся как
+    \[
+        \left(\frac{p}{q} < \frac{m}{n}\right)
+        := (p \cdot n < m \cdot q)
+    \]
+\end{definition}
+
+\begin{anote}
+    В данном определении всё верно, так как
+    $q, n \in \N$ по определению рациональных чисел.
+\end{anote}
+
+\subsubsection*{Отношение порядка на множестве
+рациональных чисел (не материал лектора)}
+
+\begin{definition}
+    Отношение порядка $\le$ ($\ge$) на множестве
+    $\Q$ задаётся как и на предыдущих:
+    \[
+        (a \le b) := \big((a = b) \vee (a < b)\big)
+    \]
+\end{definition}
+
+\subsubsection*{Операции на множестве рациональных чисел}
+
+Обозначим фигурными скобками $r = \{(m, n)\}$ класс эквивалентности
+упорядоченных пар чисел $m, n$ (то есть рациональное число $r$).
+Тогда если $r, s \in \Q_+ \ \ (m, n) \in r;\ (p, q) \in s$, то
+сложение и умножение определяются так:
+\[
+    r + s = \{(m, n)\} + \{(p, q)\} :=
+    \{(m \cdot q + n \cdot p,\ n \cdot q)\}
+\]
+\[
+    r \cdot s = \{(m, n)\} \cdot \{(p, q)\} :=
+    \{(m \cdot p,\ n \cdot q)\}
+\]
+
+\subsubsection*{Свойства операций и отношений на
+множестве рациональных чисел}
+\begin{theorem}~
+
+    \begin{itemize}
+        \item Сложение
+        \begin{itemize}
+            \item[I.)] Все свойства сложения целых чисел
+                верны и для рациональных.
+        \end{itemize}
+        \item Умножение
+        \begin{itemize}
+            \item[II.)] Все свойства умножения целых чисел
+                верны и для рациональных.
+            \item[II-г.)] $(\forall p \in \Q)(p \neq 0)\ \exists
+                p^{-1} \in \Q :\ p \cdot p^{-1} = 1$
+                (существование обратного элемента по умножению)
+        \end{itemize}
+        \item Отношение порядка
+        \begin{itemize}
+            \item[III.)] Все свойства отношения порядка целых
+                чисел верны и для отношения порядка рациональных
+                чисел (хоть определение и отличается от того,
+                что используется на целых числах).
+        \end{itemize}
+    \end{itemize}
+\end{theorem}

@@ -1,0 +1,520 @@
+
+\begin{definition}
+	$C_{\alpha}^n = \frac{\alpha!}{n! \cdot (\alpha - n)!} =
+		\frac{\alpha \cdot (\alpha - 1) \cdot \ldots \cdot
+		(\alpha - n + 1)}{n!},\ n \in \N,\ \alpha \in \R$
+\end{definition}
+
+\begin{note}
+	Биномиальный коэффициент таким образом определён для
+	\textit{любого вещественного $\alpha$}.
+\end{note}
+
+\begin{lemma}
+	Для вещественного биномиального коэффициента справедливо
+	свойство треугольника Паскаля:
+	\[
+		C_\alpha^n + C_\alpha^{n - 1} = C_{\alpha + 1}^n
+	\]
+\end{lemma}
+
+\begin{proof}
+	Распишем сумму по определению. Дальше всё сойдётся:
+	\begin{multline*}
+		C_\alpha^n + C_\alpha^{n - 1} = \frac{\alpha \cdot
+		(\alpha - 1) \cdot \ldots \cdot (\alpha - (n - 1))}{n!} + \frac{\alpha \cdot (\alpha - 1) \cdot \ldots \cdot (\alpha - (n - 2))}{(n - 1)!} =
+		\\
+		\frac{\alpha \cdot (\alpha - 1) \cdot \ldots \cdot
+		(\alpha - (n - 2)) \cdot (\alpha - (n - 1) + n)}{n!} =
+		C_{\alpha + 1}^n
+	\end{multline*}
+\end{proof}
+
+\begin{theorem} (Формула Лейбница)
+	Если существуют конечные производные порядка $n$ функций
+	$f$ и $g$ в некоторой точке, то их произведение имеет
+	конечную производную в этой же точке и для него справедлива формула
+	\[
+		(f \cdot g)^{(n)} = \suml_{k = 0}^{n} C_n^k f^{(k)}
+		\cdot g^{(n - k)}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Доказательство же формулы проведём по индукции:
+	\begin{itemize}
+		\item База $n = 1$:
+		\[
+			(fg)' = \suml_{k = 0}^1 C_1^k f^{(k)} g^{(1 - k)} =
+			fg' + f'g \text{ - верно}
+		\]
+		
+		\item Утверждением примем нашу формулу из теоремы.
+		Покажем, что она верна для $n + 1$:
+		\begin{multline*}
+			(fg)^{(n + 1)} = \left((fg)^{(n)}\right)' =
+			\suml_{k = 0}^n C_n^k \left(f^{(k)} g^{(n - k)}
+			\right)' = \suml_{k = 0}^n C_n^k f^{(k + 1)}
+			g^{(n - k)} + \suml_{k = 0}^n C_n^k f^{(k)}
+			g^{(n + 1 - k)} = \\
+			= C_n^n f^{(n + 1)} g^{(0)} + \suml_{k = 0}^{n - 1}
+			C_n^k f^{(k + 1)} g^{(n - k)} + C_n^0 f^{(0)}
+			g^{(n + 1)} + \suml_{m = 0}^{n - 1} C_n^{m + 1}
+			f^{(m + 1)} g^{(n - m)} = \\
+			= C_n^n f^{(n + 1)} g^{(0)} + C_n^0 f^{(0)}
+			g^{(n + 1)} + \suml_{j = 0}^{n - 1}
+			\left(C_n^j + C_n^{j + 1}\right) f^{(j + 1)} 
+			g^{(n - j)} = \\
+			= C_{n + 1}^0 f^{(0)} g^{(n + 1)} + \suml_{t = 1}^{n}
+			C_{n + 1}^t f^{(t)} g^{(n + 1 - t)} + C_{n + 1}^{n + 1}
+			f^{(n + 1)} g^{(0)} = \suml_{t = 0}^{n + 1}
+			C_{n + 1}^t f^{(t)} g^{(n + 1 - t)}
+		\end{multline*}
+	\end{itemize}
+\end{proof}
+
+\begin{corollary} Очевидно, что $(\alpha f \pm \beta g)^{(n)}
+	= \alpha f^{(n)} \pm \beta g^{(n)},\ \alpha, \beta \in \R$.
+	Ограничения на $f$ и $g$ такие же, как в доказанной только что
+	теореме. Также, если $a, b \in \R$, то $(f(ax + b))^{(n)} =
+	a^{n} \cdot f^{(n)}(ax + b)$	
+\end{corollary}
+
+\subsubsection*{Производные высших порядков некоторых элементарных функций}
+
+\begin{enumerate}
+	\item $(\sin x)^{(n)} = \sin (x + \frac{\pi n}{2})$
+	\item $(\cos x)^{(n)} = \cos (x + \frac{\pi n}{2})$
+	\item $(x^\alpha)^{(n)} = \alpha \cdot (\alpha - 1) \cdot
+	\ldots \cdot (\alpha - n + 1) x^{\alpha - n} =
+	n! \cdot C_{\alpha}^n \cdot x^{\alpha - n}$
+	\item $(a^x)^{(n)} = a^x \cdot \ln^n a$
+	\item $(\ln x)^{(n)} = (x^{-1})^{(n - 1)} = (n - 1)!
+	\cdot C_{-1}^{n - 1} \cdot x^{-1 - (n - 1)} =
+	(-1)^{(n - 1)} (n - 1)! \cdot x^{-n}$
+
+\end{enumerate}
+
+\begin{corollary} (Бином Ньютона)
+	\[
+		(a + b)^n = \suml_{k = 0}^n C_n^k a^k b^{n - k}
+	\]
+\end{corollary}
+
+\begin{proof}
+	С одной стороны,
+	\[
+		\left((\alpha\beta)^x\right)^{(n)} = (\alpha\beta)^x \cdot \ln^n (\alpha\beta) = (\alpha\beta)^x(\ln \alpha + \ln \beta)^n
+	\]
+	С другой стороны, по формуле Лейбница
+	\begin{multline*}
+		\left((\alpha\beta)^x\right)^{(n)} =
+		\left(\alpha^x \cdot \beta^x\right)^{(n)} =
+		\suml_{k = 0}^n C_n^k \left(\alpha^x\right)^{(k)}
+		\left(\beta^x\right)^{(n - k)} =
+		\suml_{k = 0}^n C_n^k (\alpha^x \ln^k \alpha)
+		(\beta^x \ln^{(n - k)} \beta) = \\
+		= (\alpha\beta)^x \suml_{k = 0}^n C_n^k \ln^k
+		\alpha \cdot \ln^{(n - k)} \beta
+	\end{multline*}
+	Положив $a := \ln \alpha$ и $b := \ln \beta$, получим необходимое утверждение.
+\end{proof}
+
+\begin{theorem} (Формула Фаа-ди-Бруно)
+	Если существует производная $n$-го порядка функции $g$ в точке $a$ и $f$ в точке $g(a)$, то
+	\[
+		(f \circ g)^{(n)} = \suml_{\pi \in \Pi_n} \left(f^{(|\pi|)} \circ g\right) \cdot \prodl_{B \in \pi} g^{(|B|)}
+	\]
+	где 
+	\begin{itemize}
+		\item $\Pi_n$ обозначает множество всех разбиений $\{1, 2, \dots, n\}$ на непустые подмножества
+		
+		\item $\pi$ - разбиение множества $\{1, 2, \ldots, n\}$ на непустые подмножества. То есть элемент $B \in \pi$ - одно из множеств, на которые разбили исходное множество
+		
+		\item $|A|$ - число элементов множества $A$
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	По индукции
+	\begin{itemize}
+		\item База $n = 1$: $\Ra \Pi_1 = \{\{\{1\}\}\}$
+		\[
+			(f \circ g)' = (f' \circ g) \cdot g' \text{ - верно}
+		\]
+		
+		\item Утверждением является наша формула. Докажем, что если она верна для $n$, то верна и для $n + 1$:
+		\[
+			(f \circ g)^{(n + 1)} = \left((f \circ g)^{(n)}\right)' = \suml_{\pi \in \Pi_n} \left((f^{(|\pi|)} \circ g) \cdot \prodl_{B \in \pi} g^{(|B|)}\right)'
+		\]`
+		Распишем производную одного слагаемого, принадлежащего разбиению $\pi^* \in \Pi_n$:
+		\[
+			\left((f^{(|\pi^*|)} \circ g) \cdot \prodl_{B \in \pi^*} g^{(|B|)}\right)' = (f^{(|\pi^*|)} \circ g)' \cdot \prodl_{B \in \pi^*} g^{(|B|)} + (f^{(|\pi^*|)} \circ g) \cdot \left(\prodl_{B \in \pi^*} g^{(|B|)}\right)'
+		\]
+		Теперь, у нас добавился к множеству $\{1, 2, \dots, n\}$ элемент $n + 1$. Если взять любое разбиение $\pi \in \Pi_{n + 1}$, то есть несколько вариантов того, какой оно имеет вид:
+		\begin{enumerate}
+			\item Элемент $n + 1$ обособлен в отдельную часть. То есть $\pi = \pi^* \cup \{n + 1\},\ \pi^* \in \Pi_n$. Каждое слагаемое таких разбиений по нашей формуле должно иметь вид:
+			\[
+				(f^{(|\pi^*| + 1)} \circ g) \cdot \prodl_{B \in \pi^*} g^{(|B|)} \cdot g'
+			\]
+			что в точности равно левой части суммы из производной слагаемого:
+			\[
+				(f^{(|\pi^*|)} \circ g)' \cdot \prodl_{B \in \pi^*} g^{(|B|)} = (f^{(|\pi^*| + 1)} \circ g) \cdot g' \cdot \prodl_{B \in \pi^*} g^{(|B|)}
+			\]
+			
+			\item Элемент $n + 1$ помещён в некоторое $B_i \in \pi^*$. Это значит, что $|\pi| = |\pi^*|$. Каждое слагаемое таких разбиений по нашей формуле должно иметь вид:
+			\[
+				(f^{(|\pi^*|)} \circ g) \cdot g^{(|B_i| + 1)} \cdot \prodl_{B \in \pi^* \bs B_i} g^{(|B|)}
+			\]
+			Поймём, что $\pi^*$ соответствует не одно разбиение из $\Pi_{n + 1}$, а целое множество (действительно, мы можем выбирать разные $B_i$). Тогда, сумма слагаемых по всем $\pi$, полученным из $\pi^*$ записывается как
+			\[
+				\suml_{B_i \in \pi^*} (f^{(|\pi^*|)} \circ g) \cdot g^{(|B_i| + 1)} \cdot \prodl_{B \in \pi^* \bs B_i} g^{(|B|)} = (f^{(|\pi^*|)} \circ g) \suml_{B_i \in \pi^*} g^{(|B_i + 1|)} \cdot \prodl_{B \in \pi \bs B_i} g^{(|B|)}
+			\]
+			что в точности совпадает с правой частью суммы из производной слагаемого:
+			\begin{multline*}
+				(f^{(|\pi^*|)} \circ g) \cdot \left(\prodl_{B \in \pi^*} g^{(|B|)}\right)' = (f^{(|\pi^*|)} \circ g) \cdot \left(g^{(|B_1|)} \cdot \prodl_{B \in \pi^* \bs B_1} g^{(|B|)}\right)' = \\
+				(f^{(|\pi^*|)} \circ g) \cdot \left(g^{(|B_1| + 1)} \cdot \prodl_{B \in \pi^* \bs B_1} g^{(|B|)} + g^{(|B_1|)} \cdot \left(\prodl_{B \in \pi^* \bs B_1} g^{(|B|)}\right)'\right) = \dots = \\
+				(f^{(|\pi^*|)} \circ g) \suml_{B_i \in \pi^*} g^{(|B_i + 1|)} \cdot \prodl_{B \in \pi \bs B_i} g^{(|B|)}
+			\end{multline*}
+		\end{enumerate}
+	\end{itemize}
+\end{proof}
+
+\begin{example}
+	Рассмотрим $(f \circ g)^{(4)}$. Все разбиения тогда можно представить как способы разложить 4 на слагаемые(каждое слагаемое символизирует $|B|$):
+	\begin{itemize}
+		\item $4 = 4 \Ra$ есть только 1 разбиение длины 4 - это всё множество. То есть слагаемое имеет вид
+		\[
+			\left(f' \circ g\right) \cdot g''''
+		\]
+		\item $4 = 3 + 1$ - есть $C_4^1 = 4$ способов сделать разбиение с такими мощностями $B$. Нетрудно убедиться, что каждое разбиение имеет одинаковое слагаемое
+		\[
+			\left(f'' \circ g\right) \cdot g' \cdot g'''
+		\]
+		Их сумма будет соответственно
+		\[
+			4 \cdot \left(f'' \circ g\right) \cdot g' \cdot g'''
+		\]
+		\item $4 = 2 + 1 + 1$ - это $C_4^2 = 6$ способов сделать разбиение
+		\[
+			\Ra 6 \cdot \left(f''' \circ g\right) \cdot g'' \cdot g' \cdot g'
+		\]
+		\item $4 = 2 + 2$ - это $\frac{C_4^2}{2} = 3$, потому что мы учитываем каждое разбиение дважды
+		\[
+			3 \cdot \left(f'' \circ g\right) \cdot g'' \cdot g''
+		\]
+		\item $4 = 1 + 1 + 1 + 1$ - это 1 разбиение
+		\[
+			\left(f'''' \circ g\right) \cdot g' \cdot g' \cdot g' \cdot g'
+		\]
+	\end{itemize}
+	Собственно, $(f \circ g)^{(4)}$ - это сумма всех полученных слагаемых
+\end{example}
+
+\subsubsection*{Дифференциалы высших порядков}
+
+\begin{definition}
+	Если $f'(x)$ дифференцируема в точке $x_0$, то $f$ называется
+	дважды дифференцируемой в точке $x_0$. \textit{Дифференциалом второго
+	порядка} для дважды дифференцируемой функции $f$ в точке $x_0$
+	называется дифференциал от дифференциала $f$ в точке $x_0$:
+
+	\[
+	df(x) = f'(x)dx\  (x \text{ - независимая переменная})
+	\]
+	\[
+	d^2 f(x_0) := d(f'(x)dx) \big|_{x = x_0} = f''(x_0) dx^2
+	\]
+
+	\textit{Дифференциалом $n$-го порядка} от $f(x)$,
+	где $x$ - независимая переменная, в точке $x$ называется
+	дифференциал от дифференциала $n - 1$-го порядка, причём
+	в качестве $dx$ в каждом из дифференциалов берётся одно
+	и то же число ($\Delta x$)
+	\[
+		d^{n}f(x_0) := d(d^{n - 1}f(x)) \big|_{x=x_0}
+	\]
+\end{definition}
+
+\begin{corollary}
+	\[
+		d^nf(a) = f^{(n)}(a) dx^n
+	\]
+	если $x$ - независимая переменная
+\end{corollary}
+
+\begin{example}
+	Пусть $f(x)$ - функция переменной $x = \varphi(t)$, где $t$ - независимая переменная.
+	\[
+		f(x) = f(\varphi(t)) = h(t)
+	\]
+	Отсюда
+	\begin{multline*}
+		d^2f = d^2h = h'' dt^2 = \left((f' \circ \varphi)
+		\cdot \varphi'\right)'dt^2 = \left((f'' \circ \varphi)
+		(\varphi')^2 + (f' \circ \varphi)\varphi''\right)dt^2 = \\
+		= (f'' \circ \varphi)(\varphi'dt)^2 + (f' \circ \varphi)
+		\varphi'' dt^2 = f''dx^2 + f'd^2x
+	\end{multline*}
+\end{example}
+
+\subsection{Теоремы о свойствах производных}
+
+\begin{definition}
+	Точка $x_0$ называется \textit{точкой (строгого)
+	локального максимума} функции $f(x)$, если $(\exists \delta > 0)
+	(\forall x \in \mc{U}_{\delta}(x_0))\ f(x_0) \ge f(x)\ 
+	\left(f(x_0) > f(x)\right)$
+\end{definition}
+
+\begin{definition}
+	Точка $x_0$ называется \textit{точкой (строгого)
+	локального минимума} функции $f(x)$, если $(\exists \delta > 0)
+	(\forall x \in \mc{U}_{\delta}(x_0))\ f(x_0) \le f(x)\ 
+	\left(f(x_0) < f(x)\right)$
+\end{definition}
+
+\begin{definition}
+	Точки локального минимума и максимума в общем случае
+	называются \textit{точками локального экстремума}
+\end{definition}
+
+\begin{definition}
+	Правой (левой) производной функции $f$ в точке $x_0$ называется
+	пределе (если он существует):
+	\[
+		\liml_{x \to x_0 \underset{(-)}{+} 0} \frac{f(x) - f(x_0)}{x - x_0}
+	\]
+\end{definition}
+
+\begin{theorem} (Теорема Ферма. Необходимое условие локального
+	экстремума)
+
+	Если $x_0$ - точка локального экстремума функции $f$, дифференцируемой в $x_0$, то
+	\[
+		f'(x_0) = 0
+	\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $x_0$ - точка локального максимума. Это значит, что в некоторой окрестности точки $x_0$ имеет место неравенство
+	\[
+		f(x_0 + \Delta x) \le f(x_0)
+	\]
+	Рассмотрим односторонние пределы производной:
+	\begin{align*}
+		f'_+(x_0) = \liml_{\Delta x \to +0}
+		\frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} \le 0
+		\\
+		f'_-(x_0) = \liml_{\Delta x \to -0}
+		\frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} \ge 0
+	\end{align*}
+	В силу дифференцируемости $f$ в точке $x_0$:
+	\[
+		0 \le f'_-(x_0) = f'(x_0) = f'_+(x_0) \le 0
+	\]
+	Что верно тогда и только тогда, когда
+	\[
+		f'(x_0) = 0
+	\]
+\end{proof}
+
+\begin{theorem} (Ролля)
+	Если $f$ непрерывна на $[a; b]$, дифференцируема на
+	$(a; b)$ и $f(a) = f(b)$, то
+	\[
+		\exists c \in (a; b) :\ f'(c) = 0
+	\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $f$ не постоянна
+	(иначе $\forall x \in (a; b)\ f(x)' = 0$).
+	Тогда, по теореме Вейерштрасса
+	\[
+		\exists \max\limits_{x \in [a; b]} f(x) > \exists
+		\min\limits_{x \in [a; b]} f(x)
+	\]
+	Хотя бы одно из этих чисел (пусть $\max$) не совпадает с $f(a) = f(b)$. Следовательно,
+	\[
+		\max\limits_{x \in [a; b]} f(x) = f(c),\ c \in (a; b)
+	\]
+	То есть $c$ - точка локального максимума. По теореме Ферма $f'(c) = 0$
+\end{proof}
+
+\begin{theorem} (Обобщенная теорема о среднем)
+	\label{common_mid}
+	Если $f, g$ непрерывны на $[a; b]$,
+	дифференцируемы на $(a; b)$, то
+	\[
+		\exists c \in (a; b) :\ (f(b) - f(a))g'(c) =
+		(g(b) - g(a))f'(c)
+	\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим функцию $h(x)$:
+	\[
+		h(x) = (f(b) - f(a))g(x) - (g(b) - g(a))f(x)
+	\]
+	Посчитаем $h(a)$ и $h(b)$:
+	\begin{align*}
+		h(a) = (f(b) - f(a))g(a) - (g(b) - g(a))f(a) =
+		f(b)g(a) - g(b)f(a)
+		\\
+		h(b) = (f(b) - f(a))g(b) - (g(b) - g(a))f(b) =
+		g(a)f(b) - f(a)g(b)
+	\end{align*}
+	Отсюда по теореме Ролля
+	\[
+		\exists c \in (a; b) :\ h'(c) = 0
+	\]
+	А это в свою очередь значит
+	\begin{align*}
+		(f(b) - f(a))g'(c) - (g(b) - g(a))f'(c) = 0
+		\\
+		(f(b) - f(a))g'(c) = (g(b) - g(a))f'(c)
+	\end{align*}
+\end{proof}
+
+\begin{corollary} (Теорема Лагранжа о среднем или о
+	конечных приращениях)
+	Если $f$ непрерывна на $[a; b]$, дифференцируема на
+	$(a; b)$, то $\exists c \in (a; b)$ такое, что
+	\[
+		\frac{f(b) - f(a)}{b - a} = f'(c)
+	\]
+\end{corollary}
+
+\begin{proof}
+	По теореме \ref{common_mid} возьмём $g(x) = x$
+\end{proof}
+
+\subsubsection*{Геометрический смысл теорем Ролля и Лагранжа}
+
+\begin{tabular}{cc}
+	\begin{tikzpicture}[scale = 1]
+		% Axis
+		\coordinate (y) at (0,5);
+		\coordinate (x) at (6,0);
+		\draw[<->, style={thick}] (y) node(yaxis)[above]{$y$} -- (0,0) --  (x) node(xaxis)[right]{$x$};
+		\draw (-0.4,0) -- (0,0) --  (0,-0.4);
+		
+		% Points for the curve
+		\path
+		coordinate (start) at (1, 2)
+		coordinate (d1) at (2, 2.5)
+		coordinate (top) at (3, 4)
+		coordinate (d2) at (4, 2.5)
+		coordinate (end) at (5, 2);
+		
+		% Draw the curve
+		\draw[style={thick}] plot [smooth, tension=0.9] coordinates {(start) (d1) (top) (d2) (end)};
+		
+		% Dashed lines for the points on x axis
+		\draw[style={dashed}] let \p1=(start) in (\p1) -- (\x1, 0) node[circle, fill, inner sep=1pt, label={below:$a$}]{};
+		\draw[style={dashed}] let \p1=(top) in (\p1) node[circle, fill, inner sep=1pt, label={above:$f'(c) = 0$}]{} -- (\x1, 0) node[circle, fill, inner sep=1pt, label={below:$c$}]{};
+		\draw[style={dashed}] let \p1=(end) in (\p1) -- (\x1, 0) node[circle, fill, inner sep=1pt, label={below:$b$}]{};
+		
+		% Dashed lines for the points on y axis
+		\draw[style={dashed}] let \p1=(end) in (\p1) -- (0, \y1) node[left, black]{$f(a) = f(b)$};
+		
+		% Tangent line for top point
+		\draw let \p1=(top) in (1.5, \y1) -- (4.5, \y1);
+	\end{tikzpicture}
+	&
+	\begin{tikzpicture}[scale = 1]
+		% Axis
+		\coordinate (y) at (0,5);
+		\coordinate (x) at (6,0);
+		\draw[<->] (y) node[above]{$y$} -- (0,0) --  (x) node[right]{$x$};
+		\draw (-0.4,0) -- (0,0) --  (0,-0.4);
+		
+		% Points for the curve
+		\path
+		coordinate (start) at (1, 1)
+		coordinate (d1) at (2, 1)
+		coordinate (d2) at (4, 4)
+		coordinate (end) at (5, 4);
+		
+		% The curve
+		\draw[style={thick}] plot [smooth, tension=0.9] coordinates {(start) (d1) (d2) (end)};
+		
+		% Tangent line and point
+		\coordinate (t) at (1.85, 0.85);
+		\filldraw[black] (t) node[below right]{\scalebox{0.8}{$f'(c) = \frac{f(b) - f(a)}{b - a}$}} circle (1pt);
+		\draw (1.5 - 0.3, 0.7 - 0.3) -- (1.5 + 1.5, 0.7 + 1);
+		
+		% Dashed lines for the points on x axis
+		\draw[style={dashed}] let \p1=(start) in (\p1) -- (\x1, 0) node[circle, fill, inner sep=1pt, label={below:$a$}]{};
+		\draw[style={dashed}] let \p1=(t) in (\p1) -- (\x1, 0) node[circle, fill, inner sep=1pt, label={below:$c$}]{};
+		\draw[style={dashed}] let \p1=(end) in (\p1) -- (\x1, 0) node[circle, fill, inner sep=1pt, label={below:$b$}]{};
+		
+		% Dashed lines for the points on y axis
+		\draw[style={dashed}] let \p1=(start) in (\p1) -- (0, \y1) node[circle, fill, inner sep=1pt, label={left:$f(a)$}]{};
+		\draw[style={dashed}] let \p1=(end) in (\p1) -- (0, \y1) node[circle, fill, inner sep=1pt, label={left:$f(b)$}]{};
+		
+		% Line from the start to the end point
+		\draw[style={dashed}] (start) node[circle, fill, inner sep=1pt]{} -- (end) node[circle, fill, inner sep=1pt]{};
+	\end{tikzpicture}
+\end{tabular}
+
+\begin{corollary} (Теорема Коши о среднем)
+	\label{Cauchy_mid}
+	Если $f, g$ непрерывна на $[a; b]$,
+	дифференцируема на $(a; b)$, $g'$ не обращается в
+	нуль на $(a; b)$, то
+	\[
+		\exists c \in (a; b) :\ 
+		\frac{f(b) - f(a)}{g(b) - g(a)} =
+		\frac{f'(c)}{g'(c)}
+	\]
+\end{corollary}
+
+\begin{proof}
+	Всё, что нам надо обосновать, так это то, что мы
+	можем поделить обе части уравнения в теореме
+	\ref{common_mid} за счёт данных нам условий.
+	
+	Предположим, что $g(b) = g(a)$. Но тогда $g$
+	удовлетворяет требованиям теоремы Ролля. Следовательно,
+	\[
+		\exists t \in (a; b) :\ g'(t) = 0
+	\]
+	что противоречит условию. Значит,
+	мы можем поделить обе части на
+	$(g(b) - g(a)) \cdot g'(c)$
+\end{proof}
+
+\begin{note}
+	Смысл теоремы Коши тот же самый, что и у теоремы Лагранжа, но в предположении, что некоторая функция задана параметрически на осях: $x = g(t)$ и $y = f(t)$ соответственно.
+\end{note}
+
+\begin{example}
+	\[
+		f(x) = \System{
+			&{x^2 \sin \frac{1}{x},\ x \neq 0}
+			\\
+			&{0,\ x = 0}
+		}
+	\]
+	Функция $f$ - непрерывная и дифференцируемая на $\R$. Но пример примечателен тем, что производная всё же разрывная в 0.
+	\begin{itemize}
+		\item $x \neq 0$. Тогда, просто посчитаем производную по свойствам:
+		\[
+			f'(x) = 2x \sin \frac{1}{x} - \cos \frac{1}{x}
+		\]
+		
+		\item $x = 0$. Посчитаем эту производную по определению:
+		\[
+			f'(0) = \liml_{\Delta x \to 0} \frac{f(\Delta x) - 0}{\Delta x} = \liml_{\Delta x \to 0} \frac{\Delta x^2 \sin \frac{1}{\Delta x}}{\Delta x} = \liml_{\Delta x \to 0} \Delta x \sin \frac{1}{\Delta x} = 0
+		\]
+		Но при этом $\not\exists \liml_{x \to 0} f'(x)$. Проверить это можно, взяв 2 последовательности Гейне:
+		\begin{align*}
+			&{x_n = \frac{1}{\frac{\pi}{2} + 2\pi n} \Ra f'(x_n) = \frac{2}{\frac{\pi}{2} + 2\pi n} \Ra \liml_{n \to \infty} f'(x_n) = 0}
+			\\
+			&{x_n = \frac{1}{2\pi n} \Ra f'(x_n) = -1 \Ra \liml_{n \to \infty} f'(x_n) = -1}
+		\end{align*}
+		То есть $f'(x)$ разрывная в нуле.
+	\end{itemize}
+\end{example}

@@ -1,0 +1,514 @@
+\subsubsection*{Отношения порядка на множестве действительных чисел}
+
+\begin{definition}
+    Действительное число $a$ называется 
+    положительным ($a > 0,\  0 < a$), если
+    ($\exists \{[p_n, q_n]_{\Q}\}_{n = 1}^{\infty} \in a)
+    (\exists n \in \N)\ p_n > 0$
+
+    Для отрицательного аналогично:
+    ($\exists \{[p_n, q_n]_{\Q}\}_{n = 1}^{\infty} \in a)
+    (\exists n \in \N)\ q_n < 0$
+\end{definition}
+
+\begin{definition}
+    Действительное число $a$ состоит в отношении $>$ с
+    числом $b$, если $a + (-b) > 0$. Для $<$ аналогично.
+\end{definition}
+
+\begin{definition}
+    Отношение порядка на множестве действительных
+    чисел задаётся как
+    \[
+        a \le b := (a = b) \vee (a < b)
+    \]
+\end{definition}
+
+\begin{theorem}
+    $\R$ является линейно упорядоченным множеством
+    относительно $\le$. То есть выполняются свойства:
+
+    \begin{enumerate}
+        \item[III-а).] ($\forall a \in \R)\ a \le a$ \textit{(рефлексивность)}
+        \item[III-б).] $(\forall a, b \in \R)((a \le b) \wedge 
+            (b \le a)) \Ra (a = b)$ \textit{(антисимметричность)}
+        \item[III-в).] $(\forall a, b, c \in \R)((a \le b)
+            \wedge (b \le c)) \Ra (a \le c)$ \textit{(транзитивность)}
+        \item[III-г).] $(\forall a, b \in \R)\ ((a \le b) \vee (b \le a))$ \textit{(линейный порядок)}
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+
+    \begin{itemize}
+        \item \textit{Рефлексивность} верна, так как $a = a$.
+        \item \textit{Антисимметричность.} По условию имеем:
+            \begin{align*}
+                &(a \le b) \lra (a < b) \vee (a = b) \lra (b - a > 0) \vee (a = b) \\
+                &(b \le a) \lra (b < a) \vee (a = b) \lra (a - b > 0) \vee (a = b)
+            \end{align*}
+            Докажем, что $(x > 0) \wedge (x < 0)$ есть ложь:
+            \begin{align*}
+                &(a < 0) \lra (\exists \{[p_n, q_n]_{\Q}\}_{n = 1}^{\infty} \in a)
+                (\exists n \in \N_1)\ p_n > 0 \Ra (\forall n > N_1)\ q_n \ge p_n > 0\\
+                &(a > 0) \lra (\exists \{[p'_n, q'_n]_{\Q}\}_{n = 1}^{\infty} \in a)
+                (\exists n \in \N_2)\ q'_n < 0 \Ra (\forall n > N_2)\ p'_n \le q'_n < 0\\
+            \end{align*}
+            Это значит, что
+            \[
+                (\forall n > \max(N_1, N_2))\ \max(q'_n, q_n) - \min(p'_n, p_n) = q_n - p'_n
+            \]
+            \[
+                q_n - p'_n \ge p_n - q'_n \ge p_{\max(N_1, N_2)} - q'_{\max(N_1, N_2)}        
+            \]
+            Это значит, что определение равенства гнезд нарушается:
+            \begin{multline*}
+                (\exists \veps = p_{\max(N_1, N_2)} - q'_{\max(N_1, N_2)})
+                (\forall N \in \N)\\ (\exists n = \max(N, N_1, N_2) + 1 > N)
+                \ \max(q'_n, q_n) - \min(p'_n, p_n) \ge \veps
+            \end{multline*}
+
+            То есть случай, где верны только строгие неравенства,
+            невозможен. Значит, как минимум одно из равенств
+            выполняется, тогда $a = b$.
+            
+        \item \textit{Транзитивность.} По условию имеем:
+            \begin{align*}
+                &(a \le b) \lra (a < b) \vee (a = b) \lra (b - a > 0) \vee (a = b) \\
+                &(b \le c) \lra (b < c) \vee (b = c) \lra (c - b > 0) \vee (b = c)
+            \end{align*}
+            Необходимо показать, что верно высказывание
+            \[
+                ((c - a > 0) \vee (a = c)) \equiv 1
+            \]
+            Так как одновременно из одного неравенства
+            оказаться верной может только одна скобка, то
+            рассморим все случаи:
+            \begin{enumerate}
+                \item $(a = b) \wedge (b = c) \Ra a = c$
+                \item $(a = b) \wedge (c - b > 0) \Ra c - a > 0$
+                \item $(b - a > 0) \wedge (b = c) \Ra c - a > 0$
+                \item $(b - a > 0) \wedge (c - b > 0) \Ra
+                    (c - b) + (b - a) = c - a > 0$
+            \end{enumerate}
+        \item \textit{Линейный порядок.} Нам необходимо доказать,
+            что $\forall a, b \in \R$ верно выражение:
+            \[
+                (a \le b) \vee (b \le a)
+            \]
+            Исходя из определения данного отношения, его можно переписать в виде
+            \[
+                (a < b) \vee (a = b) \vee (a > b)
+            \]
+            В силу корректности операции сложения и определения отношения $<$ ($>$), равносильной формой записи является
+            \[
+                (a - b < 0) \vee (a - b = 0) \vee (a - b > 0)
+            \]
+            Тогда положим $c = a - b := \{[p_n; q_n]_\Q\}_{n = 1}^\infty$:
+            \[
+                (c < 0) \vee (c = 0) \vee (c > 0)
+            \]
+            Тогда, рассмотрим случай, когда $\forall n \in \N\ p_n \le 0 \le q_n$. В иных
+            случаях $(\exists n \in \N)\ q_n < 0$ или $p_n > 0$. А это
+            прямо по определению соответствет $c < 0$ и $c > 0$ соответственно.
+            Покажем, что в таком случае $\{[p_n;q_n]_\Q\}_{n = 1}^\infty \sim \{[0;0]_\Q\}_{n = 1}^\infty$
+            
+            По определению $\sim$ нужно проверить, что
+            \[
+                (\forall \veps \in \Q_+)(\exists N \in \N)
+                (\forall n > N)\ \max(q_n, 0) - \min(p_n, 0) < \veps
+            \]
+            Из условия следует, что $\max(q_n, 0) - \min(p_n, 0)
+            = q_n - p_n < \veps$ (исходя из определения гнезда).
+            А значит, эквивалентность верна и $c = 0$. То есть
+            в каждом случае выполняется хотя бы одно из трех
+            утверждений. 
+    \end{itemize}
+\end{proof}
+
+\begin{note}
+    Для гнезд одного и того же числа:
+    $\{[p_n; q_n]_\Q\}_{n = 1}^\infty \sim
+    \{[p_n; q_n]_\Q\}_{n = m}^\infty$, где $m \in \N$.
+
+    Это означает, что если $a > 0$, то
+    \[
+    (\exists \{[p'_n; q'_n]_\Q\}_{n}^\infty \in a)
+    (\forall n \in \N)\ p_n > 0
+    \]
+\end{note}
+
+\subsubsection*{Произведение}
+
+\begin{definition}
+    \textit{Произведением} двух положительных действительных
+    чисел с представлениями
+    $\{[p_n;q_n]_\Q\}_{n = 1}^\infty,\ p_1 > 0$ и
+    $\{[r_n;s_n]_\Q\}_{n = 1}^\infty,\ r_1 > 0$ называют
+    действительное число, представляемое гнездом
+    $\{[p_n \cdot r_n;q_n \cdot s_n]_\Q\}_{n = 1}^\infty$
+\end{definition}
+
+Доопределим произведение на всё множество $\R$:
+\[
+	a \cdot b := \System{
+		&{-(a \cdot (-b)),\ a > 0,\ b < 0}
+		\\
+		&{(-a) \cdot (-b),\ a < 0,\ b < 0}
+	}
+\]
+А также $a \cdot 0 = 0 \cdot a = 0$, $\forall a \in \R$
+
+\begin{theorem}
+    Произведение определено корректно. Справедливы свойства
+
+    \begin{enumerate}
+        \item[II-а).] $(\forall a, b \in \R) \ a
+            \cdot b = b \cdot a$ \textit{(коммутативность)}
+        \item[II-б).] $(\forall a, b, c \in \R)\ 
+            (a \cdot b) \cdot c = a \cdot (b \cdot c)$ \textit{(ассоциативность)}
+        \item[II-в).] $(\forall a \in \R) \ a \cdot
+            1 = 1 \cdot a = a$ \textit{(нейтральный элемент)}
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+
+    \begin{itemize}
+        \item Докажем корректность произведения:
+            \[
+                \System{\{[p_n; q_n]_\Q\}_{n = 1}^\infty \sim
+                    \{[p'_n; q'_n]_\Q\}_{n = 1}^\infty \\ 
+                    \{[r_n; s_n]_\Q\}_{n = 1}^\infty \sim
+                    \{[r'_n; s'_n]_\Q\}_{n = 1}^\infty}
+                \Ra
+                \{[p_n \cdot r_n; q_n \cdot s_n]_\Q\}_{n = 1}^\infty
+                \sim \{[p'_n \cdot r'_n; q'_n \cdot s'_n]_\Q\}_{n = 1}^\infty
+            \]
+            Для начала покажем, что просто произведение положительных
+            действительных чисел вообще является системой
+            стягивающейся рациональных отрезков. Так как
+            $r_1 > 0$ и $p_1 > 0$ (из определения произведения), то
+            \begin{align*}
+                &\System{
+                &r_n \le s_n \\ 
+                &p_n \le q_n
+                } 
+                \Ra p_n r_n \le q_n r_n \le q_n s_n \\
+                &q_n s_n - p_n r_n \le q_n (s_n - r_n) +
+                r_n (q_n - p_n) \le q_1 (s_n - r_n) + r_1 (q_n - p_n)
+            \end{align*}
+            $\{[p_n; q_n]_\Q\}_{n = 1}^\infty$ - система
+            стягивающихся рациональных отрезков, значит
+            \[
+            (\forall \veps \in \Q_+)(\exists N_1 \in \N)
+            (\forall n > N_1)\ q_n - p_n < \frac{\veps}{2s_1}
+            \]
+            
+            Аналогично для $\{[r_n; s_n]_\Q\}_{n = 1}^\infty$
+            \[
+            (\forall \veps \in \Q_+)(\exists N_2 \in \N)
+            (\forall n > N_2)\ s_n - r_n < \frac{\veps}{2q_1}
+            \]
+            
+            $\Ra q_n s_n - p_n r_n \le q_1 (s_n - r_n) +
+            r_1 (q_n - p_n) < q_1 \cdot \frac{\veps}{2q_1} +
+            r_1 \cdot \frac{\veps}{2r_1} = \veps$, а это значит, что
+            $\{[p_n \cdot r_n; q_n \cdot s_n]_\Q\}_{n = 1}^\infty$ - тоже система
+            стягивающихся рациональных отрезков.
+            
+            Далее покажем, что произведения разных представителей классов эквивалентны:
+            \begin{multline*}
+                \max(q_n s_n, q'_n s'_n) - \min(p_n r_n, p'_n r'_n) \le \\
+                \le \max(q_n, q'_n) \cdot \max(s_n, s'_n) - \min(p_n, p'_n)
+                \cdot \min(r_n, r'_n) = \\
+                = \max(q_n, q'_n) \cdot \max(s_n, s'_n) - \max(s_n, s'_n)
+                \cdot \min(p_n, p'_n) + \\
+                + \max(s_n, s'_n) \cdot \min(p_n, p'_n) - \min(p_n, p'_n)
+                \cdot \min(r_n, r'_n) = \\
+                = \max(s_n, s'_n) \cdot (\max(q_n, q'_n) - \min(p_n, p'_n))
+                + \min(p_n, p'_n) \cdot (\max(s_n, s'_n) - \min(r_n, r'_n)) \le \\
+                \le \max(s_1, s'_1) \cdot (\max(q_n, q'_n) - \min(p_n, p'_n)) +
+                \max(p_1, p'_1) \cdot (\max(s_n, s'_n) - \min(r_n, r'_n))
+            \end{multline*}
+            
+            Из определения действительных чисел следует, что
+            \begin{align*}
+                (\forall \veps \in \Q_+)(\exists N_1 \in \N)
+                (\forall n > N_1)\ \max(q_n, q'_n) - \min(p_n, p'_n)
+                < \frac{\veps}{2 \cdot \max(s_1, s_1)}
+                \\
+                (\forall \veps \in \Q_+)(\exists N_2 \in \N)
+                (\forall n > N_2)\ \max(s_n, s'_n) - \min(r_n, r'_n)
+                < \frac{\veps}{2 \cdot \max(p_1, p_1)}
+            \end{align*}
+            
+            А значит
+            \[
+                \max(q_n s_n, q'_n s'_n) - \min(p_n r_n, p'_n, r'_n) < \veps
+            \]
+        \item \textit{Коммутативность} следует тривиальным образом
+            из коммутативности произведения рациональных чисел
+        \item \textit{Ассоциативность} следует напрямую из ассоциативности
+            произведения рациональных чисел
+        \item \textit{Нейтральный элемент} следует из нейтрального элемента
+            произведения рациональных чисел
+    \end{itemize}
+\end{proof}
+
+\subsubsection*{Обратное действительное число по произведению}
+
+\begin{definition}~
+
+    \begin{itemize}
+        \item Если действительное число положительно:
+            $(\forall a \in \R,\ a > 0)$, то обратным к нему
+            числом $\frac{1}{a}$ называется то, которому
+            $\ni \{[\frac{1}{p_n}, \frac{1}{q_n}]
+            _{\Q}\}_{n = 1}^{\infty}$, где
+            $\{[p_n, q_n]_{\Q}\}_{n = 1}^{\infty} \in a, \ p_1 > 0$; 
+        \item Для отрицательных чисел:
+            $\ (\forall a \in \R, a < 0)$
+            \[
+                \frac{1}{a} := -(-\frac{1}{a})
+            \]
+    \end{itemize}
+\end{definition}
+
+\begin{lemma}
+    Если $\{[p_n; q_n]_\Q\}_{n = 1}^\infty$ представляет
+    число $c \in \R$, то $(\forall n \in \N)\ p_n \le c \le q_n$
+\end{lemma}
+
+\begin{anote}
+    Возможно, при первом взгляде Вас смутило сравнение
+    рационального и действительного чисел, но на самом деле здесь
+    все определено вполне корректно: рациональное в данном случае
+    рассматривается как член множества действительных (в виде
+    $\{[p_n; p_n]_\Q\}_{n = 1}^\infty$) и сравнение работает
+    определенным ранее образом для двух действительных.
+\end{anote}
+
+\begin{proof}
+    Предположим обратное, то есть
+    \[
+        (\exists n_0 \in \N)\ p_{n_0} > c
+        \lra p_{n_0} - c > 0
+    \]
+    Выражение слева является числом, поэтому сопоставим ему систему
+    \[
+        p_{n_0} - c \ni \{[r_n; s_n]_\Q\}_{n = 1}^\infty
+    \]
+    Так как $p_{n_0} - c > 0$, из определения следует:
+    \[
+        (\exists N_1 \in \N)(\forall n_1 > N_1)\ r_{n_1} > 0
+    \]
+    А число $p_{n_0}$ тогда будет представлять система
+    \[
+        p_{n_0} \ni \{[p_{n_0}; p_{n_0}]_\Q\}_{n = 1}^\infty
+    \]
+    Рассмотрим $n > \max(n_0, N_1)$. Тогда, разность
+    $p_{n_0} - (p_{n_0} - c)$ с одной стороны, равна
+    \[
+        p_{n_0} - (p_{n_0} - c) = p_{n_0} - p_{n_0} + c = c
+    \]
+    А с другой стороны,
+    \[
+        p_{n_0} - (p_{n_0} - c) \ni \{[p_{n_0} - s_n; p_{n_0} - r_n]_\Q\}_{n = 1}^\infty
+    \]
+    Стало быть, так как $c = p_{n_0} - (p_{n_0} - c) \Ra$
+    \[
+        \{[p_{n_0} - s_n; p_{n_0} - r_n]_\Q\}_{n = 1}^\infty
+        \sim \{[p_n; q_n]_\Q\}_{n = 1}^\infty
+    \]
+    Выясним отношения между границами отрезков:
+    \[
+        p_{n_0} - s_n \le p_{n_0} - r_n < p_{n_0} \le p_n \le q_n
+    \]
+    А если системы эквивалентны, то
+    \[
+        \max(q_n, p_{n_0} - r_n) - \min(p_n, p_{n_0} - s_n) =
+        q_n - p_{n_0} + s_n
+    \]
+    При этом стоит заметить, что $q_n \ge p_{n_0 + 1}$,
+    так как $(\forall i, j \in \N)\ q_i \ge p_j$, при этом
+    $s_n > r_n > 0$. В свою очередь
+    \[
+        q_n - p_{n_0} + s_n > p_{n_0 + 1} - p_{n_0} + r_n > p_{n_0 + 1} - p_{n_0}    
+    \]
+    Вот мы и получили константу и доказали, что наши гнезда не
+    эквивалентны по определению, то есть мы получили противоречие.
+
+\end{proof}
+
+\begin{theorem}
+    Определение обратного числа корректно, справедливы
+    свойства:
+
+    \begin{enumerate}
+        \item[II-г).] $(\forall a \in \R,\ a\neq 0)\ 
+            \frac{1}{a} \cdot a = a \cdot \frac{1}{a} = 1$
+        \item[I-II).] $(\forall a, b, c \in \R)\ a \cdot
+            (b + c) = a \cdot b + a \cdot c$
+        \item[I-III).] $(\forall a, b, c \in \R)(a \le b)
+            \Ra (a + c \le b + c)$
+        \item[II-III).] $(\forall a, b \in \R)
+            (\forall c > 0, c\in \R)(a \le b)
+            \Ra (a \cdot c \le b \cdot c)$
+        \item[IV).] $(\forall a \in \R)(\forall b \neq 0,
+        b \in \R)(\exists n \in \Z) \ b \cdot n > a$ (Свойство Архимеда)
+
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+
+    \begin{itemize}
+        \item Докажем \textit{корректность}, для начала
+            покажем, что такая система отрезков вообще будет стягиваться:
+            \[
+                \frac{1}{p_n} - \frac{1}{q_n} =
+                \frac{q_n - p_n}{p_n \cdot q_n} \le
+                \frac{q_n - p_n}{p^2_n} \le \frac{q_n - p_n}{p^2_1}
+            \]
+            По условию стягивания изначального числа:
+            \[
+                (\forall \veps \in \Q_+)(\exists N \in \N)
+                (\forall n > N)\ q_n - p_n < \veps \cdot p^2_1
+            \]
+            \[
+                \Ra \frac{1}{p_n} - \frac{1}{q_n} \le
+                \frac{q_n - p_n}{p^2_1} <
+                \frac{\veps \cdot p^2_1}{p^2_1} = \veps
+            \]
+            
+            Теперь докажем, что определение не зависит от
+            представителя класса. Нам дано:
+            \[
+                \System{\{[p_n; q_n]_\Q\}_{n = 1}^\infty \in a
+                    \\ 
+                    \{[p'_n; q'_n]_\Q\}_{n = 1}^\infty \in a}
+                \Ra \{[p_n; q_n]_\Q\}_{n = 1}^\infty
+                \sim \{[p'_n; q'_n]_\Q\}_{n = 1}^\infty
+            \]
+            Отсюда следует:
+            \[
+                (\forall \veps \in \Q_+)(\exists N \in \N)
+                (\forall n > N)\ \max(q_n, q'_n) - \min(p_n, p'_n) < \veps
+                \cdot (\min(p_1, p'_1))^2
+            \]
+            Тогда, так как $p_n > 0$ и $p'_n > 0$, верно следующее:
+            \begin{multline*}
+                \max\left(\frac{1}{p_n}, \frac{1}{p'_n}\right) -
+                \min\left(\frac{1}{q_n}, \frac{1}{q'_n}\right) =
+                \frac{1}{\min(p_n, p'_n)} - \frac{1}{\max(q_n, q'_n)} =\\
+                = \frac{\max(q_n, q'_n) - \min(p_n, p'_n)}{\min(p_n, p'_n)
+                \cdot \max(q_n, q'_n)} \le \frac{\max(q_n, q'_n) - \min(p_n, p'_n)}
+                {(\min(p_n, p'_n))^2} \le \\
+                \le \frac{\max(q_n, q'_n) - \min(p_n, p'_n)}
+                {(\min(p_1, p'_1))^2} < \veps
+            \end{multline*}
+        \item \textit{Дистрибутивность} выполняется как следствие
+            дистрибутивности на множестве рациональных чисел
+        \item Следующее свойство доказывается тривиально:
+            
+            $a \le b \lra b - a \ge 0 \lra (b + c) - (a + c) \ge 0
+            \lra a + c \le b + c$
+        
+        \item Предпоследнее утверждение можно доказать, рассмотрев
+            возможные случаи:
+            \[
+                a \le b \lra (a = b) \vee (a < b)
+            \]
+            Если верна первая скобка, то $(b - a)$ представима
+            в виде гнезда $\{[0; 0]_\Q\}_{n = 1}^\infty$, тогда
+            можно домножить оба нуля на любые положительные
+            рациональные числа ($c > 0$) и также получить ноль:
+            \[
+                b - a = 0 \lra (b - a) \cdot c = 0 \lra b \cdot c -
+                a \cdot c = 0 \Ra a + c \le b + c
+            \]
+
+        \item \textit{Свойство Архимеда} доказывается при помощи
+            рациональных чисел:
+            
+            Пусть $\{[p_n; q_n]_\Q\}_{n = 1}^\infty \in a$
+            и $\{[r_n; s_n]_\Q\}_{n = 1}^\infty \in b$
+
+            По вышедоказанной лемме 
+            $a \le q_1$ и $b \ge r_1$. Применим
+            теперь свойство Архимеда для рациональных чисел:
+            \[
+                (\exists n \in \N)\ n \cdot b \ge n \cdot r_1 > q_1 \ge a     
+            \]
+    \end{itemize}
+   
+\end{proof}
+
+
+\subsubsection*{Верхняя и нижняя грани}
+
+\begin{definition}
+    Множество $A \subset \R$ называется огрниченным
+    сверху (снизу), если $(\exists C (c) \in \R)
+    (\forall x \in A)\ x \le C \ (x \ge c)$. Число
+    $C (c)$ называется в этом случае верхней (нижней)
+    гранью А.
+\end{definition}
+
+\begin{theorem}
+    Свойство полноты. (V)
+
+    Если $A, B \subset \R$ - непустые множества,
+    такие что $A \cup B = \R$ и $(\forall a \in A)
+    (\forall b \in B)\ a < b$, то 
+    $(\exists c \in \R)(\forall a \in A)(\forall b \in B)
+    \ a \le c \le b$.
+\end{theorem}
+
+\begin{proof}
+    Построим $\{[p_n; q_n]_\Q\}_{n = 1}^\infty \in c$ - систему стягивающихся
+    отрезков. Будем брать с каждым шагом более точное десятичное
+    приближение к нашей искомой границе (при этом наибольший и
+    наименьший элементы всегда будут, так как мы берем множество
+    целых чисел):
+    \[
+        p_n - \text{ наибольшее } \left(\frac{1}{10^{n - 1}}\Z\right) \cap A,
+        \ q_n - \text{ наименьшее } \left(\frac{1}{10^{n - 1}}\Z\right) \cap B
+    \]
+    
+    Предположим, что $(\exists b \in B)\ c > b \Ra c + (-b) > 0 
+    \Ra (\exists n \in \N):$
+    \[
+        \frac{1}{10^{n - 1}} < c - b
+    \]
+    Так как $\{[p_n; q_n]_\Q\}_{n = 1}^\infty \in c \Ra$ по лемме
+    $c \in [p_n, q_n] \Ra$
+    \[
+        c - p_n \le q_n - p_n < c - b \Ra p_n > b
+    \]
+    А так как $p_n \in A,\ b \in B$, то мы получили противоречие:
+    $(\exists p_n \in A)(\exists b \in B)\ p_n \ge b$
+\end{proof}
+
+\subsubsection*{Другие определения действительных чисел}
+
+\begin{note}
+    Дедекиндово сечение - это такое разбиение
+    $\Q$ на непустые множества $A, B$,  что 
+    $(\forall a \in A)(\forall b \in B)\ a < b$.
+    В дедекиндовой теории действительное число
+    --- это сечение.
+\end{note}
+
+\begin{note}
+    Построенное в доказательстве гнедо даёт
+    представление действительного числа в виде
+    бесконечной десятичной дроби.
+\end{note}
+
+\begin{note}
+   Свойства I-V можно принять за аксиомы. Можно
+   доказать, что любые две системы, удовлетворяющие
+   I-V, изоморфны друг другу.
+\end{note}

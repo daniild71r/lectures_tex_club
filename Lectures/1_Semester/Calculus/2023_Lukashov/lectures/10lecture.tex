@@ -1,0 +1,418 @@
+\begin{definition}
+	Пусть $f(x)$ определена на $(a, b)\ |\ a, b \in \R; a < b$
+	
+	\textit{Левосторонним пределом} в точке $b$ называется $B \in \bar{\R} \cup \{\infty\}$ такое, что
+	\begin{enumerate}
+		\item ($\forall \eps > 0)(\exists \delta > 0)
+		\left(\forall x,\ b - \delta < x < b\right)
+		\ f(x) \in U_{\eps}(B)$
+		
+		\item $\left(\forall \{x_n\}_{n = 1}^\infty \subset
+		(a; b),\ \liml_{n \to \infty} x_n = b\right)
+	 	\ \liml_{n \to \infty} f(x_n) = B$
+	\end{enumerate}
+	Обозначается как
+	\[
+		f(b - 0) := \liml_{x \to b-0} f(x) = B
+	\]
+
+	\textit{Правосторонним пределом} в точке $a$ называется $A \in \bar{\R} \cup \{\infty\}$ такое, что
+	\begin{enumerate}
+		\item $(\forall \eps > 0)(\exists \delta > 0)
+		\left(\forall x,\ a < x < a + \delta\right)
+		\ f(x) \in U_{\eps}(A)$
+		
+		\item $\left(\forall \{x_n\}_{n = 1}^\infty \subset (a; b),\ \liml_{n \to \infty} x_n = a\right)\ \liml_{n \to \infty} f(x_n) = A$
+	\end{enumerate}
+	Обозначается как
+	\[
+	f(a + 0) := \liml_{x \to a+0} f(x) = A
+	\]	
+\end{definition}
+
+\begin{definition}
+	$(b - \delta; b)$ называется \textit{левосторонней} окрестностью точки $b$.
+	
+	$(a; a + \delta)$ называется \textit{правосторонней} окрестностью точки $a$.
+\end{definition}
+
+\begin{theorem} (Связь предела и односторонних пределов)
+
+	Пусть $f(x)$ определена в некоторой
+ 	$\mc{U}_{\delta}(a)$, $a \in \R$. Тогда
+	\[
+		\exists \liml_{x \to a} f(x) = A \in \overline{\R}
+		\cup \left\{\infty\right\} \lra \exists \liml_{x \to a-0}
+		f(x) = \liml_{x \to a+0} f(x) = A
+	\]
+	Для бесконечностей возможны варианты, например:
+
+	\[ 
+		\liml_{x \to a + 0} f(x) = +\infty, 
+		\liml_{x \to a - 0} f(x) = -\infty \Ra
+		\liml_{x \to a} f(x) = \infty
+	\]
+
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+	\item Пусть $\exists \liml_{x \to a} f(x) = A$, тогда
+	\begin{align*}
+		(\forall \eps > 0)(\exists \delta > 0)
+		\left(\forall x \in \mc{U}_{\delta} (a)\right)\ 
+		f(x) \in U_{\eps}(A) \Ra
+		\\
+		(\forall \eps > 0)(\exists \delta > 0)
+		\left(\forall x \in (a, a + \delta)\right)\ 
+		f(x) \in U_{\eps}(A)
+		\\
+		(\forall \eps > 0)(\exists \delta > 0)
+		\left(\forall x \in (a - \delta, a)\right)\ 
+		f(x) \in U_{\eps}(A)
+	\end{align*}
+	
+	
+	\item Пусть $\exists \liml_{x \to a-0} f(x) = \liml_{x \to a+0} f(x) = A$. Тогда
+	\begin{align*}
+		(\forall \eps > 0)(\exists \delta_1 > 0)
+		\left( \forall x,\ a - \delta_1 < x < a\right)\ 
+		f(x) \in U_{\eps}(A)
+		\\
+		(\forall \eps > 0)(\exists \delta_2 > 0)
+		\left(\forall x,\ a < x < a + \delta_2\right)\ 
+		f(x) \in U_{\eps}(A)
+	\end{align*}
+	Выберем $\delta := \min(\delta_1, \delta_2)$, получим
+	\begin{align*}
+		\delta_1 \ge \delta \Ra a - \delta_1 \le a - \delta
+		\\
+		\delta_2 \ge \delta \Ra a + \delta_2 \ge a + \delta
+	\end{align*}
+	Рассмотрим $\forall x \in \mc{U}_\delta(a)$:
+	\begin{align*}
+		a < x < a + \delta \Ra a < x < a + \delta_2
+		\\
+		a - \delta < x < a \Ra a - \delta_1 < x < a
+	\end{align*}
+	Любой из этих случаев ведёт к тому, что $f(x) \in U_{\eps}(A)$. А значит
+	\[
+		(\forall \eps > 0)(\exists \delta > 0)
+		\left(\forall x,\ x \in \mc{U}_{\delta}(a)\right)
+		\ f(x) \in U_{\eps}(A)
+	\]
+	Что равносильно левой стороне утверждения.
+\end{enumerate}
+
+\end{proof}
+
+\begin{definition}
+	Функция $f(x)$ называется
+	\begin{itemize}
+		\item \textit{неубывающей} на $X$, если 
+			$(\forall x_1, x_2 \in X, x_1 < x_2)
+			\Ra f(x_1) \le f(x_2)$
+		\item \textit{невозрастающей} на $X$, если 
+			$(\forall x_1, x_2 \in X, x_1 < x_2)
+			\Ra f(x_1) \ge f(x_2)$
+		\item \textit{убывающей} на $X$, если 
+			$(\forall x_1, x_2 \in X, x_1 < x_2)
+			\Ra f(x_1) > f(x_2)$
+		\item \textit{возрастающей} на $X$, если 
+			$(\forall x_1, x_2 \in X, x_1 < x_2)
+			\Ra f(x_1) < f(x_2)$
+	\end{itemize}
+	В любом из этих случаев $f$ монотонна на $X$, в 2х последних $f$ строго монотонна на $X$.
+\end{definition}
+
+\begin{definition}
+	$\sup f(x) := \sup \left\{f(x) : x \in X\right\}$ 
+\end{definition}
+
+\begin{theorem} (Существование односторонних пределов монотонной функции)
+	
+	\begin{itemize}
+		\item Если $f$ невозрастающая на $(a, b), -\infty \le a
+			< b < +\infty$, то $f(b - 0) = \inf f(x); \ x \in (a, b)$
+		\item Если $f$ неубывающая на $(a, b), -\infty \le a
+			< b < +\infty$, то $f(b - 0) = \sup f(x); \ x \in (a, b)$
+		\item Если $f$ невозрастающая на $(a, b), -\infty < a
+			< b \le +\infty$, то $f(a + 0) = \sup f(x); \ x \in (a, b)$
+		\item Если $f$ неубывающая на $(a, b), -\infty < a
+			< b \le +\infty$, то $f(a + 0) = \inf f(x); \ x \in (a, b)$
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	Пусть $f$ неубывающая. Положим $\sup\limits_{x \in (a; b)} f(x) := M$
+	\begin{enumerate}
+		\item $M = +\infty$. Тогда
+		\[
+			(\forall \eps > 0)(\exists x_0 \in (a; b))\ f(x_0)
+			 > \frac{\dse 1}{\dse \eps}
+		\]
+		Отсюда $(\exists \delta := b - x_0 > 0)
+		(\forall x, b - \delta < x < b) \Ra
+		\frac{\dse 1}{\dse \eps} < f(x_0) \le f(x)$,
+		то есть $f(x) \in U_{\eps}(+\infty)$. В итоге
+		\[
+			(\forall \eps > 0)(\exists \delta > 0)
+			(\forall x,\ b - \delta < x < b)\ f(x)
+			 \in U_{\eps}(M) \lra \liml_{x \to b-0} f(x) = +\infty = M
+		\]
+		
+		\item $M \in \R$. Тогда
+		\[
+			(\forall \eps > 0)(\exists x_0 \in (a; b))
+			\ f(x_0) \in (M - \eps; M]
+		\]
+		Отсюда уже аналогично получим, что
+		\[
+			(\forall \eps > 0)(\exists \delta > 0)
+			(\forall x,\ b - \delta < x < b)\ f(x)
+			 \in U_{\eps}(M) \lra \liml_{x \to b-0} f(x) = M
+		\]
+		Если $a = -\infty$, то $\liml_{x \to -\infty}
+		f(x)$ вместо $\liml_{x \to a+0} f(x)$
+		
+		Если $b = +\infty$, то $\liml_{x \to +\infty}
+		f(x)$ вместо $\liml_{x \to b-0} f(x)$
+		
+	\end{enumerate}
+\end{proof}
+
+\subsection{Непрерывность}
+
+\subsubsection*{Непрерывность в точке}
+
+\begin{definition}
+	Пусть $f$ определена в некоторой окрестности
+	точки $x_0 \in \R$. Тогда функция $f$ называется
+	\textit{непрерывной} в точке $x_0$, если
+	$\liml_{x \to x_0} f(x) = f(x_0)$.
+\end{definition}
+
+\begin{definition}
+	Пусть $f$ определена на полуинтервале $(a, x_0],\ a < x_0$.
+	Тогда $f$ \textit{непрерывна слева} в т. $x_0$, если
+	$\liml_{x \to x_0 - 0} f(x) = f(x_0) \ \ (f(x_0 - 0) = f(x_0))$
+\end{definition}
+
+\begin{definition}
+	Пусть $f$ определена на полуинтервале $[x_0, b),\ b > x_0$.
+	Тогда $f$ \textit{непрерывна справа} в т. $x_0$, если
+	$\liml_{x \to x_0 + 0} f(x) = f(x_0) \ \ (f(x_0 + 0) = f(x_0))$
+\end{definition}
+
+\begin{theorem}
+	Пусть $f$ определена в некоторой окрестности
+	точки $x_0 \in \R$. Тогда, следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item $f$ непрерывна в точке $x_0$
+		\item $(\forall \eps > 0)(\exists \delta > 0)\left(\forall x,\ |x - x_0| < \delta\right)
+	    	\ |f(x) - f(x_0)| < \eps$
+		\item $\left(\forall \{x_n\}_{n = 1}^\infty \subset D(f),\ \liml_{n \to \infty} x_n = x_0\right) \liml_{n \to \infty} f(x_n) = f(x_0)$
+	\end{enumerate}
+\end{theorem}
+
+\subsubsection*{Точки разрыва}
+
+\begin{definition}
+	Пусть $f$ определена в проколотой окрестности точки $x_0$.
+	Если $\liml_{x \to x_0} f(x) \neq f(x_0)$,
+	то $x_0$ называется \textit{точкой разрыва} функции $f(x)$.
+\end{definition}
+
+\begin{note}
+	Неравенство полагается верным также и в тех случаях, когда хоть одна из частей не определена.
+\end{note}
+
+\begin{definition}
+	Если $\exists \liml_{x \to x_0-0} f(x),\ \liml_{x \to x_0+0} f(x) \in \R$, то точка разрыва называется \textit{точкой разрыва первого рода}.
+	
+	В противном случае \textit{точкой разрыва второго рода}.
+\end{definition}
+
+\begin{definition}
+	Если $\liml_{x \to x_0-0} f(x) = \liml_{x \to x_0+0} f(x) \in \R$ и $\neq f(x_0)$, то $x_0$ называется \textit{точкой устранимого разрыва}.
+\end{definition}
+
+\begin{definition}
+	Если хотя бы 1 из односторонних пределов бесконечен, то $x_0$ называется \textit{точкой бесконечного разрыва}.
+\end{definition}
+
+\begin{definition}
+	Величину $\liml_{x \to x_0+0} f(x) - \liml_{x \to x_0-0} f(x)$ называется \textit{скачком функции} в точке $x_0$.
+\end{definition}
+
+\begin{example}
+	$f(x) = \sgn x = \System{&{1,\ x > 0} \\ &{0,\ x = 0} \\ &{-1,\ x < 0}}
+	\Ra x_0 = 0$ --- неустранимая точка разрыва (I рода)
+	\begin{align*}
+		&\liml_{x \to 0 + 0} f(x) = 1
+		\\
+		&\liml_{x \to 0 - 0} f(x) = -1
+	\end{align*}
+\end{example}
+
+\begin{example}
+	$f(x) = \sgn^2 x \Ra $  $x_0 = 0$ --- точка устранимого разрыва
+	$$
+		\liml_{x \to 0} \sgn^2 x = 1 \neq \sgn^2 0 = 0
+	$$
+\end{example}
+
+\begin{example}
+	$f(x) = \frac{1}{x} \Ra x_0 = 0$ --- точка разрыва второго рода 
+	\begin{align*}
+		\liml_{x \to -0} \frac{\dse 1}{\dse x} = -\infty
+		\\
+		\liml_{x \to +0} \frac{\dse 1}{\dse x} = +\infty
+	\end{align*}
+\end{example}
+
+\begin{example}
+	$f(x) = \sin \frac{\dse 1}{\dse x}$
+	
+	Рассмотрим
+	$$
+		\System{
+		&{x'_n = \frac{1}{\frac{\pi}{2} + 2\pi n},\ n \in \N}
+		\\
+		&{x''_n = \frac{1}{-\frac{\pi}{2} + 2\pi n}}
+		}
+		\Ra
+		\System{
+		&{\liml_{n \to \infty} f(x'_n) = 1}
+		\\
+		&{\liml_{n \to \infty} f(x''_n) = -1}
+		}
+	$$
+\end{example}
+
+\subsubsection*{Следствия свойств предела функции}
+
+\begin{enumerate}
+	\item (Ограниченность непрерывной функции) Если $f$ непрерывна в $x_0$, то она ограничена в некоторой окрестности точки $x_0$.
+	
+	\item (Отделимость от нуля и сохранение знака непрерывной функции)
+	Если $f$ непрерывна в $x_0$ и $f(x_0) \neq 0$, то 
+	$(\exists c > 0)(\exists \delta > 0)(\forall x \in U_\delta (x_0))\ |f(x)| > c,
+	\ \sgn f(x) = \sgn f(x_0)$
+
+	\item (Арифметические операции с непрерывными функциями) Если $f$ и $g$ непрерывны в $x_0$, то $f \pm g$, $f \cdot g$ и (если $g(x_0) \neq 0$) $\frac{f}{g}$ непрерывны в $x_0$.
+\end{enumerate}
+
+\begin{definition}
+	Композицией функций $f$ и $g$ называется 
+	$$
+		(g \circ f)(x) := g(f(x))
+	$$
+\end{definition}
+
+\begin{theorem} (Переход к пределу под знаком непрерывной функции) \\
+	Если $\liml_{x \to a(\pm 0)} f(x) = b$ и $g(y)$ непрерывна в точке
+	$b \in \R$, то $\liml_{x \to a(\pm 0)} (g \circ f)(x) = g(b)$
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим $\left(\forall \{x_n\}_{n = 1}^\infty \subset D(f),
+	\ x_n \underset{\left(\underset{<}{>}\right)}{\neq} a,\ \liml_{n \to \infty} x_n = a\right)\ \liml_{n \to \infty} f(x_n) = b$
+	
+	Положим $y_n := f(x_n)$
+	$$
+		\left(\{y_n\}_{n = 1}^\infty \subset D(g),
+		\ \liml_{n \to \infty} y_n = b\right) \Ra
+		\liml_{n \to \infty} g(y_n) = g(b) 
+	$$
+\end{proof}
+
+\begin{note} (Предел сложной функции)
+	Для того, чтобы из $\liml_{x \to a} f(x) = b$ и
+	$\liml_{y \to b} g(y) = l$ следовало $\liml_{x \to a}
+	(g \circ f)(x) = l$, достаточно потребовать, чтобы
+	$f(x) \neq b$ в ни в одной точке некоторой проколотой
+	окрестности точки $a$.
+\end{note}
+
+\begin{addition} (Следствие теоремы выше. Непрерывность сложной функции)
+	Если $f$ непрерывна в $a$, $g$ непрерывна в $f(a)$, то $g \circ f$ непрерывна в $a$.
+\end{addition}
+
+\begin{theorem} (О точках разрыва монотонной функции)
+	Если $f(x)$ монотонна на $(a; b),\ -\infty 
+	\le a < b \le +\infty$, то она может иметь на $(a; b)$ не более
+	чем счетное множество точек разрыва, причем все эти точки - 1го
+	рода, но не устранимые разрывы.
+\end{theorem}
+
+\begin{proof}
+	$(\forall x_0 \in (a; b))\ \exists \ f(x_0 - 0),\ f(x_0 + 0) \in \R$
+	
+	Пусть $f$ невозрастающая, тогда
+
+	$f(x_0 - 0) = \inf f(x),\ x \in (a, x_0);\ f(x_0 + 0) = \sup f(x),\ x\in (x_0, b)$
+
+	$x \in (a, x_0) \Ra f(x) \ge f(x_0);\ x \in (x_0, b) \Ra f(x) \le f(x_0)$
+
+	$f(x_0 - 0) \ge f(x_0) \ge f(x_0 + 0)$ --- Чтобы точка разрыва существовала,
+	должно быть хотя бы одно строгое неравенство, значит, разрыв 1го рода,
+	причем не устранимый $(f(x_0 - 0) \neq f(x_0 + 0))$
+
+	Счётность: Пусть $x_1 < x_2$ --- точки разрыва, тогда
+	
+	$f(x_1 - 0)
+	\ge f(x_1) \ge f(x_1 + 0) \ge f(x_2 - 0) \ge f(x_2) \ge
+	f(x_2 + 0)$
+
+	Интервал $(f(x_1 + 0), f(x_1 - 0))$ не пересекается с
+	$(f(x_2 + 0), f(x_2 - 0))$. Поставим в соответствие интервалам
+	рациональные числа внутри них, следовательно, таких интервалов
+	не более чем счетное количество, а значит, и множество точек разрыва
+	не более чем счётно.
+
+\end{proof}
+
+\begin{example} (Функция Римана)
+	\[
+		f(x) = \System{&{\frac{1}{n}, \text{ если } x = \frac{m}{n}} \\ &{0, \text{ если } x \in \R \bs \Q}}
+	\]
+	
+	Докажем, что $f$ непрерывна в $x_0 \in \R \bs \Q$: зафиксируем произвольный $\eps > 0$ и рассмотрим множество
+	\[
+		M = \{x \such f(x) \ge \eps\}
+	\]
+	Так как $\eps > 0$ и $f(x) = 0\ \forall x \in \R \bs \Q$, то любой элемент $M$ - рациональное число, имеющее вид в несократимой дроби $\frac{m}{n}, m \in \Z, n \in \N$.
+	\[
+		f(x) = \frac{1}{n} \ge \eps \Ra n \le \frac{1}{\eps}
+	\]
+	То есть число таких $n$ конечно. Это значит, что число рациональных точек, попавших в $U_\delta(x_0) \cap M$, конечно (в самом деле, бесконечность может достигаться только за счёт $m$, а это мы ограничили пересечением). Ну а раз так, то найдётся $\delta > 0$ такое, что $U_\delta(x_0) \cap M = \emptyset$. Иными словами,
+	\[
+		(\forall \eps > 0)(\exists \delta > 0)(\forall x \in U_\delta(x_0))\ f(x) < \eps
+	\]
+	это означает непрерывность функции Римана в любой иррациональной точке.
+	
+	Теперь докажем, что $f(x)$ разрывна во всех рациональных точках. Пусть $x_0 \in \Q$ и мы снова зафиксировали $\eps > 0$. Какую $\delta$-окрестность точки $x_0$ ни взять, там найдётся иррациональное число, для которого $f(x) = 0 \Ra$ получим разрывность.
+	
+	Таким образом, функция Римана непрерывна $\forall x \in \R \bs \Q$ и разрывна $\forall x \in \Q$.
+\end{example}
+
+\subsubsection*{Непрерывность на множестве}
+
+\begin{definition}
+	Функция называется \textit{непрерывной на множестве} $X$, если 
+	\[
+		(\forall x_0 \in X)\left(\forall \{x_n\}
+		\subset X, \liml_{n \to \infty} x_n = x_0 \Ra
+		\liml_{n \to \infty} f(x_n) = f(x_0)\right)
+	\]
+	или по Коши
+	\[
+		(\forall x_0 \in X)(\forall \eps > 0)(\exists \delta > 0)
+		(\forall x \in X,\ |x - x_0| < \delta)\ \left|f(x) - f(x_0)\right| < \eps
+	\]
+\end{definition}
+
+\begin{note}
+	Не стоит думать, что непрерывность на множестве - это непрерывность в каждой точке этого множества. Это не так. Как минимум потому, что мы не требуем определённость функции в некоторой окрестности точки из $X$.
+\end{note}

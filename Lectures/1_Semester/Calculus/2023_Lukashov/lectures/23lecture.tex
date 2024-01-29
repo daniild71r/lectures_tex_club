@@ -1,0 +1,313 @@
+\subsubsection*{Примеры метрических пространств}
+
+\begin{example}~
+\begin{itemize}
+	\item $R^n$ с \textbf{манхэттенской метрикой}:
+	\[
+		\rho(\vec{a}, \vec{b}) = \suml_{j = 1}^n |a_i - b_i|
+	\]
+	
+	\item Связный взвешенный граф с положительными весами
+\end{itemize}
+\end{example}
+
+\begin{definition} Пусть $(X, \rho)$ ---
+	метрическое пространство. Множество $K \subset X$ называется
+	\textit{компактным множеством}, если из любого его
+	покрытия открытыми множествами можно
+	выделить конечное подпокрытие:
+	\[	
+		\left(\forall \{G_\alpha\}_{\alpha \in A},\ \ G_\alpha
+		\text{ - открыто},\ \bigcup_{\alpha \in A} G_\alpha
+		\supset K \right)(\exists \{\alpha_1, \ldots, \alpha_N\}
+		\subset A)\ \ \bigcup_{i = 1}^N G_{\alpha_i} \supset K
+	\]
+\end{definition}
+
+\begin{example} (счётное покрытие)
+	\[
+		\bigcup_{n = 1}^\infty \left(\frac{1}{n}; 1\right)
+		\supset (0; 1)
+	\]
+	В данном случае $(0; 1)$ не является компактным множеством, так
+	как не получится выделить конечное подпокрытие (всегда останется
+	непокрытая часть)
+\end{example}
+
+\begin{theorem}
+	Любое компактное множество в метрическом пространстве замкнуто
+\end{theorem}
+
+\begin{proof}
+	$K$ - замкнутое $\lra$ $X \bs K$ - открытое. Рассмотрим $\forall x \in X \bs K, y \in K$. Тогда сразу
+	\[
+		\rho(y, x) > 0
+	\]
+	Положим $r_y := \frac{1}{2}\rho(y, x)$. Понятно, что $U_{r_y}(y) \cap U_{r_y}(x) = \emptyset$. Также несложно заметить открытое покрытие:
+	\[
+		\bigcup_{y \in K} U_{r_y} (y) \supset K
+	\]
+	При этом $K$ - компактное. Следовательно
+	\[
+		\exists \{y_1, \ldots, y_N\} \subset K \such \bigcup_{i = 1}^N U_{r_{y_i}}(y_i) \supset K
+	\]
+	Рассмотрим пересечение следующего вида:
+	\[
+		\bigcap_{i = 1}^N U_{r_{y_i}}(x) = U_{\min(r_{y_1}, \ldots, r_{y_N})}(x)
+	\]
+	Дополнительно $\forall i \in \range{N}$ выполнено
+	\begin{align*}
+		&{U_{\min(r_{y_1}, \ldots, r_{y_N})}(x) \subset U_{r_{y_i}}(x)}
+		\\
+		&{U_{r_{y_i}}(x) \cap U_{r_{y_i}}(y) = \emptyset}
+	\end{align*}
+	Тогда
+	\[
+		U_{\min(r_{y_1}, \ldots, r_{y_N})}(x) \cap \bigcup_{i = 1}^N U_{r_{y_i}}(y_i) = \emptyset
+	\]
+	Но при этом $K \subset \bigcup\limits_{i = 1}^N U_{r_{y_i}}(y_i)$. Значит
+	\[
+		U_{\min(r_{y_1}, \ldots, r_{y_N})}(x) \cap K = \emptyset
+	\]
+	Отсюда заключаем, что
+	\[
+		U_{\min(r_{y_1}, \ldots, r_{y_N})}(x) \subset X \bs K
+	\]
+	Итак, для $\forall x \in X \bs K$ мы нашли окрестность, которая находится в том же множестве $\Ra$ любая точка $X \bs K$ - внутренняя $\Ra$ $X \bs K$ - открытое множество $\lra$ $K$ - замкнутое множество.
+\end{proof}
+
+\begin{theorem}
+	Каждое замкнутое подмножество компактного множества компактно.
+\end{theorem}
+
+\begin{proof}
+	Пусть $K$ - компактное множество, а $F \subset K$ - замкнутое. Тогда, рассмотрим произвольное покрытие $F$ открытыми множествами:
+	\[
+		\bigcup\limits_{\alpha \in A} G_\alpha \supset F\ \ \ (G_\alpha \text{ - открытое})
+	\]
+	Так как $F$ - замкнутое, то $X \bs F$ - открытое. А значит
+	\[
+		\left(\bigcup\limits_{\alpha \in A} G_\alpha\right) \cup (X \bs F) \supset X \supset K
+	\]
+	получили открытое покрытие компактного множества $K$. По компактности получаем
+	\[
+		\exists \{\alpha_1, \ldots, \alpha_N\} \subset A \such \left(\bigcup\limits_{i = 1}^N G_{\alpha_i}\right) \cup (X \bs F) \supset K \supset F
+	\]
+	Отсюда
+	\[
+		F \subset \bigcup\limits_{i = 1}^N G_{\alpha_i}
+	\]
+\end{proof}
+
+\begin{definition}
+	$n$-мерным кубом назовём декартово произведение отрезков, каждый из которых имеет длину $d$:
+	\[
+		I = \prodl_{j = 1}^n [a^{(j)}; b^{(j)}] \such \forall j \in \range{n}\ \ b^{(j)} - a^{(j)} = d
+	\]
+\end{definition}
+
+\begin{theorem}
+	$n$-мерный куб компактен.
+\end{theorem}
+
+\begin{proof}
+	От противного. Предположим, что существует покрытие такое, что из него нельзя выделить конечное подпокрытие куба:
+	\[
+		\exists \bigcup\limits_{\alpha \in A} G_\alpha \supset I
+	\]
+	Мысленно поделим каждую сторону куба на 2 части. Получится $2^n$ меньших кубов. Хотя бы 1 из этих кубов нельзя покрыть конечным подпокрытием (в противном случае теорема оказалась бы верна). Обозначим такой подкуб за $I_1$. Рекурсивно продолжим выбирать кубики и получим цепочку включений:
+	\[
+		I \supset I_1 \supset I_2 \supset I_3 \supset \ldots
+	\]
+	При этом куб $I_i$ будет обладать стороной
+	\[
+		d_i = \frac{d}{2^i}
+	\]
+	А также
+	\[
+		I_i = \prodl_{j = 1}^n [a_i^{(j)}; b_i^{(j)}]
+	\]
+	Отсюда имеем другую цепочку включений:
+	\[
+		[a^{(j)}; b^{(j)}] \supset [a_1^{(j)}; b_1^{(j)}] \supset [a_2^{(j)}; b_2^{(j)}] \supset \ldots
+	\]
+	По принципу Кантора это нам даёт, что
+	\[
+		\exists x_0^{(j)} \in \bigcap\limits_{i = 1}^\infty [a_i^{(j)}; b_i^{(j)}]
+	\]
+	Значит, $\vec{x}_0$ вообще попало в пересечение всех кубов:
+	\[
+		\vec{x}_0 = (x_0^{(1)}, \ldots, x_0^{(n)}) \in \bigcap\limits_{i = 1}^\infty I_i \subset I
+	\]
+	Коль скоро изначальный куб $I$ был покрыт открытыми множествами, то
+	\begin{align*}
+		&{\exists \alpha_0 \in A \such G_{\alpha_0} \ni \vec{x}_0}
+		\\
+		&{\exists r > 0 \such U_r(\vec{x}_0) \subset G_{\alpha_0}}
+	\end{align*}
+	Самые дальние точки куба $I_i$ удалены на расстояние $d_i \cdot \sqrt{n}$. Найдём такое $i \in \N$, что
+	\[
+		d_i \cdot \sqrt{n} = \frac{d}{2^i} \cdot \sqrt{n} < r \Ra I_i \subset G_{\alpha_0}
+	\]
+	Оно точно найдётся, так как $2^i$ возрастает. Но в итоге это приводит к противоречию, так как мы покрыли куб конечным подпокрытием.
+\end{proof}
+
+\begin{corollary}
+	При $n = 1$ получается утверждение, что из любого покрытия отрезка $[a; b]$ открытыми множествами можно выделить конечное подпокрытие. Это утверждение также известно как \textit{теорема Гейне-Бореля}
+\end{corollary}
+
+\begin{theorem} (Критерий компактности в $\R^n$)
+	В пространстве $\R^n$ следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item $K$ - ограниченное замкнутое множество
+		
+		\item $K$ - компактное множество
+		
+		\item \(\forall \{\vec{x}_n\}_{n = 1}^\infty \subset K\ \ \exists \left(\{\vec{x}_{m_k}\}_{k = 1}^\infty,\ \liml_{k \to \infty} \vec{x}_{m_k} = \vec{x}_0 \in K \right)\)
+	\end{enumerate}
+\end{theorem}
+
+\begin{note}
+	Утверждения 2 и 3 эквивалентны в любом метрическом пространстве, а вот эквивалентность с 1м - специфично для $\R^n$
+\end{note}
+
+\begin{proof}~
+\begin{itemize}
+	\item (1 $\Ra$ 2) $K$ ограничено. Следовательно
+	\[
+		\exists I \text{ - куб} \such K \subset I
+	\]
+	$I$ - компактное множество. Отсюда сразу следует, что и $K$ как замкнутое подмножество тоже компактно.
+	
+	\item (2 $\Ra$ 3) От противного. Предположим, что
+	\[
+		\exists \{\vec{x}_m\}_{m = 1}^\infty \subset K \such \forall \{\vec{x}_{m_k}\}_{k = 1}^\infty,\ \liml_{k \to \infty} \vec{x}_{m_k} = \vec{x}_0 \notin K
+	\]
+	Отсюда следует утверждение
+	\[
+		\forall \vec{x} \in K\ \exists U_{r_{\vec{x}}}(\vec{x}) \such  U_{r_{\vec{x}}}(\vec{x}) \cap \{\vec{x}_m\}_{m = 1}^\infty \subset \{\vec{x}\}
+	\]
+	То есть \(\bigcup\limits_{\vec{x} \in K} U_{r_{\vec{x}}}(\vec{x}) \supset K\) - открытое покрытие. В силу компактности $K$
+	\[
+		\exists \{\vec{x}^{(1)}, \ldots, \vec{x}^{(N)}\} \such \bigcup\limits_{i = 1}^N U_{r_{\vec{x}^{(i)}}}(\vec{x}^{(i)}) \supset K \supset \{\vec{x}_m\}_{m = 1}^\infty
+	\]
+	Но это означает, что в нашей последовательности не более $N$ точек, а это невозможно.
+	
+	\item (3 $\Ra$ 1) От противного. Предположим, что $K$ неограничено:
+	\[
+		\forall m \in \N\ \exists \vec{x}_m \in K \such |\vec{x}_m| > m
+	\]
+	По третьему утверждению теоремы:
+	\[
+		\exists \{\vec{x}_{m_k}\}_{k = 1}^\infty \such \liml_{k \to \infty} \vec{x}_{m_k} = \vec{\lambda}_0
+	\]
+	Но в таком случае $\{\vec{x}_{m_k}\}_{k = 1}^\infty$ ограничена, что противоречит построению последовательности. Теперь докажем замкнутость $K$ (снова от противного). Предположим, что $K$ не замкнуто. Тогда
+	\[
+		\exists \{\vec{x}_m\} \subset K \such \liml_{m \to \infty} \vec{x}_m = \vec{x}_0 \notin K
+	\]
+	Но по условию у любой последовательности есть подпоследовательность, которая сходится к точке в множестве $K$. Противоречие.
+\end{itemize}
+\end{proof}
+
+\begin{note}
+	Эквивалентность 1 и 2 утверждения называется теоремой Гейне-Бореля в $\R^n$
+\end{note}
+
+\begin{note}
+	Дальнейшие определения даны для функций $f: X \to Y$, где $X, Y$ - метрические пространства.
+\end{note}
+
+\begin{definition}
+	$x_0$ называется \textit{изолированной точкой} множества $E \subset \trbr{X, \rho}$, если $x_0 \in E$ и $\exists U_r(x_0) \such U_r(x_0) \cap E = \{x_0\}$
+\end{definition}
+
+\begin{definition}
+	Точка прикосновения множества $E$, не являющаяся изолированной, называется \textit{предельной точкой} множества $E$.
+\end{definition}
+
+\begin{definition} (Предел функции по Коши)
+	Пусть $x_0$ - предельная точка множества $D \subset X$ и $f: D \to Y$.
+	
+	$l \in Y$ называется \textit{пределом функции (отображения)} $f$ в $x_0$, если
+	\[
+		\forall \eps > 0\ \exists \delta > 0 \such \forall x \in D, 0 < \rho_X(x, x_0) < \delta\ \ \rho_Y(f(x), l) < \eps
+	\]
+\end{definition}
+
+\begin{definition} (Предел функции по Гейне)
+	Пусть $x_0$ - предельная точка множества $D \subset X$ и $f: X \to Y$.
+	
+	$l \in Y$ называется \textit{пределом функции (отображения)} $f$ в $x_0$, если
+	\[
+		\left(\forall \{x_n\}_{n = 1}^\infty \subset D \bs \{x_0\},\ \liml_{n \to \infty} x_n = x_0\right)\ \liml_{n \to \infty} f(x_n) = l
+	\]
+\end{definition}
+
+\begin{theorem} (Эквивалентность определений предела функции)
+	Определения предела по Коши и по Гейне эквивалентны.
+\end{theorem}
+
+\begin{proof}~
+\begin{itemize}
+	\item (К $\Ra$ Г) Рассмотрим произвольную последовательность $\{x_n\} \subset D \bs \{x_0\}$, у которой $\exists \liml_{n \to \infty} x_n = x_0$. По определению это означает, что
+	\[
+		\forall \delta > 0\ \exists N \in \N \such \forall n > N\ 0 < \rho_X(x_n, x_0) < \delta
+	\]
+	Отсюда следует, что $\rho_Y(f(x_n), l) < \eps$ для фиксированных $\eps, \delta > 0$ из предела по Коши. То есть
+	\[
+		\liml_{n \to \infty} f(x_n) = l
+	\]
+	
+	\item (Г $\Ra$ К) От противного. Предположим, что условие Коши не выполнено:
+	\[
+		\exists \eps_0 > 0 \such \forall \delta > 0\ \exists x \in D,\ 0 < \rho_X(x, x_0) < \delta\ \ \rho_Y(f(x), l) \ge \eps_0
+	\]
+	Построим последовательность, рассмотрев $\delta := 1, \frac{1}{2}, \ldots, \frac{1}{n}, \ldots$:
+	\begin{align*}
+		&{\forall n \in \N\ \ \rho_X(x_n, x_0) < \frac{1}{n}}
+		\\
+		&{\forall n \in \N\ \ \rho_Y(f(x_n), l) \ge \eps_0}
+	\end{align*}
+	По первому утверждению получается, что последовательность сходится к $x_0$ и при этом $x_n \neq x_0$. Но в таком случае по Гейне последовательность $f(x_n)$ тоже должна сходится, чего не происходит. Противоречие.
+\end{itemize}
+\end{proof}
+
+\subsection{Вектор-функции в $\R^n$}
+
+\begin{definition}
+	Вектор-функцией будем называть $\vec{a}(t): \R \to \R^n$, которую можно также записать как
+	\[
+		\vec{a}(t) = (a_1(t), \ldots, a_n(t))
+	\]
+\end{definition}
+
+\begin{lemma} \label{vfeq}
+	Следующие утверждения эквивалентны:
+	\begin{enumerate}
+		\item \(\liml_{t \to t_0} \vec{a}(t) = \vec{a}_0 = (a_{0, 1}, \ldots, a_{0, n})\)
+		
+		\item \(\liml_{t \to t_0} |\vec{a}(t) - \vec{a}_0| = 0\)
+		
+		\item \(\forall i \in \range{n}\ \liml_{t \to t_0} a_i(t) = a_{0, i}\)
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}~
+\begin{enumerate}
+	\item (1 $\lra$ 2) Запишем определение Коши для первого утверждения:
+	\[
+		\forall \eps > 0\ \exists \delta > 0 \such \forall t, 0 < |t - t_0| < \delta\ |\vec{a}(t) - \vec{a}_0| < \eps
+	\]
+	Эта запись в точности совпадает с определением предела из второго утверждения
+	
+	\item (1 $\lra$ 3) Запишем определение Гейне для первого утверждения:
+	\[
+		\left(\forall \{t_k\}_{k = 1}^\infty \such t_k \neq t_0, \liml_{k \to \infty} t_k = t_0\right)\ \liml_{k \to \infty} \vec{a}(t_k) = \vec{a}_0
+	\]
+	Пользуясь критерием сходимости в $\R^n$, заменим запись выше эквивалентной:
+	\[
+		\forall i \in \range{n}\ \left(\forall \{t_k\}_{k = 1}^\infty \such t_k \neq t_0, \liml_{k \to \infty} t_k = t_0\right)\ \liml_{k \to \infty} a_i(t_k) = a_{0, i}
+	\]
+	Которая и является утверждением 3.
+\end{enumerate}
+\end{proof}
