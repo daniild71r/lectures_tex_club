@@ -1,0 +1,363 @@
+\begin{theorem} (Дарбу)
+	Пусть $f$ дифференцируема на $(a; b)$ и
+	$\exists f'_+(a), f'_-(b) \in \R$. Тогда для любого
+	$c$ в интервале между $f'_+(a)$ и $f'_-(b)$ существует
+	$\xi \in (a; b)$ такое, что $f'(\xi) = c$
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item $c = 0 \Ra f'_+(a) \cdot f'_-(b) < 0$
+		
+		Так как $f$ дифференцируема на $(a; b)$ и
+		односторонние производные конечны, то $f$
+		непрерывна на $[a; b]$. А значит по теореме Вейерштрасса
+		\[
+			\exists \xi \in [a; b] :\ f(\xi) =
+			\max\limits_{x \in [a; b]} f(x)
+		\]
+		Докажем, что $\xi \neq a$. По определению
+		односторонней производной
+		\[
+			f'_+(a) = \liml_{\Delta x \to +0}
+			\frac{f(a + \Delta x) - f(a)}{\Delta x}
+		\]
+		Если предположить, что $f'_+(a) > 0$, то из равенства выше следует
+		\[
+			(\exists \delta > 0)(\forall x :\ 0 < x < \delta)\ 
+			f(a + \Delta x) - f(a) > 0 \Ra f(a + \Delta x) > f(a)
+		\]
+		Поэтому точка $f(a)$
+		не есть максимум на отрезке. Аналогично получим, что
+		$\xi \neq b$, и в данном предположении $f'_-(b) < 0$.
+		Таким же образом рассматривается случай, когда
+		$f'_+(a) < 0 \Ra f'_-(b) > 0$ (в таком случае нужно
+		взять не $\max$, а $\min$). Отсюда
+		\[
+			\exists \xi \in (a; b) :\ f(\xi) = \max\limits_{x \in [a; b]} f(x)
+		\]
+		и по теореме Ферма получаем, что
+		\[
+			f'(\xi) = 0 = c
+		\]
+		
+		\item $c \neq 0$
+		
+		Сведём случай к доказанному. Достаточно
+		рассмотреть вспомогательную функцию
+		\[
+			F(x) := f(x) - cx
+		\]
+		Так как функция $x$ определена и дифференцируема
+		на всей числовой прямой, то
+		\[
+			F'(x) = f'(x) - c
+		\]
+		для интервала $(a; b)$. При этом
+		\[
+		f'_+(a) > c > f'_-(b) \Ra
+		F'_+(a) > 0,\ F'_-(b) < 0
+		\]
+		По уже доказанному, 
+		\[
+			\exists \xi \in (a; b) :\ F'(\xi) = f'(\xi) - c =
+			0 \Ra f'(\xi) = c
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Если $f$ дифференцируема на $(a; b)$, то $f'$ не
+	может иметь точек разрыва первого рода на $(a; b)$.
+\end{corollary}
+
+\begin{idea}
+	Пусть такие разрывы есть.
+	В случае разрыва-скачка посмотрим на односторонние пределы
+	производной, возьмем у них малые $\eps$ окрестности, так,
+	чтобы они не пересекались, тогда в некоторых $\delta$ окрестностях
+	все точки лежат в заданных $\eps$. Тогда это противоречит теореме Дарбу,
+	а именно не все значения между пределами принимаются на интервале из полученных
+ 	$\delta$ окрестностей (так как $\eps$ окрестности не пересекаются).
+	Случай с устранимым разрывом разбирается аналогично.
+\end{idea}
+
+\begin{proof}
+	Пусть для определенности $f'(c - 0) < f'(c + 0)$. Тогда
+	$\eps_0 := \frac{f'(c + 0) - f'(c - 0)}{4}$. Из определения
+	предела:
+	\begin{align*}
+		&(\exists \delta_1 > 0)(\forall x \in (c - \delta_1, c))
+		\ \ f'(x) < f'(c - 0) + \frac{f'(c + 0) - f'(c - 0)}{4}\\
+		&(\exists \delta_2 > 0)(\forall x \in (c, c + \delta_2))
+		\ \ f'(x) > f'(c + 0) - \frac{f'(c + 0) - f'(c - 0)}{4}
+	\end{align*}
+	То есть:
+	\begin{align*}
+		&(\exists \delta_1 > 0)(\forall x \in (c - \delta_1, c))
+		\ \ f'(x) < \frac{f'(c + 0) + 3f'(c - 0)}{4}\\
+		&(\exists \delta_2 > 0)(\forall x \in (c, c + \delta_2))
+		\ \ f'(x) > \frac{3f'(c + 0) + f'(c - 0)}{4}
+	\end{align*}
+	Пусть $x_1 < x_2 \in (a; b) \such 
+	x_1 \in (c - \delta_1, c),\ x_2 \in (c, c + \delta_2)$. Тогда
+	из $\eps$ окрестностей понятно, что $f'(x_1) < f'(x_2)$.
+	При этом выполняются все условия теоремы Дарбу на $(x_1, x_2)$
+	(т.к. $f$ дифференцируема на $(a; b)$ по условию), значит,
+	\[
+		(\forall \gamma \in (f'(x_1); f'(x_2)))(\exists \xi \in (x_1; x_2))
+		(f'(\xi) = \gamma)
+	\]
+	При этом
+	\[
+		(\forall x \in (x_1, x_2))\left(f'(x) \in 
+		\left(-\infty, \frac{f'(c + 0) + 3f'(c - 0)}{4}\right) \cup 
+		\left(\frac{3f'(c + 0) + f'(c - 0)}{4}, +\infty\right)\right)	
+	\]
+	Если взять $\gamma = \frac{f'(c + 0) + f'(c - 0)}{2}$, то нет такого
+	$x$, чтобы $f'(x) = \gamma$. Противоречие с теоремой Дарбу.
+	Для случая с устранимым разрывом идея доказательства сохраняется.
+\end{proof}
+
+\begin{theorem} (Правило Лопиталя для случая $\frac{0}{0}$)
+
+	Пусть $f$, $g$ дифференцируемы на $(a; b)$, при этом
+	$\exists \liml_{x \to a+0} f(x) = \liml_{x \to a+0} g(x)
+	= 0$ и $\exists \liml_{x \to a+0} \frac{f'(x)}{g'(x)} = C
+	\in \bar{\R}$. Тогда
+	\[
+		\exists \liml_{x \to a+0} \frac{f(x)}{g(x)} = C
+	\]
+\end{theorem}
+
+\begin{note}
+	Аналогичное утверждение верно для предела $x \to b-0$,
+	а также для любого предела $x \to x_0,\ x_0 \in (a; b)$.
+\end{note}
+
+\begin{proof}
+	Доопределим $f(a) = g(a) = 0$. Из существование предела
+	отношения производных следует, что
+	\[
+		(\exists \delta > 0)(\forall x
+		\in (a; a + \delta))\ g'(x) \neq 0
+	\]
+	Следовательно, на отрезке
+	$\left[a; a + \frac{\delta}{2}\right]$ для функции $g$
+	выполнены все условия теоремы Коши о среднем \ref{Cauchy_mid}. Значит
+	\[
+		\left(\forall x \in \left(a; a + \frac{\delta}{2}\right)\right)
+		\left(\exists \xi \in (a; x)\right)\ 
+		\frac{f(x) - f(a)}{g(x) - g(a)} =
+		\frac{f'(\xi)}{g'(\xi)} = \frac{f(x)}{g(x)}
+	\]
+	при этом понятно, что $\xi = \xi(x)$. Так как
+	$a < \xi(x) < x$, то если устремить $x$ к $a + 0$,
+	то в предельном переходе $a < \xi(x) \le a + 0 \Ra \xi(x) \to a + 0$.
+	Отсюда получаем
+	\[
+		\liml_{x \to a + 0} \frac{f'(\xi(x))}{g'(\xi(x))} = \liml_{x \to a + 0} \frac{f'(x)}{g'(x)} = C = \liml_{x \to a + 0} \frac{f(x)}{g(x)}
+	\]
+\end{proof}
+
+\begin{corollary} (Признак дифференцируемости)
+	Если $f$ дифференцируема в $\mc{U}_\delta(x_0)$,
+	непрерывна в $x_0$ и $\exists \liml_{x \to x_0} f'(x)
+	\in \bar{\R}$, то
+	\[
+	\exists f'(x_0) = \liml_{x \to x_0} f'(x)
+	\]
+\end{corollary}
+
+\begin{proof}
+	Пусть $F(x) = f(x) - f(x_0)$, $g(x) = x - x_0$. Тогда,
+	$\forall x \in \mc{U}_\delta(x_0)$
+	\begin{align*}
+	&F'(x) = f'(x)
+	\\
+	&g'(x) = 1
+	\end{align*}
+	Следовательно,
+	\[
+	\exists \liml_{x \to x_0} \frac{F'(x)}{g'(x)} =
+	\liml_{x \to x_0} \frac{f'(x)}{g'(x)} \in \bar{\R}
+	\]
+	при этом $\liml_{x \to x_0} F(x) = \liml_{x \to x_0}
+	g(x) = 0$. А значит по правилу Лопиталя
+	\[
+	\exists \liml_{x \to x_0} \frac{F(x)}{g(x)} =
+	\liml_{x \to x_0} \frac{F'(x)}{g'(x)} =
+	\liml_{x \to x_0} \frac{f'(x)}{g'(x)} =
+	\liml_{x \to x_0} f'(x)
+	\]
+	С другой стороны
+	\[
+	\liml_{x \to x_0} \frac{F(x)}{g(x)} =
+	\liml_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =
+	f'(x_0) \in \bar{\R}
+	\]
+\end{proof}
+
+\begin{theorem} (Правило Лопиталя для случая
+	$\frac{\infty}{\infty}$)
+	Пусть $f$, $g$ дифференцируемы на $(a; b)$,
+	$\exists \liml_{x \to a + 0} g(x) = \pm \infty$ и
+	$\exists \liml_{x \to a + 0} \frac{f'(x)}{g'(x)} =
+	C \in \bar{\R}$. Тогда
+	\[
+		\exists \liml_{x \to a + 0} \frac{f(x)}{g(x)} = C
+	\]
+\end{theorem}
+
+\begin{note}
+	Аналогичное утверждение верно для предела $x \to b-0$,
+	а также для любого предела $x \to x_0,\ x_0 \in (a; b)$.
+\end{note}
+
+\begin{proof}
+	Докажем случай для $\liml_{x \to a + 0} g(x) = +\infty$:
+	\begin{itemize}
+		\item $C = -\infty$. Тогда, выберем $\forall p > q > C$.
+		Теперь из пределов:
+		\begin{align*}
+			&\liml_{x \to a + 0} \frac{f'(x)}{g'(x)} = -\infty \Ra
+			(\exists \delta_1 > 0)(\forall x \in
+			(a; a + \delta_1))\ \frac{f'(x)}{g'(x)} < q
+			\\
+			&\liml_{x \to a + 0} g(x) = +\infty \Ra 
+			(\exists \delta_2 \in (0; \delta_1))
+			(\forall x \in (a; a + \delta_2))\ g(x) > 0
+		\end{align*}
+		Зафиксируем $y > x > a,\ y \in (a; a + \delta_2)$. Тогда из
+		предела $\liml_{x \to a + 0} g(x) = +\infty \Ra$
+		\[
+			(\exists \delta_3 > 0)(\forall x \in
+			(a; a + \delta_3) \subset (a; y))\ g(y) - g(x) < 0
+		\]
+		Заметим, что $f$, $g$ удовлетворяют условиям теоремы
+		Коши о среднем \ref{Cauchy_mid} на отрезке $[x; y]$ ($g' \neq 0$
+		следует из существования предела производных). То есть
+		\[
+			\left(\exists \xi \in (x; y) \subset (a; a + \delta_1)\right)
+			\ \frac{f(y) - f(x)}{g(y) - g(x)} =
+			\frac{f'(\xi)}{g'(\xi)} < q
+		\]
+		Если убрать равенство с $\xi$, то получим
+		\[
+			\frac{f(y) - f(x)}{g(y) - g(x)} < q
+		\]
+		Умножим обе части на $\frac{g(x) - g(y)}{g(x)} > 0$
+		при $x \in (a; a + \delta_3)$. Отсюда имеем
+		\begin{align*}
+			&{\frac{f(x) - f(y)}{g(x)} < q \cdot
+			\frac{g(x) - g(y)}{g(x)}}
+			\\
+			&{\Ra \frac{f(x)}{g(x)} < q - q \cdot
+			\frac{g(y)}{g(x)} + \frac{f(y)}{g(x)}}
+		\end{align*}
+		Из последнего неравенства следует, что
+		\[
+			(\forall p > C)(\exists \delta_4 > 0)
+			(\forall x \in (a; a + \delta_4))\ \frac{f(x)}{g(x)} < p
+		\]
+		Откуда согласно $C = -\infty$ имеем
+		\[
+			(\forall \eps > 0)(\exists \delta_4 > 0)
+			(\forall x \in (a; a + \delta_4))\ 
+			\frac{f(x)}{g(x)} < -\frac{1}{\eps} \lra 
+			\liml_{x \to a + 0} \frac{f(x)}{g(x)} = -\infty =
+			\liml_{x \to a + 0} \frac{f'(x)}{g'(x)}
+		\]
+		
+		\item $C = +\infty$. Тогда аналогично случаю выше,
+		получается утверждение
+		\[
+			(\forall r < C)(\exists \delta_5 > 0)
+			(\forall x \in (a; a + \delta_5))\ 
+			\frac{f(x)}{g(x)} > r
+		\]
+		
+		\item $-\infty < C < +\infty$. Ключевые утверждения,
+		полученные выше, будут верны и в этом случае,
+		потому что $\exists p > C > r$. А значит
+		\[
+			(\forall \eps > 0)(\exists \delta :=
+			\min(\delta_4, \delta_5))(\forall x \in (a; a + \delta))
+			\ r < \frac{f(x)}{g(x)} < p
+		\]
+		выберем теперь $r := C - \eps,\ p := C + \eps$. То есть
+		\[
+			(\forall \eps > 0)(\exists \delta > 0)
+			(\forall x \in (a; a + \delta))\ 
+			\left|\frac{f(x)}{g(x)} - C\right| < \eps
+			\lra \liml_{x \to a + 0} \frac{f(x)}{g(x)} = C =
+			\liml_{x \to a + 0} \frac{f'(x)}{g'(x)}
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	Правило Лопиталя работает и в случаях, когда $x \to \pm \infty$
+\end{note}
+
+\begin{proof}
+	Выберем такое $t = \frac{1}{x}$, тогда $t \to +0$ при
+	$x \to +\infty$. Пусть $f_1(t) = f(\frac{1}{t})$ и 
+	$g_1(t) = g(\frac{1}{t})$
+	\[
+		f_1'(t) = f'\left(\frac{1}{t}\right) \cdot
+		\left(-\frac{1}{t^2}\right),\ g_1'(t) = g'\left(\frac{1}{t}\right) \cdot
+		\left(-\frac{1}{t^2}\right)
+	\]
+	Применим правило Лопиталя для $t \to +0$:
+	\[
+		\liml_{x \to +\infty} \frac{f(x)}{g(x)} =
+		\liml_{t \to +0} \frac{f_1(t)}{g_1(t)} =
+		\liml_{t \to +0} \frac{f_1'(t)}{g_1'(t)} =
+		\liml_{x \to +\infty} \frac{f'(x)}{g'(x)}
+	\]
+\end{proof}
+
+\subsection{Равномерная непрерывность}
+
+\begin{definition}
+	Функция $f$ \textit{равномерно непрерывна} на
+	множестве $X \subset \R$, если
+	\[
+		(\forall \eps > 0)(\exists \delta > 0)
+		(\forall x, y \in X, |x - y| < \delta)\ 
+		\left|f(x) - f(y)\right| < \eps
+	\]
+\end{definition}
+
+\begin{note}
+	Отличие от обычного определения заключается в том,
+	что выбор $\delta$ не зависит от рассматриваемой точки $x$.
+\end{note}
+
+\begin{example}
+	\[
+		X = (0; 1),\ f(x) = \frac{1}{x}
+		\text{ - неравномерно непрерывна}
+	\]
+	То есть нужно доказать утверждение
+	\[
+		(\exists \eps > 0)(\forall \delta > 0)
+		(\exists x, y \in X, |x - y| < \delta)\ 
+		\left|\frac{1}{x} - \frac{1}{y}\right| \ge \eps
+	\]
+	Для любого $0 < \delta < 1$ найдётся $n \in \N$ такое,
+	что верно неравенство
+	\[
+		\frac{1}{n} \le \delta < \frac{1}{n - 1}
+	\]
+	Положим $x_n = \frac{1}{n}$, а $y_n = \frac{1}{3n}$. Тогда
+	\begin{align*}
+		&{|x_n - y_n| = \frac{2}{3n} < \frac{1}{n} \le \delta}
+		\\
+		&{\left|\frac{1}{x_n} - \frac{1}{y_n}\right| = 2n \ge 2}
+	\end{align*}
+	Отсюда наше утверждение выполнено $\forall \eps \le 2$,
+	для $\delta \ge 0$ можно взять $n = 1$ и
+	$\eps = 2$.
+\end{example}

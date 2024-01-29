@@ -1,0 +1,401 @@
+\subsection{Сравнение функций}
+
+\begin{definition}
+	Пусть $f(x) = \lambda(x) \cdot g(x)$ справедливо в некоторой
+	проколотой окрестности точки $x_0$.
+	\begin{enumerate}
+		\item Если $\lambda(x)$ ограничена в
+		этой проколотой окрестности, то
+		$f(x) = O(g(x))$ при $x \to x_0$
+		
+		\item Если $\liml_{x \to x_0} \lambda(x) = 0$,
+		то $f(x) = o(g(x))$ при $x \to x_0$
+		
+		\item Если $\liml_{x \to x_0} \lambda(x) = 1$,
+		то $f(x) \sim g(x)$ при $x \to x_0$. ($f$ эквивалентно $g$)
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Другое определение. Если $g(x) \neq 0$ в некоторой проколотой
+	окрестности точки $x_0$, то
+	\begin{enumerate}
+		\item $\frac{f(x)}{g(x)}$ ограничена в
+		некоторой проколотой окрестности $x_0$, то
+		$f(x) = O(g(x))$ при $x \to x_0$
+		
+		\item $\liml_{x \to x_0} \frac{f(x)}{g(x)} = 0$, то
+		$f(x) = o(g(x))$ при $x \to x_0$
+		
+		\item $\liml_{x \to x_0} \frac{f(x)}{g(x)} = 1$, то
+		$f(x) \sim g(x)$ при $x \to x_0$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Положим $\lambda(x) := \frac{f(x)}{g(x)}$. А дальше всё уже следует из сказанного выше.
+\end{proof}
+
+\begin{examples}~
+	\begin{enumerate}
+		\item $\sin x \cdot \sin \frac{1}{x} =
+		O(\sin \frac{1}{x})$ при $x \to 0$.
+
+		\item $x \cdot \sin \frac{1}{x}
+		= o(\sin \frac{1}{x})$ при $x \to 0$.
+
+		\item $\sin x \cdot \sin \frac{1}{x}
+		\sim x \cdot \sin \frac{1}{x}$ при $x \to 0$.
+	\end{enumerate}
+\end{examples}
+
+\begin{theorem} (Связь эквивалентных и б.м.)
+	$f(x) \sim g(x)$ при $x \to x_0 \lra f(x) = g(x)
+	+ o(g(x))$ при $x \to x_0$.
+\end{theorem}
+
+\begin{proof}
+	Необходимость $(\Ra)$. Положим $f(x) \sim g(x)$ при $x \to x_0$. Тогда
+	\[
+		f(x) = \lambda(x) \cdot g(x),\ \liml_{x \to x_0} \lambda(x) = 1 \Ra
+	\]
+	\[
+		f(x) - g(x) = (\lambda(x) - 1) \cdot g(x),\ \liml_{x \to x_0} (\lambda(x) - 1) = 0 \Ra f(x) - g(x) = o(g(x))
+	\]
+	Достаточность доказывается аналогично. 
+\end{proof}
+
+\begin{theorem} (Использование эквивалентных при вычислении пределов)
+	
+	Если $f_1(x) \sim f_2(x)$ и $g_1(x) \sim 
+	g_2(x)$ при $x \to x_0$ , то
+	\[
+		\liml_{x \to x_0} f_1(x) \cdot g_1(x) =
+		\liml_{x \to x_0} f_2(x) \cdot g_2(x)
+	\]
+	А также
+	\[
+		\liml_{x \to x_0} \frac{g_1(x)}{f_1(x)} =
+		\liml_{x \to x_0} \frac{g_2(x)}{f_2(x)}
+	\]
+	при условии, что хотя бы один из пределов в
+	каждом равенстве существует
+\end{theorem}
+
+\begin{proof}~
+
+	Из условия следует: $f_1(x) = \lambda_1(x) \cdot f_2(x)$ и
+	$g_1(x) = \lambda_2(x) \cdot g_2(x)$
+
+	\[
+		f_1(x) \cdot g_1(x) = \lambda_1(x) \cdot \lambda_2(x) \cdot 
+		g_2(x) \cdot f_2(x) \Ra
+	\]
+	\[
+		\liml_{x \to x_0} \left(f_1(x) \cdot g_1(x)\right) =
+		\liml_{x \to x_0} \left(\lambda_1(x) \cdot \lambda_2(x) \cdot 
+		g_2(x) \cdot f_2(x)\right) = \liml_{x \to x_0}
+		\left(f_2(x) \cdot g_2(x)\right)
+	\]
+	
+	Для дробей доказательство аналогично.
+\end{proof}
+
+\begin{proposition}
+	\[
+		\sin x \sim \tg x \sim (e^x - 1) \sim \ln(1 + x)
+		\sim \sh x \sim \th x \sim \arcsin x \sim \arctg x
+		\sim x,\ x \to 0
+	\]
+	\[
+		\sh x := \frac{e^x - e^{-x}}{2};\ 
+		\ch x := \frac{e^x + e^{-x}}{2};\ 
+		\th x := \frac{\sh x}{\ch x};\ 
+		\cth x := \frac{\ch x}{\sh x}
+	\]
+	\[
+		\ch^2 x - \sh^2 x = 1;\ \sh(2x) = 2 \sh x \ch x;
+		\ \ch(2x) = \ch^2 x + \sh^2 x
+	\]
+\end{proposition}
+
+%\begin{note}
+%	Мы можем писать $o(f) = O(f)$ и подобное, подразумевая, что на самом деле мы рассматриваем некоторое $g = o(f)$
+%\end{note}
+
+
+\begin{definition}
+	Если $f = O(g)$ и $g = O(f)$ при $x \to x_0$,
+	то говорят, что $f \asymp g$
+\end{definition}
+
+
+\section{Дифференциальное исчисление функций одной переменной}
+
+\subsection{Производная}
+
+\begin{definition}
+	Пусть $y = f(x)$ определена в некоторой окрестности
+	точки $x_0 \in \R$.
+	
+	\textit{Приращением} $\Delta y$ этой функции в
+	точке $x_0$, отвечающим приращению аргумента
+	$\Delta x$, называется $\Delta y = f(x_0 + \Delta x) - f(x_0)$.
+	
+	\textit{Производной} функции $y = f(x)$ в точке $x_0$ называется предел (если он существует и конечен)
+	\[
+		\liml_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \liml_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =: f'(x_0)
+	\]
+\end{definition}
+
+\begin{theorem} \label{diff_function_to_cont}
+	Если функция имеет производную в точке $x_0$,
+	то она непрерывна в этой точке.
+\end{theorem}
+
+\begin{proof}
+	По условию,
+	\[
+		\liml_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =
+		f'(x_0) + \alpha(x),\ \liml_{x \to x_0} \alpha(x) = 0
+	\]
+	Следовательно,
+	\[
+		f(x) - f(x_0) = f'(x_0)(x - x_0) + \alpha(x)(x - x_0)
+	\]
+	при $x \to x_0$. Перенесём $f(x_0)$ в другую сторону
+	и в предельном переходе получим, что
+	\[
+		\liml_{x \to x_0} f(x) = f(x_0) + 0 + 0 = f(x_0)
+	\]
+\end{proof}
+
+\begin{theorem} (Арифметические операции и производные)
+	Если $\exists f'(x_0)$ и $g'(x_0)$, то
+	\begin{enumerate}
+		\item $\exists (f \pm g)'(x_0) = f'(x_0) \pm g'(x_0)$
+		
+		\item $\exists (f \cdot g)'(x_0) =
+		f'(x_0) \cdot g(x_0) + f(x_0) \cdot g'(x_0)$
+		
+		\item Если $g(x_0) \neq 0$, то
+		$\exists \left(\frac{f}{g}\right)'(x_0) =
+		\frac{f'(x_0) \cdot g(x_0) - f(x_0) \cdot g'(x_0)}{g^2(x_0)}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item 
+		\[
+			f'(x_0) = \liml_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0},\ 
+			g'(x_0) = \liml_{x \to x_0} \frac{g(x) - g(x_0)}{x - x_0}
+		\]
+		Отсюда
+		\[
+			\liml_{\Delta x \to 0}
+			\frac{\Delta (f(x) \pm g(x))}{\Delta x} = 
+			\liml_{x \to x_0} \frac{(f(x) \pm g(x)) -
+			(f(x_0) \pm g(x_0))}{x - x_0} = \liml_{x \to x_0}
+			\frac{f(x) - f(x_0)}{x - x_0} \pm \liml_{x \to x_0}
+			\frac{g(x) - g(x_0)}{x - x_0}
+		\]
+		
+		\item Аналогично первому,
+		\begin{multline*}
+			\liml_{x \to x_0} \frac{(f \cdot g)(x) - (f \cdot g)(x_0)}{x - x_0} =
+			\liml_{x \to x_0} \frac{f(x)g(x) - f(x_0)g(x_0) + f(x_0)g(x) - f(x_0)g(x)}{x - x_0} =\\
+			= \liml_{x \to x_0} \frac{f(x)g(x) - f(x_0)g(x)}{x - x_0} +
+			\liml_{x \to x_0} \frac{f(x_0)g(x) - f(x_0)g(x_0)}{x - x_0} = \\
+			= \liml_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} \cdot g(x) + f(x_0)
+			\cdot \liml_{x \to x_0} \frac{g(x) - g(x_0)}{x - x_0}
+		\end{multline*}
+		Что в предельном переходе даёт
+		\[
+			f'(x_0) \cdot g(x_0) + f(x_0) \cdot g'(x_0).
+		\]
+		
+		\item Аналогично первому и второму,
+		\begin{multline*}
+			\liml_{x \to x_0} \frac{(\frac{f}{g})(x) -
+			(\frac{f}{g})(x_0)}{x - x_0} =
+			\liml_{x \to x_0} \frac{f(x)g(x_0) - f(x_0)g(x)}{g(x)g(x_0)(x - x_0)} =\\
+			= \liml_{x \to x_0} \frac{f(x)g(x_0) - f(x_0)g(x_0)}{g(x)g(x_0)(x - x_0)} +
+			\liml_{x \to x_0} \frac{f(x_0)g(x_0) - f(x_0)g(x)}{g(x)g(x_0)(x - x_0)}
+		\end{multline*}
+		В предельном переходе получим
+		\[
+			\frac{g(x_0)f'(x_0)}{g^2(x_0)} - \frac{f(x_0)g'(x_0)}{g^2(x_0)}
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Производные основных элементарных функций)
+	Для всех $x_0$ из областей определения соответствующих
+	функций справедливы равенства:
+	\begin{enumerate}
+		\item $(\sin x)' \big|_{x = x_0} = \cos x_0$
+		\item $(\cos x)' \big|_{x = x_0} = -\sin x_0$
+		\item $(\tg x)' \big|_{x = x_0} = \frac{1}{\cos^2 x_0}$
+		\item $(\ctg x)' \big|_{x = x_0} = -\frac{1}{\sin^2 x_0}$
+		\item $(x^b)' \big|_{x = x_0} = b \cdot x_0^{b - 1}\ (x > 0)$
+		\item $(b^x)' \big|_{x = x_0} = b^{x_0} \ln b$
+		\item $(\sh x)' \big|_{x = x_0} = \ch x_0$
+		\item $(\ch x)' \big|_{x = x_0} = \sh x_0$
+		\item $(\th x)' \big|_{x = x_0} = \frac{1}{\ch^2 x_0}$
+		\item $(\cth x)' \big|_{x = x_0} = -\frac{1}{\sh^2 x_0}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Рутинно
+	\begin{enumerate}
+		\item 
+			$\liml_{x \to x_0} \frac{\sin x - \sin x_0}{x - x_0} =
+			\liml_{x \to x_0} \frac{2 \sin \frac{x - x_0}{2}
+			\cos \frac{x + x_0}{2}}{x - x_0} =
+			\left[\sin \frac{x - x_0}{2} \sim \frac{x - x_0}{2},\ x \to x_0\right]
+			= \liml_{x \to x_0}	\cos \frac{x + x_0}{2} = \cos x_0$
+			
+		\item 
+			$\liml_{x \to x_0} \frac{\cos x - \cos x_0}{x - x_0} =
+			\liml_{x \to x_0} \frac{-2 \sin \frac{x - x_0}{2}
+			\sin \frac{x + x_0}{2}}{x - x_0} =
+			\liml_{x \to x_0} (-\sin \frac{x + x_0}{2}) = -\sin x_0$
+		
+		\item Аналогично
+		\item Аналогично
+
+		\item 
+		\begin{multline*}
+			\liml_{x \to x_0} \frac{x^b - x_0^b}{x - x_0} = 
+			x_0^b \liml_{x \to x_0} \frac{\left(\frac{x}{x_0}\right)^b - 1}{x - x_0} = \\
+			= x_0^b \liml_{x \to x_0} \frac{e^{b \ln \frac{x}{x_0}} - 1}{x - x_0} =
+			\left[e^{b \ln \frac{x}{x_0}} - 1 \sim
+			b \ln \frac{x}{x_0},\ x \to x_0\right] =
+			x_0^b \liml_{x \to x_0} \frac{b \ln \frac{x}{x_0}}{x - x_0} = \\
+		    = x_0^b \cdot b \cdot \liml_{x \to x_0}
+			\frac{\ln(1 + \frac{x - x_0}{x_0})}{x - x_0} =
+			\left[\ln \left(1 + \frac{x - x_0}{x_0}\right) \sim
+			\frac{x - x_0}{x_0},\ x \to x_0\right] =
+			x_0^b \cdot b \cdot \liml_{x \to x_0} \frac{x - x_0}{x_0(x - x_0)}
+			= b \cdot x_0^{b - 1}
+		\end{multline*}
+		
+		\item
+		\[
+			\liml_{x \to x_0} \frac{b^x - b^{x_0}}{x - x_0} =
+			b^{x_0} \liml_{x \to x_0} \frac{e^{(x - x_0)\ln b } - 1}{x - x_0} =
+			\left[ e^{(x - x_0)\ln b} - 1 \sim  (x - x_0)\ln b,\ x \to x_0 \right] =
+			b^{x_0} \cdot \ln b
+		\]
+		
+		\item
+		\[
+			(\sh x)' \big|_{x = x_0} =
+			\left(\frac{e^x - e^{-x}}{2}\right)' =
+			\frac{1}{2}\left(e^{x_0} -
+			\left(\frac{1}{e^x}\right)'\right) =
+			\frac{1}{2}\left(e^{x_0} - \frac{-e^{x_0}}{e^{2a}}\right) =
+			\frac{e^{x_0} + e^{-x_0}}{2} = \ch x_0
+		\]
+		
+		\item Аналогично
+		\item Аналогично
+
+		\item
+			$(\cth x)' \big|_{x = x_0} =
+			\left(\frac{\ch x}{\sh x}\right)' =
+			\frac{(\ch x)' \cdot \sh x_0 - \ch x_0 \cdot
+			(\sh x)'}{\sh^2 x_0} =\frac{\sh^2 x_0 - \ch^2 x_0}{\sh^2 x_0} =
+			-\frac{1}{\sh^2 x_0}$
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem} \label{inverse_function_derivative}
+	(Производная обратной функции)
+	Если $f(x)$ непрерывна и строго монотонна на
+	$[x_0 - \delta,\ x_0 + \delta],\ \delta > 0$ и $\exists f'(x_0) \neq 0$,
+	то обратная функция $f^{-1}$ имеет производную в точке
+	$f(x_0)$, равную
+	\[
+		(f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Во первых, обратная функция определена, непрерывна и
+	строго монотонна на интервале $f([x_0 - \delta,\ x_0 + \delta])$ по
+	теореме об обратной функции \ref{inverse_function}.
+	Для краткости обозначим $\varphi = f^{-1}$. Для определённости
+	будем считать $f$ - возрастающей функцией. Тогда $\varphi$
+	определена на $y \in [f(x_0 - \delta); f(x_0 + \delta)],\ y_0 = f(x_0)$.
+	По определению производной, нам надо найти предел
+	\[
+		\liml_{\Delta y \to 0} \frac{\Delta \varphi(y_0)}{\Delta y}
+	\]
+	$\varphi$ непрерывна в т. $y_0 \Ra
+	\liml_{\Delta y \to 0} \Delta \varphi(y_0) = 0$
+	по теореме о непрерывности функции, имеющей производную в точке
+	\ref{diff_function_to_cont}. $\varphi$ возрастает и
+	$\Delta y \neq 0 \Ra \Delta \varphi(y_0) \neq 0$. Тогда пусть
+	\[
+		\Delta x := \Delta \varphi(y_0) =
+		\varphi(y_0 + \Delta y) - \varphi(y_0)
+	\]
+	Тогда
+	\[
+		\varphi(y_0 + \Delta y) = \varphi(y_0) + \Delta x =
+		x_0 + \Delta x \Ra y_0 + \Delta y = f(x_0 + \Delta x)
+	\]
+	То есть
+	\[
+		f(x_0 + \Delta x) - y_0 = y_0 + \Delta y - y_0 = \Delta y
+	\]
+	Отсюда исходный предел выражается как
+	\[
+		\frac{\varphi(y_0 + \Delta y) -
+		\varphi(y_0)}{\Delta y} =
+		\frac{\Delta x}{\Delta y} =
+		\frac{1}{\frac{\Delta y}{\Delta x}} =
+		\underset{\Delta x \to 0}{\to}		
+		\frac{1}{f'(x_0)}
+	\]
+	\[
+		\liml_{\Delta y \to 0} \frac{\Delta \varphi(y_0)}{\Delta x}=
+		\liml_{\Delta x \to 0} \frac{1}{\frac{\Delta y}{\Delta x}} =
+		\frac{1}{f'(x_0)}
+	\]
+\end{proof}
+
+\begin{anote}
+	Возможно, корректность подмены
+	$\Delta y$ на $\Delta x$ в последнем переходе
+	неочевидна для читателя. В таком случае обратим внимание
+	на то, что справедливость этого преобразования следует
+	из определения предела по Гейне:
+	\begin{align*}
+		& \left(\forall \{\Delta x_n\}
+		\subset [- \delta,\ \delta] \bs \{0\}\ \liml_{n \to \infty} \Delta x_n = 0\right)
+		\ \liml_{n \to \infty} f(\Delta x_n) = A\\
+		& \left(\forall \{\Delta y_n\}
+		\subset f([- \delta,\ \delta]) \bs \{0\}\ \liml_{n \to \infty} \Delta y_n = 0\right)
+		\ \liml_{n \to \infty} f(\Delta y_n) = B
+	\end{align*}
+	Из определения $\Delta x$ в доказательстве ясно, что
+	$\liml_{\Delta y \to 0} \Delta x = 0$ (это верно в силу непрерывности
+	$\varphi$ и $f$). Тогда скажем, что $\Delta x$ --- это функция от
+	$\Delta y$.
+	\begin{align*}
+		& \left(\forall \{\Delta y_n\}
+		\subset f([- \delta,\ \delta]) \bs \{0\}\ 
+		\liml_{n \to \infty} \Delta y_n = 0\right)
+		\ \liml_{n \to \infty} \Delta x(\Delta y_n) = 0
+	\end{align*}
+	Осталось только заменить в изначальном определении $\Delta y_n$
+	на $\Delta x_n$, где $\Delta x_n = \Delta x(\Delta y_n)$.
+	Выполнив данное действие, мы увидим, что $A = B$, то есть мы
+	совершенно безнаказанно заменили $\Delta y$ на $\Delta x$
+	внутри предела (читатель может убедиться собственноручно,
+	что так же справедлива замена $\Delta x$ на $\Delta y$).
+\end{anote}

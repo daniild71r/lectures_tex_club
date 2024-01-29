@@ -1,0 +1,496 @@
+\begin{corollary}
+	$|\sin x| \le |x|\ (\forall x \in \R)$
+\end{corollary}
+
+\begin{proof}
+	Если мы положим $x \in (-\frac{\pi}{2}; 0]$, то получим
+	\begin{align*}
+		&(-x) \in [0; \frac{\pi}{2})
+		\\
+		&\sin x = -\sin (-x)
+		\\
+		&x = -(-x)
+	\end{align*}
+	По уже доказанной лемме \ref{for_trig} имеем
+	\[
+		\sin (-x) \le (-x) \Ra -\sin (-x) \ge -(-x) \lra \sin(x) \ge x
+	\]
+	Но при этом мы имеем дело с отрицательными числами. А стало быть
+	\[
+		|\sin x| \le |x|,\ x \in \left(-\frac{\pi}{2},\ \frac{\pi}{2}\right)
+	\]
+	За рамками данного интервала $x$ уже точно по модулю за областью значений $\sin x$. Поэтому утверждение верно $(\forall x \in \R)$.
+\end{proof}
+
+\subsubsection*{Непрерывность sin и cos}
+
+Докажем, что $\liml_{x \to a} \sin x = \sin a$ при $(\forall a \in \R)$
+\begin{multline*}
+	|\sin x - \sin a| = \left|2 \sin \frac{x - a}{2} \cos \frac{x + a}{2}\right| \le 2 \cdot \left|\sin \frac{x - a}{2}\right| \cdot \left|\cos \frac{x + a}{2}\right| \le \\
+	2 \cdot \left|\frac{x - a}{2}\right| \cdot 1 = |x - a|
+\end{multline*}
+Для доказательства предела достаточно взять $\delta := \eps$. Следовательно, $\sin x$ - непрерывная на всей области определения.
+
+Теперь докажем, что $\liml_{x \to a} \cos x = \cos a$ при $(\forall a \in \R)$
+\[
+	|\cos x - \cos a| = \left|-2 \cdot \sin \frac{x + a}{2} \cdot \sin \frac{x - a}{2} \right| \le 2 \cdot 1 \cdot \left|\frac{x - a}{2}\right| = |x - a|
+\]
+Снова достаточно взять $\delta := \eps$ и доказательство получено.
+
+
+\begin{theorem} (Первый замечательный предел) Предел $\liml_{x \to 0} \frac{\sin x}{x}$ существует и равен $1$.
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим $x \in (0; \frac{\pi}{2})$. Тогда, по лемме \ref{for_trig} получим:
+	\[
+		1 < \frac{x}{\sin x} < \frac{1}{\cos x}
+	\]
+	
+	В предельном переходе
+	
+	\[
+		1 \le \liml_{x \to 0+} \frac{x}{\sin x} \le 1
+	\]
+	Следовательно $\liml_{x \to 0+} \frac{\sin x}{x} = 1$.
+	\[
+		\liml_{x \to 0-} \frac{\sin x}{x} = \liml_{x \to 0+} \frac{\sin(-x)}{-x} = \liml_{x \to 0+} \frac{-\sin(x)}{-x} = \liml_{x \to 0+} \frac{\sin x}{x} = 1
+	\]
+	По теореме о связи предела с односторонними пределами, в итоге получаем $\liml_{x \to 0} \frac{\sin x}{x} = 1$
+\end{proof}
+
+\begin{corollary}~
+	\begin{itemize}
+		\item $\tan x, \ctg x$ непрерывны на всей своей области определения
+		
+		По теореме об обратной функции \ref{inverse_function}:
+		
+		\item $\sin x$ возрастает на $[-\frac{\pi}{2}, \frac{\pi}{2}] \Ra \arcsin x$ возрастает и непрерывен на $[-1, 1]$
+		
+		\item $\cos x$ убывает на $[0, \pi] \Ra \arccos x$ убывает и непрерывен на $[-1, 1]$
+		
+		\item $\tan x$ возрастает на $[-\frac{\pi}{2}, \frac{\pi}{2}] \Ra \arctan x$ возрастает и непрерывен на $\R$
+		
+		\item $\ctg x$ убывает на $[0, \pi] \Ra \arcctg x$ возрастает и непрерывен на $\R$
+	\end{itemize}
+\end{corollary}
+
+
+
+\subsubsection*{Непрерывность показательной функции}
+
+\begin{lemma}
+	\[
+		\liml_{n \to \infty} \sqrt[n]{a} = 1,\ (\forall a > 0)
+	\]
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим 3 случая:
+	\begin{enumerate}
+		\item $a = 1$ - тривиально
+		
+		\item $a > 1$. В таком случае, $\sqrt[n]{a} > 1$. А значит
+		\[
+			\sqrt[n]{a} = 1 + \alpha_n, \text{ где } \alpha_n \text{ - просто какая-то последовательность, причем } \alpha_n > 0
+		\]
+		Возведём все в $n$-ю степень и применим неравенство Бернулли:
+		\[
+			a = (1 + \alpha_n)^n \ge 1 + n\alpha_n
+		\]
+		Отсюда имеем
+		\[
+			0 < \alpha_n < \frac{a - 1}{n}
+		\]
+		Несложно увидеть, что $\liml_{n \to \infty} \frac{a - 1}{n} = 0$. Ну а значит
+		\[
+			\liml_{n \to \infty} \alpha_n = 0 \text{ - бесконечно малая последовательность}
+		\]
+		Используя предельный переход в равенстве, имеем
+		\[
+			\liml_{n \to \infty} \sqrt[n]{a} = \liml_{n \to \infty} (1 + \alpha_n) = 1 + 0 = 1
+		\]
+		
+		\item $a < 1$. Теперь $\sqrt[n]{a} < 1$. Но всё равно можно применить тот же трюк:
+		\[
+			\sqrt[n]{a} = \frac{1}{1 + \alpha_n}, \text{ где } \alpha_n > 0
+		\]
+		Тогда получим
+		\begin{align*}
+			&a = (1 + \alpha_n)^{-n} \ge 1 - n\alpha_n
+			\\
+			&0 < \alpha_n \le \frac{1 - a}{n} \Ra \liml_{n \to \infty} \alpha_n = 0
+			\\
+			&\Ra \liml_{n \to \infty} \sqrt[n]{a} = \liml_{n \to \infty} \frac{1}{1 + \alpha_n} = \frac{1}{1 + 0} = 1
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+Считая, что все рациональные степени уже определены, дадим определение $a^x$ в общем случае
+
+\begin{definition}
+	$a^x$ при $(\forall x \ge 0)$ определяется как
+	\begin{enumerate}
+		\item $a > 1$
+		
+		Введём понятие $(x)_n$:
+		\[
+			(x)_n := \frac{\lfloor10^n \cdot x\rfloor}{10^n}
+		\]
+		То есть $(x)_n$ - это число $x$, у которого оставили ровно $n$ знаков после запятой, а остальное удалили. Понятно, что это - рациональное число, и степень $a^{(x)_n}$ определена.
+		
+		Заметим, что $\{(x)_n\}$ - неубывающая последовательность. Стало быть, и $\{a^{(x)_n}\}$ - тоже неубывающая. При этом
+		\[
+			(\forall n \in \N)\ (x)_n \le \lceil x \rceil \Ra a^{(x)_n} \le a^{\lceil x \rceil}
+		\]
+		То есть, $\{a^{(x)_n}\}$ к тому же и ограниченная сверху. По теореме Вейерштрасса, она имеет предел. Её предел и называют $a^x$:
+		\[
+			a^x := \liml_{n \to \infty} a^{(x)_n}
+		\]
+		
+		\item $a = 1 \Ra a^x = a$
+		
+		\item $0 < a < 1$
+		
+		Определяется через предел как и в случае 1., только теорема Вейерштрасса будет для невозрастающей последовательности.
+	\end{enumerate}
+
+	Для $x < 0$ определим $a^x$ как
+	\[
+		a^x = \frac{1}{a^{-x}}
+	\]
+	
+	Покажем, что если $x_1 < x_2$, то и $a^{x_1} < a^{x_2}$:
+	
+	Начиная с некоторого $N \in \N$, будет в точности выполнено неравенство $(\forall n > N)$
+	\[
+		(x_1)_n \le x_1 < (x_2)_n \le x_2 
+	\]
+	А значит найдутся 2 рациональных числа $r_1 < r_2$ такие, что
+	\[
+		(x_1)_n \le x_1 < r_1 < r_2 < (x_2)_n
+	\]
+	Предельный переход даёт неравенство
+	\[
+		a^{x_1} \le a^{r_1} < a^{r_2} \le a^{x_2}
+	\]
+	Которое и даёт $a^{x_1} < a^{x_2}$
+\end{definition}
+
+\begin{lemma} (Корректность определения показательной функции)~
+	
+	$(\forall x \in \R)\ (\forall \{r_n\} \subset \Q,\ \liml_{n \to \infty} r_n = x) \liml_{n \to \infty} a^{r_n} = a^x$
+\end{lemma}
+
+\begin{proof}~
+	
+	Доказательство проводится для $a > 1$. Для другого случая аналогично.
+	
+	Заметим, что обе последовательности $a^{-\frac{1}{n}} - 1$ и $a^{\frac{1}{n}} - 1$ стремятся к нулю. То есть
+	\[
+		(\forall \eps > 0)\ (\exists K \in \N)  \max(|a^{-\frac{1}{K}} - 1|, a^{\frac{1}{K}} - 1) < \eps
+	\]
+	Докажем, что $\{a^{r_n}\}$ - фундаментальная последовательность.
+	\[
+		a^{r_{n + p}} - a^{r_n} = a^{r_n} \cdot (a^{r_{n + p} - r_n} - 1)
+	\]
+	Так как $\{r_n\}$ сходится, то $(\exists M)  (\forall n \in \N)\ r_n \le M$. Отсюда
+	\[
+		a^{r_n} \le a^M
+	\]
+	Сама $\{r_n\}$ фундаментальна. То есть
+	\[
+		(\forall \eps > 0)\ (\exists N \in \N)  (\forall n > N, p \in \N)\ |r_{n + p} - r_n| < \eps \Ra\ \eps := \frac{1}{K},\ -\frac{1}{K} < r_{n + p} - r_n < \frac{1}{K}
+	\]
+	Следовательно
+	\[
+		a^{-\frac{1}{K}} - 1 < a^{r_{n + p} - r_n} - 1 < a^{\frac{1}{K}} - 1
+	\]
+	Ну а отсюда уже (перевыбрали окрестность из первого утверждения доказательства)
+	\[
+		|a^{r_{n + p} - r_n} - 1| < \max(|a^{-\frac{1}{K}} - 1|, |a^{\frac{1}{K}} - 1|) < \frac{\eps}{a^M}
+	\]
+	В итоге имеем
+	\[
+		|a^{r_n} \cdot (a^{r_{n + p} - r_n} - 1)| < a^{r_n} \cdot \frac{\eps}{a^M} < \eps
+	\]
+	Покажем, что у $\{a^{(x)_n}\}$ и $\{a^{r_n}\}$ одинаковые пределы. Для этого рассмотрим последовательность:
+	\[
+		z_n = \System{
+			&{r_k,\ n = 2k - 1}
+			\\
+			&{(x)_k,\ n = 2k}
+		}
+	\]
+	По определению предела
+	\begin{align*}
+		&(\forall \eps > 0)\ (\exists K_1 \in \N)  (\forall k > K_1)\ \left(|r_k - x| < \eps \lra |z_{2k - 1} - x| < \eps\right)
+		\\
+		&(\forall \eps > 0)\ (\exists K_2 \in \N)  (\forall k > K_2)\ \left(|(x)_k - x| < \eps \lra |z_{2k} - x| < \eps\right)
+	\end{align*}
+	Следовательно
+	\[
+		(\forall \eps > 0)\ (\exists N := 2 \cdot \max(K_1, K_2))  (\forall n > N)\ |z_n - x| < \eps
+	\]
+	То есть $\{z_n\}$ - сходящаяся последовательность рациональных чисел. А из доказанного это значит, что существует предел $\liml_{n \to \infty} a^{z_n}$. Но если $\liml_{n \to \infty} a^{r_n} \neq \liml_{n \to \infty} a^{(x)_n}$, то последовательность $\{a^{z_n}\}$ расходится. Отсюда заключаем, что
+	\[
+		(\forall x \in \R)\ (\forall \{r_n\} \subset \Q,\ \liml_{n \to \infty} r_n = x) \liml_{n \to \infty} a^{r_n} = a^x
+	\]
+\end{proof}
+
+\subsubsection*{Свойства показательной функции}
+
+\begin{enumerate}
+	\item $a^{x_1 + x_2} = a^{x_1} \cdot a^{x_2}$
+	\item $a^x \cdot b^x = (a \cdot b)^x$
+	\item $(a^x)^y = a^{x \cdot y}$
+\end{enumerate}
+
+\begin{proof}
+	Докажем свойство суммы:
+	\[
+		\System{
+		\liml_{n \to \infty} (x_1)_n = x_1
+		\\
+		\liml_{n \to \infty} (x_2)_n = x_2
+		}
+		\Ra
+		\liml_{n \to \infty} \left((x_1)_n + (x_2)_n\right) = x_1 + x_2
+	\]
+	При этом
+	\begin{align*}
+		\liml_{n \to \infty} a^{(x_1)_n} = a^{x_1}
+		\\
+		\liml_{n \to \infty} a^{(x_2)_n} = a^{x_2}
+	\end{align*}
+	Тогда
+	\[
+		\liml_{n \to \infty} a^{(x_1)_n + (x_2)_n} = a^{x_1 + x_2}
+	\]
+	Второе свойство доказывается аналогично.
+	
+	Третье свойство уже сложнее. Пусть $x, y > 0$,
+	\begin{align*}
+		\{r'_n\} - \text{ возрастает к } x
+		\\
+		\{r''_n\} - \text{ убывает к } x
+		\\
+		\{p'_n\} - \text{ возрастает к } y
+		\\
+		\{p''_n\} - \text{ убывает к } y
+	\end{align*}
+	Отсюда цепочка неравенств:
+	\[
+		a^{r'_n \cdot p'_n} = (a^{r'_n})^{p'_n} \le (a^x)^{p'_n} \le (a^x)^y \le (a^x)^{p''_n} \le (a^{r''_n})^{p''_n} = a^{r''_n \cdot p''_n}
+	\]
+	Пределы обоих концов стремятся к $a^{x \cdot y}$, откуда уже по теореме о трёх последовательностях имеем нужное нам равенство.
+\end{proof}
+
+\begin{theorem}
+	$a^x$ - непрерывная функция на $\R$ $\forall a \in (0; 1) \cup (1; \infty)$
+\end{theorem}
+
+\begin{proof}~
+	
+	$(\forall x_0 \in \R)~a^x - a^{x_0} = a^{x_0}(a^{x - x_0} - 1)$
+	
+	Это значит, что достаточно установить факт
+	\[
+		\liml_{x \to 0} a^x = 1
+	\]
+	Рассмотрим $|x| < \frac{1}{K}$ для произвольного $K$. Тогда
+	\[
+		a^{-\frac{1}{K}} - 1 < a^x - 1 < a^{\frac{1}{K}} - 1 \Ra |a^x - 1| < \max(|a^{-\frac{1}{K}} - 1|, |a^{\frac{1}{K}} - 1|)
+	\]
+	При этом
+	\[
+		(\forall \eps > 0)\ (\exists K \in \N)  \max(|a^{\frac{1}{K}} - 1|, |a^{-\frac{1}{K}} - 1|) < \eps
+	\]
+	Отсюда
+	\[
+		(\forall \eps > 0)\ (\exists \delta := \frac{1}{K}) (\forall x,\ |x| < \delta)\ \ |a^x - 1| < \eps
+	\]
+	Что и требовалось доказать.
+\end{proof}
+
+\begin{corollary} (Непрерывность логарифма)
+	$\log_a x$ - непрерывная функция на $(0; +\infty)$
+\end{corollary}
+
+\begin{proof}
+	Будем считать $a > 1$. Начнём с доказательнства, что
+	\begin{align*}
+		&\sup\limits_{x \in \R} a^x = +\infty
+		\\
+		&\inf\limits_{x \in \R} a^x = 0
+	\end{align*}
+	Рассмотрим $x \in \N$ и $a = 1 + \alpha\ (\alpha > 0)$. По неравенству Бернулли
+	\[
+		(1 + \alpha)^x \ge 1 + x\alpha
+	\]
+	Следовательно, очень просто подобрать $x$ такое, что оно будет больше любого $M$. Отсюда неограниченность сверху. Теперь, посмотрим на значения при отрицательном аргументе:
+	\[
+		(1 + \alpha)^{-x} = \frac{1}{(1 + \alpha)^x} \le \frac{1}{1 + x\alpha}
+	\]
+	Отсюда следует инфинум, равный нулю.
+	
+	То есть $f((-\infty; +\infty)) = (0; +\infty)$, при этом $f(x) = a^x$ непрерывна и строго монотонна на всей области определения. По теореме об обратной функции \ref{inverse_function} это нам даёт, что $f^{-1}(y) := \log_a (y)$ строго монотонна и непрерывна на $(0; +\infty)$.
+\end{proof}
+
+\begin{theorem} (Второй замечательный предел) \\
+	\[
+		\liml_{x \to 0} (1 + x)^{1 / x} = e
+	\]
+\end{theorem}
+
+\begin{proof}
+	Положим $0 < x < 1$.
+	\[
+		n_x := \left\lfloor\frac{1}{x}\right\rfloor
+	\]
+	\[
+		n_x \le \frac{1}{x} < n_x + 1 \Ra \frac{1}{n_x + 1} < x \le \frac{1}{n_x}
+	\]
+	Рассмотрим функцию
+	\[
+		f(x) = \left(1 + \frac{1}{n_x}\right)^{n_x + 1}
+	\]
+	Положим $x_1 < x_2$. Следовательно
+	\[
+		\frac{1}{x_2} < \frac{1}{x_1} \Ra n_{x_2} \le n_{x_1} \Ra f(x_2) \ge f(x_1) \ge 1 \text{ (в силу последовательности числа Эйлера)}
+	\]
+	По теореме Вейерштрасса предел $f(x)$ существует.
+	
+	Сделаем замечательное наблюдение:
+	\[
+		f\left(\frac{1}{n}\right) = \left(1 + \frac{1}{n}\right)^n \Ra \liml_{n \to \infty} f(1/n) = e
+	\]
+	Напишем цепочку неравенств:
+	\begin{align*}
+		&(1 + x)^{1 / x} \ge (1 + x)^{n_x} > \left(1 + \frac{1}{n_x + 1}\right)^{n_x}
+		\\
+		&(1 + x)^{1 / x} \le \left(1 + \frac{1}{n_x}\right)^{1 / x} < \left(1 + \frac{1}{n_x}\right)^{n_x + 1}
+	\end{align*}
+	Крайняя левая и крайняя правая оценки стремятся к $e$. А значит
+	\[
+		\liml_{x \to 0+} f(x) = e
+	\]
+	Осталось доказать левый предел. Сделаем замену $x = -y$:
+	\begin{multline*}
+		\liml_{x \to 0-} (1 + x)^{1 / x} = \liml_{y \to 0+} (1 - y)^{-1/y} = \\
+		\liml_{y \to 0+} \frac{1}{(1 - y)^{1/y}} = \liml_{y \to 0+} \left(\frac{1}{1 - y}\right)^{1 / y} = \\
+		\liml_{y \to 0+} \left(1 + \frac{y}{1 - y}\right)^{1 / y} = \liml_{t \to 0+} (1 + t)^{\frac{1 - t}{t}} = \\
+		\liml_{t \to 0+} (1 + t)^{1 / t} \cdot \frac{1}{1 + t} = e \cdot 1 = e
+	\end{multline*}
+	По теореме о связи предела с односторонними пределами, в итоге получаем
+	\[
+		\liml_{x \to 0} (1 + x)^{1 / x} = e
+	\]
+\end{proof}
+
+\begin{lemma}
+	$\forall a \in (0; 1) \cup (1; +\infty)$
+	\begin{enumerate}
+		\item $\liml_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$
+		\item $\liml_{x \to 0} \frac{\log_a (1 + x)}{x} = \frac{1}{\ln a}$
+		\item $\liml_{x \to 0} \frac{a^x - 1}{x} = \ln a$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}~
+	
+	\begin{enumerate}
+		\item Введём $g(y)$:
+		\[
+			g(y) = \System{
+			&{(1 + y)^{1 / y},\ y \neq 0}
+			\\
+			&{e, y = 0}
+			}
+		\]
+		В силу второго замечательного предела
+		\[
+			\liml_{y \to 0} (1 + y)^{1 / y} = e = g(0)
+		\]
+		То есть, $g(y)$ непрерывна в 0. Дополнительно введём $y = f(x) = 1 / x$. Для этой функции есть предел
+		\[
+			\liml_{x \to \infty} f(x) = 0
+		\]
+		По теореме о пределе композиции функций получим
+		\[
+			\liml_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = \liml_{x \to \infty} g(f(x)) = g(0) = e
+		\]
+		
+		\item В силу непрерывности логарифма в 1 применим композицию:
+		\[
+			\liml_{x \to 0} \frac{\log_a (1 + x)}{x} = \liml_{x \to 0} \log_a((1 + x)^{1 / x}) = \log_a(\liml_{x \to 0} (1 + x)^{1 / x}) = \log_a e = \frac{1}{\ln a}
+		\]
+		
+		\item Положим $f(x) = a^x - 1$. Если выразить $x$ через $y = f(x)$, то получится
+		\[
+			x = \log_a (y + 1)
+		\]
+		А выражение предела получает вид
+		\[
+			\frac{a^x - 1}{x} = \frac{y}{\log_a (y + 1)}
+		\]
+		Если подставить в такое выражение $y = 0$, то мы получим неопределённость. Это можно исправить, определив $g(y)$ как
+		\[
+			g(y) := \System{
+				&{\frac{y}{\log_a (y + 1)},\ y \neq 0}
+				\\
+				&{\ln a,\ y = 0}
+			}
+		\]
+		Посчитаем предел
+		\[
+			\liml_{y \to 0} g(y) = \liml_{y \to 0} \frac{1}{\frac{1}{g(y)}} = \liml_{y \to 0} \frac{1}{\frac{\log_a (y + 1)}{y}} = \frac{1}{\frac{1}{\ln a}} = \ln a
+		\]
+		То есть $g(y)$ непрерывно в 0. При этом
+		\[
+			\liml_{x \to 0} f(x) = 1 - 1 = 0
+		\]
+		По теореме о композиции функций получим
+		\[
+			\liml_{x \to 0} \frac{a^x - 1}{x} = \liml_{x \to 0} g(f(x)) = g(0) = \ln a
+		\]
+	\end{enumerate}
+\end{proof}
+
+\subsubsection*{Гиперболические функции}
+
+\begin{definition}
+	\begin{align*}
+		&{\sh x := \frac{e^x - e^{-x}}{2} - \text{ гиперболический синус}}
+		\\
+		&{\ch x := \frac{e^x + e^{-x}}{2} - \text{ гиперболический косинус}}
+		\\
+		&{\th x := \frac{\sh x}{\ch x}}
+		\\
+		&{\cth x := \frac{\ch x}{\sh x}}
+	\end{align*}
+\end{definition}
+
+Все гиперболические функции непрерывны на своих областях определения.
+
+\subsubsection*{Свойства гиперболических функций}
+
+\begin{enumerate}
+	\item $\ch^2 x - \sh^2 x = 1$ - основное гиперболическое тождество
+	\item $\ch^2 x + \sh^2 x = \ch 2x$
+	\item $2 \cdot \sh x \cdot \ch x = \sh 2x$
+\end{enumerate}
+
+\subsubsection*{Обратные функции}
+
+\[
+	y = \sh x \lra x = \Arsh y
+\]
+В этом нет смысла, так как можно решить уравнение явно
+\[
+	y = \frac{e^x - e^{-x}}{2} \lra e^{2x} - 2ye^x - 1 = 0 \lra x = \ln (y + \sqrt{y^2 + 1})
+\]
+
+\begin{addition}
+	$\liml_{x \to 0} \frac{\sh x}{x} = \liml_{x \to 0} \frac{e^x - e^{-x}}{2x} = \liml_{x \to 0} \frac{e^x - 1}{2x} - \frac{e^{-x} - 1}{2z} = \frac{1}{2} + \liml_{t \to 0} \frac{e^t - 1}{2t} = 1$
+\end{addition}

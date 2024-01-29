@@ -1,0 +1,334 @@
+\begin{definition}
+	Последовательность $\{x_n\}_{n = 1}^\infty$ называется
+	\textit{бесконечно малой}, если она сходящаяся и 
+	$\liml_{n \to \infty} x_n = 0$
+\end{definition}
+
+\begin{theorem} (Предел произведения б.м. и ограниченной последовательностей)
+	Если $\{x_n\}_{n = 1}^\infty$ - бесконечно малая, а
+	$\{y_n\}_{n = 1}^\infty$ ограничена, то
+	$\{x_ny_n\}_{n = 1}^\infty$ - бесконечно малая
+	последовательность.
+\end{theorem}
+
+\begin{proof}
+	\begin{multline*}
+	 	\{y_n\}_{n = 1}^\infty$ - ограниченная $\Ra (\exists M > 0)
+		(\forall n \in \N)\ |y_n| \le M
+		\\
+		\{x_n\}_{n = 1}^\infty$ - бесконечно малая $\Ra (\forall \eps > 0)
+		(\exists N \in \N)(\forall n > N)\ |x_n| < \frac{\eps}{M}
+		\\
+		\Ra (\forall \eps > 0)(\exists N \in \N)(\forall n > N)\ 
+		|x_n y_n| = |x_n| |y_n| < \frac{\eps}{M} \cdot M \le \eps
+	\end{multline*}
+\end{proof}
+
+\begin{definition}
+	$\eps$-окрестностью числа $l \in \R$ называется $U_{\eps}(l) := (l - \eps, l + \eps)$. При этом $\eps > 0$.
+\end{definition}
+
+\begin{definition}
+	Предел последовательности через $\eps$-окрестность
+	определяется как $\liml_{n \ra \infty} x_n = l \lra 
+	(\forall \eps > 0)(\exists N \in \N)(\forall n > N)\ x_n \in U_{\eps}(l)$
+\end{definition}
+
+\begin{definition}
+	Отрицательной бесконечностью называется объект, для которого верно высказывание
+	$$
+		\forall x \in \R \Ra -\infty < x
+	$$
+\end{definition}
+
+\begin{definition}
+	Положительной бесконечностью называется объект, для которого верно высказывание
+	$$
+		\forall x \in \R \Ra x < +\infty
+	$$
+\end{definition}
+
+\begin{definition}
+	\textit{Расширенным действительным множеством} называется множество
+	$$
+		\bar{\R} = \R \cup \{-\infty, +\infty\}
+	$$
+	На этом множестве нельзя складывать/умножать, но можно сравнивать
+\end{definition}
+
+\begin{definition}
+	$\eps$-окрестность для бесконечностей определяется как
+	\begin{align*}
+		U_{\eps}(+\infty) := \left(\frac{1}{\eps}; +\infty\right)
+		\\
+		U_{\eps}(-\infty) := \left(-\infty; -\frac{1}{\eps}\right)
+		\\
+		U_{\eps}(\infty) := U_{\eps}(-\infty) \cup U_{\eps}(+\infty)
+	\end{align*}
+\end{definition}
+
+\begin{definition}
+	Последовательностью $\{x_n\}_{n = 1}^\infty$ называется бесконечно большой, если
+	$$
+		\liml_{n \ra \infty} x_n = -\infty, +\infty \text{ или } \infty
+	$$
+\end{definition}
+
+\begin{theorem} (Связь б.м. и б.б. последовательностей)
+	Пусть $\{x_n\} \subset \R \bs \{0\}$, тогда
+	$\{x_n\}_{n = 1}^\infty$ - б.м. $\lra
+	\{\frac{1}{x_n}\}_{n = 1}^\infty$ - б.б.
+\end{theorem}
+
+\begin{proof}
+	:
+	\begin{enumerate}
+		\item $\{x_n\}_{n = 1}^\infty$ - б.м. $\Ra (\forall \eps > 0)
+		(\exists N \in \N)(\forall n > N)\ |x_n| < \eps$.
+		Отсюда следует, что $\left|\frac{\dse 1}{\dse x_n}\right| > \frac{\dse 1}{\dse \eps} \lra \frac{\dse 1}{\dse x_n} \in U_{\eps}(\infty) \lra \liml_{n \ra \infty} \frac{\dse 1}{\dse x_n} = \infty$
+		
+		\item $\liml_{n \ra \infty} \frac{1}{x_n} = \infty \lra 
+		(\forall \eps > 0)(\exists N \in \N)(\forall n > N)\ \left|\frac{\dse 1}{\dse x_n}\right| > \frac{\dse 1}{\dse \eps} \Ra 0 < |x_n| < \eps \lra \liml_{n \to \infty} x_n = 0$
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Последовательность $\{x_n\}_{n = 1}^\infty$ называется
+	\textit{неубывающей}, если
+	\[
+		(\forall n \in \N)\ x_n \le x_{n + 1}
+	\]
+\end{definition}
+
+\begin{definition}
+	Последовательность $\{x_n\}_{n = 1}^\infty$ называется
+	\textit{невозрастающей}, если
+	\[
+		(\forall n \in \N)\ x_n \ge x_{n + 1}
+	\]
+\end{definition}
+
+\begin{definition}
+	Последовательность $\{x_n\}_{n = 1}^\infty$ называется
+	\textit{убывающей}, если
+	\[
+		(\forall n \in \N)\ x_n > x_{n + 1}
+	\]
+\end{definition}
+
+\begin{definition}
+	Последовательность $\{x_n\}_{n = 1}^\infty$ называется
+	\textit{возрастающей}, если
+	\[
+		(\forall n \in \N)\ x_n < x_{n + 1}
+	\]
+\end{definition}
+
+\begin{theorem} (Вейерштрасса о монотонных последовательностях)
+	Если $\{x_n\}_{n = 1}^\infty$ ограниченная сверху и
+	неубывающая последовательность, то $\exists
+	\liml_{n \ra \infty} x_n = \sup \{x_n\}$. Если же
+	невозрастающая и ограниченная снизу, то
+	$\liml_{n \ra \infty} x_n = \inf \{x_n\}$
+\end{theorem}
+
+\begin{proof}
+	Приведём доказательство только для ограниченной сверху и неубывающей последовательности.
+	\[
+		l := \sup \{x_n\} \lra \System{
+		&(\forall n \in \N)\ x_n \le l
+		\\
+		&(\forall \eps > 0)(\exists N \in \N)\ l - \eps < x_N \le l
+		}
+	\]
+	Рассмотрим $(\forall n > N)$. Тогда
+	\[
+		l + \eps > l \ge x_n \ge x_{n - 1} \ge
+		\dots \ge x_N > l - \eps \Ra |x_n - l| < \eps
+	\]
+	То есть
+	\[
+		(\forall \eps > 0)(\exists N \in \N)(\forall n > N)
+		\ |x_n - l| < \eps
+	\]
+	Что и доказывает наше утверждение.
+\end{proof}
+
+\begin{proposition}
+	Каждая монотонная последовательность имеет предел в $\bar{\R}$
+\end{proposition}
+
+\begin{proof}
+	Для доказательства данного утверждения нам нужно дополнить
+	теорему Вейерштрасса двумя случаями:
+	
+	Пусть $\{x_n\}_{n = 1}^\infty$ - неубывающая неограниченная
+	сверху $\Ra (\forall \eps > 0)(\exists N \in \N)\ x_N >
+	\frac{1}{\eps}$ и при этом $(\forall n > N)\ x_n \ge x_{n - 1}
+	\ge \dots \ge x_N > \frac{1}{\eps} \Ra \liml_{n \to \infty}
+	x_n = +\infty$.
+
+	Аналогично доказывается случай для невозрастающей
+	неограниченной снизу последовательности.
+\end{proof}
+
+\begin{definition}
+	Последовательность вложенных отрезков --- это
+	$\{[a_n; b_n]\}_{n = 1}^\infty$, ($a_n < b_n\
+	\forall n \in \N)$ такая, что $(\forall n \in \N)
+	\ [a_n; b_n] \supset [a_{n + 1}; b_{n + 1}]$
+\end{definition}
+
+\begin{theorem} (Принцип Кантора вложенных отрезков)
+	Каждая система вложенных отрезков имеет непустое пересечение, то есть
+	\[
+		\bigcap\limits_{n = 1}^\infty [a_n; b_n]
+		\neq \emptyset
+	\]
+\end{theorem}
+
+\begin{proof}
+	$[a_n; b_n] \supset [a_{n + 1}; b_{n + 1}] \Ra \left((a_n \le a_{n + 1}) \wedge (b_n \ge b_{n + 1})\right)$
+	
+	Следовательно, $\{a_n\}$ --- неубывающая, а $\{b_n\}$ ---
+	невозрастающая
+	
+	$a_n \le b_n \le b_1$, а $a_1 \le a_n \le b_n$ ($\{a_n\}$ и $\{b_n\}$
+	ограничены сверху и снизу соответственно), то есть по теореме Вейерштрасса
+
+	\begin{align*}
+		&\exists a = \liml_{n \ra \infty} a_n = \sup \{a_n\}
+		\\
+		&\exists b = \liml_{n \ra \infty} b_n = \inf \{b_n\}
+	\end{align*}
+	Так как $(\forall n \in \N)\ a_n \le b_n$, то предельный переход даёт неравенство $a \le b$
+	
+	Ну а учитывая равенства пределов, получим $a_n \le a \le
+	b \le b_n \Ra (\exists x \in [a; b])\ a_n \le a \le x \le
+	b \le b_n$, что и доказывает непустоту пересечения.
+\end{proof}
+
+\begin{definition}
+	Стягивающейся системой отрезков называется система вложенных
+	отрезков, длины которых образуют б.м. последовательность.
+\end{definition}
+
+\begin{addition}
+	Система стягивающихся отрезков имеет пересечение, состоящее
+	из одной точки.
+\end{addition}
+
+\begin{proof}
+	$a_n \le a \le b \le b_n \Ra 0 \le b - a \le b_n - a_n
+	\Ra a = b$
+\end{proof}
+
+\begin{definition}
+	Подпоследовательностью последовательности
+	$\{x_n\}_{n = 1}^\infty$ называется $\{x_{n_k}\}_{k = 1}^\infty$,
+	где $\{n_k\}_{k = 1}^\infty$ - возрастающая последовательность
+	натуральных чисел
+\end{definition}
+
+\begin{definition}
+	Частичным пределом последовательности $\{x_n\}_{n = 1}^\infty$
+	называется предел её некоторой подпоследовательности.
+\end{definition}
+
+\begin{theorem} (Эквивалентное определение частичного предела)
+	Число $l \in \R$ является частичным пределом
+	$\{x_n\}_{n = 1}^\infty$ тогда и только тогда, когда
+	$(\forall \eps > 0)(\forall N \in \N)(\exists n > N)\ |x_n - l| < \eps$
+\end{theorem}
+
+\begin{proof}:
+\begin{enumerate}
+	\item Необходимость: $l$ - частичный предел. То есть 
+	\[
+		l = \liml_{k \to \infty} x_{n_k} \lra (\forall \eps > 0)
+		(\exists K \in \N)(\forall k > K)\ |x_{n_k} - l| < \eps
+	\]
+	При этом помним, что $\{n_k\}$ - возрастающая
+	последовательность натуральных чисел
+	
+	Следовательно, для $(\forall N \in \N)$ найдётся
+	$(K_1 \in \N)(n_{K_1} > N)$, а значит и $n := n_{K_1 + 1}
+	\Ra (n > n_{K_1} > N)\ |x_n - l| < \eps$
+	
+	В итоге имеем:
+	\[
+		(\forall \eps > 0)(\forall N \in \N)(\exists n > N)
+		\ |x_n - l| < \eps
+	\]
+	\item Достаточность: Пусть для $l$ верно, что
+	$(\forall \eps > 0)(\forall N \in \N)(\exists n > N)
+	\ |x_n - l| < \eps$
+	
+	Построим сходящуюся подпоследовательность:
+	\begin{align*}
+		&\eps := 1 & &N := 1 & &(\exists n_1 \in \N)\ n_1 > 1,\ |x_{n_1} - l| < 1
+		\\
+		&\eps := 1/2 & &N := n_1 & &(\exists n_2 \in \N)\ n_2 > n_1,\ |x_{n_2} - l| < 1/2
+		\\
+		&\dots
+	\end{align*}
+	По построению $\{x_{n_k}\}_{k = 1}^\infty$ такова, что
+	$(\forall \eps > 0)(\exists K \in \N)(\forall k > K)\ |x_{n_k} - l| < \eps$
+\end{enumerate}
+\end{proof}
+
+\begin{theorem} (Больцано-Вейерштрасса) \label{Bolzano–Weierstrass}
+	Из каждой ограниченной последовательности действительных
+	чисел можно выделить сходящуюся подпоследовательность
+\end{theorem}
+
+\begin{proof}
+	$\{x_n\}_{n = 1}^\infty$ --- ограниченная, тогда
+	$\exists [a_1; b_1] \supset \{x_n\}_{n = 1}^\infty$
+	
+	Разделим отрезок пополам. Утверждение: хотя бы 1 из половин
+	содержит бесконечное число членов последовательности.
+	
+	Пусть $[a_2; b_2]$ - та из половин $[a_1; b_1]$, которая
+	содержит бесконечно много членов последовательности $\{x_n\}$
+	(левую, если в обеих $\infty$).
+	Продолжая, получим последовательность вложенных отрезков
+	$\{[a_n; b_n]\}_{n = 1}^\infty$. Так как $b_n - a_n =
+	\frac{b_1 - a_1}{2^{n - 1}}$.
+	
+	Следовательно, $\{[a_n; b_n]\}_{n = 1}^\infty$ - система
+	стягивающихся отрезков, по принципу Кантора $\exists c =
+	\bigcap\limits_{n = 1}^\infty [a_n; b_n]$. Докажем, что
+	$c$ - частичный предел.
+	
+	$x_{n_1} = x_1\ ;\ x_{n_2} \in [a_2; b_2]\ 
+	\dots\ x_{n_k} \in [a_k; b_k]$. Отсюда $0
+	\le |c - x_{n_k}| \le b_k - a_k = \frac{b_1 - a_1}{2^{k - 1}}
+	\underset{{k \to \infty}}{\ra} 0$.
+\end{proof}
+
+\begin{addition}
+	Каждая числовая последовательность $\forall
+	\{x_n\}_{n = 1}^\infty$ имеет хотя бы 1 частичный предел из
+	$\bar{\R}$, то есть $\exists \{x_{n_k}\}_{k = 1}^\infty\ 
+	|\ \liml_{k \ra \infty} x_{n_k} = l \in \bar{\R}$
+\end{addition}
+
+\begin{proof}
+	Если последовательность ограничена, то смотрим теорему Больцано-Вейерштрасса.
+	
+	Если последовательность неограничена сверху, то построим подпоследовательность:
+	\begin{align*}
+		&M := 1 & &\Ra (\exists n_1 \in \N)\ x_{n_1} > 1
+		\\
+		&M := \max(2, x_1, x_2, \dots, x_{n_1}) & &\Ra (\exists n_2 \in \N)\ x_{n_2} > \max(2, x_{n_1}) \ge 2,\ n_2 > n_1
+		\\
+		&\dots
+	\end{align*}
+	Получили $\{x_{n_k}\}_{k = 1}^\infty$ такую, что
+	$(\forall k \in \N)\ x_{n_k} > k$. Несложно показать,
+	что данная последовательность - бесконечно большая.
+	
+	Аналогично доказывается случай, когда последовательность неограничена снизу.
+\end{proof}
+

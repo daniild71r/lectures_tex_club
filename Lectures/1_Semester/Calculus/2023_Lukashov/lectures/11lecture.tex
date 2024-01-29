@@ -1,0 +1,379 @@
+\begin{theorem} (Первая теорема Вейерштрасса о непрерывных на отрезке функциях)
+	Если $f$ непрерывна на $[a; b]$, то она ограничена на $[a; b]$
+\end{theorem}
+
+\begin{proof}
+	Докажем от противного. Пусть $f$ - неограничена сверху (снизу аналогично). Это означает
+	\[
+		(\forall n \in \N)(\exists x_n \in [a; b])\ f(x_n) > n
+	\]
+	
+	Получим $\{x_n\}_{n = 1}^\infty \subset [a; b],\ a \le x_n \le b$. По теореме Больцано-Вейерштрасса
+	\[
+		\exists \{x_{n_k}\}_{k = 1}^\infty,\ \liml_{k \to \infty} x_{n_k} = x_0
+	\]
+	\[
+		a \le x_{n_k} \le b \Ra a \le x_0 \le b
+		\Ra \liml_{k \to \infty} f(x_{n_k}) = f(x_0)
+	\]
+
+	Значит, $f(x_{n_k})$ ограничена по свойству сходящейся последовательности.
+	
+	При этом $f(x_{n_k}) > n_k \Ra \{f(x_{n_k})\}_{k = 1}^{\infty}$ неограничена.
+	Противоречие.
+\end{proof}
+
+\begin{theorem} (Вторая теорема Вейерштрасса о непрерывных на отрезке функциях)
+
+	Если $f$ непрерывна на $[a; b]$, то она достигает на $[a; b]$
+	своих точных верхней и нижней граней. То есть
+	\[
+		(\exists x', x'' \in [a; b])\ f(x') = \inf\limits_{x \in [a; b]} f(x),\ f(x'') = \sup\limits_{x \in [a; b]} f(x)
+	\]
+\end{theorem}
+
+\begin{proof}
+	По определению минимума
+	\[
+		m := \inf\limits_{x \in [a; b]} f(x) \Ra (\forall \eps > 0)
+		(\exists x \in [a; b])\ m \le f(x) < m + \eps
+	\]
+	Построим подпоследовательность через выбор $\eps$:
+	\begin{align*}
+		&\eps := 1 & &m \le f(x_1) < m + 1
+		\\
+		&\eps := 1/2 & &m \le f(x_2) < m + 1/2
+		\\
+		&\dots & &\dots
+		\\
+		&\eps := 1/n & &m \le f(x_n) < m + 1/n
+		\\
+		&\dots & &\dots
+	\end{align*}
+
+	Получили ограниченную последовательность $\{x_n\}_{n = 1}^\infty$.
+	По теореме Больцано-Вейерштрасса:
+	\[
+		\exists \{x_{n_k}\}_{k = 1}^\infty \subset [a; b] :
+		\liml_{k \to \infty} x_{n_k} = x_0 \in [a; b] \Ra \liml_{k \to \infty}
+		f(x_{n_k}) = f(x_0)
+	\]
+	Так как	$(\forall n \in \N)\ m \le f(x_n) < m + \frac{1}{n} \Ra$
+
+	\[
+	(\forall k \in \N)\ m \le f(x_{n_k}) < m + \frac{1}{n_k}
+	\Ra \liml_{k \to \infty} f(x_{n_k}) = m \Ra f(x_0) = m
+	\]
+\end{proof}
+
+\begin{theorem} (Больцано-Коши о промежуточных значениях) \\
+	Если $f$ непрерывна на $[a; b]$ и $y_1, y_2$ - два её
+	произвольных значения:
+	\[
+	(\exists x_1, x_2\ a \le x_1 < x_2 \le b)\ \{f(x_1),\ f(x_2)
+	\} = \{y_1,\ y_2\} \Ra (\forall \gamma \in (y_1, y_2))
+	(\exists c \in (x_1, x_2))\ f(c) = \gamma
+	\]
+\end{theorem}
+
+\begin{proof}.
+
+\begin{enumerate}
+	\item 
+	Обратим внимание, что порядок $x_1, x_2$ и $y_1, y_2$ не связан
+	(возможно, что $f(x_1) = y_2$).
+	Для упрощения доказательства сначала рассмотрим частный случай:
+	$\gamma = 0$, т.к. $\gamma \in (y_1, y_2) \Ra y_1 < \gamma
+	< y_2 \Ra f(x_1) \cdot f(x_2) < 0$
+
+	Обозначим за $[a_1, b_1] := [x_1, x_2]$. Поделим $[a_1, b_1]$
+	пополам и обозначим через $[a_2, b_2]$ ту половину, на которой
+	$f(b_2) \cdot f(a_2) < 0$. 
+	
+	Если $f\left(\frac{a_1 + b_1}{2}\right)
+	= 0$, то все доказано. Продолжаем этот процесс. Тогда он либо
+	оборвется, т.е. ч.т.д., либо получим систему стягивающихся
+	отрезков
+
+	\[
+	\{[a_n, b_n]\}_{n = 1}^{\infty}\ 
+	(b_n - a_n = \frac{x_2 - x_1}{2^{n - 1}})
+	\Ra (\exists c \in \R)(\forall n \in \N)(c \in [a_n, b_n])
+	\Ra 
+	\]
+
+	\[
+	\liml_{n \to \infty} a_n = \liml_{n \to \infty} b_n
+	= c
+	\]
+
+`	Из определения непрерывности по Гейне следует:
+	\[
+	\liml_{n \to \infty} a_n = \liml_{n \to \infty} b_n
+	= c \Ra \liml_{n \to \infty} f(a_n) = f(c) =
+	\liml_{n \to \infty} f(b_n) 
+	\]
+
+	Из свойства с неравенствами пределов следует:
+
+	\[
+	\liml_{n \to \infty} \underbrace{f(a_n) \cdot f(b_n)}_{< 0}
+	= f^2 (c) \le 0 \Ra f(c) = 0
+	\]
+	
+	\item
+	Теперь докажем $(\forall \gamma \in (y_1, y_2))$, т.е. общий случай:
+
+	Рассмотрим $F(x) = f(x) - \gamma$
+	
+	$F$ непрерывна, значит,
+	по доказанному $(\exists c \in (x_1, x_2))\ F(c) = 0 \lra
+	f(c) = \gamma$
+\end{enumerate}
+\end{proof}
+
+\subsubsection*{Промежутки}
+
+\begin{definition}
+	Множество $I \subset \bar{\R}$ называется \textit{промежутком},
+	если $(\forall x_1 < x_2)\ \{x_1, x_2\} \subset I \Ra
+	[x_1; x_2] \subset I$. Если таких $x_1, x_2$ не существует
+	(то есть $I = \emptyset$ либо точка), то $I$ называется
+	\textit{вырожденным} промежутком
+\end{definition}
+
+\begin{lemma}
+	$I$ - невырожденный промежуток $\lra$
+	$\left(\exists a < b,\ \{a, b\} \subset \R\right)$
+	такие, что
+	\[
+		I = \left[
+		\begin{aligned}
+			&(-\infty; +\infty)
+			\\
+			&(-\infty; a)
+			\\
+			&(b; +\infty)
+			\\
+			&(-\infty; a]
+			\\
+			&[b; +\infty)
+			\\
+			&[a; b]
+			\\
+			&(a; b]
+			\\
+			&[a; b)
+			\\
+			&(a; b)
+		\end{aligned}
+		\right.
+	\]
+\end{lemma}
+
+\begin{proof}
+	Здесь приведено доказательство двух возможных случаев. Остальные - аналогично.
+	
+	Пусть $I$ - невырожденный промежуток, который неограничен сверху и ограничен снизу. Тогда $\exists a := \inf I$. Сам по себе $I$ может оказаться каким угодно, но точно верно, что (так как $I \subset \bar{\R}$)
+	\[
+		I \subset [a; +\infty)
+	\]
+	Выберем $\forall x_0 \in (a; +\infty)$. Из этого следует, что
+	\begin{align*}
+		\exists x_2 \in I \cap (x_0; +\infty) \text{, иначе } I \text{ ограничено сверху}
+		\\
+		\exists x_1 \in I \cap (a; x_0) \text{, иначе } \inf I \text{ определен неверно}
+	\end{align*}
+	А значит и $[x_1; x_2] \subset I$, то есть $x_0 \in I$. Следовательно,
+	$(a;+\infty) \subset I$. Ну а из этого уже либо $I = (a; +\infty)$, либо $I = [a; +\infty)$, в зависимости от достижимости инфинума.
+\end{proof}
+
+\begin{lemma}
+	Если $f$ непрерывна на промежутке $I$, то её множество
+	значений $f(I) = \{f(x) : x \in I\}$ - промежуток (возможно
+	вырожденный)
+\end{lemma}
+
+\begin{proof}
+	Будем считать, что $f$ - непостоянна.
+	(Иной случай тривиален)
+	
+	Рассмотрим $(\forall y_1 < y_2,\ \{y_1, y_2\}
+	\subset f(I))$.
+	Это значит, что
+	\[
+		(\exists x_1 < x_2,\ \{x_1, x_2\} \subset I)
+		\ \{f(x_1), f(x_2)\} = \{y_1, y_2\}\ (\times)
+	\]
+	Так как мы работаем с промежутком, то $[x_1; x_2]
+	\subset I$, $f$ непрерывна на $[x_1; x_2] \Ra
+	(\forall c \in (y_1; y_2))(\exists d \in (x_1; x_2))
+	\ f(d) = c \Ra (y_1, y_2) \subset f(I)\ (*)$ по теореме
+	Больцано-Коши. А это означает, что
+	\[
+		(\times)\wedge(*) \Ra [y_1; y_2] \subset f(I)
+	\]
+\end{proof}
+
+\begin{example}
+	\[
+		f(x) = \System{
+			&x,\ x \in \Q \\
+			&-x,\ x \in R \bs \Q
+		}
+		\ \ (\forall a \in \R)\ f([-a, a]) = [-a, a]
+	\]
+\end{example}
+
+\begin{note}
+	Существуют такие функции, что $(\forall (a, b))\ f((a, b)) = \R$
+\end{note}
+
+\begin{lemma} \label{for_back}
+	Пусть $f$ - монотонна и непостоянна на промежутке $I$. Тогда $f$
+	непрерывна на $I$ тогда и только тогда, когда $f(I)$ -
+	промежуток.
+\end{lemma}
+
+\begin{proof}
+	Нужно доказать только достаточность, остальное следует
+	из предыдущей леммы.
+	
+	Пусть $f(I)$ - промежуток. Пойдем от противного. Предположим, что $f$ -
+	разрывная, $x_0$ - не концевая точка $I$ и $f$ имеет точку
+	разрыва в $x_0$. Будем считать, что $f$ - невозрастающая на $I$.
+	Тогда
+	\[
+		f(x_0 - 0) > f(x_0 + 0)
+	\]
+	Рассмотрим $(\forall x < x_0,\ x \in I) \Ra f(x) \ge f(x_0 - 0)$.
+	Аналогично $(\forall x > x_0,\ x \in I) \Ra f(x) \le f(x_0 + 0)$.
+	Отсюда следует, что
+	\[
+		f(I) \subset (-\infty; f(x_0 + 0)]
+		\cup \{f(x_0)\} \cup [f(x_0 - 0); +\infty) \Ra
+	\]
+	\[
+		f(x_0 - 0) \ge f(x_0) \ge f(x_0 + 0)
+	\]
+	Причем хотя бы одно неравенство строгое (для существования
+	разрыва). Значит хотя бы один из интервалов
+	$(f(x_0 + 0), f(x_0)), (f(x_0), f(x_0 - 0))$ не вырожден.
+	Пусть это будет $(f(x_0), f(x_0 - 0))$. Тогда $y_1 
+	= f(x_0),\ y_2 \in [f(x_0 - 0), +\infty)$ дают противоречие
+	с $f(I)$ - промежуток, т.к. $(f(x_0), f(x_0 - 0)) \subset 
+	[y_1, y_2] \subset I$, но $(f(x_0), f(x_0 - 0)) \cap I
+	= \emptyset$.
+	
+	Пусть теперь $x_0$ - концевая точка, например,
+	$x_0 = \inf I$. Раз $f$ - невозрастающая, то
+	\[
+		\exists f(x_0 - 0) > f(x_0)
+	\]
+	Получаем $f(I) \subset \{f(x_0)\} \cup [f(x_0 - 0); +\infty)$. Взяв $y_1$ и $y_2$ из разных частей, снова получим противоречие.
+\end{proof}
+
+\begin{definition}
+	Если $f$ инъективно на $X$, то на $f(X)$ определено
+	обратное отображение $f^{-1}$ так, что $(\forall x \in X)
+	\ f^{-1} (f(x)) = x,\ (\forall y \in f(X))\ f(f^{-1} (y)) = y$
+\end{definition}
+
+\begin{theorem} \label{inverse_function} (Теорема об обратной функции) 
+	Если $f$ непрерывна и строго монотонна на промежутке $I$,
+	то на промежутке $f(I)$ определена обратная функция
+	$f^{-1}$,  непрерывная на $f(I)$ и строго монотонная в
+	том же смысле, что и $f$.
+\end{theorem}
+
+\begin{proof}
+	Будем рассматривать такую $f$, что $(\forall x_1 < x_2,\  
+	x_1, x_2 \in I) \Ra f(x_1) > f(x_2)$. Положим
+	\begin{align*}
+		y_1 := f(x_1)
+		\\
+		y_2 := f(x_2)
+	\end{align*}
+	То есть
+	\begin{align*}
+		f^{-1}(y_1) := x_1
+		\\
+		f^{-1}(y_2) := x_2
+	\end{align*}
+	
+	$f^{-1}(y_2) > f^{-1}(y_1)$, то есть $f^{-1}$ монотонно убывает.
+	
+	По лемме \ref{for_back} $f(I)$ - промежуток.
+	А значит, $f^{-1}$ определена на промежутке и при
+	этом строго монотонна. Следовательно, по последней лемме
+	$f^{-1}$ - непрерывна на $f(I)$.
+\end{proof}
+
+\subsection{Непрерывность элементарных функций}
+
+\begin{enumerate}
+	\item $y = x^n,\ n \in \N,\ n$ - нечётное
+	
+	Возрастает на $(-\infty; +\infty)$, непрерывна по 3й лемме
+	
+	Обратная: $f^{-1}(y) := \sqrt[n]{x}$
+	
+	\item $y = x^n,\ n \in \N,\ n$ - чётное
+	
+	Возрастает на $[0; +\infty)$, непрерывна по 3й лемме
+	
+	$f^{-1}(y) = \sqrt[n]{x}$
+	
+	\item $y = x^r,\ r \in \Q$
+	
+	Определена и непрерывна на $(0; +\infty)$
+\end{enumerate}
+
+\subsubsection*{Тригонометрические функции}
+
+\begin{lemma} \label{for_trig}
+	$\forall x \in (0; \frac{\pi}{2}) \Ra \sin x < x < \tg x$
+\end{lemma}
+
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+		% Axis
+		\coordinate (y) at (0,3);
+		\coordinate (x) at (3.6,0);
+		\draw[<->] (y) -- (0,0) --  (x);
+		\draw (-3,0) -- (0,0) --  (0,-3);
+		
+		\path
+		coordinate (c1) at +(2.5, 3)
+		coordinate (c2) at +(2.5, -3)
+		coordinate (top) at (4.8,3.6);
+		
+		\draw (c1) -- (c2);
+		\draw (2.1, 1.35) -- (2.1, 0) node[below] {$A$};
+		\draw (0,0) node[above left] {$O$} -- (2.5, 1.6) node[above right] {$B$};
+		
+		\filldraw[black] (2.5, 0) circle (1.2pt) node[below right] {$C$};
+		\filldraw[black] (2.5, 1.6) circle (1.2pt);
+		\filldraw[black] (0, 0) circle (1.2pt);
+		\filldraw[black] (2.1, 0) circle (1.2pt);
+		\filldraw[black] (2.1, 1.35) circle (1.2pt) node[yshift=10, xshift=3] {$M$};
+		\draw[black] circle(2.5);
+		
+		\coordinate (a) at (1, 0);
+		\coordinate (z) at (0, 0);
+		\coordinate (m) at (2.1, 1.35);
+		\draw (1, 0.3) node {$x$};
+		\pic [draw, ->, angle radius = 0.7cm] {angle = a--z--m};
+	\end{tikzpicture}
+\end{center}
+
+\begin{proof}
+	Рассмотрим рисунок, на котором $x \in (0; \frac{\pi}{2})$. Согласно обозначениям, $\sin x = MA,\ \tg x = BC$. При этом несложно увидеть, что
+	\[
+		S_{\triangle OMC} < S_{OMC} < S_{\triangle OBC}
+	\]
+	где $S_{\triangle OMC} = \frac{\sin x}{2}$, $S_{OMC} = \frac{x}{2}$, $S_{\triangle OBC} = \frac{\tg x}{2}$. То есть
+	\[
+		\frac{\sin x}{2} < \frac{x}{2} < \frac{\tg x}{2} \Ra \sin x < x < \tg x
+	\]
+\end{proof}

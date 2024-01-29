@@ -1,0 +1,240 @@
+\begin{theorem}
+	Пусть $\Gamma = \{\vec{r}(t), a \le t \le b\}$ - гладкая кривая.\\
+	Тогда \(s(t) = V(\vec{r}, [a; t])\) - возрастающая функция, которая дифференцируема на $(a; b)$, имеет конечные производные слева в $b$, справа в $a$ и \(s'(t) = |\vec{r'}(t)|,\ t \in (a; b)\)
+\end{theorem}
+
+\begin{proof}
+	$\vec{r}(t)$ удовлетворяет условиям признака спрямляемости на $[a; b]$. Применим доказанную оценку для отрезка $[t_0; t_0 + \Delta t],\ \Delta t > 0$:
+	\[
+		|\vec{r}(t_0 + \Delta t) - \vec{r}(t_0)| \le V(\vec{r}, [t_0; t_0 + \Delta t]) \le \max\limits_{t \in [t_0; t_0 + \Delta t]} |\vec{r'}(t)| \cdot \Delta t
+	\]
+	Максимум вместо супремума уместен в силу гладкости кривой. При этом среднее число в неравенстве можно записать как
+	\[
+		V(\vec{r}, [t_0; t_0 + \Delta t]) = V(\vec{r}, [a; t_0 + \Delta t]) - V(\vec{r}, [a; t_0]) = s(t_0 + \Delta t) - s(t_0)
+	\]
+	Поделим неравенство на $\Delta t$ и получим
+	\[
+		\left|\frac{\vec{r}(t_0 + \Delta t) - \vec{r}(t_0)}{\Delta t}\right| \le \frac{s(t_0 + \Delta t) - s(t_0)}{\Delta t} \le \max\limits_{t \in [t_0; t_0 + \Delta t]} |\vec{r'}(t)|
+	\]
+	Остаётся заметить, что левая и правая части стремятся к $|\vec{r'}(t_0)|$ при $\Delta t \to 0+$. Стало быть
+	\[
+		s'_+(t_0) = \liml_{\Delta t \to 0+} \frac{s(t_0 + \Delta t) - s(t_0)}{\Delta t} = |\vec{r'}(t_0)| > 0
+	\]
+	Аналогично доказывается для $\Delta t < 0$. Из этого следуют все свойства $s(t)$, описанные в теореме.
+\end{proof}
+
+\begin{corollary}
+	В силу строго возрастания $s(t)$, определена также обратная к ней функция $s^{-1}(\tau): [0; V(\vec{r})] \to [a; b]$. Она является допустимой заменой параметра для гладкой кривой.
+\end{corollary}
+
+\begin{definition}
+	Полученная величина $s(t)$ называется \textit{натуральным параметром кривой} $\Gamma$.
+	
+	При этом кривая $\Gamma = \{\vec{r}(s), 0 \le s \le L\}$ - натуральная параметризация $\Gamma$.
+\end{definition}
+
+\begin{lemma}
+	Пусть $\Gamma = \{\vec{r}(t), a \le t \le b\}$ - гладкая кривая. Тогда $\vec{r}(t)$ является натуральной параметризацией тогда и только тогда, когда
+	\[
+		\forall t \in [a; b]\ \ |\vec{r'}(t)| = 1
+	\]
+\end{lemma}
+
+\begin{proof}~
+	\begin{itemize}
+		\item $\Ra$ Если $\vec{r}(t)$ - натуральная параметризация, то $t = s$, $s'(t) = 1 = |\vec{r'}(t)|$.
+		
+		\item $\La$ Теперь выполнено, что $\forall t \in [a; b]\ \ |\vec{r'}(t)| = 1$. Тогда отсюда $\forall t \in [a; b]\ \ s'(t) = 1$. При этом $s(0) = 0$. Значит, для любого $t \in (a; b]$ имеем
+		\[
+			s(t) - s(0) = s'(\xi) \cdot (t - 0) \Ra s(t) = t
+		\]
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}
+	Пусть $\vec{f}(t),\ t \in [a; b]$ - непрерывно дифференцируемая вектор-функция такая, что $|\vec{f}(t)| = const$. Тогда
+	\[
+		\forall t \in (a; b] \ \ \trbr{\vec{f'}(t), \vec{f}(t)} = 0
+	\]
+\end{lemma}
+
+\begin{proof}
+	Известно равенство:
+	\[
+		|\vec{f}(t)|^2 = \trbr{\vec{f}(t), \vec{f}(t)} = const
+	\]
+	Продифференцируем его с обеих сторон. Получится следующее выражение:
+	\[
+		\trbr{\vec{f'}(t), \vec{f}(t)} + \trbr{\vec{f}(t), \vec{f'}(t)} = 2\trbr{\vec{f'}(t), \vec{f}(t)} = 0
+	\]
+	Из него уже очевидно следует утверждение теоремы.
+\end{proof}
+
+\begin{note}
+	Последующая теория построена для пространства $\R^3$.
+\end{note}
+
+\begin{theorem} (Второе приближение кривой в $\R^3$)
+	Пусть $\Gamma = \{\vec{r}(s), 0 \le s < L\}$ - гладкая кривая в натуральной параметризации, и существует ненулевая вторая производная в точке $s_0$, тогда верно
+	\[
+		\vec{r}(s) = \vec{\rho}(s) + \vec{o}\left((s - s_0)^2)\right),\ s \to s_0
+	\]
+	где $\vec{\rho}(s)$ - окружность с центром в точке $\vec{r}(s_0) + \frac{1}{k}\vec{\nu}$ и при этом
+	\begin{align*}
+		&{k = \left|\frac{d^2 \vec{r}}{ds^2}(s_0)\right|}
+		\\
+		&{\vec{\nu} = \frac{1}{k} \cdot \frac{d^2 \vec{r}}{ds^2}(s_0)}
+	\end{align*}
+	Радиус этой окружности $R = \frac{1}{k}$, а сама она находится в плоскости $\Pi = \{\vec{r}(s_0) + \alpha \vec{\tau} + \beta \vec{\nu},\ \alpha, \beta \in \R\}$, где $\vec{\tau} = \frac{d\vec{r}}{ds}(s_0)$
+\end{theorem}
+
+\begin{definition}
+	Определённые выше величины имеют свои названия. Так, в точке $\vec{r}(s_0)$ мы знаем, что
+	\begin{itemize}
+		\item $\vec{\tau}$ - единичный вектор касательной
+		
+		\item $\vec{\nu}$ - единичный вектор главной нормали
+		
+		\item $k$ - кривизна кривой $\Gamma$
+		
+		\item $R$ - радиус кривизны
+		
+		\item $\vec{\rho}$ - вектор-функция соприкасающейся окружности
+		
+		\item $\Pi$ - соприкасающаяся плоскость
+	\end{itemize}
+\end{definition}
+
+\begin{proof}
+	Начнём с небольших фактов:
+	\begin{itemize}
+		\item $|\vec{\tau}| = 1$, так как по условию кривая в натуральной параметризации.
+		
+		\item $\trbr{\vec{\nu}, \vec{\tau}} = 0$, по уже доказанной лемме. Значит, они действительно образуют базис для плоскости $\Pi$.
+	\end{itemize}
+	Воспользуемся формулой Тейлора для $\vec{r}$:
+	\[
+		\vec{r}(s) = \vec{r}(s_0) + \frac{d\vec{r}}{ds}(s_0)(s - s_0) + \frac{1}{2}\frac{d^2\vec{r}}{ds^2}(s_0)(s - s_0)^2 + \vec{o}\left((s - s_0)^2\right),\ s \to s_0
+	\]
+	Попытаемся доказать, что расстояние между выбранной точкой и центром окружности "примерно постоянно". Для этого посмотрим на это расстояние:
+	\begin{multline*}
+		\vec{r}(s) - \left(\vec{r}(s_0) + \frac{1}{k}\vec{\nu}\right) = \frac{d\vec{r}}{ds}(s_0)(s - s_0) + \frac{1}{2} \frac{d^2 \vec{r}}{ds^2}(s_0)(s - s_0)^2 - \frac{1}{k^2}\frac{d^2\vec{r}}{ds^2}(s_0) + \vec{o}\left((s - s_0)^2\right) =
+		\\
+		(s - s_0)\vec{\tau} + \left(\frac{1}{2}k(s - s_0)^2 - \frac{1}{k}\right)\vec{\nu} + \vec{o}\left((s - s_0)^2\right),\ s \to s_0
+	\end{multline*}
+	Теперь взглянем на длину этого вектора. Для этого возьмём правый ортонормированный базис, два вектора из которых - это $\vec{\tau}$ и $\vec{\nu}$, а третий - их векторное произведение:
+	\begin{multline*}
+		\left|\vec{r}(s) - \vec{r}(s_0) - \frac{1}{k}\vec{\nu}\right| =
+		\\
+		\sqrt{\left(s - s_0 + o_1\left((s - s_0)^2\right)\right)^2 + \left(\frac{1}{2}k(s - s_0)^2 - \frac{1}{k} + o_2\left((s - s_0)^2\right)\right)^2 + \left(o_3\left((s - s_0)^2\right)\right)^2} =
+		\\
+		\sqrt{\frac{1}{k^2} + o\left((s - s_0)^2\right)},\ s \to s_0
+	\end{multline*}
+	Как записать вектор-функцию окружности в $\R^3$? Например так:
+	\[
+		\vec{r}_{\text{окр}}(\phi) = \vec{r}_0 + (\vec{i} \cdot (-R\cos \phi) + \vec{j} \cdot R \sin \phi)
+	\]
+	Тогда в нашем случае уравнение окружности имеет вид ($\vec{i} := \vec{\nu},\ \vec{j} := \vec{\tau}$):
+	\[
+		\vec{r}_\text{окр}(\phi) = \vec{r}(s_0) + \frac{1}{k}\vec{\nu} - \vec{\nu} \cdot R\cos \phi + \vec{\tau} \cdot R \sin \phi
+	\]
+	Для окружности несложно догадаться о натуральном параметре:
+	\[
+		\phi = \frac{s - s_0}{R}
+	\]
+	Подставим его в функцию и получим вектор-функцию окружности в натуральной параметризации:
+	\begin{multline*}
+		\vec{\rho}(s) = \vec{r}(s_0) + \vec{\tau}R \sin \frac{s - s_0}{R} + \vec{\nu}R\left(1 - \cos \frac{s - s_0}{R}\right) =
+		\\
+		\vec{r}(s_0) + \vec{\tau}R \left(\frac{s - s_0}{R} + o\left((s - s_0)^2\right)\right) + \vec{\nu}R \left(1 - \left(1 - \frac{1}{2}\left(\frac{s - s_0}{R}\right)^2 + o\left((s - s_0)^2\right)\right)\right) =
+		\\
+		\vec{r}(s_0) + (s - s_0)\vec{\tau} + \frac{1}{2R}(s - s_0)^2\vec{\nu} + \vec{o}\left((s - s_0)^2\right),\ s \to s_0
+	\end{multline*}
+	Если сравнить данное выражение с формулой Тейлора для $\vec{r}(s)$, то получится нужное утверждение:
+	\[
+		\vec{r}(s) = \vec{\rho}(s) + o\left((s - s_0)^2\right),\ s \to s_0
+	\]
+\end{proof}
+
+\begin{theorem} (О вычислении кривизны)
+	Если $\Gamma = \{\vec{r}(t), a \le t \le b\}$ - дважды дифференцируемая гладкая кривая, то кривизна в точке $\vec{r}(t)$ может быть подсчитана по формуле:
+	\[
+		k = \frac{\left|\left[\vec{r'}(t), \vec{r''}(t)\right]\right|}{\left|\vec{r'}(t)\right|^3}
+	\]
+\end{theorem}
+
+\begin{proof}
+	По правилу дифференцирования сложной функции вектор $\tau$ можно расписать так:
+	\[
+		\vec{\tau} = \frac{d\vec{r}}{ds} = \frac{\vec{r'}(t)}{\frac{ds}{dt}} = \frac{\vec{r'}(t)}{|\vec{r'}(t)|}
+	\]
+	Что такое кривизна $k$? Она выражается как
+	\[
+		k = \left|\frac{d\vec{\tau}}{ds}\right| = \left|\left[\frac{d\vec{\tau}}{ds}, \vec{\tau}\right]\right| = \left|\left[\frac{d\vec{\tau}}{ds}, \frac{d\vec{r}}{ds}\right]\right| = \frac{1}{|\vec{r'}(t)|^2} \cdot \left|\left[\vec{\tau'}(t), \vec{r'}(t)\right]\right|
+	\]
+	Отдельно распишем $\vec{\tau'}(t)$:
+	\[
+		\vec{\tau'}(t) = \frac{\vec{r''}(t)}{\left|\vec{r'}(t)\right|} - \frac{1}{\left|\vec{r'}(t)\right|^2} \cdot \frac{d}{dt}\left(\left|\vec{r'}(t)\right|\right) \cdot \vec{r'}(t)
+	\]
+	Если подставить $\vec{\tau'}$ в выражение кривизны, то при раскрытии по линейности второе слагаемое не внесёт вклада. Стало быть
+	\[
+		k = \frac{1}{\left|\vec{r'}(t)\right|^2} \cdot \left|\left[\frac{\vec{r''}(t)}{\left|\vec{r'}(t)\right|}, \vec{r'}(t)\right]\right| = \frac{\left|\left[\vec{r''}(t), \vec{r'}(t)\right]\right|}{\left|\vec{r'}(t)\right|^3}
+	\]
+\end{proof}
+
+\begin{corollary}~
+	\begin{enumerate}
+		\item Если $\vec{r}(t) = (x(t), y(t), z(t))$, то кривизна выражается как
+		\[
+			k = \frac{\sqrt{(y'z'' - y''z')^2 + (x'z'' - z'x'')^2 + (x'y'' - y'x'')^2}}{\left((x')^2 + (y')^2 + (z')^2\right)^{3/2}}
+		\]
+		
+		\item Если кривая плоская $(z(t) = 0)$, то
+		\[
+			k = \frac{|x'y'' - y'x''|}{\left((x')^2 + (y')^2\right)^{3/2}}
+		\]
+		
+		\item Для функции $y = f(x)\ (x = t)$ кривизна в точке $x_0$ вычисляется как
+		\[
+			k(x_0) = \frac{|f''(x_0)|}{\left(1 + (f'(x_0))^2\right)^{3/2}}
+		\]
+	\end{enumerate}
+\end{corollary}
+
+\begin{definition}
+	Вектором \textit{бинормали} называется $\vec{\beta}$:
+	\[
+		\vec{\beta} = [\vec{\tau}, \vec{\nu}]
+	\]
+\end{definition}
+
+%%% Нарисовать. Здесь нужна картинка с трансляции матана 2го декабря. 1:34:00
+
+\begin{theorem} (Формулы плоскостей сопровождающего трехгранника кривой)
+	\begin{itemize}
+		\item Уравнение нормальной плоскости, перпендикулярной $\vec{\tau}$, имеет вид:
+		\[
+			(\vec{r} - \vec{r}_0, \vec{r'}(t_0)) = 0
+		\]
+		
+		\item Уравнение соприкасающейся плоскости, перпендикулярной $\vec{\beta}$, имеет вид:
+		\[
+			(\vec{r} - \vec{r}_0, \vec{r'}(t_0), \vec{r''}(t_0)) = 0
+		\]
+		
+		\item Уравнение спрямляющей плоскости, перпендикулярной $\vec{\nu}$, имеет вид:
+		\[
+			\left(\vec{r} - \vec{r}_0, \vec{r'}(t_0), \left[\vec{r'}(t), \vec{r''}(t_0)\right]\right) = 0
+		\]
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	Достаточно посмотреть на рисунок.\\
+	Или показать, что $\vec{\beta} = \frac{[\vec{r'}(t_0), \vec{r''}(t_0)]}{|[\vec{r'}(t_0), \vec{r''}(t_0)]|}$\\
+	Так же заметим, что требуется показать, что вектора $\vec{\beta}$ и $[\vec{r'}(t_0), \vec{r''}(t_0)]$ сонаправлены, а равенство их длин будет следовать из определений(их длина равна 1: у $\vec{\beta}$, так как это произведение перпендикулярных единичных векторов, у $\frac{[\vec{r'}(t_0), \vec{r''}(t_0)]}{|[\vec{r'}(t_0), \vec{r''}(t_0)]|}$, так как мы на модуль делим)\\
+	\begin{align*}
+		\vec{\beta} = [\vec{\tau}, \vec{\nu}] \upuparrows \left[\vec{r'}(t_0), \frac{d^2\vec{r}}{ds^2}(t_0)\right] = \left[\vec{r'}(t_0), \frac{\vec{r''}(t_0)}{\left|\vec{r'}(t_0)\right|^2} - \frac{1}{\left|\vec{r'}(t_0)\right|^2} \cdot \frac{d\left|\vec{r'}\right|}{ds}(t_0) \cdot \vec{r'}(t_0)\right] \upuparrows [\vec{r'}(t_0), \vec{r''}(t_0)]
+	\end{align*}
+	
+\end{proof}

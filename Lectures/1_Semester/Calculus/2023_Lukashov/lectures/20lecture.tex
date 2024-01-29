@@ -1,0 +1,496 @@
+\section{Вектор-функции и топология пространства $\R^n$}
+
+\subsection{Пространство $\R^n$}
+
+\subsubsection*{Алгебраические структуры}
+
+\begin{definition}
+	\textit{Линейным пространством} над полем действительных
+	чисел (линейным действительным пространством) называется
+	множество $X$, на котором определены операции
+	$+: X \times X \ra X$ и $\cdot: \R \times X \ra X$,
+	удовлетворяющие аксиомам линейного пространства:
+	\begin{enumerate}
+		\item $(\forall \vec{x}, \vec{y} \in X)\ \ \vec{x} + \vec{y}
+			= \vec{y} + \vec{x}\ \ $ \textit{(ассоциативность сложения)}
+		
+		\item $(\forall \vec{x}, \vec{y}, \vec{z} \in X)\ \ 
+			(\vec{x} + \vec{y}) + \vec{z} = \vec{x} + 
+			(\vec{y} + \vec{z})\ \ $ \textit{(ассоциативность сложения)}
+		
+		\item $(\exists \vec{0} \in X)(\forall \vec{x} \in X)
+			\ \ \vec{x} + \vec{0} = \vec{x}\ \ $ \textit{(нейтральный 
+			элемент относительно сложения)}
+		
+		\item $(\forall \vec{x} \in X)(\exists
+			(-\vec{x}) \in X)\ \ \vec{x} + (-\vec{x}) = \vec{0}\ \ $
+			\textit{(обратный элемент относительно сложения)}
+		
+		\item $(\forall \alpha, \beta \in \R)(\forall
+			\vec{x} \in X)\ \ \alpha(\beta \vec{x}) =
+			(\alpha \beta) \vec{x}\ \ $ \textit{(ассоциативность
+			умножения на скаляр)}
+		
+		\item $(\forall \alpha, \beta \in \R)(\forall \vec{x}
+			\in X)\ \ (\alpha + \beta) \vec{x} =
+			\alpha \vec{x} + \beta \vec{x}\ $ \textit{(дистрибутивность
+			относительно скаляра)}
+		
+		\item $(\forall \alpha \in \R)(\forall \vec{x},
+			\vec{y} \in X)\ \ \alpha(\vec{x} + \vec{y}) =
+			\alpha\vec{x} + \alpha\vec{y}\ \ $ \textit{(дистрибутивность
+			относительно вектора)}
+		
+		\item $(\forall \vec{x} \in X)\ \ 1 \cdot \vec{x} = \vec{x}\ \ $
+			\textit{(нейтральный элемент относительно умножения)}
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	\[
+		\R^n = \underbrace{\R \times \R \times \dots \times \R}_{n}	
+	\]
+	$\R^n$ является линейным пространством над
+	полем $\R$ (линейным действительным пространством).
+	\[
+		\vec{x} = (x_1, \ldots, x_n) \text{ - вектор};\ 
+		\ \Matrix{&\xi^1 \\ &\vdots \\ &\xi^n}
+		\text{ - координатный столбец}
+	\]
+\end{definition}
+
+\begin{proposition}
+	Ноль и обратный элемент единственны
+\end{proposition}
+
+\begin{proof}
+	Единственность обратного элемента:
+	\[
+		(\vec{x} + (-\vec{x})_1) + (-\vec{x})_2 =
+		(-\vec{x})_2 = (-\vec{x})_1 =
+		(\vec{x} + (-\vec{x})_2) + (-\vec{x})_1
+	\]
+	Единственность нуля:
+	\[
+		\vec{0}_1 + \vec{0}_2 = \vec{0}_1 = \vec{0}_2 =
+		\vec{0}_2 + \vec{0}_1
+	\]
+\end{proof}
+
+\begin{proposition}
+	\[
+		0 \cdot \vec{x} = \vec{0}
+	\]
+\end{proposition}
+
+\begin{proof}
+	\[
+		(0 + 0)\vec{x} = 0\vec{x} = 0\vec{x} + 0\vec{x}
+	\]
+	К обеим частям добавим обратный элемент к $0\vec{x}$ и
+	получим:
+	\[
+		\vec{0} = 0\vec{x}
+	\]
+\end{proof}
+
+\begin{proposition}
+	\[
+		(-1)\vec{x} = -\vec{x}
+	\]
+\end{proposition}
+
+\begin{proof}
+	Рассмотрим выражение
+	\[
+		\vec{x} + (-1)\vec{x} = 1\vec{x} + (-1)\vec{x} =
+		(1 - 1)\vec{x} = 0\vec{x} = \vec{0}
+	\]
+	То есть $(-1)\vec{x}$ является обратным к $\vec{x}$
+	по сложению. Отсюда по единственности
+	\[
+		(-1)\vec{x} = -\vec{x}
+	\]
+\end{proof}
+
+\begin{anote}
+	В 2023 году Алексей Леонидович не строил теории для комплексных чисел,
+	поэтому весь материал, связанный с ними, остался нетронутым с 2021 года.
+	К этому же числу относятся линейные отображения.
+\end{anote}
+
+\begin{definition}
+	\textit{Комплексным} линейным пространством
+	называется линейное пространство над $\Cm$.
+	Определяется аналогично вещественному.
+\end{definition}
+
+\begin{definition}
+	Отображение $L: X_1 \ra X_2$ линейного пространства $X_1$ над
+	$\R(\Cm)$ на линейное пространство $X_2$ над
+	$\R(\Cm)$ называется
+	\textit{линейным отображением (оператором)}, если
+	\begin{itemize}
+		\item $(\forall \vec{x}, \vec{y} \in X_1)\ \ 
+			L(\vec{x} + \vec{y}) = L(\vec{x}) + L(\vec{y})$
+		
+		\item $(\forall \alpha \in \R(\Cm))(\forall \vec{x}
+			\in X_1)\ \ L(\alpha \vec{x}) = \alpha L(\vec{x})$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	Если существует биекция линейного пространства
+	$X_1$ на $X_2$, являющаяся линейным оператором
+	вместе со своим обратным, то $X_1 \cong X_2$ (изоморфны)
+\end{definition}
+
+\begin{definition}
+	Говорят, что на действительном линейном пространстве
+	$X$ задана \textit{комплексная структура}, если
+	существует линейный оператор $\goth{j}: X \to X$
+	такой, что
+	\[
+		\goth{j}^2  = -\id_X
+	\]
+\end{definition}
+
+\begin{example}
+	На $\R^2$ комплексная структура задаётся оператором
+	\[
+		\goth{j}: (x, y) \ra (-y, x)
+	\]
+\end{example}
+
+\begin{example}
+	\[
+		\{(x_1, x_2) \in \R^2 \such x_2 = 0\} \cong \R
+	\]
+\end{example}
+
+\begin{example}
+	\[
+		\{(z_1, z_2) \in \Cm^2 \such z_2 = 0\} \cong \Cm
+	\]
+\end{example}
+
+\begin{lemma}
+	Комплексная структура на $\R^{2n}$ задаётся оператором с матрицей
+	\[
+		\Matrix{
+		0& & -1& & \cdots& & & & 0 \\
+		1& & 0& & -1& & \cdots& & \vdots \\
+		\vdots& & 1& & 0& & \ddots& & \\
+		& & \vdots& & \ddots& & \ddots& & -1 \\
+		0& & \cdots& & & & 1& & 0
+		}
+	\]
+\end{lemma}
+
+\begin{definition}
+	Линейное действительное пространство называется \textit{евклидовым},
+	если определена функция $\trbr{\cdot, \cdot}: X \times X \ra
+	\R$, обладающая свойствами:
+	\begin{itemize}
+		\item $(\forall \vec{x} \in X)\ \ \trbr{\vec{x},
+			\vec{x}} \ge 0$, причём $\trbr{\vec{x}, \vec{x}} =
+			0 \lra \vec{x} = \vec{0}$
+		
+		\item $(\forall \vec{x}, \vec{y} \in X)\ \ 
+			\trbr{\vec{x}, \vec{y}} = \trbr{\vec{y}, \vec{x}}$
+		
+		\item $(\forall \alpha, \beta \in \R)\ \ 
+			\trbr{\alpha\vec{x} + \beta\vec{y}, \vec{z}} =
+			\alpha\trbr{\vec{x}, \vec{z}} + \beta\trbr{\vec{y}, \vec{z}}$
+	\end{itemize}
+	Эта функция $\trbr{\vec{x}, \vec{y}}$ называется скалярным
+	произведением
+\end{definition}
+
+\begin{lemma}
+	$\R^n$ является вещественным евклидовым
+	пространством если определить скалярное произведение как:
+	\[
+		\trbr{\vec{x}, \vec{y}} = \suml_{i = 0}^n x_iy_i
+	\]
+	где $\vec{x} = (x_1, \ldots, x_n);\ \vec{y} = (y_1, \ldots, y_n)$
+\end{lemma}
+
+\begin{addition}
+	Если в определении вещественного евклидового пространства
+	заменить первое свойство на
+	\[
+	(\forall \vec{y} \in X\ \trbr{\vec{x}, \vec{y}} = 0)
+		\lra \vec{x} = \vec{0}
+	\]
+	то получим определение \textit{псевдоевклидового} пространства.
+\end{addition}
+
+\begin{example}
+	$R^4$ - псевдоевклидово пространство, где для любых векторов
+	$\vec{x} = (x_0, x_1, x_2, x_3)$ и $\vec{y} = (y_0, y_1, y_2, y_3)$
+	скалярное произведение имеет вид
+	\[
+		\trbr{\vec{x}, \vec{y}} = x_0 y_0 - x_1 y_1 - x_2 y_2 - x_3 y_3
+	\]
+	Это пространство носит имя \textit{пространства Минковского} и
+	играет большую роль в Специальной Теории Относительности.
+\end{example}
+
+\begin{idea}
+	Доказательство проводится рутинной проверкой каждого
+	условия из определения евклидова пространства.
+\end{idea}
+
+\begin{theorem} (Неравенство Коши-Буняковского-Шварца) \label{Cauchy–Schwarz}
+	Если $X$ - вещественное евклидовое пространство, то
+	\[
+		(\forall \vec{x}, \vec{y} \in X)\ \ 
+		|\trbr{\vec{x}, \vec{y}}|^2 \le
+		\trbr{\vec{x}, \vec{x}} \cdot
+		\trbr{\vec{y}, \vec{y}}
+	\]
+	причём равенство имеет место ТиТТК $\ x = 0$ или $y = 0$, или
+	$(\exists \lambda \in \R)\ \vec{x} =
+	\lambda \vec{y}\ $ (по сути, когда $\vec{x}\ ||\ \vec{y}$).
+\end{theorem}
+
+\begin{proof}
+	Если $\vec{y} = \vec{0}$, то
+	\[
+		\trbr{\vec{x}, \vec{0}} = \trbr{\vec{x},
+		\vec{x} + (-\vec{x})} = \trbr{\vec{x}, \vec{x}} - 
+		\trbr{\vec{x}, \vec{x}} = 0 = \trbr{\vec{x}, \vec{x}}
+		\cdot \trbr{\vec{0}, \vec{0}}
+	\]
+	Теперь пусть $\vec{y} \neq \vec{0}$.
+	Рассмотрим скалярное произведение
+	$\trbr{\vec{x} + \lambda \vec{y},
+	\vec{x} + \lambda \vec{y}},\ \lambda \in \R$:
+	\begin{multline*}
+		\trbr{\vec{x} + \lambda \vec{y},
+		\vec{x} + \lambda \vec{y}} =
+		\trbr{\vec{x}, \vec{x} + \lambda\vec{y}} +
+		\lambda\trbr{\vec{y}, \vec{x} + \lambda\vec{y}} =
+		\trbr{\vec{x} + \lambda\vec{y}, \vec{x}} +
+		\lambda\trbr{\vec{x} + \lambda\vec{y}, \vec{y}} =
+		\\
+		\trbr{\vec{x}, \vec{x}} + \lambda\trbr{\vec{y},
+		\vec{x}} + \lambda^2\trbr{\vec{y}, \vec{y}} +
+		\lambda\trbr{\vec{x}, \vec{y}} =
+		\trbr{\vec{x}, \vec{x}} + 2\lambda
+		\trbr{\vec{x}, \vec{y}} +
+		\lambda^2\trbr{\vec{y}, \vec{y}} \ge 0
+	\end{multline*}
+	Раз у квадратного трёхчлена относительно $\lambda$
+	коэффициент при старшей степени положителен и весь
+	он неотрицателен, то дискриминант должен быть
+	неположителен (чтобы было не более одного корня вследствие
+	геометрического положения параболы):
+	\[
+		\frac{D}{4} = \trbr{\vec{x}, \vec{y}}^2 -
+		\trbr{\vec{x}, \vec{x}} \cdot \trbr{\vec{y}, \vec{y}}
+		\le 0
+	\]
+	При этом если $D = 0$ и выражение выше обращается в
+	равенство, то 
+	\[
+		(\exists \lambda \in \R)\ 
+		\trbr{\vec{x} + \lambda \vec{y},
+		\vec{x} + \lambda \vec{y}} = 0
+	\]
+	Тогда
+	$\vec{x} + \lambda\vec{y} = \vec{0} \lra \vec{x} =
+	(-\lambda)\vec{y}$
+\end{proof}
+
+\begin{corollary}
+	\[
+		(\forall \vec{x}, \vec{y} \in \R^n)\ \ \ 
+		\Big|\suml_{i = 1}^n x_i y_i\Big| \le
+		\sqrt{\suml_{i = 1}^n x_i^2} \cdot
+		\sqrt{\suml_{i = 1}^n y_i^2}
+	\]
+\end{corollary}
+
+%-------------------------- Не было ----------------------
+
+\begin{definition}
+	Комплексным евклидовым (унитарным) пространством называется комплексное линейное пространство $X$, для любых двух элементов которого $\vec{x}, \vec{y} \in X$ определено число $\trbr{\vec{x}, \vec{y}} \in \Cm$ так, что
+	\begin{itemize}
+		\item $\forall \vec{x}, \vec{y} \in X\ \ \trbr{\vec{x}, \vec{x}} \ge 0$, причём $\trbr{\vec{x}, \vec{x}} = 0 \lra \vec{x} = \vec{0}$
+		
+		\item $\forall \vec{x}, \vec{y} \in X\ \ \trbr{\vec{x}, \vec{y}} = \overline{\trbr{\vec{y}, \vec{x}}}$
+		
+		\item $\forall \vec{x}, \vec{y}, \vec{z} \in X\ \forall \alpha, \beta \in \Cm\ \ \trbr{\alpha\vec{x} + \beta\vec{y}, \vec{z}} = \alpha\trbr{\vec{x}, \vec{z}} + \beta\trbr{\vec{y}, \vec{z}}$
+	\end{itemize}
+	$\trbr{\vec{x}, \vec{y}}$ называется \textit{эрмитовым} скалярным произведением.
+\end{definition}
+
+\begin{lemma}
+	$\Cm^n$ является унитарным с $\trbr{\vec{z}, \vec{w}} = \suml_{i = 0}^n z_i \bar{w_i}$, для $\vec{z} = (z_1, \ldots, z_n)$ и $\vec{w} = (w_1, \ldots, w_n)$.
+\end{lemma}
+
+%-------------------------- Не было ----------------------
+
+\begin{theorem} (Неравенство Коши-Буняковского-Шварца для унитарных пространств)
+	Если $X$ - унитарное пространство, то для любых $\vec{z}, \vec{w} \in X$ верно неравенство
+	\[
+		|\trbr{\vec{z}, \vec{w}}| \le \sqrt{\trbr{\vec{z}, \vec{z}}} \cdot \sqrt{\trbr{\vec{w}, \vec{w}}}
+	\]
+	причём равенство имеет место тогда и только тогда, когда $\exists \lambda \in \Cm \such \vec{z} = \lambda\vec{w}$ или $\vec{w} = \vec{0}$
+\end{theorem}
+
+\begin{proof}
+	Обозначим $\trbr{\vec{z}, \vec{w}} = |\trbr{\vec{z}, \vec{w}}|e^{i\varphi}$. Рассмотрим $\trbr{\vec{z} + \lambda e^{i\varphi} \vec{w}, \vec{z} + \lambda e^{i\varphi} \vec{w}},\ \lambda \in \R$:
+	\begin{multline*}
+		\trbr{\vec{z} + \lambda e^{i\varphi} \vec{w}, \vec{z} + \lambda e^{i\varphi} \vec{w}} = \trbr{\vec{z}, \vec{z} + \lambda e^{i\varphi} \vec{w}} + \lambda e^{i\varphi} \trbr{\vec{w}, \vec{z} + \lambda e^{i\varphi} \vec{w}} =
+		\\
+		\overline{\trbr{\vec{z} + \lambda e^{i\varphi} \vec{w}, \vec{z}}} + \lambda e^{i\varphi} \overline{\trbr{\vec{z} + \lambda e^{i\varphi} \vec{w}, \vec{w}}} = \overline{\trbr{\vec{z}, \vec{z}}} + \overline{\lambda e^{i \varphi}} \cdot \overline{\trbr{\vec{w}, \vec{z}}} + \lambda e^{i\varphi} \overline{\trbr{\vec{z}, \vec{w}}} + \lambda e^{i\varphi} \cdot \overline{\lambda e^{i\varphi}} \cdot \overline{\trbr{\vec{w}, \vec{w}}} =
+		\\
+		\trbr{\vec{z}, \vec{z}} + 2\lambda |\trbr{\vec{z}, \vec{w}}| + \lambda^2 \trbr{\vec{w}, \vec{w}} \ge 0
+	\end{multline*}
+	И снова получили квадратный трёхчлен относительно $\lambda$:
+	\[
+		\frac{D}{4} = |\trbr{\vec{z}, \vec{w}}|^2 - \trbr{\vec{w}, \vec{w}} \cdot \trbr{\vec{z}, \vec{z}} \le 0
+	\]
+	Отсюда
+	\[
+		|\trbr{\vec{z}, \vec{w}}| \le \sqrt{\trbr{\vec{w}, \vec{w}}} \cdot \sqrt{\trbr{\vec{z}, \vec{z}}}
+	\]
+\end{proof}
+
+\begin{corollary}
+	Для любых комплексных чисел
+	\[
+		\left|\suml_{i = 1}^n z_i w_i\right| \le \sqrt{\suml_{i = 1}^n |z_i|^2} \cdot \sqrt{\suml_{i = 1}^n |w_i|^2}
+	\]
+\end{corollary}
+
+\subsubsection*{Топология $\R^n$}
+
+\begin{definition}
+	Линейное действительное пространство $X$ называется
+	\textit{линейным нормированным пространством (ЛНП)},
+	если на нём определена функция $\|\cdot\|: X \ra \R$
+	(норма), обладающая свойствами:
+	\begin{enumerate}
+		\item $(\forall \vec{x} \in X)\ \|\vec{x}\| \ge 0$,
+			причём $\|\vec{x}\| = 0 \lra \vec{x} = \vec{0}$
+		
+		\item $(\forall \alpha \in \R(\Cm))(\forall \vec{x}
+			\in X)\ \ \|\alpha \vec{x}\| = |\alpha| \cdot \|\vec{x}\|$
+		
+		\item $(\forall \vec{x}, \vec{y} \in X)\ \ \|\vec{x}
+			+ \vec{y}\| \le \|\vec{x}\| + \|\vec{y}\|\ $
+			\textit{(неравенство треугольника)}
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma} 
+	Любое евклидово пространство является линейным 
+	нормированным пространством (ЛНП) с $\|\vec{x}\| =
+	\sqrt{\trbr{\vec{x}, \vec{x}}}$.
+\end{lemma}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item В обоих случаях следует из определения:
+		\begin{align*}
+			\vec{x} = \vec{0} \lra \trbr{\vec{x}, \vec{x}} = 0 \lra \|\vec{x}\| = 0
+			\\
+			\vec{x} \neq \vec{0} \lra \trbr{\vec{x}, \vec{x}} > 0 \lra \|\vec{x}\| > 0
+		\end{align*}
+		
+		\item Для действительных:
+			\[
+				\|\alpha\vec{x}\| = \sqrt{\trbr{\alpha\vec{x},
+				\alpha\vec{x}}} = \sqrt{\alpha\trbr{\vec{x},
+				\alpha\vec{x}}} = \sqrt{\alpha\trbr{\alpha\vec{x},
+				\vec{x}}} = \sqrt{\alpha \cdot
+				\alpha\trbr{\vec{x}, \vec{x}}} =
+				|\alpha|\sqrt{\trbr{\vec{x}, \vec{x}}} = |\alpha|
+				\cdot \|\vec{x}\|
+			\]
+			Докажем комплексный случай:
+			\[
+				\|\alpha\vec{x}\| = \sqrt{\trbr{\alpha\vec{x},
+				\alpha\vec{x}}} = \sqrt{\alpha\trbr{\vec{x},
+				\alpha\vec{x}}} = \sqrt{\alpha\overline{\trbr{\alpha\vec{x},
+				\vec{x}}}} = \sqrt{\alpha \cdot
+				\overline{\alpha}\overline{\trbr{\vec{x}, \vec{x}}}} =
+				|\alpha|\sqrt{\trbr{\vec{x}, \vec{x}}} = |\alpha| \cdot
+				\|\vec{x}\|
+			\]
+		
+		\item Также докажем для действительных, используя неравенство
+			Коши-Буняковского-Шварца:
+			\begin{multline*}
+				\|\vec{x} + \vec{y}\|^2 = \trbr{\vec{x} +
+				\vec{y}, \vec{x} + \vec{y}} =
+				\trbr{\vec{x}, \vec{x} + \vec{y}} + \trbr{\vec{y},
+				\vec{x} + \vec{y}} =
+				\\
+				= \trbr{\vec{x}, \vec{x}} + \trbr{\vec{x}, \vec{y}}
+				+ \trbr{\vec{y}, \vec{x}} + \trbr{\vec{y}, \vec{y}} =
+				\\
+				= \trbr{\vec{x}, \vec{x}} + 2 \trbr{\vec{x}, \vec{y}} +
+				\trbr{\vec{y}, \vec{y}}
+				\le \trbr{\vec{x}, \vec{x}} + 2 |\trbr{\vec{x}, \vec{y}}| +
+				\trbr{\vec{y}, \vec{y}} \le
+				\\
+				\le \trbr{\vec{x}, \vec{x}} + 2
+				\sqrt{\trbr{\vec{x}, \vec{x}}} \sqrt{\trbr{\vec{y}, \vec{y}}}
+				+ \trbr{\vec{y}, \vec{y}} =
+				\left(\sqrt{\trbr{\vec{x}, \vec{x}}}
+				+ \sqrt{\trbr{\vec{y}, \vec{y}}}\right)^2
+				= \left(\|\vec{x}\| + \|\vec{y}\|\right)^2
+			\end{multline*}
+			Пусть Вас здесь не смутит, что мы доказывали для квадрата нормы:
+			поскольку норма неотрицательна (доказано только что),
+			то все переходы верны и под корнем.
+			
+			Для комплексных:
+			\begin{multline*}
+				\|\vec{x} + \vec{y}\|^2 = \trbr{\vec{x} +
+				\vec{y}, \vec{x} + \vec{y}} =
+				\trbr{\vec{x}, \vec{x} + \vec{y}} + \trbr{\vec{y},
+				\vec{x} + \vec{y}} =
+				\\
+				= \overline{\trbr{\vec{x} + \vec{y},
+				\vec{x}}} + \overline{\trbr{\vec{x} + \vec{y}, \vec{y}}}
+				= \trbr{\vec{x}, \vec{x}} + \overline{\trbr{\vec{y}, \vec{x}}}
+				+ \overline{\trbr{\vec{x}, \vec{y}}} + \trbr{\vec{y}, \vec{y}} =
+				\\
+				= \trbr{\vec{x}, \vec{x}} + 2\re(\trbr{\vec{x}, \vec{y}}) +
+				\trbr{\vec{y}, \vec{y}}
+				\le \trbr{\vec{x}, \vec{x}} + 2 |\trbr{\vec{x}, \vec{y}}| +
+				\trbr{\vec{y}, \vec{y}} \le
+				\\
+				\le \trbr{\vec{x}, \vec{x}} + 2
+				\sqrt{\trbr{\vec{x}, \vec{x}}} \sqrt{\trbr{\vec{y}, \vec{y}}}
+				+ \trbr{\vec{y}, \vec{y}} =
+				\left(\sqrt{\trbr{\vec{x}, \vec{x}}}
+				+ \sqrt{\trbr{\vec{y}, \vec{y}}}\right)^2
+				= \left(\|\vec{x}\| + \|\vec{y}\|\right)^2
+			\end{multline*}
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary} (Неравенство Минковского)
+	\[
+		\sqrt{\suml_{i = 1}^n (x_i + y_i)^2} \le \sqrt{\suml_{i = 1}^n x_i^2} + \sqrt{\suml_{i = 1}^n y_i^2},\ \ x_i, y_i \in \R 
+	\]
+\end{corollary}
+
+\begin{lemma}
+	$\R^n$ - ЛНП с $\|\vec{x}\| = \sqrt{\suml_{i = 1}^n x_i^2}$. При этом в $\R^2$ и $\R^3$ норма совпадает с длиной вектора.
+\end{lemma}
+
+\begin{note}
+	Для удобства, в $\R^n$ будем обозначать норму просто как $|\vec{x}|$.
+\end{note}
+
+\begin{lemma}
+	$\Cm^n$ - ЛНП с $\|\vec{z}\| = \sqrt{\suml_{i = 1}^n |z_i|^2}$
+\end{lemma}
