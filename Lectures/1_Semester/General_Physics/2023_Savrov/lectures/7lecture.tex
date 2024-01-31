@@ -1,0 +1,20 @@
+\section{Гироскопы}
+Гироскоп - симметричный волчок, у которого 2 главных момента инерции совпадают.
+\[I_z = I_{II}, / I_x = I_y = I_{perp}\]
+\[\Vec{L} = I_{II}\Vec{\omega_{II}} + I_{perp}\Vec{\omega_{perp}}\]
+Тогда выполнено, что:
+\[(\Vec{s}, \Vec{\omega}, \Vec{L}) = 0\]
+То есть эти 3 вектора находятся в одной п-ти.
+Если
+\[\Vec{M} = 0, K = \frac{1}{2}\Vec{L}\Vec{\omega}\]
+\[L^2 = I_{II}^2\omega_{II}^2 + I_{perp}^2\omega_{perp}^2\]
+\[K = \frac{1}{2}I_{II}\omega_{II}^2 + \frac{1}{2}I_{perp}\omega_{perp}^2 => \omega_{II}, \omega_{perp} = const\]
+То есть у нас плоскости будут поворачиваться вокруг L.
+\[\Vec{r} = [\Vec{s} * \Vec{L}], \dot \Vec{r} = [\dot \Vec{s} * \Vec{L}] = [[\Vec{\omega} * \Vec{s}] * L] = -\Vec{\omega}(\Vec{L} * \Vec{s}) + \Vec{s} (\Vec{L} * \Vec{\omega})\]
+\[\dot \Vec{r} = \Vec{s}\omega_{II}L_{II} - \Vec{w_{perp}}L_{perp} + \Vec{s}(L_{II}\omega_{II} + L_{perp}\omega_{perp} = \Vec{s}L_{perp}\omega_{perp} - \Vec{\omega_{perp}}L_{II}\]
+\[\dot \Vec{r} = L_{perp}^2\omega_{perp}^2 + L_{II}^2\omega_{perp}^2 = L^2 \omega_{perp}^2\]
+\[\Omega_{H} = \frac{|\Vec{\dot{r}}|}{|\Vec{r}|} = \frac{L}{I_{perp}}\]
+\[K = \frac{L_{II}^2}{2I_{II}} + \frac{L_{perp}^2}{2I_{perp}}\]
+Из этого получаем:
+\[2I_{perp}K <= L^2 <= 2I_{II}K\]
+\[\omega_{II} >> \omega_{perp} => \Vec{L} = I_{II}\omega_{II} = \]
