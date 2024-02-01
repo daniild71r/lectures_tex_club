@@ -1,0 +1,119 @@
+%29.03.23
+
+\subsection{Подпространства метрического пространства}
+
+\begin{definition}
+Пусть $(X, \rho)$ --- метрическое пространство, $E \subset X, E \neq \emptyset$. Сужение $\rho\vert_{E \times E}$ является метрикой на $E$. Пара $(E, \rho\vert_{E \times E})$ называется \emph{подпространством} $(X, \rho)$, а функция $\rho\vert_{E \times E}$ --- \emph{индуцированной метрикой}.
+\end{definition}
+
+Рассмотрим $B_r^E (x) = \{y \in E \ | \ \rho(x, y) < r\} = B^X_r(x) \cap E$.
+
+\begin{lemma}
+    Пусть $(X, \rho)$ --- метрическое пространство, $E \subset X$.
+    \[
+        \underbrace{U}_{\text{откр. в $E$}} \Leftrightarrow \exists \underbrace{V}_{\text{откр. в $X$}} \ (U = V \cap E).
+    \]
+
+
+    \begin{proof}
+        \emph{($\Rightarrow$)} Пусть $U$ открыто в $E$. Тогда $\forall x \in U \, \exists B_{\epsilon_x}^E(x) \subset U$ и, значит, $U = \bigcup_{x \in U} B_{\epsilon_x}^E (x)$. Положим $V = \bigcup_{x \in U} B_{\epsilon_x}^X (x)$. Тогда $V$ открыто в $X$ и $V \cap E = \bigcup_{x \in U} (B_{\epsilon_x}^X(x) \cap E) = \bigcup_{x \in U} B_{\epsilon_x}^E(x) = U$.
+
+        \emph{($\Leftarrow$)} Пусть $x \in U$ и $U = \underbrace{V}_{\text{откр. в $X$}} \cap E$, тогда $x \in V \Rightarrow \exists B_\epsilon^X(x) \subset V \Rightarrow B_\epsilon^E(x) = B_\epsilon^X(x) \cap E \subset V \cap E = U$, то есть $U$ открыто в $E$.
+    \end{proof}
+\end{lemma}
+
+\begin{corollary}
+    \[
+        \underbrace{Z}_{\text{замк. в $E$}} \Leftrightarrow \exists \underbrace{F}_{\text{замк. в $X$}} \ (Z = F \cap E).
+    \]
+\end{corollary}
+
+\begin{example}
+    $X = \R, E = (0, 10], A = (0, 1], B = (2, 3], C = (9, 10]$.
+
+    \begin{itemize}
+        \item $A$ замкнуто в $E$, $A = [-1, 1] \cap E$;
+        \item $C$ открыто в $E$, $C = (9, 11) \cap E$;
+        \item $B$ не открыто и не замкнуто в $E$.
+    \end{itemize}
+\end{example}
+
+\subsection{Компакты в метрических пространствах}
+
+\begin{definition}
+    Пусть $X$ --- множество, $Y \subset X$. Семейство $\{X_\alpha\}_{\alpha \in A}$ подмножеств $X$ называется \emph{покрытием $Y$}, если $Y \subset \bigcup_{\alpha \in A} X_\alpha$.
+
+    Если $B \subset A$ и $\{X_\alpha\}_{\alpha \in B}$ также является покрытием $Y$, то оно называется \emph{подпокрытием}.
+\end{definition}
+
+\begin{definition}
+    Пусть $(X, \rho)$ --- метрическое пространство, $K \subset X$. $K$ называется \emph{компактом} (в $X$), если из любого его открытого покрытия $\{G_\lambda\}_{\lambda \in \Lambda}$ можно выделить конечное подпокрытие, то есть $\exists \lambda_1, \ldots \lambda_m \in \Lambda \ (K \subset G_{\lambda_1} \cup \ldots \cup G_{\lambda_m})$.
+\end{definition}
+
+\begin{example}
+    $X = \R \Rightarrow [a, b]$ --- компакт по теореме Гейне-Бореля.
+\end{example}
+
+\begin{note}
+    K --- компакт в $X$ тогда и только тогда, когда $K$ --- компакт <<в себе>>, то есть в $(K, \rho)$.
+\end{note}
+
+\begin{lemma}
+    \label{lem_lim_closed}
+    Пусть $(X, \rho)$ --- метрическое пространство, $K \subset X$. Если $K$ --- компакт, то $K$ ограничено и замкнуто в $X$.
+
+    \begin{proof}
+        Пусть $a \in K$. Так как $\bigcup_{n = 1}^\infty B_n(a) = X$, то $\{B_n(a)\}_{n \in \N}$ --- открытое покрытие $K$. Следовательно, $K \subset B_{n_1}(a) \cup \ldots \cup B_{n_m}(a) = B_N(a)$, где $N = \max_{1 \le i \le m}\{n_i\}$, и, значит, $K$ ограничено.
+
+        Пусть $a \in X \setminus K$. Так как $\bigcup_{n=1}^{\infty}\left(X \setminus \overline{B}_{\frac{1}{n}}(a)\right) = X \setminus \{a\}$, то $\{X \setminus \overline{B}_{\frac{1}{n}} (a)\}_{n \in \N}$ --- открытое покрытие $K$. Следовательно, $K \subset \left(X \setminus \overline{B}_{\frac{1}{n_1}}(a)\right) \cup \ldots \cup \left(X \setminus \overline{B}_{\frac{1}{n_m}}(a)\right) = X \setminus \overline{B}_{\frac{1}{N}}(a)$, где $N = \max_{1 \le i \le m}\{n_i\}$. Тогда $\overline{B}_{\frac{1}{N}}(a) \subset X \setminus K$ и, значит, $X \setminus K$ открыто, а значит, $K$ -- замкнуто.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    \label{lem_comp_subset}
+    Замкнутое подмножество компакта --- компакт.
+
+    \begin{proof}
+        Пусть $K$ --- компакт в $X$, $\underbrace{F}_{\text{замк. в $X$}} \subset K$. Покажем, что $F$ -- компакт. Рассмотрим открытое покрытие $\{G_\lambda\}_{\lambda \in \Lambda}$ множества $F$, тогда $\{G_{\lambda}\}_{\lambda \in \Lambda} \cup \{X \setminus F\}$ --- открытое покрытие $K$, так как $\left(\bigcup_{\lambda \in \Lambda} G_\lambda\right) \cup (X \setminus F) = X$. Поскольку $K$ --- компакт, то $K \subset G_{\lambda_1} \cup \ldots \cup G_{\lambda_m} \cup (X \setminus F) \overset{F \subset K}{\Rightarrow} F \subset G_{\lambda_1} \cup \ldots \cup G_{\lambda_m}$. Значит, $F$ -- компакт.
+    \end{proof}
+\end{lemma}
+
+\begin{problem}
+    Пусть $\{F_n\}$ --- непустые компакты в $X$, $F_1 \supset F_2 \supset \ldots$. Покажите, что $\bigcap_{n = 1}^\infty F_n \neq \emptyset$.
+\end{problem}
+
+\begin{theorem}
+    \label{compact-criterion}
+    Пусть $(X, \rho)$ --- метрическое пространство, $K \subset X$. $K$ --- компакт тогда и только тогда, когда из любой последовательности элементов $K$ можно выделить сходящуюся в $K$ подпоследовательность.
+
+    \begin{proof}
+        \emph{($\Rightarrow$)} Пусть $\forall n \in \N \ x_n \in K$. Предположим, что из $\{x_n\}$ нельзя выделить сходяющуюся подпоследовательность в $K$. Тогда $\forall a \in K \ \exists \delta_a > 0 \ \exists N_a \ \forall n \ge N_a \ (x_n \not\in B_{\delta_a}(a))$.
+
+        Рассмотрим $\{B_{\delta_a}(a)\}_{a \in K}$ --- открытое покрытие $K$. Следовательно, $K \subset B_{\delta_{a_1}}(a_1) \cup \ldots \cup B_{\delta_{a_m}}(a_m)$.
+    
+        Положим $N = \max_{1 \le i \le m} \{N_{a_i}\}$. Так как $N \ge N_{a_i}$, то $x_N \not\in B_{\delta_{a_i}}(a_i)$ $i = 1, \ldots, m \Rightarrow x_N \not\in K$ --- противоречие.
+    
+        \emph{($\Leftarrow$)} Пусть из любой последовательности элементов $K$ можно выделить сходящуюся в $K$ подпоследовательность \emph{(секвенциальная компактность)}.
+
+        \begin{enumerate}
+            \item Покажем, что для любого $\epsilon > 0$ $K$ можно покрыть конечным набором открытых шаров радиуса $\epsilon$.
+    
+            Докажем от противного -- пусть нельзя покрыть. Индуктивно построим последовательность $\{x_n\}$, $x_1 \in K, x_n \in K \setminus \bigcup_{i = 1}^{n - 1} B_\epsilon(x_i)$.
+    
+            По построению $\rho(x_i, x_j) \geq \epsilon$, и, значит, из $\{x_n\}$ нельзя выделить сходящуюся подпоследовательность -- противоречие.
+    
+            \item Пусть $\{G_\lambda\}_{\lambda \in \Lambda}$ --- открытое покрытие $K$, тогда $\exists \epsilon > 0 \, \forall x \in K \, \exists \lambda \in \Lambda \ \left(B_\epsilon(x) \ \subset G_\lambda\right)$. Предположим, что это не выполняется, тогда $\forall n \in \N \, \exists x_n \in K \, \forall \lambda \in \Lambda \left(B_{\frac{1}{n}}(x_n) \not\subset G_\lambda\right)$.
+    
+            Имеем $\{x_n\} \subset K \Rightarrow \exists x_{n_k} \rightarrow x \in K$, следовательно, $\exists \lambda_0 \in \Lambda (x \in \underbrace{G_{\lambda_0}}_{\text{откр.}}) \Rightarrow \exists B_{\alpha}(x) \subset G_{\lambda_0}$. Выберем $k$ так, чтобы $x_{n_k} \in B_{\frac{\alpha}{2}}(x)$ и $\frac{1}{n_k} < \frac{\alpha}{2}$. Если $z \in B_{\frac{1}{n_k}}(x_{n_k}) \Rightarrow \rho(z, x) \le \rho(z, x_{n_k}) + \rho(x_{n_k}, x) < \frac{\alpha}{2} + \frac{\alpha}{2} = \alpha$.
+    
+            Следовательно, $z \in B_\alpha(x)$, $B_{\frac{1}{n_k}}(x_{n_k}) \subset B_\alpha(x) \subset G_{\lambda_0}$ --- противоречие.
+    
+            \item Пусть $\{G_{\lambda}\}_{\lambda \in \Lambda}$ -- открытое покрытие $K$. Тогда по (2):
+            \[\exists \epsilon > 0 \ \forall x \in K \ \exists \lambda \in \Lambda \ (B_{\epsilon}(x) \subset G_{\lambda})\]
+    
+            По (1) $\exists x_{1}, x_{2}, ..., x_{m} \in K$, что $K \subset B_{\epsilon}(x_{i}) \cup ... \cup B_{\epsilon}(x_{m}) \subset G_{\lambda_{1}} \cup ... \cup G_{\lambda_{m}}$, где $\lambda_{i}$ удовлетворяет условию $B_{\epsilon}(x_{i}) \subset G_{\lambda_{i}}$.
+    
+            Следовательно, $K$ -- компакт.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}

@@ -1,0 +1,102 @@
+%27.04.23
+
+\begin{lemma}
+    \label{lebeg-lem1}
+    Каждое непустое открытое множество $U$ в $\R^{n}$ представимо в виде счетного объединения непересекающихся кубов (брусов, у которых длины ребер равны).
+\end{lemma}
+
+\begin{proof}
+    Куб $\left[\frac{k_{1}}{2^{m}};\frac{k_{1} + 1}{2^{m}}\right) \times \ldots \times \left[\frac{k_{n}}{2^{m}};\frac{k_{n} + 1}{2^{m}}\right)$, где $k_{i} \in \Z$, $m \geq 0$, будем называть двоичным $m$-го ранга.
+
+    Обозначим через $A_{0}$ множество всех кубов ранга 0, содержащихся в $U$. Если множества $A_{0}, \ldots, A_{m - 1}$ уже определены, то обозначим через $A_{m}$ множество всех кубов ранга $m$, содержащихся в $U$ и не лежащих ни в одном кубе из $A_{0}, \ldots, A_{m - 1}$. Положим $A = \bigcup_{m = 0}^{\infty}A_{m}$. Тогда $A$ -- счетное множество непересекающихся кубов. Покажем, что $U = \bigcup_{Q \in A}Q$. Пусть $x \in U$. Ввиду открытости $U$ существует шар $\overline{B_{r}}(x) \subset U$. Если $m$ таково, что $\frac{\sqrt{n}}{2^{m}} \leq r$, то содержащий точку $x$ куб $Q_{m}(x)$ ранга $m$ удовлетворяет включению $Q_{m}(x) \subset \overline{B_{r}}(x)$ и, значит, множество $\{m \in \N_{0}: Q_{m}(x) \subset U\}$ непусто. Обозначим через $m_{0}$ его минимум. Тогда $Q_{m}(x) \not\subset U$ при $m < m_{0}$, а $Q_{m_{0}}(x) \subset U$. Следовательно, $Q_{m_{0}}(x) \in A_{m_{0}}$ и поэтому $x \in \bigcup_{Q \in A}Q$. Учитывая, что обратное включение очевидно, равенство установлено.
+\end{proof}
+
+\subsection{Алгебры множеств}
+
+\begin{definition}
+    Семейство $\mathcal{A} \subset \mathcal{P}(\R^{n})$ называется \textit{алгеброй}, если 
+
+    \begin{enumerate}
+        \item $\emptyset \in \mathcal{A}$;
+        \item если $E \in \mathcal{A}$, то $E^{c} = \R^{n} \setminus E \in \mathcal{A}$;
+        \item если $E, F \in \mathcal{A}$, то $E \cup F \in \mathcal{A}$.
+    \end{enumerate}
+
+    Алгебра $\mathcal{A}$ называется \textit{$\sigma$-алгеброй}, если выполнено условие
+    
+    \begin{enumerate}
+        \item[3'.] если $E_{k} \in \mathcal{A}$, $k \in \N$, то $\bigcup_{k = 1}^{\infty}E_{k} \in \mathcal{A}$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}~
+
+    \begin{enumerate}
+        \item $\sigma$-алгебра, содержащая все одноэлементные множества, также содержит все не более чем счетные множества и множества, дополнение к которым не более чем счетно.
+        \item $\mathcal{B}(\R^{n})$ -- минимальная по включению $\sigma$-алгебра, содержащая все открытые множества (\textit{борелевская} $\sigma$-\textit{алгебра}). Чтобы установить существование $\mathcal{B}(\R^{n})$, необходимо рассмотреть пересечение всех $\sigma$-алгебр, содержащие открытые множества.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    Покажем, что минимальная $\sigma$-алгебра, содержащая двоичные кубы, совпадает с $\mathcal{B}(\R^{n})$.
+
+    Пусть $O$ -- совокупность открытых множеств в $\R^{n}$. $\mathcal{B}(\R^{n}) = \underbrace{\sigma(O)}_{\underset{\text{содержащая 0}}{\text{мин. $\sigma$-алгебра,}}} \subset \sigma(\text{двоич. кубы})$.
+
+    \[\left[\frac{k_{1}}{2^{m}};\frac{k_{1} + 1}{2^{m}}\right) \times \ldots \times \left[\frac{k_{n}}{2^{m}};\frac{k_{n} + 1}{2^{m}}\right) = \bigcap_{i = 1}^{\infty} \left(\frac{k_{1}}{2^{m}} - \frac{1}{i}; \frac{k_{1} + 1}{2^{m}}\right)\times \ldots \times \left(\frac{k_{n}}{2^{m}} - \frac{1}{i}; \frac{k_{n} + 1}{2^{m}}\right) \Rightarrow\]
+    \[\Rightarrow \sigma(\text{двоич. кубы}) \subset \sigma(O).\]
+\end{example}
+
+\begin{problem}
+    $\mathcal{B}(\R) = \sigma(C)$, где $C = \{(a, +\infty), a \in \Q\}$.
+\end{problem}
+
+Цель: построить $\sigma$-алгебру $M \supset \mathcal{B}(\R^{n})$ и меру $\mu: M \to [0, +\infty]$, такие что
+\begin{enumerate}
+    \item $E = \bigsqcup_{k = 1}^{+\infty}E_{k}$, где $E_{k} \in M$, то $\mu(E) = \sum_{k = 1}^{+\infty}\mu(E_{k})$ (счетная аддитивность);
+    \item $\mu(R) = |R| \ \forall R$ -- брус;
+    \item $\mu(E + y) = \mu(E)$.
+\end{enumerate}
+
+\subsection{Внешняя мера}
+
+\begin{definition}
+    \textit{Внешней мерой Лебега} множества $E \subset \R^{n}$ называется величина
+    \[\mu^{*}(E) = \inf\left\{\sum_{i = 1}^{\infty}|B_{i}|: E \subset \bigcup_{i = 1}^{\infty}B_{i}\right\},\]
+    где инфимум берется по всем счетным наборам $\{B_{i}\}$, покрывающих $E$.
+
+    Очевидно, $0 \leq \mu^{*}(E) \leq +\infty$.
+\end{definition}
+
+\begin{theorem}
+    Внешняя мера обладает следующими свойствами
+    \begin{enumerate}
+        \item если $E \subset F$, то $\mu^{*}(E) \leq \mu^{*}(F)$ (монотонность);
+        \item если $E = \bigcup_{k = 1}^{\infty} E_{k}$, то $\mu^{*}(E) \leq \sum_{k = 1}^{\infty}\mu^{*}(E_{k})$ (счетная полуаддитивность);
+        \item $\mu^{*}(R) = |R|$ для любого бруса $R$ (нормировка).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Докажем пункт 2. Будем предполагать, что $\mu^{*}(E) < +\infty$, иначе утверждение очевидно. Зафиксируем $\epsilon > 0$ и рассмотрим семейство брусов $\{B_{i, k}\}_{i = 1}^{\infty}$, образующее покрытие $E_{k}$, такие что
+    \[\sum_{i = 1}^{\infty}|B_{i, k}| < \mu^{*}(E_{k}) + \frac{\epsilon}{2^{k}}.\]
+
+    Семейство $\{B_{i, k}\}_{i, k = 1}^{\infty}$ образуют покрытие $E = \bigcup_{k = 1}^{\infty}E_{k}$ и 
+    \[\mu^{*}(E) \leq \sum_{k = 1}^{+\infty}\sum_{i = 1}^{+\infty}|B_{i, k}| \leq \sum_{k = 1}^{+\infty}\left(\mu^{*}(E_{k}) + \frac{\epsilon}{2^{k}}\right) = \sum_{k = 1}^{+\infty} \mu^{*}(E_{k}) + \epsilon.\]
+    Так как $\epsilon > 0$ -- любое, то пункт 2 установлен.
+
+    Докажем пункт 3. Так как $\{R\}$ -- покрытие $R$ брусом, то $\mu^{*}(R) \leq |R|$. Покажем, что $\mu^{*}(R) \geq |R|$.
+    
+    Сначала для случая, когда $R$ -- замкнуто. Нам достаточно показать, что $|R| \leq \sum_{i = 1}^{\infty}|B_{i}|$ для всякого покрытия $R$ брусами $B_{i}$. Зафиксируем $\epsilon > 0$. Тогда по свойству брусов (\ref{brus-prop2}) $\exists \underbrace{B_{i}^{o}}_{\text{отк. брус}} \supset B_{i}$ и $|B_{i}^{o}| < |B_{i}| + \frac{\epsilon}{2^{i}}$. Так как $R \subset \bigcup_{i = 1}^{\infty}$ и $R$ -- компакт, то по свойству брусов (\ref{brus-prop1})
+    \[R \subset \bigcup_{i = 1}^{N}B_{i}^{o} \Rightarrow |R| \leq \sum_{i = 1}^{N}|B_{i}^{o}| \Rightarrow |R| \leq \sum_{i = 1}^{\infty}\left(|B_{i}| + \frac{\epsilon}{2^{i}}\right) = \sum_{i = 1}^{\infty}|B_{i}| + \epsilon.\]
+    Так как $\epsilon > 0$ -- любое, то $|R| \leq \sum_{i = 1}^{\infty}|B_{i}|$.
+
+    Пусть $R$ -- произвольный брус. Тогда для $\epsilon > 0$ по свойству (\ref{brus-prop2}) $\exists \underbrace{R'}_{\text{замк. брус}} \subset R \ (|R'| > |R| - \epsilon)$. Тогда 
+    \[\mu^{*}(R) \geq \mu^{*}(R') = |R'| > |R| - \epsilon.\]
+    Так как $\epsilon > 0$ -- любое, то $\mu^{*}(R) \geq |R|$.
+\end{proof}
+
+\subsection{Измеримые множества}
+
+\begin{definition}
+    Множество $E \subset \R^{n}$ называется \textit{измеримым (по Лебегу)}, если для любого $A \subset \R^{n}: \mu^{*}(A) = \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c})$. 
+\end{definition}
