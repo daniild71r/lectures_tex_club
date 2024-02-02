@@ -1,0 +1,95 @@
+%09.03.23
+
+\section{Отношения.}
+
+\begin{definition}
+    \textit{Отношение} -- произвольное подмножество декартово произведения непустых множество $A, B.$ То есть это  множество $R \subseteq A \times B.$ При этом $$(a, b) \in R \Longleftrightarrow a R b.$$
+    Также 
+    $$\forall a \in A: R(a) = \{ b \in B| (a, b) \in R\}.$$
+\end{definition}
+
+\begin{definition}
+    Отношение $R$ \textit{функционально}, если $R$ -- функция, то есть $$\forall a \in A \ |R(a)| \leq 1.$$ 
+\end{definition}
+
+\begin{definition}
+    Отношение $R$ \textit{(лево) тотальное}, если $R$ -- функция, то есть $$\forall a \in A \ |R(a)| \geq 1.$$ 
+    Отношение $R$ \textit{право-тотальное}, если $R$ -- функция, то есть $$\forall b \in B \  \exists a \in A: (a, b) \in R.$$ 
+    Отношение $R$ \textit{инъективное}, если при $a' \neq a \ \  R(a) \cap R(a') = \varnothing.$ 
+\end{definition}
+
+\subsection{Бинарное отношение.}
+
+\begin{definition}
+    Подмножеством декартового произведения $A \times A$ называется \textit{бинарным отношением.}
+\end{definition}
+
+У такого отношения есть могут быть следующие свойства:
+\begin{enumerate}
+    \item Рефлексивность: $\forall a \in A \ a R a$
+    \item Симметричность: если $a R b,$ то $b R a$
+    \item Транзитивность: если $a R b$ и $b R c,$  то $a R c.$
+\end{enumerate}
+
+\begin{definition}
+    Если бинарное отношение обладает этими свойствами, то его называют \textit{отношением эквивалентности.}
+\end{definition}
+
+\begin{example}
+    Равенство треугольников -- является отношением эквивалентности.
+\end{example}
+
+\begin{example}
+    Компонент связности в графе. Пусть $v, w \in V$ эквивалентны, если $\exists$ путь из $v$ в $w.$
+\end{example}
+
+
+\subsection{Класс эквивалентности.}
+
+\begin{definition}
+    Пусть задано множество $A,$  $R-$ отношение эквивалентности на $A.$ Тогда 
+    $$R_{a} = [a]_{R} = [a] = \{ b \in A | \  a R b\}.$$
+\end{definition}
+
+\begin{proposition}
+    Если $b, c \in [a],$ то $bRc.$
+\end{proposition}
+
+\begin{proof}
+$b, c \in [a] \Longrightarrow aRb, aRc \Longrightarrow bRc.$
+\end{proof}
+
+\begin{proposition}
+    $a, b \in A \Longrightarrow [a] \cup [b] = \varnothing \vee [a] = [b].$
+\end{proposition}
+
+\begin{proof}
+    Пусть пересечение не пусто, есть общий элемент $x.$ Тогда 
+    $aRx, \ bRx \Longrightarrow aRx, \ xRb \Longrightarrow a R b \Longrightarrow [b] \subseteq [a].$
+    Аналогично доказывается другое дополнение.
+\end{proof}
+
+\begin{definition}
+    \textit{Разбиение} множества $A$ -- это набор непересекающихся подмножеств $f \subseteq 2^A$ такой, что 
+    $$A = \underset{S \in f}{\cup} S.$$
+\end{definition}
+
+\begin{theorem}
+    Пусть $A, R-$ отношение эквивалентности. Тогда $A$ разбивается на классы эквивалентности по отношению $R.$
+\end{theorem}
+
+\begin{proof}
+    Это вытекает из утверждения $6.1.$
+\end{proof}
+
+\begin{proposition}
+    Есть биекция между отношением эквивалентности на $A$ и разбиением $A$ на подмножества.
+\end{proposition}
+
+\subsection{Операции с отношениями.}
+
+Можно брать объединение отношений, пересечение, дополнение.
+
+\begin{definition}
+    $$R^{-1} \subseteq B \times A, (b, a) \in R^{-1} \Longleftrightarrow (a, b) \in R.$$
+\end{definition}

@@ -1,0 +1,174 @@
+%10.05.23
+
+Непосредственно из определений вытекают следующие свойства интеграла Лебега.
+
+Пусть $f, g : E \rightarrow [0, +\infty]$ --- неотрицательные измеримые функции.
+
+\begin{property}[монотонность]
+    \label{lebint-prop1}
+    Если $f \le g$ на $E$, то $\int_E f \, d\mu \le \int_E g \, d\mu$.
+\end{property}
+
+\begin{property}[однородность]
+    Если $\lambda \in [0, +\infty)$, то $\int_E \lambda f \, d\mu = \lambda \int_E f \, d\mu$.
+\end{property}
+
+\begin{property}
+    \label{lebint-prop3}
+    Если $E_0 \subset E$ измеримо, то $\int_{E_0} f \, d\mu = \int_E f \cdot \I_{E_0} \, d\mu$.
+
+    \begin{proof}
+        Пусть $0 \le \underbrace{\phi}_{\text{прост.}} \le f$ на $E_0$, тогда
+        \begin{gather*}
+            \int_{E_0} \phi \, d\mu = \int_E \phi \cdot \I_{E_0} \, d\mu \le \int_E f \cdot \I_{E_0} \, d\mu, \\
+            \int_{E_0} f \, d\mu \le \int_E f \cdot \I_{E_0} \, d\mu \leq.
+        \end{gather*}
+
+        Обратно, пусть $0 \le \underbrace{\psi}_{\text{прост.}} \le f \cdot \I_{E_0}$ на $E$. Тогда $\psi = 0$ на $E \setminus E_0$ и, значит, $\psi = \psi \cdot \I_{E_0}$ на $E$. Следовательно,
+        \[
+            \int_E \psi \, d\mu = \int_E \psi \cdot \I_{E_0} \, d\mu = \int_{E_0} \psi \, d\mu \le \int_{E_0} f \, d\mu.
+        \]
+        и, значит, $\int_E f \cdot \I_{E_0} \, d\mu \le \int_{E_0} f \, d\mu$.
+    \end{proof}
+\end{property}
+
+\begin{property}
+    Если $E_0 \subset E$ измеримо, то $\int_{E_0} f \, d\mu \le \int_E f \, d\mu$.
+
+    \begin{proof}
+        По свойствам (\ref{lebint-prop1}) и (\ref{lebint-prop3}) имеем
+        \[
+            \int_{E_0} f \, d\mu = \int_E f \cdot \I_{E_0} \, d\mu \le \int_E f \, d\mu.
+        \]
+    \end{proof}
+\end{property}
+
+\begin{theorem}[Беппо Леви]
+    Пусть $f_k : E \rightarrow [0, +\infty]$ измеримы, и $f_k \rightarrow f$ на $E$. Если $0 \le f_k(x) \le f_{k + 1}(x)$ для всех $x \in E$ и $k \in \N$, то
+    \[
+        \lim_{k \rightarrow \infty} \int_E f_k \, d\mu = \int_E f \, d\mu.
+    \]
+
+    \begin{proof}
+        Интегрируя $f_k \le f_{k + 1} \le f$ на $E$, получим
+        \[
+            \int_E f_k \, d\mu \le \int_E f_{k + 1} \, d\mu \le \int_E f \, d\mu.
+        \]
+        Следовательно, $\left\{\int_E f \, d\mu \right\}$ нестрого возрастает (в $\overline{\R}$) и, значит, существует
+        \[
+            \lim_{k \rightarrow \infty} \int_E f_k \, d\mu \le \int_E f \, d\mu.
+        \]
+        Докажем противоположное неравенство. Для этого достаточно доказать, что $\lim_{k \to \infty}\int_E f_k \, d\mu \ge \int_E \phi \, d\mu$ для всех простых $\phi$, $0 \le \phi \le f$ на $E$.
+
+        Рассмотрим такую функцию $\phi$. Зафиксируем $t \in (0, 1)$. Положим $E_k = \left\{x \in E : f_k(x) \ge t\phi(x)\right\}$.
+
+        Ввиду монотонности $\forall k \ E_k \subset E_{k + 1}$. Докажем, что $\bigcup_{k = 1}^\infty E_k = E$. Включение <<$\subset$>> очевидно.
+
+        Пусть $x \in E$. Если $\phi(x) = 0$, то $\forall k \ x \in E_k$.
+
+        Если $\phi(x) > 0$, то $f(x) \ge \phi(x) > t\phi(x)$. Тогда $\exists m \in \N \ \left(f_m(x) \ge t\phi(x)\right)$, то есть $x \in E_m$.
+
+        По монотонности
+        \begin{equation}
+            \label{levi-asterisk}
+            \int_E f_k \, d\mu \ge \int_{E_k} f_k \, d\mu \ge t\int_{E_k} \phi \, d\mu.
+        \end{equation}
+
+        Пусть $\phi = \sum_{i = 1}^N a_i \cdot \I_{A_i}$, где $\{A_i\}_1^N$ --- допустимое разбиение.
+
+        Тогда по свойству монотонности меры:
+        \[
+            \int_{E_k} \phi \, d\mu = \sum_{i = 1}^N a_i \mu(A_i \cap E_k) \underset{k \rightarrow \infty}{\rightarrow} \sum_{i = 1}^N a_i \mu(A_i \cap E) = \int_E \phi \, d\mu.
+        \]
+
+        Переходя к пределу в неравенстве (\ref{levi-asterisk})
+        \[
+            \lim_{k \rightarrow \infty} \int_E f_k \, d\mu \ge t \int_E \phi \, d\mu, \ t \rightarrow 1 - 0.
+        \]
+    \end{proof}
+\end{theorem}
+
+\begin{problem}
+    Пусть $\{f_k\}$ --- последовательность неотрицательных измеримых функций и $f_k \rightarrow f$ почти всюду на $E$. Если $\exists C > 0 \ \left(\int_E f_k \, d\mu \le C\right)$, то $\int_E f\, d\mu \le C$.
+\end{problem}
+
+Теорема Леви в сочетании с теоремой о приближении неотрицательной измеримой функции простыми позволяет переносить свойства интеграла Лебега с простых функций на неотрицательные измеримые.
+
+\begin{property}[аддитивность]
+    Если $f, g \ge 0$ измеримы на $E$, то $\int_E (f + g) \, d\mu = \int_E f \, d\mu + \int_E g \, d\mu$.
+
+    \begin{proof}
+        Пусть $\phi_k \uparrow (\text{ возрастает и стремится к }) f, \psi_k \uparrow g$ на $E$. Тогда $\phi_k + \psi_k \uparrow f + g$ на $E$ и, значит, по теореме Леви
+        \begin{gather*}
+            \int_E (f + g) \, d\mu = \lim_{k \rightarrow \infty} \int_E (\phi_k + \psi_k) \, d\mu =\\= \lim_{k \rightarrow \infty} \int_E \phi_k \, d\mu + \lim_{k \rightarrow \infty} \int_E \psi_k \, d\mu = \int_E f \, d\mu + \int_E g \, d\mu.
+        \end{gather*}
+    \end{proof}
+\end{property}
+
+\begin{corollary}[теорема Леви для рядов]
+    Если $f_k \ge 0$ измерима на $E$, то
+    \[
+        \int_E \sum_{k = 1}^\infty f_k \, d\mu = \sum_{k = 1}^\infty \int_E f_k \, d\mu.
+    \]
+
+    \begin{proof}
+        По предыдущему свойству
+        \[
+            \int_E \sum_{k = 1}^m f_k \, d\mu = \sum_{k = 1}^m \int_E f_k \, d\mu.
+        \]
+
+        Поскольку $f_k \ge 0$, то последовательность частичных сумм ряда нестрого возрастает (по $m$). Поэтому по теореме Леви $\lim_{m \rightarrow \infty} \int_E \sum_{k = 1}^m f_k \, d\mu = \int_E \sum_{k = 1}^\infty f_k \, d\mu$.
+    \end{proof}
+\end{corollary}
+
+% Теорема 5
+\begin{theorem}[счётная аддитивность интеграла]
+    Пусть $E_k$ измеримы и попарно не пересекаются, $E = \bigsqcup_{k = 1}^\infty E_k$. Если $f \ge 0$ на $E$, то
+    \[
+        \int_E f \, d\mu = \sum_{k = 1}^\infty \int_{E_k} f \, d\mu.
+    \]
+
+    \begin{proof}
+        Поскольку $\{E_k\}$ образуют разбиение $E$, то $\I_E = \sum_{k = 1}^\infty \I_{E_k}$, $f = f \cdot \I_E = \sum_{k = 1}^\infty f \cdot \I_{E_k}$ на $E$. Следовательно, по теореме Леви для рядов и
+        \[
+            \int_E f \, d\mu = \sum_{k = 1}^\infty \int_E f \cdot \I_{E_k} \, d\mu = \sum_{k = 1}^\infty \int_{E_k} f \, d\mu.
+        \]
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[неравенство Чебышёва]
+    Если $f \ge 0$ измерима на $E$, то $\forall t \in (0, +\infty)$
+    \[
+        \mu\{x \in E : f(x) \ge t\} \le \frac{1}{t} \int_E f \, d\mu.
+    \]
+
+    \begin{proof}
+        Рассмотрим $E_t = \{x : f(x) \ge t\}$, тогда
+        \[
+            \int_E f \, d\mu \ge \int_{E_t} f \, d\mu \ge t\int_{E_t} d\mu = t \cdot \mu(E_t).
+        \]
+    \end{proof}
+\end{theorem}
+
+\subsection{Интеграл Лебега в общем случае}
+
+\begin{definition}
+    Пусть $f : E \rightarrow \overline{\R}$ измерима, тогда
+    \[
+        \int_E f \, d\mu \coloneqq \int_E f^+ \, d\mu - \int_E f^- \, d\mu,
+    \]
+    при условии, что хотя бы один из $\int_E f^\pm \, d\mu$ конечен.
+
+    Функция $f$ называется \emph{интегрируемой} (по Лебегу), если оба интеграла $\int_E f^\pm \, d\mu$ конечны.
+\end{definition}
+
+\begin{note}
+    Данное определение согласуется с определением интеграла от неотрицательной функции, так как
+    \[
+        f^+ = f, f^- \equiv 0 \text{ и } \int_E 0 \, d\mu = 0.
+    \]
+\end{note}
+
+\begin{note}
+    Если $f$ измерима на $E$, то условия интегрируемости $f$ и $|f|$ равносильны. В случае интегрируемости $\left|\int_E f \, d\mu\right| \le \int_E |f| \, d\mu$.
+\end{note}

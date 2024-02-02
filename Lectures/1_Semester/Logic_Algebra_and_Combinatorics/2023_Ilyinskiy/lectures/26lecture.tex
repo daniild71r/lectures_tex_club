@@ -1,0 +1,120 @@
+%29.04.23
+
+\begin{note}
+    При проверке измеримости достаточно установить, что $\mu^{*}(A) \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c})$, так как противоположное неравенство следует из счетной аддитивности.
+\end{note}
+
+\begin{example}
+    Если $\mu^{*}(E) = 0$, то $E$ измеримо. 
+
+    Действительно, $\mu^{*}(A \cap E) \leq \mu^{*}(E) = 0$, $\mu^{*}(A \cap E) \leq \mu^{*}(A)$ из монотонности $\mu^{*}$. Тогда $\mu^{*}(A) \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c})$.
+\end{example}
+
+\begin{example}
+    \label{lebeg-ex2}
+    Для всякого $a \in \R$ и $k \in \{1, \ldots, n\}$ полупространство $H = H_{a, k} = \{x = (x_{1}, \ldots, x_{n})^{T}: x_{k} < a\}$ измеримо.
+
+    Рассмотрим $A \subset \R^{n}$ и произвольное покрытие $\{B_{i}\}_{i = 1}^{\infty}$. Брусами определим
+    \[B_{i}^{1} = B_{i} \cap H, \ B_{i}^{2} = B_{i} \cap H^{c}.\]
+    Тогда $B_{i}^{1}, B_{i}^{2}$ -- брусы. $\{B_{i}^{1} \cap H\}_{i = 1}^{\infty}$ -- покрытие $A \cap H$. $\{B_{i}^{2} \cap H^{c}\}_{i = 1}^{\infty}$ -- покрытие $A \cap H^{c}$.
+
+    \[\sum_{i = 1}^{\infty}|B_{i}| = \sum_{i = 1}^{\infty}|B_{i}^{1}| + \sum_{i = 1}^{\infty}|B_{i}^{2}| \geq \mu^{*}(A \cap H) + \mu^{*}(A \cap H^{c}).\]
+
+    Следовательно, $\mu^{*}(A) \geq \mu^{*}(A \cap H) + \mu^{*}(A \cap H^{c})$.
+
+    Аналогичное утверждение верно и для других неравенств между $x_{k}$ и $a$.
+\end{example}
+
+\begin{theorem}[Каратеодори]
+    Совокупность $\mathcal{M}$ всех измеримых множеств в $\R^{n}$ образует $\sigma$-алгебру. Сужение $\mu^{*}\lvert_{\mathcal{M}}$ счетно аддитивно.
+\end{theorem}
+
+\begin{proof}
+    $\emptyset \in \mathcal{M}$, $E \in \mathcal{M} \Rightarrow E^{c} \in \mathcal{M}$.
+
+    \begin{enumerate}
+        \item Пусть $E, F \in \mathcal{M}$. Покажем, что $E \cup F \in \mathcal{M}$.
+
+        Пусть $A \subset \R^{n}$, тогда
+        \[\mu^{*}(A \cap (E \cup F)) + \mu^{*}(A \cap (E \cup F)^{c}) = \mu^{*}(A \cap (E \cup F) \cap E) + \mu^{*}(A \cap (E \cup F) \cap E^{c}) + \mu^{*}(A \cap (E \cup F)^{c}) =\] \[= \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c} \cap F) + \mu^{*}(A \cap E^{c} \cap F^{c}) = \mu^{*}(A \cap E) + \mu^{*}(A \cap E^{c}) = \mu^{*}(A).\]
+
+        \item Пусть $\{E_{k}\} \subset \mathcal{M}$, причем $E_{i} \cap E_{j} = \emptyset$ при $i \neq j$. Покажем, что $F = \bigcup_{k = 1}^{\infty} E_{k} \in \mathcal{M}$.
+
+        Положим $F_{n} = \bigcup_{k = 1}^{n}E_{k}$. Если $A \subset X$, то
+        \[\mu^{*}(A \cap F_{n}) = \mu^{*}(A \cap F_{n} \cap E_{n}) + \mu^{*}(A \cap F_{n} \cap E_{n}^{c}) = \mu^{*}(A \cap E_{n}) + \mu^{*}(A \cap F_{n - 1}).\]
+        Продолжая процесс, получим $\mu^{*}(A \cap F_{n}) = \sum_{k = 1}^{n}\mu^{*}(A \cap E_{k})$.
+
+        Поскольку $F_{n} \in \mathcal{M}$, то
+        \[\mu^{*}(A) = \mu^{*}(A \cap F_{n}) + \mu^{*}(A \cap F_{n}^{c}) \geq \sum_{k = 1}^{n} \mu^{*}(A \cap E_{k}) + \mu^{*}(A \cap F^{c}).\]
+        Переходя к пределу при $n \to \infty$, получим $\mu^{*}(A) \geq \sum_{k = 1}^{\infty}\mu^{*}(A \cap E_{k}) + \mu^{*}(A \cap F^{c})$. Откуда по свойству счетной полуаддитивности
+        \[\mu^{*}(A) \geq \sum_{k = 1}^{\infty}\mu^{*}(A \cap E_{k}) + \mu^{*}(A \cap F_{c}) \geq \mu^{*}(A \cap F) + \mu^{*}(A \cap F^{c}) \geq \mu^{*}(A).\]
+        Это доказывает, что $F \in \mathcal{M}$. Если еще положить $A = F$, то $\mu^{*}(F) = \sum_{k = 1}^{\infty}\mu^{*}(E_{k})$.
+
+        \item Пусть $\{A_{k}\} \subset \mathcal{M}$. Покажем, что $A = \bigcup_{k = 1}^{\infty}A_{k} \in \mathcal{M}$.
+
+        Положим $E_{1} = A_{1}$, $E_{k} = A_{k} \setminus \bigcup_{i < k} E_{i}$. Тогда $E_{k}$ попарно не пересекаются, и $A = \bigcup_{k = 1}^{\infty}E_{k} \in \mathcal{M}$ по предыдущему пункту.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    $\mathcal{B}(\R^{n}) \subset \mathcal{M}$.
+\end{corollary}
+
+\begin{proof}
+    Брус измерим, так как его можно записать в виде пересечения конечного числа подпространств (измеримы по примеру \ref{lebeg-ex2}). По лемме \ref{lebeg-lem1} тогда всякое открытое множество измеримо.
+\end{proof}
+
+\begin{definition}
+    $\mu = \mu^{*}\lvert_{\mathcal{M}}$ -- мера Лебега.
+\end{definition}
+
+\begin{theorem}[непрерывность меры]
+    \begin{enumerate}
+        \item $A_{i} \in \mathcal{M}$, $A_{1} \subset A_{2} \subset \ldots$, $A = \bigcup_{i = 1}^{\infty} A_{i}$. Тогда $\mu(A) = \lim_{i \to \infty}\mu(A_{i})$ (непрерывность снизу).
+        \item $A_{i} \in \mathcal{M}$, $A_{1} \supset A_{2} \supset \ldots$, $A = \bigcap_{i = 1}^{\infty}A_{i}$, $\mu(A_{1}) < \infty$. Тогда $\mu(A) = \lim_{i \to \infty}\mu(A_{i})$ (непрерывность сверху).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Положим $B_{1} = A_{1}$, $B_{i} = A_{i} \setminus A_{i - 1}$. Тогда $B_{i} \in \mathcal{M}$, $B_{i} \cap B_{j} = \emptyset$ при $i \neq j$, и $\bigcup_{i = 1}^{m}B_{i} = \bigcup_{i = 1}^{m}A_{i}$ для всех $m \in \N \cup \infty$. Поэтому
+        \[\mu(A) = \mu\left(\bigcup_{i = 1}^{\infty}B_{i}\right) = \sum_{i = 1}^{\infty}\mu(B_{i}) = \lim_{m \to \infty}\sum_{i = 1}^{m} \mu(B_{i}) = \lim_{m \to \infty}\mu(A_{m}).\]
+        \item Рассмотрим $A_{1} \setminus A_{i}$. Применим прошлый пункт к этим множествам. Тогда $\bigcup_{i = 1}^{\infty}(A \setminus A_{i}) = A_{1} \setminus A$ и 
+        \[\mu(A_{1}) - \mu(A) = \mu(A_{1} \setminus A) = \lim_{m \to \infty}\mu(A_{1} \setminus A_{m}) = \mu(A_{1}) - \lim_{m \to \infty}\mu(A_{m}).\]
+        Осталось из обоих частей вычесть $\mu(A_{1})$ и изменить знак.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    Покажите, что $\mu(A_{1}) < \infty$ -- существенно.
+\end{problem}
+
+\begin{example}[инвариативность меры относительно сдвигов]
+    Пусть $E \in \mathcal{M}$ и $y \in \R^{n}$. Тогда $E + y = \{x + y: x \in E\} \in \mathcal{M}$ и $\mu(E + y) = \mu(E)$.
+\end{example}
+
+\begin{proof}
+    Пусть $A \subset \R^{n}$ и $\{B_{i}\}_{i = 1}^{\infty}$ -- покрытие $A$ брусами.
+    \[A \subset \bigcup_{i = 1}^{\infty} B_{i} \Rightarrow A + y \subset \bigcup_{i = 1}^{\infty}(B_{i} + y).\]
+    Ясно, что $B_{i} + y$ -- брус, $|B_{i} + y| = |B_{i}|$. Тогда $\mu^{*}(A + y) \leq \sum_{i = 1}^{\infty}|B_{i}| \Rightarrow \mu^{*}(A + y) \leq \mu^{*}(A)$. Так как $A = (A + y) - y \Rightarrow \mu^{*}(A) \leq \mu^{*}(A + y)$, то есть $\mu^{*}(A) = \mu^{*}(A + y)$.
+    
+    Пусть $E \in \mathcal{M}$. Тогда
+    \[\mu^{*}(A \cap (E + y)) + \mu^{*}(A \cap (E + y)^{c}) = \mu^{*}\left(((A - y) \cap E) + y\right) + \mu^{*}\left(((A - y) \cap E^{c}) + y\right) =\]\[= \mu^{*}\left((A - y) \cap E\right) + \mu^{*}\left((A - y) \cap E^{c}\right) = \mu^{*}(A - y) = \mu^{*}(A),\]
+    так что $E + y$ также измеримо.
+\end{proof}
+
+\begin{lemma}[регулярность меры]
+    Если $E \in \mathcal{M}$, то $\forall \epsilon > 0 \ \exists \underbrace{G}_{\text{откр.}} \supset E \left(\mu(G \setminus E) < \epsilon\right)$.
+\end{lemma}
+
+\begin{proof}
+    Рассмотрим случай, когда $E$ ограничено, а значит, $\mu^{*}(E) < \infty$. Для $\epsilon > 0$ рассмотрим покрытие $E$ счетным семейством брусов $\{B_{k}\}$ с $\sum_{i = 1}^{\infty}|B_{i}| < \mu(E) + \frac{\epsilon}{2}$. По свойству брусов $\exists \underbrace{B_{i}^{o}}_{\text{откр.}} \supset B_{i}\left(|B_{i}^{o}| < |B_{i}| + \frac{\epsilon}{2^{i + 1}}\right)$. Определим $G = \bigcup_{i = 1}^{\infty} B_{i}^{o}$. Тогда $G$ -- открытое, $G \supset E$ и 
+    \[\mu(G \setminus E) = \mu(G) - \mu(E) \leq \sum_{i = 1}^{\infty}|B_{i}^{0}| - \mu(E) < \epsilon.\]
+
+    Перейдем к общему случаю. Поскольку $\R^{n} = \bigcup_{k = 1}^{\infty}A_{k}$, где $A_{k} = \{x \in \R^{n}: k - 1 \leq |x| < k\}$, то $E$ есть счетное объединение непересекающихся играниченных измеримых множеств $E_{k} = E \cap A_{k}$. По доказанному существует такое открытое множество $G_{k} \supset E_{k}$, что $\mu(G_{k} \setminus E_{k}) \leq \frac{\epsilon}{2^{k}}$. Тогда множество $G = \bigcup_{k = 1}^{\infty}G_{k}$ открыто, содержит $E$ и 
+    \[\mu(G \setminus E) = \mu\left(\bigcup_{k = 1}^{\infty} G_{k} \setminus E\right) \leq \sum_{k = 1}^{\infty}\mu(G_{k} - E_{k}) < \epsilon.\]
+\end{proof}
+
+\begin{corollary}
+    Если $E \in \mathcal{M}$, то $\forall \epsilon > 0 \ \exists \underbrace{F}_{\text{замк.}} \subset E \left(\mu(E \setminus F) < \epsilon\right)$.
+\end{corollary}

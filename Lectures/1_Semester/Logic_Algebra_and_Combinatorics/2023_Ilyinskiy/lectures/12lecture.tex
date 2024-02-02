@@ -1,0 +1,67 @@
+%16.03.23
+
+\section{Булевы функции.}
+
+\begin{definition}
+    \textit{Базис} -- это некоторый набор функций.
+\end{definition}
+
+\begin{example}
+    Стандартным базисом является $\{ \wedge, \vee, \neg \}$
+\end{example}
+
+\begin{definition}
+    \textit{Литерал} -- это $x_i,$ или $\overline{x_i}$
+    \textit{Конъюнкт} -- это конъюнкция литералов.
+\end{definition}
+
+Конъюнкт задает функцию $F(\alpha_1, \ldots, \alpha_k).$
+
+\begin{definition}
+    \textit{Дизъюнктивная нормальная форма} -- это дизъюнкция конъюнктов. Аналогично определяется \textit{конъюнктивная нормальная форма}.
+\end{definition}
+
+\begin{definition}
+    \textit{Булева схема в базисе $A$} -- это последовательность $S_1 = x_1, \ldots, S_n = x_n, S_{n + 1}, \ldots, S_k,$ которая начинается с переменных и $\forall j \geq n + 1 \ S_j = f(S_{i_1}, \ldots S_{i_l},$  где $i_1, \ldots, i_l < j, f \in A.$
+\end{definition}
+
+\begin{definition}
+    Базис $A$ называется \textit{полным,} если все булевы функции реализуются булевыми схемами в базисе $A.$
+\end{definition}
+
+\begin{definition}
+    \textit{Замыкание} базиса $A$ $cl(A)$ -- множество булевых функций, которые реализуются схемами в базисе $A.$
+\end{definition}
+
+\begin{proposition}
+    $B = \{1, \oplus, \wedge\}$ -- полный базис
+\end{proposition}
+
+\begin{definition}
+    \textit{Многочлен Жегалкина}
+\end{definition}
+
+Всего булевых функций от $n$ переменных $2^{2^n}.$ А всего многочленов Жегалкина $2^{2^n}.$ 
+
+\begin{proposition}
+    Любая функция из $cl(B)$ -- это многочлен Жегалкина.
+\end{proposition}
+
+\begin{definition}
+    \begin{enumerate}
+        \item \textit{Линейные функции} -- $L = cl\{1, \oplus\}.$
+        
+        \item Функции, сохраняющие $0.$
+
+        \item Функции, сохраняющие $1.$
+
+        \item Самодвойственные функции.
+
+        \item Монотонные функции.
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Базис $A$ полный $\Longleftrightarrow$ $cl(A)$ не лежит в $M$ или $T_0$ или  $T_1$ или $S$ или $L.$
+\end{theorem}

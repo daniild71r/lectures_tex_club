@@ -1,0 +1,86 @@
+%13.04.23
+
+\begin{note}[Геометрический смысл дифференцируемости ($n = 2$)]
+
+    Пусть $f: U \to \R$, $U$ -- открыто в $\R^{2}$, $f$ -- дифференцируема в точке $(x_{0}, y_{0})$, то есть 
+    \[f(x, y) = f(x_{0}, y_{0}) + \frac{\partial f}{\partial x}(x_{0}, y_{0})(x - x_{0}) + \frac{\partial f}{\partial y}(x_{0}, y_{0})(y - y_{0}) + o(\rho),\]
+    где $\rho = \sqrt{(x - x_{0})^{2} + (y - y_{0})^{2}}$.
+    
+    $G_{f} = \{(x, y, f(x, y)): (x, y) \in U\}$ -- график $f$.
+    
+    $\pi: z = f(x_{0}, y_{0}) + \frac{\partial f}{\partial x}(x_{0}, y_{0})(x - x_{0}) + \frac{\partial f}{\partial y}(x_{0}, y_{0})(y - y_{0})$.
+    
+    $\overline{n}(\frac{\partial f}{\partial x}(x_{0}, y_{0}), \frac{\partial f}{\partial y}(x_{0}, y_{0}), -1)$ -- вектор нормали.
+    
+    $\overline{a} (x - x_{0}, y - y_{0}, f(x, y) - f(x_{0}, y_{0}))$ -- непрерывный вектор в $MM_{0}$
+    
+    $\cos(\phi) = \frac{(\overline{a}, \overline{n})}{|\overline{a}||\overline{n}|}$
+    
+\end{note}
+
+\begin{definition}
+    Вектор $(\frac{\partial f}{\partial x_{1}}(a), \ldots, \frac{\partial f}{\partial x_{n}}(a))^{T}$ называется \textit{градиентом} функции $f$ в точке $a$ и обозначается $grad f(a)$ или $\nabla f(a)$.
+\end{definition}
+
+\begin{corollary}
+    Пусть $f$ дифференцируема в точке $a$, и $grad f(a) \neq 0$, то для любого $v \in \R^{n}$ с $|v| = 1$ выполнено
+    \[\left|\frac{\partial f}{\partial v}(a)\right| \leq |grad f(a)|,\]
+    причем равенство достигается лишь при $v = \pm \frac{grad f(a)}{|grad f(a)|}$.
+\end{corollary}
+
+\begin{proof}
+    Так как $\frac{\partial f}{\partial v}(a) = df_{a}(v) = (grad f(a), v)$, то по неравенству Коши-Буняковского-Шварца $\left|\frac{\partial f}{\partial v}(a)\right| \leq |grad f(a)| \cdot |v| = |grad f(a)|$, причем равенство достигается лишь в случае коллинеарности $grad f(a)$ и $v$, то есть $v = \pm \frac{grad f(a)}{|grad f(a)|}$.
+\end{proof}
+
+\begin{example}
+    Пусть $f: \R^{2} \to \R$,
+    \[f(x, y) = \begin{cases}
+        1, \ y = x^{2}, \ x > 0 \\
+        0, \text{ иначе. }
+    \end{cases}\]
+    Тогда $\frac{\partial f}{\partial v}(0, 0) = 0$ для любого $v \in \R^{2}$, но функция $f$ разрывна в точке $(0, 0)$.
+
+    Тем не менее, в терминах частных производных можно получить довольно простой признак дифференцируемости.
+\end{example}
+
+\begin{theorem}[Достаточное условие дифференцируемости]
+    Пусть $f: U \subset \R^{n} \to \R$, точка $a \in U$. Если все частные производные $\frac{\partial f}{\partial x_{k}}$ определены в окрестности а и непрерывны в точке $a$, то $f$ дифференцируема в точке $a$.
+\end{theorem}
+
+\begin{proof}
+    Пусть все $\frac{\partial f}{\partial x_{k}}$ определены в $B_{r}(a) \subset U$. Рассмотрим $h = (h_{1}, \ldots, h_{n})^{T}$ с $|h| < r$, и определим точки $x_{0} = a$, $x_{k} = a + \sum_{j = 1}^{k} h_{j}e_{j}$. Тогда приращение
+    \[f(a + h) - f(a) = \sum_{k = 1}^{n}(f(x_{k}) - f(x_{k - 1})) = \sum_{k = 1}^{n}(f(x_{k - 1} + h_{k}e_{k}) - f(x_{k - 1})).\]
+
+    Функция $g(t) = f(x_{k - 1} + te_{k}) - f(x_{k - 1})$ на отрезке с концами $0$ и $h_{k}$ (при $h_{k} \neq 0$) имеет производную $g'(t) = \frac{\partial f}{\partial x_{k}}(x_{k - 1} + t_{e_{k}})$. По теореме Лагранжа о среднем $g(h_{k}) - g(0) = g'(\xi_{k})h_{k}$ для некоторого $\xi_{k}$ между $0$ и $h_{k}$. Положим $c_{k}(h) = x_{k - 1} + \xi_{k}e_{k}$, тогда последнее равенство перепишется в виде $f(x_{k}) - f(x_{k - 1}) = \frac{\partial f}{\partial x_{k}}(c_{k})h_{k}$, причем $c_{k} \to a$ при $h \to 0$. Поэтому 
+    \[f(a + h) - f(a) - \sum_{k = 1}^{n} \frac{\partial f}{\partial x_{k}}(a)h_{k} = \sum_{k = 1}^{n}\left(\frac{\partial f}{\partial x_{k}}(c_{k}) - \frac{\partial f}{\partial x_{k}}(a)\right)h_{k} =\]
+    \[=\sum_{k = 1}^{n} \left(\frac{\partial f}{\partial x_{k}}(c_{k}) - \frac{\partial f}{\partial x_{k}}(a)\right)\frac{h_{k}}{|h|}|h| =: \alpha(h)|h|.\]
+
+    В силу непрерывности $\frac{\partial f}{\partial x_{k}}$ в точке $a$ и неравенства $|h_{k}| \leq |h|$ функция $\alpha(h) \to 0$ при $h \to 0$. Следовательно, $f$ дифференцируема в точке $a$.
+\end{proof}
+
+\textit{Случай функций из $\R^{n}$ в $\R^{m}$.}
+
+Пусть $U \subset \R^{n}$ открыто, и функция $f: U \to \R^{m}$, $f = (f_{1}, \ldots, f_{m})^{T}$.
+
+\begin{lemma}
+    \label{dif-lem1}
+    Функция $f$ дифференцируема в точке $a$ тогда и только тогда, когда все координатные функции $f_{i}$ дифференцируемы в точке $a$.
+\end{lemma}
+
+\begin{proof}
+    Пусть $f$ дифференцируема в точке $a$. Распишем формулу (1) покоординатно:
+    \[f_{i}(a + h) = f_{i} + L_{i}(h) + \alpha_{i}(h)|h|.\]
+    Координатные функции $L_{i}$ дифференциала $L_{a}$ линейны, а условие "$\alpha(h) \to 0$ при $h \to \overline{0}$"\ равносильно "$\alpha_{i}(h) \to 0$ при $h \to 0$"\ , где $i = 1, \ldots, m$, поэтому функция $f_{i}$ дифференцируема в точке $a$ и ее дифференциал $d(f_{i})_{a} = L_{i}$.
+
+    Обратно, если все функции $f_{i}$ дифференцируемы, то верна и формула (1) с $L_{a} = (L_{1}, \ldots, L_{m})^{T}$ и $\alpha = (\alpha_{1}, \ldots, \alpha_{m})^{T}$.
+\end{proof}
+
+Поскольку действие линейного отображения из $\R^{n}$ в $\R^{m}$ на вектор есть умножение этого вектора слева на матрицу, поэтому найдется такая матрица $Df_{a}$ размера $m \times n$, что $df_{a}(h) = D f_{a} \cdot h$ для всех $h \in \R^{n}$.
+
+\begin{definition}
+    Матрица $Df_{a}$ называется \textit{матрицей Якоби} функции $f$ в точке $a$.
+\end{definition}
+
+\begin{note}
+    По лемме 1 следует, что $df(h) = (df_{1}(h), \ldots, df_{m}(h))^{T}$, поэтому $ij$-й элемент матрицы Якоби в точке $a$ равен значению $d(f_{i})_{a}(e_{j})$, то есть $\frac{\partial f_{i}}{\partial x_{j}}(a)$. Таким образом, строками матрицы Якоби являются градиенты ее координатных функций в этой точке.
+\end{note}

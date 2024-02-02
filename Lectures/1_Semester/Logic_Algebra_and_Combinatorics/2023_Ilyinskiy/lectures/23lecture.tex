@@ -1,0 +1,63 @@
+%20.04.23
+
+\begin{proof}
+    Выберем окрестность $B_{\delta}(a, b)$, в которой определены $\frac{\partial f}{\partial x}$ и $\frac{\partial f}{\partial y}$. Рассмотрим выражение
+    
+    \[\Delta(t) = f(a + t, b + t) - f(a + t, b) - f(a, b + t) + f(a, b), \ 0 < |t| < \delta.\]
+
+    Функция $g(s) = f(a + s, b + t) - f(a + s, b)$ на отрезке с концами $0$ и $t$ имеет производную $g'(s) = \frac{\partial f}{\partial x}(a + s, b + t) - \frac{\partial f}{\partial x}(a + s, b)$. По теореме Лагранжа $g(t) - g(0) = g'(\xi)t$ для некоторого $\xi$ между $0$ и $t$. Тогда в силу равенства $\Delta(t) = g(t) - g(0)$ и дифференцируемости $\frac{\partial f}{\partial x}$ имеем
+
+    \[\Delta(t) = g'(\xi)t = \frac{\partial f}{\partial x}(a + \xi, b + t)t - \frac{\partial f}{\partial x}(a + \xi, b)t =\]
+    \[= \left(\frac{\partial f}{\partial x}(a, b) + \frac{\partial^2 f}{\partial^2 x}(a, b)\xi + \frac{\partial^2 f}{\partial y \partial x}(a, b)t + \alpha(t)\sqrt{\xi^2 + t^2}\right)t - \left(\frac{\partial f}{\partial x}(a, b) + \frac{\partial^2 f}{\partial^2 x}(a, b)\xi + \beta(t)|\xi|\right)t =\]
+    \[= \left(\frac{\partial^2 f}{\partial y \partial x}(a, b) \pm \alpha(t)\sqrt{1 + \frac{\xi^2}{t^2}} \pm \beta(t) \frac{|\xi|}{|t|}\right)t^2,\]
+    где $\alpha(t) \to 0$, $\beta(t) \to 0$ при $t \to 0$. Следовательно, существует $\lim_{t \to 0}\frac{\Delta(t)}{t^2} = \frac{\partial^2 f}{\partial y \partial x}(a, b)$.
+
+    Аналогично $\lim_{t \to 0}\frac{\Delta(t)}{t^2} = \frac{\partial^2 f}{\partial x \partial y}(a, b)$, что и доказывает теорему.
+\end{proof}
+
+\begin{problem}[теорема Шварца]
+    Докажите, что если $\frac{\partial^2 f}{\partial x \partial y}$ и $\frac{\partial^2 f}{\partial y \partial x}$ определены в окрестности $(a, b)$ и непрерывны в точке $(a, b)$, то $\frac{\partial^2 f}{\partial x \partial y}(a, b) = \frac{\partial^2 f}{\partial y \partial x}(a, b)$.
+\end{problem}
+
+Распространим теорему на случай $n$ переменных.
+
+\begin{corollary}
+    Пусть $k \in \N, k \geq 2$. Если все частные производные до порядка $k - 2$ дифференцируемы в некоторой окрестности точки $a$, а все частные производные порядка $k - 1$ дифференцируемы в точке $a$, то
+
+    \[\frac{\partial^k f}{\partial x_{ik} \ldots \partial x_{i1}}(a) = \frac{\partial^k f}{\partial x_{jk} \ldots \partial x_{j1}}(a)\]
+    при условии, что списки $(i_{1}, \ldots, i_{k})$ и $(j_{1}, \ldots, j_{k})$ отличаются лишь порядком.
+\end{corollary}
+
+\begin{proof}
+    Индукция по $k$. Пусть $k = 2$. Положим $x_{r} = a_{r}, r \neq i_{1},i_{2}$, тогда имеем функцию двух переменных $x_{i_{1}}$ и $x_{i_{2}}$, и равенство вытекает по теореме Юнга (\ref{jung_th}).
+
+    Пусть $k > 2$. Можно считать, что список $(j_{1}, \ldots, j_{k})$ получен из $(i_{1}, \ldots, i_{k})$ с помощью одной транспозиции, то есть обменом $i_{r}$ и $i_{r - 1}$.
+
+    Рассмотрим $g = \frac{\partial^{r - 2} f}{\partial x_{i_{r - 2}} \ldots \partial x_{i_{1}}}$. По теореме Юнга в окрестности точки $a$ имеет место равенство $\frac{\partial^2 g}{\partial x_{i_{r}} \partial x_{i_{r - 1}}} = \frac{\partial^2 g}{\partial x_{i_{r - 1}} \partial x_{i_{r}}}$. При $r = k$ имеем $\frac{\partial^2 g}{\partial x_{i_{r}} \partial x_{i_{r - 1}}}(a) = \frac{\partial^2 g}{\partial x_{i_{r - 1}} \partial x_{i_{r}}}(a)$, что лишь формой записи отличается от требуемого равенства; при $r < k$ еще надо продифференцировать по переменным $x_{i_{r + 1}}, \ldots, x_{i_{k}}$ и подставить $x = a$.
+\end{proof}
+
+Дифференциалы высших порядков определяются индуктивно.
+
+Пусть $U \subset \R^{n}$ открыто.
+
+\begin{definition}
+    Положим $d^{1}f = df$. Пусть $k \in \N, k \geq 2$. Пусть $d^{k - 1}f$ определен в некоторой окрестности точки $a$ и дифференцируем в точке $a$, то $d^{k}f_{a} := d(d^{k - 1}f)_{a}$, понимаемый как $k$-линейное отображение, называется \textit{дифференциалом} $k$-го порядка функции $f$ в точке $a$. При этом функция $f$ называется $k$ \textit{раз дифференцируемой} в точке $a$.
+\end{definition}
+
+\begin{lemma}
+    Дифференциал $d^{k}f$ симметричен, то есть на наборах $k$ векторов, отличающихся лишь порядком, принимает одинаковые значения.
+\end{lemma}
+
+\begin{proof}
+    Достаточно установить совпадение на наборах векторов стандартного базиса и воспользуемся линейностью.
+
+    Покажем по индукции, что $d^{k}f_{a}(e_{i_{1}}, \ldots, e_{i_{k}}) = \frac{\partial^k f}{\partial x_{i_{k}} \ldots \partial x_{i_{1}}}(a)$. При $k - 1$ это следует из теоремы $1$ и определения частной производной. Если равенство верно для $k - 1$, то $\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_{1}}} = d^{k - 1}f(e_{i_{1}}, \ldots, e_{i_{k - 1}})$ дифференцируема в точке $a$. Следовательно,
+    
+    \[d^{k}f_{a}(e_{i_{1}, \ldots, e_{i_{k}}}) = d\left(\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_{1}}}\right)_{a}(e_{i_{k}}) = \frac{\partial}{\partial x_{i_{k}}}\left(\frac{\partial^{k - 1} f}{\partial x_{i_{k - 1}} \ldots \partial x_{i_{1}}}\right)\vert_{x = a} = \frac{\partial^k f}{\partial x_{i_{k}} \ldots \partial x_{i_{1}}}(a).\]
+
+    Симметричность $d^{k}f$ на наборах базисных векторов теперь вытекает из следствия теоремы Юнга (\ref{jung_th}).
+\end{proof}
+
+Эта теорема позволяет наряду с $k$- линейным отображением $d^{k}f_{a}$ рассматривать соответствующую $k$- форму $h \mapsto d^{k} f_{a}(h, \ldots, h) =: d^{k} f_{a}(h^{k})$. При $m = 1$ форма $d^{k}f_{a}(h^{k})$ является однородным многочленом степени $k$ от компонент вектора $h$:
+
+\[d^{k}f_{a}(h^{k}) = \sum_{i_{k} = 1}^{n} \ldots \sum_{i_{1} = 1}^{n} \frac{\partial^k f}{\partial x_{i_{k}} \ldots \partial x_{i_{1}}}(a) h_{i_{1}} \ldots h_{i_{k}}, \ h = (h_{1}, \ldots, h_{n})^{T} \in \R^{n}.\]

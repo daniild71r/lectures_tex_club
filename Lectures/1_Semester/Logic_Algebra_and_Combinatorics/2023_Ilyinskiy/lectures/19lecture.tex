@@ -1,0 +1,133 @@
+%06.04.23
+
+\subsection{Связные множества}
+
+\begin{definition}
+    Метрическое пространство $X$ называется \textit{несвязным}, если существуют непустые открытые $U, V \subset X$, что $X = U \cup V$ и $U \cap V = \emptyset$.
+
+    Метрическое пространство $X$ называется \textit{связным}, если оно не является несвязным.
+
+    Множество $E \subset X$ называется \textit{несвязным (связным)}, если оно несвязно (связно) как подпространство $X$.
+\end{definition}
+
+\begin{example}
+    $\{x\}$ -- связное множество.
+\end{example}
+
+\begin{note}
+    Согласно устройству открытых множеств подпространства получаем, что $E \subset X$ несвязно, если существуют открытые $U, V \subset X$, такие что $E \subset U \cup V$ и $E \cap U \neq \emptyset$, $E \cap V \neq \emptyset$, $U \cap V \cap E = \emptyset$.
+\end{note}
+
+Покажем, что $U$ и $V$ можно всегда выбрать непересекающимися.
+
+\begin{lemma}
+    Множество $E \subset X$ несвязно $\lra$ существуют открытые $U, V \subset X$, такие что $E \subset U \cup V$ и $E \cap U \neq \emptyset$, $E \cap V \neq \emptyset$, $U \cap V = \emptyset$.
+\end{lemma}
+
+\begin{proof}
+    Достаточность очевидна. Для доказательства необходимости предположим, что множество $E$ несвязно. Тогда существуют непустые открытые $U_{E}, V_{E} \subset E$, такие что $E = U_{E} \cup V_{E}$, $U_{E} \cap V_{E} = \emptyset$.
+
+    Для каждого $x \in U_{E}$ найдется такое $\delta_{x} > 0$, что $B_{\delta_{x}}(x) \cap E \subset U_{E}$ и, значит, $B_{\delta_{x}}(x) \cap V_{E} = \emptyset$. Аналогично, для каждого $y \in V_{E}$ найдется такое $\delta_{y} > 0$, что $B_{\delta_{y}}(y) \cap E \subset V_{E}$ и $B_{\delta_{y}}(y) \cap U_{E} = \emptyset$.
+
+    Положим $U = \underset{x \in U_{E}}{\bigcup} B_{\frac{\delta_{x}}{2}}(x), V = \underset{y \in V_{E}}{\bigcup} B_{\frac{\delta_{y}}{2}}(y)$. Если существует $z \in U \cap V$, то $z \in B_{\frac{\delta_{x}}{2}}(x)$ и $z \in B_{\frac{\delta_{y}}{2}}(y)$ для некоторых $x \in U_{E}$ и $y \in V_{E}$, тогда 
+
+    \[\rho(x, y) \leq \rho(x, z) + \rho(z, y) < \frac{\delta_{x} + \delta_{y}}{2} \leq max\{\delta_{x}, \delta_{y}\}.\]
+
+    Если $max\{\delta_{x}, \delta_{y}\} = \delta_{x}$, то $y \in B_{\delta_{x}}(x)$; если же $max\{\delta_{x}, \delta_{y}\} = \delta_{y}$, то $x \in B_{\delta_{y}}(y)$. Обе эти ситуации невозможны. Следовательно, $U \cap V = \emptyset$.
+\end{proof}
+
+\begin{problem}
+    \begin{enumerate}
+        \item Докажите, что если $E \subset X$ связно, то $\overline{E}$ также связно.
+        \item Докажите, что если $E_{i}$ связно для любого $i \in I$ и $\underset{i \in I}{\cap} E_{i} \neq \emptyset$, то $\underset{i \in I}{\cup} E_{i}$ также связно.
+    \end{enumerate}
+\end{problem}
+
+\begin{theorem}
+    \label{th_coher_spac}
+    Множество $I \subset \R$ связно $\lra$ $I$ -- промежуток.
+\end{theorem}
+
+\begin{proof}
+    $(\Rightarrow)$ Если $I$ не является промежутком, то существуют $x, y \in I$ и $z \in \R$, такие что $x < z < y$ и $z \not\in I$. Рассмотрим $(-\infty, z) \cap I$ и $(z, +\infty) \cap I$. Это непустые (содержат соответственно точки $x, y$), непересекающиеся, открытые в $I$ множества, объединение которых совпадает с $I$. Значит, множество $I$ несвязно.
+    
+    $(\Leftarrow)$ Предположим, что промежуток $I$ не является связным множеством. Тогда найдутся открытые (в $\R$) множества $U$ и $V$, такие что $I \subset U \cup V$, $I \cap U \neq \emptyset$, $I \cap V \neq \emptyset$ и $U \cap V \cap I \neq \emptyset$. Пусть $x \in I \cap U$ и $y \in I \cap V$. Без ограничения общности можно считать, что $x < y$ (тогда $[x,y] \subset I$).
+
+    Положим $S = \{z \in [x, y]: z \in U\}$. Так как $S$ не пусто и ограничено, то существует $c = \sup S$. В силу замкнутости отрезка $c \in [x, y]$. Отрезок $[x, y] \subset I \subset U \cup V$, поэтому $c \in U$ или $c \in V$.
+
+    Если $c \in U$, то $c \neq y$, и значит, найдется $\epsilon > 0$, что полуинтервал $[c, c+\epsilon)$ лежит одновременно в $U$ и $[x, y]$. Но тогда $[c, c + \epsilon) \subset S$, что противоречит $c = \sup S$.
+
+    Если $c \in V$, то $c \neq x$, и значит, найдется $\epsilon > 0$, что полуинтервал $(c - \epsilon, c]$ лежит одновременно в $V$ и $[x, y]$. В частности, отрезок $[c - \frac{\epsilon}{2}, c]$ не пересекается с $S$, что противоречит $c = \sup S$.
+
+    Значит, $I$ связно.
+\end{proof}
+
+\begin{theorem}
+    \label{th_contin_coher}
+    Если функция $f: S \to Y$ непрерывна, и множество $S$ связно, то множество $f(S)$ связно в $Y$.
+\end{theorem}
+
+\begin{proof}
+    Предположим, что $f(S)$ несвязно, тогда существют открытые в $Y$ множества $U$ и $V$, такие что $f(S) \subset U \cup V$, $f(S) \cap U \neq \emptyset$, $f(S) \cap V \neq \emptyset$ и $f(S) \cap U \cap V = \emptyset$. Множества $f^{-1}(U)$ и $f^{-1}(V)$ не пусты, не пересекаются, открыты в $S$ (по критерию непрерывности) и $S = f^{-1}(U) \cup f^{-1}(V)$ (так как $U, V$ образуют покрытие $f(S)$). Это противоречит связности $S$.
+\end{proof}
+
+\begin{corollary}[Теорема о промежуточных значениях]
+    Если функция $f: S \to \R$ непрерывна, и множество $S$ связно, то $f$ принимает все промежуточные значения (то есть если $u, v \in f(S)$ и $u < v$, то $[u, v] \subset f(S)$).
+\end{corollary}
+
+\begin{proof}
+    По теореме (\ref{th_contin_coher}) множество $f(S)$ связно в $\R$ и, значит, по теореме (\ref{th_coher_spac}) является промежутком.
+\end{proof}
+
+\begin{definition}
+    Открытое связное множество в метрическом пространстве называется \textit{областью}.
+\end{definition}
+
+\begin{example}
+    Выясним, является ли $E = \{(x, y, z) \in \R^{3}: e^{x^{2} + y^{2}} < 1 + z^{2}\}$ областью.
+\end{example}
+
+\begin{solution}
+    Функция $f(x, y, z) = e^{x^{2} + y^{2}} - 1 - z^{2}$ непрерывна, поэтому множество $E = f^{-1}(-\infty, 0)$ открыто по критерию непрерывности. Однако $E$ не является связным, так как $E \subset U \cup V$, где $U = \{(x, y, z) \in \R^{3}: z > 0\}, V = \{(x, y, z) \in \R^{3}: z < 0\}$, причем $E$ пересекается и с $U$, и с $V$.
+\end{solution}
+
+Выделим класс множеств, для которых проверка связности осуществляется несколько проще.
+
+\begin{definition}
+    Метрическое пространство $X$ называется \textit{линейно связным}, если для любых точек $x, y \in X$ существует такая непрерывная функция $\gamma: [0, 1] \to X$, что $\gamma(0) = x$, $\gamma(1) = y$.
+\end{definition}
+
+\begin{theorem}
+    Всякое линейно связное метрическое пространство связно.
+\end{theorem}
+
+\begin{proof}
+    Предположим, что линейно связное пространство $X$ несвязно. Тогда найдутся непустые открытые множества $U$ и $V$, такие что $X = U \cup V$ и $U \cap V = \emptyset$. Пусть $x \in U$ и $y \in V$. Так как $X$ линейно связно, то существует непрерывная функция $\gamma: [0, 1] \to X$, такая что $\gamma(0) = x$ и $\gamma(1) = y$. Тогда $\gamma^{-1}(U)$ и $\gamma^{-1}(V)$ не пусты, не пересекаются, открыты в $[0, 1]$, и $[0, 1] = \gamma^{-1}(U) \cup \gamma^{-1}(V)$, что невозможно, так как отрезок $[0, 1]$ связен.
+\end{proof}
+
+\begin{example}
+    Шар $B_{r}(a)$ в нормированном пространстве $V$ -- линейно связное множество.
+\end{example}
+
+\begin{proof}
+    Пусть $x, y \in B_{r}(a), x \neq y$. Рассмотрим точку $\gamma(t) = (1 - t)x + ty$, $t \in (0, 1)$. Поскольку
+    \[\|\gamma(t) - a\| = \|(1 - t)(x - a) + t(y - a)\| \leq (1 - t)\|x - a\| + t\|y - a\| < (1 - t)r + tr = r,\]
+    то эта точка лежит в $B_{r}(a)$. Осталось положить $\gamma: [0, 1] \to B_{r}(a)$, $\gamma(t) = (1 - t)x + ty$.
+\end{proof}
+
+\begin{lemma}
+    Связное открытое множество $E$ в нормированном пространстве линейно связно.
+\end{lemma}
+
+\begin{proof}
+    Пусть $x \in E$. Рассмотрим множество $U$ тех точек $y$, которые можно соединить с $x$ кривой, то есть существует непрерывная функция $\gamma: [0, 1] \to E$, что $\gamma(0) = x$, $\gamma(1) = y$. Покажем, что $U$ открыто. Для $y \in U$ в силу открытости $E$ найдется такое $\epsilon > 0$, что $B_{\epsilon}(y) \subset E$. Любая пара точек в шаре может быть соединена открезком: для $z \in B_{\epsilon}(y)$ рассмотрим $\sigma: [0, 1] \to B_{\epsilon}(y)$, $\sigma(t) = (1 - t)y + tz$. Тогда кривая
+    \[\gamma \circ \sigma(t) = \begin{cases}
+        \gamma(2t), \ 0 \leq t \leq \frac{1}{2}, \\
+        \sigma(2t - 1), \ \frac{1}{2} \leq t \leq 1,
+    \end{cases}\]
+    соединяет $x$ и $z$, поэтому $B_{\epsilon}(y) \subset U$. Аналогично устанавливается, что $E \setminus U$ открыто. В силу связности $E \setminus U$ пусто, то есть $E = U$.
+\end{proof}
+
+\begin{problem}
+    Докажите, что множество $A = \{(0, y): y \in [-1, 1]\} \cup \{(x, \sin(\frac{1}{x})): x \in (0, 1]\}$ связно, но не линейно связно в $\R^{2}$.
+\end{problem}

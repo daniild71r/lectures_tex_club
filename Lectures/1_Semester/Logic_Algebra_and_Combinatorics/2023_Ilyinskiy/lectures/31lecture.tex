@@ -1,0 +1,117 @@
+%17.05.23
+
+\begin{problem}
+    Пусть $f$ локально интегрируема (по Риману) на $[a, b)$. Докажите, что
+    \begin{enumerate}
+        \item $f$ измерима на $[a, b)$;
+        \item если дополнительно $f \geq 0$ на $[a, b)$, то $f$ интегрируема на $[a, b) \lra \int_{a}^{\to b}f(x) dx$ сходится;
+        \item в общем случае $f$ интегрируема на $[a, b) \Rightarrow \int_{a}^{\to b} f(x) dx$ сходится, но следствие в обратную сторону неверно.
+    \end{enumerate}
+\end{problem}
+
+\subsection{Формула суммирования Эйлера}
+
+\begin{theorem}[Эйлер]
+    Пусть $f: [1, +\infty) \to \R$ дифференцируема и $f'$ локально интегрируема на $[1, +\infty)$. Тогда для любого $n \in \N$ справедливо равенство
+    \[\sum_{k = 1}^{n} f(k) = \int_{1}^{n}f(t)dt + \frac{f(1) + f(n)}{2} + \int_{1}^{n}\left(\{t\} - \frac{1}{2}\right)f'(t)dt.\]
+\end{theorem}
+
+\begin{proof}
+    Интегрирование по частям дает
+    \[\int_{k}^{k + 1}f(t)dt = f(t)(t - k)\left.\right|_{k}^{k + 1} - \int_{k}^{k + 1}(t - k)f'(t)dt = f(k + 1) - \int_{k}^{k + 1}\{t\}f'(t)dt.\]
+
+    Суммируя полученные равенства от 1 до $n - 1$:
+    \[\int_{1}^{n}f(t)dt = \sum_{k = 2}^{n}f(k) - \int_{1}^{n}\{t\}f'(t)dt.\]
+    По формуле Ньютона-Лейбница $\frac{f(n) - f(1)}{2} = \int_{1}^{n}\frac{f'(t)}{2}dt \Rightarrow \frac{f(n) + f(1)}{2} = f(1) + \int_{1}^{n}\frac{f'(n)}{2}$.
+
+    Складывая два равенства, получим искомое. 
+\end{proof}
+
+\begin{corollary}
+    Пусть $f: [1, +\infty) \to \R$ дифференцируема, $f$ монотонна и $f'(t) \to 0$ при $t \to +\infty$. Тогда для любого $n \in \N$ справедливо
+    \[\sum_{k = 1}^{n}f(k) = \int_{1}^{n}f(t)dt + C_{f} + \frac{f(n)}{2} + \epsilon_{n},\]
+    где $C_{f} = \frac{f(1)}{2} + \int_{1}^{+\infty}\left(\{t\} - \frac{1}{2}\right)f'(t)dt$, $\epsilon_{n} = \int_{n}^{+\infty}\left(\{t\} - \frac{1}{2}\right)f'(t)dt$.
+\end{corollary}
+
+\begin{proof}
+    Функция $t \mapsto \{t\} - \frac{1}{2}$ -- периодическая функция с периодом 1 и интеграл по каждому равен 0.
+    \[\int_{1}^{x}\left(\{t\} - \frac{1}{2}\right)dt = \int_{[x]}^{x}\left(t - [x] - \frac{1}{2}\right)dt = \left.\frac{f^{2}}{2}\right|_{[x]}^{x} - \left([x] + \frac{1}{2}\right)t\left.\right|_{[x]}^{x} = \]
+    \[ = \frac{x^{2}}{2} - \frac{[x]^{2}}{2} - \left([x] + \frac{1}{2}\right)\{x\} = \frac{1}{2}\{x\}(x + [x]) - [x]\{x\} - \frac{1}{2}\{x\} = \frac{1}{2}(\{x\}^{2} - \{x\}).\]
+    Следовательно, $F(x) = \int_{1}^{x}(\{t\} - \frac{1}{2})dt$ ограничена и, значит, $\int_{1}^{+\infty}(\{t\} - \frac{1}{2})f'(t)dt$ сходится по признаку Дирихле. 
+
+    В частности, $C_{f} \in \R$ и $\epsilon \to 0$ (как <<хвост>> сходящегося интеграла).
+\end{proof}
+
+\begin{example}[формула Стирлинга]
+    При $n \to +\infty$ справедлива оценка
+    \[n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^{n}.\]
+\end{example}
+
+\begin{proof}
+    Применим следствие к функции $f(t) = \ln t$. Тогда
+    \[\sum_{k = 1}^{n} \ln k = n \ln n - n + 1 + C + \frac{\ln n}{2} + \epsilon_{n},\]
+    \[\ln n! = \ln(n^{n}e^{-n}\sqrt{n}e^{C + 1}e^{\epsilon_{n}}),\]
+    \[n! = c\sqrt{n}\left(\frac{n}{e}\right)^{n}(1 + o(1)), \ n \to +\infty.\]
+
+    Для нахождения константы $c$ воспользуемся формулой Валлиса:
+    \[\pi = \lim_{n \to +\infty}\frac{1}{n}\left(\frac{(2n)!!}{(2n-1)!!}\right)^{2}\]
+    Имеем 
+    \[\frac{(2n)!!}{(2n-1)!!} = \frac{2^{2n}(n!)^{2}}{(2n)!} = \frac{2^{2n}c^{2}n\left(\frac{n}{e}\right)^{2n}(1 + o(1))^{2}}{c \sqrt{2n}\left(\frac{2n}{e}\right)^{2n}(1 + o(1))} = \frac{c\sqrt{n}}{\sqrt{2}}(1 + o(1)),\]
+    значит,
+    \[\pi = \lim_{n \to +\infty}\frac{1}{n}\frac{c^{2}n}{2}(1 + o(1))^{2} = \frac{c^{2}}{2} \Rightarrow c = \sqrt{2\pi}.\]
+\end{proof}
+
+\begin{note}
+    Формулу можно уточнить, рассматривая подробно асимптотику $\epsilon_{n}$
+    \[\epsilon_{n}=\int_{n}^{+\infty}\left(\frac{1}{2} - \{t\}\right)\frac{1}{t}dt = \left.\left(\frac{\{t\} - \{t\}^{2}}{2t}\right)\right|_{n}^{+\infty} - \frac{1}{2}\int_{n}^{+\infty}(\{t\} - \{t\}^{2})\left(-\frac{1}{t} + \frac{1}{2}\right)dt =\]
+    \[= \int_{n}^{+\infty}(\{t\} - \{t\}^{2})\frac{1}{2t^{2}}dt,\]
+    значит,
+    \[|\epsilon_{n}| \leq \int_{n}^{+\infty}\frac{dt}{t^{2}} = -\left.\frac{1}{t}\right|_{n}^{+\infty} = \frac{1}{n}.\]
+    \[n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^{n}\left(1 + O\left(\frac{1}{n}\right)\right).\]
+\end{note}
+
+\subsection{Неизмеримые множества}
+
+Построим пример неизмеримого множества.
+
+\begin{example}[множество Витали]
+    На $[0, 1]$ введём отношение эквивалентности $x \sim y \lra x - y \in \Q \Rightarrow [0, 1] = \bigsqcup_{\alpha}H_{\alpha}$, $H_{\alpha}$ -- классы эквивалетности.
+
+    $V$ -- множество, содержащее ровно один элемент из каждого $H_{\alpha}$ и только такие элементы (такое множество существует по аксиоме выбора).
+
+    Пусть $\{r_{n}\}_{n = 0}^{+\infty}$ -- некоторая нумерация $\Q \cap [-1, 1]$, $r_{0} = 0$. Рассмотрим $V_{n} = V + r_{n}$.
+    \begin{enumerate}
+        \item $V_{n}$ попарно не пересекаются, так как
+        \[x \in V_{i} \cap V_{j} \Rightarrow x_{i} + r_{i} = x_{j} + r_{j} \Rightarrow x_{j} - x_{i} \in \Q.\]
+        
+        \item $[0, 1] \subset \bigsqcup_{n = 0}^{\infty}V_{n} \subset [-1, 2]$.
+        
+        (левое включение: $y \in [0, 1] \Rightarrow y \in H_{\alpha} \Rightarrow y = x_{\alpha} + r$, $r = y - x_{\alpha \in [-1, 1]} \Rightarrow \exists n (r - r_{n})$)
+
+        (правое включение: $V \subset [0, 1]$ и $r_{n} \in [-1, 1]$)
+        
+        \item Пусть $\underbrace{A_{n}}_{\text{изм.}} \subset V_{n} \Rightarrow \mu(A_{n}) = 0$.
+
+        ($A_{m} = A_{n} - r_{n} + r_{m} \subset V_{m}$, $\mu(A_{m}) = \mu(A_{n}) = 0$, $\mu(\bigsqcup_{n = 0}^{\infty}A_{n}) = \sum_{n = 0}^{\infty}\mu(A_{n}) = \sum_{n = 0}^{\infty}a \leq \mu([-1, 2]) = 3 \Rightarrow a = 0$)
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    Если $E \subset \R$ и $\mu^{*}(E) > 0$, то $E$ содержит неизмеримое подмножество.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Рассмотрим сначала случай $E \subset [0, 1]$. 
+
+        $E = E \cap (\bigsqcup_{n = 0}^{\infty}V_{n}) = \bigsqcup_{n = 0}^{\infty}(E \cap V_{n})$, $F_{n} := E \cap V_{n}$.
+    
+        $F_{n} \subset V_{n}$. Если все $F_{n}$ измеримы, то $\mu(F_{n}) = 0$. Следовательно, $\mu(E) = \sum_{n = 0}^{+\infty}\mu(F_{n}) = 0$, противоречие. Следовательно, существует $F_{n}$ неизмеримое.
+
+        \item Общий случай $E \subset \R$.
+    
+        $E = \bigsqcup_{k = -\infty}^{\infty}(\underbrace{E \cap [k, k + 1)}_{E_{k}}) \Rightarrow \exists k: \mu^{*}(E_{k}) > 0$.
+    
+        $\overset{\sim}{E} = E_{k} - k \subset [0, 1]$ и $\mu^{*}(\overset{\sim}{E}) = \mu(E_{k}) > 0$.
+    \end{enumerate}
+\end{proof}
