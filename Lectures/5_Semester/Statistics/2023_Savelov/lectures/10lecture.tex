@@ -139,11 +139,11 @@
 \begin{proof}
 	По доказанному, $\E (X - Z\wh{\theta}(X)) = 0$. Стало быть, $\E \|X - Z\wh{\theta}(X)\|^2 = \Tr D(X - Z\wh{\theta}(X))$. Осталось расписать матрицу ковариаций в явном виде:
 	\begin{multline*}
-		D(X - Z\wh{\theta}(X)) = D\big((E_n - \underbrace{Z(Z^TZ)^{-1}Z}_{A})X\big) = (E_n - A) DX (E_n - A)^T = [A^T = A] =
+		D(X - Z\wh{\theta}(X)) = D\big((E_n - \underbrace{Z(Z^TZ)^{-1}Z^T}_{A})X\big) = (E_n - A) DX (E_n - A)^T = [A^T = A] =
 		\\
 		\sigma^2 (E_n - A)^2 = \sigma^2(E_n - 2A + A^2) = [A^2 = A] = \sigma^2(E_n - A)
 	\end{multline*}
-	Подставим полученное выражение в матожидание (при этом \\ $A = Z(Z^TZ)^{-1}Z = ZZ^{-1}Z^{-T}Z = Z^{-T}Z$):
+	Подставим полученное выражение в матожидание:
 	\[
 		\E \|X - Z\wh{\theta}(X)\|^2 = \sigma^2(n - \Tr A) = \sigma^2(n - k)
 	\]
