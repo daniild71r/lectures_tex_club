@@ -1,0 +1,185 @@
+\section{Спектр. Резольвента}
+
+\begin{note}
+	В этой главе, если не сказано иного, мы живём в банаховом пространстве $E$ над комл4ексным полем $\Cm$. Также оператор $A$ всегда из класса $\cL(E)$, если не сказано иного.
+\end{note}
+
+\textcolor{red}{Добавить затравку из конечномерного случая?}
+
+\begin{definition}
+	\textit{Резольвентным множеством оператора} $A$ называется следующее множество:
+	\[
+		\rho(A) = \{\lambda \in \Cm \such \exists (A - \lambda I)^{-1} \in \cL(E)\}
+	\]
+	Все $\lambda \in \Cm$, попадающие в резольвентное множество, называются \textit{регулярными}.
+\end{definition}
+
+\begin{definition}
+	\textit{Спектром оператора} $A$ называется дополнение к резольвентному множеству:
+	\[
+		\sigma(A) = \Cm \bs \rho(A)
+	\]
+\end{definition}
+
+\begin{note}
+	Далее $\sigma_p(A)$ --- множество всех собственных значений оператора $A$ ($p$ означает point).
+\end{note}
+
+\begin{example}~
+	\begin{enumerate}
+		\item $\dim E < \infty$ Здесь $\sigma(A) = \sigma_p(A)$ --- спектром будет множество всех собственных значений оператора.
+		
+		\item $\dim E = \infty$
+		\begin{enumerate}
+			\item $E = \ell_2(\Cm)$, $Ax = (0, x_1, x_2, \ldots)$ --- оператор правого сдвига. Несложно показать, что $\sigma_p(A) = \emptyset$ --- у этого оператора нет собственных значений, однако   $\sigma(A) = \{\lambda \in \Cm \colon |\lambda| < 1\}$ \textcolor{red}{Не верю в то, что сюда подходят случаи $|\lambda| = 1$}
+			
+			\item $E = C[0; 1]$, $Af(x) = \int_0^x f(t)dt$ --- оператор Вольтера. Интересный факт состоит в том, что $\sigma(A) = \{0\}$, при этом ноль не является собственным значением!
+		\end{enumerate}
+	\end{enumerate}
+\end{example}
+
+
+\begin{definition} \textcolor{red}{(Не по лектору, но он так говорил и такое определение существует)}
+	\textit{Спектральным радиусом оператора} $A$ называется радиус окружности с центром в нуле, в которую попадают все элементы спектра:
+	\[
+		r(A) = \sup_{\lambda \in \sigma(A)} |\lambda|
+	\]
+\end{definition}
+
+
+\begin{theorem}
+	Верно 2 факта:
+	\begin{enumerate}
+		\item $\sigma(A)$ --- непустое замкнутое множество
+		
+		\item $r(A) = \lim_{n \to \infty} \sqrt[n]{\|A^n\|}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+	На пространстве функций $\Cm \to \cL(E)$ можно построить ТФКП.
+\end{proposition}
+
+\begin{definition}
+	\textit{Резольвентой оператора} $A$ называется любое отображение следующего вида:
+	\[
+		R_\lambda := R(\lambda) := (A - \lambda I)^{-1},\ \lambda \in \rho(A)
+	\]
+\end{definition}
+
+\begin{anote}
+	Далее я буду чередовать обозначения $R_\lambda$ и $R(\lambda)$. Второе будет использоваться тогда, когда мне важно подчеркнуть, что резольвента --- функция от $\lambda \in \Cm$.
+\end{anote}
+
+\begin{proposition} \label{prop10_for_radius}
+	Если $|\lambda| > \|A\|$, то $\lambda \in \rho(A)$
+\end{proposition}
+
+\begin{proof}
+	Перепишем $A - \lambda I$ следующим образом:
+	\[
+		A - \lambda I = -\lambda\ps{I - \frac{1}{\lambda}A}
+	\]
+	Так как $\no{\frac{A}{\lambda}} = \frac{1}{|\lambda|}\|A\| < 1$, то применима теорема \ref{simple_inverse_op_theorem} и, соответственно, этот оператор обратим. Значит $\lambda \in \rho(A)$ по определению
+\end{proof}
+
+\begin{proposition}
+	Резольвентное множество $\rho(A)$ открыто
+\end{proposition}
+
+\begin{proof}
+	Пусть $\lambda_0 \in \rho(A)$. Тогда мы хотим найти шар $|\Delta \lambda| < \delta$ такой, что $\lambda_0 + \Delta \lambda \in \rho(A)$. Это означает, что оператор $A - (\lambda_0 + \Delta \lambda)I = (A - \lambda_0 I) + (-\Delta \lambda I)$ должен быть обратим. Так как $\|\Delta \lambda I\| = |\Delta \lambda|$, то по теореме \ref{extended_inverse_op_theorem} мы действительно можем найти нужный шар (нужно взять $|\Delta \lambda| \le \|(A - \lambda_0 I)^{-1}\|^{-1}$).
+\end{proof}
+
+\begin{proposition}
+	$R(\lambda)$ является непрерывной функцией
+\end{proposition}
+
+\begin{proof}
+	Положим $B = A - \lambda_0 I$ и $\Delta B = -\Delta \lambda I$. Как мы уже доказали, мы можем рассмотреть $\Delta \lambda$ с ограничением $|\Delta \lambda| < \|B^{-1}\|^{-1}$ и тогда по теореме \ref{extended_inverse_op_theorem} $B + \Delta B$ обратим. Для непрерывности, нам необходимо оценить норму следующей разности (причём так, что она стремится к нулю при $\Delta \lambda \to 0$):
+	\[
+		\|R(\lambda_0 + \Delta \lambda) - R(\lambda_0)\| = \|(B + \Delta B)^{-1} - B^{-1}\|
+	\]
+	Распишем $(B + \Delta B)^{-1}$ через ряд Неймана следующим образом:
+	\[
+		(B + \Delta B)^{-1} = (I + B^{-1}\Delta B)^{-1}B^{-1} = \sum_{k = 0}^\infty (-1)^k (B^{-1}\Delta B)^k B^{-1} = B^{-1} + \sum_{k = 1}^\infty (-1)^k (B^{-1}\Delta B)^kB^{-1}
+	\]
+	Отсюда можно вернуться к оценке и уже работать чисто с рядом (напомню, что $\|\Delta B\| = |\Delta \lambda|$):
+	\begin{multline*}
+		\|(B + \Delta B)^{-1} - B^{-1}\| = \no{\sum_{k = 1}^\infty (-1)^k(B^{-1}\Delta B)^kB^{-1}} \le \sum_{k = 1}^\infty \|B^{-1}\|^{k + 1}\|\Delta B\|^k =
+		\\
+		\|B^{-1}\|\sum_{k = 1}^\infty (\|B^{-1}\| \cdot \|\Delta B\|)^k = \|B^{-1}\| \cdot \frac{\|B^{-1}\| \cdot \|\Delta B\|}{1 - \|B^{-1}\| \cdot \|\Delta B\|} \xrightarrow[\Delta \lambda \to 0]{} 0
+	\end{multline*}
+\end{proof}
+
+\begin{note}
+	Далее будет полезно использовать обозначение $A_\lambda := A - \lambda I$.
+\end{note}
+
+\begin{proposition}
+	Пусть $\lambda_0, \lambda \in \rho(A)$. Тогда
+	\[
+		R_\lambda - R_{\lambda_0} = (\lambda - \lambda_0)R_\lambda R_{\lambda_0}
+	\]
+\end{proposition}
+
+\begin{proof}
+	\[
+		R_\lambda - R_{\lambda_0} = R_\lambda \underbrace{(A_{\lambda_0} R_{\lambda_0})}_{I} - (R_\lambda A_\lambda) R_{\lambda_0} = R_\lambda (A_{\lambda_0} - A_\lambda)R_{\lambda_0} = R_\lambda (\lambda - \lambda_0)R_{\lambda_0} = (\lambda - \lambda_0)R_\lambda R_{\lambda_0}
+	\]
+\end{proof}
+
+\begin{proposition}
+	$R(\lambda)$ дифференцируема на $\rho(A)$. Более того:
+	\[
+		R'(\lambda_0) = R_{\lambda_0}^2
+	\]
+\end{proposition}
+
+\begin{proof}
+	Запишем дробь из предела производной:
+	\[
+		\frac{R_\lambda - R_{\lambda_0}}{\lambda - \lambda_0} = \frac{(\lambda - \lambda_0)R_\lambda R_{\lambda_0}}{\lambda - \lambda_0} = R_\lambda R_{\lambda_0} \xrightarrow[\lambda \to \lambda_0]{} R_{\lambda_0}^2
+	\]
+\end{proof}
+
+\begin{proposition}
+	Радиус сходимости ряда Неймана для $R(\lambda)$ равен спектральному радиусу $r(A)$.
+\end{proposition}
+
+\begin{anote}
+	Если рассматривается радиус окрестности бесконечности, то он тем больше, чем он дальше от бесконечной точки (то есть численно меньше), и наоборот. 
+\end{anote}
+
+\begin{proof}
+	Покажем неравенства в 2 стороны:
+	\begin{itemize}
+		\item[$\le$] Так как мы можем использовать все факты из курса ТФКП, то в частности мы можем говорить о ряде Лорана. Если $|\lambda| > \|A\|$, то тогда имеет место следующее представление резольвенты:
+		\[
+			R(\lambda) = \frac{1}{A - \lambda I} = -\frac{1}{\lambda} \cdot \frac{1}{I - \frac{A}{\lambda}} = -\frac{1}{\lambda}\sum_{k = 0}^\infty A^k\lambda^{-k}
+		\]
+		При этом, ранее было установлено, что $R(\lambda)$ дифференцируема на $\rho(A)$. В частности, это происходит на круге $|\lambda| > r(A)$. Так как представление функции в виде ряда Лорана в круге единственно, а мы уже его записали выше для некоторой окрестности бесконечности, то тот же самый вид должен быть и в этом круге:
+		\[
+			\forall \lambda, |\lambda| > r(A)\ \ R(\lambda) = -\sum_{k = 0}^\infty A^k\lambda^{-k - 1}
+		\]
+		Значит, радиус сходимости ряда Неймана не превосходит $r(A)$.
+		
+		\item[$\ge$] Пусть $|\lambda_0| < r(A)$. Тогда, предположим, что ряд сходится в этой точке. Это автоматически означает, что ряд будет сходится и при всех $|\lambda| > |\lambda_0|$ (в силу свойств радиуса сходимости). Это также означает обратимость $A_\lambda$ при всех таких $\lambda$, но коль скоро $|\lambda_0| < r(A)$, то должен существовать $|\lambda_0| < |\lambda_1| < r(A)$ такой, что $\lambda_1 \in \sigma(A)$ в силу определения спектрального радиуса, а это противоречит определению спектра.
+	\end{itemize}
+\end{proof}
+
+\begin{proposition} (Аналог основной теоремы алгебры)
+	Спектр оператора непуст.
+	\[
+		\sigma(A) \neq \emptyset
+	\]
+\end{proposition}
+
+\begin{proof}
+	Предположим противное. Тогда $\rho(A) = \Cm$ и, следовательно, $R(\lambda)$ является целой функцией. Оценим норму этого оператора, пользуясь представлением обратного оператора в ряд Неймана (просуммируем геометрическую прогрессию):
+	\[
+		\|R(\lambda)\| \le \frac{1}{|\lambda|} \cdot \frac{1}{1 - \frac{1}{|\lambda|}\|A\|} \xrightarrow[\lambda \to \infty]{} 0
+	\]
+	Коль скоро есть предел $\lim_{\lambda \to \infty} \|R(\lambda)\|$, то норма $R(\lambda)$ ограничена. Стало быть, по теореме Лиувилля $R(\lambda) = const$. Более того, из-за найденного выше предела $R(\lambda) = 0$. Это противоречит обратимости $A_\lambda$ при каком-либо $\lambda \neq 0$.
+\end{proof}
+

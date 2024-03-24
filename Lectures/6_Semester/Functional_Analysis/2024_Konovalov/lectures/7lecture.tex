@@ -1,0 +1,163 @@
+\begin{proposition}
+	Если $\lambda \in \sigma(A)$, то $\lambda^n \in \sigma(A^n)$.
+\end{proposition}
+
+\begin{note}
+	На самом деле, есть более сильный факт:
+	\[
+		\forall \mu \in \sigma(A^n)\ \exists \lambda \in \sigma(A) \colon \lambda^n = \mu
+	\]
+	Таким образом, $(\sigma(A))^n = \sigma(A^n)$
+\end{note}
+
+\begin{proof}
+	Предположим противное, то есть $\lambda^n \in \rho(A)$ и $\lambda \in \sigma(A)$. Значит, $(A^n - \lambda^n I)^{-1} \in \cL(E)$. Заметим, что мы так же можем записать обращаемый оператор в следующем виде:
+	\[
+		A^n - \lambda^n I = (A - \lambda I)\underbrace{(A^{n - 1} + \ldots + \lambda^{n - 1} I)}_{B} \Lora I = (A - \lambda I) B(A^n - \lambda^n I)^{-1}
+	\]
+	Так как все рассматриваемые операторы --- многочлены от степеней $A$, то они коммутируют. С учетом этого имеем, что $A_\lambda$ обратим. Более того, его обратный $A_\lambda^{-1} = B(A^n - \lambda^n I)^{-1} \in \cL(E)$, а стало быть $\lambda \in \rho(A)$, чего не может быть.
+\end{proof}
+
+\begin{proposition}
+	Верна формула для спектрального радиуса:
+	\[
+		r(A) = \lim_{n \to \infty} \sqrt[n]{\|A^n\|}
+	\]
+\end{proposition}
+
+\begin{proof}
+	Воспользуемся тем фактом, что радиус сходимости ряда Неймана для $R(\lambda)$ совпадает с $r(A)$, ибо для радиуса сходимости степенного ряда есть формула:
+	\[
+		r(A) = r_{\text{сх.}} = \varlimsup_{n \to \infty} \sqrt[n]{\|A^n\|}
+	\]
+	В силу последнего доказанного утверждения, мы можем связать $r(A)$ с $r(A^n)$ следующим образом:
+	\[
+		r(A^n) = \sup_{\mu \in \sigma(A^n)} |\mu| \ge \sup_{\lambda \in \sigma(A)} |\lambda^n| \ge r(A)^n
+	\]
+	Стало быть, $r(A) \le \sqrt[n]{r(A^n)}$. При этом, по утверждению \ref{prop10_for_radius} имеем $r(A^n) \le \|A^n\|$. Получилось, что верхний предел не превосходит любого элемента последовательности $\sqrt[n]{\|A^n\|}$, а это означает, что он не превосходит нижнего предела. Такое возможно только тогда, когда существует просто предел.
+\end{proof}
+
+\begin{note}
+	В конечномерном случае, $\sigma(A) = \sigma_p(A)$, причём $\exists \lambda \in \sigma_p(A) \Lra \ker A_\lambda \neq \{0\}$. В бесконечномерном случае этим уже не ограничиться.
+\end{note}
+
+\begin{definition}
+	Рассмотрим оператор $A \in \cL(E)$. Тогда
+	\begin{itemize}
+		\item $\sigma_p(A) := \{\lambda \in \sigma(A) \colon \ker A_\lambda \neq \{0\}\}$ --- \textit{точечный спектр}
+		
+		\item $\sigma_c(A) := \{\lambda \in \sigma(A) \colon \ker A_\lambda = \{0\} \wedge \im A_\lambda \neq E \wedge \cl (\im A_\lambda) = E\}$ --- \textit{непрерывный спектр}
+		
+		\item $\sigma_r(A) := \{\lambda \in \sigma(A) \colon \ker A_\lambda = \{0\} \wedge \cl (\im A_\lambda) \neq E\}$ --- \textit{остаточный спектр}
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Если $\ker A_\lambda = \{0\}$ и  $\im A_\lambda = E$, то $A_\lambda \in \cL(E)$ является биекцией, а значит по теореме Банаха $A_\lambda^{-1} \in \cL(E)$, то есть $\lambda \in \rho(A) = \Cm \bs \sigma(A)$.
+\end{note}
+	
+\begin{exercise}
+	Пусть дано пространство $\ell_2(\Cm)$, $\{\lambda_n\}_{n = 1}^\infty$ --- ограниченная последовательность, $(Ax)_n = \lambda_nx_n$. Доказать, что
+	\[
+		\sigma(A) = \ole{\{\lambda_n\}_{n = 1}^\infty}
+	\]
+\end{exercise}
+
+\section{Самосопряжённые операторы}
+
+\begin{note}
+	В этом параграфе мы живём в гильбертовом пространстве $H$ над полем $\Cm$. Оператор $A \in \cL(H)$ --- самосопряжённый, то есть $A = A^*$, или же
+	\[
+		\forall x, y \in H\ \ (Ax, y) = (x, Ay)
+	\]
+\end{note}
+
+\begin{definition}
+	\textit{Квадратичной формой оператора} $A$ называется функционал, определённый следующим образом:
+	\[
+		K(x) = (Ax, x) \colon H \to \Cm
+	\]
+\end{definition}
+
+\begin{exercise}
+	Если $\forall x \in H\ \ K(x) = 0$, то $A = 0$. При этом этот факт неверен, если рассмотреть $H$ над полем $\R$.
+\end{exercise}
+
+\begin{theorem}
+	При всех условиях параграфа, есть 3 утверждения:
+	\begin{enumerate}
+		\item Оператор $A$ самосопряжён тогда и только тогда, когда $\forall x \in H\ \ K(x) \in \R$
+		
+		\item Если $\lambda$ --- собственное значение $A$, то $\lambda \in \R$
+		
+		\item Если $\lambda_1 \neq \lambda_2$ --- собственные значения $A$, а $e_1, e_2 \in H$ --- соответствующие собственные вектора, то $(e_1, e_2) = 0$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item В силу того, что скалярное произведение является эрмитовым, мы можем воспользоваться свойством перестановки аргументов:
+		\[
+			K(x) = (Ax, x) = (x, Ax) = \ole{(Ax, x)} \Lra K(x) \in \R
+		\]
+		
+		\item Пусть $Av = \lambda v$. Тогда
+		\[
+			K(v) = (Av, v) = (\lambda v, v) = \lambda (v, v) \in \R \Lra \lambda \in \R
+		\]
+		
+		\item Заметим следующее соотношение:
+		\[
+			\lambda_1(e_1, e_2) = (Ae_1, e_2) = (e_1, Ae_2) = \lambda_2(e_1, e_2)
+		\]
+		Так как $\lambda_1 \neq \lambda_2$, то такое возможно только тогда, когда $(e_1, e_2) = 0$.
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Мы получили, что $\sigma_p(A) \subseteq \R$. Можно высказать вполне законную гипотезу (которая скоро окажется верной), что $\sigma(A) \subseteq \R$
+\end{note}
+
+\begin{theorem}
+	При всех условиях параграфа, верно равенство
+	\[
+		\forall \lambda \in \Cm\ \ \cl(\im A_\lambda) \oplus \ker A_\lambda = H
+	\]
+\end{theorem}
+
+\begin{proof}
+	Воспользуемся теоремой \ref{conj_decomp_th} для сопряжённых операторов. Тогда
+	\[
+		\cl(\im A_\lambda) \oplus \ker (A_\lambda)^* = H
+	\]
+	При этом $(A_\lambda)^* = A^* - \ole{\lambda} I = A - \ole{\lambda} I$. Если $\lambda \in \R$, то всё тривиально доказано. Иначе $\lambda \notin \R$, но это так же значит, что $\lambda \notin \sigma_p(A)$, а это эквивалентно $\ker A_\lambda = \{0\}$. То же самое верно и для $\ole{\lambda}$, откуда тоже получаем тривиальное доказательство.
+\end{proof}
+
+\begin{theorem} (Критерий принадлежности спектру самосопряжённого оператора)
+	\[
+		\lambda \in \rho(A) \Lra A_\lambda \text{ --- ограниченный снизу, то есть } \exists m > 0\ \forall x \in H \colon \|A_\lambda x\| \ge m\|x\|
+	\]
+\end{theorem}
+
+\begin{note}
+	У теоремы есть эквивалентная формулировка:
+	\[
+		\lambda \in \sigma(A) \Lra \exists \{x_n\}_{n = 1}^\infty \colon \|x_n\| = 1 \wedge \|A_\lambda x_n\| \xrightarrow[n \to \infty]{} 0
+	\]
+\end{note}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\Ra$] Раз $\lambda \in \rho(A)$, то $A_\lambda$ обратим, а значит биективен. По теореме \ref{reverse_op_crit} всё доказано сразу
+		
+		\item[$\La$] По той же теореме, $A_\lambda$ должен быть непрерывно обратим. Более того, $\ker A_\lambda = \{0\}$, а в силу разложения пространства имеем следующее:
+		\[
+			\cl(\im A_\lambda) \oplus \ker A_\lambda = H = \cl(\im A_\lambda)
+		\]
+		А в силу леммы \ref{conj_op_bot_bounded_lemma} имеем $\im A_\lambda = \cl(\im A_\lambda) = H$
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	При всех условиях параграфа, $\sigma(A) \subseteq \R$.
+\end{theorem}
