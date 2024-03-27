@@ -1,6 +1,26 @@
-\textcolor{red}{Определение квадратичной формы?}
+\subsubsection*{Таблица пространств}
 
-\textcolor{red}{Дописать таблицу}
+\begin{anote}
+	В таблице, $E^*$, естественно, говорит не о самом сопряжённом пространстве, а о том, чему оно изоморфно. Точно так же и вид $f \in E^*$ --- это действие на $x$ эквивалентного $f$ элемента из изоморфного пространства. Оно должно быть точно таким же, как и $f(x)$.
+\end{anote}
+
+\begin{center}
+\begin{tabular}{ | p{1.5cm} | p{2cm} | p{4.2cm} | p{7.8cm} | }
+	\hline
+	\begin{center}$E$\end{center} & \begin{center}$E^*$\end{center} & \begin{center}Вид $f \in E^*$\end{center} & Критерий слабой сходимости (дополнительное условие к ограниченности норм $\|x_n\|$) \\
+	\hline
+	$\ell_p$ \newline $p > 1$ & $\ell_q$ \newline $\frac{1}{p} + \frac{1}{q} = 1$ & \vspace{0.025ex}\hspace{2.5ex}$f(x) = \sum_{k = 1}^\infty x_ky_k$ & Координатная сходимость \newline $x_k^n \xrightarrow[k \to \infty]{} x_k$ \\
+	\hline
+	$\ell_1$ & $\ell_\infty$ & \hspace{2.5ex}$f(x) = \sum_{k = 1}^\infty x_ky_k$ & Эквивалентна сходимости по норме \\
+	\hline
+	$c_0$ & $\ell_1$ & \vspace{0.025ex}\hspace{2.5ex}$f(x) = \sum_{k = 1}^\infty x_ky_k$ & Координатная сходимость \newline $x_k^n \xrightarrow[k \to \infty]{} x_k$ \\
+	\hline
+	$C[a; b]$ & $BV[a; b]$ & \hspace{2.1ex}$f(x) = \int_a^b x(t)dy(t)$ & Поточечная сходимость \newline $\forall t \in [a; b]\ x_n(t) \xrightarrow[n \to \infty]{} x(t)$ \\
+	\hline
+	$L_p[a; b]$ \newline $p > 1$ & $L_q[a; b]$ \newline $\frac{1}{p} + \frac{1}{q} = 1$ & \vspace{2.5ex}$f(x) = \int_a^b x(t)y(t)d\mu(t)$ & Сходимость первообразных \newline \[\forall s \in [a; b]\ \int_a^s x_n(t)d\mu(t) \xrightarrow[n \to \infty]{} \int_a^s x(t)d\mu(t)\] \\
+	\hline
+\end{tabular}
+\end{center}
 
 \section{Обратный оператор}
 
