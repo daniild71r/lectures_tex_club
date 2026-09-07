@@ -1,19 +1,21 @@
-name: build and upload latex
+name: build and upload LaTeX or Typst
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - '**'
-      - '!main'
+      - "**"
+      - "!main"
 
 jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.get-targets.outputs.matrix }}
+      has_targets: ${{ steps.get-targets.outputs.has_targets }}
     steps:
-      - uses: actions/checkout@v2
-  
+      - uses: actions/checkout@v7.0.1
+
       - name: Get targets
         id: get-targets
         run: |
@@ -21,119 +23,147 @@ jobs:
           python -c '
           import json
           import os
-          targets = json.load(open("config.json", "r"))[os.environ["BRANCH"]]
-          print("::set-output name=matrix::[", ", ".join(repr(t) for t in targets if not t.startswith("!")), "]", sep="")
+          import sys
+
+          branch = os.environ["BRANCH"]
+
+          with open("config.json", "r", encoding="utf-8") as f:
+              config = json.load(f)
+
+          if branch not in config:
+              print(f"::error::Ветка \"{branch}\" не найдена в config.json!")
+              sys.exit(1)
+
+          mapping = {"l": "Lectures", "s": "Seminars", "e": "Exams"}
+          targets = config[branch]
+          formatted_targets = []
+
+          for t in targets:
+              if t.startswith("!"):
+                  continue
+              parts = t.split("/")
+              type_name = mapping.get(parts[0], "Other")
+              semester = f"{parts[1]}_Semester"
+              subject = parts[2]
+              conspect = parts[3]
+              formatted_targets.append(f"{type_name}/{semester}/{subject}/{conspect}")
+
+          has_targets = len(formatted_targets) > 0
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"matrix={json.dumps(formatted_targets)}\n")
+              out.write(f"has_targets={json.dumps(has_targets)}\n")
           '
 
   build:
+    name: Build (${{ matrix.course }})
     needs: prepare
+    if: needs.prepare.outputs.has_targets == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         course: ${{ fromJson(needs.prepare.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Configure build
-        id: configure-build
+      - uses: actions/checkout@v7.0.1
+
+      - name: Create build dir
+        run: mkdir -p build
+
+      - name: Detect format
+        id: format
         run: |
-          pwd
-          mkdir build
-          BRANCH_NAME=${{ matrix.course }}
-          echo "BRANCH_NAME=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
-          BRANCH_ARGUMENTS=(${BRANCH_NAME//\// })
-          
-          TYPE=${BRANCH_ARGUMENTS[0]}
-          SEMESTER=${BRANCH_ARGUMENTS[1]}
-          SUBJECT_NAME=${BRANCH_ARGUMENTS[2]}
-          CONSPECT_NAME=${BRANCH_ARGUMENTS[3]}
-          
-          case ${TYPE} in
-            l)
-              TYPE="Lectures"
-              ;;
-            s)
-              TYPE="Seminars"
-              ;;
-            e)
-              TYPE="Exams"
-              ;;
-            *)
-              TYPE="Other"
-              ;;
-          esac
-          SEMESTER="${SEMESTER}_Semester"
+          if [ -f "${{ matrix.course }}/main.typ" ]; then
+            echo "type=typst" >> "$GITHUB_OUTPUT"
+          elif [ -f "${{ matrix.course }}/main.tex" ]; then
+            echo "type=latex" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Не найден main.typ или main.tex в ${{ matrix.course }}!"
+            exit 1
+          fi
 
-          FULL_PATH="${TYPE}/${SEMESTER}/${SUBJECT_NAME}/${CONSPECT_NAME}"
-          echo "FULL_PATH=$(echo ${FULL_PATH})" >> ${GITHUB_ENV}
-
-      - name: Build
-        id: build
-        uses: xu-cheng/latex-action@v2
+      - name: Build LaTeX
+        if: steps.format.outputs.type == 'latex'
+        id: build-latex
+        uses: xu-cheng/latex-action@4.1.0
         with:
           root_file: main.tex
-          working_directory: ${{ env.FULL_PATH }}
+          working_directory: ${{ matrix.course }}
           args: -output-dir=../../../../build
           compiler: pdflatex
           post_compile: "pdflatex -output-dir=${GITHUB_WORKSPACE}/build main.tex"
 
+      - name: Setup Typst
+        if: steps.format.outputs.type == 'typst'
+        uses: typst-community/setup-typst@v5.2.0
+
+      - name: Build Typst
+        if: steps.format.outputs.type == 'typst'
+        run: |
+          typst compile "${{ matrix.course }}/main.typ" build/main.pdf
+
       - name: Upload
         shell: bash
+        env:
+          YANDEX_OAUTH_TOKEN: ${{ secrets.YANDEX_OAUTH_TOKEN }}
+          COURSE_PATH: ${{ matrix.course }}
         run: |
           set -euo pipefail
-      
-          TOKEN='${{ secrets.YANDEX_OAUTH_TOKEN }}'
-          DEST='Lectures Tex Club/${{ env.FULL_PATH }}.pdf'
-      
+
+          if [[ -z "${YANDEX_OAUTH_TOKEN:-}" ]]; then
+            echo "::error::Секрет YANDEX_OAUTH_TOKEN не задан в настройках репозитория!"
+            exit 1
+          fi
+
+          DEST="Lectures Tex Club/${COURSE_PATH}.pdf"
+
           # Создаём родительские директории, если их ещё нет.
           DIR=$(dirname "$DEST")
           CURRENT=""
-      
+
           IFS='/' read -ra PARTS <<< "$DIR"
-      
+
           for PART in "${PARTS[@]}"; do
             if [[ -z "$CURRENT" ]]; then
               CURRENT="$PART"
             else
               CURRENT="$CURRENT/$PART"
             fi
-          
+
             HTTP_CODE=$(curl --silent --show-error \
               --output /tmp/yadisk-mkdir-response \
               --write-out '%{http_code}' \
               --request PUT \
               --get \
               --data-urlencode "path=$CURRENT" \
-              --header "Authorization: OAuth $TOKEN" \
+              --header "Authorization: OAuth $YANDEX_OAUTH_TOKEN" \
               'https://cloud-api.yandex.net/v1/disk/resources')
-          
+
             if [[ "$HTTP_CODE" != "201" && "$HTTP_CODE" != "409" ]]; then
               echo "Failed to create directory: $CURRENT"
               cat /tmp/yadisk-mkdir-response
               exit 1
             fi
           done
-      
+
           RESPONSE_FILE=$(mktemp)
-      
+
           HTTP_CODE=$(curl --silent --show-error \
             --output "$RESPONSE_FILE" \
             --write-out '%{http_code}' \
             --get \
             --data-urlencode "path=$DEST" \
             --data-urlencode 'overwrite=true' \
-            --header "Authorization: OAuth $TOKEN" \
+            --header "Authorization: OAuth $YANDEX_OAUTH_TOKEN" \
             'https://cloud-api.yandex.net/v1/disk/resources/upload')
-      
+
           if [[ "$HTTP_CODE" -lt 200 || "$HTTP_CODE" -ge 300 ]]; then
             echo "Failed to get upload URL:"
             cat "$RESPONSE_FILE"
             exit 1
           fi
-      
+
           URL=$(jq -er '.href' "$RESPONSE_FILE")
-      
+
           curl --fail-with-body --silent --show-error \
             --request PUT \
             --data-binary '@build/main.pdf' \
