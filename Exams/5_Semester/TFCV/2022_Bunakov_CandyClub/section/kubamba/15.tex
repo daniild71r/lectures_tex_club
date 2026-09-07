@@ -1,0 +1,123 @@
+\begin{note}
+	Мы стремимся формализовать понятие приращения аргумента вдоль кривой. Например, на рисунке ниже кривая $\gamma$ совершает полтора оборота против часовой стрелки, то есть аргумент числа при перемещении вдоль этой кривой изменяется на $3\pi$.
+\begin{center}
+	\begin{tikzpicture}
+		\clip (-3.5, -3) rectangle (3.5, 3);
+		
+		\clip (-3.4, -3) rectangle (3.4, 3);
+		\draw [->] (-3, 0) -- (3, 0) node [above, black] {$\re z$};
+		\draw [->] (0, -2.7) -- (0, 2.7) node [right, black] {$\im z$};
+		
+		\draw [black] (1.4,3pt) -- (1.4,-3pt) node [below, black] {$1$};
+		\draw [black] (3pt,1.4) -- (-3pt,1.4) node [left, black] {$i$};
+		
+		
+		\path
+		coordinate (p1) at (-2.3, -2.3)
+		coordinate (p2) at (0, 0.7)
+		coordinate (p3) at (1.8, 0)
+		coordinate (p4) at (0.8, -1.4)
+		coordinate (p5) at (-0.7, -0.5)
+		coordinate (p6) at (-0.3, 0.8)
+		coordinate (p7) at (2.2, 2.2);
+		
+		\draw[
+		black,
+		decoration={markings, mark=at position 0.12 with {\arrow{<}}},
+		decoration={markings, mark=at position 0.5 with {\arrow{<}}},
+		decoration={markings, mark=at position 0.87 with {\arrow{<}}},
+		postaction={decorate}
+		] plot [smooth, tension=0.85] coordinates {(p1) (p2) (p3) (p4) (p5) (p6) (p7)};
+		
+		\draw [->, black] (0, 0) -- (1.1, 1.67) node [black, below right, scale = 1.1] {$z$};
+		\node[draw, circle, inner sep=1pt, fill, black] at (1.13, 1.7) {};
+		
+		\coordinate (a1) at (1.1, 1.6);
+		\coordinate (a2) at (0,0);
+		\coordinate (a3) at (1, 0);
+		
+		\pic [draw, ->] {angle = a3--a2--a1};
+		\node [] at (0.6, 0.45) {$\phi$};
+		
+		\node[draw, circle, inner sep=1pt, fill, black, label={above:$\phi_0 = \frac\pi4$}] at (p7) {};
+		\node[draw, circle, inner sep=1pt, fill, black, label={below:$\phi_1 = \frac{13\pi}4$}] at (p1) {};
+		\node[] at (1.1, -1.7) {$\gamma$};
+	\end{tikzpicture}
+\end{center}
+\end{note}
+
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $z(t) = x(t) + iy(t) \in C^1[t_0, t_1]$
+		\item $\forall t \in [t_0, t_1]$ выполнено $z(t) \ne 0$
+		\item Зафиксировано значение $\phi_0 \in \Arg{z(t_0)}$
+	\end{enumerate}
+
+	Тогда существует единственная функция $\phi \in C^1[t_0, t_1]$ такая, что для любого числа $t \in [t_0, t_1]$ выполнено $\phi(t) \in \Arg z(t)$. Более того, $\phi$ задается следующей формулой:
+	\[\phi(t) = \phi_0 + \int_{t_0}^t\frac{x(\tau)y'(\tau) - x'(\tau)y(\tau)}{x(\tau)^2 + y(\tau)^2}d\tau\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\phi$ "--- функция, заданная формулой из условия. Условие, что для любого $t \in [t_0, t_1]$ выполнено $\phi(t) \in \Arg z(t)$, равносильно следующей системе:
+	\[\System{
+		\cos\phi(t) \equiv \frac{x(t)}{\sqrt{x(t)^2 + y(t)^2}} \\
+		\sin\phi(t) \equiv \frac{y(t)}{\sqrt{x(t)^2 + y(t)^2}}
+	}\]
+	
+	Положим $u(t) := \cos\phi(t)$, $v(t) := \sin\phi(t)$, функции в правой части системы выше обозначим через $\widetilde u(t)$, $\widetilde v(t)$, а подынтегральную функцию из условия --- через $a(\tau)$. Тогда:
+	\begin{gather*}
+		u'(t) = (\cos\phi(t))'_t = (-\sin\phi(t))\phi'(t) = -v(t)a(t)\\
+		v'(t) = (\sin\phi(t))'_t = (\cos\phi(t))\phi'(t) = u(t)a(t)
+	\end{gather*}
+	
+	Значит, набор $(u(t), v(t))$ является решением следующей задачи Коши:
+	\[\System{
+	&u'(t) = -a(t)v(t)\\
+	&v'(t) = a(t)u(t)\\
+	&u(t_0) = \cos\phi(t_0)\\
+	&v(t_0) = \sin\phi(t_0)}\]
+	
+	Остается заметить, что $(\widetilde u(t), \widetilde v(t))$ тоже является решением этой задачи Коши, откуда $u \equiv \widetilde u$ и $v \equiv \widetilde v$ на $[t_0, t_1]$. Проверим единственность функции $\phi$. Пусть $\psi \in C^1[t_0, t_1]$ "--- такая функция, что $\phi(t_0) = \psi(t_0)$, $\cos\phi(t) \equiv \cos\psi(t)$ и $\sin\phi(t) \equiv \sin\psi(t)$ на $[t_0, t_1]$, откуда $\phi' \equiv \psi'$ на $[t_0, t_1]$. Интегрируя это соотношение, получим, что $\phi \equiv \psi$ на $[t_0, t_1]$.
+\end{proof}
+
+\begin{definition}
+	Пусть $\gamma$ "--- кривая с непрерывно дифференцируемой параметризацией $z(t) = x(t) + iy(t)$, $t \in [t_0, t_1]$, не проходящая через точку $0$. \textit{Приращением аргумента вдоль кривой} $\gamma$ называется следующая величина:
+	\[\Delta_\gamma\arg{z} := \varphi(t_1) - \varphi(t_0) =  \int_{t_0}^{t_1}\frac{x(\tau)y'(\tau) - x'(\tau)y(\tau)}{x(\tau)^2 + y(\tau)^2}d\tau\]
+\end{definition}
+
+\begin{note}
+	Формулу для приращения аргумента можно переписать в следующем виде:
+	\[\Delta_\gamma \arg{z} = \im\int_{t_0}^{t_1}\frac{z'(\tau)}{z(\tau)}d\tau = \im\int_\gamma \frac{dz}{z}\]
+\end{note}
+
+\begin{definition}
+	Пусть $\gamma$ "--- кривая с непрерывно дифференцируемой параметризацией $z(t)$, $t \in [t_0, t_1]$, функция $f$ регулярна на $M(\gamma)$, и кривая $\Gamma := f(\gamma)$ с параметризацией $f(z(t))$, $t \in [t_0, t_1]$, не проходит через точку $0$. \textit{Приращением аргумента функции $f$ вдоль кривой} $\gamma$ называется величина $\Delta_\gamma\arg{f} := \Delta_\Gamma\arg{f \circ z}$.
+\end{definition}
+
+\begin{note}
+	В силу уже доказанного, верна следующая формула:
+	\[\Delta_\gamma\arg{f} = \im\int_\gamma \frac{f'(z)}{f(z)}dz\]
+	
+	Из этой формулы легко вывести следующие свойства:
+	\begin{enumerate}
+		\item Если кривая $\gamma$ представима в виде $\gamma = \gamma_1\dotsc \gamma_k$ и для кривых $\gamma_1, \dotsc, \gamma_k$ определены $\Delta_{\gamma_1}\arg f, \dotsc$, $\Delta_{\gamma_k}\arg f$, то:
+		\[\Delta_{\gamma}\arg f = \sum_{i = 1}^k\Delta_{\gamma_i}\arg f\]
+		
+		Это позволяет обобщить определение приращения аргумента вдоль кривых, являющихся кусочно-непрерывно дифференцируемыми.
+
+		\item Если для кривой $\gamma$ определено $\Delta_{\gamma}\arg f$, то:
+		\[\Delta_{\gamma^{-1}}\arg f = -\Delta_{\gamma}\arg f\]
+		
+		\item (\textit{Логарифмическое свойство}) Пусть определены $\Delta_{\gamma}\arg f_1$ и $\Delta_{\gamma}\arg f_2$. Тогда:
+		\begin{gather*}
+			\Delta_{\gamma}\arg (f_1f_2) = \Delta_{\gamma}\arg f_1 + \Delta_{\gamma}\arg f_2
+			\\
+			\Delta_{\gamma}\arg \left(\frac{f_1}{f_2}\right) = \Delta_{\gamma}\arg f_1 - \Delta_{\gamma}\arg f_2
+		\end{gather*}
+	
+		Убедимся в справедливости первой формулы:
+		\[\Delta_{\gamma}\arg (f_1f_2) =  \im\int_\gamma \frac{(f_1f_2)'(z)}{f_1(z)f_2(z)}dz = \im\int_\gamma \left(\frac{f_1'(z)}{f_1(z)} + \frac{f_2'(z)}{f_2(z)}\right)dz = \Delta_{\gamma}\arg f_1 + \Delta_{\gamma}\arg f_2\]
+
+	\end{enumerate}
+\end{note}

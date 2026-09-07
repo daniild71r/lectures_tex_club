@@ -1,0 +1,97 @@
+\begin{lemma}[Неравенство Колмогорова]
+Пусть \( \xi_1, \xi_2, \ldots \) -- последовательность независимых случайных величин с
+\( \E \xi_i = 0 \) и \( \E \xi_i^2 < \infty \). Тогда 
+\begin{enumerate}
+    \item 
+    \( \forall \varepsilon > 0 \; 
+    P \left( \sup \limits_{1 \leqslant k \leqslant n} |S_k| 
+    \geqslant \varepsilon \right) \leqslant
+    \frac{\E |S_n|^2}{\varepsilon^2}
+    \) 
+    \item 
+    Если \( \exists C > 0 : \forall i \; |\xi_i| \leqslant C \), то
+    \( P \left( \sup \limits_{1 \leqslant k \leqslant n} |S_k| 
+    \geqslant \varepsilon \right) \geqslant 
+    1 - \frac{(C + \varepsilon)^2}{\E |S_n|^2} \)
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+
+Определим множество $A$:
+
+\[A = \{ \omega : \exists k \in \{1, \dots, n\} \; 
+|S_k| \geqslant \varepsilon\} = \bigsqcup_{k = 1}^n A_k \], где 
+\( A_k = \{ \omega : |S_1(\omega)| < \varepsilon, \dots, 
+|S_{k - 1}(\omega)| < \varepsilon, |S_k(\omega)| \geqslant \varepsilon \} \)
+
+1) 
+\begin{multline*}
+\E S_n^2 \geqslant \E S_n^2 I_A = \E S_n^2 \sum_k
+\left( I_{A_k} \right) = \E \sum_k (S_n - S_k + S_k)^2 I_{A_k} = 
+\E \sum_k \left( (S_n - S_k)^2 + 2(S_n - S_k) S_k + S_k^2 \right) I_{A_k} = \\
+= \sum_k \E (S_n - S_k)^2 I_{A_k} + \sum_k 2 \E (S_n - S_k) S_k I_{A_k} +
+\sum_k \E S_k^2 I_{A_k}
+\end{multline*}
+
+Ограничим снизу: просто уберём первую сумму, так как она неотрицательна. 
+Так как \( S_n - S_k = \xi_{k + 1} + \dots + \xi_n \), то случайная величина 
+$S_n - S_k$ не зависит от первых $k$ случайных величин. Поэтому случайные величины
+$S_n - S_k$ и $S_k I_{A_k}$ независимы, и мы можем воспользоваться свойством матожидания
+для независимых случайных величин. Последнюю сумму можно оценить как 
+$\sum_k \varepsilon^2 P(A_k)$,
+так как при выполнении события $A_k$ $|S_k| \geqslant \varepsilon$.
+
+\[
+\E S_n^2 \geqslant 2 \sum_k 
+\underbrace{\E (S_n - S_k)}_{= \E \xi_{k + 1} + \dots + \E \xi_n = 0} 
+\E S_k I_{A_k} + \sum_k \varepsilon^2 P(A_k) = \varepsilon^2 \sum_k P(A_k) = 
+\varepsilon^2 P(A)
+\]
+
+Отсюда получаем, что \( P(A) \leqslant \frac{\E S_n^2}{\varepsilon^2} \), что и требовалось
+доказать.
+
+2)
+\( \E S_n^2 = \E S_n^2 I_A + \E S_n^2 I_{\overline{A}} \). Событие $\overline{A}$ означает,
+что максимум $S_n < \varepsilon$, а значит $S_n^2 < \varepsilon^2$.
+
+\[ \E S_n^2 = \E S_n^2 I_A + \E S_n^2 I_{\overline{A}} \leqslant \E S_n^2 I_A +
+\varepsilon^2 P(\overline{A}) = \E S_n^2 I_A + \varepsilon^2 (1 - P(A)) \]
+
+Распишем $\E S_n^2 I_A$ как в первом пункте:
+
+\begin{multline*}
+\E S_n^2 I_A  = \E S_n^2 \sum_k I_{A_k} = \E \sum_k (S_n - S_k)^2 I_{A_k} +
+2 \underbrace{\E \sum_k (S_n - S_k) S_k I_{A_k}}_{= 0} + \sum_k \E S_k^2 I_{A_k} = \\
+= \sum_k \E (\xi_{k + 1} + \dots + \xi_n)^2 I_{A_k} + \sum_k \E S_k^2 I_{A_k}
+\end{multline*}
+
+Оценим $S_k$ на $A_k$: 
+\( |S_k| \leqslant |S_{k - 1}| + |\xi_k| \leqslant \varepsilon + C\).
+Получаем, что
+
+\[
+\E S_n^2 \leqslant \sum_k \E (\xi_{k + 1} + \dots + \xi_n)^2 P(A_k) + 
+(C + \varepsilon)^2 \sum_k P(A_k) + \varepsilon^2 (1 - P(A))
+\]
+
+\( \E (\xi_{k + 1} + \dots + \xi_n)^2 = \E \xi_{k + 1}^2 + \dots + \E \xi_n^2 \), так
+как при возведении в квадрат получатся слагаемые вида $\E \xi_i \xi_j$, а они равны нулю
+в силу независимости. Тогда $\E (\xi_{k + 1} + \dots + \xi_n)^2$ можно ограничить
+\( \E \xi_1^2 + \dots + \E \xi_n^2 \), что равно $\E S_n^2$. Получаем
+
+\[
+\E S_n^2 \leqslant \E S_n^2 P(A) + (C + \varepsilon)^2 P(A) + \varepsilon^2 (1 - P(A))
+\]
+
+Отсюда следует, что
+
+\[
+P(A) \geqslant 
+\frac{\E S_n^2 - \varepsilon^2}{\E S_n^2 + (C + \varepsilon)^2 - \varepsilon^2} =
+1 - \frac{(C + \varepsilon)^2}
+{\E S_n^2 + \underbrace{(C + \varepsilon)^2 - \varepsilon^2}_{> 0}} \geqslant
+1 - \frac{(C + \varepsilon)^2}{\E S_n^2}
+\]
+
+\end{proof}

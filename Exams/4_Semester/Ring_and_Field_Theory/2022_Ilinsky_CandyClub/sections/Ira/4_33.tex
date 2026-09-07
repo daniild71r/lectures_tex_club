@@ -1,0 +1,38 @@
+\textbf{(9.8 ) а) Для данного элемента $\alpha \in K$ и многочлена $f$ со старшим коэффициентом $1$ следующие
+условия эквивалентны:
+(1) $f$ порождает идеал $M_{\alpha} = M_{\alpha,F} = \{f(x) \in F[x] | f(\alpha) = 0\}$;
+(2) $f$ -- многочлен из $M_{\alpha}$ минимальной степени;
+(3) $f$ -- неприводимый многочлен из $M_{\alpha}$.
+б) $m_{\alpha}$ -- единственный многочлен, обладающий данными свойствами;
+в)  $F(\alpha) \cong F[\alpha] \cong F[x]/(m_{\alpha})$
+г) $[F(\alpha) : F] = deg \ m_{\alpha}$}
+
+То, что $M_{\alpha}$ -- простой идеал, доказано в прошлом билете.
+
+\textbf{а), б)}
+
+\begin{itemize}
+    \item \textbf{$(3) \Rightarrow (1)$}
+    
+    $f \in M_{\alpha}, M_{\alpha} = (h) \Rightarrow h|f \Rightarrow f \sim h \Rightarrow (f) = M_{\alpha}$
+    
+    \item \textbf{$(1) \Rightarrow (2)$}
+    
+    $(f) = M_{\alpha}, h$ -- многочлен минимальной степени, $h \in M_{\alpha} \Rightarrow f|h \Rightarrow deg \ h \geq deg \ f \Rightarrow deg \ h = deg \ f \Rightarrow h = f$ (в силу минимальности $h$ и того, что старший коэффициент 1)
+    
+    \item \textbf{$(2) \Rightarrow (3)$}
+    
+    $f$ --  многочлен минимальной степени, $f = gh \Rightarrow g(\alpha) = 0$ или $h(\alpha) = 0 \Rightarrow deg \ g \geq deg \ f$ или $deg \ h \geq deg \ f \Rightarrow f$ -- неприводим
+\end{itemize}
+
+\textbf{в)}
+Рассмотрим $\phi: F[x] \to F[\alpha], Ker \phi = M$ ($\phi$ -- сюръективный гомоморфизм)
+
+$F[\alpha] \cong F[x]/M \cong F[x]/(m_{\alpha}(x))$ -- поле
+
+(Первый переход получили по основной теореме о гомоморфизме)
+
+$F(\alpha) = Quot(F[\alpha]) = F[\alpha]$\\
+
+\textbf{г)}
+Тогда получили, что так как $F \subset F[\alpha]$ порождается элементами $1, \alpha, \ldots, \alpha^{N-1}, N = deg \ m_{\alpha}$, то размерность линейного пространства $[F[\alpha] : F] = N < \infty$

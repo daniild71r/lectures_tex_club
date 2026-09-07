@@ -1,0 +1,19 @@
+\begin{proof}
+
+from \href{https://en.wikipedia.org/wiki/PP_(complexity)#PP_compared_to_other_complexity_classes}{https://en.wikipedia.org/wiki/PP\_(complexity)}
+
+Достаточно показать, что $\sat\in\pp$, так как $\forall A \in \np$ $\exists f$ ($|f(x)|\le p(|x|)$)
+\[\forall x\quad x\in A\iff f(x)\in \sat\]
+Последнее можно проверять так: вначале вычислим $f(x)$, а потом запустим алгоритм распознающий $\sat\in\pp$. Он отработает за $p_2(p(|x|))=q(|x|)$. Получили полиномиальный алгоритм.
+
+Будем строить машину $M$. Пусть на вход дана формула $\varphi(x_1,\ldots,x_n)$. Проверим на $n$ случайных битах $\varphi(x_1,\ldots,x_n)=1$ и если это так, то вернём $1$. Иначе вернем $1$ с вероятностью $\frac{1}{2}-\frac{1}{2^{n+1}}$ и $0$ с вероятностью $\frac{1}{2}+\frac{1}{2^{n+1}}$. Пусть у формулы всего $N$ выполняющих наборов. Тогда
+\[\forall \varphi\in\sat\quad \mathsf{P}(M(\varphi)=1) = \frac{N}{2^n} + \left(1-\frac{N}{2^n}\right)\left(\frac{1}{2}-\frac{1}{2^{n+1}}\right)=\frac{N}{2^n} + \frac{1}{2} - \frac{1}{2^{n+1}} - \frac{N}{2^{n+1}} + \frac{N}{2^{2n+1}} >
+\]
+\[
+> \frac{1}{2} + \frac{N - 1}{2^{n+1}} \ge \frac{1}{2},\text{ так как $N \ge 1$.}
+\]
+\[\forall \varphi\not\in\sat\quad \mathsf{P}(M(\varphi)=1)=\frac{1}{2} - \frac{1}{2^{n + 1}}<\frac{1}{2}\]
+
+А значит $\sat\in\pp$ и $\np\subset\pp$. 
+
+\end{proof}

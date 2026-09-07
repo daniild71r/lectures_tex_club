@@ -1,0 +1,85 @@
+Пусть $(\Omega, \B, P)$~--- вероятностное пространство, $\mathcal{A}$~--- под-$\sigma$-алгебра основной $\sigma$-алгебры $\B$.
+
+\begin{definition}
+    Пусть $\xi$~--- интегрируемая случайная величина. Её условным математическим ожиданием относительно $\mathcal{A}$ называется интегрируемая функция $\E^{\mathcal{A}} \xi$, обозначаемая также через $E(\xi|\mathcal{A})$, измеримая относительно $\mathcal{A}$ и удовлетворяющая равенству
+
+    \[
+    \E(\eta \xi)  = \E(\eta \E^{\mathcal{A}} \xi)
+    \]
+
+    для всякой ограниченной функции $\eta$, измеримой относительно $\mathcal{A}$.
+
+    Последнее условие эквивалентно
+
+    \[
+    \int_A \xi dP = \int_A \E^{\mathcal{A}} \xi dP \ \forall A \in \mathcal{A}
+    \]
+\end{definition}
+
+\begin{definition}
+    Пусть $B \in {\mathcal{B}}$ — произвольное событие, и $\mathbf{1}_{B}$ — его индикатор. Тогда условной вероятностью $B$ относительно ${\mathcal{A}}$ называется $$\mathbb{P}(B \mid {\mathcal{A}}) \equiv \mathbb{E} [\mathbf {1}_{B} \mid {\mathcal{A}}]$$
+\end{definition}
+
+\begin{statement}
+    $\E^{\mathcal{A}} \xi$ существует и единственно с точностью до переопределения на множестве из $\mathcal{A}$ меры нуль.
+\end{statement}
+
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{statement}
+    Если $\xi$ $\mathcal{A}$-измерима, то $\E^{\mathcal{A}} \xi = \xi$
+\end{statement}
+
+\begin{statement}
+    $\E(\E^{\mathcal{A} \xi}) = \E \xi$
+\end{statement}
+
+\begin{proof}
+    В определении возьмём $\eta = 1$.
+\end{proof}
+
+\begin{statement}
+    Если $\xi_1 \geq \xi_2$ п. в., то 
+    $\E^{\mathcal{A}} \xi_1 \geq E^{\mathcal{A}} \xi_2$ п. в.
+\end{statement}
+
+\begin{proof}
+    $\E^{\mathcal{A}} \xi_1$ и $\E^{\mathcal{A}} \xi_2$ измеримы относительно
+    $\mathcal{A}$. Тогда $\forall A \in \mathcal{A}$
+
+    \[
+    \E(\E(\xi_1 | \mathcal{A}) I_A) = \E(\xi_1 I_A) \geq 
+    \E(\xi_2 I_A) = \E(\E(\xi_2 | \mathcal{A}) I_A)
+    \]
+\end{proof}
+
+\begin{statement}
+    Если $\eta$~--- ограниченная $\mathcal{A}$-измеримая, то 
+    $\E^{\mathcal{A}} (\eta \xi) = \eta \cdot \E^{\mathcal{A}} \xi$ п. в.
+\end{statement}
+
+\begin{proof}
+    Нужно показать, что $\forall A \in \mathcal{A}$
+
+    \[
+    \int_A \E^{\mathcal{A}} (\eta \xi) dP = \int_A \eta \E^{\mathcal{A}} \xi dP
+    \]
+
+    \[
+    \int_A \E^{\mathcal{A}} (\eta \xi) dP = \int_{\Omega} I_A \E^{\mathcal{A}} (\eta \xi) dP = \int_{\Omega} I_A \eta \xi dP
+    \]
+
+    \[
+    \int_A \eta \E^{\mathcal{A}} \xi dP = 
+    \int_{\Omega} \underbrace{I_A \eta}_{\mathcal{A}\text{-измерима}} \E^{\mathcal{A}} \xi dP = 
+    \int_{\Omega} I_A \eta \xi dP
+    \]
+
+    Таком образом, исходные интегралы равны.
+\end{proof}
+
+\begin{statement}[неравенство Йенсена]
+    Пусть $V$~--- выпуклая функция. Тогда $V(\E^{\mathcal{A}} f) \leq \E^{\mathcal{A}} (V \circ f)$.
+\end{statement}

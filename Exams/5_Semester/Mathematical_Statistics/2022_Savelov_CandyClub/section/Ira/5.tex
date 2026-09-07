@@ -1,0 +1,150 @@
+Пусть $\displaystyle (\mathcal{X},\ \mathcal{B}_{\mathcal{X}},\ \mathcal{P})$ -- вероятностно-статистическая модель, $\displaystyle X$ -- наблюдение, $\displaystyle ( E,\ \mathcal{E})$ -- измеримое пространство.
+\begin{definition}
+Измеримое отображение $\displaystyle S:\mathcal{X}\rightarrow E$ называется статистикой от наблюдения $\displaystyle X$.
+\end{definition}
+\begin{definition}
+Пусть $\displaystyle X$ --  наблюдение в параметрической модели $(\mathcal{X}, \mathcal{B}_{\mathcal{X}}, \{\mathcal{P}_{\theta}\}_{\theta \in \Theta})$ и $S(\displaystyle X)$ -- статистика со значением в $\Theta$ (или в $\tau (\Theta)$). Тогда $S(\displaystyle X)$ называется оценкой неизвестного параметра $\theta$ (или $\tau(\theta)$).
+\end{definition}
+\begin{example}
+Пусть $\displaystyle X=( X_{1} ,\dotsc ,X_{n})$ -- выборка из распределения в $\displaystyle \mathbb{R}^{m}$.
+\begin{enumerate}
+    \item Если $\displaystyle g( x)$ -- борелевская функция, то $\displaystyle \overline{g( x)} =\frac{1}{n}\sum _{i=1}^{n} g( X_{i})$ называется выборочной характеристикой функции $\displaystyle g$.
+    
+    \item $\displaystyle \overline{X} =\frac{1}{n}\sum _{i=1}^{n} X_{i}$ -- выборочное среднее.
+    
+    \item Для $\displaystyle m=1\ \overline{X^{k}} =\frac{1}{n}\sum _{i=1}^{n} X_{i}^{k}$ -- выборочный момент $\displaystyle k$-го порядка.
+\end{enumerate}
+\end{example}
+
+\begin{note}
+$Eg(x) = \int g(x)dF(x) \longrightarrow
+\int g(x)dF_n(x) = \frac{1}{n} \sum g(x_i) = \overline{g(x)}$
+
+Теоретическому среднему соответствует эмпирическое среднее.
+\end{note}\
+
+Композиция измеримых функций измерима, поэтому можно рассмотривать \textit{функции от выборочных характеристик}
+\begin{gather*}
+    S( X) =\ h\left(\overline{g_{1}( X)} ,\dotsc,\ \overline{g_{k}( X)}\right),
+\end{gather*}
+где $h$ -- борелевская функция.
+\begin{example}
+Все для $\displaystyle m=1$
+\begin{enumerate}
+    \item $\displaystyle S^{2} =\overline{X^{2}} -(\overline{X})^{2}$ -- выборочная дисперсия
+    
+    \item $\displaystyle M_{k} =\frac{1}{n}\sum _{i=1}^n( X_{i} -\overline{X})^{k}$ -- выборочный центральный момент $\displaystyle k$-го порядка.
+\end{enumerate}
+\end{example}
+\begin{note}
+Верны несколько утверждений: 
+\begin{enumerate}
+    \item $\displaystyle S^{2} = \frac{1}{n}\sum(X_i - \overline{X})^2 = M_{2}$
+    \item $E S^2 = \frac{n-1}{n} DX_1$
+    \item $S_0^2 = \frac{n}{n-1}S^2 = \frac{1}{n-1}\sum(X_i - \overline{X})^2$ -- исправленная выборочная дисперсия. В отличие от обычной выборочной дисперии, является несмещенной оценкой. Собственно, поэтому и исправленная.
+\end{enumerate}
+\end{note}
+\begin{definition}
+Для $\displaystyle m=1$ определим
+\begin{itemize}
+    \item $X_{( 1)} =\min( X_{1} ,\dotsc ,\ X_{n})$,
+    \item $X_{( 2)} =\min(\{X_{1},\dotsc,\ X_{n}\} \backslash \{X_{( 1)}\})$, то есть второй в порядке неубывания элемент выборки,
+    \item $\dotsc$,
+    \item $X_{( n)} =\max( X_{1}, \dotsc,\ X_{n})$
+\end{itemize}
+Тогда $\displaystyle X_{( k)}$ называется $\displaystyle k$-ой порядковой статистикой выборки $\displaystyle X$, а $\displaystyle ( X_{( 1)} ,\dotsc X_{( n)})$ называется вариационным рядом.
+\end{definition}
+\textbf{Свойства оценок}
+
+Пусть $\displaystyle X=( X_{1} ,\dotsc ,X_{n})$ -- выборка из неизвестного распределения $\displaystyle P\in \{P_{\theta },\ \theta \in \Theta \}$, где $\displaystyle \Theta \subset \mathbb{R}^{k}$.
+\begin{definition}
+Оценка $\displaystyle \theta ^{*}( X)$ называется несмещенной оценкой параметра $\displaystyle \theta $, если $\displaystyle \forall \theta \in \Theta \hookrightarrow E_{\theta } \theta ^{*}( X) =\theta $, где $\displaystyle E_{\theta }$ -- математическое ожидание в случае, когда элементы выборки имеют распределение $\displaystyle P_{\theta }$.
+\end{definition}
+
+\begin{note}
+В этом определении смысл квантора $\forall$ такой. Мы бы хотели, чтобы для нашего неизвестного $\theta$ условие выполнялось. Но мы его не знаем, поэтому требуем более строгое условие -- чтобы выполнялось для всех. Тогда и для нашего точно будет.
+\end{note}
+
+\begin{example}
+$\displaystyle \{N( \theta ,1),\ \theta \in \mathbb{R}\}$, тогда $\displaystyle \overline{X}$ и $\displaystyle X_{1}$ являются несмещенными оценками параметра $\displaystyle \theta $.
+
+К тому же, наш пример (а именно оценка $X_{1}$) показывает, что несмещенная оценка может быть довольно бестолковой. То есть это условие желательно, но его явно недостаточно.
+\end{example}
+
+
+Пусть $\displaystyle X_{1}, \dotsc,\ X_{n},\dotsc $ -- выборка неограниченного размера из распределения $\displaystyle P\in \{P_{\theta },\ \theta \in \Theta \},\ \Theta \subset \mathbb{R}^{k}$.
+\begin{definition}
+Оценка $\displaystyle \theta _{n}^{*}( X_{1} ,\dotsc ,X_{n})$ (а точнее, последовательность оценок) называется состоятельной, если $\displaystyle \forall \theta \in \Theta \hookrightarrow \theta _{n}^{*}\xrightarrow{P_{\theta }} \theta $, т.е.
+
+
+\begin{equation*}
+\forall \varepsilon  >0\ \lim _{n\rightarrow \infty } P_{\theta }\left(\left\Vert \theta _{n}^{*}( X) -\theta \right\Vert _{2}  >\varepsilon \right) =0.
+\end{equation*}
+\end{definition}
+\begin{definition}
+$\displaystyle \theta _{n}^{*}( X_{1} ,\dotsc ,X_{n})$ называется сильно состоятельной оценкой параметра $\displaystyle \theta $, если $\displaystyle \theta _{n}^{*}\xrightarrow{P_{\theta } -\text{п.н.}} \theta $, т.е.
+
+
+\begin{equation*}
+\displaystyle \forall \theta \in \Theta \ P_{\theta }\left( \theta _{n}^{*}( X)\rightarrow \theta \right) =1\ \forall \theta \in \Theta .
+\end{equation*}
+\end{definition}
+\begin{example}
+$\displaystyle \{N( \theta,\ 1),\ \theta \in \mathbb{R}\}$, $\displaystyle \overline{X}$ -- сильно состоятельная оценка параметра $\displaystyle \theta $ по УЗБЧ.
+\end{example}
+Пусть $\displaystyle X_{i}$ -- случайные величины образуют выборку.
+\begin{definition}
+Оценка $\displaystyle \theta _{n}^{*}( X_{1} ,\dotsc ,X_{n})$ называется асимптотически нормальной оценкой параметра $\displaystyle \theta $, если
+
+\begin{equation*}
+\displaystyle \forall \theta \in \Theta \ \sqrt{n}\left( \theta _{n}^{*}( X) -\theta \right)\xrightarrow{d_{\theta }} N\left( 0,\ \sigma ^{2}( \theta )\right),
+\end{equation*}
+
+где $\displaystyle \sigma ^{2}( \theta )$ называется асимптотической дисперсией.
+\end{definition}
+
+\begin{note}
+$d_{\theta}$ означает, что элементы выборки имеют распределение $P_{\theta}$
+\end{note}
+
+\begin{note}
+В многомерном случае вместо асимптотической дисперсии появляется асимптотическая матрица ковариаций $\displaystyle \Sigma ( \theta )$.
+\end{note}
+\begin{example}
+$\displaystyle \{N( \theta,\ 1),\ \theta \in \mathbb{R}\},\ \overline{X}$ является асимптотически нормальной оценкой параметра $\displaystyle \theta $ по ЦПТ.
+\end{example}
+\begin{note}
+Свойства состоятельности, сильной состоятельности и асимптотической нормальности называются асимптотическими свойствами и имеют смысл только при растущем объеме выборки.
+\end{note}
+\begin{note}
+Также, можно оценивать $\displaystyle \tau ( \theta )$. Все свойства оценок определяются аналогично.
+\end{note}
+\begin{theorem}[Связь между свойствами оценок] \
+\begin{enumerate}
+    \item $\displaystyle \theta _{n}^{*}$ -- сильно состоятельная оценка параметра $\displaystyle \tau ( \theta )$$\displaystyle\ \Rightarrow\ $$\displaystyle \theta _{n}^{*}$ -- состоятельная оценка параметра $\displaystyle \tau ( \theta )$.
+    
+    \item \ $\displaystyle \theta _{n}^{*}$ -- асимптотически нормальная оценка параметра $\displaystyle \tau ( \theta )$$\displaystyle\ \Rightarrow\ $$\displaystyle \theta _{n}^{*}$ -- состоятельная оценка параметра $\displaystyle \tau ( \theta )$.
+    
+    \item Никакие другие импликации неверны.
+\end{enumerate}
+
+\end{theorem}
+\begin{proof} \
+\begin{enumerate}
+    \item $\displaystyle \theta _{n}^{*}\xrightarrow{P_{\theta } -\text{п.н.}} \theta \Rightarrow \theta _{n}^{*}\xrightarrow{P_{\theta }} \theta $.
+    
+    \item Так как $\displaystyle \frac{1}{\sqrt{n}}\xrightarrow{P_{\theta }} 0$, то по лемме Слуцкого
+
+\begin{equation*}
+\frac{1}{\sqrt{n}}\sqrt{n}\left( \theta _{n}^{*}( X) -\tau ( \theta )\right)\xrightarrow{d_{\theta }} \xi \cdotp 0,\ \forall \theta \in \Theta ,
+\end{equation*}
+
+где $\displaystyle \xi \sim N\left( 0,\ \sigma ^{2}( \theta )\right)$. Тогда $\displaystyle \theta _{n}^{*}( X) -\tau ( \theta )\xrightarrow{d_{\theta }} 0\Rightarrow \theta _{n}^{*}( X) -\tau ( \theta )\xrightarrow{P_{\theta }} 0\Rightarrow \theta _{n}^{*}( X)\xrightarrow{P_{\theta }} \tau ( \theta )$.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+Из несмещенности не следуют остальные свойства, т.к. можно взять распределение $Bern$ и $X_{(1)}$.
+
+Также можно привести пример, когда есть все, кроме несмещенности. Возьмем хорошую оценку, например, $\overline{X}$. Дальше ее нужно сместить. Например, добавить $\frac{1}{n}$. Тогда все свойства сохранятся, кроме несмещенности.
+\end{example}

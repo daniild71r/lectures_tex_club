@@ -1,0 +1,201 @@
+\input{style.tex}
+
+\begin{document}
+% ================ ПЕРВАЯ СТРАНИЦА ==========================
+    \thispagestyle{empty}
+    \BgThispage
+    \begin{center}
+        \vspace*{4cm}
+        
+        \Huge
+        \textbf{Функциональный анализ} \\
+        \textbf{6 семестр} \\
+        % \textbf{Билеты} \\
+        \textbf{Лектор: Коновалов С.П.} \\
+        \textbf{весна 2023} \\
+        
+        \vspace{7cm}
+        \Large
+        
+        \textbf{Авторы билетов (лучшие котики):} \\
+        \href{https://vk.com/dimasav123}{Савичев Дмитрий} \\
+        \href{https://vk.com/id165779384}{Подзорова Полина} \\
+        \href{https://vk.com/poli.dobro}{Чубенко Полина} \\        
+        \href{https://vk.com/meraklim}{Климанова Ирина} \\
+        \href{https://vk.com/ulegor}{Сбродов Егор} \\
+        \href{https://vk.com/aldrmv}{Дремов Александр} \\
+        \href{https://vk.com/id153425653}{Колтаков Михаил} \\
+
+        \textbf{Основатель клуба и важный котик - писать по вопросам:}
+        \href{https://vk.com/spitsynn}{Спицын Николай} \\
+    \end{center}
+\newpage
+
+\tableofcontents
+\newpage
+
+% ===================== НАЧАЛО ======================
+
+\chapter{Напоминание}
+\input{section/previously.tex}
+
+% \section{Метрические и топологические пространства.\\ Примеры: $l_p,\;C_p[a; b](p \geqslant 1),\;C^n[a, b]$. Неравенства Гёльдера и Минковского}
+% \input{section/section_prev/1.tex}
+
+% \section{Теорема о вложенных шарах. Теорема Бэра}
+% \input{section/section_prev/Ber.tex}
+
+% \section{Принцип сжимающих отображений}
+% \input{section/section_prev/Compacting_function.tex}
+
+% \section{Компактность и центрированные системы замкнутых множеств}
+% \input{section/section_prev/4.tex}
+
+% \section{Критерий компактности}
+% \input{section/section_prev/5.tex}
+
+% \section{Теорема Арцела - Асколи}
+% \input{section/section_prev/6.tex}
+
+% \section{Теорема Рисса (некомпактность сферы в $E, dim E = \infty$)}
+% \input{section/section_prev/7.tex}
+
+% \section{Характеристическое свойство евклидовых пространств. Банаховы и гильбертовы пространства}
+% \input{section/section_prev/8_bilet.tex}
+
+% \section{Эквивалентность норм в конечномерном пространстве. Понятие линейного топологического пространства, примеры}
+% \input{section/section_prev/9.tex}
+
+% \section{Теорема Рисса о проекции}
+% \input{section/section_prev/10.tex}
+
+% \section{Сепарабельные гильбертовы пространства}
+% \input{section/section_prev/11.tex}
+
+% \section{Связь непрерывности и ограниченности линейного оператора}
+% \input{section/section_prev/12.tex}
+
+% \section{Топологии и сходимости в пространстве операторов $L(E_1, E_2)$. Норма оператора. Полнота нормированного пространства $L(E_1, E_2)$ (в случае, когда $E_2$ --- банахово)}
+% \input{section/section_prev/13.tex}
+
+% \section{Задача о продолжении непрерывного отображения. Продолжение линейного ограниченного оператора на замыкание области определения}
+% \input{section/section_prev/14.tex}
+ 
+% \section{Теорема ~{Банаха--Штейнгауза}}
+% \input{section/section_prev/Banach-Steingaus.tex}
+
+% \section{Полнота пространства $L(E_1, E_2)$ относительно поточечной сходимости. Критерий поточечной сходимости последовательности операторов из $L(E_1, E_2)$}
+% \input{section/section_prev/16.tex}
+
+% \section{Функционалы в гильбертовом пространстве.\\Теорема~{Рисса--Фреше}}
+% \input{section/section_prev/Riss-Freshe.tex}
+
+% \section{Теорема Хана--Банаха и её следствия}
+% \input{section/section_prev/Han-Banah.tex}
+
+\newpage
+\chapter{Программа}
+
+\section{Слабая сходимость в банаховом пространстве}
+\subsection{Изометричность вложения $E$ в $E^{**}$. Критерий слабой сходимости последовательности.}
+\input{section/Polya/1.1}
+
+
+\subsection{Слабая сходимость и ограниченные операторы. Слабо ограниченные множества.}
+\input{section/Polya/1.2}
+
+
+\section{Обратный оператор. Обратимость}
+\subsection{Обратимость линейного, ограниченного снизу ($\|Ax\| \geqslant k \|x\|$) оператора.}
+\input{section/sasha/2.1}
+
+\subsection{Обратимость возмущенного оператора $A + \Delta A$.}
+\input{section/sasha/2.2}
+
+\subsection{Формулировка теоремы Банаха об обратном операторе. Доказательство теоремы Банаха в случае гильбертова пространства.}
+\input{section/sasha/2.3}
+
+\section{Сопряжённый оператор}
+\label{conjugate-op-section}
+\subsection{Норма сопряжённого оператора (в линейном нормированном пространстве).}
+\input{section/kubamba/3.1}
+
+\subsection{Сопряжённые операторы в гильбертовом пространстве. Равенство $H = \ker{A^*} \oplus \overline{\im{A}}$}
+\input{section/kubamba/3.2}
+
+\section{Спектр. Резольвента}
+\subsection{Операторнозначные функции комплексного переменного. Аналитичность резольвенты. Спектральный радиус. Основная теорема о спектре.}
+\input{section/kubamba/4.1}
+
+\section{Самосопряжённые операторы}
+\subsection{Свойства квадратичной формы $(Ax, x)$ и собственных значений самосопряжённого оператора $A$.}
+\input{section/Polina/9}
+
+\subsection{Разложение гильбертова пространства $H = \ker (A - \lambda I) \oplus \overline{\im(A - \lambda I)}$ , где $A$~--- самосопряжённый оператор.}
+\input{section/Polina/10}
+
+\subsection{Критерий принадлежности числа спектру самосопряжённого оператора. Вещественность спектра самосопряжённого оператора.}
+\input{section/Egor/5.3}
+
+
+\subsection{Теорема о спектре самосопряжённого оператора: $\sigma(A) \subset [m_{-}, m_{+}],\; r(A) = \|A\|$}
+\input{section/Egor/5.4}
+
+
+\section{Компактные операторы}
+\subsection{Свойства компактных операторов.}
+\input{section/Ira/6.1}
+
+\subsection{Свойства собственных значений компактного оператора.}
+\input{section/Ira/6.2}
+
+\subsection{Теорема Фредгольма для компактных самосопряжённых операторов.}
+\input{section/Ira/6.3}
+
+
+\subsection{Теорема Гильберта--Шмидта.}
+\input{section/MK2012/Hibert-Smidt-theorem}
+
+
+\section{Элементы нелинейного анализа}
+\subsection{Производная Фреше, производная Гато. Формула конечных приращений.}
+\input{section/Polya/7.1}
+
+
+\section{Преобразование Фурье и свёртка в пространствах $L_1(\R)$ и $L_2(\R)$}
+
+
+\subsection{Определения и основные свойства. Формула умножения. Преобразование Фурье свёртки.}
+\input{section/sasha/8.1}
+
+
+\subsection{Операторы Гильберта--Шмидта.}
+\input{section/Ira/8.2}
+
+
+\newpage
+\chapter{Приложение}
+\section{Свойства частых примеров}\label{sec:table_of_examples}
+\input{section/sasha/traits.tex}
+
+\section{Некоторые примеры/контрпримеры}
+\input{section/sasha/examples_counterexamples.tex}
+
+% \newpage
+% \chapter{Лекции 6 семестра}
+% \input{lectures/3feb.tex}
+% \input{lectures/10feb.tex}
+% \input{lectures/17feb.tex}
+% \input{lectures/3mar}
+% \input{lectures/10mar}
+% \input{lectures/17mar}
+% \input{lectures/24mar}
+% \input{lectures/31mar}
+% \input{lectures/7apr}
+% \input{lectures/14apr}
+% \input{lectures/21apr}
+% \input{lectures/28apr}
+% \input{lectures/5may}
+% \input{lectures/12may}
+
+\end{document}

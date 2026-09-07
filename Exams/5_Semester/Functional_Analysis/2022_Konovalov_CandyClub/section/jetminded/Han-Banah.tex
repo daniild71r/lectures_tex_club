@@ -1,0 +1,92 @@
+\begin{theorem}[Хана--Банаха]\label{Han-Banah}
+Пусть $E$~--- ЛНП. $M \subset E$~--- линейное многообразие, $f$~--- линейный ограниченный функционал на $M$. Тогда $\exists \widetilde{f} \in E^*$:
+\begin{enumerate}
+    \item  $ \widetilde{f} |_{M} = f$
+    \item \(\| \widetilde{f} \| = \|f\|\)
+\end{enumerate}
+\end{theorem}
+
+\begin{note} Ниже приведено доказательство для сепарабельных пространств. Теорема верна и для несепарабельных, но там в доказательстве используется трансфинитная индукция.
+\end{note}
+
+\begin{proof} Докажем для случая $E$~--- вещ. сепарабельно. 
+\begin{itemize}
+    \item [Шаг 1.] \href{https://vk.com/audio2000232946_456244622}{"Завоевание новых измерений"}: $(M, f), M \neq E, \Rightarrow \exists x_0 \notin M$
+
+Тогда рассмотрим $M_1 = M \oplus [x_0]$; продолжим $f$ на $M_1$ с сохранением нормы: $y = x + \alpha x_0 \in M_1$, $x \in M, \alpha \in \R$; $f_1(y) = f_1(x) + \alpha f_1(x_0) = f(x) + \alpha a$. Существует ли $a$ такое, что $\|f_1\| = \|f\|$? Очевидно, что $\|f_1\| \geqslant \|f\|$, тогда осталось показать существование такого \(a\), что $\|f_1\| \leqslant \|f\|$
+\[\exists a: \forall y \in M_1 |f(x) + \alpha a | = |f_1(y)| \leqslant \|f\| \cdot \|y\| = \|f\| \cdot \| x + \alpha x_0\|.\] Если $\alpha = 0$, то мы попали на $M$, неравенство выполнено и мы победили. Если это не так, то $\alpha \neq 0$; исходное неравенство эквивалентно $|f(\frac{x}{\alpha}) + a| \leqslant \|f\| \cdot \| \frac{x}{\alpha} + x_0 \| $, причём $\frac{x}{\alpha} = z$. Тогда нам очень хочется доказать, что
+\begin{align}
+    - \|f \| \cdot \| z + x_0 \| &\leqslant f(z) + a \leqslant \| f \| \cdot \| z + x_0 \|\\
+- f(z) - \|f \| \cdot \| z + x_0 \| &\leqslant a \leqslant - f(z) + \| f \| \cdot \| z + x_0 \|.
+\label{what-we-want-han-banah}
+\end{align}
+Нам достаточно, чтобы $\sup$ левой части по всем $z$ был меньше $\inf$ правой части неравенства по всем $z$. Тогда на самом деле нам достаточно показать, что
+\[\forall z_1, z_2\; -f(z_1) - \|f \| \cdot \| z_1 + x_0 \| \leqslant - f(z_2) + \| f \| \cdot \| z_2 + x_0 \| \]--- просто подставили $z_1$ в левую часть неравенства, а $z_2$ в правую. Преобразуем, следующее должно быть верно:
+\[f(z_2) - f(z_1) \leqslant \|f\| \cdot (\| z_1 + x_0 \| + \| z_2 + x_0 \|).\]
+Это верно, если будет выполнено более сильное утверждение:
+\[|f(z_2) - f(z_1)| \leqslant \|f\| \cdot (\| z_1 + x_0 \| + \| z_2 + x_0 \|).\]
+Но мы знаем:
+\[|f(z_2) - f(z_1)| = |f(z_2 - z_1)| \leqslant \|f\| \cdot \| z_2 - z_1 \| = \|f\| \cdot \| z_2 + x_0 - x_0 - z_1 \| \leqslant \|f\| \cdot (\| z_2 + x_0 \| + \| x_0 + z_1 \| ).\]
+Ура, победили. Получили, что $\sup$ левой части~(\ref{what-we-want-han-banah}) не больше $\inf$ правой части, а значит для любого $z$ действительно можно выбрать такое число $a$.
+ \item [Шаг 2.] Теперь мы готовы запустить индукцию: предположили, что $E$~--- сепарабельное. \\
+ Тогда пусть $X = \{ x_n \}_{n=0}^{\infty}$: $\overline{X} = E$; $M_0 = M,\; x_0 \notin M$, берём $x_{n-1}$ и получаем $M_n = M_{n-1} + [x_{n-1}], x_n \notin M_n $. Введём $M_{\infty} = \bigcup\limits_{n \in \N} M_n$ -- линейное многообразие. $f_{\infty} | _{M_n} = f_n \Rightarrow x \in M_n $ и $E = \overline{X} \in \overline{M}_{\infty}$
+
+По теореме~\ref{extrapolate-to-closure} $f_{\infty}$ единственным образом продолжается до $\widetilde{f} \in E^*$. Победа!
+\end{itemize}
+\end{proof}
+
+\noindent\textbf{Следствия из Теоремы Хана-Банаха}.
+
+\begin{corollary} Пусть $E$ - линейное нормированное пространство, $M \subsetneq E$ --- линейное многообразие, $x_0 \notin \overline{M} $. Тогда $\exists f \in E^*$ такой, что:
+
+1. $f |_M = 0$, т.е. $M \subset Ker f$
+
+2. $f(x_0) = 1$
+
+3. $\|f\| = \frac{1}{\rho(x_0, M)}$
+\end{corollary}
+
+\begin{proof} Рассмотрим $M_1 = M \oplus [x_0]$, $y = x + \alpha \cdot x_0$
+Тогда $f_1(y) = f(x) + \alpha \cdot f(x_0) = 0 + \alpha \cdot 1 = \alpha$ (как просят в условии) - по теореме Хана-Банаха $\exists f \in E^*: f|_{M_1} = f_1, \|f\|_{E^*} = \|f_1\|_{M_1^*}$
+
+Осталось показать, что $\|f_1\| = \frac{1}{\rho(x_0, M)} = \frac 1 \rho$. $f_1(y) = f_1(x + \alpha \cdot x_0), x \in M, \alpha \in \K$
+
+Для этого очень хочется что-то типа $\forall \eps > 0$ $\frac{1}{\rho} - \eps \leqslant \sup\limits_{y:\:\|y\| \neq 0} \frac{|f_1(y)|}{\|y\|} = \|f_1\| \leqslant \frac{1}{\rho}$
+
+1. Рассмотрим правую часть: $\|f_1\| \leqslant \frac{1}{\rho}$: $\frac{|f_1(y)|}{\|y\|} = \frac{|\alpha|}{\|y\|}$. Если $\alpha = 0$, то очевидно и мы победили; иначе $\frac{|\alpha|}{\|y\|} = \frac{1}{\|\frac{x}{\alpha} + x_0\|} \leqslant \frac{1}{\rho}$. 
+
+2. $\exists$ последовательность $x_n \in M: \|x_n + x_0 \| \to \rho$ (из определения $\rho$): $\frac{|f_1(y)|}{\|y\|} = \frac{|\alpha|}{\|y\|}  = \frac{1}{\|\frac{x}{\alpha} + x_0\|}$ = $\frac{1}{\|x_n + x_0\|} \to \frac{1}{\rho}$. Победа!
+
+
+\end{proof}
+
+\begin{corollary} Если $x \in E$, то $\exists f \in E^*$:
+
+1. $\|f\| = 1$
+
+2. $f(x) = \|x\|$
+\end{corollary}
+\begin{proof}
+Возьмём в следствии 1 $M = \{0\}$; $\frac{x}{\|x\|}$ в качестве $x_0 \Rightarrow \exists f:$ \\ 1) $ f|_{\{0\}} = 0$ -- верно, 2) $ f(x) = \|x\|$ - верно, $3) \|f\| = \frac{1}{\rho \left(\frac{x}{\|x\|}, 0 \right)} = 1$
+\end{proof}
+
+\begin{corollary} Два эквивалентных утверждения:
+\label{hbcorollary3}
+\begin{itemize}
+    \item Если $\forall f \in E^* \; f(x) = f(y)$, то $x = y$
+    \item Если $\forall f \in E^* \; f(x) = 0$, то $x = 0$
+\end{itemize}
+\end{corollary}
+\begin{proof} 
+От противного: пусть $\exists x \neq 0$: $\forall f \in E^*$ $f(x) = 0$. Но тогда по следствию 2 $\exists f \in E^*: f(x) = \| x\| \neq 0$ - противоречие.
+\end{proof}
+
+\begin{corollary}
+\label{hbcorollary4}
+$\forall x \in E $ $\|x\| = \sup |f(x)|$, где $\sup$ берётся по таким $f$, что $\| f\| _{E^*} = 1$\end{corollary}
+\begin{proof} 
+$\sup\limits_{\|f\| = 1} |f(x)| \leqslant \sup\limits_{\|f\| = 1} \|f\| \cdot \|x\| = \|x\|$.
+
+Осталось показать в обратную сторону: зафиксируем $x$. Если $x = 0$, то мы победили, иначе $\sup\limits_{\|f\| = 1} |f(x)| \geqslant |f_x (x) | = \|x\|$, где $f_x(x)$ - функция из следствия 2. Победа!
+\end{proof}
+

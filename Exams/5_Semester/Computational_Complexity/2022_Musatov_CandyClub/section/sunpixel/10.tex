@@ -1,0 +1,18 @@
+\begin{definition}
+$\sk{k}\sat = \{\varphi | \exists x_1 \forall x_2 \ldots \varphi(x_1, x_2, \ldots, x_k) = 1\}$
+\end{definition}
+
+\begin{definition}
+$\pk{k}\sat = \{\varphi | \forall x_1 \exists x_2 \ldots \varphi(x_1, x_2, \ldots, x_k) = 1\}$
+\end{definition}
+
+\begin{theorem} Задача $\sk{k}\sat$ ~--- \sk{k}-полная и задача  $\pk{k}\sat$ ~--- \pk{k}-полная
+\end{theorem}
+
+\begin{proof}
+
+Сначала докажем эквивалентность утверждений о \sk{k}-полноте задачи $\sk{k}\sat$ и \pk{k}-полноте задачи $\pk{k}\sat$. Идея состоит в том, что $A \karp \sk{k}\sat \lra \overline{A} \karp \pk{k}\sat$.
+Пусть $\varphi$ ~--- формула, полученная по первой сводимости. Тогда $x \in A \lra \exists y_1 \forall y_2 \ldots \varphi_x(y_1, \ldots y_k) = 1$. Тогда $x \in \overline{A} \lra \neg \exists y_1 \forall y_2 \ldots \varphi_x(y_1, \ldots y_k) = 1$, т.е. $\forall y_1 \exists y_2 \ldots \varphi_x(y_1, \ldots y_k) = 0$. Таким образом, взятие $\neg \varphi_x$ в качестве образа $x$ задаст сводимость $\overline{A}$ к $\pk{k}\sat$.
+
+Теперь докажем \sk{k}-полноту задачи $\sk{k}\sat$ для нечетных $k$ и \pk{k}-полноту задачи $\pk{k}\sat$ для четных $k$ (четность выбирается так, чтобы последним был квантор существования). Пусть, например,  $A \in \sk{k}$ для нечетного $k$. Тогда для некоторой полиномиальной машины $M$ выполнено $x \in A \lra \exists y_1 \forall y_2 \ldots \exists y_k M(x,y_1,y_2, \ldots, y_k) = 1$. Построим по машине $M$ и слову $x$ формулу $\varphi_{M,x}$ той же процедурой, что и в теореме Кука-Левина. Тогда биты слов $y_1,y_2, \ldots, y_k$ будут среди аргументов этой формулы, а истинность $M(x,y_1,y_2, \ldots, y_k) = 1$ будет соответствовать ее выполнимости для этих зафиксированных значений. Обозначив все остальные аргументы через $z$, получаем эквивалентность условий $\exists y_1 \forall y_2 \ldots \exists y_k M(x,y_1,y_2, \ldots, y_k) = 1$ и $\exists y_1 \forall y_2 \ldots \exists y_k \exists z \varphi_{M,x}(y_1,y_2, \ldots, y_k, z) = 1$. Последние кванторы по $y_k$ и $z$ можно объединить, таким образом получим экземляр задачи $\sk{k}\sat$, что и требовалось.
+\end{proof}

@@ -1,0 +1,78 @@
+\begin{proposition}
+	(б/д) Пусть $\xi_n \xrightarrow{d} \xi$ в $\R^m$, $\eta_n \xrightarrow{d} C = const$ в $\R^s$. Тогда
+	\begin{gather*}
+	    \begin{pmatrix}
+		\xi _{n}\\
+		\eta _{n}
+    	\end{pmatrix}\xrightarrow{d}
+    	\begin{pmatrix}
+    		\xi \\
+    		C
+    	\end{pmatrix} \in \mathbb{R}^{m+s}
+	\end{gather*}
+\end{proposition}
+
+\begin{corollary}
+	(Лемма Слуцкого) Пусть $\xi_n \xrightarrow{d} \xi,\ \eta_n \xrightarrow{d} C$ (все в $\R^m$). Тогда 
+	\begin{gather*}
+	    \xi_n+\eta_n \xrightarrow{d} \xi + C,\ \xi_n\cdot\eta_n \xrightarrow{d} \xi \cdot C.
+	\end{gather*}
+\end{corollary}
+
+\begin{proof}
+	Пусть $f:\R^{2m}\rightarrow \R,\ f(x, y) = x + y$ Тогда по теореме о наследовании сходимостей получаем требуемое. Аналогично для произведения.
+\end{proof}
+
+\begin{example}
+	Пусть $\xi_n \xrightarrow{d} \xi$ -- последовательность случайных величин, $H(x)$ -- дифференцируемая в точке $a$ функция, $\{b_n\}: b_n \xrightarrow{n\rightarrow \infty} 0,\ b_n \ne 0$. Тогда
+	\begin{gather*}
+	    \frac{H\left(a + \xi_nb_n\right) - H(a)}{b_n}\xrightarrow{d} H'(a)\xi.
+	\end{gather*}
+\end{example}
+
+\begin{proof}
+	Пусть
+	\begin{gather*}
+	    h( x) =\begin{cases}
+		\dfrac{H( a+x) -H( a)}{x}, & x\neq 0\\
+		H'( a), & x=0.
+	\end{cases}
+	\end{gather*}
+    Функция $h$ непрерывна в нуле, и по лемме Слуцкого $\xi_nb_n \xrightarrow{d} 0$. Тогда по теореме о наследовании сходимостей $\displaystyle h\left(\xi_nb_n\right) \xrightarrow{d} h\left(0\right) = H'(a)$, и
+	\begin{equation*}
+		h\left(\xi_nb_n\right)\xi_n = \frac{H(a + \xi_nb_n) - H(a)}{b_n} \xrightarrow{d} H'(a)\xi
+	\end{equation*}.
+\end{proof}
+\begin{proposition}
+	(б/д) Пусть $\xi_n \xrightarrow{d} \xi$ в $\R^m$, $H(x):\R^m \rightarrow \R^s$ -- вектор-функция, у которой в точке $a$ есть матрица частных производных $\displaystyle H'(x) = \left\Vert\frac{\partial H_i(x)}{\partial x_j}\right\Vert_{i,j},\\ b_n\rightarrow 0,\ b_n \ne 0$. Тогда
+	\begin{equation*}
+		\frac{H(a + \xi_nb_n) - H(a)}{b_n} \xrightarrow{d} H'(a)\xi.
+	\end{equation*}
+\end{proposition}
+\textbf{Предельные теоремы для векторов}
+\\
+\\Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty } ,\xi $ -- случайные векторы в $\displaystyle \mathbb{R}^{m}$, $\displaystyle S_{n} =\xi _{1} +\dotsc +\xi _{n}$.
+\begin{theorem}
+	(ЗБЧ, б/д) Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty}$ попарно некоррелированные случайные векторы, и $\displaystyle \forall n \ge 1 \sup_{1\le i\le m} D\xi _{n}^{( i)} \leqslant c=const$. Тогда
+	
+	
+	\begin{equation*}
+		\frac{S_{n} -ES_{n}}{n}\xrightarrow{P} 0.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	(УЗБЧ, б/д) Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty }$ -- н.о.р.с.в., и $\displaystyle \forall i\in \{1,\dotsc ,m\} \ E\left| \xi _{1}^{( i)}\right| < \infty $. Тогда
+	
+	
+	\begin{equation*}
+		\frac{S_{n}}{n}\xrightarrow{a.s.} E\xi_{1} .
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	(ЦПТ, б/д) Пусть $\displaystyle \{\xi _{n}\}_{n=1}^{\infty }$ -- н.о.р.с.в., и существует ковариационная матрица $\displaystyle D\xi _{1}$. Тогда
+	
+	
+	\begin{equation*}
+		\sqrt{n}\left(\frac{S_{n}}{n} -E\xi_{1}\right)\xrightarrow{d} N( 0,D\xi_{1}) .
+	\end{equation*}
+\end{theorem}

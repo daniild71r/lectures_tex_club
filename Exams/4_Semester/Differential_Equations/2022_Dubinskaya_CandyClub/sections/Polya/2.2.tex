@@ -1,0 +1,166 @@
+\setcounter{equation}{0}
+
+\textbf{Определение} 
+Пусть $n\geqslant 2$, $f_1,\ldots,f_n$ -- непрервные функции, определенные на $G \subseteq \R_{(x, \vec{y})}^{n+1}$. 
+\newline Назовём \textit{нормальной системой дифференциальных уравнений первого порядка} следующую систему
+\begin{equation}\label{Koshi1}
+    \begin{cases}
+    y_1'(x) = f_1(x, y_1(x), \dots, y_n(x)) = f_1 (x; \vec{y}(x)) \\
+    \vdots \qquad \vdots \\
+    y_n'(x) = f_n(x, y_1(x), \dots, y_n(x)) = f_n (x; \vec{y}(x)) \\
+\end{cases}
+\end{equation}
+\begin{equation*}
+    \text{Векторная форма: $\vec{y'} = \vec{f}(x; \vec{y})$, где $\vec{y}(x) = \left( \begin{matrix} y_1(x), \ldots, y_n(x) \end{matrix} \right)^T$}
+\end{equation*}
+
+\Def Вектор-функция $\vec{\varphi}(x)$ называется \textit{решением нормальной системы (\ref{Koshi1})} на некотором промежутке $I \subseteq \R$, если:
+
+\begin{enumerate}
+    \item $\vec{\varphi} (x) \in C^1(I)$
+    \item $\forall x \in I \quad (x; \vec{\varphi}(x)) \in G$
+    \item $\forall x \in I \quad \vec{\varphi'}(x) = f(x; \vec{\varphi}(x))$
+\end{enumerate}
+График решения $\vec{\varphi}(x)$ в пространстве $\R^{n+1}$ -- это интегральная кривая.
+\bigbreak
+\Def \textit{Задача Коши} -- это \begin{equation}\label{Koshi2}
+    \begin{cases}
+    \text{$\vec{y'} = \vec{f}(x; \vec{y})$ \;--\; нормальная система уравнений I-го порядка} \\
+    \text{$\vec{y}(x_0) = \vec{y_0}$ \;\;\;--\; начальное условие} 
+    \end{cases}
+\end{equation}
+Рассмотрим уравнение $\vec{y'} = f(x; \vec{y})$. Проинтегрируем его покомпонентно. Получим слева искомое $y(x)$, справа ищем одну из первообразных как интеграл с переменным верхним пределом: 
+\begin{equation}\label{Koshi3}
+    y(x) = \int \limits_{x_0}^{x} f(\tau ; \vec{y}(\tau))d\tau + \vec{y_0}
+\end{equation}
+\par \Def Вектор-функция $\vec{\varphi}(x)$ из пространства $C_n(I)$ называется \textit{решением интегрального уравнения (\ref{Koshi3})} на $I\subseteq\R$, если:
+
+\begin{enumerate}
+    \item $\vec{\varphi}(x) \in C^1(I)$
+    \item $\forall x \in I \quad (x; \vec{\varphi}(x)) \in G$
+    \item $\forall x \in I \quad \vec{\varphi}(x) = \int \limits_{x_0}^x f(\tau; \vec{y}(\tau))d\tau + \vec{y_0}$
+\end{enumerate}
+
+\Lemma (об эквивалентности) Вектор-функция $\vec{\varphi}(x)$ является решением задачи Коши (\ref{Koshi2}) на $I$ тогда и только тогда, когда $\vec{\varphi}(x)$ на том же $I$ является решением (\ref{Koshi3}).
+
+\Proof
+
+\fbox{$\Longrightarrow$} Пусть $\vec{y}=\vec{\varphi}(x)$ -- решение ЗК на $I$. Тогда $\vec{y'}(x) = f(x; \vec{y}(x))$, значит, $\vec{y}(x) = \int \limits_{x_0}^{x} \vec{f}(\tau; \vec{y}(\tau))d\tau + C$. Из начального условия $y_0 = \vec{y}(x_0) = \int \limits_{x_0}^x \dots d\tau + C \;\;\Rightarrow\;\; C = \vec{y_0} \;\;\Rightarrow\;\; \vec{y}(x) = \int \limits_{x_0}^{x} \vec{f}(\tau; \vec{y}(\tau))d\tau + \vec{y_0}$.
+
+\fbox{$\Longleftarrow$} Пусть $\vec{y}=\vec{\varphi}(x)$ -- решение интегрального уравнения. $\forall x \in I$ $\vec{\varphi}(x) = 
+\int \limits_{x_0}^{x} \vec{f}(\tau; \vec{\varphi}(\tau))d\tau + \vec{y_0}$.
+\newline Дифференцируем по $x$, получим 
+\(\vec{\varphi'} = \vec{f}(x;\vec{\varphi}(x))\) \;и\; 
+\(\vec{\varphi}(x_0) = \int \limits_{x_0}^{x_0} \dots d\tau + \vec{y_0} = \vec{y_0}\). \quad \EndProof
+
+
+Возьмём кубическую норму: $|\vec{y}| = \max \limits_{1 \leqslant i \leqslant n} |y_i|$
+\\
+\Def Вектор-функция $\vec{f}(x; \vec{y})$, определённая в области $G \subseteq \R_{(x, \vec{y})}^{n + 1}$ называется \textit{удовлетворяющей условию Липшица} относительно $\vec{y}$ равномерно по $x$, если $\exists L > 0$ такой, что $\forall (x; \vec{y_1})$ и $(x; \vec{y_2})$ верно, что $|\vec{f}(x; \vec{y_1}) - \vec{f}(x; \vec{y_2})|\; \leqslant L|\vec{y_1} - \vec{y_2}|$.
+\bigbreak
+\Lemma Вектор-функция $\vec{f}(x; \vec{y})$ удовлетворяет условию Липшица по $\vec{y}$ равномерно по $x$ при выполнении следующих условий:
+
+\begin{enumerate}
+    \item $G$ -- выпуклая область в $\R^{n + 1}$;
+    \item $\vec{f} (x; \vec{y}) \in C_n(G)$, т.е. непрерывна (от $n$ аргументов) и $\forall i, j = \overline{1,n}$\; $\frac{\partial f_i}{\partial y_j} \in C(G)$
+    \item $\exists K > 0:$ $\forall i, j = \overline{1,n}$ \; $\forall (x, \vec{y}) \in G:\;$ $|\frac{\partial \vec{f}_i}{\partial y_i} (x; \vec{y})| \leqslant K$.
+\end{enumerate}
+
+\Proof Фиксируем $i = 1, \dots, n$. Рассмотрим $(x; \vec{y_1})$, где $\vec{y_1} = (y_{1_1}, \dots, y_{1_n})$, а также $\vec{y_2} = (y_{2_1}, \dots, y_{2_n})$.
+\begin{align*}
+    |f_i (x; \vec{y_1}) - f_i (x; \vec{y_2})| \,= \Big|f_i (x; \vec{y_2} + \theta(\vec{y_1} - \vec{y_2}))|_{\theta = 0}^{\theta = 1}\Big| \stackrel{\footnotesize{\text{Ньютон-Лейбниц}}}{=} \bigg| \int \limits_0^1 \Big[\frac{d}{d \theta} f_i (x; \vec{y_2} + \theta (\vec{y_1} - \vec{y_2})) \Big]d \theta\bigg| = \\
+    = \bigg|\int \limits_0^1 \sum \limits_{j = 1}^n \frac{\partial f_i (x; \vec{y_2} +  \theta(\vec{y_1} - \vec{y_2}))}{\partial y_j}(y_{1_j} - y_{2_j}) d\theta\bigg| \; \leqslant \sum \limits_{j = 1}^{n} \int \limits_0^1 \underbrace{\bigg|\frac{\partial f_i (x; \vec{y_2} +  \theta(\vec{y_1} - \vec{y_2}))}{\partial y_j}\bigg|}_{\leqslant K}\cdot \underbrace{|y_{1_j} - y_{2_j}|}_{\leqslant |\vec{y_1} - \vec{y_2}|} d\theta \leqslant \\
+    \leqslant \underbrace{n\cdot K}_{=L} \cdot |\vec{y_1} - \vec{y_2}| \qquad \Rightarrow \qquad |\vec{f}(x; \vec{y_1}) - \vec{f}(x; \vec{y_2})| = \max \limits_{1 \leqslant i \leqslant n} |f_i (x; \vec{y_1}) - f_i  (x; \vec{y_2})| \leqslant L \cdot |\vec{y_1} - \vec{y_2}| \quad \text{\EndProof }
+\end{align*}
+
+\subsection*{Теорема о существовании и единственности решения задачи Коши для системы уравнений $n$-го порядка в нормальном форме}
+
+\noindent Пусть вектор-функция $\vec{f} \brackets{x, \vec{y}}$ непрерывна в области $G$ вместе со своими производными по $y_j \;(j = \overline{1, n})$, точка $(x_0, \vec{y_0})$ тоже лежит в $G$. Тогда задача Коши локально разрешима единственным образом:
+
+\begin{enumerate}
+    \item \(\exists \delta > 0\), такое что на $[x_0 - \delta, x_0 + \delta]$ решение задачи Коши существует;
+    \item Решение единственно в следующем смысле: \\
+    Если $\vec{y_1} (x) \equiv \vec{\varphi}(x)$ — решение задачи Коши в $\delta_1$-окрестности точки $x_0$, а $\vec{y_2} \equiv \vec{\psi}(x)$ — решение задачи Коши в $\delta_2$-окрестности точки $x_0$, то в окрестности точки $x_0$ с радиусом $\delta = \min (\delta_1, \delta_2)\newline \vec{\varphi}(x) \equiv \vec{\psi}(x)$. 
+\end{enumerate}
+
+\noindent \Proof Рассмотрим множество $\overline{H_{\delta, r}} (x_0) = \{ (x, \vec{y}) \in G: x \in [x_0 - \delta, x_0 + \delta] \;\; \text{и} \;\; |\vec{y} - \vec{y_0}| \leqslant r \} \subset G$. \newline Заметим, что в силу компактности этого множества (что следует из ограниченности и замкнутости) применима теорема Вейерштрасса (непрерывная на компакте функция ограничена): $\exists M > 0: \forall (x, \vec{y}) \in \overline{H_{\delta, r}} \;\; |\vec{f} (x, \vec{y})| \leqslant M$ \; и \; $\forall i, j =  \overline{1, n}$\;\; $\Big|\mathlarger{\frac{\partial f_i}{\partial y_j}}\Big| \leqslant M$. \newline Значит, $\vec{f}(x, \vec{y})$ на $\overline{H_{\delta, r}} (x_0)$ удовлетворяет условию Липшица относительно $\vec{y}$ равномерно по $x$. \newline Рассмотрим интегральное уравнение, которое как мы доказали ранее эквивалетно ЗК:
+
+\begin{equation*}
+    \vec{y}(x) = \vec{y_0} + \int \limits_{x_0}^x \vec{f}\brackets{\tau, \vec{y}(\tau)} d\tau \;\;\Longleftrightarrow \;\;\vec{y} = \Phi(\vec{y})
+\end{equation*}
+
+Рассмотрим в $C_n [x_0 - \delta, x_0 + \delta]$ замкнутый шар $\overline{D_{\delta, r}}(\vec{y_0}) = \{ \vec{y} \in C_n [x_0 - \delta, x_0 + \delta]: {||\vec{y} - \vec{y_0}||}_{C_n} \leqslant r \}$, где ${||\vec{y}||}_{C_n} = \max \limits_{1 \leqslant i \leqslant n} \sup \limits_{|x - x_0| < \delta} |y_i (x)|$. 
+
+\noindent Докажем, что существуют $\delta$ и $r$ такие, что 
+\begin{itemize}
+    \item $\Phi$ является сжимающим
+    \item отображает шар $\overline{D_{\delta, r}} (\vec{y_0})$ в себя 
+\end{itemize}
+Тогда мы сможем применить теорему Банаха о сжимающем отображении. Получим единственную неподвижную точку отображения $\Leftrightarrow$ интегральное уравнение имеет единственное решение $\Leftrightarrow$ ЗК имеет единственное решение.
+\bigbreak
+Докажем, что $\Phi$ является сжимающим. Рассмотрим $\vec{y}, \vec{z} \in \overline{D_{\delta, r}} (\vec{y_0})$ (функции): 
+\begin{align*}
+    ||\Phi(\vec{y}) - \Phi(\vec{z})|| \; &= \max \limits_{i = 1, \dots, n} \sup \limits_{|x - x_0| \leqslant \delta} \bigg|\int \limits_{x_0}^{x} \brackets{f_i(\tau, \vec{y}(\tau)) - f_i (\tau, \vec{z}(\tau))}d\tau\bigg| \; \leqslant \\
+    &\leqslant \max \limits_{i = 1, \dots, n} \sup \limits_{|x - x_0| < \delta} \int \limits_{x_0}^x \underbrace{\Big|f_i(\tau, \vec{y}(\tau)) - f_i (\tau, \vec{z}(\tau))\Big|}_{\mathlarger{\leqslant |\vec{f}(\tau; \vec{y}) - \vec{f}(\tau; \vec{z})|}} d\tau \leqslant \\
+    &\leqslant \sup \limits_{|x - x_0| < \delta} \int \limits_{x_0}^{x} L |\vec{y}(\tau) - \vec{z}(\tau)|d\tau \;\leqslant\; \sup \limits_{|x - x_0| < \delta} \int \limits_{x_0}^{x} L ||\vec{y} - \vec{z}||_{C_n} d\tau \; \leqslant \; \underbrace{\delta L}_{=q < 1} {||\vec{y} - \vec{z}||}_{C_n}
+\end{align*}
+Положим $\delta = \frac{q}{L}$, получим требуемое.
+\bigbreak
+Теперь докажем вторую часть:
+\begin{align*}
+    ||\Phi(\vec{y_0}) - \vec{y_0}|| = \max \limits_{i = 1, \dots, n} \sup \limits_{|x - x_0| < \delta} \bigg|\int \limits_{x_0}^x f_i \brackets{\tau, \vec{y_0}} d\tau\bigg|
+    \leqslant \int \limits_{x_0}^x \brackets{\max \limits_{i = 1, \dots, n} \sup \limits_{|x - x_0| < \delta} |f_i (\tau, \vec{y_0})| d\tau} = \\
+    = \int \limits_{x_0}^{x} {||\vec{f}(\tau, \vec{y_0})||}_{C_n} d\tau \;\leqslant \; \delta M = (1 - q) r
+\end{align*}
+
+Получили, что $\begin{cases} q = \delta L \\ (1 - q)r = \delta M \end{cases} \Longrightarrow \;\; \begin{cases} r - rq = \delta M \\ r = \delta L r + \delta M \end{cases} \Longrightarrow  \;\;\delta_r = \mathlarger{\frac{r}{M + Lr}}$ \qquad \EndProof
+
+\subsection*{Теорема о существовании и единственности решения задачи Коши для уравнения $n$-го порядка в нормальном виде}
+
+\noindent Нормальный вид -- уравнение разрешённо относительно старшей производной
+
+\begin{equation*}
+    \begin{cases}
+    y^{(n)}=f(x,y,y',\ldots,y^{(n-1)}) \\
+    y(x_0) = y_0\\
+    y'(x_0) = y_0^1\\
+    \ldots\\
+    y^{(n-1)}(x_0)=y_0^{(n-1)}
+    \end{cases}
+\end{equation*}
+
+Пусть функция $f(x, y, p_1, \ldots , p_{n-1})$ определена и непрерывна по совокупности переменных
+вместе с частными производными по переменным $y, p_1, \ldots , p_{n-1}$ в некоторой области $G \subseteq \R^{n+1}$, и точка $(x_0, y_0, y^1_0, \ldots , y^{n-1}_0) \in G$, тогда существует замкнутая $\delta$-окрестность точки $x_0$, в
+которой существует единственное (в ранее указанном смысле) решение задачи Коши.
+
+\Proof Пусть $\vec{z} = (y,y',\ldots,y^{(n-1)})^T$ -- вектор-функция. Запишем: 
+\begin{figure}[h]
+    \vspace{-4ex}
+    \hspace{-4ex} \begin{minipage}[h]{0.4\linewidth}
+        \begin{align*}
+            z_1'=z_2 \\
+            z_2'=z_3 \\
+            \ldots \\
+            z_{n-1}'=z_n \\
+            z_n'=f(x,z_1,z_2,\ldots,z_n)=f(x,\vec{z})
+        \end{align*}
+    \end{minipage}
+    \hfill
+    \hspace{-4ex} \begin{minipage}[h]{0.6\linewidth}
+    Введём обозначение: $\vec{g}(x,\vec{z})=(z_2,z_3,\ldots,z_n, f(x,\vec{z}))^T$.
+    \\
+    Перепишем задачу Коши: $
+        \begin{cases}
+        \vec{z'}=\vec{g}(x,\vec{z}) \\
+        \vec{z}(x_0)=\vec{z_0}
+        \end{cases}
+    $
+    \end{minipage}
+\end{figure}
+
+\noindent Согласно предыдущей теореме, существует единственное решение полученной задачи
+Коши в некоторой замкнутой $\delta$-окрестности точки $x_0$; эта же окрестность подходит и для
+исходной ЗК. \; \EndProof
+\bigbreak
+Интегральная кривая для данной задачи определяется как множество точек вида:
+$$\Big(x, y(x), y'(x), \ldots,y^{(n-1)}(x)\Big)$$

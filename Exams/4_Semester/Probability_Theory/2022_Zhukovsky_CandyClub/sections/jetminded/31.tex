@@ -1,0 +1,60 @@
+\begin{definition} Случайный вектор $\xi = (\xi_1, \ldots, \xi_n)$ \textbf{гауссовский}, если $\charac{\xi}{y} = e^{i(a,\  y) - \frac{1}{2} (\Sigma\cdot y, \  y)}$, где $a \in \R^n$, $\Sigma$~--- симметричная неотрицательно определенная матрица, $(a, y)$ - скалярное произведение, иногда будем обозначать как $<a, y>$
+\end{definition}
+
+\begin{theorem}[Об эквивалентных определениях] Следующие утверждения эквивалентны:
+\begin{enumerate}
+    \item $\xi = (\xi_1, \ldots, \xi_n)$ гауссовский
+    \item $\exists \eta_1, \ldots, \eta_m \sim \mathcal{N}(0, 1)$ независимые, $A \text{-матрица размера } {n \times m}$ и вектор $b \in \R^n$ такие что $\xi = A(\eta_1, \ldots, \eta_m)^T + b$
+    \item $\forall \lambda \in \R^n$ $(\lambda, \xi) \sim \mathcal{N}(a, \sigma^2)$
+\end{enumerate}
+\end{theorem}
+Из этой теоремы, в частности, следует, что матрица $\Sigma$ в определении гауссовского вектора является матрицей ковариаций этого вектора, а вектор $a$ — вектором математических ожиданий.
+
+\begin{proof} 
+$(1) \Longrightarrow (2)$
+
+Будем считать, что $\Sigma$ невырождена как это было в лекциях.
+
+Факт из линала: $(x, y) = x^Ty$
+
+Пусть $|\Sigma| > 0$ и $\Sigma = C^TDC$, где $C$ ортонональная, а $D$ диагональная, тогда $D$ содержит на диагонали только положительные числа. Тогда $\Sigma = \brackets{\sqrt{D}C}^T E \sqrt{D}C$, где $E$ единичная. Поэтому 
+$$
+\charac{\xi - a}{x} = \E e^{i(\xi - a, x)} = e^{-i(a, x)}\charac{\xi}{x} =  e^{-\frac{1}{2} <\brackets{\sqrt{D}C}^T E\sqrt{D}Cx,\ x>} = e^{-\frac{1}{2} \brackets{\sqrt{D}Cx}^T \sqrt{D} Cx} 
+$$
+
+Тогда (с учетом того, что $C^{-1} = C^T$)
+\begin{multline*}
+    \charac{\brackets{\sqrt{D}}^{-1}C(\xi - a)}{x} = \E e^{i<\sqrt{D}^{-1}C(\xi - a), \  x>} = \E e^{i\brackets{\sqrt{D}^{-1}C(\xi - a)}^T x} = \E e^{i(\xi - a)^T C^T\sqrt{D}^{-1}x} = \\ = \E e^{i<\xi - a,\ (\sqrt{D}C)^{-1}x>}
+    = \charac{\xi - a}{\brackets{\sqrt{D}C}^{-1}x} = e^{-\frac{1}{2}x^Tx}
+\end{multline*}
+
+Тогда заметим, что это характеристическая функция вектора, составленного из стандартных нормальных величин, при этом параметры из условия теоремы получились следующими: $\eta = \sqrt{D}^{-1}C(\xi - a)$, $A = C^T\sqrt{D}$, $b = a$.
+
+$(2) \Longrightarrow (3)$
+
+Пусть $\lambda = (\lambda_1, \ldots, \lambda_n)^T$, тогда 
+$$
+(\lambda, \xi) = \lambda^T(A\eta + b) = \sum\limits_{j = 1}^n \lambda_j \brackets{\sum\limits_{k = 1}^m a_{jk}\eta_k + b_j} = \sum\limits_{k = 1}^m c_k\eta_k + (\lambda, b)
+$$
+
+Где $c_k = \sum\limits_{j = 1}^n \lambda_ja_{jk}$, тогда $(\lambda, \xi) \sim \mathcal{N}\brackets{(\lambda, b), \sum\limits_{k = 1}^m c_k^2}$
+
+$(3) \Longrightarrow (1)$
+
+$$
+\charac{\xi}{\lambda} = \E e^{i(\lambda, \xi)} = \charac{(\lambda, \xi)}{1} = e^{i\E(\lambda, \xi) - \frac{1}{2}\D(\lambda, \xi)} = e^{i(\lambda, a) - \frac{1}{2}\sum\limits_{j, k = 1}^n\lambda_i\lambda_j cov(\xi_j, \xi_k)} = e^{i(\lambda, a) - \frac{1}{2}(\Sigma\lambda, \lambda)}
+$$
+
+Таким образом, мы получили, что $a$~--- вектор математических ожиданий, а $\Sigma$~--- матрица ковариаций. Ее симметричность по определению. Неотрицательность докажем по определению:
+
+$
+\lambda^T\Sigma\lambda = \sum\limits_{j, k = 1}^n \lambda_j\lambda_k cov(\xi_j, \xi_k) = \D\brackets{\sum\limits_{j = 1}^n \lambda_j\xi_j} \geqslant 0
+$\end{proof}
+
+\begin{corollary}[Параметры распределения] В определении гауссовского вектора $a$~--- вектор математических ожиданий, а $\Sigma$~--- матрица ковариаций, то есть $\xi \sim \mathcal{N}(a, \Sigma)$
+\end{corollary}
+
+\begin{theorem}[Критерий независимости] Компоненты $\xi = (\xi_1, \ldots, \xi_n)$ - гауссовского вектора независимы $\iff$ их ковариации равны 0
+\end{theorem}
+
+\begin{proof} В правую сторону очевидно. Докажем в обратную. Пусть $\forall i \neq j \ cov(\xi_i, \xi_j) = 0$, тогда матрица $\Sigma$ будет иметь диагональный вид, где на диагонали будут стоять $\D\xi_i \implies \varphi_\xi(x) = e^{i<\E\xi, \ x> - \frac{1}{2}\sum\limits_{j=1}^n(\D\xi_j)x_j^2} = \prod\limits_{j=1}^n e^{i<\E\xi_j, \ x_j> - \frac{1}{2}(\D\xi_j)x_j^2} = \prod\limits_{j=1}^n \varphi_{\xi_j}(x_j)$ \end{proof}

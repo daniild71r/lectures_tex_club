@@ -1,0 +1,130 @@
+\subsubsection{Преобразование Фурье в пространстве $L_2(\R)$}
+
+Что такое $F:\; L_2 \to L_2$? Основу будет составлять теорема 5.3~(\ref{extrapolate-to-closure})
+$\overline{S}=L_2$ (без доказательства)
+
+Преобразование Фурье на $S$ (леммы):
+\begin{enumerate}
+    \item $F:S \to S$~---биекция (написано в книжке Колмогорова-Фомина)
+    \item $F$~--- изометрия, т.е. $\|f\|_{L_2} = \| \widehat{f}\|_{L_2}$. Более того, $(f,g)=(\widehat{f}, \widehat{g})$.
+    \begin{note}
+        Все функции, которые рассматриваются комплекснозначные, пользуемся формулой
+        \[ \widehat{f}(y)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} f(x) e^{-ixy} dx \]
+
+        На $S$ есть формула обращения ($g$~--- как бы $\widehat{f}$):
+
+        \[ f(x)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} g(y)e^{ixy} dy \]
+    \end{note}
+    \begin{proof}[доказательство леммы 2]
+    Берем две функции $f$, $g$
+    \begin{equation*}
+        (f,g) = \int\limits_{-\infty}^{\infty}f(x)\overline{g(x)}dx = \int\limits_{x}^{}f(x) \overline{\Big(\frac{1}{\sqrt{2 \pi}} \int_y \widehat{g} e^{i x y} dy\Big)}dx =
+    \end{equation*}
+    По теореме Фубини можно поменять порядок интегрирования.
+    \begin{equation*}
+        = \frac{1}{\sqrt{2 \pi}} \int dy \int dx \Big(f(x) \overline{\widehat{g}}(y)e^{-ixy}\Big)=\int \widehat{f}(y) \overline{\widehat{g}}(y) dy = (\widehat{f}, \widehat{g})
+    \end{equation*}
+
+    Сохранение скалярного произведения доказано.
+\end{proof}
+\end{enumerate}
+
+\textbf{Хотим:} по теореме 5.3 продолжить преобразование Фурье с $S$ на всё $L_2$
+
+\textbf{Один из конструктивных методов (теорема Планшереля):}
+\[ f(x) \to f_N(x) = f(x) I[-N, N] \]
+\[\frac{1}{\sqrt{2 \pi}} \int_{-N}^N f(x) e^{-ixy} dx \rightrightarrows_{L_2} \widehat{f}(x)\]
+
+
+\begin{theorem}[1]
+    $F: L_2 \to L_2$, такое что $(f, g)=(\widehat{f}, \widehat{g})$
+\end{theorem}
+
+\begin{proof}
+    $\forall f,g \in L_2(\R) \quad \exists f_n \in S \; : \; f_n \to_{L_2} f \;;\;\; g_n \to_{L_2} g$
+
+    Знаем $(f_n, g_n)_{L_2}=(\widehat{f_n}, \widehat{g_n})$ (из леммы 2). Также в силу непрерывности скалярного произведения $(f_n, g_n) \to (f,g)_{L_2}$. Осталось доказать, что $\widehat{f_n} \to \widehat{f}, \widehat{g_n} \to \widehat{g}$
+    Раз $F$ -- изометрия, то для $S$ он ограничен, тогда по теореме 5.3 после продолжения до $\widehat{F}$ на $L_2$ получаем тоже ограниченный оператор ($\| F\| = \| \widehat{F}\|$).
+
+    (TODO: Было сказано что-то про непрерывность $f$~-- потом допишем)
+\end{proof}
+
+\begin{theorem}[2]
+    $FL_2 = L_2$, то есть $\im F = L_2$
+\end{theorem}
+
+\begin{proof}
+    \[ F:  L_2 \to L_2 \]
+    \[ L_2 = \ker F^* \oplus \im F \]
+    Хотим показать, что $\forall g \in L_2 \; \exists f \in L_2: \; \widehat{f}=g$ (т.е. $\im F = L_2$)
+    \begin{enumerate}
+        \item $\exists$последовательность $S \ni g_n=\widehat{f_n} \to_{L_2} g$, $f_n \in S$. А из леммы 1 знаем, что $\widehat{f_n}, \; f_n \in S$
+        \item Покажем, что $\{f_n\} \subset S$ сходится в $L_2$~--- полное, то есть достаточно показать, что она фундаментальна
+        \[ \| f_n - f_m \| = \| \widehat{f_n} - \widehat{f_m} \|\]
+        Крышки появились так как преобразование Фурье линейный оператор и норма преобразования Фурье равна норме функции
+        
+        А так как $ \| \widehat{f_n} - \widehat{f_m} \| = \|g_n - g_m\| \to 0$, то значит $g_n$ ~-- фундаментальная $\Rightarrow$ $\{f_n\}$ -- фундаментальна.
+        В силу непрерывности преобразования Фурье $\widehat{f_n} \to \widehat{f} = g$
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    На $S$: $F^4=I$, \; $(F^2 f)(x)=f(-x)$
+\end{note}
+
+\begin{example}
+    $F: L_2 \to L_2$~--- компактный? \newline В силу того что мы продолжили $F$ на $L_2$ выполнено $F^4=I$ на всем $L_2$. Допустим он компактный. Множество компактных операторов является идеалом, а $I$ в бесконечномерном пространстве не компактно.
+\end{example}
+
+\begin{example}
+    Какими числами могут быть собственные значения $F$?
+    \[ F \varphi = \lambda \varphi \implies \lambda^4 \varphi = \varphi \]
+    Ответ: $\pm 1, \pm i$
+\end{example}
+
+\begin{example}[задача из задания]
+    $L_2[0,1]; \; (Vf)(x) = \int_0^x f(t) dt$. Найти норму $V$.
+    Ответ: $\frac{2}{\pi}$
+\end{example}
+
+\begin{proof}
+    Сначала находится $V^*$. Потом смотрим на самосопряженный оператор $V^* V$: он оказывается компактным с ортонормированным базисом из собственных функций
+\end{proof}
+
+\begin{definition}
+    Оператор $A: L_2[a, b] \to L_2[a, b]$ называется оператором Гильберта -- Шмидта, если 
+    \[ (Af)(x) = \int_a^b K(x,t) f(t) dt, \quad K \in L_2([a,b]^2) \]
+\end{definition}
+
+\begin{theorem}
+    Оператор Гильберта -- Шмидта является компактным
+\end{theorem}
+
+\begin{proof}
+    Хотим воспользоваться теоремой \nameref{12.1}: взять последовательность конечномерных операторов $A_n$, которая сходится по операторной норме к $A$
+
+    $H$~--- сепарабельно, $\{ e_n \}$~--- ОНБ. Тогда $H \ni x = \sum (x, e_n) e_n$
+
+    \begin{theorem}[книжка Колмогорова-Фомина; гл. VII, пар.5, п.3]
+        Если $\{ \varphi_n \}$~--- ОНБ в $L_2[a,b]$, то $\{ \varphi_i(x)\varphi_j(t) \}$~--- ОНБ в $L_2([a,b]^2)$
+        % идея: аннулятор
+    \end{theorem}
+    
+    Пока примем теорему как верную и будем пользоваться ей. Пусть $\{ \varphi_n \}$~--- ОНБ в $L_2[a,b]$, тогда по теореме $\{ \varphi_i(x) \varphi_j(t) \}$~--- ОНБ в $L_2([a,b]^2)$. Разложим $K$ в ряд Фурье
+
+    \[ K(x,t) = \sum_{i,j} a_{ij} \varphi_i(x) \varphi_j(t) \]
+
+    Возьмем частичные суммы
+
+    \[ K_N(x,t) = \sum_{i,j=1}^N a_{ij} \varphi_i(x) \varphi_j(t) \]
+
+    С каждым ядром свяжем последовательность операторов $A_N$. 
+    Два вопроса
+    \begin{enumerate}
+        \item $A_N$~--- конечномерные
+        \[ \int \sum_{i,j=1}^n a_{ij} \varphi_i(x) \varphi_j(t) f(t) dt = \sum_{i=1}^n c_i \varphi_i(x)\]
+        Очевидно, что это конечномерный оператор
+        \item $\| A_N - A \| \to 0$
+        $K_N \to_{L_2} K$. Запишем неравенство Коши-Буняковского для $A_N$ и все получится
+    \end{enumerate}
+\end{proof}

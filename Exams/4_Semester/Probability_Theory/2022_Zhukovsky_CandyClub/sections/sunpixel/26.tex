@@ -1,0 +1,149 @@
+\begin{lemma}[Кронекера (б/д)]
+Пусть \( \sum \limits_{n = 1}^{\infty} x_n < \infty , 0 < b_n \uparrow \infty \).
+Тогда \( \frac{\sum \limits_{k = 1}^n x_k b_k}{b_n} \to 0, n \to \infty \).
+\end{lemma}
+
+\begin{theorem}[УЗБЧ 2]
+Пусть \( \xi_1, \xi_2, \dots \) -- н. о. р. с. в. (независимые одинаково распределённые
+случаные величины), \( \E |\xi_1| < \infty \). Тогда
+\( \frac{S_n - \E S_n}{n} \xrightarrow{\text{ п. н. }} 0 \).
+\end{theorem}
+
+\begin{proof}
+Без ограничения общности будем считать, что \( \E \xi_1  = 0\). 
+
+Так как \( \E |\xi_1| < \infty \), то можно написать такую оценку:
+
+\[
+\sum_{k = 1}^{\infty} (k - 1) \cdot I(k - 1 \leqslant |\xi_1| < k) 
+\leqslant |\xi_1| \leqslant
+\sum_{k = 1}^{\infty} k \cdot I(k - 1 \leqslant |\xi_1| < k)
+\]
+
+Здесь просто на каждом промежутке \( [k - 1, k) \) ограничили
+\( \xi_1 \) снизу как \( k - 1 \), сверху -- как \( k \).
+Теперь заметим, что этот ряд можно переписать следующим образом:
+
+\begin{multline*}
+\sum_{k = 1}^{\infty} k \cdot I(k - 1 \leqslant |\xi_1| < k) = 
+1 \cdot I(0 \leqslant |\xi_1| < 1) + 
+2 \cdot I(1 \leqslant |\xi_1| < 2) +
+3 \cdot I(2 \leqslant |\xi_1| < 3) +
+\dots = \\
+= I(|\xi_1| \geqslant 0) + 1 \cdot I(1 \leqslant |\xi_1| < 2) +
+2 \cdot I(2 \leqslant |\xi_1| < 3) + \dots = 
+\sum_{k = 1}^{\infty} I(|\xi_1| \geqslant k - 1)
+\end{multline*}
+
+Аналогично переписав другой ряд, получаем оценку:
+
+\[
+\sum_{k = 1}^{\infty} I(|\xi_1| \geqslant k) \leqslant |\xi_1| 
+\leqslant \sum_{k = 1}^{\infty} I(|\xi_i| \geqslant k - 1)
+\]
+
+Тогда матожидание оценивается следующим образом:
+
+\[
+\sum_{k = 1}^{\infty} P(|\xi_1| \geqslant k) \leqslant \E |\xi_1|
+\leqslant \sum_{k = 1}^{\infty} P(|\xi_1| \geqslant k - 1) = 
+1 + \sum_{k = 1}^{\infty} P(|\xi_1| \geqslant k)
+\]
+
+Верхняя и нижняя оценки отличаются ровно на единицу, поэтому 
+\( \E |\xi_1| < \infty \) тогда и только тогда, когда
+\( \sum \limits_{k = 1}^{\infty} P(|\xi_1| \geqslant k) < \infty \). 
+В силу одинаковой распределённости случайных величин последнее условие
+можно заменить на 
+\( \sum \limits_{k = 1}^{\infty} P(|\xi_k| \geqslant k) < \infty \).
+По лемме Борелля-Кантелли сходимость этого ряда означает, что
+\( P( |\xi_n| \geqslant n \text{ б. ч. }) = 0 \). То есть начиная с
+некоторого момента все $\xi_n$ будут меньше чем $n$. Тогда будет логично
+рассматривать случайные величины 
+\( \widetilde{\xi_n} = \xi_n I(|\xi_n| \leqslant n) \).
+Пусть \( A = \overline{\{ |\xi_n| \geqslant n \text{ б. ч. } \}}\).
+
+Тогда \( \forall \omega \in A \;\; \exists n_0 : \forall n \geqslant n_0 \;\;
+\widetilde{\xi_n} = \xi_n \). Из этого условия и того, что \( P(A) = 1 \),
+можно сделать вывод, что
+на пределы 
+
+\[
+\lim_{n \to \infty} \frac{\xi_1 + \dots + \xi_n}{n} \text{ и }
+\lim_{n \to \infty} \frac{\widetilde{\xi_1} + \dots + \widetilde{\xi_n}}{n}
+\]
+
+одновременно существуют и равны на \( A \) (*).
+
+В силу одинаковой распределённости случайных величин получаем, что
+\( \E \widetilde{\xi_n} = \E \xi_n I(|\xi_n| \leqslant n) = 
+\E \xi_1 I(|\xi_1| \leqslant n) \). Заметим, что
+\( \xi_1 I(|\xi_1| \leqslant n) \xrightarrow{\text{ п. н. }} \xi_1 \).
+Тогда можем применить теорему Лебега о мажорируемой сходимости 
+(выражение \( \xi_1 I(|\xi_1| \leqslant n) \) ограничивается \( \xi_1 \),
+у которой конечное матожидание): 
+
+\[
+\E \widetilde{\xi_n} = \E \xi_1 I(|\xi_1| \leqslant n) \to 
+\E \xi_1 = 0
+\]
+
+Тогда последовательность сходится и в смысле средних арифметических:
+
+\[
+\frac{\E \widetilde{\xi_ 1} + \dots + \E \widetilde{\xi_n}}{n} \to 0 \; (**)
+\]
+
+Теперь из (*) и (**) можно сделать вывод, что 
+
+\[
+P \left[ \lim_{n \to \infty} \frac{\xi_1 + \dots + \xi_n}{n} =
+\lim_{n \to \infty} \frac{\widetilde{\xi_1} + \dots + \widetilde{\xi_n}
+- \E \widetilde{\xi_1} - \dots - \E \widetilde{\xi_n}
+}{n}
+\right] = 1
+\]
+
+Если мы докажем, что 
+\(\sum \limits_{k = 1}^{\infty} \frac{\D \widetilde{\xi_k}}{k^2} < \infty\),
+то из этого будет следовать (по теореме Колмогорова-Хинчина), что
+\( \sum \limits_{k = 1}^{\infty} 
+\frac{\widetilde{\xi_k} - \E \widetilde{\xi_k}}{k} < \infty \).
+Отсюда, в свою очередь, по лемме Кронекера будет следовать, что
+\(
+\frac{1}{n} \sum \limits_{k = 1}^n 
+\frac{\widetilde{\xi_k} - \E \widetilde{\xi_k}}{k} \cdot k = 
+\frac{\widetilde{\xi_1} + \dots + \widetilde{\xi_n} - 
+\E \widetilde{\xi_1} - \dots - \E \widetilde{\xi_n}}{n}
+\xrightarrow{\text{ п. н. }} 0
+\). А значит, по доказанному, и 
+\(
+\frac{\xi_1 + \dots + \xi_n}{n} \xrightarrow{\text{ п. н. }} 0
+\)
+
+Осталось доказать, что 
+\( \sum \limits_{k = 1}^{\infty} 
+\frac{\D \widetilde{\xi_k}}{k^2} < \infty \).
+
+\begin{multline*}
+\sum_{k = 1}^{\infty} \frac{\D \widetilde{\xi_k}}{k^2} \leqslant
+\sum_{k = 1}^{\infty} \frac{\E \widetilde{\xi_k}^2}{k^2} = 
+\sum_{k = 1}^{\infty} \frac{\E \xi_k^2 I(|\xi_k| \leqslant k)}{k^2} = 
+\sum_{k = 1}^{\infty} \frac{\E \xi_1^2 I(|\xi_1| \leqslant k)}{k^2} = 
+\sum_{k = 1}^{\infty} \frac{1}{k^2} \sum_{j = 1}^k 
+\E \xi_1^2 I(j - 1 < |\xi_1| \leqslant j) = \\
+= \sum_{j = 1}^{\infty} \sum_{k = j}^{\infty} \frac{1}{k^2}
+\E \xi_1^2 I(j - 1 < |\xi_1| \leqslant j) = 
+\sum_{j = 1}^{\infty} \E \xi_1^2 I(j - 1 < |\xi_1| \leqslant j)
+\sum_{k = j}^{\infty} \frac{1}{k^2} \leqslant
+\sum_{j = 1}^{\infty} \E \xi_1^2 I(j - 1 < |\xi_1| \leqslant j) \cdot
+\frac{2}{j} \leqslant \\
+\leqslant \sum_{j = 1}^{\infty} j^2 P(j - 1 < |\xi_1| \leqslant j) \cdot
+\frac{2}{j} = 
+2 \sum_{j = 1}^{\infty} j P(j - 1 < |\xi_1| \leqslant j) = 
+2 \sum_{j = 1}^{\infty} (j - 1) P(j - 1 < |\xi_1| \leqslant j) + \\
++ 2 \sum_{j = 1}^{\infty} P(j - 1 < |\xi_1| \leqslant j) \leqslant
+2 \E |\xi_1| + 2 < \infty
+\end{multline*}
+
+\end{proof}

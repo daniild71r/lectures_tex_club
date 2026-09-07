@@ -1,0 +1,16 @@
+\begin{itemize}
+    \item[а)] Можно занумеровать все неприводимые многочлены
+    \par \Proof Так как $\Q^\N$ счетно, можно занумеровать вообще все многочлены, а значит и неприводимые в том числе. Для конечных полей еще проще. \EndProof
+    
+    \item[б)] Имеется цепочка вложений $F=F_0 \subset F_1 \subset \ldots \subset F_n \subset \ldots$, где $F_n$ - поле разложения многочлена $f_n$ над $F_{n-1}$
+    \par \Proof Построим цепочку $F=F_0 \subset F_1 \subset \ldots \subset F_n \subset \ldots$, где $F_j$ — поле, в котором $f_1, \ldots, f_j$ раскладываются на линейные множители. Очевидно, она будет подходить под требуемую цепочку. \EndProof
+    
+    \item[в)] Множество $\tilde{F}=\cup_{i=1}^\infty F_i$ - поле
+    \par \Proof Рассмотрим два произвольных элемента $a,b \in \tilde{F}$. Тогда $\exists n: a\in F_n, \exists b: b\in F_m \Rightarrow a,b \in F_{max(n,m)}$, так как $F_{max(n,m)}$ — поле, то и $a+b, a\cdot b, \frac{a}{b} \in F_{max(n,m)} \Rightarrow a+b, a\cdot b, \frac{a}{b} \in \tilde{F} \Rightarrow \tilde{F}$ - поле. \EndProof
+    
+    \item[г)] $\tilde{F}$ алгебраически замкнуто
+    \par \Proof Рассмотрим $f(x) \in \tilde{F}[x], \deg f \geq 1$. Он раскладывается на линейные множители в $\Comp$. Тогда $\tilde{F}(\alpha) \supset \tilde{F}$ — алгебраическое расширение, поэтому $\tilde{F}(\alpha) \supset F$ — алгебраическое расширение, значит $\alpha$ алгебраичен над $F$, значит $\alpha \in \tilde{F}$. Значит все корни $f(x)$ лежат в $\tilde{F} \Rightarrow \tilde{F}$ - алгебраически замкнуто. \EndProof
+    
+    \item[д)] $\overline{F}=\tilde{F}$
+    \par \Proof Так как расширение $\tilde{F} \supset F$ алгебраическое и $\tilde{F}$ алгебраически замкнуто, по определению $\tilde{F}=\overline{F}$. \EndProof
+\end{itemize}

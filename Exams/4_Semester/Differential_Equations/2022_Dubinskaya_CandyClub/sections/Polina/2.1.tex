@@ -1,0 +1,83 @@
+\Def \textit{Линейное пространство} $L$ называется нормированным, если каждому его элементу $x$ поставлено в соответствие неотрицательное действительное число, называемое \textit{нормой} $x$ (обзначается $||x||$), обладающее свойствами:
+
+1) $||x|| \geq 0, ||x|| = 0 \Longleftrightarrow x = 0_L$;
+
+2) для любого $x \in L$ и $\lambda \in \R$ верно: $||\lambda x|| = |\lambda|\cdot ||x||$;
+
+3) для любых $x, y \in L \quad ||x + y||\; \leqslant ||x|| + ||y||$.
+\bigbreak
+\noindent \Def Последовательность $\{ x_n \} \subset L$ называется \textit{сходящейся к $x \in L$ \underline{по норме}}, если \\ $\lim \limits_{n \rightarrow \infty} ||x_n - x|| = 0$.
+\\
+\Def Последовательность $\{ x_n \} \subset L$ называется \textit{фундаментальной} в норме, если \\ $||x_n - x_k|| \rightarrow 0$ при $n,k \rightarrow \infty$.
+\bigbreak
+\noindent
+\Def Нормы $||\cdot||_1$ и $||\cdot||_2$ одного и того же нормированного пространства $L$ \textit{эквивалентны}, если $\exists c_1, c_2 > 0$, такие что $\forall x \in L \;\; c_1 {||x||}_2 \leqslant {||x||}_1 \leqslant c_2 {||x||}_2$.
+\\
+\Example Пространство функций, непрерывных на $[a, b]$, является линейным. Введём
+две нормы:
+\begin{equation*}
+    ||f||_c = \sup_{x\in[a,b]}|f(x)|\ \text{(цэ-норма)},\\
+    ||f||_{L_1} = \frac{1}{b - a} \int_a^b |f(x)|dx\ \text{($L_1$ норма)}.
+\end{equation*}
+Отметим, что равномерная сходимость является сходимостью по первой норме (цэ-норме), причём предел также непрерывен, а значит, принадлежит пространству.
+\bigbreak
+\noindent \Def Нормированное пространство, в котором каждая фундаментальная последовательность является сходящейся, является \textit{полным}. Но! Не во всяком нормированном пространстве фундаментальная последовательность сходится.
+\\
+\Def Полное линейное нормированное пространство называется \textit{банаховым}.
+\\
+\Def Открытый шар: $U_\varepsilon(a) = \{x \in L \;:\; ||x - a|| \,< \varepsilon\}$. Замкнутый: $\overline{U}_\varepsilon(a) =
+\{\ldots \leqslant \varepsilon\}$
+\bigbreak
+Пусть $L_1$ и $L_2$ — банаховы пространства, $X\subseteq L_1$.
+\\
+\Def Оператор $\Phi: X \rightarrow L_2$ называется \textit{непрерывным} в точке $x_0$, если \\
+\[\forall\varepsilon > 0 \;\; \exists\delta=\delta_{\varepsilon} \;\; \forall x \in U_\delta (x_0) \cap X \;\Rightarrow\; {||\Phi(x) - \Phi(x_0)||_2} < \varepsilon.\]
+\bigbreak
+Переходим в ситуацию, где $L_2 \equiv L_1$.
+\\
+\Def Точка $x^* \in X$ называется \textit{неподвижной точкой отображения} $\Phi$, если $\Phi(x^*) = x^*$.
+\\
+\Def Оператор $\Phi$ называется \textit{сжимающим на множестве $X$}, если $\exists q \in (0;1)$, такое что $\forall x_1, x_2 \in X \; \mapsto \; ||\Phi(x_1) - \Phi(x_2)|| \leqslant q||x_1 - x_2||$. Число $q$ — коэффициент сжатия.
+\\
+\Statement Сжимающее отображение является непрерывным:
+\begin{equation*}
+    \forall \varepsilon > 0 \;\; \exists \delta \leqslant \frac{\varepsilon}{q} \;\; \forall x_1,x_2 \; : \; x_1 \neq x_2 \mapsto ||x_1-x_2|| \;< \delta \quad \Rightarrow \quad ||\Phi(x_1)-\Phi(x_2)|| \;\leqslant q||x_1 - x_2|| \;\leqslant \varepsilon 
+\end{equation*}
+
+\subsection*{Теорема Банаха о неподвижной точке (принцип сжимающих отображений)}
+
+Пусть $\Phi \,:\; \overline{U}_r (x_0) \to L$, причем $\Phi$ является сжимающим на $\overline{U}_r (x_0)$ с некоторым коэффициентом $q$. Тогда если выполнено условие $||\Phi(x_0) - x_0|| \leqslant (1-q)r$, то  в $\overline{U}_r (x_0)$ существует единственная неподвижная точка отображения.
+
+\Proof Покажем, что $\Phi(\overline{U}_r(x_0))\subseteq\overline{U}_r(x_0)$. Пусть $x\in\overline{U}_r(x_0)$. Тогда 
+\begin{equation*}
+    ||\Phi(x) - x_0||\; = ||\Phi(x) -\Phi(x_0) + \Phi(x_0) - x_0||\; \leqslant ||\Phi(x) -\Phi(x_0)||\; +\; ||\Phi(x_0) - x_0||\; \leqslant
+\end{equation*}
+Так как отображение сжимающие, оценим первый модуль. Дополнительное условие в теореме используем для второго модуля.
+\begin{equation*}
+    \leqslant q||x - x_0|| \;+\; (1-q)\cdot r \leqslant q\cdot r + (1-q)\cdot r = r \qquad \Rightarrow \; \forall x \in \overline{U}_r(x_0) \;\; \Phi(x)\subseteq\overline{U}_r(x_0)
+\end{equation*}
+Рассмотрим последовательность $\{x_n\}\in\overline{U}_r(x_0)$, такую что $x_n = \Phi(x_{n-1})$ при $n \geqslant 1$. Также для удобства обозначим $\rho = ||\Phi(x_0) - x_0|| = ||x_1 - x_0||$. Покажем, что эта последовательность фундаментальная:
+\begin{align*}
+    ||x_2 - x_1|| \;= ||\Phi(x_1) - \Phi(x_0)||\; \leqslant q||x_1 - x_0||\; = q \cdot\rho \qquad \Rightarrow \;\ldots \; \Rightarrow\qquad
+    ||x_{n+1} - x_n|| \;\leqslant q^n \rho
+\end{align*}
+
+Используем полученную оценку для того, чтобы оценить модули в сумме:
+\begin{align*}
+    \forall p \;\; ||x_{n+p} - x_n||\; \leqslant ||x_{n+p} - x_{n+p-1}|| \;+\; ||x_{n+p-1} - x_{n+p-2}|| \;+ \;\ldots + ||x_{n+1} - x_n||\; \leqslant \\ 
+    \leqslant \rho (q^{n+p-1} + q^{n+p-2} + \dots + q^n) = \rho q^n (q^{p-1} + q^{p-2} + \dots + 1) = \frac{\rho q^n(1-q^p)}{1-q} < \frac{\rho q^n}{1 - q} \xrightarrow[n\to\infty]{}0
+\end{align*}
+А так как мы в банаховом пространстве (т.е. полном), то из фундаментальности получили сходящуюся последовательность.
+
+$\exists \;x^* = \lim \limits_{n \rightarrow \infty} x_n$. А так как $\overline{U}_r (x_0)$ -- замкнутый шар, значит $x^* \in \overline{U}_r (x_0)$.
+\\
+Докажем, что $x^*$ является неподвижной точкой нашего оператора $\Phi$. Воспользуемся тем, что сжимающее отображение является неприрывным.
+
+В $x_n = \Phi(x_{n-1})$ перейдём к пределу: $x^* = \lim \limits_{n \rightarrow \infty} x_n = \Phi(\lim \limits_{n \rightarrow \infty} x_{n-1}) = \Phi(x^*)$.
+\\
+Докажем единственность неподвижной точки.
+Допустим, что существует $x^{**} \in \overline{U}_r (x_0): x^{**}= \Phi(x^{**})$, такое что $x^* \neq x^{**}$.
+
+Тогда $||{x^* - x^{**}}|| \;=||\Phi(x^*) - \Phi(x^{**})|| \;\leqslant q\cdot ||x^* - x^{**}||$, где $q<1$, и получаем противоречие. \EndProof
+
+

@@ -1,0 +1,55 @@
+\begin{definition}
+    Если в линейной регрессионной модели $\displaystyle \varepsilon \ \sim \ \mathcal{N}\left( 0,\ \sigma ^{2} I_{n}\right)$, то модель называется \textit{гауссовской линейной моделью}.
+\end{definition}
+\begin{proposition}
+    $\displaystyle S( X) =\left( proj_{L} X,\ \Vert proj_{L^{\perp }} X\Vert ^{2}\right)$ -- достаточная статистика для $\displaystyle \left( l,\ \sigma ^{2}\right)$.
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle X$ -- гауссовский вектор с некоррелированными компонентами, то его компоненты независимы. Тогда
+    \begin{equation*}
+        p( X) =\left(\dfrac{1}{\sqrt{2\pi } \sigma }\right)^{n}\exp\left( -\dfrac{\sum _{i=1}^{n}( X_{i} -l_{i})^{2}}{2\sigma ^{2}}\right) .
+    \end{equation*}
+    Рассмотрим $\displaystyle \sum _{i=1}^{n}( X_{i} -l_{i})^{2} =\Vert X-l\Vert _{2}^{2}$. По теореме Пифагора
+    \begin{gather*}
+        \Vert X-l\Vert _{2}^{2} =\Vert proj_{L}( X-l)\Vert _{2}^{2} +\Vert proj_{L^{\perp }}( X-l)\Vert _{2}^{2} =\\
+        \Vert proj_{L} X-proj_{L} l\Vert _{2}^{2} +\Vert proj_{L^{\perp }} X-proj_{L^{\perp }} l\Vert _{2}^{2} .
+    \end{gather*}
+    Так как $\displaystyle l\in L$, то $\displaystyle \Vert X-l\Vert _{2}^{2} =\Vert proj_{L} X-l\Vert _{2}^{2} +\Vert proj_{L^{\perp }} X\Vert _{2}^{2}$, и
+    \begin{equation*}
+        p( X) =\left(\dfrac{1}{\sqrt{2\pi } \sigma }\right)^{n}\exp\left( -\dfrac{\Vert proj_{L} X-l\Vert _{2}^{2} +\Vert proj_{L^{\perp }} X\Vert _{2}^{2}}{2\sigma ^{2}}\right) .
+    \end{equation*}
+    Следовательно, $\displaystyle S( X)$ достаточная статистика по критерию факторизации.
+\end{proof}
+\begin{theorem}
+    (б/д) $\displaystyle S( X)$ -- полная статистика.
+\end{theorem}
+\begin{corollary}
+    $\displaystyle \hat{\theta }$ -- оптимальная оценка для $\displaystyle \theta $, $\displaystyle Z\hat{\theta }$ -- оптимальная оценка для $\displaystyle l$ и $\displaystyle \dfrac{1}{n-k}\Vert X-Z\hat{\theta }\Vert ^{2}$ -- оптимальная оценка для $\displaystyle \sigma ^{2}$.
+\end{corollary}
+\begin{proof}
+    Все эти оценки несмещенные и являются функциями от полной достаточной статистики. Так,
+    \begin{equation*}
+        Z\hat{\theta } =proj_{L} X\Rightarrow \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} proj_{L} X.
+    \end{equation*}
+    Наконец,
+    \begin{equation*}
+        \dfrac{1}{n-k}\Vert X-Z\hat{\theta }\Vert ^{2} =\dfrac{1}{n-k}\Vert proj_{L^{\perp }} X\Vert ^{2} .
+    \end{equation*}
+\end{proof}
+\begin{proposition}
+    В гауссовской линейной модели $\displaystyle \hat{\theta }$ не зависит от $\displaystyle X-Z\hat{\theta }$, и
+    \begin{gather*}
+        \dfrac{1}{\sigma ^{2}}\Vert Z\hat{\theta } -Z\theta \Vert ^{2} \ \sim \ \chi _{k}^{2} ,\\
+        \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2} .
+    \end{gather*}
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle L\oplus L^{\perp } =\mathbb{R}^{n}$, то по теореме об ортогональном разложении (\ref{ort}) векторы $\displaystyle Z\hat{\theta }$ и $\displaystyle X-Z\hat{\theta }$ являются гауссовскими и независимыми. Причем,
+    \begin{gather*}
+        \dfrac{1}{\sigma ^{2}}\Vert Z\hat{\theta } -E( Z\hat{\theta })\Vert ^{2} \ \sim \ \chi _{k}^{2} ,\\
+        \dfrac{1}{\sigma ^{2}}\Vert ( X-Z\hat{\theta }) -E( X-Z\hat{\theta })\Vert \ \sim \ \chi _{n-k}^{2} .
+    \end{gather*}
+    Из того, что $\displaystyle E( Z\hat{\theta }) =Z\theta $, а $\displaystyle E( X-Z\hat{\theta }) =0$, получили требуемое.
+    
+    Докажем независимость. Так как $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} Z\hat{\theta }$, то $\displaystyle \hat{\theta }$ является функцией от $\displaystyle Z\hat{\theta }$. Следовательно, $\displaystyle \hat{\theta }$ и $\displaystyle X-Z\hat{\theta }$ независимы.
+\end{proof}

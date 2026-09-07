@@ -1,0 +1,67 @@
+\subsection*{Пуассоновский процесс}
+
+\begin{definition}
+    Процесс $(N_t, t \geq 0)$ называется \textit{пуассоновским процессом} интенсивности $\lambda > 0$, если выполнены следующие свойства:
+\end{definition}
+
+\begin{enumerate}
+    \item $N_0 = 0$ п.н.
+    \item $N_t$ имеет независимые приращения
+    \item $N_t - N_s \sim Pois(\lambda(t-s)), \ t > s \geq 0$
+\end{enumerate}
+
+\begin{statement}
+    Пуассоновский процесс существует.
+\end{statement} 
+
+\begin{proof}
+    Пусть $\varphi_{s,t}(\tau)$~--- хар. функция $Pois(\lambda(t-s))$. Тогда
+    $$
+    \varphi_{s, t}(\tau) = \sum\limits_{k=0}^{\infty} e^{i\tau k} \frac{(\lambda(t-s))^k}{k!} e^{-\lambda(t-s)} = e^{\lambda(t-s)(e^{i\tau} - 1)} \Longrightarrow \varphi_{s,t}(\tau) = \varphi_{s,u}(\tau) \cdot \varphi_{u,t}(\tau) \  \forall 0 \leq s < u < t
+    $$
+    По теореме \hyperref[4.3]{(о существовании процессов с независимыми приращениями)} процесс существует.
+\end{proof}
+
+\begin{figure}[h]
+    \hspace{-4ex} \begin{minipage}[h]{0.4\linewidth}
+    \center{\includegraphics[width=0.7\linewidth]{5.1 graphic.png}}
+    
+    \end{minipage}
+    \hfill
+    \begin{minipage}[h]{0.6\linewidth}
+        \textbf{Наблюдения:}
+    \begin{enumerate}
+        \item $N_t = N_t - N_0 + N_0 \sim Pois(\lambda t)\Longrightarrow N_t \in \Z_+$, то есть траектории целочислены
+        \item $N_t - N_s \sim Pois(\lambda (t-s)) \Longrightarrow N_t \geq N_s \;\; \forall t \geq s \Longrightarrow$ траектории неубывающие
+    \end{enumerate}
+    
+    \end{minipage}
+\end{figure}
+
+
+\begin{theorem}[явная конструкция $N_t$]
+    
+    Пусть $\{\xi_n, n \in \N\}$~--- н.о.р.с.в. и $\xi_n \sim Exp(\lambda)$. \newline Пусть $(X_t, t \geq 0)$~--- процесс восстановления, построенный по ним, то есть
+    $$
+        X_0 = 0,\\
+    $$
+    $$
+        X_t = \sup\{n: S_n \leq t\}, \ t \geq 0
+    $$
+    Тогда $X_t$~--- это пуассоновский процесс интенсивности $\lambda > 0$.
+        
+\end{theorem}
+
+\begin{statement}
+     У явной конструкции имеются следующие свойства траекторий:
+
+    \begin{enumerate}
+        \item Траектории не убывают и непрерывны справа.
+        \item Пусть $Y_n$~--- момент $n$-ого скачка $X_t$. Тогда $Y_1, Y_2 - Y_1, \ldots, Y_n - Y_{n-1}$~--- независимые и\\ $Y_j - Y_{j-1} \sim Exp(\lambda), \; Y_n \sim \Gamma(\lambda, n)$.
+        \item Процесс $X_t$ п.н. имеет только единичные скачки.
+    \end{enumerate}
+\end{statement}
+
+\begin{note} 
+    Всюду далее будем считать (когда потребуется), что задана именно явная конструкция пуассоновского процесса.
+\end{note}

@@ -1,0 +1,303 @@
+\documentclass[a4paper,12pt]{article}
+
+% убираю ворнинги
+% \usepackage{silence}
+% Уничтожаем ворнинги
+% \WarningsOff*
+
+\usepackage{cmap}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{indentfirst}
+\usepackage{epigraph}
+\usepackage{extarrows}
+\usepackage{framed}
+\renewcommand{\epigraphsize}{\small}
+\usepackage{relsize}
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{stackengine,scalerel}
+\def\dclesize{\ThisStyle{\raisebox{-.7pt}{\scalebox{1.45}{$\SavedStyle\bigcirc$}}}}
+\def\dcle{\ensurestackMath{\stackon[0pt]{\leqslant}{\dclesize}}}
+\def\cleq{\def\stacktype{L}\mathbin{\scalerel*{\dcle}{\dclesize}}}
+% \pagestyle{empty}
+
+\usepackage[left=1.25cm,right=1.25cm,
+top=1.75cm,bottom=1.75cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\newcommand{\RomanNumeralCaps}[1] {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amsmath}
+\usepackage[makeroom]{cancel}
+
+\newcommand{\mysection}[2]{\setcounter{section}{#1}\addtocounter{section}{-1}\section{#2}}
+\newcommand{\envalias}[2]{\newenvironment{#1}{\begin{#2}}{\end{#2}}}
+
+% код
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+\, \vcenter{%
+\offinterlineskip
+\hbox{.}
+\vskip0.25\normalbaselineskip
+\hbox{.}
+\vskip0.25\normalbaselineskip
+\hbox{.}%
+}%
+\,
+}
+\usepackage{listings}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{xcolor}
+
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{float}
+
+\usepackage{cancel}
+\usepackage{breqn}
+
+\usepackage{wrapfig}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+
+\definecolor{linkcolor}{HTML}{50006b} % цвет ссылок
+%\definecolor{urlcolor}{HTML}{107896} % цвет гиперссылок
+\definecolor{urlcolor}{HTML}{50006b} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{cmyk}{0,0,0,0.05}
+
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codegreen},
+keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2,
+texcl=true
+}
+\lstset{extendedchars=\true, style=mystyle}
+
+\usepackage[pages = some]{background}
+\backgroundsetup{
+	scale = 1,
+	angle = 0,
+	opacity = 1,
+	contents = {\includegraphics[height = \paperheight, keepaspectratio]{background.jpg}}}
+	
+% объявление новых макрокоманд
+% \newcommand{\Def}{\textbf{Определение:} } please use \begin{definition}
+% \newcommand{\Statement}{\textbf{Утверждение:} }  please use \begin{statement}
+% \newcommand{\Lemma}{\textbf{Лемма:} } please use \begin{lemma}
+% \newcommand{\Th}{\textbf{Теорема:} } please use \begin{theorem}
+\newcommand{\Task}{\textbf{Задача:} }
+\newcommand{\Solution}{\textbf{Решение:} }
+\newcommand{\Example}{\textbf{Пример:} }
+% \newcommand{\Note}{\textbf{Замечание:} } please use \begin{lemmanote}
+% \newcommand{\Cor}{\textbf{Следствие:} } please use \begin{corollary}
+\newcommand{\Vars}{\textbf{Введем обозначения:} } 
+% \newcommand{\Proof}{$\blacktriangle$ } please use \begin{proof}
+% \newcommand{\EndProof}{$\blacksquare$ } please use \end{proof}
+\newcommand{\del}{\partial}
+\newcommand{\probspace}{(\Omega,\: \F,\: P)}
+
+\renewenvironment{leftbar}[2][\hsize]
+{
+    \def\FrameCommand
+    {
+        {\hspace{20pt}
+        \color{gray}\vrule width 3pt}
+        \hspace{0pt}
+    }
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
+}
+{\endMakeFramed}
+
+\newcommand{\norm}{\triangleleft}
+\newcommand{\bnorm}{\triangleright}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\ke}{Ker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\cha}{char}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\diag}{diag}
+
+\newcommand{\angles}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\brackets}[1]{\left({#1}\right)}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\Cm}{\mathbb{C}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\newcommand{\D} { {\mathbb{D}}}
+\newcommand{\indep}{\perp \!\!\! \perp}
+\newcommand{\Norm}{\mathcal{N}}
+\newcommand{\uniconv}{\rightrightarrows}
+
+\newcommand{\divby}{
+	\mathrel{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}
+}
+\newcommand{\notdivby}{\centernot\divby}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Kk}{\mathbb{K}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\imp}[2]{(#1\,\,$\ra$\,\,#2)\,\,}
+\newcommand{\eqv}[2]{(#1\,\,$\lra$\,\,#2)\,\,}
+\newcommand{\Chi}{\scalebox{1.1}{\raisebox{\depth}{$\chi$}}}
+\newcommand{\crad}{R_{\text{сх}} }
+
+\let\bs\backslash
+\let\vect\overline
+\let\normal\trianglelefteqslant
+\let\lra\Leftrightarrow
+\let\ra\Rightarrow
+\let\la\Leftarrow
+\let\gl\langle
+\let\gr\rangle
+\let\emb\hookrightarrow
+\let\mc\mathcal
+\let\mf\mathfrak
+
+\renewenvironment{proof}{{\noindent\textbf{Доказательство.}}}{\qed}
+\theoremstyle{definition}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{statement}[theorem]{Утверждение}
+\newtheorem{proposition}[theorem]{Утверждение}
+\newtheorem{lemmanote}[theorem]{Замечание}
+\newtheorem{note}[theorem]{Замечание}
+\newtheorem{example}[theorem]{Пример}
+\newtheorem{counterexample}[theorem]{Контрпример}
+\newtheorem{trait}[theorem]{Свойство}
+\newtheorem{definition}[theorem]{Определение}
+\newcommand{\blank}[1]{\hspace*{#1}}
+
+%%% Графика
+\usepackage{tikz}        % Графический пакет tikz
+\usepackage{tikz-cd}     % Коммутативные диаграммы
+\usepackage{tkz-euclide} % Геометрия
+\usepackage{stackengine} % Многострочные тексты в картинках
+\usetikzlibrary{angles, babel, quotes, fadings, shapes.geometric}
+\tikzfading[name=fade out, inner color=transparent!0, outer color=transparent!100]
+
+\makeatletter
+\renewcommand{\dddot}[1]{%
+  {\mathop{\kern\z@#1}\limits^{\vbox to-1.4\ex@{\kern-\tw@\ex@
+   \hbox{\normalfont ...}\vss}}}}
+\renewcommand{\ddddot}[1]{%
+  {\mathop{\kern\z@#1}\limits^{\vbox to-1.4\ex@{\kern-\tw@\ex@
+   \hbox{\normalfont....}\vss}}}}
+\makeatother
+
+\newcommand{\charac}[2]{\varphi_{#1}\brackets{#2}} % Хар.функция от распределения с.в. от аргумента
+\newcommand{\eps}{\varepsilon}
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\let\bs\backslash
+\let\vect\overline
+\let\normal\trianglelefteqslant
+\let\lra\Leftrightarrow
+\let\ra\Rightarrow
+\let\la\Leftarrow
+\let\gl\langle
+\let\gr\rangle
+\let\sd\leftthreetimes
+\let\emb\hookrightarrow
+\let\convu\rightrightarrows
+
+\newcommand{\CM}{\overline{\mathbb{C}}}
+\newcommand{\varnormal}{\mathbin{\reflectbox{$\normal$}}}
+\newcommand{\System}[1]{
+	\left\{\begin{aligned}#1\end{aligned}\right.
+}
+\newcommand{\Root}[2]{
+	\left\{\!\!\sqrt[#1]{#2}\right\}
+}
+\newcommand{\convlr}{\rightarrow_{\text{\tiny ЛР}}}
+
+\renewcommand\labelitemi{$\triangleright$}
+
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\ensuremath{\varnothing}}
+
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Ln}{Ln}
+
+\DeclareMathOperator*{\res}{res}
+
+\usepackage{framed}
+\usepackage{xcolor}
+\usepackage{lipsum}% dummy text
+
+
+\newlength{\leftbarwidth}
+\setlength{\leftbarwidth}{3pt}
+\newlength{\leftbarsep}
+\setlength{\leftbarsep}{10pt}
+
+\newcommand*{\leftbarcolorcmd}{\color{leftbarcolor}}% as a command to be more flexible
+\colorlet{leftbarcolor}{black}
+
+\renewenvironment{leftbar}{%
+    \def\FrameCommand{{\leftbarcolorcmd{\vrule width \leftbarwidth\relax\hspace {\leftbarsep}}}}%
+    \MakeFramed {\advance \hsize -\width \FrameRestore }%
+}{%
+    \endMakeFramed
+}
+
+\definecolor{crimson}{HTML}{DC143C}
+\definecolor{teal}{HTML}{008080}
+
+\colorlet{leftbarcolor}{gray}
+\envalias{unnecessary}{leftbar}
+
+\newcommand{\argmin}{\text{argmin}}

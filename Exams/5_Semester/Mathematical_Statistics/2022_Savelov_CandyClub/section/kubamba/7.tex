@@ -1,0 +1,76 @@
+\subsection*{Метод подстановки}
+
+\begin{definition}
+Пусть в параметрическом семействе $\displaystyle \{P_{\theta } :\theta \in \Theta \}$ для некоторого функционала $\displaystyle G$ выполнено $\displaystyle \forall \theta \in \Theta \hookrightarrow \ \theta =G( P_{\theta })$. Тогда оценкой по методу подстановки называется $\displaystyle \theta ^{*}( X_{1},\dotsc\ ,X_{n}) =G\left( P_{n}^{*}\right)$, где $\displaystyle P_{n}^{*}$ -- эмпирическое распределение по выборке.
+\end{definition}
+\begin{example}
+$\displaystyle Bern( \theta ),\ N( \theta ,1)$. Пусть $\displaystyle G=\int _{\mathbb{R}} xdP,\ \theta ^{*} =\int _{\mathbb{R}} xdF_{n}^{*} =\frac{\sum _{i=1}^{n} X_{i}}{n} =\overline{X}$.
+\end{example}
+
+\subsection*{Метод моментов}
+
+Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- выборка из распределения $\displaystyle P\in \{P_{\theta } :\theta \in \Theta \},\ \Theta \subset \mathbb{R}^{k}$. Рассмотрим борелевские функции $\displaystyle g_{1}( X) ,\ \dotsc ,\ g_{k}( X)$ со значениями в $\displaystyle \mathbb{R}$. Положим $\displaystyle m_{i}( \theta ) =E_{\theta } g_{i}( X_{1})$, где $\displaystyle m_{i}( \theta )$ конечны $\displaystyle \forall i:1\leqslant i\leqslant k,\ \forall \theta \in \Theta $. Также, обозначим
+
+
+\begin{equation*}
+m( \theta ) =\begin{pmatrix}
+m_{1}( \theta )\\
+\dotsc \\
+m_{k}( \theta )
+\end{pmatrix} ,\ \overline{g} =\begin{pmatrix}
+\frac{1}{n}\sum _{i=1}^{n} g_{1}( X_{i})\\
+\dotsc \\
+\frac{1}{n}\sum _{i=1}^{n} g_{k}( X_{i})
+\end{pmatrix} .
+\end{equation*}
+
+\begin{definition}
+Если существует и притом единственное решение системы
+
+
+\begin{equation*}
+\begin{cases}
+m_{1}( \theta ) =\overline{g_{1}( X)}\\
+\dotsc \\
+m_{k}( \theta ) =\overline{g_{k}( X)}
+\end{cases} ,
+\end{equation*}
+
+
+то его решение $\displaystyle \theta ^{*} =m^{-1}(\overline{g})$ называется оценкой по методу моментов.
+\end{definition}
+\begin{definition}
+Функции $\displaystyle g_{i}( x) =X^{i}$ называются пробными.
+\end{definition}
+\begin{note}
+В случае, когда $\displaystyle \overline{g} \notin m( \Theta )$, можно для нахождения $\displaystyle m^{-1}( g)$ взять ближайшую к $\displaystyle \overline{g}$ точку из $\displaystyle m( \Theta )$.
+\end{note}
+\begin{theorem}
+(сильная состоятельности оценки по методу моментов) Пусть $\displaystyle m:\Theta \rightarrow m( \Theta )$ -- биекция, и функцию $\displaystyle m^{-1}$ можно доопределить до функции, заданной на всем $\displaystyle \mathbb{R}^{k}$, и непрерывной в каждой точке множества $\displaystyle m( \Theta )$. Также, $\displaystyle E_{\theta } g_{i}( X_{1}) < \infty \ \forall i:1\leqslant i\leqslant k,\ \forall \theta \in \Theta $. Тогда оценка по методу моментов является сильно состоятельной оценкой параметра $\displaystyle \theta $.
+\end{theorem}
+\begin{proof}
+    Фиксируем $\theta$. По УЗБЧ $\displaystyle \overline{g}\xrightarrow{P_{\theta } -a.s.} m( \theta )$. Тогда, по теореме о наследовании сходимостей $\displaystyle \theta _{n}^{*} =m^{-1}(\overline{g})\xrightarrow{P_{\theta } -a.s.} m^{-1}( m( \theta )) =\theta $.
+\end{proof}
+\begin{theorem}
+(асимптотическая нормальность оценки по методу моментов) Если в условиях предыдущей теоремы функция $\displaystyle m^{-1}$, доопределенная на $\displaystyle \mathbb{R}^{k}$, дифференцируема на $\displaystyle m( \Theta )$, и $\displaystyle E_{\theta } g_{i}^{2}( X_{1}) < \infty \ \forall i:1\leqslant i\leqslant k$, то оценка, полученная по методу моментов, асимптотически нормальна.
+\end{theorem}
+\begin{proof}
+    $\displaystyle \sqrt{n}(\overline{g} -m( \theta ))\xrightarrow{d_{\theta }} N( 0,\ \Sigma ( \theta ))$, где $\displaystyle \Sigma ( \theta )$ -- матрица ковариаций вектора $\displaystyle ( g_{1}( X_{1}) ,\dotsc ,$ $g_{k}( X_{1}))^{T}$. Далее применяем утверждение о наследовании асимптотической нормальности.
+\end{proof}
+\begin{note}
+Метод моментов -- частный случай метода подстановки:
+
+
+\begin{equation*}
+\theta =m^{-1}\begin{pmatrix}
+\int _{\mathcal{X}^{n}} g_{1}( x) dP_{\theta }( x)\\
+\dotsc \\
+\int _{\mathcal{X}^{n}} g_{k}( x) dP_{\theta }( x)
+\end{pmatrix} \Rightarrow \theta _{n}^{*} =m^{-1}\begin{pmatrix}
+\int _{\mathcal{X}^{n}} g_{1}( x) dP^{*}( x)\\
+\dotsc \\
+\int _{\mathcal{X}^{n}} g_{k}( x) dP^{*}( x)
+\end{pmatrix} =G\left( P_{n}^{*}\right) .
+\end{equation*}
+\end{note}
+

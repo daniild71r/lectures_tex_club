@@ -1,0 +1,19 @@
+\begin{definition}[Линейный функционал] Линейный оператор, действующий из нормированного пространства в скалярное поле называется \textit{линейным функционалом}. Множество линейных функционалов над нормированным пространством $X$ обозначается как \(X^* = \mathcal{L}(X, \mathbb{K})\).
+\end{definition}
+\begin{theorem}[Рисса--Фреше]\label{Riss-Freshe} Пусть существуют гильбертово пространство \(H\) и линейный ограниченный функционал \(f \in H^*\) в пространстве \(H\). Тогда существует единственный элемент \(y\) пространства \(H\), такой, что для произвольного \(x \in H\) выполняется \(f(x)=\langle y,x\rangle\). При том \(\|f\| = \|y\|\).
+\end{theorem}
+\begin{proof} \\
+\textit{Существование.} Пусть \(f \equiv 0\), тогда \(y = 0\). Требуемые свойства, очевидно, выполняются. Теперь пусть \(f \not\equiv 0\), тогда \(\ker f \neq H\), а значит, \(\exists b \in \ker f^{\perp} \setminus \{0\}\). Для \(x \in H\) рассмотрим \(p_x = x - \frac{f(x)}{f(b)}b\). Для него \(f(p_x) = f(x) - \frac{f(x)}{f(b)}f(b) = 0\). Значит, \(p_x \in \ker f\) и \(\langle b, p_x \rangle = 0\). Подставим \(p_x\):
+\[0 = \left\langle b, x - \frac{f(x)}{f(b)}b \right\rangle = \left\langle b, x \right\rangle - \frac{f(x)}{f(b)}\|b\|^2 \Rightarrow f(x) = \frac{f(b)}{\|b\|^2} \left\langle b, x \right\rangle = \left\langle \frac{f(b)}{\|b\|^2} b, x \right\rangle.\]
+Обозначим первый член скалярного произведения как \(y\). Как мы видим, он удовлетворяет требованию выразимости из формулировки теоремы.
+\\
+
+\noindent\textit{Единственность.} Предположим, что \(\exists z \forall x \in H\left(f(x)= \left\langle z, x \right\rangle \right)\). Тогда в силу линейности скалярного произведения \(\forall x \in H \left(\left \langle y-z, x \right\rangle = 0 \right)\). Так как \(y-z \in H\), то \(0 = \left\langle y-z, y-z \right\rangle = \|y-z\|^2\). Значит, \(y-z = 0\) и \(z=y\)
+\\
+
+\noindent\textit{Равенство норм.} Из КБШ имеем \(\forall x \in H \left(|f(x)| = |\left\langle y, x \right\rangle| \leqslant \|y\| \cdot \|x\| \right)\), откуда по определению нормы функционала получаем \(\|f\| \leqslant \|y\|\). Также так как \(y \in H\), то \[\|y\|^2 = \langle y, y \rangle = f(y) = |f(y)| = \|f(y)\| \leqslant \|f\| \cdot \|y\|.\] Значит, \(\|y\| \leqslant \|f\|\), и \(\|f\| = \|y\|\).
+\end{proof}
+
+\begin{note}
+Таким образом, существует изоморфизм между пространствами $H$ и $H^*$
+\end{note}

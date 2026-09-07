@@ -1,0 +1,196 @@
+\subsection{Немного о симплектических структурах.}
+\begin{definition}
+    Рассмотрим отображение $w: \R^n \cdot \R^n \to \R$.
+    Будем называть $w$ внешней 2-формой если для него выполнены следующие условия:
+    \begin{itemize}
+        \item $w$ -- полилинейное отображение.
+        \item $\forall x, y \in \R^n \hookrightarrow w(x, y) = -w(y, x)$.
+    \end{itemize}
+\end{definition}
+\begin{definition}
+    Будем говорить что внешняя 2-форма $w$ является невырожденной если $\forall x \in \R^n \  \exists y \in \R^n$ такой, что $w(x, y) \neq 0$.
+\end{definition}
+\begin{definition}
+    Будем говорить что два вектора косоортогональны, если $w(x, y) = 0$.
+\end{definition}
+\begin{note}
+    Нетрудно заметить, что всякий вектор косоортогонален сам себе.
+\end{note}
+\begin{definition}
+    Будем называть симплектическим векторным пространством $S\R^{2m}$ пространство $\R^{2m}$ вместе с невырожденной внешней 2-формой $w$ на нём.
+\end{definition}
+Рассмотрим $l_{2k} = (f_1, \ldots, f_k; f_{m + 1}, \ldots, f_{m + k})$ -- набор линейно-независимых векторов из $S\R^{2m}$ таких, что 2-форма $w$ принимает на них значения
+\[
+    w(f_i, f_j) =
+    \begin{cases}
+        1, & i \leq k \wedge j = m + i \\
+        -1, & j \leq k \wedge i = m + j \\
+        0, & \text{ иначе}.
+    \end{cases}
+\]
+\begin{definition}
+    $l_{2m}$ будем называть симплектическим базисом в $S\R^{2m}$.
+\end{definition}
+\begin{theorem}[О корректности]
+    Всякое симплектическое пространство $S\R^{2m}$ имеет симплектический базис; в качестве первого вектора этого базиса может быть выбран произвольный ненулевой вектор.
+\end{theorem}
+\begin{proof}
+    Пусть $x_1$ -- произвольный вектор из $S\R^{2m} = (\R^{2m}, w)$.
+    Поскольку $w$ -- невырождена, то $\exists y \in \R^{2m}$ такой, что $w(x_1, y) \neq 0$.
+    Пусть $x_{m + 1} = \dfrac{y}{w(x_1, y)}$.
+    Тогда верно следующее:
+    \[
+        w(x_1, x_{m + 1}) = -w(x_{m + 1}, x_1) = 1.
+    \]
+    Пусть $V = \langle x_1, x_{m + 1} \rangle$ -- подпространство, порождённое $x_1$ и $x_{m + 1}$.
+    Рассмотрим $V^\perp$.
+    Оно определяется при помощи двух линейных уравнений:
+    \[
+        w(x_1, y) = 0, \quad w(x_{m + 1}, y) = 0
+    \]
+    А значит имеет размерность $2m - 2$.
+    Ограничим форму $w$ на $V^\perp$.
+    Теперь повторим те же рассуждения в пространстве $V^\perp$ и за некоторое конечное число шагов придём к успеху.
+\end{proof}
+\begin{note}
+    В доказательстве предыдущей теоремы под <<ортогональным дополнением>> подразумевалось косоортогональное дополнение.
+    В силу линейной независимости $x_1$ и $x_{m + 1}$ на каждом шаге переход (и само определение ортогонального дополнения) был корректен: если вектор $v = \alpha x_1 + \beta x_{m + 1}$ и $w(x_1, v) = 0 \wedge w(x_{m + 1}, v) = 0$, то по линейности $\alpha v(x_1, x_{m + 1}) = 0$ и $\beta v(x_{m + 1}, x_1) = 0 \Ra \alpha = \beta = 0$.
+\end{note}
+\begin{note}
+    По сути утверждение (как и сам алгоритм построения симплектического базиса) аналогичны утверждению о существовании ортонормированного базиса в конечномерном евклидовом пространстве (и, соответственно, алгоритму Грама-Шмидта).
+\end{note}
+\begin{definition}
+    Вектора $f_i$ и $f_{m + i}$ симплектического базиса будем называть сопряжёнными.
+\end{definition}
+\begin{note}
+    В симплектическом базисе матрица кососкалярного произведения (то есть матрица Грама $\{f_i\}_{i = 1}^{2m}: J = (w(f_i, f_j))_{i, j = 1, 1}^{2m, 2m}$) имеет вид
+    \[
+        J = \begin{pmatrix*}
+                O & I_m \\ -I_m & O
+        \end{pmatrix*}.
+    \]
+    И тогда для $x, y \in S\R^{2m}$ таких что $x = \sum\limits_{i} a^i f_i$ и $y = \sum\limits_{j} b^{j} f_j$ значение формы на них вычисляется как
+    \[
+        w(x, y) = \bt{a} J \bt{b}^T.
+    \]
+\end{note}
+\begin{note}
+    $J$ называется симплектической единицей и имеет следующие свойства:
+    \begin{itemize}
+        \item $\det J = 1$.
+        \item $J^T = J^{-1} = -J$.
+        \item $J^2 = -I_{2m}$.
+    \end{itemize}
+\end{note}
+\begin{definition}
+    Рассмотрим линейное преобразование симплектического пространства $B: S\R^{2m} \to S\R^{2m}$.
+    Будем называть его симплектическим если оно сохраняет кососкалярное произведение $w$:
+    \[
+        \forall x, y \in S\R^{2m} \hookrightarrow w(Bx, By) = w(x, y).
+    \]
+    В симплектическом базисе это условие записывается следующим образом:
+    \[
+        \forall x, y \in S\R^{2m} \hookrightarrow x^{T}B^T J B y = x^T J y.
+    \]
+    Или же, эквивалентно:
+    \[
+        B^{T}J B = J.
+    \]
+\end{definition}
+\begin{note}
+    Симплектические преобразования $2m$-мерного пространства $S\R^{2m}$ образуют группу $Sp(2m, \R)$.
+\end{note}
+\begin{theorem}
+    Симплектическое преобразование переводит симплектический базис в симплектический базис
+\end{theorem}
+\begin{proof}
+    Очевидно.
+\end{proof}
+\begin{reminder}
+    Пусть $U \subset \R^n, V \subset \R^m$~---~ открытые множества. Будем говорить, что $U$ и $V$ диффеоморфны, если существует диффеоморфизм $F$: $U \mapsto V$, то есть $F$~---~взаимооднозначное отображение $U$ на $V$, такое что $F \in C^1(U, V)$ и  $F^{-1} \in C^1(V, U)$. Если требовать именно непрерывную дифференцируемость, то такой диффеоморфизм называется гладким
+\end{reminder}
+\begin{definition}
+    Пусть $\Phi: S\R^{2m} \to S\R^{2m}$ -- диффеоморфизм евклидовых пространств.
+    Будем называть его симплектическим, если $D\Phi$ -- симплектическое преобразование в каждой точке пространства.
+\end{definition}
+\subsection{Первые интегралы и скобка Пуассона.}
+\begin{definition}
+    Пусть есть некоторая система канонически-сопряжённых координат $(\bt{q}, \bt{p})$.
+    Скобкой Пуассона двух функций $\phi_1$ и $\phi_2$ будем называть функцию $\{\phi_1, \phi_2\}$, определяемую как
+    \[
+        \{\phi_1, \phi_2\} = \partial_{\bt{p}} \phi_1 \cdot \partial_{\bt{q}} \phi_2 - \partial_{\bt{q}} \phi_2 \cdot \partial_{\bt{p}} \phi_1,
+    \]
+    где $\partial_{\bt{p}} = \dfrac{\partial}{\partial \bt{p}}$ и $\partial_{\bt{q}} = \dfrac{\partial}{\partial \bt{q}}$.
+\end{definition}
+\begin{note}
+    Пусть есть некоторая гамильтонова система и функция $\phi(\bt{q}, \bt{p}, t)$. Тогда
+    \begin{multline*}
+        \dfrac{d}{dt}\phi = \partial_t \phi + \dfrac{\partial \phi}{\partial \bt{q}} \dot{q} + \dfrac{\partial \phi}{\partial \bt{p}} \dot{p} = \\ = \partial_t \phi + \partial_{\bt{q}}\phi \cdot \partial_{\bt{p}} H - \partial_{\bt{p}} \phi \cdot \partial_{\bt{q}} H = \partial_t \phi + \begin{pmatrix*} \partial_{\bt{q}} \phi & \partial_{\bt{p}} \phi
+        \end{pmatrix*} \begin{pmatrix*} O & I \\ -I & O \end{pmatrix*} \begin{pmatrix*} \partial_{\bt{q}} H \\ \partial_{\bt{p}} H
+        \end{pmatrix*} = \\ = \partial_t \phi + \{H, \phi\}.
+    \end{multline*}
+\end{note}
+\begin{theorem}
+    Следующие свойства эквивалентны:
+    \begin{itemize}
+        \item $\phi$ -- первый интеграл гамильтоновой системы
+        \item $\partial_t \phi + \{H, \phi\} = 0$.
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Очевидно в силу предыдущего замечания.
+\end{proof}
+\begin{corollary}
+    Скобка Пуассона имеет следующие свойства:
+    \begin{itemize}
+        \item $\{\phi_1, \phi_2\} = -\{\phi_2, \phi_1\}$.
+        \item Тождество Якоби: если $\phi, \psi, \theta$ -- функции, то
+        \[
+            \{\{\phi_1, \phi_2\}, \phi_3\} + \{\{\phi_3, \phi_1\}, \phi_2\} + \{\{\phi_2, \phi_3\}, \phi_1\} = 0.
+        \]
+        \item Тождество Лейбница:
+        \[
+            \{\phi_1 \phi_2, \phi_3\} = \phi_1 \{\phi_2, \phi_3\} + \{\phi_1, \phi_3\}\phi_2.
+        \]
+    \end{itemize}
+\end{corollary}
+\begin{theorem}[Якоби-Пуассон]
+    Если есть некоторая гамильтонова система $H$ и $\phi_1, \phi_2$ -- её первые интегралы то $\{\phi_1, \phi_2\}$ -- тоже первый интеграл.
+\end{theorem}
+\begin{proof}
+    Покажем это при помощи тупого счёта:
+    \begin{multline*}
+        \dfrac{d}{dt}\{\phi_1, \phi_2\} = \partial_t\{\phi_1, \phi_2\} + \{H, \{\phi_1, \phi_2\}\} = \partial_t \{\phi_1, \phi_2\} - \{\{\phi_1, \phi_2\}, H\} = \\ = \partial_t \{\phi_1, \phi_2\} + \{\{H, \phi_1\}, \phi_2\} + \{\{\phi_2, H\}, \phi_1\} = \partial_t \{\phi_1, \phi_2\} + \{ -\partial_t \phi_1, \phi_2\} + \{\partial_t \phi_2, \phi_1\} = \\ = \partial_t \{\phi_1, \phi_2\} - (\{\partial \phi_1, \phi_2\} + \{\phi_1, \partial_t\phi_2\}) = 0.
+    \end{multline*}
+\end{proof}
+\subsection{Первые интегралы и понижение порядка в гамильтоновых системах.}
+Пусть в паре сопряжённых канонических переменных $(q_k, p_k)$ одна из них является циклической (без ограничения общности -- $q_k$). Тогда $p_k(t) = const$, поскольку $\partial_{q_k}H = 0$.
+И, тогда, $\dot{q}_k = \partial_{p_k}H = \phi(\bt{q}, \bt{p})$.
+Но в этой системе $p_k$ -- константа и нет $q_k$ (поскольку она является циклической), а следовательно система уравнений понижается сразу на 2 порядка.
+После $q_k$ может быть проинтегрировано в квадратурах. \\
+Пусть система является обобщённо-консервативной (то есть $\partial_t H = 0$):
+\[
+    H = H(\bt{q}, \bt{p}) = h = const
+\]
+Пусть, без ограничения общности, $\partial_{p_1}H \neq 0$.
+Тогда $p_1 = -K(q_1, \ldots, q_m, p_1, \ldots, p_m, h)$ и, беря $q_1$ как новую независимую переменную, мы получаем:
+\[
+    \dfrac{d q_k}{d q_1} = \dfrac{\partial_{p_k} H}{\partial_{p_1} H}, \quad \dfrac{d p_k}{d q_1} = - \dfrac{\partial_{q_k} H}{\partial_{p_1} H}.
+\]
+Это можно записать как:
+\begin{equation*}
+    \begin{cases}
+        H(q_1, \ldots, q_m, -K, p_2, \ldots, p_m) = h \\
+        \partial_{q_k} H - \partial_{p_1} H \cdot \partial_{q_k} K = 0 \\
+        \partial_{p_k} H - \partial_{p_1} H \cdot \partial_{p_k} K = 0.
+    \end{cases}
+\end{equation*}
+И таким образом получаются уравнения Уиттекера:
+\begin{equation*}
+    \begin{cases}
+        \dfrac{d q_k}{d q_1} = \partial_{p_k} K \\
+        \dfrac{d p_k}{d q_1} = - \partial_{q_k} K \\
+        \ldots
+    \end{cases}
+\end{equation*}
+Они имеют порядок на 2 меньше и после (в случае) их разрешения движение изначальной системы можно найти интегрированием в квадратурах. \\

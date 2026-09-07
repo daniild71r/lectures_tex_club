@@ -1,0 +1,186 @@
+\subsection*{Основные определения и интегралы}
+\begin{definition}
+	Пусть $\varepsilon > 0$, $z_0 \in \C$. Множество $B_\varepsilon(z_0) := \{z \in \C: |z - z_0| < \varepsilon\}$ называется \textit{$\varepsilon$-окрестностью} точки $z_0$.
+\end{definition}
+
+
+\begin{definition}
+	\textit{Расширенной комплексной плоскостью} называется множество вида $\overline{\C} := \C \cup \{\infty\}$, где $\infty$ "--- объект, называемый \textit{бесконечно удаленной точкой}.  
+ \\
+ Считается также, что $B_\varepsilon(\infty) := \{z \in \C: |z| > \varepsilon\} \cup \{\infty\}$ для любого $\varepsilon > 0$.
+\end{definition}
+
+\begin{definition}
+	Пусть $\varepsilon > 0$, $z_0 \in \overline{\C}$. Множество $\mathring B_\varepsilon(z_0) := B_\varepsilon(z_0) \backslash \{z_0\}$ называется \textit{проколотой $\varepsilon$-окрестностью} точки $z_0$.
+\end{definition}
+
+\begin{definition}
+	\textit{Кривой} $\gamma$ на комплексной плоскости называется непрерывное отображение отрезка $[a, b] \subset \R$ в $\C$. 
+ \end{definition}
+ \begin{definition} \textit{Параметризацией} кривой $\gamma$ называется соответствующая 	функция $\sigma(t) = \xi(t) + i\eta(t)$, $t \in [a, b]$.
+ \end{definition}
+  \begin{definition} \textit{Носителем} кривой $\gamma$ называется множество $M(\gamma) := \sigma([a, b])$. 
+\end{definition}
+
+\begin{note}
+	Рассмотрим кривые $\gamma_1$ и $\gamma_2$ с параметризациями $z = \sigma_1(t)$, $t \in [a_1, b_1]$ и $\widehat{z}= \sigma_2(t)$, $t \in [a_2, b_2]$. Пусть существует $f : [a_1, b_1] \to [a_2, b_2]$ "--- непрерывная строго монотонно возрастающая функция такая, что $\sigma_2(f(t)) \equiv \sigma_1(t)$ на $[a_1, b_1]$. Тогда естественно считать, что кривые $\gamma_1, \gamma_2$ совпадают, то есть $\gamma_1 = \gamma_2$.
+\end{note}
+
+\begin{definition}
+	Пусть $\gamma$ "--- кривая с параметризацией $z = \sigma(t)$, $t \in [a, b]$. Кривая называется:
+	\begin{itemize}
+		\item \textit{Простой}, если параметризация $\sigma$ инъективна
+		\item \textit{Замкнутой}, или \textit{контуром}, если $\sigma(a) = \sigma(b)$
+		\item Контур простой, если сужение $\sigma|_{[a, b)}$ инъективно
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	Зафиксируем кривую $\gamma$ и рассмотрим кривую $\gamma^{-1}$ с параметризацией $z = \sigma(-t)$, $t \in [-b, -a]$. Тогда \textit{конкатенация} этих кривых $\gamma\gamma^{-1}$ "--- замкнутая, но не простая.
+\end{example}
+
+\begin{definition}
+	Пусть $\gamma$ "--- кривая с параметризацией $z = \sigma(t)$, $t \in [a, b]$, и зафиксировано $\{t_k\}_{k = 0}^n$ "--- \textit{разбиение отрезка} $[a, b]$, то есть $a = t_0 < t_1 < \dotsb < t_n = b$. Кривая, заданная сужением $\sigma|_{[t_{k-1}, t_k]}$, $k \in \{1, \dotsc, n\}$, называется \textit{дугой} кривой $\gamma$ и обозначается через $\gamma_k$. Говорят, что $\gamma$ \textit{разбита на дуги $\gamma_1, \dotsc, \gamma_n$, или \textit{составлена} из дуг $\gamma_1, \dotsc, \gamma_n$}.
+\end{definition}
+
+\begin{definition}
+	Кривая $\gamma$ называется \textit{гладкой}, если она имеет параметризацию вида $z = \sigma(t) = \xi(t) + i\eta(t)$, $t \in [a, b]$, где $\xi, \eta \in C^{1}[a, b]$ и для всех $t \in [a, b]$ выполнено $\sigma'(t) \ne 0$, \textit{кусочно-гладкой}, если ее можно разбить на конечное число гладких дуг.
+\end{definition}
+
+\begin{note}
+	В предыдущих курсах было доказано, что если $\gamma$ "--- кусочно-гладкая кривая, то она \textit{спрямляема}, то есть имеет конечную длину $|\gamma|$, которую можно вычислить по следующей формуле:
+	\[|\gamma| = \int_a^b|\sigma'(t)|dt\]
+\end{note}
+
+\begin{definition}
+	Множество $E \subset \overline\C$ называется \textit{открытым}, если каждая точка $z \in E$ содержится в нем вместе с некоторой окрестностью $B_\varepsilon(z)$.
+\end{definition}
+
+\begin{definition}
+	Пусть $z_0 \in \overline{\C}$, $E \subset \overline{\C}$. Точка $z_0$ называется \textit{предельной точкой} множества $E$, если любая ее проколотая окрестность $\mathring B_\varepsilon(z)$ содержит точку из $E$, и \textit{граничной точкой} множества $E$, если любая ее окрестность $B_\varepsilon(z)$ содержит и точку из $E$, и точку не из $E$. \textit{Границей} множества $E$ называется множество $\partial E$ всех ее граничных точек.
+\end{definition}
+
+\begin{definition}
+	Множество $E \subset \C$ называется \textit{линейно связным}, если для любых точек $z_1, z_2 \in E$ существует кривая $\gamma$ с параметризацией $z = \sigma(t)$, $t \in [a, b]$, такая, что $\sigma(a) = z_1$, $\sigma(b) = z_2$ и $M(\gamma) \subset E$.
+\end{definition}
+
+\begin{definition}
+	Непустое множество $G \subset \overline{\C}$ называется \textit{областью}, если выполнены следующие условия:
+	\begin{enumerate}
+		\item Множество $G$ открыто
+		\item Множество $G \bs \{\infty\}$ линейно связно
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Из предыдущих курсов известно, что, например, множества $B_\varepsilon(z)$ и $\mathring B_\varepsilon(z)$ являются областями для любых $z \in \overline\C$ и $\varepsilon > 0$.
+\end{note}
+
+\begin{definition}
+	Множество $E \subset \C$ называется \textit{ограниченным}, если существует $C > 0$ такое, что для любого $z \in E$ выполнено $|z| < C$.
+\end{definition}
+\begin{definition} Ограниченная область $D \subset \C$ - \textit{элементарная}, если $\partial D$ является носителем простого кусочно-гладкого контура
+\end{definition}
+\begin{definition}
+	Область $G \subset \overline \C$ называется \textit{односвязной}, если для любой элементарной области $D$ верно, что если $\partial D \subset G$, то либо $D \subset G$, либо $\overline{\C} \backslash D \subset G$ 
+\end{definition}
+\begin{definition}
+	Пусть $\gamma$ "--- кусочно-гладкая кривая, $z = \sigma(t)$, $t \in [a, b]$, "--- её параметризация, и функция $f$ такова, что композиция $f\circ\sigma$ непрерывна на $[a, b]$.
+	\begin{itemize}
+		\item \textit{Интегралом первого рода} функции $f$ по кривой $\gamma$ называется следующая величина:
+		\[\int_{\gamma}f(z)|dz| := \int_a^bf(\sigma(t))|\sigma'(t)|dt\]
+		\item \textit{Интегралом второго рода} функции $f$ по кривой $\gamma$ называется следующая величина:
+		\[\int_{\gamma}f(z)dz := \int_a^bf(\sigma(t))\sigma'(t)dt\]
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Если $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, то, как нетрудно убедиться, выполнены следующие равенства:
+	\begin{gather*}
+		\int_{\gamma}f(z)|dz| = \int_\gamma u(x, y)ds + i\int_\gamma v(x, y)ds
+		\\
+		\int_{\gamma}f(z)dz = \int_\gamma udx - vdy + i\int_\gamma vdx + udy
+	\end{gather*}
+\end{note}
+
+\begin{theorem}
+	Пусть для кривой $\gamma$ и функций $f, g$ выполнены условия в определении интеграла первого и второго рода. Тогда выполнены следующие свойства:
+	\begin{enumerate}
+		\item (\textit{Линейность}) Если $\alpha, \beta \in \C$, то:
+		\[\int_{\gamma}(\alpha f+\beta g)dz = \alpha\int_\gamma fdz + \beta\int_\gamma gdz\]
+		
+		\item (\textit{Аддитивность}) Если $\gamma = \gamma_1\gamma_2$, то:
+		\[\int_{\gamma}fdz = \int_{\gamma_1}fdz + \int_{\gamma_2}fdz\]
+		
+		\item (\textit{Независимость от параметризации}) Если $\phi : [\alpha, \beta] \to [a, b]$ "--- кусочно-гладкая строго возрастающая функция, то:
+		\[\int_{\gamma}f(z)dz := \int_a^bf(\sigma(t))\sigma'(t)dt = \int_\alpha^\beta f(\sigma(\phi(u)))\sigma'(\phi(u))\phi'(u)du\]
+		
+		\item Аналогичные пунктам $(1), (2), (3)$ свойства выполнены для интегралов первого рода
+		
+		\item Если $\gamma^{-1}$ "--- кривая с параметризацией $z = \sigma(-t)$, $t \in [-b, -a]$, то:
+		\[\int_{\gamma^{-1}}f|dz| = \int_\gamma f|dz|,\text{ но }\int_{\gamma^{-1}}fdz = -\int_\gamma fdz\]
+		
+		\item \label{int-estimation-max} Если $M := \max\limits_{z \in M(\gamma)}|f(z)|$, $|\gamma|$ "--- длина кривой $\gamma$, то:
+		\[\left|\int_\gamma fdz\right| \le \int_\gamma|f||dz| \le M|\gamma|\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Справедливость всех свойств, кроме последнего, непосредственно следует из справедливости соответствующих свойств вещественных интегралов. Докажем последнее свойство. Если $I := \int_\gamma fdz = 0$, то утверждение тривиально. Пусть теперь это не так, тогда $I = |I|e^{i\theta}$ для некоторого $\theta \in \R$, откуда $|I| = Ie^{-i\theta}$. Зафиксируем параметризацию $z = \sigma(t)$, $t \in [a, b]$, тогда:
+	\begin{multline*}
+		|I| = \int_{a}^be^{-i\theta} f(\sigma(t))\sigma'(t)dt = \int_{a}^b\re\left(e^{-i\theta} f(\sigma(t))\sigma'(t)\right)dt \le \\
+		\le \int_{a}^b\left|e^{-i\theta} f(\sigma(t))\sigma'(t)\right|dt = \int_{a}^b|f(\sigma(t))||\sigma'(t)|dt = \int_\gamma |f||dz|
+	\end{multline*}
+
+	Таким образом, первое неравенство уже получено, а второе следует из свойств вещественных интегралов.
+\end{proof}
+
+\bigskip
+\subsection*{Функциональные ряды}
+
+Пусть $E \subset \C$. На $E$ заданы $f_n(z), n = 0,1,...$. Будем рассматривать последовательность $\{f_n\}$ и ряд $\sum\limits_{n=0}^{\infty}f_n(z)$
+\begin{definition}
+    $f_n \rightrightarrows f$ равномерно на $E$, если
+    $$\forall \varepsilon > 0 \exists N : \ \forall n \geq N, \forall z \in E \left( |f_n(z) - f(z)| < \varepsilon\right)$$
+\end{definition}
+\begin{definition}
+$S_n = \sum\limits_{k=0}^{n}f_k(z) $ - частичная сумма ряда. Если $S_n$ сходится поточечно(равномерно) к $S$ на $E$, то говорим, что ряд $\sum\limits_{n=0}^{\infty}f_n(z)$ сходится поточечно(равномерно) к $S$ на $E$ и пишем $S$ = $\sum\limits_{k=0}^{\infty}f_k(z)$
+\end{definition}
+\begin{proposition}[из МА]\label{uniform-convergence-ma}
+ Пусть 
+ \begin{enumerate}
+ \item $f_n(z) \in C(E)$
+ \item $f_n(z) \rightrightarrows f(z)$ равномерно на $E$
+ \end{enumerate}
+ Тогда $f \in C(E)$
+\end{proposition}
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $\gamma$ "--- кусочно-гладкая кривая
+		\item Функции $f_0, f_1, \dotsc$ непрерывны на $M(\gamma)$ 
+		\item $f_n \rightrightarrows f$ равномерно на $M(\gamma)$ 
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\int_\gamma f_ndz \xrightarrow[n \to \infty]{} \int_\gamma fdz\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $\gamma$: $z$ = $\sigma(t)$, $\alpha \leq t \leq \beta$. В силу того, что  $f_n(\sigma(t)) \in C[\alpha, \beta]$, для любого \(n\) определён
+ \[\int_\gamma f_ndz \]  
+ В силу утверждения \ref{uniform-convergence-ma} $f(z) \in C(M(\gamma))$, а значит существует \[\int_\gamma fdz \]
+ Зафиксируем  $\varepsilon > 0$. Тогда $\exists N : \ \forall n \geq N \max\limits_{z \in M(\gamma)} \left|f_n(z) - f(z) \right| < \varepsilon$. Значит, \[\left| \int_\gamma f_ndz - \int_\gamma fdz \right| = \left|\int_\gamma (f_n - f)dz \right| \leqslant \text{(6 св-во)} \leqslant \max\limits_{z \in M(\gamma)} \left|f_n(z) - f(z) \right| \cdot \left| \gamma \right| < \varepsilon |\gamma|\]
+\end{proof}
+
+\begin{note}
+	Переформулируем утверждение выше для случая функциональных рядов. Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $\gamma$ "--- кусочно-гладкая кривая
+		\item Функции $f_0, f_1, \dotsc$ непрерывны на $M(\gamma)$ 
+		\item $ \sum\limits_{k=0}^{\infty}f_k(z)$ сходится равномерно на $M(\gamma)$ 
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\int_\gamma \left(\sum\limits_{n=0}^\infty f_n\right)dz = \sum\limits_{n=0}^\infty \left(\int_\gamma f_ndz\right)\]
+\end{note}

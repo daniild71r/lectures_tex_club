@@ -1,0 +1,51 @@
+\subsection{Ковариационная функция}
+
+\begin{definition} Пусть $(X_t, t \in T)$~--- случайный процесс. Функция
+    $$a(t) = \E X_t, \; t\in T$$
+    называется \textit{функцией среднего процесса} $X_t$. \\
+    Функция
+    $$R(s, t) = cov(X_s, X_t), \; s,t \in T$$
+    называется \textit{ковариационной функцией процесса} $X_t$. 
+\end{definition} 
+
+\begin{note} 
+    Конечномерное распределение гауссовского процесса определяется этими двумя функциями.
+\end{note} 
+
+\begin{definition} Функция $r(s, t)$, $s, t \in T$~--- \textit{неотрицательно определенная} (в действительном смысле), если 
+    $$
+    \forall n \in \N \ \forall t_1, \ldots, t_n \in T \ \forall x_1, \ldots, x_n \in \R \ \sum\limits_{i, j = 1}^n r(t_i, t_j) x_i x_j \geq 0
+    $$
+\end{definition}
+
+\begin{statement}
+    Ковариационная функция любого случайного $L^2$-процесса ($\E X_t^2 < \infty$) является симметричной и неотрицательно определенной.
+\end{statement}
+
+\begin{proof}
+    Пусть $X_t$~--- $L^2$-процесс, а $R(s, t) = cov(X_s, X_t)$~--- ковариационная функция.
+    \begin{enumerate}
+        \item Симметрия следует из симметрии ковариации.
+        \item Докажем неотрицательную определенность. Пусть $n \in \N$, $t_1, \ldots, t_n \in T$ и $x_1, \ldots, x_n \in \R$, тогда
+        \begin{multline*}
+            \sum\limits_{i, j = 1}^n R(t_i, t_j) x_i x_j = \sum\limits_{i, j = 1}^n cov(X_{t_i}, X_{t_j}) x_ix_j = \sum\limits_{i, j = 1}^n cov(x_i \cdot X_{t_i}, x_j \cdot X_{t_j}) = \\
+            = cov\brackets{\sum\limits_{i = 1}^n x_i X_{t_i}, \sum\limits_{j = 1}^n x_j X_{t_j}} = D\brackets{\sum\limits_{i = 1}^n x_i X_{t_i}} \geq 0
+        \end{multline*}
+    \end{enumerate} 
+\end{proof}
+
+\subsection{Гаусовский процесс}
+
+\begin{definition} Случайный процесс $(X_t, t \in T)$ называется \textit{гауссовским}, если все его конечномерные распределения~---     гауссовские, т.е. $\forall n \in \N \; \forall t_1, \ldots, t_n \in T$ вектор $(X_{t_1}, \ldots, X_{t_n})$ является гауссовским.
+\end{definition}
+
+\begin{theorem}(о существовании гауссовских процессов)
+    Пусть $T$~--- некоторое множество, пусть $(a(t), t \in T)$~--- произвольная функция, а $(R(s, t), \ s, t \in T)$~--- симметричная и неотрицательно определённая на $T\times T$, тогда существует вероятностное пространство $\probspace$ и гауссовский случайный процесс $(X_t, t \in T)$ на нём такой, что $a(t)$~--- функция среднего, а $R(s, t)$~--- ковариационная функция.
+\end{theorem}
+
+\begin{proof}
+    Здесь также удобно пользоваться \hyperref[3.6.1]{следствием}. Для фиксированных элементов $t_1, \cdots, t_n \in T$ функция
+    $$\phi_{t_1, \cdots, t_n}(y) = exp(i \sum\limits_{j=1}^{n} m(t_j) y_j - \frac{1}{2} \sum\limits_{j, m \leq n} K(t_j, t_m) y_j y_m)$$
+
+    служит характеристической функцией для гауссовской меры на пространстве $\R^n$ со средним $(M(t_1), \cdots, M(t_n))$ и ковариационной матрицей $(K(t_j, t_m))$. При этом выполнено нужное условие согласованности: ограничение $\phi_{t_1, \cdots, t_n}$ на плоскости $y_m = 0$ совпадает с функцией $\phi$ для набора без точки $t_m$.
+\end{proof}

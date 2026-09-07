@@ -1,0 +1,24 @@
+Пусть $f(x) \in F[x]$ -- неразложимый. $f(x) = a_nx^n + \ldots + a_0$.
+
+Рассмотрим $K = F[x]/(f(x))$. Это поле.
+
+\textit{Поясним, почему}: если $M$ -- кольцо главных идеалов, то $M/I$ либо не область целостности, либо поле. Это следует из того, что если $M/I$ -- область целостности, то $I$ -- простой $\Rightarrow$ максимальный $\Rightarrow M/I$ -- поле.\\
+
+Заметим, что верно несколько следующих утверждений:
+
+\begin{itemize}
+    \item Если $I$ -- идеал в $F[x]$, то $[z] = z + I$, и тогда $x \in [z] \Leftrightarrow x = z + i, i \in I$
+    \item $a[y] = [ay], a \in F$
+    
+    \Proof
+    $z \in a[y] \Leftrightarrow \frac{z}{a} \in [y] \Leftrightarrow \frac{z}{a} = y + i \Leftrightarrow z = ay + ai (ai \in I) \Leftrightarrow z \in [ay]$
+    \EndProof
+    
+    \item $[z + y] = [z] + [y]$
+    
+    \Proof
+    $[z] + [y] = z + I + y + I = z + y + I + I = z + y + I = [z + y]$    
+    \EndProof
+\end{itemize}
+
+Тогда если рассмотреть канонический эпиморфизм $\pi : F[x] \to K$, то получим, что $0 = [f(x)] = [a_nx^n + \ldots + a_0] = a_n[x]^n + \ldots + a_0 = f([x]) \Rightarrow [x]$ -- корень $f(x)$ в $K$. 

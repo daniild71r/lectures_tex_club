@@ -1,0 +1,219 @@
+\subsection{Канонические преобразования.}
+\begin{definition}
+    Будем называть каноническими преобразованиями координат такие замены координат, что они всякую гамильтонову систему переводят в гамильтонову систему.
+\end{definition}
+\begin{theorem}
+    Канонические уравнения Гамильтона ковариантны к автономным симплектическим диффеоморфизмам.
+\end{theorem}
+\begin{proof}
+    Пусть есть некоторая гамильтонова система с $H$ в пространстве с каноническими координатами $\bt{x} = (\bt{q}, \bt{p})$.
+    Тогда канонические уравнения Гамильтона записываются вот так:
+    \[
+        \dot{\bt{x}} = J\partial_{\bt{x}} H.
+    \]
+    И есть симплектический диффеоморфизм $\phi: (\bt{q}, \bt{p}) \to (\tilde{\bt{q}}, \tilde{\bt{p}})$. \\
+    Покажем что $\tilde{H} = H(\tilde{\bt{x}}, t)$ является гамильтонианом после замены координат:
+    \begin{equation*}
+        \dfrac{d \tilde{\bt{x}}}{dt} = D\phi \dfrac{d \bt{x}}{dt} = D\phi J \partial_{\bt{x}} H = \\ = D\phi J (\partial_{\bt{\tilde{x}}}^T \tilde{H} D\phi)^T = D\phi J (D\phi)^T \partial_{\bt{\tilde{x}}} \tilde{H} = J \partial_{\bt{\tilde{x}}} \tilde{H}.
+    \end{equation*}
+\end{proof}
+\begin{definition}
+    Преобразование следующего вида (где $\mu \in \R \setminus \{0\}$)
+    \[
+        (\bt{q}, \bt{p}) \to (\mu \bt{q}, \pm \mu \bt{p}).
+    \]
+    Будем называть преобразованиями растяжения.
+\end{definition}
+\begin{lemma}
+    Преобразования растяжения сохраняют гамильтоновость и новым гамильтонианом будем $\tilde{H} = \pm \mu^2 H$.
+\end{lemma}
+\begin{proof}
+    Очевидно (с точностью до правильного вида гамильтониана).
+\end{proof}
+\begin{theorem}
+    Произвольное автономное каноническое преобразование может быть представлено как композиция симплектического диффеоморфизма и растяжения.
+\end{theorem}
+ Для доказательства этой теоремы сформулируем и докажем техническую лемму:
+\begin{lemma}
+    Если для некоторой матрицы $A(\bt{x})$ и всякой функции $F(\bt{x})$ существует $\Phi(\bt{x})$ такая, что
+    \[
+        \bt{a} = A\grad F = \grad \Phi,
+    \]
+    то $A = cI$.
+\end{lemma}
+\begin{proof}
+    Пусть $F$ -- произвольная (достаточно гладкая) функция.
+    Для неё по предположению $\exists \Phi$ такая что
+    \[
+        \bt{a} = A \grad F = \grad \Phi.
+    \]
+    Тогда
+    \[
+        \bt{a}^Td\bt{x} = d\Phi.
+    \]
+    Заметим, что из достаточной гладкости $\Phi$ следует и симметричность $\grad \bt{a}$ (поскольку это гессиан $\Phi$).
+    Так как $\bt{a} = A \grad F$, то
+    \[
+        \dfrac{\partial}{\partial x_i}\biggr( \sum\limits_{p = 1}^m A_{kp} \dfrac{\partial F}{\partial x_p} \biggr) = \dfrac{\partial}{\partial x_k} \biggr(\sum\limits_{p = 1}^m A_{ip}\dfrac{\partial F}{\partial x_p}\biggr).
+    \]
+    Перенесём всё в левую часть и тогда
+    \[
+        \sum\limits_{p = 1}^m \biggr(\dfrac{\partial A_{kp}}{\partial x_i} - \dfrac{\partial A_{ip}}{x_k} \biggr) \dfrac{\partial F}{\partial x_p} + \sum\limits_{p = 1}^m A_{kp}\dfrac{\partial^2 F}{\partial x_i \partial x_p} - \sum\limits_{p = 1}^m A_{ip} \dfrac{\partial^2 F}{\partial x_p \partial x_k} = 0.
+    \]
+    Теперь, заметим, что в силу произвольного выбора $F$, перед $\dfrac{\partial F}{\partial x_p}$ и $\dfrac{\partial^2 F}{\partial x_k \partial x_s}$ стоят тождественные нули. \\
+    Поскольку это верно для произвольных $i$ и $k$, то при $i \neq k \hookrightarrow A_{ik} = 0$.
+    Но, тогда, для всякого $i \neq k \hookrightarrow \dfrac{\partial A_{ki}}{\partial x_i} - \dfrac{\partial A_{ii}}{\partial x_k} = 0$ из чего, в силу того что $A_{ki} \equiv 0$, следует $\dfrac{\partial A_{ii}}{\partial x_k} = 0$ при $k \neq i$.
+    Во второй и третьей сумме есть слагаемое при $\dfrac{\partial^2 F}{\partial x_i \partial x_k}$, равное $A_{kk} - A_{ii}$.
+    Но, тогда $\forall i \hookrightarrow A_{ii} = c(\bt{x})$ (и, при это, $\forall k \hookrightarrow \dfrac{\partial c}{\partial x_k}$ = 0), и тогда $c = const$.
+    Поэтому $A = cI$, что и требовалось показать.
+\end{proof}
+Теперь докажем теорему.
+\begin{proof}
+    Пусть $\phi: (\bt{q}, \bt{p}) \to (\tilde{\bt{q}}, \tilde{\bt{p}})$ -- каноническое преобразование.
+    Пусть $H \mapsto \tilde{H}$ -- новый гамильтониан.
+    Запишем уравнения Гамильтона (в старой и новой параметризациях):
+    \[
+        \dfrac{d\tilde{\bt{x}}}{dt} = J \grad_{\tilde{\bt{x}}} \tilde{H}, \quad \dfrac{d \bt{x}}{dt} = J\grad_{\bt{x}} H.
+    \]
+    Поскольку
+    \[
+        \dfrac{d \tilde{\bt{x}}}{dt} = D\phi \dfrac{d\bt{x}}{dt} = D\phi J \grad_{\bt{x}} H.
+    \]
+    И
+    \[
+        \grad_{\tilde{\bt{x}}} \tilde{H} = (D^{-1}\phi)^T \grad_{\bt{x}} \tilde{H}.
+    \]
+    То
+    \[
+        J(D^{-1} \phi)^T \grad_{\bt{x}} \tilde{H} = D\phi J \grad_{\bt{x}} H.
+    \]
+    Приведём к более удобному виду:
+    \[
+        \grad_{\bt{x}}\tilde{H} = D^T\phi J^T D\phi J \grad_{\bt{x}} H.
+    \]
+    А значит по предыдущей лемме
+    \[
+        D^T \phi J^T D\phi J = cI.
+    \]
+    Таким образом, каноничность преобразования эквивалентна следующим условиям на матрицу Якоби преобразования:
+    \[
+        D^T \phi J D\phi = cJ.
+    \]
+    Из чего немедленно следует утверждение теоремы (И действительно: мы можем разложить $\phi$ на композицию растяжения на $1/\sqrt{|c|}$ -- быть может, в случае отрицательного знака $c$ необходимо по обобщённым импульсам взять знак <<$-$>> -- и получившееся $\psi$ будет иметь матрицу Якоби, сохраняющую симплектическую единицу -- что является необходимым и достаточным условием на симплектичность диффеоморфизма.) \\
+    В частности, несложно заметить, что $\tilde{H} = cH$.
+\end{proof}
+\subsection{Автономизация гамильтоновой динамической системы.}
+    Рассмотрим следующую замену переменных:
+    \[
+        \phi: \bt{x} = (\bt{q}, \bt{p}) \mapsto (\bt{Q}, \bt{P}) = \bt{X}.
+    \]
+    Где $\bt{Q} = (\bt{q}, t)$ и $\bt{P} = (\bt{P}, h)$ ($t, h$ -- новая сопряжённая пара) и есть новая независимая переменная $\tau$.
+    В качестве нового гамильтониана возьмём $\tilde{H} = h + H$.
+    Поскольку
+    \[
+        \dfrac{dt}{d\tau} = 1 = \dfrac{\partial \tilde{H}}{\partial h}.
+    \]
+    То верно и следующее
+    \[
+        \dfrac{d \bt{x}}{d\tau} = \dfrac{d \bt{x}}{dt} = J\grad_{\bt{x}} H = J\grad_{\bt{x}} \tilde{H}.
+    \]
+    И, последнее уравнение
+    \[
+        \dfrac{d h}{d\tau} = - \dfrac{\partial \tilde{H}}{\partial t} = -\dfrac{\partial H}{\partial \tau}.
+    \]
+    Сразу даёт первый интеграл $\tilde{H} = H + h$ (и действительно: <<новое время>> -- циклическое, а следовательно новый гамильтониан сохраняется). \\
+    Теперь, если мы рассмотрим неавтономный симплектический диффеоморфизм $\phi(\bt{x}, t)$, то мы можем автономизировать систему и получить в ней уже автономный диффеоморфизм.
+    По теореме из предыдущего пункта для него существует производящая функция $\tilde{S}(\bt{Q}, \tilde{\bt{P}})$.
+    Пусть она имеет следующий вид:
+   \[
+        \tilde{S} = \tilde{h}t + S.
+    \]
+    Тогда
+    \[
+        \bt{p} = \grad_{\bt{q}} S, \quad \tilde{\bt{q}} = \grad_{\tilde{\bt{p}}} S, \quad h = \tilde{h} + \dfrac{\partial S}{\partial t}, \quad \tilde{t} = t.
+    \]
+    И новый гамильтониан
+    \[
+        \tilde{H} = \biggr[\tilde{h} + \dfrac{\partial S}{\partial t}\biggr] + H(\bt{q}, \grad_{\bt{q}} S, t).
+    \]
+    Таким образом показана справедливость следующей теоремы:
+    \begin{theorem}
+        Произвольный неавтономный симплектический диффеоморфизм с производящей функцией $S(\bt{q}, \tilde{\bt{p}})$ является каноническим преобразованием, причём
+        \[
+            \tilde{H} = \dfrac{\partial S}{\partial t} + H.
+        \]
+        (Выраженный, естественно, в новых координатах).
+    \end{theorem}
+\subsection{Уравнения Гамильтона-Якоби.}
+Уравнения Гамильтона, обычно, не решаются (или крайне неудобны для решения в квадратурах).
+Поэтому, если мы видим какую-то систему, то мы хотим найти какую-нибудь замену такую, чтобы новый гамильтониан имел максимально простой вид.
+Например -- $\tilde{H} = 0$.
+Поскольку нам известно, что всякое каноническое преобразование генерируется некоторой производящей функцией, будет естественно попытаться найти её.
+В предыдущей секции было получено выражение для нового гамильтониана; подставим в него $S$, $\tilde{H} = 0$ и получим дифференциальное уравнение в частных производных:
+\[
+    \dfrac{\partial S}{\partial t} + H(\bt{q}, \grad_{\bt{q}} S, t) = 0.
+\]
+Это уравнение и называется уравнением Гамильтона-Якоби.
+Не всякое решение его нам подойдёт, но мы точно значем что подойдёт:
+\begin{definition}
+    Полным интегралом уравнения Гамильтона-Якоби будем называть $S(\bt{q}, \bt{\alpha}, t)$ такую, что
+    \begin{itemize}
+        \item $S$ -- частное решение уравнения Гамильтона-Якоби.
+        \item $\det \dfrac{\partial^2 S}{\partial \bt{q} \partial \bt{\alpha}} \neq 0$ (то есть $S$ -- производящая функция).
+    \end{itemize}
+\end{definition}
+Приведём пример:
+\begin{example}
+    Пусть $H = \dfrac{q_1 - p_2}{q_2 + p_1} e^t$.
+    Тогда уравнение Гамильтона-Якоби будет иметь вид
+    \[
+        \dfrac{\partial S}{\partial t} + \dfrac{q_1 - \dfrac{\partial S}{\partial q_2}}{q_2 + \dfrac{\partial S}{\partial q_1}} e^t = 0.
+    \]
+    Будем искать $S$ в виде
+    \[
+        S = S_0(t) + S_1(q_1) + S_2(q_2).
+    \]
+    Тогда
+    \[
+        \dfrac{\partial S_0}{\partial t} e^{-t} = \dfrac{q_1 - \dfrac{\partial S_2}{\partial q_2}}{q_2 + \dfrac{\partial S_1}{\partial q_1}}.
+    \]
+    Из независимости координат получившееся уравнение эквивалентно
+    \[
+        \begin{cases}
+            \dfrac{\partial S_0}{\partial t} e^{-t} = \alpha_t \\ \\
+            \biggr(q_2 + \dfrac{\partial S_1}{\partial q_1} \biggr) \alpha_t = q_1 - \dfrac{\partial S_2}{\partial q_2}.
+        \end{cases}
+    \]
+    Ещё раз разделяя переменные мы приходим к
+    \[
+        \begin{cases}
+            \dfrac{\partial S_0}{\partial t} = \alpha_t e^t \\ \\
+            q_2 \alpha_t + \dfrac{\partial S_2}{\partial q_2} = \alpha_1 \\ \\
+            \alpha_t \dfrac{\partial S_1}{\partial q_1} - q_1 = \alpha_1.
+        \end{cases}
+    \]
+    Отсюда путём несложного интегрирования можно получить итоговый вид производящей функции:
+    \[
+        S = \alpha_t e^t + \dfrac{1}{2\alpha_t}(\alpha_t q_2 - \alpha_1)^2 - \dfrac{1}{2\alpha_t}(q_1 + \alpha_1)^2.
+    \]
+\end{example}
+\begin{theorem}[Якоби]
+    Если $S(\bt{q}, \bt{\alpha}, t)$ -- полный интеграл уравнения Гамильтона-Якоби, то
+    \begin{itemize}
+        \item $\bt{p} = \dfrac{\partial S}{\partial \bt{q}}$ и $\bt{\beta} = \dfrac{\partial S}{\partial \bt{\alpha}}$ -- разрешимы относительно $\bt{q}$ и $\bt{p}$.
+        \item $\bt{q} = \bt{q}(\bt{\alpha}, \bt{\beta}, t)$ и $\bt{p} = \bt{p}(\bt{\alpha}, \bt{\beta}, t)$ -- уравнения движения системы. при всяких постоянных $\bt{\alpha}, \bt{\beta}$.
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Разрешимость очевидно следует из невырожденности $S$, а поскольку в новых координатах $\tilde{H} = 0$ то $\bt{\alpha} = const$ и $\bt{\beta} = const$ -- решения канонических уравнений, то мы просто их толкаем назад и всё.
+\end{proof}
+Нет общих, алгоритмических методов поиска полного интеграла уравнения Гамильтона-Якоби.
+В некоторых частных случаях можно попытаться найти $S$ в предположении о некотором конкретном виде.
+В частности, если переменные разделяются, то мы можем найти полный интеграл в виде
+\[
+    S = S_0(t, \bt{\alpha}) + S_1(q_1, \bt{\alpha}) + \ldots + S_{m}(q_m, \bt{\alpha}).
+\]
+Есть несколько случаев когда они разделяются:
+\[
+    H = H(\phi_1(q_1, p_1), \ldots \phi_n(q_n, p_n)), \quad H = H(\phi_1(q_1, p_1, \phi_2(\ldots))).
+\]

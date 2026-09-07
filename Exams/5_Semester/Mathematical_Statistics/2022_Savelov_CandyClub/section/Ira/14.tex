@@ -1,0 +1,97 @@
+Пусть $\displaystyle X$ -- наблюдение с неизвестным распределением $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \} ,\ \Theta \subset \mathbb{R}$. 
+
+\begin{definition}
+    Пара статистик $\displaystyle ( T_{1}( X),\,T_{2}( X))$ называется доверительным интервалом уровня доверия $\displaystyle \gamma $ для параметра $\displaystyle \theta $, если $\displaystyle \forall \theta \in \Theta $ выполняется
+\begin{equation*}
+    P_\theta( T_{1}( X) < \theta < T_{2}( X)) \geqslant \gamma .
+\end{equation*}
+Если равенство достигается при всех $\displaystyle \theta $, то доверительный интервал называется точным.
+\end{definition}
+\begin{note}
+    На практике используют $\displaystyle \gamma =0,9;\ 0,95;\ 0,99$.
+\end{note}
+Иногда удобно использовать односторонние доверительные интервалы вида $\displaystyle ( -\infty ,\ T_{2}( X))$ или $\displaystyle ( T_{1}( X) ,\ +\infty )$.
+
+В случае многомерного $\displaystyle \theta \in \Theta \subset \mathbb{R}^{k}$ можно определить понятие доверительного интервала для компонент вектора $\displaystyle \theta _{i}$ вектора $\displaystyle \theta =\begin{pmatrix}
+\theta _{1} & \dotsc  & \theta _{k}
+\end{pmatrix}$ и для скалярных функций $\displaystyle \tau ( \theta )$.
+\begin{definition}
+    Множество $\displaystyle S\subset \Theta $ называется доверительным множеством уровня доверия $\displaystyle \gamma $, если $\displaystyle \forall \theta \in \Theta \hookrightarrow P_{\theta }( \theta \in S( X)) \geqslant \gamma $.
+\end{definition}
+
+\textbf{Метод центральной статистики}\\
+
+
+\begin{definition}
+    Предположим, что существует известная одномерная функция $\displaystyle G( X,\theta )$, такая что ее распределение не зависит от параметра $\displaystyle \theta $. Тогда такая функция называется центральной статистикой.
+\end{definition}
+Пусть $\displaystyle \gamma _{1} ,\ \gamma _{2} \in ( 0,\ 1)$ таковы, что $\displaystyle \gamma _{2} -\gamma _{1} =\gamma $, и при $\displaystyle i=1,\, 2$ существует $\displaystyle g_{i}$ -- $\displaystyle \gamma _{i}$-квантиль $\displaystyle G( X,\ \Theta )$. Тогда $\displaystyle \forall \theta \in \Theta $
+\begin{equation*}
+    P_{\theta }( g_{1} \leqslant G( X,\ \theta ) \leqslant g_{2}) \geqslant \gamma _{2} -\gamma _{1} =\gamma .
+\end{equation*}
+Тогда $\displaystyle S( X) :=\{\theta \in \Theta :\ g_{1} \leqslant G( X,\ \theta ) \leqslant g_{2}\} \Rightarrow P_{\theta }( \theta \in S( X)) =P_{\theta }( g_{1} \leqslant G( X,\ \theta ) \leqslant g_{2}) \geqslant \gamma $, т.е. $\displaystyle S( X)$ -- доверительное множество уровня $\displaystyle \gamma $.
+\begin{example}
+$\displaystyle X_{i} \ \sim \ \mathcal{N}( \theta ,\ 1) ,\ \theta \in \mathbb{R}$. Строим доверительный интервал \ для $\displaystyle \theta $. Так как $\displaystyle \overline{X} \ \sim \ \mathcal{N}\left( \theta ,\ \frac{1}{n}\right)$, то $\displaystyle \sqrt{n}(\overline{X} -\theta ) \ \sim \ \mathcal{N}( 0,\ 1)$. Тогда $\displaystyle G( X,\ \theta ) =\sqrt{n}(\overline{X} -\theta )$ -- центральная статистика. Пусть $\displaystyle u_{p}$ -- $\displaystyle p$-квантиль стандартного нормального распределения. Тогда
+\begin{equation*}
+\forall \theta \hookrightarrow P_{\theta }\left( u_{\frac{1-\gamma }{2}} \leqslant \sqrt{n}(\overline{X} -\theta ) \leqslant u_{\frac{1+\gamma }{2}}\right) =P\left(\sqrt{n}| \overline{X} \ -\ \theta | \leqslant u_{\frac{1+\gamma }{2}}\right) .
+\end{equation*}
+Тогда $\displaystyle \left(\overline{X} -\frac{1}{\sqrt{n}} u_{\frac{1-\gamma }{2}} ,\ \overline{X} +\frac{1}{\sqrt{n}} u_{\frac{1+\gamma }{2}}\right)$ -- доверительный интервал для $\displaystyle \theta $.
+\end{example}
+\begin{lemma}
+$\displaystyle X_{1} ,\ \dotsc ,\ X_{n}$ -- независимые одинаково распределенные случайные величины с непрерывной функцией распределения $\displaystyle F( x)$. Тогда $\displaystyle G( X_{1} ,\ \dotsc ,\ X_{n}) =-\sum _{i=1}^{n}\ln F( x_{i}) \ \sim \ \Gamma ( 1,\ n)$.
+\end{lemma}
+\begin{proof}
+Покажем, что $\displaystyle F( x_{i}) \, \sim \, \mathcal{U}[ 0,\ 1]$.
+
+
+\begin{equation*}
+P( F( x_{i}) \leqslant y) =P\left( x_{i} \leqslant F^{-1}( y)\right) ,
+\end{equation*}
+где $\displaystyle y\in ( 0,\ 1) ,\ F^{-1}( y) =\min( x:\ F( x) =y)$. Следовательно, $\displaystyle F\left( F^{-1}( y)\right) =y$. Тогда
+
+
+\begin{equation*}
+-\ln F( x_{i}) \ \sim \ Exp( 1) \Rightarrow G( X_{1} ,\ \dotsc ,\ X_{n}) =-\sum _{i=1}^{n}\ln F( X_{i}) \ \sim \ \Gamma ( 1,\ n) .
+\end{equation*}
+\end{proof}
+\begin{corollary}
+Если $\displaystyle X_{1} ,\ \dotsc ,\ X_{n}$ -- выборка из распределения $\displaystyle P\in \{P_{\theta } ,\ \theta \in \Theta \}$, причем $\displaystyle \forall \theta $ функция распределения $\displaystyle F_{\theta }( x)$ непрерывна по $\displaystyle x$, тогда $\displaystyle G( X_{1} ,\ \dotsc ,\ X_{n} ,\ \theta ) =-\sum _{i=1}^{n}\ln F_{\theta }( X_{i})$ -- центральная статистика.
+\end{corollary}
+
+\begin{definition}
+    Пусть $\displaystyle \{X_{n}\}_{n\geqslant 1}$ -- выборка неограниченного размера из неизвестного распределения $\displaystyle P\in \{P_{\theta } ,\ \theta \in \Theta \}$. Последовательности статистик $\displaystyle T_{n}^{( 1)}( X_{1} ,\ \dotsc ,\ X_{n}) ,\ T_{n}^{( 2)}( X_{1} ,\ \dotsc ,\ X_{n})$ называются асимптотическим доверительным интервалом уровня доверия $\displaystyle \gamma $ для параметра $\displaystyle \theta $, если
+    \begin{equation*}
+        \forall \theta \in \Theta \hookrightarrow \varliminf _{n\rightarrow \infty } P_{\theta }\left( T_{n}^{( 1)}( X_{1} ,\ \dotsc ,\ X_{n}) < \theta < T_{n}^{( 2)}( X_{1} ,\ \dotsc ,\ X_{n})\right) \geqslant \gamma .
+    \end{equation*}
+\end{definition}
+Если $\displaystyle \forall \theta \in \Theta \hookrightarrow \exists \lim _{n\rightarrow \infty } P_{\theta }\left( T_{n}^{( 1)}( X_{1} ,\ \dotsc ,\ X_{n}) < \theta < T_{n}^{( 2)}( X_{1} ,\ \dotsc ,\ X_{n})\right) =\gamma $, то асимптотический интервал называется точным.\\
+
+\textbf{Построение асимптотических доверительных интервалов}\\
+
+Пусть $\displaystyle \hat{\theta }_{n}( X_{1} ,\ \dotsc ,\ X_{n})$ -- асимптотически нормальная оценка $\displaystyle \theta $ с асимптотической дисперсией $\displaystyle \sigma ^{2}( \theta )  >0$, то есть
+\begin{gather*}
+    \forall \theta \in \Theta \hookrightarrow \sqrt{n}(\hat{\theta }_{n} -\theta )\xrightarrow{d_{\theta }}\mathcal{N}\left( 0,\ \sigma ^{2}( \theta )\right) \Leftrightarrow \\
+    \dfrac{\sqrt{n}(\hat{\theta }_{n} -\theta )}{\sigma ( \theta )}\xrightarrow{d_{\theta }}\mathcal{N}( 0,\ 1) .
+\end{gather*}
+Пусть функция $\displaystyle \sigma ( \theta )$ непрерывна по $\displaystyle \theta $. Из того, что оценка $\displaystyle \hat{\theta }_{n}$ асимптотически нормальна следует, что она состоятельная, т.е. $\displaystyle \hat{\theta }\xrightarrow{P_{\theta }} \theta $. Тогда, по теореме о наследовании сходимостей и лемме Слуцкого
+
+
+\begin{equation*}
+    \dfrac{\sqrt{n}(\hat{\theta }_{n} -\theta )}{\sigma (\hat{\theta }_{n})} =\dfrac{\sqrt{n}(\hat{\theta }_{n} -\theta )}{\sigma ( \theta )} \cdotp \dfrac{\sigma ( \theta )}{\sigma (\hat{\theta }_{n})}\xrightarrow{d_{\theta }}\mathcal{N}( 0,\ 1) .
+\end{equation*}
+
+
+Следовательно,
+
+
+\begin{equation*}
+    P_{\theta }\left(\sqrt{n}\left| \dfrac{\hat{\theta }_{n} -\theta }{\sigma (\hat{\theta }_{n})}\right| < u_{\frac{1+\gamma }{2}}\right)\xrightarrow[n\rightarrow \infty ]{} \gamma ,
+\end{equation*}
+
+
+где $\displaystyle u_{\frac{1+\gamma }{2}}$ -- квантиль уровня $\displaystyle \frac{1+\gamma }{2}$ стандартного нормального распределения. Следовательно, асимптотический доверительный интервал имеет вид
+
+
+\begin{equation*}
+    \left(\hat{\theta }_{n} -u_{\frac{1+\gamma }{2}}\dfrac{\sigma (\hat{\theta }_{n})}{\sqrt{n}} ,\ \hat{\theta }_{n} +u_{\frac{1+\gamma }{2}}\dfrac{\sigma (\hat{\theta }_{n})}{\sqrt{n}}\right) .
+\end{equation*}

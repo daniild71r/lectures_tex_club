@@ -1,0 +1,289 @@
+\subsection{Критерии Сильвестра}
+\begin{theorem}[Критерий Сильвестра положительно определенной формы]
+    Квадратичная форма положительно определена тогда и только тогда, когда все главные миноры её матрицы положительны.
+\end{theorem}
+\begin{proof}
+Пусть задана квадратичная форма $k(x)$, её порождающая билинейная форма $b(x,y)$ с матрицей $B$.
+\begin{enumerate}
+    \item[$\Rightarrow$] Если $k(x)$ положительно определена, то в \textit{любом базисе} диагональные элементы матрицы $B$ положительны ($b_{ii}=b(e_i,e_i)=k(e_i)>0$). Приведем $B$ элементарными преобразованиями к диагональному виду. При этом мы не встретим "особого случая" из теоремы 9.1, так как диагональные элементы положительны. Значит в ходе приведения выполняются следующие условия, следующие из алгоритма теоремы 9.1 в "основном случае":
+    \begin{itemize}
+        \item Для строк: вычитаются только строки, находящиеся выше.
+        \item Для столбцов: вычитаются только столбцы, находящиеся левее.
+    \end{itemize}
+    \[
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    % Первая матрица с круглыми скобками
+    \matrix (m1) [matrix of math nodes, nodes in empty cells,
+        left delimiter={(}, right delimiter={)}] {
+        b_{11} & b_{12} & \cdots & b_{1n} \\
+        b_{21} & b_{22} & \cdots & b_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        b_{n1} & b_{n2} & \cdots & b_{nn} \\
+    };
+    
+    % Линии для первой матрицы
+    \draw[gray, thick] (m1-1-1.north west) rectangle (m1-1-1.south east);
+    \draw[gray, densely dashed] (m1-1-1.north west) rectangle (m1-2-2.south east);
+    \draw[gray, loosely dashed] (m1-1-1.north west) rectangle (m1-3-3.south east);
+
+    % Вторая матрица с круглыми скобками
+    \matrix (m2) [matrix of math nodes, nodes in empty cells,
+        left delimiter={(}, right delimiter={)},
+        right=3cm of m1.north east, anchor=north west] {
+        b_{11} & 0 & \cdots & 0 \\
+        0 & b_{22}' & \cdots & b_{2n}' \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & b_{n2}' & \cdots & b_{nn} \\
+    };
+    
+    % Линии для второй матрицы
+    \draw[gray, thick] (m2-1-1.north west) rectangle (m2-1-1.south east);
+    \draw[gray, densely dashed] (m2-1-1.north west) rectangle (m2-2-2.south east);
+    \draw[gray, loosely dashed] (m2-1-1.north west) rectangle (m2-3-3.south east);
+
+    % Стрелка между матрицами (с отступом)
+    \draw[-Latex, thick, shorten >=20pt, shorten <=20pt] 
+        (m1.east) -- node[above, pos=0.5] {$S^TBS$} (m2.west);
+\end{tikzpicture}
+\]
+    А из этих условий следует следующий факт: данные элементарные преобразования матрицы $B$ являются элементарными для всех её подматриц, соответствующих главным минорам, а значит главные миноры не меняются при смене базиса.
+    
+    После приведения к диагональному виду получается матрица
+    \[
+    B'=diag(b_{11}, b_{22}', \dots, b_{nn}'), \quad b_{ii}'>0
+    \]
+    А все главные миноры $\Delta_i$ являются определителями диагональных матриц с положительными элементами, следовательно, они положительны
+    \[
+    \Delta_1=b_{11}, \quad \Delta_2=b_{11}b_{22}', \quad \dots, \quad \Delta_n=b_{11}b_{22}'\dots b_{nn}'
+    \]
+    \item[$\Leftarrow$] Если все главные миноры $\Delta_i$ положительны. Так как $\Delta_1 = b_{11}>0$, то мы можем сделать хотя бы одну итерацию "основного случая" алгоритма приведения матрицы $B$ к диагональному виду (аналогично п.1 при этом сохраняются главные миноры). Тогда получим 
+    \[
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    % Первая матрица с круглыми скобками
+    \matrix (m1) [matrix of math nodes, nodes in empty cells,
+        left delimiter={(}, right delimiter={)}] {
+        b_{11} & b_{12} & \cdots & b_{1n} \\
+        b_{21} & b_{22} & \cdots & b_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        b_{n1} & b_{n2} & \cdots & b_{nn} \\
+    };
+    
+    % Линии для первой матрицы
+    \draw[gray, thick] (m1-1-1.north west) rectangle (m1-1-1.south east);
+    \draw[gray, densely dashed] (m1-1-1.north west) rectangle (m1-2-2.south east);
+    \draw[gray, loosely dashed] (m1-1-1.north west) rectangle (m1-3-3.south east);
+
+    % Вторая матрица с круглыми скобками
+    \matrix (m2) [matrix of math nodes, nodes in empty cells,
+        left delimiter={(}, right delimiter={)},
+        right=3cm of m1.north east, anchor=north west] {
+        b_{11} & 0 & \cdots & 0 \\
+        0 & b_{22}' & \cdots & b_{2n}' \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & b_{n2}' & \cdots & b_{nn} \\
+    };
+    
+    % Линии для второй матрицы
+    \draw[gray, thick] (m2-1-1.north west) rectangle (m2-1-1.south east);
+    \draw[gray, densely dashed] (m2-1-1.north west) rectangle (m2-2-2.south east);
+    \draw[gray, loosely dashed] (m2-1-1.north west) rectangle (m2-3-3.south east);
+
+    % Стрелка между матрицами (с отступом)
+    \draw[-Latex, thick, shorten >=20pt, shorten <=20pt] 
+        (m1.east) -- node[above, pos=0.5] {$S^TBS$} (m2.west);
+\end{tikzpicture}
+\]
+Но $\Delta_2=b_{11}b_{22}'>0$, а значит $b_{22}'>0$ и мы можем сделать следующую итерацию. После $k$-ой итерации получаем $\Delta_k=\Delta_{k-1} b_{kk}'>0$ и $\Delta_{k-1}>0$, откуда $b_{kk}'>0$ и следующая итерация возможна. После $n$-ого шага получаем диагональную матрицу с положительными элементами
+\[
+B'=diag(b_{11}, b_{22}', \dots, b_{nn}'), \quad b_{ii}'>0
+\]
+Откуда следует положительная определенность квадратичной формы.
+\end{enumerate}
+\end{proof}
+\textit{Замечание}: главные миноры (определители выделенных пунктиром в подматриц) иногда называют угловыми минорами.
+
+\textit{Замечание}: в доказательстве использовался факт о том, что из $k(x)>0$ следует, что $b_{ii}>0$. Обратное неверно, контрпример: $k(x_1,x_2)=x_1^2-2x_1x_2+x_2^2$, $b_{11}=b_{22}>0$ и $k(1,1)=0$.
+
+\begin{theorem}[Критерий Сильвестра отрицательно определенной формы]
+    Квадратичная форма отрицательно определена тогда и только тогда, когда знаки главных миноров чередуются начиная с "$-$".
+\end{theorem}
+\begin{proof}
+    Форма $k(x)$ отрицательно определена $\Leftrightarrow$ форма $(-1)k(x)$ положительно определена. Значит по критерию для положительно определенной формы все главные миноры $(-1)^m\Delta_m>0$. Откуда получаем, что главные миноры $\Delta_m$ формы $k(x)$ имеют чередующиеся знаки, причем $(-1)\Delta_1>0$, а значит $\Delta_1 <0$ и чередование начинается с "$-$".    
+\end{proof}
+\textit{Замечание}: из неотрицательности главных миноров не следует полуопределенность квадратичной формы. Контрпример: форма с матрицей $diag(0, -1, 1)$.
+
+Пусть $k(x)$ -- квадратичная форма, определенная на $L$, где $\dim L =n\geqslant 2$. $A$ -- матрица формы $k(x)$.
+\begin{lemma}[для матанализа]
+    Если $\Delta_2=\det \begin{pmatrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{pmatrix} < 0$, то $k(x)$ знаконеопределена.
+\end{lemma}
+\begin{proof}
+    Покажем, что $k(x)$ знаконеопределена на $L^*=\langle e_1, e_2\rangle$. На пространстве $L^*$ у $k(x)$ матрица имеет вид $B=\begin{pmatrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{pmatrix}$. Приведем ее к каноническому виду с помощью элементарного преобразования: $B'=S^TBS$. По условию $\det B < 0$, следовательно $\det B (\det S)^2 <0 \Leftrightarrow \det B'<0$. Отсюда $B'$ имеет вид $\begin{pmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{pmatrix}$ или $\begin{pmatrix}
+        -1 & 0\\
+        0 & 1
+    \end{pmatrix}$. Значит $k(x)$ знаконеопределена.
+\end{proof}
+
+\section{Евклидово пространство}
+% \subsection{Евклидово пространство}
+\begin{definition}
+    Вещественное линейное пространство $\mathcal{E}$ называется евклидовым, если на нем введена операция скалярного умножения [$\forall x,y \in \mathcal{E} \hookrightarrow (x,y)\in \R$], удовлетворяющая следующим свойствам
+    \begin{enumerate}
+        \item $\forall x,y \in \mathcal{E} \hookrightarrow(x,y)=(y,x)$
+        \item $\forall x, y, z \in \mathcal{E} \ \forall\alpha, \beta \in \R \hookrightarrow (\alpha x+ \beta y, z)=\alpha(x,z)+\beta(y,z)$
+        \item $\forall x\neq 0 \in \mathcal{E} \hookrightarrow (x,x) > 0$
+    \end{enumerate}
+\end{definition}
+Менее формальная формулировка: вещественное линейное пространство $\mathcal{E}$ евклидово, если на нем задана положительно определенная квадратичная форма.
+
+\begin{definition}
+    Длина вектора $x\in \mathcal{E}$ задается формулой $$|x|=\sqrt{(x,x)}$$
+\end{definition}
+\begin{definition}
+    Угол между векторами $x,y\neq 0 \in \mathcal{E}$ задается формулой 
+    \[
+    \cos \Phi = \frac{(x,y)}{|x||y|}, \quad \Phi \in [0, \pi]
+    \]
+\end{definition}
+Корректность данного определения угла следует из неравенства Коши-Буняковского-Шварца.
+\begin{theorem}[Неравенство КБШ]
+    Для любых векторов $x,y\in \mathcal{E}$ справедливо неравенство
+    \[
+        (x,y)^2\leqslant(x,x)(y,y)
+    \]
+\end{theorem}
+Доказательство данной теоремы будет приведено \hyperref[KBH proof]{далее}.
+\begin{theorem}[Неравенство треугольника]
+    Для любых векторов $x,y\in \mathcal{E}$ справедливо неравенство
+    \[
+    |x+y|\leqslant|x|+|y|
+    \]
+\end{theorem}
+\begin{proof}
+    В силу линейности и симметричности скалярного произведения
+    \[
+    |x+y|^2=(x+y, x+y)=(x,x)+2(x,y)+(y,y)
+    \]
+    По неравенству КБШ
+    \[
+    |x+y|^2=(x,x)+2(x,y)+(y,y) \leqslant (x,x)+2\sqrt{(x,x)(y,y)}+(y,y)=|x|^2+2|x||y|+|y|^2=(|x|+|y|)^2
+    \]
+    Откуда получаем $|x+y|\leqslant|x|+|y|$. Причем равенство достигается тогда же, когда и в КБШ.
+\end{proof}
+\begin{definition}
+    Векторы $x,y \in \mathcal{E}$ называются ортогональными, если $(x,y)=0$.
+\end{definition}
+Из определения следует, что $x,y$ -- ортогональны $\Rightarrow\left[
+\begin{aligned}
+x &= 0 \\
+y &= 0\\
+\text{угол}&=\pi/2
+\end{aligned}
+\right.$.
+\begin{proposition}
+    Только $\overline{0}$ вектор ортогонален любому вектору из $\mathcal{E}$.
+\end{proposition}
+\begin{proof}
+    Если вектор $x$ ортогонален любому вектору, то он ортогонален сам себе
+    \[
+    (x, x)=0 \Rightarrow x=0
+    \]
+\end{proof}
+
+\subsection{Матрица Грама}
+Для скалярного произведения в базисе  $e^{(n)}$ так же верна формула
+\[
+(x,y)=(x_1, \dots, x_n)\begin{pmatrix}
+    (e_1,e_1) & \dots & (e_1,e_n) \\
+    \vdots & \ddots & \vdots \\
+    (e_n,e_1) & \dots & (e_n, e_n)
+\end{pmatrix}\begin{pmatrix}
+    y_1 \\
+    \vdots \\
+    y_n
+\end{pmatrix}=(x_1, \dots, x_n)(\textbf{Г})\begin{pmatrix}
+    y_1 \\
+    \vdots \\
+    y_n
+\end{pmatrix}
+\]
+где матрица \textbf{Г} называется матрицей Грама базиса $e^{(n)}$.
+
+\begin{theorem}
+    Пусть задан произвольный набор векторов $f_1, \dots, f_n$. Тогда $\det \textbf{Г}_f\geqslant 0$, причем
+    \begin{itemize}
+        \item $\det \textbf{Г}_f > 0$, если набор ЛНЗ.
+        \item $\det \textbf{Г}_f =0$, если набор ЛЗ.
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Если набор ЛНЗ, то он образует базис. Тогда по критерию Сильвестра для положительной формы (квадратичная форма, порожденная скалярным произведением положительно определена) $\det \textbf{Г}_f >0$.
+
+    Если набор ЛЗ, то существует нетривиальная линейная комбинация $\alpha_1, \dots, \alpha_n$ такая, что $\alpha_1f_1+\dots + \alpha_nf_n=0$. Последовательно скалярно умножим справа это равенство на $f_i, i\in\overline{1,n}$, получим систему
+    \[
+    \left\{
+    \begin{aligned}
+    &\alpha_1(f_1, f_1)+\dots+\alpha_n(f_n,f_1)=0\\
+    &\alpha_1(f_1, f_2)+\dots+\alpha_n(f_n,f_2)=0\\
+    &\dots\\
+    &\alpha_1(f_1, f_n)+\dots+\alpha_n(f_n,f_n)=0
+    \end{aligned}
+    \right.
+    \]
+    Это однородная система с матрицей \textbf{Г} у которой есть нетривиальное решение $\alpha^{(n)}$. Следовательно, $\det \textbf{Г}_f=0$ (по теореме Крамера).
+\end{proof}
+\textit{Следствие}:\label{KBH proof} Докажем неравенство КБШ: применим данную теорему к набору $x, y$
+\[
+\det \begin{pmatrix}
+    (x,x) & (x,y)\\
+    (y,x) & (y,y)
+\end{pmatrix} \geqslant 0 \Rightarrow (x,y)^2\leqslant(x,x)(y,y)
+\]
+Причем равенство достигается тогда и только тогда, когда $x,y$ -- ЛЗ.
+
+\textit{Замечание}: при замене базиса $\textbf{Г}'=S^T\textbf{Г}S$.
+\subsection{Ортогональный базис}
+\begin{definition}
+    Базис является ортогональным, если 
+    \[
+    (e_i, e_j)=0, \quad i \neq j
+    \]
+\end{definition}
+\begin{definition}
+    Базис является ортонормированным, если 
+    \[
+    (e_i, e_j)=\left\{
+    \begin{aligned}
+    0, \quad i\neq j\\
+    1, \quad i = j
+    \end{aligned}
+    \right. \quad \forall i, j \in \overline{1,n}
+    \]
+\end{definition}
+
+В ОНБ матрица Грама вырождается в единичную: $\textbf{Г}=E$. Соответственно формула скалярного произведения принимает простой вид
+\[
+(x,y)
+ = \sum_{i=1}^nx_iy_i
+\]
+\begin{proposition}
+    Пусть $f_1, \dots, f_n$ -- набор попарно ортогональных ненулевых векторов. Тогда
+    \[
+    \forall x\in \mathcal{E} \hookrightarrow x=\sum_{i=1}^n \frac{(x,f_i)}{|f_i|^2}f_i
+    \]
+\end{proposition}
+\begin{proof}
+    Если набор $f^{(n)}$ -- ЛНЗ, то $\textbf{Г}=diag((f_1, f_1), \dots, (f_n, f_n))$ и $\det \textbf{Г} \neq 0$, значит $f^{(n)}$ образует базис. Следовательно, $x=\alpha_1f_1+\dots\alpha_nf_n$. Умножая данное равенство скалярно справа на $f_i$, получаем 
+    \[
+    \alpha_i=\frac{(x,f_i)}{|f_i|^2}
+    \]
+    Докажем, что набор $f^{(n)}$ всегда ЛНЗ. Рассмотрим линейную комбинацию $c_1f_1+\dots + c_n f_n=0$, умножим ее скалярно на $f_i$, получим $c_i(f_i, f_i)=0$. Но $(f_i, f_i) > 0$, значит $c_i=0$. Следовательно, $c_1=\dots=c_n=0$ и линейная комбинация является тривиальной, откуда $f^{(n)}$ -- ЛНЗ. 
+\end{proof}

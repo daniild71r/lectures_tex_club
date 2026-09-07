@@ -1,0 +1,49 @@
+\begin{theorem}[Полнота $\mathcal{L}(E_1, E_2)$ относительно поточечной сходимости]
+    Пусть $E_1, E_2$~--- банаховы пространства, $\{A_n\} \subset \mathcal{L}(E_1, E_2):\; \forall x \in E_1\; \{A_n x\}$~--- фундаментальна в $E_2$.\\
+    \noindentТогда
+    \[\exists A \in \mathcal{L}(E_1, E_2):\; \forall x \in E_1\; \lim\limits_{n \to \infty} A_n x = Ax.\]
+\end{theorem}
+\begin{proof}
+    Так как $\{A_n x\}$ фундаментальна в банаховом $E_2$, то $\exists \lim\limits_{n \to \infty} A_n x,\; Ax := \lim\limits_{n \to \infty} A_n x$.
+
+    Осталось показать, что определенный таким образом оператор~--- линейный непрерывный. Линейность очевидна из линейности предела и каждого $A_n$. 
+
+    Так как $\forall x \in E_1\; \{A_n x\}$ фундаментальна, то $\{A_n\}$ поточечно ограничена и по теореме~\ref{Banach-Steingaus} ограничена равномерно:
+    \[\exists M\; \forall n \in \N \; \|A_n\| \leqslant M.\]
+
+    Тогда
+    \[\|A_n x\| \leqslant \|A_n\| \cdot \|x\| \leqslant M\|x\|,\; \|A_nx\| \to \|Ax\| \implies \|Ax\| \leqslant M\|x\|.\]
+    
+    То есть оператор ограничен и непрерывен, а значит $A \in \mathcal{L}(E_1, E_2).$
+\end{proof}
+
+\begin{theorem}[Критерий поточечной сходимости операторов из $\mathcal{L}(E_1, E_2)$]
+\label{bshetengcorollary}
+    Пусть $E_1$~--- банахово, $E_2$~--- линейное нормированное пространство. Верно, что $\forall\; \{A_n\} \in \mathcal{L}(E_1, E_2),\; A \in \mathcal{L}(E_1, E_2)$:
+    \[
+    A_n \xrightarrow{\textit{поточечно}} A \Leftrightarrow
+    \begin{cases}
+        1.\;\text{Последовательность }\{\|A_n\|\}\text{ ограничена } M,\\
+        2.\;\forall s \in S, \; \overline{[S]} = E_1: \; A_n s \to As.
+    \end{cases}
+    \]
+\end{theorem}
+\begin{proof}
+    \begin{itemize}
+        \item[$\Rightarrow$] Пункт $2.$ очевиден. Из поточечной сходимости $\{A_n x\}$ следует поточечная ограниченость $\{A_n x\}$. Значит, по теореме~\ref{Banach-Steingaus} последовательность $\{\|A_n\|\}$ ограничена.
+        \item[$\Leftarrow$]
+        Так как множество $[S]$ всюду плотно в $E_1$,
+        \[\forall \varepsilon > 0\; \forall x \in E_1\; \exists y \in [S]:\; \|x - y\| < \varepsilon.\]
+
+        Тогда для $y$, из пункта $2.$ верно:
+        \(\exists N(\varepsilon, y):\; \forall n > N\; \|A_n y - Ay\| < \varepsilon\). Перейдем к $x \in E_1$:
+        \[
+            \|A_n x - Ax\| \leqslant \|Ax - Ay\| + \|A_n y - Ay\| + \|A_n y - A_n x\|
+             \leqslant \varepsilon \|A\| + \varepsilon + \varepsilon \|A_n\| \leqslant \varepsilon (\|A\| + M + 1).
+        \]
+        Значит $A_n \xrightarrow{\textit{поточечно}} A$ на $E_1$.
+    \end{itemize}
+\end{proof}
+\begin{note}
+    Теорема означает, что для поточечной сходимости последовательности из непрерывных операторов необходимо и достаточно чтобы члены последовательности были ограничены и при этом была поточечная сходимость на некотором множестве, линейная комбинация которого всюду плотна.
+\end{note}

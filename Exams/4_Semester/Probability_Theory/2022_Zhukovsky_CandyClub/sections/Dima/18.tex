@@ -1,0 +1,26 @@
+\begin{statement}[подсчет условного матожидания]
+    Пусть $\varphi: \R^k \rightarrow \R$ --- борелевская, $p_{\xi|\eta=y}(x)$ --- условная плотность $P_{\xi|\eta=y}$. Тогда 
+    \[ \E(\varphi(\xi)|\eta=y)=\int_{\R^k} \varphi(x) p_{\xi|\eta=y}(x)dx \]
+\end{statement}
+
+\begin{proof}
+    Тут мы будем доказывать не как обычно через определение УМО, а докажем равенство напрямую:
+    \begin{enumerate}
+        \item Пусть $\varphi = I_B, B \in \mathcal{B}(\R^k)$, тогда
+        $$\int\limits_{\R^k} \varphi(x) p_{\xi|\eta = y}(x) dx = \int\limits_{\R^k} I_B p_{\xi|\eta = y}(x) dx = \int\limits_B p_{\xi|\eta = y}(x) dx = P(\xi \in B | \eta = y) = \E(\varphi(\xi)| \eta = y)$$
+        
+        \item В силу линейности УМО и интеграла Лебега, для простых $\varphi(x)=\sum_{i=1}^n c_i I_{A_i}$ получаем
+        $$\int_{\R^k} \varphi(x) p_{\xi|\eta=y}(x) dx=\sum_{i=1}^n c_i \int_{A_i} p_{\xi|\eta=y}(x) dx=$$
+        $$=\sum_{i=1}^n c_i \E (I(\xi \in A_i) | \eta=y)=\E \left(\sum_{i=1}^n c_i I(\xi \in A_i) | \eta = y\right)=\E(\varphi(\xi)|\eta=y)$$
+        
+        \item Пусть $\E|\varphi(\xi)| < \infty$. Тогда $\exists \varphi_n \rightarrow \varphi: \: \varphi_n$ - простая, $|\varphi_n| \leqslant |\varphi|$. Мы знаем из прошлого пункта, что
+        \[ \int_{\R^k} \varphi_n(x) p_{\xi | \eta=y}(x)dx=\E(\varphi_n(\xi) | \eta=y) \]
+        
+        Хотим перейти к пределу. Если бы слева был интеграл по обычному распределению, то могли бы спокойно применить теорему Лебега о мажорируемой сходимости и получить что нужно, так как мы знаем, что матожидание $\varphi_n$ существует. Но по следствию \ref{umo-existence} из теоремы \nameref{radon-nikodim}, получаем, что условное матожидание для $\varphi_n$ тоже существует, а значит тоже можем применить теорему Лебега. Справа делаем предельный переход по свойству \ref{umo-lim-trait} условного матожидания. Получаем, что
+        \[ \E(\varphi(\xi) | \eta=y)=\int_{\R^k} \varphi(x) p_{\xi| \eta=y}(x) dx \]
+\end{enumerate}
+\end{proof}
+
+\begin{lemmanote}
+    В предельном переходе, справа будет сходимость почти наверное, но этого нам достаточно для условного матожидания
+\end{lemmanote}

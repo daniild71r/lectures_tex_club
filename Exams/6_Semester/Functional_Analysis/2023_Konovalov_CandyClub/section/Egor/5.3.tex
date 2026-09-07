@@ -1,0 +1,63 @@
+\begin{theorem}[критерий принадлежности числа спектру (11.3)]\label{11.3}
+
+    Пусть $H(\C)$~--- гильбертово пространство, $A$~--- самосопряжённый оператор. Тогда
+    \begin{enumerate}
+        \item $\lambda \in \rho(A) \lra A_{\lambda}$~--- ограничен снизу, т.е. $\exists m > 0\: \forall x \in H\!: \: \| A_{\lambda} x \| \geqslant m \|x\| \; $
+        
+        \item $\lambda \in \sigma(A) \lra \exists \text{ последовательность } \{x_n\}$, такая что 
+        $\forall n\: \|x_n\| = 1$ и $A_{\lambda} x_n \xrightarrow[n \to \infty]{} 0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Докажем первый пункт
+    
+    \begin{itemize}
+        \item[$\Rightarrow$] 
+        
+        По определению регулярного значения, $\exists A_\lambda^{-1} \in \mathcal{L}(E)$. Тогда утверждение следует из теоремы~\nameref{8.1}
+        
+        \item[$\Leftarrow$] 
+        
+        Опять хотим воспользоваться теоремой \nameref{8.1}, но для этого нужно показать, что $\im A_{\lambda} = H$.
+        
+        Имеем из теоремы \nameref{11.2}: $\overline{\im A_{\lambda}} \oplus \ker A_{\lambda} = H$.
+        
+        Очевидно, что ядро $A_{\lambda}$ тривиально. Предположим противное: $\exists x \in \ker A_{\lambda}, x \neq 0$. Тогда из условия ограниченности снизу $0 = \|A_{\lambda} x\| \geqslant m \|x\|  > 0$. Противоречие.
+        
+        Но, как мы знаем из леммы~\ref{8.4_lemma} для теоремы \nameref{8.4}, ограниченность снизу влечёт замкнутость образа. 
+        
+        Тогда получаем, что $\im A_{\lambda} = H$ и нужное утверждение следует из теоремы \nameref{8.1}.
+    \end{itemize}
+
+    Аккуратно напишем отрицание первого пункта:
+
+    \[
+    \lambda \in \sigma(A) \lra \lambda \not \in \rho(A) \lra \forall m > 0\ \exists x \in H : \|A_{\lambda} x\| < m \|x\|
+    \]
+
+    Тогда выбирая в качестве $m$ числа вида $\frac{1}{n}$, построим последовательность $x_n$ (в силу однородности можно выбирать их так, чтобы $\|x_n\| = 1)$, такую что $\|A_{\lambda} x_n\| < \frac{1}{n}$, то есть $A_{\lambda} x_n \to 0$.
+\end{proof}
+
+\begin{theorem}[11.4]\label{11.4}
+    Пусть $H(\C)$~--- гильбертово пространство, $A$~--- самосопряжённый оператор.
+    Тогда $\sigma(A) \subsetneq \R$.
+\end{theorem}
+
+\begin{proof}
+Равносильная формулировка: если $\lambda \not\in \R \implies \lambda \in \rho(A)$.
+
+Пусть $\lambda = \mu + i \nu$. Идея: покажем, что если $\nu \neq 0$, то $A_{\lambda}$~--- ограниченный снизу. Точнее, $\|A_\lambda x \| \geqslant |\nu| \| x \|$. Тогда по~\hyperref[11.3]{критерию принадлежности числа спектру} окажется, что $\lambda \in \rho(A)$.
+
+\begin{multline*}
+\|A_{\lambda} x\|^2 = (A_{\lambda} x, A_{\lambda} x) = 
+(Ax - (\mu + i \nu) x, Ax - (\mu + i \nu) x) = \\
+= (A_{\mu} x - i \nu x, A_{\mu} x - i \nu x)
+= \underbrace{\|A_{\mu} x\|^2}_{\geqslant 0}
+- i \nu (x, A_{\mu} x) + i \nu (A_{\mu}x, x) +
+|\nu|^2 \|x\|^2 \geqslant |\nu|^2 \|x\|^2
+\end{multline*}
+
+В последнем переходе слагаемые сократились за счет самосопряжённости оператора $A_{\mu}$.
+
+\end{proof}

@@ -1,0 +1,236 @@
+\section{Лекция 9}
+\subsection{XVI. Релятивистская квантовая теория}
+\subsection{\S XVI.1 Непригодность уравнений Паули для описания релятивистского электрона.}
+Напомним, что уравнения Паули имеют вид
+\[
+i\hbar\dfrac{\partial\Psi}{\partial t} = \left(\dfrac{1}{2m}\left(-i\hbar\vec{\nabla}-\dfrac{q}{c}\vec{\Lambda}\right)^2\otimes \hat{1}_{2\times 2} + q \phi(\vec{r})\otimes\hat{1}_{2\times 2} - (\vec{\mu}_s\vec{H})\right)\Psi, \tab \Psi = \begin{pmatrix}
+	\psi_+(\vec{r},~t)\\
+	\psi_-(\vec{r},~t)\\
+\end{pmatrix}
+\]
+Пусть они применимы. Тогда можно показать, что производные по времени и по координате должны входить в уравнение равноправно, что неверно. Возможны 2 пути: в правильное уравнение входят
+\begin{enumerate}
+	\item $\dfrac{\partial^2}{\partial t^2}$ и $\Delta$ --- уравнение Клейна-Гордона-Фока
+	\item $\dfrac{\partial}{\partial 
+		t}$ и $\vec{\nabla}$ --- уравнение Дирака
+\end{enumerate}
+
+
+
+
+\subsection{\S XVI.2 Уравнения Клейна-Гордона-Фока (КГФ).}
+Рассмотрим свободную частицу. Пусть $\phi(\vec{r},~ t)=0$ --- скалярный потенциал, $\vec{A}(\vec{r},~t)=\vec{0}$ --- векторный. Будем опираться на уравнение Эйнштейна: 
+\[
+\dfrac{E^2}{c^2} - \vec{p}^2 = (mc)^2
+\]
+Запишем его в операторном виде в координатном представлении. Для этого сопоставим 
+\[
+\vec{p}^{~2} \tab \longrightarrow \tab \braupket{\vec{r}}{\hat{\vec{p}}^{~2}}{\psi} = -\hbar^2 \Delta\psi(\vec{r},~ t),
+\]
+а из уравнения Шредингера $i\hbar\dfrac{\partial\ket{\psi}}{\partial t} = \hat{H}\ket{\psi}$
+\[
+E^2 \tab \longrightarrow \tab \left(i\hbar \dfrac{\partial}{\partial t}\right)^2\psi(\vec{r},~t) = -\hbar^2\dfrac{\partial^2}{\partial t^2}\psi(\vec{r},~t)
+\]
+Тогда всему уравнению сопоставим
+\[
+-\frac{\hbar^2}{c^2} \frac{\partial^2}{\partial t^2} \psi(\vec{r}, t) = (-\hbar^2 \Delta + m^2 c^2) \psi(\vec{r}, t)
+\]
+Вспомним оператор Даламбера: $\square \equiv \Delta - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \implies$
+\[
+\hbar^2 \square \psi(\vec{r}, t) = (mc)^2 \psi(\vec{r}, t)
+\]
+--- \textbf{уравнение Клейна-Гордона-Фока}.
+
+Нужны НУ (начальные условия):
+\[
+\psi(\vec{r}, t)\big|_{t=0} = \psi_0(\vec{r}) \tab \dfrac{\partial \psi(\vec{r}, t)}{\partial t}\Big|_{t=0} = \phi_0(\vec{r})
+\]
+Противоречат ли эти НУ $1^{\text{ой}}$ аксиоме? Нет, т.к. аксиомы квантовой механики формулировались для нерелятивистского случая. Раньше у нас было следующее соотношение неопределенностей: $\Delta x \Delta p \ge \hbar$. Теперь $\Delta x \sim c \Delta t \implies \Delta t \Delta p \gtrsim \hbar/c$.
+
+
+
+
+\subsection{\S XVI.3 Плотность вероятности уравнения Клейна-Гордона-Фока.}
+Вернемся к КГФ без оператора Даламбера:
+\[
+-\frac{\hbar^2}{c^2} \frac{\partial^2}{\partial t^2} \psi(\vec{r}, t) = (-\hbar^2 \Delta + m^2 c^2) \psi(\vec{r}, t)\eqno{(1)}
+\]
+Напишем уравнение, эрмитово сопряженное данному:
+\[
+-\frac{\hbar^2}{c^2} \frac{\partial^2}{\partial t^2} \psi^\dagger(\vec{r}, t) = (-\hbar^2 \Delta + m^2 c^2) \psi^\dagger(\vec{r}, t)\eqno{(2)}
+\]
+Домножим $(1)$ слева на $\psi^*$, а $(2)$ --- справа на $\psi$ и вычтем $(2)$ из $(1)$. После вычислений придем к уравнению непрерывности:
+\[
+\frac{\partial}{\partial t} \rho(\vec{r}, t) + \vec{\nabla} \vec{j}(\vec{r}, t) = 0
+\]
+где $\vec{j}(\vec{r}, t) = \frac{i\hbar}{2m} ((\vec{\nabla} \psi)^\dagger\psi - \psi^\dagger( \vec{\nabla} \psi)) \implies \rho(\vec{r}, t)$ должна быть интерпретирована как плотность вероятности:
+\[
+\rho(\vec{r}, t) = \frac{i\hbar}{2mc^2} \left( \left(\frac{\partial}{\partial t}\psi^\dagger\right)\psi - \psi^\dagger \left(\frac{\partial}{\partial t}\psi\right) \right)
+\]
+Рассмотрим свободную частицу, пусть ее волновая функция имеет вид $\psi(\vec{r}, t) = A e^{\mp\frac{i}{\hbar}(Et - \vec{p}\vec{r})}$, где $A = \begin{pmatrix}
+	a_1\\
+	...\\
+	a_N\\
+\end{pmatrix}$ --- столбец, характеризующий свободные состояния частицы, если таковые существуют. Подставив ее, получим 
+\[
+\rho(\vec{r}, t) = \pm \frac{E}{mc^2} |\psi(\vec{r}, t)|^2
+\]
+Т.е. плотность вероятности может быть и больше, и меньше нуля, что некорректно. Как быть? Один из вариантов: рассматривать не саму плотность вероятности, а ее же, умноженную на заряд частицы. Но бывают частицы с нулевым зарядом, значит, наша идея все еще некорректна. Т.о. уравнение КГФ в нерелятивистском пределе не воссоздает уравнения Паули, а значит, это уравнение не подходит.
+
+
+
+
+
+\subsection{\S XVI.4 Уравнение Дирака.}
+Для свободного электрона рассмотрим уравнение
+\[
+i\hbar \dfrac{\partial \psi(\vec{r},~t)}{\partial t} = \braupket{\vec{r}}{(\vec{\alpha} c\hat{\vec{p}} + \beta mc^2)}{\psi(t)}
+\]
+Т.е. ввели гамильтониан $\hat{H} = c \vec{\alpha} \hat{\vec{p}} + \beta mc^2$, где $\vec{\alpha} = (\alpha_1, \alpha_2, \alpha_3)$, $\beta$ --- скаляр. Сразу можем предположить, что это матрицы. Тогда в координатном представлении:
+\[
+i\hbar \dfrac{\partial \psi(\vec{r}, t)}{\partial t} = (-i\hbar c \vec{\alpha} \vec{\nabla} + \beta mc^2) \psi(\vec{r}, t)
+\]
+Можем предположить, что $\hat{H} = \hat{H}^+ \implies \alpha_i = \alpha_i^+$ и $\beta = \beta^+$.
+Решением уравнения должна быть плоская волна: $\psi(\vec{r}, t) = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \end{pmatrix} e^{-\frac{i}{\hbar}(Et - \vec{p}\vec{r})}$. Вставим это решение в уравнение:
+\[
+(\hat{I}E - \vec{p}c\vec{\alpha} - mc^2\beta)\psi(\vec{r},~t) = 0
+\]
+Домножим слева на скобку $(\hat{I}E + \vec{p}c\vec{\alpha} + mc^2\beta)$, тогда:
+\[
+(\hat{I}E^2 - (\vec{\alpha} \vec{p}c + \beta mc^2)^2) \psi(\vec{r}, t) = 0
+\]
+Далее нужно рассмотреть частные случаи:
+\begin{enumerate}
+	\item Покоящаяся частица: $\vec{p} = 0, E = mc^2 \implies m^2c^4(\hat{I} - \beta^2) \psi(\vec{r}, t) = 0 \implies \beta^2 = \hat{I}$.
+	\item Частица движется вдоль оси $x$: $\vec{p} = (p, 0, 0), E^2 = c^2p^2 + m^2c^4 \implies$ с учетом $\beta^2 = \hat{I}$:
+	\[
+	(\hat{I}(c^2p^2 + m^2c^4) - \alpha_1^2 c^2p^2 - (\alpha_1 \beta + \beta \alpha_1)mc^3 p - \beta^2 m^2c^4) \psi(\vec{r}, t) = 0
+	\]
+	При $p^2$: $\alpha_1^2 = \hat{I}$. При $p$: $\alpha_1 \beta + \beta \alpha_1 = 0$.
+	Аналогично для $\alpha_2$ и $\alpha_3 \implies \alpha_i^2 = \hat{I}, \{ \alpha_i, \beta \} = 0 \quad \forall i$.
+	\item Частица движется в плоскости $(x, y)$: $\vec{p} = (p_x, p_y, 0), E^2 = c^2(p_x^2 + p_y^2) + m^2c^4$:
+	\[
+	(\hat{I}(c^2p_x^2+c^2p_y^2+m^2c^4)-\alpha_1^2c^2p_x^2-\alpha_2^2c^2p_y^2-m^2c^4\beta^2 - (\alpha_1\beta+\beta\alpha_1)mc^3p_x^2 - (\alpha_2\beta+\beta\alpha_2)mc^3p_y^2-
+	\]
+	\[
+	-(\alpha_1\alpha_2 + \alpha_2\alpha_1)c^2p_xp_y)\psi(\vec{r},~t) = 0
+	\]
+	\[
+	\implies \alpha_1 \alpha_2 + \alpha_2 \alpha_1 = 0 \implies \{ \alpha_i, \alpha_j \} = 0, \quad i \neq j.
+	\]
+	Что вместе с предыдущим пунктом дает
+	\[
+	\{ \alpha_i, \alpha_j \} = 2\delta_{ij}\hat{I}
+	\]
+\end{enumerate}
+
+Итого, все свойства:
+\[
+\begin{cases}
+	\beta^2 = \hat{I} \\
+	\beta = \beta^+
+\end{cases}, \quad
+\begin{cases}
+	\alpha_i^2 = \hat{I} \\
+	\alpha_i = \alpha_i^+
+\end{cases}, \quad
+\{ \alpha_i, \beta \} = 0, \quad \{ \alpha_i, \alpha_j \} = 2 \delta_{ij} \hat{I}
+\]
+Каковы размерности $\beta$ и $\alpha_i$?\\
+
+Из линейной алгебры: $\det(AB) = \det A \det B$ $\Longrightarrow$
+$\det(-\hat{I}) = (-1)^n \implies \det \alpha_i~ \det \beta  = \det (\alpha_i\beta) = \det (-\beta\alpha_i) = \det(-\hat{I}\beta\alpha_i) = \det(-\hat{I})~ \det \beta~\det \alpha_i = (-1)^n \det \beta \det \alpha_i$.
+\[
+\begin{cases}
+	\beta^2 = \hat{I}\\
+	\alpha_i^2 = \hat{I}\\
+\end{cases} \Longrightarrow \det \beta \neq 0, \ \det \alpha_i \neq 0
+\]
+Тогда получим, что $1 = (-1)^n$, а значит, $n$ --- четное число.\\
+
+Пусть $Tr \, \alpha_i = 0, Tr \, \beta = 0$. Действительно: $\alpha_i \beta = -\beta \alpha_i \implies \alpha_i = -\beta \alpha_i \beta^{-1} \implies Tr \, \alpha_i = -Tr(\beta \alpha_i \beta^{-1}) = Tr \beta^{-1}\beta\alpha_i= -Tr \, \alpha_i \implies Tr \ \alpha_i = 
+0$.\\
+
+\begin{enumerate}
+	\item Пусть $n = 2$,  $\beta = \hat{1},\ \alpha_i = \sigma_i$. Но $Tr \, \beta \neq 0$ и $\sigma_i\hat{1} + \hat{1}\sigma_i \neq 0$. Более того, т.к. единичная матрица и матрицы Паули образуют базис в пространстве двумерных матриц, то любые другие матрицы выражаются через них, а значит, подходящих матриц такой размерности нет.
+	\item Пусть $n = 4$. В данном случае подойдет бесконечное число наборов матриц, мы рассмотрим один --- \textbf{стандартное представление (представление Паули-Дирака)}:
+	\[
+	\alpha_i = \begin{pmatrix} 0 & \sigma_i \\ \sigma_i & 0 \end{pmatrix}, \quad \beta = \begin{pmatrix} \hat{1} & 0 \\ 0 & -\hat{1} \end{pmatrix}, \quad \hat{I} = \begin{pmatrix} \hat{1} & 0 \\ 0 & \hat{1} \end{pmatrix}
+	\]
+	Где $\sigma_i$ --- матрицы Паули. Таких наборов бесконечно много (связаны унитарным преобр.: $\tilde{\alpha}_i = \hat{U} \alpha_i \hat{U}^\dagger$, $\tilde{\beta} = \hat{U}\beta\hat{U}^\dagger$).
+\end{enumerate}
+
+\begin{definition}
+	\textbf{Уравнением Дирака для свободной частицы} называется уравнение вида:
+	\[
+	i\hbar \dfrac{\partial \psi(t)}{\partial t} = (c \vec{\alpha} \hat{\vec{p}} + \beta mc^2) \psi(t) = \hat{H} \psi(t)
+	\]
+	
+\end{definition}
+
+
+
+
+
+\subsection{\S XVI.5 Решение свободного уравнения Дирака в стандартном представлении. Часть I.}
+
+Найдём частное положительно-частотное решение:
+\[
+\psi_p(\vec{r}, t) = \dfrac{u(\vec{p}, S_{\vec{n}})}{\sqrt{V}} e^{-\frac{i}{\hbar}(Et - \vec{p}\vec{r})} = \dfrac{1}{\sqrt{V}} N_p 
+\begin{pmatrix}
+	\chi_{S_{\vec{n}}} \\ 
+	\eta_{S_{\vec{n}}} \\
+\end{pmatrix} e^{-\frac{i}{\hbar}(Et - \vec{p}\vec{r})} \eqno{(*)}
+\]
+Где $u(\vec{p}, S_{\vec{n}})$ — биспинор, $\begin{pmatrix} \chi \\ \eta \end{pmatrix}$ — двухкомпонентные спиноры (нормировка $\chi_{S_{\vec{n}}}^\dagger\chi_{S_{\vec{n}}} = 1$), $N_p$ — нормировочный фактор.\\
+
+Есть условие: одна частица на весь нормировочный объём, т.е.
+\[
+\int\limits_V d\vec{r}~ \psi_p^\dagger(\vec{r}, t) \psi_p(\vec{r}, t) = 1 \implies \dfrac{1}{V} \int\limits_V d\vec{r}~ u^\dagger(\vec{p}, S_{\vec{n}}) u(\vec{p}, S_{\vec{n}}) = 1
+\]
+Тогда условия нормировки:  
+\[
+u^\dagger(\vec{p}, S_{\vec{n}}) u(\vec{p}, S_{\vec{n}}) = 1
+\]
+
+Подставим (*) в уравнение Дирака:
+\[
+(\hat{I}E - c(\vec{\alpha}\vec{p}) - \beta mc^2) u(\vec{p}, S_{\vec{n}}) = 0 \implies
+\]
+\[
+\begin{pmatrix} \hat{1}E - \hat{1}mc^2 & -c(\vec{\sigma}\vec{p}) \\ -c(\vec{\sigma}\vec{p}) & \hat{1}E + \hat{1}mc^2 \end{pmatrix} \begin{pmatrix} \chi_{S_{\vec{n}}} \\ \eta_{S_{\vec{n}}} \end{pmatrix} = 0 \implies
+\begin{cases} (E - mc^2) \chi_{S_{\vec{n}}} - c(\vec{\sigma}\vec{p}) \eta_{S_{\vec{n}}} = 0 \\ (E + mc^2) \eta_{S_{\vec{n}}} - c(\vec{\sigma}\vec{p}) \chi_{S_{\vec{n}}} = 0 \end{cases} \implies
+\]
+\[
+\eta_{S_{\vec{n}}} = \dfrac{c(\vec{\sigma}\vec{p})}{E + mc^2} \chi_{S_{\vec{n}}} \implies (E - mc^2) \chi_{S_{\vec{n}}} = \dfrac{c^2(\vec{\sigma}\vec{p})^2}{E + mc^2} \chi_{S_{\vec{n}}}
+\]
+Следовательно, нашей системы недостаточно для решения. Должно быть верно, что $(\vec{\sigma}\vec{a})^2 = \vec{a}^2\hat{1} \implies (\vec{\sigma}\vec{p})^2 = \vec{p}^{~2}\hat{1} = \dfrac{1}{c^2}(E^2 - m^2c^4)\hat{1} = \dfrac{1}{c^2}(E-mc^2)(E+mc^2)$, а значит, равенство верно.\\
+
+Таким образом, 
+\[
+u(\vec{p}, S_{\vec{n}}) = N_p\begin{pmatrix}
+	\chi_{S_{\vec{n}}}\\
+	\eta_{S_{\vec{n}}}\\
+\end{pmatrix} = N_p\begin{pmatrix}
+	\chi_{S_{\vec{n}}}\\
+	\dfrac{c(\vec{\sigma}\vec{p})}{E + mc^2} \chi_{S_{\vec{n}}}\\
+\end{pmatrix}
+\]
+
+Найдём $N_p$:
+\[
+1 = u^\dagger u \implies |N_p|^2 (\chi_{S_{\vec{n}}}^\dagger, \eta_{S_{\vec{n}}}^\dagger) \begin{pmatrix} \chi_{S_{\vec{n}}} \\ \frac{c(\vec{\sigma}\vec{p})}{E + mc^2} \chi_{S_{\vec{n}}} \end{pmatrix} = |N_p|^2 \chi_{S_{\vec{n}}}^\dagger \left( 1 + \frac{c^2(\vec{\sigma}\vec{p})^2}{(E + mc^2)^2} \right) \chi_{S_{\vec{n}}} = 
+\]
+\[
+= |N_p|^2 \chi_{S_{\vec{n}}}^\dagger \left( 1 + \frac{E^2 - m^2c^4}{(E + mc^2)^2} \right) \chi_{S_{\vec{n}}} = |N_p|^2 \underbrace{\chi_{S_{\vec{n}}}^\dagger \chi_{S_{\vec{n}}}}_{=1} \left( 1 + \frac{E - mc^2}{E + mc^2} \right) = \frac{2E |N_p|^2}{E + mc^2}
+\]
+\[
+\implies N_p = \sqrt{\frac{E + mc^2}{2E}}
+\]
+
+Итого, частное положительно-частотное решение УД имеет вид:
+\[
+u(\vec{p}, S_{\vec{n}}) = \frac{1}{\sqrt{2E}} \begin{pmatrix} \sqrt{E + mc^2} \chi_{S_{\vec{n}}} \\ \frac{c(\vec{\sigma}\vec{p})}{\sqrt{E + mc^2}} \chi_{S_{\vec{n}}} \end{pmatrix}
+\]
+
+Решение должно быть собственным вектором гамильтониана $\hat{H}$ и оператора спина 1/2. В нерелятивистском случае $\hat{\vec{S}} = \frac{1}{2}\vec{\sigma}$. А в релятивистском? Если частица покоится, можем ввести $\vec{\Sigma} = \hat{1} \otimes \vec{\sigma} = \begin{pmatrix} \vec{\sigma} & 0 \\ 0 & \vec{\sigma} \end{pmatrix}$. А если не покоится? Это уже не подойдет.

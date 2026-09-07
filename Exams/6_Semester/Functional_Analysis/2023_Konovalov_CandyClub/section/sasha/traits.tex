@@ -1,0 +1,58 @@
+\begin{table}[H]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ Пространство & Определение & 
+ Норма & Полнота & Сепарабельность \\ \hline
+ $\R^n_p$ ($p \geqslant 1$) & 
+ множество $\R^n$ с нормой $\|\cdot\|_p$ &
+ $\|x\|_p = \left(\sum \limits_{k = 1}^n |x_k|^p\right)^{\frac 1p}$ & да & да \\ \hline
+ $\R^n_\infty$ & 
+ множество $\R^n$ с нормой $\|\cdot\|_{\infty}$ &
+ $\|x\|_{\infty} = \max \limits_{1 \leqslant k \leqslant n} |x_k|$ 
+ & да & да \\ \hline
+ $C[a;b]$ & 
+непрерывные на $[a, b]$ функции &
+ $\|f\|_C = \sup\limits_{x \in [a; b]} |f(x)|$ & да & да \\ \hline
+ $C^n[a;b]$ &
+ \makecell{$n$ раз непрерывно \\ 
+ дифференцируемые функции} &
+ $\|f\| = \sum \limits_{i = 1}^n \|f^{(i)}\|_C$ &
+ да & да \\ \hline
+ $l_p\; (p \geqslant 1)$ & 
+ последовательности с $\|x\|_p < \infty$ &
+  $\|x\|_p = \left(\sum\limits_{n \in \N} |x_n|^p\right)^{\frac{1}{p}}$ & да & да \\ \hline
+  $l_\infty$ & 
+  \makecell{последовательности с $\|x\|_{\infty} < \infty$ \\
+  (ограниченные)} &
+  $\|x\|_{\infty} = \sup\limits_{n \in \N} |x_n|$ & да & нет \\ \hline
+  $c \subset l_{\infty}$ &
+  сходящиеся последовательности & 
+  $\|x\|_{\infty} = \sup\limits_{n \in \N} |x_n|$ & да & да \\ \hline
+  $c_0 \subset l_{\infty}$ &
+  \makecell{сходящиеся к нулю \\ последовательности} & 
+  $\|x\|_{\infty} = \sup\limits_{n \in \N} |x_n|$ & да & да \\ \hline
+  $L_p[a, b]$ ($p \geqslant 1$) & 
+  \makecell{$\{f : [a, b] \to \R$ -- измеримые \\ $: \|f\|_p < \infty \} / \sim$, \\ $f_1 \sim f_2 \lra f_1 = f_2$ п. в.} &
+  $\|f\|_p^p = \int \limits_a^b |f(x)|^p dx$ &
+  да & да \\ \hline
+  $L_{\infty}[a, b]$ &
+  Функции, т. ч. $\mathsf{esssup} f < \infty$ &
+  $\|f\|_{\infty} = \mathsf{esssup} f$ &
+  да & нет \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{note}
+Существенный супремум ${ess}\sup$ функции $f:X\to \mathbb{R}$ -- это нижняя грань множества таких чисел, что $f(x) \leqslant a, \; x\in X$ почти всюду. Другими словами:
+$$ess \sup f = \inf \{ a \in \mathbb{R} : \mu(\{x : f(x) > a\}) = 0\}, \text{ где } \mu \text{ -- мера на множестве } X $$
+\end{note}
+
+\begin{note}
+$l_p \subset c_0 \subset c \subset l_{\infty}$
+\end{note}
+
+\begin{note}
+Несепарабельность $l_\infty$ легко доказывается если рассмотреть множество $M$ всевозможных последовательностей из 0 и 1. Это множество будет равномощно $\R$. Расстояние между различными элементами ровно 1. 
+
+Тогда если рассмотреть множество шаров радиуса $\frac{1}{2}$ с центрами в элементах $M$ и предположить сепарабельность, то есть существование всюду плотного счетного множества $A$. Придем к противоречию так как $A$ должно содержать хотя бы одну точку в каждом из ранее построенных непересекающихся шаров, а таких шаров континуум.
+\end{note}

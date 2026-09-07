@@ -1,0 +1,122 @@
+\begin{definition} Случайные вектора $\xi, \ \eta$ называются \textit{независимыми}, если
+\[\forall B_1 \in \B(R^{k_1}), B_2 \in \B(R^{k_2}): \ P(\xi \in B_1, \eta \in B_2) = P(\xi \in B_1)P(\eta \in B_2)\]
+\end{definition}
+
+\begin{definition} Случайные вектора $\xi_1, \ldots , \xi_n$ называются \textit{независимыми}, если  \\ $\forall  B_1 \in \B(\R^{k_1}),\ldots ,  B_n \in \B(\R^{k_n})$ выполнено, что 
+\[P(\xi_1 \in B_1, \ldots ,  \xi_n \in B_n) = P(\xi_1 \in B_1) \cdot \ldots  \cdot P(\xi_n \in B_n)\]
+\end{definition}
+
+\begin{definition}  $\{\xi_{\alpha} , \alpha \in \Gamma\}$ \textit{независимы}, если $\forall n \in \N  \ \forall \alpha_1, \ldots , \alpha_n \in \Gamma$ (попарно различных) $: \ \xi_{\alpha_1}, \ldots , \xi_{\alpha_n} $ независимы.
+\end{definition}
+
+\begin{definition}
+Система множеств $\Sigma$ называется $\pi$-системой, если
+\[\forall A, B \in \Sigma: A\cap B \in \Sigma\]
+\end{definition}
+
+\begin{definition}
+Система множеств $\Sigma $ называется $\lambda$-системой, если 
+\begin{itemize}
+    \item[1.] $E \in \Sigma$
+    \item[2.] $ A, B \in \Sigma, A \subset B: B \backslash A \in \Sigma$
+    \item[3.] $A_1 \subset A_2\ldots   \in \Sigma: \ \bigcup\limits_{n} A_n \in \Sigma$
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[б/д]
+Если $\Sigma - \pi$-система, то $\sigma(\Sigma) = \lambda(\Sigma)$ 
+\end{lemma}
+
+
+\begin{theorem}[Критерий независимости]
+$\xi_1, \ldots , \xi_n$ --- независимые случайные величины тогда и только тогда когда 
+\[\forall (x_1, \ldots , x_n) \in R^{n}\;\;  F_{(\xi_1, \ldots , \xi_n)}(x_1, \ldots , x_n) = F_{\xi_1}(x_1)\ldots  F_{\xi_n}(x_n).\]
+В случае векторов:
+\[\forall x_1 \in \R^{k_1}, \ldots  ,  x_n \in \R^{k_n}\;\; F_{(\xi_1, \ldots , \xi_n)}(x_1, \ldots , x_n) = F_{\xi_1}(x_1)\ldots F_{\xi_n}(x_n).\]
+\begin{proof}
+Проведем доказательство для случайных величин. В правую сторону утверждение очевидно, докажем в обратную. То есть равенство выполнено для лучей, а надо доказать для всех борелевских
+множеств. Докажем по индукции, что
+\[
+    \forall k \in \{1, \ldots , n\} \ \forall B_1,\ldots , B_k \in \B(\R) \ \forall \ x_{k+1},\ldots , x_n \in \R
+\]
+\begin{multline*}
+     P(\underbrace{\xi_1 \in B_1,\ldots , \xi_k \in B_k}_{k\text{ штук из }B_i},
+     \underbrace{\xi_{k+1} \leqslant x_{k+1}, \ldots , \xi_n \leqslant x_n}_{\text{оставшиеся меньше } x_i}) = \\
+     P(\xi_1 \in B_1) \ldots P(\xi_k \in B_k)P( \xi_{k+1} \leqslant x_{k+1}) \ldots  P(\xi_n \leqslant x_n).
+\end{multline*}
+База $k = 0$~--- тривиально. Пусть доказано для $k$. Хотим доказать для $k+1$.
+
+Фиксируем $B_1, \ldots , B_k \in \B(\R), \ x_{k+2}, \ldots , x_n \in \R$
+Рассмотрим 
+\begin{multline*}
+M = \{B \in \B(\R):\;P(\xi_1 \in B_1,\ldots, \xi_{k} \in B_k, \underline{\xi_{k+1} \in B},\xi_{k+2} \leqslant x_{k+2}, \ldots , \xi_n \leqslant x_n) =\\
+ = P(\xi_1 \in B_1)\ldots P(\xi_k \in B_k)P(\xi_{k+1} \in B) P(\xi_{k+2} \leqslant x_{k+2})\ldots P(\xi_{n} \leqslant x_{n})\}.
+\end{multline*}
+
+Так как $(-\infty, x] \in M \implies \sigma(M) = \B(\R)$. Значит, если мы докажем, что $M$~--- сигма-алгебра, мы докажем утверждение.
+
+Знаем, что  $\{(-\infty, x]\} \subset M$ это $\pi$-система, тогда если $M$~--- $\lambda$-система,
+то $M$~--- $\sigma$-алгебра.
+\begin{enumerate}
+    \item $\R \in M$:
+    \begin{multline*}
+        P(\xi_1 \in B_1, \ldots , \xi_k \in B_k, \underline{\xi_{k+1} \in \R},\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) =\\
+        \lim_{x\to\infty} P(\xi_1 \in B_1, \ldots  \xi_k \in B_k, \xi_{k+1} \leqslant x,\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) 
+        \xlongequal[\text{предп. индукции}]{}\\
+        \lim_{x\to\infty} P(\xi_1 \in B_1) \ldots  P(\xi_k \in B_k)P(\xi_{k+1} \leqslant x)P( \xi_{k+2} \leqslant x_{k+2}) \ldots P(\xi_n \leqslant x_n)
+    \end{multline*}
+     \item $A, B \in M, A \subset B$:
+     \begin{multline*}
+     P(\xi_1 \in B_1, \ldots  \xi_k \in B_k, \underline{\xi_{k+1} \in (B \backslash A)},\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) \xlongequal[\text{разность}]{}\\
+     P(\xi_1 \in B_1, \ldots  \xi_k \in B_k, \underline{\xi_{k+1} \in B},\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) - \\
+     P(\xi_1 \in B_1, \ldots  \xi_k \in B_k, \underline{\xi_{k+1} \in A},\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) =
+     \end{multline*}
+     \vspace*{-10mm}
+     \begin{multline*}
+     = P(\xi_1 \in B_1) \ldots  P(\xi_k \in B_k)\underline{P(\xi_{k+1} \in B)}P( \xi_{k+2} \leqslant x_{k+2}) \ldots P(\xi_n \leqslant x_n) - \\
+     P(\xi_1 \in B_1) \ldots  P(\xi_k \in B_k)\underline{P(\xi_{k+1} \in A)}P( \xi_{k+2} \leqslant x_{k+2}) \ldots P(\xi_n \leqslant x_n) = \\
+     P(\xi_1 \in B_1) \ldots  P(\xi_k \in B_k)\underline{P(\xi_{k+1} \in B \backslash A)}P( \xi_{k+2} \leqslant x_{k+2}) \ldots P(\xi_n \leqslant x_n).
+     \end{multline*}
+     Откуда $B \backslash A \in M$.
+     \item $A_1, A_2 \ldots \in M,\;\; A_1 \subset A_2 \subset \ldots,
+     \;\; A =\bigcup\limits_{n}A_n$
+     \begin{multline*}
+     P(\xi_1 \in B_1, \ldots  \xi_k \in B_k, \underline{\xi_{k+1} \in A},\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) =\\
+     \lim_{m\to\infty} P(\xi_1 \in B_1, \ldots  \xi_k \in B_k, \underline{\xi_{k+1} \in A_m},\xi_{k+2} \leqslant x_{k+2} \ldots , \xi_n \leqslant x_n) =\\
+     \lim_{m\to\infty} P(\xi_1 \in B_1) \ldots  P(\xi_k \in B_k)\underline{P(\xi_{k+1} \in A_m)}P( \xi_{k+2} \leqslant x_{k+2}) \ldots P(\xi_n \leqslant x_n) =\\
+     P(\xi_1 \in B_1) \ldots  P(\xi_k \in B_k)\underline{P(\xi_{k+1} \in A)}P( \xi_{k+2} \leqslant x_{k+2}) \ldots P(\xi_n \leqslant x_n).
+     \end{multline*}
+     Откуда $A \in M$.
+\end{enumerate}
+Значит, $M$~--- $\lambda$-система, а значит $M = \B(\R)$.
+Утверждение доказано по индукции. В частности, при $n=k$ 
+\[\forall B_1,\ldots B_n \in \B(\R) \: P(\xi_1 \in B_1, \ldots  \xi_n \in B_n) = P(\xi_1 \in B_1) \ldots  P(\xi_n \in B_n).\]
+\end{proof}
+\end{theorem}
+\begin{lemma}
+Если $\xi_1, \ldots , \xi_n$ --- независимые случайные величины, то ($\xi_1, \ldots , \xi_{k_1}$), ($\xi_{k_1 +1}, \ldots , \xi_{k_2}$), \ldots --- независые случайные векторы (все индексы различны)
+\end{lemma}
+\begin{proof}
+$F_{(\xi_1, \ldots , \xi_{k_1}), \ldots .}(\underset{dim = k_1}{x_1}, x_2, \ldots ) = F_{(\xi_1, \ldots ., \xi_n)}(t_1, \ldots , t_n) = F_{\xi_1}(t_1) \ldots F_{\xi_n}(t_n) = \\   F_{(\xi_1,\ldots , \xi_{k_1})}(x_1)\ldots F_{(\xi_{k_1 +1}, \ldots , \xi_{k_2})}(x_2)\ldots .$
+\end{proof}
+\begin{theorem}
+Пусть $\xi_1, \ldots , \xi_k$ --- независимые случайные векторы. Пусть $f_1, \ldots , f_n$ --- борелевские. $f_i: \R^{n_i} \rightarrow \R^{m_i}$, где $n_i$ --- размерность $\xi_i$. Тогда $f(\xi_1), \ldots , f(\xi_k)$ --- независимые
+\end{theorem}
+
+\begin{proof}
+$B_1 \in \B(\R^m_1), \ldots , B_k \in \B(\R^m_k). \ P(f_1(\xi_1) \in B_1, \ldots , f_k(\xi_k) \in B_k) =  P(\xi_1 \in f_1^{-1}(B_1), \ldots , \xi_k \in f_k^{-1}(B_k)) = P(\xi_1 \in f_1^{-1}(B_1)) \ldots P( \xi_k \in f_k^{-1}(B_k)) = P(f_1(\xi_1) \in B_1) \ldots P(f_k(\xi_k) \in B_k)$
+\end{proof}
+
+\begin{theorem}[Фубини]
+Пусть ($\Omega_1 \times \Omega_2, \mathcal{F}_1\times\mathcal{F}_2, P_1\times P_2$) --- декартово произведение ($\Omega_1, \mathcal{F}_1, P_1$), ($\Omega_2, \mathcal{F}_2, P_2$). $\mathcal{F}_1\times\mathcal{F}_2 = \sigma(A_1\times A_2, A_1 \in \mathcal{F}_1, A_2 \in \mathcal{F}_2)$. $P_1\times P_2 (A_1\times A_2) = P_1(A_1)P_2(A_2)$. \\ 
+Пусть $$\int\limits_{\Omega_1 \times\Omega_2} |\xi|d(P_1 \times P_2) < \infty$$ $\xi$ --- случайная величина. Тогда
+$$\int\limits_{\Omega_1 \times\Omega_2} \xi d\left(P_1 \times P_2\right) = \int\limits_{\Omega_1}\left(\int\limits_{\Omega_2} \xi dP_2\right) dP_1 = \int\limits_{\Omega_2}\left(\int\limits_{\Omega_1} \xi d P_1\right) dP_2$$
+\end{theorem}
+\begin{theorem}[Свёртка]
+\end{theorem}
+Пусть $\xi_1, \xi_2$ --- независимые случайные величины.
+ $$F_{\xi_1 + \xi_2}(x) = P(\xi_1 + \xi_2 \leqslant x) = P_{(\xi_1, \xi_2)}(\{(u,v): u+v \leqslant x\} = D) = \int\limits_{D}dP_{(\xi_1, \xi_2)} = \int\limits_{D}d(P_{\xi_1} \times P_{\xi_2}) =$$
+ $$= \int\limits_{-\infty}^{\infty}\left(\int\limits_{-\infty}^{x-u}d P_{\xi_2}\right)d P_{\xi_1} =  \int\limits_{-\infty}^{\infty}F_{\xi_2}(x-u)d P_{\xi_1}$$ 
+В частности, если  $\xi_1, \xi_2 $ --- абсолютно непрерывны с плотностями $p_1, p_2$, то $$F_{\xi_1 + \xi_2}(x) = \int\limits_{-\infty}^{\infty}F_{\xi_2}(x-u) p_{\xi_1}(u)du$$
+Кроме того $$p_{\xi_1 + \xi_2}(x) = \int\limits_{-\infty}^{\infty}p_{\xi_2}(x-u)p_{\xi_1}(u)du$$ в силу того что
+$$\int\limits_{-\infty}^{x} p_{\xi_1 + \xi_2}(t) dt = \int\limits_{-\infty}^{x}\left(\int\limits_{\R} p_{\xi_1}(t-u)p_{\xi_2}(u)du\right)dt = \int\limits_{\R}p_{\xi_2}(u)du\left( \int\limits_{-\infty}^{x}p_{\xi_1}(t-u) dt\right)$$ = $$\int\limits_{\R}p_{\xi_2}(u)du\left( \int\limits_{-\infty}^{x-u}p_{\xi_1}(y) dy\right) = \int\limits_{\R}p_{\xi_2}(u)F_{\xi_2}(x-u)du = F_{\xi_1 + \xi_2}(x)$$

@@ -1,0 +1,73 @@
+% обсуждаем учебники по матанализу (Колмогоров vs Зорич)
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[inner sep=3mm,thick]
+  \node (Main) at (0,0) [circle,draw=black!50] {Т12.4};
+  \node (Lemma1) at (-3,2.1) [circle,draw=black!50] {Л1};
+  \node (Th11_3) at (-3,4.2) [circle,draw=black!50] {Т11.3};
+  % \node (Lemma3) at (3,2.1) [circle,draw=black!50] {Л3};
+  \node (Lemma3) at (2.5,2.1) [circle,draw=black!50] {Л3};
+  \node (Th11_2) at (3,4.2) [circle,draw=black!50] {Т11.2};
+  \node (DefComp) at (-3,0) [circle,draw=black!50] {\(K(E)\)};
+  \node (Lemma2) at (0,2.1) [circle,draw=black!50] {Л2};
+  \draw [->] (Th11_2.west) to [out=180,in=90] (Lemma2.north);
+  % \draw [->] (Th11_2.east) to [out=0,in=90] (4,2) to [out=270,in=0] (Main.east);
+  \draw [->] (Th11_2.east) to [out=0,in=0] (Main.east);
+  \draw [->] (Lemma3.west) to (Lemma2.east);
+  \draw [->] (Lemma1.east) to (Lemma2.west);
+  \draw [->] (Th11_3.south) to (Lemma1.north);
+  \draw [->] (DefComp.north) to (Lemma1.south);
+  \draw [->] (Lemma2.south) to (Main.north);
+\end{tikzpicture}
+\caption*{Схема доказательства}
+\end{figure}
+\begin{lemma}[1]\label{fredholm:lemma1}
+    Пусть $H(\C)$~--- гильбертово пространство, $A$~--- компактный самосопряжённый оператор, $\lambda \in \C, \lambda \neq 0$.
+    Если $\lambda \in \sigma(A)$, то $\lambda$~--- собственное значение.
+\end{lemma}
+
+\begin{proof}
+    По \hyperref[11.3]{критерию принадлежности числа спектру} \[
+    \lambda \in \sigma(A) \lra \exists \{x_n\} :
+    \begin{cases}
+        \|x_n\| = 1\ \forall n\\
+        A_{\lambda} x_n \to 0
+    \end{cases}
+    \]
+    Так как $A$~--- компактный, то $\{Ax_n\}$~--- предкомпакт (в нашем случае эквивалентно вполне ограниченности). Значит, существует сходящаяся подпоследовательность $\{Ax_{n_k}\}$, $Ax_{n_k} \to y$.
+    Из второго условия получаем, что $A x_{n_k} - \lambda x_{n_k} \to 0$. Откуда $\lambda x_{n_k} \to y$. Получается $x_{n_k} \to \frac{1}{\lambda} y$, $A$~--- непрерывный $\implies Ax_{n_k} \to \frac{1}{\lambda} Ay$. Из единственности предела получаем, что $y = \frac{1}{\lambda} A y$, то есть $y \neq 0$~--- собственный вектор, а $\lambda$~--- собственное значение. Неравенство нулю следует из того, что мы всё получали из сферы.
+\end{proof}
+
+% Кирилл -- летописец
+\begin{lemma}[3]\label{fredholm:lemma3}
+    $A$~--- самосопряжённый оператор в $H(\C)$, $M$ (подпространство) инвариантно относительно $A$, то есть $A[M] \subset M$. Тогда $M^\perp$ инвариантен относительно $A$.
+\end{lemma}
+
+\begin{proof}
+    $y \in M^\perp$. Возьмем произвольный $x \in M$ и рассмотрим $(x, Ay) = (Ax, y)$. Так как $M$ инвариантно, то $Ax \in M$, а значит $(x, Ay)=(Ax, y)=0$, то есть $Ay \in M^\perp$ и $M^\perp$ инвариантно относительно $A$
+\end{proof}
+
+\begin{lemma}[2]\label{fredholm:lemma2}
+    Пусть $H(\C)$~--- гильбертово пространство, $A$~--- компактный самосопряжённый оператор, $\lambda \in \C, \lambda \neq 0$. Тогда $\overline{\im A_\lambda} = \im A_\lambda$
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Ясно, что $\ker A_{\lambda}$ инвариантно относительно $A$ (так как образовано собственными векторами). %~--- говорит Андрей.
+        Отсюда по лемме \nameref{fredholm:lemma3} следует инвариантность $\overline{\im A_\lambda}$, т.к. из теоремы \nameref{11.2} мы знаем, что $\overline{\im A_{\lambda}} \oplus_{\perp} \ker A_{\lambda} = H$.
+        \item Рассмотрим $\tilde{A}=A|_{\overline{\im A_\lambda}}$~--- компактный самосопряженный оператор. 
+        
+        $\tilde{A}_\lambda x = y, x \in \overline{\im A_\lambda} \implies y \in \im \tilde{A_\lambda} \subset \im A_\lambda$
+        
+        У него нет собственных векторов (они все остались во втором слагаемом прямой суммы: если это собственное значение, то соответствующий собственный ветор $\tilde{A}$ лежит в $\overline{\im A_\lambda}$. Тогда он бы являлся и собственным вектором $A$, но мы их отбросили --- противоречие), то есть число $\lambda$ не является собственным значением оператора $\tilde{A}$. Отсюда, по лемме \nameref{fredholm:lemma1}, $\lambda \not\in \sigma(\tilde{A})$. Следовательно, $\lambda \in \rho(\tilde{A})$ и $\tilde{A_\lambda}x=y$ имеет решение $\implies \forall y \in  \im \tilde{A_\lambda} \exists x \in \overline{\im A_\lambda} \subset H\!: \tilde{A_\lambda}x=y$.
+        
+        Получаем, что $\overline{\im A_{\lambda}} = \im \tilde{A_{\lambda}} \subset \im A_{\lambda}$. Равенство получается из того, что $\tilde{A}_\lambda$~--- биекция на своей области определения ($\overline{\im A_{\lambda}}$), а вложение из того, что $\tilde{A}$~--- это просто сужение $A$. Таким образом, $\overline{\im A_{\lambda}} = \im A_{\lambda}$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[12.4 (Фредгольма)]\label{12.4}
+    Пусть $H(\C)$~--- гильбертово пространство, $A$~--- компактный самосопряжённый оператор, $\lambda \in \C, \lambda \neq 0$. Тогда $H = \im A_\lambda \oplus \ker A_\lambda$.
+\end{theorem}
+\begin{proof}
+    По \nameref{11.2}: $H=\overline{\im A_\lambda} \oplus \ker A_\lambda$. По лемме \nameref{fredholm:lemma2}: $\overline{\im A_\lambda} = \im A_\lambda$.
+\end{proof}

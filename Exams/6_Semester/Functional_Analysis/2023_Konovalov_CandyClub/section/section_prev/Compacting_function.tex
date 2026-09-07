@@ -1,0 +1,15 @@
+\begin{theorem}[О сжимающем отображении]\label{banach-compact}
+    Пусть $X$ --- полное метрическое пространство и\\\(F: X \rightarrow X\) --- сжимающее, т.е.
+    \[\exists \lambda \in (0; 1)\forall x, y \in X \left(\rho(F(x), F(y)) \leqslant \lambda \rho(x, y) \right)\]
+    Тогда \(\exists! x^* \left(F(x^*) = x^* \right)\).
+\end{theorem}
+\begin{proof} \\
+    \textit{Существование.} Зафиксируем \(x_0 \in X\) и рассмотрим последовательность \(\{x_n\}\), где \(x_{n+1} = F(x_n)\). Поскольку для \(k \in \N\) выполнено
+    \[\rho(x_{k+1}, x_k) = \rho \left(F(x_k), F(x_{k-1}) \right) \leqslant \lambda \rho(x_k, x_{k-1}) = \lambda \rho \left(F(x_{k-1}), F(x_{k-2}) \right) \leqslant ... \leqslant \lambda^k \rho \left(x_1, x_0 \right),\]
+    по неравенству треугольника получим
+    \[\rho(x_{n+p}, x_{n}) \leqslant \rho(x_{n+p}, x_{n+p-1}) + ... + \rho(x_{n+1}, x_n) \leqslant \left(\lambda^{n+p-1} + ... + \lambda^n \right) \rho(x_1, x_0) \leqslant \frac{\lambda^n}{1 - \lambda} \rho(x_1, x_0).\]
+    Так как \(\lambda^n \xrightarrow[n \rightarrow \infty]{} 0\), то \(\{x_n\}\) фундаментальна. Значит, из полноты пространства, существует\(\lim\limits_{n \rightarrow \infty}x_n = x^*\). Переходя к пределу в равенстве \(x_{n+1} = F(x_n)\) и пользуясь непрерывностью \(F\), получаем \(F(x^*)=x^*\).
+    \\
+
+    \noindent\textit{Единственность.} Предположим, что \(\exists y^*\left(F(y^*) = y^* \right)\). Тогда \(\rho(x^*, y^*) = \rho \left(F(x^*), F(y^*) \right) \leqslant \lambda \rho(x^*, y^*)\). Значит, \(\rho(x^*, y^*) = 0\) и \(x^*=y^*\).
+\end{proof}

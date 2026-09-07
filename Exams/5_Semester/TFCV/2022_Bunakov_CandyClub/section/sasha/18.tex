@@ -1,0 +1,124 @@
+
+\begin{theorem}[принцип аргумента]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G$ "--- ограниченная односвязная область с простой границей
+		
+		\item Граничная кривая $\partial G$ положительно ориентирована относительно $G$
+		
+		\item Функция $f$ регулярна на $\overline{G} \bs \{a_1, \dotsc, a_m\}$, где $a_1, \dotsc, a_m \in G$ "--- полюса или УОТ
+		
+		\item $f \ne 0$ на $\partial G$
+	\end{enumerate}
+	
+	Тогда $f$ имеет лишь конечное число нулей на $G$. Более, если $N$ и $P$ "--- числа нулей и полюсов функции $f$ на $G$ с учетом их порядков, то:
+	\[\Delta_{\partial G} \arg f = 2\pi (N - P)\]
+\end{theorem}
+
+\begin{proof}
+	Предположим, что $f$ имеет бесконечное число нулей на $G$. Тогда множество нулей имеет предельную точку $z_0 \in \overline{G}$, причем $z_0$ не может быть полюсом, поскольку $f(z) \to 0$ при $z \to z_0$. Значит, $f$ непрерывна в точке $z_0$, откуда $f(z_0) = 0$, поэтому $z_0 \in G$. Но тогда, по теореме единственности, $f \equiv 0$ на $G \bs \{a_1, \dotsc, a_m\}$, и $f \equiv 0$ на $\partial G$ в силу непрерывности --- противоречие.
+	
+	Пусть $a_1, \dotsc, a_m \in G$ "--- полюса функции $f$ порядков $p_1, \dotsc, p_m$, $b_1, \dots, b_n \in G$ "--- нули функции $f$ порядков $q_1, \dotsc, q_n$, тогда $\sum_{k = 1}^mp_k = P$ и $\sum_{k = 1}^nq_k = N$. По формуле для приращения аргумента функции вдоль кривой:
+	\[\Delta_{\partial G} \arg f = \im\int_{\partial G}\frac{f'(z)}{f(z)}dz = 2\pi\re \left(\sum_{k = 1}^m\res_{a_k}\frac{f'}{f} + \sum_{k = 1}^n\res_{b_k}\frac{f'}{f}\right)\]
+	
+	Зафиксируем нуль $b_k$. В некоторой его проколотой окрестности $\mathring B(b_k)$ выполнено равенство
+ % (по \hyperref[local-structure]{теореме о локальной структуре отображения})
+ $f(z) = (z-b_k)^{q_k}h(z)$, где $h$ "--- регулярная на $B(b_k)$ функция, $h \ne 0$ на $B(b_k)$. Тогда $f'(z) = q_k(z-b_k)^{q_k - 1}h(z) + (z-b_k)^{q_k}h'(z)$. Значит, выполнено следующее:
+	\[\res_{b_k}\frac{f'}{f} = \res_{b_k}\frac{q_k}{z-b_k} + \res_{b_k}\frac{h'}{h} = q_k + 0 = q_k\]
+	
+	Аналогично, зафиксируем полюс $a_k$. В некоторой его проколотой окрестности $\mathring B(a_k)$ выполнено равенство $f(z) = (z-a_k)^{-p_k}h(z)$, где $h$ "--- регулярная на $B(a_k)$ функция, $h \ne 0$ на $B(a_k)$. Тогда $f'(z) = -p_k(z-a_k)^{-p_k - 1}h(z) + (z-a_k)^{-p_k}h'(z)$. Значит, выполнено следующее:
+	\[\res_{a_k}\frac{f'}{f} = \res_{a_k}\frac{-p_k}{z-a_k} + \res_{a_k}\frac{h'}{h} = -p_k + 0 = -p_k\]
+	
+	Подставляя полученные вычеты в формулу для приращения аргумента функции, полуачем требуемое.
+\end{proof}
+
+\begin{note}
+	Число полюсов или нулей в теореме выше может быть и нулевым.
+\end{note}
+
+\begin{theorem}[Руше]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G$ "--- ограниченная односвязная область с простой границей
+		
+		% \item Граничная кривая $\partial G$ положительно ориентирована относительно $G$
+		
+		\item Функции $f, g$ регулярны на $\overline{G}$
+		
+		\item $|f| > |g|$ на $\partial G$
+	\end{enumerate}
+	
+	Тогда функции $f$ и $f+g$ на $G$ имеют одинаковое число нулей с учетом их порядков.
+\end{theorem}
+
+\begin{proof}
+	Из условия, в частности, следует, что $f \ne 0$ на $\partial G$, поскольку $|f| > 0$ на $\partial G$, и $f + g \ne 0$ на $\partial G$. Ориентируем \(\partial G\) положительным образом. Пусть $N_f$, $N_{f+g}$ "--- число нулей функций $f$ и $f+g$ на $G$ с учетом их порядков. По принципу аргумента, выполнено следующее:
+	\begin{gather*}
+		\Delta_{\partial G}\arg f = 2\pi N_f
+		\\
+		\Delta_{\partial G}\arg (f+g) = 2\pi N_{f+g}
+	\end{gather*}
+	
+	С другой стороны:
+	\[\Delta_{\partial G}\arg (f+g) = \Delta_{\partial G}\arg \left(f \cdot \left(1 + \frac gf\right)\right) = \Delta_{\partial G}\arg f + \Delta_{\partial G}\arg \left(1 + \frac gf\right)\]
+	
+	Рассмотрим функцию $h = 1 + \frac gf$, регулярную на $\partial G$. Пусть кривая $\Gamma$ "--- образ границы $\partial G$ под действием функции $h$. Тогда:
+	\[\Delta_{\partial G}\arg \left(1 + \frac gf\right) = \Delta_\Gamma \arg z\]
+	
+	Но для каждого $z \in \Gamma$ выполнено $|z - 1| = \left|\frac{g(z)}{f(z)}\right| < 1$. Тогда:
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-1.5, -2.5) rectangle (4, 2.5);
+			
+			\draw [->] (-1, 0) -- (3.6, 0) node [above, black] {$\re z$};
+			\draw [->] (0, -2.1) -- (0, 2.1) node [right, black] {$\im z$};
+			
+			\draw [black] (1.5,3pt) -- (1.5,-3pt) node [below, black] {$1$};
+			\draw [black] (3pt,1.5) -- (-3pt,1.5) node [left, black] {$i$};
+			
+			
+			\path
+			coordinate (p1) at (2, 1.1)
+			coordinate (p2) at (2.3, 0.8)
+			coordinate (p3) at (2, -0.3)
+			coordinate (p4) at (1.6, -0.6)
+			coordinate (p5) at (1.2, -0.7)
+			coordinate (p6) at (0.3, -0.3)
+			coordinate (p66) at (0.6, -0.8)
+			coordinate (p666) at (0.9, -0.3)
+			coordinate (p7) at (0.3, 0.3)
+			coordinate (p8) at (0.6, 0.5)
+			coordinate (p9) at (1.1, 1.1);
+			
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.12 with {\arrow{<}}},
+			decoration={markings, mark=at position 0.64 with {\arrow{<}}},
+			decoration={markings, mark=at position 0.87 with {\arrow{<}}},
+			postaction={decorate}
+			] plot [smooth, tension=0.85] coordinates {(p1) (p2) (p3) (p4) (p5) (p6) (p66) (p666) (p7) (p8) (p9) (p1)};
+			
+			\draw[black, dashed] (1.5, 0) circle[radius=1.5];
+			
+			\draw [->, black] (0, 0) -- (1.97, 1.07) node [black, below, scale = 1.1] {$z$};
+			
+			\node[draw, circle, inner sep=1pt, fill, black] at (p1) {};
+			
+			\coordinate (a2) at (0,0);
+			\coordinate (a3) at (1, 0);
+			
+			\pic [draw, ->, angle radius = 0.8cm] {angle = a3--a2--p1};
+			\node [] at (0.98, 0.25) {$\phi$};
+			\node[] at (1.93, -0.93) {$\Gamma$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Геометрически ясно, что $\Delta_\Gamma\arg{z} = 0$. Значит:
+	\[\Delta_{\partial G}\arg (f+g) = \Delta_{\partial G}\arg f \ra N_f = N_{f+g}\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{proof}[основной теоремы алгебры]
+    Рассмотрим многочлен \(F(z) = z^n+\cdots+a_{n-1}z+a_n\), тогда пусть \(f(z)=z^n\), а \(g(z)\) --- всё остальное. \(\exists R>0\,\forall r \geqslant R\, \left(|z| =r \Rightarrow |f(z)| > |g(z)|\right)\). Выберем \(\rho = max\{R, 1 + \varepsilon\}\). Тогда на окружности радиуса \(\rho\) выполняются условия теоемы Руше, и количество корней уравнения \(F(z)=0\) равно количеству корней \(f(z)=z^n=0\), а их ровно \(n\) с учётом кратности из того, что это первообразные корни.
+\end{proof}

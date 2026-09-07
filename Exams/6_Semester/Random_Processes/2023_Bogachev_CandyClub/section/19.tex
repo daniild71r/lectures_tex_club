@@ -1,0 +1,43 @@
+\subsection*{Уравнение вероятности вырождения}
+
+Введём обозначения:
+\begin{itemize}
+    \item $q_n = \P(X_n = 0)$
+    \item $q = \P(\exists n: \ X_n = 0)$~--- вероятность вырождения
+\end{itemize}
+
+\begin{lemma} $\forall n \ q_n \leq q_{n + 1}$ и $q = \lim\limits_{n \to \infty} q_n$
+\end{lemma}
+
+\begin{proof} События вложены, значит, монотонность верна.
+
+А второе утверждение следует из непрерывности вероятностной меры:
+\begin{equation*}
+    q = \P(\exists n: \ X_n = 0) = \P\brackets{\bigcup\limits_{n = 1}^\infty \{X_n = 0\}} = \lim\limits_{n \to \infty}\P\brackets{X_n = 0} = \lim\limits_{n \to \infty} q_n
+\end{equation*}
+
+\end{proof}
+
+\begin{lemma} Вероятность вырождения $q$ удовлетворяет соотношению:
+\begin{equation}
+    q = \charac{\xi}{q}
+\end{equation}
+\end{lemma}
+
+\begin{proof} Заметим, что
+\begin{equation*}
+    q_n = \P(X_n = 0) = \phi_{X_n}(0) = \{\text{следствие первой леммы}\} = \phi_{\xi}(\phi_{X_{n - 1}}(0)) = \phi_{\xi}(q_{n - 1})
+\end{equation*}
+
+Тогда, устремляя к бесконечности, по второй лемме и непрерывности производящей функции в круге $\{|z| \leq 1\}$, получаем требуемое.
+
+\end{proof}
+
+\subsection*{Теорема о вероятности вырождения}
+
+\begin{theorem}  Пусть $\P(\xi = 1) < 1$. Пусть $\E\xi = \mu$ быть может бесконечное, тогда
+\begin{enumerate}
+    \item $\mu \leq 1$, тогда уравнение $z = \phi_{\xi}(z)$ имеет только решение 1 на $[0, 1]$ и $q = 1$.
+    \item $\mu > 1$, тогда уравнение $z = \phi_{\xi}(z)$ имеет только одно решение $z_0$ на $[0, 1)$ и $q = z_0$.
+\end{enumerate}
+\end{theorem}

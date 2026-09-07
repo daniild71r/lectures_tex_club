@@ -1,0 +1,48 @@
+\begin{theorem}\label{9.1}
+Для винеровского процесса $W_t$ верен закон повторного логарифма:
+\begin{equation*}
+    P\brackets{\overline{\lim\limits_{t \to \infty}}\frac{|W_t(\omega)|}{\sqrt{2t\ln |\ln t|}} = 1} = 1 \qquad \qquad 
+     P\brackets{\overline{\lim\limits_{t \to 0}}\frac{|W_t(\omega)|}{\sqrt{2t\ln |\ln t|}} = 1} = 1
+\end{equation*}
+\end{theorem}
+
+\begin{statement}
+    Траектории винеровского процесса (броуновские траектории) не дифференцируемы.
+\end{statement}
+
+\begin{proof}
+    Из второго равенства в теореме \ref{9.1} следует, что для фиксированной точки $t_0$ с вероятностью $1$ имеем
+    \begin{equation*}
+        \overline{\lim\limits_{h\to 0}}\frac{|W_{t_0+h}(\omega)-W_{t_0}(\omega)|}{\sqrt{2h\ln |\ln h|}} = 1
+    \end{equation*}
+    Из этого ясно, что почти всякая броуновская траектория не дифференцируема в точке $t_0$, но верно даже больше: почти всякая броуновская траектория не дифференцируема ни в одной точке.
+\end{proof}
+
+\begin{definition}
+    \textit{Броуновский мост} задан на $[0,1]$ формулой:
+    \begin{equation*}
+        b_t(\omega) = W_t(\omega) - t\cdot W_1(\omega)
+    \end{equation*}
+\end{definition}
+
+% \begin{note}
+%     Отсутствие точек дифференцируемости у броуновского моста влечет неограниченность вариации траектории винеровского процесса на всяком нетривиальном подотрезке.
+% \end{note}
+
+\begin{note}
+    Броуновский мост -- также гауссовский процесс с нулевым математическим ожиданием, но с зависимыми приращениями.
+
+\end{note}
+
+\begin{statement}
+    $cov(b_t, b_s) = \min{(t, s)} - ts$
+\end{statement}
+
+\begin{proof}
+    Из определения, пользуясь свойствами математического ожидания, получаем коварационную функцию броуновского моста:
+    \begin{equation*}
+        cov(b_t, b_s) = \E b_tb_s = \E (W_tW_s - tW_1W_s - sW_1Wt + tsW_1^2) = \min{(t, s)} - ts - st + ts = \min{(t, s)} - ts
+    \end{equation*}
+\end{proof}
+
+

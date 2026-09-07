@@ -1,0 +1,65 @@
+\begin{definition}[Интеграл Коши]
+	Пусть $\gamma$ "--- кусочно-гладкая кривая, $z = \sigma(t)$, $t \in [a, b]$, "--- её параметризация, и функция $f$ такова, что композиция $f\circ\sigma$ непрерывна на $[a, b]$. \textbf{Интегралом Коши} называется функция, определенная вне множества $M(\gamma)$, следующего вида:
+	\[F(z) := \frac1{2\pi i}\int_\gamma \frac{f(w)}{w - z}dw, \quad z \not \in M(\gamma)\]
+\end{definition}
+
+\begin{theorem}\label{cauchy-curve-integral}
+ 	Пусть $F$ "--- интеграл Коши для кривой $\gamma$ и функции $f$, числа $z_0 \in \C$, $R > 0$ таковы, что круг $K := \{z \in \C: |z - z_0| < R\}$ не пересекается с $M(\gamma)$. Тогда на $K$ интеграл Коши $F$ может быть представлен степенным рядом с центром в $z_0$.
+\end{theorem}
+
+\begin{proof}
+	По условию, $R \le d := \inf\{|z_0 - w| : w \in M(\gamma)\}$. Зафиксируем $z \in K$, тогда $|z - z_0| < R \le d$, и для любого $w \in M(\gamma)$ имеем:
+	\[\frac1{w - z} = \frac1{(w-z_0) - (z - z_0)} = \frac1{w-z_0}\cdot \frac1{1 - \frac{z-z_0}{w - z_0}} = \sum_{n=0}^\infty\frac{(z-z_0)^n}{(w-z_0)^{n + 1}}\]
+	
+	При любом $w \in M(\gamma)$ выполнено следующее неравенство:
+	\[\left|\frac{(z-z_0)^n}{(w-z_0)^{n + 1}}\right| \le \frac{1}{|z - z_0|}\left(\frac{|z - z_0|}{d}\right)^{n+1} (\text{так как $d$ это $\inf$})\]
+	
+	Тогда, так как строго $|z - z_0| < R \le d$, по признаку Вейерштрасса, ряд, представляющий функцию $\frac1{w - z}$, сходится равномерно на $M(\gamma)$, тогда на $M(\gamma)$ равномерно сходится и ряд следующего вида:
+	\[\frac1{2\pi i} \cdot\frac{f(w)}{w-z} = \sum_{n=0}^\infty\frac1{2\pi i}\cdot \frac{f(w)}{(w-z_0)^{n + 1}}(z-z_0)^n\]
+	
+	Интегрируя обе части равенства выше, получим требуемое:
+	\[F(z) = \frac1{2\pi i} \int_\gamma \frac{f(w)}{w-z}dw = \sum_{n=0}^\infty\left(\frac1{2\pi i} \int_\gamma\frac{f(w)}{(w-z_0)^{n + 1}}dw\right)(z-z_0)^n \qedhere\]
+\end{proof}
+
+\begin{corollary}
+	Интеграл Коши $F(z)$ бесконечно дифференцируем на $\C \bs M(\gamma)$, причем для любых $z_0 \not \in M(\gamma)$ и $n \in \N$ выполнено равенство:
+	\[F^{(n)}(z_0) = \frac{n!}{2\pi i} \int_\gamma\frac{f(w)}{(w-z_0)^{n + 1}}dw\]
+\end{corollary}
+
+\begin{theorem}[о беск. дифференцируемости рег. функции]
+Пусть $G$ --- огр. область с простой границей \(\partial G = \bigsqcup\limits_{i=1}^m \gamma_i\), где \(\forall i\: \gamma_i \text{--- контур}\). Также пусть \(f(z)\) регулярна в \(\overline{G}\). Тогда \(\forall z \in G\) существует \(f^{(n)}(z)\) и она равна
+\[f^{(n)}(z) = \frac{n!}{2 \pi i} \int\limits_{\partial G} \frac{f(w)}{(w-z)^{n+1}}dw\]
+\end{theorem}
+
+\begin{proof}
+По \hyperref[cauchy-integral-formula]{интегральной формуле Коши} имеем
+\[\forall z \in G \quad f(z) = \sum\limits_{k=1}^m \left[\frac{1}{2 \pi i} \int\limits_{\gamma_k} \frac{f(w)}{w-z}dw \right] =: \sum\limits_{k=1}^m F_k(z)\]
+Так как \(\forall k\: F_k\) имеет производную всех порядков в \(z \in G\), то это верно и для $f$. Тогда по линейности производной
+\[f^{(n)}(z) = \sum\limits_{k=1}^m F_k^{(n)}(z) = \frac{1}{2 \pi i} \sum\limits_{k=1}^m n! \int\limits_{\gamma_k} \frac{f(w)}{(w-z)^{n+1}}dw = \frac{n!}{2 \pi i} \int\limits_{\partial G} \frac{f(w)}{(w-z)^{n+1}}dw\]
+\end{proof}
+
+\begin{definition}
+    В утверждении выше формула для производной называется \textit{интегральной формулой Коши для $n$-ой производной}.
+\end{definition}
+
+\begin{corollary}
+Если $f(z)$ регулярна в круге \(\{z:\: |z-z_0| < R\}\), то \(f(z)\) разлагается в этом круге в степенной ряд.
+\end{corollary}
+\begin{proof}
+Из теоремы о разложении интеграла Коши в степенной ряд и интегральной формулы Коши следует, что \(\forall R_1:\: 0 < R_1 < R f(z) \text{ в круге }|z-z_0| < R_1 \text{ разлагается в степенной ряд}\)
+\[f(z) = \sum\limits_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n\]
+\end{proof}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=350pt]{images/7_1.jpg}
+%     \includegraphics[width=350pt]{images/7_2.jpg}
+% \end{figure}
+\begin{note}
+\label{infinity-diff-reg}
+	Поскольку любую область $G \subset \C$ можно представить в виде объединения кругов, то любая регулярная в области $G$ функция бесконечно дифференциируема в ней
+\end{note}
+
+\begin{note}
+	Регулярность функции нужна для применения интегральной формулы Коши.
+\end{note}

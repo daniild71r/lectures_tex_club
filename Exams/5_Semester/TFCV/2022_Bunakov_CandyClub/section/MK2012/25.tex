@@ -1,0 +1,76 @@
+\begin{theorem}[Римана, \textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $D, G \subset \CM$ "--- односвязные области
+		\item Оба множества $\partial D, \partial G$ содержат более одной точки
+		\item $z_0 \in D \bs \{\infty\}$, $w_0 \in G \bs \{\infty\}$, $\alpha \in [0, 2\pi)$
+	\end{enumerate}
+	
+	Тогда существует единственное конформное отображение $f : D \to G$ такое, что выполнены равенства $f(D) = G$, $f(z_0) = w_0$ и $\arg f'(z_0) = \alpha$.
+\end{theorem}
+
+\begin{unnecessary}
+    \begin{example}
+    	Зададимся вопросом, существует ли конформное отображение плоскости $\Cm$ на $\{w \in \Cm: |w| < 1\}$. Теорема Римана не дает ответа на этот вопрос, поскольку $\partial \Cm = \{\infty\}$. Покажем, что такого отображения не существует. Пусть не так, и $f$ "--- искомое отображение. Тогда $f$ регулярна на $\Cm$, поскольку ни одна из областей не содержит точку $\infty$, и $f$ ограничена на $\Cm$. Тогда, по теореме Лиувилля, $f$ постоянна на $\Cm$ --- противоречие.
+    \end{example}
+\end{unnecessary}
+
+\begin{theorem}[принцип соответствия границ]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $D, G \subset \Cm$ "--- ограниченные односвязные области с простыми кусочно-гладкими границами
+		\item Функция $f$ регулярна на $\overline{D}$
+		\item Функция $f$ взаимно однозначно отображает $\partial D$ на $\partial G$ с сохранением ориентации
+	\end{enumerate}
+	
+	Тогда $f$ конформно отображает $D$ на $G$.
+\end{theorem}
+
+\begin{proof}
+	Выберем $w_0 \in G$ и $w_1 \in \Cm \bs \overline G$.
+		\begin{center}
+		\begin{tikzpicture}
+			\clip (-5, -2) rectangle (6, 2);
+			
+			\fill [opacity=0.05] (-2,0) circle [radius=1.6];
+			\draw[
+				decoration={markings, mark=at position 0.2 with {\arrow{>}}},
+				decoration={markings, mark=at position 0.7 with {\arrow{>}}},
+				postaction={decorate}
+			] (-2,0) circle [radius=1.6];
+			
+			\fill [opacity=0.05] (2, 0) circle [radius=1.2];
+			\draw[
+				decoration={markings, mark=at position 0.3 with {\arrow{>}}},
+				decoration={markings, mark=at position 0.8 with {\arrow{>}}},
+				postaction={decorate}
+			] (2, 0) circle [radius=1.2];
+			
+			\draw[->] (-0.3, 0.7) arc (120:60:1.1);
+			
+			\node[] at (0.25, 1.2) {$f$};
+			\node[] at (-2.9, 0.6) {$D$};
+			\node[] at (2.5, -0.5) {$G$};
+			\node[] at (-0.6, -1.6) {$\partial D$};
+			\node[] at (2.9, -1.4) {$\partial G$};
+			
+			
+			\node[draw, circle, inner sep=1pt, fill, black, label={below:$w_0$}] at (1.5, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black, label={below:$w_1$}] at (4, -0.6) {};
+			
+			\draw[->] (4, -0.6) -- (3.23, 0.12);
+			\node[draw, circle, inner sep=1pt, fill, black, label={above right:$w$}] at (3.19, 0.15) {};
+			
+			\draw[->] (1.5, 0) -- (2.12, 1.16);
+			\node[draw, circle, inner sep=1pt, fill, black, label={above:$w$}] at (2.13, 1.19) {};
+		\end{tikzpicture}
+	\end{center}
+	
+	Найдём число $N_1$ корней уравнения $f(z) = w_1$ в области $D$. Для этого воспользуемся принципом аргумента для функции $f(z) - w_1$ и тем фактом, что $f$ взаимно однозначно отображает $\partial D$ на $\partial G$ с сохранением ориентации:
+	\[N_1 = \frac1{2\pi}\Delta_{\partial D}\arg(f - w_1) = \frac1{2\pi}\Delta_{\partial G}\arg(w - w_1) = 0\]
+	
+	Значит, уравнение не имеет корней, поэтому $f(D) \subseteq G$ в силу произвольности выбора точки $w_1$. Теперь найдем число $N_0$ корней уравнения $f(z) = w_0$ в области $D$. Для этого снова воспользуемся принципом аргумента, но для функции $f(z) - w_0$:
+	\[N_0 = \frac1{2\pi}\Delta_{\partial D}\arg(f - w_0) = \frac1{2\pi}\Delta_{\partial G}\arg(w - w_0) = 1\]
+	
+	Значит, уравнение имеет ровно один корень для каждого $w_0 \in G$, то есть $f(D) = G$, причем отображение $f$ однолистно. Тогда, поскольку функция $f$ регулярна на $D$, она конформно отображает $D$ на $G$.
+\end{proof}

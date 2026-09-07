@@ -1,0 +1,74 @@
+\begin{definition}
+    Оператор $A\!: E_1 \to E_2$ называется \textit{обратимым}, если
+    \[\forall y \in \text{Im}A \;\; \exists!x \in E_1:\: Ax=y.\]
+    $A^{-1}\!:\: E_2 \to E_1$ называется \textit{обратным оператором}, если $\left(\forall x \in E_1\: A^{-1}Ax=x \right) \wedge \left(\forall y \in E_2\: AA^{-1}y=y\right)$.
+\end{definition}
+
+\begin{definition}
+    Оператор $R$ называется \textit{правым обратным} к $A$, если $\forall y \in \im A \left(ARy=y \right)$, т.е. $AR=I|_{\im A}$
+
+    Оператор $L$~--- левый обратный оператор определяется аналогичным образом. 
+    Очевидно, что $R$ отвечает за существование решения, а $L$ за его единственность.
+    Тогда понятно что $A^{-1} = L = R$. Такое введение определяется тем, что в разных ситуациях проще искать разный тип обратного оператора.
+\end{definition}
+
+\begin{unnecessary}
+    \begin{exercise}
+        $A$~--- линейный и обратим, то обратный ему оператор линеен
+    \end{exercise}
+
+    \begin{example}
+        Не каждый линейный оператор обратим~--- пример тождественный ноль.
+    \end{example}
+    
+    \begin{exercise}
+    Пусть $A$~--- ограниченный оператор и у него существует обратный $A^{-1}$. Верно ли, что $A^{-1}$~--- ограниченный?
+    \end{exercise}
+    \begin{answer}
+    Нет, это неверно, пример~--- оператор Вольтера на $C[0;1]$:
+    \begin{align*}
+        (Vf)(x) &=\int_{t=0}^x f(t)dt,\\
+        \im \: V &= \{ g \in C^1, g(0)=0 \}.
+    \end{align*}
+    Обратный оператор~--- оператор дифференцирования, не является ограниченным
+    \end{answer}
+\end{unnecessary}
+
+\begin{theorem}[8.4, теорема Банаха об обратном операторе]\label{theorem8.4_pre}\label{theorem8.4}
+    Пусть $E_1$, $E_2$~--- банаховы пространства, $A \in \mathcal{L}(E_1, E_2)$, причём $A$~--- биекция. Тогда $A^{-1}$~--- линейный ограниченный оператор.
+\end{theorem}
+
+\begin{proof}
+    В общем случае: б/д. Для гильбертовых пространств дальше
+\end{proof}
+
+\begin{definition}[Усиление условия $\ker A = \{0\}$]
+    Назовём ЛНО $A$ \textit{ограниченным снизу}, если
+    \[\exists m > 0\!:\: \forall x \; \|Ax\| \geqslant m \|x\|.\]
+\end{definition}
+
+\begin{note}
+    Ограниченность снизу влечёт инъективность
+\end{note}
+
+\begin{proof}
+    Пусть $A$ не инъективен. Рассмотрим $x \in \ker A, x \neq 0$
+        \[ 0 = \| Ax \| \geq m \| x \| \neq 0 \]
+    Пришли к противоречию.
+\end{proof}
+
+\begin{theorem}[8.1]\label{8.1}
+    Пусть $A \in \mathcal{L}(E_1, E_2)$. Существует $A^{-1} \in \L(\im A, \text{dom}A) \Leftrightarrow A$~--- ограничен снизу.
+\end{theorem}
+
+\begin{proof}
+    \begin{itemize}
+        \item[$\Leftarrow$]
+        Берём $\forall y \in \im\: A,$ для него верно \(\|y\| = \|Ax\| \geqslant m \|x\| = m \|A^{-1}y\|\). $A^{-1}$ существует по определению: инъективность следует из ограниченности снизу, а сюръективность очевидна, так как просто рассматриваем оператор на $\im A$.
+        
+        Отсюда $\|A^{-1} y\| \leqslant \frac{1}{m} \|y\|$.
+        \item[$\Rightarrow$]
+        \( \forall x \in E_1 \; \|x\|=\|A^{-1} y\| \leqslant \| A^{-1}\| \cdot \|y\|=\|A^{-1}\| \cdot \|Ax\| \Rightarrow \|Ax\| \geqslant \frac{1}{\|A^{-1}\|}\|x\| \)
+    \end{itemize}
+\end{proof}
+\newpage

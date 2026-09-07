@@ -1,0 +1,206 @@
+\section{Немного о вариационных принципах гамильтоновой механики.}
+Вариационные принципы механики разбиваются на два вида: дифференциальные и интегральные.
+В частности, к дифференциальным относятся
+\begin{itemize}
+    \item Принцип Даламбера-Лагранжа (также известен как основное уравнение динамики):
+    \[
+        \sum\limits_{\nu \in M} (F_\nu - m_\nu w_\nu)\delta r_\nu = 0.
+    \]
+    \item Фиксируя $r_{\nu_1} = r_{\nu_2}$ и варьируя по скорости $\delta v_\nu$ можно перейти к принципу Журдена -- $\delta r_\nu = \delta v_\nu \Delta t$:
+    \[
+        \sum\limits_{\nu \in M} (F_\nu - m_\nu w_\nu) \delta v_{\nu} = 0.
+    \]
+    \item Фиксируя $r_{\nu_1} = r_{\nu_2}$, $v_{\nu_1} = v_{\nu_2}$ и варьируясь по $\delta w_{\nu} = w_{\nu_1} - w_{\nu_2}$, $\delta r_{\nu} = \delta w \frac{(\Delta t)^2}{2}$ мы получаем принцип Гаусса (также известный как принцип наименьшего принуждения):
+    \[
+        \sum\limits_{\nu \in M} (F_\nu - m_\nu w_\nu) \delta w_{\nu} = 0.
+    \]
+\end{itemize}
+Можно заметить, что левая часть принципа Гаусса является полным дифференциалом функции $Z$, которая равна
+\[
+    Z = \dfrac{1}{2}\sum\limits_{\nu \in M}(w_\nu - \dfrac{F_\nu}{w_\nu})m_{\nu}.
+\]
+И тогда принцип Гаусса принимает вид:
+\[
+    \delta Z = 0.
+\]
+\subsection{Принцип Гамильтона.}
+Теперь рассмотрим основной интегральный принцип механики.
+Пусть есть некоторая гамильтонова система $M$ с гамильтонианом $H$.
+Рассмотрим краевую задачу в расширенном фазовом пространстве с начальными условиями $A_0 = (t_0, \bt{q}_0)$ и $A_1 = (t_1, \bt{q}_1)$.
+Существует несколько возможных вариантов дальнейшего развития событий.
+\begin{example}
+    Пусть $M$ -- одномерный осциллятор c уравнением Лагранжа $\ddot{x} + x = 0$.
+    Пусть $A_0 = (0, 0)$ и $A_1 = (t_1, x_1)$.
+    \begin{itemize}
+        \item Если $t_1 < \pi$ то существует единственное решение краевой задачи
+        \item Если $t_1 = \pi$ и $x_1 = 0$, то существует бесконечно большое число решений.
+        \item Если $t_1 = \pi$ и $x_1 \neq 0$ то решений нет.
+    \end{itemize}
+\end{example}
+\begin{definition}
+    Будем называть прямым путём единственное решение краевой задачи. \\
+    Все остальные будем называть окольными путями.
+\end{definition}
+Найдём отличия прямого пути от других кривых, соединяющих точки $A_0$ и $A_1$. \\
+Пускай $\bt{q}^0(t)$ -- прямой путь, $\delta \bt{q}(t)$ -- достаточно гладкая функция такая, что $\bt{q}(t_0) = \bt{q}(t_1) = 0$.
+Рассмотрим проварьированный путь $\bt{q}(t) = \bt{q}^0(t) + \delta\bt{q}(t)$.
+Проинтегрируем принцип Даламбера-Лагранжа по времени:
+\[
+    \int_{t_0}^{t_1} \sum\limits_{\nu \in M} F_{\nu} \delta r_{\nu} dt - \sum\limits_{\nu \in M} m_{\nu} \int_{t_0}^{t_1} w_{\nu} \delta r_{\nu} dt = 0.
+\]
+Вариация кинетической энергии (с учётом пренебрежения вторым порядком малости) имеет вид
+\[
+    \delta T = \dfrac{1}{2}\sum\limits_{\nu \in M} m_{\nu}(\dot{r_{\nu}} + \delta \dot{r_\nu})^{2} - \dfrac{1}{2}\sum\limits_{\nu \in M} m_{\nu} \dot{r}_{\nu} \delta \dot{r_\nu} \approx \sum\limits_{\nu \in M} m_{\nu} \dot{r}_{\nu}\delta \dot{r}_{\nu}.
+\]
+Тогда полное изменение кинетической энергии за время от $t_0$ до $t_1$ равно
+\[
+    \int_{t_0}^{t_1} \delta T dt = \int_{t_0}^{t_1} \sum\limits_{\nu \in M} m_{\nu} \dot{r}_{\nu} \delta \dot{r}_{\nu} dt = \sum\limits_{\nu \in M} \biggr( \dot{r}_\nu \delta r_{\nu}\big|_{t_0}^{t_1} - \int_{t_0}^{t_1} w_\nu \delta r_{\nu}dt\biggr) = -\sum\limits_{\nu \in M} m_{\nu} \int_{t_0}^{t_1} w_{\nu} \delta r_{\nu} dt.
+\]
+После подстановки $\delta T$ в интеграл от принципа Даламбера-Лагранжа мы получаем
+\[
+    \int_{t_0}^{t_1} \biggr(\delta T + \sum\limits_{\nu \in M} F_{\nu}\delta r_{\nu}\biggr) dt = 0. \quad (*).
+\]
+По определению
+\[
+    \sum\limits_{\nu \in M} F_{\nu} \delta r_{\nu} = \sum\limits_{i} Q_{i} \delta q_i.
+\]
+В тоже время,
+\[
+    \delta T = \delta(T(\bt{q}, \dot{\bt{q}}, t)) = \dfrac{\partial T}{\partial \bt{q}}\delta \bt{q} + \dfrac{\partial T}{\partial \dot{\bt{q}}} \delta \dot{\bt{q}}.
+\]
+Подставим эти выражения в $(*)$ и получим
+\[
+    \int_{t_0}^{t_1} \biggr( \dfrac{\partial T}{\partial \bt{q}} \delta \bt{q} + \bt{Q} \delta \bt{q} + \dfrac{\partial T}{\partial \bt{\dot{q}}} \delta \dot{\bt{q}} \biggr)dt = 0.
+\]
+Проинтегрируем слагаемое $\dfrac{\partial T}{\partial \dot{\bt{q}}} \delta \bt{\dot{q}}$ по частям и тогда интеграл принимает вид
+\[
+    \int_{t_0}^{t_1} \biggr( \dfrac{\partial T}{\partial \bt{q}} + Q - \dfrac{d}{dt} \dfrac{ \partial T}{\partial \bt{\dot{q}}} \biggr)\delta \bt{q} dt = 0.
+\]
+В силу произвольности выбора $\delta \bt{q}$ подинтегральное выражение должно быть тождественным нулём.
+Таким образом, на всяком прямом пути должны выполняться уравнения Лагранжа. \\
+Пускай все силы потенциальны. Тогда $\sum\limits_{\nu \in M} F_{\nu} \delta r_{\nu} = - \delta \Pi$.
+То есть подинтегральное выражение (с учётом $L = T - \Pi$) принимает вид:
+\[
+    \int_{t_0}^{t_1} \delta L dt = 0.
+\]
+Пускай функционал $W$ определяется как
+\[
+    W = \int_{t_0}^{t_1} Ldt.
+\]
+Будем называть его действием по Гамильтону.
+\begin{theorem}[Принцип Гамильтона]
+    На прямом пути первая вариация действия по Гамильтону обращается в ноль, то есть
+    \[
+        \delta W = 0.
+    \]
+\end{theorem}
+\begin{theorem}
+    Верно и обратное: всякая экстремаль действия является прямым путём.
+\end{theorem}
+\begin{note}
+    Точки $A_0$ и $A_1$, взятые в качестве начальных условий и допускающие неединственность решения краевой задачи называются сопряжёнными фокусами (фокусами Якоби). \\
+    Пока прямой путь не содержит пары сопряжённых фокусов мы можем утверждать, что действие по Гамильтону -- минимально.
+\end{note}
+\subsection{Замена переменных в уравнениях Лагранжа.}
+Пусть $M$ -- лагранжева система с лагранжианом $L$.
+Пусть делается некоторая невырожденная замена координат:
+\[
+    \begin{cases}
+        \bt{q} = \bt{q}(\tilde{\bt{q}}, \tilde{t}), \\
+        t = t(\bt{\tilde{q}}, \tilde{t}).
+    \end{cases}
+\]
+Тогда
+\[
+    \dfrac{d t}{d \tilde{t}} = \sum \dfrac{\partial t}{\partial \tilde{q}_k} \dfrac{ d\tilde{q}_k}{d \tilde{t}} + \dfrac{\partial t}{\partial \tilde{ t}}. \quad (*)
+\]
+И
+\[
+    \dfrac{d q_i}{d \tilde{t}} = \sum \dfrac{\partial q_i}{\partial \tilde{q}_k} \dfrac{d \tilde{ q}_k}{d \tilde{t}} + \dfrac{\partial q_i}{\partial \tilde{t}}. \quad (**)
+\]
+Тогда мы можем выразить $\dot{q}_i$ как
+\[
+    \dot{q}_i = \dfrac{\frac{d q_i}{d \tilde{t}}}{\frac{d t}{d \tilde{t}}} = \dfrac{(**)}{(*)}.
+\]
+И при такой замене действие преобразуется как
+\[
+    W = \int_{t_0}^{t_1} L(\bt{q}, \bt{\dot{q}}, t)dt = \int_{\tilde{t}_0}^{\tilde{t}_1} L \dfrac{d t}{d \tilde{t}} d\tilde{t} = \tilde{W}.
+\]
+Значит, если $\delta W = 0$, то и $\delta \tilde{W} = 0$.
+Уравнения Лагранжа в новой параметризации имеют вид
+\[
+    \dfrac{d}{dt} \dfrac{\partial \tilde{L}}{\partial (\frac{\partial \tilde{q}}{\partial \tilde{t}})} - \dfrac{\partial \tilde{L}}{\partial \tilde{q}} = 0.
+\]
+И новый лагранжиан имеет вид $\tilde{L} = L \dfrac{dt}{d \tilde{t}}$.
+\subsection{Теорема Нётер.}
+\begin{theorem}
+        Пускай задано однопараметрическое семейство диффеоморфизмов с параметром $\alpha$:
+    \[
+        \tilde{\bt{q}} = \tilde{\bt{q}}(\bt{q}, t, \alpha), \quad \tilde{t}= \tilde{t}(\bt{q}, t, \alpha).
+    \]
+    Пускай это семейство является локальной группой, то есть при $\alpha = 0$ отображения являются тождественными, а их композиция происходит с уважением к $\alpha$:
+    \[
+        \begin{cases}
+            \tilde{\bt{q}} = \bt{q} + \alpha \bt{\eta}(\bt{q}, t) + O(\alpha^2), & \alpha \ra 0. \\
+            \tilde{t} = t + \alpha \xi(\bt{q}, t) + O(\alpha^2), & \alpha \ra 0.
+        \end{cases}
+    \]
+    где $\bt{\eta} = \dfrac{\partial \tilde{\bt{q}}}{\partial \alpha}\big|_{\alpha = 0}$ и $\xi = \dfrac{\partial \tilde{t}}{\partial \alpha}\big|_{\alpha = 0}$. \\
+    Пускай есть некоторая лагранжева система с лагранжианом $L$, и действием $W$, инвариантным относительно локальной группы. \\
+    Тогда эта динамическая система имеет первый интеграл
+    \[
+        \phi = \bt{p}^T \bt{\eta} - \xi H.
+    \]
+    где $\bt{p}$ -- вектор обобщённых импульсов, а $H$ -- гамильтониан, соответствующий этой системе.
+\end{theorem}
+\begin{proof}
+    Выразим $\bt{q}$ и $t$ через новые координаты:
+    \[
+        \begin{cases}
+            \bt{q} = \tilde{\bt{q}} - \alpha \bt{\eta} + O(\alpha^2), \\
+            t = \tilde{t} - \alpha \xi + O(\alpha^2).
+        \end{cases}
+    \]
+    Тогда
+    \[
+        \dfrac{d \tilde{t}}{dt} = 1 + \alpha \dot{\xi} + O(\alpha^2), \quad \dfrac{d t}{d \tilde{t}} = 1 - \alpha \dfrac{d \xi}{d \tilde{t}} + O(\alpha^2).
+    \]
+    А производные обобщённых координат выражаются как
+    \[
+        \dfrac{d \bt{q}}{dt} = \dfrac{d \tilde{\bt{q}}}{dt} - \alpha \dot{\bt{\eta}} + O(\alpha^2) = \dfrac{d \tilde{\bt{q}}}{d\tilde{t}} \dfrac{d \tilde{t}}{dt} - \alpha \dot{\bt{\eta}} + o (\alpha^2) = \dfrac{d \tilde{\bt{q}}}{d \tilde{t}} + \alpha (\dot{\xi} \dot{\bt{q}} - \dot{\bt{\eta}}) + O(\alpha^2).
+    \]
+    Тогда
+    \[
+        \tilde{L} = L(\tilde{\bt{q}} - \alpha \bt{\eta}, \dfrac{d\tilde{\bt{q}}}{d\tilde{t}} + \alpha(\dot{\xi}\dot{\bt{q}} - \dot{\bt{\eta}}), \tilde{t} - \alpha \xi)(1 - \alpha \dot{\xi}) =
+        L\biggr(\tilde{\bt{q}}, \frac{d \tilde{\bt{q}}}{d \tilde{t}}, \tilde{t}\biggr) - \alpha \dfrac{\partial L}{\partial \bt{q}} \bt{\eta} + \alpha \dfrac{\partial L}{\partial \bt{\dot{q}}}(\dot{\bt{q}}\dot{\xi} - \dot{\bt{\eta}}) - \alpha \dfrac{\partial L}{\partial t} \xi - \alpha L \dot{\xi}.
+    \]
+    В силу инвариантности действия относительно группы диффеоморфизмов равенство принимает следующий вид:
+\[
+  \alpha\!\left(
+    \frac{\partial L}{\partial t}\,\xi
+    - \frac{\partial L}{\partial \dot{\mathbf{q}}}\bigl(\dot{\mathbf{q}}\dot{\xi}-\dot{\boldsymbol{\eta}}\bigr)
+    + \frac{\partial L}{\partial \mathbf{q}}\,\boldsymbol{\eta}
+    + L\,\dot{\xi}
+  \right) = 0.
+\]
+
+    Поскольку $\bt{\dot{p}} = \frac{\partial L}{\partial \bt{q}}$ и $\bt{p} = \frac{\partial L}{\partial \dot{\bt{q}}}$, то
+    \[
+        \dfrac{\partial L}{\partial \bt{q}} \bt{\eta} + \dfrac{\partial L}{\partial \dot{\bt{q}}} \dot{\bt{\eta}} = \dfrac{d}{dt}\biggr(\bt{p} \cdot \bt{\eta}\biggr).
+    \]
+    С другой стороны, $H = \bt{p} \cdot \bt{\dot{q}} - L$ и $\dot{H}\xi + H \dot{\xi} = \frac{d}{dt}\big(H \xi \big)$, а значит
+    \[
+        \dfrac{\partial L}{\partial t}\xi - \dot{\bt{q}}\dfrac{\partial L}{\partial \dot{\bt{q}}}\dot{\xi} + L \dot{\xi} = \dot{\xi}(L - \bt{p}\dot{\bt{q}}) - \dfrac{\partial H}{\partial t}\xi = - \dfrac{dH}{dt}\xi - H\dot{\xi} = -\dfrac{d}{dt}\big(H \xi\big).
+    \]
+    Равенство принимает следующий вид
+    \[
+        \alpha \dfrac{d}{dt}\biggr( \bt{p} \cdot \bt{\eta} - H \xi \biggr) = 0.
+    \]
+    Из произвольности выбора $\alpha$ следует, что $\bt{p} \cdot \bt{\eta} - H \xi$ -- первый интеграл гамильтоновой системы.
+\end{proof}
+\begin{example}
+    \begin{itemize}
+        \item Из инвариантности относительно временных трасляций следует <<закон сохранения энергии>> -- то есть если $\bt{\eta} = \bt{0}$ и $\xi = 1$, то сохраняется гамильтониан системы.
+        \item Из инвариантности относительно пространственных трансляций следует <<закон сохранения импульса>> -- то есть есть инвариантность относительно группы трансляций, то $\bt{p} = const$.
+    \end{itemize}
+\end{example}

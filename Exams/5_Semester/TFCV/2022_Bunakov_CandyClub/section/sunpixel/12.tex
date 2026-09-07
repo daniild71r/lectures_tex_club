@@ -1,0 +1,147 @@
+\begin{definition}
+	Точка $z_0 \in \CM$ называется \textit{изолированной особой точкой} функции $f$, если существует $\epsilon > 0$ такое, что $f$ регулярна на $\mathring B_\epsilon(z_0)$, но не регулярна или не определена в точке $z_0$.
+\end{definition}
+
+\begin{unnecessary}
+    \begin{example}
+    	Функция $f(z) = \frac{\sin{z}}{z}$ регулярна на $\Cm \bs \{0\}$, поэтому точки $0$ и $\infty$ являются ее изолированными особыми точками.
+    \end{example}
+\end{unnecessary}
+
+\begin{definition}
+	Изолированная особая точка $z_0 \in \CM$ функции $f$ называется:
+	\begin{itemize}
+		\item \textit{Устранимой}, если $\exists \lim\limits_{z \to z_0} f(z) \in \Cm$
+		\item \textit{Полюсом}, если $\exists \lim\limits_{z \to z_0} f(z) = \infty$
+		\item \textit{Существенно особой}, если предел $\lim\limits_{z \to z_0} f(z)$ не существует
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}
+\label{fixable-point-lorain}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. Тогда $z_0$ является устранимой особой точкой $\lra$ главная часть ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ тождественно равна нулю.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\la$]Поскольку главная часть ряда Лорана равна нулю, то на $\mathring B_\epsilon(z_0)$ функция $f$ представима степенным рядом. По теореме Абеля, этот ряд сходится на $B_\epsilon(z_0)$, причем его сумма является регулярной функцией. Но она совпадает с $f$ на $\mathring B_\epsilon(z_0)$, поэтому $\exists \lim\limits_{z \to z_0}f(z) = c_0 < \infty$.
+		
+		\item[$\ra$]Из условия следует, что существуют числа $M > 0$ и $0 < \delta \leqslant \epsilon$ такие, что $|f| \leqslant M$ на $\mathring B_\delta(z_0)$. Воспользуемся неравенством Коши для коэффициентов ряда Лорана при произвольном $\rho \in (0, \delta)$ и $n \in \Z \bs (\N \cup \{0\})$:
+		\[|c_n| \leqslant \frac{M}{\rho^n} = M\rho^{|n|} \xrightarrow[\rho \to 0]{} 0\]
+		
+		Значит, главная часть ряда Лорана тождественно равна нулю. Мы можем устремить $\rho$ к нулю потому что по определению изолированной точки, функция регулярна в некоторой ее проколотой окрестности.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{note}
+	В доказательстве выше было получено такое утверждение: если функция $f$ регулярна и ограничена на $\mathring B_\epsilon(z_0)$, то её ряд Лорана на $\mathring B_\epsilon(z_0)$ не имеет главной части.
+\end{note}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. Тогда $z_0$ является полюсом $\lra$ главная часть ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ содержит конечное, но ненулевое число ненулевых слагаемых.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\ra$]Пусть $z_0$ "--- полюс, тогда сущестувет $0 < \delta \le \epsilon$ такое, что $f \ne 0$ на $\mathring B_\delta(z_0)$. Определим на $\mathring B_\delta(z_0)$ функцию $g$ как $g(z) := \frac1{f(z)}$, тогда $\lim\limits_{z \to z_0}g(z) = 0$. Значит, $z_0$ "--- устранимая особая точка функции $g$, поэтому ряд Лорана функции $g$ имеет следующий вид:
+		\[g(z) = \sum\limits_{m = 0}^{+\infty}c_m(z - z_0)^m\]
+		
+		Поскольку $g \ne 0$ на $\mathring B_\delta(z_0)$, то существует $m \in \N \cup \{0\}$ такое, что $c_m \ne 0$. Степенной ряд функции ${g}$, деленной на ${(z - z_0)^m}$, сходится на $B_\delta(z_0)$ по теореме Абеля, и его сумма $h$ регулярна на $B_\delta(z_0)$, причем $h(z_0) = c_m \ne 0$. Значит, $h \ne 0$ на $B_\delta(z_0)$. Тогда на $\mathring B_\delta(z_0)$ выполнены равенства:
+		\[f(z) = \frac{1}{g(z)} = \frac1{(z - z_0)^m}\frac1{h(z)}\]
+		
+		Но функция $\frac1{h(z)}$ регулярна на $B_\delta(z_0)$, поэтому она представима степенным рядом на $B_\delta(z_0)$, то есть её ряд Лорана не имеет главной части:
+		\[\frac{1}{h(z)} = \sum_{n=0}^{+\infty}a_n(z - z_0)^n\]
+		
+		Наконец, $\frac1{h(z_0)} \ne 0$, поэтому $a_0 \ne 0$. Получено требуемое.
+		
+		\item[$\la$] Пусть ряд Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ при некотором $m \in \N$ и $c_{-m} \in \Cm \bs \{0\}$ имеет следующий вид:
+		\[f(z) = \frac{c_{-m}}{(z-z_0)^m} + \dotsb + \frac{c_{-1}}{z-z_0} + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n\]
+		
+		Тогда функция $g(z) := f(z)(z-z_0)^m$ представима степенным рядом на $\mathring B_\epsilon(z_0)$. Но тогда, по теореме Абеля, этот ряд cходится на $B_\epsilon(z_0)$, и его сумма регулярна на $B_\epsilon(z_0)$. Значит, $\exists\lim\limits_{z \to z_0} g(z) = c_{-m} \ne 0$. Тогда:
+		\[f(z) = \frac{g(z)}{(z - z_0)^m} \xrightarrow[z \to z_0]{} \infty\]
+		
+		Таким образом, точка $z_0$ является полюсом.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. Тогда $z_0$ является существенно особой точкой $\lra$ главная часть ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ содержит бесконечное число ненулевых слагаемых. Очевидно, так как все остальные возможные случаи как слева от стрелки, так и справа мы разобрали.
+\end{corollary}
+
+\begin{definition}
+	Изолированная особая точка $z_0 \in \Cm$ функции $f$ называется \textit{полюсом порядка $m \in \N$}, если ряд Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ при некотором $c_{-m} \in \Cm \bs \{0\}$ имеет следующий вид:
+	\[f(z) = \frac{c_{-m}}{(z-z_0)^m} + \dotsb + \frac{c_{-1}}{z-z_0} + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n\]
+\end{definition}
+
+\begin{definition}
+	Пусть функция $f$ регулярна в точке $z_0 \in \Cm$. Точка $z_0$ называется \textit{нулём порядка $m \in \N \cup \{0\}$} функции $f$, если ряд Лорана функции $f$ на $\mathring B_\epsilon(z_0)$ при некотором $c_{m} \in \Cm \bs \{0\}$ имеет следующий вид:
+	\[f(z) = \sum_{n = m}^{+\infty}c_n(z - z_0)^n\]
+\end{definition}
+
+\begin{unnecessary}
+\begin{proposition}[\textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $g, h$ регулярны в точке $z_0 \in \Cm$
+		\item Точка $z_0$ является нулём функций $g, h$ порядков $m \in \N \cup \{0\}$ и $n \in \N$ соответственно
+	\end{enumerate}
+	
+	Тогда точка $z_0$ является устранимой особой точкой функции $f := \frac{g}{h}$, если $m \ge n$, и полюсом порядка $n - m$ в противном случае.
+\end{proposition}
+
+\begin{proposition}[\textit{без доказательства}]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Точка $z_0 \in \Cm$ является существенно особой точкой функции $g$
+		\item Точка $z_0$ является изолированной особой точкой функции $h$, но не существенно особой, либо $h$ регулярна в точке $z_0$ 
+	\end{enumerate}
+	
+	Тогда точка $z_0$ является существенно особой точкой функции $f := gh$.
+\end{proposition}
+\end{unnecessary}
+
+\begin{theorem}[Сохоцкого]
+	Пусть $z_0 \in \overline{\Cm}$ "--- существенно особая точка функции $f$. Тогда для любого $A \in \CM$ существует последовательность $\{z_n\} \subset \mathring B_\epsilon(z_0)$ такая, что выполнено $\lim\limits_{n \to \infty}z_n = z_0$ и $\lim\limits_{n \to \infty}f(z_n) = A$.
+\end{theorem}
+
+\begin{proof}
+	Предположим противное, то есть для некоторого $A \in \CM$ искомой последовательности не существует. Рассмотрим два случая:
+	\begin{enumerate}
+		\item Если $A = \infty$, то существуют числа $C > 0$ и $\delta > 0$ такие, что на $\mathring B_\delta(z_0)$ выполнено $|f| \le C$, то есть $f$ ограничена на $\mathring B_\delta(z_0)$. Но тогда точка $z_0$ является устранимой особой точкой функции $f$ --- противоречие.
+		
+		\item Если $A \in \Cm$, то существуют числа $\epsilon > 0$ и $\delta > 0$ такие, что на $\mathring B_\delta(z_0)$ выполнено $|f - A| \ge \epsilon$. Тогда на $\mathring B_\delta(z_0)$ определена следующая функция:
+		\[g(z) := \frac{1}{f(z) - A}\]
+		
+		Более того, $|g| \le \frac1\epsilon$ на $\mathring B_\delta(z_0)$. Значит, точка $z_0$ является устранимой особой точкой функции $g$, то есть $\exists \lim\limits_{z \to z_0} g(z) = B \in \Cm$. Если $B \ne 0$, то $\exists \lim\limits_{z \to z_0} f(z) = A + \frac1B$, тогда $z_0$ является устранимой особой точкой функции $f$ --- противоречие. Если же $B = 0$, то $\exists \lim\limits_{z \to z_0} f(z) = \infty$, тогда $z_0$ является полюсом функции $f$ --- снова противоречие.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Функция $w = \frac1z$ взаимно однозначно отображает $\mathring B_R(\infty)$ на $\mathring B_{\frac1R}(0)$. Следовательно:
+	\begin{enumerate}
+		\item Точка $\infty$ является \(\underline{\text{изолированной}}\) особой точкой функции $f(z)$ $\lra$ точка $0$ является \(\underline{\text{изолированной}}\) особой точкой функции $f(\frac1z)$
+		\item $\exists \lim\limits_{z \to \infty}f(z) = A \in \CM \lra \exists \lim\limits_{z \to 0}f(\frac1z) = A \in \CM$
+	\end{enumerate}
+	
+	Таким образом, точка $\infty$ является изолированной особой точкой функции $f(z)$ того же типа, что и точка $0$ "--- для функции $f(\frac1z)$.
+\end{note}
+
+\begin{unnecessary}
+    \begin{definition}
+    	Пусть $\infty$ "--- изолированная особая точка функции $f$. Тогда на $\mathring B_\epsilon(\infty)$ функция $f$ единственным образом представляется рядом Лорана:
+    	\[f(z) = \sum_{n = -\infty}^{+\infty}c_nz^n\]
+    	\begin{itemize}
+    		\item \textit{Правильной частью} ряда Лорана на $\mathring B_\epsilon(\infty)$ называется $\sum\limits_{n = -\infty}^{0}c_nz^n$
+    		\item \textit{Главной частью} ряда Лорана на $\mathring B_\epsilon(\infty)$ называется $\sum\limits_{n = 1}^{+\infty}c_nz^n$
+    	\end{itemize}
+    \end{definition}
+    
+    \begin{note}
+    	При преобразовании $w = \frac 1z$ главная часть ряда Лорана функции $f(z)$ на $\mathring B_\epsilon(\infty)$ переходит в главную часть ряда Лорана функции $f(\frac 1z)$ на $\mathring B_{\frac1\epsilon(0)}$. Поэтому для точки $\infty$ остаются справделивыми утверждения, связывающие тип особой точки с видом ряда Лорана.
+    \end{note}
+    
+    \begin{definition}
+    	Изолированная особая точка $\infty$ функции $f$ называется \textit{полюсом порядка $m \in \N$}, если ряд Лорана функции $f$ на $\mathring B_\epsilon(\infty)$ при некотором $c_{m} \in \Cm \bs \{0\}$ имеет следующий вид:
+    	\[f(z) = \sum_{n = -\infty}^{m}c_nz^n\]
+    \end{definition}
+\end{unnecessary}

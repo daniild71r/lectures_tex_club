@@ -1,0 +1,71 @@
+\begin{definition} 
+Пусть $\xi$~--- случайная величина, тогда её производящая функция $\phi_{\xi}{z} = \E z^{\xi}$. Считаем $z \geq 0$.
+\end{definition}
+
+\textbf{Свойства:}
+\begin{enumerate}
+    \item $\phi_{\xi}{1} = 1$.
+    \item $\phi_{\xi}'(1) = \E\xi$.
+    \item Если $\xi \indep \eta$, то $\phi_{\xi + \eta}{z} = \phi_{\xi}{z} \cdot \phi_{\eta}{z}$.
+\end{enumerate}
+
+Теперь, если $\xi \in \Z_+$~--- дискретная случайная величина с неотрицательными значениями, тогда появляеются еще свойства:
+\begin{enumerate}
+    \item[4.] 
+    \begin{equation*}
+        \phi_{\xi}{z} = \sum\limits_{k = 0}^\infty z^k P(\xi = k)
+    \end{equation*}
+    Это ряд, который сходится и абсолютно равномерно на $\{|z| \leq 1\}$.
+    \item[5.] В области $\{|z| < 1\}$ производящая функция непрерывно дифференцируема бесконечное число раз.
+    \item[6.] $\phi_{\xi}{0} = P(\xi = 0)$.
+    \item[7.]
+    \begin{equation*}
+        P(\xi = k) = \frac{1}{k!} \left.\brackets{\phi_{\xi}^{(k)}(z)}\right\vert_{z = 0}
+    \end{equation*}
+\end{enumerate}
+
+\subsection{Ветвящийся процесс Гальтона-Ватсона}
+
+Пусть $\{\xi_k^{(n)}, \ k, n \in \N\}$~--- н.о.р.с.в., имеющее распределение с.в. $\xi$ со значениями в $\Z_+$. Положим, что
+\begin{gather*}
+    X_0 = 1 \\
+    X_n = \sum\limits_{k = 1}^{X_{n - 1}} \xi_k^{(n)}, n \in \N
+\end{gather*}
+
+\begin{definition}
+Последовательность $\{X_n, n \in \Z_+\}$~--- ветвящийся процесс Гальтона-Ватсона с законом размножения частиц $\xi$. 
+\end{definition}
+
+\begin{note} $\xi_k^{(n)}$~--- число потомков $k$-й частицы в $(n - 1)$-м поколении, а $X_n$~--- число частиц в $n$-м поколении.
+\end{note}
+
+\begin{lemma} Рекуррентные соотношения
+\begin{gather*}
+    \phi_{X_n}{z} = \phi_{X_{n - 1}}{\phi_{\xi}{z}}
+\end{gather*}
+\end{lemma}
+
+\begin{proof}
+\begin{equation*}
+    \phi_{X_n}{z} = \E z^{X_n} = \E\brackets{\E\brackets{z^{X_n} \ | \ X_{n - 1}}}
+\end{equation*}
+
+по телескопическому свойству УМО/по формуле полной верояности.
+
+Заметим, что сумма $\xi_k^{(n)}$ и $X_{n - 1}$ независимы, так как $X_{n - 1}$ зависит только от $\xi_k^{(j)}$, $j \leq n - 1$.
+\begin{equation*}
+    \E\brackets{z^{X_n} \ | \ X_{n - 1} = m} = \E\brackets{z^{\sum\limits_{k = 1}^{X_{n - 1}} \xi_k^{(n)}} \ | \ X_{n - 1} = m} = \E{z^{\sum\limits_{k = 1}^{m} \xi_k^{(n)}}} = \prod\limits_{k = 1}^m \phi_{\xi_k^{(n)}}{z} = (\phi_{\xi}(z))^m
+\end{equation*}
+
+Откуда
+\begin{equation*}
+    \phi_{X_n}{z} = \E z^{X_n} = \E\brackets{\E\brackets{z^{X_n} \ | \ X_{n - 1}}} = \E\brackets{\phi_{\xi}{z}}^{X_{n - 1}} = \phi_{X_{n - 1}}{\phi_{\xi}{z}}
+\end{equation*}
+\end{proof}
+
+\begin{corollary}
+\begin{enumerate}
+    \item $\phi_{X_n}{z} = \phi_{\xi}{\phi_{\xi}{\ldots\phi_{\xi}{z}}\ldots}$ ($n$ композиций)
+    \item $\phi_{X_n}{z} = \phi_{\xi}{\phi_{X_{n - 1}}{z}}$
+\end{enumerate}
+\end{corollary}

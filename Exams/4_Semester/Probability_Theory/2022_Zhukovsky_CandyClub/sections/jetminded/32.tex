@@ -1,0 +1,76 @@
+\begin{definition} Последовательность случайных векторов $\xi_k$ сходится почти наверное к $\xi$, если 
+$P(\{ \omega| \ \xi_n(\omega) \to \xi(\omega) \} )= 1$
+\end{definition}
+
+\begin{definition} Последовательность случайных векторов $\xi_k$ сходится по вероятности к $\xi$, если 
+$\forall \eps > 0\ P\brackets{\|\xi_k - \xi\|_2 \geqslant \eps} \to 0 \text{, где } \|x\|_2 = \sqrt{x_1^2 + \ldots + x_n^2}
+$
+\end{definition}
+
+\begin{definition} Последовательность случайных векторов $\xi_k$ сходится в $L_p$ к $\xi$, если \newline
+$
+\E\brackets{\|\xi_k - \xi\|_p}^p \to 0 \text{, где } \|x\|_p = \brackets{|x_1|^p + \ldots + |x_n|^p}^{\frac{1}{p}}
+$
+\end{definition}
+
+\begin{definition} Последовательность случайных векторов $\xi_k$ сходится по распределению к $\xi$, если $\forall f: \R^n \to \R$ ограниченной и непрерывной верно, что $\E f(\xi_k) \to \E f(\xi)$
+
+(или $\forall B \in \mathcal{B}(\R^k): P_\xi(\partial B) = 0 \ P(\xi_n \in B) \to P(\xi \in B)$)
+\end{definition}
+
+\begin{theorem}[Связь между сходимостью векторов и покомпонентной сходимостью] Верно:
+\begin{enumerate}
+    \item $\xi_n \xrightarrow[]{\text{п.н.}}  \xi \iff \forall j \ \  \xi_n^j \xrightarrow[]{\text{п.н.}} \xi^j$
+    \item  $\xi_n \xrightarrow[]{P}  \xi \iff \forall j \ \  \xi_n^j \xrightarrow[]{P} \xi^j$
+    \item  $\xi_n \xrightarrow[]{L_p}  \xi \iff \forall j \ \  \xi_n^j \xrightarrow[]{L_p} \xi^j$
+    \item  $\xi_n \xrightarrow[]{d}  \xi \implies \forall j \ \  \xi_n^j \xrightarrow[]{d} \xi^j$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+1. Очевидно \\
+2. $\implies$ $\{ |\xi_n^j - \xi^j| > \eps\} \subset \{ \|\xi_n - \xi\|_2 > \eps\}$, \ \  $P(\{ \|\xi_n - \xi\|_2 > \eps\}) \to 0 \implies P(\{ |\xi_n^j - \xi^j| > \eps\}) \to 0$\\
+$\impliedby$ $\{ \|\xi_n - \xi\|_2 > \eps\} \subset \bigcup\limits_{j = 1}^k \{ |\xi_n^j - \xi^j| > \frac{\eps}{k}\}, \ \ P(\{ \|\xi_n - \xi\|_2 > \eps\}) \leqslant \sum\limits_{j = 1}^k P(\{ |\xi_n^j - \xi^j| > \frac{\eps}{k}\}) \to 0$\\
+3. $\implies$ $\E|\xi_n^j - \xi^j|^p \leqslant  \sum\limits_{j = 1}^k \E|\xi_n^j - \xi^j|^p = \E\brackets{\|\xi_k - \xi\|_p}^p \to 0 $ \\
+$\impliedby$ $\E\brackets{\|\xi_k - \xi\|_p}^p = \sum\limits_{j = 1}^k \E|\xi_n^j - \xi^j|^p \to 0$\\
+4. $\implies$ т.к. выполненно для любой функции, то возьмем $f_i(x_1, \ldots, x_n) = x_i$, то есть $\forall i \ \ \E f_i(\xi_k) = \E \xi_k^i \to \E f_i(\xi) = \E \xi^i$, то есть $\forall i \ \ \xi_n^j \xrightarrow[]{d} \xi^j$
+\end{proof}
+
+\textbf{Контрпример для сходимости по распределению:} $\xi, \eta$ - н.о.р.с.в., $\xi_n \xrightarrow[]{d} \xi, \eta_n \xrightarrow[]{d} \eta \stackrel{d}{=} \xi$, но $(\xi_n, \eta_n) \stackrel{d}{\nrightarrow} (\xi, \xi)$, а $(\xi_n, \eta_n) \xrightarrow[]{d} (\xi, \eta)$
+
+\begin{theorem}
+\begin{enumerate}
+    \item Из сходимости почти наверное следует сходимость по вероятности
+    \item Из сходимости по вероятности следует сходимость по распределению
+    \item Из сходимости в $L_p$ следует сходимость по вероятности
+\end{enumerate}
+\end{theorem}
+
+
+\begin{theorem}[Закон больших чисел]
+Пусть $\xi_1, \xi_2, \ldots$~--- попарно независимые случайные векторы, дисперсия каждого ограничена константой $C$, тогда $\forall w(n) \to +\infty$ имеется следующая сходимость по вероятности:
+$$
+\frac{S_n - \E S_n}{\sqrt{n}w(n)} \xrightarrow[]{P} 0
+$$
+\end{theorem}
+
+\begin{proof} Заметим, что для каждой координаты это верно (доказано выше), а покоординатная сходимость по вероятности эквивалентна сходимости всего вектора по вероятности. \end{proof}
+
+\begin{theorem}[УЗБЧ]
+
+Пусть $\xi_1, \xi_2, \ldots$~--- н.о.р.с. векторы, при этом $\E\xi_i = 0$. Имеется следующая сходимость почти наверное:
+$$
+\frac{\xi_1 + \ldots + \xi_n}{n} \xrightarrow[]{\text{п.н.}}  0
+$$
+\end{theorem}
+
+\begin{proof} Заметим, что для каждой координаты это верно (доказано выше), а покоординатная сходимость почти наверное эквивалентна сходимости всего вектора почти наверное.\end{proof}
+
+\begin{lemma} $\xi_k \to \xi$ по распределению тогда и только тогда, когда $\forall y \in \R^n \ \charac{\xi_k}{y} \to \charac{\xi}{y}$
+\end{lemma}
+
+\begin{theorem}[Многомерная центральная предельная теорема (б/д)] Пусть $\xi_1, \xi_2, \ldots$~--- н.о.р.с. векторы, $\E\xi_i = a$ матрица ковариаций $\Sigma$, тогда верна сходимость по распределению:
+$$
+\frac{S_n - na}{\sqrt{n}} \xrightarrow[]{d} \eta \sim \mathcal{N}(0, \Sigma)
+$$
+\end{theorem}

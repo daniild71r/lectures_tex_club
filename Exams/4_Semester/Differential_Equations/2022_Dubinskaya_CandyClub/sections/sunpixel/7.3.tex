@@ -1,0 +1,268 @@
+\textbf{Замечание.}
+
+Функционалы, зависящие от нескольких неизвестных функций, можно
+интерпретировать как функционалы, зависящие от вектор-функции.
+
+Пусть $C_n^1 [a, b]$ -- множество непрерывно дифференцируемых
+вектор-функций с компонентами \\
+$y_1(x), \dots, y_n(x)$, определёнными на
+множестве $[a, b]$. Норма на этом пространстве вводится следующим образом:
+
+$$
+\left\| \Vec{y}(x) \right\|_{C_n^1 [a, b]} = 
+\max_{x \in [a, b]} |y(x)| + \max_{x \in [a, b]} |y'(x)|
+$$
+
+Тогда соответствующая метрика определяется как
+$\rho(\Vec{y}, \Vec{z}) = \| \Vec{y} - \Vec{z} \|$.
+
+Функционалы для вектор-функций определяются аналогично:
+
+\begin{equation}\label{J_func_vec}
+J(\Vec{y}) = \int_a^b F \left[ x; \Vec{y}(x), \Vec{y'}(x) \right] dx,
+\end{equation}
+
+где $F \left[ x; \Vec{y}(x), \Vec{y'}(x) \right]$ --
+дважды непрерывно дифференцируемая функция на $[a, b] \times \R^{2n}$.
+
+В качестве аргументов функции $J(\Vec{y})$ будем
+рассматривать вектор-функции из множества 
+$M = \left\{ \Vec{y}(x) \in C_n^1 [a, b] : 
+\Vec{y}(a) = \Vec{A}, \Vec{y}(b) = \Vec{B} \right\}$.
+
+\textbf{Определение.}
+
+Функция $\widehat{y}(x) \in M$ называется 
+\textit{слабым локальным минимумом (максимумом)} 
+функционала (\ref{J_func_vec}), если
+
+$$
+\exists \varepsilon > 0 : \forall \Vec{y} \in M :
+\left\| \widehat{\Vec{y}} - \Vec{y} \right\|_{C_n^1} < \varepsilon
+\ \ J(\Vec{y}) \geqslant J (\widehat{\Vec{y}})
+\ \left( J(\Vec{y}) \leqslant J (\widehat{\Vec{y}}) \right)
+$$
+
+\textbf{Теорема.}
+
+Если дважды непрерывно дифференцируемая вектор-функция 
+$\widehat{\Vec{y}} \in M$ даёт слабый локальный экстремум
+функционала (\ref{J_func_vec}), то $\widehat{\Vec{y}}$
+удовлетворяет на $[a, b]$ системе уравнений Эйлера:
+
+\begin{equation}
+\frac{\partial F}{\partial y_i} 
+- \frac{d}{dx} \left( \frac{\partial F}{\partial y_i'} \right) = 0,
+\ i = \overline{1, \dots, n}
+\end{equation}
+
+\underline{Доказательство.}
+
+Пусть $\widehat{\Vec{y}} = 
+\left( y_1(x), \widehat{y_2}(x), \dots, \widehat{y_n}(x) \right)$ --
+первая координата свободная, а остальные зафиксируем.
+Тогда $J(\Vec{y}) = \widetilde{J}(y_1)$ -- функционал, зависящий от
+одной переменной. Это является простейшей вариационной задачей,
+экстремум достигается при $\widehat{y_1}(x)$, и необходимым условием
+является уравнение Эйлера:
+
+$$
+\frac{\partial F}{\partial y_1} 
+- \frac{d}{dx} \left( \frac{\partial F}{\partial y_1'} \right) = 0,
+$$
+
+Повторив эти действия для каждой координаты, получаем нужную систему.
+\bigbreak
+\textbf{Функционалы, зависящие от производных высших порядков.}
+
+В этом разделе мы будем работать с функциями из пространства
+$C^k [a, b]$. На этом пространстве норму можно ввести следующим образом:
+
+$$
+\left\| y \right\|_{C^k [a, b]} = 
+\max_{x \in [a, b]} |y(x)| + 
+\sum_{i = 1}^k \max_{x \in [a, b]} |y^{(i)}(x)|
+$$
+
+Соответствующая метрика вводится следующим образом:
+$\rho(y, z) = \| y - z \|_{C^k}$.
+
+Аналогично простейшей вариационной задаче 
+введём множество допустимых вариаций:
+
+$$
+\mathring{C}^k [a, b] = 
+\left\{ y \in C^k [a, b] : y^{(i)}(a) = y^{(i)}(b) = 0, 
+i = \overline{0, \dots, k - 1} \right\}
+$$
+\pagebreak
+
+\textbf{Лемма}
+
+$$
+\text{Если } f(x) \in C [a, b] \text{ и } 
+\forall \eta \in \mathring{C}^k [a, b]
+\int_a^b f(x) \eta(x) dx = 0 \text{, то }
+f(x) \equiv 0 \text{ на } [a, b].
+$$
+
+\underline{Доказательство.}
+
+Предположим, что $f(x) \not \equiv 0$ на $[a, b]$.
+Тогда $\exists x_0 \in (a, b) : f(x_0) \neq 0$ (пусть,
+без ограничения общности, $f(x_0) > 0$).
+Так как $f(x)$ непрерывна, то 
+$\exists \varepsilon > 0 : 
+\left( x - (x_0 - \varepsilon) \right)^{2k} \subset (a, b)$ и
+и $f(x) > 0 \forall x \in (x_0 - \varepsilon, x_0 + \varepsilon)$.
+Подберём такую вариацию:
+
+\begin{equation*}
+\eta(x) = 
+\begin{cases}
+\left( x - (x_0 - \varepsilon) \right)^{2k}
+\left( x - (x_0 + \varepsilon) \right)^{2k},
+x \in (x_0 - \varepsilon, x_0 + \varepsilon)
+\\
+0, \text{ иначе}
+\end{cases}
+\end{equation*}
+
+Можно проверить, что $\eta(x) \in \mathring{C}^k [a, b]$.
+Поэтому 
+
+\begin{equation*}
+0 = \int_a^b f(x) \eta(x) dx =
+\int_{x_0 - \varepsilon}^{x_0 + \varepsilon} f(x) \eta(x) dx > 0
+\end{equation*}
+
+Получили противоречие. Получается, что $f(x) \equiv 0$ на $[a, b]$.
+
+\textbf{Определение.}
+
+Рассмотрим функционал
+
+\begin{equation}\label{J_func_der}
+J(y) = \int_a^b F \left[ x; y(x), \dots, y^{(k)}(x) \right] dx,
+\end{equation}
+
+определённый на множестве
+$M = \{ y(x) \in C^k [a, b] : y^{(i)}(a) = A_i, y^{(i)}(b) = B_i, 
+i = \overline{1, \dots, k - 1} \}$,\\
+где $F \left[ x; y(x), \dots, y^{(k)}(x) \right]$ -- $(k + 1)$ раз
+непрерывно дифференцируемая функция.
+
+Скажем, что $\widehat{y} \in M$ даёт 
+\textit{слабый локальный минимум (максимум)} 
+функционала (\ref{J_func_der}), если
+
+$$
+\exists \varepsilon > 0 : \forall y(x) \in M : 
+\| \widehat{y} - y\|_{C^k} < \varepsilon \ \ 
+J(y) \geqslant J(\widehat{y}) \left( J(y) \leqslant J(\widehat{y}) \right).
+$$
+
+Пусть $y(x) \in M$ и $\eta(x) \in \mathring{C}^k [a, b]$.
+При фиксированных $y(x)$ и $\eta(x)$ определим $\Phi(\alpha), \alpha \in \R$:
+
+$$
+\Phi(\alpha) = J( y(x) + \alpha \eta(x) ) = 
+\int_a^b F \left( x; y + \alpha \eta, \dots, 
+y^{(k)} + \alpha \eta^{(k)} \right) dx
+$$
+
+Аналогично простейшей вариационной задаче,
+если $\widehat{y}$ даёт экстремум $J(y)$, 
+то $\Phi(\alpha)$ имеет экстремум при $\alpha = 0$:
+
+$$
+\Phi'(0) = \left. \frac{dJ(\widehat{y} + \alpha \eta)}{d\alpha} 
+\right|_{\alpha = 0} = 
+\int_a^b \left[ 
+\frac{\partial F}{\partial \widehat{y}} \eta(x) + 
+\frac{\partial F}{\partial \widehat{y}'} \eta'(x) + \dots + 
+\frac{\partial F}{\partial \widehat{y}^{(k)}} \eta^{(k)}(x)
+\right] dx
+$$
+
+\textbf{Определение.}
+\\
+Выражение $\Phi'(0)$, где $\eta(x) \in \mathring{C}^k [a, b]$, называется
+\textit{первой вариацией функционала (\ref{J_func_der})} \\
+и обозначается $\delta J[y; \eta]$.
+
+\textbf{Теорема (необходимое условие слабого локального экстремума).}
+
+Пусть $\widehat{y} \in M$ является $2k$ дифференцируемой функцией и 
+даёт слабый локальный экстремум функционала (\ref{J_func_der}).
+Тогда на $[a, b]$ $\widehat{y}(x)$ удовлетворяет 
+уравнению Эйлера-Пуассона:
+
+\begin{equation}\label{euler_pois_eq}
+\frac{\partial F}{\partial y} - 
+\frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) +
+\frac{d^2}{dx^2} \left( \frac{\partial F}{\partial y''} \right) - \dots
++ (-1)^k 
+\frac{d^k}{dx^k} \left( \frac{\partial F}{\partial y^{(k)}} \right) = 0
+\end{equation}
+
+\underline{Доказательство.}
+
+Так как $\widehat{y}$ даёт слабый локальный экстремум, то
+$\delta J [\widehat{y}, \eta(x)] = 0 \ \ 
+\forall \eta(x) \in \mathring{C}^k [a, b]$. Распишем $\delta J$:
+
+$$
+0 = \delta J [\widehat{y}, \eta(x)] = 
+\int_a^b \left[ 
+\frac{\partial F}{\partial \widehat{y}} \eta(x) + 
+\frac{\partial F}{\partial \widehat{y}'} \eta'(x) + \dots + 
+\frac{\partial F}{\partial \widehat{y}^{(k)}} \eta^{(k)}(x)
+\right] dx
+$$
+\pagebreak
+
+Проинтегрируем по частям каждое слагаемое в этой формуле 
+столько раз, сколько нужно, чтобы избавиться от всех производных $\eta(x)$.
+Например, для $i$-го слагаемого поступим следующим образом:
+
+\begin{multline*}
+\int_a^b \frac{\partial F}{\partial y^{(i)}} \eta^{(i)} dx = 
+\int_a^b \frac{\partial F}{\partial y^{(i)}} d\eta^{(i - 1)} = 
+\underbrace{\left. \frac{\partial F}{\partial y^{(i)}} \eta^{(i - 1)} 
+\right|_a^b}_{= 0 \text{, так как } 
+\eta^{(i - 1)}(a) = \eta^{(i - 1)}(b) = 0} - 
+\int_a^b \frac{d}{dx} \left( \frac{\partial F}{\partial y^{(i)}} \right)
+\eta^{(i - 1)} dx = \\
+= - \left[ 
+\underbrace{\left. \frac{d}{dx} \left( 
+\frac{\partial F}{\partial y^{(i)}} \right) 
+\eta^{(i - 2)} \right|_a^b}_{ = 0} - 
+\int_a^b \frac{d^2}{dx^2} \left( 
+\frac{\partial F}{\partial y^{(i)}} \right) \eta^{(i - 2)} dx
+\right] = 
+\int_a^b \frac{d^2}{dx^2} \left( \frac{\partial F}{\partial y^{(i)}}
+\right) \eta^{(i - 2)} dx = \dots
+\end{multline*}
+
+Для последнего слагаемого получится так:
+
+$$
+\int_a^b \frac{\partial F}{\partial y^{(k)}} \eta^{(k)} dx = 
+(-1)^k \int_a^b \frac{d^k}{dx^k} \left( 
+\frac{\partial F}{\partial y^{(k)}} \right) \eta(x) dx
+$$
+
+Тогда первая вариация перепишется в следующем виде:
+
+$$
+0 = \delta J [\widehat{y}, \eta(x)] = 
+\int_a^b \left[ 
+\frac{\partial F}{\partial y} - 
+\frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) + \dots + 
+(-1)^k \frac{d^k}{dx^k} \left( \frac{\partial F}{\partial y^{(k)}} \right)
+\right] \eta(x) dx \ \ 
+\forall \eta(x) \in \mathring{C}^k [a, b]
+$$
+
+Используя доказанную лемму, получаем необходимое уравнение.

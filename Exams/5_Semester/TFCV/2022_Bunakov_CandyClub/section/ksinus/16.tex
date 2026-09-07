@@ -1,0 +1,149 @@
+
+\begin{definition}
+	Пусть $D \subset \Cm$ "--- область. \textit{Многозначной функцией}, заданной на $D$, называется отображение $F : D \to (2^{\Cm} \bs \{\emptyset\})$, то есть отображение, сопоставляющее каждой точке $z \in D$ некоторое непустое множество $F(z) \subset \Cm$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим несколько примеров многозначных функций:
+	\begin{enumerate}
+		\item $D := \Cm \bs \{0\}$, $F(z) := \Ln{z}$
+		\item $D := \Cm$, $F(z) := \Root{n}{z}$, где $n \in \N$, $n \ge 2$
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Пусть $D \subset \Cm$ "--- область, $F$ "--- многозначная функция на $D$. \textit{Регулярной ветвью} многозначной функции $F$ называется однозначная функция $g \in C^1(D)$ такая, что для любого $z \in D$ выполнено $g(z) \in F(z)$.
+\end{definition}
+
+\begin{note}
+	Переформулируем определение выше для важных частных случаев:
+	\begin{enumerate}
+		\item Регулярной ветвью многозначной функции $\Ln{z}$ на области $\Cm \bs \{0\}$ называется функция $g \in C^1(\Cm \bs \{0\})$ такая, что $e^{g(z)} \equiv z$ на $\Cm \bs \{0\}$
+		\item Регулярной ветвью многозначной функции $\Root{n}{z}$ на области $\Cm$ называется функция $g \in C^1(\Cm)$ такая, что $g(z)^n \equiv z$ на $\Cm$
+	\end{enumerate}
+\end{note}
+
+\begin{example}
+	Рассмотрим функцию $f(z) := e^z$. Легко видеть, что она конформно отображает (определение такого отображение представлено \hyperref[conform]{дальше}) область $G := \{z \in \Cm: |\im{z}| < \pi\}$ на область $D := \Cm \bs (-\infty, 0]$.
+	\begin{center}
+		\begin{tikzpicture}
+			\fill [opacity=0.2, path fading=fade out] (3, 0) circle[radius=2.3];
+			\fill [white] (0, -0.15) rectangle (3, 0.15);
+			\fill [white] (3, 0) circle[radius=0.15];
+			
+			\clip (-6, -2.2) rectangle (6, 2.6);
+			
+			\draw[->] (-5, 0) -- (-1, 0) node [right] {$\re z$};
+			\draw[->] (-3, -2) -- (-3, 2) node[above] {$\im {z}$};
+			
+			\draw[black] (-3 + 0.1,1.2) -- (-3 -0.1,1.2) node [above left] {$\pi i$};
+			\draw[black] (-3 + 0.1,-1.2) -- (-3 -0.1,-1.2) node [below left] {$-\pi i$};
+			
+			\draw[->] (1, 0) -- (5, 0) node [right] {$\re w$};
+			\draw[->] (3, -2) -- (3, 2) node[above] {$\im {w}$};
+			
+			\draw[->] (-0.5, 0.5) arc (120:60:2);
+			\draw[<-] (-0.5, -0.5) arc (240:300:2);
+			\node[] at (0.55, 1.15) {$f$};
+			\node[] at (0.52, -1.25) {$g_0$};
+			
+			\node[] at (-3.9, 0.6) {$G$};
+			\node[] at (3.9, -0.8) {$D$};
+			
+			\draw[dashed] (3, -0.15) arc (-90:90:0.15);
+			\draw[dashed] (0.8, 0.15) -- (3, 0.15);
+			\draw[dashed] (0.8, -0.15) -- (3, -0.15);
+			
+			\draw[dashed] (-5.2, 1.2) -- (-0.8, 1.2);
+			\draw[dashed] (-5.2, -1.2) -- (-0.8, -1.2);
+			
+			\begin{scope}
+				\clip (-7,-1.2) rectangle (1, 1.2);
+				\fill [opacity=0.24, path fading=fade out] (-6,-1.8) rectangle (0, 1.8);
+			\end{scope}
+		
+			\node[draw, circle, inner sep=1.1pt, fill, black, label={below:\scalebox{0.95}{$x+iy$}}] at (-2, 0.7) {};
+			
+			\node[draw, circle, inner sep=1.1pt, fill, black] at (4, 1.2) {};
+			\draw[->] (3, 0) -- (3.97, 1.17) {};
+			
+			\node[] at (3.5, 0.9) {$e^x$};
+			
+			\coordinate (a1) at (4,0);
+			\coordinate (a2) at (3,0);
+			\coordinate (a3) at (4, 1.2);
+			
+			\pic [draw, ->, angle radius = 0.8cm] {angle = a1--a2--a3};
+			\node [] at (3.95, 0.3) {$y$};
+		\end{tikzpicture}
+	\end{center}
+	
+	По теореме об обратной функции, на области $D$ определена обратная к функции $f$ функция $g_0 \in C^1(D)$, конформно отображающая $D$ на $G$. Эта функция называется \textit{главной регулярной ветвью функции} $\Ln{w}$ на области $D$. Найдем производную функции $g_0(w)$:
+	\[e^{g_0(w)} \equiv w \ra e^{g_0(w)}g_0'(w) \equiv 1 \ra g_0'(w) \equiv e^{-g_0(w)} \equiv \frac{1}{w}\]
+	
+	Теперь найдем функцию $g_0$ в явном виде. Поскольку для любой точки $w \in D$ выполнено $g_0(w) \in \Ln{w}$, то $g_0(w) = \ln|w| + i\phi$ для некоторого $\phi \in \Arg{w}$, причем, в силу ограничения $\im|g_0(w)| < \pi$, имеем $\phi = \arg_0(w)$. Таким образом, $g_0(w) = \ln|w| + i\arg_0{w}$.
+\end{example}
+
+\begin{note}
+	Из результата выше следует, что функции $\ln|w|$ и $\arg_0w$ являются гармоническими на области $\Cm \bs (-\infty, 0]$, а функции вида $g_0(w) + 2\pi k i$ для любых $k \in \Z$ тоже являются регулярными ветвями функции $\Ln{w}$ на области $\Cm \bs (-\infty, 0]$.
+\end{note}
+
+\begin{example}
+	\textit{Главной регулярной ветвью функции $\Root{n}{w}$} на области $D := \Cm \bs (-\infty, 0]$ назовем следующую функцию:
+	\[g_n(w) := e^{\frac{1}ng_0(w)},~w \in D\]
+	
+	Функция $g_n$ действительно является регулярной ветвью в силу уже доказанного. Выпишем ее в явном виде, используя явный вид функции $g_0$:
+	\[g_n(w) := \sqrt[n]{|w|}e^{i\frac{\arg_0{w}}n},~w \in D\]
+	
+	Заметим теперь, что функция $g_n$ конформно отображает область $D$ на область $G_n$, имеющую вид $\{z \in \Cm: -\frac\pi n < \arg{z} < \frac\pi n\}$.
+	\begin{center}
+		\begin{tikzpicture}
+			\fill [opacity=0.2, path fading=fade out] (3, 0) circle[radius=2.3];
+			\fill [white] (0, -0.15) rectangle (3, 0.15);
+			\fill [white] (3, 0) circle[radius=0.15];
+			
+			\clip (-6, -2.2) rectangle (6, 2.6);
+			
+			\draw[->] (-5, 0) -- (-1, 0) node [right] {$\re z$};
+			\draw[->] (-3, -2) -- (-3, 2) node[above] {$\im {z}$};
+			
+			
+			\draw[->] (1, 0) -- (5, 0) node [right] {$\re w$};
+			\draw[->] (3, -2) -- (3, 2) node[above] {$\im {w}$};
+			
+			\draw[->] (-0.5, 0.5) arc (120:60:2);
+			\draw[<-] (-0.5, -0.5) arc (240:300:2);
+			\node[] at (0.55, 1.15) {$z^n$};
+			\node[] at (0.52, -1.25) {$g_n$};
+			
+			\node[] at (-1.1, 0.5) {$G$};
+			\node[] at (3.9, -0.8) {$D$};
+			
+			\draw[dashed] (3, -0.15) arc (-90:90:0.15);
+			\draw[dashed] (0.8, 0.15) -- (3, 0.15);
+			\draw[dashed] (0.8, -0.15) -- (3, -0.15);
+			
+			\draw[dashed] (-3, 0) -- (-0.8, 1.2);
+			\draw[dashed] (-3, 0) -- (-0.8, -1.2);
+		
+			\fill[opacity=0.2, path fading=fade out] (-0.36, 1.44)--(-3, 0)--(-0.36, -1.44);
+			
+			\coordinate (a1) at (-2,0);
+			\coordinate (a2) at (-3,0);
+			\coordinate (a3) at (-0.8, 1.2);
+			\coordinate (a4) at (-0.8, -1.2);
+			
+			\pic [draw, ->, angle radius = 1.2cm] {angle = a1--a2--a3};
+			\node [] at (-1.65, 0.3) {\scalebox{0.9}{$\frac\pi n$}};
+			\pic [draw, <-, angle radius = 1.1cm] {angle = a4--a2--a1};
+			\node [] at (-1.63, -0.35) {\scalebox{0.9}{$-\frac\pi n$}};
+		\end{tikzpicture}
+	\end{center}
+
+	Наконец, найдем производную функции $g_n(w)$:
+	\[g_n(w)^n \equiv w \ra ng_n(w)^{n-1}g'_n(w) \equiv 1 \ra g'_n(w) \equiv \frac{1}{ng_n(w)^{n-1}} \equiv \frac{g_n(w)}{nw}\]
+\end{example}
+
+\begin{note}
+	Из результата выше следует, что функции вида $g_n(w)e^{i \frac{2\pi k}n}$ для любых $k \in \Z$ тоже являются регулярными ветвями функции $\Root{n}{w}$ на области $\Cm \bs (-\infty, 0]$.
+\end{note}

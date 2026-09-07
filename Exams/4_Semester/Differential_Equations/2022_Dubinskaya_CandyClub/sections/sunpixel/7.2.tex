@@ -1,0 +1,148 @@
+Рассмотрим функционал 
+
+\begin{equation}\label{J_func_free}
+J(y) = \int_a^b F \left( x; y(x), y'(x)) \right) dx,
+\end{equation}
+\\
+определённый на множестве
+$M = \{ y(x) \in C^1 [a, b] : y(a) = A\}$, где
+$F \left( x; y, p \right)$ -- дважды непрерывно дифференцируемая
+функция на $[a, b] \times \R^2$.
+Задача отличается от простейшей вариационной задачи только тем,
+что один из концов (в данном случае $b$) не зафиксирован.
+
+\textbf{Определение.}
+
+Задача нахождения слабого локального экстремума функционала
+(\ref{J_func_free}) называется
+\textit{задачей со свободным концом}.
+
+\textbf{Теорема.}
+
+Если дважды непрерывно дифференцируемая функция 
+$\widehat{y}(x) \in M$ даёт слабый локальный экстремум функционала
+(\ref{J_func_free}), то на $[a, b]$ $\widehat{y}(x)$ удовлетворяет
+уравнению Эйлера
+
+\begin{equation}\label{euler_eq_free}
+\frac{\partial F}{\partial y} - \frac{d}{dx} \left(
+\frac{\partial F}{\partial y'} \right) = 0
+\end{equation}
+
+и при $x = b$:
+
+\begin{equation}\label{extra_cond}
+\left. 
+\frac{\partial F}{\partial y'} 
+\left[ x; \widehat{y}(x), \widehat{y}'(x) \right]
+\right|_{x = b} = 0
+\end{equation}
+
+\underline{Доказательство.}
+
+Рассмотрим произвольное допустимое приращение 
+$\eta(x) \in C^1 [a, b] : \eta(a) = 0$.
+
+Пусть $\Phi(\alpha) = J(\widehat{y} + \alpha \eta), \alpha \in \R$ -- 
+непрерывно дифференицруемая функция аргумента $\alpha$;
+при $\alpha = 0$ $\Phi(\alpha)$ имеет экстремум.
+Следовательно, (в последнем = меняем местами диф-ние и инт-ние)
+
+$$
+0 = \Phi'(0) = \left. \frac{d}{d\alpha} 
+J( \widehat{y} + \alpha \eta) \right|_{\alpha = 0} = 
+\left. \frac{d}{d\alpha} \int_a^b F \left( x, \widehat{y} + \alpha \eta, 
+\widehat{y}' + \alpha \eta' \right) dx \right|_{\alpha = 0} = 
+\left. \int_a^b \left[
+\frac{\partial F}{\partial y} \eta(x) + 
+\frac{\partial F}{\partial y'} \eta'(x)
+\right] \right|_{y = \widehat{y}(x)} dx
+$$
+
+Проинтегрируем второе слагаемое по частям:
+
+$$
+\left. \int_a^b \frac{\partial F}{\partial y'} \eta' 
+\right|_{y = \widehat{y}} dx = 
+\left. \frac{\partial F(x; \widehat{y}, \widehat{y}')}{\partial y'} 
+\right|_{x = b} \cdot \eta(b) - 
+\left. \int_a^b \frac{d}{dx} \left(
+\frac{\partial F}{\partial y'}
+\right) \right|_{y = \widehat{y}} \eta(x) dx
+$$
+
+Тогда $\Phi'(0)$ запишется следующим образом:
+
+$$
+\Phi'(0) = \left. 
+\frac{\partial F(x; \widehat{y}, \widehat{y}')}{\partial y'}
+\right|_{x = b} \eta(b) + \left. \int_a^b \left[
+\frac{\partial F}{\partial y} - 
+\frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) 
+\right] \right|_{y = \widehat{y}} \eta(x) dx = 0
+$$
+
+Это выполняется для любого $\eta(x) \in C^1 [a, b] : \eta(a) = 0$.
+Это, в частности, означает, что это верно для 
+$\eta_1(x) \in C^1 [a, b] : \eta(a) = 0, \eta(b) = 0$. При подставлении
+$\eta_1(x)$ получаем, что 
+
+$$
+\int_a^b \left[
+\frac{\partial F}{\partial y} - 
+\frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) 
+\right] \eta(x) dx = 0
+$$
+
+Используя основную лемму вариационного исчисления, получим условие 
+(\ref{euler_eq_free}). Это означает, что второе слагаемое в выражении 
+$\Phi'(0)$ всегда равно нулю. Получаем, что для всех
+$\eta(x) \in C^1 [a, b] : \eta(a) = 0$
+
+$$
+\Phi'(0) = \left. 
+\frac{\partial F(x; \widehat{y}, \widehat{y}')}{\partial y'}
+\right|_{x = b} \eta(b) = 0
+$$
+
+Так как можно подобрать вариацию, такую что $\eta(b) \neq 0$, то 
+необходимым условием слабого локального экстремума является 
+условие (\ref{extra_cond}).
+\pagebreak
+
+\textbf{Определение.}
+
+Решение уравнения (\ref{euler_eq_free}) называется
+\textit{экстремалью задачи со свободным концом}.
+Решение уравнения (\ref{euler_eq_free}), которое удовлетворяет
+условию $y(a) = A$ и условию (\ref{extra_cond}), называется
+\textit{допустимой экстремалью}.
+
+Для задачи, где не закреплены оба конца, можно получить 
+аналогичное необходимое условие слабого локального экстремума:
+
+\textbf{Теорема.}
+
+Рассмотрим функционал 
+
+\begin{equation*}
+J(y) = \int_a^b F \left( x; y(x), y'(x)) \right) dx,
+\end{equation*}
+\\
+где $y(x) \in C^1 [a, b]$ (то есть оба конца не закреплены) и
+$F \left( x; y, p \right)$ -- дважды непрерывно дифференцируемая
+функция на $[a, b] \times \R^2$.
+
+Если $\widehat{y}(x) \in C^1 [a, b]$ даёт слабый локальный экстремум
+функционала $J(y)$, то $\widehat{y}(x)$ удовлетворяет
+следующим условиям:
+
+$$
+\frac{\partial F}{\partial y} - 
+\frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) = 0
+$$
+
+$$
+\left. \frac{\partial F}{\partial y'} \right|_{x = a} = 
+\left. \frac{\partial F}{\partial y'} \right|_{x = b} = 0
+$$

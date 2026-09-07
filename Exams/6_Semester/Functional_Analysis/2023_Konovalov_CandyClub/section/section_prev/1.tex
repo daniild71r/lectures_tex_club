@@ -1,0 +1,253 @@
+\begin{definition}
+	\textit{Метрическим пространством} называется множество $X$ с \textit{метрикой} \\
+    $\rho : X^2 \to \R$, обладающей следующими свойствами:
+	\begin{enumerate}
+		\item $\forall x, y \in X: \rho(x, y) \geqslant 0$, причем $\rho(x, y) = 0 \lra x = y$
+		\item $\forall x, y \in X: \rho(x, y) = \rho(y, x)$
+		\item $\forall x, y, z \in X: \rho(x, z) \leqslant \rho(x, y) + \rho(y, z)$ (\textit{неравенство треугольника})
+	\end{enumerate}
+\end{definition}
+
+\begin{example}~
+\begin{itemize}
+    \item $X = \mathbb{R}, \; \rho = |x - y|$ -- это метрическое пространство. 
+    \item А вот $X = \mathbb{R}, \; \rho = |x - y|^2$ -- уже нет, так как не выполнено нер-во треугольника $(a + b)^2  \cancel{\leqslant}a^2 + b^2 $, где $a=x-z, \; b=z-y$
+
+    \item $X$ -- любое, $\rho = I_{x \neq y}$ -- метрическое пространство 
+\end{itemize}
+\end{example}
+
+\begin{definition}
+	\textit{Топологическим пространством} называется множество $X$ с системой $\tau \subset 2^X$, обладающей следующими свойствами:
+	\begin{enumerate}
+		\item $\varnothing, X \in \tau$
+		\item $\forall i \in \{1, 2, \ldots, n\}, \;G_i \in \tau $ верно $\bigcap\limits_{i=1}^{n} G_i \in \tau$
+		\item $\forall A $ -- индексирующего множества, $G_\alpha \in \tau, \; \forall \alpha \in A$  верно $ \bigcup\limits_{\alpha \in A}G_\alpha\in \tau$
+	\end{enumerate}
+	
+	Система $\tau$ называется \textit{топологией} на множестве $X$, а элементы системы $\tau$ --- \textit{открытыми множествами}.
+\end{definition}
+
+\begin{example}~
+\begin{itemize}
+    \item $X$ -- любое, $\tau = \{\varnothing, X\}$ -- топологическое пространство с тривиальной топологией
+\end{itemize}
+\end{example}
+
+\begin{theorem}\label{thmGeldMink}
+	Пусть $E$ -- измеримое. Пусть $f, g: E \to [0, +\infty]$ измеримы, и $1 < p < \infty$, $\frac{1}{p} + \frac{1}{q} = 1$. Тогда справедливо \textit{неравенство Гёльдера} 
+ \[\int_Efgd\mu \leqslant \left(\int_Ef^pd\mu\right)^{\frac 1p} \cdot \left(\int_Eg^qd\mu\right)^{\frac 1q}\]
+и \textit{неравенство Минковского}
+ \[\left(\int_E(f + g)^pd\mu\right)^{\frac 1p} \leqslant \left(\int_Ef^pd\mu\right)^{\frac 1p} + \left(\int_Eg^pd\mu\right)^{\frac 1p}\]
+\end{theorem}
+
+\begin{proof}
+	Идея: вспоминаем матан. Пользуемся неравенством Юнга: 
+ $$a,b \geqslant 0, \;\;\; 1 < p < \infty, \;\;\; \frac{1}{p} + \frac{1}{q} = 1 \quad \Rightarrow \quad ab \leqslant \frac{a^p}{p} + \frac{b^q}{q}$$
+
+\begin{enumerate}
+    \item Положим $A = \left(\int_Ef^pd\mu\right)^{\frac 1p}, \;\; B= \left(\int_Eg^qd\mu\right)^{\frac 1q}$ \\
+    Если $A = 0 \Rightarrow f = 0$ п.в. на $E \Rightarrow fg = 0$ п.в. на $E \Rightarrow \int_Efgd\mu = 0$  \\
+    Если $A = \infty$ и $ B > 0 $, то $ AB = \infty$. И аналогично оба случая заменой $A$ на $B$.\\
+    Если $0 < A, B < \infty \Rightarrow $ по неравенству Юнга имеем
+ \[\frac{1}{AB}\int_Efgd\mu  = \int_E\frac{f}{A}\frac{g}{B}d\mu 
+ \leqslant \int_E\left(\frac{1}{p}\left(\frac{f}{A}\right)^p + \frac{1}{q}\left(\frac{g}{B}\right)^q\right)d\mu = \frac{1}{p}\frac{\int_Ef^pd\mu}{A^p} + \frac{1}{q}\frac{\int_Eg^qd\mu}{B^q} = \frac{1}{p} + \frac{1}{q} = 1\]
+
+    \item Положим $a = \left(\int_Ef^pd\mu\right)^{\frac 1p}, \;\; b = \left(\int_Eg^pd\mu\right)^{\frac 1p}, \;\; c = \left(\int_E(f + g)^pd\mu\right)^{\frac 1p}$. Хотим $c \leqslant a + b$ \\
+    Если $a = +\infty$ или $b =+\infty$, то неравенство верно. \\
+    Будем полагать, что $a, b < \infty$. Тогда 
+    \[(f+g)^p \leqslant (2  \max\{f,g\})^p \leqslant 2^p (f^p + g^p) \quad \Rightarrow \quad c < \infty \text{  так как интегралы $f^p, g^p$ конечны}\]
+    Тогда так как $\frac{1}{p} + \frac{1}{q} = 1 \;\; \Rightarrow \;\; p = (p-1)q$ получаем:
+    \begin{align*}
+        c^p &= \int_Ef(f+g)^{p-1}d\mu + \int_Eg(f+g)^{p-1}d\mu \leqslant \text{ по нерванству Гёльдера} \\
+        &\leqslant \left(\int_Ef^pd\mu\right)^{\frac{1}{p}} \left(\int_E(f+g)^{(p-1)q}d\mu\right)^{\frac{1}{q}} +
+        \left(\int_Eg^pd\mu\right)^{\frac{1}{p}} \left(\int_E(f+g)^{(p-1)q}d\mu\right)^{\frac{1}{q}} = \\
+        & = (a + b) \left(\int_E(f+g)^{p}d\mu\right)^{\frac{1}{q}} = (a + b) \left(\int_E(f+g)^{p}d\mu\right)^{\frac{p-1}{p}} = (a + b) c^{p-1}
+    \end{align*}
+    Так как если $c = 0 \Rightarrow a,b=0$, то можем поделить все на $c^{p-1}$. Получили требуемое.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+    \hyperref[sec:table_of_examples]{Таблица метрических пространств и их свойства}
+\end{example}
+
+
+
+
+\begin{definition}
+	Пусть $X$ "--- МП, $Y \subset X$. \textit{Подпространством} пространства $X$ называется метрическое пространство $Y$ с метрикой, являющейся сужением метрики на $X$.
+\end{definition}
+
+\begin{definition}
+	Пусть $X$ "--- МП. Множество $Y \subset X$ называется \textit{ограниченным}, если выполнено условие $\sup\limits_{x, y \in Y} \rho(x, y) < +\infty$.
+\end{definition}
+
+\begin{note}
+	Далее в этом разделе мы стремимся показать, что каждое МП является ТП с топологией определенного вида, заданной метрикой пространства.
+\end{note}
+
+\begin{definition}
+	Пусть $X$ "--- МП, $x \in X$, $r > 0$.
+	\begin{itemize}
+		\item \textit{Открытым шаром} называется множество $B(x, r) := \{y \in X: \rho(y, x) < r\}$
+		
+		\item \textit{Замкнутым шаром} называется множество $\overline B(x, r) := \{y \in X: \rho(y, x) \leqslant r\}$
+	\end{itemize}
+\end{definition}
+\begin{note}
+Также достаточно часто используются альтернативные обозначения шаров: \(B_r(x):=B(x, r)\) и \(\overline B_r(x):= \overline B(x, r)\).
+\end{note}
+
+\begin{definition}
+	Пусть $X$ "--- МП, $M \subset X$. Точка $x \in X$ называется \textit{внутренней точкой} множества $M$, если существует $r > 0$ такое, что $B(x, r) \subset M$. \textit{Внутренностью} множества $M$ называется множество $\Int{M}$ всех его внутренних точек. Множество $M$ называется \textit{открытым}, если $\Int{M} = M$.
+\end{definition}
+
+\begin{definition}
+	Пусть $(X, \rho)$ "--- МП, $M \subset X$. Точка $x \in X$ назы\-вается \textit{точкой прикосновения} множества $M$, если для любого $r > 0$ выполнено условие $B(x, r) \cap M \neq \varnothing$. \textit{Замыканием} множества $M$ называется множество $\overline M$ всех его точек прикосновения. Множество $M$ называется \textit{замкнутым}, если $\overline M = M$.
+\end{definition}
+
+\begin{theorem}\label{thm1.1}
+	Пусть $X$ "--- МП, $M \subset X$. Тогда множество $M$ открыто $\lra$ множество $X \bs M$ замкнуто.
+\end{theorem}
+
+\begin{proof}
+	Достаточно заметить, что $x \in \overline{X \bs M} \lra$ для любого $r > 0$ выполнено $B(x, r) \cap (X \bs M) \neq \varnothing$ $\lra x \not\in \Int{M}$. Значит, $\Int M = M\lra \overline{X \bs M} = X \bs M$.
+\end{proof}
+
+\begin{note}
+	Отметим отдельно, что для любого множества $M \subset X$ выполнены равенства $\overline{X \bs M} = X \bs \Int M$ и $\Int{(X \bs M)} = X \bs \overline M$.
+\end{note}
+
+\begin{theorem}\label{thm1.2}
+	Пусть $X$ "--- МП. Тогда:
+	\begin{enumerate}
+		\item Для любой системы открытых множеств $\{G_\alpha\}_{\alpha \in  A} \subset 2^X$ множество $\bigcup\limits_{\alpha \in  A} G_{\alpha}$ тоже является открытым
+
+		\item Для любых открытых множеств $G_1, G_2 \subset X$ множество $G_1 \cap G_2$ тоже является открытым
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Пусть $x \in \bigcup\limits_{\alpha \in  A} G_\alpha$, тогда существует $\alpha_0 \in  A$ такое, что $x \in G_{\alpha_0}$. Но множество $G_{\alpha_0}$ является открытым, поэтому существует $r > 0$ такое, что $B(x, r) \subset G_{\alpha_0} \subset \bigcup\limits_{\alpha \in  A} G_{\alpha}$. Значит, множество $\bigcup\limits_{\alpha \in  A} G_{\alpha}$ является открытым.
+
+		\item Пусть $x \in G_1 \cap G_2$, тогда существуют $r_1, r_2 > 0$ такие, что выполнено $B(x, r_1) \subset G_1$ и $B(x, r_2) \subset G_2$, откуда $B(x, \min(r_1, r_2)) \subset G_1 \cap G_2$. Значит, множество $G_1 \cap G_2$ является открытым.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	В силу теоремы \ref{thm1.1}, теорему выше можно сформулировать и для замкнутых множеств:
+	\begin{enumerate}
+		\item Для любой системы замкнутых множеств $\{F_\alpha\}_{\alpha \in  A} \subset 2^X$ множество $\bigcap\limits_{\alpha \in  A} F_{\alpha}$ тоже является замкнутым
+
+		\item Для любых замкнутых множеств $F_1, F_2 \subset X$ множество $G_1 \cup G_2$ тоже является замкнутым
+	\end{enumerate}
+
+	Обе этих формулировки эквивалентны тому, что МП $X$ также является ТП с топологией, заданной открытыми множествами в $X$ как в метрическом пространстве.
+\end{note}
+
+\begin{note}
+	Не всякое ТП является \textit{метризуемым}, то есть таким, что топология в нем порождается некоторой метрикой. Главным примером неметризуемого топологического пространства является пространство $D = C_C^{\infty}(\mathbb{R})$ основных функций (так как нет такой метрики, которая сохраняла бы сходимость по $D$).
+\end{note}
+
+\begin{theorem}\label{thm1.3}
+	Пусть $X$ "--- МП. Тогда:
+	\begin{enumerate}
+		\item Для любого $x \in X$ и $r > 0$ множество $B(x, r)$ "--- открытое
+		\item Для любого $x \in X$ и $r > 0$ множество $\overline B(x, r)$ "--- замкнутое
+		\item Для любого множества $M \subset X$ множество $\Int M$ "--- открытое, причем наибольшее по включению открытое множество, содержащееся в $M$
+		\item Для любого множества $M \subset X$ множество $\overline M$ "--- замкнутое, причем наименьшее по включению замкнутое множество, содержащее $M$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}~
+	\begin{enumerate}
+		\item Пусть $y \in B(x, r)$, тогда, по неравенству треугольника, $B\big(y, r - \rho(x, y)\big) \subset B(x, r)$, то есть $y \in \Int B(x, r)$.
+		
+		\item Пусть $y \in \overline{\overline B(x, r)}$, тогда для любого $\varepsilon > 0$ выполнено $B(y, \varepsilon) \cap \overline B(x, r) \neq \varnothing$, откуда, по неравенству треугольника, $\rho(x, y) < r + \varepsilon$. В силу произвольности числа $\varepsilon$, получарем, что $\rho(x, y) \leqslant r$, то есть $y \in \overline B(x, r)$.
+		
+		\item Для любого открытого множества $G \subset M$ выполнено $G = \Int G \subset \Int M$, поэтому, в частности, множество $\Int M$ открыто как объединение всех содержащихся в $M$ открытых множеств.
+  
+		\item Для любого замкнутого множества $F \supset M$ выполнено $F = \overline F \supset \overline M$, поэтому, в частности, множество $\overline M$ замкнуто как пересечение всех содержащих $M$ замкнутых множеств.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Пусть $X$ "--- МП. Множество $A \subset X$ называется:
+	\begin{itemize}
+		\item \textit{Плотным} в множестве $B \subset X$, если $B \subset \overline {A}$
+ 
+		\item \textit{Всюду плотным}, если $X = \overline {A}$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}\label{separability}
+	МП $X$ называется \textit{сепарабельным}, если в $X$ существует не более чем счетное всюду плотное множество.
+\end{definition}
+
+\begin{definition}
+	Пусть $X$ "--- МП. Последовательность $\{x_n\} \subset X$ \textit{сходится} к точке $x \in X$, если $\rho(x_n, x) \to 0$ при $n \to \infty$. Обозначение "--- $x_n \xrightarrow[X]{} x$.
+\end{definition}
+
+\begin{note}
+	Замкнутые множества в МП $X$ можно определить в терминах сходимости: множество $F \subset X$ является замкнутым $\lra$ для любой последовательности $\{x_n\} \subset F$ такой, что $x_n \xrightarrow[X]{} x \in X$, выполнено $x \in F$.
+\end{note}
+
+\begin{note}
+	В произвольном ТП тоже можно определить сходимость, переписав определение выше в терминах открытых окрестностей, однако в общем топологическом случае сходимость уже не задает однозначно свойств пространства.
+\end{note}
+
+\begin{definition}
+	Пусть $X, Y$ "--- МП, $f : X \to Y$. Отображение $f$ называется \textit{непрерывным в точке} $x \in X$, если выполнено одно из следующих условий:
+	\begin{enumerate}
+		\item Для любого $\varepsilon > 0$ существует $\delta > 0$ такое, что $f\big(B(x, \delta)\big) \subset B\big(f(x), \varepsilon\big)$
+		
+		\item Для любой $\{x_n\} \subset X$ такой, что $x_n \xrightarrow[X]{} x$, выполнено $f(x_n) \xrightarrow[Y]{} f(x)$
+	\end{enumerate}
+
+	Отображение $f$ называется \textit{непрерывным}, если оно непрерывно во всех точках из $X$.
+\end{definition}
+
+\begin{note}
+    Для ТП непрерывность определяется похожим образом и согласуется с непрерывностью в МП. Пусть $X, Y$ "--- ТП, $f : X \to Y$. Отображение $f$ называется \textit{непрерывным в точке} $x \in X$, если выполнено:
+    \[\forall V(f(x)) \in \tau_Y\; \exists U(x) \in \tau_X:\; f(U(x)) \subset V(f(x)).\]
+\end{note}
+
+\begin{theorem}\label{thm1.4}
+	Пусть $X, Y$ "--- ТП, $f: X \to Y$. Тогда следующие условия эквивалентны:
+	\begin{itemize}
+		\item Отображение $f$ непрерывно
+		\item Для любого множества $G \in \tau_Y$ множество $f^{-1}(G) \in \tau_X$.
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+        \item\imp{1}{2}Зафиксируем произвольное открытое множество $G \in \tau_Y$. Из непрерывности
+        \[\forall x \in f^{-1}(G):\; \exists U(x) \in \tau_X:\; f(U(x)) \subset G.\]
+        
+        Тогда, $f^{-1}(G) = \bigcup\limits_{x \in f^{-1}(G)}U(x)$ и каждое множество $U(x)$ является открытым, значит множество $f^{-1}(G)$ тоже является открытым.
+
+		\item\imp{2}{1}В определении непрерывности достаточно в качестве $U$ взять $f^{-1}(V) \in \tau_X$.
+	\end{itemize}
+\end{proof}
+\begin{note} \label{closed-continuous-closed}
+Можно заметить, что если прообраз любого открытого множества будет открыт, то и прообраз любого замкнутого будет замкнут.
+\end{note}
+
+\begin{definition}
+    Если отображение между МП $f:\; X \to Y$ взаимнооднозначно и взаимнонепрерывно, то есть $f^{-1}$ и $f$ непрерывны, то $f$~--- \textbf{гомеоморфизм}. Пространства $X$ и $Y$ называются гомеоморфными. 
+\end{definition}
+
+\begin{note}
+    В случае топологических пространств, гомеоморфизм это биекция между $X$ и $Y$, а также между топологиями на них.
+\end{note}
+
+\begin{definition}
+    Если гомеоморфизм $f$ сохраняет расстояния:
+    \[
+    \rho(x_1, x_2) = \rho'(f(x_1), f(x_2)),
+    \]
+    то он называется \textbf{изометрией}. Пространства $X$ и $Y$ называются изометричными. 
+\end{definition}

@@ -1,0 +1,195 @@
+\documentclass[a4paper,12pt]{article}
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в фомулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+	
+\usepackage[normalem]{ulem}
+
+%размеры полей
+\usepackage[left=1.5cm,right=1cm, top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+\usepackage{graphicx} % Вставка Картинок
+\usepackage{wrapfig}
+\usepackage{sidecap}
+\usepackage{tikz-cd}
+\usepackage{tkz-euclide}
+\usepackage{stackengine}
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{255, 255, 255}
+\definecolor{keywordscolour}{rgb}{0, 0, 200}
+
+\newcommand{\topics}[1]{\large\texttt{#1}\\\normalsize}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+  keywordstyle=\color{keywordscolour},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+
+
+
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\ensuremath{\varnothing}}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\grad}{grad}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\DIF}{\mathcal{DIF}}
+\newcommand{\Rim}{\mathcal{R}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\PP}{\mathcal{P}}
+
+% привееет
+
+
+
+
+
+\newcommand{\imp}[2]{
+	(#1\,\,$\ra$\,\,#2)\,\,
+}
+\newcommand{\System}[1]{
+	\left\{\begin{aligned}#1\end{aligned}\right.
+}
+\newcommand{\Root}[2]{
+	\left\{\!\sqrt[#1]{#2}\right\}
+}
+
+\renewcommand\labelitemi{$\triangleright$}
+
+\let\bs\backslash
+\let\Lra\Leftrightarrow
+\let\lra\leftrightarrow
+\let\Ra\Rightarrow
+\let\ra\rightarrow
+\let\La\Leftarrow
+\let\la\leftarrow
+\let\emb\hookrightarrow
+\let\rr\rightrightarrows
+\newcommand{\nrr}{\bcancel{\rightrightarrows}}
+
+\newcommand{\xrr}{\underset{X}{\rightrightarrows}}
+
+\newcommand{\xnrr}{\underset{X}{\bcancel{\rightrightarrows}}}
+
+
+
+
+
+
+
+
+%%% Теоремы
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{theoremdefinition}{Теорема-определение}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{proposition}{Утверждение}[section]
+\newtheorem*{exercise}{Упражнение}
+\newtheorem*{problem}{Задача}
+\newtheorem*{question}{Вопрос}
+\newtheorem*{answer}{Ответ}
+\newtheorem*{explanation}{Пояснение}
+\newtheorem*{fact}{Факт}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{note}{Примечание}
+\newtheorem*{reminder}{Напоминание}
+\newtheorem*{example}{Пример}
+\newtheorem*{examples}{Примеры}
+\newtheorem*{counterexample}{Контрпример}
+% \newtheorem*{solution}{Решение}
+\newtheorem*{properties}{Свойства}
+\newtheorem*{remark}{Замечание}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Решение}
+
+
+
+
+
+
+
+
+
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+% Настройка оглавления и ссылок
+\usepackage[unicode]{hyperref}
+\hypersetup{
+	unicode=true,            % русские буквы в раздела PDF
+	colorlinks=true,       	 % Цветные ссылки вместо ссылок в рамках
+	linkcolor=blue, % Внутренние ссылки
+	citecolor=green,         % Ссылки на библиографию
+	filecolor=magenta,       % Ссылки на файлы
+	urlcolor=olive,       % Ссылки на URL
+}
+
+% Колонтикулы
+\usepackage{titleps}
+\newpagestyle{main}{
+	\setheadrule{0.4pt}
+	\sethead{Интеграл Лебега и Теория поля}{}{\hyperlink{intro}{\;Назад к содержанию}}
+ 	\setfootrule{0.4pt}                       
+	\setfoot{ФПМИ МФТИ, \today}{}{\thepage} 
+}
+\pagestyle{main}  

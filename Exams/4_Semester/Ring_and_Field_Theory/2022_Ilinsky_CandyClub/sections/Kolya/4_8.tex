@@ -1,0 +1,7 @@
+\Proof 
+	Пусть $K$ "--- область целостности, $N: K \backslash \{0\} \to \N \cup \{0\}$ "--- функция со свойством деления с остатком. Для $\forall a \in K \backslash \{0\}$ положим $\overline{N}(a) := \min\{N(ab) : b \in K \backslash \{0\}\}$. Проверим, что для $\overline{N}$ выполнены оба свойства нормы:
+	\begin{enumerate}
+		\item Заметим, что $\forall a, b \in K \backslash \{0\}: \overline{N}(ab) = N(abc)$ для некоторого $c \in K \backslash \{0\}$. Тогда $\overline{N}(ab) \ge \min\{N(ax) : x \in K \backslash \{0\}\} = \overline{N}(a)$.
+		\item Пусть $a, b \in K \backslash \{0\}$. Выберем такой $x \in K \backslash \{0\}$, что $\overline{N}(b) = N(bx)$, и поделим $a$ на $bx$ с остатком: $a = bxq + r$, где либо $r = 0$, либо $N(r) < N(bx)$. Остается заметить, что тогда $\overline{N}(r) \le N(r) < N(bx) = \overline{N}(b)$.\qedhere
+	\end{enumerate}
+\EndProof

@@ -1,0 +1,6 @@
+\par \Statement Если $f \in F[x]$ — неприводимый многочлен, то в поле $F[x]/(f) \supset F$ у
+$f$ есть корень.
+\par \Proof Рассмотрим канонический эпиморфизм $\pi: F[x] \rightarrow F[x]/(f)$. Тогда
+$f([x])=[f(x)]=[0]$. \EndProof
+
+\par \textbf{Доказательство теоремы:} \Proof Разложим $f$ на неприводимые: $f(x)=f_1(x)\cdot\ldots\cdot f_k(x)$. Рассмотрим $F_1=F[x]/(f_1(x)) \Rightarrow [F_1 : F]=\deg f_1 \leq \deg f$. По доказанному, у $f_1$ есть корень в этом поле. Следовательно $f(x)=(x-\alpha_1) \cdot f_1'(x)\cdot \ldots \cdot f_{k-1}'(x)$. Повторяя процесс получим, что степень искомого расширения $\leq n\cdot(n-1)\cdot\ldots\cdot 2 \cdot 1=n!$ \EndProof

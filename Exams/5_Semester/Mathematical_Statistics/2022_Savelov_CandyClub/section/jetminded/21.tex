@@ -1,0 +1,81 @@
+\begin{definition}
+    Гипотеза $\displaystyle H:\ P=P_{0}$, где $\displaystyle P_{0}$ -- известное распределение, называется \textit{простой}.
+\end{definition}
+Пусть заданы простые гипотезы $\displaystyle H_{0} :\ P=P_{0}$ и альтернатива $\displaystyle H_{1} :\ P=P_{1}$, причем $\displaystyle P_{i}$ имеют плотность $\displaystyle p_{i}( x)$ по одной и той же мере $\displaystyle \mu $. Рассмотрим критерий для $\lambda > 0$:
+\begin{equation*}
+    S_{\lambda } =\{x:\ p_{1}( x) -\lambda p_{0}( x) \geqslant 0\} .
+\end{equation*}
+
+\begin{lemma}
+    (Неймана-Пирсона) Пусть критерий $\displaystyle R$ удовлетворяет соотношению $\displaystyle P_{0}( X\in R) \leqslant P_{0}( X\in S_{\lambda })$. Тогда $\displaystyle P_{1}( X\in R) \leqslant P_{1}( X\in S_{\lambda })$, т.е. $\displaystyle S_{\lambda }$ мощнее $\displaystyle R$, и $\displaystyle P_{0}( X\in S_{\lambda }) \leqslant P_{1}( X\in S_{\lambda })$, т.е. $\displaystyle S_\lambda$ -- несмещенный.
+\end{lemma}
+\begin{proof}
+    Рассмотрим следующее соотношение
+    \begin{gather*}
+        I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) \leqslant I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) \cdotp I(\{x:\ p_{1}( x) -\lambda p_{0}( x) \geqslant 0\}) =\\
+        I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) I_{S_{\lambda }}( x) \leqslant ( p_{1}( x) -\lambda p_{0}( x)) I_{S_{\lambda }}( x) .
+    \end{gather*}
+    Рассмотрим первое неравенство. Если $\displaystyle p_{1}( x) -\lambda p_{0}( x) \geqslant 0$, то обе части равны. Если $\displaystyle p_{1}( x) -\lambda p_{0}( x) < 0$, то левая часть меньше нуля, а правая равна нулю.
+    
+    Рассмотрим второе неравенство. Если $\displaystyle x\in R$, то обе части равны. Иначе, левая часть равна нулю, а правая часть неотрицательна в силу выбора критерия $\displaystyle S_{\lambda }$.
+    
+    Тогда
+    \begin{gather*}
+        P_{1}( X\in R) -\lambda P_{0}( X\in R) =E_{1} I_{R}( X) -\lambda E_{0} I_{R}( X) =\\
+        \int _{\mathcal{X}} I_{R}( x) p_{1}( x) d\mu -\lambda \int _{\mathcal{X}} I_{R}( x) p_{0}( x) d\mu =\int _{\mathcal{X}} I_{R}( x)( p_{1}( x) -\lambda p_{0}( x)) d\mu \leqslant \\
+        \int _{\mathcal{X}} I_{S_{\lambda }}( p_{1}( x) -\lambda p_{0}( x)) d\mu =P_{1}( X\in S_{\lambda }) -\lambda P_{0}( X\in S_{\lambda }) \Rightarrow \\
+        P_{1}( X\in S_{\lambda }) -P_{1}( X\in R) \geqslant \lambda ( P_{0}( X\in S_{\lambda }) -P_{0}( X\in R)) \geqslant 0.
+    \end{gather*}
+    Докажем несмещенность. Если $\displaystyle \lambda \geqslant 1$, то $\displaystyle p_{0}( x) \leqslant p_{1}( x) \ \forall x\in S_{\lambda }$. Тогда
+    \begin{equation*}
+        P_{0}( X\in S_{\lambda }) =\int _{\mathcal{X}} I_{S_{\lambda }}( x) p_{0}( x) d\mu \leqslant \int _{\mathcal{X}} I_{S_{\lambda }}( x) p_{1}( x)d\mu =P_{1}( X\in S_{\lambda }) .
+    \end{equation*}
+    Если $\displaystyle \lambda < 1$, то $\displaystyle p_{1}( x) \leqslant p_{0}( x) \ \forall x\in \overline{S}_{\lambda }$. Тогда
+    \begin{gather*}
+        1-P_{1}( X\in S_{\lambda }) =P_{1}( X\in \overline{S}_{\lambda }) =\int _{\mathcal{X}} I_{\overline{S}_{\lambda }}( x) p_{1}( x) d\mu \leqslant \int _{\mathcal{X}} I_{\overline{S}_{\lambda }}( x) p_{0}( x) d\mu =\\
+        P_{0}( X\in \overline{S}_{\lambda }) =1-P_{0}( X\in S_{\lambda }) \Rightarrow P_{0}( X\in S_{\lambda }) \leqslant P_{1}( X\in S_{\lambda }) .
+    \end{gather*}
+\end{proof}
+\begin{corollary}
+    Если $\displaystyle \lambda  >0$ удовлетворяет условию $\displaystyle P_{0}( X\in S_{\lambda }) =\varepsilon $, то $\displaystyle S_{\lambda }$ -- равномерно наиболее мощный критерий размера $\displaystyle \varepsilon $. Таким образом, для нахождения равномерно наиболее мощного критерия необходимо решить уравнение
+    \begin{equation*}
+        \int _{A} p_{0}( x) d\mu =\varepsilon ,
+    \end{equation*}
+    где $\displaystyle A:=\{x:\ p_{1}( x) -\lambda p_{0}( x) \geqslant 0\}$.
+\end{corollary}
+\begin{note}
+    В абсолютно непрерывном случае, как правило, решение есть.
+\end{note}
+
+
+\textbf{Монотонное отношение правдоподобия}
+
+
+Пусть семейство распределений параметризовано параметром $\displaystyle \Theta \subset \mathbb{R} :\ \mathcal{P} =\{P_{\theta } ,\ \theta \in \Theta \}$. Пусть $\displaystyle \mathcal{P}$ доминируемое семейство, т.е. существует функция правдоподобия $\displaystyle f_{\theta }( x)$.
+\begin{definition}
+    Семейство $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \}$ называется \textit{семейством с монотонным отношением правдоподобия} по статистике $\displaystyle T( X)$, если $\displaystyle \forall \theta _{0} < \theta _{1}$ функция $\displaystyle \dfrac{f_{\theta _{1}}( x)}{f_{\theta _{0}}( x)}$ является монотонной функцией от $\displaystyle T( X)$, причем тип монотонности один и тот же для всех $\displaystyle \theta _{1}  >\theta _{0}$.
+\end{definition}
+\begin{theorem}
+    (о монотонном отношении правдоподобия, б/д) Пусть даны гипотезы $\displaystyle H_{0} :\theta \leqslant \theta _{0} \ ( \theta =\theta _{0}) ,\ H_{1} :\theta  >\theta _{0}$, и семейство $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \}$ с монотонным отношением правдоподобия, причем $\displaystyle \dfrac{f_{\theta _{1}}( x)}{f_{\theta _{2}}( x)}$ не убывает по $\displaystyle T( X)$ при $\displaystyle \theta _{1}  >\theta _{2}$. Тогда критерий $\displaystyle S_{\varepsilon } =\{T( X) \geqslant c_{\varepsilon }\}$ с условием $\displaystyle P_{\theta _{0}}( X\in S_{\varepsilon }) =\varepsilon $ является равномерно наиболее мощным критерием уровня значимости $\displaystyle \varepsilon $ для проверки $\displaystyle H_{0}$ против $\displaystyle H_{1}$.
+\end{theorem}
+
+
+\textbf{Двойственность доверительного оценивания и проверки гипотез}
+
+
+\begin{proposition}
+    Пусть $\displaystyle S( X)$ -- доверительная область уровня доверия $\displaystyle 1-\varepsilon $ для параметра $\displaystyle \theta \in \Theta $. Хотим проверить простую гипотезу $\displaystyle H_{0} :\ \theta =\theta _{0}$. Рассмотрим $\displaystyle \tilde{S}( \theta ) =\{X\in \mathcal{X} :\ \theta \notin S( X)\}$. Тогда $\displaystyle \tilde{S}( \theta _{0})$ -- критерий уровня значимости $\displaystyle \varepsilon $ для проверки $\displaystyle H_{0}$.
+\end{proposition}
+\begin{proof}
+    \begin{equation*}
+        P_{\theta _{0}}\left( X\in \tilde{S}( \theta _{0})\right) =P_{\theta _{0}}( \theta _{0} \notin S( X)) =1-P_{\theta _{0}}( \theta _{0} \in S( X)) \leqslant \varepsilon .
+    \end{equation*}
+\end{proof}
+\begin{proposition}
+    Пусть $\displaystyle S_{\theta _{0}}$ -- критерий уровня значимости $\displaystyle \varepsilon $ для проверки $\displaystyle H_{0} :\, \theta =\theta _{0}$, который известен $\forall \theta_0 \in \Theta$. Рассмотрим $\displaystyle S( X) =\{\theta \in \Theta :\ X\notin S_{\theta }\}$. Тогда $\displaystyle S( X)$ -- доверительное множество уровня доверия $\displaystyle 1-\varepsilon $.
+\end{proposition}
+\begin{proof}
+    \begin{equation*}
+        \forall \theta \in \Theta \hookrightarrow P_{\theta }( \theta \in S( X)) =P_{\theta }( X\notin S_{\theta }) =1-P_{\theta }( X\in S_{\theta }) \geqslant 1-\varepsilon .
+    \end{equation*}
+\end{proof}

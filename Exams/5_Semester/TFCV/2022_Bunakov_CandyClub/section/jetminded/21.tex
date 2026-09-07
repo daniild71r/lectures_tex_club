@@ -1,0 +1,291 @@
+\begin{unnecessary}
+    
+\begin{note}
+	Пусть функция $f$ регулярна в точке $z_0 \in \Cm$, $f(z_0) = w_0$ и $f'(z_0) \ne 0$. Тогда, по теореме об обратной функции, $f$ взаимно однозначно отображает некоторую область $G \subset B_\delta(z_0)$ на круг $B_\epsilon(w_0)$.
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-5, -2) rectangle (5, 2);
+			
+			\fill [opacity=0.05] (-2,0) circle [radius=1.6];
+			\draw[black, dashed] (-2,0) circle [radius=1.6];
+			
+			\fill [opacity=0.05] (-1.8, 0) circle [radius=1];
+			\draw[black, dashed] (-1.8, 0) circle [radius=1];
+			
+			\fill [opacity=0.05] (2, 0) circle [radius=1.2];
+			\draw[black, dashed] (2, 0) circle [radius=1.2];
+			
+			\draw[->] (-1.5, 0.5) arc (120:60:3);
+			\draw[<-] (-1.5, -0.5) arc (-120:-60:3);
+			
+			\node[] at (0, 1.2) {$f$};
+			\node[] at (0.2, -1.2) {$f^{-1}$};
+			\node[] at (3, 1.5) {$B_\epsilon(w_0)$};
+			\node[] at (-3.7, -1.5) {$B_\delta(z_0)$};
+			\node[] at (-2.4, 0.3) {$G$};
+			\node[] at (-2.27, -0.6) {$\gamma$};
+			\node[] at (2, 0.7) {$\Gamma$};
+			
+			\path
+			coordinate (p1) at (-2, 0)
+			coordinate (p2) at (-2.1, -0.3)
+			coordinate (p3) at (-1.8, -0.7)
+			coordinate (q1) at (2, 0)
+			coordinate (q2) at (2.3, 0.6)
+			coordinate (q3) at (2.8, 0.4);
+			
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.5 with {\arrow{>}}},
+			postaction={decorate}
+			] plot [smooth, tension=0.85] coordinates {(p1) (p2) (p3)};
+			
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+			postaction={decorate}
+			] plot [smooth, tension=0.85] coordinates {(q1) (q2) (q3)};
+			
+			\node[draw, circle, inner sep=1pt, fill, black, label={right:$z_0$}] at (-2, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black, label={below right:$w_0$}] at (2, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (p3) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (q3) {};
+		\end{tikzpicture}
+	\end{center}
+	
+	В частности, любую гладкую простую кривую $\gamma$ на $G$ функция $f$ переводит в простую гладкую кривую $\Gamma$ на $B_\epsilon(w_0)$.
+\end{note}
+
+\begin{definition}
+	Пусть функция $f$ регулярна в точке $z_0 \in \Cm$, $\gamma$ "--- гладкая кривая с параметризацией $z(t)$, $t \in [t_0, t_1]$, $z(t_0) = z_0$, и $\Gamma = f(\gamma)$ "--- гладкая кривая с параметризацией $w(t) = f(z(t))$, $w(t_0) = f(z_0) = w_0$. \textit{Линейным растяжением кривой $\gamma$} в точке $z_0$ называется следующий предел, если он существует:
+	\[K := \lim_{t \to t_0 + 0}\frac{|w(t) - w_0|}{|z(t) - z_0|}\]
+\end{definition}
+
+\begin{proposition}
+	Если $f$ регулярна в точке $z_0 \in \Cm$ и $f'(z_0) \ne 0$, то линейное растяжение любой гладкой кривой $\gamma$ в точке $z_0$ существует и равно $|f'(z_0)|$.
+\end{proposition}
+
+\begin{proof}
+	В силу непрерывности модуля и регулярности функции $f$, имеем:
+	\[K = \left|\lim_{t \to t_0 + 0}\frac{w(t) - w_0}{z(t) - z_0}\right| = \left|\lim_{t \to t_0 + 0}\frac{f(z(t)) - f(z_0)}{z(t) - z_0}\right| = |f'(z_0)|\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{note}
+	Поскольку $w - w_0 = f'(z_0)(z-z_0) + \overline{\overline{o}}(|z - z_0|)$, $z \to z_0$, то для любого $\rho > 0$ окружность $\{z \in \Cm : |z - z_0| = \rho\}$ под действием функции $f$ с точностью до $\overline{\overline{o}}(\rho)$ переходит в окружность $\{w \in \Cm : |w - w_0| = |f'(z_0)|\rho\}$.
+\end{note}
+\end{unnecessary}
+
+\begin{definition}
+    Пусть $\gamma_1, \gamma_2$ "--- кривые, пересекающиеся в точке $z_0 \in \Cm$. \textit{Углом между кривыми $\gamma_1, \gamma_2$ в точке $z_0$} называется ориентированный угол, образованный касательными к этим кривым в точке $z_0$.  Обозначение "--- $\angle(\gamma_1, \gamma_2)_{z_0}$.
+\end{definition}
+
+\begin{unnecessary}
+    \begin{note}
+    	Пусть $\theta_0 := \arg{z'(t_0)}$, $\theta_1 := \arg{w'(t_0)}$, тогда поскольку $w'(t_0) = f'(z_0)z'(t_0)$, то $\theta_1 = \arg{f'(z_0)} + \theta_0$. Значит, отображение $f$ поворачивает все кривые в точке $z_0$ на один и тот же угол, сохраняя углы между ними.
+    \end{note}
+\end{unnecessary}
+
+\begin{definition} \label{conform}
+	Пусть $G \subset \CM$ "--- область. Отображение $f : G \to \CM$ называется \textit{конформным в точке} $z_0 \in G$, если выполнено одно из следующих условий:
+	\begin{enumerate}
+		\item Функция $f$ регулярна в точке $z_0$ и $f'(z_0) \ne 0$
+		\item $z_0$ является полюсом первого порядка функции $f$
+		\item $z_0 = \infty$ является устранимой особой точкой функции $f$, и $\res\limits_{z_0}f \ne 0$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	В каждом из случаев выше функция $f$ регулярна на $\mathring B_\epsilon(z_0)$.
+\end{note}
+
+\begin{unnecessary}
+    \begin{example}
+    	Рассмотрим следующую функцию:
+    	\[f(z) := \System{
+    		& e^{\frac 1z}, & \text{если } &z \ne 0\text{ и } z \ne \infty
+    		\\
+    		& 1, & \text{если } &z = 0\text{ или } z = \infty
+    	}\]
+    	
+    	Исследуем отображение $f$ на конформность. На $\Cm \bs \{0\}$ функция $f$ регулярна, а ее производная отлична от нуля. Точка $z = 0$ является существенно особой, поэтому $f$ не конформна в нуле. Наконец, $z = \infty$ является устранимой особой точкой, и $\res\limits_\infty f = -1 \ne 0$, поэтому $f$ конформна в бесконечно удаленной точке.
+    \end{example}
+\end{unnecessary}
+
+\begin{definition}
+	Пусть $G \subset \CM$ "--- область. Отображение $f : G \to \CM$ называется \textit{однолистным} на $G$, если оно инъективно на $G$.
+\end{definition}
+
+\begin{definition}
+	Пусть $G \subset \CM$ "--- область. Отображение $f : G \to \CM$ называется \textit{конформным на области $G$}, если оно однолистно на $G$ и конформно в каждой точке из $G$.
+\end{definition}
+
+\begin{unnecessary}
+    \begin{example}
+    	Функция $f(z) := e^z$ конформна в любой точке из $\Cm$, при этом она конформна на области $\{z \in \Cm : |z| < 3\}$, но не конформна на области $\{z \in \Cm : |z| < 4\}$, потому что на ней уже не выполнена инъективность.
+    \end{example}
+    
+    \begin{example}
+    	Рассмотрим следующую функцию:
+    	\[
+    		f(z) := \System{
+    			& \frac{1}{z^2 - 2z}, & \text{если } &z \ne 0, z \ne 2 \text{ и } z \ne \infty
+    			\\
+    			& 0, & \text{если } &z = 0, z = 2\text{ или } z = \infty
+    		}
+    	\]
+    	
+    	Отображение $f$ не является конформным ни на одной области, содержащей одновременно точки $0$ и $2$, поскольку $f(0) = f(2) = 0$.
+    \end{example}
+\end{unnecessary}
+
+\begin{definition}
+	Пусть $z = z(t)$, $t \in [t_0, +\infty)$ "--- непрерывная функция такая, что $\lim\limits_{t \to +\infty} z(t) = \infty$. Говорят, что функция $z(t)$ задает \textit{бесконечную кривую}.
+\end{definition}
+
+\begin{example}
+	Пусть бесконечные кривые $\gamma_1, \gamma_2$ задаются параметризациями $z_1(t) = te^{i\frac\pi 6}$ и $z_2(t) = te^{i\frac\pi 3}$, $t \in [1, +\infty)$. Тогда в точке $\infty$ угол между ними равен $-\frac\pi 6$.
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-5.5, -2.2) rectangle (5.9, 2.6);
+			
+			\draw[->] (-5, 0) -- (-1, 0) node [right] {$\re z$};
+			\draw[->] (-3, -2) -- (-3, 2) node[above] {$\im {z}$};
+			
+			\draw[black] (-3 + 1.2,0.1) -- (-3 + 1.2,-0.1) node [below right] {$1$};
+			\draw[black] (-3 + 0.1,1.2) -- (-3 -0.1,1.2) node [above left] {$i$};
+			\draw[black] (3 + 1.2,0.1) -- (3 + 1.2,-0.1) node [above right] {$1$};
+			\draw[black] (3 + 0.1,1.2) -- (3 -0.1,1.2) node [above right] {$i$};
+			
+			\draw[->] (1, 0) -- (5, 0) node [right] {$\re \zeta$};
+			\draw[->] (3, -2) -- (3, 2) node[above] {$\im {\zeta}$};
+			
+			\draw[black, dashed] (-3, 0) circle [radius=1.2];
+			\draw[black, dashed] (3, 0) circle [radius=1.2];
+			
+			\draw[->] (-0.5, 0.5) arc (120:60:2);
+			\node[] at (0.55, 1.15) {$\zeta$};
+			\node[] at (-1, 1.5) {$\gamma_1$};
+			\node[] at (-2, 2.2) {$\gamma_2$};
+			\node[] at (4.35, -0.9) {$\Gamma_1$};
+			\node[] at (3.6, -1.43) {$\Gamma_2$};
+			
+			\node[draw, circle, inner sep=1pt, fill, black] at (-3 + 0.866 * 1.2, 0 + 0.5 * 1.2) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (-3 + 0.5 * 1.2, 0 + 0.866 * 1.2) {};
+			
+			\node[draw, circle, inner sep=1pt, fill, black] at (3 + 0.866 * 1.2, 0 - 0.5 * 1.2) {};
+			\node[draw, circle, inner sep=1pt, fill, black] at (3 + 0.5 * 1.2, 0 - 0.866 * 1.2) {};
+			
+			\draw[black,
+			decoration={markings, mark=at position 0.8 with {\arrow{>}}},
+			postaction={decorate}
+			] (-3 + 0.866 * 1.2, 0 + 0.5 * 1.2) -- (-3 + 0.866 * 2.5, 0 + 0.5 * 2.5);
+			\draw[black,
+			decoration={markings, mark=at position 0.8 with {\arrow{>}}},
+			postaction={decorate}
+			] (-3 + 0.5 * 1.2, 0 + 0.866 * 1.2) -- (-3 + 0.5 * 2.5, 0 + 0.866 * 2.5);
+			
+			\draw[black,
+			decoration={markings, mark=at position 0.3 with {\arrow{>}}},
+			postaction={decorate}
+			] (3 + 0.866 * 1.2, 0 - 0.5 * 1.2) -- (3, 0);
+			\draw[black,
+			decoration={markings, mark=at position 0.3 with {\arrow{>}}},
+			postaction={decorate}
+			] (3 + 0.5 * 1.2, 0 - 0.866 * 1.2) -- (3, 0);
+			
+			\coordinate (a1) at (3 + 0.866 * 1.2, 0 - 0.5 * 1.2);
+			\coordinate (a2) at (3, 0);
+			\coordinate (a3) at (3 + 0.5 * 1.2, 0 - 0.866 * 1.2);
+			\pic [draw, <-, angle radius = 0.6cm] {angle = a3--a2--a1};
+		\end{tikzpicture}
+	\end{center}
+\end{example}
+
+\begin{proposition}[Сохранение углов в полюсе]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $z_0 \in \Cm$ "--- полюс первого порядка функции $f$
+		\item $\gamma_1, \gamma_2$ "--- гладкие кривые, проходящие через точку $z_0$
+		\item $\Gamma_1 = f(\gamma_1)$, $\Gamma_2 = f(\gamma_2)$
+	\end{enumerate}
+	
+	Тогда $\angle(\Gamma_1, \Gamma_2)_\infty = \angle(\gamma_1, \gamma_2)_{z_0}$.
+\end{proposition}
+
+\begin{proof}
+	Пусть $\widetilde\gamma_1, \widetilde\gamma_2$ "--- кривые, в которые переходят бесконечные $\Gamma_1, \Gamma_2$ при отображении $\zeta(w) = \frac 1w$. Достаточно проверить, что $\angle(\widetilde\gamma_1, \widetilde\gamma_2)_0 = \angle(\gamma_1, \gamma_2)_{z_0}$. Поскольку точка $z_0$ "--- полюс первого порядка функции $f$, то на $B_\epsilon(z_0)$ выполнено тождество $f(z) \equiv \frac{g(z)}{z - z_0}$, где $g$ "--- регулярная на $B_\epsilon(z_0)$ функция такая, что $g(z_0) \ne 0$. Значит, функция $\zeta(f(z)) = \frac{z - z_0}{g(z)}$ регулярна на некотором круге $B_\delta(z_0)$, причем $(\zeta \circ f)'(z_0) \ne 0$. Такая функция сохраняет углы между кривыми в точке $z_0$, что и требовалось.
+\end{proof}
+
+\begin{note}
+	Нетрудно проверить, что и во всех остальных случаях конформное в точке $z_0$ отображение сохраняет углы между кривыми, проходящими через эту точку.
+\end{note}
+
+\begin{proposition}
+	Пусть функция $f$ регулярна и однолистна на области $G \subset \Cm$. Тогда функция $f$ конформна на $G$.
+\end{proposition}
+
+\begin{proof}
+	Достаточно проверить, что $f' \ne 0$ на $G$. Пусть это не так, то есть существует точка $z_0 \in G$ такая, что $f'(z_0) = 0$. Если для всех $n \in \N$ выполнено $f^{(n)}(z_0) = 0$, то $f \equiv f(z_0)$ на $G$, то есть $f$ не однолистна. Если же существует $m \in \N$ такое, что $f^{(m)}(z_0) \ne 0$, то $f$ не однолистна по теореме о локальной структуре отображения.
+\end{proof}
+
+\begin{note}
+	Если функция $f$ регулярна и однолистна на области $G \subset \Cm$, то:
+	\begin{enumerate}
+		\item Множество $D := f(G)$ является областью по принципу сохранения области
+		\item Функция $f^{-1} : D \to G$ тоже является регулярной и однолистной по теореме об обратной функции
+	\end{enumerate}
+\end{note}
+
+\begin{note}
+	Если функция $f$ регулярна и однолистна на области $G \subset \Cm$, а функция $g$ регулярна и однолистна на $D := f(G)$, то функция $g \circ f$ регулярна и однолистна на $G$.
+\end{note}
+
+\begin{note}
+	Можно проверить, что замечания выше справедливы и для конформных отображений, не являющихся регулярными, то есть обратное к конформному отображение и композиция конформных отображений являются конформными.
+\end{note}
+
+\begin{unnecessary}
+\begin{example}
+	Построим конформное отображение, переводящее область $D$, изображенную ниже, в область $\{z \in \Cm: \im z > 0\}$.
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-2.8, -2.6) rectangle (2.8, 2.8);
+			
+			\fill [opacity=0.24, path fading=fade out] (0,0) circle [radius=2.5];
+			\fill [white] (0,0) rectangle (2.8, -2.8);
+			
+			\draw[->] (-2.4, 0) -- (2.4, 0) node [above] {$\re z$};
+			\draw[->] (0, -2.4) -- (0, 2.4) node[right] {$\im {z}$};
+			
+			\draw[thick, dashed] (0, 0) -- (2.4, 0);
+			\draw[thick, dashed] (0, -2.4) -- (0, 0);
+			
+			\node[] at (-1.1, 1.1) {$D$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Сначала переведем область $D$ в область $D_1$ следующего вида:
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-2.8, -2.6) rectangle (2.8, 2.8);
+			
+			\begin{scope}
+				\clip (0,0) rectangle (2.8, 2.8);
+				\fill [opacity=0.24, path fading=fade out] (0,0) circle [radius=2.5];
+			\end{scope}
+			
+			\draw[->] (-2.4, 0) -- (2.4, 0) node [above] {$\re z$};
+			\draw[->] (0, -2.4) -- (0, 2.4) node[right] {$\im {z}$};
+			
+			\draw[thick, dashed] (0, 0) -- (2.4, 0);
+			\draw[thick, dashed] (0, 0) -- (0, 2.4);
+			
+			\node[] at (1.1, 1.1) {$D_1$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Для этого подойдет функция $z_1(z) = \sqrt[3]{z}$. Действительно, поскольку функция $z(z_1) = z_1^3$ конформна на $D_1$, то и обратная к ней функция конформна на прообразе $D$. Остается перевести область $D_1$ в $\{z \in \Cm: \im z > 0\}$, но для этого подойдет функция $z_2(z_1) = z_1^2$. Ответом будет композиция $z_2(z_1(z))$, также являющаяся конформным отображением.
+\end{example}
+\end{unnecessary}

@@ -1,0 +1,87 @@
+\subsection{ 5 мая. }
+
+
+\begin{definition}
+    Сверка в $L_1(\R)$: $f, g \in L_1(\R)$
+    \[ (f * g)(x) = \int_{y=-\infty}^{\infty} f(y)g(x-y)dy\]
+\end{definition}
+
+\begin{note}
+    \textbf{Корректность:} Почему $f * g \in L_1(\R)$?
+\end{note}
+
+\begin{proof}
+Рассмотрим
+\[
+\int_x dx \left| \int_y dy f(y) g(x - y) \right|
+\]
+
+далее достаточно оценить сверху этот интеграл $\|f\|_{L_1} \cdot \|g\|_{L_1}$ и применить теорему Фубини.
+\end{proof}
+
+\begin{statement}
+    Свёртка~--- коммутативная операция (доказательство: просто линейная замена)
+    \[(f*g)(x) = (g * f)(x).\]
+\end{statement}
+
+\begin{note}
+\textbf{Зачем она нам нужна?} В пространстве $L_1, \; f, g \in L_1$ можно рассматривать $f + g$ и $f \cdot g$, но последнее может быть не интегрируемо. Поэтому можно рассматривать $f * g$ как <<сверточное умножение>>~--- оно будет в $L_1$.
+\end{note}
+
+\begin{example}
+    Рассмотрим частные суммы ряда Фурье \[S_n(f; x) = \frac{1}{\pi} \int_{-\pi}^{\pi}D_n(x-t)f(t)dt.\]
+    Из этой формулы потом много всего выводилось.
+\end{example}
+
+\begin{theorem}
+    $f,g \in L_1$. Тогда
+    \[ \widehat{f * g} = \widehat{f} \cdot \widehat{g}.\]
+\end{theorem}
+\begin{proof}
+    \[ \widehat{(f * g)}(z) = \int_x dx \left(\int_y dy \; f(y) g(x-y)\right) \cdot e^{-ixz} =\]
+    Запускаем теорему Фубини. При взятии модуля экспонента пропадет, значит все остальное можно переставлять с точки зрения теоремы Фубини
+    \[ = \int dy \int dx \; (f(y) g(x-y) e^{-ixz}) = \]
+    Сделаем замену $t = x-y$
+    \[ = \int dy f(y) \int dt g(t) e^{-i(t+y)z} = \int f(y) \widehat{g}(z) e^{iyz} dy = \widehat{f}(z) \cdot \widehat{g}(z) \]
+
+\end{proof}
+
+\begin{example}[Свертка вещь естественная]
+    Дискретный случай: 
+    \[ (\sum a_k z^k)(\sum b_m z^m) = \sum_n (\sum_k a(k) b(n-k)) z^n\]
+\end{example}
+
+\begin{example}
+    Комплексная форма записи ряда Фурье может быть полезной \[\sum c_n (e^{ix})^n.\]
+\end{example}
+
+\subsubsection{Зачем нужна свертка}
+
+Имеем  $f \in S', \varphi \in S$
+\[
+<\widehat{f}, \varphi> = \int \widehat{f}(x) \varphi(x) dx = \int \widehat{\varphi]}(x) f(x) dx
+\]
+Тогда \(<\widehat{f}, \varphi> =_{\textit{def}} <f, \widehat{\varphi}>\) и $\delta * \varphi = \varphi$.
+
+Если мы выберем последовательность регулярных функци $\delta_n \to^{S'} \delta$, то получим:
+\[ \delta_n * \varphi \to \delta * \varphi = \varphi \]
+То есть можно получить последовательность хорошего вида, сходящуюся к $\varphi$
+
+\begin{note}[Подарок Дня]
+    \begin{align*}
+        &\forall f \in C[0, 1] \\
+        &P_n(x) = \sum_{k = 0}^n C^k_n c^k (1-x)^{n - k} \cdot f\left(\frac{k}{n}\right)\\
+        &P_n(x) \uniconv f
+    \end{align*}
+\end{note}
+
+\begin{example}
+    $f(x)\geq 0, \; L\int f(x)dx=1$
+
+    \[ \frac{1}{\varepsilon} f(\frac{x}{\varepsilon} \to_{D'} \delta, \; \varepsilon \to 0\]
+    \[ \int_{-\infty}^{\infty} \frac{1}{\varepsilon} f(\frac{x}{\varepsilon}) \varphi(x) dx = \int_{-\infty}^{\infty} f(y) \varphi(\varepsilon y) dy\]
+
+    \( f(y)\varphi(\varepsilon y) = g_\varepsilon (y) \). Тогда по теореме Лебега (в силу финитности $\varphi$)
+
+    \[ \lim_{\varepsilon \to 0+} \int_{-\infty}^{\infty} f(y) \varphi(\varepsilon y) dy = \varphi(0) = <\delta, \varphi>\]
+\end{example}

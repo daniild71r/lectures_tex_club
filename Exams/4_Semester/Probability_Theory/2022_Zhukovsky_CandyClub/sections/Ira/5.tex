@@ -1,0 +1,72 @@
+\begin{definition}
+Бореллевская сигма-алгебра на множестве $M$ --- наименьшая сигма-алгебра, содержащая все открытые подмножества (обознаяается $\B(M)$)
+\end{definition}
+
+\begin{definition}
+Вероятность на $(\R^n, \B(\R^n))$ называется распределением вероятностей в $\R^n$.
+\end{definition}
+
+\begin{definition}
+Функция распределения $F: \R^n \to [0, 1], \ F(x_1, \ldots, x_n) = P((-\infty, x_1] \times \ldots \times (-\infty, x_n])$
+\end{definition}
+
+\begin{statement}
+Если $P_1, P_2$ -- распределения вероятностей с функциями распределения $F_1, F_2$ соответственно и $F_1 = F_2$, то $P_1 = P_2$.
+\end{statement}
+
+\textbf{Свойства:}
+
+\begin{enumerate}
+    \item $\forall a_1 \leqslant b_1, \ldots, a_n \leqslant b_n: \Delta_{a_1, b_1}^1 \ldots \Delta_{a_n, b_n}^n F(x_1, \ldots, x_n) \geqslant 0$, где $\Delta_{a_i, b_i}^i f(x_1, \ldots, x_n) = \newline = f(x_1, \ldots, x_{i-1}, b_i, x_{i + 1}, \ldots, x_n) - f(x_1, \ldots, x_{i-1}, a_i, x_{i+1}, \ldots, x_n)$
+    
+    По сути, мы хотим, чтобы вероятность параллелепипеда, натянутого на вершины 
+    
+    $(a_1, \ldots, a_n), (b_1, \ldots, b_n)$ был неотрицательным.
+    
+    \begin{proof}
+    Индукцией по $k$ докажем, что $\Delta_{a_k, b_k}^k \ldots \Delta_{a_n, b_n}^n F(x_1, \ldots, x_n)  = P((-\infty, x_1] \times \ldots \times (-\infty, x_{k-1}] \times (a_k, b_k] \times \ldots \times(a_n, b_n])$
+    
+    \textbf{База: $k = n$}
+    
+    $\Delta_{a_n, b_n}^n F(x_1, \ldots, x_n) = F(x_1, \ldots, x_{n-1}, b_n) - F(x_1, \ldots, x_{n-1}, a_n) = P((-\infty, x_1] \times \ldots \times (-\infty, x_{n-1}] \times(a_n, b_n])$
+    
+    
+    \textbf{Переход (для $k$ утв. доказано, докажем для $k-1$):}
+    
+    $\Delta_{a_{k-1}, b_{k-1}}^{k-1} \ldots \Delta_{a_n, b_n}^n F(x_1, \ldots, x_n) = \Delta_{a_{k-1}, b_{k-1}}^{k-1} \ P((-\infty, x_1] \times \ldots \times (-\infty, x_{k-1}] \times (a_k, b_k] \times \ldots \times(a_n, b_n]) = P((-\infty, x_1] \times \ldots \times (-\infty, x_{k-2}] \times (-\infty, b_{k-1}] \times (a_k, b_k] \times \ldots \times(a_n, b_n]) - P((-\infty, x_1] \times \ldots \times (-\infty, x_{k-2}] \times (-\infty, a_{k-1}] \times (a_k, b_k] \times \ldots \times(a_n, b_n]) = P((-\infty, x_1] \times \ldots \times (-\infty, x_{k-1}] \times (a_k, b_k] \times \ldots \times(a_n, b_n])$
+    
+    В частности, при $k = 1 \ \Delta_{a_1, b_1}^1 \ldots \Delta_{a_n, b_n}^n F(x_1, \ldots, x_n) = P((a_1, b_1] \times \ldots \times(a_n, b_n]) \geqslant 0$
+    
+    \end{proof}
+    
+    \item Непрерывность справа. 
+    
+    \begin{definition}
+    $y = (y_1, \ldots, y_n) \geqslant (x_1, \ldots, x_n) = x$, если $\forall i : y_i \geqslant x_i$
+    \end{definition}
+    
+    \begin{definition}
+    Последовательность $x^k$ (в данном случае $k$ --- верхний индекс) стремится к $x$ справа ($x^k \downarrow x$), если $\forall k : x^{k+1} \leqslant x^k$ и $x = \lim\limits_{k \to \infty} x^k$
+    \end{definition}
+    
+    Теперь к самому свойству: $\forall x^k \downarrow x \ \!\! : \lim\limits_{k \to \infty} F(x^k) = F(x)$
+    
+    \begin{proof}
+    \[\lim\limits_{k \to \infty}F(x^k) = \lim\limits_{k \to \infty}  P((-\infty, x_1^k] \times \ldots \times(-\infty, x_n^k]) = P\left(\bigcap\limits_{k} (-\infty, x_1^k] \times \ldots \times(-\infty, x_n^k])\right) =\]
+    \[= P((-\infty, x_1] \times \ldots \times(-\infty, x_n]) = F(x)\]
+    \end{proof}
+    
+    \item $\lim\limits_{x_1 \to \infty, \ldots, x_n \to \infty} F(x_1, \ldots, x_n) = 1$
+    
+    $\forall i : \lim\limits_{x_i \to -\infty} F(x_1, \ldots, x_n) = 0$
+    
+    \begin{proof}
+    $\lim\limits_{x_1 \uparrow +\infty, \ldots, x_n \uparrow +\infty} F(x_1, \ldots, x_n) = \lim \ P((-\infty, x_1] \times \ldots \times(-\infty, x_n]) = P(\mathbb{R}^n) = 1$
+    
+    $\lim\limits_{x_i \downarrow -\infty}\!\! F(x_1\ldots, x_n) \!=\! P((-\infty, x_1] \!\times \ldots \times\! (-\infty, x_{i-1}] \!\times\! \varnothing \!\times\! (-\infty, x_{i+1}] \times \ldots \times (-\infty, x_n]) \!=\! P(\varnothing) \!=\! 0$
+    \end{proof}
+\end{enumerate}
+
+\begin{theorem}
+Если $F\!\!: \R^n \to [0, 1]$ обладает свойствами $1)-3)$, то найдётся рапределение вероятностей, для которого $F$ --- функция распределения (б/д)
+\end{theorem}

@@ -1,0 +1,71 @@
+\begin{theorem}[О разложении характеристической функции в ряд (б/д)]
+\hfill \break
+\begin{enumerate}
+    \item Пусть $\E|\xi|^n < \infty$, тогда $\forall r \leqslant n \ \exists \varphi^{(r)}_\xi(t) = \int\limits_{\R} (ix)^r e^{itx} dF_\xi(x), \ \ \E\xi^r = \frac{\varphi^{(r)}_\xi(0)}{i^r}$
+    $$
+    \charac{\xi}{t} = \sum\limits_{r = 0}^n \frac{(it)^r}{r!}\E\xi^r + \frac{(it)^n}{n!}\eps_n(t)
+    $$
+    
+    Где $|\eps_n(t)| \leqslant 3\E|\xi|^n$ и $\lim\limits_{t \to 0}\eps_n(t) = 0$.
+    
+    \item Пусть  $\exists \varphi^{(2n)}(0) < \infty$, тогда $\E\xi^{2n} < \infty$ 
+\end{enumerate}
+
+\end{theorem}
+
+\Example $\varphi(t) = e^{-t^4}$. Может ли она быть характеристической?
+
+\Solution $\varphi^{'}(0) = 0, \ \varphi^{''}(0) = 0$, тогда по теореме выше существуют $\E\xi^2$ и $\E\xi$. Тогда $\E\xi^2 = \E\xi = 0 \Longrightarrow \xi = 0$ почти наверное, но при этом $\varphi_{\xi} \equiv 1$. Значит не может быть.
+
+\begin{theorem}[О непрерывности (б/д)]
+\hfill \break
+\begin{itemize}
+    \item Если $\xi_n \xrightarrow[]{d}  \xi$, то $\forall t \in \R \ \ \charac{\xi_n}{t} \to \charac{\xi}{t}$
+    \item Если $\charac{\xi_n}{t}$~--- характеристические функции $\xi_n$, $\forall t \in \R \ \  \varphi_{\xi_n}(t) \to \varphi$ и $\varphi(t)$ непрерывна в 0, тогда $\xi_n \xrightarrow[]{d}  \xi$ для некоторой $\xi$ с характ. функцией $\varphi$  \\ (для случ. векторов $\xi_n \xrightarrow[]{d}  \xi \iff \varphi_{\xi_n}(t) \to \varphi(t) \ \forall x \in \R^k$)
+\end{itemize}
+
+\end{theorem}
+
+\begin{theorem}[Центральная предельная теорема] 
+Пусть $\xi_1, \xi_2, \ldots$~--- н.о.р.с.в. такие, что $\E\xi = a$, $\D\xi = \sigma^2$,  $S_n = \xi_1 + \ldots + \xi_n$. Тогда имеется сходимость по распределению
+
+$$
+\frac{S_n - na}{\sqrt{n\sigma^2}} \xrightarrow[]{d} \eta \sim \mathcal{N}(0, 1)
+$$
+
+\end{theorem}
+
+\begin{lemmanote} 
+
+В общей формулировке условия независимости и одинаковой распределенности не обязательны~--- можно ослабить.
+
+\end{lemmanote}
+
+\begin{lemmanote} 
+
+В числителе $na =\E S_n, \sqrt{n\sigma^2} = \D S_n$; если дисперсия величин равна нулю, то это константы.
+
+\end{lemmanote}
+
+\begin{lemmanote} 
+
+Идея: ЦПТ позволяет говорить о том, насколько точен закон больших чисел: на величину какого порядка (корень из дисперсии) мы можем отклоняться, когда делаем много опытов).
+
+\end{lemmanote}
+
+\begin{proof} Пусть $\widetilde{\xi_j} = \frac{\xi_j - a}{\sqrt{\sigma^2}}$. 
+Тогда заметим, что $$\E\widetilde{\xi} = 0, \ \D\widetilde{\xi} = 1, \ \frac{S_n - na}{\sqrt{n\sigma^2}} = \frac{\widetilde{S}_n}{\sqrt{n}}$$
+$$
+    \charac{\frac{S_n - na}{\sqrt{n\sigma^2}}}{x} = \E e^{i \frac{\widetilde{S}_n}{\sqrt{n}} x} = \prod\limits_{j = 1}^n \charac{\widetilde{\xi_j}}{\frac{x}{\sqrt{n}}} = \brackets{\charac{\widetilde{\xi_1}}{\frac{x}{\sqrt{n}}}}^n = \ldots$$
+    
+По теор. о разложении в ряд для $n=2$ 
+$$\varphi_\xi(t) = 1+it\E\xi - \frac{t^2}{2}\E\xi^2 + o(t^2)$$
+$$\E\widetilde{\xi_1}=0,\ \E\widetilde{\xi_1}^2 = \D\widetilde{\xi_1} + (\E\widetilde{\xi_1})^2 = 1$$
+$$\varphi_{\widetilde{\xi_1}} = 1 - \frac{t^2}{2} + o(t^2)$$
+
+$$\ldots= \brackets{1 - \frac{1}{2}\brackets{\frac{x}{\sqrt{n}}}^2 + o\brackets{\frac{x^2}{n}}}^n =$$ 
+$$ = exp\Big(n \ ln({1 - \frac{1}{2}\brackets{\frac{x}{\sqrt{n}}}^2 + o\brackets{\frac{x^2}{n}}}\Big) = $$
+$$= exp\Big(n \Big(-\frac{x^2}{2n} + o\brackets{\frac{x^2}{n}}\Big) \Big) = e^{-\frac{x^2}{2} + o(1)} \to e^{-\frac{x^2}{2}}
+$$
+
+Тогда по теореме о непрерывности и о единственности получаем требуемое, так как предел характеристической функций совпадет с характеристической функцией стандартного нормального распределения. \end{proof}

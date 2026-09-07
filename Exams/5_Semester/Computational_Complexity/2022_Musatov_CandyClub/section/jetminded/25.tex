@@ -1,0 +1,17 @@
+\begin{theorem} Если $\np \subset \ppoly$, то $\ph = \sk{2}$. \end{theorem}
+
+\begin{proof} Вспомним, что $\ph = \sk{2} \Longleftrightarrow \sk{2} = \pk{2} \Longleftrightarrow \pksat{2} \in \sk{2}$.
+
+$\varphi(x, y) \in \pksat{2} \Longleftrightarrow \forall x \exists y \varphi(x, y) = 1$. % Тогда $\{(\varphi, x) \ | \ \exists y \varphi(x, y) = 1\} \in \np \subset \ppoly$, 
+
+$\{(\varphi, x) \ | \ \exists y \varphi(x, y)\} \in \np \subset \ppoly$, т.е. существует семейство схем $C_n$ такое, что возвращает 1, если $\exists y \psi (x, y)$ и 0 иначе.
+
+Потом надо переделать схему распознавания в схему поиска (у нее несколько выходов, каждый отвечает за отдельный бит $y$, для этого есть полиномиальный алгоритм). Напомним, как это делается. Для простоты будем считать, что аргументы $\varphi$ заранее не
+разделены на $x$ и $y$, а схема $C_n$ считает переменными $x$ те, значения которых получила на вход. Тогда первый бит $y$ определяется так: если $C_n(\varphi, x1)=1$, то он равен единице, иначе нулю. То есть он попросту равен $y_1=C_n(\varphi, x1)$. Второй бит будет равен $C_n(\varphi, xy_1 1)$, и т.д.
+Ясно, что результирующая схема будет полиномиального размера.
+
+Получаем семейство схем $S_n$. То есть $\varphi \in \pksat{2} \Longleftrightarrow \exists S_n\forall x \varphi(x, S_n(\varphi, x)) = 1 \Longleftrightarrow \forall x \exists y \varphi(x, y) = 1$~--- $\sk{2}$ формула.
+
+Таким образом, $\pksat{2} \in \sk{2}$, откуда следует требуемое.
+
+\end{proof}

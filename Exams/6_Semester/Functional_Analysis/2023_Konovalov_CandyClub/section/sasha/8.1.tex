@@ -1,0 +1,270 @@
+\begin{definition}
+    Преобразование Фурье в пространстве $L_1$:
+    
+    $\forall f \in L_1(\R)$ сопоставим
+    \[F[f](y) = \widehat{f}(y) = L \int\limits_{-\infty}^{\infty} f(x) e^{-ixy} dx.\]
+    Таким образом, определён оператор преобразования Фурье
+    $F\!: L_1(\R) \to BC_0(\R)$, где $BC_0(\R)$, bounded continuous~--- непрерывные ограниченные функции, стремящиеся к нулю на бесконечности.
+\end{definition}
+
+\begin{statement}
+\(\)
+    \begin{enumerate}
+     \item $\widehat{f}(y)$~--- ограниченная, то есть $|\widehat{f}(y)| \leqslant \|f\|_{L_1}$
+     \item $\widehat{f}(y)$~--- непрерывна
+    \end{enumerate}
+\end{statement}
+\begin{proof}
+     \begin{enumerate}
+     \item Тривиально по свойствам интеграла: 
+     \[\left|\int_{-\infty}^{\infty} f(x) e^{-ixy} dx\right| \leq 
+     \int_{-\infty}^{\infty} |f(x) e^{-ixy}| dx = \int_{-\infty}^{\infty} |f(x)| dx = \|f\|_{L_1}\]
+     \item Непрерывность напрямую следует из непрерывности по параметру интеграла с параметром.
+    \end{enumerate}
+\end{proof}
+
+\begin{statement}
+    Если $\|f_n - f\|_{L_1} \to 0$, то $\|\widehat{f}_n - \widehat{f}\|_{B(\R)}  \to 0$\\
+    $B(\R)$~--- пространство с нормой $\|g\| = \sup\limits_{x \in \R} |g(x)|$.
+\end{statement}
+
+\begin{unnecessary}
+\begin{example}
+    Преобразование Фурье не является компактным оператором. Пример: функция $\varphi = a \cdot I_{[-R, R]}$. Тогда 
+    \[
+    \widehat{\varphi}(y) = 
+    \int_{-R}^R a \cdot cos(xy) dx = \int_{-R}^R a \cdot d\left( \frac{sin(xy)}{y} \right) = \frac{2a \cdot sin(Ry)}{y}
+    \]
+\end{example}
+
+Проблема: не удаётся определить $\im F$. Есть только некоторые достаточные признаки. Поэтому рассмотрим какое-то подмножество функций, для которых образ будет хороший.
+
+\end{unnecessary}
+
+\begin{definition}
+    Пространство Шварца: $S=\{f \in C^\infty\!: \; \forall k \in \N\: \forall n \in \N \: f^{(k)} \cdot |x|^n \xrightarrow[x \to \infty]{} 0\}$
+\end{definition}
+
+\begin{statement}[б/д]
+    $F[S] = S$
+\end{statement}
+
+\textbf{Связь гладкости и скорости убывания на бесконечности ($f$ и $\widehat{f})$}
+
+\begin{theorem}
+\begin{enumerate}
+\(\)
+    \item $\widehat{f'}(y) = iy \cdot \widehat{f}(y)$, если $f, f' \in L_1$
+    \item $(\widehat{f}(y))' = \widehat{(-ix)f(x)}(y)$, если $f, xf \in L_1$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Фубини, формулировка]
+Пусть $f(x, y)$ интегрируема по Лебегу на $[a, b] \times [c, d]$. Тогда 
+\begin{enumerate}
+    \item $\mathlarger{\int\limits_c^d dy f(x, y)}$ существует для почти всех $x$
+    \item \(\mathlarger{\int\limits_a^b \left( \int\limits_c^d dy f(x, y) \right) dx = 
+    \iint\limits_{[a, b] \times [c, d]} f(x, y) dx dy =\int\limits_c^d \left( \int\limits_a^b dx f(x, y) \right) dy}\)
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+Если $f$~--- измерима на $[a, b] \times [c, d]$ и конечен хотя бы один из повторных интегралов, то она интегрируема на $[a, b] \times [c, d]$.
+\end{corollary}
+
+\begin{theorem}[Формула умножения]
+    \[f, g \in L_1(\R) \implies \int_{\R} \widehat{f}(x) g(x) dx = \int_{\R} f(x) \widehat{g}(x) dx
+    \]
+\end{theorem}
+% TODO позже
+\begin{proof}
+Используем следствие из теоремы Фубини, необходимо лишь показать, что $\widehat{f}(x) g(x) \in L_1$
+\begin{multline*}
+\int \left|\widehat{f}(x) g(x)\right| dx
+ = \int\limits_X \left|\left(\int\limits_Y f(y) e^{-ixy} dy\right) g(x)\right| dx
+ \leq\int\limits_X \left|\int\limits_Y f(y) e^{-ixy} dy\right| \left|g(x)\right| dx \leq \\
+ \leq \int\limits_X \left(\int\limits_Y |f(y)| dy\right) |g(x)| dx = c \cdot \int\limits_X |g(x)| dx = c \cdot \|g \|_{L_1} < \infty.
+\end{multline*}
+
+Тогда применима теорема Фубини и получается необходимый результат.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{example}[Примение для обобщённых функций]
+    \[\angles{f, \widehat{\varphi}} = \int f(x) \widehat{\varphi}(x)dx = \int \widehat{f}(x) \varphi(x) dx = \angles{\widehat{f}, \varphi}\]
+\end{example}
+\end{unnecessary}
+
+\begin{definition}
+    Свёртка в $L_1(\R)$: $f, g \in L_1(\R)$
+    \[ (f * g)(x) = \int\limits_{-\infty}^{\infty} f(y)g(x-y)dy\]
+\end{definition}
+
+\begin{note}
+    \textbf{Корректность:} Почему $f * g \in L_1(\R)$?
+\end{note}
+
+\begin{proof}
+Рассмотрим
+\[
+\int\limits_X dx \left| \int\limits_Y dy f(y) g(x - y) \right|.
+\]
+Достаточно применить следствие теоремы Фубини. После перестановки порядка интегрирования, интеграл будет существовать~--- оценим сверху его $\|f\|_{L_1} \cdot \|g\|_{L_1}$. Но тогда и исходный и повторный интегралы существуют.
+\end{proof}
+
+\begin{statement}
+    Свёртка~--- коммутативная операция (доказательство: просто линейная замена в интеграле)
+    \[(f*g)(x) = (g * f)(x).\]
+\end{statement}
+
+\begin{unnecessary}
+\begin{note}[\textbf{Зачем она нам нужна?}] В пространстве $L_1, \; f, g \in L_1$ можно рассматривать $f + g$ и $f \cdot g$, но последнее может быть не интегрируемо. Поэтому можно рассматривать $f * g$ как <<свёрточное умножение>>~--- оно будет в $L_1$.
+\end{note}
+\end{unnecessary}
+
+\begin{theorem}
+    $f,g \in L_1$. Тогда
+    \[ \widehat{f * g} = \widehat{f} \cdot \widehat{g}.\]
+\end{theorem}
+\begin{proof}
+    \[ \widehat{(f * g)}(z) = \int\limits_X dx \left(\int\limits_Y dy \; f(y) g(x-y)\right) \cdot e^{-ixz} =\]
+    Запускаем теорему Фубини. При взятии модуля экспонента пропадёт, значит всё остальное можно переставлять с точки зрения теоремы Фубини
+    \[ = \int\limits_Y dy \int\limits_X dx \; (f(y) g(x-y) e^{-ixz}) = \]
+    Сделаем замену $t = x-y$
+    \[ = \int\limits_Y dy f(y) \int\limits_T dt \; g(t) e^{-i(t+y)z} = \int\limits_Y f(y) \widehat{g}(z) e^{-iyz} dy = \widehat{f}(z) \cdot \widehat{g}(z) \]
+
+\end{proof}
+
+\begin{unnecessary}
+\begin{example}[Свёртка вещь естественная]
+    Дискретный случай: 
+    \[ \left(\sum a_k z^k \right) \left(\sum b_m z^m \right) = \sum_n \left(\sum_k a(k) b(n-k) \right) z^n\]
+\end{example}
+
+\begin{example}
+    Комплексная форма записи ряда Фурье может быть полезной \[\sum\limits_{n=-\infty}^{\infty} c_n (e^{ix})^n.\]
+\end{example}
+
+\subsubsection{Зачем нужна свёртка}
+
+Имеем  $f \in S', \varphi \in S$
+\[
+\left\langle \widehat{f}, \varphi \right\rangle = \int \widehat{f}(x) \varphi(x) dx = \int \widehat{\varphi}(x) f(x) dx
+\]
+Тогда \(\left\langle \widehat{f}, \varphi \right\rangle \xlongequal[]{\textit{def}} \left\langle f, \widehat{\varphi} \right\rangle\) и $\delta * \varphi = \varphi$.
+
+Если мы выберем последовательность регулярных функци $\delta_n \xrightarrow[]{S'} \delta$, то получим:
+\[ \delta_n * \varphi \to \delta * \varphi = \varphi \]
+То есть можно получить последовательность хорошего вида, сходящуюся к $\varphi$
+
+\begin{note}[Подарок Дня]
+    \begin{align*}
+        &\forall f \in C[0, 1] \\
+        &P_n(x) = \sum_{k = 0}^n C^k_n c^k (1-x)^{n - k} \cdot f\left(\frac{k}{n}\right)\\
+        &P_n(x) \uniconv f
+    \end{align*}
+\end{note}
+
+\begin{example}
+    $f(x)\geq 0, \; L\int f(x)dx=1$
+
+    \[ \frac{1}{\varepsilon} f \left(\frac{x}{\varepsilon} \right) \xrightarrow[\varepsilon \to 0]{D'} \delta\]
+    \[ \int\limits_{-\infty}^{\infty} \frac{1}{\varepsilon} f\left(\frac{x}{\varepsilon} \right) \varphi(x) dx = \int\limits_{-\infty}^{\infty} f(y) \varphi(\varepsilon y) dy\]
+
+    \( f(y)\varphi(\varepsilon y) = g_\varepsilon (y) \). Тогда по теореме Лебега (в силу финитности $\varphi$)
+
+    \[ \lim\limits_{\varepsilon \to 0+} \int_{-\infty}^{\infty} f(y) \varphi(\varepsilon y) dy = \varphi(0) = \left\langle \delta, \varphi \right\rangle\]
+\end{example}
+\end{unnecessary}
+
+\subsubsection{Преобразование Фурье в пространстве $L_2(\R)$}
+
+Основу будет составлять теорема~\nameref{extrapolate-to-closure} и факт что
+$\overline{S}=L_2$ (без доказательства)
+
+Преобразование Фурье на $S$ (леммы):
+\begin{enumerate}
+    \item\label{fourier_l2_lemma_1} $F:S \to S$~--- биекция (б/д)
+    \item\label{fourier_l2_lemma_2} $F$~--- изометрия, т.е. $\|f\|_{L_2} = \| \widehat{f}\|_{L_2}$. Более того, $(f,g)=(\widehat{f}, \widehat{g})$.
+\end{enumerate}
+\begin{note}
+        Все функции, которые рассматриваются, комплекснозначны, пользуемся формулой
+        \[ \widehat{f}(y)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} f(x) e^{-ixy} dx \]
+
+        На $S$ есть формула обращения ($g$~--- как бы $\widehat{f}$):
+
+        \[ f(x)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} g(y)e^{ixy} dy \]
+\end{note}
+\begin{proof}\textit{[доказательство леммы 2]}\\
+    Берем две функции $f, g \in S$
+    \begin{equation*}
+        (f,g) = \int\limits_{-\infty}^{\infty}f(x)\overline{g(x)}dx = \int\limits_{X}^{}f(x) \overline{\Big(\frac{1}{\sqrt{2 \pi}} \int\limits_Y \widehat{g}(y) e^{i x y} dy\Big)}dx =
+    \end{equation*}
+    По теореме Фубини можно поменять порядок интегрирования.
+    \begin{equation*}
+        = \frac{1}{\sqrt{2 \pi}} \int dy \int dx \Big(f(x) \overline{\widehat{g}(y)}e^{-ixy}\Big)=\int \widehat{f}(y) \overline{\widehat{g}(y)} dy = (\widehat{f}, \widehat{g})
+    \end{equation*}
+    
+    Сохранение скалярного произведения доказано.
+\end{proof}
+
+\begin{unnecessary}
+    \textbf{Хотим:} по теореме~\nameref{extrapolate-to-closure} продолжить преобразование Фурье с $S$ на всё $L_2$
+    
+    \textbf{Один из конструктивных методов (теорема Планшереля):}
+    \[ f(x) \to f_N(x) = f(x) I[-N, N] \]
+    \[\frac{1}{\sqrt{2 \pi}} \int_{-N}^N f(x) e^{-ixy} dx \rightrightarrows_{L_2} \widehat{f}(x)\]
+\end{unnecessary}
+
+
+\begin{theorem}[1]
+    $F\!: L_2 \to L_2$, такое что $(f, g)=(\widehat{f}, \widehat{g})$
+\end{theorem}
+
+\begin{proof}
+    $\forall f,g \in L_2(\R) = \overline{S} \quad \exists \{f_n\}, \{g_n\} \subset S \; : \; f_n \xrightarrow[]{L_2} f \;;\;\; g_n \xrightarrow[]{L_2} g$
+
+    Знаем $(f_n, g_n)_{L_2}=(\widehat{f_n}, \widehat{g_n})_{L_2}$ (из леммы~\ref{fourier_l2_lemma_2}). Также в силу непрерывности скалярного произведения $(f_n, g_n) \to (f,g)_{L_2}$. Осталось доказать, что $\widehat{f_n} \to \widehat{f}, \widehat{g_n} \to \widehat{g}$.
+    
+    Раз оператор $F$~--- изометрия, то на $S$ он ограничен, тогда по теореме~\nameref{extrapolate-to-closure} после продолжения до $\widehat{F}$ на $L_2$ получаем тоже ограниченный (а значит и непрерывный) оператор, $\| F\| = \|\widehat{F}\|$. Отсюда и получаются искомые пределы.
+\end{proof}
+
+\begin{theorem}[2]
+    $F[L_2] = L_2$, то есть $\im F = L_2$
+\end{theorem}
+
+\begin{proof}
+    Хотим показать, что $\forall g \in L_2 \; \exists f \in L_2\!: \; \widehat{f}=g$ (т.е. $\im F = L_2$)
+    \begin{enumerate}
+        \item $\exists$ последовательность $S \ni g_n=\widehat{f_n} \xrightarrow[]{L_2} g$, $f_n \in S$. А из леммы~\ref{fourier_l2_lemma_1} знаем, что $\widehat{f_n}, \; f_n \in S$
+        \item Покажем, что $\{f_n\} \subset S$ сходится в $L_2$~--- полном, то есть достаточно показать, что она фундаментальна
+        \[ \| f_n - f_m \| = \| \widehat{f_n} - \widehat{f_m} \|\]
+        Крышки можно поставить, так как преобразование Фурье --- линейный оператор, и норма преобразования Фурье равна норме функции, так как $F$ --- это изометрия на $S$.
+        
+        А так как $ \| \widehat{f_n} - \widehat{f_m} \| = \|g_n - g_m\| \to 0$, то значит $g_n$ фундаментальна $\implies$ $\{f_n\}$ фундаментальна, а значит сходится к $f$.
+        В силу непрерывности преобразования Фурье, $\widehat{f_n} \to \widehat{f} = g$~--- то, что и хотели.
+    \end{enumerate}
+\end{proof}
+
+\begin{unnecessary}
+\begin{note}
+    На $S$: $F^4=I$, \; $(F^2 f)(x)=f(-x)$
+\end{note}
+\begin{example}
+    $F: L_2 \to L_2$~--- компактный? \newline В силу того что мы продолжили $F$ на $L_2$ выполнено $F^4=I$ на всем $L_2$. Допустим он компактный. Множество компактных операторов является идеалом, а $I$ в бесконечномерном пространстве не компактно, но тогда и $F^4$ не компактно, но тогда и $F$ \textbf{не компактно}.
+\end{example}
+\begin{example}
+    Какими числами могут быть собственные значения $F$?
+    \[ F \varphi = \lambda \varphi \implies \lambda^4 \varphi = \varphi \]
+    Ответ: $\pm 1, \pm i$
+\end{example}
+
+\begin{example}[задача из задания]
+    $L_2[0,1]; \; (Vf)(x) = \int_0^x f(t) dt$. Найти норму $V$.
+    Ответ: $\frac{2}{\pi}$
+\end{example}
+
+\begin{proof}
+    Сначала находится $V^*$. Потом смотрим на самосопряженный оператор $V^* V$: он оказывается компактным с ортонормированным базисом из собственных функций
+\end{proof}
+\end{unnecessary}

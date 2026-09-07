@@ -1,0 +1,32 @@
+\begin{theorem} (б/д)
+    В условиях (R0)-(R8) любая состоятельная последовательность оценок $\displaystyle \hat{\theta }_{n}( X_{1} ,\ \dotsc ,\ X_{n})$, являющихся решениями уравнения правдоподобия, удовлетворяют соотношению
+    \begin{equation*}
+        \forall \theta \in \Theta \hookrightarrow \sqrt{n}(\hat{\theta }_{n} -\theta )\xrightarrow{d_{\theta }}\mathcal{N}\left( 0,\, \dfrac{1}{i( \theta )}\right) ,
+    \end{equation*}
+    где $\displaystyle i( \theta )$ -- количество информации Фишера в одном наблюдении.
+\end{theorem}
+
+\begin{note}
+    Формально перенеся $\displaystyle \sqrt{n}$ в правую часть, получим, что асимптотическая дисперсия будет равняться информации Фишера всей выборки. Таким образом, эту теорему можно воспринимать, как асимптотическую версию неравенства Рао-Крамера.
+\end{note}
+\begin{corollary}
+    (асимптотическая нормальность ОМП) В условиях (R0)-(R8), если $\displaystyle \forall n\in \mathbb{N} \ \forall X_{1} ,\ \dotsc ,\ X_{n}$ существует единственное решение $\displaystyle \hat{\theta }_{n}$ уравнения правдоподобия, и если оно является статистикой (т.е. измеримой функцией выборки), то $\displaystyle \hat{\theta }_{n}$ -- асимптотически нормальная оценка $\displaystyle \theta $ с асимптотической дисперсией $\displaystyle \dfrac{1}{i( \theta )}$ и с вероятностью, стремящейся к единице, является ОМП. 
+\end{corollary}
+\begin{theorem}
+    (Бахадур, б/д) Пусть выполнены условия регулярности (R0)-(R8), и $\displaystyle \hat{\theta }_{n}( X_{1} ,\ \dotsc ,\ X_{n})$ асимптотически нормальная оценка $\displaystyle \theta $, т.е. $\displaystyle \sqrt{n}(\hat{\theta }_{n} -\theta )\xrightarrow{d_{\theta }}\mathcal{N}\left( 0,\ \sigma ^{2}( \theta )\right)$, причем $\displaystyle \sigma ( \theta )$ непрерывна. Тогда, $\displaystyle \forall \theta \in \Theta \hookrightarrow \sigma ^{2}( \theta ) \geqslant \dfrac{1}{i( \theta )}$.
+\end{theorem}
+\begin{note}
+    Эта теорема также является некоторой асимптотической версией неравенства Крамера-Рао.
+\end{note}
+\begin{corollary}
+    В условиях следствия про асимптотическую нормальность ОМП имеем, что ОМП не хуже любой другой оценки в асимптотическом подходе в классе оценок с непрерывной дисперсией.
+\end{corollary}
+\begin{definition}
+    Если $\displaystyle \sqrt{n}(\hat{\theta }_{n}( X_{1} ,\ \dotsc ,\ X_{n}) -\theta )\xrightarrow{d_{\theta }}\mathcal{N}\left( 0,\ \dfrac{1}{i( \theta )}\right)$, то $\displaystyle \hat{\theta }_{n}$ называется асимптотически эффективной оценкой $\displaystyle \theta $.
+\end{definition}
+\begin{proposition}
+    Пусть выполнены условия регулярности для неравенства Крамера-Рао, $\displaystyle \hat{\theta }( X)$ -- эффективная оценка $\displaystyle \theta $, и равенство из критерия эффективности (для $\displaystyle \hat{\theta }( X)$) выполнено для любого $\displaystyle X$ и любого $\displaystyle \theta $. Тогда $\displaystyle \hat{\theta }$ -- ОМП.
+\end{proposition}
+\begin{proof}
+    По неравенству Крамера-Рао $\displaystyle \hat{\theta }( X) -\theta =\dfrac{1}{I_{X}( \theta )}\left(\dfrac{\partial }{\partial \theta }\ln f_{\theta }( X)\right)$. Тогда, если $\displaystyle \theta < \hat{\theta }( X)$, то $\displaystyle \dfrac{\partial }{\partial \theta }\ln f_{\theta }( X)  >0\Rightarrow f_{\theta }( X)$ возрастает. Если же $\displaystyle \theta  >\hat{\theta }( X)$, то $\displaystyle f$ убывает. Следовательно, максимум функции правдоподобия достигается в точке $\displaystyle \hat{\theta }( X)$.
+\end{proof}

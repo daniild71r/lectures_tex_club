@@ -1,0 +1,7 @@
+Область целостности $K$ называется \textit{факториальным кольцом}, если для всех $x \in K \backslash \{0\}$ выполнены условия:
+	\begin{enumerate}
+		\item $x$ представим в виде $x = up_1\dotsm p_s$, где $u \in K^*$, $p_1, \dotsc, p_s$ "--- неразложимые (разложение $x$ \textit{существует})
+		\item если $x = up_1\dotsm p_s = wq_1 \dotsm q_l$, где $u, w \in K^*$, $p_1, \dotsc, p_s, q_1, \dotsc, q_l$ "--- неразложимые, то $l = s$ и $\exists \sigma \in S_s: \forall i \in \{1, \dotsc, s\}: p_i \sim q_{\sigma(i)}$ (разложение $x$ \textit{единственно})
+	\end{enumerate}
+	
+Покажем, что $\Z[2i]$ не является факториальным кольцом. Аналогично случаю $\Z[i]$ можно показать, что $\Z[2i]^* = \{\pm1\}$, и элементы $2, 2i$ неразложимы. Тогда $4 = 1 \cdot 2 \cdot 2 \hm= (-1)\cdot (2i) \cdot (2i)$, но $2 \not\sim 2i$.

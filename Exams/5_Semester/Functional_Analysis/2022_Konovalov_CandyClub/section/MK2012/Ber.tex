@@ -1,0 +1,26 @@
+\begin{definition}
+МП \textit{полное}, если любая фундаментальная последовательность сходится.
+\end{definition}
+
+\begin{theorem}[О вложенных шарах]\label{kantor-compact}
+    Пусть $X$ --- полное метрическое пространство, $\big\{\overline{B}_{r_n}(x_n)\big\}$ --- последовательность вложенных замкнутых шаров такая, что $r_n \to 0$. Тогда $\bigcap\limits_{n \in \N} \overline{B}_{r_n}(x_n) \neq \varnothing$. Более того, $\bigcap\limits_{n \in \N} \overline B_{r_n}(x_n) = \{x^*\}$ для некоторой точки $x^* \in X$.
+\end{theorem}
+\begin{proof}
+    В силу вложенности шаров и условия $r_n \to 0$, последовательность $\{x_n\}$ фундаментальна. Тогда, поскольку пространство $X$ полно, для некоторого $x^* \in X$ выполнено $x_n \to x^*$. Но каждый шар $\overline B_{r_N}(x_N)$ содержит все точки из последовательности $\{x_n\}$, начиная с номера $N$, тогда, в силу его замкнутости, он также содержит точку $x^*$. Значит, $\bigcap\limits_{n \in \N} \overline B_{r_n}(x_n) \supset \{x^*\}$. Наконец, в силу условия $r_n \to 0$, других точек в пересечении быть не может.
+\end{proof}
+
+\begin{theorem}[Бэра]\label{Ber}
+Пусть $X$ --- полное метрическое пространство. Тогда $X$ нельзя представить в виде $X = \bigcup\limits_{n \in \N} M_n$, где множества $M_n \subset X$ --- не плотные ни в одном шаре в $X$.
+\end{theorem}
+\begin{proof}
+Предположим противное, то есть $X$ имеет такой вид, как в условии. Положим $r_0 := 1$ и выберем произвольный шар $\overline B_{r_0}(x_0) \subset X$. Поскольку $M_1$ не плотно в $B_{r_0}(x_0)$, то множество $(X \bs \overline {M_1}) \cap B_{r_0}(x_0) \neq \varnothing$, поэтому можно выбрать шар $\overline{B}_{r_1}(x_1) \subset \overline{B}_{r_0}(x_0) \setminus \overline{M_1}$. Можно считать, что $r_1 \leqslant \frac{1}{2}$. Повторяя процесс для $\overline B_{r_1}(x_1)$ и $M_2$, получим шар $\overline B_{r_2}(x_2)$ с $r_2 \leqslant \frac{1}{4}$, и так далее.
+
+Рассмотрим полученную последовательность вложенных шаров $\big\{\overline{B}_{r_n}(x_n)\big\}$. Поскольку $r_n \leqslant \frac1{2^n} \to 0$, то, по теореме \ref{kantor-compact}, для некоторой точки $x^* \in X$ выполнено равенство $\bigcap\limits_{n \in \N} \overline B_{r_n}(x_n) = \{x^*\}$. По предположению, $X = \bigcup\limits_{n \in \N_+} M_k$, поэтому $x^* \in M_n$ для некоторого $k \in \N$, но $\overline{B}_{r_k}(x_k) \cap \overline{M_k} = \varnothing$ по построению --- противоречие.
+\end{proof}
+\begin{note}[Эквивалентная формулировка теоремы Бэра]
+\label{Ber-equiv}
+Пусть $X$~--- полное метрическое пространство. Тогда если \(X = \bigcup\limits_{n \in \N}F_n\), где \(\forall n \in \N\left(F_n \text{ замкнуто} \right)\), то \(\exists n \in \N \; \exists B_\varepsilon(x_0): \; B_\varepsilon(x_0) \subseteq F_{n} \).
+\end{note}
+\begin{note}
+В формулировке выше так как \(F_n\) замкнуты, то можно взять и замкнутый шар $\overline{B}_\varepsilon(x_0)$.
+\end{note}

@@ -1,0 +1,33 @@
+
+\begin{theorem}[интегральная формула Коши]
+\label{cauchy-integral-formula}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \Cm$ "--- ограниченная область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item $f \in C^1(\overline{G})$
+		
+		\item $z_0 \in G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[f(z_0) = \frac{1}{2\pi i}\int_{\partial G}\frac{f(z)}{z - z_0}dz\]
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем произвольное $\epsilon > 0$. Достаточно доказать, что выполнено следующее неравенство:
+	\[\left|\int_{\partial G}\frac{f(z)}{z - z_0}dz - 2\pi if(z_0)\right| \le 2\pi\epsilon\]
+	
+	Так как $f$ непрерывна в точке $z_0$, а множество $G$ "--- открытое, то существует $\delta > 0$ такое, что $\overline{B_\delta(z_0)} \subset G$ и для всех $z \in \overline{B_\delta(z_0)}$ выполнено $|f(z) - f(z_0)| \le \epsilon$. Рассмотрим область с простой границей $D := G \bs \overline{B_\delta(z_0)}$, тогда $\partial D = \partial G \cup \omega$, где $\omega$ "--- это окружность $\{z \in \Cm: |z - z_0| = \delta\}$, ориентированная \textit{по часовой стрелке}. Применим к $\frac{f(z)}{z - z_0}$ интегральную теорему Коши для области $D$ и получим следующее:
+	\[\int_{\partial D}\frac{f(z)}{z - z_0}dz = \int_{\partial G}\frac{f(z)}{z - z_0}dz + \int_{\omega}\frac{f(z)}{z - z_0}dz = 0 \ra \int_{\partial G}\frac{f(z)}{z - z_0}dz = -\int_{\omega}\frac{f(z)}{z - z_0}dz\]
+	
+	Заметим теперь, что верно следующее равенство:
+	\[\int_{\omega}\frac{dz}{z - z_0} = -2\pi i\]
+	
+	C учётом полученных равенств, имеем:
+	\[\left|\int_{\partial G}\frac{f(z)}{z - z_0}dz - 2\pi if(z_0)\right| = \left|\int_{\omega}\frac{-f(z) + f(z_0)}{z - z_0}dz\right| \le \max_{z \in \omega}\frac{|f(z) - f(z_0)|}{|z - z_0|}|\omega| \le \frac \epsilon \delta 2\pi\delta = 2 \pi \epsilon.\]
+	
+	Таким образом, получено требуемое.
+\end{proof}

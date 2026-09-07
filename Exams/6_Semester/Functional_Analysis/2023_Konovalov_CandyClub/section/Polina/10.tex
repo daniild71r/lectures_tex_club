@@ -1,0 +1,20 @@
+\begin{theorem}[11.2]\label{11.2}
+    $H(\C)$, $A$~--- самосопряжённый оператор.
+    \[
+    \overline{\im A_{\lambda}} \oplus_{\perp} \ker A_{\lambda} = H
+    \]
+\end{theorem}
+
+\begin{proof}
+    По теореме \nameref{9.2} $\overline{\im A_\lambda} \oplus \ker (A_\lambda)^*=H$.
+    Вынесем сопряжение: $(A - \lambda I)^* = A^* - \overline{\lambda} I$.
+    % проблема: вылезет предательская лямбда с чертой
+    Рассмотрим два варианта:
+    \begin{enumerate}
+        \item[$\lambda \in \R\!: $]
+        $\lambda = \overline{\lambda}$, тогда формула автоматически верна.
+        \item[$\lambda \not\in \R\!: $]
+        $\overline{\lambda} \neq \lambda$. Отсюда по теореме \nameref{11.1} (пункт 2) $\lambda$ и $\overline{\lambda}$
+        не являются собственными значениями, а значит, ядро тривиально.
+        \end{enumerate}
+\end{proof}

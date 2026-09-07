@@ -1,0 +1,134 @@
+\subsection{10 февраля. Слабая сходимость}
+
+\begin{table}[]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\rowcolor[HTML]{B0B3B2} 
+\multicolumn{1}{|c|}{\cellcolor[HTML]{B0B3B2}\textbf{E}} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{B0B3B2}\textbf{$E^*$}} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{B0B3B2}\textbf{Вид функционала}} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{B0B3B2}\textbf{Добавка к пункту 2) в Т 7.1}} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{B0B3B2}\textbf{Комментарий}} \\ \hline
+\begin{tabular}[c]{@{}l@{}}$l_p,\; p > 1$\\\\ $\{x^k\} \in l_p, x^k \to x, k \to \infty$\end{tabular} &
+  $l_q$ &
+  \begin{tabular}[c]{@{}l@{}}$f(x) = \sum_{n = 1}^\infty x_n y_n, $\\ $k$~--- номер посл-ти\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}Координатная сходимость:\\ $x^k_n \to x_n$ при $k \to \infty \forall n$\end{tabular} &
+   \\ \hline
+$l_1$ &
+  $l_\infty$ &
+  $\sum x_n y_n$ &
+  \begin{tabular}[c]{@{}l@{}}--//--,\\ Упражнение: доказать\\ или опровергнуть\end{tabular} &
+   \\ \hline
+$L_p[a, b],\; p > 1$ &
+  $L_q[a, b], \frac1p + \frac1q = 1$ &
+  $L \int_a^b x(t)y(t) dt$ &
+  \begin{tabular}[c]{@{}l@{}}$\int_{t = a}^s x^k(t) y(t) dt \to \int_a^s x(t)y(t) dt$, \\ $\forall y \in L_q, \forall s,\; k\to \infty$\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}\ref{fakentable-comm-1}\end{tabular} \\ \hline
+$C[a; b]$ &
+  \begin{tabular}[c]{@{}l@{}}Функции ограниченой\\вариации $V[a;b]$\end{tabular} &
+  $\int_a^b x(t) dy(t)$ &
+  Поточечная сходимость: $x^k(t) \to x(t)\; \forall t$ &
+  \ref{fakentable-comm-2} \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{comment}[]\label{fakentable-comm-1}
+Из всех характеристических функций отрезка можно получить все ступенчатые функции, а они уже приближают все нужные функции
+\end{comment}
+
+\begin{comment}[]\label{fakentable-comm-2}
+Базис $\delta(t-t_0)$
+\end{comment}
+
+\textbf{Применение теоремы~\nameref{thm7_1} в приложениях}
+
+Теорема Банаха-Штейнгауза $\to$ критерий (теорема 5.6) $\leftrightarrow$ эквивалентность слабой сходимости в $E$ с изучением поточечной сходимости $F \in E^{**}$ (источник:  теорема Хана-Банаха)
+
+\subsubsection{Слабо ограниченное множество}
+
+\begin{definition}
+    $S \subset E$~--- слабо ограничено, если $\forall f \in E^* \: f(S)$~--- ограничено
+\end{definition}
+
+\begin{statement}[теорема Хана]\label{han}
+    Слабая ограниченность $\Leftrightarrow$ ограниченность
+\end{statement}
+
+\begin{proof}
+\begin{itemize}
+    \item[$\Leftarrow$]
+    \[\exists R :\;\; \|x\| \leq R,\; \forall x \in S.\]
+    Тогда \[|f(x)| \leq \|f(x)\| \cdot \|x\| \leq \|f(x)\| \cdot R.\]
+    \item[$\Rightarrow$] Предположим противное, то есть $S$~--- слабо ограничено, но не ограничено. Тогда
+    \[\forall n \in \N\; \exists x_n: \;  \| x_n \| \geqslant n^2 \sim \frac1 n \| x_n \| > n.\]
+
+    Рассмотрим $y_n = \frac 1 n x_n \weakconv 0$, так как $f(y_n) = f(\frac 1 n x_n ) =\frac{1}{n} f(x_n) \to 0$ в силу слабой ограниченности $x_n$. Откуда по теореме~\nameref{thm7_1} $\{ \| \frac 1 n x_n \| \}$ - ограничена, что противоречит выбору $x_n$.
+\end{itemize}
+\end{proof}
+
+\subsubsection{Секвенциально cлабая замкнутость}
+
+\begin{definition}
+    $S$ называется секвенциально слабо замкнутым (с.с.з) множеством, если
+    $$\forall \{x_n\}\subset S,\; n \in \N \;\; x_n \weakconv x
+    \implies x \in S.$$
+\end{definition}
+
+\begin{statement}
+    Секвенциальная слабая замкнутость $\implies$ замкнутость.
+\end{statement}
+
+\begin{proof}
+    Пусть $\|x_n - x\| \to 0, \: x_n \in S \implies x_n \weakconv x \underbrace{\implies}_{\text{условие}} x \in S$.
+\end{proof}
+
+\begin{statement}
+    В гильбертовом пространстве замкнутость $\implies$ секвенциально слабую замкнутость (в произвольном пространстве это неверно).\\
+    Контрпример: $S(0,1) \subset l_2$
+\end{statement}
+
+\begin{proof}
+    Пусть $x_n \weakconv x,\; x_n \in L \sim (x_n,y) \to (x,y), \; y \in L^\perp$. Это тогда и только тогда когда $\forall n,\; x_n \perp L^\perp$. Откуда получаем, что $0=(x_n,y) \to (x,y)=0$
+
+    Следовательно, $x \in (L^\perp)^\perp = L.$
+\end{proof}
+
+\subsubsection{Секвенциально слабая полнота}
+\begin{definition}
+    Последовательность $\{x_n\} \subset E$ называется \textit{слабо фундаментальной} если 
+    \[\forall f\in E^*\;\; \{f(x_n)\}\text{~--- фундаментальна.}\]
+\end{definition}
+
+\begin{definition}
+    Пространство является секвенциально полным если $\forall \{x_n\}$~--- слабо фундаментальна $\implies \{x_n\}$~--- слабо сходящаяся
+\end{definition}
+
+Пример не секвенциально полного пространства: $c_0$ (см. книгу Константинова), $C[a, b]$
+\begin{statement}
+    Любое гильбертово пространство является секвенциально слабо полным
+\end{statement}
+
+\begin{proof}
+    см. задание
+\end{proof}
+
+Какие есть сходимости в $E^*$:
+\begin{itemize}
+    \item[$\Downarrow$] по норме
+    \item[$\Downarrow$] слабая сходимость (через $E^{**}$)
+    \item[-] поточечная сходимость на элементах из $E$ в $E^*$ (*-слабая сходимость)
+\end{itemize}
+
+\subsubsection{Секвенциально слабая компактность}
+
+
+\begin{example}
+    В $l_2$ шар $\overline{B(0, 1)}$~--- не компакт, но секв. слабый компакт \textit{(доказательство этого --- трудный факт)}.
+\end{example}
+
+\begin{definition}
+    $S$~--- секвенциально слабо компактное, если\\
+    $\forall \{ x_n \} \subset S \; \exists$ слабо сходящаяся подпоследовательность $x_{n_k} \weakconv x \in S$.
+\end{definition}

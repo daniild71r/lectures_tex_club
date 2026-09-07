@@ -1,0 +1,86 @@
+\setcounter{equation}{0}
+
+\par Пусть в области $\Omega \subseteq \mathbb{R}_x^n$ задана автономная система
+\begin{equation}\label{autonom-first-lbl}
+    \dot{x}(t) = f(x), 
+\end{equation}
+
+\par где $t \in \mathbb{R}_t^1$, $f(x)$ — заданная действительная непрерывно дифференцируемая в области $\Omega$ вектор-функция с $n$ компонентами $f_1(x), \ldots, f_n(x)$.
+Пусть $x = \varphi(t)$ — решение системы (\ref{autonom-first-lbl}) при $t \in I$ , где $I$ — промежуток
+оси $\mathbb{R}_t^1$.
+
+\par \Def Непрерывно дифференцируемая в области $\Omega$ функция
+$u(x)$ называется первым интегралом автономной системы (\ref{autonom-first-lbl}), если
+$u[\varphi(t)] = const$ для каждого решения $x=\varphi(t), t \in I$, системы (\ref{autonom-first-lbl}).
+
+\par Таким образом, значение $u[\varphi(t)]$ зависит лишь от выбора траектории
+системы (\ref{autonom-first-lbl}) и не зависит от переменной t.
+
+\par \Def Пусть $u(x)$ — непрерывно дифференцируемая функция в
+области $\Omega$. Производной $u(x)$ в силу автономной системы (или производной $u(x)$ по направлению векторного поля $f(x)$) называется скалярное произведение $(f(x), grad(u(x)))$ и обозначается через $\dot{u}(x)$:
+$$\dot{u}(x)=(f(x), grad(u(x)))=\sum_{j=1}^n f_j(x) \frac{\partial u}{\partial x_j}$$
+
+\par \Note Производная $\dot{u}(x)$ является обобщением понятия производной функции $u(x)$ по постоянному направлению $l$, $|l| = 1$, на случай
+переменного векторного поля $f(x)$ и характеризует монотонность изменения $u(x)$ вдоль фазовой траектории (\ref{autonom-first-lbl}).
+
+\par \textbf{Теорема 1 (критерий ПИ).} Непрерывно дифференцируемая в $\Omega$ функция $u(x)$ является
+первым интегралом системы (\ref{autonom-first-lbl}) в том и только в том случае, когда
+$\dot{u}(x) = 0$ для всех $x \in \Omega$.
+\par \Proof Пусть $x=\varphi(t)$, $t \in I$, некоторое решение (\ref{autonom-first-lbl}) и пусть $v(t) = u[\varphi(t)]$,
+$t \in I$. Тогда по правилу дифференцирования сложной функции получаем, что для всех $t \in I$
+$$\dot{v}(t)=\sum_{j=1}^n \frac{\partial u[\varphi(t)]}{\partial x_j}\dot{\varphi}_j(t)=\sum_{j=1}^n f_j(x) \frac{\partial u(x)}{\partial x_j}=\dot{u}(x)$$
+Если $u(x)$ — первый интеграл (\ref{autonom-first-lbl}), то по определению $v(t) = const$ для каждой траектории $x= \varphi(t)$ в $\Omega$. В силу предыдущего равенства тождество
+$v(t) = const$ эквивалентно условию, что $\dot{u}(x) = 0$ для каждого $x = \varphi(t)$,
+$t \in I$ в $\Omega$. Так как по теореме существования и единственности решения
+задачи Коши для (\ref{autonom-first-lbl}) через каждую точку $x \in \Omega$ проходит некоторая
+траектория (\ref{autonom-first-lbl}), то $\dot{u}(x)=0$, $\forall x \in \Omega$. Наоборот, если $\dot{u}(x) = 0$ в $\Omega$, то $\dot{v}(t) = 0$ и, значит, $u(x)$ — первый интеграл (\ref{autonom-first-lbl}). \EndProof 
+
+\par Заметим теперь, что при гладкой обратимой замене переменных
+$x = g(y)$ в области $\Omega$ автономная система (\ref{autonom-first-lbl}) перейдет в автономную в области $\tilde{\Omega}$ систему вида
+\begin{equation}\label{autonom-second-lbl}
+    \dot{y}=f_1(y)\equiv [g'(y)]^{-1} \cdot f[g(y)],
+\end{equation}
+
+\par где $g'(y) = ||\frac{\partial g_i(y)}{\partial y_j}||$, $i,j = 1,\ldots, n$, — матрица Якоби.
+
+\par Система уравнений (\ref{autonom-second-lbl}) следует из системы уравнений
+$$\dot{x} = g'(y) \cdot \dot{y} = f[g(y)],$$
+\par которую можно разрешить относительно $\dot{y}$, поскольку для гладкой замены якобиан
+$$\det g'(y)=\frac{\partial(g_1, \ldots, g_n)}{\partial(y_1, \ldots, y_n)}\neq 0, y \in \tilde{\Omega},$$
+
+\par Теперь посмотрим, как связаны первые интегралы систем (\ref{autonom-first-lbl}) и (\ref{autonom-second-lbl}).
+
+\par \textbf{Теорема 2. (Об инвариантности ПИ)} Непрерывно дифференцируемая в области $\Omega$ функция $u(x)$
+является первым интегралом системы (\ref{autonom-first-lbl}) тогда и только тогда, когда
+функция $v(y) = u[g(y)]$ — первый интеграл системы (\ref{autonom-second-lbl}) в области $\tilde{\Omega}$.
+\par \Proof Достаточно установить, что при гладкой обратимой замене $x=g(y)$ производная в силу системы инвариантна, т.е. $\dot{u}(x)=\dot{v}(y)$ при $x = g(y)$,
+поскольку тогда из теоремы 1 получаем, что $\dot{u}(x) = 0$ в том и только
+том случае, когда $\dot{v}(y) = 0$. Пусть $[g'(y)]^T$ — транспонированная матрица
+к матрице Якоби. При гладкой замене $x= g(y)$ находим, что
+$$\dot{v}(y) = (grad \: v (y ), f_1(y )) = ( [g'(y)]^T \cdot grad \: u [g(y)], [g'(y)]^{-1} \cdot f[g(y)]) =$$
+$$= (grad \: u [g(y)], [g'(y)] \cdot [g'(y)]^{-1} \cdot f[g(y)]) = (grad \: u(x),f(x)) = \dot{u}(x) \quad \blacksquare$$
+
+\par \Def Первые интегралы $u_1(x), \ldots, u_k(x), 1 \leq k \leq n$, автономной системы (\ref{autonom-first-lbl}), определенные в некоторой окрестности $a \in \Omega$, называются независимыми в точке $a \in \Omega$, если ранг матрицы Якоби $u'(a)=||\frac{\partial u_i(a)}{\partial x_j}||, i=1, \ldots, k; j = 1, \ldots, n$ равен $k$.
+
+\par \textbf{Теорема 3.} Пусть точка $a \in \Omega$ не является положением равновесия автономной системы (\ref{autonom-first-lbl}). Тогда в некоторой окрестности $\Omega_a \subset \Omega$ точки а существуют $(n- 1)$ независимые в точке $a$ первые интегралы $u_1(x), \ldots, u_{n-1}(x)$ системы (\ref{autonom-first-lbl}). Кроме того, если $u(x)$ — какой-либо первый интеграл (\ref{autonom-first-lbl}) в окрестности $\Omega_a$, то найдется такая непрерывно дифференцируемая функция $F(\zeta_1, \ldots, \zeta_{n-1})$, что $u(x)=F[u_1(x), \ldots, u_{n-1}(x)]$, $\forall x \in \Omega_a$
+
+\par \Proof Так как $a\in G$ — не положение равновесия (\ref{autonom-first-lbl}), то по теореме о выпрямлении траекторий (см. билет \ref{autonom-stratify}) для системы (\ref{autonom-first-lbl}) найдутся окрестность $\Omega_a$ точки и гладкая обратимая замена переменных в ней $x=g(y)$ такие, что система (\ref{autonom-first-lbl}) примет вид
+\begin{equation}\label{autonom-third-lbl}
+    \begin{cases}
+      \dot{y_i}=0, i = 1, \ldots, n-1\\
+      \dot{y_n}=1
+    \end{cases}\,.
+\end{equation}
+
+\par Поскольку при такой замене траектории системы (\ref{autonom-third-lbl}) задаются уравнениями $y_i=c_i, \: i = 1, \ldots, n-1, \: y_n=t$, то, очевидно, функции $v_1(y)=y_1, \ldots, v_{n-1}(y)=y_{n-1}$ — независимые первые интегралы новой системы (\ref{autonom-third-lbl}). По теореме 2 функции $u_1(x)=g_1^{-1}(x), \ldots, u_{n-1}(x)=g_{n-1}^{-1}(x)$ — первые
+интегралы (\ref{autonom-first-lbl}) в окрестности $\Omega_a$. Здесь $y=g^{-1}(x)$ — обратная к $x=g(y)$ замена переменных с координатами $y_1=g_1^{-1}(x), \ldots, y_n=g_n^{-1}(x)$. Поскольку якобиан
+
+$$\det [g^{-1}(a)]' = 1 : \det g'(a) \neq 0,$$
+
+\par то $u_1(x), \ldots, u_{n-1}(x)$ — независимые в точке $a$ первые интегралы (\ref{autonom-first-lbl}). Всякий первый интеграл системы (\ref{autonom-third-lbl}), очевидно, имеет вид
+$$v(y) = F(y_1, \ldots, y_{n-1}) = F[v_1(y), \ldots,v_{n-1}(y)],$$
+где $F$ — произвольная непрерывно дифференцируемая функция $y_i \in R, i = 1, \ldots, n-1$. Тогда в силу теоремы 2 при $x=g(y)$
+
+$$u(x)=u[g(y)]=v(y)=v[g^{-1}(x)]=F[g_1^{-1}(x), \ldots, g_{n-1}^{-1}(x)]=F[u_1(x), \ldots, u_{n-1}(x)]$$
+
+\par общий вид первого интеграла (\ref{autonom-first-lbl}) в окрестности $\Omega_a$. \EndProof

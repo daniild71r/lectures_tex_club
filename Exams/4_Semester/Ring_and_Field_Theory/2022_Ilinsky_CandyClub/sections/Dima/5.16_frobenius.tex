@@ -1,0 +1,28 @@
+\par Пусть $F \supset \Z_p$, $|F|=p^n$
+\par \Def $\sigma(a)=a^p$ - автоморфизм Фробениуса
+\par То что это автоморфизм очевидно, так как
+$$(a+b)^p=a^p+b^p, \quad (ab)^p=a^pb^p$$
+\par Посмотрим какие элементы сохраняет $\sigma$: $a^p=\sigma(a)=a \Rightarrow a$ - корень многочлена $x^p-x \Rightarrow a \in \Z_p$. То есть $\sigma$ сохраняет $\Z_p$.
+\par Другие автоморфизмы: $\sigma^k: \: a \mapsto a^{p^k}$. Помним, что $F$ - поле разложения многочлена $x^{p^n}-x$. Допустим у нас так не наберется $n$ автоморфизмов. Тогда $\exists k < n: \forall a \in F \: a^{p^k}=\sigma^k(a)=a \Rightarrow \forall a \in F$ - корень $x^{p^k}-x \Rightarrow$ всего таких $a$ не больше $p^k<p^n$ - противоречие.
+
+\par $F \supset \Z_p$ - нормальное (так как это поле разложения), значит $|Aut_{\Z_p} F|=n \Rightarrow Aut_{\Z_p} F=\langle \sigma \rangle$.
+
+\par \Statement $K \supset L$ - расширение, $|K|=p^n, |L|=p^k$ и $n \: \vdots \: k$. Тогда $Aut_L K=\langle \tau \rangle$, $\tau(a)=a^{p^k}$
+\par \Proof Действуем аналогично тому что расписали выше. $K \supset L \supset \Z_p$
+\begin{enumerate}
+    \item $\tau$ сохраняет $L$, так как $L$ - поле разложения $x^{p^k}-x$
+    
+    \item $\tau, \tau^2, \ldots, \tau^l=id$
+    \par $\tau^l(a)=a^{p^{kl}} \Rightarrow l = \frac{n}{k}$
+    
+    \item $|Aut_L K|=[K:L]=\frac{n}{k}=l \Rightarrow Aut_L K=\langle \tau \rangle$ \EndProof
+\end{enumerate}
+\par \textbf{Вывод:} в поле из $p^n$ элементов $\exists !$ подполе из $p^k$ элементов, где $n \: \vdots \: k$.
+
+\par \Def $\Psi_{n, F}(x)=m_{\xi_n,F}(x)$ - многочлен деления круга
+
+\par \Statement $\deg \Psi_{n, \Z_p}(x)=ord_n(p)$
+\par \Proof $\xi:=\xi_n$ - корень $\Psi_{n, \Z_p}(x), \deg \Psi_{n, \Z_p}(x)=k$. $\xi^n=1, \xi^k \neq 1$ при $k < n$.
+\par Пусть $F=\Z_p(\xi), |F|=p^k$. Рассмотрим $\xi, \xi^p, \xi^{p^2}, \ldots, \xi^{p^k}=\xi$ - сопряженные элементы к $\xi$ над $\Z_p$. Следовательно, $\xi^{p^k-1}=1 \Rightarrow p^k-1 \: \vdots \: n \Rightarrow p^k \equiv 1 (n)$.
+
+\par Если $p^l \equiv 1(n) \Rightarrow \xi^{p^l-1}=1 \Rightarrow \xi^{p^l}=\xi \Rightarrow l \geq k$ (так как при $l<k$ элементы сопряжены с $\xi$, но не совпадают) $\Rightarrow k = ord_n(p)$ \EndProof

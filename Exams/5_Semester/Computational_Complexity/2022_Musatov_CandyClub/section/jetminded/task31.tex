@@ -1,0 +1,47 @@
+\textbf{Задача 31} Докажите, что класс $\pp$ не изменится, если потребовать, чтобы в случае принадлежности языку вероятность была строго больше $\frac{1}{2}$, а в случае непринадлежности --- строго меньше $\frac{1}{2}$. Выведите из этого, что $\pp$ замкнут относительно дополнения.
+
+\begin{proof}
+
+similar to \href{https://en.wikipedia.org/wiki/PP_(complexity)#Proof_that_PP_is_closed_under_complement}{https://en.wikipedia.org/wiki/PP\_(complexity)}
+
+Обозначим последний класс за $\pp'$. Он замкнут относительно дополнения, т.~к. если $A\in\pp'$, то существует полиномиальная вероятностная машина $M$ такая, что
+\begin{align*}
+	\forall x\in A\quad \mathrm{P}(M(x)=1)>\frac{1}{2}\\
+	\forall x\not\in A\quad \mathrm{P}(M(x)=1)<\frac{1}{2}
+\end{align*}
+
+
+Тогда для языка $\overline A$ можно взять машину $M'$, которая инвертирует результат $M$, тогда
+\begin{align*}
+\forall x\in \overline A\quad \mathrm{P}(M'(x)=1)=\mathrm{P}(M(x)=0)>\frac{1}{2}\\
+\forall x\not\in \overline A\quad \mathrm{P}(M'(x)=1)= \mathrm{P}(M(x)=0)<\frac{1}{2}
+\end{align*}
+
+Значит, если $\pp=\pp'$, то $\pp$ замкнут относительно дополнения.
+Очевидно $\pp'\subset\pp$.
+
+Пусть $A\in\pp$ произвольный. Тогда существует полиномиальная вероятностная машина $M$, работающая $\le f(|x|)$, что
+\begin{align*}
+\forall x\in A\quad \mathrm{P}(M(x)=1)\ge\frac{1}{2}\\
+\forall x\not\in A\quad \mathrm{P}(M(x)=1)<\frac{1}{2}
+\end{align*}
+
+Машина $M$ использует $\le f(|x|)$ случайных битов, а значит вероятность будет идти с шагом хотя бы $\frac{1}{2^{f(|x|)}}$ значит
+\[\forall x\not\in A\quad \mathrm{P}(M(x)=1)\le\frac{1}{2} - \frac{1}{2^{f(|x|)}}\]
+
+Пусть $g(|x|) = 2f(|x|) + 10$
+
+Построим машину $M'$. На входе $x$ возьмем $g(|x|)$ случайных битов и если все будут равны $1$, то вернём $1$, иначе вернем результат работы $M(x)$.
+
+Тогда
+\begin{align*}
+\forall x\in A\quad \mathrm{P}(M'(x)=1)&\ge 1-\left(1-\frac{1}{2^{g(|x|)}}\right)\cdot\frac{1}{2}>\frac{1}{2}\\
+\forall x\not\in A\quad \mathrm{P}(M'(x)=1)&\le\frac{1}{2^{g(|x|)}}+\left(1-\frac{1}{2^{g(|x|)}}\right)\left(\frac{1}{2}-\frac{1}{2^{f(|x|)}}\right)=\\
+&=\frac{1}{2} + \frac{1}{2^{g(|x|) + 1}} + \frac{1}{2^{g(|x|) + f(|x|)}} - \frac{1}{2^{f(|x|)}} < \frac{1}{2}
+\end{align*}
+Последнее так как
+\[\frac{1}{2^{f(|x|)}} > \frac{1}{2^{g(|x|) + 1}} + \frac{1}{2^{g(|x|) + f(|x|)}}\]
+Так как
+\[2^{g(|x|)}>2^{f(|x|)-1} + 1\]
+
+Значит $A\in\pp'$. А значит $\pp=\pp'$ и $\pp$ замкнуто относительно дополнения. \end{proof}

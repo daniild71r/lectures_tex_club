@@ -1,0 +1,96 @@
+\begin{theorem}
+    (Пирсона) Если $\displaystyle H_{0}$ верна, то $\displaystyle \hat{\chi }_{n}^{2}\xrightarrow[n\rightarrow \infty ]{d} \chi _{m-1}^{2}$.
+\end{theorem}
+\begin{proof}
+    Положим $\displaystyle Y_{j} =\begin{pmatrix}
+    I_{X_{j} =a_{1}}\\
+    \dotsc \\
+    I_{X_{j} =a_{m}}
+    \end{pmatrix} ,\ j=\overline{1,n}$ -- независимые одинаково распределенные случайные векторы, $\displaystyle EY_{j} =\begin{pmatrix}
+    p_{1}\\
+    \dotsc \\
+    p_{m}
+    \end{pmatrix} =\begin{pmatrix}
+    p_{1}^{0}\\
+    \dotsc \\
+    p_{m}^{0}
+    \end{pmatrix}$. Найдем матрицу ковариаций вектора $\displaystyle Y_{j}$:
+    \begin{equation*}
+        cov( I_{X_{j} =a_{i}} ,\ I_{X_{j} =a_{k}}) =EI_{X_{j} =a_{i} ,\ X_{j} =a_{k}} -EI_{X_{j} =a_{i}} \cdotp EI_{X_{j} =a_{k}} =\begin{cases}
+        p_{i}^{0} -p_{i}^{0} p_{k}^{0} & ,\ i=k\\
+        -p_{i}^{0} p_{k}^{0} & ,\ i\neq k
+        \end{cases} .
+    \end{equation*}
+    Положим $\displaystyle B:=\begin{pmatrix}
+    p_{1}^{0} & 0 & \dotsc  & 0\\
+    0 & p_{2}^{0} & \dotsc  & 0\\
+    \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+    0 & 0 & \dotsc  & p_{m}^{0}
+    \end{pmatrix} \Rightarrow DY_{j} =B-\overline{p}_{0}\overline{p}_{0}^{T}$. По многомерной ЦПТ
+    
+    
+    \begin{equation*}
+        \dfrac{Y_{1} +\ \dotsc \ +Y_{n}}{\sqrt{n}} -\sqrt{n}\overline{p}_{0}\xrightarrow{d}\mathcal{N}\left( 0,\ B-\overline{p}_{0}\overline{p}_{0}^{T}\right) .
+    \end{equation*}
+    Заметим, что $\displaystyle Y_{1} +\ \dotsc \ +Y_{n} =\begin{pmatrix}
+    \nu _{1}\\
+    \dotsc \\
+    \nu _{m}
+    \end{pmatrix} =:\overline{\nu }$, и матрица $\displaystyle B$ симметрична и положительно определена в силу положительности $\displaystyle p_{j}^{0} \ \forall j\in \{1,\ \dotsc ,\ m\}$. Пусть $\displaystyle \xi _{n} =\left(\sqrt{B}\right)^{-1}\sqrt{n}\left(\dfrac{\overline{\nu }}{n} -\overline{p}_{0}\right)$. По теореме о наследовании сходимостей
+    
+    
+    \begin{equation*}
+        \xi _{n}\xrightarrow{d}\mathcal{N}\left( 0,\ \left(\sqrt{B}\right)^{-1}\left( B-\overline{p}_{0}\overline{p}_{0}^{T}\right)\left(\sqrt{B}\right)^{-1}\right) =\mathcal{N}\left( 0,\ I_{m} -zz^{T}\right) ,
+    \end{equation*}
+    где $\displaystyle z=\left(\sqrt{B}\right)^{-1}\overline{p}_{0} =\begin{pmatrix}
+    \sqrt{p_{1}^{0}}\\
+    \dotsc \\
+    \sqrt{p_{m}^{0}}
+    \end{pmatrix}$. Заметим, что $\displaystyle \Vert z\Vert ^{2} =\sum _{i=1}^{m} p_{i}^{0} =1\Rightarrow \Vert z\Vert =1$. Рассмотрим ортогональную матрицу $\displaystyle V\in M_{m\times m}$ такую, что ее первая строка -- это вектор $\displaystyle z$. Тогда по теореме о наследовании сходимости
+    \begin{equation*}
+        V\xi _{n}\xrightarrow{d} V\cdotp \mathcal{N}\left( 0,\ I_{m} -zz^{T}\right) =\mathcal{N}\left( 0,\ V\left( I_{m} -zz^{T}\right) V^{T}\right) .
+    \end{equation*}
+    Рассмотрим вектор $\displaystyle Vz$. В силу ортогональности матрицы $\displaystyle V$ выполнено
+    \begin{equation*}
+        Vz=\begin{pmatrix}
+        \sqrt{p_{1}^{0}} & \sqrt{p_{2}^{0}} & \dotsc  & \sqrt{p_{m}^{0}}\\
+        v_{21} & v_{22} & \dotsc  & v_{2m}\\
+        \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+        v_{m1} & v_{m2} & \dotsc  & v_{mm}
+        \end{pmatrix} \cdotp \begin{pmatrix}
+        \sqrt{p_{1}^{0}}\\
+        \sqrt{p_{2}^{0}}\\
+        \dotsc \\
+        \sqrt{p_{m}^{0}}
+        \end{pmatrix} =\begin{pmatrix}
+        1\\
+        0\\
+        \dotsc \\
+        0
+        \end{pmatrix} .
+    \end{equation*}
+    Таким образом, 
+    \begin{equation*}
+    V\left( I_{m} -zz^{T}\right) V^{T} =I_{m} -\begin{pmatrix}
+    1 & 0 & \dotsc  & 0\\
+    0 & 0 & \dotsc  & 0\\
+    \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+    0 & 0 & \dotsc  & 0
+    \end{pmatrix} =\begin{pmatrix}
+    0 & 0 & \dotsc  & 0\\
+    0 & 1 & \dotsc  & 0\\
+    \dotsc  & \dotsc  & \dotsc  & \dotsc \\
+    0 & 0 & \dotsc  & 1
+    \end{pmatrix} =:\tilde{I}_{m} .
+    \end{equation*}
+    По теореме о наследовании сходимости
+    \begin{equation*}
+        \Vert V\xi _{n}\Vert ^{2}\xrightarrow{d}\left\Vert \mathcal{N}\left( 0,\ \tilde{I}_{m}\right)\right\Vert ^{2} =\chi _{m-1}^{2} .
+    \end{equation*}
+    Но в силу ортогональности матрицы $\displaystyle V$ выполнено
+    
+    
+    \begin{equation*}
+        \Vert V\xi _{n}\Vert ^{2} =\Vert \xi _{n}\Vert ^{2} =\left\Vert \left(\sqrt{B}\right)^{-1}\sqrt{n}\left(\dfrac{\overline{\nu }}{n} -\overline{p}_{0}\right)\right\Vert ^{2} =\sum _{i=1}^{m}\dfrac{\left( \nu _{i} -np_{i}^{0}\right)^{2}}{np_{i}^{0}} =\hat{\chi }_{n}^{2} .
+    \end{equation*}
+\end{proof}

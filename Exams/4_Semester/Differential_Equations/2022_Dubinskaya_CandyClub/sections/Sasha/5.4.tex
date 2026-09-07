@@ -1,0 +1,185 @@
+\setcounter{equation}{0}
+
+Пусть задана автономная система 
+\begin{equation}\label{autonomlap-sys}
+    \dot{x}(t) = f(x), 
+\end{equation}
+где $t \in \mathbb{R}^1_x$ и $f(x)$~--- заданная непрерывно дифференцируемая вектор-функция с $n$ компонентами в некоторой области $\Omega$.
+
+Зададим начальное условие 
+\begin{equation}\label{autonomlap-sys-ny}
+    x(0) = x_0 \in \Omega
+\end{equation}
+и обозначим решение задачи Коши~(\ref{autonomlap-sys}),~(\ref{autonomlap-sys-ny}) через $x(t, x_0)$. Пусть $a \in \Omega$ является положением равновесия~(\ref{autonomlap-sys}). Будем считать, что $a = 0$, в противном случае простой заменой сводится к этому случаю.
+
+В дальнейшем считаем, что $\exists r > 0$ такое, что при $\forall x \in \Omega, |x_0| < r$, решение $x(t, x_0)$ определено для всех $t > 0$.
+
+\begin{definition}[Устойчивость по Ляпунову]
+Положение равновесия $x = 0$ автономной системы~(\ref{autonomlap-sys}) называется устойчивым по Ляпунову, если 
+\[
+\forall \varepsilon > 0 \;\; \exists \; 0 < \delta = \delta(\varepsilon) < r \;\;\left(\forall |x_0| < \delta \implies |x(t, x_0)| < \varepsilon \right)
+\]
+для всех $t > 0$.
+В противном случае положение равновесия называется неустойчивым положением равновесия системы~(\ref{autonomlap-sys}).
+\end{definition}
+
+То есть, любая траектория~(\ref{autonomlap-sys}), начинающаяся в $\delta(\varepsilon)$ окрестности точки $O$, остается в наперед заданной $\varepsilon$~-окрестности точки $O$ при всех $t > 0$.
+
+\begin{definition}[Асимптотическая устойчивость]
+Устойчивое по Ляпунову положение равновесия $x = 0$ системы~(\ref{autonomlap-sys}) называется асимптотически устойчивым, если
+\[
+\exists r_1 \;\; \left(0 < r_1 \leq r,\; \lim_{t \rightarrow +\infty}x(t, x_0) = 0\right)
+\]
+при $|x_0| < r_1$.
+\end{definition}
+
+Асимптотическая устойчивость $x = 0$ геометрически означает, что любая траектория~(\ref{autonomlap-sys}), начинающаяся в некоторой окрестности $x = 0$ при $t \rightarrow +\infty$ стремится к $x = 0$. (Пример: неваляшка)
+
+Исследуем устойчивость положения $x = 0$ для автономной линейной однородной системы с постоянными коэффициентами.
+\begin{equation}\label{autonomlap-sys-const}
+    \dot{x(t)} = Ax(t)
+\end{equation}
+\\
+\Note За действительную часть числа обозначим $Re(\lambda) = \Re(\lambda)$
+
+\begin{theorem}\label{autonomlap-th1}
+Если $\Re(\lambda_k) < 0$ для всех $k = \overline{1, m}$, то положение равновесия $x = 0$ системы~(\ref{autonomlap-sys-const}) асимптотически устойчиво.
+\end{theorem}
+\begin{proof}
+Если  $\Re(\lambda_k) < 0$, то существует $\mu > 0$, что $\Re(\lambda_k) < -2\mu < 0$.
+Любое решение имеет вид \[x = e^{tA} x_0.\]
+
+Тогда верно \(|x| \leq \|e^{tA}\| \cdot |x_0|\).
+Пусть \((a_{ij})_{i,j = \overline{1, n}} = e^{tA}.\) Тогда каждый элемент является конечной суммой многочленов (так как получаем умножением жордановой матрицы, где все элементы - многочлены конечной степени, на матрицу перехода)
+\[a_{ij}(t) = \sum_{k = 1}^m P_k^{(i, j)}(t) e^{\lambda_k t}, \;\;  i,j = \overline{1, n}.\]
+Всегда найдется такое число $c_{ij} > 0$, что для всех $k = \overline{1, m}$
+\[|P_k^{(i, j)}(t) e^{\lambda_k t}|<|P_k^{(i, j)}(t) e^{-2\mu t}| < c_{ij} e^{-\mu t}.\]
+
+Тогда 
+\begin{align*}
+    |x| \leq \|e^{tA}\| \cdot |x_0| &= |x_0| \cdot \sqrt{\sum_{i, j = 1}^{n}|a_{ij}(t)|^2} \leq\\
+    &\leq |x_0| \cdot e^{-\mu t} \cdot m \sqrt{\sum_{i, j = 1}^{n}|c_{ij}|^2} = M e^{-\mu t} \cdot |x_0|.
+\end{align*}
+
+Из этой оценки видно, что $x(t, x_0) \rightarrow 0, t \rightarrow +\infty$. Кроме того, $x=0$~--- устойчивое по Ляпунову положение равновесия~(\ref{autonomlap-sys-const}), так как 
+\[\forall\; \varepsilon > 0 \exists\; \delta(\varepsilon) = \frac{\varepsilon}{M},\]
+из полученной выше оценки при $|x_0| \le \delta$ получаем, что $|x(t, x_0)| \leq M \delta = \varepsilon$.
+\end{proof}
+\begin{theorem}
+Если $\Re(\lambda_k) \leq 0$ для всех $k = \overline{1, m}$, и для каждого собственного значения $\lambda$ с $\Re(\lambda) = 0$ число линейно независимых собственных векторов равно кратности $\lambda$, то $x = 0$~--- устойчивое по Ляпунову положение равновесия~(\ref{autonomlap-sys-const}).
+\end{theorem}
+\begin{proof}
+Любое решение имеет вид \[x = e^{tA} x_0.\]
+Тогда верно \(|x| \leq \|e^{tA}\| \cdot |x_0|\).
+Элементы матрицы $e^{tA}$ имеют вид
+\[
+a_{ij}(t) = \sum_{\Re{\lambda} < 0} P_{\lambda}^{(i, j)}(t) e^{\lambda t} + 
+ \sum_{\Re{\lambda} = 0} c_{\lambda} e^{\lambda t}, \;\;  i,j = \overline{1, n}.
+\]
+В этой записи суммирование в первой сумме ведется по всем $\lambda$ с $\Re{\lambda} < 0$, $c_{\lambda}$~--- числа, выражающиеся через компоненты $x_0$, суммирование во второй сумме ведется по всем $\lambda$ с $\Re{\lambda} = 0$ (тогда Жордановы цепочки длины 1, поэтому внутри суммы нет многочленов).
+
+Учитывая это обстоятельство и действуя как при доказательстве теоремы~\ref{autonomlap-th1}, получаем оценку при всех $t > 0$:
+\[
+|x| \leq \|e^{tA}\| \cdot |x_0| \leq M \cdot |x_0|
+\]
+откуда следует устойчивость по Ляпунову $x = 0$.
+\end{proof}
+
+\begin{theorem}
+Если существует хотя бы одно собственное значение $\lambda$ c $\Re(\lambda) > 0$ или если все собственные значения имеют $\Re(\lambda) \leq 0$ и хотя бы для одного $\lambda$ c $\Re(\lambda) = 0$ число линейно независимых собственных векторов меньше кратности $\lambda$, то $x = 0$ является неустойчивым положением равновесия системы.
+\end{theorem}
+\begin{proof}
+Пусть существует $\lambda = \mu + i\nu$ c $\mu > 0$. Тогда решения~(\ref{autonomlap-sys-const}), (\ref{autonomlap-sys-ny})
+\[x(t, x_0) = e^{\mu t}(h_1 \cos(\nu t) + h_2 \sin(\nu t)),\; h_1 = x_0,\]
+где $h = h_1 + i h_2$~--- собственный вектор для $\lambda$. При $t = t_k$ и $\sin(\nu t_k) = 0$, получаем
+\[|x(t_k, x_0)| = e^{\nu t_k} |x_0| \rightarrow +\infty, \;\; t_k \rightarrow +\infty.\]
+
+Если же $\Re(\lambda) = 0$, то при условиях теоремы существует решение~(\ref{autonomlap-sys-const}), (\ref{autonomlap-sys-ny}) вида 
+
+\[x(t, x_0) = e^{\mu t} \left(h_1 + t h_2 + \ldots + \frac{t^{k-1}}{(k-1)!}h_k\right),\; h_1 = x_0,\]
+
+где $h_1, \ldots, h_k$~--- Жорданова цепочка длины $k$ для $\lambda$, причем $k \geq 2$. Отсюда ясно, что 
+\[|x(t, x_0)| \rightarrow +\infty, t \rightarrow + \infty.\]
+
+\end{proof}
+
+Пусть система~(\ref{autonomlap-sys}) является нелинейной и пусть $x = 0$ является положением равновесия. Разложим $f(x)$ в окрестности $x = 0$ по формуле Тейлора:
+\[
+f(x) = Ax + r(x),
+\]
+где матрица
+\[A = \begin{Vmatrix} \frac{\partial f_i(0)}{\partial x_j} \end{Vmatrix},\;\; i, j = \overline{1, n}, \;\;r(x) = o(|x|) \rightarrow 0,\;\; |x| \rightarrow 0.\]
+
+\begin{theorem}[Ляпунова (б/д)]
+Если все собственные значения матрицы $A$ имеют отрицательные действительные части, то $x = 0$ является асимптотически устойчивым положением равновесия нелинейной системы~(\ref{autonomlap-sys}).
+\end{theorem}
+\begin{proof}
+Имеем сисетму
+\begin{equation*}
+    \begin{cases}
+    f(x) = Ax + r(x)\\
+    x(0) = x_0
+    \end{cases}
+\end{equation*}
+
+В некоторой окрестности $x_0$ решение задачи Коши выглядит следующим образом:
+\[x(t) = e^{tA} \cdot x_0 + \int_0^t e^{(t - \tau)A} r(x(\tau)) d\tau \;\; \cleq \]
+Оценим:
+\[|x(t)| < \|e^{tA}\|\cdot |x_0| + \int_0^t \|e^{(t - \tau)A}\| \cdot |r(x(\tau))| d\tau. \]
+То аналогично предыдущим доказательствам 
+\[\exists M, \mu > 0: \;\; \forall t > 0 \|e^{tA}\| \leq M e^{-\mu t}.\]
+Из того, что $r(x) = o(|x|) \rightarrow 0,\;\; |x| \rightarrow 0$, 
+\[\forall \varepsilon > 0\;\; \exists \delta_{\varepsilon} > 0:\;\; \forall x (|x| < \delta_{\varepsilon} \implies |r(x)| \le \varepsilon |x|).\]
+
+Вернемся к оценке $x(t):$
+\[\cleq \;\; M \cdot |x_0| \cdot e^{-\mu t} + \varepsilon M \int_0^t e^{-\mu(t - \tau)} \cdot |x(\tau)| d\tau.\]
+
+Обозначим через \(\varphi(t) = e^{\mu t}|x(t)|\). Тогда
+\[\varphi(t) \leq M \cdot |x_0| + \varepsilon M \int_0^t \varphi(\tau) d\tau.\]
+
+Функция $\varphi(t)$ удовлетворяет условиям леммы Гронуолла. Из леммы Гронуолла следует, что при всех $t > 0$
+\[\varphi(t) \leq M|x_0| e^{\varepsilon M t}.\]
+
+Заменяя обратно $\varphi(t)$, получаем при всех $t > 0$ оценку
+\[|x(t)| \leq M |x_0| e^{t(\varepsilon M - \mu )}.\]
+
+Из полученной оценки следует, что можно выбрать $\varepsilon > 0$ так, что верно $\varepsilon M - \mu < 0$, тогда:
+\[x(t) \rightarrow 0, \;\; t \rightarrow +\infty,\]
+если фиксировать $\varepsilon > 0$, положив, например, \(\varepsilon = \frac{\mu}{2M}\). Кроме того, по выбранному $\varepsilon =  \frac{\mu}{2M}$, взяв $\delta = \delta(\varepsilon) = \frac{\varepsilon}{M}$, из оценки получаем, что 
+\[|x(t)| < \varepsilon\]
+при $|x_0| < \delta$ для всех $t > 0$.
+\end{proof}
+
+\begin{lemmanote}
+Если $\Re(\lambda) > 0$ хотя бы для одного собственного значения $\lambda$ матрицы $A$, то можно доказать, что $x = 0$ является неустойчивым положением равновесия.
+\end{lemmanote}
+
+\paragraph{Никому не нужные определения которые были на лекции и которые могут спросить}
+
+\begin{definition}
+Предельным циклом системы~(\ref{autonomlap-sys}) называется такая замкнутая траектория, которая изолирована от остальных замкнутых траекторий
+\end{definition}
+
+\begin{definition}
+Точка $x \in \Omega$ называется $\omega$\,-предельной точкой траектории $\varphi(t)$, определенной при всех $t \geq 0$, если существует последовательность
+\[
+\{t_n\}, t_n \xrightarrow{n \rightarrow \infty} \infty: \;\;
+\varphi(t_n) \xrightarrow{n \rightarrow \infty} x
+\].
+\end{definition}
+
+\begin{definition}
+Множество $\omega$\,-предельных точек называется $\omega$\,-предельным
+\end{definition}
+
+\begin{definition}
+Если в определении $\omega$\,-предельных точек $t_n < 0,\; t_n \xrightarrow{n \rightarrow \infty}-\infty$, то такие точки называются $\alpha$\,-предельными точками. 
+\end{definition}
+
+\begin{definition}
+Если с обеих сторон есть стремление к циклу, то он называется устойчивым. 
+\end{definition}
+
+\begin{definition}
+Если для одного типа траекторий цикл $\omega$\,-предельный, а для другого $\alpha$\,-предельный, то цикл называется полуустойчивым.
+\end{definition}

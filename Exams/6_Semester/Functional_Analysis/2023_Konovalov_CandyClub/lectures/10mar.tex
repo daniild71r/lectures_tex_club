@@ -1,0 +1,176 @@
+\subsection{10 марта. Спектр. Резольвента}
+
+Ситуация: $E(\C)$~--- БП, $A \in \mathcal{L}(E)$.
+
+\begin{definition}
+Назовем $\lambda$~--- регулярное значение, или $\lambda \in \rho(A)$, если уравнение
+\begin{equation}
+    \label{equation_regular_val}
+    (A - \lambda I) x = y
+\end{equation}
+имеет единственное решение $\forall y \in E$, которое непрерывно зависит от $y$. То есть
+
+$$
+\exists A_\lambda^{-1} \in \mathcal{L}(E).
+$$
+
+\end{definition}
+
+\begin{definition}
+    Спектр: $\sigma(A) = \C \setminus \rho(A)$.
+\end{definition}
+
+\begin{definition}
+    Резольвента: $\lambda \in \rho(A), \; R_\lambda = A_\lambda^{-1}$.
+\end{definition}
+
+\begin{statement}[$-1$]
+    Если $|\lambda|>\|A\|$, то $\lambda \in \rho(A)$. \\
+    Смысл: спектр сидит где-то внутри круга радиуса нормы оператора.
+\end{statement}
+
+\begin{proof}
+    \begin{align*}
+        (A-\lambda I)x &= y,\;\; \lambda \neq 0,\\
+        (I - \frac{1}{\lambda}A)x &= -\frac{1}{\lambda} y.
+    \end{align*}
+
+    По теореме~\nameref{theorem8.2}. $\|-\frac{1}{\lambda}A\| < 1$.
+    \[(I-\frac{1}{\lambda}A)^{-1}=\sum_{n=0}^\infty \frac{1}{\lambda^n}A^n\]
+\end{proof}
+
+\begin{theorem}[10.1]
+\begin{enumerate}
+    \item Спектр --- непустое замкнутое множество
+    \item Спектральный ряд $r(A) = \sup_{\lambda \in \sigma} |\lambda| = r_{\text{сх}} \text{ ряда Неймана \hypertarget{thm10.1-neihman}{(**)}} = \lim\limits_{n \to \infty} \sqrt[n]{\|A^n\|}$.
+\end{enumerate}
+\end{theorem}
+
+\textbf{Идея:} рассматриваются функции $F: \C \to \L(E)$. Неудобство: нет коммутативности умножения для операторов
+
+\textbf{Немного ТФКП для пространства операторов:} непрерывность и дифференцируемость вводится по определению. Вводим интеграл (соответственно появляется теорема Коши), ряд Тейлора и Лорана, теорема Лиувилля.... (подробнее см. Колмогоров-Фомин, приложение <<Банахова алгебра>>)
+
+\begin{statement}[$0$]
+    $\rho(A)$ - открытое множество
+\end{statement}
+
+\begin{proof}
+    \textbf{Идея:} теорема~\nameref{theorem8.3}.
+    $\lambda_0 \in \rho(A) \; \exists R_{\lambda_0}=A_{\lambda_0}^{-1}$
+    $$\frac{()}{()} \in L(E)$$.
+    % TODO ДОПИСАТЬ
+\end{proof}
+
+\begin{corollary}
+$\sigma(A)$~--- замкнутое.
+\end{corollary}
+
+Возьмем какое-то $\lambda \in \C$. Есть два вариант: либо ядро $A_\lambda$ тривиально, либо нетривиально (тогда это собственное значение, $\lambda \in \sigma_p(A)$~--- точечный спектр). Случай тривиального ядра разделяется на 3
+\begin{enumerate}
+    \item $\im A_\lambda=E$. Тогда по теоерме~\nameref{theorem8.4} $\exists A_\lambda^{-1}$ ($\rho(A)$)
+    \item $\im A_\lambda \neq E$, $\overline{\im A_\lambda} = E$ ($\sigma_C(A)$)
+    \item $\overline{\im A_\lambda} \neq E$ ($\sigma_R(A)$~--- остаточный спектр)
+\end{enumerate}
+
+\textbf{Итого:} вся комплексная плоскость делится на $\rho(A), \sigma_p(A), \sigma_C(A), \sigma_R(A)$.
+
+Рассмотрим произведение:
+\begin{align*}
+    (Ax, Ax) &= (x, A^*Ax) = (\sum\limits_{i = 1}^n \xi_i e_i, \sum\limits_{i = 1}^n \lambda_i \xi_i e_i )\\
+    &= \sum\limits_{i = 1}^n \lambda_i \xi_i^2 \leq (\max\limits_{i} \lambda_i) \sum\limits_{i = 1}^n \xi_i^2 = (\max\limits_{i} \lambda_i) \|x\|^2.
+\end{align*}
+где $x = \sum\limits_{i=1}^n \xi_i e_i$. Получили оценку на норму $A$.
+
+\begin{theorem}[Гильберта-Шмидта]\label{hilb-shmidt}
+    Если $H$ - сеперабельное гильбертово пространство, то в $H$ существует ОНБ, ссостоящий из собственных векторов оператора $A$, где $A$ - компактный самосопряженный оператор.
+\end{theorem}
+
+\begin{statement}[$1$]
+    $R_\lambda$ - непрерывная функция на $\rho(A)$
+\end{statement}
+
+\begin{proof}
+    Если взять некую точку $\lambda_0 \in \rho(A)$, то она входит в $\rho(A)$ с некоторой окрестностью по прошлому утверждению.
+
+    В теореме~\nameref{theorem8.3}:
+    $$\|(A+\Delta A)^{-1}-A^{-1}\| \leqslant \frac{\|A^{-1}\|^2 \|\Delta A \|}{1-\|A^{-1}\| \|\Delta A\|}$$
+    Подставляем $R_\lambda$:
+    $$\frac{\|R_{\lambda_0} \|^2 |\Delta \lambda\|}{1 - \| R_{\lambda_0}\| \|\Delta \lambda|} \to 0$$
+\end{proof}
+
+\begin{statement}[$2$]
+   Равенство Гильберта: $\lambda_0, \lambda \in \rho(A)$:
+   $$R_\lambda - R_{\lambda_0} = (\lambda - \lambda_0)R_\lambda R_{\lambda_0}.$$
+\end{statement}
+
+\begin{proof}
+\[
+    R_\lambda - R_{\lambda_0} = \\
+    R_\lambda(A_{\lambda_0} R_{\lambda_0})-(R_\lambda A_\lambda)R_{\lambda_0}=R_\lambda(A_{\lambda_0}-A_\lambda)R_{\lambda_0}.
+\]
+\end{proof}
+
+\begin{statement}[$3$]
+   Функция $R_\lambda$ дифф. на области $\rho(A)$.
+\end{statement}
+
+\begin{proof}
+    По равенству Гильберта получаем
+    \begin{align*}
+        \frac{R_\lambda - R_{\lambda_0}}{\lambda - \lambda_0} =_{\text{утв 2}} \frac{(\lambda - \lambda_0)R_\lambda R_{\lambda_0}}{(\lambda - \lambda_0)} \to_{\text{утв 1}} R_{\lambda_0}^2.
+    \end{align*}
+\end{proof}
+
+\begin{statement}[$4$]
+    Радиус сходимости ряда~\hyperlink{thm10.1-neihman}{**} равен $r(A)$ и равен $\overline{\lim_{n \to \infty}} \sqrt[n]{\|A^n\|}$
+\end{statement}
+
+\begin{proof}
+\begin{enumerate}
+    \item $|\lambda_0| > r(A) \implies \lambda_0 \in \rho(A)$. $R_\lambda$ раскладывается в ряд Лорана единственным образом, значит это ряд Неймана $\implies r_{\text{сх}} \leqslant r(A)$
+    \item $|\lambda_0| < r(A)$. Утверждаем, что ряд Неймана~\hyperlink{thm10.1-neihman}{**} расходится в точке $\lambda_0$. Если бы он сходился в этой точке, то он бы сходился и при любом $\lambda: |\lambda| > |\lambda_0|$. Получаем, что $r_{\text{сх}} \geqslant r(A)$.
+\end{enumerate}
+    
+\end{proof}
+
+\begin{statement}[$5$]
+    Спектр непустой
+\end{statement}
+
+\begin{proof}
+    Предположим противное. то есть $\forall \lambda \in \C \implies \lambda \in \rho(A) = \C$.
+
+    \hyperlink{thm10.1-neihman}{**} $\implies \|R_\lambda\| \leq \frac{1}{|\lambda|} \frac{1}{1-\|A\|/|\lambda|}=\frac{1}{|\lambda| - \|A\|} \to 0, \lambda \to \infty$
+
+    Пришли к противоречию
+\end{proof}
+
+\begin{statement}[$6$]
+    $\lambda \in \sigma(A) \implies \lambda^n \in \sigma(A^n)$
+\end{statement}
+
+\begin{proof}
+    Предположим противное: $\lambda^n \not\in \sigma(A^n)$, то есть $\lambda^n \in \rho(A^n) \sim (A^n-\lambda^n I)^{-1} \in \L(E)$
+    \[(A^n-\lambda^nI)=(A-\lambda I)(A^{n-1} + \ldots + \lambda^{n-1}I)\]
+
+    Умножим справа на $A^n-\lambda^n I)^{-1}$ получим правый обратный, слева - левый обратный
+\end{proof}
+
+\begin{statement}[$7$]
+    $r(A)=\lim \sqrt[n]{\|A^n\|}$
+\end{statement}
+
+\begin{proof}
+    Рассмотрим соотношение $$(r(A))^n \leq \left[r(A^n)\right]^{\frac1n} \leq (\|A^n\|)^{\frac{1}{n}}$$
+    которое верно в силу прошлого утверждения.
+
+    По пункту 4: $r(A)=\overline{\lim\limits_{n \to \infty}} \sqrt[n]{\|A^n\|}$, и видно, что эти числа совпадают.
+
+    $$\alpha_n=\sqrt[n]{\|A^n\|}$$
+    $$\overline{\lim} \alpha_n \leq \alpha_n \; \forall n$$
+    $$\overline{\lim} \alpha_n \leqslant \underline{\lim} \alpha_n$$
+\end{proof}
+
+\begin{exercise}
+    $l_2(\C), \{\lambda_n\}$ - ограниченная, $Ax=(\lambda_1 x_1, \lambda_2 x_2, \ldots)$. Док-ть $\sigma(A)=\overline{\{ \lambda_n \}}$
+\end{exercise}

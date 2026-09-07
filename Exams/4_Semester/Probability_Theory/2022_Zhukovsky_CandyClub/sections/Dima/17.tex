@@ -1,0 +1,75 @@
+\begin{definition}
+    \( \E(\xi | \eta=y)=\varphi(y) \) (равенство в смысле $P_\eta$-почти наверное), $\varphi: \R^n \rightarrow \R$ - борелевская, такая что 
+    \[ \forall B \in \B(\R^n) \hookrightarrow \E \xi I(\eta \in B)=\int_B \varphi dP_\eta \]
+\end{definition}
+
+\begin{lemmanote}
+    \( \E(\xi | \eta = y)=\varphi(y) \Leftrightarrow \E(\xi | \eta)=\varphi(\eta) \)
+\end{lemmanote}
+
+\begin{proof}
+    \begin{itemize}
+        \item[$\Rightarrow$:] Пусть $\varphi(y)=\E(\xi | \eta = y)$. Очевидно, что $\varphi(\eta)$ - $\F_\eta$-измерима (если берем борелевскую функцию от измеримой случайной величины измеримость сохраняется). Нужно проверить, что 
+        
+        \[ \forall A \in \F_\eta \hookrightarrow \E \xi I_A = \E \varphi(\eta) I_A \]
+    
+        Так как $A \in \F_\eta$, то $\exists B \in \B(\R^n): \: A=\eta^{-1}(B)$ Тогда, используя определение $\E(\xi | \eta = y)$, получаем
+         \[ \E \xi I_A = \E \xi I(\eta \in B)=\int_B \varphi dP_\eta = \int_{\R^n} \varphi I_B dP_\eta \stackrel{1}{=} \int_\Omega \varphi(\eta) I_A dP = \E \varphi(\eta) I_A \]
+    
+        Переход 1 делаем при помощи теоремы о замене переменных в интеграле Лебега.
+        
+        \item[$\Leftarrow$:] Пусть $\E(\xi|\eta)=\varphi(\eta)$. Тогда $\varphi(\eta)$ - $\F_\eta$-измерима (по определению УМО). Тогда для произвольного $B \in \B(\R)$ выполнено $[\varphi(\eta)]^{-1}(B) \in \F_\eta$. Следовательно, по определению $\F_\eta$ 
+        
+        \[ \exists A \in \B(\R^n): [\varphi(\eta)]^{-1}(B)=\eta^{-1}(A) \]
+        
+        Применяя $\eta$ к обеим частям равенства получим (???), что $A = \varphi^{-1}(B)$, а значит $\varphi$ - борелевская (прообраз произвольного борелевского множества оказался борелевским)
+        
+        Осталось показать, что \( \forall B \in \B(\R^n) \hookrightarrow \E \xi I(\eta \in B)=\int_B \varphi dP_\eta \)
+        
+        \( \E \xi I(\eta \in B)=\E \xi I_A \), где \( A = \eta^{-1}(B) \in \F_\eta \). Тогда
+        
+        \[ \E \xi I(\eta \in B)=\E \xi I_A\stackrel{2}{=}\E\E(\xi | \eta) \cdot I_A\stackrel{3}{=} \E\varphi(\eta) I_A = \int_\Omega \varphi(\eta) I_A dP \stackrel{4}{=} \int_\R \varphi I_B dP_\eta = \int_B \varphi dP_\eta \]
+        
+        Переход 2 сделали по определению УМО, 3 - по условию леммы, 4 - по теореме о замене переменных.
+    \end{itemize} 
+\end{proof}
+
+\begin{definition}
+    Условное распределение $\xi$ (в общем случае это может быть вектор) при условии $\eta=y$ есть 
+    \[ P_{\xi|\eta}(B) := \E(I(\xi \in B)|\eta) \]
+    \[ P_{\xi|\eta = y}(B) = P(\xi \in B|\eta = y) := \E(I(\xi \in B)|\eta = y) \]
+\end{definition} 
+
+\begin{definition}
+    Функция $f(x, y) = p_{\xi|\eta = y}(x)$ ($x \in \R^k, y \in \R^n$) - условная плотность, если 
+
+    \[ \forall y \in \R^n, \forall B \in \mathcal{B}(\R^k) \ P_{\xi|\eta = y}(B) = \int\limits_{B}p_{\xi|\eta = y}(x)dx \]
+\end{definition}
+
+\begin{statement}[критерий существования условной плотности]
+    Пусть $p_{\xi, \eta}$ - плотность абсолютно непрерывного случайного вектора $(\xi, \eta)$, $p_\eta$ - плотность $\eta$, тогда
+    
+    \[ p_{\xi|\eta = y}(x) = \begin{cases} 
+    \frac{p_{\xi, \eta}(x, y)}{p_\eta(y)}, & p_\eta(y) \ne 0 \\ 
+    0, & \text{иначе}
+    \end{cases} \]
+\end{statement} 
+
+\begin{proof}
+    Надо проверить выполнение определения условной плотности. $y \in \R^n, B \in \mathcal{B}(\R^k)$.\\ Должно выполняться $P_{\xi|\eta = y}(B) = \E(I(\xi \in B)|\eta = y) = \int\limits_{B}p_{\xi|\eta = y}(x)dx = f(y)$. То есть доказываем равенство УМО какому-то выражению, то есть надо доказать, что выражение удовлетворяет определению УМО, а именно  
+    \begin{enumerate}
+        \item $f(y)$ борелевская
+        
+        $\int\limits_{B}p_{\xi|\eta = y}(x)dx = 0$, если $p_\eta(y) = 0$. Пусть $p_\eta(y) \ne 0$. Тогда 
+        \[ \int\limits_{B}p_{\xi|\eta = y}(x)dx = \int\limits_{B} \frac{p_{\xi, \eta}(x, y)}{p_\eta(y)} dx = \frac{1}{p_\eta(y)} \int\limits_{B} p_{\xi, \eta}(x, y) dx \] 
+        Произведение двух борелевских функций (плотность есть борелевская функция) тоже борелевская функция 
+        
+        \item $\forall A \in \mathcal{B}(\R^n) \ \  \E I(\xi \in B) I(\eta \in A) = \int\limits_A f\ dP_\eta$ (по определению $\E(\xi|\eta=y)$: вместо случайной величины $\xi$ в определении выступает $I(\xi \in B)$).
+        
+        Возьмем $A \in \mathcal{B}(\R^n)$ \\
+        $\E I(\xi \in B, \eta \in A) = P(\xi \in B, \eta \in A) = \int\limits_{A \times B} p_{\xi, \eta}(x, y) \ dx\ dy = \int\limits_{A} \Big ( \int\limits_{B}p_{\xi, \eta}(x, y) \ dx \Big ) dy =$ \\ $ =(\Sigma = \{ y, p_\eta(y) = 0 \} )= \int\limits_{A \setminus \Sigma} \Big ( \int\limits_{B}p_{\xi, \eta}(x, y) \ dx \Big ) dy \stackrel{1}{=} 
+        \int\limits_{A \setminus \Sigma} \Big ( \int\limits_{B}p_{\xi| \eta = y}(x) \cdot p_{\eta}(y) \ dx \Big ) dy  =$ \\ $= \int\limits_{A \setminus \Sigma} \Big ( \int\limits_{B}p_{\xi| \eta = y}(x)\ dx \Big ) \cdot p_{\eta}(y) \ dy = \int\limits_{A \setminus \Sigma} \Big ( \int\limits_{B}p_{\xi| \eta = y}(x)\ dx \Big ) \cdot \ dP_\eta \stackrel{2}{=} \int\limits_{A} \Big ( \int\limits_{B}p_{\xi| \eta = y}(x)\ dx \Big ) \cdot \ dP_\eta = \int\limits_{A} f \ dP_\eta $
+        
+        Переход 1 сделали по определению функции $p_{\xi, \eta}$ из условия теоремы, а в переходе 2 вернули $\Sigma$, так как интеграл по нему равен 0.
+    \end{enumerate}
+\end{proof} 

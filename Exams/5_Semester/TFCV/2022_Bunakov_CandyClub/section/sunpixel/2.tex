@@ -1,0 +1,80 @@
+\begin{theorem}[из матана]
+    Пусть $G$~--- область в $\R^2,$
+    \begin{align*}
+        &u=u(x,y),\;\; v=v(x,y) \in C^1(G),\\
+        &(x_0, y_0) \in G,\\
+        &u_0=u(x_0, y_0),\;\; v_0=v(x_0, y_0).
+    \end{align*}
+    
+    \[\begin{vmatrix}
+		u'_x & u'_y \\ v'_x & v'_y
+    \end{vmatrix}_{(x_0, y_0)} \neq 0\]
+    
+    Тогда $\exists$ круги \[
+    K=\{(x,y): (x-x_0)^2 + (y-y_0)^2 < \delta^2\},\; K'=\{(u,v): (u-u_0)^2+(v-v_0)^2<\varepsilon^2\},\] такие что
+    \begin{enumerate}
+        \item Невырожденность Якобиана: $\begin{vmatrix}
+		u'_x & u'_y \\ v'_x & v'_y
+    \end{vmatrix} \neq 0 \quad \forall (x,y) \in K$
+    
+        \item $\forall (\Tilde{u}, \Tilde{v})\in K' \quad \exists!$ решение системы 
+        \begin{equation*}
+            \begin{cases}
+               u(x,y)=\Tilde{u}\\
+               v(x,y)=\Tilde{v}
+             \end{cases}
+        \end{equation*}
+        в круге $K$. Тем самым определена вектор-функция 
+        \begin{equation}
+        \label{second}
+            \begin{cases}
+               x=x(u,v)\\
+               y=y(u,v)
+             \end{cases}
+        \end{equation}
+        обратная к исходной, т.е.
+        \begin{equation}
+        \label{third}
+            \begin{cases}
+               u(x(u,v), y(u,v)) \equiv u\\
+               v(x(u,v), y(u,v)) \equiv v
+             \end{cases}
+        \end{equation}
+        в $K'$
+        \item вектор-функция~\eqref{second} $\in C^1(K')$,
+        \begin{equation*}
+            \begin{cases}
+               x(u_0,v_0)=x_0\\
+               y(u_0,v_0)=y_0
+             \end{cases}
+        \end{equation*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[об обратной функции]
+    Пусть $w=f(z)$~--- регулярна в области $G \subset \Cm, z_0 \in G, w_0=f(z_0), f'(z_0) \neq 0$. Тогда $\exists \delta >0, \varepsilon >0:$
+    \begin{enumerate}
+        \item $f'(z) \neq 0$ в $B_\delta(z_0)$
+        \item $\forall \Tilde{w} \in B_\varepsilon(w_0) \: \exists !$ решение уравнения $f(z)=\Tilde{w}$ в $B_\delta(z_0)$. Тем самым определена функция $z=g(w): B_\varepsilon(w_0) \rightarrow B_\delta(z_0)$ обратная к $f(z)$, такая что $f(g(w))\equiv w$
+        \item $g(w)$ регулярна в $B_\varepsilon(w_0)$ и $g'(w)=\frac{1}{f'(g(w))}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Пусть $z_0=x_0+iy_0, f(z)=u(x,y)+iv(x,y), w_0=u_0+iv_0$, где $u_0=u(x_0, y_0), v_0=v(x_0, y_0)$. Применим к $u, v$ предыдущую теорему
+    \[\begin{vmatrix}
+		u'_x & u'_y \\ v'_x & v'_y
+    \end{vmatrix}_{(x_0, y_0)} = \begin{vmatrix}
+		u'_x & -v'_x \\ v'_x & u'_x
+    \end{vmatrix}_{(x_0,y_0)}=(u'_x)^2+(v'_x)^2|_{(x_0, y_0)}=|f'(z_0)|^2 \neq 0\]
+
+    Из предыдущей теоремы следует, что существуют круги $K, K'$ и функции $x(u,v), y(u,v)$. Тогда (\ref{third}) из прошлой теоремы $\Leftrightarrow f(g(w))\equiv w$ в $B_\varepsilon(w_0)$. Осталось доказать последний пункт
+
+    Пусть $\Delta w: w+\Delta w \in B_\varepsilon(w_0), z=g(w), z+\Delta z=g(w+\Delta w) \Rightarrow \Delta z=g(w+\Delta w)-g(w)$. Тогда $\Delta z(\Delta w)$ - непрерывна в окрестности $\Delta w=0; \Delta z(\Delta w) \neq 0$ при $\Delta w \neq 0$, $\Delta z(0)=0$.
+
+    $\frac{\Delta z}{\Delta w}=\frac{1}{\Delta w / \Delta z}$. Переходя к пределу $\Delta w \rightarrow 0$ получим $\Delta z(\Delta w) \rightarrow 0$ и 
+
+    \[ g'(w)=\frac{1}{f'(z)}=\frac{1}{f'(g(w))}\]
+
+    $g(w)$ регулярна в области $B_\varepsilon(w_0)$ как суперпозиция непрерывных функций
+\end{proof}

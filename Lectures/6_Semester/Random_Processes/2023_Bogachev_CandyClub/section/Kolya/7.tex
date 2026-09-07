@@ -1,0 +1,53 @@
+\begin{definition}
+    Процесс $(W_t, t \geq 0)$ называется \textit{в$\acute{\text{и}}$неровским} (или процессом броуновского движения), если 
+    \begin{enumerate}
+        \item $W_0 = 0$ п.н.
+        \item $W_t$ имеет независимые приращения
+        \item $W_t - W_s \sim \mathcal{N}(0, t-s), \ \forall t > s \geq 0$
+    \end{enumerate}
+\end{definition}
+
+
+\begin{statement}
+Винеровский процесс (свойства 1-3) существует.
+\end{statement}
+
+\begin{proof}
+По теореме о существовании процессов с независимыми приращениями достаточно проверить, что хар. функции правильно перемножаются:
+
+Пусть $0 \leq s < u < t$, нужно проверить
+$$
+\varphi_{W_t - W_s}(\tau) \stackrel{?}{=} \varphi_{W_t - W_u}(\tau) \cdot \varphi_{W_u - W_s}(\tau)
+$$
+(Если $\xi \sim \Norm(0, \sigma^2)$, то её хар. функция $\varphi_\xi(t) = e^{-\frac{\sigma^2 t^2}{2}}$)
+
+Так как $W_t - W_s \sim \mathcal{N}(0, t-s)$, то
+$$
+\varphi_{W_t - W_s}(\tau) = e^{- \frac{1}{2} \tau^2 (t-s)} = e^{- \frac{1}{2} \tau^2 (t-u)} \cdot e^{- \frac{1}{2} \tau^2 (u-s)} = \varphi_{W_t - W_u}(\tau) \cdot \varphi_{W_u - W_s}(\tau)
+$$
+\end{proof}
+
+\begin{note}
+    Нередко к требуемым свойствам винеровского процесса добавляют еще такое (доказательство в \ref{8.3}):
+    \begin{equation*}
+        \text{почти все траектории } w_{\bullet}(\omega) \text{ непрерывны}
+    \end{equation*}
+\end{note}
+
+\begin{theorem}[эквивалентное определение винеровского процесса]
+    Процесс $(W_t, t \geq 0)$ является винеровским $\Longleftrightarrow$ выполняются следующие свойства:
+    \begin{enumerate}
+        \item $W_t$~--- гаусовский процесс
+        \item $\E W_t = 0, \ \forall t \geq 0$
+        \item $cov(W_t, W_s) = min(t,s), \ \forall t, s \geq 0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Докажем пункт 3: при $t>s$ имеем
+
+    \begin{gather*}
+        t + s - 2 \E (W_tW_s) = \E (W_t - W_s)^2 = t - s \\
+        \E (W_tW_s) = \min{(t, s)}
+    \end{gather*}
+\end{proof}

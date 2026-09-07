@@ -1,0 +1,93 @@
+\begin{enumerate}
+    \item \( \E(\xi | \F) = \xi \)
+    \begin{proof}
+        По определению случайной величины $\xi$ - $\F$-измерима. Также
+        \[ \forall A \in \F \hookrightarrow \E(\E(\xi | \F)I_A)=\E(\xi I_A) \]
+        Значит, определение выполняется
+    \end{proof}
+    
+    \item Пусть $\mathcal{G}\indep \F_\xi=\{\xi^{-1}(B), B \in \B(\R)\}$ (сигма-алгебра, порожденная $\xi$). Тогда \( \E(\xi | \mathcal{G})=\E \xi \)
+    \begin{proof}
+        $\E \xi$ является $\G$-измеримым (это константа)
+        \[ \forall A \in \G \hookrightarrow \E(\E(\xi|\G)I_A)=\E(\E\xi \cdot I_A)=\E\xi \cdot \E I_A=\E(\xi \cdot I_A) \]
+        
+        Последний переход сделали в силу независимости $\xi$ и $I_A$. Распишем подробнее: $\xi$ и $I_A$ независимы тогда и только тогда когда для любого $B \in \B(\R)$
+        \[ P(\xi \in B, I_A=1)=P(\xi \in B)P(I_A=1)=P(\xi^{-1}(B))P(A) \]
+        \[ P(\xi \in B, I_A=0)=P(\xi \in B)P(I_A=0)=P(\xi^{-1}(B))P(\overline{A}) \]
+        
+        Эти равенства следуют из независимости сигма-алгебр $\G$ и $\F_\xi$
+    \end{proof}
+    
+    \item \( \E(\E(\xi|\G))=\E\xi \)
+    \begin{proof}
+        Положим в определении матожидания $A=\Omega$. Помним, что $I_\Omega=1$ на всех элементарных исходах. Тогда с одной стороны из определения матожидания
+        \[ \E(\E(\xi|\G)\cdot I_\Omega)=\E \xi I_\Omega = \E \xi \]
+        
+        С другой стороны
+        \[ \E(\E(\xi | \G)\cdot I_\Omega)=\E(\E(\xi|\G)) \]
+        
+        Получаем искомое равенство
+    \end{proof}
+    
+    \item Пусть $\G_1 \subset \G_2 \subset \F$. Тогда 
+    \[ \E(\E(\xi|\G_1) | \G_2)=\E(\E(\xi|\G_2)|\G_1)=\E(\xi|\G_1) \]
+    \begin{proof}
+        По определению \( \E(\xi|\G_1) \) - $\G_1$-измерима $\Rightarrow$ она $\G_2$-измерима (т.к. $\G_1 \subset \G_2$). Тогда по свойству 1
+        \[ \E(\E(\xi|\G_1)|\G_2)=\E(\xi|\G_1) \]
+        
+        Проверим второе равенство: \( \E(\E(\xi|\G_2)|\G_1)=\E(\xi|\G_1) \)
+        
+        По определению $\E(\xi | \G_1)$ - $\G_1$-измеримо. Значит осталось проверить, что 
+        \[ \forall A \in \G_1 \hookrightarrow \E(\E(\xi|\G_1) \cdot I_A)=\E(\E(\xi | \G_2) \cdot I_A) \]
+        
+        Так как $A \in \G_1$, по определению условного матожидания в $\G_1$ получаем \( \E(\E(\xi | \G_1) \cdot I_A)=\E \xi I_A \)
+        
+        С другой стороны, $\G_1 \subset \G_2 \Rightarrow A \in \G_2$. Тогда по определению условного матожидания в $\G_2$: \( \E(\E(\xi | \G_2) \cdot I_A)=\E \xi I_A \). Тогда \( \E(\E(\xi | \G_1) \cdot I_A)=\E(\E(\xi | \G_2) \cdot I_A) \) и искомое равенство доказано
+    \end{proof}
+    
+    \item Если $\xi_1 \leqslant \xi_2$ почти наверное, то $\E(\xi_1 | \G) \leqslant \E(\xi_2 | \G)$ почти наверное
+    \begin{proof}
+        \( \E(\xi_1 | \G), \E(\xi_2 | \G) \) - $\G$-измеримы по определению. Тогда по свойству \ref{exp-trait-nine} матожидания для \( \E(\xi_1 | \G) \leqslant \E(\xi_2 | \G) \) достаточно доказать, что 
+        \[ \forall A \in \G \hookrightarrow \E(\E(\xi_1 | \G) I_A) \leqslant \E(\E(\xi_2 | \G) I_A) \]
+        
+        Пусть $A \in \G$. Тогда по определению условного матожидания
+        \[ \E(\E(\xi_1 | \G) I_A)=\E(\xi_1 I_A) \leqslant \E(\xi_2 I_A) = \E(\E(\xi_2 | \G)I_A) \]
+    \end{proof}
+    
+    \item \( \E(c_1 \xi_1 + c_2 \xi_2 | \G)=c_1 \E(\xi_1|\G)+c_2 \E(\xi_2 | \G) \)
+    \begin{proof}
+        \( c_1 \E(\xi_1|\G)+c_2 \E(\xi_2 | \G) \) - $\G$-измеримо. Если $A \in \G$ выполнено (применяем линейность матожидания и определение условного матожидания)
+        
+        \[ \E([c_1 \E(\xi_1 | \G) + c_2 \E(\xi_2|\G)]I_A)=c_1 \E[\E(\xi_1|\G) I_A]+c_2 \E[\E(\xi_2 | \G) I_A]= \]
+        \[ = c_1 \E\xi_1 I_A +c_2 \E \xi_2 I_A = \E[(c_1 \xi_1 + c_2 \xi_2) I_A] \]
+    \end{proof}
+    
+    \item \( \E(|\xi| \: | \: \G) \geqslant |\E(\xi|\G)| \) почти наверное
+    \begin{proof}
+        \( -|\xi| \leqslant \xi \leqslant |\xi| \). Тогда по свойству 5 получаем \( E(-|\xi| \: | \: \G) \leqslant \E(\xi | \G) \leqslant \E(|\xi| \: | \: \G) \). Отсюда по свойству 6: \( -E(|\xi| \: | \: \G) \leqslant \E(\xi | \G) \leqslant \E(|\xi| \: | \: \G) \Rightarrow \E(|\xi| \: | \: \G) \geqslant |\E(\xi|\G)| \)
+    \end{proof}
+    
+    \item \( P(\xi_n \rightarrow \xi)=1, \: |\xi_n|\leqslant \eta, \: \E \eta < \infty \Rightarrow P(\E(\xi_n|\G) \rightarrow \E(\xi | \G))=1 \) (оставим без доказательства, оно аналогично теореме Лебега)\label{umo-lim-trait}
+    
+    \item Если $\eta$ - $\G$-измерима, то $\E(\xi \eta | \G)=\eta \E(\xi|\G)$
+    \begin{proof}
+        \( \eta \E(\xi | \G) \) - $\G$-измерима. Будем доказывать сначала для простых $\eta$, потом усложнять
+        \begin{itemize}
+            \item \( \eta=I_A, \: A \in \G \). Пусть \( \widetilde{A} \in \G \). Тогда
+            \[ \E(\eta \E(\xi | \G) I_{\widetilde{A}})=E(I_A \E(\xi | \G) I_{\widetilde{A}})=\E(\E(\xi | \G) I_{A \cap \widetilde{A}})\stackrel{1}{=}\E(\xi I_{A \cap \widetilde{A}})=\E(\xi I_A I_{\widetilde{A}})=\E(\xi \eta I_{\widetilde{A}}) \]
+            
+            Переход 1 выполнен по определению условного матожидания для $\xi$.
+            
+            \item \( \eta = \sum_{i=1}^n c_i I_{A_i}, \: A_i \in \G, \: c_i \in \R \)
+            
+            \[ \E(\eta \E(\xi | \G) I_{\widetilde{A}})=\sum_{i=1}^n c_i \E(I_{A_i} \E(\xi | \G) I_{\widetilde{A}})\stackrel{2}{=}\sum_{i=1}^n c_i \E(\xi I_{A_i} I_{\widetilde{A}})=\E(\xi \eta I_{\widetilde{A}}) \]
+            
+            Переход 2 выполнен в силу первого пункта доказательства
+            
+            \item $\eta$ - произвольная. Тогда существует последовательность простых случайных величин $\eta_n \rightarrow \eta$, $|\eta_n|\leqslant |\eta|$. По свойству 8 выполнено \( \E(\xi \eta|\G) \stackrel{\text{п.н.}}{\rightarrow} \E(\xi \eta | \G) \), так как $\xi \eta_n \rightarrow \xi \eta, \: |\xi \eta_n| \leqslant |\xi \eta|, \E|\xi \eta| < \infty$ (последнее из требований в определении УМО). Из второго пункта доказательства получаем
+            \[ \E(\xi \eta_n | \G)=\eta_n \E(\xi | \G) \]
+            
+            Переходя к пределу по $n$ получим \( \E(\xi \eta | \G)=\eta \E(\xi | \G) \)
+        \end{itemize}
+    \end{proof}
+\end{enumerate}

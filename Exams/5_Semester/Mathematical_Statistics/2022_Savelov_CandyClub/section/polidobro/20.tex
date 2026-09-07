@@ -1,0 +1,38 @@
+Пусть наблюдение $\displaystyle X$ имеет неизвестное распределение $\displaystyle P\in \mathcal{P}$, где $\displaystyle \mathcal{P}$ -- некоторое семейство распределений.
+\begin{definition}
+    \textit{Статистическая гипотеза} -- это предположение вида $\displaystyle P\in \mathcal{P}_{0}$, где $\displaystyle \mathcal{P}_{0} \subset \mathcal{P}$ -- подмножество распределений (обозначение $\displaystyle H_{0} :\ P\in \mathcal{P}_{0}$, $\displaystyle H_{0}$ называется \textit{основной гипотезой}).
+\end{definition}
+Задача заключается по наблюдению $\displaystyle X$ либо принять $\displaystyle H_{0}$, либо отвергнуть $\displaystyle H_{0}$. В последнем случае переходим к рассмотрению альтернативы (если она есть). \textit{Альтернативная гипотеза} имеет вид $\displaystyle H_{1} :\ P\in \mathcal{P}_{1} ,\ \mathcal{P}_{1} \subset \mathcal{P} \backslash \mathcal{P}_{0}$. Если приняли $\displaystyle H_{0}$, тогда мы сузили класс распределения $\mathcal{P}$ до $\mathcal{P}_0$
+\begin{definition}
+    Пусть $\displaystyle X$ принимает значения в выборочном пространстве $\displaystyle \mathcal{X}$, а $\displaystyle S\subset \mathcal{X}$ -- некоторое подмножество. Если правило принятия $\displaystyle H_{0}$ выглядит следующим образом: $\displaystyle H_{0}$ отвергается тогда и только тогда, когда $\displaystyle X\in S$, то $\displaystyle S$ называется \textit{критерием} для проверки $\displaystyle H_{0}$ против альтернативы $\displaystyle H_{1}$, если она есть.
+\end{definition}
+\begin{definition}
+    \textit{Ошибкой первого рода} называется ситуация, когда отвергается гипотеза $\displaystyle H_{0}$, когда она верна.
+\end{definition}
+\begin{definition}
+    \textit{Ошибкой второго рода} называется ситуация, когда принимается гипотеза $\displaystyle H_{0}$, когда она неверна.
+\end{definition}
+\begin{note}
+    На практике считается, что ошибка первого рода менее желательна, чем ошибка второго рода. Поэтому, $\displaystyle S$ выбирается так, чтобы вероятность ошибки первого рода была меньше заранее выбранной величины, а вероятность ошибки второго рода была как можно меньше.
+\end{note}
+\begin{definition}
+    Пусть $\displaystyle S$ -- критерий для проверки гипотезы $\displaystyle H_{0} :\ P\in \mathcal{P}_{0}$. Функция $\displaystyle B( Q,\ S) =Q( X\in S) ,\ Q\in \mathcal{P}$ называется \textit{функцией мощности критерия}\textit{.}
+\end{definition}
+\begin{definition}
+    Если для критерия $\displaystyle S$ выполнено неравенство $\displaystyle B( Q,\ S) \leqslant \varepsilon ,\ \forall Q\in \mathcal{P}_{0}$, то говорят, что $\displaystyle S$ имеет \textit{уровень значимости}\textit{ }$\displaystyle \varepsilon $.
+\end{definition}
+\begin{definition}
+    Минимальный уровень значимости $\displaystyle \alpha ( S) =\sup _{Q\in \mathcal{P}_{0}} B( Q,\ S)$ называется \textit{размером критерия}\textit{.}
+\end{definition}
+\begin{definition}
+    Пусть $\displaystyle S$ -- критерий для проверки $\displaystyle H_{0} :\ P\in \mathcal{P}_{0}$ против альтернативы $\displaystyle H_{1} :\ P\in \mathcal{P}_{1}$. Критерий $\displaystyle S$ называется \textit{несмещенным}, если $\displaystyle \sup _{Q\in \mathcal{P}_{0}} B( Q,\ S) \leqslant \inf_{Q\in \mathcal{P}_{1}} B( Q,\ S)$.
+\end{definition}
+\begin{definition}
+    Если $\displaystyle X=( X_{1} ,\ \dotsc ,\ X_{n})$ -- выборка растущего размера, то последовательность критериев $\displaystyle S_{n}$ называется \textit{состоятельной}, если $\displaystyle B( Q,\ S_n)\xrightarrow[n\rightarrow \infty ]{} 1,\ \forall Q\in \mathcal{P}_{1}$.
+\end{definition}
+\begin{definition}
+    Критерий $S$ уровня значимости $\displaystyle \varepsilon $ называется \textit{более мощным}, чем критерий $\displaystyle R$ того же уровня значимости $\displaystyle \varepsilon $, если $\displaystyle B( Q,\ S) \geqslant B( Q,\ R) \ \forall Q\in \mathcal{P}_{1}$, т.е. вероятность ошибки второго рода у $\displaystyle S$ равномерно меньше.
+\end{definition}
+\begin{definition}
+    Критерий $\displaystyle S$ называют равномерно наиболее мощным (р.н.м.к.) уровня значимости $\displaystyle \varepsilon $, если $\displaystyle \alpha ( S) \leqslant \varepsilon $, и $\displaystyle S$ мощнее любого другого критерия $\displaystyle R$, который удовлетворяет условию $\displaystyle \alpha ( R) \leqslant \varepsilon $.
+\end{definition}

@@ -1,0 +1,76 @@
+\textbf{Проверка гипотез в гауссовской линейной модели}
+
+Цель этого параграфа -- построить критерий для проверки линейной гипотезы $\displaystyle H_{0} :\ T\theta =t$, где $\displaystyle T\in M_{m\times k} ,\ t\in \mathbb{R}^{m} ,\ rk( T) =m\leqslant k$.
+\begin{proposition}
+    Пусть $\displaystyle H_{0}$ верна. Тогда выполнено
+    \begin{equation*}
+        \dfrac{( T\hat{\theta } -t)^{T}\left( T\left( Z^{T} Z\right)^{-1} T^{T}\right)^{-1}( T\hat{\theta } -t)}{\Vert X-Z\hat{\theta }\Vert ^{2}} \cdotp \dfrac{n-k}{m} \ \sim \ F_{m,n-k} .
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Так как $\displaystyle \hat{\theta } \ \sim \ \mathcal{N}\left( \theta ,\ \sigma ^{2}\left( Z^{T} Z\right)^{-1}\right)$, где $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} X$ -- ОНК для $\displaystyle \theta $, $\displaystyle \hat{t} =T\hat{\theta }$ -- оптимальная оценка для $\displaystyle T\theta $, то 
+    \begin{equation*}
+        \hat{t} =T\hat{\theta } \ \sim \ \mathcal{N}\left( T\theta ,\ T\sigma ^{2}\left( Z^{T} Z\right)^{-1} T^{T}\right) =\ \mathcal{N}\left( T\theta ,\ \sigma ^{2} B\right) ,
+    \end{equation*}
+    где $\displaystyle B=T\left( Z^{T} Z\right)^{-1} T^{T}$. Матрица $\displaystyle B$ положительно определена и симметрична. Следовательно, $\displaystyle \exists \sqrt{B} :\ B=\sqrt{B} \cdotp \sqrt{B} ,\ \left(\sqrt{B}\right)^{T} =\sqrt{B}$. Тогда
+    \begin{gather*}
+        \dfrac{1}{\sigma }\left(\sqrt{B}\right)^{-1}(\hat{t} -T\theta ) \ \sim \ \mathcal{N}( 0,\ I_{m}) \Rightarrow \left\Vert \dfrac{1}{\sigma }\left(\sqrt{B}\right)^{-1}(\hat{t} -T\theta )\right\Vert ^{2} =\\
+        \dfrac{1}{\sigma ^{2}}(\hat{t} -T\theta )^{T} B^{-1}(\hat{t} -T\theta ) \ \sim \ \chi _{m}^{2} .
+    \end{gather*}
+    Рассмотрим статистику $\displaystyle \hat{Q}_{T} :=\dfrac{1}{\sigma ^{2}}(\hat{t} -t)^{T} B^{-1}(\hat{t} -t)$. Тогда в условиях гипотезы $\displaystyle H_{0}$ выполнено $\displaystyle \dfrac{1}{\sigma ^{2}}\hat{Q}_{T} \ \sim \ \chi _{m}^{2}$. Так как $\displaystyle \hat{Q}_{T}$ выражается через $\displaystyle \hat{\theta }$, то она не зависит от $\displaystyle X-Z\hat{\theta }$. В силу того, что $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2}$, верно
+    \begin{equation*}
+        \dfrac{\hat{Q}_{T}}{\Vert X-Z\hat{\theta }\Vert ^{2}} \cdotp \dfrac{n-k}{m} \ \sim \ F_{m,n-k} .
+    \end{equation*}
+\end{proof}
+
+\begin{definition}
+    Пусть $\displaystyle u_{1-\alpha }$ -- $\displaystyle ( 1-\alpha )$-квантиль распределения $\displaystyle F_{m,n-k}$. Тогда $\displaystyle F$\textit{-критерием} называется
+    \begin{equation*}
+        \left\{\dfrac{( T\hat{\theta } -t)^{T}\left( T\left( Z^{T} Z\right)^{-1} T^{T}\right)^{-1}( T\hat{\theta } -t)}{\Vert X-Z\hat{\theta }\Vert ^{2}} \cdotp \dfrac{n-k}{m}  >u_{1-\alpha }\right\} .
+    \end{equation*}
+\end{definition}
+
+\begin{example}
+    Пусть $\displaystyle X_{1} ,\ \dotsc ,\ X_{n} \ \sim \ \mathcal{N}\left( a_{1} ,\ \sigma ^{2}\right) ,\ Y_{1} ,\ \dotsc ,\ Y_{m} \ \sim \ \mathcal{N}\left( a_{2} ,\ \sigma ^{2}\right)$. Построим F-критерий для проверки гипотезы $\displaystyle H_{0} :\ a_{1} =a_{2}$. Сведем задачу к гауссовской модели линейной регрессии:
+    \begin{equation*}
+        W:=\begin{pmatrix}
+        X_{1}\\
+        \dotsc \\
+        X_{n}\\
+        Y_{1}\\
+        \dotsc \\
+        Y_{m}
+        \end{pmatrix} =Z\cdotp \theta +\varepsilon ,
+    \end{equation*}
+    где
+    \begin{equation*}
+        Z=\begin{pmatrix}
+        1 & 0\\
+        \dotsc  & \dotsc \\
+        1 & 0\\
+        0 & 1\\
+        \dotsc  & \dotsc \\
+        0 & 1
+        \end{pmatrix} ,\ \theta =\begin{pmatrix}
+        a_{1}\\
+        a_{2}
+        \end{pmatrix} ,\ \varepsilon =\begin{pmatrix}
+        \varepsilon _{1}\\
+        \dotsc \\
+        \varepsilon _{n}\\
+        \varepsilon _{n+1}\\
+        \dotsc \\
+        \varepsilon _{n+m}
+        \end{pmatrix} ,\ T=\begin{pmatrix}
+        1 & -1
+        \end{pmatrix} ,\ t=0,
+    \end{equation*}
+     и $\displaystyle \varepsilon _{j} \ \sim \ \mathcal{N}\left( 0,\ \sigma ^{2}\right) ,\ cov( \varepsilon _{i} ,\ \varepsilon _{j}) =0,\ i\neq j$. Тогда $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} W=\begin{pmatrix}
+    \overline{X}\\
+    \overline{Y}
+    \end{pmatrix}$, и $\displaystyle \hat{t} =T\hat{\theta } =\overline{X} -\overline{Y}$. Следовательно, $\displaystyle T\left( Z^{T} Z\right)^{-1} T^{T} =\frac{1}{n} +\dfrac{1}{m}$. Таким образом, $\displaystyle \hat{Q} =\left(\dfrac{1}{n} +\dfrac{1}{m}\right)^{-1}(\overline{X} -\overline{Y})^{2}$, и $\displaystyle \Vert W-Z\hat{\theta }\Vert ^{2} =\sum _{i=1}^{n}( X_{i} -\overline{X})^{2} +\sum _{j=1}^{m}( Y_{j} -\overline{Y})^{2} =nS_{X}^{2} +mS_{Y}^{2}$. Тогда F-критерий имеет вид
+    \begin{equation*}
+        \left\{\dfrac{nm}{n+m} \cdotp \dfrac{(\overline{X} -\overline{Y})^{2}}{nS_{X}^{2} +mS_{Y}^{2}} \cdotp \dfrac{n+m-2}{1}  >u_{1-\varepsilon }\right\} ,
+    \end{equation*}
+    где $\displaystyle u_{1-\varepsilon }$ -- $\displaystyle ( 1-\varepsilon )$-квантиль распределения $\displaystyle F_{1,n+m-2}$.
+\end{example}

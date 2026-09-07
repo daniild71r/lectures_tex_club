@@ -1,0 +1,63 @@
+\begin{definition}
+Пусть $\displaystyle \theta =( \theta _{1} ,\dotsc ,\theta _{k})$. Экспоненциальным семейством распределений называются все распределения, обобщенная плотность которых имеет вид
+
+
+\begin{equation*}
+h( x)\exp\left(\sum _{i=1}^{k} a_{i}( \theta ) T_{i}( x) +V( \theta )\right) ,
+\end{equation*}
+и где функции $\displaystyle a_{0}( \theta ) \equiv 1,\, a_{1}( \theta ) ,\dotsc ,\, a_{k}( \theta )$ линейно независимы.
+\end{definition}
+\begin{example}
+Рассмотрим распределение $\displaystyle \Gamma ( \alpha ,\lambda )$. Его плотность распределения имеет вид
+\begin{gather}
+    p_{\alpha ,\lambda }( x) =\frac{\alpha ^{\lambda } x^{\lambda -1}}{\Gamma ( \alpha )} e^{-\alpha x}\mathbb{I}_{x >0} =\frac{1}{x}\exp\left( \lambda \ln x-\alpha x+\ln\frac{\alpha ^{\lambda }}{\Gamma ( \alpha )}\right)\mathbb{I}_{x >0}.
+\end{gather}
+\end{example}
+
+\begin{proposition}
+Пусть выполнено условие регулярности. Тогда существует эффективная оценка для некоторой функции $\displaystyle \tau ( \theta )$ $\displaystyle \Leftrightarrow $ наблюдения принадлежат экспоненциальному семейству.
+\end{proposition}
+\begin{proof}
+Пусть семейство экспоненциальное, то есть
+\begin{equation*}
+f_{\theta }( X) =\prod _{i=1}^{n} p_{\theta }( X_{i}) ,\ p_{\theta }( X_{i}) =h( X_{i}) e^{a( \theta ) T( X_{i}) +V( \theta )} .
+\end{equation*}
+Тогда 
+\begin{equation*}
+\exists u_{\theta }( X) =\frac{\partial }{\partial \theta }\ln f_{\theta }( X) =\frac{\partial }{\partial \theta }\left( a( \theta )\sum _{i=1}^{n} T( X_{i}) +nV( \theta )\right) .
+\end{equation*}
+Заметим, что, если $\displaystyle T( X_{i}) \equiv const$, то
+\begin{equation*}
+p_{\theta }( x) =h( x) b( \theta ) \Rightarrow \int _{\mathcal{X}} h( x) b( \theta ) dx=1\Rightarrow b( \theta ) \equiv const.
+\end{equation*}
+В этом случае распределение не зависит от $\displaystyle \theta $, и такой случай не рассматриваем.
+
+Заметим, что если функция $\displaystyle f( x) h( y) +g( x)$ дифференцируема по $\displaystyle x$ при любом $\displaystyle y$, и $\displaystyle h( y) \ne const$, то функции $\displaystyle f( x)$ и $\displaystyle g( x)$ дифференцируемы по $\displaystyle x$, т.к. $\displaystyle \exists y_{1},\, y_{2} :h( y_{1}) \ne h( y_{2})$, и функция $\displaystyle [ f( x) h( y_{1}) +g( x)] -[ f( x) h( y_{2}) +g( x)] =f( x)( h( y_{1}) -h( y_{2}))$ дифференцируема по $\displaystyle x$ как разность двух дифференцируемых функций. Следовательно, и функции $\displaystyle f( x)$, а вместе с ней и $\displaystyle g( x)$ дифференцируемы.
+Из этих соображений получаем, что $\displaystyle a( \theta )$ и $\displaystyle V( \theta )$ дифференцируемы, и
+\begin{equation*}
+u_{\theta }( X) =a'( \theta )\sum _{i=1}^{n} T( X_{i}) +nV'( \theta ) .
+\end{equation*}
+Из предположения, что $\displaystyle \forall \theta \hookrightarrow a'( \theta ) \neq 0$, получаем
+\begin{equation*}
+\frac{u_{\theta }( X)}{na'( \theta )} =\frac{\sum _{i=1}^{n} T( X_{i})}{n} -\left(\frac{-V'( \theta )}{a'( \theta )}\right) .
+\end{equation*}
+Обозначив $\displaystyle \tau ( \theta ) =\frac{-V'( \theta )}{a'( \theta )} ,\ \tau ^{*}( X) =\frac{\sum _{i=1}^{n} T( X_{i})}{n} ,\ c( \theta ) =\frac{1}{na'( \theta )}$, по критерию эффективности получаем требуемое.
+Обратно, пусть существует эффективная оценка $\displaystyle T( X)$ для $\displaystyle \tau ( \theta )$. Пусть $\displaystyle \tau '( \theta ) \neq 0$. Тогда
+\begin{gather*}
+    \forall \theta \in \Theta \hookrightarrow T(X) - \tau(\theta) = c(\theta)u_\theta(X)\ P_\theta-a.s. \Leftrightarrow\\
+    \frac{T(X) - \tau(\theta)}{c(\theta)} = \frac{\partial}{\partial\theta}\ln f_\theta(X).
+\end{gather*}
+Предполагая корректность, интегрируем по $\theta$.
+\begin{gather*}
+    \ln f_\theta(X) = \int\frac{T(X)-\tau(\theta)}{c(\theta)}d\theta + g(X),
+\end{gather*}
+$g(X)$ - для каждого $X$ своя константа интегрирования. Тогда
+\begin{gather*}
+    f_\theta(X) = \prod_{i=1}^n p_\theta(X_i) = H(X)\exp\{B(\theta)T(X) + D(\theta)\}\cdot\mathbb{I}_A(X).
+\end{gather*}
+Фиксируя $x_2^0,\, \ldots,\, x_n^0 \in A$, получаем
+\begin{gather*}
+    p_\theta(x_1) = \dfrac{H(x_1,\, x_2^0, \ldots,\, x_n^0)\exp\{B(\theta)T(x_1,\, x_2^0, \ldots,\, x_n^0) + D(\theta)\}}{\prod_{i=2}^n p_\theta(x_i^0)}\cdot\mathbb{I}_A(X).
+\end{gather*}
+Из предположения, что функция распределения зависит от $\theta$, получаем, что $a_1(\theta)$ независимо с $a_0 \equiv 1$. Следовательно, семейство экспоненциальное.
+\end{proof}

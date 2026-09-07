@@ -1,0 +1,84 @@
+\begin{theorem}[8.2]\label{theorem8.2}
+    Пусть $E$~--- банахово пространство, $A \in \mathcal{L}(E), \|A\| < 1$. Тогда $\exists (I+A)^{-1} \in \mathcal{L}(E)$ 
+\end{theorem}
+% Вы себя кем считаете, вот вы фивт или как там вас МИ и что-то там ФП еще перед этим. Ну пусть вы фивт.
+% <рисует фивт на доске>
+\begin{proof}
+    % Два пути доказательства
+    % \begin{enumerate}
+    %     \item Упражнение: с помощью теоремы Банаха о сжимающих отображениях. ($x=y-Ax$)
+    %     \item Второй
+    % \end{enumerate}
+    \begin{unnecessary}
+        Эвристика: если бы мы работали с числами, необходимо бы было найти $$(1 + A)^{-1} = 1 - A + A^2 - \ldots, \; \|A\| < 1.$$
+        Нельзя ли это рассуждение применить для операторов?
+    \end{unnecessary}
+    Рассмотрим последовательность $S_n = I - A + A^2 - \ldots + (-1)^nA^n$.
+    Так как $\{S_n\}$~--- фундаментальная последовательность (пользуемся тем, что $\| A \| < 1 \implies \sum_{n=0}^\infty \| A \|^k$ сходится):
+    \[
+    \|S_{n + p} - S_n\| = \left\| \sum_{k = n + 1}^{n + p} (-1)^k A^k\right\| \leq \sum_{k = n + 1}^{n + p} \|A^k\| \leq \sum_{k = n + 1}^{n + p} \|A\|^k < \eps,\;  \|A\|^k \to 0,\; k \to \infty,
+    \]
+    то последовательность $\{S_n\}$ сходится(обозначим предел как $S$), так как $\mathcal{L}(E)$~--- банахово (в силу банаховости $E$)
+
+    Утверждается, что $S=R_{I+A}=L_{I+A}$. Рассмотрим \[ (I+A)S = \lim\limits_{n \to \infty} (I+A)S_n = \lim\limits_{n \to \infty} (I+A)(I-A+A^2 +\ldots +(-1)^nA^n)=\lim\limits_{n \to \infty} I+(-1)^n A^{n+1}=I. \]
+
+    Так как $(I+A)S_n = S_n(I+A)$ (многочлены от $A$ перестановочны), то $S$ является как правым так и левым обратным.
+    Конструкция $(I + A)^{-1} = \sum_{n = 0}^\infty (-1)^n A^n =  \sum_{n = 0}^\infty ((-1) \cdot A)^n$~--- ряд Неймана.
+\end{proof}
+    
+\begin{definition}
+    Конструкция вида $B = \sum\limits_{n = 0}^\infty A^n$~--- ряд Неймана.
+\end{definition}
+
+
+\begin{lemmanote}[Уточнение теоремы]
+Ряд Неймана сходится, если $\exists n_0 \in \N\!:\: \|A^{n_0}\| < 1$.
+\end{lemmanote}
+
+\begin{example}
+    Пусть $V$ ~--- оператор Вольтера над $C[0;1]$. $\|V\|=1$, но $\|V^k\|=\frac 1 {k!}$, поэтому применимо уточнение теоремы
+\end{example}
+
+\begin{theorem}[8.3]\label{theorem8.3}
+Пусть $E$~--- банахово пространство. \[A, \Delta A \in \mathcal{L}(E),\;\; \exists \; A^{-1} \in \mathcal{L}(E), \|\Delta A\| < \|A^{-1}\|^{-1}.\]
+
+Тогда $\exists (A + \Delta A)^{-1} \in \mathcal{L}(E)$
+\end{theorem}
+
+\begin{proof} 
+    Рассмотрим $A + \Delta A = A (I + A^{-1} \Delta A)$. Ну и всё: у $A$ существует обратный по условию, а у $(I + A^{-1} \Delta A)$ по теореме~\ref{theorem8.2}. Значит и у $A+\Delta A$ существует обратный.
+\end{proof}
+
+\begin{statement}\label{theorem8.3_statement}
+Две оценки:\\
+\begin{enumerate}
+    \item
+    \[ \left\|(A+\Delta A)^{-1} \right\| \leqslant \frac{ \left\|A^{-1} \right\|}{1- \left\|A^{-1} \right\| \cdot \left\|\Delta A \right\|} \]
+
+    \item 
+    \[
+    \left\|A^{-1} - (A + \Delta A)^{-1} \right\| \leqslant 
+    \frac{ \left\|A^{-1} \right\|^2 \cdot \left\|\Delta A \right\|}{1 - \left\|A^{-1} \right\| \cdot \left\|\Delta A \right\|}
+    \]
+\end{enumerate}
+\end{statement}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Из конструкции из теоремы \nameref{theorem8.2}: 
+        \[ (A+\Delta A)^{-1} = (A(I+A^{-1} \Delta A))^{-1} = (I+A^{-1} \Delta A)^{-1} A^{-1} = \left( \sum_{n=0}^\infty (-1)^n (A^{-1} \Delta A)^n \right) A^{-1}\]
+
+        Пользуясь неравенством треугольника и неравенством $\|AB\| \leqslant \|A\| \cdot \|B\|$ получаем:
+        \[ \left\| (A+ \Delta A)^{-1} \right\| = \left\| \left( \sum_{n=0}^\infty (-1)^n \left(A^{-1} \Delta A \right)^n \right) A^{-1} \right\| \leqslant \left\| A^{-1} \right\| \sum_{n=0}^\infty \left\| A^{-1}\right\|^n \left\| \Delta A \right\|^n = \]
+
+        Так как по условию теоремы $\left\| A^{-1} \right\| \cdot \left\| \Delta A \right\| < 1$, можем применить формулу суммы геометрической прогрессии
+
+        \[ = \frac{\left\|A^{-1} \right\|}{1 - \left\| A^{-1} \right\| \cdot \left\| \Delta A \right\|}\]
+
+        \item \[ A^{-1} - (A + \Delta A)^{-1} = \left(I - \left(I+A^{-1} \Delta A \right)^{-1} \right) A^{-1} = \left(I - \sum_{n=0}^\infty (-1)^n \left(A^{-1} \Delta A \right)^n \right) A^{-1} = \]
+        
+        \[ = \left(\sum_{n=1}^\infty (-1)^{n+1} (A^{-1} \Delta A)^n\right) A^{-1} \]
+
+        Дальше аналогично пункту 1 применяя формулу для суммы геометрической прогрессии для последовательности без нулевого члена получаем искомое неравенство.
+    \end{enumerate}
+\end{proof}

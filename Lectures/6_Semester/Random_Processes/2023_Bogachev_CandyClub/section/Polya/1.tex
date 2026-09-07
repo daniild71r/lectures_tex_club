@@ -1,0 +1,74 @@
+\begin{definition}
+    Вероятностное пространство -- это тройка $\probspace$:
+    \begin{itemize}[noitemsep, topsep=1pt]
+        \item[$\Omega$] -- произвольное непустое множество, элементы которого -- это элементарными исходами
+        \item[$\mathcal{F}$] -- $\sigma$-алгебра подмножеств $\Omega$, называемых (случайными) событиями
+        \item[$\mathcal{P}$] -- вероятностная мера $\F \to [0,1]$, то есть $\sigma$-аддитивная конечная мера, такая что $P(\Omega) = 1$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Пусть $\probspace$~--- вероятностное пространство, $(E, \Eps)$~--- измеримое пространство. Тогда отображение $X : \Omega \rightarrow E$ называется \textit{случайным элементом}, если оно измеримо,\\
+    то есть $\forall B \in \Eps \hookrightarrow X^{-1}(B) = \{ \omega: X(\omega) \in B \} \in \F$.
+\end{definition}
+
+Если $(E, \Eps)$ = $(\R, \B(\R))$, то $X$ называется \textit{случайной величиной}.
+
+Если $(E, \Eps)$ = $(\R^n, \B(\R^n))$, то $X$ называется \textit{случайным вектором}.
+
+\begin{definition}
+    \textit{Распределение случайной величины} -- это мера на прямой т.е. $P_\xi(E) = P(\xi^{-1}(E))$, где $E$~-- борелевское
+\end{definition}
+
+\begin{definition}
+    \textit{Функция распределения}: $F_\xi(t) = P(\xi(\omega)<t)$
+\end{definition}
+
+\begin{definition}
+    Пусть $T\neq \emptyset$. Тогда \textit{случайная функция} $X = (X_t, t\in T)= \{X_t\}_{t\in T}$~-- это набор случайных величин $X_t$, заданных на одном и том же вероятностном пространстве $\probspace$ для $\forall t\in T$.
+\end{definition}
+
+\begin{definition}
+    Если $T \subset \R$, то случайная функция называется \textit{случайным процессом}.
+\end{definition}
+
+\begin{note}
+    \begin{itemize}
+        \item[] 
+        \item На $T$ появляется естественное упорядочение, поэтому оно часто называется \textit{временем}
+        \item Области значений $X_t$ не обязаны совпадать
+        \item $X_t(\omega)$~-- функция на $T\times\Omega$
+    \end{itemize}
+    
+\end{note}
+
+\begin{definition}
+    При фиксированном $\omega \in \Omega$ функция $X_{\bullet}(\omega): t \mapsto X_t(w)$ называется \textit{траекторией} или реализацией случайного процесса $X$.
+\end{definition}
+
+\subsection*{Классы процессов}
+
+\begin{itemize}[noitemsep, topsep=1pt]
+    \item с неизвестным приращением
+    \item стационарные
+    \item мартингалы
+    \item марковские
+\end{itemize}
+
+\subsection*{Примеры процессов}
+\begin{enumerate}[noitemsep, topsep=1pt]
+    \item Пуассоновские процессы 
+    \item Виннеровские процессы (броуновское движение)
+    \item Процессы восстановления
+    \item Ветвящиеся процессы
+    \item Марковские цепи
+\end{enumerate}
+
+\subsection*{Бесхитростные примеры случайных процессов, то есть ''без науки''}
+\begin{enumerate}
+    \item  Пусть $\{ \xi_n, n \in \N \}$~--- нез. с.в. из $\R^m$, тогда процесс $(S_n, n \in \Z_+)$, где $S_0 = 0, S_n = \xi_1 + \ldots + \xi_n$, называется \textbf{случайным блужданием}.
+    Физическая модель: прыжки кузнечика.
+    \item Пусть $\{ \xi_n, n \in \N \}$~--- н.о.р.с.в., неотрицательные и невырожденные ($\neq const$ п.н.). Положим $S_0 = 0$, $S_n = \xi_1 + \ldots + \xi_n$. Тогда процесс $X_t = \sup\{n : S_n \leq t\}, \; t \geq 0$ называется \textbf{процессом восстановления}, построенным по $\{ \xi_n, n \in \N \}$.
+    Физическая модель: замена лампочки.
+    \draw{images/1.png}{0.2}
+\end{enumerate}

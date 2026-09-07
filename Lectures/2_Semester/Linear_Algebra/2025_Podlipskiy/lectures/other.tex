@@ -1,0 +1,20 @@
+\section*{Дополнение}
+\addcontentsline{toc}{section}{Дополнение}
+\subsection*{Метод Лагранжа приведения к диагональному виду}
+\label{Lagranj}
+\begin{enumerate}
+\item Если $a_{11} \neq 0$, \textbf{выделить квадрат} по первой переменной:
+\[ k(x) = a_{11}\left(x_1 + \sum_{j=2}^n \frac{a_{1j}}{a_{11}}x_j\right)^2 + \tilde{k}(x) \]
+где $\tilde{k}(x)$ - новая квадратичная форма, не содержащая $x_1$.
+
+\item Если $a_{11} = 0$ но $\exists a_{kk} \neq 0$, \textbf{сделать замену} $x_1 \leftrightarrow x_k$.
+
+\item Если все диагональные элементы нулевые, \textbf{найти} $a_{ij} \neq 0$ ($i \neq j$) и \textbf{сделать замену}:
+\[
+\begin{cases}
+x_i = y_i + y_j \\
+x_j = y_i - y_j \\
+x_k = y_k \quad (k \neq i,j)
+\end{cases}
+\]
+\end{enumerate}

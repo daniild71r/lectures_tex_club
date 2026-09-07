@@ -1,0 +1,165 @@
+\begin{definition}
+	Пусть $z_0 \in \Cm$ "--- изолированная особая точка функции $f$. \textit{Вычетом} функции $f$ в точке $z_0$ называется коэффициент $c_{-1}$ ряда Лорана функции $f$ на $\mathring B_\epsilon(z_0)$. Обозначение "--- $\res\limits_{z_0}f$.
+\end{definition}
+
+\begin{unnecessary}
+    \begin{example}
+    	Пусть $f(z) := \sin{\frac 1z}$, $z \ne 0$. Тогда ряд Лорана функции $f$ на $\mathring B_\epsilon(0)$ имеет следующий вид:
+    	\[f(z) = \sum_{k = 0}^{+\infty}\frac{(-1)^k}{(2k+1)!}\frac1{z^{2k+1}}\]
+    	
+    	Значит, $\res\limits_0{f} = 1$.
+    \end{example}
+
+    \begin{proposition}
+    	Пусть $z_0 \in \Cm$ "--- устранимая особая точка или точка регулярности функции $f$. Тогда $\res\limits_{z_0}f = 0$.
+    \end{proposition}
+    
+    \begin{proof}
+    	По теореме~\ref{fixable-point-lorain} и определению\qedhere
+    \end{proof}
+\end{unnecessary}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$, и функция $f$ регулярна на $\mathring B_\epsilon(z_0)$. Тогда для любого числа $0 < \rho < \epsilon$ выполнено следующее равенство:
+	\[\int\limits_{|z - z_0| = \rho}fdz = 2\pi i \cdot \res\limits_{z_0}f\]
+\end{proposition}
+
+\begin{proof}
+	Функция $f$ представима рядом Лорана на $\mathring B_\epsilon(z_0)$, и этот ряд сходится равномерно на окружности $K_\rho:= \{z \in \Cm: |z - z_0| = \rho\}$. Интегрируя почленно, получим:
+	\[\int_{K_\rho}fdz = \sum\limits_{n = -\infty}^{+\infty}c_n\int_{K_\rho}(z-z_0)^ndz = (2\pi i)c_{-1} = (2\pi i)\res_{z_0}f\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{note}
+	Если окружность $K_\rho$ ориентирована не против часовой стрелки, а по часовой, имеет место равенство с противоположным знаком:
+	\[\int_{K_\rho}fdz = -2\pi i \cdot \res_{z_0}f\]
+\end{note}
+
+\begin{note}
+	Пусть $z_0 \in \Cm$, и функция $f$ регулярна на $\mathring B_\epsilon(z_0)$. Тогда выполнено равенство $\res\limits_{z_0}f(z) = \res\limits_0f(z + z_0)$.
+\end{note}
+
+\begin{proposition}
+	Пусть $z_0 \in \Cm$ "--- полюс порядка не выше $m \in \N$ функции $f$. Тогда верна следующая формула:
+	\[\res_{z_0}f = \frac{1}{(m-1)!}\lim_{z \to z_0}\big[f(z)(z - z_0)^m\big]^{(m-1)}\]
+\end{proposition}
+
+\begin{proof}
+	Функция $f$ представима рядом Лорана на $\mathring B_\epsilon(z_0)$:
+	\[f(z) = \frac{c_{-m}}{(z-z_0)^m} + \dotsb + \frac{c_{-1}}{z-z_0} + \sum_{n = 0}^{+\infty}c_n(z - z_0)^n\]
+	
+	Значит, функция $g(z) := f(z)(z-z_0)^m$ представима степенным рядом на $\mathring B_\epsilon(z_0)$. Тогда, по теореме Абеля, этот ряд cходится на $B_\epsilon(z_0)$, и его сумма регулярна на $B_\epsilon(z_0)$. Следовательно, выполнены следующие равенства:
+	\[c_{-1} = \frac{g^{(m-1)}(z_0)}{(m-1)!} = \frac1{{(m-1)!}}\lim_{z \to z_0}g^{(m-1)}(z) = \frac{1}{(m-1)!}\lim_{z \to z_0}\left[f(z)(z - z_0)^m\right]^{(m-1)}\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{proposition}[\textit{без доказательства}]
+    	Пусть выполнены следующие условия:
+    	\begin{enumerate}
+    		\item Функции $g, h$ регулярны в точке $z_0 \in \Cm$
+    		\item $h(z_0) = 0$, но $h'(z_0) \ne 0$
+    	\end{enumerate}
+    
+    	Тогда вычет функции $f := \frac{g}{h}$ в точке $z_0$ можно вычислить по следующей формуле:
+    	\[\res_{z_0}f = \frac{g(z_0)}{h'(z_0)}\]
+    \end{proposition}
+\end{unnecessary}
+
+\begin{definition}
+	Пусть $\infty$ "--- изолированная особая точка функции $f$. \textit{Вычетом} функции $f$ в точке $\infty$ называется величина $-c_{-1}$, где $c_{-1}$ "--- коэффициент ряда Лорана функции $f$ на $\mathring B_\epsilon(\infty)$. Обозначение "--- $\res\limits_{\infty}f$.
+\end{definition}
+
+\begin{proposition}
+	Пусть функция $f$ регулярна на $\mathring B_\epsilon(\infty)$, и $R > \epsilon$. Тогда:
+	\[\int\limits_{|z| = R}fdz = -2\pi i\cdot \res_\infty f\]
+\end{proposition}
+
+\begin{proof}
+	Аналогично случаю конечной особой точки.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{example}
+    	Пусть $f(z) := \frac 1z$. Тогда $\infty$ является устранимой особой точкой функции $f$, однако $\res\limits_\infty{f} = -1 \ne 0$.
+    \end{example}
+    
+    \begin{proposition}[\textit{без доказательства}]
+    	Пусть $\infty$ "--- изолированная особая точка функции $f$, и для некоторых $A \in \Cm \bs \{0\}$, $m \in \N$ выполнено $f \sim \dfrac{A}{z^m}$, $z \to \infty$. Тогда:
+    	\begin{itemize}
+    		\item $\res\limits_\infty f = -A$ при $m = 1$
+    		\item $\res\limits_\infty f = 0$ при $m \ge 2$
+    	\end{itemize}
+    \end{proposition}
+    
+    \begin{proposition}[\textit{без доказательства}]
+    	Пусть $\infty$ "--- изолированная особая точка функции $f$. Тогда выполнено равенство:
+    	\[\res_\infty f = \res_0\left(-\frac1{z^2}f\left(\frac1z\right)\right)\]
+    \end{proposition}
+\end{unnecessary}
+
+\begin{theorem}[теорема Коши о вычетах]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G$ "--- область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item Функция $f$ регулярна на $\overline{G}\,\bs \{z_1, \dotsc, z_n\}$, где $z_1, \dotsc, z_n \in G$~--- изолированные особые точки однозначного характера (ИОТОХ).
+	\end{enumerate}
+	
+	Тогда верна следующая формула:
+	\[\int_{\partial G}fdz = 2\pi i\sum\limits_{k = 1}^n\res_{z_k}f\]
+\end{theorem}
+
+\begin{proof}
+	Пусть сначала $G$ "--- ограниченная область с простой границей. Выберем $\rho_1, \dotsc, \rho_n > 0$ такие, что $\overline{B_{\rho_1}(z_1)}, \dotsc, \overline{B_{\rho_n}(z_n)} \subset G$, причем эти круги не пересекаются. Функция $f$ регулярна на области $D = G \bs \big(\bigcup_{k = 1}^n\overline{B_{\rho_k}(z_k)}\big)$ с простой границей, тогда, по интегральной теореме Коши:
+	\[\int_{\partial D} fdz = 0\]
+	
+	Для каждого $k \in \{1, \dotsc, n\}$ обозначим через $C_k$ окружность $\{z \in \Cm: |z - z_k| = \rho_k\}$, ориентированную \textit{по часовой стрелке}. Тогда:
+	\[0 = \int_{\partial D} fdz = \int_{\partial G} fdz + \sum_{k = 1}^n\left(\int_{C_k}fdz\right)\]
+	
+	Пользуясь утверждением об интеграле по окружности, получим:
+	\[\int_{\partial G} fdz = -\sum_{k = 1}^n\left(\int_{C_k}fdz\right) = 2 \pi i\sum_{k = 1}^n\res_{z_k}f\]
+	
+	Пусть теперь $G$ "--- неограниченная область с простой границей, тогда $\infty \in G$. Будем считать, что $z_n = \infty$. Поскольку $\partial G$ "--- компакт, то существует $R > 0$ такое, что $\partial G \subset B_R(0)$ и $z_1, \dotsc, z_{n-1} \in B_R(0)$. К области $D := B_R(0) \cap G$ применима доказанная часть теоремы. Пользуясь также утверждением об интеграле по окружности, получим:
+	\[\int_{\partial D} fdz = \int_{\partial G}fdz + \int_{|z| = R}fdz \ra \int_{\partial G}fdz = 2\pi i\left(\sum_{k = 1}^{n-1}\res_{z_k}f + \res_{\infty}f\right) = 2\pi i\sum_{k = 1}^{n}\res_{z_k}f\]
+
+	Теорема доказана.
+\end{proof}
+
+\begin{corollary}
+	Если функция $f$ регулярна на $\CM\,\bs \{z_1, \dotsc, z_n\}$, то:
+	\[\sum_{k = 1}^n\res_{z_k}f = 0\]
+\end{corollary}
+
+\begin{proof}
+	Как и в теореме выше, будем считать, что $z_n = \infty$. Выберем $R > 0$ такое, что $z_1, \dotsc, z_{n-1} \in B_R(0)$, и применим теорему к областям $B_R(0)$ и ${B_R(\infty)}$:
+	\[2\pi i\sum_{k = 1}^{n-1}\res_{z_k}f = \int_{|z| = R}fdz = -2\pi i\res_{\infty}f = -2\pi i\res_{z_n}f \ra \sum_{k = 1}^n\res_{z_k}f = 0\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{example}
+    	Вычислим следующий интеграл:
+    	\[I := \int_{|z| = \frac12} \tg\frac1z dz\]
+    	
+    	В области $\{z \in \Cm: |z| < \frac12\}$ функция $f(z) := \tg\frac1z$ имеет бесконечное число особых точек, а в области $\{z \in \Cm: |z| > \frac12\} \cup \{\infty\}$ особыми являются только точки $\pm \frac2\pi$. Значит, применить теорему можно только к внешней области.
+    	\begin{itemize}
+    		\item Поскольку $\tg\frac1z \sim \frac1z$, $z \to \infty$, то $\res\limits_\infty{f} = -1$
+    		
+    		\item Точки $\pm\frac2\pi$ являются полюсами первого порядка, и применима следующая формула:
+    		\[\res_{\pm\frac2\pi}{f} = \left.\frac{\sin\frac1z}{\left(\cos\frac1z\right)'}\right|_{z = \pm\frac2\pi} = \left.z^2\right|_{z = \pm\frac2\pi} = \frac4{\pi^2}\]
+    	\end{itemize}
+    	
+    	Таким образом:
+    	\[I = -2\pi i\left(\res_{\frac2\pi}f + \res_{-\frac2\pi}f + \res_{\infty}f\right) = 2\pi i\left(1 - \frac8{\pi^2}\right)\]
+    \end{example}
+    
+    \begin{note}
+    	В отличие от примера выше, интеграл $\int_{|z| = 1}\sin{z}\sin\frac1zdz$ нельзя вычислить применением теоремы о вычетах ни к одной из областей, поскольку и внутренняя, и внешняя области содержат бесконечное число особых точек.
+    \end{note}
+\end{unnecessary}

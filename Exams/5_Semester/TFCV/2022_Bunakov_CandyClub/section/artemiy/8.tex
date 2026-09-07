@@ -1,0 +1,112 @@
+\begin{definition}
+	Функция $F$ называется \textit{первообразной} функции $f$ на области $G \subset \Cm$, если $F$ дифференцируема на $G$ и $F' \equiv f$ на $G$.
+\end{definition}
+
+\begin{note}
+	Если $F$ "--- первообразная функции $f$ на области $G$, то для любого $C \in \Cm$ функция $F + C$ "--- тоже первообразная.
+\end{note}
+
+\begin{proposition}
+	Если $F_1, F_2$ "--- первообразные функции $f$ на области $G$, то для некоторого $C \in \Cm$ выполнено $F_1 - F_2 \equiv C$ на $G$.
+\end{proposition}
+
+\begin{proof}
+	Положим $F := F_2 - F_1$, тогда $F$ тоже дифференцируема на $G$, причем $F' = F_2' - F_1' \equiv 0$ на $G$, откуда $F' \in C^1(G)$. Пусть $F(z) = U(x, y) + iV(x, y)$, тогда выполнено равенство $F' = U'_x +iV'_x$, и, по условиям Коши-Римана, $U'_x, U'_y, V'_x, V'_y \equiv 0$ на $G$. Значит, функции $U$ и $V$ постоянны на $G$, что и требовалось.
+\end{proof}
+
+\begin{proposition}[формула Ньютона-Лейбница]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $f$ непрерывна и имеет первообразную $F$ на области $G \subset \Cm$
+		\item $\gamma$ "--- кусочно гладкая-кривая, соединяющая точки $z_1, z_2 \in G$, такая, что $M(\gamma) \subset G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\int_{\gamma}fdz = F(z_2) - F(z_1)\]
+\end{proposition}
+
+\begin{proof}
+	Пусть $z = \sigma(t)$, $t \in [a, b]$ "--- параметризация кривой $\gamma$, тогда $\sigma(a) = z_1$, $\sigma(b) = z_2$. Поскольку $F' \equiv f$ на $G$, то:
+	\[ (F(\sigma(t)))'_t = F'(\sigma(t))\sigma'(t) = f(\sigma(t))\sigma'(t),~t \in [a, b]\]
+	
+	Значит, выполнено следующее:
+	\[\int_\gamma fdz = \int_a^b f(\sigma(t))\sigma'(t)dt = \int_a^b (F(\sigma(t)))'_t dt = F(\sigma(b)) - F(\sigma(a)) = F(z_2) - F(z_1)\]
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{corollary}
+	Пусть функция $f$ непрерывна и имеет первообразную на области $G \subset \Cm$. Тогда для любой замкнутой кусочно-гладкой кривой $\gamma$ такой, что $M(\gamma) \subset G$, выполнено равенство:
+	\[\int_\gamma fdz = 0\]
+\end{corollary}
+
+\begin{unnecessary}
+    \begin{example}
+    	Пусть $n \in \N$. Тогда для любых чисел $z_1, z_2 \in \Cm$ и для любой соединяющей их кусочно-гладкой кривой $\gamma$ выполнено следующее:
+    	\[\int_{z_1}^{z_2}z^ndz := \int_\gamma z^ndz = \frac{z_2^{n+1} - z_1^{n+1}}{n+1}\]
+    \end{example}
+\end{unnecessary}
+
+\begin{proposition}
+\label{always-have-pervoobraznaya}
+    Пусть выполнены следующие условия:
+    \begin{enumerate}
+        \item Функция $f$ непрерывна на области $G \subset \Cm$
+        \item Для любой замкнутой кусочно-гладкой кривой $\gamma$ такой, что $M(\gamma) \subset G$, выполнено равенство $\int_\gamma fdz = 0$
+    \end{enumerate}
+
+    Тогда $f$ имеет первообразную на $G$.
+\end{proposition}
+
+\begin{proof}
+	Из условия следует, что для любых $z_1, z_2 \in G$ интеграл $\int_{z_1}^{z_2} fdz$ не зависит от выбора лежащей в $G$ кусочно-гладкой кривой, соединяющей $z_1$ и $z_2$. Действительно, если $\gamma_1, \gamma_2$ "--- две такие кривые, то тогда:
+	\[0 = \int_{\gamma_1\gamma_2^{-1}}fdz = \int_{\gamma_1}fdz + \int_{\gamma_2^{-1}}fdz = \int_{\gamma_1}fdz - \int_{\gamma_2}fdz \ra \int_{\gamma_1}fdz = \int_{\gamma_2}fdz\]
+	
+	Зафиксируем $z_0 \in G$ и проверим, что первообразной функции $f$ является функция следующего вида:
+	\[F(z) := \int_{z_0}^zfdw,~z \in G\]
+	
+	Выберем произвольные $z \in G$ и $\epsilon > 0$. Достаточно доказать, что существует $\delta > 0$ такое, что для всех $0 < |\Delta z| \le \delta$ выполнено следующее неравенство:
+	\[\left|\frac{F(z + \Delta z) - F(z)}{\Delta z} - f(z)\right| \le \epsilon\]
+	
+	Поскольку $f$ непрерывна в точке $z$, то существует $\delta > 0$ такое, что для всех $w \in \Cm$, $|w - z| \le \delta$ выполнено неравенство $|f(w) - f(z)| < \epsilon$. Тогда, выбирая в качестве кривой, соединяющей $z$ и $z + \Delta z$, отрезок, получим:
+	\[\frac{F(z + \Delta z) - F(z)}{\Delta z} = \frac{1}{\Delta z}\left(\int_{z_0}^{z + \Delta z}fdw - \int_{z_0}^{z}fdw\right) = \frac{1}{\Delta z}\int_{z}^{z + \Delta z}fdw\]
+
+        Замечание:
+        \[\int_z^{z + \Delta z} 1 dw\ = \Delta z\] (Выражение верно не только по отрезку, но и по любой кусочно-гладкой кривой)
+
+        Тогда
+        \[f(z) = f(z) \frac{1}{\Delta z}\int_z^{z + \Delta z} 1 dw = \frac{1}{\Delta z}\int_z^{z + \Delta z} f(z) dw\]
+	
+	Длина кривой $\gamma$ на участке от $z$ до $z + \Delta z$ равна $|\Delta z|$. Таким образом, выполнено следующее:
+	\[\left|\frac{F(z + \Delta z) - F(z)}{\Delta z} - f(z)\right| = \frac1{|\Delta z|}\left|\int_z^{z + \Delta z}\left(f(w) - f(z)\right)dw\right| \le \frac1{|\Delta z|}\left(\max_{w \in [z, z + \Delta z]}\left|f(w) - f(z)\right|\right)|\Delta z| =\]
+        \[= \frac1{|\Delta z|}(\epsilon|\Delta z|) = \epsilon\]
+	
+	В силу произвольности выбора $z$ и $\epsilon$, получено требуемое.
+\end{proof}
+
+\begin{corollary}
+	Пусть $G \subset \Cm$ "--- односвязная область, $f \in C^1(G)$. Тогда $f$ имеет первообразную на $G$.
+\end{corollary}
+
+\begin{proof}
+	Воспользуемся утверждением выше и интегральной теоремой Коши для односвязной области.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{note}
+    	Условие односвязности в последнем утверждении существенно. Рассмотрим, например, область $G := \{z \in \Cm: \frac12 < |z| < 2\}$, функцию $f(z) := \frac1z$ и кривую $\gamma$, обходящую окружность $\{z \in \Cm: |z| = 1\}$ против часовой стрелки. Тогда:
+    	\[\int_\gamma\frac1{z} = 2\pi i \ne 0\]
+    
+        (Результат выведен в параграфе "Интеграл вдоль кривой")
+        
+    	Значит, функция $f$ не может иметь первообразную на $G$.
+    \end{note}
+\end{unnecessary}
+
+\begin{theorem}[Мореры]
+	Функция $f$, непрерывная на области $G \subset \Cm$, для любой замкнутой кусочно-гладкой кривой $\gamma$ такой, что $M(\gamma) \subset G$, выполнено $\int_\gamma fdz = 0$. Тогда $f(z)$ регулярна в $G$.
+\end{theorem}
+
+\begin{proof}
+	По утверждению~\ref{always-have-pervoobraznaya}, $f(z)$ имеет первообразную, $F'(z) \equiv_G f(z) \in C(G)$. Значит, $F(z)$ регулярна в области $G$, значит $F(z)$ бесконечно дифференцируема в области $G$. Но тогда и $f(z)$ бесконечно дифференцируема. Тогда $f(z)$ регулярна в $G$.
+\end{proof}

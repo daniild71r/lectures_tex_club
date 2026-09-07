@@ -1,0 +1,160 @@
+Положим
+\begin{enumerate}
+    \item $G^+ := \{z \in \Cm: \im z > 0\}$
+    \item $C_R^+ := \{z \in \Cm: |z| = R, \im z \geq 0\}$
+    \item $\Cm^{++} := \{z \in \Cm: \im z > 0\}$
+    \item $\Cm^{--} := \{z \in \Cm: \im z < 0\}$
+\end{enumerate}
+
+\begin{lemma}[<<$+$>>]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $f$ регулярна на $\overline{G}^+ \bs \{z_1, \dotsc, z_n, \infty\}$, где $z_1, \dotsc, z_n \in G^+$~--- ИОТОХ
+		\item $\int_{C_R^+}fdz \to 0,\; R \to +\infty$
+	\end{enumerate}
+	
+	Тогда:
+	\[\exists\; \text{v.p.} \int_{-\infty}^{\infty} f(x) dx = 2\pi i \sum_{k = 1}^n \res_{z_k}f(z).\]
+\end{lemma}
+
+\begin{proof}
+	Выберем $R > \max\limits_{k = 1, \ldots, n}|z_k|$, обозначим $D_R = [-R, R] \cup C_R^+$~--- ОСПГ, то есть:	
+	\begin{center}
+		\scalebox{1}{
+			\begin{tikzpicture}
+				\clip (-3.4, -0.6) rectangle (3.4, 3);
+				\draw [->] (-3, 0) -- (3, 0) node [above, black] {$\re z$};
+				\draw [->] (0, -0.5) -- (0, 2.7) node [right, black] {$\im z$};
+				
+				% A clipped circle is drawn
+				\begin{scope}
+					\clip (-2.25, 0) rectangle (2.25, 2.2);
+					\fill [opacity=0.07] (0, 0) circle[radius=2.2];
+					\draw[
+					black, line width = 0.2mm,
+					decoration={markings, mark=at position 0.13 with {\arrow{>}}},
+					decoration={markings, mark=at position 0.38 with {\arrow{>}}},
+					postaction={decorate}
+					] (0,0) circle[radius=2.2];
+					
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.9}{$z_1$}}] at (1.2, 1) {};
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.9}{$z_n$}}] at (-1.5, 0.5) {};
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black] at (-0.5, 1.4) {};
+					\node[draw, star, star points=8, star point ratio=2.2, inner sep=0.5pt, fill, black] at (0.45, 0.5) {};
+					\draw (-2.2,0) -- (2.2,0);
+				\end{scope}
+				
+				\draw[line width = 0.2mm, ->] (-2.2,0) -- (-1,0);
+				\draw[line width = 0.2mm, ->] (-1,0) -- (1, 0);
+				\draw[line width = 0.2mm] (1, 0) -- (2.2,0);
+				
+				\node[] at (-1.75, 2.1) {$C_{R}^+$};
+				\node[] at (0.7, 1.6) {$D_R$};
+				
+				\draw [black] (2.19,3pt) -- (2.19,-3pt) node [below, black] {$R$};
+				\draw [black] (-2.19,3pt) -- (-2.19,-3pt) node [below, black] {$-R$};
+			\end{tikzpicture}
+		}
+	\end{center}
+	
+	Применим к $D_R$ теорему о вычетах:
+	\[\int_{-R}^Rf(x)dx + \int_{C_R^+}fdz = 2\pi i\sum_{k=1}^n\res_{z_k}f\]
+	
+	Переходя к пределу $R \to +\infty$, получим требуемое.
+\end{proof}
+
+\begin{lemma}[<<$-$>>]
+	Положим
+    \begin{enumerate}
+        \item $G^- := \{z \in G: \im z < 0\}$
+        \item $C_R^- := \{z \in \Cm: |z| = R, \im z \leq 0\}$.
+    \end{enumerate}
+    Если выполнено
+	\begin{enumerate}
+		\item Функция $f$ регулярна на $\overline{G}^- \bs \{z_1, \dotsc, z_n, \infty\}$, где $z_1, \dotsc, z_n \in G^-$~--- ИОТОХ
+		\item $\int_{C_R^-}fdz \to 0,\; R \to +\infty$
+	\end{enumerate}
+	
+	Тогда:
+	\[\exists\; \text{v.p.} \int_{-\infty}^{\infty} f(x) dx = -2\pi i \sum_{k = 1}^n \res_{z_k}f(z).\]
+\end{lemma}
+
+\begin{theorem}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $f = \frac{P}{Q}$, где $P, Q \in \Cm[z]$ "--- многочлены степеней $m, n \in \N \cup \{0\}$ соответственно, не имеющие общих корней
+		\item $n \geq m + 2$
+		\item $Q$ не имеет вещественных корней и обращается в ноль в точках $z_1, \dotsc, z_N \in \Cm^{++}$ и $w_1, \dotsc, w_M \in \Cm^{--}$
+	\end{enumerate}
+	
+	Тогда верны следующие равенства:
+	\[\int_{-\infty}^{+\infty}fdx = 2\pi i\sum_{k=1}^N \res_{z_k}f = -2\pi i\sum_{k=1}^M \res_{w_k}f\]
+\end{theorem}
+
+\begin{proof}
+	Поскольку $n \ge m + 2$, то существует предел $\lim\limits_{z \to \infty}z^2f(z) = A \in \Cm$. Выберем $R_0$ такое, что при $|z| > R_0$ выполнено неравенство $|z^2f(z)| \le |A| + 1$. Тогда, по свойству оценки интегралов, для любого $R > R_0$ имеем:
+	\[\left|\int_{C_R^+}fdz\right| \le (2\pi R)\frac{|A| + 1}{R^2} = 2\pi\frac{|A| + 1}{R} \xrightarrow[R \to \infty]{} 0\]
+	
+	Значит, выполнены все условия леммы <<$+$>>, из которой следует первое равенство. Второе доказывается аналогично.
+\end{proof}
+
+\begin{proposition}[лемма Жордана]
+    Положим $G = \{z \in \C | \im z > 0, |z| > R_0\}$, где $R_0 > 0$.
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функция $g$ непрерывна на $G$
+		\item Если $M(R) := \max\limits_{z \in C_R^+}|g(z)|$ для любого $R>0$, то $\lim\limits_{R \to +\infty}M(R) = 0$
+		\item $\alpha > 0$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\lim_{R \to +\infty} \int_{C_R^+}ge^{i\alpha z}dz = 0\]
+\end{proposition}
+
+\begin{proof}
+	Произведем замену $z = Re^{it}$, тогда:
+	\begin{multline*}
+		\left|\int_{C_R^+}g(z)e^{i\alpha z}dz\right| = \left|\int_0^\pi g(Re^{it})e^{i\alpha Re^{it}}z'(t)dt\right| \le M(R)R \int_0^\pi \left|e^{i\alpha R(\cos{t} + i\sin{t})}\right|dt = \\
+		= M(R)R \int_0^\pi e^{-\alpha R\sin{t}}dt = 2M(R)R \int_0^{\frac\pi 2} e^{-\alpha R\sin{t}}dt  \stackrel{\sin t \ge \frac 2 \pi t}{\le} 2M(R)R \int_0^{\frac\pi 2} e^{-\alpha \frac{2R}\pi t}dt \le \\
+		\le 2M(R)R \int_0^{+\infty} e^{-\alpha \frac{2R}\pi t}dt = 2M(R)R \cdot \frac\pi{2\alpha R} = \frac{M(R)\pi}{\alpha} \xrightarrow[R \to +\infty]{} 0
+	\end{multline*}
+	
+	Получено требуемое.
+\end{proof}
+
+\begin{theorem}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $f = \frac PQ$, где $P, Q \in \Cm[z]$ "--- многочлены степеней $m, n \in \N \cup \{0\}$ соответственно, не имеющие общих корней
+		\item $n \ge m + 1$
+		\item $Q$ не имеет вещественных корней и обращается в ноль в точках $z_1, \dotsc, z_n \in \Cm^{++}$ и $w_1, \dotsc, w_m \in \Cm^{--}$
+		\item $\alpha > 0$, $\beta \in \R$
+	\end{enumerate}
+	
+	Тогда верны следующие равенства:
+	\[\int_{-\infty}^{+\infty}fe^{i(\alpha x + \beta)}dx = 2\pi i\sum_{k=1}^n \res_{z_k}\left(fe^{i(\alpha x + \beta)}\right) = -2\pi i\sum_{k=1}^m \res_{w_k}\left(fe^{i(\alpha x + \beta)}\right)\]
+\end{theorem}
+
+\begin{proof}
+	Применим лемму <<$+$>> к функции $fe^{i(\alpha x + \beta)}$. Стремление к нулю интеграла по полуокружности $C_R^+$ достигается засчёт леммы Жордана.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{note}
+    	Если в условиях теоремы выше выполнено $P, Q \in \R[z]$, то для интеграла $I := \int_{-\infty}^{+\infty}fe^{i(\alpha x + \beta)}dx$ выполнены соотношения:
+    	\[I = \re I + i \im I = \int_{-\infty}^{+\infty}f\cos{(\alpha x + \beta)}dx + i\int_{-\infty}^{+\infty}f\sin{(\alpha x + \beta)}dx\]
+    \end{note}
+    
+    \begin{note}
+    	Пусть $R(u, v)$ "--- рациональная функция. Рассмотрим следующую функцию:
+    	\[R_1(z) := R\left(\frac12\left(z + \frac1z\right), \frac1{2i}\left(z - \frac1z\right)\right)\]
+    	
+    	$R_1$ является рациональной функцией от $z$. Пусть $R_1$ не имеет особых точек на окружности $\{z \in \Cm : |z| = 1\}$. Рассмотрим следующий интеграл:
+    	\[I := \int_{|z| = 1}\frac{1}{iz}R_1dz\]
+    	
+    	С одной стороны, его можно вычислить, используя теорему о вычетах. С другой стороны, если произвести замену $z = e^{it}$, то:
+    	\[I = \int_{0}^{2\pi} R(\cos{t}, \sin{t})dt\]
+    	
+    	Получен способ вычислять еще один класс вещественных интегралов.
+    \end{note}
+\end{unnecessary}

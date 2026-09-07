@@ -1,0 +1,133 @@
+\begin{theorem}[Колмогорова-Хинчина о сходимости рядов]
+Пусть $\xi_1, \xi_2, \dots$ -- последовательность независимых случайных величин, причём
+$\E \xi_i = 0$ и $\E \xi_i^2 < \infty$.
+
+1) Если \( \sum \limits_{i = 1}^{\infty} \E \xi_i^2 < \infty \), то 
+\( \sum \limits_{i = 1}^{\infty} \xi_i < \infty \) п. н.
+
+2) Если \( \exists C >0 : P(\forall i \; |\xi_i| \leqslant C) = 1 \) и
+\( \sum \limits_{i = 1}^{\infty} \xi_i < \infty \) п. н., то 
+\( \sum \limits_{i = 1}^{\infty} \E \xi_i^2 < \infty \).
+\end{theorem}
+
+\begin{proof}
+
+1) \( \sum \limits_{i = 1}^{\infty} \xi_i < \infty \) п. н. 
+\( \Leftrightarrow \sum \limits_{i = 1}^n \xi_i \) фундаментальна п.н. (критерий Коши)
+
+Также по критерию фундаментальности с вероятностью 1:
+
+\( \sum \limits_{i = 1}^n \xi_i \) фундаментальна п. н. 
+\( \Leftrightarrow \forall \varepsilon > 0 \;
+P \left( \sup \limits_{k \geqslant 1} \left| \sum \limits_{i = n + 1}^{n + k} \xi_i \right| 
+> \varepsilon \right) \to 0, n \to \infty \)
+
+Зафиксируем $n$ и положим \( S_i = \xi_{n + 1} + \dots + \xi_{n + i} \).
+Тогда наше условие можно переписать так:
+
+\[
+P \left( \sup_{1 \leqslant k \leqslant N} \left| \sum_{i = n + 1}^{n + k} \xi_i \right|
+> \varepsilon \right) = P \left( \sup_{1 \leqslant k \leqslant N} |S_k| > \varepsilon \right)
+\]
+
+По неравенству Колмогорова получаем, что 
+
+\[
+P \left( \sup_{1 \leqslant k \leqslant N} |S_k| > \varepsilon \right) \leqslant
+\frac{\E |S_N|^2}{\varepsilon^2}
+\]
+
+По непрерывности меры получаем, что
+
+\[
+P \left( \sup_{k \geqslant 1} \left| \sum_{i = n + 1}^{n + k} \xi_i \right| 
+> \varepsilon \right) = \lim_{N \to \infty} P \left( \sup_{1 \leqslant k \leqslant N}
+\left| \sum_{i = n + 1}^{N} \xi_i \right| > \varepsilon \right) \leqslant
+\lim_{N \to \infty} \frac{\E |S_N|^2}{\varepsilon^2}
+\]
+
+Распишем $\E S_N^2$, воспользовавшись тем, что случайные величины независимы и имеют
+матожидание 0:
+
+\[
+\E S_N^2 = \E (\xi_{n + 1} + \dots + \xi_{n + N})^2 = \E \xi_{n + 1}^2 + \dots + 
+\E \xi_{n + N}^2
+\]
+
+Тогда \( \lim \limits_{N \to \infty} \frac{\E S_N^2}{\varepsilon^2} = 
+\frac{\sum \limits_{i = n + 1}^{\infty} \E \xi_i^2}{\varepsilon^2} \).
+Так как ряд \( \sum \limits_{i = 1}^{\infty} \E \xi_i^2 \) сходится, то
+\( \sum \limits_{i = n + 1}^{\infty} \E \xi_i^2 \to 0, n \to \infty \) как остаточный
+член сходящегося ряда. Тогда 
+
+\[
+\lim_{n \to \infty} P \left( \sup_{k \geqslant 1} 
+\left| \sum_{i = n + 1}^{n + k} \xi_i \right| > \varepsilon \right) \leqslant
+\lim_{n \to \infty} \frac{\sum \limits_{i = n + 1}^{\infty} \E \xi_i^2}{\varepsilon^2} = 0
+\]
+
+Это доказывается требуемое утверждение.
+
+2) Предположим противное: \( \sum \limits_{i = 1}^{\infty} \E \xi_i^2 = \infty \).
+
+Так как \( \sum \limits_{i = 1}^{\infty} \xi_i < \infty \) п. н., то можно опять
+воспользоваться критерием фундаментальности с вероятностью 1, то есть
+
+\[
+\exists n_0 : \forall n \geqslant n_0 \; 
+P \left( \sup_{k \geqslant 1} \left| \sum_{i = n + 1}^{n + k} \xi_i \right| 
+> \varepsilon \right) < \frac{1}{2}
+\]
+
+Воспользуемся неравенством Колмогорова (второй частью):
+
+\[
+P \left( \sup_{1 \leqslant k \leqslant N} |S_k| > \varepsilon \right) \geqslant
+1 - \frac{(C + \varepsilon)^2}{\E S_N^2}
+\]
+
+Перейдём к пределу при \( N \to \infty \) в обоих частях:
+
+\[
+P \left( \sup_{k \geqslant 1} |S_k| > \varepsilon \right) \geqslant 
+\lim_{N \to \infty} \left( 1 - \frac{(C + \varepsilon)^2}{\E S_N^2} \right) = 
+1 - \frac{(C + \varepsilon)^2}{\sum_{i = k + 1}^{\infty} \E \xi_i^2} = 1
+\]
+
+так как \( \sum \limits_{i = k + 1}^{\infty} \E \xi_i^2  = \infty \) как остаточный член 
+расходящегося ряда. Получили противоречие с тем, что 
+\( \sum \limits_{i = 1}^n \xi_i < \infty \) п.н.
+
+\end{proof}
+
+\begin{lemma}[Кронекера (б/д)]
+Пусть \( \sum \limits_{n = 1}^{\infty} x_n < \infty , 0 < b_n \uparrow \infty \).
+Тогда \( \frac{\sum \limits_{k = 1}^n x_k b_k}{b_n} \to 0, n \to \infty \).
+\end{lemma}
+
+\begin{theorem}[УЗБЧ 1]
+
+Пусть \( \xi_n \) -- независимые случайные величины, \( \E \xi_n^2 < \infty \), 
+\( S_n = \xi_1 + \dots \xi_n \). Пусть существует последовательность \( \{b_n\} \), такая
+что \( 0 < b_1 \leqslant b_2 \leqslant b_3 \leqslant \dots \), 
+\( \lim \limits_{n \to \infty} b_n = \infty\) и 
+\( \sum \limits_{n = 1}^{\infty} \frac{\D \xi_n}{b_n^2} < \infty \). 
+Тогда \( \frac{S_n - \E S_n}{b_n} \to 0 \) п. н.
+\end{theorem}
+
+\begin{proof}
+Рассмотрим отцентрированные случайные величины \( \eta_n = \xi_n - \E \xi_n \).
+
+\( \sum \limits_{n = 1}^{\infty} \frac{\D \eta_n}{b_n^2} = 
+\sum \limits_{n = 1}^{\infty} \E \left( \frac{\eta_n}{b_n} \right)^2 < \infty \)
+По теореме о сходимости рядов получаем, что
+\( \sum \limits_{n = 1}^{\infty} \frac{\eta_n}{b_n} < \infty \) п. н.
+
+Тогда по лемме Кронекера получаем требуемое:
+
+\[
+\frac{1}{b_n} \sum_{k = 1}^n \frac{\eta_k}{b_k} \cdot b_k = \frac{S_n - \E S_n}{b_n}
+\xrightarrow{\text{п. н.}} 0
+\]
+
+\end{proof}

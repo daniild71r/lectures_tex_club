@@ -1,0 +1,75 @@
+\paragraph*{Четыре свойства характеристических функций с доказательством}
+
+\begin{enumerate}
+    \item $|\charac{\xi}{t}| \leqslant \charac{\xi}{0} = 1$
+    
+    \begin{proof} $|\charac{\xi}{t}| = |\E e^{it\xi}| \leqslant \E|e^{it\xi}| = \E(1) = 1 = \charac{\xi}{0}$\end{proof}
+    
+    \item $\charac{\xi}{t}$ равномерно непрерывна на $\R$
+    
+    \begin{proof} Пусть $\eps > 0$. Так как $\sin(t\xi) \to 0$ почти наверное при $t \to 0$, по теореме Лебега о мажорируемой сходимости $\E|\sin(t\xi)| \to 0$ при $t \to 0$
+    $$
+    \exists \delta > 0: \forall t \in (-\delta, \delta) \ \E|\sin(t\xi)| < \frac{\eps}{4}
+    $$
+    Пусть $|s - t| < \delta$, тогда
+    
+   $|\charac{\xi}{t} - \charac{\xi}{s}| = |\E e^{is\xi}\brackets{e^{i(t - s)\xi} - 1}| \leqslant \E|e^{i(t - s)\xi} - 1| =$ \\ $ \E\sqrt{(\cos((t - s)\xi) - 1)^2 + \sin^2((t - s)\xi)} =
+ \E\sqrt{2 - 2\cos((t - s)\xi)} = 2\E\Biggl|\sin\brackets{\frac{t - s}{2}\xi}\Biggr| < \eps
+    $ \ \end{proof}
+    
+    \item $\forall t \in \R \ \charac{\xi}{t} \in \R \Longleftrightarrow \xi = -\xi$ по распределению.
+    
+    \begin{proof} 
+    $\Longrightarrow$ 
+    $\forall t \in \R \ \charac{\xi}{t} \in \R$, тогда
+    $$
+    \charac{\xi}{t} = \E e^{it\xi} = \E \brackets{\cos(t\xi) + i\sin(t\xi)} = \E \brackets{\cos(t\xi)} = \E \brackets{\cos(t\xi) - i\sin(t\xi)} = \charac{\xi}{-t}
+    $$
+    
+    $\Longleftarrow$
+    $\xi = -\xi$ по распределению, тогда $\E\sin(t\xi) = \E\sin(-t\xi) = -\E\sin(t\xi) = 0, \varphi_\xi(t) = \E\cos(t\xi)$  \end{proof}
+     
+    \item $\forall t \in \R \ \charac{\xi}{-t} = \overline{\charac{\xi}{t}}$
+    
+    \begin{proof} $\charac{\xi}{-t} = \E\brackets{\cos(-t\xi) + i\sin(-t\xi)} = \E\brackets{\cos(t\xi) - i\sin(t\xi)} = \E \overline{e^{it\xi}}  =\overline{\charac{\xi}{t}}$  \end{proof}
+\end{enumerate}
+
+\begin{theorem}[Об обращении (б/д)]  Пусть $\charac{\xi}{x}$ - характеристическая функция $\xi$. \end{theorem} 
+
+\begin{itemize}
+    \item Для любых двух точек непрерывности $a < b$ функции распределения $F_\xi$ верно, что  
+    $$
+    F_\xi(b) - F_\xi(a) = \frac{1}{2\pi}\lim\limits_{c \to \infty}\int\limits_{-c}^c \frac{e^{-ita} - e^{-itb}}{it} \charac{\xi}{t}dt
+    $$
+    \item Если $\int\limits_\R |\charac{\xi}{t}| dt < \infty$, то $\xi$-абс. непр. с $p_\xi(x) = \frac{1}{2\pi} \int\limits_\R e^{-itx} \charac{\xi}{t} dt$
+\end{itemize}
+
+\begin{lemmanote} 
+
+Обратим внимание, что формулы выше по сути являются преобразованием Фурье (либо прямым, либо обратным).
+
+\end{lemmanote} 
+
+\paragraph*{Теорема Бохнера-Хинчина}
+
+\begin{definition}  $\varphi: \R \to \mathbb{C}$ неотрицательно определена, если 
+$$
+\forall n \in \N \ \ \forall t_1, \ldots, t_n \in \R \ \  \forall z_1, \ldots, z_n \in \mathbb{C} \sum\limits_{j, k = 1}^n \varphi(t_j - t_k)z_j\overline{z_k} \geqslant 0
+$$ \end{definition} 
+
+\begin{theorem}[Бохнера-Хинчина]  
+
+Если $\varphi$ непрерывна и $\varphi(0) = 1$, то 
+\[\varphi - \text{хар. функция} \Leftrightarrow \varphi \text{ неотрицательно определена.}\] 
+
+\end{theorem} 
+
+\begin{proof} 
+$\Longleftarrow$ Без доказательства
+
+$\Longrightarrow$ Пусть $\varphi$ - характеристическая, тогда
+
+$   \sum\limits_{j, k = 1}^n \varphi(t_j - t_k)z_j\overline{z_k} = \sum\limits_{j, k = 1}^n \E e^{i(t_j - t_k)\xi}z_j\overline{z_k} = \sum\limits_{j, k = 1}^n \E \brackets{e^{it_j\xi} \cdot \overline{e^{it_k\xi}}}z_j\overline{z_k} =$ \\
+    $= \E\brackets{\sum\limits_{j, k = 1}^n z_j e^{it_j\xi} \cdot \overline{z_k e^{it_k\xi}}} = \E\Biggl|\sum\limits_{j = 1}^n z_k e^{it_k\xi}\Biggr|^2 \geqslant 0
+$
+\end{proof}

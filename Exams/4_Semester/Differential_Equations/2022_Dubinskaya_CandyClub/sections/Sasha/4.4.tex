@@ -1,0 +1,40 @@
+Пусть матрица $\text{Ф}(x)$~--- фундаментальная матрица системы~(\ref{varcoef-odn-sys}). Из теоремы~\ref{varcoef-solsysth} получаем самое важное свойство: общее решение~(\ref{varcoef-odn-sys}) записывается в виде \[\vec{y}(x) = \text{Ф}(x) \cdot \vec{C},\]
+где $\vec{C}$~--- произвольный числовой вектор размера $n$.
+
+Пусть \(\vec{y}_1(x), \ldots, \vec{y}_n(x)\)~--- система вектор-функций, определенная на $I$ с $n$ компонентами. 
+
+\begin{definition}
+Определителем Вронского (или сокращенно вронскианом) системы \[\vec{y}_1(x), \ldots, \vec{y}_n(x)\] называется определитель
+\[W(x) \equiv W[\vec{y}_1(x), \ldots, \vec{y}_n(x)] = \det
+\begin{Vmatrix}
+| &  & |\\
+ \vec{y}_1(x) & \ldots &  \vec{y}_n(x)\\
+| &  & |
+\end{Vmatrix}.\]
+\end{definition}
+
+Если \( \vec{y}_1(x), \ldots,  \vec{y}_n(x)\)~--- решения линейной однородной системы~(\ref{varcoef-odn-sys}), то из теоремы~\ref{varcoef-dependencyth} вытекает следующая связь между линейной зависимостью \(\vec{y}_1(x), \ldots, \vec{y}_n(x)\) и обращением в ноль вронскиана. 
+
+\begin{itemize}
+    \item Решения~(\ref{varcoef-odn-sys}) \(\vec{y}_1(x), \ldots, \vec{y}_n(x)\)~--- линейно зависимы на $I$ тогда и только тогда когда $W(x) \equiv 0$ на $I$.
+    \item Решения~(\ref{varcoef-odn-sys}) \(\vec{y}_1(x), \ldots, \vec{y}_n(x)\)~--- линейно независимы на $I$ тогда и только тогда когда $W(x) \neq 0$ на $I$.
+\end{itemize}
+
+Важно, что это верно именно для решений системы~(\ref{varcoef-odn-sys}) и неверно для произвольных вектор-функций.
+
+\begin{theorem}[О структуре решения неоднородной системы]\label{varcoef-neodnor-structure}
+Пусть $y_0(x)$~--- некоторое частное решение системы~(\ref{varcoef-sys}) и $\text{Ф}(x)$~--- фундаментальная матрица соотвествующей~(\ref{varcoef-sys}) однородной системы~(\ref{varcoef-odn-sys}). Тогда все решения системы~(\ref{varcoef-sys}) задаются формулой
+\[
+\vec{y}(x) = \vec{y}_0(x) + \text{Ф}(x) \vec{C},
+\]
+где $\vec{C}$~--- произвольный числовой вектор размерности $n$.
+\end{theorem}
+\begin{proof}
+В системе~(\ref{varcoef-sys}) сделаем замену 
+\[\vec{y}(x) = \vec{z}(x) + \vec{y}_0(x).\]
+Тогда получим, что $\vec{z}(x)$ удовлетворяет однородной системе~(\ref{varcoef-odn-sys}). Общее решение системы~(\ref{varcoef-odn-sys}) записывается как 
+\begin{equation}
+    \vec{z}(x)  = \text{Ф}(x) \vec{C}.
+\end{equation}
+Из замены следует утверждение теоремы.
+\end{proof}

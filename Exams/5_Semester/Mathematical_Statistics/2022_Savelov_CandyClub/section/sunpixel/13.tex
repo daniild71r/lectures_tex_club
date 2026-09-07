@@ -1,0 +1,38 @@
+\begin{definition}
+    Статистика $S(X)$ называется \textit{полной} для $\theta$, если из условия $E_\theta f(S(X)) = 0\ \forall \theta \in \Theta$ следует, что $f(S(X)) = 0\ \forall \theta \in \Theta\ P_\theta-a.s.$
+\end{definition}
+\begin{theorem}
+    (Лемана-Шеффе, об оптимальной оценке) Пусть $\displaystyle T( X)$ -- полная достаточная статистика для $\displaystyle \{P_{\theta } ,\ \theta \in \Theta \} ,\ \phi ( T( X))$ -- несмещенная оценка для $\displaystyle \tau ( \theta )$. Тогда $\displaystyle \phi ( T( X))$ не хуже любой несмещенной оценки $\displaystyle \tau ( \theta )$ в среднеквадратичном подходе, и если $\displaystyle \phi ( T) \in L_{2}$, то $\displaystyle \phi ( T)$ -- оптимальная оценка.
+\end{theorem}
+\begin{proof}
+    Пусть $\displaystyle \tilde{d}$ -- несмещенная оценка $\displaystyle \tau ( \theta )$. Тогда $\displaystyle \tilde{\phi }( T) =E\left(\tilde{d} \ |\ T\right)$ не хуже $\displaystyle \tilde{d}$ и является несмещенной. Значит, $\displaystyle E_{\theta }\left( \phi ( T) -\tilde{\phi }( T)\right) =0$. Возьмем $\displaystyle h=\phi -\tilde{\phi }$. Тогда $\displaystyle \forall \theta \ E_{\theta } h( T) =0$. По определению полной статистики $\displaystyle h( T) =0\ P_{\theta } -a.s.\ \forall \theta $, \ а следовательно, $\displaystyle \phi ( T) =\tilde{\phi }( T) \ ( P_{\theta } -a.s.)$.
+    
+    Пусть теперь $\displaystyle \phi ( T) \in L_{2}$. В силу следствия достаточно доказать, что $\displaystyle \phi ( T)$ -- единственная несмещенная $\displaystyle T$-измеримая оценка.
+    
+    Пусть $\displaystyle \psi ( T)$ -- несмещенная $\displaystyle T$-измеримая оценка. Тогда $\displaystyle E_{\theta }( \psi ( T) -\phi ( T)) =0\Rightarrow \psi ( T) =\phi ( T)$.
+\end{proof}
+\begin{corollary}
+    Пусть $\displaystyle T( X)$ -- полная достаточная статистика, $\displaystyle d( X)$ -- несмещенная оценка для $\displaystyle \tau ( \theta ) \ ( d\in L_{1})$. Тогда $\displaystyle \phi =E_{\theta }( d\ |\ T)$ не хуже любой другой оценки в среднеквадратичном подходе. Если $\displaystyle \phi \in L_{2}$, то $\displaystyle \phi $ -- оптимальна.
+\end{corollary}
+\begin{proof}
+    $\displaystyle E_{\theta }( d\ |\ T( X))$ -- несмещенная оценка и является функцией от $\displaystyle T$.
+\end{proof}
+\begin{theorem}
+    (об экспоненциальном семействе, б/д) Пусть $\displaystyle X_{1} ,\ \dotsc ,\ X_{n}$ -- выборка из экспоненциального семейства распределений. Если множество значений вектор-функции $\displaystyle \forall \theta \ \overline{a}( \theta ) =\begin{pmatrix}
+    a_{0}( \theta ) & \dotsc  & a_{k}( \theta )
+    \end{pmatrix}$ из определения экспоненциального семейства содержит $\displaystyle k$-мерный параллелепипед в $\displaystyle \mathbb{R}^{k}$, то $\displaystyle T( X) =\begin{pmatrix}
+    T_{1}( X) & \dotsc  & T_{k}( X)
+    \end{pmatrix}$ -- полная достаточная статистика.
+\end{theorem}
+\begin{note}
+    Для того, чтобы вектор-функция $\overline{a}(\theta)$ содержала $k$-мерный параллелепипед, можно потребовать, чтобы $\Theta$ содержало открытое множество, и чтобы $a_1(\theta),\, \ldots,\, a_k(\theta)$ были гладкими.
+\end{note}
+
+\begin{proposition}
+    (Алгоритм поиска оптимальной оценки)
+    \begin{enumerate}
+    \item Ищем достаточную статистику
+    \item Проверяем полноту (по определению или по предыдущей теореме)
+    \item Если полна, то решаем уравнение несмещенности: $\displaystyle E_{\theta } g( T( X)) =\tau ( \theta ) \ \forall \theta $.
+    \end{enumerate}
+\end{proposition}

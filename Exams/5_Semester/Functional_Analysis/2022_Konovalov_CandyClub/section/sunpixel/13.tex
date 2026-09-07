@@ -1,0 +1,166 @@
+\begin{statement}
+\label{equiv-bounded-oper}
+Если $A$ --- линейный оператор, то следующие условия эквивалентны:
+
+1) $A$ --- ограниченный;
+
+2) $\exists K : \|Ax\|_{E_2} \leqslant K \|x\|_{E_1}$;
+
+3) Образ единичного шара под действием оператора $A$ ограничен.
+\end{statement}
+
+\begin{proof}
+
+($1 \Rightarrow 2$) Если $A$ --- ограниченный, то образ любого ограниченного множества ограничен. В частности, образ единичного шара $B$ ограничен.
+То есть $\exists K : \forall x \neq 0\ 
+\left\| A \left( \frac{x}{\|x\|_{E_1}} \right) \right\|_{E_2} \leqslant K$.
+В силу линейности оператора $\exists K : \forall x \neq 0\ \|Ax\|_{E_2} \leqslant K \|x\|_{E_1}$.
+(Для $x = 0$ это выполняется автоматически).
+
+$(2 \Rightarrow 3)$
+Если $\exists K : \|Ax\|_{E_2} \leqslant K \|x\|_{E_1}$, то $\forall x : \|x\|_{E_1} = 1$ получаем, что
+$\|Ax\|_{E_2} \leqslant K$. То есть образ единичного шара ограничен.
+
+$(3 \Rightarrow 1)$
+$\exists K : \forall x, \|x\|_{E_1} = 1 \ \|Ax\|_{E_2} \leqslant K$. Пусть $M \subset E_1$ ограничено, то есть лежит в шаре радиуса $R$. Далее считаем, что $x \neq 0$ (для него это выполняется автоматически).
+Тогда \\
+$\forall x \in M\ \left\| A \left( \frac{x}{\|x\|_{E_1}} \right) \right\|_{E_2} \leqslant K$.
+Следовательно, $\forall x \in M\ \|Ax\|_{E_2} \leqslant K \|x\|_{E_1} \leqslant K \cdot R$.
+\end{proof}
+
+\begin{definition}
+\text{Нормой} линейного ограниченного оператора $A$ называется 
+$$\|A\| = \inf \{K : \forall x \ \|Ax\|_{E_2} \leqslant K \|x\|_{E_1} \}.$$
+\end{definition}
+
+\begin{statement}
+$A$ --- линейный ограниченный оператор. Тогда
+$\forall x \ \|Ax\|_{E_2} \leqslant \|A\| \cdot \|x\|_{E_1}$.
+\end{statement}
+
+\begin{proof}
+По определению $\|A\|$ существует последовательность $\{K_n\}$ такая, что
+$\|Ax\|_{E_2} \leqslant K_n \|x\|_{E_1} \ \forall x$ и $K_n \to \|A\|$. Тогда переходя к пределу в неравенстве, получаем нужное утверждение.
+\end{proof}
+
+\begin{statement}
+Пусть $A$ --- линейный ограниченный оператор. Тогда 
+\[
+\|A\| = \sup_{\|x\|_{E_1} \leqslant 1} \|Ax\|_{E_2} = \sup_{\|x\|_{E_1} = 1} \|Ax\|_{E_2} = 
+\sup_{x \neq 0} \frac{\|Ax\|_{E_2}}{\|x\|_{E_1}}
+\]
+\end{statement}
+
+\begin{proof}
+Очевидно, что 
+\[
+\|A\| \geqslant \sup_{\|x\|_{E_1} \leqslant 1} \|Ax\|_{E_2} \geqslant \sup_{\|x\|_{E_1} = 1} \|Ax\|_{E_2} \geqslant 
+\sup_{x \neq 0} \frac{\|Ax\|_{E_2}}{\|x\|_{E_1}}
+\]
+
+Осталось доказать, что $\sup\limits_{x \neq 0} \frac{\|Ax\|_{E_2}}{\|x\|_{E_1}} \geqslant \|A\|$.
+
+По утверждению выше $\|Ax\|_{E_2} \leqslant \|A\| \cdot \|x\|_{E_1}$. Но так как $\|A\|$ определена как инфинум, то
+\[
+\forall \varepsilon > 0\ \exists x_{\varepsilon} : 
+\|A x_{\varepsilon}\|_{E_2} > (\|A\| - \varepsilon) \|x_{\varepsilon}\|_{E_1}
+\]
+Получаем, что
+\[
+\sup_{x \neq 0} \frac{\|Ax\|_{E_2}}{\|x\|_{E_1}} \geqslant
+\frac{\|Ax_{\varepsilon}\|_{E_2}}{\|x_{\varepsilon}\|_{E_1}} > \|A\| - \varepsilon
+\]
+
+Это выполнено для всех $\varepsilon$, 
+а значит $\sup\limits_{x \neq 0} \frac{\|Ax\|_{E_2}}{\|x\|_{E_1}} \geqslant \|A\|$.
+\end{proof}
+
+\begin{note}
+1) Если $\dim E_1 < \infty$, то все линейные операторы ограничены. Это следует из эквивалентности норм в конечномерных пространствах.
+
+2) Если $\dim E_1 = \infty$, то существует $E_2$ и линейный \underline{неограниченный} оператор $A: E_1 \to E_2$.
+\end{note}
+
+\begin{example}
+    Существует ли линейный неограниченный оператор?
+    \begin{enumerate}
+        \item $\dim E_1 < \infty \implies$ все линейные операторы непрерывны.
+        \item $\dim E_1 = \infty$. Есть пример:\\
+        Оператор $D = \frac{d}{dx}: X \to C[0; 1]$. В качестве $X$ возьмем $C^1[0; 1]$. Если в нем выбрать норму из $C[0; 1]$, оператор не будет непрерывным, но если взять норму из $C^1[0; 1]$, то будет непрерывен.\\
+        Возьмем $f_n = \frac{sin(nx)}{n} \in C^1[0; 1], f_n \uniconv 0$. Тогда в $c$-норме: 
+        \[
+        ||f_n - f|| \to 0, ||D f_n - Df|| = ||cos(nx)|| \nrightarrow 0.
+        \]
+    \end{enumerate}
+\end{example}
+
+\begin{example}[Оператор Вольтерра]
+$E_1 = E_2 = C[0, 1], A: E_1 \to E_2$.
+\[
+(Af)(x) = \int_0^x f(t)dt
+\]
+
+$\im A = \{g \in C^1[0, 1], g(0) = 0\}, \ke A = \{0\}$.
+\end{example}
+
+\begin{definition}
+$\mathcal{L}(E_1, E_2)$ --- пространство линейных ограниченных операторов, действующих из $E_1$ в $E_2$. Оно образует линейное пространство над $\mathbb{K}$.
+\end{definition}
+
+\begin{definition}
+Двойственное или сопряженное пространство это
+    \[E^* = \mathcal{L}(E, \K),\]
+    где $\K = \R$ или $\C$, $E$ --- линейное нормированное пространство. 
+\end{definition}
+
+\begin{theorem}
+Пусть $E_1, E_2$ --- линейные нормированные пространства. Тогда
+
+1) $\mathcal{L}(E_1, E_2)$ --- линейное нормированное пространство с нормой $\|A\|$.
+
+2) Если $E_2$ --- банахово, то $\mathcal{L}(E_1, E_2)$ --- банахово.
+\end{theorem}
+
+\begin{proof}
+1) То, что это линейное пространство --- очевидно. Проверим неравенство треугольника для нормы:
+
+\[
+\|A_1 + A_2\| = \sup_{\|x\| = 1} \|(A_1 + A_2) x\| \leqslant 
+\sup_{\|x\| = 1} (\|A_1 x\| + \|A_2 x\|) \leqslant 
+\sup_{\|x\| = 1} \|A_1 x\| + \sup_{\|x\| = 1} \|A_2 x\| = \|A_1\| + \|A_2\|
+\]
+
+2) Покажем, что $\mathcal{L}(E_1, E_2)$ --- полное, если $E_2$ -- полное.
+
+Пусть $\{A_n\} \subset \mathcal{L}$ -- фундаментальна, то есть
+$\forall \varepsilon > 0\ \exists N : \forall n, m \geqslant N \|A_n - A_m\| < \varepsilon$.
+
+Заметим, что 
+\[
+\forall x \in S_{E_1}(0, 1)
+\|A_n x - A_m x\| = \|(A_n - A_m) x\| \leqslant \|A_n - A_m\| \cdot
+\underbrace{\|x\|}_{=1} < \varepsilon
+\]
+
+Получается, что $\forall x \in S_{E_1}(0, 1)$ последовательность $\{A_n x\}$ фундаментальна (в $E_2$). Так как $E_2$ --- полное, то эта последовательность сходится. Обозначим её предел через $Ax$. $A$, очевидно, линейный оператор. Покажем, что он ограничен.
+
+Так как $\|\cdot\|$ --- непрерывная функция, то $\|A_n x\| \to \|A x\|$. Воспользуемся тем,
+что $\{A_n\}$ ограничена (из-за фундаментальности), 
+то есть $\exists K : \forall n \ \|A_n\| \leqslant K$.
+$\|A_n x\| \leqslant \|A_n\| \|x\| \leqslant K \|x\|$. Переходя к пределу в этом неравенстве, получаем, что $\|A x\| \leqslant K \|x\|$. 
+Таким образом, $A$ является ограниченным линейным оператором и лежит в $\mathcal{L}(E_1, E_2)$. Осталось показать, что $A_n \to A$.
+
+$\forall x \in S_{E_1}(0, 1) \|A_n x - A_m x\| < \varepsilon$. Зафиксируем номер
+$n$ и устремим $m$ к бесконечности. 
+Тогда $\|A_n x - A x\| \leqslant \varepsilon\ \forall x \in S_{E_1}(0, 1)$, а значит
+$\sup\limits_{\|x\| = 1} \|A_n x - A x\| \leqslant \varepsilon$.
+Это и означает, что $\|A_n - A\| \to 0$, то есть $A_n \to A$.
+\end{proof}
+
+\begin{corollary}
+Если $E_1 = E_2 = E$ --- банахово, то $\mathcal{L}(E) = \mathcal{L}(E, E)$ --- банахово.
+\end{corollary}
+
+\begin{corollary}
+Если $E$ --- линейное нормированное пространство, то $E^*$ всегда полное.
+\end{corollary}

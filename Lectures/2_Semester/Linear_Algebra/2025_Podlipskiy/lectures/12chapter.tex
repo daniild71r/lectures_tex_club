@@ -1,0 +1,152 @@
+\begin{proposition}[Равенство Парсеваля]
+    В ортогональном базисе $f^{(n)}$ для любого вектора $x$ имеет место равенство
+    \[
+    (x,x)=|x|^2=\sum_{i=1}^n\frac{(x, f_i)^2}{|f_i|^2}
+    \]
+\end{proposition}
+\begin{proof}
+    По формуле из предыдущего утверждения (применяя $(f_i,f_j)=0, i\neq j$)
+    \[
+    |x|^2=\sum_{i=1}^n\frac{(x, f_i)}{|f_i|^2}f_i\sum_{j=1}^n\frac{(x, f_j)}{|f_j|^2}f_j=\sum_{i=1}^n\frac{(x, f_i)^2}{|f_i|^2}
+    \]
+\end{proof}
+\textit{Замечание}: равенство Парсеваля является обобщением теоремы Пифагора в том понимании, что квадрат длины вектора равен сумме квадратов его проекций.
+
+\section{Ортогональные матрицы}
+Пусть $e, e'$ -- ортонормированные базисы, причем $e'=eS$. Тогда $\text{Г}'=S^T\text{Г}S$.
+Но в ОНБ матрица Грама является единичной, следовательно $S^TS=E$.
+\begin{definition}
+    Квадратная матрица $S$, удовлетворяющая условию $S^TS=E$, называется ортогональной.
+\end{definition}
+
+\textit{Замечание}: из равенства $S^TS=E$ следует, что ортогональные матрицы обладают свойствами $S^T=S^{-1}$ и $\det S=\pm1$.
+
+Посмотрим на элементы матрицы $S$: из равенства $S^TS=E$ следует, что произведение $i$-й строки на матрицы $S^T$ на $j$-ю строку матрицы $S$ равно $0$ при $i\neq j$ и $1$ при $i=j$.
+\[
+\left(
+\begin{array}{ccc}
+\cdot & \cdot & \cdot \\
+\hline
+\cdot & \cdot & \cdot \\
+\hline
+\cdot & \cdot & \cdot
+\end{array}
+\right)
+\left(
+\begin{array}{c|c|c}
+\cdot & \cdot & \cdot \\
+\cdot & \cdot & \cdot \\
+\cdot & \cdot & \cdot
+\end{array}
+\right)
+=
+\left(
+\begin{array}{ccc}
+\cdot & \cdot & \cdot \\
+\cdot & \bullet & \cdot \\
+\cdot & \cdot & \cdot
+\end{array}
+\right)
+\]
+А так как $i$-я строка в $S^T$ это $i$-й столбец в $S$, то сумма квадратов элементов столбца (для строки аналогично) матрицы $S$ равна $1$.
+\begin{proposition}
+    Произведение ортогональных матриц -- ортогональная матрица.
+\end{proposition}
+\begin{proof}
+    Пусть $A, B$ -- ортогональные матрицы. Тогда $A^TA=B^TB=E$. Следовательно $(AB)^TAB=B^TA^TAB=B^TB=E$.
+\end{proof}
+\begin{proposition}
+    Ортогональные матрицы и только они являются матрицами перехода от ОНБ к ОНБ.
+\end{proposition}
+\begin{proof}
+    Непосредственно следует из рассуждения в начале раздела.
+\end{proof}
+
+\subsection{Ортогональное дополнение}
+Пусть $\mathcal{E}'\subset \mathcal{E}$ -- подпространство евклидова пространства; $\dim \mathcal{E'}=k$; $\dim \mathcal{E}=n$.
+\begin{definition}
+    Ортогональное дополнение к $\mathcal{E'}$ (обозначается $(\mathcal{E'})^{\bot}$) -- множество всех векторов из $\mathcal{E}$, ортогональных каждому вектору из $\mathcal{E'}$.
+\end{definition}
+\textit{Замечание}: то есть $\forall x\in \mathcal{E'}\ \forall y\in (\mathcal{E'})^{\bot} \hookrightarrow(x,y)=0$.
+\begin{lemma}
+    Вектор $y$ ортогонален каждому вектору из непустого подпространства $\mathcal{E'}$ тогда и только тогда, когда $y$ ортогонален каждому вектору из базиса $a^{(k)}$ в $\mathcal{E'}$.
+\end{lemma}
+\begin{proof}
+    Из ортогональности каждому вектору следует ортогональность базису. Теперь пусть $y$ ортогонален базисным векторам, тогда 
+    \[
+    x\in\mathcal{E'}\hookrightarrow x=\alpha_1 a_1+\dots+\alpha_ka_k, \quad (y,x)=\alpha_1(y,a_1)+\dots\alpha_k(y,a_k)=0
+    \]
+    следовательно $y$ ортогонален всем векторам из $\mathcal{E'}$.
+\end{proof}
+\begin{theorem}
+    $(\mathcal{E'})^{\bot}$ -- линейное подпространство размерности $n-k$.
+\end{theorem}
+\begin{proof}
+    Если $\mathcal{E'}=\{0\}$, то по определению $(\mathcal{E'})^{\bot}\equiv \mathcal{E}$.
+    Если $\mathcal{E'}\neq \{0\}$, то в $\mathcal{E'}$ существует базис $a^{(k)}$. Тогда любой вектор $y \in (\mathcal{E'})^{\bot}$ удовлетворяет системе
+    \[
+    \left\{
+    \begin{aligned}
+    (y,&a_1)=0 \\
+    &\vdots \\
+    (y, &a_k)=0
+    \end{aligned}
+    \right. 
+    \]
+    Выберем в $\mathcal{E}$ ОНБ, тогда $(y, a_i)$ превратятся в линейные однородные уравнения, а вся система будет системой из $k$ линейных однородных уравнений, причем ее  коэффициенты -- координаты ЛНЗ векторов $a_1, \dots, a_k$ в этом ОНБ. Значит ранг матрицы этой системы равен $k$, а размерность пространства ее решений равна $n-k$. Откуда $\dim (\mathcal{E'})^{\bot}=n-k$.
+\end{proof}
+\begin{proposition}
+    $((\mathcal{E'})^{\bot})^{\bot}=\mathcal{E'}$
+\end{proposition}
+\begin{proof}
+    Любой вектор $y\in \mathcal{E}'$ ортогонален любому вектору из $(\mathcal{E'})^{\bot}$, значит $\mathcal{E}'\subset (\mathcal{E'})^{\bot}$. Но $\dim ((\mathcal{E'})^{\bot})^{\bot}=n-(\dim (\mathcal{E'})^{\bot})=n -(n-k)=k=\dim \mathcal{E}'$. Значит $((\mathcal{E'})^{\bot})^{\bot}=\mathcal{E}'$.
+\end{proof}
+\begin{proposition}
+    $\mathcal{E}=\mathcal{E}'\oplus (\mathcal{E'})^{\bot}$
+\end{proposition}
+\begin{proof}
+    Если $x\in\mathcal{E}'\cap (\mathcal{E'})^{\bot}$, то $(x,x)=0$, откуда $x=0$. Значит $\mathcal{E}'\cap (\mathcal{E'})^{\bot}=\{0\}$. Осталось заметить, что $\dim \mathcal{E}'+\dim (\mathcal{E'})^{\bot}=k+(n-k)=n=\dim \mathcal{E}$.
+\end{proof}
+\textit{Следствие}: $\forall z\in \mathcal{E}\ \exists! x\in \mathcal{E}', y\in (\mathcal{E'})^{\bot} \hookrightarrow z=x+y$, где $x$ называется ортогональной проекцией $z$ на $\mathcal{E}'$.
+
+Пусть $h^{(k)}$ -- ортогональный базис в $\mathcal{E}'$. Дополним его до ортогонального базиса в $\mathcal{E}$. Тогда проекцию вектора $x\in \mathcal{E}$ на $\mathcal{E}'$ можно выразить
+\[
+x_{\text{пр}}=\sum_{i=1}^k\frac{(x, h_i)}{|h_i|^2}h_i
+\]
+\subsection{Метод ортогонализации Грама-Шмидта}
+Пусть в подпространстве $\mathcal{E}'$ дан базис $f^{(n)}$. Найдем ОНБ в пространстве $\langle f_1, \dots, f_n\rangle$. Алгоритм:
+\begin{enumerate}
+    \item Строим ортогональный базис $h^{(n)}$:
+    \begin{itemize}
+        \item Берем $h_1=f_1, h_2=f_2-\frac{(f_2,h_1)}{|h_1|^2}h_1$. Оба вектора лежат в $\langle f^{(n)}\rangle$ и $h_1\bot h_2$. Другими словами, мы из $f_2$ вычли его проекцию на $h_1$ (т.е. $h_2=f_2-\alpha h_1$, где $\alpha$ можно найти домножив равенство на $h_1$: $(h_1,h_2)=0=(h_1,f_2)-\alpha(h_1,h_1)$).
+        \item Находим $h_3=f_3-\frac{(f_3,h_1)}{|h_1|^2}h_1-\frac{(f_3,h_2)}{|h_2|^2}h_2$ (т.е. $h_3=f_3-\alpha_1h_1-\alpha_2h_2$).
+        \item После таких операций получаем ортогональный базис $h^{(n)}$.
+    \end{itemize}
+    \item Осталось от нормировать базис: каждый вектор поделить на корень из его длины.
+\end{enumerate}
+
+\textit{Замечание}: вообще говоря набору $f^{(n)}$ необязательно быть базисом (он может быть ЛЗ, только тогда в итоговом наборе $h^{(n)}$ помимо базисных векторов пространства $\langle f^{(n)}\rangle$ будут встречаться нулевые векторы).
+
+\section{Сопряженные преобразования}
+\begin{definition}
+    Линейное преобразование $A^*$ евклидова пространства $\mathcal{E}$ называется сопряженным к линейному преобразованию $A$, если $\forall x, y \in \mathcal{E} \hookrightarrow(A(x),y)=(x, A^*(y))$.
+\end{definition}
+\begin{theorem}
+    Для любого преобразования $A$ существует единственное сопряженное преобразование $A^*$.
+\end{theorem}
+\begin{proof}
+    Пусть существует $A^*$. Докажем единственность. Имеем 
+    \[
+    (Ax)^T\text{Г}y=x^T\text{Г}(A^*y) \Rightarrow A^T\text{Г}=\text{Г}A^* \Rightarrow A^*=\text{Г}^{-1}A^T\text{Г}
+    \]
+    Из явного вида преобразования получаем единственность. Существование следует из прямой проверки: преобразование, заданное формулой $A^*=\text{Г}^{-1}A^T\text{Г}$ является сопряженным к $A$.
+\end{proof}
+
+\textit{Следствие}: в ОНБ $\text{Г}=E$, значит $A^*=A^T$.
+
+\begin{theorem}
+    $Im(A)=(\ker A^*)^{\bot}$
+\end{theorem}
+\begin{proof}
+    Пусть $x\in \mathcal{E}, y\in \ker A^*$. Тогда $(A(x),y)=(x, A^*(y))=(x,0)=0$, а значит $Im(A)\subset (\ker A^*)^{\bot}$. Осталось посчитать размерности: $\dim (\ker A^*)$ равна размерности пространства решений системы $A^Ty=0$, что равно $n-rg(A)$. Следовательно, $\dim (\ker A^*)^{\bot}=n-(n-rg(A))=rg(A)=\dim (Im(A))$.
+\end{proof}

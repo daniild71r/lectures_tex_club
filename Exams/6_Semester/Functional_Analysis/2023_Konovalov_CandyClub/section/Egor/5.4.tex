@@ -1,0 +1,119 @@
+\begin{lemma}[лемма о норме самосопряжённого оператора]\label{5.4-lemma1}
+    Для самосопряжённого оператора $A \in \mathcal{L}(H)$ верно, что
+    $\|A^n\| = \|A\|^n$.
+\end{lemma}
+
+\begin{proof}
+    Достаточно понять, почему $\|A^2\| = \|A\|^2$. Мы знаем, что $\|A^2\| \leqslant \|A\|^2$. Распишем:
+    \[
+        (Ax, Ax) = (A^2 x, x) \leq \|A^2 x\| \cdot \|x\|.
+    \]
+    Возьмём супремум от обеих частей
+    \[
+        \|A^2\|_{\mathcal{L}(H)} = \sup_{\|x\|_H=1} \|A^2 x\|_H = \sup_{\|x\|=1} \|A^2 x\|_H \cdot \| x \|_H \geq \sup_{\|x\|=1} (Ax, Ax) = \sup_{\|x\|=1} \|Ax\|_H^2=\|A\|_{\mathcal{L}(H)}^2
+    \]
+    Получили, что $\|A^2\| \geqslant \|A\|^2$.
+    В общем-то, пока мы доказали лемму только для степеней двойки (и этого достаточно для доказательства теоремы).
+    Абсолютно аналогично можно показать, что лемма верна для всех $n$.
+    Переход от $n$ к $n+1$ остаётся в качестве упражнения.
+\end{proof}
+
+\begin{definition}
+    Функция $\angles{\cdot, \cdot}$ называется \textit{полускалярным произведением}, если для него выполняются все свойства скалярного произведения, кроме $\angles{x, x} = 0 \lra x = 0$. То есть может быть так, что $\angles{x, x} = 0$, но $x \neq 0$.
+\end{definition}
+
+\begin{statement}
+    Неравенство Коши--Буняковского справедливо для полускалярного произведения (\(\left| \left\langle x, y \right\rangle \right| \leqslant \|x \| \cdot \|y \|\)).
+\end{statement}
+
+\begin{proof}
+    Пусть $\angles{x, x} \neq 0$ или $\angles{y, y} \neq 0$ (пусть без ограничения общности это будет $y$). В этом случае доказательство аналогично обычному доказательству КБШ:
+
+    Пусть $e = \frac{y}{\|y\|}$, тогда нужно доказать, что $|\angles{x, e}| \leqslant \| x \| $.
+
+    \[
+    \| x - (x, e) e\|^2 = \|x\|^2 - |(x, e)|^2 \geqslant 0
+    \]
+
+    Остаётся рассмотреть случай, когда $\angles{x, x} = \angles{y, y} = 0$.
+    В вещественном случае рассмотрим выражение 
+    \[
+    \angles{x \pm y, x \pm y} = 0 \pm 2 \angles{x, y} + 0
+    \geqslant 0
+    \]
+
+    $2\angles{x, y} \geqslant 0$ и $-2\angles{x, y} \geqslant 0 \implies \angles{x, y} = 0$.
+
+    В комплексном случае для действительной части аналогично, а чтобы добраться до мнимой части напишем аналогичные неравенства для $x \pm iy$.
+
+\end{proof}
+
+\bigskip
+
+\noindent
+\textbf{Обозначения:} \(m_+=\sup\limits_{\|x\|=1} (Ax, x), \;\; m_-=\inf\limits_{\|x\|=1} (Ax, x)\)
+
+
+\begin{theorem}[11.5]\label{11.5}
+    Пусть $H(\C)$~--- гильбертово пространство, 
+    $A$~--- самосопряжённый оператор.
+    \begin{enumerate}
+        \item $\sigma(A) \subset [m_-, m_+]$, 
+        причём $m_-, m_+ \in \sigma(A)$, то есть
+        $r(A) = \max(|m_-|, |m_+|)$
+        \item $r(A)=\|A\|$
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{proof}
+Не умаляя общности \(|m_+| > |m_-|\)
+\begin{enumerate}
+    \item
+    \begin{itemize}
+        \item[а)] $\sigma(A) \subset [m_-, m_+]$. 
+        По теореме \nameref{11.4} спектр лежит на вещественной оси.
+        Достаточно показать, что если возьмем число больше $m_+$ или меньше $m_-$, то попадем в резольвентное множество.
+
+        Покажем, что если $\lambda > m_+ \implies \lambda \in \rho(A)$. Будем доказывать по \hyperref[11.3]{критерию принадлежности числа спектру}, то есть мы хотим 
+        получить оценку вида $\|A_{\lambda} x\| \geqslant m \|x\|$.
+
+        \[
+        \|A_\lambda x \| \cdot \|x\| \geqslant |(A_{\lambda} x, x)| = |\underbrace{(A x, x)}_{\leqslant m_+ \|x\|^2} - \underbrace{\lambda (x, x)}_{> m_+ \|x\|^2}| = 
+        \lambda (x, x) - (A x, x) \geqslant (\lambda - m_+) \|x\|^2
+        \]
+
+        Сокращая на $\|x\|$, получаем:
+        $\|A_{\lambda} x\| \geqslant (\lambda - m_+) \|x\|$.
+
+        \item[б)] Покажем, что $m_+$ является частью спектра. Хотим воспользоваться \hyperref[11.3]{критерием принадлежности числа спектру}\ (пункт 2): существует последовательность $x_n$, такая что $\forall n\: \|x_n\| = 1$ и $\|A_{\lambda} x_n\| \to 0$.
+
+        Возьмём $x_n$: $(A x_n, x_n) \to m_+, \: \|x_n\| = 1$ (такие найдутся, так как $m_+$~--- супремум). 
+
+        Можно переписать это так:
+        
+        \[(A x_n, x_n) - m_+ (x_n, x_n) \to 0
+        \lra
+        (A_{m_+} x_n, x_n) \to 0\]
+
+        Обозначим через $B$ оператор $(m_+ I - A)$ (он ограниченный и самосопряжённый). Понятно, что $\forall x\ (Bx, x) \geqslant 0$.
+
+        Введём полускалярное произведение: $\angles{x, y} = (Bx, y)$ и рассмотрим $\|Bx_n\|^4$:
+
+        \[
+        \|Bx_n\|^4 = (Bx_n, Bx_n)^2 = \angles{x_n, B x_n}^2 \stackrel{\text{КБШ}}{\leqslant}  
+        \underbrace{\angles{x_n, x_n}}_{=(B x_n, x_n) \to 0} 
+        \cdot \underbrace{\angles{B x_n, B x_n}}_{\text{ограничена}} \to 0
+        \]
+
+        $\angles{B x_n, B x_n}$ ограничена, так как
+
+        \[
+        \angles{B x_n, B x_n} = (B^2 x_n, B x_n) \leqslant \|B^2 x_n\| \cdot \|B x_n\| \leqslant \|B^2\| \cdot \|x_n\| \cdot \|B\| \cdot \|x_n\| = \|B\|^3
+        \]
+    \end{itemize}
+    
+    \item По теореме \nameref{10.1} $r(A) = \lim\limits_{n \to \infty} \sqrt[n]{\|A^n\|}$. Применяя  \hyperref[5.4-lemma1]{лемму о норме самомопряжённого оператора}, получаем требуемое.
+  \end{enumerate}
+  
+\end{proof}

@@ -1,0 +1,82 @@
+\textbf{Определение} Уравнение первого порядка, не разрешенное относильно производной~--- это уравнение вида 
+\begin{equation}\label{firstorder-parapm-eq}
+    F(x, y, y') = 0
+\end{equation}
+где \(F(x, y, p)\)~--- заданная непрерывная функция в некоторой непустой окрестности $G$ евклидового пространства $\mathbb{R}_{(x, y, p)}^3$ с декартовыми прямоугольными координатами $x, y, p$. Где $x$~--- аргумент, $y = y(x)$~--- неизвестная функция.
+
+В общем случае для решения уравнения~(\ref{firstorder-parapm-eq}) применяется метод введения параметра, который позволяет свести решение~(\ref{firstorder-parapm-eq}) к решению некоторого уравнения первого порядка в симметричной форме.
+
+Сам метод: положим $y' = p$ и рассмотрим систему
+\begin{equation}\label{firstorder-parapm-sys}
+    \begin{cases}
+    F(x, y, p) = 0 \\
+    dy = pdx.
+    \end{cases}
+\end{equation}
+
+\begin{theorem}[Не доказывалось]
+Уравнение~(\ref{firstorder-parapm-eq}) эквивалентно системе~(\ref{firstorder-parapm-sys}).
+\end{theorem}
+\begin{proof}
+Проверяется непосредственной подстановкой решений.
+\end{proof}
+
+Наиболее важным является случай когда уравнение~(\ref{firstorder-parapm-eq}) разрешимо относительно $y$ или $x$. Тогда система~(\ref{firstorder-parapm-sys}) принимает вид 
+
+\begin{equation}\label{firstorder-parapm-sys-simp}
+    \begin{cases}
+    y = f(x, p) \\
+    dy = pdx.
+    \end{cases}
+\end{equation}
+откуда получается уравнение
+\[\left(\frac{\partial f}{\partial x} - p\right) dx + \frac{\partial f}{\partial p} dp = 0.\]
+
+\begin{lemmanote}
+При таком типе решения ошибкой является переход от параметра $p$ обратно к $y'$. Важно понимать, что это не замена, а именно введение параметра и решения могут быть записаны как в параметрической так и в явной форме.
+\end{lemmanote}
+
+\begin{lemmanote}[О возникновении неоднозначности]
+Откуда берутся особые решения? При переходе к параметру $p$ неявно применяется теорема о неявной функции:
+\begin{align*}
+    F(x, y, p) &= 0 \; \Longleftrightarrow \; \underbrace{y' = p = f(x, y)}_{\text{т. о неявной функ.}}\\
+    F(x, y, f(x, y)) &= 0.
+\end{align*}
+Но понятно, что у теоремы есть условия которые не всегда выполняются. В качестве примера можно рассмотерть уравнение $(y')^2 - x^2 = 0$.
+\end{lemmanote}
+
+\begin{theorem}
+Пусть в области $G \subset \mathbb{R}^3$ функция $F$ непрерывна вместе с $\frac{\partial F}{\partial y}$, $\frac{\partial F}{\partial p}$, а также $\frac{\partial F}{\partial p}|_{(x_0, y_0, p_0) \in G} \neq 0$.
+Тогда существует $\delta > 0$ на $[x_0 - \delta, x_0 + \delta]$ существует единственное решение задачи Коши
+\[
+\begin{cases}
+F(x, y, y') = 0\\
+F(x_0, y_0, p_0) = 0\\
+y(x_0) = y_0\\
+y'(x_0) = p_0
+\end{cases}
+\]
+\end{theorem}
+\begin{proof}
+Так как $\frac{\partial F}{\partial p}|_{(x_0, y_0, p_0) \in G} \neq 0$, то по теореме о неявной функции $\exists U(x_0, y_0), U(p_0)$, что $p_0 = f(x_0, y_0)$ и 
+\[\forall (x, y) \in U(x_0, y_0)\;\; \exists f(x, y): U(x_0, y_0) \rightarrow U(p_0), \; p = f(x, y).\]
+
+Итого имеем
+\[
+\begin{cases}
+y' = f(x, y)\\
+y(x_0) = y_0.
+\end{cases}
+\]
+
+А также
+\[
+\frac{\partial F}{\partial y} + \frac{\partial F}{\partial p} \cdot \frac{\partial f}{\partial y} = 0,
+\]
+\[
+\frac{\partial f}{\partial y} = - \frac{\frac{\partial F}{\partial y}}{ \frac{\partial F}{\partial p} }.
+\]
+
+Выполнены условия теоремы существования и единственности решения задачи Коши для уравнения, разрешённого относительно производной.
+\end{proof}
+Эквивалентное доказательство можно найти в пункте~\ref{zk-notsolved}.

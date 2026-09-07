@@ -1,0 +1,44 @@
+\begin{definition}\textit{Распределением} случаного процесса \textit{X} называется вероятностная мера $P_{X}$, заданная на пространстве тракеторий $S$, определенная на $\B_{T}$
+по правилу $\forall B \in \B_{T}$ $$ P_{X}(B) = P(\{w : t \rightarrow X_{t}(w) \in B \})$$ .
+\end{definition}
+
+\begin{definition}
+Пусть $X$ - случайный процесс. $\forall n \in \N, \forall t_1, ..., t_n \in T$ определим $P_{t_1...t_n}$ - распределение вектора $(X_{t_1}, ... X_{t_n})$ - конечномерное распределение $X$ 
+\end{definition}
+\textbf{Условия симметрии и согласованности}
+\begin{lemma}
+Пусть процесс $\{X_t\}_{t \in T}$ имеет конечномерные распределения $\{P_{t_1...t_n}: t_i \in T, n\in \N\}$. Тогда набор $\{P_{t_1...t_n}: t_i \in T, n\in \N\}$ удовлетворяет следующим условиям: \begin{enumerate}
+    \item $P_{t_1...t_n}(B_1 \times .. \times B_n) = P_{t_{\sigma(1)}...t_{\sigma(n)}}(B_{\sigma(1)} \times .. \times B_{\sigma(n)})$ для любой перестановки $\sigma$ 
+    \item  $P_{t_1...t_n}(B_1 \times .. \times \R) = P_{t_1...t_{n-1}}(B_1 \times .. \times B_{n-1})$
+\end{enumerate}
+\begin{note}
+    Если набор распределений $\{P_{t_1...t_n}: t_i \in T, n\in \N\}$ удовлетворяет свойствам 1 и 2, то говорят, что он удовлетворяет свойствам симметрии и согласованности
+\end{note}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+    \item Очевидно, так как $P_{t_1...t_n}(B_1 \times .. \times B_n) = P(X_{t_1} \in B_1, ..., X_{t_n} \in B_n) = P^{X}(B_1 \times .. \times B_n)$ 
+не зависит от перестановки событий
+\item $P_{t_1...t_n}(B_1 \times .. \times \R) = P(X_{t_1} \in B_1, ..., X_{t_n} \in \R) = P_{t_1...t_{n-1}}(B_1 \times .. \times B_{n-1})$ 
+\end{enumerate}
+\end{proof}
+\begin{theorem} \textbf{(Колмогорова о существовании случайного процесса) (б/д).} \\
+Пусть $T \subset \R$ - любое.  $ \forall n, \forall t_1, ...,  t_n, t_i \in T $ задана вероятностная мера $P_{t_1...t_n}$ на ($\R^n$, $\B(\R^n)$).
+Если мера удовлетворяет условиям симметрии и согласованности, то существует вероятностное пространство $(\Omega, F, P)$ и случайный процесс $\{X_t\}_{t \in T}$ на нём такие, что  $P_{t_1...t_n}$ будут конечномерными распределениями процесса $\{X_t\}_{t \in T}$ .
+\end{theorem}
+
+\begin{theorem}
+    \textbf{(условия симметрии и согласованности для хар. функций)} \\
+    Пусть $T \subset \R$ - любое.  $ \forall n, \forall t_1, ...,  t_n, t_i \in T $ задана вероятностная мера $P_{t_1...t_n}$ и соответствующая хар. функция $\phi_{t_1...t_n}$. Тогда набор мер  $\{P_{t_1...t_n}: t_i \in T, n\in \N\}$ удовлетворяет условиям симметрии и согласованности $\Longleftrightarrow$ хар. функции  $\{\phi_{t_1...t_n}: t_i \in T, n\in \N\}$ удовлетворяют следующим
+условиям: \begin{enumerate}
+    \item $\phi_{t_1...t_n}(\lambda_1, ..., \lambda_n) = \phi_{t_{\sigma(1)}...t_{\sigma(n)}}(\lambda_{\sigma(1)} , ... \lambda_{\sigma(n)})$ 
+    \item $\phi_{t_1...t_n}(\lambda_1, ..., 0) = \phi_{t_1...t_{n-1}}(\lambda_1, ..., \lambda_{n-1})$
+\end{enumerate}
+\end{theorem}
+\begin{corollary}\label{3.6.1}
+Пусть $T \subset \R$ - любое.  $ \forall n, \forall t_1, ...,  t_n, t_i \in T $ задана хар. функция $\phi_{t_1...t_n}$, причём набор $\{\phi_{t_1...t_n}: t_i \in T, n\in \N\}$
+удовлетворяет условию $\forall m \in 1...n$
+$$\phi_{t_1...t_n}(\lambda_1, ..., \lambda_n)|_{\lambda_m = 0} = \phi_{t_1..., t_{m-1}, t_{m+1}...t_n}(\lambda_1, ...\lambda_{m-1},\lambda_{m+1} ..., \lambda_n)$$
+то существует случайный процесс $\{X_t\}_{t \in T}$ : $\phi_{t_1...t_n}$ — хар. фукнция вектора $(X_{t_1}, ... X_{t_n})$.
+\end{corollary}
+

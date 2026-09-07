@@ -1,0 +1,57 @@
+\begin{definition}
+Пусть $H(\C)$~--- гильбертово пространство над полем $\C$,
+$A \in \L(H) : A^* = A$, то есть $(Ax, y) = (x, Ay)\ \forall x, y \in H$.
+Такой оператор $A$ называется \textit{самосопряжённым}.
+\end{definition}
+
+\noindent\textbf{Основная идея:} $A: H \to H$, будем вместо него рассматривать квадратичную форму:
+\[ K\!: H \to \C \]
+\[K(x)=(Ax, x)\]
+
+\begin{theorem}[11.1]\label{11.1}
+$H(\C)$, $A$~--- самосопряжённый оператор.
+\begin{enumerate}
+    \item $\forall x\: K(x) := (Ax, x) \in \R$
+    \item Если $\lambda$~--- собственное значение оператора $A$, 
+    то $\lambda \in \R$
+    \item Пусть $\lambda_1 \neq \lambda_2$~--- собственные значения, 
+    $e_1, e_2$~--- собственные векторы, соответствующие им. 
+    Тогда $(e_1, e_2) = 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item В силу самосопряженности $A$: $(x, Ax)=(Ax, x)=\overline{(x, Ax)}$. Число совпадает с сопряжением, значит оно вещественное.
+        
+        \item $\lambda$~--- собственное значение, $e$~--- собственный вектор.
+        
+        С другой стороны, 
+        $(Ae, e) = (\lambda e, e) = \lambda (e, e)=\lambda \|e\|^2$. Но из пункта 1
+        $(Ae, e) \in \R$
+    
+        \item $e_1, e_2, \lambda_1, \lambda_2$. 
+        \[ (\lambda_1 e_1, e_2) = (Ae_1, e_2)=(e_1, Ae_2) = (e_1, \lambda_2 e_2)\]
+        В силу пункта 2 $\lambda_1, \lambda_2$~--- вещественные, значит можно вынести из скалярного произведения
+        \[ (\lambda_1 - \lambda_2) (e_1, e_2) = 0\]
+        По условию собственные значения не равны, значит $(e_1, e_2)=0$
+    \end{enumerate}
+\end{proof}
+
+\begin{unnecessary}
+    \begin{statement}
+        Пусть \(H( \C)\) --- гильбертово пр-во, \(A \in \L(H)\), т. ч. \(\forall x \in H\: \left(Ax, x \right) \in \R\). Тогда \(A\) --- ССО.
+    \end{statement}
+    \begin{proof}
+        Рассмотрим произвольные \(x, y \in H\). Очевидно, что и \((x+y)\), и \((x + iy)\) тоже будут лежать в \(H\). Обозначим комплексные числа, являющиеся результатами следующих скалярных произведений как
+        \[(Ax, y) = a + ib \quad (x, Ay) = c + id \quad a, b, c, d \in \R\]
+        Покажем что \(a=c\) и \(b=d\):
+        \begin{itemize}
+            \item[ $\text{[}b = d\text{]}\!\!\!$ ]
+            \(\R \ni \left(A(x + y), (x + y) \right) = \left(Ax, x \right) + \left(Ax, y \right) + \left(Ay, x \right) + \left(Ay, y \right)\).
+            Первый и последний члены являются действительными числами по условию. Тогда  \(\left(Ax, y \right) + \left(Ay, x \right) = \left(Ax, y \right) + \overline{\left(x, Ay \right)} = a + ib + c - id \in \R\). Значит, \(b=d\).
+            \item[$\text{[}a = c\text{]}\!$]
+            \(\R \ni \left(A(x + iy), (x + iy) \right) = \left(Ax, x \right) + \left(Ax, iy \right) + \left(Aiy, x \right) + \left(Aiy, iy \right) = \left(Ax, x \right) - i\left(Ax, y \right) + i\left(Ay, x \right) + i(-i)\left(Ay, y \right)\). Первое и последнее слагаемое являются действительными числами по условию. Посмотрим на остальные: \( -i(a + ib) + i(c - id) = -ai + b + ci + d\). Это выражение должно быть действительным числом, поэтому \(a=c\).
+        \end{itemize}
+    \end{proof}
+\end{unnecessary}

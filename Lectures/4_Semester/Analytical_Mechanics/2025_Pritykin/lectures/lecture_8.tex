@@ -1,0 +1,71 @@
+Рассмотрим систему с отделимыми переменными $(q_k, p_k)$, то есть существует некоторая $\phi$ такая, что
+\[
+    H = H(q_1, \ldots, q_{k - 1}, q_{k + 1}, \ldots, q_m, p_1, \ldots, p_{k - 1}, p_{k + 1}, \ldots, p_m, \phi(q_k, p_k)).
+\]
+Тогда $\phi$ -- первый интеграл системы, поскольку система автономна и
+\[
+    \{H, \phi\} = \partial_{\bt{p}} H \cdot \partial_{\bt{q}} \phi - \partial_{\bt{q}} H \cdot \partial_{\bt{p}} \phi = \dfrac{\partial H}{\partial p_k}\dfrac{\partial \phi}{\partial q_k} - \dfrac{\partial H}{\partial q_k}\dfrac{\partial \phi}{\partial p_k} = \dfrac{\partial H}{\partial \phi}\biggr(\dfrac{\partial \phi}{\partial p_k} \dfrac{\partial \phi}{\partial q_k} - \dfrac{\partial \phi}{\partial q_k} \dfrac{\partial \phi}{\partial p_k}\biggr) = 0.
+\]
+\begin{definition}
+    Будем говорить что первые интегралы $\phi, \psi$ гамильтоновой системы $H$ находятся в инволюции если $\{\phi, \psi\} = 0$.
+\end{definition}
+\begin{theorem}[Лиувилль, об интегрируемости; доказательство будет дальше]
+    Следующие два условия эквивалентны для некоторой гамильтоновой системы размерности $2m$:
+    \begin{itemize}
+        \item У гамильтоновой системы есть $m$ независимых первых интегралов в инволюции.
+        \item Она интегрируема в квадратурах.
+    \end{itemize}
+\end{theorem}
+\subsection{Ещё немного о симплектических структурах.}
+\begin{theorem}
+    Пусть есть некоторая гамильтонова система с гамильтонианом $H = H(\bt{x}, t)$ и каноническими уравнениями
+    \[
+        \dot{\bt{x}} = J\partial_{\bt{x}}H.
+    \]
+    Для всякого $\bt{x}^0$ существует и единственно решение $\bt{x} = \bt{x}(t)$ такое, что $\bt{x}(0) = \bt{x}^0$.
+    Таким образом у нас определён фазовый поток $\phi^t: \bt{x}^0 \to \bt{x}(t)$. \\
+    Он является симплектическим диффеоморфизмом.
+\end{theorem}
+\begin{proof}
+    Очевидно то, что фазовый поток является диффеоморфизмом. \\
+    Покажем что он является симплектическим. \\
+    \begin{reminder}{(Дифференцируемость сложной функции)}
+    Пусть $G \subset \R^n$~---~открыто и непусто, $\Omega \subset \R^m$~---~открыто и непусто. $F: G \rightarrow \Omega$ дифференцируемо в точке $x^0 \in G, H: \Omega \rightarrow \R^d$ дифференцируемо в точке $y^0 = F(x^0) \in \Omega$. Тогда для композиции $\phi = H \circ F$, матрица Якоби будет равна: $D\phi(x^0) = D(H \circ F)(x^0) = D H(F(x^0)) D F(x^0)$, а $\frac{\partial \phi_i}{\partial x_j} = \sum \limits_{k = 1}^m \frac{\partial H_i}{\partial y_k} \cdot \frac{\partial F_k}{\partial x_j}, i \in \{1, \dots, d\}, j \in \{1, \dots, n\}$
+    \end{reminder}
+    Пусть $D\phi^t$ -- матрица Якоби фазового потока.
+    Тогда
+    \[
+        \dfrac{d}{dt} D\phi^t(\bt{x}) = D(J\partial_{\bt{x}}H(\phi^t(\bt{x}), t)) \cdot D\phi^t(\bt{x}) = A(t) D\phi^t(\bt{x}).
+    \]
+    Где в качестве $A(t) = D(J \partial_{\bt{x}}H(\phi^t(\bt{x}), t)) = J \Hess_{\bt{x}} H(\phi^t(\bt{x}), t)$.
+    Заметим, что в силу (достаточной) гладкости всех функций $\Hess_{\bt{x}} H$ -- симметричен и тогда
+    \[
+        A^{T}J + JA = \Hess_{\bt{x}} H J^T J + J J \Hess_{\bt{x}} H = 0.
+    \]
+    Покажем теперь что дифференциал отображения сохраняет симплектическую единицу:
+    \[
+        \dfrac{d}{dt}\biggr(D^T\phi^t J D\phi^t \biggr) = D^T\phi^t A^T J D\phi^t + D^T \phi^t J A D\phi^t = D^T \phi^t (A^T J + J A) D\phi^t = O.
+    \]
+    И, поскольку $D\phi^0 = I$, то утверждение теоремы доказано.
+\end{proof}
+\subsection{Лирическое отступление про дифформы.}
+\begin{definition}
+    Пусть $M$ -- гладкое многообразие и $T_{x}M$ -- касательное пространство в нему в точке $x$. \\
+    Рассмотрим отображение $w: T_{x}M \times \ldots \times T_x M \to \R$. Пусть
+    \begin{itemize}
+        \item $w$ -- полилинейно.
+        \item $w$ -- антисимметрично.
+        \item $w$ -- дифференцируемо.
+    \end{itemize}
+    Тогда будем называть $w$ дифференциальной $k$-формой.
+\end{definition}
+\begin{example}
+    На плоскости $1$-форма имеет вид $w = f(x, y)dx + g(x, y)dy$, а $2$-форма -- $w = f(x, y)dx\wedge dy$. \\
+    В общем случае $k$-форма в $\R^n$ раскладывается по базису как
+    \[
+        w = \sum\limits_{1 \leq i_1 < i_2 < \ldots < i_k \leq n} f_{i_1, \ldots, i_k} dx^{i_1} \wedge \ldots \wedge dx^{i_k}.
+    \]
+\end{example}
+\begin{note}
+    В дальнейшем это никак не используется; соответственно, некоторые примеры и способы вычисления с лекции здесь не приведены.
+\end{note}

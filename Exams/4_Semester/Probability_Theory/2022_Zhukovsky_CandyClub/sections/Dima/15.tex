@@ -1,0 +1,20 @@
+Пусть $\Omega=D_1 \sqcup D_2 \sqcup \ldots$, $P(D_i)>0$, $\mathcal{G}=\sigma(\{D_1, D_2, \ldots\})$
+
+\begin{statement}
+    \[ \E(\xi|\mathcal{G})=\sum_i \frac{\E \xi I_{D_i}}{P(D_i)} \cdot I_{D_i} \]
+\end{statement}
+
+\begin{proof}
+    \( \eta = \sum_i \frac{\E \xi I_{D_i}}{P(D_i)} \cdot I_{D_i} \)
+    \begin{enumerate}
+        \item $\eta$ - $\mathcal{G}$-измерима, так как $I_{D_i}$ - $\mathcal{G}$-измеримы, а значит их линейная комбинация тоже $\mathcal{G}$-измерима
+        
+        \item $A \in \mathcal{G} \Rightarrow A = \bigsqcup\limits_{i \in I} D_i$
+        
+        \[ \E\left(\eta I_A\right)=\E\left(\sum_i \frac{\E \xi I_{D_i}}{P(D_i)} \cdot I_{D_i} \cdot I_A\right)= \]
+        
+        Заметим, что произведение индикаторов не равно 0, только если $i \in I$.
+        
+        \[ = \E\left(\sum_{i \in I} \frac{\E \xi I_{D_i}}{P(D_i)} \cdot I_{D_i}\right)=\sum_{i \in I} \frac{\E \xi I_{D_i}}{P(D_i)} \cdot P(D_i)=\sum_{i \in I} \E \xi I_{D_i}=\E\xi I_A \]
+    \end{enumerate}
+\end{proof}

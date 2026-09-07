@@ -1,0 +1,123 @@
+\begin{definition}
+	Пусть $z_0 \in \Cm$ и $\forall n \in \Z: c_n \in \Cm$. \textit{Рядом Лорана} называется выражение вида $\sum\limits_{n = -\infty}^{+\infty}c_n(z - z_0)^n$. Ряд Лорана \textit{сходится} в точке $z \in \Cm$, если $z \ne z_0$ и сходятся оба следующих ряда:
+	\begin{itemize}
+		\item $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n$ "--- \textit{главная часть} ряда Лорана
+		\item $\sum\limits_{n = 0}^{+\infty}c_n(z - z_0)^n$ "--- \textit{правильная часть} ряда Лорана
+	\end{itemize}
+	
+	\textit{Суммой} ряда Лорана называется величина $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n + \sum\limits_{n = 0}^{+\infty}c_n(z - z_0)^n$.
+\end{definition}
+
+
+\begin{note}
+	Ряду $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n$ поставим в соответствие ряд $\sum\limits_{m = 1}^{+\infty}c_{-m}w^m$, получаемый из данного заменой $w = \frac1{z - z_0}$. Пусть этот ряд имеет радиус сходимости $\rho > 0$, тогда он сходится регулярно на любом круге $\{w \in \Cm: |w| \le \rho_1\}$ при $\rho_1 < \rho$, поэтому ряд $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n$ сходится локально равномерно на $\{z \in \Cm: |z - z_0| > \frac1\rho\}$. Тогда, по теоремам Вейерштрасса:
+	\begin{enumerate}
+		\item Сумма ряда $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n$ регулярна на множестве $\{z \in \Cm: |z - z_0| > \frac1\rho\}$
+		\item Ряд $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n$ можно почленно дифференцировать любое число раз на множестве $\{z \in \Cm: |z - z_0| > \frac1\rho\}$
+	\end{enumerate}
+\end{note}
+
+
+\begin{definition}
+	Пусть ряды $\sum\limits_{n = 0}^{+\infty}c_n(z - z_0)^n$ и $\sum\limits_{m = 1}^{+\infty}c_{-m}\left(\frac{1}{z - z_0}\right)^m$ имеют радиусы сходимости $R > 0$ и $\rho > 0$. \textit{Кольцом сходимости} ряда Лорана $\sum\limits_{n = -\infty}^{+\infty}c_n(z - z_0)^n$ называется следующее множество:
+	\[K := \left\{z \in \Cm: \frac1\rho < |z - z_0| < R\right\}\]
+\end{definition}
+
+\begin{proposition}
+	Пусть кольцо сходимости $K$ ряда Лорана $\sum\limits_{n = -\infty}^{+\infty}c_n(z - z_0)^n$ непусто. Тогда:
+	\begin{enumerate}
+		\item Ряд Лорана сходится локально равномерно и абсолютно на $K$
+		\item Сумма ряда Лорана регулярна на $K$
+		\item Ряд Лорана можно почленно дифференцировать любое число раз на $K$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Ряд $\sum\limits_{n = -\infty}^{-1}c_n(z - z_0)^n$ сходится локально равномерно и абсолютно при $|z - z_0| > \frac{1}\rho$, а ряд $\sum\limits_{n = 0}^{+\infty}c_n(z - z_0)^n$ "--- при $|z - z_0| < R$, из чего следует требуемое.
+\end{proof}
+
+\begin{theorem}[о разложении регулярной в кольце функции в РЛ]
+	Пусть $z_0 \in \Cm$, $0 \le R_1 < R_2 \le +\infty$, и функция $f$ регулярна на кольце $K := \{z \in \Cm: R_1 < |z - z_0| < R_2\}$. Тогда существует единственное представление функции $f$ в виде ряда Лорана:
+	\[f(z) = \sum\limits_{n = -\infty}^{+\infty}c_n(z - z_0)^n,~z \in K\]
+	
+	Кроме того, если $K_\rho := \{z \in \Cm: |z - z_0| = \rho\}$ при произвольном $\rho \in (R_1, R_2)$, то для каждого $n \in \Z$ коэффициент $c_n$ в разложении удовлетворяет равенству:
+	\[c_n = \frac1{2\pi i}\int_{K_{\rho}} \frac{f(w)}{(w - z_0)^{n+1}}dw\]
+\end{theorem}
+
+\begin{proof}
+	Зафиксируем $z \in K$ и числа $\rho_1, \rho_2 \in \R$ такие, что выполнены неравенства $R_1 < \rho_1 < |z - z_0| < \rho_2 < R_2$. Тогда функция $f$ регулярна на замыкании $\overline{K_1}$ кольца \[K_1 := \{w \in \Cm: \rho_1 < |w - z_0| < \rho_2\}.\] Тогда, по интегральной формуле Коши:
+	\[f(z) = \frac1{2\pi i} \int_{\partial K_1}\frac{f(w)}{w - z}dw = \frac1{2\pi i} \int_{K_{\rho_2}}\frac{f(w)}{w - z}dw - \frac1{2\pi i} \int_{K_{\rho_1}}\frac{f(w)}{w - z}dw\]
+	
+	Обе окружности в равенстве выше ориентированы против часовой стрелки:
+	\begin{center}
+		\begin{tikzpicture}
+			\clip (-2.8, -2.12) rectangle (2.8, 2.12);
+			
+			\fill [opacity=0.05] (0,0) circle [radius=2];
+			\draw[
+				black,
+				decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+				decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+				postaction={decorate}
+			] (0,0) circle[radius=2];
+			\node[] at (-1, 1.) {$K_1$};
+			
+			\fill [white] (0,0) circle[radius=0.9];
+			\draw[
+			black,
+			decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+			decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+			postaction={decorate}
+			] (0,0) circle[radius=0.9];
+			\node[] at (1.93, 1.42) {$K_{\rho_2}$};
+			\node[] at (0.97, -0.9) {$K_{\rho_1}$};
+			
+			\node[draw, circle, inner sep=1pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.85}{$z_0$}}] at (0, 0) {};
+			\node[draw, circle, inner sep=1pt, fill, black, label={right, shift={(-3pt,-3pt)}:\scalebox{0.85}{$z_1$}}] at (-1, -1.15) {};
+			
+			\draw[->] (0, 0) -- (-1.92, -0.5) node[shift={(10pt, 10pt)}] {$\rho_2$};
+			\draw[->] (0, 0) -- (-0.4, -0.81) node[shift={(12pt, 5pt)}] {$\rho_1$};
+		\end{tikzpicture}
+	\end{center}
+	
+	Представим первый интеграл в правой части степенным рядом как интеграл Коши:
+	\[\frac1{2\pi i} \int_{K_{\rho_2}}\frac{f(w)}{w - z}dw = \sum_{n = 0}^{+\infty} \left(\frac{1}{2\pi i}\int_{K_{\rho_2}}\frac{f(w)}{(w - z_0)^{n+1}}dw\right)(z - z_0)^n\]
+	
+	Обозначим коэффициенты степенного ряда выше через $c_n$ для всех $n \in \N \cup \{0\}$. Чтобы преобразовать второй интеграл, заметим следующее:
+	\[-\frac1{w - z} = \frac1{(z-z_0) - (w - z_0)} = \frac1{z-z_0}\cdot \frac1{1 - \frac{w-z_0}{z - z_0}} = \sum_{m=0}^{+\infty}\frac{(w-z_0)^m}{(z-z_0)^{m + 1}}\]
+		
+	Ряд выше сходится равномерно на $K_{\rho_1}$, тогда, в силу ограниченности функции $f$ на $K_{\rho_1}$, его можно домножить на $f(w)$ и проинтегрировать почленно на $K_{\rho_1}$:
+	\[- \frac1{2\pi i} \int_{K_{\rho_1}}\frac{f(w)}{w - z}dw = \frac1{2\pi i}\sum_{m=0}^\infty\frac1{(z-z_0)^{m + 1}}\left(\int_{K_{\rho_1}}f(w)(w-z_0)^mdw\right)\]
+	
+	Заменяя индекс суммирования на $n := -m - 1$, получим:
+	\[-\frac1{2\pi i} \int_{K_{\rho_1}}\frac{f(w)}{w - z}dw = \sum_{n = -\infty}^{-1}c_n(z - z_0)^n\]
+	
+	В равенстве выше для любого $n \in \Z \bs (\N \cup \{0\})$ коэффициент $c_n$ вычисляется по следующей формуле:
+	\[c_n = \frac1{2 \pi i}\int_{K_{\rho_1}}\frac{f(w)}{(w - z_0)^{n+1}}dw\]
+	
+	Таким образом, значение функции в каждой точке $z \in K$ действительно представляется в виде ряда Лорана, однако коэффициенты ряда задаются как интегралы по окружностям, радиусы которых зависят от $z$. Избавимся от этой зависимости. Зафиксируем $\rho', \rho'' \in \R$ такие, что $R_1 < \rho' < \rho'' < R_2$. Зафиксируем $n \in \Z$ и рассмотрим следующую функцию:
+	\[g_n(w) := \frac1{2\pi i} \frac{f(w)}{(w - z_0)^{n+1}}\]
+	
+	Функция $g_n$ регулярна на замыкании кольца $\{w \in \Cm: \rho' < |w - z_0| < \rho''\}$, поэтому применима интегральная теорема Коши:
+	\[\int_{K_{\rho'}}g_ndw - \int_{K_{\rho''}}g_ndw = 0 \ra \int_{K_{\rho'}}g_ndw = \int_{K_{\rho''}}g_ndw\]
+	
+	В силу произвольности выбора чисел $\rho'$, $\rho''$ и $n$, представление функции рядом Лорана получено. \textbf{Проверим единственность представления.} Пусть в каждой точке $z \in K$ выполнены следующие равенства:
+	\[f(z) = \sum_{n = -\infty}^{+\infty}c_n(z - z_0)^n = \sum_{n = -\infty}^{+\infty}d_n(z - z_0)^n\]
+	
+	Зафиксируем $m \in \Z$ и домножим обе части равенства на $(z - z_0)^m$. Поскольку оба ряда сходятся локально равномерно на $K$, то, интегрируя по окружности $K_{\rho}$ при $\rho \in (R_1, R_2)$, получим:
+	\[{(2\pi i)}{c_{-m - 1}} = \sum_{n = -\infty}^{+\infty}\left(\int_{K_{\rho}}c_{n}(z - z_0)^{n+m}\right) = \sum_{n = -\infty}^{+\infty}\left(\int_{K_{\rho}}d_{n}(z - z_0)^{n+m}\right) = {(2\pi i)}{d_{-m - 1}}\]
+ 
+        (Все члены суммы зануляются, кроме члена $n = -m-1$)
+        
+	Таким образом, для всех $m \in \Z$ выполнено $c_m = d_m$, то есть получено требуемое.
+\end{proof}
+
+\begin{proposition}[неравенство Коши для коэффициентов ряда Лорана]
+	Пусть $z_0 \in \Cm$, $0 \le R_1 < R_2 \le +\infty$, и на кольце $K = \{z \in \Cm: R_1 < |z - z_0| < R_2\}$ функция $f$ представима рядом Лорана. Тогда для любого $\rho \in (R_1, R_2)$ и любого $n \in \Z$ выполнено неравенство:
+	\[|c_n| \leqslant \frac{1}{\rho^n}\max\limits_{w \in K_{\rho}}\left|{f(w)}\right|\]
+\end{proposition}
+
+\begin{proof}
+	Пользуясь свойством оценки интегралов, получим:
+	\[|c_n| = \frac1{2\pi}\left|\int_{K_{\rho}} \frac{f(w)}{(w - z_0)^{n+1}}dw\right| \le \rho\max_{w \in K_\rho}\left|\frac{f(w)}{(w - z_0)^{n+1}}\right| = \frac1{\rho^n}\max_{w \in K_{\rho}}\left|{f(w)}\right| \qedhere\]
+\end{proof}

@@ -1,0 +1,16 @@
+\par \Def Расширение Галуа $K \supset F$ называется циклическим (абелевым), если $Aut_F K$ - циклическая (абелева)
+
+\par \Statement $K \supset F$ - поле разложение $x^n-a \Rightarrow K \supset F$ - абелево
+
+\par \Proof Будем строить расширение $K$ в два этапа $K \supset L \supset F$, где $L$ - поле разложения $x^n-1$
+\begin{enumerate}
+    \item $L=F(\xi_n)$, где $\xi_n$ - корень $n$-ой степени из 1. Пусть $\varphi \in Aut_F L$. Тогда $\varphi(\xi_n)=\xi_n^l, l \in \Z_n^*$ (так как $F$ переходит в себя под действием $\varphi$). Значит каждое отображение из $Aut_F L$ однозначно задается степенью $l$, в которую переходит корень из 1 (обозначим соответствующий автоморфизм как $\varphi_l$). Рассмотрим композицию
+    $$\varphi_l \circ \varphi_k(\xi_n) = \varphi_l(\varphi_k(\xi_n))=\varphi_l(\xi_n^k)=(\varphi(\xi_n))^k=\xi^{kl}$$
+    \par Получаем, что $Aut_F L \subset \Z_n^*$ (отображение $\varphi_l \mapsto l$), а значит $Aut_F L$ - абелева (но необязательно циклическая)
+    
+    \item Корни $x^n-a$: $\sqrt[n]{a}, \sqrt[n]{a}\xi_n, \ldots, \sqrt[n]{a}\xi_n^{n-1}$. Поэтому $K=L(\sqrt[n]{a})$.
+    \par Рассмотрим $\psi \in Aut_L K$. $\psi_k(\sqrt[n]{a})=\sqrt[n]{a} \xi_n^k$ (по соображением аналогичным пункту 1). Опять занумеруем $\psi$ и рассмотрим композицию, помня, что все $\psi$ оставляют $L$ на месте
+    $$\psi_l \circ \psi_k(\sqrt[n]{a})=\psi_l(\sqrt[n]{a} \xi_n^k)=\psi_l(\sqrt[n]{a})\psi_l(\xi_n^k)=\sqrt[n]{a}\xi_n^k \xi_n^l=\psi_{l+k}(\sqrt[n]{a})$$
+    \par Отсюда следует, что $Aut_L K \cong \Z_n$ ($\Z_n$ - группа по сложению), а значит $Aut_L K$ - абелева (и циклическая).
+\end{enumerate}
+\par Таким образом, получаем, что $K$ - абелево \EndProof

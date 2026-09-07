@@ -1,0 +1,13 @@
+\begin{itemize}
+    \item[а)] $F(\alpha_1, \ldots, \alpha_n) \cong F[\alpha_1, \ldots, \alpha_n]$
+    
+    \par \Proof Так как $F(\alpha_1, \alpha_2) \cong Quot ((Quot F[\alpha_1])[\alpha_2]) \cong Quot F[\alpha_1, \alpha_2]$, так как $F[\alpha_1, \alpha_2]$ — поле. Аналогично для $n$ элементов. \EndProof
+    
+    \item[б)] $F[\alpha_1, \ldots, \alpha_n] \supset F$ — конечное расширение степени не больше, чем произведение степеней $m_{\alpha_1}, \ldots, m_{\alpha_n}$
+    
+    \par \Proof Докажем, что $[F[\alpha_1, \alpha_2]:F]=[F[\alpha_1, \alpha_2]:F[\alpha_1]] \cdot [F[\alpha_1]:F]$. Для этого зададим базисы $F[\alpha_1]:F$ через $1, \alpha_1, \ldots, \alpha_1^{p-1}$, $F[\alpha_1, \alpha_2]:F[\alpha_1]$ через $1, \alpha_2, \ldots, \alpha_2^{q-1}$, где $p,q$ - степени $m_{\alpha_1}, m_{\alpha_2}$ соответственно. Получим, что чтобы разложить элемент из $F[\alpha_1, \alpha_2]$ над базисом $F$, необходимо его разложить изначально по базису $1, \alpha_1, \ldots, \alpha_1^{p-1}$, а затем каждый из этих элементов по базису из $1, \alpha_2, \ldots, \alpha_2^{q-1}$. Получим, что мы разложили элемент по $p \cdot q$ элементному базису, а значит утверждение доказано. Аналогично для $n$ элементного расширения. \EndProof
+    
+    \item[в)] Любое конечное расширение $K \supset F$ имеет вид $K=F(\alpha_1, \ldots, \alpha_n)$
+    
+    \par \Proof Рассмотрим произвольный элемент $0 \neq y \in K$. Рассмотрим последовательность $1, y, \ldots, y^n, \ldots$. Так как $[K:F]$ конечно, $\exists n \in \N: \exists \lambda_0, \ldots, \lambda_n: \sum_{i=0}^{n} \lambda_i y^i = 0$. Тогда $y$ — корень многочлена $g(x)=\sum_{i=0}^n \lambda_i x^i = 0$. \EndProof
+\end{itemize}

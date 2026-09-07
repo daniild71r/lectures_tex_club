@@ -1,0 +1,129 @@
+\begin{statement}
+    $F: X \to Y$ дифференцируема в точке $x_0$, $G: Y \to Z$ дифференцируема в точке $y_0 = F x_0$. Тогда $H = G \circ F$ дифференцируема в точке $x_0$.
+\end{statement}
+% картинка 1
+\begin{proof}
+    \begin{enumerate}
+        % развинчиваем внешнюю матрешку
+        \item \[ \Delta z = G'(y_0) \Delta y + \varepsilon_1(\Delta y), \; \frac{\|\varepsilon_1(\Delta y\|_Z}{\Delta y \|} \to 0 \]
+
+        \[
+        \Delta y = F'(x_0) \Delta x + \varepsilon_2(\Delta x) \text{, где } \frac{\|\varepsilon_2(\Delta x\|_Z}{\Delta x \|} \to 0
+        \]
+
+        Хитро подставим $\Delta y$ в выражение для $\Delta z$
+
+        \[ 
+        \Delta z = G'(y_0)(F'(x_0) \Delta x + \varepsilon_2(\Delta x)) + \varepsilon_1(\Delta y)=G'(y_0) \circ F'(x_0) \Delta x + G'(y_0) \varepsilon_2(\Delta x) + \varepsilon_1(\Delta y)
+        \]
+
+        $G'(y_0) \varepsilon_2(\Delta x) = o(\Delta x)$ при $\Delta x \to 0$.
+        \[
+        \frac{\|G'(y_0) \varepsilon_2(\Delta x)\|}{\|x\|}
+        \leqslant \frac{\|G'(y_0)\| \cdot \|\Delta x\| + \|\varepsilon_2(\Delta x)\|}{\|x\|} \to 0,
+        \]
+        так как $\frac{\| \varepsilon_2(\Delta x) \|_Y}{\| \Delta x \|} \to 0$ при $\Delta x \to 0$
+        
+        Надо показать, что $\|\varepsilon_1(\Delta y)\| = o(\|\Delta x\|)$ 
+
+        \[
+        \frac{\|\varepsilon_1(\Delta y)\|}{\|\Delta x\|} \cdot \frac{\|\Delta y\|}{\|\Delta y\|}
+        \]
+        
+        <<Главная диагональ>> в пределе дает 0 (см. вторую строку доказательства)
+        
+        \[
+        \frac{\|\Delta y\|}{\|\Delta x\|} = 
+        \frac{\|F'(x_0) \Delta x + \varepsilon_2(\Delta x)\|}{\|x\|} \leqslant 
+        \frac{\|F'(x_0)\| \cdot \|\Delta x\| + \|\varepsilon_2(\Delta x)\|}{\|\Delta x\|} \to 0
+        \]
+        
+    \end{enumerate}
+\end{proof}
+
+\subsection{§14. Преобразование Фурье и свёртка в пространствах $L_1(\R)$ и $L_2(\R)$}
+% этот параграф -- подарок
+
+\begin{definition}
+    Преобразование Фурье в пространстве $L_1$:
+    
+    $\forall f \in L_1(\R)$ сопоставим $F[f](y) = \widehat{f}(y) = L \int_{x = -\infty}^{\infty} f(x) e^{-ixy} dx$.
+
+    Таким образом, определён оператор преобразования Фурье
+    $F: L_1(\R) \to BC_0(\R)$ ($BC_0(\R)$~--- непрерывные ограниченные функции, стремящиеся к нулю).
+\end{definition}
+
+\begin{statement}
+    \begin{enumerate}
+     \item $\widehat{f}(y)$~--- ограниченная, то есть $|\widehat{f}(y)| \leqslant \|f\|_{L_1}$
+     \item $\widehat{f}(y)$~--- непрерывна
+    \end{enumerate}
+\end{statement}
+
+\begin{statement}
+    Если $\|f_n - f\|_{L_1} \to 0$, то $\|\widehat{f}_n - \widehat{f}\|_{B(\R)}$ (пространство с нормой $\|g\| = \sup_{x \in \R} |g(x)|$)
+\end{statement}
+
+\begin{example}
+    Преобразование Фурье не является компактным оператором. Пример: функция $\varphi = a \cdot I_{[-R, R]}$. Тогда 
+    \[
+    \widehat{\varphi}(y) = 
+    \int_{-R}^R a \cdot e^{-ixy} cos(xy) dx = \int_{-R}^R a \cdot e^{-ixy} d\left( \frac{sin(xy)}{y} \right) = \frac{2 sin(Ry)}{y}
+    \]
+\end{example}
+
+% TODO: доказательство утверждений
+
+Проблема: не удаётся определить $\im F$. Есть только некоторые достаточные признаки. Поэтому рассмотрим какое-то подмножество функций, для которых образ будет хороший.
+
+\begin{definition}
+    Пространство Шварца: $S=\{f \in C^\infty : \; f^{(k)} \cdot |x|^n \to 0, x \to \infty \}$
+\end{definition}
+
+\begin{statement}[б/д]
+    $FS = S$
+\end{statement}
+
+\textbf{Связь гладкости и скорости убывания на бесконечности ($f$ и $\widehat{f})$}
+
+\begin{theorem}
+\begin{enumerate}
+    \item $\widehat{f'}(y) = iy \cdot \widehat{f}(y)$, если $f, f' \in L_1$
+    \item $(\widehat{f}(y))' = \widehat{(-ix)f(x)}$(y), если $f, xf \in L_1$
+\end{enumerate}
+\end{theorem}
+
+\begin{exercise}
+1. Показать, что $F \not \in K(L_1, BC)$
+2. Мы выяснили, что $\Im F \subset C_0(\R)$. А что можно сказать про $\ker F$?
+\end{exercise}
+
+\begin{theorem}[Фубини, формулировка]
+Пусть $f(x, y)$ интегрируема по Лебегу на $[a, b] \times [c, d]$. Тогда 
+\begin{enumerate}
+    \item $\int dy f(x, y)$ существует для почти всех $x$
+    \item $\int \left( \int dy f(x, y) \right) dx = 
+    \iint \ldots$
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+Если $f$~--- измерима на $[a, b] \times [c, d]$ и конечен хотя бы один из повторных интегралов, то она интегрируема на $[a, b] \times [c, d]$.
+\end{corollary}
+
+\begin{theorem}[Формула умножения]
+    \[f, g \in L_1(\R) \implies \int_{\R} \widehat{f}(x) g(x) dx = \int_{\R} f(x) \widehat{g}(x) dx
+    \]
+\end{theorem}
+% TODO позже
+\begin{proof}
+Используем следствие из теоремы Фубини
+\[
+\int \left( \int |\widehat{f}(x) g(x)| dx \right) dy 
+ = \int \left( \int |f(y) e^{-ixy}| dy \cdot |g(x)| \right) dx = \int \left( \int |f(y)| \cdot |e^{-ixy|} dy \cdot |g(x)| \right) dx
+\]
+\end{proof}
+
+\begin{example}[Примение для обобщённых функций]
+    $\angles{f, \widehat{\varphi}} = \int f(x) \widehat{\varphi}(x)dx = \int \widehat{f}(x) \varphi(x) dx = \angles{\widehat{f}, \varphi}$
+\end{example}

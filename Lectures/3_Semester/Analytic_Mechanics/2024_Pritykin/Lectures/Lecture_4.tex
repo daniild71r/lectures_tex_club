@@ -1,0 +1,244 @@
+\subsection{Кватернионы как способ задания ориентации тела}
+\begin{definition}
+    Рассмотрим алгебру над четырехмерным линейным векторным пространством над полем вещественных чисел с умножением векторов, определенным по правилам ниже:
+    \begin{enumerate}
+        \item $i_0 \circ i_k = i_k \circ i_0 = i_k~~\forall k$
+        \item $i_k \circ i_k = -i_0~~\forall k$
+        \item $i_1 \circ i_2 = i_3 \tab i_2 \circ i_3 = i_1 \tab i_3 \circ i_1 = i_2$
+        \item $i_2 \circ i_1 = -i_3 \tab i_3 \circ i_2 = -i_1 \tab i_1 \circ i_3 = -i_2$
+    \end{enumerate}
+    Умножение ассоциативно, дистрибутивно и линейно. Тогда элементы этой алгебры -- \textbf{кватернионы}:
+    \[
+    \Lambda = \lambda_0 i_0 + \lambda_1 i_1 + \lambda_2 i_2 + \lambda_3 i_3
+    \]
+\end{definition}
+
+Одна из интерпретаций кватернионов выглядит следующим образом:
+\begin{itemize}
+    \item $i_0$ --- вещественная единица;
+    \item $i_1,~i_2,~i_3$ --- орты трехмерного базиса;
+    \item $i_k \circ i_l = \vec{i}_k \times \vec{i}_l ~~ \forall k,~l = 1,~2,~3$;
+    \item $i_k \circ i_k = -1~~\forall k$
+\end{itemize}
+
+Эта интерпретация позволяет задать кватернион в виде $\Lambda = \lambda_0 + \vec{\lambda}$, где $\lambda_0$ --- скалярная часть (вещественное число), $\vec{\lambda}$ --- векторная часть (вектор в $E^3$).\\
+
+Рассмотрим операции с кватернионами.\\
+
+Пусть задано два кватерниона $\Lambda = \lambda_0 + \vec{\lambda}$ и $M = \mu_0 + \vec{\mu}$. Умножение $\Lambda \circ M$ определяется как
+\[
+\Lambda \circ M = \lambda_0\mu_0 - \vec{\lambda}\vec{\mu} + \lambda_0\vec{\mu} + \mu_0\vec{\lambda} + \lambda\times\vec{\mu}\]
+Здесь скалярная часть равна $\lambda_0\mu_0 - \vec{\lambda}\vec{\mu}$, а векторная --- все остальное.\\
+
+Введем понятие \textbf{сопряженного кватерниона}. Пусть $\Lambda = \lambda_0 + \vec{\lambda}$, тогда сопряженный $\bar\Lambda = \lambda_0 - \vec{\lambda}$ (по аналогии с комплексными числами). И определим \textbf{норму кватерниона}:
+\[
+||\Lambda||~ =~ \Lambda \circ \bar\Lambda = \bar\Lambda \circ \Lambda = \lambda_0^2 + \lambda_1^2 + \lambda_2^2 + \lambda_3^2
+\]
+Модуль кватерниона:
+\[
+|\Lambda| = \sqrt{||\Lambda||}
+\]
+
+\underline{Основные свойства умножения кватернионов:}
+\begin{enumerate}
+    \item Умножение некоммутативно.
+    \item $\overline{\Lambda \circ M} = \bar M \circ \bar\Lambda$
+    \item $||\Lambda \circ M|| = (\Lambda \circ M)\circ \overline{(\Lambda \circ M)} = \Lambda \circ M \circ \bar M \circ \bar\Lambda = ||\Lambda||~||M||$
+    \item Операция умножения инвариантна относительно ортогональных преобразований векторной части.
+    \item Для любого кватерниона $\Lambda$ т.ч. $||\Lambda|| \neq 0$ существует \textbf{обратный}:
+    \[
+    \Lambda^{-1} = \dfrac{\bar\Lambda}{||\Lambda||}
+    \]
+\end{enumerate}
+
+\begin{definition}
+    Введем \textbf{присоединенное отображение} $R \longrightarrow R'$ алгебры кватернионов в себя как
+    \[
+    R' = \Lambda \circ R \circ \bar\Lambda, \ ||\Lambda|| = 1
+    \]
+\end{definition}
+\underline{Свойства присоединенного отображения:}
+\begin{enumerate}
+    \item Присоединенное отображение не изменяет скалярной части $R$:
+    \[
+    \Lambda \circ R \circ \bar \Lambda = \Lambda \circ (r_0 + \vec{r}) \circ \bar{\Lambda} = r_0~||\Lambda||~ + \Lambda \circ \vec{r} \circ \bar{\Lambda}
+    \]
+    Покажем, что во втором слагаемом не изменится скалярная часть:
+    \[
+    \overline{\Lambda\circ \vec{r} \circ \bar{\Lambda}} = \Lambda\circ \overline{\vec{r}} \circ \bar{\Lambda} = - \Lambda\circ \vec{r} \circ \bar{\Lambda}
+    \]
+    Значит, нет скалярной части.
+    \item Векторная часть преобразовывается как $\vec{r}' = U\vec{r}$, где U --- ортогональная матрица:
+    \[
+    ||R'||~ = ~ ||\Lambda \circ R \circ \bar \Lambda|| ~=~ ||R|| \ \Longrightarrow \ ||r'|| = ||r||
+    \]
+\end{enumerate}
+
+Запишем единичный кватернион в виде $\Lambda = \lambda_0 + \lambda\vec{e}$, где $\vec{e}$ --- единичный вектор. Понятно, что $\lambda_0^2 + \lambda^2 = 1$ (из определения нормы), но это единичная окружность, а значит, всегда можно представить такой кватернион в виде
+\[
+\Lambda = \cos{\dfrac{\phi}{2}} + \vec{e}\sin{\dfrac{\phi}{2}}
+\]
+\begin{theorem}
+    Присоединенное отображение, задаваемое кватернионом $\Lambda = \cos{\dfrac{\phi}{2}} + \vec{e}\sin{\dfrac{\phi}{2}}$ соответствует преобразованию поворота вокруг оси $\vec{e}$ на угол $\phi$.
+\end{theorem}
+\begin{proof}
+    Для доказательства вычислим матрицу поворота $U$ по заданному кватерниону. Рассмотрим базис $\vec{e},~\vec{i}_2, \vec{i}_3$, это будет исходный базис. Мы можем выбрать его произвольно благодаря свойству 4 операции умножения кватернионов. Тогда в новом базисе
+    \[
+    \vec{i'}_1 = (\cos{\dfrac{\phi}{2}} + \vec{i}_1\sin{\dfrac{\phi}{2}}) \circ \vec{i}_1 \circ(\cos{\dfrac{\phi}{2}} - \vec{i}_1\sin{\dfrac{\phi}{2}}) = \vec{i}_1
+    \]
+    \[
+    \vec{i'}_2 = (\cos{\dfrac{\phi}{2}} + \vec{i}_1\sin{\dfrac{\phi}{2}}) \circ \vec{i}_2 \circ(\cos{\dfrac{\phi}{2}} - \vec{i}_1\sin{\dfrac{\phi}{2}}) = \vec{i}_2\cos{\phi} + \vec{i}_3\sin{\phi}
+    \]
+    \[
+    \vec{i'}_3 = (\cos{\dfrac{\phi}{2}} + \vec{i}_1\sin{\dfrac{\phi}{2}}) \circ \vec{i}_3 \circ(\cos{\dfrac{\phi}{2}} - \vec{i}_1\sin{\dfrac{\phi}{2}}) = -\vec{i}_2\sin{\phi} + \vec{i}_3\cos{\phi}
+    \]
+    Значит матрица преобразования имеет требуемый вид:
+    \[
+    U = \begin{pmatrix}
+        1 & 0 & 0\\
+        0 & \cos{\phi} & -\sin{\phi}\\
+        0 & \sin{\phi} & \cos{\phi}\\
+    \end{pmatrix}
+    \]
+\end{proof}
+$\Lambda$ и $-\Lambda$ --- это один и тот же поворот.\\
+
+\subsubsection{Сложение поворотов}
+Сделаем два последовательных поворота:
+\[
+R \longrightarrow R' \tab \vec{r}' = U_1\vec{r}
+\]
+\[
+R' \longrightarrow R'' \tab \vec{r''} = U_2\vec{r'}
+\]
+Тогда итоговый поворот $R \longrightarrow R''$:
+\[
+\vec{r''} = U_2\vec{r} = U_2U_1\vec{r}
+\]
+\textbf{Активная точка зрения:} система координат, в которой осуществляется преобразование, остается прежней, поворот вектора.\\
+\textbf{Пассивная точка зрения:} поворачивается базис, ортогональное преобразование --- это преобразование координат, а сами векторы считаются неизменными.:
+\[
+\begin{cases}
+    \vec{r}' = U_1\vec{r}\\
+    \vec{r''} = U_2\vec{r'}\\
+\end{cases} \Longrightarrow \vec{r''} = U_1U_2\vec{r}
+\]
+
+\begin{example}
+    По сути, активная и пассивная точки зрения --- два способа сделать одно и то же, нужный выбирается исходя из того, что сделать проще и удобнее. Покажем это на примере сложения двух поворотов тела: сначала вокруг оси $x$ на угол $\pi / 2$, потом вокруг оси $y$ на тот же угол.\\
+
+    \underline{Активная точка зрения.}\\
+    Матрицы поворотов:
+    \[
+    U_1 = \begin{pmatrix}
+        1 & 0 & 0\\
+        0 & \cos{\phi} & -\sin{\phi}\\
+        0 & \sin{\phi} & \cos{\phi}\\
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0\\
+        0 & 0 & -1\\
+        0 & 1 & 0\\
+    \end{pmatrix}, \tab U_2 = \begin{pmatrix}
+    \cos{\phi} & 0 & \sin{\phi}\\
+    0 & 1 & 0\\
+    -\sin{\phi} & 0 & \cos{\phi}\\
+\end{pmatrix} = \begin{pmatrix}
+    0 & 0 & 1\\
+    0 & 1 & 0\\
+    -1 & 0 & 0\\
+\end{pmatrix}
+    \]
+    Мы уже встречали эти \hyperlink{turns}{повороты} и в целом, в большинстве задач мы используем именно активную точку зрения.\\
+    Итоговый поворот:
+    \[
+    U = U_2U_1 = \begin{pmatrix}
+        0 & 1 & 0\\
+        0 & 0 & -1\\
+        -1 & 0 & 0\\
+    \end{pmatrix}
+    \]
+    
+    \underline{Пассивная точка зрения.}\\
+    В пассивной точке зрения матрица первого поворота останется той же, а второй поворот должен быть записан уже в новых осях, в которые мы перейдем после первого поворота:
+    \[
+    U_2 = \begin{pmatrix}
+        \cos{\phi} & -\sin{\phi} & 0\\
+        \sin{\phi} & \cos{\phi} & 0\\
+        0 & 0 & 1\\
+    \end{pmatrix} = \begin{pmatrix}
+        0 & 1 & 0\\
+        -1 & 0 & 0\\
+        0 & 0 & 1\\
+    \end{pmatrix}
+    \]
+    В этом случае мы делаем сначала первое преобразование базиса, потом второе, поэтому порядок умножения матриц прямой (можно провести аналогию с композицией функций). Итоговый поворот $U = U_1U_2$ получится тем же, что и в активной точке зрения.
+\end{example}
+
+\begin{note}
+    Интуиция: пусть у нас есть тело, например куб, который мы хотим как-то повернуть. В активной точке зрения мы берем этот куб и вращаем, как это и происходит в обычной жизни. В пассивной точке зрения мы вращаем мир вокруг куба.\\
+\end{note}
+
+Аналогично, сложение поворотов можно задать с помощью кватернионов. Зафиксируем первый поворот $\vec{r'} = \Lambda \circ \vec{r} \circ \bar\Lambda$ и второй поворот $\vec{r''} = M \circ \vec{r'} \circ \bar M$.\\
+
+\textbf{Активная точка зрения:}
+\[
+\vec{r''} = M\circ\Lambda\circ\vec{r}\circ\bar\Lambda\circ\bar M = M \circ \Lambda\circ \vec{r} \circ\overline{(M\circ\Lambda)}
+\]
+Т.е. итоговый поворот задается кватернионом $M \circ\Lambda$.\\
+\textbf{Пассивная точка зрения:}итоговый поворот задается кватернионом $\Lambda \circ M$.\\
+
+
+\begin{note}
+    Для кватернионов верна формула Муавра.
+\end{note}
+
+\subsubsection{Кинематические уравнения}
+В некоторых случаях может быть удобно задать угловую скорость с помощью задания положения тела через кватернионы:
+\[
+\Lambda(t) = \cos{\dfrac{\phi(t)}{2}} + \vec{e}\sin{\dfrac{\phi(t)}{2}}
+\]
+Для этого вспомним, что мгновенная угловая скорость по определению:
+\[
+\vec{\omega} = \lim\limits_{\Delta t \longrightarrow 0} \dfrac{\Delta\phi(t + \Delta t)}{\Delta t}\vec{\varepsilon}(t + \Delta t)
+\]
+В момент $t + \Delta t$ тело находится в положении
+\[
+\Lambda(t+ \Delta t) = \cos{\dfrac{\phi(t+ \Delta t)}{2}} + \vec{e}\sin{\dfrac{\phi(t+ \Delta t)}{2}}
+\]
+Считаем, что промежуток времени $\Delta t$ мал, а значит, мал и угол поворота
+\[
+\Delta \Lambda = \cos{\dfrac{\Delta \phi}{2}} + \vec{\varepsilon}\sin{\dfrac{\Delta \phi}{2}} \approx (1 + \vec{\varepsilon}\dfrac{\Delta \phi}{2})
+\]
+Откуда (с использованием закона сложения поворотов)
+\[
+    \Lambda(t + \Delta t) = \Delta \Lambda \circ \Lambda(t)
+\]
+А значит 
+\[
+\dot{\Lambda} = \lim\limits_{\Delta t \longrightarrow 0} \dfrac{\Lambda(t + \Delta t) - \Lambda(t)}{\Delta t} = \dfrac{1}{2}\vec{\omega}\circ\Lambda(t) \tab \text{или} \tab \vec{\omega} = 2\dot{\Lambda}\circ\bar\Lambda
+\]
+Получили \textbf{кинематическое уравнение Пуассона} для твердого тела с неподвижной точкой.\\
+
+Выше была представлена активная точка зрения, т.е. $\vec{\omega}$ и $\Lambda$ заданы в неподвижных осях. В случае пассивной точки зрения, когда оси связаны с телом
+\[
+\vec{\omega} = 2\bar\Lambda\circ\dot{\Lambda}
+\]
+
+Аналогичный результат можно получить, используя ортогональные матрицы. Положение любой точки тела в пространстве задается как $\vec{r'} = U(t)\vec{r}$, а ее скорость $\dot{\vec{r'}} = \dot{U}(t)U^T(t)\vec{r'}$. Используя формулу Эйлера в матричной форме, получим
+\[
+\Omega\vec{r'} = \dot{U}(t)U^T(t)\vec{r'}
+\]
+откуда
+\[
+\dot{U} = \Omega U,
+\]
+где
+\[
+\Omega = \begin{pmatrix}
+    0 & -\omega_z & \omega_y\\
+    \omega_z & 0 & -\omega_x\\
+    -\omega_y & \omega_x & 0\\
+\end{pmatrix}
+\]
+
+В пассивной точке зрения $\dot{U} = U\Omega$.

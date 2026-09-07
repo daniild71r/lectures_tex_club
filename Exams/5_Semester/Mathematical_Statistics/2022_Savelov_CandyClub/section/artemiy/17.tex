@@ -1,0 +1,83 @@
+В линейной модели наблюдение -- случайный вектор $\displaystyle X\in \mathbb{R}^{n}$, который представляется в виде $\displaystyle X=l+\varepsilon $, где $\displaystyle l$ -- неслучайный неизвестный вектор, а $\displaystyle \varepsilon $ -- случайный вектор. Тогда, $\displaystyle l$ является оцениваемой величиной, а $\displaystyle \varepsilon $ трактуется как вектор ошибок. Будем считать, что $\displaystyle E\varepsilon =0,\ D\varepsilon =\sigma ^{2} I_{n},\ \sigma^2 > 0$, при этом $\displaystyle \sigma ^{2}$ неизвестен. Про $\displaystyle l$ известно, что $\displaystyle l\in L$, где $\displaystyle L$ -- линейное подпространство в $\displaystyle \mathbb{R}^{n}$. Задача состоит в оценивании $\displaystyle l$ и $\displaystyle \sigma ^{2}$.
+
+Пусть $\displaystyle L$ задано с помощью базиса $\displaystyle ( Z_{1} ,\ \dotsc ,\ Z_{k})$ из вектор-столбцов. Следовательно, $\displaystyle \dim L=k$. Составим матрицу $\displaystyle Z=\begin{pmatrix}
+Z_{1} & \dotsc  & Z_{k}
+\end{pmatrix}$. Тогда, $\displaystyle l=Z\theta $, где $\displaystyle \theta $ -- вектор неизвестных координат в базисе $\displaystyle ( Z_{1} ,\ \dotsc ,\ Z_{k})$.
+
+Таким образом, задача сведена к оцениванию $\displaystyle \left( \theta ,\ \sigma ^{2}\right) ,\ \theta \in \mathbb{R}^{k}$.
+\begin{definition}
+    Оценка по методу наименьших квадратов для линейной регрессионной модели для параметра $\displaystyle \theta $ -- это оценка
+    \begin{equation*}
+        \hat{\theta } =\arg\min_{\theta }\Vert X-Z\theta \Vert _{2}^{2} =\arg\min_{\theta }\langle X-Z\theta ,\ X-Z\theta \rangle .
+    \end{equation*}
+\end{definition}
+\begin{note}
+    $\displaystyle Z\hat{\theta }$ является проекцией вектора $\displaystyle X$ на подпространство $\displaystyle L$, т.е. $\displaystyle Z\hat{\theta } =proj_{L} X$.
+\end{note}
+\begin{lemma}
+    $\displaystyle \hat{\theta } =\left( Z^{T} Z\right)^{-1} Z^{T} X$, где $\displaystyle \hat{\theta }$ -- оценка МНК параметра $\displaystyle \theta $.
+\end{lemma}
+\begin{proof}
+    Так как функция $\displaystyle \Vert X-Z\theta \Vert _{2}^{2}$ выпукла, то в минимум достигается в ее точке стационарности. Путем дифференцирования выражения $\displaystyle ( X-Z\theta )^{T}( X-Z\theta ) =0$ и, выражая $\displaystyle \theta $, получаем требуемое.
+\end{proof}
+\begin{note}
+    $\displaystyle Z^{T} Z$ является матрицей Грама, поэтому она обратима.
+\end{note}
+\begin{proposition}
+    $\displaystyle E\hat{\theta } =\theta ,\ D\hat{\theta } =\sigma ^{2}\left( Z^{T} Z\right)^{-1}$.
+\end{proposition}
+\begin{proof}
+    \begin{gather*}
+        E\hat{\theta } =E\left( Z^{T} Z\right)^{-1} Z^{T} X=\left( Z^{T} Z\right)^{-1} Z^{T} EX=\left( Z^{T} Z\right)^{-1} Z^{T} E( Z\theta +\varepsilon ) =\\
+        \left( Z^{T} Z\right)^{-1} Z^{T} Z\theta =\theta ,
+    \end{gather*}
+    \begin{gather*}
+        D\hat{\theta } =D\left( Z^{T} Z\right)^{-1} Z^{T} X=\left( Z^{T} Z\right)^{-1} Z^{T} \cdotp DX\cdotp Z\left( Z^{T} Z\right)^{-1} =\\
+        \left( Z^{T} Z\right)^{-1} Z^{T} \cdotp \sigma ^{2} I_{n} \cdotp Z\left( Z^{T} Z\right)^{-1} =\sigma ^{2}\left( Z^{T} Z\right)^{-1} .
+    \end{gather*}
+\end{proof}
+\begin{note}
+    Таким образом, оценка МНК является несмещенной.
+\end{note}
+\begin{theorem}
+    (б/д) Пусть $\displaystyle t=T\theta $ -- линейная вектор-функция от $\displaystyle \theta $, $\displaystyle T\in M_{n\times k}$. Тогда оценка $\displaystyle \hat{t} =T\hat{\theta }$ является оптимальной оценкой параметра $\displaystyle t$ в классе линейных несмещенных оценок, т.е. оценок вида $\displaystyle B\cdotp X$.
+\end{theorem}
+\begin{lemma}
+    $\displaystyle E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =\sigma ^{2}( n-k)$.
+\end{lemma}
+\begin{proof}
+    Так как $\displaystyle E( X-Z\hat{\theta }) =0$, то 
+    \begin{equation*}
+        \displaystyle E\Vert X-Z\hat{\theta }\Vert _{2}^{2}=E(X-Z \hat{\theta}, X-Z \hat{\theta})=E(tr (X-Z \hat{\theta})(X-Z \hat{\theta})^T)=tr E(X-Z \hat{\theta})(X-Z \hat{\theta})^T =trD( X-Z\hat{\theta })
+    \end{equation*} 
+    Рассмотрим
+    \begin{equation*}
+        D( X-Z\hat{\theta }) =D\left[\left( I_{n} -Z\left( Z^{T} Z\right)^{-1} Z^{T}\right) X\right] .
+    \end{equation*}
+    Обозначим $\displaystyle A:=Z\left( Z^{T} Z\right)^{-1} Z^{T}$. Тогда
+    \begin{gather*}
+        D( X-Z\hat{\theta }) =D[( I_{n} -A) X] =( I_{n} -A) \cdotp DX\cdotp ( I_{n} -A)^{T} =\\
+        ( I_{n} -A) \cdotp DX\cdotp ( I_{n} -A) =\sigma ^{2}( I_{n} -A)^{2} =\sigma ^{2} I_{n} -2\sigma ^{2} A+\sigma ^{2} A^{2} .
+    \end{gather*}
+    Заметим, что $\displaystyle A^{2} =Z\left( Z^{T} Z\right)^{-1} Z^{T} Z\left( Z^{T} Z\right)^{-1} Z^{T} =A$, т.е.
+    \begin{equation*}
+        D( X-Z\hat{\theta }) =\sigma ^{2}( I_{n} -A) .
+    \end{equation*}
+    Тогда
+    \begin{gather*}
+        E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =\sigma ^{2} tr( I_{n} -A) =\sigma ^{2}\left( trI_{n} -tr\left( Z\left( Z^{T} Z\right)^{-1} Z^{T}\right)\right) =\\
+        \sigma ^{2}\left( n-tr\left(\left( Z^{T} Z\right)^{-1} Z^{T} Z\right)\right) =\sigma ^{2}( n-k) .
+    \end{gather*}
+\end{proof}
+\begin{corollary} ~
+    \begin{enumerate}
+        \item $\displaystyle X-Z\hat{\theta } =proj_{L^{\perp }} X$
+        \item $\displaystyle \dfrac{\Vert X-Z\hat{\theta }\Vert _{2}^{2}}{n-k} =\dfrac{\Vert proj_{L^{\perp }} X\Vert _{2}^{2}}{n-k}$ -- несмещенная оценка $\displaystyle \sigma ^{2}$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof} ~
+    \begin{enumerate}
+        \item $\displaystyle X=proj_{L} X+proj_{L^{\perp }} X\Rightarrow proj_{L^{\perp }} X=X-Z\hat{\theta }$.
+        \item $\displaystyle E\dfrac{\Vert X-Z\hat{\theta }\Vert _{2}^{2}}{n-k} =\dfrac{1}{n-k} E\Vert X-Z\hat{\theta }\Vert _{2}^{2} =\dfrac{1}{n-k} \sigma ^{2}( n-k) =\sigma ^{2}$.
+    \end{enumerate}
+\end{proof}

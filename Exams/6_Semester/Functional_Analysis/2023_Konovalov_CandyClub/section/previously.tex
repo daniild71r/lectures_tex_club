@@ -1,0 +1,99 @@
+\subsection{Критерий компактности}
+\begin{theorem}[3.2, критерий компактности]\label{thm3.2}
+    Пусть $X$ "--- метрическое пространство. Тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $X$ компактно
+        \item $X$ полно и вполне ограниченно
+        \item Из любой последовательности $\{x_n\} \subset X$ можно выделить сходящуюся подпоследовательность $\{x_{n_k}\}$ т.е. $X$ - \textit{секвенциально компактно}
+        \item Любое бесконечное множество $M \subset X$ имеет предельную точку
+    \end{enumerate}
+\end{theorem}
+
+% =============
+
+\subsection{Рисса--Фреше}
+\begin{theorem}[Рисса--Фреше]\label{Riss-Freshe} Пусть существуют гильбертово пространство \(H\) и линейный ограниченный функционал \(f \in H^*\) в пространстве \(H\). Тогда существует единственный элемент \(y\) пространства \(H\), такой, что для произвольного \(x \in H\) выполняется \(f(x)=\langle y,x\rangle\). При том \(\|f\| = \|y\|\).
+\end{theorem}
+\begin{note}
+Таким образом, существует изоморфизм между пространствами $H$ и $H^*$
+\end{note}
+% =============
+
+\subsection{Продолжение линейного ограниченного оператора на замыкание области определения}
+
+\begin{theorem}[5.3]\label{extrapolate-to-closure}
+    Пусть $E_1$~--- линейное нормированное пространство, $E_2$~--- банахово пространство и $A$~--- линейный ограниченный оператор: $A: D(A) \to E_2$, где $D(A)$ линейное многообразие в $E_1 = \overline{D(A)}$. Тогда сущеествует и единственно продолжение оператора $A$ до замыкания его области определения.\\
+    То есть $\exists! \widetilde{A} \in \mathcal{L}(E_1; E_2)$:
+    \begin{enumerate}
+        \item $ \widetilde{A}\rvert_{D(A)} = A$,
+        \item $\|\widetilde{A}\| = \|A\|$.
+    \end{enumerate}
+\end{theorem}
+
+% =============
+
+\subsection{Банаха--Штейнгауза}
+
+\begin{theorem}[Банаха--Штейнгауза]\label{Banach-Steingaus}
+Пусть \(X, Y\)~--- линейные нормированные пространства, причём \(X\) полно. Пусть \(\mathcal{A} \subseteq \mathcal{L}(X, Y)\) --- семейство линейных непрерывных операторов.\\
+\noindentТогда из \(\forall x \in X \left(\sup\left\{\|Ax\|_Y:\: A \in \mathcal{A} \right\} < \infty \right)\) следует \(\sup\left\{\|A\|:\: A \in \mathcal{A} \right\} < \infty\). То есть, из поточечной ограниченности следует равномерная ограниченость.
+\end{theorem}
+
+\begin{theorem}[Критерий поточечной сходимости операторов из $\mathcal{L}(E_1, E_2)$]
+\label{bshetengcorollary}
+    Пусть $E_1$~--- банахово, $E_2$~--- линейное нормированное пространство. Верно, что $\forall\; \{A_n\} \in \mathcal{L}(E_1, E_2),\; A \in \mathcal{L}(E_1, E_2)$:
+    \[
+    A_n \xrightarrow{\textit{поточечно}} A \Leftrightarrow
+    \begin{cases}
+        1.\;\text{Последовательность }\{\|A_n\|\}\text{ ограничена } M,\\
+        2.\;\forall s \in S, \; \overline{[S]} = E_1: \; A_n s \to As.
+    \end{cases}
+    \]
+\end{theorem}
+% =============
+
+\subsection{Рисса, о проекции}
+\begin{theorem}[4.3 (Рисса, о проекции)]\label{thm4.3}
+    Пусть $H$ "--- гильбертово пространство, {$M \subset H$} -- подпространство в $H$. Тогда $H = M \oplus M^\perp$.
+\end{theorem}
+% =============
+
+\subsection{Хана--Банаха}
+
+\begin{theorem}[Хана--Банаха]\label{Han-Banah}
+Пусть $E$~--- ЛНП. $M \subset E$~--- линейное многообразие, $f$~--- линейный ограниченный функционал на $M$. Тогда $\exists \widetilde{f} \in E^*$:
+\begin{enumerate}
+    \item  $ \widetilde{f} |_{M} = f$
+    \item \(\| \widetilde{f} \| = \|f\|\)
+\end{enumerate}
+\end{theorem}
+\noindent\textbf{Следствия из Теоремы Хана-Банаха}.
+
+\begin{corollary}[1] Пусть $E$ --- линейное нормированное пространство, $M \subsetneq E$ --- линейное многообразие, $x_0 \notin \overline{M} $. Тогда $\exists f \in E^*$ такой, что:
+
+1. $f |_M = 0$, т.е. $M \subset \ker f$
+
+2. $f(x_0) = 1$
+
+3. $\|f\| = \frac{1}{\rho(x_0, M)}$
+\end{corollary}
+
+\begin{corollary}[2] \label{hbcorollary2} Если $x \in E$, то $\exists f \in E^*$:
+
+1. $\|f\| = 1$
+
+2. $f(x) = \|x\|$
+\end{corollary}
+\begin{corollary}[3] Два эквивалентных утверждения:
+\label{hbcorollary3}
+\begin{itemize}
+    \item Если $\forall f \in E^* \; f(x) = f(y)$, то $x = y$
+    \item Если $\forall f \in E^* \; f(x) = 0$, то $x = 0$
+\end{itemize}
+\end{corollary}
+
+\begin{corollary}[4]
+\label{hbcorollary4}
+$\forall x \in E $ $\|x\| = \sup\limits_{\| f\| _{E^*} = 1} |f(x)|$
+\end{corollary}
+% =============

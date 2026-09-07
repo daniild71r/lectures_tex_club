@@ -1,0 +1,192 @@
+\section{Уравнения движения для механических систем со связями}
+\subsection{Связи. Типы связей}
+Пусть есть система из $N$ материальных точек $\overline{r}_j, m_j$. Будем называть положением механической системы функцию \[R = \begin{pmatrix}
+        \overline{r}_1 \\ \ldots \\ \overline{r}_N
+    \end{pmatrix}\]
+    И пусть есть вектор скоростей \[ V = \begin{pmatrix}
+        \overline{v}_1 \\ \ldots \\ \overline{v}_N
+    \end{pmatrix}\]
+\begin{definition}
+    Пусть заданы функции $F_i(R, V, t), i = \overline{1, m}$ на механической системе такие, что по постановке задачи на всяком движении системы $R(t)$ и $V(t)$ выполняется \[F_i(R(t), V(t), t) \equiv 0\]
+    Тогда будем говорить, что на систему наложены удерживающие связи.
+\end{definition}
+\begin{definition}
+    Связи, явно не зависящие от $V$, называются конечными/геометрическими.
+\end{definition}
+\begin{definition}
+    Стационарными связями будем называть такие связи, которые явно не зависят от времени.
+\end{definition}
+\begin{note}
+    Заметим, что все известные примеры дифференциальных механических связей характеризуются линейной зависимостью от скорости, то есть выражаются как \[f = \overline{a}^TV + b\]
+\end{note}
+\begin{definition}
+    Связь называется интегрируемой, если она эквивалентна некоторой конечной связи, то есть если $F(R, t)$, то тогда \[\dfrac{d}{dt}F =  \dfrac{\partial F}{\partial R}\cdot V + \dfrac{\partial F}{\partial t}\]
+    В таком виде~---~линейно зависящем от скорости~---~связь можно проинтегрировать и привести её к конечной при  как $F(R, t) - F(R_0, t_0) = 0$.
+\end{definition}
+\begin{definition}
+    Связи вида $F(R, t) = 0$~---~т.е. конечные или приводящиеся к ним~---~называются голономными.
+\end{definition}
+\begin{example}
+    Пусть есть $Oxyz$. Механическая система состоит из точки $O$, которая может перемещаться по оси $Oz$ некоторой системы координат. Можно сказать, что на систему наложены связи: \[x = 0 \quad y = 0\]
+    Заметим, что эта система уравнений эквивалентна единственному уравнению \[x^2 + y^2 = 0\]
+    При этом, если рассматривать ранг матрицы: \[\dfrac{\partial F}{\partial R} = \begin{pmatrix}
+        1 & 0 & 0 \\ 0 & 1 & 0
+    \end{pmatrix}\],
+    легко видеть, что он равен двум (по числу уравнений связей)
+    
+    В то же время второй способ задания наложенных на систему связей приводит при некоторых значениях $x$ и $y$ к матрице нулевого ранга: \[\dfrac{\partial G}{\partial R} = \begin{pmatrix}
+        2x & 2y & 0
+    \end{pmatrix}\]
+    Таким образом, второй способ задания связей не эквивалентен первому в том смысле, что не позволяет соотнести размерность конфигурационного многообразия с числом уравнений связей.
+\end{example}
+\begin{example}
+    Пусть есть колесо, которое катится без проскальзывания по гладкой плоскости. Эта связь описывается уравнением \[\dot{x} - R\dot{\phi} = 0\]
+    Такая связь является интегрируемой, и мы можем представить её в эквивалентном конечном виде \[x = R\phi + C\]
+\end{example}
+\begin{example}
+    Рассмотрим связь вида \[ \dot{y} + x = 0\]
+    Она является неинтегрируемой связью. Пусть это не так и она интегрируема. Тогда верно следующее: \[\dfrac{\partial F}{\partial x}\dot{x} + \dfrac{\partial F}{\partial y} \dot{y} + \dfrac{\partial F}{\partial t} = \dfrac{d}{dt} F = 0\]
+    Тогда, поскольку $\dot{y} = -x$, то мы получаем: \[\dfrac{\partial F}{\partial x} \dot{x} - \dfrac{\partial F}{\partial y}x + \dfrac{\partial F}{\partial t} = 0\]
+    Но, тогда, в силу произвольности $\dot{x}$ мы получаем, что \[\dfrac{\partial F}{\partial x} = 0\] Это равенство показывает, что функция $F$ не зависит от $x$ явно. Значит, у нас должно выполняться равенство \[-\dfrac{\partial F}{\partial y}x + \dfrac{\partial F}{\partial t} = 0\] при всяком $x$. Из этого можно сделать вывод о том, что $F$~---~некоторая константа. Но константа не может накладывать ограничение на механическую систему, а значит есть противоречие с предположением об интегрируемости связи.
+\end{example}
+\begin{example}
+    Есть ещё один пример неинтегрируемой связи: ограничение на движение конька по люду \[\dot{x}\sin \phi - \dot{y}\cos \phi = 0\]
+\end{example}
+\subsection{Конфигурационное многообразие механической системы}
+\begin{definition}
+    Пусть у нас есть пространство $\R^{3N + 1}$ для системы из $N$ материальных точек. На которые наложены связи $F_i(R, t) = 0$: \begin{equation*}
+        \begin{cases}
+            F_1(R, t) = 0 \\
+            F_2(R, t) = 0 \\
+            \ldots \\
+            F_m(R, t) = 0 
+        \end{cases}
+    \end{equation*}
+    В каждый момент времени определяется $\mathcal{M}_t$~---~конфигурационное многообразие в момент $t$.
+\end{definition}
+\begin{example}
+    Пусть есть две точки, соединённые стержнем, которые могут двигаться только по осям $Ox_1$ и $Ox_2$  соответственно. На эту систему наложены следующие связи: \[
+        y_1 = 0, \quad y_2 = 0
+    \]
+    \[
+        z_1 = 0, \quad z_2 = 0
+    \]
+    \[
+        x_1^2 + y_2^2 = l^2
+    \]
+    Т.е. отображением ограничений будет \[F: \begin{pmatrix}
+        x_1 \\ y_1 \\ z_1 \\ x_2 \\ y_2 \\ z_2
+    \end{pmatrix} \mapsto \begin{pmatrix}
+        y_1 \\ y_2 \\ z_1 \\ z_2 \\ x_1^2 + x_2^2 - l^2
+    \end{pmatrix}\]
+    Её дифференциалом является \[
+    DF = \begin{pmatrix}
+        0 & 0 & 0 & 0 & 2x_1 \\
+        1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 2x_2 \\
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0
+    \end{pmatrix}
+    \]
+    На системе всюду $\rank DF = 5$. Конфигурационным многообразием этой системы является $S^1$.
+\end{example}
+\begin{definition}
+    Числом степеней свободы механической системы называется размерность конфигурационного многообразия.
+\end{definition}
+\begin{definition}
+    Введём невырожденную локальную параметризацию $M_t$ -- $q_1, \ldots, q_t$. Будем называть $q_i$ обобщёнными координатами системы.
+\end{definition}
+\begin{definition}
+    Будем называть виртуальным перемещением механической системы (изохронный дифференциал): \[
+    \delta R = \sum\limits_{i = 1}^N \dfrac{\partial R(q, t)}{\partial q_i} \delta q_i
+    \]
+\end{definition}
+
+\subsection{Уравнения движения механической системы с идеальными связями}
+\begin{definition}
+    Силы, действующие в системе, делятся на активные и реакции связи. Активные силы -- заранее известные функции $(R, V, t)$. Реакции связи возникают для поддержания связи и являются неизвестными; они могут быть недоопределены, т.е. если рассмотреть шарик, который может двигаться только по одной из осей, то в нём возникают реакции $N_y = -F_y$ и $N_z -F_z$. Но $N_x$ ~--- ~неопределена.
+\end{definition}
+\begin{definition}
+    Будем говорить, что связь называется идеальной, если она не совершает работу на виртуальных перемещениях, т.е.  работа всех сил реакции на любом виртуальном перемещении $\equiv 0$: \[\delta A = \sum\limits_{i = 1}^N N_i\delta r_i\]
+\end{definition}
+\begin{definition}
+    Пусть есть механическая система с идеальными связями.
+    Для каждой точки распишем второй закон Ньютона: \[ m_i\ddot{\overline{r}}_i = \overline{F}_i + \overline{N}_i\]
+    Подставим выражение в условие идеальности связи: \[
+        \sum\limits_{i = 1}^N (\overline{F}_i - m_i \ddot{\overline{r}_i})\delta \overline{r}_i = 0
+    \]
+    Получившееся уравнение называется общим уравнением механики (принципом Даламбера-Лагранжа).
+\end{definition}
+\subsection{Уравнения Лагранжа 2-го рода (для систем с голономными и идеальными связями)}
+\begin{definition}
+    Рассмотрим некоторую голономную механическую систему с локальной параметризацией $R(q, t)$. Положение каждой материальной точки \[
+        \overline{r}_j = \overline{r}_j(q, t)
+    \]
+    Тогда \[\delta \overline{r}_j = \sum\limits_{i = 1}^M \dfrac{\partial \overline{r}_j(q_i, t)}{\partial q_i}\delta q_i\]
+    Подставим изохронные дифференциалы в общее уравнение механики: \[\sum\limits_{j = 1}^N (\overline{F}_j - m_j\ddot{\overline{r}}_j)\sum\limits_{i = 1}^M \dfrac{\partial \overline{r}_j}{\partial q_i}\delta q_i = 0\]
+    Поменяем порядок суммирования: \[\sum\limits_{i = 1}^M \biggr( \sum\limits_{j = 1}^N (\overline{F}_j - m_j\ddot{\overline{r}}_j)\dfrac{\partial \overline{r}_j}{\partial q_i}\biggr)\delta q_i = 0\]
+    Поскольку $\delta q_i$~---~независимы, то уравнение разделяется на систему из $M$ уравнений, т.е. при каждом $i$: \[
+    \sum\limits_{j = 1}^N \overline{F}_j \dfrac{\partial \overline{r}_j}{\partial q_i} = \sum\limits_{j = 1}^N m_j \ddot{\overline{r}}_j\dfrac{\partial \overline{r}_j}{\partial q_i}
+    \]
+    С другой стороны, поскольку \[\ddot{\overline{r}}_j \cdot \dfrac{\partial \overline{r}_j}{\partial q_i} = \dfrac{d}{dt}\dfrac{\partial v_j^2/2}{\partial \dot{q}_i} - \dfrac{\partial v_j^2/2}{\partial q_i}\]
+    То обозначая \[Q_i = \sum\limits_{j = 1}^N \overline{F}_j\dfrac{\partial \overline{r}_j}{\partial q_i}\]
+    Мы приводим систему к такому виду: \[\dfrac{d}{dt}\biggr(\dfrac{\partial T}{\partial \dot{q}_i}\biggr) - \dfrac{\partial T}{\partial q_i} = Q_i, \quad i = \overline{1, M}\]
+    Получается система ОДУ второго порядка, которая называется уравнениями Лагранжа 2-го рода.
+\end{definition}
+\begin{definition}
+    Будем называть обобщённую силу $Q$ потенциальной, если существует такая функция $\Pi(q, t)$, что \[Q = -\dfrac{\partial}{\partial q}\Pi\]
+\end{definition}
+\begin{definition}
+    Будем называть обобщённую силу $Q$ обобщённо-потенциальной, если существует такая функция $V(q, \dot{q}, t)$ т.ч. \[
+        Q = \dfrac{d}{dt}\biggr(\dfrac{\partial V}{\partial \dot{q}}\biggr) - \dfrac{\partial V}{\partial q}
+    \]
+\end{definition}
+\begin{definition}
+    Пусть механическая система допускает потенциал/обобщённый потенциал. Тогда обозначим $L = T - \Pi$/$L = T - V$~---~функцию Лагранжа. С использованием такого обозначения уравнения Лагранжа записываются как \[\dfrac{d}{dt}\biggr(\dfrac{\partial L}{\partial \dot{q}}\biggr) - \dfrac{\partial L}{\partial q} = 0\]
+\end{definition}
+\begin{note}
+    Элементарная работа активных сил записывается как \[\delta A = \sum\limits_{j = 1}^N \overline{F}_j\delta \overline{r}_j = \sum\limits_{i = 1}^M Q_i \delta q_i\]
+\end{note}
+\begin{example}
+    Пусть есть обычный маятник массой $m$ на нити длиной $l$. Система является системой с одной степенью свободы. В качестве параметра возьмём угол $\alpha$~---~отклонение от нормали. Тогда \[T = \dfrac{ml^2\dot{\alpha}^2}{2}\]
+    \[ \Pi = -mgl\cos \alpha\]
+    Значит $L = T - \Pi = \dfrac{ml^2}{2}\dot{\alpha}^2 - mgl\cos\alpha$
+    Запишем уравнения Лагранжа: \[ml^2\ddot{\alpha} + mgl\sin\alpha = 0\]
+\end{example}
+\begin{example}
+    Пусть теперь маятник находится в вязкой среде и на него действует сила \[\overline{F} = -\beta \overline{v}\]
+    Тогда \[\delta A = -\beta l\dot{\alpha}l\delta \alpha - mgl\sin\alpha\delta \alpha = -(\beta l^2\dot{\alpha} + mgl\sin\alpha)\delta \alpha\]
+    В этом случае уравнения Лагранжа выглядят как \[ml^2\ddot{\alpha} = -mgl\sin\alpha - \beta l^2\dot{\alpha}\]
+\end{example}
+\begin{example}
+    Пусть теперь маятник находится не в вязкой среде, но его длины $l$ является функцией времени. Тогда \[T = \dfrac{m}{2}(l^2\dot{\alpha}^2 + \dot{l}^2)\]
+    В этом случае уравнения Лагранжа записываются как \[ml^2\ddot{\alpha} + 2ml\dot{l}\dot{\alpha} = -mgl\sin\alpha\]
+\end{example}
+\subsection{Свойства уравнений Лагранжа}
+\begin{property}[Ковариантность уравнений Лагранжа]
+    Пусть есть некоторая гладкая репараметризация локальных координат: \[ q = q(\Tilde{q}, t)\]
+    Тогда следующая диаграмма коммутирует: 
+    \[\begin{tikzcd}
+	{T, Q} && {\dfrac{d}{dt}\biggr(\dfrac{\partial T}{\partial\dot{q}}\biggr) - \dfrac{\partial T}{\partial q} = Q} && {\text{Уравнения движения в} \ q} \\
+	\\
+	{\tilde{T}, \tilde{Q}} && {\dfrac{d}{dt}\biggr(\dfrac{\partial\tilde{T}}{\partial\dot{\tilde{q}}}\biggr) - \dfrac{\partial\tilde{T}}{\partial\tilde{q}} = \tilde{Q}} && {\text{Уравнения движения в} \  \tilde{q}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-3, to=3-5]
+\end{tikzcd}\]
+\end{property}
+\begin{proof}
+    Очевидно в силу того что конфигурационное многообразие системы не изменяется.
+\end{proof}
+\begin{property}[Калибровочная инвариантность]
+    Уравнения Лагранжа инвариантны относительно прибавления к лагранжиану полной производной по времени всякой достаточно гладкой функции от обобщённых координат и времени: \[
+        L(q, \dot{q}, t) + \dfrac{d}{dt}f(q, t)
+    \]
+\end{property}
+\begin{proof}
+    Проверяется прямой подстановкой
+\end{proof}

@@ -1,0 +1,77 @@
+Пусть $\displaystyle X_{1} ,\dotsc,\ X_{n}$ -- выборка из неизвестного распределения $\displaystyle P_{X}$ на $\displaystyle \left(\mathbb{R}^{m},\ \mathcal{B}\left(\mathbb{R}^{m}\right)\right)$, и $\displaystyle B\in \mathcal{B}\left(\mathbb{R}^{m}\right)$.
+\begin{definition}
+	$\displaystyle P_{n}^{*}( B) =\frac{\sum _{i=1}^{n}\mathbb{I}_{x_{i} \in B}}{n}$ называется эмпирическим распределением, построенным по выборке $\displaystyle X_{1} ,\dotsc ,X_{n}$.
+\end{definition}
+
+Нетрудно проверить, что эмпирическое распределение действительно является распределением.
+
+\begin{definition}
+	Функция $\displaystyle F_{n}^{*}( x) =\frac{\sum _{i=1}^{n}\mathbb{I}_{x_{i} \leqslant x}}{n}$ называется эмпирической функцией распределения.
+\end{definition}
+
+\begin{proposition}
+	Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- выборка на вероятностном пространстве $\displaystyle ( \Omega ,\mathcal{F} ,P)$ из распределения $\displaystyle P_{X}$. Тогда $\displaystyle \forall B\in \mathcal{B}\left(\mathbb{R}^{m}\right) \hookrightarrow \ P_{n}^{*}( B)\xrightarrow{\text{п.н.}} P_{X}( B)$.
+\end{proposition}
+\begin{proof}
+    $\displaystyle \mathbb{I}_{x_{i} \in B}$ -- независимые (потому что являются функциями от $\displaystyle X_{i}$) одинаково распределенные случайные величины с конечным математическим ожиданием. Поэтому, по УЗБЧ
+    
+    \begin{equation*}
+    	P_{n}^{*}( B)\xrightarrow{\text{п.н.}} E (\mathbb{I}_{x_{i} \in B}) =P( X_{1} \in B) =P_{X}( B).
+    \end{equation*}
+\end{proof}
+
+В дальнейшем будем считать размерность $\displaystyle m=1$. Для $\displaystyle m >1$ доказательства аналогичные, но более трудоемкие.
+
+\begin{corollary}
+	$\displaystyle F_{n}^{*}( x)\xrightarrow{\text{п.н.}} F_{X_{1}}( x)$. 
+\end{corollary}
+\begin{proof}
+Достаточно взять в утверждении $\displaystyle B=( -\infty ,x]$.
+\end{proof}
+
+Следующая теорема усиливает только что приведенное следствие:
+
+\begin{theorem}
+	(Гливенко-Кантелли) Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- независимые одинаково распределенные случайные величины с функцией распределения $\displaystyle F( x)$. Тогда $\displaystyle D_{n}( \omega ) :=\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| \xrightarrow{\text{п.н.}} 0$.
+\end{theorem}
+\begin{proof}
+    Так как обе функции $\displaystyle F_{n}^{*}$ и $\displaystyle F$ непрерывны справа, то
+    
+    
+    \begin{equation*}
+    	D_{n} =\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| =\sup _{x\in \mathbb{Q}}\left| F_{n}^{*}( x) -F( x)\right| .
+    \end{equation*}
+    Этот переход верен, поскольку в силу непрерывности справа значение в любой точке можно приблизить рациональными точками из правой окрестности.\\
+    
+    Так как объединение счетного числа измеримых функций измеримо, то $\displaystyle D_{n}$ -- случайная величина. Зафиксируем $\displaystyle N\in \mathbb{N}$ и положим $\displaystyle x_{N,k} =\inf\left\{x\in \mathbb{R} :F( x) \geqslant \frac{k}{N}\right\}$. 
+
+    Заметим, что $x_{N,0} = -\infty, x_{N,N} = +\infty$. $x_{N,k}$ конечно $\forall k \in \{1, \dots, N-1\}$.
+    
+    Рассмотрим произвольный $\displaystyle x\in [ x_{N,k} ,x_{N,k+1})$ и оценим значения функции в точке $x$ через значения в концах:
+    \begin{gather*}
+    F_{n}^{*}( x) -F( x) \underbrace {\leqslant}_{\text{ф.р. неубывает}} F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k}) =F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0) +\\
+    +\ \underbrace{F( x_{N,k+1} -0)}_{\leq \frac{k+1}{N}} -\underbrace{F( x_{N,k})}_{\geq \frac{k}{N}} \leqslant F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0) +\frac{k+1}{N} -\frac{k}{N} = \\
+    \ F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0) +\frac{1}{N} .
+    \end{gather*}
+    С другой стороны,
+    \begin{gather*}
+    F_{n}^{*}( x) -F( x) \geqslant F_n^{*}( x_{N,k}) -F( x_{N,k+1} -0) =F_n^{*}( x_{N,k}) -F( x_{N,k}) +F( x_{N,k}) -\\
+    F( x_{N,k+1} -0) \geqslant F_n^{*}( x_{N,k}) -F( x_{N,k}) +\frac{k}{N} -\frac{k+1}{N} =F_n^{*}( x_{N,k}) -F( x_{N,k}) -\frac{1}{N} .
+    \end{gather*}
+    Получили, что
+    \begin{gather*}
+    \left| F_{n}^{*}( x) -F( x)\right| \leqslant \max\left(\left| F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0)\right| ,\left| F_n^{*}( x_{N,k}) -F( x_{N,k})\right| \right) + \frac{1}{N}.
+    \end{gather*}
+    В итоге
+    \begin{gather*}
+    \sup _{x\in \mathbb{R}}| F^*_{n}( x) -F( x)| \leqslant\\ \max_{1\leqslant k\leqslant N-1}\max\left(\left| F_{n}^{*}( x_{N,k+1} -0) -F( x_{N,k+1} -0)\right|,\ \left| F_n^{*}( x_{N,k}) -F( x_{N,k})\right| \right)+\frac{1}{N} .
+    \end{gather*}
+
+    Осталось доказать стремление к нулю правой части.
+    
+    Так как (простое следствие УЗБЧ) $\displaystyle F_{n}^{*}( x)\xrightarrow{\text{п.н.}} F( x)$, $\displaystyle F_n^{*}( x-0) = \underbrace{P^{*}(( -\infty ,x))}_{\text{живет на $\R$}}\underbrace{\xrightarrow{\text{п.н.}}}_{\text{по мере на $\Omega$}} \underbrace{P_{X}(( -\infty ,x))}_{\text{живет на $\R$}} =F( x-0)$, то для достаточно большого $\displaystyle N\in \mathbb{N}$ и почти всех $\displaystyle \omega \in \Omega$ выполняется
+    
+    \begin{equation*}
+    \overline{\lim _n}\sup _{x\in \mathbb{R}}\left| F_{n}^{*}( x) -F( x)\right| \stackrel{\text{п.н.}}{<} \varepsilon \Rightarrow D_{n}( \omega )\xrightarrow{\text{п.н.}} 0.
+    \end{equation*}
+\end{proof}

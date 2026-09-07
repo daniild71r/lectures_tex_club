@@ -1,0 +1,100 @@
+\subsection*{Метод выборочных квантилей}
+
+Пусть $\displaystyle P$ -- распределение вероятностей на $\displaystyle \mathbb{R}$, $\displaystyle F( x)$ -- его функция распределения.
+\begin{definition}
+$\displaystyle p$-квантилью распределения $\displaystyle P$ называется $\displaystyle z_{p} =\inf\{x:F( x) \geqslant p\},\\ p \in (0,1)$.
+\end{definition}
+\begin{note}
+Если $\displaystyle F$ непрерывна, то существует точное решение $\displaystyle F( z_{p}) =p$. Если к тому же $\displaystyle F$ строго монотонна, то решение единственно.
+\end{note}
+\begin{definition}
+Пусть $\displaystyle X_{1} ,\dotsc ,X_{n}$ -- выборка. Статистика $\displaystyle z_{n,p} =\begin{cases}
+X_{([ np] +1)}, & np\notin \mathbb{Z}\\
+X_{( np)}, & np\in \mathbb{Z}
+\end{cases}$ называется выборочным $\displaystyle p$-квантилем.
+\end{definition}
+\begin{note}
+$\displaystyle z_{n,p}$ -- это, по сути, $\displaystyle p$-квантиль эмпирического распределения $\displaystyle P_{n}^{*}$.
+\end{note}
+\begin{theorem}
+(о выборочном квантиле) Пусть $\displaystyle X_{1} ,\dotsc ,\ X_{n}$ -- выборка из распределения $\displaystyle P$ с плотностью $\displaystyle f( x)$. Пусть $\displaystyle z_{p}$ -- $\displaystyle p$-квантиль распределения $\displaystyle P$, причем $\displaystyle f( x)$ непрерывно дифференцируема в окрестности $\displaystyle z_{p}$ и $\displaystyle f( z_{p})  >0$. Тогда
+
+
+\begin{gather*}
+\sqrt{n}( z_{n,p} -z_{p})\xrightarrow{d_{\theta }} N\left( 0,\ \frac{p( 1-p)}{f^{2}( z_{p})}\right) .
+\end{gather*}
+\end{theorem}
+\begin{proof}
+\begin{gather*}
+   F_{X_{( k)}}( x) =P( X_{( k)} \leqslant x) =\sum _{m=k}^{n} C_{n}^{m} F^{m}( x)( 1-F( x))^{n-m} \Rightarrow f_{X_{( k)}}( x) =\\ nC_{n-1}^{k-1} F^{k-1}( x)( 1-F( x))^{n-k} f( x). 
+\end{gather*}
+
+Формально эта плотность получается из свойств сочетаний. Интуитивно: это вероятность попасть в какую-то маленькую окрестность $x$ - $n$ способов выбрать точку, которая попадет, потом выбираем $k-1$ точку, которые будут до нее, а остальные после. Ну и $f(x)$ собственно вероятность конкретной точки попасть в эту окрестность
+
+Обозначим $\displaystyle \eta _{n} =\sqrt{n}( z_{n,p} -z_{p}) \cdotp \sqrt{\frac{f^{2}( z_{p})}{p( 1-p)}} =( z_{n,p} -z_{p}) \cdotp \sqrt{\frac{nf^{2}( z_{p})}{p( 1-p)}},\ k=\lceil np\rceil $. Нужно показать, что $\displaystyle \eta _{n}\xrightarrow{d_{\theta }} N( 0,1)$.
+\begin{gather*}
+    F_{\eta _{n}}( x) = P( \eta _{n} \leqslant x) = P\left(( z_{n,p} -z_{p}) \cdotp \sqrt{\frac{nf^{2}( z_{p})}{p( 1-p)}} \leqslant x\right) =\\ P\left(( X_{( k)} -z_{p}) \cdotp \sqrt{\frac{nf^{2}( z_{p})}{p( 1-p)}} \leqslant x\right)\overset{f( z_{p}) \  >\ 0}{=}\notag P\left( X_{( k)} \leqslant x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p}\right) =\\ F_{X_{( k)}}\left( x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p}\right) .
+\end{gather*}
+ Тогда
+ \begin{gather*}
+     f_{\eta _{n}}( x) =\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}}\cdot f_{X_{( k)}}\left( x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p}\right).
+ \end{gather*} Положим 
+\begin{gather*}
+    t_{n}( x) :=x\sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} +z_{p},\ q:=1-p.
+\end{gather*} 
+Перепишем формулу плотности для $\displaystyle \eta _{n}$ в виде
+
+\begin{gather*}
+f_{\eta _{n}} = \sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} f_{X_{( k)}}( t_{n}) = \sqrt{\frac{p( 1-p)}{nf^{2}( z_{p})}} \cdotp nC_{n-1}^{k-1} F^{k-1}( t_{n})( 1-F( t_{n}))^{n-k} f( t_{n}) =\\ \left[\sqrt{npq} \cdotp C_{n-1}^{k-1} p^{k-1} q^{n-k}\right] \cdotp \left[\frac{f( t_{n})}{f( z_{p})}\right] \cdotp \left[\left(\frac{F( t_{n})}{p}\right)^{k-1}\left(\frac{1-F( t_{n})}{q}\right)^{n-k}\right] := A_1(n) \cdot A_2(n) \cdot A_3(n) .
+\end{gather*}
+Тогда $A_1 \rightarrow \frac{1}{\sqrt{2 \pi}}$ по формуле Стирлинга (на лекции было дано как упражнение)
+
+\begin{unnecessary}
+    \begin{gather*}
+    A_1(n)=\sqrt{npq} \cdotp C_{n-1}^{k-1} p^{k-1} q^{n-k} \ =\sqrt{npq}\frac{( n-1) !}{( k-1) !( n-k) !} p^{k-1} q^{n-k} =\\ \sqrt{npq}\frac{\sqrt{2\pi \cdotp ( n-1)}\left(\frac{n-1}{e}\right)^{n-1}( 1+o( 1))}{\sqrt{2\pi \cdotp ( k-1)}\left(\frac{k-1}{e}\right)^{k-1}( 1+o( 1))\sqrt{2\pi \cdotp ( n-k)}\left(\frac{n-k}{e}\right)^{n-k}( 1+o( 1))} p^{k-1} q^{n-k}\sim\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n-1}{( k-1)( n-k)}}\frac{( n-1)^{n-1}}{( k-1)^{k-1}( n-k)^{n-k}} p^{k-1} q^{n-k}\sim\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n-1}{( np-1)( n-np)}}\frac{( n-1)^{n-1}}{( np-1)^{np-1}( n-np)^{n-np}} p^{np-1} q^{n-np} =\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n-1}{( np-1)( n-np)}}\frac{( n-1)^{n-1}}{( np-1)^{np-1}( n-np)^{n-np}} p^{np-1} q^{n-np} =\\ \sqrt{\frac{npq}{2\pi }}\sqrt{\frac{n\left( 1-\frac{1}{n}\right)}{n^{2}\left( p-\frac{1}{n}\right)( 1-p)}}\frac{n^{n-1}\left( 1-\frac{1}{n}\right)^{n-1}}{( np)^{np-1}\left( 1-\frac{1}{np}\right)^{np-1} n^{n-np} q^{n-np}} p^{np-1} q^{n-np} =\\ \sqrt{\frac{pq}{2\pi }}\sqrt{\frac{\left( 1-\frac{1}{n}\right)}{\left( p-\frac{1}{n}\right) q}}\frac{\left( 1-\frac{1}{n}\right)^{n-1}}{\left( 1-\frac{1}{np}\right)^{np-1}} \ \sim \ \sqrt{\frac{pq}{2\pi }}\sqrt{\frac{1}{pq}}\frac{\exp\left\{-\frac{1}{n}( n-1)\right\}}{\exp\left\{-\frac{1}{np}( np-1)\right\}}\xrightarrow[n\rightarrow \infty ]{}\frac{1}{\sqrt{2\pi }} .
+    \end{gather*}
+\end{unnecessary}
+
+
+$\displaystyle t_{n}\xrightarrow[n\rightarrow \infty ]{} z_{p}$, и так как $\displaystyle f( x)$ непрерывна в точке $\displaystyle z_{p}$, то $\displaystyle A_2(n)= \frac{f( t_{n})}{f( z_{p})}\xrightarrow[n\rightarrow \infty ]{} 1$. Разложим $\displaystyle F$ в ряд Тейлора в окрестности точки $\displaystyle z_{p}$:
+
+
+\begin{gather*}
+    F( t_{n}) =F( z_{p}) +\frac{\partial F}{\partial t_{n}}( z_{p})( t_{n} -z_{p}) +\frac{1}{2}\frac{\partial ^{2} F}{\partial t_{n}^{2}}( z_{p})( t_{n} -z_{p})^{2} +o\left(( t_{n} -z_{p})^{2}\right) =\\ p+\frac{x}{f( z_{p})}\sqrt{\frac{pq}{n}} f( z_{p}) +\frac{1}{2} \cdotp \frac{x^{2} pq}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) \Rightarrow \\
+    \ln\frac{F( t_{n})}{p} =x\sqrt{\frac{q}{np}} +\frac{1}{2} \cdotp \frac{x^{2} q}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} q}{2pn} ,\\
+    \ln\frac{1-F( t_{n})}{q} =\ln\frac{q-x\sqrt{\frac{pq}{n}} -\frac{1}{2} \cdotp \frac{x^{2} pq}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right)}{q} =-x\sqrt{\frac{p}{nq}} -\frac{1}{2} \cdotp \frac{x^{2} p}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} p}{2qn} \Rightarrow \\
+    \ln\left[\left(\frac{F( t_{n})}{p}\right)^{k-1}\left(\frac{1-F( t_{n})}{q}\right)^{n-k}\right] =( k-1) \cdotp \left[ x\sqrt{\frac{q}{np}} +\frac{1}{2} \cdotp \frac{x^{2} q}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} q}{2pn}\right] +\\ ( n-k) \cdotp \left[ -x\sqrt{\frac{p}{nq}} -\frac{1}{2} \cdotp \frac{x^{2} p}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} p}{2qn}\right]\sim\\ np\left[ x\sqrt{\frac{q}{np}} +\frac{1}{2} \cdotp \frac{x^{2} q}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} q}{2pn}\right] +nq\left[ -x\sqrt{\frac{p}{nq}} -\frac{1}{2} \cdotp \frac{x^{2} p}{n} \cdotp \frac{f'( z_{p})}{f^{2}( z_{p})} +o\left(\frac{1}{n}\right) -\frac{x^{2} p}{2qn}\right] =\\ o( 1) -\frac{x^{2} q}{2} -\frac{x^{2} p}{2} =o( 1) -\frac{x^{2}}{2}\xrightarrow[n\rightarrow \infty ]{} -\frac{x^{2}}{2} .
+\end{gather*}
+Таким образом, $\displaystyle f_{\eta _{n}}( x)\xrightarrow[n\rightarrow \infty ]{}\dfrac{1}{\sqrt{2\pi }} \exp\left\{-\frac{x^{2}}{2}\right\}$ равномерно на каждом отрезке $\displaystyle [ -N,N]$, т.к. каждую из предыдущих сходимостей можно мажорировать сходящейся последовательностью, не зависящей от $\displaystyle x$. Пусть $\displaystyle \varepsilon  >0,\ N_{\varepsilon } :P(| \xi |  >N_{\varepsilon }) \leqslant \varepsilon $, где $\displaystyle \xi\, \sim\, N( 0,\, 1)$, $\displaystyle g:\mathbb{R}\rightarrow \mathbb{R}$ -- непрерывная ограниченная функция. Тогда $\vert g(x)\vert \leq C\ \forall x \in \mathbb{R}$, и
+\begin{gather*}
+    | Eg( \eta _{n}) -Eg( \xi )| \leqslant \left| \int _{-N_{\varepsilon }}^{N_{\varepsilon }} g( x)( p_{\eta _{n}}( x) -p_{\xi }( x))dx\right| + (P(| \eta _{n}|  >N_{\varepsilon }) + P( |\xi | >N_{\varepsilon })) \cdotp C \xrightarrow{n\rightarrow\infty}\\ 2C\cdotp P(| \xi |  >N_{\varepsilon }) \leqslant 2C\cdotp \varepsilon \Rightarrow Eg( \eta _{n})\xrightarrow{n\rightarrow\infty} Eg( \xi ) .
+\end{gather*}
+\end{proof}
+
+\begin{definition}
+    Медианой распределения $\displaystyle P$ называется его $\displaystyle 0.5$-квантиль.
+    \end{definition}
+    \begin{definition}
+    Выборочной медианой называется
+    
+    
+    \begin{equation*}
+    \hat{\mu } =\begin{cases}
+    X_{( k+1)} , & n=2k+1\\
+    \dfrac{X_{( k)} +X_{( k+1)}}{2} , & n=2k
+    \end{cases} .
+    \end{equation*}
+    \end{definition}
+    \begin{theorem}
+    (о выборочной медиане, б/д) В условиях теоремы о выборочном квантиле
+    
+    
+    \begin{equation*}
+    \sqrt{n}(\hat{\mu } -z_{0.5})\xrightarrow{d_{\theta }} N\left( 0,\ \frac{1}{4f^{2}( z_{0.5})}\right) .
+    \end{equation*}
+    \end{theorem}
+
+    \begin{note}
+    В условиях соответствующих теорем $\displaystyle z_{n,p}\xrightarrow{P} z_{p}$ и $\displaystyle \hat{\mu }\xrightarrow{P} z_{0.5}$.
+    \end{note}
+    

@@ -1,0 +1,106 @@
+\subsection{Уравнение вероятности вырождения}
+
+Введём обозначения:
+\begin{itemize}
+    \item $q_n = P(X_n = 0)$
+    \item $q = P(\exists n: \ X_n = 0)$~--- вероятность вырождения
+\end{itemize}
+
+\begin{lemma} $\forall n \ q_n \leq q_{n + 1}$ и $q = \lim\limits_{n \to \infty} q_n$
+\end{lemma}
+
+\begin{proof} События вложены, значит, монотонность верна.
+
+А второе утверждение следует из непрерывности вероятностной меры:
+\begin{equation*}
+    q = P(\exists n: \ X_n = 0) = P\brackets{\bigcup\limits_{n = 1}^\infty \{X_n = 0\}} = \lim\limits_{n \to \infty}P\brackets{X_n = 0} = \lim\limits_{n \to \infty} q_n
+\end{equation*}
+
+\end{proof}
+
+\begin{lemma} Вероятность вырождения $q$ удовлетворяет соотношению:
+\begin{equation}
+    q = \charac{\xi}{q}
+\end{equation}
+\end{lemma}
+
+\begin{proof} Заметим, что
+\begin{equation*}
+    q_n = P(X_n = 0) = \phi_{X_n}{0} = \{\text{следствие первой леммы}\} = \phi_{\xi}{\phi_{X_{n - 1}}{0}} = \phi_{\xi}{q_{n - 1}}
+\end{equation*}
+
+Тогда, устремляя к бесконечности, по второй лемме и непрерывности производящей функции в круге $\{|z| \leq 1\}$, получаем требуемое.
+
+\end{proof}
+
+\subsection{Теорема о вероятности вырождения}
+
+\begin{theorem}  Пусть $P(\xi = 1) < 1$. Пусть $\E\xi = \mu$ быть может бесконечное, тогда
+\begin{enumerate}
+    \item $\mu \leq 1$, тогда уравнение $z = \phi_{\xi}{z}$ имеет только решение 1 на $[0, 1]$ и $q = 1$.
+    \item $\mu > 1$, тогда уравнение $z = \phi_{\xi}{z}$ имеет только одно решение $z_0$ на $[0, 1)$ и $q = z_0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+    \item Пусть $\mu \leq 1$. Если $P(\xi = 0) = 1$, то вырождаемся на первом шаге. Иначе рассмотрим производную:
+    \begin{equation*}
+        \phi_{\xi}'(z) = \sum\limits_{k = 1}^{\infty} k z^{k - 1}P(\xi = k)
+    \end{equation*}
+    Откуда получаем, что $\phi_{\xi}'(z) > 0$ при $z > 0$, ведь не все $P(\xi = k) = 0$.\\
+    Тогда, так как $\phi_{\xi}{z}$ строго возрастает на отрезке, по теореме Лагранжа о среднем:
+    \begin{equation*}
+        1 - \phi_{\xi}{z} = \phi_{\xi}{1} - \phi_{\xi}{z} = \phi_{\xi}'(\theta)\cdot (1 - z), \text{ для некоторого $\theta \in (z, 1)$}
+    \end{equation*}
+    Проверим, что $\phi_{\xi}'(\theta) < 1$.
+    
+    Если $\exists k \geq 2 \ P(\xi = k) > 0$, то $\phi_{\xi}''(z) > 0$ при $z > 0$, а тогда
+    \begin{equation*}
+        \phi_{\xi}'(\theta) < \phi_{\xi}'(1) = \mu \leq 1
+    \end{equation*}
+    
+    Если $\forall k \geq 2 \ P(\xi = k) = 0$, то $P(\xi \leq 1) = 1$ и $\mu < 1$, тогда
+    \begin{equation*}
+        \phi_{\xi}'(\theta) \leq \phi_{\xi}'(1) = \mu < 1
+    \end{equation*}
+    Последнее неравенство строгое, потому что иначе $\xi = 1$ п.н., но по условию $P(\xi = 1) < 1$.
+    
+    В итоге, $\forall z \in [0, 1) \hookrightarrow 1 - \phi_{\xi}{z} < 1 - z \Longleftrightarrow z < \phi_{\xi}{z}$, то есть нет других решений, кроме 1.
+    
+    \item Пусть $\mu > 1$, тогда $\exists k \geq 2 \ P(\xi = k) > 0$, откуда 
+    $$
+    \forall z \in (0, 1) \ \phi_{\xi}''(z) = \sum\limits_{k = 2}^\infty k(k - 1) z^{k - 2} P(\xi = k) > 0
+    $$
+    Значит, $\phi_{\xi}'(z)$ строго возрастает.
+    
+    Теперь рассмотрим $f(z) = z - \phi_{\xi}{z}$, тогда $f(1) = 0$.\\ Заметим, что $f'(z) = 1 - \phi_{\xi}'(z)$ строго убывает и $f''(z) < 0$, то есть $f(z)$ строго выпукла вверх. Но ещё
+    \begin{gather*}
+        f'(0) = 1 - \phi_{\xi}'(0) = 1 - P(\xi = 1) > 0 \\
+        f'(1) = 1 - \phi_{\xi}'(1) = 1 - \mu < 0
+    \end{gather*}
+    Тогда $\exists ! z_1 \in (0, 1): f'(z_1) = 0$, тогда $z_1$~--- точка максимума $f(z)$.
+    
+    Исследуем $f(0) = 0 - \phi_{\xi}{0} = -P(\xi = 0) \leq 0$:
+    
+    \begin{enumerate}
+        \item Если $P(\xi = 0) = 0$, то $q = 0$.
+        \item Если $P(\xi = 0) > 0$, то $f(0) < 0$ и $\exists ! z_0 \in (0, 1)$~--- решение уравнения $f(z) = 0$.
+        
+        Осталось узнать, чему равно $q$.
+        
+        Заметим, что $f(z) < 0 \Longleftrightarrow z < z_0$. Покажем, что $\forall n \ q_n < z_0$:
+        \begin{equation*}
+            q_n = \phi_{\xi}{q_{n - 1}} < \phi_{\xi}{q_n} \Longrightarrow f(q_n) < 0
+        \end{equation*}
+        Данное неравенство будет верно в силу строго возрастания $\phi_{\xi}{z}$, если $q_n > q_{n - 1}$:
+        \begin{equation*}
+            q_n = q_{n - 1} + \sum\limits_{m = 1}^\infty P(X_{n - 1} = m) \cdot (P(\xi = 0))^m > q_{n - 1}
+        \end{equation*}
+        так как не все $P(X_{n - 1} = m) = 0$ и $P(\xi = 0) > 0$.
+        
+        Значит, $f(q_n) < 0$. Следовательно, в пределе $q = z_0$.
+    \end{enumerate}
+\end{enumerate}
+
+\end{proof}

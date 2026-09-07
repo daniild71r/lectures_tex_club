@@ -1,0 +1,88 @@
+Пусть $\xi_1, \xi_2, \ldots$~--- случайные величины. Тогда виды сходимостей к $\xi$:
+\begin{enumerate}
+    \item Сходимость почти наверное или с вероятностью 1, т.е. $P(\xi_n \to \xi) = 1$ ~--- $\xi_n \xrightarrow[]{\text{п.н.}} \xi$
+    \item Сходимость по вероятности $\forall \eps > 0 \ \lim\limits_{n \to \infty} P(|\xi_n - \xi| > \eps) = 0$ ~--- $\xi_n \xrightarrow[]{P} \xi$
+    \item Сходимость в $L_p$, если $\E|\xi|^p, \E |\xi_i|^p < \infty$, то $\lim\limits_{n \to \infty} \E|\xi_n - \xi|^p = 0$ ~--- $\xi_n \xrightarrow[]{L_p} \xi$
+    \item Сходимость по распределению ~--- $\xi_n \xrightarrow[]{d} \xi$
+    $$\forall x \in \R: F_\xi \text{ непрер. в точке } x \ \  F_{\xi_n}(x) \xrightarrow[n \to \infty]{} F_\xi(x)$$
+     \item Слабая сходимость ~--- $\xi_n \xrightarrow[]{w} \xi$
+    $$\forall f:\R \to \R - \text{непр. огр. } \E f(\xi_n) \to \E f(\xi)$$
+\end{enumerate}
+
+\textbf{Взаимосвязь видов сходимости}
+
+\begin{theorem} (о взаимосвязи видов сходимости)
+
+\begin{enumerate}
+    \item Из сходимости почти наверное следует сходимость по вероятности
+    \item Из сходимости по вероятности следует сходимость по распределению
+    \item Из сходимости в $L_p$ следует сходимость по вероятности
+    \item Никаких других следствий нет, только
+    $\text{п.н.} \to P \to d,\  L_p \to P \to d$
+\end{enumerate}
+\end{theorem} 
+\begin{proof}
+1. $\text{п.н.} \to P$
+
+$\xi_n \xrightarrow[]{\text{п.н.}} \xi\ \iff P(\xi_n \to \xi) = 1 \iff P(\forall \eps>0 \  \exists n_0 \ \forall n \geqslant n_0 \ |\xi_n-\xi| \leqslant\eps) = 1 \implies$ $$\implies \forall \eps>0 \ P(\exists n_0 \ \forall n \geqslant n_0 \ |\xi_n-\xi| \leqslant\eps) = 1$$
+
+$$A_n = \{\omega| \ |\xi_n(\omega) - \xi(\omega)| \leqslant \eps\} $$
+
+$$\bigcup\limits_{n_0=1}^\infty\bigcap\limits_{n=n_0}^\infty A_n = \{\omega| \ \exists n_0 \ \forall n \geqslant n_0 \ |\xi_n(\omega) - \xi(\omega)| \leqslant \eps\}$$
+
+$$P(\bigcap\limits_{n_0=1}^\infty\bigcup\limits_{n=n_0}^\infty \overline{A_n}) = 0 \implies \lim\limits_{n_0 \to \infty} P(\bigcup\limits_{n=n_0}^\infty \overline{A_n}) = 0, \ \  P(\bigcup\limits_{n=n_0}^\infty \overline{A_n}) \geqslant P(\overline{A_{n_0}}) \implies \lim\limits_{n_0 \to \infty} P(\overline{A_{n_0}}) = 0$$
+
+Итак, $\lim\limits_{n \to \infty} P(|\xi_n - \xi| > \eps) = 0$
+
+2. $P \to d$
+
+Пусть $\xi_n \xrightarrow[]{P} \xi, \ f:\R \to \R$-непрер. (используем т. Александрова) $\forall x \ \ |f(x)| \leqslant C$, тогда должно выполняться $\E f(\xi_n) \to \E f(\xi)$
+
+а) Рассмотрим последовательность $\eta_n = \xi I(|\xi| \leqslant n)$, тогда $\eta_n \xrightarrow[]{\text{п.н.}} \xi \implies \eta_n \xrightarrow[]{P} \xi \implies$ \\
+$\implies P(|\eta_n - \xi| > 0.5) \to 0 \implies P(|\xi| > n) \to 0 \implies \exists n_1\ \ \forall n \geqslant n_1 \ \ P(|\xi| > n) \leqslant \frac{\eps}{6C}$
+
+б) $f \text{ равн. непр. на } [-2n_1, 2n_1] \implies \exists \delta < n_1:\ \forall x,y \ \  |x-y| \leqslant \delta \ \  |f(x)-f(y)| < \frac{\eps}{3}$
+
+с) $P(|\xi_n - \xi| > \delta) \to 0 \implies \exists n_2: \ \forall n \geqslant n_2 \ P(|\xi_n - \xi| > \delta) \leqslant \frac{\eps}{6C} $
+
+д) Выберем $n = \max(n_1, n_2):$ \\ $ \ |\E f(\xi_n) - \E f(\xi)| = |\E (f(\xi_n) - f(\xi))| \leqslant \E |f(\xi_n) - f(\xi)| =$ \\ 
+$= \E |f(\xi_n) - f(\xi)| \cdot I(|\xi| > n_1) + \E |f(\xi_n) - f(\xi)| \cdot  I(|\xi| \leqslant n_1) \leqslant $ \\
+$\leqslant 2C \cdot  P(|\xi| > n_1) + \E |f(\xi_n) - f(\xi)| \cdot  I(|\xi| \leqslant n_1, \ |\xi - \xi_n| > \delta) + \E |f(\xi_n) - f(\xi)| \cdot  I(|\xi| \leqslant n_1, \ |\xi - \xi_n| \leqslant \delta) \leqslant$ \\
+$\leqslant 2C \cdot  P(|\xi| > n_1)+2C \cdot P(|\xi - \xi_n| > \delta) + \frac{\eps}{3} \leqslant \eps$
+
+Неравенство для последнего мат. ожидания верно, так как при выполнении условия в индикаторе нам подходит пункт б) и мы находимся в $[-2n_1, 2n_1]$ и значит разница между значениями функции
+
+3. $L_p \to P$ $$\forall \eps>0 \ P(|\xi_n - \xi| \geqslant \eps) = P(|\xi_n - \xi|^p \geqslant \eps^p) \leqslant \frac{\E|\xi_n - \xi|^p}{\eps^p} \to 0 $$
+(т.к. $\xi_n \xrightarrow[]{L_p} \xi$, а значит $\E|\xi_n - \xi|^p \to 0$)
+
+4. Любимая рубрика <<контрпримеры>>
+    \begin{itemize}
+        \item Из сходимости по распределению не следует сходимость по вероятности. 
+        
+        Пусть $\xi_n, \xi \sim Bern(0.5)$, $\xi_n \xrightarrow[]{d} \xi$.
+        
+        $\xi_1 = \xi_2 = \ldots, \xi = 1-\xi_1 \implies |\xi-\xi_n| = 1, \ P(|\xi-\xi_n| > 0.5) = 1$
+        
+        \item Из сходимости по вероятности не следует ни сходимость почти наверное, ни в $L_p$.
+        
+        Пусть $\Omega = [0, 1], \  \F = \B \bigcap [0, 1], \ P = \mu$. 
+        
+        Тогда пусть $\xi_1 =2I_{[0, 1)}, \xi_2 =2^2I_{[0, 0.5)}, \xi_3 = 2^3I_{[0.5, 1)}$, и так далее бьем отрезок на $2^k$ частей, а на каждом следующем степень растет на единицу.
+        
+        Пусть $\eps > 0, \delta > 0$. Найдем такое $k$, что $\delta > \frac{1}{2^k}$, тогда $\forall n \geqslant 2^k \ P(|\xi_n| > \eps) \leqslant \frac{1}{2^k} < \delta$.
+        
+        Для каждого $\omega \in [0, 1)$ найдется бесконечно много случайных величин, которые пробегут через нее и окажутся больше 1. А значит $\xi_n$ не сходятся к нулю почти наверное.
+        
+        $\forall n \geqslant 2^k \ \E|\xi_n|^p = 2^{np - \lfloor log_2\:n\rfloor} \geqslant 2^{2^k - k} \to \infty$, а значит не сходится к нулю.
+        
+        \item Из сходимости в $L_p$ не следует сходимость почти наверное. 
+        
+        Пусть $\Omega = [0, 1],\  \F = \B \bigcap [0, 1],\  P = \mu$. Тогда пусть $\xi_1 = I_{[0, 1)}, \xi_2 = I_{[0, 0.5)}, \xi_3 = I_{[0.5, 1)}$, и так далее бьем отрезок на $2^k$ частей.
+        
+        Для каждого $\omega \in [0, 1)$ найдется бесконечно много случайных величин, которые пробегут через нее и окажутся равны 1. А значит $\xi_n$ не сходятся к нулю почти наверное, при этом $\E|\xi_n|^p = P(\xi_n = 1) \leqslant 2^{-k} \to 0$
+        
+        \item Из сходимости почти наверное не следует сходимость в $L_p$.
+        
+        Пусть $\Omega = [0, 1],\  \F = \B \bigcap [0, 1], \ P = \mu$. Тогда пусть $\xi_n = 2^{n}I_{[0, \frac{1}{n}]}$. Тогда для каждого $\omega \in (0, 1]$ и достаточно больших $n$ $\xi_n(\omega) = 0$, а значит есть сходимость почти наверное. При этом $\E|\xi|^p = \frac{2^{np}}{n} \to \infty$, а значит нет сходимости к нулю в $L_p$.  
+    \end{itemize}
+\end{proof}

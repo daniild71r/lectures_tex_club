@@ -1,0 +1,38 @@
+Пусть $\displaystyle \Theta \subset \mathbb{R}^{d} ,\ \{P_{\theta } ,\ \theta \in \Theta \}$ -- доминируемое семейство распределений относительно меры $\displaystyle \mu $, т.е. $\displaystyle P_{\theta }$ имеет плотность $\displaystyle p_{\theta }( x)$ относительно меры $\displaystyle \mu $. В байесовском подходе параметр $\displaystyle \theta $ является случайной величиной (вектором) с известным априорным распределением $\displaystyle Q$ на множестве $\displaystyle \Theta $.
+
+Пусть $\displaystyle Q$ -- распределение на $\displaystyle ( \Theta ,\ \mathcal{B}_{\Theta })$ с плотностью $\displaystyle q( t)$. Рассматриваем вероятностное пространство $\displaystyle \left( \Theta \times \mathcal{X} ,\ \mathcal{B}_{\Theta } \times B_{\mathcal{X}} ,\ \tilde{P}\right)$, где мера $\displaystyle \tilde{P}$ -- вероятностная мера с плотностью $\displaystyle f( t,\ x) =q( t) p_{t}( x)$. Таким образом, $\displaystyle ( \theta ,\ X)$ -- случайный вектор на вероятностном пространстве с плотностью $\displaystyle f( t,\ x)$. При таком подходе $\displaystyle p_{t}( x)$ -- условная плотность $\displaystyle X$ при условии, что $\displaystyle \theta =t$.
+\subsection{Математическая модель эксперимента}
+
+Рассмотрим $\displaystyle \theta ( t) =t$ -- случайная величина (вектор) на $\displaystyle ( \Theta ,\ \mathcal{B}_{\Theta } ,\ Q)$, и пусть $\displaystyle X$ -- случайная величина, определенная на $\displaystyle (\mathcal{X} ,\ \mathcal{B}_{\mathcal{X}} ,\ P_{t})$, определенная как тождественное отображение $\displaystyle X( x) =x$. Тогда $\displaystyle ( \theta ,\ X)$ -- случайный вектор на $\displaystyle \left( \Theta \times \mathcal{X} ,\ \mathcal{B}_{\Theta } \times \mathcal{B}_{\mathcal{X}} ,\ \tilde{P}\right)$ с плотностью $\displaystyle f( t,\ x)$, причем $\displaystyle q( t)$ -- плотность $\displaystyle \theta $, а $\displaystyle p_{t}( x)$ -- условная плотность $\displaystyle X$ при условии $\displaystyle \theta =t$.
+\begin{definition}
+    Плотность $\displaystyle q( t)$ называется \textit{априорной плотностью} параметра $\displaystyle \theta $.
+\end{definition}
+\begin{definition}
+    Условная плотность $\displaystyle \theta $ относительно $\displaystyle X$
+    \begin{equation*}
+        q( t\ |\ x) =\dfrac{q( t) p_{t}( x)}{\int _{\Theta } q( u) p_{u}( x) du} =\dfrac{f( t,\ x)}{\int _{\Theta } f( u,\ x) du}
+    \end{equation*}
+    называется \textit{апостериорной плотностью}.
+\end{definition}
+\begin{definition}
+    Оценка $\displaystyle \hat{\theta }( X) =\int _{\Theta } tq( t\ |\ x) dt=E_{\tilde{P}}( \theta \ |\ x)$ называется \textit{байесовской оценкой} $\displaystyle \theta $.
+\end{definition}
+\begin{theorem}
+    (о наилучшем среднеквадратичном прогнозе, б/д) Пусть $\mathcal{G} \subset \mathcal{F}$, $\xi$ -- случайная величина на $(\Omega, \mathcal{F}, P),\ \mathcal{L}$ -- множество $\mathcal{G}$-измеримых случайных величин с конечным математическим ожиданием. Тогда выполнено
+    \begin{equation*}
+        \arg\min_{\eta\in\mathcal{L}}E(\xi - \eta)^2 = E(\xi\, \vert\, \mathcal{G})\ \text{п.н.}
+    \end{equation*}
+\end{theorem}
+\begin{theorem}
+    Байесовская оценка является наилучшей оценкой в байесовском подходе с квадратичной функцией потерь.
+\end{theorem}
+\begin{proof}
+    Пусть $\displaystyle \hat{\theta }$ -- байесовская оценка параметра $\displaystyle \theta $. Тогда
+    \begin{equation*}
+        \int _{\Theta } R(\hat{\theta } ,\ \theta) q( \theta ) d\theta =\int _{\Theta } E_{\theta }(\hat{\theta } -\theta )^{2} q( t) dt=\int _{\Theta }\int _{\mathcal{X}}(\hat{\theta } -\theta )^{2} f( t,\ x) dxdt=E_{\tilde{P}}(\hat{\theta }( X) -\theta )^{2} .
+    \end{equation*}
+    По теореме о наилучшем среднеквадратичном прогнозе
+    \begin{equation*}
+        \arg\min_{\hat{\theta}}E_{\tilde{P}}(\hat{\theta }( X) -\theta )^{2} = E_{\tilde{P}}(\theta\, \vert\, x).
+    \end{equation*}
+\end{proof}

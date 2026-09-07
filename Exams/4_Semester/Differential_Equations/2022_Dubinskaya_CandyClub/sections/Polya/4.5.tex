@@ -1,0 +1,73 @@
+\Th (Лиувилля-Остроградского) 
+\newline Пусть $W(x)$ -- вронскиан решений $y_1(x),\ldots, y_n(x)$ системы $y'(x)=A(x)y(x)$ на промежутке $I$, и $x_0\in I$, тогда $\forall x\in I$ имеет место формула \textit{Лиувилля-Остроградского:}
+\begin{equation*}
+    W(x) = W(x_0)\cdot \exp{\Big(\int\limits_{x_0}^x trA(t)dt\Big)},
+    \qquad \text{где } trA = \sum\limits_{k=1}^n a_{kk}(t)
+\end{equation*}
+
+\Proof Покажем, что $W(x)$ удовлетворяет дифференциальному уравнению
+\begin{equation*}
+    W'(x) = trA(x) \cdot W(x), \qquad x \in I.
+\end{equation*}
+Пусть $y_{ij}(x)$, $i = \overline{1,n}$ компоненты решения $y_j(x)$, $j = \overline{1,n}$. Тогда $W(x)$ является функцией всех этих компонент:
+\begin{equation*}
+    W(x) = W[y_{11}(x),y_{21}(x), \ldots ,y_{nn}(x)].
+\end{equation*}
+По формуле производной сложной функции получаем, что
+\begin{equation*}
+    W'(x) = \sum\limits_{p,q=1}^{n}\frac{\partial W(x)}{\partial y_{pq}(x)}y_{pq}'(x)
+\end{equation*}
+Если $W_{pr}(x)$ -- алгебраическое дополнение $y_{pr}(x)$ в $W(x)$, то разложение
+$W(x)$ по $p$-й строке дает
+\begin{equation*}
+    W(x) = \sum\limits_{r=1}^{n}y_{pr}(x)\cdot W_{pr}(x)
+\end{equation*}
+Отсюда находим, что
+\begin{equation*}
+    \frac{\partial W(x)}{\partial y_{pq}} = W_{pq}(x)
+\end{equation*}
+Каждая вектор-функция удовлетворяет системе $y'(x)=A(x)y(x)$, т. е.
+\begin{equation*}
+    y_{q}'(x) = A(x)y_q(x), \qquad q = \overline{1,n}, \quad x \in I
+\end{equation*}
+Отсюда находим, что
+\begin{equation*}
+     y_{pq}'(x) = \sum\limits_{r=1}^{n}a_{pr}(x)\cdot y_{rq}(x), \qquad \text{где $a_{pr}(x)$ -- элементы матрицы $A(x)$.}
+\end{equation*}
+Подставляя найденные выражения $\frac{\partial W(x)}{\partial y_{pq}}$ и $y_{pq}'(x)$ в формулу $W'(x)$ получаем, что
+\begin{equation*}
+    W'(x) = \sum\limits_{p,q=1}^{n}W_{pq}(x)\sum\limits_{r=1}^{n}a_{pr}(x)\cdot y_{rq}(x) = \sum\limits_{p,r=1}^{n}a_{pr}(x)\sum\limits_{q=1}^{n}y_{rq}(x)\cdot W_{pq}(x)
+\end{equation*}
+Но из курса алгебры известно, что
+\begin{align*}
+    \sum\limits_{q=1}^{n}y_{rq}(x)\cdot W_{pq}(x) = W(x)\cdot\delta_{rp} \qquad \text{где $\delta_{rp}$ -- символ Кронекера.} \\
+    \Rightarrow \qquad W'(x) = W(x) \sum\limits_{p,r=1}^{n}a_{pr}(x)\cdot \delta_{pr} = W(x)\sum\limits_{p=1}^{n}a_{pp}(x) = W(x)\cdot trA(x)
+\end{align*}
+Интегрирование этого линейного однородного уравнения первого порядка
+и дает искомую формулу. \EndProof
+\newpage
+Формула Лиувилля-Остроградского для однородного уравнения $n$-го порядка:
+\begin{equation*}
+    y^{(n)} + a_1(x)y^{(n-1)} + \ldots + a_n(x)y = 0
+\end{equation*}
+\begin{equation*}
+ \begin{cases}
+   y_1'=y_2\\
+   y_2'=y_3\\
+   \ldots\\
+   y_{n-1}'=y_n\\
+   y_n'=-a_ny_1-a_{n-1}y_2-\ldots -a_1y_n
+ \end{cases}
+ \qquad trA(x) = -a_1(x)
+\end{equation*}
+\begin{equation*}
+    W(x)=W(x_0)\cdot\exp{\Big(-\int\limits_{x_0}^xa_1(t)dt\Big)}
+\end{equation*}
+\bigbreak
+\Example В частности формула Лиувилля-Остроградского для однородного уравнения второго порядка (где $y_1(x)$ -- известное решение, а $y(x)$ -- ещё не известное) выглядит так:
+\begin{align*}
+    a(x)y''+b(x)y'+c(x)y=0\\
+    \frac{W_{y_1,y}(x)}{y_1^2}=\frac{y_1y' - y_1'y}{y_1^2} = \Big(\frac{y}{y_1}\Big)'\\
+    \Rightarrow \qquad \frac{d}{dx}\Big(\frac{y}{y_1}\Big) = \frac{C}{y_1^2}\exp{\Big(-\int \frac{b(x)}{a(x)}dx\Big)}
+\end{align*}
+Получили то, что мы активно используем при решении задач.

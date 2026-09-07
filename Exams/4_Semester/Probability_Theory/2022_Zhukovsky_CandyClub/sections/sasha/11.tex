@@ -1,0 +1,43 @@
+\begin{theorem}[Лебега о мажорируемой сходимости]
+Пусть $\xi_n$~--- случайная величина и
+\[|\xi_n| \leqslant \eta,\; \E\eta < \infty\]
+
+\noindentЕсли \(P(\xi_n \to \xi) = P(\{\omega: \xi_n(\omega) \to  \xi(\omega)\}) = 1\), то
+\[\E\xi_n \to \E\xi,\; \E|\xi| < \infty,\; \E|\xi_n - \xi| \to 0.\]
+\end{theorem}
+
+\begin{theorem}[О замене переменных в интеграле Лебега]
+Пусть $X$~--- случайный вектор размерности $k$, $\varphi:\; \R^k \rightarrow \R$~--- бореллевская функция. Тогда если существует $\E\varphi(X)$, то
+\[
+    \E\varphi(X) = \int_{\R^k}\varphi(x) dP_X
+\]
+\end{theorem}
+\begin{proof}
+Рассмотрим случаи
+\begin{enumerate}
+    \item $\varphi(x) = I(x \in B), B \in \B(\R^k)$.Тогда
+    \begin{align*}
+        \E\varphi(X) &= \E I(X \in B) = P(X \in B) = P_X(B) = \int_B dP_X\\
+        &= \int \varphi(x) dP_X.
+    \end{align*}
+    \item $\varphi$~--- простая, то верно по линейности интеграла Лебега.
+    \item $\varphi \geqslant 0$, то существует возрастающая последовательность простых функций: \\$
+    0 \leqslant \varphi_n < \varphi, \varphi_n \uparrow \varphi$.
+    \begin{align*}
+        \E\varphi(X) = \lim_{n \to \infty}\E\varphi_n(X) = 
+         \lim_{n \to \infty}\int\varphi_n(x)dP = \int\varphi(x) dP_X.
+    \end{align*}
+    \item Для произвольной функции $\varphi = \varphi^+ - \varphi^-$.
+\end{enumerate}
+\end{proof}
+
+\subsubsection*{Примеры}
+\begin{enumerate}
+    \item $\xi \sim Bin(n, p)$.\\
+    $\xi_1, \ldots, \xi_n \sim Bern(p)$~--- независимые.\\
+    $\xi_1 + \ldots + \xi_n \sim Bin(n, p)$. Тогда:\\
+    $\E\xi = \E(\xi_1 + \ldots + \xi_n) = \E(\xi_1) + \ldots + \E(\xi_n) = np.$
+    \item $\xi \sim \Norm(a, \sigma^2)$.\\
+    $\eta \sim \Norm(0, 1) \implies \sqrt{\sigma^2}\eta + a \sim \Norm(a, \sigma^2).$ Это видно из определения нормального распределения.\\
+    Так как $\E\eta = 0$, то $\E\xi = \E(\sqrt{\sigma^2}\eta + a) = \sqrt{\sigma^2}\E(\eta) + a = a.$
+\end{enumerate}

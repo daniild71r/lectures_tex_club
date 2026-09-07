@@ -1,0 +1,32 @@
+\begin{theorem}[Банаха--Штейнгауза, доказательство не Коновалова]\label{Banach-Steingaus}
+Пусть \(X, Y\)~--- линейные нормированные пространства, причём \(X\) полно. Пусть \(\mathcal{A} \subseteq \mathcal{L}(X, Y)\) --- семейство линейных непрерывных операторов.\\
+\noindentТогда из \(\forall x \in X \left(\sup\left\{\|Ax\|_Y:\: A \in \mathcal{A} \right\} < \infty \right)\) следует \(\sup\left\{\|A\|:\: A \in \mathcal{A} \right\} < \infty\). То есть, из поточечной ограниченности следует равномерная ограниченость.
+\end{theorem}
+\begin{proof} Пусть
+\(X_n = \left\{x \in X:\: \sup\limits_{A \in \mathcal{A}} \|A(x)\|_Y \leqslant n \right\}\).
+Так как 
+\[\sup\limits_{A \in \mathcal{A}} \|A(x)\|_Y \leqslant n \Leftrightarrow \forall A \in \mathcal{A} \left(\|A(x)\|_Y \leqslant n \right),\]
+перепишем супремум через пересечение: \(X_n = \bigcap\limits_{A \in \mathcal{A}} \left\{x \in X:\: \|A(x)\|_Y \leqslant n \right\}\).
+
+Для любого \(A \in \mathcal{A}\) множество \(\left\{x \in X:\: \|A(x)\|_Y \leqslant n \right\}\) замкнуто как прообраз замкнутого шара \(\overline{B}_n(0) \subset Y\) под действием непрерывного отображения~(\ref{closed-continuous-closed}), а пересечение любого количества замкнутых множеств замкнуто.
+% Покажем, что \(\forall n\; X_n\) замкнуто. Для начала покажем непрерывность супремума, для этого воспользуемся тем, что для каждого отдельного оператора в каждой точке из его непрерывности можно выбрать такую дельту, что норма разности образа точки и точки, сдвинутой не более чем на дельту по норме, будет не очень большой:
+% \[\forall \varepsilon > 0 \forall A \in \mathcal{A} \forall x \in X \exists \delta_{xA} \forall h \left(\|h\|_X < \delta_{xA} \rightarrow \|A(x+h) - A(x)\|_Y < \varepsilon \right) \]
+% В каждой точке \(x \in X\) можно выбрать положительный инфинум по дельтам \\ \(\delta_{x} = \inf\limits_{A \in \mathcal{A}} \{\delta_{xA}\} > 0\), так как если бы он был равен 0, то супремум нормы образов был бы равен \(\infty\), значит, \(\sup\limits_{A  \in \mathcal{A}}A\) непрерывна в \(X\). Теперь рассмотрим \(\{x_k\}_{k \in \N} \subseteq X_n\) --- сходящуюся к \(x^*\) последовательность, тогда \(\{\sup\limits_{A \in \mathcal{A}}A(x_k)\} \subseteq \overline{B}_n(0)\). В силу секвенциальной непрерывности \(\sup\limits_{A \in \mathcal{A}}A\) тоже сходится(назовём предел \(y^*\)), а в силу замкнутости шара \(y^* \in \overline{B}_n(0)\), а так как в \(X_n\) лежат все точки, образы которых под действием \(\sup\limits_{A \in \mathcal{A}}A\) переходят в \(\overline{B}_n(0)\), то и \(x^*\) как проообраз \(y^* \in \overline{B}_n(0)\) лежит в \(X_n\). Значит, \(X_n\) замкнуто, так как содержит все свои предельные точки.
+
+Так как\(\bigcup\limits_{n \in \N }X_n = X\), то по \hyperref[Ber-equiv]{теореме Бэра} \(\exists m\; \exists \overline{B}_\varepsilon(x_0):\; \overline{B}_\varepsilon(x_0) \subseteq X_m \). Пусть \(u \in X, \; \|u\|_X = 1\). Тогда рассмотрим \(A \in \mathcal{A}\):
+\begin{multline*}
+    \|A(u)\|_Y = \frac{1}{\varepsilon} \|A(\varepsilon u) + A(x_0) - A(x_0) \|_Y = \frac{1}{\varepsilon} \|A(x_0 + \varepsilon u) - A(x_0) \|_Y \leqslant \\
+    \leqslant \frac{1}{\varepsilon} \left(\|A(x_0 + \varepsilon u)\|_Y + \|A(x_0)\|_Y \right) \leqslant \frac{1}{\varepsilon}(m + m)
+\end{multline*}
+Последнее неравенство из того что $x_0$ в $X_m$ и $x_0 + \varepsilon u$ в $ \overline{B}_\varepsilon(x_0) \subset X_m$.
+В неравенстве сверху можно перейти к супремуму по $u$ и получить \(\forall A \in \mathcal{A} \left(\|A\| \leqslant \frac{2m}{\varepsilon} < \infty \right)\).
+
+\end{proof}
+
+\begin{corollary}
+$X$ -- полное $\Rightarrow L(X, Y)$ замкнуто относительно поточечной сходимости, то есть если $A_n \in L(X, Y), A_nx \to Ax \quad \forall x \in X$, то $A \in L(X, Y)$
+\end{corollary}
+
+\begin{note}
+    Обе теоремы $16$ билета --- следствия \hyperref[Banach-Steingaus]{теоремы Банаха--Штейнгауза}.
+\end{note}

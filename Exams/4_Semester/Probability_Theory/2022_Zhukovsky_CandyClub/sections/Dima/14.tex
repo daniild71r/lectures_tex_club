@@ -1,0 +1,32 @@
+Пусть $\xi$ определена на $\probspace$, $\E|\xi| < \infty$, $\mathcal{G} \subset \F$~--- $\sigma$-алгебра
+\begin{definition}
+    Условным математическим ожидание $\xi$ при условии $\mathcal{G}$ называется $\mathcal{G}$-измеримая случайная величина $\E(\xi | \mathcal{G})=\eta$, такая что $\forall A \in \mathcal{G} \hookrightarrow \E(\xi I_A)=\E(\eta I_A)$.
+\end{definition}
+
+\begin{definition}
+    Функция $\nu: \mathcal{G} \rightarrow \R$ называется зарядом, если она счетно-аддитивная.
+\end{definition}
+
+\begin{lemmanote}
+    Заряд отличается от меры только тем, что может принимать отрицательные значения
+\end{lemmanote}
+
+\begin{definition}
+    Функция $\nu$ абсолютно непрерывна относительно $P$, если \(\forall A \in \mathcal{G} \hookrightarrow P(A)=0 \Rightarrow \nu(A)=0\).
+\end{definition}
+
+\begin{theorem}[Радона--Никодима]\label{radon-nikodim}
+    Пусть $\nu$ --- абсолютно непрерывный относительно $P$ заряд. Тогда
+    \[ \exists! g: \Omega \rightarrow \R - \mathcal{G} \text{-измеримая, т.ч. } \forall A \in \mathcal{G} \hookrightarrow \nu(A)=\int_A g dP \]
+    В данном случае единственность в смысле $P$-почти наверное (какие бы мы не взяли подходящие функции $g$ вероятиность того, что они совпадают, равна 1).
+\end{theorem}
+
+\begin{corollary}\label{umo-existence}
+    \( \E(\xi|\mathcal{G}) \) существует и единственно $P$-почти наверное
+\end{corollary}
+
+\begin{proof}
+    \par Рассмотрим $\nu(A)=\E(\xi I_A)$ - заряд. Если $P(A)=0$, то $E\xi I_A=0 \Rightarrow \nu$ - абсолютно непрерывна относительно $P$.
+    
+    \par Тогда по теореме \nameref{radon-nikodim} \( \exists! g: \Omega \rightarrow \R - \mathcal{G} \text{-измеримая, т.ч. } \forall A \in \mathcal{G} \hookrightarrow \nu(A)=\E \xi I_A = \int_A g dP = EgI_A \). Тогда $g=\E(\xi|\mathcal{G})$ по определению и все доказано.
+\end{proof}

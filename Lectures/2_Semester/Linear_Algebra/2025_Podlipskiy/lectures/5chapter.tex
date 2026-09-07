@@ -1,0 +1,134 @@
+\subsection{Сумма и пересечение линейных пространств}
+Пусть $L$ - линейное пространство и $L_1, L_2$ - его подпространства.
+\begin{definition}
+    Суммой подпространств $L_1+L_2$ называется линейная оболочка множества $L_1 \cup L_2$. 
+\end{definition}
+Из определения следует, что $x \in L_1+L_2$ тогда и только тогда, когда $x=\alpha_1 y_1+ \dots+ \alpha_k y_k + \beta_1 z_1 + \dots + \beta_m z_m$, где $y_i \in L_1, z_i \in L_2$ и $\alpha_i, \beta_i \in \R$. Значит $x$ можно представить как $x=x_1+x_2$, где $x_1 \in L_1, x_2 \in L_2$. Отсюда получаем, что из  $x_1 \in L_1, x_2 \in L_2$ следует $x_1+x_2\in L_1 + L_2$. Следовательно, $L_1+L_2$ - подпространство $L$.
+
+Пусть $\dim{L_1}=k_1$ и $\dim{L_2}=k_2$. Выделим базис $f_1, \dots f_{k_1}$ в $L_1$ и базис $h_1, \dots, h_{k_2}$ в $L_2$. Тогда максимальный ЛНЗ набор из $f_1, \dots f_{k_1}, h_1, \dots, h_{k_2}$ - базис в $L_1+L_2$. Значит имеем неравенство $dim(L_1+L_2)\leqslant k_1+k_2$. Отметим, что это неравенство обобщается на случай пересечения $s$ подпространств:
+\begin{equation*}
+\label{dim_inequality}
+    \dim{(L_1+\dots +L_s)}\leqslant \dim{L_1}+\dots+\dim{L_s}
+\end{equation*}
+
+\begin{definition}
+    Пересечением подпространств называется множество  \[L_1 \cap L_2=\{x\in L |x\in L_1, x\in L_2\}\]
+\end{definition}
+Из определения $L_1 \cap L_2$ не пусто, так как из $0 \in L_1, 0 \in L_2$ следует $0\in L_1 \cap L_2$.
+Если $x, y \in L_1 \cap L_2$, то $x+y \in L_1$ и $x+y \in L_2$, а значит $x+y \in L_1 \cap L_2$. Следовательно, $L_1 \cap L_2$ тоже подпространство $L$.
+
+Если подпространства $L_1$ и $L_2$ задаются системами 1 и 2, то их пересечение можно задать объединением систем:
+\[
+L_1 \rightarrow 
+\left\{
+\begin{array}{ll}
+\text{система 1}
+\end{array}
+\right.
+, \ \ 
+L_2 \rightarrow 
+\left\{
+\begin{array}{ll}
+\text{система 1}
+\end{array}
+\right.
+\Rightarrow 
+L_1 \cap L_2 \rightarrow 
+\left\{
+\begin{array}{ll}
+\text{система 1}
+\\
+\text{система 2}
+\end{array}
+\right.
+\]
+\begin{definition}
+    Сумма $L_1+\dots +L_s$ называется прямой, если неравенство \hyperref[dim_inequality]{(*)} обращается в равенство (обозначение: $L_1 \oplus \dots \oplus L_s$).
+\end{definition}
+\begin{theorem} [Формула Грассмана]
+    $\dim{L_1+L_2}=\dim{L_1}+\dim{L_2}-\dim{L_1\cap L_2}$.
+\end{theorem}
+\begin{proof}
+    Пусть $e_1, \dots, e_k$ - базис в $L_1 \cap L_2$. Дополним его до базиса в $L_1$ векторами $f_1, \dots, f_m$, а векторами $g_1, \dots, g_s$ до базиса в $L_2$. Тогда $x\in L_1 \cap L_2$ - линейная комбинация векторов $f, g, e$.
+
+    Предположим, что набор векторов $f, g, e$ - ЛЗ, тогда существует нетривиальная линейная комбинация такая, что 
+    \[
+    0=\alpha_1 e_1 + \dots + \alpha_k e_k + \beta_1 f_1 +\dots+\beta_m f_m + \gamma_1 g_1 + \dots + \gamma_s g_s
+    \]
+    Но пусть $y:=\gamma_1 g_1 + \dots + \gamma_s g_s \in L_2$, значит $-y=\alpha_1 e_1 + \dots + \alpha_k e_k + \beta_1 f_1 +\dots+\beta_m f_m \in L_1$, откуда получаем, что $(-1)(-y)=y\in L_1$. Тогда $y \in L_1 \cap L_2$ и $y$ является линейной комбинацией векторов $e_1, \dots, e_k$, а значит $\beta_1=\dots=\beta_m=\gamma_1=\dots=\gamma_s=0$. Но набор $e_1, \dots, e_k$ - ЛНЗ, следовательно $\alpha_1=\dots = \alpha_k=0$. Противоречие с нетривиальностью линейной комбинации. Значит $f, g, e$ - ЛНЗ.
+
+    Тогда $\dim L_1+L_2 =k+s+m, \ \dim L_1= m+k, \ \dim L_2=k+s, \ \dim L_1 \cap L_2=k$. Отсюда получаем формулу Грассмана.
+\end{proof}
+
+Пусть $\tilde{L}=L_1 \oplus L_2$ (для ненулевых $L_1, L_2$). Сформулируем несколько свойств прямой суммы, эквивалентных определению:
+\begin{itemize}
+    \item Сумма является прямой, если $\dim L_1\cap L_2=0$.
+    \item Сумма является прямой\label{property}, если объединение базисов в $L_1$ и $L_2$ - базис в $L_1 \cup L_2$.
+    \item Сумма является прямой, если любая пара $x_1, x_2$, где $x_1\in L_1, x_2 \in L_2$, образует ЛНЗ набор.
+\end{itemize}
+Отдельно рассмотрим следующее свойство:
+\begin{proposition}
+    Для всех $x \in L_1 \oplus L_2$ существует единственная пара $x_1\in L_1, x_2 \in L_2$ такая, что $x=x_1+x_2$.
+\end{proposition}
+\begin{proof}
+    Согласно формуле Грассмана, $\dim L_1 \oplus L_2= \dim L_1 + \dim L_2$. Значит, зафиксировав базисы $f_1, \dots, f_m$ и $g_1, \dots, g_n$ в $L_1$ и $L_2$ соответственно, получаем что их объединение - базис в $L_1 \oplus L_2$. Тогда $x$ единственным образом представляется в виде $x=\alpha_1 f_1 + \dots \alpha_m f_m + \beta_1 g_1 +\dots \beta_n g_n$. Следовательно, $x_1$ и $x_2$ это  $\alpha_1 f_1 + \dots \alpha_m f_m$ и $\beta_1 g_1 +\dots \beta_n g_n$.
+\end{proof}
+
+Свойство \hyperref[property]{(*)} можно обобщить на случай пересечения нескольких подпространств:
+\begin{proposition}
+    Сумма $L_1+\dots +L_s$ является прямой, если \[\forall L_i \hookrightarrow L_i \cap (L1+\dots+L_{i-1}+L_{i+1}+\dots +L_s)=\{0\}\]
+\end{proposition}
+\begin{proof}
+    На экзамене требуется только формулировка. На лекциях доказательство не приводится.
+\end{proof}
+\begin{proposition}
+    Для любого подпространства $L_1 \subset L$ существует подпространство $L_2 \subset L$ такое, что $L_1 \oplus L_2=L$.
+\end{proposition}
+\begin{proof}
+    Пусть $e_1, \dots, e_k$ - базис в $L_1$. Дополним его до базиса в $L$ векторами $f_1, \dots, f_m$. Тогда линейная оболочка векторов $f_1, \dots, f_m$ - искомое подпространство $L_2$. $L_1$ и $L_2$ не пересекаются в силу ЛНЗ их базисов, а значит $L_1\oplus L_2=L$.
+\end{proof}
+\section{Линейные отображения}
+\begin{definition}
+    Отображение $f:L_1 \rightarrow L_2$ называется линейным, если $\forall x_1, x_2 \in L_1 \hookrightarrow f(x_1+x_2)=f(x_1)+f(x_2)$ и $\forall \alpha \in \R \forall x \in L_1 \hookrightarrow f(\alpha x)=\alpha f(x)$.
+\end{definition}
+Простые следствия из определения:
+\begin{itemize}
+    \item $f(\alpha_1 x_1 + \alpha_2 x_2)=\alpha_1 f(x_1)+\alpha_2 f(x_2)$
+    \item $f(0)=f(0\cdot x)=0\cdot f(x)=0$
+\end{itemize}
+
+Пусть $f:L_1 \rightarrow L_2$, $\tilde{L}_1 \subset L_1$ - подпространство.
+Пусть $e_1, \dots, e_k$ - базис в $\tilde{L}_1$, тогда $x=\alpha_1 e_1 + \dots + \alpha_k e_k \in \tilde{L}_1$. $f(x)=\alpha_1 f(e_1) + \dots + \alpha_k f(e_k)$, а значит $\langle f(e_1), \dots, f(e_k) \rangle = f(\tilde{L}_1)$. Следовательно $f(\tilde{L}_1)$ - подпространство $L_2$, а также $\dim f(\tilde{L}_1) \leqslant \dim \tilde{L}_1$.
+
+\textit{Обозначение}: $Im (f)$ - множество всех $y \in L_2$ таких, что $\exists x\in L_1 \hookrightarrow f(x)=y$.
+
+\begin{definition}
+    \label{conseq}
+    Рангом отображения $f$ называется $\dim Im(f)$ (обозначается $rg(f)$).
+\end{definition}
+
+Сформулируем два критерия сюръективности отображения $f$:
+\begin{itemize}
+    \item $f$ - сюръективно $\Leftrightarrow$ $rg(f)=\dim L_2$
+    \item $f$ - сюръективно $\Leftrightarrow$ $Im(f) = L_2$
+\end{itemize}
+\subsection{Ядро отображения}
+\begin{definition}
+    Ядром линейного отображения $f$ называется множество \[
+    \ker f = \{x\in L_1 | f(x)=0\}
+    \]
+\end{definition}
+Ядро не пустое, так как $f(0)=0$. Ядро замкнуто относительно линейных операций, а значит является подпространством $L_1$: \[
+\forall x_1, x_2 \in \ker f \ \forall \alpha_1, \alpha_2 \hookrightarrow f(\alpha_1 x_1 + \alpha_2  x_2)= \alpha_1 f(x_1) + \alpha_2 f(x_2)=0 \in \ker f
+\]
+Следствие из определения: 
+\begin{proposition}
+    \label{prop}
+    $f$ - инъективно $\Leftrightarrow$ $\ker f = \{0\}$
+\end{proposition}
+\begin{proof}
+    \begin{itemize}
+        \item[$\Rightarrow$] Из определения инъективности существует единственный $x \in L$ такой, что $f(x)=0$. А так как $f(0)=0$, то $\ker f=\{0\}$.
+        \item[$\Leftarrow$] Предположим что существуют $x, y\in L$ такие, что $x \neq y$ и $f(x)=f(y)$. Тогда $f(x-y)=0$. Но из $\ker f=\{0\}$ следует, что $x-y=0$, откуда получаем инъективность $f$.
+    \end{itemize}
+\end{proof}

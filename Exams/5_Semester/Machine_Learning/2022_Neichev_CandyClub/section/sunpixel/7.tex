@@ -1,0 +1,98 @@
+\textbf{Постановка задачи}
+
+Пусть задан датасет \( \mathcal{L} = \{x_i, y_i\}_{i = 1}^N\),
+где \(x_i \in \R^n, y_i \in \R\).
+Наша модель линейная, то есть предсказание выглядит следующим образом:
+
+\[
+\widehat{y} = w_0 + \sum_{k = 1}^p x_k \cdot w_k = x^T w
+\]
+
+Чтобы отдельно не записывать свободный член, добавим в $x$ признак, тождественно равный единице. Тогда соответствующий коэффициент в $w$ будет отвечать за свободный член:
+
+\[
+\begin{pmatrix}
+1 & x_1 & \ldots & x_p
+\end{pmatrix}
+\begin{pmatrix}
+w_0 \\
+w_1 \\
+\ldots \\
+w_p
+\end{pmatrix}
+= w_0 + \sum_{k = 1}^p x_k \cdot w_k
+\]
+
+Задача оптимизации, которую мы решаем -- это минимизация какого-то функционала. Например, среднеквадратичной ошибки (такой подход называется методом наименьших квадратов):
+
+\[
+\widehat{w} = \arg \min_w \|Y - \widehat{Y}\|_2^2 = 
+\arg \min_w \|Y - Xw\|_2^2
+\]
+
+В случае минимизации среднеквадратичной ошибки существует аналитическое решение:
+
+\begin{multline*}
+\|Y - Xw\|_2^2 = \langle Y - Xw, Y - Xw \rangle = 
+Y^T Y - (Xw)^T Y - Y^T (Xw) + (Xw)^T Xw = \\
+= Y^T Y - w^T X^T Y - Y^T X w + w^T X^T X w
+\end{multline*}
+
+\[
+\nabla_w \|Y - Xw\|_2^2 = 0 - X^T Y - X^T Y + 
+\left( X^T X + X^T X \right) w
+\]
+
+Приравнивая \(\nabla_w \|Y - Xw\|_2^2\) к нулю, получаем:
+
+\[
+\widehat{w} = (X^T X)^{-1} X^T Y
+\]
+
+\begin{note}
+Аналитическое решение существует только для 2-нормы. Для остальных норм решение ищется только градиентными методами.
+\end{note}
+
+\begin{theorem}[Гаусса-Маркова]
+Пусть целевые значения выражаются в следующем виде:
+
+\(Y = Xw + \varepsilon\), где 
+\(\varepsilon = (\varepsilon_1, \ldots, \varepsilon_N)\) -- случайный вектор, при этом:
+
+\begin{enumerate}
+    \item \(\mathbb{E} \varepsilon_i = 0\ \forall i\)
+    \item \(\mathbb{D} \varepsilon_i = \sigma^2 < \infty\ \forall i\)
+    \item \(\text{cov}(\varepsilon_i, \varepsilon_j) = 0\ \forall i \neq j\)
+\end{enumerate}
+
+Тогда решение задачи наименьших квадратов 
+$\widehat{w} = (X^T X)^{-1} X^T Y$ является оптимальным среди несмещённых.
+
+Другими словами, $\widehat{w}$ является несмещённой (\(\mathbb{E} \widehat{w} = w\)) и оптимальной (то есть имеет наименьшую дисперсию среди всех несмещённых).
+
+\textbf{Основные функции потерь в регрессии}
+
+\[
+\text{MSE}(y, \widehat{y}) = 
+\frac{1}{N} \|y - \widehat{y}\|_2^2 = 
+\frac{1}{N} \sum_i (y_i - \widehat{y_i})^2
+\]
+
+\begin{itemize}
+    \item Применима теорема Гаусса-Маркова
+    \item Дифференцируема
+    \item Чувствительна к шуму
+\end{itemize}
+
+\[
+\text{MAE}(y, \widehat{y}) = 
+\frac{1}{N} \|y - \widehat{y}\|_1 = 
+\frac{1}{N} \sum_i |y_i - \widehat{y_i}|
+\]
+
+\begin{itemize}
+    \item Не дифференцируема (можно доопределить производную в нуле нулём)
+    \item Более устойчива к шуму
+\end{itemize}
+
+\end{theorem}

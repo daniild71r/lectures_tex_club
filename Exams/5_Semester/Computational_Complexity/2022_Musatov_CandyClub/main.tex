@@ -1,0 +1,248 @@
+\input{style.tex}
+
+\begin{document}
+% ================ ПЕРВАЯ СТРАНИЦА ==========================
+    \thispagestyle{empty}
+    \BgThispage
+    \begin{center}
+        \vspace*{4cm}
+        
+        \Huge
+        \textbf{Сложность вычислений } \\
+        \textbf{5 семестр} \\
+        % \textbf{Билеты} \\
+        \textbf{Лектор: Мусатов Д. В.} \\
+        \textbf{осень 2022} \\
+        
+        \vspace{7cm}
+        \Large 
+        \textbf{Авторы билетов (лучшие котики):} \\
+        \href{https://vk.com/spitsynn}{Спицын Николай} \\
+        \href{https://vk.com/dimasav123}{Савичев Дмитрий} \\
+        \href{https://vk.com/id165779384}{Подзорова Полина} \\
+        \href{https://vk.com/poli.dobro}{Чубенко Полина} \\        
+        \href{https://vk.com/meraklim}{Климанова Ирина} \\
+        % \href{https://vk.com/artemiy.kliachin}{Клячин Артемий} \\
+        \href{https://vk.com/ulegor}{Сбродов Егор} \\
+        % \href{https://vk.com/alex__roar}{Дремов Александр} \\
+        % \href{https://vk.com/ksinomorph}{Ксения Куринова} \\
+        Special thanks to книжке Мусатова Д. В., \\
+        а также ребятам, которые помогли с задачами: \\
+        Куссев Андрей, Неустроева Лиза, Курочкин Паша, Мирошников Саша :)
+        
+    \end{center}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+% ===================== НАЧАЛО ======================
+\setcounter{part}{-1}
+\part{Теормин}
+
+\input{section/polidobro/def.tex}
+
+\newpage
+\part{Первый теоретический вопрос}
+
+\section*{Классы}
+\input{section/sunpixel/first_part.tex}
+
+\newpage
+\part{Второй теоретический вопрос}
+
+\section{Моделирование с полиномиальным замедлением различных вариаций машин Тьюринга (большой алфавит, двусторонняя лента, много лент) на машине с алфавитом $\{0,1,\#\}$ и одной лентой, бесконечной вправо}
+\input{section/polidobro/1.tex}
+\section{Эквивалентность двух определений класса $\np$ (через сертификаты и через недетерминированные машины)}
+\input{section/polidobro/2.tex}
+\section{Теорема Кука–Левина. ($\np$-полнота задачи $\mathsf{3SAT}$)}
+\input{section/polidobro/3.tex}
+\section{$\np$-полнота задач о клике, независимом множестве и вершинном покрытии}\label{sec:question4}
+\input{section/polidobro/4.tex}
+\section{$\np$-полнота задачи о 3-раскраске}
+\input{section/Polina/4_5.tex}
+\section{$\np$-полнота задач о рюкзаке и целочисленном линейном программировании}
+\input{section/Polina/4_6.tex}
+\section{$\np$-полнота задач о гамильтоновом пути и цикле в ориентированном и в неориентированном графе}\label{sec:question7}
+\input{section/Polina/4_7.tex}
+\section{Сводимость по Куку задачи поиска сертификата к задаче распознавания, есть ли он, для какой-нибудь $\np$-полной задачи}
+\input{section/Polina/4_8.tex}
+\section{Эквивалентность 3 свойств коллапсирования полиномиальной иерархии: $\Sigma_k^p = \Pi_{k+1}^p,$ $\mathbf{PH} = \Sigma_k^p$. Связь коллапсирования с наличием $\mathbf{PH}$-полных задач}
+\input{section/sunpixel/9.tex}
+
+\section{$\Sigma_k^p$-полнота языка $\Sigma_k\mathsf{SAT}$ и $\Pi_k^p$-полнота языка $\Pi_k\mathsf{SAT}$}
+\input{section/sunpixel/10.tex}
+
+\section{Пример $\Sigma_k^p$-полного и пример $\Pi_k^p$-полного языков для $k \ge 2$, на ваш выбор (языки
+не должны формулироваться в терминах задачи о выполнимости и не должны быть дополнениями друг к другу или иным простым способом получаться друг из друга)}
+% https://www.researchgate.net/publication/245726393_Completeness_in_the_Polynomial-Time_Hierarchy_A_Compendium
+\input{section/Andrew/11.tex}
+
+
+\section{Эквивалентность определений класса $\mathbf{PH}$ через сертификаты и через альтернирующие машины}
+\input{section/sunpixel/12.tex}
+
+\section{Теорема об иерархии по времени}
+\input{section/Polina/4_13.tex}
+\section{Теорема Бейкера–Джилла–Соловея о нерелятивизуемости утверждения $\p = \np$}
+\input{section/Ira/14.tex}
+
+\section{Теорема Сэвича ($\mathbf{NSPACE}(s(n)) \subset \mathbf{DSPACE}(s(n)^2)$).\\$\mathbf{PSPACE} = \mathbf{NPSPACE}$}\label{sec:savitch}
+\input{section/Ira/15.tex}
+
+\section{$\mathbf{PSPACE}$-полнота языка истинных булевых формул с кванторами}\label{sec:pspc}
+\input{section/kubamba/16.tex}
+
+\section{Игровая интерпретация $\mathbf{PSPACE}$ и $\mathbf{PSPACE}$-полнота обобщённой игры в города}\label{sec:pspc2}
+\input{section/kubamba/17.tex}
+
+\section{Задачи о сложении и умножении чисел в двоичной записи, а также о проверке правильности скобочной последовательности для произвольного числа скобок лежат в $\mathbf{L}$}
+\input{section/kubamba/18.tex}\label{sec:arithmetic}
+
+\section{Задача о проверке, является ли граф деревом, лежит в $\mathbf{L}$}
+\input{section/kubamba/19.tex}
+
+\section{Эквивалентность двух определений класса $\mathbf{NL}$: через недетерминированные машины и через сертификаты}
+\input{section/kubamba/20.tex}
+
+\section{$\mathbf{NL}$-полнота языка $\mathsf{PATH}$ (наличие пути между заданными вершинами в ориентированном графе) и языка $\mathsf{SCONNECTED}$ (сильная связность ориентированного графа)}\label{sec:sconnected}
+\input{section/kubamba/21.tex}
+
+\section{Теорема Иммермана–Селепченьи ($\mathbf{NL} = \mathbf{coNL}$). $\mathbf{NL}$-полнота языка $\overline{\mathsf{PATH}}$}
+\input{section/jetminded/22.tex}
+
+\section{$\mathbf{NL}$-полнота языка $\mathsf{2SAT}$}
+\input{section/jetminded/23.tex}
+\newpage
+
+\section{Эквивалентность трёх определений $\p/_{\text{poly}}$ (через схемы из функциональных элементов, через прямолинейные программы и через машины, принимающие подсказку)}
+\input{section/jetminded/24.tex}
+\newpage
+
+\section{Теорема Карпа–Липтона (если $\np \subset \ppoly$, то $\ph = \Sigma_2^p$)}
+\input{section/jetminded/25.tex}
+
+\section{Построение схемы полиномиального размера и логарифмической глубины для функции сложения в двоичной записи}
+\input{section/jetminded/26.tex}
+\newpage
+
+\section{Построение схемы полиномиального размера и логарифмической глубины для функции умножения в двоичной записи}
+\input{section/jetminded/27.tex}
+
+\section{Построение вероятностного алгоритма проверки на равенство двух многочленов, заданных алгебраическими схемами (с доказательством корректности)}
+\input{section/Ira/28.tex}
+
+\section{Независимость классов $\rp$ и $\bpp$ от точного значения вероятностей успеха алгоритма на словах из языка и из дополнения. (Для $\bpp$ можно не приводить полного доказательства, только конструкцию и идею доказательства)}
+\input{section/Ira/29.tex}
+
+\section{Теорема Эйдлмана ($\bpp \subset \ppoly$)}
+\input{section/Ira/30.tex}
+
+\section{Теорема Гача–Сипсера ($\bpp \subset \Sigma_2^p \cap \Pi_2^p$)}
+\input{section/Andrew/31.tex}
+
+\section{Дерандомизация приближённых алгоритмов поиска максимального разреза в графе с точностью $\frac12$ и поиска набора, выполняющего максимальное число скобок в 3-КНФ, с точностью $\frac78$ при помощи метода условных математических ожиданий}
+\input{section/kubamba/32.tex}
+\newpage
+
+\newpage
+% \setcounter{section}{0}
+\part{Задачи}
+
+\section{Задача №1 (язык палиндромов на одно/многоленточной МТ)}
+\input{section/polidobro/tasks/1.tex}
+
+\section{Задача №2 (итерация языков в $\mathbf{P}$ и $\mathbf{NP}$)}
+\input{section/polidobro/tasks/2.tex}
+
+\section{Задача №3 (если $\mathbf{P} = \mathbf{NP}$, то $\mathbf{EXP} = \mathbf{NEXP}$)}
+\input{section/polidobro/tasks/3.tex}
+
+\section{Задача №4 ($\mathsf{PRIMES} \in \mathbf{NP} \cap \mathbf{coNP}$ без AKS и регистрации)}
+\input{section/4.tex}
+
+\section{Задача №5 (последовательность вложенных языков из $\mathbf{P}$ и $\mathbf{NPC}$)}
+\input{section/5.tex}
+
+\section{Задача №6 ($\mathbf{NP}$-полнота языка $\mathsf{MAX2SAT}$)}
+\input{section/kubamba/task6.tex}
+
+\section{Задача №7 (если существует унарный $\mathbf{NP}$-полный язык, то $\mathbf{P} = \mathbf{NP}$)}
+\input{section/kubamba/task7.tex}
+
+\section{Задача №8 ($\mathbf{NP}$ через логарифмическую память)}
+\input{section/kubamba/task8.tex}
+
+\section{Задача №9 (задача поиска изоморфизма между графами)}
+\input{section/Andrew/9.tex}
+
+\section{Задача №10 ($\np$ не равен $\mathbf{E}$)}
+
+\input{section/Polina/5_10.tex}
+
+\section{Задача №11 (случайный оракул)}
+
+\input{section/Alex/11.tex}
+
+\section{Задача №12 (функция, не конструируемая по времени)}\label{notconstr}
+\input{section/12.tex}
+
+\section{Задача №13 (теорема о пространственной иерархии)}\label{task:memory}
+\input{section/Andrew/13.tex}
+\section{Задача №14 (положение $A \triangle B$ в полиномиальной иерархии)}
+\input{section/Ira/task14.tex}
+
+\section{Задача №15 (аналоги $\Sigma_k\mathsf{SAT}$ и $\Pi_k\mathsf{SAT}$)}
+\input{section/15.tex}
+
+\section{Задача №16 ($\mathbf{PSPACE}$-полнота $\mathsf{LOOP}$)}
+\input{section/Andrew/16.tex}
+\section{Задача №17 (два определения лог. выч. функции)}
+\input{section/Ira/task17.tex}
+
+\section{Задача №18 (следствия теоремы Рейнгольда)}
+\input{section/Andrew/18.tex}
+
+\section{Задача №19 ($\mathbf{NL}$-полнота языка ор. ацикл. графов)}
+\input{section/Andrew/19.tex}
+
+\section{Задача №20 ($\mathsf{MATRIXDMDEG} \in \mathbf{NC}$ и $\mathbf{NL} \subset \mathbf{NC}$)}
+\input{section/jetminded/task20.tex}
+
+\section{Задача №21 (равномерный бит из неравномерных)}
+\input{section/jetminded/task21.tex}
+
+\section{Задача №22 (неравномерный бит из равномерных)}
+\input{section/jetminded/task22.tex}
+
+\section{Задача №23 (неразрешимый язык из невычислимой $p$-монетки)}
+\input{section/Andrew/23.tex}
+
+\section{Задача №24 (независимость $\mathbf{RP}$ от точного значения вероятности)}
+\input{section/Polina/5_13.tex}
+
+\section{Задача №25 (язык из $\mathbf{BPP}$, но непонятно, лежит ли он в $\mathbf{RP}$ или $\mathbf{coRP}$)}
+\input{section/Polina/5_25.tex}
+\section{Задача №26 (если $\mathbf{BPP}_{0,1/2^{n^d}} = \mathbf{RP}$, то $\mathbf{RP} = \np$)}
+\input{section/sunpixel/tasks/26.tex}
+
+\section{Задача №27 ($\mathbf{ZPP} = \mathbf{RP} \cap \mathbf{coRP}$)}
+\input{section/sunpixel/tasks/27.tex}
+
+\section{Задача №28 (если $\np \subset \mathbf{BPP}$, то $\mathbf{RP}=\np$)}
+\input{section/sunpixel/tasks/28.tex}
+
+\section{Задача №29 (если $\np \subset \mathbf{coRP}$, то $\mathbf{ZPP}=\np$)}
+\input{section/Andrew/29.tex}
+
+\section{Задача №30 ($\np \subset \mathbf{PP}$)}
+\input{section/Ira/task30.tex}
+
+\section{Задача №31 (замкнутость $\mathbf{PP}$ относительно дополнения)}
+\input{section/jetminded/task31.tex}
+
+\section{Задача №32 (класс $\mathbf{BPP} /_{\text{poly}}$)}
+\input{section/jetminded/task32.tex}
+
+\end{document}

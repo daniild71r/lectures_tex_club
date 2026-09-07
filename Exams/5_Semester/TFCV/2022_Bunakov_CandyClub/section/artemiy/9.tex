@@ -1,0 +1,153 @@
+\begin{definition}
+    Множество $K \in \C$ называется компактом если из любой последовательности можно выделить подпоследовательность сходящуюся в $K$.
+\end{definition}
+\begin{unnecessary}
+    \begin{note}
+        Вы все сдавали функан. Выписывать сюда свойства компактов я не буду
+    \end{note}
+\end{unnecessary}
+\begin{definition}
+	Пусть $\{f_n\}_{n = 0}^\infty$ "--- последовательность функций, определенных на области $G \subset \Cm$, функция $f$ определена на $G$. Последовательность $\{f_n\}$ \textit{сходится локально равномерно} к $f$ на области $G$, если $\forall z_0 \in G: \exists \epsilon > 0: f_n \rightrightarrows_{B_\epsilon(z_0)} f$. Обозначение "--- $f_n \rightarrow_{\text{ЛР}} f$.
+\end{definition}
+
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ непрерывны на области $G \subset \Cm$
+		\item $f_n \rightarrow_{\text{ЛР}} f$ на $G$
+	\end{enumerate}
+	
+	Тогда $f$ непрерывна на $G$.
+\end{proposition}
+
+\begin{proof}
+	Аналогично вещественному случаю.
+\end{proof}
+
+\begin{definition}
+	Пусть $\{f_n\}_{n = 0}^\infty$ "--- последовательность функций, определенных на области $G \subset \Cm$. Ряд $\sum_{k = 0}^\infty f_k$ \textit{сходится локально равномерно} на $G$, если последовательность его \textit{частичных сумм} $S_n := \sum_{k = 0}^nf_k$ локально равномерно сходится к некоторой определенной на $G$ функции $S$, называемой \textit{суммой} ряда.
+\end{definition}
+
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ непрерывны на области $G \subset \Cm$
+		\item Ряд $\sum_{k = 0}^\infty f_k$ локально равномерно сходится к сумме $S$ на $G$
+	\end{enumerate}
+	
+	Тогда $S$ непрерывна на $G$.
+\end{proposition}
+
+\begin{proof}
+	Воспользуемся утверждением о функциональных последовательностях для последовательности $\{S_n\}_{n=0}^\infty$.
+\end{proof}
+
+\begin{proposition}
+	Пусть $\{f_n\}_{n = 0}^\infty$ "--- последовательность функций, определенных на области $G \subset \Cm$, функция $f$ определена на $G$. Тогда $f_n \rightarrow_{\text{ЛР}} f$ на $G$ $\lra$ для любого компакта $K \subset G$ выполнено $f_n \rightrightarrows_K f$.
+\end{proposition}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\ra$]Для произвольной точки $z \in K$ выберем окрестность $B(z)$ такую, что $f_n \rightrightarrows_{B(z)} f$. Тогда $K \subset \bigcup_{z \in K}B(z)$, и, в силу компактности, можно выбрать конечный набор $z_1, \dotsc, z_m$ такой, что $K \subset \bigcup_{k=1}^mB(z_k)$. Поскольку для любого $k \in \{1, \dotsc, m\}$ выполнено $f_n \rightrightarrows_{B_k(z)} f$, то $f_n \rightrightarrows_K f$.
+		
+		\item[$\la$]Зафиксируем произвольную точку $z_0 \in G$ и выберем $\delta > 0$ такое, что $\overline{B_\delta(z_0)} \subset G$. $\overline{B_\delta(z_0)}$ - компакт, следовательно, $f_n \rightrightarrows_{\overline{B_\delta(z_0)}} f$.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{unnecessary}
+    \begin{proposition}
+    	Пусть выполнены следующие условия:
+    	\begin{enumerate}
+    		\item Функции $f_0, f_1, \dotsc$ непрерывны на области $G \subset \Cm$
+    		\item $f_n \rightarrow_{\text{ЛР}} f$ на $G$
+    		\item $\gamma$ "--- кусочно-гладкая кривая такая, что $M(\gamma) \subset G$
+    	\end{enumerate}
+    	
+    	Тогда верно следующее равенство:
+    	\[\int_\gamma f_ndz \xrightarrow{n \to \infty} \int_\gamma fdz\]
+    \end{proposition}
+    
+    \begin{proof}
+    	Из утверждения выше следует, что $f$ непрерывна на $G$. $f$ непрерывна, $\gamma$ кусочно-гладкая, поэтому интеграл $\int_\gamma fdz$ существует. $M(\gamma)$ "--- компакт, поскольку $M(\gamma)$ является непрерывным образом отрезка. Тогда $f_n \rightrightarrows_{M(\gamma)} f$, и выполнено следующее:
+    	\[\left|\int_\gamma f_ndz - \int_\gamma fdz\right| = \left|\int_\gamma (f_n - f)dz\right| \le \left(\max_{z \in M(\gamma)}|f_n(z) - f(z)|\right)|\gamma| \xrightarrow{n \to \infty} 0\]
+    	в силу $f_n \rightrightarrows_{M(\gamma)} f$.
+     
+    	Получено требуемое.
+    \end{proof}
+    
+    \begin{note}
+    	Переформулируем утверждение выше для случая функциональных рядов. Пусть выполнены следующие условия:
+    	\begin{enumerate}
+    		\item Функции $f_0, f_1, \dotsc$ непрерывны на области $G \subset \Cm$
+    		\item Ряд $\sum_{n=0}^\infty f_n$ сходится локально равномерно на $G$
+    		\item $\gamma$ "--- кусочно-гладкая кривая такая, что $M(\gamma) \subset G$
+    	\end{enumerate}
+    	
+    	Тогда верно следующее равенство:
+    	\[\int_\gamma \left(\sum_{n=0}^\infty f_n\right)dz = \sum_{n=0}^\infty \left(\int_\gamma f_ndz\right)\]
+    \end{note}
+    
+    \begin{definition}
+    	Пусть $\{f_n\}_{n = 0}^\infty$ "--- последовательность функций, определенных на множестве $E \subset \Cm$. Ряд $\sum_{n=0}^\infty f_n$ \textit{сходится регулярно} на $E$, если ряд $\sum_{n=0}^\infty |f_n|$ сходится равномерно на $E$.
+    \end{definition}
+    
+    \begin{note}
+    	Из регулярной сходимости следует равномерная сходимость в силу критерия Коши и неравенства треугольника.
+    \end{note}
+\end{unnecessary}
+
+\begin{theorem}[первая теорема Вейерштрасса]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ регулярны на области $G \subset \Cm$
+		\item $f_n \convlr f$ на $G$
+	\end{enumerate}
+
+	Тогда $f$ регулярна на $G$.
+\end{theorem}
+
+\begin{proof}
+	Уже было доказано, что $f$ непрерывна на $G$. Достаточно проверить, что $f$ регулярна в произвольном круге $K \subset G$. Пусть $\gamma$ "--- кусочно-гладкая замкнутая кривая такая, что $M(\gamma) \subset K$. Тогда, по интегральной теореме Коши, $\forall n \in \N \cup \{0\}: \int_\gamma f_ndz = 0$, и $f_n \convu_{M(\gamma)} f$, поскольку $M(\gamma)$ "--- компакт. Следовательно:
+	\[\int_\gamma fdz = \lim_{n \to \infty}\int_\gamma f_ndz = 0.\]
+	
+	\noindentЗначит, по теореме Мореры, $f$ регулярна на $K$.\qedhere
+\end{proof}
+
+\begin{theorem}[вторая теорема Вейерштрасса]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ регулярны на области $G \subset \Cm$
+		\item $f_n \convlr f$ на $G$
+	\end{enumerate}
+	
+	Тогда $\forall m \in \N: f_n^{(m)} \convlr f^{(m)}$ на $G$.
+\end{theorem}
+ 
+\begin{proof}
+	Зафиксируем точку $z_0 \in G$ и выберем $R > 0$ такое, что $\overline{B_R(z_0)} \subset G$. Поскольку $\overline{B_R(z_0)}$ "--- компакт, то $f_n \convu_{\overline{B_R(z_0)}} f$ на $G$. Достаточно для некоторого фиксированного числа $0 < R_1 < R$ доказать следующее:
+	\[\forall m \in \N: f_n^{(m)} \convu_{\overline{B_{R_1}(z_0)}} f^{(m)}\]
+	
+	Воспользуемся интегральной формулой Коши для производной порядка $m$:
+	\begin{gather*}
+		f_n^{(m)}(z) = \frac{m!}{2\pi i}\int_{|w - z_0| = R}\frac{f_n(w)}{(w - z)^{m+1}}dw,~|z - z_0| < R\\
+		f^{(m)}(z) = \frac{m!}{2\pi i}\int_{|w - z_0| = R}\frac{f(w)}{(w - z)^{m+1}}dw,~|z - z_0| < R
+	\end{gather*}
+	
+	При $|z - z_0| = R_1$ выражение $|w - z|$ отделено от нуля числом $R - R_1:\; |w - z| \geq R - R_1 > 0$, тогда, по свойству оценки интегралов:
+ \begin{multline*}
+     |f_n^{(m)}(z) - f^{(m)}(z)| = \frac{m!}{2\pi}\left| \int_{|w - z_0| = R}\frac{f_n(w) - f(w)}{(w - z)^{m+1}}dw \right| \le\text{ по свойству~\ref{int-estimation-max}}\\
+     \le \frac{m!}{(R - R_1)^{m + 1}}\max\{|f_n(w) - f(w)| : |w - z_0| = R\} \xrightarrow[n \to \infty]{} 0.
+ \end{multline*}
+	
+	В силу произвольности выбора точки $z_0$, получено требуемое.
+\end{proof}
+
+\begin{note}
+	Для функциональных рядов верны аналогичные теоремы. Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item Функции $f_0, f_1, \dotsc$ регулярны на области $G \subset \Cm$
+		\item Ряд $\sum_{n=0}^\infty f_n$ сходится локально равномерно к сумме $S$ на $G$
+	\end{enumerate}
+	
+	Тогда $S$ регулярна на $G$, и при любом $m \in \N$ ряд $\sum_{n=0}^\infty f_n^{(m)}$ сходится локально равномерно к $S^{(m)}$ на $G$.
+\end{note}

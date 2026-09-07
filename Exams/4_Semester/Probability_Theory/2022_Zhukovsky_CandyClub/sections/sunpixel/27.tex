@@ -1,0 +1,112 @@
+\begin{theorem}[ЗБЧ в форме Чебышёва]
+Пусть \( \xi_1, \xi_2, \dots \) -- случаные величины, \( cov(\xi_i, \xi_j) = 0 \).
+Если \( \exists C > 0 : \forall i \; \D \xi_i \leqslant C \), то
+
+\[
+\forall \varepsilon > 0 \; \lim_{n \to \infty} P \left( \left|
+\frac{S_n - \E S_n}{\sqrt{n} w_n} \right| > \varepsilon \right) = 0
+\]
+
+, где \( S_n = \sum \limits_{i = 1}^n \xi_i \) и \( w_n \to \infty, n \to \infty \).
+\end{theorem}
+
+\begin{proof}
+Применим неравенство Чебышёва:
+
+\[
+P(|S_n - \E S_n| > \varepsilon \cdot \sqrt{n} w_n) \leqslant
+\frac{\D S_n}{\varepsilon^2 n w_n^2} = 
+\frac{\D \xi_1 + \dots + \D \xi_n}{\varepsilon^2 n w_n^2} \leqslant
+\frac{nC}{\varepsilon^2 n w_n^2} = \frac{C}{\varepsilon^2 w_n^2} \to 0
+\]
+
+\end{proof}
+
+\begin{theorem}[УЗБЧ для независимых случайных величин с ограниченными дисперсиями]
+Пусть \( \xi_n \) -- независимые случайные величины, \( \E \xi_n^2 < \infty \), 
+\( S_n = \xi_1 + \dots \xi_n \). Пусть существует последовательность \( \{b_n\} \), такая
+что \( 0 < b_1 \leqslant b_2 \leqslant b_3 \leqslant \dots \), 
+\( \lim \limits_{n \to \infty} b_n = \infty\) и 
+\( \sum \limits_{n = 1}^{\infty} \frac{\D \xi_n}{b_n^2} < \infty \). 
+Тогда \( \frac{S_n - \E S_n}{b_n} \to 0 \) п. н.
+\end{theorem}
+
+\begin{theorem}[УЗБЧ для н.о.р.с.в. с ограниченным матожиданием]
+Пусть \( \xi_1, \xi_2, \dots \) -- н. о. р. с. в. (независимые одинаково распределённые
+случаные величины), \( \E |\xi_1| < \infty \). Тогда
+\( \frac{S_n - \E S_n}{n} \xrightarrow{\text{ п. н. }} 0 \).
+\end{theorem}
+
+\begin{theorem}[О скорости сходимости в ЗБЧ в форме Чебышёва]
+Пусть \( \psi(\lambda) = \ln \E e^{\lambda \xi_1} \) бесконечно 
+дифференцируема в некоторой окрестности нуля (обозначим эту окрестность $U$).
+\( \xi_1, \xi_2, \dots \) -- независимые одинаково распределённые случайные
+величины. Тогда скорость сходимости в ЗБЧ экспоненциальная.
+\end{theorem}
+
+\begin{proof}
+Найдём первую и вторую производные у $\psi(\lambda)$:
+
+\[
+\left. \psi'(\lambda) \right|_{\lambda = 0} = 
+\left. \frac{\E \xi_1 e^{\lambda \xi_1}}{\E e^{\lambda \xi_1}} \right|_{\lambda = 0}
+= \E \xi_1 \; ; \; 
+\left. \psi''(\lambda) \right|_{\lambda = 0} = \D \xi_1 > 0
+\]
+
+Уменьшая $U$ (если необходимо), можно считать, что на $U$ функция $\psi$
+выпукла вниз. Обозначим $\E \xi_1$ за $a$ и рассмотрим функцию
+\( \varphi(b) = \sup \limits_{\lambda \in U} (b \lambda - \psi(\lambda)) \). 
+Разберём несколько случаев:
+
+\begin{enumerate}
+    \item Если \( b = a \), то \( \varphi(b) = 0 \), так как \( \psi'(0) = a \);
+    \item Если \( b > a \), то \( \varphi(b) = 
+    \sup \limits_{\lambda \in U, \lambda > 0} (b \lambda - \psi(\lambda)) > 0 \);
+    \item Если \( b < a \), то \( \varphi(b) = 
+    \sup \limits_{\lambda \in U, \lambda < 0} (b \lambda - \psi(\lambda)) < 0 \).
+\end{enumerate}
+
+Пусть \( b > a \). Для оценки воспользуемся неравенством Маркова:
+
+\[
+P(\xi_1 > b) = P(e^{\lambda \xi_1} > e^{\lambda b}) \leqslant
+\frac{\E e^{\lambda \xi_1}}{e^{\lambda b}}> = 
+e^{-(\lambda b - \ln \E e^{\lambda \xi_1})} = e^{-(\lambda b - \psi(\lambda))}
+\]
+
+Воспользуемся полученной оценкой (\( b = a + \varepsilon\)):
+
+\begin{multline*}
+P \left( \frac{S_n - \E S_n}{n} > \varepsilon \right) = 
+P(S_n > n(a + \varepsilon)) = 
+P \left( e^{\lambda S_n} > e^{\lambda n (a + \varepsilon)} \right) \leqslant
+\E e^{\lambda S_n} \cdot e^{-\lambda n (a + \varepsilon)} = \\
+= \left( \frac{\E e^{\lambda \xi_1}}{e^{\lambda (a + \varepsilon)}} \right)^n
+\leqslant e^{-n(\lambda (a + \varepsilon) - \psi(\lambda))}
+\end{multline*}
+
+Мы хотим получить наиболее точный коэффициент в экспоненте, то есть нужно
+максимизировать \( \lambda (a + \varepsilon) - \psi(\lambda) \). В наших
+обозначениях максимум равен \( \varphi(a + \varepsilon) \). В итоге получили, что
+
+\[
+P \left( \frac{S_n - \E S_n}{n} > \varepsilon \right) \leqslant 
+e^{-n \varphi(a + \varepsilon)}
+\]
+
+Аналогично при \( b < a \) получаем, что
+
+\[
+P \left( \frac{S_n - \E S_n}{n} > \varepsilon \right) \leqslant 
+e^{-n \varphi(a - \varepsilon)}
+\]
+
+В итоге получаем, что
+
+\[
+P \left( \left| \frac{S_n - \E S_n}{n} \right| > \varepsilon \right) \leqslant
+e^{-n \varphi(a - \varepsilon)} + e^{-n \varphi(a + \varepsilon)}
+\]
+
+\end{proof}

@@ -1,0 +1,62 @@
+Ситуация: $E_1 = H_1, E_2 = H_2$~--- гильбертовы пространства.
+В философии Рисса--Фреше:
+
+\[ (x, A^*y)_{H_1}=(A^* g)(x)=g(Ax)=(Ax,y)_{H_2}\]
+
+Получается, что эрмитово сопряжение является частным случаем сопряжения при $H_1=H_2$.
+
+$H(\C), A \in \mathcal{L}(H)$
+\begin{unnecessary}
+    \begin{exercise}
+    Доказать, что сопряжённый оператор (по Эрмиту) всегда существует и единственен. Доказать свойства:
+    
+    
+    \begin{enumerate}
+        \item $I^* = I$
+        \item $(\alpha A + \beta B)^* = \overline{\alpha} A^* + \overline{\beta} B^*$
+        \item $(AB)^* = B^* A^*$
+    \end{enumerate}
+    
+    \end{exercise}
+    
+    \begin{lemmanote}
+        Как искать $A^*$? Общего решения нет, но берём и мучаем $(Ax, y) = \ldots$ до тех пор, пока оно не предствится в виде $(x, \zeta)$.
+    \end{lemmanote}
+
+    Вспомним теорему из прошлого семестра
+
+    \begin{theorem}[4.3 (Рисса, о проекции)]\label{thm4.3_reminder}
+    	Пусть $H$ "--- гильбертово пространство, {$M \subset H$} -- подпространство в $H$. Тогда $H = M \oplus M^\perp$.
+    \end{theorem}
+\end{unnecessary}
+
+
+
+
+\begin{theorem}[9.2]\label{9.2}
+    $H(\K)$ - гильбертово пространство, $A \in \mathcal{L}(H)$. 
+    Тогда $H = \overline{\im A} \oplus \ker A^*$
+\end{theorem}
+
+\begin{note}
+$H = \overline{\im A^*} \oplus \ker A$
+\end{note}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Простая часть: $(\im A)^\perp = \ker A^*$. Почему?
+
+        \[ y \in (\im A)^\perp \sim \forall x \in \im A: \; (x,y)=0 \sim \forall z \in H \; (Az, y)=0\]
+
+        Тогда $\forall z \in H \; (z, A^*y)=0 \sim A^*y=0 \sim y \in \ker A^*$
+        % здесь история про греков и гору (и рыбку!!!)
+        \item <<Сложная>> часть:
+        Знаем, что для любого множества $S$ верно, что $S^{\perp} = \overline{S}^{\perp}$.
+
+        $(\im A)^{\perp} = \ker A^*$, где $\im A$~--- линейное многообразие,
+        $\left( \overline{\im A} \right)^{\perp}$~--- подпространство.
+
+        По теореме \nameref{thm4.3} получаем 
+        \[ \overline{(\im A)} \oplus \left( \overline{\im A} \right)^{\perp}=\overline{(\im A)} \oplus \ker A^* = H \]
+    \end{enumerate}
+\end{proof}

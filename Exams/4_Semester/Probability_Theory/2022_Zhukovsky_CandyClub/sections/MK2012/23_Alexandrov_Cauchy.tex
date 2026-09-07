@@ -1,0 +1,73 @@
+\begin{theorem}[Александрова(б/д)]
+Следующие утверждения эквивалентны:
+\begin{enumerate}
+    \item сходимость по распределению $\xi_n \xrightarrow[]{d} \xi$
+    \item слабая сходимость $\xi_n \xrightarrow[]{w} \xi$ 
+    \item Для любого $B \in \mathcal{B}(\mathbb{R})$ такого, что мера $\mathbb{P}_\xi$ его границы равна нулю верно, что $\mathbb{P}_{\xi_n}(B) \to \mathbb{P}_\xi(B)$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+Последовательность $\xi_n$ фундаментальна с вероятностью 1, если \newline $\mathbb{P}(\xi_n(\omega) \text{ фундаментальна}) = 1$
+\end{definition}
+\begin{theorem}[Критерий Коши сходимости с вероятностью 1]
+Последовательность $\xi_n$ сходится почти наверное тогда и только тогда, когда она фундаментальна с вероятностью 1
+\end{theorem}
+
+\begin{proof}
+$[\Longleftarrow]$ Пусть $A = \{\omega| \xi_n(\omega) \text{ фундаментальна}\}$, тогда $\forall \omega \in A \ \exists \xi_0(\omega)=\lim\limits_{n \to \infty} \xi_n(\omega)$. Пусть 
+$$
+\xi(\omega) = 
+\begin{cases}
+\xi_0(\omega) &, \omega \in A \\
+0 &, \text{ иначе}
+\end{cases}
+$$
+$\xi_n \to \xi$ почти наверное, так как мера $\mathbb{P}(\overline{A}) = 0$
+$[\Longrightarrow]$ Для каждого $\omega \in A$ последовательность сходится, а значит она фундаментальна, а так как $\mathbb{P}(A) = 1$, $\xi_n$ фундаментальна с вероятностью 1 \\
+\end{proof}
+
+\begin{definition}
+Последовательность $\xi_n$ фундаментальна по вероятности, если \\
+$\forall \eps > 0 \ \ \mathbb{P}(|\xi_n - \xi_m| \geqslant \eps) \xrightarrow[n, m \to \infty]{} 0$
+\end{definition}
+
+\begin{lemma}
+Если $\xi_n$ фундаментальна по вероятности, то можно выбрать ее подпоследовательность, сходящуюся почти наверное.
+\end{lemma}
+\begin{proof}
+Построим эту подпоследовательность.
+
+Пусть $n_1 = 1, n_k = min\brackets{j > n_{k - 1}: \ \forall r, s \geqslant j \ \mathbb{P}(|\xi_r - \xi_s| \geqslant 2^{-k}) < 2^{-k}}$, такие номера существуют из фундаментальности.
+
+По лемме Бореля-Кантелли $\mathbb{P}(|\xi_{n_k} - \xi_{n_{k - 1}}| \geqslant 2^{-(k - 1)} \text{ б.ч.}) = 0$. 
+
+Рассмотрим $A = \{\omega : \  |\xi_{n_k} - \xi_{n_{k - 1}|} >  2^{-(k - 1)} \text{ б.ч.}\}$. Тогда $\forall \omega \in \overline{A} \text{ условие } |\xi_{n_k} - \xi_{n_{k - 1}}| >  2^{-(k - 1)}$ выполнено конечное число раз, то есть с некоторого момента разность будет меньше $2^{-(k - 1)}$, а значит $\sum\limits_{k=2}^\infty |\xi_{n_k} - \xi_{n_{k - 1}}| < \infty$, то есть ряд сходится абсолютно, а значит ряд $\xi_{n_m} = \xi_{n_1} + \sum\limits_{k = 2}^m (\xi_{n_k} - \xi_{n_{k-1}}) $ сходится к какому-то $\xi$
+А для $\forall \omega \in {A} \text{ положим } \xi(\omega) = 0$. Тогда $\xi_{n_k}$ сходятся к $\xi$ почти наверное. 
+\end{proof}
+
+\begin{theorem}[Критерий Коши сходимости по вероятности]
+Последовательность $\xi_n$ сходится по вероятности тогда и только тогда, когда она фундаментальна по вероятности
+\end{theorem}
+
+\begin{proof}
+$[\Longrightarrow]$ $\forall \eps > 0 \Big( \mathbb{P}(|\xi_n - \xi| \geqslant \eps / 2) + \mathbb{P}(|\xi_m - \xi| \geqslant \eps / 2) \to 0 \Big)$.
+
+$[\Longleftarrow]$ Выберем из $\xi_n$ подпоследовательность $\xi_{n_k}$, сходящуюся почти наверное к $\xi$, тогда \newline $\mathbb{P}(|\xi_n - \xi_{n_k}| \geqslant \eps / 2) + \mathbb{P}(|\xi_{n_k} - \xi| \geqslant \eps / 2) \to 0$. Сходимость верна, так как $\xi_n$ фундаментальна и из сходимости п.н. напрямую следует сходимость по вероятности
+\end{proof}
+\begin{theorem}[Критерий фундаментальности с вероятностью 1]
+$\xi_n$ фундаментальна с вероятностью 1 $\Longleftrightarrow$ \(\mathlarger{\forall \eps > 0 \Big( \lim\limits_{n \to \infty}\Big[ \mathbb{P}(\sup\limits_{k \geqslant 1} |\xi_{n + k} - \xi_n| > \eps) \Big] = 0 \Big)}\)
+\end{theorem}
+
+\begin{proof}
+    $\xi_n$ фундаментальна с вероятностью 1 \(\Longleftrightarrow P(\xi_n(\omega) \text{ фунд.}) = 1 \iff \newline \iff \mathbb{P}(\xi_n(\omega) \text{ не фунд.}) = 0 \iff\)
+\begin{multline*}
+    \iff \mathbb{P}(\exists \eps > 0 \ \forall n \in \N \ \exists m > n( \ |\xi_m - \xi_n| > \eps)) = 0 \Longleftrightarrow \\
+    \Longleftrightarrow \mathbb{P}\brackets{\exists k > 0 \ \forall n \in \N \ \exists m > n \Big( \ |\xi_m - \xi_n| > \frac{1}{k} \Big)} = 0 \Longleftrightarrow \\
+    \Longleftrightarrow \forall k \in \N \ \mathbb{P}\brackets{\forall n \in \N \ \exists m > n \Big( \ |\xi_m - \xi_n| > \frac{1}{k} \Big)} = 0 \Longleftrightarrow \\
+    \Longleftrightarrow \forall k \in \N \ \lim\limits_{n \to \infty} \mathbb{P} \brackets{\exists m > n \Big( \ |\xi_m - \xi_n| > \frac{1}{k} \Big)} = 0 \Longleftrightarrow \\
+    \Longleftrightarrow \forall \eps > 0 \lim\limits_{n \to \infty} \mathbb{P} \brackets{\sup\limits_{k \geqslant 1}|\xi_{n+k} - \xi_n| > \eps} = 0
+\end{multline*}
+
+Где предпоследний переход выполнен по теореме о непрерывности меры (для каждого следующего $n$ событие уменьшается, и они вложены друг в друга).
+\end{proof}

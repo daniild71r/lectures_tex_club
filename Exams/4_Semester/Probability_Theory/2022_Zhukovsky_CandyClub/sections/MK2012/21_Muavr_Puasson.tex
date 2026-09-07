@@ -1,0 +1,36 @@
+\begin{theorem}[Локальная теорема Муавра-Лапласа]
+Пусть \( \nu_n \sim Bin(n, p)\) и есть \(\varphi(n) = \overline{\overline{o}}(n^{2/3})\), то верно:
+
+\[\sup_{k\in Z_+:\;\; |k-np|\leqslant \varphi(n)}\left| \frac{\mathbb{P}(\nu_n=k)}{\frac{1}{\sqrt{np(1-p)}} \psi\left(\frac{k-np}{\sqrt{np(1-p)}}\right) } - 1 \right| \xrightarrow[n\to \infty]{} 0 \;\;\;
+\text{, где }
+\psi(x)=\frac{1}{\sqrt{2 \pi}}e^{-\frac{x^2}{2}}.\]
+\end{theorem}
+\begin{proof}
+Нам потребуется формула Стирлинга: \(\mathlarger{n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n}\) при \(n\! \rightarrow\! \infty\). Теперь распишем рассматриваемую вероятность:
+\[\mathbb{P}(\nu_n = k) = C_n^k p^k (1-p)^{n-k} = \frac{n!}{k!(n-k)!} p^k (1-p)^{n-k} \sim \frac{\sqrt{2 \pi n} \left( \frac{n}{e} \right)^n}{2 \pi \sqrt{k(n-k)}\left( \frac{k}{e}\right)^k \left( \frac{n-k}{e} \right)^{n-k}}p^k (1-p)^{n-k} =\]
+\[= \frac{1}{\sqrt{2 \pi n}} \frac{1}{\sqrt{\frac{k}{n}(1 - \frac{k}{n})}} \left( \frac{np}{k} \right)^k \left( \frac{n (1-p)}{n-k} \right)^{n-k} = \frac{1}{\sqrt{2 \pi n p(1-p)}} \exp \left[-n \cdot g \left( \frac{k}{n} \right) \right],\]
+где \(\mathlarger{g(x) = x \ln \left( \frac{x}{p} \right) + (1-x) \ln \left( \frac{1-x}{1-p} \right)}\). Займёмся её исследованием:
+\[g'(x) = \ln \left( \frac{x}{p} \right) - \ln \left( \frac{1-x}{1-p} \right) \;\;\;\; g''(x) = \frac{1}{x} + \frac{1}{1-x}\]
+\[g(p) = 0, \; g'(p)=0,\; g''(p)=\frac{1}{p(1-p)}\]
+\[\text{Приблизим по Тейлору в окрестности p:} \;\;\;\; g(x) = \frac{1}{2}\frac{(x-p)^2}{p(1-p)} + \underline{\underline{O}}((x-p)^3)\]
+Подставим это приближение в исходное выражение:
+\[\mathbb{P} (\nu_n = k) = \frac{\exp \left[ -n \cdot \left( \frac{1}{2p(1-p)} \left( \frac{k}{n} - p \right)^2 + \underline{\underline{O}}\left( (\frac{k}{n} - p)^3 \right) \right)\right]}{\sqrt{2 \pi n p (1-p)}} = \frac{\exp \left[ -\frac{(k-np)^2}{2np(1-p)} + \underline{\underline{O}} \left( \frac{(k - np)^3}{n^2} \right) \right]}{\sqrt{2 \pi n p (1-p)}}\]
+Учитывая \(\mathlarger{|np-k| \leqslant \varphi(n) = \overline{\overline{o}}(n^{\frac{2}{3}})}\), получим \(\mathlarger{ \mathbb{P}(\nu_n = k) = \frac{\exp \left[ -\frac{(k-np)^2}{2np(1-p)}(1 + \overline{\overline{o}}(1)) \right]}{\sqrt{2 \pi n p (1-p)}} } \) при \( n \rightarrow \infty \).
+\end{proof}
+
+\begin{theorem}[Интегральная теорема Муавра-Лапласа]
+Пусть \( \nu_n \sim Bin(n, p)\) и есть \(\varphi(n) = \overline{\overline{o}}(n^{2/3})\). Тогда равномерно по всем $k \in \R:\;|k - np| < \varphi(n)$:
+
+\[P(\nu_n \leqslant k) = \left[\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{k - np}{\sqrt{np(1-p)}}} e^{-x^2 / 2}dx \right](1 + \overline{\overline{o}}(1)).\]
+
+Равномерность в данном случае <<спрятана>> в $\overline{\overline{o}}(1)$.
+\end{theorem}
+
+\begin{theorem}[Пуассона]
+Пусть \(\{\xi_n\}_{n=1}^{\infty}\) - серия биномиальных распределений и существует $\lambda>0$, такое что \(\lim\limits_{n \rightarrow \infty}[n \cdot p_n=\lambda]\), где \(p_n\) - вероятность успеха в n-ом распределении. Тогда верно, что
+\[\forall k \in \mathbb{N}_0 \left( \lim_{n \rightarrow \infty} \mathbb{P}(\xi_n =k)= \frac{\lambda^k}{k!}e^{-\lambda} \sim Pois(\lambda) \right) \]
+\end{theorem}
+\begin{proof}
+\[\lim_{n \rightarrow \infty} \mathbb{P}(\xi_n=k) = \lim_{n \rightarrow \infty} C_n^k p^k (1-p)^{n-k} = \lim_{n \rightarrow \infty}\frac{n(n-1)...(n-k+1)}{k!} \left(\frac{\lambda}{n} + \overline{\overline{o}}\left(\frac{1}{n}\right) \right)^k \left(1- \frac{\lambda}{n} + \overline{\overline{o}} \left(\frac{1}{n} \right) \right)^{n-k} =\] \\
+\[= \lim_{n \rightarrow \infty} \frac{n(n-1)...(n-k+1)}{n^k \cdot k!} \cdot \lambda^k \cdot \left(1 - \frac{\lambda}{n} + \overline{\overline{o}} \left(\frac{1}{n} \right) \right)^{n-k} = \frac{\lambda^k}{k!}  e^{-\lambda} \sim Pois(\lambda)\]
+\end{proof}

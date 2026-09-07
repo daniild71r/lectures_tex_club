@@ -1,0 +1,27 @@
+\begin{definition}
+    Случайный процесс $\displaystyle ( X_{t} ,\ t\geqslant 0)$ является \textit{процессом с независимыми приращениями}, если $\displaystyle \forall n\in \mathbb{N} \ \forall t_{1} ,\ \dotsc ,\ t_{n}$ случайные величины $\displaystyle X_{t_{n}} -X_{t_{n-1}} ,\ \dotsc ,\ X_{t_{2}} -X_{t_{1}} ,\ X_{t_{1}}$ независимы в совокупности.
+\end{definition}
+\begin{note}
+    Случайный процесс с независимыми приращениями является непрерывным аналогом случайного блуждания.
+\end{note}
+\begin{theorem}[О существовании процессов с независимыми приращениями]\label{4.3} Пусть $\displaystyle \forall s,t:\ 0\leqslant s\leqslant t$ задана вероятностная мера $\displaystyle Q_{s,t}$ на $\displaystyle (\mathbb{R} ,\ \mathcal{B}(\mathbb{R}))$ с характеристической функцией $\displaystyle \phi _{s,t}$. Пусть также задана вероятностная мера $\displaystyle Q_{0}$ на $\displaystyle (\mathbb{R} ,\ \mathcal{B}(\mathbb{R}))$. Пусть также случайный процесс $\displaystyle ( X_{t} ,\ t\geqslant 0)$ является случайным процессом с независимыми приращениями и распределениями приращений
+\begin{gather*}
+X_{t} -X_{s}\xlongequal{d} Q_{s,t} ,\ 0\leqslant s< t,\\
+X_{0}\xlongequal{d} Q_{0} .
+\end{gather*}
+Такой процесс существует тогда и только тогда, когда
+\begin{equation}
+\forall s,u,t:\ 0\leqslant s< u< t\hookrightarrow \phi _{s,t}( \tau ) =\phi _{s,u}( \tau ) \cdotp \phi _{u,s}( \tau ) .
+\end{equation}
+\end{theorem}
+\begin{proof}
+$\Longrightarrow$ $X_t - X_s = (X_t - X_u) + (X_u - X_s)$. Случайные величины в скобках независимы, поэтому $\phi_{X_s - X_t}(\tau) =\phi_{X_t - X_u}(\tau)\cdot\phi_{X_u - X_s}(\tau) = \phi_{ut}(\tau)\cdot\phi_{su}(\tau)$
+\end{proof}
+\begin{definition}
+     Случайный процесс $\{X_t\}_{t \geq 0}$ называется \textit{процессом Леви}, если
+\begin{enumerate}
+    \item $X_0 = 0$ п.н.
+    \item $X_t$ имеет независимые приращения
+    \item $\forall 0 \leq s < t, \ \forall h \geq 0$ $X_t - X_s \overset{d}{=} X_{t+h} - X_{s+h}$
+\end{enumerate}
+\end{definition}

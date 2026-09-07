@@ -1,0 +1,111 @@
+\subsection{Матрица линейного отображения}
+Пусть $\phi:L \to \tilde{L}$ - линейное отображение; $e_{(n)}$ и $f_{(m)}$ - базисы в $L$ и $\tilde{L}$ соответственно.
+Тогда $\phi(x)=\phi(x_1 e_1+\dots+x_n e_n)=x_1\phi(e_1)+\dots+x_n\phi(e_n)$.
+\begin{definition}
+    Матрицей $A_{\phi}$ линейного отображения $\phi$ в паре базисов $(e, f)$ называется матрица, составленная из координатных столбцов векторов $\phi(e_1), \dots, \phi(e_n)$ в базисе $f_1, \dots, f_m$.
+\end{definition}
+Образ вектора $x$ при линейном отображении можно записать так:
+\[
+\phi(x)=\left( A_{\phi}\right)\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}
+\]
+По определению $rg(\phi)=\dim Im(\phi)$. А так как $\dim Im(\phi)=\dim \langle \phi(e_1), \dots, \phi(e_n) \rangle$, то $rg(\phi)=rg(A)$. Также можно заметить, что уравнение $Ax=0$ задает ядро отображения.
+\begin{theorem}\label{theor} Пусть $\phi:L \to \tilde{L}$, тогда:
+    \begin{enumerate}
+        \item $\phi$ сюръективно $\Leftrightarrow$ $\dim Im(\phi)=\dim \tilde{L} \Leftrightarrow rg(\phi)=rg(A)=m$.
+        \item $\phi$ инъективно $\Leftrightarrow \ker \phi = \{0\} \Leftrightarrow rg(A)=n$.
+        \item $\phi$ биективно $\Leftrightarrow A$ - квадратная и невырожденная.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Часть теоремы обсуждалась в \hyperref[prop]{утверждении 5.1} и \hyperref[conseq]{следствии} из определения 5.2. Докажем оставшуюся часть:
+    \begin{enumerate}
+        \item Так как $rg(\phi)=\dim Im(\phi) = rg(A)$ и $\dim \tilde{L} =m$, то $\dim Im(\phi)=\dim \tilde{L}$ равносильно $rg(\phi)=rg(A)=m$.
+        \item $\ker \phi = \{0\}$ равносильно единственности решения системы $Ax=0$. У этой системы всегда есть решение $(0, \dots, 0)$. Отсутствие прочих решений равносильно отсутствию нетривиальной линейной комбинации столбцов $A$, так как $Ax=0 \Leftrightarrow \vec{a_1}x_1+\dots \vec{a_n}x_n=0$, где $\vec{a_i}$ - столбец матрицы $A$. Отсюда $rg(A)=n$.
+        \item Из пунктов 1 и 2 мы получаем, что биективность $\phi$ равносильна $rg(A)=n=m$, откуда следует что $A$ - квадратная и невырожденная.
+    \end{enumerate}
+\end{proof}
+\begin{theorem}
+    $\dim L=\dim Im(\phi) +\dim \ker \phi$
+\end{theorem}
+\begin{proof}
+    Пусть $\dim L=n$. Тогда из $Ax=0$ понимаем, что $\dim \ker \phi = n-rg(A)$. А так как $\dim Im(\phi)=rg(A)$, то получаем требуемое.
+\end{proof}
+\begin{definition}
+    Линейные пространства $L_1$ и $L_2$ называются изоморфными, если между элементами $L_1$ и $L_2$ можно установить линейное взаимно-однозначное отображение. 
+\end{definition}
+\begin{proposition}
+    $L_1$ и $L_2$ изоморфны $\Leftrightarrow$ $\dim L_1=\dim L_2$.
+\end{proposition}
+\begin{proof}
+    Необходимость равенства размерностей следует из критерия биективности (\hyperref[theor]{теорема 5.1}). 
+    
+    Для доказательства достаточности приведем координатный изоморфизм: каждому вектору из $L_1$ с координатами $(x_1, \dots, x_n)$ в базисе $(e_1, \dots, e_n)$ ставим в соответствие вектор из $L_2$ с такими же координатами $(x_1, \dots, x_n)$ в базисе $(f_1, \dots, f_n)$.
+\end{proof}
+Пусть $L_1\overset{\phi} \to L_2$; $e, e'$ - базисы в $L_1$ и $S$ - матрица перехода из $e$ в $e'$; $f, f'$ - базисы в $L_2$ и $F$ - матрица перехода из $f$ в $f'$; $A$ - матрица отображения $\phi$ в паре базисов $(e, f)$, а $A'$ - в паре базисов $(e', f')$. Найдем связь между $A$ и $A'$: пусть $\phi(x)=y$
+\[
+    y=Ax, x=Sx', y=Fy', y'=A'x' \Rightarrow Fy'=ASx' \Rightarrow y'=F^{-1}ASx'\Rightarrow A'=F^{-1}AS
+\]
+последнее следствие получается ввиду единственности $A'$.
+
+\label{A'} Отметим частный случай когда $\tilde{L}=L$ и $f=e, f'=e'$: тогда $A'=S^{-1}AS$.
+\begin{theorem}
+    Пусть $L\overset{\phi} \to \tilde{L}$. Существуют базисы $e, f$ в $L$ и $\tilde{L}$ такие, что \[A_{\phi}=\left(
+    \begin{array}{c|c}
+    E_{rg(\phi)} & 0 \\
+    \hline
+    0 & 0
+    \end{array}
+\right)\]
+\end{theorem}
+\begin{proof}
+    Выберем $e_{r+1}, \dots, e_{n}$ - базис в $\ker \phi$. Дополним его векторами $e_1, \dots, e_r$ до базиса в $L$. Поймем, что $\phi(e_1), \dots, \phi(e_r)$ - ЛНЗ: если они ЛЗ, то существует их линейная комбинация образ которой принадлежит ядру, что противоречит выбранному базису в ядре. Теперь осталось определить набор $f_i:=\phi(e_i), \forall i \in \overline{1,r}$ и дополнить его векторами $f_{r+1}, \dots, f_{m}$ до базиса в $\tilde{L}$.
+\end{proof}
+Пусть $\phi_A$ и $\phi_B$ - два линейных отображения из $L$ в $\tilde{L}$, а $A, B$ - матрицы этих отображений в паре базисов $(e_{(n)}, f_{(m)})$.
+\begin{definition}
+    Суммой отображений $\phi_A+\phi_B$ называется отображение $\phi(x):=\phi_A(x)+\phi_B(x)$ (матрица отображения $C_{\phi}=A+B$).
+\end{definition}
+\begin{definition}
+    Произведением отображения на число $\alpha\phi_A$ называется отображение $\phi(x)=\alpha\phi(x)$ (матрица отображения $C_{\phi}=\alpha A$).
+\end{definition}
+\textit{Следствие}: из линейности $\phi_A, \phi_B$ получаем, что $\phi$ тоже линейное отображение.
+
+Данные операции на множестве линейных отображений из $L$ в $\tilde{L}$ задают линейное пространство размерности $n\times m$ (так как оно изоморфно пространству матриц размеров $n \times m$).
+
+Пусть $L\overset{\phi} \to \tilde{L} \overset{\psi} \to \tilde{\tilde{L}}$. Композицией линейных отображений $\phi, \psi$ называется последовательное их применение. Если $A, B$ - матрицы отображений $\phi, \psi$, то $BA$ - матрица их композиции.
+\begin{theorem}
+    $rg(BA) \leqslant \min rg(A), rg(B)$
+\end{theorem}
+\begin{proof}
+    Следует из \hyperref[rgleq]{утверждения 2.3}.
+\end{proof}
+
+\subsection{Линейные преобразования}
+
+\textit{Напоминание}: матрицы $A, B$ называются перестановочными, если $AB=BA$; $A^k$ - матрица $A$, умноженная на себя $k$ раз; по договоренности $A^0=E$.
+\begin{definition}
+    Пусть $\phi: L \to \tilde{L}$ - линейное отображение. Если $\tilde{L} = L$, то $\phi$ называется линейным преобразованием.
+\end{definition}
+
+В дальнейшем нам понадобится следующее определение:
+\begin{definition}
+    Многочлен $P(A)=\alpha_k A^k+\dots+\alpha_1 A+\alpha_0 E$ называется многочленом от матрицы $A$.
+\end{definition}
+Пусть $\phi: L \to L$ - линейное преобразование.
+\begin{definition}
+    Подпространство $L_1 \subset L$ называется инвариантным относительно преобразования $\phi$, если для любого $x\in L_1$ выполнено $\phi(x)\in L_1$ (т.е. $\phi(L_1) \subset L_1$).
+\end{definition}
+\textit{Примеры}: относительно любого линейного преобразования инвариантными подпространствами будут $\ker \phi$, $Im(\phi)$, $\{0\}$.
+\begin{definition}
+    Пусть $L_1 \subset L$ - инвариантное подпространство относительно преобразования $\phi$. Преобразование $\phi: L_1 \to L_1$ называется ограничением преобразования $\phi$ на подпространстве $L_1$.
+\end{definition}
+
+Пусть $e_{(n)}$ - базис в $L$, $e_1, \dots, e_k$ - базис в инвариантном относительно $\phi$ подпространстве $L_1\subset L$. Тогда так как $\phi(L_1) \subset L_1 \Rightarrow x=x_1 e_1 +\dots +x_k e_k, \phi(x)=x_1\phi(e_1)+\dots+x_k\phi(e_k)$, то $\phi(x)$ - линейная комбинация векторов $e_1, \dots, e_k$. А значит матрица $A_{\phi}$ имеет вид:
+\[
+A_{\phi}=\left(
+    \begin{array}{c|c}
+    A_{k\times k} & A' \\
+    \hline
+    0 & A''
+    \end{array}
+\right)
+\]

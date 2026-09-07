@@ -1,0 +1,72 @@
+
+\begin{theorem} \label{ort}
+    (об ортогональном разложении, б/д) Пусть $\displaystyle ( X_{1} ,\ \dotsc ,\ X_{n}) \ \sim \ \mathcal{N}\left( l,\ \sigma ^{2} I_{n}\right)$ и $\displaystyle L_{1} ,\ \dotsc ,\ L_{r}$ -- попарно ортогональные подпространства $\displaystyle \mathbb{R}^{n}$, причем $\displaystyle L_{1} \oplus \ \dotsc \ \oplus L_{r} =\mathbb{R}^{n}$. Обозначим $\displaystyle Y_{i} =proj_{L_{i}} X$ -- проекция $\displaystyle X$ на $\displaystyle L_{i}$. Тогда $\displaystyle Y_{1} ,\ \dotsc ,\ Y_{r}$ -- независимые в совокупности нормальные случайные векторы, причем $\displaystyle EY_{i} =proj_{L_{i}} l$, и
+    \begin{equation*}
+        \dfrac{1}{\sigma ^{2}}\Vert Y_{i} -EY_{i}\Vert ^{2} \ \sim \ \chi _{dimL_{i}}^{2} .
+    \end{equation*}
+\end{theorem}
+
+\begin{definition} ~
+    Распределение суммы $k$ квадратов независимых стандартных нормальных случайных величин ${\chi}_k^{2} = \xi_1^2 + \ldots \xi_k^2$ называют распределением \textit{хи-квадрат} с $k$ степенями свободы.
+\end{definition}
+
+\begin{proposition} ~
+    \begin{enumerate}
+        \item $\displaystyle \xi \sim \chi_k^2, \; \eta \sim \chi_m^2$ -- независимые случайные величины. Тогда $ \xi + \eta \sim \chi_{k+m}^2$
+        
+        \item Если $\xi \sim \chi^2_k$, то $
+{\mathsf E}\,\xi=k$ и ${\mathsf D}\,\xi=2k.$
+    \end{enumerate}
+\end{proposition}
+
+
+\begin{definition} ~
+    Пусть $\displaystyle \xi \ \sim \ \mathcal{N}( 0,\ 1) ,\ \eta \ \sim \ \chi _{k}^{2}$ независимые случайные величины. Тогда случайная величина $\displaystyle \zeta =\dfrac{\xi }{\sqrt{\eta /k}}$ имеет \textit{распредение Стьюдента с}\textit{ }$\displaystyle k$\textit{ степенями} свободы (обозначение $\displaystyle \zeta \ \sim \ T_{k}$).
+\end{definition}
+\begin{proposition} ~
+    \begin{enumerate}
+        \item $\displaystyle \zeta \ \sim \ T_{k} \Rightarrow ( -\zeta ) \ \sim \ T_{k}$.
+        
+        \item $\displaystyle T_{1}$ совпадает с распределением Коши с плотностью $\displaystyle p( x) =\dfrac{1}{\pi \left( 1+x^{2}\right)}$.
+        
+        \item $\displaystyle \zeta _{k} \ \sim \ T_{k}$. Тогда $\displaystyle \zeta _{k}\xrightarrow[k\rightarrow \infty ]{d}\mathcal{N}( 0,\ 1)$.
+    \end{enumerate}
+\end{proposition}
+\begin{definition}
+    Пусть $\displaystyle \xi \ \sim \ \chi _{k}^{2} ,\ \eta \ \sim \ \chi _{m}^{2}$ -- независимые случайные величины. Тогда случайная величина $\displaystyle \zeta =\dfrac{\xi /k}{\eta /m}$ \textit{имеет}\textit{ распределние Фишера }\textit{с параметрами}\textit{ }$\displaystyle k,m$ (обозначение $\displaystyle \zeta \ \sim \ F_{k,m}$).
+\end{definition}
+\begin{proposition} ~
+    \begin{enumerate}
+        \item $\displaystyle \xi \ \sim \ T_{m} \Rightarrow \xi ^{2} \ \sim \ F_{1,m}$.
+        
+        \item $\displaystyle \xi \ \sim \ F_{k,m} \Rightarrow \dfrac{1}{\xi } \ \sim \ F_{m,k}$.
+        
+        \item $\displaystyle \xi _{m} \ \sim \ F_{k,m} \Rightarrow k\xi _{m}\xrightarrow[m\rightarrow \infty ]{d} \chi _{k}^{2}$, где $k$ - фиксированное
+        
+        \item $\displaystyle \xi _{k,m} \ \sim \ F_{k,m} \Rightarrow \xi _{k,m}\xrightarrow[k,m\rightarrow \infty ]{d} \xi \equiv 1$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection*{Доверительные интервалы для параметров гауссовской линейной модели}
+\subsubsection*{Доверительный интервал для $\sigma^{2}$.}
+
+Из того, что $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2}$, и $\displaystyle u_{1-\gamma }$ -- $\displaystyle ( 1-\gamma )$-квантиль распределения $\displaystyle \chi _{n-k}^{2}$, то выполнено
+\begin{equation*}
+    \gamma =P\left(\dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2}  >u_{1-\gamma }\right) =P\left( \sigma ^{2} \in \left( 0,\ \dfrac{\Vert X-Z\hat{\theta }\Vert ^{2}}{u_{1-\gamma }}\right)\right) .
+\end{equation*}
+\subsubsection*{Доверительный интервал для $\theta_{j}$.}
+
+Так как выполнено, что $\displaystyle \hat{\theta } \ \sim \ \mathcal{N}\left( \theta ,\ \sigma ^{2}\left( Z^{T} Z\right)^{-1}\right)$ (так как это линейная функция от гауссовского вектора $X$), то, обозначив $\displaystyle A:=\left( Z^{T} Z\right)^{-1} =( a_{ij})$, то $\displaystyle \hat{\theta }_{j} \ \sim \ \mathcal{N}\left( \theta _{j} ,\ \sigma ^{2} a_{jj}\right) \Rightarrow \dfrac{\hat{\theta }_{j} -\theta _{j}}{\sqrt{\sigma ^{2} a_{jj}}} \ \sim \ \mathcal{N}( 0,\ 1)$, и $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \ \sim \ \chi _{n-k}^{2}$. Тогда $\displaystyle \dfrac{\hat{\theta }_{j} -\theta _{j}}{\sqrt{\sigma ^{2} a_{jj}}}$ независимо от $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2}$ как функция от $\displaystyle \hat{\theta }$. Следовательно,
+\begin{equation*}
+    \sqrt{\dfrac{n-k}{a_{jj}}} \cdotp \dfrac{\hat{\theta }_{j} -\theta _{j}}{\sqrt{\Vert X-Z\hat{\theta }\Vert ^{2}}} \ \sim \ T_{n-k} .
+\end{equation*}
+Отсюда ищется доверительный интервал для $\displaystyle \theta _{j}$.
+
+
+\subsubsection*{Доверительная область для $\theta$.}
+
+Так как $\displaystyle \dfrac{1}{\sigma ^{2}}\Vert Z\hat{\theta } -Z\theta \Vert ^{2} \, \sim \, \chi _{k}^{2} ,\ \dfrac{1}{\sigma ^{2}}\Vert X-Z\hat{\theta }\Vert ^{2} \, \sim \, \chi _{n-k}^{2}$, причем эти случайные величины независимы, и
+\begin{equation*}
+    \dfrac{n-k}{k} \cdotp \dfrac{\Vert Z\hat{\theta } -Z\theta \Vert ^{2}}{\Vert X-Z\hat{\theta }\Vert ^{2}} \ \sim \ F_{k,n-k} .
+\end{equation*}
+Следовательно, доверительная область имеет вид $\displaystyle \left\{\dfrac{n-k}{k} \cdotp \dfrac{\Vert Z\hat{\theta } -Z\theta \Vert ^{2}}{\Vert X-Z\hat{\theta }\Vert ^{2}} < u_{\gamma }\right\}$ -- эллипсоид в $\displaystyle \mathbb{R}^{k}$ (Важно, что $u_{\gamma }$ -- квантиль $F_{k,n-k}$).

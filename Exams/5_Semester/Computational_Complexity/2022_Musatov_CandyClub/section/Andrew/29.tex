@@ -1,0 +1,9 @@
+\textbf{29.} Докажите, что если $\mathbf{NP} \subset \mathbf{coRP}$, то $\mathbf{NP} = \mathbf{ZPP}$.
+
+\textbf{Решение.} Отметим два известных факта: во-первых, $\mathbf{ZPP} = \mathbf{RP} \cap \mathbf{coRP}$. Во-вторых, имеется вложение $\mathbf{RP} \subset \mathbf{NP}$. С учётом условия, второй факт даёт следующее вложение: $\mathbf{RP} \subset \mathbf{coRP}$.
+
+Но погодите: если $A \in \mathbf{coRP}$, то $\overline{A} \in \mathbf{RP}$, и по вложению выше $\overline{A} \in \mathbf{coRP}$, поэтому $A \in \mathbf{RP}$. Таким образом, имеет место обратное вложение $\mathbf{coRP} \subset \mathbf{RP}$, откуда следует, что эти классы равны. В силу того, что
+\[
+\mathbf{RP} \subset \mathbf{NP} \subset \mathbf{coRP},
+\]
+класс $\mathbf{NP}$ равен этим двум классам, а значит $\mathbf{NP} = \mathbf{RP} \cap \mathbf{coRP} = \mathbf{ZPP}$.

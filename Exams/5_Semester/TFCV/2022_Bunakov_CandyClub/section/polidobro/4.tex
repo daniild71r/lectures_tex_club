@@ -1,0 +1,145 @@
+\begin{theorem}[из матанализа б/д]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \R^2$ "--- односвязная область
+		
+		\item $P, Q \in C^1(G)$
+		
+		\item $\frac{\partial P}{\partial y} \equiv \frac{\partial Q}{\partial x}$ на $G$
+		
+		\item $\gamma$ "--- кусочно-гладкая замкнутая кривая такая, что $M(\gamma) \subset G$
+	\end{enumerate}
+
+	Тогда верно следующее равенство:
+	\[\int_\gamma Pdx + Qdy = 0\]
+\end{theorem}
+
+\begin{theorem}[интегральная теорема Коши для односвязной области]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \Cm$ "--- односвязная область
+		\item $f \in C^1(G)$
+		\item $\gamma$ "--- кусочно-гладкая замкнутая кривая такая, что $M(\gamma) \subset G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\int_\gamma fdz = 0\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, тогда:
+	\[\int_\gamma fdz = \int_\gamma udx - vdy + i\int_\gamma vdx + udy\]
+	
+	Проверим, что первый интеграл в сумме выше равен нулю, поскольку равенство нулю второго интеграла проверяется аналогично. Поскольку функция $f$ регулярна, то выполнено $u, v \in C^1(G)$, причём $\frac{\partial u}{\partial y} \equiv -\frac{\partial v}{\partial x}$ на $G$ по условиям Коши-Римана, тогда $\int_\gamma udx - vdy = 0$ по предыдущей теореме.
+\end{proof}
+
+\begin{note}
+	Условие односвязности области $G$ существенно. Рассмотрим неодносвязную область $G := \{z \in \Cm : \frac12 < |z| < 2\}$, кривую $\gamma := \{z \in \Cm : |z| = 1\}$, ориентированную против часовой стрелки, и функцию $f(z) := \frac 1z \in C^1(G)$, тогда:
+	\[\int_\gamma fdz = 2\pi i  \ne 0\]
+\end{note}
+
+\begin{definition}[ОСПГ]
+	Область $G \subset \CM$ называется \textit{областью с простой границей}, если \[\partial{G} = M(\gamma_1) \sqcup \dotsb \sqcup M(\gamma_n)\] для некоторых кусочно-гладких \textbf{контуров} $\gamma_1, \dotsc, \gamma_n$. Граничные кривые $\gamma_1, \dotsc, \gamma_n$ называются \textit{положительно ориентированными} относительно $G$, если при обходе каждой из них область всегда остаётся слева.
+\end{definition}
+
+\begin{unnecessary}
+\begin{example}
+	На рисунке ниже слева приведён пример области $G_1$ с простой положительно ориентированной границей, а справа --- пример области $G_2$, не являющейся областью с простой границей.
+		\begin{center}
+			\begin{tikzpicture}
+				\clip (-6, -2.2) rectangle (6, 2.2);
+				
+				\fill [opacity=0.05] (-3,0) circle [radius=2];
+				\draw[
+					black,
+					decoration={markings, mark=at position 0.1 with {\arrow{>}}},
+					decoration={markings, mark=at position 0.6 with {\arrow{>}}},
+					postaction={decorate}
+				] (-3,0) circle[radius=2];
+				\node[] at (-1, 1.2) {$\gamma_1$};
+				
+				\fill [white] (-3.9,0) circle [radius=0.7];
+				\draw[
+				black,
+				decoration={markings, mark=at position 0.1 with {\arrow{<}}},
+				decoration={markings, mark=at position 0.6 with {\arrow{<}}},
+				postaction={decorate}
+				] (-3.9,0) circle[radius=0.7];
+				\node[] at (-3.8, 0.9) {$\gamma_2$};
+				\node[] at (-3, -1) {$G_1$};
+				
+				\fill [white] (-2.1,0) circle [radius=0.7];
+				\draw[
+				black,
+				decoration={markings, mark=at position 0.1 with {\arrow{<}}},
+				decoration={markings, mark=at position 0.6 with {\arrow{<}}},
+				postaction={decorate}
+				] (-2.1,0) circle[radius=0.7];
+				\node[] at (-2.2, 0.9) {$\gamma_3$};
+				
+				\fill [opacity=0.05] (3,0) circle [radius=2];
+				\draw[black] (3,0) circle[radius=2];
+				\node[] at (1.03, 1.2) {$\gamma$};
+				\node[] at (3, -0.67) {$G_2 = \mathring B_\epsilon(z_0)$};
+				
+				\node[] at (3.2, 0.2) {$z_0$};
+				
+				\fill [white] (3,0) circle [radius=0.06];
+				\draw[black,=] (3,0) circle[radius=0.06];
+			\end{tikzpicture}
+	\end{center}
+	
+	Кроме того, не являются областями с простой границей, например, область $\Cm$ и область $\{z \in \Cm: \im{z} > 0\}$.
+\end{example}
+\end{unnecessary}
+
+\begin{note}
+    Пусть $G \subset \CM$ "--- область с простой границей $M(\gamma_1) \sqcup \dotsb \sqcup M(\gamma_n)$, и граничные кривые $\gamma_1, \dotsc, \gamma_n$ положительно ориентированы относительно $G$. Под интегралом функции $f \in C^1(G)$ по границе $\partial G$ этой области понимается следующая величина:
+    \[\int_{\partial G}fdz := \sum_{k = 1}^n\int_{\gamma_k}fdz\]
+\end{note}
+
+\begin{definition}
+	\textit{Замыканием} множества $A \subset \Cm$ называется множество $\overline{A} := A \cup \partial A$.
+\end{definition}
+
+\begin{theorem}[\textit{без доказательства}, формула Грина для области с простой границей]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \R^2$ "--- ограниченная область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item $P, Q \in C(\overline{G})$ и $\frac{\partial P}{\partial y}, \frac{\partial Q}{\partial x} \in C(\overline{G})$, то есть функции $\frac{\partial P}{\partial y}, \frac{\partial Q}{\partial x}$ можно непрерывным образом продолжить на $\partial G$
+	\end{enumerate}
+	
+	Тогда верно следующее равенство:
+	\[\iint_G\left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dxdy = \int_{\partial G} Pdx + Qdy\]
+\end{theorem}
+
+\begin{theorem}[интегральная теорема Коши для ограниченной области с простой границей]
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \Cm$ "--- ограниченная область с простой границей
+		
+		\item Граничные кривые положительно ориентированы относительно $G$
+		
+		\item $f \in C^1(\overline{G})$
+	\end{enumerate}
+
+	Тогда верно следующее равенство:
+	\[\int_{\partial G} fdz = 0,\; \left(\sum_{k = 1}^n\int_{\gamma_k}fdz = 0\right)\]
+\end{theorem}
+
+\begin{proof}
+	В силу регулярности функции $f$, можно выбрать открытое множество $A \subset \Cm$ такое, что $A \supset \overline{G}$ и $f \in C^1(A)$. Пусть $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, тогда:
+	\[\int_{\partial G} fdz = \int_{\partial G} udx - vdy + i\int_{\partial G} vdx + udy\]
+	
+	Применяя предыдущую теорему к парам функций $u, -v$ и $v, u$, а также пользуясь условиями Коши-Римана, получим:
+	\begin{gather*}
+		\int_{\partial G} udx - vdy  = \iint_G \left(-\frac{\partial v}{\partial x} - \frac{\partial u}{\partial y}\right)dxdy = 0
+		\\
+		\int_{\partial G} vdx + udy  = \iint_G \left(\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}\right)dxdy = 0
+	\end{gather*}
+
+	Таким образом, $\int\limits_{\partial G} fdz = 0$.
+\end{proof}

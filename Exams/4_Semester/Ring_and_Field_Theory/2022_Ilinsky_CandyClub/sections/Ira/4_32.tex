@@ -1,0 +1,30 @@
+$F \subset K$ -- расширение полей,  $\alpha \in K$
+
+Следующие условия эквивалентны:
+
+\begin{enumerate}
+    \item $[F(\alpha):F]$ -- конечное
+    \item $\exists f(x) \in F[x]$, т.ч. $f(\alpha) = 0$
+\end{enumerate}
+
+\Proof
+
+\begin{itemize}
+    \item В одну сторону довольно очевидно:
+    
+    Если  $[F(\alpha):F] = N < \infty$, то $1, \alpha, \ldots, \alpha^N$ ЛЗ над $F$. \newline Тогда $a_0 + a_1\alpha + \ldots a_N\alpha^N = 0, a_0, \ldots, a_N \in F$. \newline Тогда можно взять многочлен $f(x) = a_0 + a_1x + \ldots a_Nx^N$, который будет обнуляться для $x=\alpha$. Значит, $\alpha$ -- алгебраический.
+    
+    \item $M = \{g(x) \in F[x]\;|\; g(\alpha) = 0\}$. $M$ непусто, т.к. $\alpha$ -- алгебраический.\\
+    
+    Докажем, что $M$ -- простой идеал в $F[x]$:
+    
+    \begin{enumerate}
+        \item $g, h \in M \Rightarrow (g + h)(\alpha) = g(\alpha) + h(\alpha) = 0 + 0 = 0$
+        \item $g \in M, h \in F[x] \Rightarrow (gh)(\alpha) = g(\alpha)h(\alpha) = 0$ (т.к. $g(\alpha) = 0$)
+        \item $(gh) \in M \Rightarrow g(\alpha)h(\alpha) = (gh)(\alpha) = 0 \Rightarrow g(\alpha) = 0$ или $h(\alpha) = 0$, т.е. один из них $\in M$
+    \end{enumerate}
+    
+    Тогда $F(\alpha) \cong F[\alpha] \cong F[x]/(m_{\alpha}(x))$
+\end{itemize}
+
+\EndProof

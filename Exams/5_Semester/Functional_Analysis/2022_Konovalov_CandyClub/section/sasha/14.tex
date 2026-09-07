@@ -1,0 +1,38 @@
+\begin{theorem}\label{extrapolate-to-closure}
+    Пусть $E_1$~--- линейное нормированное пространство, $E_2$~--- банохово пространство и $A$~--- линейный ограниченный оператор: $A: D(A) \to E_2$, где $D(A)$ линейное многообразие в $E_1 = \overline{D(A)}$. Тогда сущеествует и единственно продолжение оператора $A$ до замыкания его области определения.\\
+    То есть $\exists! \widetilde{A} \in \mathcal{L}(E_1; E_2)$:
+    \begin{enumerate}
+        \item $ \widetilde{A}\rvert_{D(A)} = A$,
+        \item $\|\widetilde{A}\| = \|A\|$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}\\
+    \noindent\textit{Единственность.}\\
+    Пусть есть $\widetilde{A}^1$ и $\widetilde{A}^2$. Из замкнутости $E_1$, 
+    \(\forall x \in E_1 \; \exists \{x_n\} \in D(A):\; x_n \to x.\)\\
+    При этом, $\widetilde{A}^1 x = \lim\limits_{n \to \infty} Ax_n = \widetilde{A}^2 x$. Значит, $\widetilde{A}^1 = \widetilde{A}^2$.
+    \\
+    \noindent\textit{Существование.}\\
+    Определим оператор $\widetilde{A}$ по формуле $\widetilde{A}x = \lim\limits_{n \to \infty} Ax_n$. Для корректности необходимо показать:
+    \begin{enumerate}[label=\alph*)]
+        \item предел $\lim\limits_{n \to \infty} Ax_n$ существует,
+        \item предел не зависит от выбора $\{x_n\}$,
+        \item действительно $\widetilde{A}\rvert_{D(A)} = A$.
+    \end{enumerate}
+    Покажем:
+    \begin{enumerate}[label=\alph*)]
+        \item Так как $\{x_n\}$ сходится, она фундаментальна, значит последовательность $\{Ax_n\} \subset E_2$ фундаментальна. Пространство $E_2$ банахово, поэтому предел $\lim\limits_{n \to \infty} Ax_n$ существует.
+        \item Пусть есть две последовательности $\{x_n'\}$ и $\{x_n''\}$, сходящиеся к одному и тому же $x \in E_1$. Пусть пределы $\lim\limits_{n \to \infty} Ax_n'$ и $\lim\limits_{n \to \infty} Ax_n''$ разные. Тогда возьмем последовательность
+        $\{y_n\}$ полученную чередованием элементов $\{x_n'\}$ и $\{x_n''\}$. Но получим, что $\{Ay_n\}$ расходится. Противоречие пункту $a)$.
+        \item Возьмем константную последовательность $\{x\}_{n=1}^{\infty}, x \in D(A)$. Очевидно, что $\lim\limits_{n \to \infty} Ax = Ax$. По предыдущему пункту $\lim\limits_{n \to \infty} Ax_n$ не зависит от выбора последовательности, значит $\widetilde{A}\rvert_{D(A)} = A$.
+    \end{enumerate}
+
+    Осталось показать, что $\widetilde{A}$~--- линейный ограниченный оператор. Линейность очевидна из линейности $A$ и $\lim$.
+
+    Ограниченность (а значит и непрерывность) очевидна из непрерывности нормы:
+    \begin{align*}
+        &\widetilde{A}x = \lim\limits_{n \to \infty} Ax_n \xrightarrow{\text{непрерывность нормы}} \|Ax_n\| \to \|\widetilde{A}x\|,\\
+        &\|Ax_n\| \leqslant \|A\|\cdot\|x_n\| \to \|A\|\cdot\|x\|.
+    \end{align*}
+    Значит $\widetilde{A}$ ограничен.
+\end{proof}

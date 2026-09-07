@@ -1,0 +1,93 @@
+\subsection{О сохранении фазового объёма.}
+    Пусть $U_0 \subset \R^{2m}$ -- некоторая область в фазовом пространстве.
+    Рассмотрим некоторую динамическую систему с гамильтонианом $H$.
+    Она порождает фазовый поток, который для заданного $T$ диффеоморфно действует на $U_0$ и переводит в $U_T$.
+    Справедлива следующая теорема:
+    \begin{theorem}[Лиувилль, о сохранении фазового объёма]
+        Для всякого $t$, для которого $U_t$ корректно определено, верно
+        \[
+            \mu(U_0) = \mu(U_t).
+        \]
+
+    \end{theorem}
+    \begin{proof}
+        Ранее показано, что фазовый поток является симплектическим диффеоморфизмом.
+        Таким образом $\det D\phi^t = \pm 1$ и, следовательно, \[\mu(U_t) = \int_{U_t} d\bt{q}d\bt{p} = \int_{U_0} |\det D\phi| d\bt{q}d\bt{p} = \mu(U_0).\]
+    \end{proof}
+\begin{note}
+    Здесь под <<$\mu$>> понимается мера Лебега подходящей размерности.
+\end{note}
+\subsection{Другие виды критериев каноничности преобразований и форм производящих функций.}
+Пусть $\phi: (\bt{q}, \bt{p}) \mapsto (\tilde{\bt{q}}, \tilde{\bt{p}})$ -- некоторый диффеоморфизм.
+\begin{theorem}
+    Следующие утверждения эквивалентны:
+    \begin{itemize}
+        \item $\phi$ -- каноническое преобразование координат.
+        \item $\forall i, k \hookrightarrow \{\tilde{q}_i, \tilde{q}_k\} = 0, \{\tilde{p_i}, \tilde{p_k}\} = 0, \{\tilde{q}_i, \tilde{p}_k\} = c\delta_{ik}$.
+        \item $c\bt{p}\cdot\delta \bt{q} - \tilde{\bt{p}}\cdot \delta \tilde{\bt{q}} = \delta F$ (где под  <<$\delta$>> понимается изохронный полный дифференциал, а $F$ -- некоторая функция).
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    На самом деле, второе утверждение нам даёт вид <<матрицы Грама>> криволинейного скалярного произведения и он совпадает с $cJ$ -- чего нам необходимо и достаточно. \\
+    Эквивалентность третьего утверждения получается тривиально если вспомнить о существовании такой вещи как производящая функция: $F$ ей и будет (в каких-либо подходящих координатах).
+\end{proof}
+На самом деле, вид производящей функции (и координаты, по которым мы её берём) можно варьировать в очень больших пределах.
+Например, мы можем взять $S = S(\bt{q}, \tilde{\bt{q}}, t)$ и, если мы потребуем аналогичную невырожденность смешанного детерминанта, мы тоже придём к успеху.
+Единственное отличие -- новые переменные будут генерироваться как
+\[
+    c\bt{p} = \dfrac{\partial S}{\partial \bt{q}}, \quad -\tilde{\bt{p}} = \dfrac{\partial S}{\partial \tilde{ \bt{q}}}.
+\]
+Также мы можем в производящей функции смешивать обобщённые координаты и импульсы (но, право дело, это абсолютно неудобно).
+\subsection{Интегрируемость гамильтоновых систем.}
+\begin{theorem}[Лиувилль, об интегрируемости в квадратурах]
+    Пусть $2m$-мерная динамическая система с гамильтонианом $H$ имеет $m$ независимых первых интегралов в инволюции.
+    Тогда она интегрируема в квадратурах.
+\end{theorem}
+\begin{proof}
+    Пусть $f_i(\bt{q}, \bt{p}, t) = \alpha_i$ -- первые интегралы.
+    Они попарно находятся в инволюции, то есть $\forall i, j \hookrightarrow\{f_i, f_j\} = 0$.
+    И независимы, то есть матрица Якоби $\bt{f}$ имеет максимальный ранг.
+    Поскольку матрица Якоби $\bt{f}$ имеет размер $m \times 2m$, то у неё существует невырожденный минор размера $m \times m$.
+    Без ограничения общности будем считать, что этот минор является частью производной $\bt{f}$ по обобщённым импульсам ($\det D_{\bt{p}}\bt{f} \neq 0$) -- это влияет только на то, каким образом будет проинтегрирована система.
+    Разрешим $\bt{p}$ относительно первых интегралов (что возможно в силу невырожденности $D_{\bt{p}}\bt{f}$).
+    Тогда
+    \[
+        \bt{p} = \phi(\bt{q}, \bt{\alpha}, t).
+    \]
+    Подставим $\phi$ в $f_r$ и продифференцируем по $q_i$:
+    \[
+        \dfrac{\partial f_r}{\partial q_i} + \sum\limits_{k = 1}^m \dfrac{\partial f_r}{\partial p_k} \dfrac{\partial \phi_k}{\partial q_i} = 0.
+    \]
+    Умножим обе части на $\dfrac{\partial f_s}{\partial p_i}$ и просуммируем по $i$:
+    \[
+        \sum\limits_{i = 1}^m \dfrac{\partial f_r}{\partial q_i} \dfrac{\partial f_s}{\partial p_i} + \sum\limits_{i, k = 1, 1}^{m, m} \dfrac{\partial f_r}{\partial p_k} \dfrac{\partial f_s}{\partial p_i} \dfrac{\partial \phi_k}{\partial q_i} = 0.
+    \]
+    Поскольку полученное выражение верно для всяких $r$ и $s$, то оно верно и для $s, r$.
+    Подставляя $s, r$ и вычитая одно из другого получим (с учётом инволютивности $f_r$ и $f_s$)
+    \[
+        \sum\limits_{i, k = 1, 1}^{m, m} \dfrac{\partial f_r}{\partial p_k}\dfrac{\partial f_s}{\partial p_i} \biggr(\dfrac{\partial \phi_k}{\partial q_i} - \dfrac{\partial \phi_i}{\partial q_k}\biggr) = 0.
+    \]
+    А значит $\dfrac{\partial \phi_i}{\partial q_k} = \dfrac{\partial \phi_k}{\partial q_i}$. \\
+    Пусть $H^*$ -- функция Гамильтона в которой вместо $p_i$ подставлено $\phi_i$ и покажем, что
+    \[
+        \dfrac{\partial \phi_i}{\partial t} = - \dfrac{\partial H^*}{\partial q_i}.
+    \]
+    Поскольку
+    \[
+        -\dfrac{\partial H}{\partial q_i} = \dfrac{d p_i}{dt} = \dfrac{d\phi_i}{dt} = \dfrac{\partial \phi_i}{\partial t} + \sum\limits_{j = 1}^m \dfrac{\partial \phi_i}{\partial q_j}\dfrac{dq_j}{dt} = \dfrac{\partial \phi_i}{\partial t} + \sum\limits_{j = 1}^m \dfrac{\partial \phi_i}{\partial q_j} \dfrac{\partial H}{\partial p_j}.
+    \]
+    И тогда
+    \[
+        \dfrac{\partial \phi_i}{\partial t} = -\dfrac{\partial H}{\partial q_i} - \sum\limits_{j = 1}^m \dfrac{\partial \phi_j}{\partial q_i} \dfrac{\partial H}{\partial p_j} = - \dfrac{\partial H^*}{\partial q_i}.
+    \]
+    Таким образом существует такая $S(\bt{q}, \bt{\alpha}, t)$ что
+    \[
+        \dfrac{\partial S}{\partial q_i} = \phi_i, \quad \dfrac{\partial S}{\partial t} = -H^*.
+    \]
+    Она является решением уравнения
+    \[
+        dS = \sum\limits_{i = 1}^m \phi_i dq_i - Hdt.
+    \]
+    Её нахождение сведено к квадратурам.
+    Функция $S$ является полным интегралом уравнения Гамильтона-Якоби и, следовательно, система проинтегрирована в квадратурах.
+\end{proof}

@@ -1,0 +1,209 @@
+\begin{definition}
+	Пусть функция $f:\mathbb{C} \to \mathbb{C}$ определена в некоторой окрестности $B_{\delta_0}(z_0)$ точки  $z_0 \in \Cm$. Функция $f$ называется \textit{дифференцируемой в точке $z_0$}, если в окрестности $\mathring B_{\delta_0}{(0)}$ определена функция $\alpha$ такая, что $\lim\limits_{\Delta z \to 0}\alpha(\Delta z) = 0$, и существует $A \in \Cm$ такое, что для любого $\Delta z \in \mathring B_{\delta_0}{(0)}$ выполнено $f(z_0 + \Delta z) - f(z_0) = A\Delta z + |\Delta z|\alpha(\Delta z)$.
+\end{definition}
+
+\begin{theorem}[Критерий дифференцируемости в точке]
+	Пусть $f: \mathbb{C} \to \mathbb{C}$, а также есть функции \(u, v: \mathbb{R}^2 \to \mathbb{R}\), такие что $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, где \(z = x + iy\). Тогда $f$ дифференцируема в точке $z_0 = x_0 + iy_0 \in \Cm \lra$ $u, v$ дифференцируемы в точке $(x_0, y_0)$ и выполнены следующие равенства, называемые условиями Коши-Римана:
+	\[\System{u'_x(x_0, y_0) &= v'_y(x_0, y_0) \\ u'_y(x_0, y_0) &= -v'_x(x_0, y_0)}\]
+\end{theorem}
+
+\begin{proof}~
+	\begin{itemize}
+		\item[$\ra$] Пусть $\Delta z = \Delta x + i \Delta y$, $\alpha(\Delta z) = \beta(\Delta x, \Delta y) + i\gamma(\Delta x, \Delta y)$, $A = B + iC$. По определению дифференцируемости, $\lim\limits_{\substack{\Delta x \to 0 \\ \Delta y \to 0}}\beta(\Delta x, \Delta y) = 0$ и $\lim\limits_{\substack{\Delta x \to 0 \\ \Delta y \to 0}}\gamma(\Delta x, \Delta y) = 0$. Тогда:
+		\begin{multline*}
+			u(x + \Delta x, y + \Delta y) + iv(x + \Delta x, y + \Delta y) - u(x, y) - iv(x, y) =  A\Delta z + |\Delta z|\alpha(\Delta z) =
+			\\
+			= (B + iC)(\Delta x + i\Delta y) + \sqrt{(\Delta x)^2 + (\Delta y)^2}(\beta(\Delta x, \Delta y) + i\gamma(\Delta x, \Delta y))
+		\end{multline*}
+		
+		Приравнивая действительную и мнимую части по отдельности, получим следующее:
+		\[\System{
+			u(x + \Delta x, y + \Delta y) - u(x, y) &=  B\Delta x - C\Delta y + \sqrt{(\Delta x)^2 + (\Delta y)^2}\beta(\Delta x, \Delta y)
+			\\
+			v(x + \Delta x, y + \Delta y) - v(x, y) &= C\Delta x + B\Delta y + \sqrt{(\Delta x)^2 + (\Delta y)^2}\gamma(\Delta x, \Delta y)
+		}\]
+	
+		Значит, $u, v$ дифференцируемы в точке $(x_0, y_0)$. Кроме того, $B = u'_x(x_0, y_0) = v'_y(x_0, y_0)$ и $C = v'_x(x_0, y_0) = -u'_y(x_0, y_0)$.
+		
+		\item[$\la$] Положим $B := u'_x(x_0, y_0) = v'_y(x_0, y_0)$, $C := v'_x(x_0, y_0) = -u'_y(x_0, y_0)$, тогда снова выполнена система из доказательства $(\ra)$. Умножая второе равенство системы на $i$ и складывая с первым, получим требуемое.\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{unnecessary}
+    \begin{note}
+        Условие Коши-Римана можно переписать как \(\mathlarger{\frac{\partial f}{\partial \overline{z}} = 0}\).
+    \end{note}
+\end{unnecessary}
+
+\begin{note}
+	Легко видеть, что дифференцируемость функции $f$ в точке $z_0 \in \Cm$ равносильна существованию следующего предела:
+	\[\lim_{\Delta z \to 0}\frac{f(z_0 + \Delta z) - f(z_0)}{\Delta z} = A \in \Cm\]
+	
+	Число $A$ "--- это в точности число из определения дифференцируемости.
+\end{note}
+
+\begin{definition}
+	Пусть функция $f$ дифференцируема в точке $z_0 \in \Cm$. Значение предела \newline $\lim\limits_{\Delta z \to 0}\frac{f(z_0 + \Delta z) - f(z_0)}{\Delta z}$ называется \textit{производной} функции $f$ в точке $z_0$ и обозначается через $f'(z_0)$.
+\end{definition}
+
+\begin{note}
+	Зафиксируем функцию $f : \R \to \Cm$ и представим ее в виде $f = g + ih$, $g, h : \R \to \R$, тогда для любого $t \in \R$ выполнено $f(t) = (g(t), h(t))$. Из этого равенства следуют свойства, ранее полученные для вектор-функций:
+	\begin{enumerate}
+		\item Функция $f$ непрерывна в точке $t_0 \in \R$ $\lra$ функции $g, h$ непрерывны в $t_0$
+		\item Функция $f$ дифференцируема в точке $t_0 \in \R$ $\lra$ функции $g, h$ дифференцируемы в $t_0$, причем $f'(t_0) = g'(t_0) + ih'(t_0)$
+		\item Функция $f$ интегрируема на отрезке $[a, b] \subset \R$ $\lra$ функции $g, h$ интегрируемы на $[a, b]$, причем $\int_a^bf(t)dt = \int_a^bg(t)dt + i\int_a^bh(t)dt$
+		\item Функция $F = G + iH$ является первообразной функции $f$ на отрезке $[a, b] \subset \R \hm\lra$~функции $G, H$ являются первообразными функций $g, h$ на $[a, b]$
+	\end{enumerate}
+\end{note}
+
+\begin{unnecessary}
+    \begin{example}
+    	Вычислим производную функции $f(t) = e^{i\omega t} = \cos(\omega t) + i\sin(\omega t)$, $\omega \in \R$:
+    	\[f'(t) = \left(e^{i\omega t}\right)' = \left(\cos(\omega t)\right)' + i \left(\sin(\omega t)\right)' = i\omega(\cos(\omega t) + i\sin(\omega t)) = i\omega e^{i \omega t}\]
+    	
+    	Аналогичным образом можно убедиться, что для функции $g(t) = e^{at}$ при любом $a \in \Cm$ выполнено $g'(t) = ae^{at}$. Следовательно, если $a \ne 0$, то $\int e^{at}dt = \frac{e^{at}}{a} + C$, где $C \in \Cm$.
+    \end{example}
+
+
+    \begin{note}
+    	Из определения производной и теоремы выше легко видеть, что если $f$ дифференцируема в точке $z_0 = x_0 + iy_0 \in \Cm$ и $f(z) = f(x + iy) = u(x, y) + iv(x, y)$, то выполнены следующие равенства:
+    	\begin{multline*}
+    		f'(z_0) = u'_x(x_0, y_0) + iv'_x(x_0, y_0) = v'_y(x_0, y_0) + iv'_x(x_0, y_0) =
+    		\\
+    		= v'_y(x_0, y_0) - iu'_y(x_0, y_0) = u'_x(x_0, y_0) - iu'_y(x_0, y_0)
+    	\end{multline*}
+    \end{note}
+\end{unnecessary}
+
+\begin{note}
+	Пусть функции $f, g$ дифференцируемы в точке $z_0 \in \Cm$. Аналогично вещественному случаю, можно доказать, что тогда функции $f + g$ и $fg$ тоже дифференцируемы в точке $z_0$, причем выполнены следующие равенства:
+	\begin{gather*}
+		(f + g)'(z_0) = f'(z_0) + g'(z_0)\\
+		(fg)'(z_0) = f'(z_0)g(z_0) + f(z_0)g'(z_0)
+	\end{gather*}
+	
+	Если при этом $g(z_0) \ne 0$, то и функция $\frac fg$ дифференцируема в точке $z_0$, причем выполнено следующее равенство:
+	\[
+	\left(\frac fg\right)'(z_0) = \frac{f'(z_0)g(z_0) - f(z_0)g'(z_0)}{g(z_0)^2}\]
+\end{note}
+
+\begin{note}
+	Пусть функция $f$ дифференцируема в точке $z_0 \in \Cm$, $f(z_0) := w_0 \in \Cm$, функция $g$ дифференцируема в точке $w_0$. Аналогично вещественному случаю, можно доказать, что тогда функция $h := g \circ f$ дифференцируема в точке $z_0$, причем выполнено следующее равенство:
+	\[h'(z_0) = g'(w_0)f'(z_0)\]
+	
+	Наконец, упомянутые свойства позволяют заключить, что элементарные функции дифференцируемы в любой точке из $\Cm$.
+\end{note}
+
+\begin{unnecessary}
+    \begin{example}
+    	Проверка условий Коши-Римана для функций ниже дает следующее:
+    	\begin{enumerate}
+    		\item $f(z) =\overline{z}$ не дифференцируема ни в одной точке из $\Cm$
+    		\item $f(z) = |z|^2 = z\overline{z}$ дифференцируема только в точке $0$
+    		\item $f(z) = e^z$ дифференцируема в любой точке из $\Cm$
+    	\end{enumerate}
+    \end{example}
+\end{unnecessary}
+
+\begin{definition}
+	Функция $f$ называется \textit{регулярной} на открытом множестве $G \subset \Cm$, если выполнены следующие условия:
+	\begin{enumerate}
+		\item $f$ дифференцируема в любой точке из $G$
+		\item $f'$ непрерывна в любой точке из $G$
+	\end{enumerate}
+
+	Обозначение "--- $f \in C^1(G)$.
+\end{definition}
+
+\begin{definition}
+	Функция $f$ называется \textit{регулярной} на множестве $A \subset \Cm$, если $A$ включено в открытое множество $G \subset \Cm$ такое, что $f \in C^1(G)$. Обозначение "--- $f \in C^1(A)$.
+\end{definition}
+
+\begin{note}
+	В частности, функция $f$ регулярна в точке $z_0 \in \Cm$, если $f$ регулярна в достаточно малой окрестности $B_{\delta_0}(z_0)$ этой точки.
+\end{note}
+
+\begin{note}
+	В силу уже полученных свойств дифференцируемости и непрерывности, справедливы утверждения, аналогичные утверждениям о дифференцируемости:
+	\begin{itemize}
+		\item Если $f, g$ регулярны в точке $z_0 \in \Cm$, то $f + g$, $fg$ тоже регулярны в $z_0$
+		\item Если $f, g$ регулярны в точке $z_0 \in \Cm$ и $g(z_0) \ne 0$, то $\frac fg$ тоже регулярна в $z_0$
+		\item Если $f$ регулярна в точке $z_0 \in \Cm$, $g$ регулярна в точке $w_0 := f(z_0) \in \Cm$, то $g \circ f$ тоже регулярна в $z_0$
+	\end{itemize}
+\end{note}
+
+\begin{definition}
+	Пусть $G \subset \R^2$ "--- область. Функция $u : \R^2 \to \R$ называется \textit{гармонической} на $G$, если выполнены следующие условия:
+	\begin{enumerate}
+		\item $u \in C^2(G)$
+		\item $u''_{xx} + u''_{yy} \equiv 0$ на $G$
+	\end{enumerate}
+\end{definition}
+
+\begin{unnecessary}
+    \begin{definition}
+	Гармонические функции $u(x,y), v(x,y)$, удовлетворяющие условиям Коши-Римана называются \textit{сопряженными гармоническими} (порядок $u$, $v$ в определении важен)
+    \end{definition}
+\end{unnecessary}
+
+
+\begin{proposition}
+	Пусть функция $f(z) = f(x + iy) = u(x, y) + iv(x, y)$ регулярна на области $G \subset \Cm$. Тогда функции $u, v$ "--- гармонические на $G$.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $f \in C^\infty(G)$ (по~\ref{infinity-diff-reg}), то и $u, v \in C^\infty(G)$. По условиям Коши-Римана, на $G$ выполнено $u'_x \equiv v'_y$ и $u'_y \equiv -v'_x$. Дифференцируя тождества по $x$ и $y$ соответственно и складывая их, получим:
+	\[u''_{xx} + u''_{yy} \equiv v''_{yx} - v''_{xy} \equiv 0\]
+	
+	Аналогично, $v''_{xx} + v''_{yy} \equiv 0$ на $G$.
+\end{proof}
+
+\begin{unnecessary}
+    \begin{theorem}[из матана]
+    \label{from_matan}
+        Если область $D$ односвязна, то для того, чтобы интеграл $\int P dx + Q dy$ по любой замкнутой кривой $\gamma$, лежащей в области $D$, равнялся нулю, необходимо и достаточно, чтобы во всей области $D$ выполнялось равенство 
+        \[ \frac{\partial{P}}{\partial{y}}=\frac{\partial{Q}}{\partial{x}} \]
+        
+    \end{theorem}
+    
+    \begin{theorem}[из матана] \label{from_matan1}
+        Пусть $\overline{a}(x,y)=(P(x, y), Q(x, y))$ - непрерывное векторное поле в области $G$; $\int_{(x_0, y_0)}^{(x,y)} Pdx+Qdy$ не зависит от формы кривой $\gamma$, соединяющей $(x_0, y_0), (x,y)$, $M(\gamma) \subset G$. Тогда функция $w(x,y)=\int_{(x_0, y_0)}^{(x,y)} P dx + Q dy \in C^1 (G)$ и $w_x \equiv P, w_y \equiv Q$.
+    \end{theorem}
+\end{unnecessary}
+
+\begin{proposition}
+	Пусть выполнены следующие условия:
+	\begin{enumerate}
+		\item $G \subset \R^2$ "--- односвязная область
+		\item Функция $u$ "--- гармоническая на $G \subset \R^2$
+	\end{enumerate}
+	
+	Тогда существует гармоническая на $G$ функция $v$ такая, что на $G$ регулярна функция $f(z) = f(x + iy) := u(x, y) + iv(x, y)$.
+\end{proposition}
+
+\begin{proof}
+	Поскольку $u$ "--- гармоническая, то на $G$ выполнено $u_{xx}'' + u_{yy}'' \equiv 0$, тогда интеграл ниже не зависит от выбора кусочно-гладкой кривой, соединяющей фиксированные точки $(x_0, y_0), (x, y) \in G$:
+	\[v(x, y) := \int_{(x_0, y_0)}^{(x, y)}-u'_ydx + u'_xdy\]
+	
+	По теорме \ref{from_matan} интеграл не зависит от пути интегрирования в области $D$, так как $\frac{\partial^2u}{\partial{x^2}}+\frac{\partial^2{u}}{\partial{y}^2}=0$. Поэтому функция $v(x,y)$ однозначна в области $D$.
+ 
+        Из интеграла получаем по теореме \ref{from_matan1}
+        \[\frac{\partial{v}}{\partial{x}}=-\frac{\partial{u}}{\partial{y}}, \frac{\partial{v}}{\partial{y}}=\frac{\partial{u}}{\partial{x}},\]
+    откуда следует, что функция $v(x, y)$ является сопряженной к $u$ гармонической функцией в области $D$, а значит $f$ - регулярна
+\end{proof}
+
+\begin{note}
+	Функция $v$ в теореме выше восстанавливается однозначно с точностью до константы как решение системы дифференциальных уравнений, задаваемой условиями Коши-Римана. Аналогично доказывается, что по гармонической функции $v$ однозначно с точностью до константы восстанавливается функция $u$. Требование односвязности при этом существенно, что показывает пример ниже.
+\end{note}
+
+\begin{unnecessary}
+    \begin{example}
+    	Пусть $G := \{z \in \Cm : \frac12 < |z| < 2\}$, $u(x, y) := \ln(x^2 + y^2)$. Можно проверить, что функция $u$ "--- гармоническая на $G$, однако не существует гармонической на $G$ функции $v$ такой, что $f(z) = f(x + iy) = u(x, y) + iv(x, y)$ регулярна на $G$. Предположим, что такая функция $v$ существует, тогда:
+    	\[f'(z) = u'_x + iv'_x = u'_x - iu'_y = \frac{2}{x + iy} = \frac 2z\]
+    	
+    	Значит, функция $f$ является первообразной для функции $\frac 2z$ на $G$. При этом для окружности $K := \{z \in \Cm: |z| = 1\}$ выполнено следующее равенство:
+    	\[\int_{K} \frac 2zdz = 4\pi i \ne 0\]
+    	
+    	Значит, функция $\frac2z$ не может иметь первообразной на $G$ --- противоречие.
+    \end{example}
+\end{unnecessary}

@@ -1,0 +1,77 @@
+\begin{property}[Структура кинетической энергии]
+    \[T = \dfrac{1}{2} \int \overline{v}^2dm\]
+    Поскольку \[\overline{v} = \dot{\overline{v}} = \dfrac{\partial \overline{r}}{\partial t} + \sum\limits_i\dfrac{\partial \overline{r}}{\partial q_i} \dot{q}_i\]
+    То кинетическая энергия выглядит как \[
+        T = \dfrac{1}{2}\sum\limits_{i, j}\dot{q}_i\dot{q}_j\int \dfrac{\partial \overline{r}}{\partial q_i}\cdot \dfrac{\partial \overline{r}}{\partial q_j}dm + \sum\limits_i \dot{q}_i \int \dfrac{\partial \overline{r}}{\partial q_i}\cdot \dfrac{\partial \overline{r}}{\partial t}dm + \dfrac{1}{2}\int \dfrac{\partial \overline{r}}{\partial t} \cdot \dfrac{\partial \overline{r}}{\partial t}dm
+    \]
+    Т.е. $T = T_2 + T_1 + T_0$, где 
+    \[T_2 = \dfrac{1}{2}\sum\limits_{i, j}a_{i, j}\dot{q}_i\dot{q}_j, \quad T_1 = \sum\limits_i b_i \dot{q}_i, \quad T_0 = \dfrac{1}{2}\int \biggr(\dfrac{\partial \overline{r}}{\partial t}\biggr)^2 dm\]
+\end{property}
+\begin{property}[Невырожденность/Разрешимость относительно старших производных]
+    В силу структуры $T$ уравнения Лагранжа всегда являются линейны по обобщённым ускорениям: \[A\ddot{q} + \psi(q, \dot{q}, t) = 0\]
+    В силу невырожденности параметризации $\det A \neq 0$, а следовательно мы всегда можем выразить $\ddot{q}$.
+\end{property}
+
+\subsection{Первые интегралы уравнений Лагранжа}
+\begin{definition}
+    Пусть есть система ОДУ \[\dot{x} = f(x, t)\]
+    Первым интегралом этой системы $\phi(x, t)$ является функция, т.ч. \[
+    \phi(x(t), t) = const
+    \]
+    на всяком решении системы.
+\end{definition}
+\begin{property}[Циклические интегралы]
+    Пусть есть такая переменная в локальной параметризации, что \[\dfrac{\partial L}{\partial q} = 0\]
+    Тогда в силу уравнений Лагранжа мы можем сразу сказать что \[ \dfrac{\partial L}{\partial \dot{q}}\] является первым интегралом
+\end{property}
+\begin{property}[Обобщённый интеграл энергии/Интеграл Пенлеве-Якоби]
+    Пусть \[L = L(\dot{q}, q, t)\]
+    Полной производной по времени является \[\dfrac{d}{dt}L = \dfrac{\partial L}{\partial t} + \sum\limits_i \dfrac{\partial L}{\partial q_i}\dot{q}_i + \sum\limits_i \dfrac{\partial L}{\partial \dot{q}_i} \ddot{q}_i\]
+    С другой стороны, \[\dfrac{d}{dt}\biggr(\dot{q}\dfrac{\partial L}{\partial \dot{q}}\biggr) = \ddot{q}\dfrac{\partial L}{\partial \dot{q}} + \dot{q}\dfrac{\partial L}{\partial q}\]
+    То есть \[\dfrac{d}{dt}\biggr( L - \sum\limits_i\dfrac{\partial L}{\partial \dot{q}_i}\dot{q}_i\biggr) = \dfrac{\partial L}{\partial t}\]
+    Видно, что в случае если $L$ не зависит от $t$ сохраняется \[J = \sum\limits_i \dot{q}_i \dfrac{\partial L}{\partial \dot{q}_i} - L\]
+    $J$ называется интегралом Пенлеве-Якоби. С другой стороны, \[J = \dot{q}\dfrac{\partial }{\partial \dot{q}}(T_2 + T_1 + T_0 - \Pi) - L = 2T_2 + T_1 - (T_2 + T_1 + T_0 - \Pi) = T_2 - T_0 + \Pi\]
+\end{property}
+\begin{definition}
+    Механическая система называется консервативной, если: 
+    \begin{itemize}
+        \item Все связи, наложенные на систему -- стационарные
+        \item Все силы допускают потенциал
+        \item Потенциал не зависит от времени
+    \end{itemize}
+\end{definition}
+\begin{definition}
+Обобщённая сила называется гироскопической, если \[\forall \dot{q} \quad \dot{q}^T \cdot Q = 0\]
+\end{definition}
+\begin{definition}
+Обобщённая сила называется диссипативной, если \[\forall \dot{q} \quad \dot{q}^T \cdot Q \leq 0\]
+\end{definition}
+\begin{definition}
+    Пусть есть механическая система с некоторым семейством конфигурационных многообразий $\mathcal{M}_t$ и в нём выбрано две точки $(q_0, t_0)$ и $(q_1, t_1)$. Рассмотрим семейство кривых, идущий из $q_0$ в $q_1$. Небольшое смещение кривой этого семейства $\delta q(t)$ будем называть варьированием кривой: \[q(t) = q^0(t) + \delta q(t)\]
+\end{definition}
+\begin{definition}
+    Действием по Гамильтону будем называть следующий функционал: \[W = \int\limits_{t_0}^{t_1} L(\dot{q}, q, t)dt\]
+\end{definition}
+\begin{definition}
+    Первой вариацией действия по Гамильтону будем называть \[\delta W = \int\limits_{t_0}^{t_1}L(\dot{q}_0 + \delta \dot{q}, q_0 + \delta q, t)dt - \int\limits_{t_0}^{t_1}L(\dot{q}_0, q_0, t)dt \approx \sum\limits_i\int\limits_{t_0}^{t_1}\dfrac{\partial L}{\partial \dot{q}_i}\delta \dot{q}_i + \dfrac{\partial L}{\partial q_i}\delta q_i dt\]
+    Посмотрим, чему равен этот интеграл. \[\int\limits_{t_0}^{t_1} \dfrac{\partial L}{\partial \dot{q}}\delta \dot{q}dt = \delta q \dfrac{\partial L}{\partial \dot{q}}\biggr|_{t_0}^{t_1} - \int\limits_{t_0}^{t_1} \dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}} \delta q dt \]
+    Таким образом, если мы будем считать $\delta q: \delta q(t_0) = \delta q(t_1) = 0$ то первая вариация действия будет равна \[\delta W\biggr|_{q_0} = -\sum\limits_i \int\limits_{t_0}^{t_1} \biggr(\dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i} - \dfrac{\partial L}{\partial q_i}\biggr)\delta q_i dt\]
+    Таким образом, можно заметить, что если $\dfrac{d}{dt}\dfrac{\partial L}{\partial \dot{q}_i} - \dfrac{\partial L}{\partial q_i} = 0$ то $\delta W = 0$.
+    Верно и обратное. Поэтому, система движется по экстремалям действия по Гамильтону.
+\end{definition}
+\begin{definition}
+    Обозначим за $p_i$~---~обобщённый импульс~---~следующую функцию: \[p_i = \dfrac{\partial L}{\partial \dot{q}_i}\]
+\end{definition}
+\begin{definition}
+    Гамильтонианом системы $H(q, p, t)$ будем называть \[H(q, p, t) = p \cdot \dot{q} - L(q, \dot{q}, t)\]
+\end{definition}
+\begin{definition}
+    Дифференцируя предыдущее равенство по $q$ и $p$, получим следующую систему уравнений: 
+    \begin{equation*}
+        \begin{cases}
+            \dfrac{\partial H}{\partial q} = - \dfrac{\partial L}{\partial q} = -\dot{p} \\
+            \dfrac{\partial H}{\partial p} = \dot{q}
+        \end{cases}
+    \end{equation*}
+    Эта система уравнений называется каноническими уравнениями Гамильтона.
+\end{definition}

@@ -1,0 +1,96 @@
+Пусть $K$ -- область целостности. Рассмотрим множество пар  
+$\widetilde{K} = \{a, b\}$ элементов кольца $K$, где $b \neq 0$. 
+На этом множестве введем отношение следующим образом: 
+$\{a, b\} \sim \{c, d\}$, если $ad = bc$.
+
+а) $\{a, b\} \sim \{ac, bc\}, c\neq 0$
+
+$$
+\{a, b\} \sim \{ac, bc\} \Leftrightarrow abc = bac
+$$
+
+б) $\sim$ -- отношение эквивалентности
+
+1) $\{a, b\} \sim \{a, b\} \Leftrightarrow ab = ba$
+
+2) $\{a, b\} \sim \{c, d\} \Leftrightarrow ad = bc \Leftrightarrow
+cb = da \Leftrightarrow \{c, d\} \sim \{a, b\}$
+
+3) $\{a, b\} \sim \{c, d\}, \{c, d\} \sim \{e, f\} 
+\Rightarrow \{a, b\} \sim \{e, f\}$
+
+$\{a, b\} \sim \{c, d\} \Rightarrow ad = bc$,
+$\{c, d\} \sim \{e, f\} \Rightarrow cf = de$, из этого следует, что
+$adf = bcf = bde \Rightarrow af = be$, а значит
+$\{a, b\} \sim \{e, f\}$.
+
+Элемент множества классов эквивалентности $F = Quot(K)$ будем записывать как
+$\frac{a}{b}$ или $ab^{-1}$. 
+Введем операции сложения и умножения на $F = Quot(K)$:
+
+$$
+\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}
+$$
+
+$$
+\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}
+$$
+
+в) Сложение и умножение корректно определено
+
+Для примера проверим только умножение:
+
+Пусть $\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}$.
+$\frac{a'}{b'} \sim \frac{a}{b}$,
+$\frac{c}{d} \sim \frac{c'}{d'}$. Тогда нужно доказать, что
+$\frac{a'c'}{b'd'} \sim \frac{ac}{bd}$.
+
+$$
+a'b = ab', cd' = c'd \Rightarrow
+(a'b)(c'd) = (ab')(cd') \Rightarrow
+a'c'bd = acb'd' \Rightarrow 
+\frac{a'c'}{b'd'} \sim \frac{ac}{bd}
+$$
+
+г) $F$ является коммутативным кольцом
+
+Проверяется непосредственно из определения.
+Для примера проверим только умножение:
+
+1) Ассоциативность (следует из ассоциативности в $K$)
+
+$$
+\left( \frac{a}{b} \cdot \frac{c}{d} \right) \cdot \frac{e}{f} =
+\frac{ac}{bd} \cdot \frac{e}{f} = \frac{(ac)e}{(bd)f}
+$$
+
+$$
+\frac{a}{b} \cdot \left( \frac{c}{d} \cdot \frac{e}{f} \right) =
+\frac{a}{b} \cdot \frac{ce}{df} = \frac{a(ce)}{b(df)}
+$$
+
+2) Существование единицы
+
+В качестве единицы можно взять $\frac{1}{1}$:
+
+3) Коммутативность (следует из коммутативности $K$)
+
+$$
+\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd} = \frac{ca}{db} = 
+\frac{c}{d} \cdot \frac{a}{b}
+$$
+
+д) $F$ является полем
+
+Для $\frac{a}{b}$ ($a \neq 0$) обратным будет $\frac{b}{a}$:
+
+$$
+\frac{a}{b} \cdot \frac{b}{a} = \frac{ab}{ba} \sim \frac{1}{1}
+$$
+
+е) Существует инъекция $K \to F$
+
+Инъекция $\varphi: K \to F$ задаётся следующим образом:
+$\forall a \in K \ \ \varphi(a) = \frac{a}{1}$
+
+$\varphi$ является инъекцией, так как $Ker \varphi$ тривиально.
