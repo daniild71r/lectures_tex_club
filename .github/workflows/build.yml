@@ -1,4 +1,4 @@
-name: build and upload latex
+name: build and upload LaTeX or Typst
 
 on:
   workflow_dispatch:
@@ -69,7 +69,20 @@ jobs:
       - name: Create build dir
         run: mkdir -p build
 
-      - name: Build latex
+      - name: Detect format
+        id: format
+        run: |
+          if [ -f "${{ matrix.course }}/main.typ" ]; then
+            echo "type=typst" >> "$GITHUB_OUTPUT"
+          elif [ -f "${{ matrix.course }}/main.tex" ]; then
+            echo "type=latex" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Не найден main.typ или main.tex в ${{ matrix.course }}!"
+            exit 1
+          fi
+
+      - name: Build LaTeX
+        if: steps.format.outputs.type == 'latex'
         id: build-latex
         uses: xu-cheng/latex-action@4.1.0
         with:
@@ -78,6 +91,28 @@ jobs:
           args: -output-dir=../../../../build
           compiler: pdflatex
           post_compile: "pdflatex -output-dir=${GITHUB_WORKSPACE}/build main.tex"
+
+      - name: Setup Typst
+        if: steps.format.outputs.type == 'typst'
+        uses: typst-community/setup-typst@v5.2.0
+
+      - name: Build Typst
+        if: steps.format.outputs.type == 'typst'
+        run: |
+          typst compile "${{ matrix.course }}/main.typ" build/main.pdf
+
+      - name: Prepare artifact name
+        id: artifact-meta
+        run: |
+          COURSE="${{ matrix.course }}"
+          echo "artifact_name=$(basename "$COURSE")" >> "$GITHUB_OUTPUT"
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: ${{ steps.artifact-meta.outputs.artifact_name }}
+          path: build/main.pdf
+          if-no-files-found: error
 
       - name: Upload
         shell: bash
